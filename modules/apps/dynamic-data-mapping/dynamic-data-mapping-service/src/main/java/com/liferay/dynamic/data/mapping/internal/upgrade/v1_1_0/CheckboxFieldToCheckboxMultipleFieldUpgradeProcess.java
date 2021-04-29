@@ -89,12 +89,12 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 			ps1.setInt(1, _SCOPE_FORMS);
 			ps1.setString(2, "%checkbox%");
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String definition = rs.getString(1);
-					String version = rs.getString(2);
-					long structureId = rs.getLong(3);
-					long recordSetId = rs.getLong(4);
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String definition = resultSet.getString(1);
+					String version = resultSet.getString(2);
+					long structureId = resultSet.getLong(3);
+					long recordSetId = resultSet.getLong(4);
 
 					String newDefinition = upgradeRecordSetStructureDefinition(
 						definition);
@@ -212,9 +212,9 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 
 			ps1.setLong(1, recordSetId);
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String data_ = rs.getString("data_");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String data_ = resultSet.getString("data_");
 
 					DDMFormValues ddmFormValues =
 						DDMFormValuesDeserializeUtil.deserialize(
@@ -227,7 +227,7 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 						DDMFormValuesSerializeUtil.serialize(
 							ddmFormValues, _ddmFormValuesSerializer));
 
-					long contentId = rs.getLong("DDMStorageId");
+					long contentId = resultSet.getLong("DDMStorageId");
 
 					ps2.setLong(2, contentId);
 

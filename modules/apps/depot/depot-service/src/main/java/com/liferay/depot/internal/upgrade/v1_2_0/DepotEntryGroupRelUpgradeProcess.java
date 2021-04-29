@@ -46,11 +46,11 @@ public class DepotEntryGroupRelUpgradeProcess extends UpgradeProcess {
 							"update DepotEntryGroupRel set groupId = " +
 								"toGroupId, uuid_ = ? where " +
 									"depotEntryGroupRelId = ?"));
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					ps2.setString(1, PortalUUIDUtil.generate());
-					ps2.setLong(2, rs.getLong(1));
+					ps2.setLong(2, resultSet.getLong(1));
 
 					ps2.addBatch();
 				}

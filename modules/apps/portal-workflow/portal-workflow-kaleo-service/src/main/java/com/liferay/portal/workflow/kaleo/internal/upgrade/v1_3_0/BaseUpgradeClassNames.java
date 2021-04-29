@@ -83,10 +83,11 @@ public abstract class BaseUpgradeClassNames extends UpgradeProcess {
 				StringBundler.concat(
 					"select ", primaryKeyName, ", workflowContext from ",
 					tableName, " where workflowContext is not null"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String workflowContextJSON = rs.getString("workflowContext");
+			while (resultSet.next()) {
+				String workflowContextJSON = resultSet.getString(
+					"workflowContext");
 
 				if (Validator.isNull(workflowContextJSON)) {
 					continue;
@@ -96,7 +97,7 @@ public abstract class BaseUpgradeClassNames extends UpgradeProcess {
 					updateWorkflowContext(workflowContextJSON);
 
 				if (workflowContext != null) {
-					long primaryKeyValue = rs.getLong(primaryKeyName);
+					long primaryKeyValue = resultSet.getLong(primaryKeyName);
 
 					updateWorkflowContext(
 						tableName, primaryKeyName, primaryKeyValue,

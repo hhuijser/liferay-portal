@@ -59,12 +59,13 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, groupId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
 					UnicodeProperties settingsUnicodeProperties =
 						new UnicodeProperties(true);
 
-					settingsUnicodeProperties.load(rs.getString("settings_"));
+					settingsUnicodeProperties.load(
+						resultSet.getString("settings_"));
 
 					String lastPublishDateString =
 						settingsUnicodeProperties.getProperty(
@@ -103,9 +104,9 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 				ps.setString(4, portletId);
 				ps.setString(5, "last-publish-date");
 
-				try (ResultSet rs = ps.executeQuery()) {
-					while (rs.next()) {
-						String value = rs.getString("smallValue");
+				try (ResultSet resultSet = ps.executeQuery()) {
+					while (resultSet.next()) {
+						String value = resultSet.getString("smallValue");
 
 						if (Validator.isNotNull(value)) {
 							return new Date(GetterUtil.getLong(value));
@@ -126,9 +127,9 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 			ps.setLong(3, groupId);
 			ps.setString(4, portletId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					String preferences = rs.getString("preferences");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					String preferences = resultSet.getString("preferences");
 
 					if (Validator.isNotNull(preferences)) {
 						int x = preferences.lastIndexOf(
@@ -159,12 +160,12 @@ public abstract class BaseLastPublishDateUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select groupId from Group_ where typeSettings like " +
 					"'%staged=true%'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			List<Long> stagedGroupIds = new ArrayList<>();
 
-			while (rs.next()) {
-				long stagedGroupId = rs.getLong("groupId");
+			while (resultSet.next()) {
+				long stagedGroupId = resultSet.getLong("groupId");
 
 				stagedGroupIds.add(stagedGroupId);
 			}

@@ -1110,16 +1110,16 @@ public class CTSQLTransformerTest {
 
 			preparedStatementUnsafeConsumer.accept(ps);
 
-			try (ResultSet rs = ps.executeQuery()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
 				for (UnsafeConsumer<ResultSet, Exception> unsafeConsumer :
 						resultSetUnsafeConsumers) {
 
-					Assert.assertTrue(rs.next());
+					Assert.assertTrue(resultSet.next());
 
-					unsafeConsumer.accept(rs);
+					unsafeConsumer.accept(resultSet);
 				}
 
-				Assert.assertFalse(rs.next());
+				Assert.assertFalse(resultSet.next());
 			}
 		}
 		finally {
@@ -1135,9 +1135,9 @@ public class CTSQLTransformerTest {
 
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement ps = connection.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			unsafeConsumer.accept(rs);
+			unsafeConsumer.accept(resultSet);
 		}
 	}
 

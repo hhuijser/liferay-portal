@@ -69,18 +69,18 @@ public class CalendarUpgradeProcess extends UpgradeProcess {
 
 			try (PreparedStatement ps = connection.prepareStatement(
 					sb.toString());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
 				long userClassNameId = PortalUtil.getClassNameId(User.class);
 
-				while (rs.next()) {
-					long calendarId = rs.getLong(1);
-					long classNameId = rs.getLong(2);
+				while (resultSet.next()) {
+					long calendarId = resultSet.getLong(1);
+					long classNameId = resultSet.getLong(2);
 
 					String timeZoneId = null;
 
 					if (classNameId == userClassNameId) {
-						timeZoneId = rs.getString(3);
+						timeZoneId = resultSet.getString(3);
 					}
 					else {
 						timeZoneId = PropsUtil.get(

@@ -72,18 +72,19 @@ public class WorkflowContextUpgradeProcess extends UpgradeProcess {
 					"select ", fieldName, ", workflowContext from ", tableName,
 					" where workflowContext is not null and workflowContext ",
 					"not like '%serializable%'"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			JSONSerializer jsonSerializer = getJSONSerializer();
 
-			while (rs.next()) {
-				String workflowContextJSON = rs.getString("workflowContext");
+			while (resultSet.next()) {
+				String workflowContextJSON = resultSet.getString(
+					"workflowContext");
 
 				if (Validator.isNull(workflowContextJSON)) {
 					continue;
 				}
 
-				long fieldValue = rs.getLong(fieldName);
+				long fieldValue = resultSet.getLong(fieldName);
 
 				workflowContextJSON =
 					_workflowContextUpgradeHelper.renamePortalClassNames(

@@ -72,10 +72,10 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			ps.setString(1, structureKey);
 			ps.setLong(2, classNameId);
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			if (rs.next()) {
-				return rs.getLong("structureId");
+			if (resultSet.next()) {
+				return resultSet.getLong("structureId");
 			}
 
 			return 0;

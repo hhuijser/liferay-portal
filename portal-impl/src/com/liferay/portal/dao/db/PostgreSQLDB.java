@@ -122,13 +122,13 @@ public class PostgreSQLDB extends BaseDB {
 		String sql = sb.toString();
 
 		try (PreparedStatement ps = con.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String indexName = rs.getString("indexname");
-				String tableName = rs.getString("tablename");
+			while (resultSet.next()) {
+				String indexName = resultSet.getString("indexname");
+				String tableName = resultSet.getString("tablename");
 				String indexSQL = StringUtil.toLowerCase(
-					StringUtil.trim(rs.getString("indexdef")));
+					StringUtil.trim(resultSet.getString("indexdef")));
 
 				boolean unique = true;
 

@@ -32,14 +32,14 @@ public class UpgradeGroup extends UpgradeProcess {
 		DatabaseMetaData databaseMetaData = connection.getMetaData();
 		DBInspector dbInspector = new DBInspector(connection);
 
-		try (ResultSet rs = databaseMetaData.getColumns(
+		try (ResultSet resultSet = databaseMetaData.getColumns(
 				dbInspector.getCatalog(), dbInspector.getSchema(),
 				dbInspector.normalizeName("Group_"),
 				dbInspector.normalizeName("groupKey"))) {
 
-			if (rs.next()) {
-				int columnSize = rs.getInt("COLUMN_SIZE");
-				int dataType = rs.getInt("DATA_TYPE");
+			if (resultSet.next()) {
+				int columnSize = resultSet.getInt("COLUMN_SIZE");
+				int dataType = resultSet.getInt("DATA_TYPE");
 
 				if ((dataType != Types.VARCHAR) || (columnSize != 150)) {
 					alter(

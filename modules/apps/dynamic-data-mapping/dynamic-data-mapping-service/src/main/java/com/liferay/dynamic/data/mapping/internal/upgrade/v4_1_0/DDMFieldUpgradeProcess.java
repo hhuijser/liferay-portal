@@ -322,11 +322,11 @@ public class DDMFieldUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, structureId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					ddmForm = DDMFormDeserializeUtil.deserialize(
 						_jsonDDMFormJSONDeserializer,
-						rs.getString("definition"));
+						resultSet.getString("definition"));
 
 					_ddmForms.put(structureId, ddmForm);
 
@@ -355,9 +355,10 @@ public class DDMFieldUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, structureId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					long parentStructureId = rs.getLong("parentStructureId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					long parentStructureId = resultSet.getLong(
+						"parentStructureId");
 
 					fullHierarchyDDMForm = _getDDMForm(structureId);
 

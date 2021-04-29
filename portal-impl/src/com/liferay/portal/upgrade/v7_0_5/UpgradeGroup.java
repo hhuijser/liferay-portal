@@ -61,20 +61,20 @@ public class UpgradeGroup extends UpgradeProcess {
 						connection,
 						"update Group_ set parentGroupId = ?, treePath = ? " +
 							"where groupId = ?");
-				ResultSet rs1 = ps1.executeQuery()) {
+				ResultSet resultSet1 = ps1.executeQuery()) {
 
-				while (rs1.next()) {
-					long groupId = rs1.getLong(1);
+				while (resultSet1.next()) {
+					long groupId = resultSet1.getLong(1);
 
-					long parentGroupId = rs1.getLong(2);
+					long parentGroupId = resultSet1.getLong(2);
 
 					ps2.setLong(1, parentGroupId);
 
-					try (ResultSet rs2 = ps2.executeQuery()) {
+					try (ResultSet resultSet2 = ps2.executeQuery()) {
 						String treePath = null;
 
-						if (rs2.next()) {
-							treePath = rs2.getString("treePath");
+						if (resultSet2.next()) {
+							treePath = resultSet2.getString("treePath");
 
 							treePath = treePath.concat(String.valueOf(groupId));
 

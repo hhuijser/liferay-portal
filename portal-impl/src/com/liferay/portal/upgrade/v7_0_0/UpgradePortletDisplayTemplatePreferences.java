@@ -50,9 +50,9 @@ public class UpgradePortletDisplayTemplatePreferences
 			ps.setLong(1, _COMPANY_CLASS_NAME_ID);
 			ps.setLong(2, companyId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					companyGroupId = rs.getLong("groupId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					companyGroupId = resultSet.getLong("groupId");
 				}
 				else {
 					companyGroupId = 0L;
@@ -81,12 +81,12 @@ public class UpgradePortletDisplayTemplatePreferences
 
 			ObjectValuePair<Long, String> objectValuePair = null;
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
 
 					objectValuePair = new ObjectValuePair<>(
-						groupId, rs.getString("templateKey"));
+						groupId, resultSet.getString("templateKey"));
 
 					if (groupId == displayStyleGroupId) {
 						return objectValuePair;

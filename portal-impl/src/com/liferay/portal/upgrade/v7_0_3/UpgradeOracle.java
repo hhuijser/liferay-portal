@@ -38,22 +38,22 @@ public class UpgradeOracle extends UpgradeProcess {
 				"select table_name, column_name, data_length from " +
 					"user_tab_columns where data_type = 'VARCHAR2' and " +
 						"char_used = 'B'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String tableName = rs.getString(1);
+			while (resultSet.next()) {
+				String tableName = resultSet.getString(1);
 
 				if (!isPortal62TableName(tableName)) {
 					continue;
 				}
 
-				String columnName = rs.getString(2);
+				String columnName = resultSet.getString(2);
 
 				try {
 					runSQL(
 						StringBundler.concat(
 							"alter table ", tableName, " modify ", columnName,
-							" varchar2(", rs.getInt(3), " char)"));
+							" varchar2(", resultSet.getInt(3), " char)"));
 				}
 				catch (SQLException sqlException) {
 					if (sqlException.getErrorCode() == 1441) {

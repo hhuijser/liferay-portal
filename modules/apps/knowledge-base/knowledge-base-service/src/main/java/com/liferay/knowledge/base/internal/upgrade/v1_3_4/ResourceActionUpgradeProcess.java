@@ -47,9 +47,9 @@ public class ResourceActionUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, _ACTION_ID_VIEW_KB_FEEDBACK);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					if (rs.getInt(1) > 0) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					if (resultSet.getInt(1) > 0) {
 						return true;
 					}
 

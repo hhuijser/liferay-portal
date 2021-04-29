@@ -33,15 +33,15 @@ public class UpgradeDocumentLibraryPortletId
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select actionId from ResourceAction where name = '" +
 					_PORTLET_ID_DOCUMENT_LIBRARY + "'");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				try (PreparedStatement ps2 = connection.prepareStatement(
 						"delete from ResourceAction where name = ? and " +
 							"actionId = ?")) {
 
 					ps2.setString(1, _PORTLET_ID_DL_DISPLAY);
-					ps2.setString(2, rs.getString("actionId"));
+					ps2.setString(2, resultSet.getString("actionId"));
 
 					ps2.execute();
 				}
@@ -54,17 +54,17 @@ public class UpgradeDocumentLibraryPortletId
 				StringBundler.concat(
 					"select companyId, scope, primKey from ResourcePermission ",
 					"where name = '", _PORTLET_ID_DOCUMENT_LIBRARY, "'"));
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				try (PreparedStatement ps2 = connection.prepareStatement(
 						"delete from ResourcePermission where companyId = ? " +
 							"and name = ? and scope = ? and primKey = ?")) {
 
-					ps2.setLong(1, rs.getLong("companyId"));
+					ps2.setLong(1, resultSet.getLong("companyId"));
 					ps2.setString(2, _PORTLET_ID_DL_DISPLAY);
-					ps2.setInt(3, rs.getInt("scope"));
-					ps2.setString(4, rs.getString("primKey"));
+					ps2.setInt(3, resultSet.getInt("scope"));
+					ps2.setString(4, resultSet.getString("primKey"));
 
 					ps2.execute();
 				}

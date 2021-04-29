@@ -35,14 +35,14 @@ public class CommerceAccountUserRelUpgradeProcess extends UpgradeProcess {
 				"asc, commerceAccountUserId asc";
 
 		try (Statement selectStatement = connection.createStatement()) {
-			ResultSet rs = selectStatement.executeQuery(
+			ResultSet resultSet = selectStatement.executeQuery(
 				selectCommerceAccountUserRel);
 
-			while (rs.next()) {
-				long accountEntryId = rs.getLong("commerceAccountId");
-				long accountUserId = rs.getLong("commerceAccountUserId");
+			while (resultSet.next()) {
+				long accountEntryId = resultSet.getLong("commerceAccountId");
+				long accountUserId = resultSet.getLong("commerceAccountUserId");
 
-				CompanyThreadLocal.setCompanyId(rs.getLong("companyId"));
+				CompanyThreadLocal.setCompanyId(resultSet.getLong("companyId"));
 
 				AccountEntryUserRelLocalServiceUtil.addAccountEntryUserRel(
 					accountEntryId, accountUserId);

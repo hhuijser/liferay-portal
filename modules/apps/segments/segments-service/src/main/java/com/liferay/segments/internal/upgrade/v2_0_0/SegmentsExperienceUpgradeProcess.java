@@ -70,9 +70,9 @@ public class SegmentsExperienceUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				sb.toString())) {
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long segmentsExperienceId = rs.getLong(
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long segmentsExperienceId = resultSet.getLong(
 						"segmentsExperienceId");
 
 					_updateSegmentsExperience(

@@ -50,45 +50,48 @@ public class CommerceAccountUpgradeProcess extends UpgradeProcess {
 			"select * from CommerceAccount order by commerceAccountId asc";
 
 		try (Statement selectStatement = connection.createStatement()) {
-			ResultSet rs = selectStatement.executeQuery(
+			ResultSet resultSet = selectStatement.executeQuery(
 				selectCommerceAccountSQL);
 
-			while (rs.next()) {
-				long accountEntryId = rs.getLong("commerceAccountId");
+			while (resultSet.next()) {
+				long accountEntryId = resultSet.getLong("commerceAccountId");
 
 				AccountEntry accountEntry =
 					AccountEntryLocalServiceUtil.createAccountEntry(
 						accountEntryId);
 
 				accountEntry.setExternalReferenceCode(
-					rs.getString("externalReferenceCode"));
+					resultSet.getString("externalReferenceCode"));
 
-				long companyId = rs.getLong("companyId");
+				long companyId = resultSet.getLong("companyId");
 
 				accountEntry.setCompanyId(companyId);
 
-				long userId = rs.getLong("userId");
+				long userId = resultSet.getLong("userId");
 
 				accountEntry.setUserId(userId);
 
-				accountEntry.setUserName(rs.getString("userName"));
-				accountEntry.setCreateDate(rs.getTimestamp("createDate"));
-				accountEntry.setModifiedDate(rs.getTimestamp("modifiedDate"));
+				accountEntry.setUserName(resultSet.getString("userName"));
+				accountEntry.setCreateDate(
+					resultSet.getTimestamp("createDate"));
+				accountEntry.setModifiedDate(
+					resultSet.getTimestamp("modifiedDate"));
 				accountEntry.setDefaultBillingAddressId(
-					rs.getLong("defaultBillingAddressId"));
+					resultSet.getLong("defaultBillingAddressId"));
 				accountEntry.setDefaultShippingAddressId(
-					rs.getLong("defaultShippingAddressId"));
+					resultSet.getLong("defaultShippingAddressId"));
 				accountEntry.setParentAccountEntryId(
-					rs.getLong("parentCommerceAccountId"));
-				accountEntry.setEmailAddress(rs.getString("email"));
-				accountEntry.setLogoId(rs.getLong("logoId"));
-				accountEntry.setName(rs.getString("name"));
-				accountEntry.setTaxIdNumber(rs.getString("taxId"));
+					resultSet.getLong("parentCommerceAccountId"));
+				accountEntry.setEmailAddress(resultSet.getString("email"));
+				accountEntry.setLogoId(resultSet.getLong("logoId"));
+				accountEntry.setName(resultSet.getString("name"));
+				accountEntry.setTaxIdNumber(resultSet.getString("taxId"));
 				accountEntry.setType(
-					CommerceAccountImpl.toAccountEntryType(rs.getInt("type_")));
+					CommerceAccountImpl.toAccountEntryType(
+						resultSet.getInt("type_")));
 				accountEntry.setStatus(
 					CommerceAccountImpl.toAccountEntryStatus(
-						rs.getBoolean("active_")));
+						resultSet.getBoolean("active_")));
 
 				AccountEntryLocalServiceUtil.addAccountEntry(accountEntry);
 

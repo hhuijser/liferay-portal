@@ -75,18 +75,18 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(sb.toString());
+			ResultSet resultSet = s.executeQuery(sb.toString());
 			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"update LayoutPageTemplateEntry set plid = ? where " +
 						"layoutPageTemplateEntryId = ?"))) {
 
-			while (rs.next()) {
-				long userId = rs.getLong("userId");
-				long groupId = rs.getLong("groupId");
-				String name = rs.getString("name");
-				int type = rs.getInt("type_");
-				long layoutPrototypeId = rs.getLong("layoutPrototypeId");
+			while (resultSet.next()) {
+				long userId = resultSet.getLong("userId");
+				long groupId = resultSet.getLong("groupId");
+				String name = resultSet.getString("name");
+				int type = resultSet.getInt("type_");
+				long layoutPrototypeId = resultSet.getLong("layoutPrototypeId");
 
 				long plid = _getPlid(
 					userId, groupId, name, type, layoutPrototypeId,
@@ -94,7 +94,7 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 
 				ps.setLong(1, plid);
 
-				long layoutPageTemplateEntryId = rs.getLong(
+				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
 
 				ps.setLong(2, layoutPageTemplateEntryId);

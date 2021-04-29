@@ -44,10 +44,10 @@ public class UpgradeRatings extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(
 				"select distinct classNameId from RatingsEntry");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				upgradeRatingsEntry(rs.getLong("classNameId"));
+			while (resultSet.next()) {
+				upgradeRatingsEntry(resultSet.getLong("classNameId"));
 			}
 		}
 	}
@@ -124,17 +124,17 @@ public class UpgradeRatings extends UpgradeProcess {
 					"averageScore = ? where classNameId = ? and classPK = ?";
 
 			try (PreparedStatement ps1 = connection.prepareStatement(selectSQL);
-				ResultSet rs = ps1.executeQuery();
+				ResultSet resultSet = ps1.executeQuery();
 				PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(updateSQL))) {
 
-				while (rs.next()) {
-					ps2.setInt(1, rs.getInt("totalEntries"));
-					ps2.setDouble(2, rs.getDouble("totalScore"));
-					ps2.setDouble(3, rs.getDouble("averageScore"));
-					ps2.setLong(4, rs.getLong("classNameId"));
-					ps2.setLong(5, rs.getLong("classPK"));
+				while (resultSet.next()) {
+					ps2.setInt(1, resultSet.getInt("totalEntries"));
+					ps2.setDouble(2, resultSet.getDouble("totalScore"));
+					ps2.setDouble(3, resultSet.getDouble("averageScore"));
+					ps2.setLong(4, resultSet.getLong("classNameId"));
+					ps2.setLong(5, resultSet.getLong("classPK"));
 
 					ps2.addBatch();
 				}

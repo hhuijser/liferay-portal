@@ -57,11 +57,11 @@ public class CommerceWishListItemUpgradeProcess extends UpgradeProcess {
 				"update CommerceWishListItem set CProductId = ?," +
 					"CPInstanceUuid = ? where CPInstanceId = ?");
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select distinct CPInstanceId from CommerceWishListItem")) {
 
-			while (rs.next()) {
-				long cpInstanceId = rs.getLong("CPInstanceId");
+			while (resultSet.next()) {
+				long cpInstanceId = resultSet.getLong("CPInstanceId");
 
 				CPInstance cpInstance = _cpInstanceLocalService.getCPInstance(
 					cpInstanceId);

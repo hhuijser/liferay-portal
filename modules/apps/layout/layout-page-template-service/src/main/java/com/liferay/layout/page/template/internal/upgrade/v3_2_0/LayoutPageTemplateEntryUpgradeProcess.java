@@ -38,7 +38,7 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 	protected void upgradeLayoutPageTemplateEntryKey() throws SQLException {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select layoutPageTemplateEntryId, name from " +
 					"LayoutPageTemplateEntry");
 			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
@@ -47,11 +47,11 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 						"layoutPageTemplateEntryKey = ? where " +
 							"layoutPageTemplateEntryId = ?"))) {
 
-			while (rs.next()) {
-				long layoutPageTemplateEntryId = rs.getLong(
+			while (resultSet.next()) {
+				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
 
-				String name = rs.getString("name");
+				String name = resultSet.getString("name");
 
 				ps.setString(1, _generateLayoutPageTemplateEntryKey(name));
 

@@ -160,13 +160,13 @@ public class LayoutTypeUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, "article");
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long plid = rs.getLong("plid");
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long plid = resultSet.getLong("plid");
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
 
-					String typeSettings = rs.getString("typeSettings");
+					String typeSettings = resultSet.getString("typeSettings");
 
 					String portletId = getPortletId();
 

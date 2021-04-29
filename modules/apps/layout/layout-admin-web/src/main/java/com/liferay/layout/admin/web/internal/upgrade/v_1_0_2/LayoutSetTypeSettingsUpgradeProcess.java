@@ -62,10 +62,10 @@ public class LayoutSetTypeSettingsUpgradeProcess extends UpgradeProcess {
 				"select groupId, typeSettings from Group_ where typeSettings " +
 					"like '%robots.txt%'")) {
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					String typeSettings = rs.getString("typeSettings");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					String typeSettings = resultSet.getString("typeSettings");
 
 					UnicodeProperties typeSettingsUnicodeProperties =
 						new UnicodeProperties();

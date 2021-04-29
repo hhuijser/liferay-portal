@@ -45,11 +45,11 @@ public class KaleoNotificationUpgradeProcess extends UpgradeProcess {
 			ps1.setString(1, "%im%");
 			ps1.setString(2, "%private-message%");
 
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				String[] notificationTypes = Stream.of(
-					StringUtil.split(rs.getString("notificationTypes"))
+					StringUtil.split(resultSet.getString("notificationTypes"))
 				).filter(
 					notificationType -> !Objects.equals(notificationType, "im")
 				).filter(
@@ -67,7 +67,7 @@ public class KaleoNotificationUpgradeProcess extends UpgradeProcess {
 
 				ps2.setString(1, StringUtil.merge(notificationTypes));
 
-				ps2.setLong(2, rs.getLong("kaleoNotificationId"));
+				ps2.setLong(2, resultSet.getLong("kaleoNotificationId"));
 
 				ps2.addBatch();
 			}

@@ -95,13 +95,13 @@ public class UpgradeViewCountTest {
 					"select * from ViewCountEntry where companyId = 2 AND ",
 					"classNameId = ", _className.getClassNameId(),
 					" AND classPK = 1"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
-			Assert.assertEquals(3, rs.getLong("viewCount"));
+			Assert.assertEquals(3, resultSet.getLong("viewCount"));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 
 			DBInspector dbInspector = new DBInspector(connection);
 

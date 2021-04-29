@@ -88,12 +88,12 @@ public class BooleanType implements CompositeUserType, Serializable {
 
 	@Override
 	public Object nullSafeGet(
-			ResultSet rs, String[] names, SessionImplementor session,
+			ResultSet resultSet, String[] names, SessionImplementor session,
 			Object owner)
 		throws SQLException {
 
 		Boolean value = StandardBasicTypes.BOOLEAN.nullSafeGet(
-			rs, names[0], session);
+			resultSet, names[0], session);
 
 		if (value == null) {
 			return DEFAULT_VALUE;

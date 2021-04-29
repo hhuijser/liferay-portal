@@ -39,12 +39,12 @@ public class JournalArticleContentUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select id_, content from JournalArticle")) {
 
-			ResultSet rs1 = ps1.executeQuery();
+			ResultSet resultSet1 = ps1.executeQuery();
 
-			while (rs1.next()) {
-				long id = rs1.getLong("id_");
+			while (resultSet1.next()) {
+				long id = resultSet1.getLong("id_");
 
-				String content = rs1.getString("content");
+				String content = resultSet1.getString("content");
 
 				content = _journalContentCompatibilityConverter.convert(
 					content);

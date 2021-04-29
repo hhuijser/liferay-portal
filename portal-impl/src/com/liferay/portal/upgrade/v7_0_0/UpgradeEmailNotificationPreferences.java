@@ -84,15 +84,16 @@ public class UpgradeEmailNotificationPreferences extends UpgradeProcess {
 					PreparedStatement ps2 = connection.prepareStatement(
 						"update PortalPreferences set preferences = ? where " +
 							"portalPreferencesId = ?");
-					ResultSet rs = ps1.executeQuery()) {
+					ResultSet resultSet = ps1.executeQuery()) {
 
-					while (rs.next()) {
+					while (resultSet.next()) {
 						ps2.setString(
 							1,
 							StringUtil.replace(
-								rs.getString("preferences"), oldValue,
+								resultSet.getString("preferences"), oldValue,
 								newValue));
-						ps2.setLong(2, rs.getLong("portalPreferencesId"));
+						ps2.setLong(
+							2, resultSet.getLong("portalPreferencesId"));
 
 						ps2.executeUpdate();
 					}

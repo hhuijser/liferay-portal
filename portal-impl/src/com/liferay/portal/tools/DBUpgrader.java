@@ -213,9 +213,9 @@ public class DBUpgrader {
 
 			ps.setLong(1, ReleaseConstants.DEFAULT_ID);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getInt(columnName);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getInt(columnName);
 				}
 			}
 

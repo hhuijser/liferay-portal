@@ -42,7 +42,7 @@ public class CPAttachmentFileEntryGroupUpgradeProcess extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select classNameId, classPK from CPAttachmentFileEntry")) {
 
 			long cpDefinitionClassNameId = _getCPDefinitionClassNameId();
@@ -57,9 +57,9 @@ public class CPAttachmentFileEntryGroupUpgradeProcess extends UpgradeProcess {
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, updateCPAttachmentFileEntrySQL)) {
 
-				while (rs.next()) {
-					long classNameId = rs.getLong("classNameId");
-					long classPK = rs.getLong("classPK");
+				while (resultSet.next()) {
+					long classNameId = resultSet.getLong("classNameId");
+					long classPK = resultSet.getLong("classPK");
 
 					long groupId;
 
@@ -91,12 +91,12 @@ public class CPAttachmentFileEntryGroupUpgradeProcess extends UpgradeProcess {
 
 	private long _getCPDefinitionClassNameId() throws Exception {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select classNameId from ClassName_ where value = " +
 					"'com.liferay.commerce.product.model.CPDefinition'")) {
 
-			if (rs.next()) {
-				return rs.getLong("classNameId");
+			if (resultSet.next()) {
+				return resultSet.getLong("classNameId");
 			}
 		}
 
@@ -107,12 +107,12 @@ public class CPAttachmentFileEntryGroupUpgradeProcess extends UpgradeProcess {
 		throws Exception {
 
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select groupId from CPDefinition where cpDefinitionId = " +
 					cpDefinitionId)) {
 
-			if (rs.next()) {
-				return rs.getLong("groupId");
+			if (resultSet.next()) {
+				return resultSet.getLong("groupId");
 			}
 		}
 

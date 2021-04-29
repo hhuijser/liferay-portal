@@ -64,9 +64,9 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 			ps.setString(1, name);
 			ps.setString(2, actionId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getLong("bitwiseValue");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getLong("bitwiseValue");
 				}
 
 				return 0;
@@ -78,10 +78,10 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select groupId from Group_ where name = '" +
 					GroupConstants.CONTROL_PANEL + "'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
-				return rs.getLong("groupId");
+			if (resultSet.next()) {
+				return resultSet.getLong("groupId");
 			}
 
 			return 0;
@@ -101,9 +101,9 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 
 				ps.setString(1, portletFrom);
 
-				try (ResultSet rs = ps.executeQuery()) {
-					while (rs.next()) {
-						long actionIds = rs.getLong("actionIds");
+				try (ResultSet resultSet = ps.executeQuery()) {
+					while (resultSet.next()) {
+						long actionIds = resultSet.getLong("actionIds");
 
 						if ((actionIds & bitwiseValue) == 0) {
 							continue;
@@ -111,7 +111,7 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 
 						actionIds = actionIds & ~bitwiseValue;
 
-						long resourcePermissionId = rs.getLong(
+						long resourcePermissionId = resultSet.getLong(
 							"resourcePermissionId");
 
 						runSQL(
@@ -123,12 +123,12 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 						resourcePermissionId = increment(
 							ResourcePermission.class.getName());
 
-						long companyId = rs.getLong("companyId");
-						int scope = rs.getInt("scope");
-						String primKey = rs.getString("primKey");
-						long roleId = rs.getLong("roleId");
+						long companyId = resultSet.getLong("companyId");
+						int scope = resultSet.getInt("scope");
+						String primKey = resultSet.getString("primKey");
+						long roleId = resultSet.getLong("roleId");
 
-						actionIds = rs.getLong("actionIds");
+						actionIds = resultSet.getLong("actionIds");
 
 						actionIds |= bitwiseValue;
 

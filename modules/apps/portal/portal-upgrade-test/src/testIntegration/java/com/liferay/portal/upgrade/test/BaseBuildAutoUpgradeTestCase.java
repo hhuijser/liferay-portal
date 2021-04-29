@@ -188,18 +188,18 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select id_, data_, data2 from BuildAutoUpgradeTestEntity");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
-			Assert.assertEquals(1, rs.getLong("id_"));
-			Assert.assertEquals("data", rs.getString("data_"));
+			Assert.assertEquals(1, resultSet.getLong("id_"));
+			Assert.assertEquals("data", resultSet.getString("data_"));
 
-			String data2 = rs.getString("data2");
+			String data2 = resultSet.getString("data2");
 
 			Assert.assertTrue(data2, Validator.isNull(data2));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 
 		try (Connection con = DataAccess.getConnection();
@@ -220,14 +220,14 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select id_, data2 from BuildAutoUpgradeTestEntity");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
-			Assert.assertEquals(1, rs.getLong("id_"));
-			Assert.assertEquals("data2", rs.getString("data2"));
+			Assert.assertEquals(1, resultSet.getLong("id_"));
+			Assert.assertEquals("data2", resultSet.getString("data2"));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 
 		// Remove "data2" column and add "data_" column
@@ -240,17 +240,17 @@ public abstract class BaseBuildAutoUpgradeTestCase {
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select id_, data_ from BuildAutoUpgradeTestEntity");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
-			Assert.assertEquals(1, rs.getLong("id_"));
+			Assert.assertEquals(1, resultSet.getLong("id_"));
 
-			String data = rs.getString("data_");
+			String data = resultSet.getString("data_");
 
 			Assert.assertTrue(data, Validator.isNull(data));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 	}
 

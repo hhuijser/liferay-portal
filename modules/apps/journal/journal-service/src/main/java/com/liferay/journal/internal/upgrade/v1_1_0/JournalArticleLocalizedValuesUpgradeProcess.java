@@ -122,18 +122,19 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 			PreparedStatement ps = connection.prepareStatement(
 				"select id_, companyId, title, description, " +
 					"defaultLanguageId from JournalArticle");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			List<UpdateJournalArticleLocalizedFieldsUpgradeCallable>
 				updateJournalArticleLocalizedFieldsUpgradeCallables =
 					new ArrayList<>();
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				UpdateJournalArticleLocalizedFieldsUpgradeCallable
 					updateJournalArticleLocalizedFieldsUpgradeCallable =
 						new UpdateJournalArticleLocalizedFieldsUpgradeCallable(
-							rs.getLong(1), rs.getLong(2), rs.getString(3),
-							rs.getString(4), rs.getString(5), sb.toString());
+							resultSet.getLong(1), resultSet.getLong(2),
+							resultSet.getString(3), resultSet.getString(4),
+							resultSet.getString(5), sb.toString());
 
 				updateJournalArticleLocalizedFieldsUpgradeCallables.add(
 					updateJournalArticleLocalizedFieldsUpgradeCallable);
@@ -217,16 +218,16 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 					"select id_, groupId, ", columnName,
 					" from JournalArticle where defaultLanguageId is null or ",
 					"defaultLanguageId = ''"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			List<UpdateDefaultLanguageUpgradeCallable>
 				updateDefaultLanguageCallables = new ArrayList<>();
 
-			while (rs.next()) {
-				String columnValue = rs.getString(3);
+			while (resultSet.next()) {
+				String columnValue = resultSet.getString(3);
 
 				if (Validator.isXml(columnValue) || strictUpdate) {
-					long groupId = rs.getLong(2);
+					long groupId = resultSet.getLong(2);
 
 					Locale defaultSiteLocale = _defaultSiteLocales.get(groupId);
 
@@ -240,7 +241,8 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 					UpdateDefaultLanguageUpgradeCallable
 						updateDefaultLanguageCallable =
 							new UpdateDefaultLanguageUpgradeCallable(
-								rs.getLong(1), columnValue, defaultSiteLocale);
+								resultSet.getLong(1), columnValue,
+								defaultSiteLocale);
 
 					updateDefaultLanguageCallables.add(
 						updateDefaultLanguageCallable);

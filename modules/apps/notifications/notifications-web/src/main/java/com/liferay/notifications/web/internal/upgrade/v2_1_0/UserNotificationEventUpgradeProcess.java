@@ -77,7 +77,7 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 					connection,
 					"update UserNotificationEvent set payload = ?, " +
 						"actionRequired = ? where userNotificationEventId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
 			runSQL("update UserNotificationEvent set delivered = TRUE");
 
@@ -87,11 +87,11 @@ public class UserNotificationEventUpgradeProcess extends UpgradeProcess {
 					UserNotificationDeliveryConstants.TYPE_WEBSITE,
 					" where deliveryType = 0 or deliveryType is null"));
 
-			while (rs.next()) {
-				long userNotificationEventId = rs.getLong(
+			while (resultSet.next()) {
+				long userNotificationEventId = resultSet.getLong(
 					"userNotificationEventId");
-				String payload = rs.getString("payload");
-				boolean actionRequired = rs.getBoolean("actionRequired");
+				String payload = resultSet.getString("payload");
+				boolean actionRequired = resultSet.getBoolean("actionRequired");
 
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					payload);

@@ -126,19 +126,19 @@ public class CommerceAddressUpgradeProcess
 	}
 
 	protected void updateCommerceAccountAndSetType(
-			PreparedStatement ps, ResultSet rs)
+			PreparedStatement ps, ResultSet resultSet)
 		throws Exception {
 
-		while (rs.next()) {
-			long commerceAddressId = rs.getLong("commerceAddressId");
+		while (resultSet.next()) {
+			long commerceAddressId = resultSet.getLong("commerceAddressId");
 
 			ps.setLong(1, commerceAddressId);
 
-			ps.setLong(2, rs.getLong("classPK"));
+			ps.setLong(2, resultSet.getLong("classPK"));
 
 			setType(
-				rs.getBoolean("defaultBilling"),
-				rs.getBoolean("defaultShipping"), commerceAddressId);
+				resultSet.getBoolean("defaultBilling"),
+				resultSet.getBoolean("defaultShipping"), commerceAddressId);
 
 			ps.addBatch();
 		}

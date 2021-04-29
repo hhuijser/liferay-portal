@@ -73,10 +73,11 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 					connection,
 					"update DDMContent set data_ = ? where contentId = ?")) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					DDMForm ddmForm = DDMFormDeserializeUtil.deserialize(
-						_ddmFormDeserializer, rs.getString("definition"));
+						_ddmFormDeserializer,
+						resultSet.getString("definition"));
 
 					List<DDMFormField> ddmFormFields =
 						ddmForm.getDDMFormFields();
@@ -96,7 +97,7 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 						continue;
 					}
 
-					String data = rs.getString("data_");
+					String data = resultSet.getString("data_");
 
 					String newData = _upgradeDDMContentData(
 						data, fieldSetDDMFormFields);
@@ -106,7 +107,7 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 					}
 
 					ps2.setString(1, newData);
-					ps2.setLong(2, rs.getLong("contentId"));
+					ps2.setLong(2, resultSet.getLong("contentId"));
 
 					ps2.addBatch();
 				}

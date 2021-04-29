@@ -111,12 +111,12 @@ public class VerifyUUID extends VerifyProcess {
 					"select ", verifiableUUIDModel.getPrimaryKeyColumnName(),
 					" from ", verifiableUUIDModel.getTableName(),
 					" where uuid_ is null or uuid_ = ''"));
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
 				con.prepareStatement(sb.toString()))) {
 
-			while (rs.next()) {
-				long pk = rs.getLong(
+			while (resultSet.next()) {
+				long pk = resultSet.getLong(
 					verifiableUUIDModel.getPrimaryKeyColumnName());
 
 				ps2.setString(1, PortalUUIDUtil.generate());

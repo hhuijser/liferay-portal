@@ -147,10 +147,10 @@ public class DB2DB extends BaseDB {
 		sb.append("')) where reorg_pending = 'Y'");
 
 		try (PreparedStatement ps = con.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
-				int numReorgRecAlters = rs.getInt(1);
+			if (resultSet.next()) {
+				int numReorgRecAlters = resultSet.getInt(1);
 
 				if (numReorgRecAlters >= 1) {
 					reorgTableRequired = true;

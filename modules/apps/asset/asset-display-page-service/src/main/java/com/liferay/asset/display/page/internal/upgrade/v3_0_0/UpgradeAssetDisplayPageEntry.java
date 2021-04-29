@@ -76,20 +76,20 @@ public class UpgradeAssetDisplayPageEntry
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					Timestamp now = new Timestamp(System.currentTimeMillis());
 
 					ps2.setString(1, PortalUUIDUtil.generate());
 					ps2.setLong(2, increment());
-					ps2.setLong(3, rs.getLong("groupId"));
-					ps2.setLong(4, rs.getLong("companyId"));
-					ps2.setLong(5, rs.getLong("userId"));
-					ps2.setString(6, rs.getString("userName"));
+					ps2.setLong(3, resultSet.getLong("groupId"));
+					ps2.setLong(4, resultSet.getLong("companyId"));
+					ps2.setLong(5, resultSet.getLong("userId"));
+					ps2.setString(6, resultSet.getString("userName"));
 					ps2.setTimestamp(7, now);
 					ps2.setTimestamp(8, now);
 					ps2.setLong(9, fileEntryClassNameId);
-					ps2.setLong(10, rs.getLong("fileEntryId"));
+					ps2.setLong(10, resultSet.getLong("fileEntryId"));
 					ps2.setLong(11, 0);
 					ps2.setLong(12, AssetDisplayPageConstants.TYPE_NONE);
 					ps2.setLong(13, 0);

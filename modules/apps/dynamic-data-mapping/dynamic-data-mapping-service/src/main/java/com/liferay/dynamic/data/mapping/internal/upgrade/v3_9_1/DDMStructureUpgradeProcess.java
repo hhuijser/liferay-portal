@@ -112,13 +112,13 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 			ps1.setLong(
 				1, PortalUtil.getClassNameId(DDMFormInstance.class.getName()));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String definition = rs.getString("definition");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String definition = resultSet.getString("definition");
 
 					ps2.setString(1, definition);
 
-					long structureId = rs.getLong("structureId");
+					long structureId = resultSet.getLong("structureId");
 
 					ps2.setLong(2, structureId);
 
@@ -149,14 +149,15 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 			ps1.setLong(
 				1, PortalUtil.getClassNameId(DDMFormInstance.class.getName()));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long structureVersionId = rs.getLong("structureVersionId");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long structureVersionId = resultSet.getLong(
+						"structureVersionId");
 
 					ps2.setString(
 						1,
 						_upgradeDDMStructureVersionDefinition(
-							rs.getString("definition")));
+							resultSet.getString("definition")));
 
 					ps2.setLong(2, structureVersionId);
 

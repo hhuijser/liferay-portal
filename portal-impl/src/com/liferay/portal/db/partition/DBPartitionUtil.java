@@ -192,10 +192,10 @@ public class DBPartitionUtil {
 			try (PreparedStatement ps = connection.prepareStatement(
 					"select companyId from Company where webId = '" +
 						PropsValues.COMPANY_DEFAULT_WEB_ID + "'");
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				if (rs.next()) {
-					_defaultCompanyId = rs.getLong(1);
+				if (resultSet.next()) {
+					_defaultCompanyId = resultSet.getLong(1);
 				}
 			}
 		}

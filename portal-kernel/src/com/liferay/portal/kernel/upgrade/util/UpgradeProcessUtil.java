@@ -56,9 +56,9 @@ public class UpgradeProcessUtil {
 			ps.setLong(1, companyId);
 			ps.setBoolean(2, true);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					languageId = rs.getString("languageId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					languageId = resultSet.getString("languageId");
 
 					_languageIds.put(companyId, languageId);
 

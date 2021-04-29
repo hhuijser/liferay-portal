@@ -113,9 +113,9 @@ public class VerifyGroupedModel extends VerifyProcess {
 
 			ps.setLong(1, primKey);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getLong("groupId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getLong("groupId");
 				}
 
 				if (_log.isDebugEnabled()) {
@@ -155,7 +155,7 @@ public class VerifyGroupedModel extends VerifyProcess {
 
 			try (Connection con = DataAccess.getConnection();
 				PreparedStatement ps1 = con.prepareStatement(sb.toString());
-				ResultSet rs = ps1.executeQuery()) {
+				ResultSet resultSet = ps1.executeQuery()) {
 
 				sb = new StringBundler(5);
 
@@ -169,8 +169,8 @@ public class VerifyGroupedModel extends VerifyProcess {
 						AutoBatchPreparedStatementUtil.autoBatch(
 							con.prepareStatement(sb.toString()))) {
 
-					while (rs.next()) {
-						long relatedPrimKey = rs.getLong(
+					while (resultSet.next()) {
+						long relatedPrimKey = resultSet.getLong(
 							verifiableGroupedModel.
 								getRelatedPrimaryKeyColumnName());
 
@@ -186,7 +186,7 @@ public class VerifyGroupedModel extends VerifyProcess {
 
 						ps2.setLong(1, groupId);
 
-						long primKey = rs.getLong(
+						long primKey = resultSet.getLong(
 							verifiableGroupedModel.getPrimaryKeyColumnName());
 
 						ps2.setLong(2, primKey);

@@ -400,12 +400,12 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, name);
 
-			try (ResultSet rs = ps.executeQuery()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
 				bitwiseValues = new HashMap<>();
 
-				while (rs.next()) {
-					String actionId = rs.getString("actionId");
-					long bitwiseValue = rs.getLong("bitwiseValue");
+				while (resultSet.next()) {
+					String actionId = resultSet.getString("actionId");
+					long bitwiseValue = resultSet.getLong("bitwiseValue");
 
 					bitwiseValues.put(actionId, bitwiseValue);
 				}
@@ -453,9 +453,9 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 			ps.setLong(2, parentFolderId);
 			ps.setString(3, name);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					return rs.getLong(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					return resultSet.getLong(1);
 				}
 			}
 		}
@@ -480,9 +480,9 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 			ps.setString(2, portletId);
 			ps.setString(3, portletId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					return rs.getLong(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					return resultSet.getLong(1);
 				}
 			}
 		}
@@ -507,9 +507,9 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 			ps.setLong(1, companyId);
 			ps.setString(2, name);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					roleId = rs.getLong("roleId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					roleId = resultSet.getLong("roleId");
 				}
 
 				_roleIds.put(roleIdsKey, roleId);

@@ -53,24 +53,24 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 
 			try (PreparedStatement ps1 = connection.prepareStatement(
 					"select AppBuilderApp.* from AppBuilderApp");
-				ResultSet rs = ps1.executeQuery();
+				ResultSet resultSet = ps1.executeQuery();
 				PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, sb.toString())) {
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					ps2.setString(1, PortalUUIDUtil.generate());
 					ps2.setLong(2, _counterLocalService.increment());
-					ps2.setLong(3, rs.getLong("groupId"));
-					ps2.setLong(4, rs.getLong("companyId"));
-					ps2.setLong(5, rs.getLong("userId"));
-					ps2.setString(6, rs.getString("userName"));
-					ps2.setTimestamp(7, rs.getTimestamp("createDate"));
-					ps2.setTimestamp(8, rs.getTimestamp("modifiedDate"));
-					ps2.setLong(9, rs.getLong("appBuilderAppId"));
-					ps2.setLong(10, rs.getLong("ddlRecordSetId"));
-					ps2.setLong(11, rs.getLong("ddmStructureId"));
-					ps2.setLong(12, rs.getLong("ddmStructureLayoutId"));
+					ps2.setLong(3, resultSet.getLong("groupId"));
+					ps2.setLong(4, resultSet.getLong("companyId"));
+					ps2.setLong(5, resultSet.getLong("userId"));
+					ps2.setString(6, resultSet.getString("userName"));
+					ps2.setTimestamp(7, resultSet.getTimestamp("createDate"));
+					ps2.setTimestamp(8, resultSet.getTimestamp("modifiedDate"));
+					ps2.setLong(9, resultSet.getLong("appBuilderAppId"));
+					ps2.setLong(10, resultSet.getLong("ddlRecordSetId"));
+					ps2.setLong(11, resultSet.getLong("ddmStructureId"));
+					ps2.setLong(12, resultSet.getLong("ddmStructureLayoutId"));
 					ps2.setString(13, "1.0");
 
 					ps2.addBatch();

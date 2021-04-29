@@ -31,9 +31,9 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select id_ from Portlet where portletId = '176'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
+			if (resultSet.next()) {
 				removeDuplicatePortletPreferences();
 				removeDuplicateResourcePermissions();
 
@@ -57,12 +57,12 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select ownerId, ownerType, plid from PortletPreferences " +
 					"where portletId = '176'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long ownerId = rs.getLong(1);
-				int ownerType = rs.getInt(2);
-				long plid = rs.getLong(3);
+			while (resultSet.next()) {
+				long ownerId = resultSet.getLong(1);
+				int ownerType = resultSet.getInt(2);
+				long plid = resultSet.getLong(3);
 
 				try (PreparedStatement psDelete = connection.prepareStatement(
 						"delete from PortletPreferences where ownerId = ? " +
@@ -85,13 +85,13 @@ public class UpgradePortletId extends BasePortletIdUpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select companyId, scope, primKey, roleId from " +
 					"ResourcePermission where name = '176'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong(1);
-				int scope = rs.getInt(2);
-				String primKey = rs.getString(3);
-				long roleId = rs.getLong(4);
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong(1);
+				int scope = resultSet.getInt(2);
+				String primKey = resultSet.getString(3);
+				long roleId = resultSet.getLong(4);
 
 				try (PreparedStatement psDelete = connection.prepareStatement(
 						"delete from ResourcePermission where companyId = ? " +

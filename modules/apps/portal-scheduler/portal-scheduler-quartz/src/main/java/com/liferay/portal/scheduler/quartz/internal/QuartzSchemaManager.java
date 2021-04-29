@@ -46,9 +46,9 @@ public class QuartzSchemaManager {
 		try (Connection con = _dataSource.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select count(*) from QUARTZ_JOB_DETAILS");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			if (rs.next()) {
+			if (resultSet.next()) {
 				return;
 			}
 		}

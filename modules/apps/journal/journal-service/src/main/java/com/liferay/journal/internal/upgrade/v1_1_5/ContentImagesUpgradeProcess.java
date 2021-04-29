@@ -161,16 +161,16 @@ public class ContentImagesUpgradeProcess extends UpgradeProcess {
 
 			ps1.setString(1, "%type=\"image\"%");
 
-			ResultSet rs1 = ps1.executeQuery();
+			ResultSet resultSet1 = ps1.executeQuery();
 
-			while (rs1.next()) {
-				long id = rs1.getLong(1);
+			while (resultSet1.next()) {
+				long id = resultSet1.getLong(1);
 
-				long resourcePrimKey = rs1.getLong(2);
-				long groupId = rs1.getLong(3);
-				long companyId = rs1.getLong(4);
-				long userId = rs1.getLong(5);
-				String content = rs1.getString(6);
+				long resourcePrimKey = resultSet1.getLong(2);
+				long groupId = resultSet1.getLong(3);
+				long companyId = resultSet1.getLong(4);
+				long userId = resultSet1.getLong(5);
+				String content = resultSet1.getString(6);
 
 				String newContent = convertTypeImageElements(
 					userId, groupId, companyId, content, resourcePrimKey);

@@ -46,31 +46,33 @@ public class UpgradeAnnouncementsPortletPreferences extends UpgradeProcess {
 				connection.prepareStatement(
 					"update PortletPreferences set preferences = ? where " +
 						"portletPreferencesId = ?"));
-			ResultSet rs1 = ps1.executeQuery()) {
+			ResultSet resultSet1 = ps1.executeQuery()) {
 
-			while (rs1.next()) {
-				String preferences = rs1.getString("preferences");
+			while (resultSet1.next()) {
+				String preferences = resultSet1.getString("preferences");
 
 				if (preferences.equals(PortletConstants.DEFAULT_PREFERENCES)) {
 					continue;
 				}
 
-				long companyId = rs1.getLong("companyId");
+				long companyId = resultSet1.getLong("companyId");
 
 				ps2.setLong(1, companyId);
 
 				ps2.setString(2, _PORTLET_ID);
 				ps2.setInt(3, PortletKeys.PREFS_OWNER_TYPE_LAYOUT);
 
-				try (ResultSet rs2 = ps2.executeQuery()) {
-					while (rs2.next()) {
-						String preferences2 = rs2.getString("preferences");
+				try (ResultSet resultSet2 = ps2.executeQuery()) {
+					while (resultSet2.next()) {
+						String preferences2 = resultSet2.getString(
+							"preferences");
 
 						if (preferences2.equals(
 								PortletConstants.DEFAULT_PREFERENCES)) {
 
 							ps3.setString(1, preferences);
-							ps3.setLong(2, rs2.getLong("portletPreferencesId"));
+							ps3.setLong(
+								2, resultSet2.getLong("portletPreferencesId"));
 
 							ps3.addBatch();
 						}

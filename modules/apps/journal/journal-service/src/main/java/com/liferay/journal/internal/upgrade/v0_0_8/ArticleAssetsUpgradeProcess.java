@@ -64,10 +64,10 @@ public class ArticleAssetsUpgradeProcess extends UpgradeProcess {
 					"where companyId = ", companyId, " and version = ",
 					JournalArticleConstants.VERSION_DEFAULT, " and status = ",
 					WorkflowConstants.STATUS_DRAFT));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long resourcePrimKey = rs.getLong("resourcePrimKey");
+			while (resultSet.next()) {
+				long resourcePrimKey = resultSet.getLong("resourcePrimKey");
 
 				AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
 					JournalArticle.class.getName(), resourcePrimKey);
@@ -84,7 +84,7 @@ public class ArticleAssetsUpgradeProcess extends UpgradeProcess {
 					continue;
 				}
 
-				boolean indexable = rs.getBoolean("indexable");
+				boolean indexable = resultSet.getBoolean("indexable");
 
 				_assetEntryLocalService.updateEntry(
 					assetEntry.getClassName(), assetEntry.getClassPK(), null,

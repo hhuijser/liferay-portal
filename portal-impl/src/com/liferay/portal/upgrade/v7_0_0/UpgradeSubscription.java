@@ -122,10 +122,10 @@ public class UpgradeSubscription extends UpgradeProcess {
 		try (PreparedStatement ps1 = connection.prepareStatement(sql)) {
 			ps1.setLong(1, classPK);
 
-			try (ResultSet rs1 = ps1.executeQuery()) {
-				if (rs1.next()) {
+			try (ResultSet resultSet1 = ps1.executeQuery()) {
+				if (resultSet1.next()) {
 					if (tableName.equals("PortletPreferences")) {
-						long plid = rs1.getLong("plid");
+						long plid = resultSet1.getLong("plid");
 
 						try (PreparedStatement ps2 =
 								connection.prepareStatement(
@@ -134,15 +134,15 @@ public class UpgradeSubscription extends UpgradeProcess {
 
 							ps2.setLong(1, plid);
 
-							try (ResultSet rs2 = ps2.executeQuery()) {
-								if (rs2.next()) {
-									return rs2.getLong("groupId");
+							try (ResultSet resultSet2 = ps2.executeQuery()) {
+								if (resultSet2.next()) {
+									return resultSet2.getLong("groupId");
 								}
 							}
 						}
 					}
 					else {
-						return rs1.getLong("groupId");
+						return resultSet1.getLong("groupId");
 					}
 				}
 			}
@@ -157,9 +157,9 @@ public class UpgradeSubscription extends UpgradeProcess {
 
 			ps.setLong(1, groupId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					int count = rs.getInt(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					int count = resultSet.getInt(1);
 
 					if (count > 0) {
 						return true;
@@ -197,11 +197,11 @@ public class UpgradeSubscription extends UpgradeProcess {
 					connection,
 					"update Subscription set groupId = ? where " +
 						"subscriptionId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long classNameId = rs.getLong("classNameId");
-				long classPK = rs.getLong("classPK");
+			while (resultSet.next()) {
+				long classNameId = resultSet.getLong("classNameId");
+				long classPK = resultSet.getLong("classPK");
 
 				long groupId = getGroupId(classNameId, classPK);
 
@@ -212,7 +212,7 @@ public class UpgradeSubscription extends UpgradeProcess {
 				if (groupId != 0) {
 					ps2.setLong(1, groupId);
 
-					long subscriptionId = rs.getLong("subscriptionId");
+					long subscriptionId = resultSet.getLong("subscriptionId");
 
 					ps2.setLong(2, subscriptionId);
 

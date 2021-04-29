@@ -30,12 +30,12 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select kaleoDefinitionId, content from KaleoDefinition " +
 					"where content like '%WorkflowConstants.toStatus(%'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long kaleoDefinitionId = rs.getLong(1);
+			while (resultSet.next()) {
+				long kaleoDefinitionId = resultSet.getLong(1);
 
-				String content = rs.getString(2);
+				String content = resultSet.getString(2);
 
 				content = StringUtil.replace(
 					content, "WorkflowConstants.toStatus(",

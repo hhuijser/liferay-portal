@@ -60,11 +60,11 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 		sb.append("))");
 
 		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long kaleoProcessLinkId = rs.getLong("kaleoProcessId");
-				long ddmTemplateId = rs.getLong("DDMTemplateId");
+			while (resultSet.next()) {
+				long kaleoProcessLinkId = resultSet.getLong("kaleoProcessId");
+				long ddmTemplateId = resultSet.getLong("DDMTemplateId");
 
 				_ddmTemplateLinkLocalService.addTemplateLink(
 					kaleoProcessClassNameId, kaleoProcessLinkId, ddmTemplateId);
@@ -89,11 +89,12 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 		sb.append("))");
 
 		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long kaleoProcessLinkId = rs.getLong("kaleoProcessLinkId");
-				long ddmTemplateId = rs.getLong("DDMTemplateId");
+			while (resultSet.next()) {
+				long kaleoProcessLinkId = resultSet.getLong(
+					"kaleoProcessLinkId");
+				long ddmTemplateId = resultSet.getLong("DDMTemplateId");
 
 				_ddmTemplateLinkLocalService.addTemplateLink(
 					kaleoProcessLinkClassNameId, kaleoProcessLinkId,

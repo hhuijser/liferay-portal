@@ -42,11 +42,11 @@ public class DDMStructureLinkUpgradeProcess extends UpgradeProcess {
 				connection.prepareStatement(
 					"delete from DDMStructureLink where classPK = ? and " +
 						"structureId = ?"));
-			ResultSet rs1 = ps1.executeQuery()) {
+			ResultSet resultSet1 = ps1.executeQuery()) {
 
-			while (rs1.next()) {
-				ps2.setLong(1, rs1.getLong(1));
-				ps2.setLong(2, rs1.getLong(2));
+			while (resultSet1.next()) {
+				ps2.setLong(1, resultSet1.getLong(1));
+				ps2.setLong(2, resultSet1.getLong(2));
 
 				ps2.addBatch();
 			}

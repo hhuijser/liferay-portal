@@ -47,9 +47,9 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					String schemaVersion = rs.getString("schemaVersion");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					String schemaVersion = resultSet.getString("schemaVersion");
 
 					return Version.parseVersion(schemaVersion);
 				}

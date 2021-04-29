@@ -62,24 +62,25 @@ public class DDLRecordSetVersionUpgradeProcess extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					ps2.setLong(1, _counterLocalService.increment());
-					ps2.setLong(2, rs.getLong("groupId"));
-					ps2.setLong(3, rs.getLong("companyId"));
-					ps2.setLong(4, rs.getLong("userId"));
-					ps2.setString(5, rs.getString("userName"));
-					ps2.setTimestamp(6, rs.getTimestamp("createDate"));
-					ps2.setLong(7, rs.getLong("recordSetId"));
-					ps2.setLong(8, rs.getLong("structureVersionId"));
-					ps2.setString(9, rs.getString("name"));
-					ps2.setString(10, rs.getString("description"));
-					ps2.setString(11, rs.getString("settings_"));
+					ps2.setLong(2, resultSet.getLong("groupId"));
+					ps2.setLong(3, resultSet.getLong("companyId"));
+					ps2.setLong(4, resultSet.getLong("userId"));
+					ps2.setString(5, resultSet.getString("userName"));
+					ps2.setTimestamp(6, resultSet.getTimestamp("createDate"));
+					ps2.setLong(7, resultSet.getLong("recordSetId"));
+					ps2.setLong(8, resultSet.getLong("structureVersionId"));
+					ps2.setString(9, resultSet.getString("name"));
+					ps2.setString(10, resultSet.getString("description"));
+					ps2.setString(11, resultSet.getString("settings_"));
 					ps2.setString(12, DDLRecordSetConstants.VERSION_DEFAULT);
 					ps2.setInt(13, WorkflowConstants.STATUS_APPROVED);
-					ps2.setLong(14, rs.getLong("userId"));
-					ps2.setString(15, rs.getString("userName"));
-					ps2.setTimestamp(16, rs.getTimestamp("modifiedDate"));
+					ps2.setLong(14, resultSet.getLong("userId"));
+					ps2.setString(15, resultSet.getString("userName"));
+					ps2.setTimestamp(
+						16, resultSet.getTimestamp("modifiedDate"));
 
 					ps2.addBatch();
 				}

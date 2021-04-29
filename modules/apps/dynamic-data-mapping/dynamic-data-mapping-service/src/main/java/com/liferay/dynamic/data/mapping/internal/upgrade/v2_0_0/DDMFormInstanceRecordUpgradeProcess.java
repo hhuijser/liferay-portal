@@ -105,41 +105,41 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString())) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				String uuid = PortalUUIDUtil.generate();
-				long recordId = rs.getLong("recordId");
-				long groupId = rs.getLong("formInstanceGroupId");
-				long userId = rs.getLong("userId");
-				Timestamp createDate = rs.getTimestamp("createDate");
-				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
+				long recordId = resultSet.getLong("recordId");
+				long groupId = resultSet.getLong("formInstanceGroupId");
+				long userId = resultSet.getLong("userId");
+				Timestamp createDate = resultSet.getTimestamp("createDate");
+				Timestamp modifiedDate = resultSet.getTimestamp("modifiedDate");
 
 				ps2.setString(1, uuid);
 				ps2.setLong(2, recordId);
 				ps2.setLong(3, groupId);
-				ps2.setLong(4, rs.getLong("companyId"));
+				ps2.setLong(4, resultSet.getLong("companyId"));
 				ps2.setLong(5, userId);
-				ps2.setString(6, rs.getString("userName"));
-				ps2.setLong(7, rs.getLong("versionUserId"));
-				ps2.setString(8, rs.getString("versionUserName"));
+				ps2.setString(6, resultSet.getString("userName"));
+				ps2.setLong(7, resultSet.getLong("versionUserId"));
+				ps2.setString(8, resultSet.getString("versionUserName"));
 				ps2.setTimestamp(9, createDate);
 				ps2.setTimestamp(10, modifiedDate);
 
-				ps2.setLong(11, rs.getLong("recordSetId"));
-				ps2.setString(12, rs.getString("formInstanceVersion"));
-				ps2.setLong(13, rs.getLong("DDMStorageId"));
-				ps2.setString(14, rs.getString("version"));
-				ps2.setTimestamp(15, rs.getTimestamp("lastPublishDate"));
+				ps2.setLong(11, resultSet.getLong("recordSetId"));
+				ps2.setString(12, resultSet.getString("formInstanceVersion"));
+				ps2.setLong(13, resultSet.getLong("DDMStorageId"));
+				ps2.setString(14, resultSet.getString("version"));
+				ps2.setTimestamp(15, resultSet.getTimestamp("lastPublishDate"));
 
 				deleteDDLRecord(recordId);
 
 				addAssetEntry(
 					uuid, recordId, groupId, userId, createDate, modifiedDate,
-					rs.getString("formInstanceName"));
+					resultSet.getString("formInstanceName"));
 
 				ps2.addBatch();
 			}

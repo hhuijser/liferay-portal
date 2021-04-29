@@ -61,9 +61,9 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setLong(1, primaryKey);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					companyId = rs.getLong("companyId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					companyId = resultSet.getLong("companyId");
 				}
 			}
 		}
@@ -79,9 +79,9 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 			ps.setLong(1, groupId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
 
 					group = new Object[] {groupId, companyId};
 				}
@@ -100,12 +100,13 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 			ps.setLong(1, plid);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
-					boolean privateLayout = rs.getBoolean("privateLayout");
-					long layoutId = rs.getLong("layoutId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
+					boolean privateLayout = resultSet.getBoolean(
+						"privateLayout");
+					long layoutId = resultSet.getLong("layoutId");
 
 					layout = new Object[] {
 						groupId, companyId, privateLayout, layoutId
@@ -132,12 +133,13 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 			ps.setLong(1, layoutRevisionId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
-					boolean privateLayout = rs.getBoolean("privateLayout");
-					long layoutId = rs.getLong("layoutRevisionId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
+					boolean privateLayout = resultSet.getBoolean(
+						"privateLayout");
+					long layoutId = resultSet.getLong("layoutRevisionId");
 
 					layoutRevision = new Object[] {
 						groupId, companyId, privateLayout, layoutId
@@ -169,9 +171,9 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 			ps.setBoolean(2, privateLayout);
 			ps.setLong(3, layoutId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					uuid = rs.getString("uuid_");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					uuid = resultSet.getString("uuid_");
 				}
 			}
 		}
@@ -334,19 +336,20 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 					connection,
 					"delete from PortletPreferences where " +
 						"portletPreferencesId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long portletPreferencesId = rs.getLong("portletPreferencesId");
-				long companyId = rs.getLong("companyId");
+			while (resultSet.next()) {
+				long portletPreferencesId = resultSet.getLong(
+					"portletPreferencesId");
+				long companyId = resultSet.getLong("companyId");
 
 				if (companyId > 0) {
-					int ownerType = rs.getInt("ownerType");
-					long plid = rs.getLong("plid");
-					long ownerId = rs.getLong("ownerId");
-					String portletId = rs.getString("portletId");
+					int ownerType = resultSet.getInt("ownerType");
+					long plid = resultSet.getLong("plid");
+					long ownerId = resultSet.getLong("ownerId");
+					String portletId = resultSet.getString("portletId");
 					String preferences = GetterUtil.getString(
-						rs.getString("preferences"));
+						resultSet.getString("preferences"));
 
 					String newPreferences = upgradePreferences(
 						companyId, ownerId, ownerType, plid, portletId,
@@ -421,17 +424,18 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 					connection,
 					"delete from PortletPreferenceValue where " +
 						"portletPreferencesId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long portletPreferencesId = rs.getLong("portletPreferencesId");
-				long companyId = rs.getLong("companyId");
+			while (resultSet.next()) {
+				long portletPreferencesId = resultSet.getLong(
+					"portletPreferencesId");
+				long companyId = resultSet.getLong("companyId");
 
 				if (companyId > 0) {
-					int ownerType = rs.getInt("ownerType");
-					long plid = rs.getLong("plid");
-					long ownerId = rs.getLong("ownerId");
-					String portletId = rs.getString("portletId");
+					int ownerType = resultSet.getInt("ownerType");
+					long plid = resultSet.getLong("plid");
+					long ownerId = resultSet.getLong("ownerId");
+					String portletId = resultSet.getString("portletId");
 
 					ps2.setLong(1, portletPreferencesId);
 
@@ -449,7 +453,8 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 					}
 
 					_upgradePortletPreferenceValues(
-						preferenceValuesMap, rs.getLong("ctCollectionId"),
+						preferenceValuesMap,
+						resultSet.getLong("ctCollectionId"),
 						portletPreferencesId, companyId, newPreferences, ps3,
 						ps4, ps5);
 				}

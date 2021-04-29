@@ -149,29 +149,30 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			try (PreparedStatement ps = connection.prepareStatement(
 					sb.toString())) {
 
-				ResultSet rs = ps.executeQuery();
+				ResultSet resultSet = ps.executeQuery();
 
-				while (rs.next()) {
-					String uuid = rs.getString("uuid_");
-					long eventId = rs.getLong("eventId");
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
-					long userId = rs.getLong("userId");
-					String userName = rs.getString("userName");
-					Timestamp createDate = rs.getTimestamp("createDate");
-					Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
-					String title = rs.getString("title");
-					String description = rs.getString("description");
-					String location = rs.getString("location");
-					Timestamp startDate = rs.getTimestamp("startDate");
-					int durationHour = rs.getInt("durationHour");
-					int durationMinute = rs.getInt("durationMinute");
-					boolean allDay = rs.getBoolean("allDay");
-					String type = rs.getString("type_");
-					String recurrence = rs.getString("recurrence");
-					int remindBy = rs.getInt("remindBy");
-					int firstReminder = rs.getInt("firstReminder");
-					int secondReminder = rs.getInt("secondReminder");
+				while (resultSet.next()) {
+					String uuid = resultSet.getString("uuid_");
+					long eventId = resultSet.getLong("eventId");
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
+					long userId = resultSet.getLong("userId");
+					String userName = resultSet.getString("userName");
+					Timestamp createDate = resultSet.getTimestamp("createDate");
+					Timestamp modifiedDate = resultSet.getTimestamp(
+						"modifiedDate");
+					String title = resultSet.getString("title");
+					String description = resultSet.getString("description");
+					String location = resultSet.getString("location");
+					Timestamp startDate = resultSet.getTimestamp("startDate");
+					int durationHour = resultSet.getInt("durationHour");
+					int durationMinute = resultSet.getInt("durationMinute");
+					boolean allDay = resultSet.getBoolean("allDay");
+					String type = resultSet.getString("type_");
+					String recurrence = resultSet.getString("recurrence");
+					int remindBy = resultSet.getInt("remindBy");
+					int firstReminder = resultSet.getInt("firstReminder");
+					int secondReminder = resultSet.getInt("secondReminder");
 
 					CalendarBooking calendarBooking = _importCalEvent(
 						uuid, eventId, groupId, companyId, userId, userName,
@@ -965,29 +966,30 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 				ps.setLong(1, calEventId);
 
-				ResultSet rs = ps.executeQuery();
+				ResultSet resultSet = ps.executeQuery();
 
-				if (rs.next()) {
-					String uuid = rs.getString("uuid_");
-					long eventId = rs.getLong("eventId");
-					long groupId = rs.getLong("groupId");
-					long companyId = rs.getLong("companyId");
-					long userId = rs.getLong("userId");
-					String userName = rs.getString("userName");
-					Timestamp createDate = rs.getTimestamp("createDate");
-					Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
-					String title = rs.getString("title");
-					String description = rs.getString("description");
-					String location = rs.getString("location");
-					Timestamp startDate = rs.getTimestamp("startDate");
-					int durationHour = rs.getInt("durationHour");
-					int durationMinute = rs.getInt("durationMinute");
-					boolean allDay = rs.getBoolean("allDay");
-					String type = rs.getString("type_");
-					String recurrence = rs.getString("recurrence");
-					int remindBy = rs.getInt("remindBy");
-					int firstReminder = rs.getInt("firstReminder");
-					int secondReminder = rs.getInt("secondReminder");
+				if (resultSet.next()) {
+					String uuid = resultSet.getString("uuid_");
+					long eventId = resultSet.getLong("eventId");
+					long groupId = resultSet.getLong("groupId");
+					long companyId = resultSet.getLong("companyId");
+					long userId = resultSet.getLong("userId");
+					String userName = resultSet.getString("userName");
+					Timestamp createDate = resultSet.getTimestamp("createDate");
+					Timestamp modifiedDate = resultSet.getTimestamp(
+						"modifiedDate");
+					String title = resultSet.getString("title");
+					String description = resultSet.getString("description");
+					String location = resultSet.getString("location");
+					Timestamp startDate = resultSet.getTimestamp("startDate");
+					int durationHour = resultSet.getInt("durationHour");
+					int durationMinute = resultSet.getInt("durationMinute");
+					boolean allDay = resultSet.getBoolean("allDay");
+					String type = resultSet.getString("type_");
+					String recurrence = resultSet.getString("recurrence");
+					int remindBy = resultSet.getInt("remindBy");
+					int firstReminder = resultSet.getInt("firstReminder");
+					int secondReminder = resultSet.getInt("secondReminder");
 
 					return _importCalEvent(
 						uuid, eventId, groupId, companyId, userId, userName,
@@ -1333,11 +1335,11 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			ps.setLong(4, entryId2);
 			ps.setInt(5, type);
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			rs.next();
+			resultSet.next();
 
-			int count = rs.getInt(1);
+			int count = resultSet.getInt(1);
 
 			if (count > 0) {
 				return true;

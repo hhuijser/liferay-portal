@@ -104,14 +104,14 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 			"layoutPageTemplateEntryKey");
 
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select distinct layoutPageTemplateEntryKey, name from " +
 					"LayoutPageTemplateEntry")) {
 
-			while (rs.next()) {
-				names.add(rs.getString("name"));
+			while (resultSet.next()) {
+				names.add(resultSet.getString("name"));
 				layoutPageTemplateEntryKeys.add(
-					rs.getString("layoutPageTemplateEntryKey"));
+					resultSet.getString("layoutPageTemplateEntryKey"));
 			}
 		}
 	}
@@ -145,7 +145,7 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 		_loadDistinctKeysAndNames();
 
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select layoutPageTemplateEntryId, " +
 					"layoutPageTemplateEntryKey, layoutPrototypeId, name " +
 						"from LayoutPageTemplateEntry");
@@ -155,18 +155,18 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 						"layoutPageTemplateEntryKey = ?, name = ? where " +
 							"layoutPageTemplateEntryId = ?"))) {
 
-			while (rs.next()) {
-				String name = rs.getString("name");
+			while (resultSet.next()) {
+				String name = resultSet.getString("name");
 
 				if (LayoutPageTemplateEntryValidator.isValidName(name)) {
 					continue;
 				}
 
-				long layoutPageTemplateEntryId = rs.getLong(
+				long layoutPageTemplateEntryId = resultSet.getLong(
 					"layoutPageTemplateEntryId");
 
 				String layoutPageTemplateEntryKey = _generateValidString(
-					rs.getString("layoutPageTemplateEntryKey"));
+					resultSet.getString("layoutPageTemplateEntryKey"));
 
 				ps.setString(
 					1,
@@ -180,7 +180,7 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 				ps.setLong(3, layoutPageTemplateEntryId);
 
-				long layoutPrototypeId = rs.getLong("layoutPrototypeId");
+				long layoutPrototypeId = resultSet.getLong("layoutPrototypeId");
 
 				_updateLayoutPrototypeName(layoutPrototypeId, name, newName);
 

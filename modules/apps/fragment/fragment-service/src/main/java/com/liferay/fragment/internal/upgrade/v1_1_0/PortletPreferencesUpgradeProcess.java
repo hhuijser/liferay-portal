@@ -75,13 +75,13 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 				connection.prepareStatement(
 					"update PortletPreferences set plid = ? where " +
 						"portletPreferencesId = ?"));
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long groupId = rs.getLong("groupId");
-				long companyId = rs.getLong("companyId");
-				long classPK = rs.getLong("classPK");
-				String namespace = rs.getString("namespace");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("groupId");
+				long companyId = resultSet.getLong("companyId");
+				long classPK = resultSet.getLong("classPK");
+				String namespace = resultSet.getString("namespace");
 
 				try {
 					Map<Long, Long> portletPreferencesMap =
@@ -170,12 +170,12 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 		sb.append("'");
 
 		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				String groupKey = rs.getString("groupKey");
+			while (resultSet.next()) {
+				String groupKey = resultSet.getString("groupKey");
 
-				long plid = rs.getLong("plid");
+				long plid = resultSet.getLong("plid");
 
 				Layout layout = _layoutLocalService.getLayout(plid);
 
@@ -212,11 +212,12 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 		sb.append(")");
 
 		try (PreparedStatement ps = connection.prepareStatement(sb.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long portletPreferencesId = rs.getLong("portletPreferencesId");
-				long portletPreferencesPlid = rs.getLong("plid");
+			while (resultSet.next()) {
+				long portletPreferencesId = resultSet.getLong(
+					"portletPreferencesId");
+				long portletPreferencesPlid = resultSet.getLong("plid");
 
 				portletPreferencesMap.put(
 					portletPreferencesId, portletPreferencesPlid);

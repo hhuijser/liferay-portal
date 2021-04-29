@@ -112,14 +112,14 @@ public class Table {
 	}
 
 	public void appendColumn(
-			StringBuilder sb, ResultSet rs, String name, Integer type,
+			StringBuilder sb, ResultSet resultSet, String name, Integer type,
 			boolean last)
 		throws Exception {
 
 		Object value = null;
 
 		try {
-			value = getValue(rs, name, type);
+			value = getValue(resultSet, name, type);
 		}
 		catch (SQLException sqlException) {
 			if (_log.isDebugEnabled()) {
@@ -169,13 +169,13 @@ public class Table {
 		try (UnsyncBufferedWriter unsyncBufferedWriter =
 				new UnsyncBufferedWriter(new FileWriter(tempFileName));
 			PreparedStatement ps = getSelectPreparedStatement(con);
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				String data = null;
 
 				try {
-					data = getExportedData(rs);
+					data = getExportedData(resultSet);
 
 					unsyncBufferedWriter.write(data);
 
@@ -227,7 +227,7 @@ public class Table {
 		return "DELETE FROM " + _tableName;
 	}
 
-	public String getExportedData(ResultSet rs) throws Exception {
+	public String getExportedData(ResultSet resultSet) throws Exception {
 		StringBuilder sb = new StringBuilder();
 
 		Object[][] columns = getColumns();
@@ -240,7 +240,8 @@ public class Table {
 			}
 
 			appendColumn(
-				sb, rs, (String)columns[i][0], (Integer)columns[i][1], last);
+				sb, resultSet, (String)columns[i][0], (Integer)columns[i][1],
+				last);
 		}
 
 		return sb.toString();
@@ -346,7 +347,7 @@ public class Table {
 	/**
 	 * @see com.liferay.object.service.impl.ObjectEntryLocalServiceImpl#_getValue
 	 */
-	public Object getValue(ResultSet rs, String name, Integer type)
+	public Object getValue(ResultSet resultSet, String name, Integer type)
 		throws Exception {
 
 		Object value = null;
@@ -355,18 +356,18 @@ public class Table {
 
 		if (t == Types.BIGINT) {
 			try {
-				value = GetterUtil.getLong(rs.getLong(name));
+				value = GetterUtil.getLong(resultSet.getLong(name));
 			}
 			catch (SQLException sqlException) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(sqlException, sqlException);
 				}
 
-				value = GetterUtil.getLong(rs.getString(name));
+				value = GetterUtil.getLong(resultSet.getString(name));
 			}
 		}
 		else if (t == Types.BIT) {
-			value = GetterUtil.getBoolean(rs.getBoolean(name));
+			value = GetterUtil.getBoolean(resultSet.getBoolean(name));
 		}
 		else if ((t == Types.BLOB) || (t == Types.LONGVARBINARY)) {
 			DB db = DBManagerUtil.getDB();
@@ -374,12 +375,12 @@ public class Table {
 			DBType dbType = db.getDBType();
 
 			if (dbType.equals(DBType.POSTGRESQL) &&
-				PostgreSQLJDBCUtil.isPGStatement(rs.getStatement())) {
+				PostgreSQLJDBCUtil.isPGStatement(resultSet.getStatement())) {
 
-				value = PostgreSQLJDBCUtil.getLargeObject(rs, name);
+				value = PostgreSQLJDBCUtil.getLargeObject(resultSet, name);
 			}
 			else {
-				value = rs.getBytes(name);
+				value = resultSet.getBytes(name);
 			}
 
 			if (value == null) {
@@ -387,11 +388,11 @@ public class Table {
 			}
 		}
 		else if (t == Types.BOOLEAN) {
-			value = GetterUtil.getBoolean(rs.getBoolean(name));
+			value = GetterUtil.getBoolean(resultSet.getBoolean(name));
 		}
 		else if (t == Types.CLOB) {
 			try {
-				Clob clob = rs.getClob(name);
+				Clob clob = resultSet.getClob(name);
 
 				if (clob == null) {
 					value = StringPool.BLANK;
@@ -427,44 +428,44 @@ public class Table {
 				// If the database doesn't allow CLOB types for the column
 				// value, then try retrieving it as a String
 
-				value = GetterUtil.getString(rs.getString(name));
+				value = GetterUtil.getString(resultSet.getString(name));
 			}
 		}
 		else if (t == Types.DECIMAL) {
 			try {
-				value = rs.getBigDecimal(name);
+				value = resultSet.getBigDecimal(name);
 			}
 			catch (SQLException sqlException) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(sqlException, sqlException);
 				}
 
-				value = rs.getString(name);
+				value = resultSet.getString(name);
 			}
 
 			value = GetterUtil.get(value, BigDecimal.ZERO);
 		}
 		else if (t == Types.DOUBLE) {
-			value = GetterUtil.getDouble(rs.getDouble(name));
+			value = GetterUtil.getDouble(resultSet.getDouble(name));
 		}
 		else if (t == Types.FLOAT) {
-			value = GetterUtil.getFloat(rs.getFloat(name));
+			value = GetterUtil.getFloat(resultSet.getFloat(name));
 		}
 		else if (t == Types.INTEGER) {
-			value = GetterUtil.getInteger(rs.getInt(name));
+			value = GetterUtil.getInteger(resultSet.getInt(name));
 		}
 		else if (t == Types.LONGVARCHAR) {
-			value = GetterUtil.getString(rs.getString(name));
+			value = GetterUtil.getString(resultSet.getString(name));
 		}
 		else if (t == Types.NUMERIC) {
-			value = GetterUtil.getLong(rs.getLong(name));
+			value = GetterUtil.getLong(resultSet.getLong(name));
 		}
 		else if (t == Types.SMALLINT) {
-			value = GetterUtil.getShort(rs.getShort(name));
+			value = GetterUtil.getShort(resultSet.getShort(name));
 		}
 		else if (t == Types.TIMESTAMP) {
 			try {
-				value = rs.getTimestamp(name);
+				value = resultSet.getTimestamp(name);
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
@@ -477,10 +478,10 @@ public class Table {
 			}
 		}
 		else if (t == Types.TINYINT) {
-			value = GetterUtil.getShort(rs.getShort(name));
+			value = GetterUtil.getShort(resultSet.getShort(name));
 		}
 		else if (t == Types.VARCHAR) {
-			value = GetterUtil.getString(rs.getString(name));
+			value = GetterUtil.getString(resultSet.getString(name));
 		}
 		else {
 			throw new UpgradeException(

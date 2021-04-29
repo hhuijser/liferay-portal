@@ -46,10 +46,11 @@ public class CPDefinitionLinkUpgradeProcess
 				"update CPDefinitionLink set CProductId = ? where " +
 					"CPDefinitionId2 = ?");
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery("select * from CPDefinitionLink")) {
+			ResultSet resultSet = s.executeQuery(
+				"select * from CPDefinitionLink")) {
 
-			while (rs.next()) {
-				long cpDefinitionId2 = rs.getLong("CPDefinitionId2");
+			while (resultSet.next()) {
+				long cpDefinitionId2 = resultSet.getLong("CPDefinitionId2");
 
 				ps.setLong(1, _getCProductId(cpDefinitionId2));
 
@@ -64,12 +65,12 @@ public class CPDefinitionLinkUpgradeProcess
 
 	private long _getCProductId(long cpDefinitionId) throws Exception {
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select CProductId from CPDefinition where CPDefinitionId = " +
 					cpDefinitionId)) {
 
-			if (rs.next()) {
-				return rs.getLong("CProductId");
+			if (resultSet.next()) {
+				return resultSet.getLong("CProductId");
 			}
 		}
 

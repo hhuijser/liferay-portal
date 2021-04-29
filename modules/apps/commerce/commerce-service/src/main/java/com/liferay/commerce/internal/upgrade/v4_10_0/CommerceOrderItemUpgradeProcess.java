@@ -138,62 +138,63 @@ public class CommerceOrderItemUpgradeProcess
 					connection, updateCommerceOrderItemSQL);
 			Statement s = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = s.executeQuery(getCPInstanceSQL)) {
+			ResultSet resultSet = s.executeQuery(getCPInstanceSQL)) {
 
-			while (rs.next()) {
-				long cpInstanceId = rs.getLong(1);
-				boolean shippable = rs.getBoolean(2);
-				boolean freeShipping = rs.getBoolean(3);
-				boolean shipSeparately = rs.getBoolean(4);
-				double shippingExtraPrice = rs.getDouble(5);
+			while (resultSet.next()) {
+				long cpInstanceId = resultSet.getLong(1);
+				boolean shippable = resultSet.getBoolean(2);
+				boolean freeShipping = resultSet.getBoolean(3);
+				boolean shipSeparately = resultSet.getBoolean(4);
+				double shippingExtraPrice = resultSet.getDouble(5);
 
-				double width = rs.getDouble(19);
+				double width = resultSet.getDouble(19);
 
 				if (width <= 0) {
-					width = rs.getDouble(6);
+					width = resultSet.getDouble(6);
 				}
 
-				double height = rs.getDouble(20);
+				double height = resultSet.getDouble(20);
 
 				if (height <= 0) {
-					height = rs.getDouble(7);
+					height = resultSet.getDouble(7);
 				}
 
-				double depth = rs.getDouble(21);
+				double depth = resultSet.getDouble(21);
 
 				if (depth <= 0) {
-					depth = rs.getDouble(8);
+					depth = resultSet.getDouble(8);
 				}
 
-				double weight = rs.getDouble(22);
+				double weight = resultSet.getDouble(22);
 
 				if (weight <= 0) {
-					weight = rs.getDouble(9);
+					weight = resultSet.getDouble(9);
 				}
 
-				int subscriptionLength = rs.getInt(10);
-				String subscriptionType = rs.getString(11);
-				String subscriptionTypeSettings = rs.getString(12);
-				long maxSubscriptionCycles = rs.getLong(13);
-				int deliverySubscriptionLength = rs.getInt(14);
-				String deliverySubscriptionType = rs.getString(15);
-				String deliverySubscriptionTypeSettings = rs.getString(16);
-				long deliveryMaxSubscriptionCycles = rs.getLong(17);
+				int subscriptionLength = resultSet.getInt(10);
+				String subscriptionType = resultSet.getString(11);
+				String subscriptionTypeSettings = resultSet.getString(12);
+				long maxSubscriptionCycles = resultSet.getLong(13);
+				int deliverySubscriptionLength = resultSet.getInt(14);
+				String deliverySubscriptionType = resultSet.getString(15);
+				String deliverySubscriptionTypeSettings = resultSet.getString(
+					16);
+				long deliveryMaxSubscriptionCycles = resultSet.getLong(17);
 
-				boolean overrideSubscription = rs.getBoolean(18);
+				boolean overrideSubscription = resultSet.getBoolean(18);
 
 				if (overrideSubscription) {
-					subscriptionLength = rs.getInt(23);
-					subscriptionType = rs.getString(24);
-					subscriptionTypeSettings = rs.getString(25);
-					maxSubscriptionCycles = rs.getLong(26);
-					deliverySubscriptionLength = rs.getInt(27);
-					deliverySubscriptionType = rs.getString(28);
-					deliverySubscriptionTypeSettings = rs.getString(29);
-					deliveryMaxSubscriptionCycles = rs.getLong(30);
+					subscriptionLength = resultSet.getInt(23);
+					subscriptionType = resultSet.getString(24);
+					subscriptionTypeSettings = resultSet.getString(25);
+					maxSubscriptionCycles = resultSet.getLong(26);
+					deliverySubscriptionLength = resultSet.getInt(27);
+					deliverySubscriptionType = resultSet.getString(28);
+					deliverySubscriptionTypeSettings = resultSet.getString(29);
+					deliveryMaxSubscriptionCycles = resultSet.getLong(30);
 				}
 
-				long commerceOrderItemId = rs.getLong(31);
+				long commerceOrderItemId = resultSet.getLong(31);
 
 				ps1.setBoolean(1, shippable);
 				ps1.setBoolean(2, freeShipping);

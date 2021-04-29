@@ -196,7 +196,7 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(sb1.toString());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
 				StringBundler sb2 = new StringBundler(4);
@@ -211,9 +211,9 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 						connection, sb2.toString()));
 			}
 
-			while (rs.next()) {
-				long kaleoDefinitionId = rs.getLong("kaleoDefinitionId");
-				long kaleoDefinitionVersionId = rs.getLong(
+			while (resultSet.next()) {
+				long kaleoDefinitionId = resultSet.getLong("kaleoDefinitionId");
+				long kaleoDefinitionVersionId = resultSet.getLong(
 					"kaleoDefinitionVersionId");
 
 				for (PreparedStatement preparedStatement : preparedStatements) {

@@ -62,11 +62,11 @@ public class CPFriendlyURLEntryUpgradeProcess extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, updateCPFriendlyURLSQL);
 			Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(selectCPFriendlyURLEntrySQL)) {
+			ResultSet resultSet = s.executeQuery(selectCPFriendlyURLEntrySQL)) {
 
-			while (rs.next()) {
-				long classPK = rs.getLong("classPK");
-				long cProductId = rs.getLong("CProductId");
+			while (resultSet.next()) {
+				long classPK = resultSet.getLong("classPK");
+				long cProductId = resultSet.getLong("CProductId");
 
 				ps.setLong(1, cProductClassNameId);
 				ps.setLong(2, cProductId);

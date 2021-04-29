@@ -95,9 +95,9 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, value);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					int count = rs.getInt(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					int count = resultSet.getInt(1);
 
 					if (count > 0) {
 						return true;
@@ -141,12 +141,12 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 				ps1.setString(1, oldName);
 				ps1.setString(2, newName);
 
-				ResultSet rs = ps1.executeQuery();
+				ResultSet resultSet = ps1.executeQuery();
 
 				int deleteCount = 0;
 
-				while (rs.next()) {
-					ps2.setLong(1, rs.getLong(1));
+				while (resultSet.next()) {
+					ps2.setLong(1, resultSet.getLong(1));
 
 					ps2.addBatch();
 
@@ -200,12 +200,12 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 					"delete from PortletPreferences where " +
 						"portletPreferencesId = ?")) {
 
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 
 			int deleteCount = 0;
 
-			while (rs.next()) {
-				ps2.setLong(1, rs.getLong(1));
+			while (resultSet.next()) {
+				ps2.setLong(1, resultSet.getLong(1));
 
 				ps2.addBatch();
 

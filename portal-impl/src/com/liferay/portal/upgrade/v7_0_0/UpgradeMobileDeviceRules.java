@@ -45,9 +45,9 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 
 			ps.setString(1, className);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long bitwiseValue = rs.getLong(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long bitwiseValue = resultSet.getLong(1);
 
 					actionIds |= bitwiseValue;
 				}
@@ -70,10 +70,10 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 			ps.setString(1, roleName);
 			ps.setInt(2, roleType);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long companyId = rs.getLong(1);
-					long roleId = rs.getLong(2);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong(1);
+					long roleId = resultSet.getLong(2);
 
 					ownerRoleIds.put(companyId, roleId);
 				}
@@ -99,11 +99,11 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 					connection,
 					"update MDRRuleGroupInstance set companyId = ? where " +
 						"ruleGroupInstanceId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong(1);
-				long ruleGroupInstanceId = rs.getLong(2);
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong(1);
+				long ruleGroupInstanceId = resultSet.getLong(2);
 
 				ps2.setLong(1, companyId);
 				ps2.setLong(2, ruleGroupInstanceId);
@@ -147,12 +147,12 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString());
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong(1);
-				long ruleGroupInstanceId = rs.getLong(2);
-				long userId = rs.getLong(3);
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong(1);
+				long ruleGroupInstanceId = resultSet.getLong(2);
+				long userId = resultSet.getLong(3);
 
 				ps2.setLong(1, increment(ResourcePermission.class.getName()));
 				ps2.setLong(2, companyId);

@@ -68,21 +68,22 @@ public class CTRowUtil {
 					selectSQL);
 				PreparedStatement insertPS = connection.prepareStatement(
 					sb.toString());
-				ResultSet rs = selectPS.executeQuery()) {
+				ResultSet resultSet = selectPS.executeQuery()) {
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					int parameterIndex = 1;
 
 					for (int type : tableColumnsMap.values()) {
 						if (type == Types.BLOB) {
-							Blob blob = rs.getBlob(parameterIndex);
+							Blob blob = resultSet.getBlob(parameterIndex);
 
 							insertPS.setBlob(
 								parameterIndex, blob.getBinaryStream());
 						}
 						else {
 							insertPS.setObject(
-								parameterIndex, rs.getObject(parameterIndex));
+								parameterIndex,
+								resultSet.getObject(parameterIndex));
 						}
 
 						parameterIndex++;

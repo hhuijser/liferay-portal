@@ -147,10 +147,10 @@ public abstract class VerifyProcess extends BaseDBProcess {
 
 			ps.setString(1, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				rs.next();
+			try (ResultSet resultSet = ps.executeQuery()) {
+				resultSet.next();
 
-				return rs.getInt(1);
+				return resultSet.getInt(1);
 			}
 		}
 	}

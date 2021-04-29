@@ -42,16 +42,17 @@ public class FragmentEntryLinkUpgradeProcess extends UpgradeProcess {
 				"select fragmentEntryLinkId, rendererKey from " +
 					"FragmentEntryLink where rendererKey like " +
 						"'BASIC_SECTION%'");
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(
 					"update FragmentEntryLink set rendererKey = ? where " +
 						"fragmentEntryLinkId = ?"))) {
 
-			while (rs.next()) {
-				long fragmentEntryLinkId = rs.getLong("fragmentEntryLinkId");
+			while (resultSet.next()) {
+				long fragmentEntryLinkId = resultSet.getLong(
+					"fragmentEntryLinkId");
 
-				String rendererKey = rs.getString("rendererKey");
+				String rendererKey = resultSet.getString("rendererKey");
 
 				ps2.setString(
 					1,

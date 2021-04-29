@@ -42,12 +42,12 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(
 				"select companyId from Company");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			upgradePortalPreferences(PortletKeys.PREFS_OWNER_ID_DEFAULT);
 
-			while (rs.next()) {
-				upgradePortalPreferences(rs.getLong("companyId"));
+			while (resultSet.next()) {
+				upgradePortalPreferences(resultSet.getLong("companyId"));
 			}
 		}
 	}
@@ -59,10 +59,10 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 			PortletKeys.PREFS_OWNER_TYPE_COMPANY);
 
 		try (PreparedStatement ps1 = connection.prepareStatement(sql);
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				String preferences = rs.getString("preferences");
+			while (resultSet.next()) {
+				String preferences = resultSet.getString("preferences");
 
 				Document document = SAXReaderUtil.read(preferences);
 
@@ -115,7 +115,8 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 								"where portalPreferencesId = ?")) {
 
 						ps2.setString(1, document.asXML());
-						ps2.setLong(2, rs.getLong("portalPreferencesId"));
+						ps2.setLong(
+							2, resultSet.getLong("portalPreferencesId"));
 
 						ps2.executeUpdate();
 					}

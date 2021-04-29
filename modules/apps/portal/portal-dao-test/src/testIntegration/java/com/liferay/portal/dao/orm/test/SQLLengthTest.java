@@ -67,13 +67,13 @@ public class SQLLengthTest {
 			PreparedStatement ps = con.prepareStatement(
 				SQLTransformer.transform(
 					"select LENGTH(data) from SQLLengthTest"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
-			Assert.assertEquals(11, rs.getInt(1));
+			Assert.assertEquals(11, resultSet.getInt(1));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 	}
 

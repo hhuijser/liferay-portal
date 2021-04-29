@@ -48,14 +48,15 @@ public class DDMStorageLinkUpgradeProcess extends UpgradeProcess {
 					connection,
 					"update DDMStorageLink set structureVersionId = ? where " +
 						"structureId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long ddmStructureVersionId = rs.getLong("structureVersionId");
+			while (resultSet.next()) {
+				long ddmStructureVersionId = resultSet.getLong(
+					"structureVersionId");
 
 				if (ddmStructureVersionId > 0) {
 					ps2.setLong(1, ddmStructureVersionId);
-					ps2.setLong(2, rs.getLong("structureId"));
+					ps2.setLong(2, resultSet.getLong("structureId"));
 
 					ps2.addBatch();
 				}

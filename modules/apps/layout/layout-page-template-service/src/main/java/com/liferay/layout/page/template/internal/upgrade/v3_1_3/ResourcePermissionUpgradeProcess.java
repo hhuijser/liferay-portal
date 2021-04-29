@@ -53,20 +53,20 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 		sb2.append("values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (Statement s = connection.createStatement();
-			ResultSet rs = s.executeQuery(sb1.toString());
+			ResultSet resultSet = s.executeQuery(sb1.toString());
 			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
 				connection.prepareStatement(sb2.toString()))) {
 
-			while (rs.next()) {
-				long mvccVersion = rs.getLong("mvccVersion");
-				long companyId = rs.getLong("companyId");
-				long scope = rs.getLong("scope");
-				String primKey = rs.getString("primKey");
-				String primKeyId = rs.getString("primKeyId");
-				long roleId = rs.getLong("roleId");
-				long ownerId = rs.getLong("ownerId");
-				long actionIds = rs.getLong("actionIds");
-				long viewActionId = rs.getLong("viewActionId");
+			while (resultSet.next()) {
+				long mvccVersion = resultSet.getLong("mvccVersion");
+				long companyId = resultSet.getLong("companyId");
+				long scope = resultSet.getLong("scope");
+				String primKey = resultSet.getString("primKey");
+				String primKeyId = resultSet.getString("primKeyId");
+				long roleId = resultSet.getLong("roleId");
+				long ownerId = resultSet.getLong("ownerId");
+				long actionIds = resultSet.getLong("actionIds");
+				long viewActionId = resultSet.getLong("viewActionId");
 
 				ps.setLong(1, mvccVersion);
 				ps.setLong(2, increment());

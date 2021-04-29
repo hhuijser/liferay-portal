@@ -89,17 +89,17 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb1.toString());
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update PortalPreferences set preferences = ? where " +
 						"portalPreferencesId = ?")) {
 
-			while (rs.next()) {
-				long companyId = rs.getLong("companyId");
+			while (resultSet.next()) {
+				long companyId = resultSet.getLong("companyId");
 
-				String preferences = rs.getString("preferences");
+				String preferences = resultSet.getString("preferences");
 
 				String defaultLanguageId =
 					UpgradeProcessUtil.getDefaultLanguageId(companyId);
@@ -116,7 +116,8 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 					convertDefaultReminderQueries(
 						localizedPreference, preferences));
 
-				long portalPreferencesId = rs.getLong("portalPreferencesId");
+				long portalPreferencesId = resultSet.getLong(
+					"portalPreferencesId");
 
 				ps2.setLong(2, portalPreferencesId);
 

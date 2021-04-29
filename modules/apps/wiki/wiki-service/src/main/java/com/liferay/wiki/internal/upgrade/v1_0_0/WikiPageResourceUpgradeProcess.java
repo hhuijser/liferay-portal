@@ -39,9 +39,9 @@ public class WikiPageResourceUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, resourcePrimKey);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					groupId = rs.getLong("groupId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					groupId = resultSet.getLong("groupId");
 				}
 			}
 		}
@@ -53,10 +53,10 @@ public class WikiPageResourceUpgradeProcess extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps = connection.prepareStatement(
 				"select resourcePrimKey from WikiPageResource");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				long resourcePrimKey = rs.getLong("resourcePrimKey");
+			while (resultSet.next()) {
+				long resourcePrimKey = resultSet.getLong("resourcePrimKey");
 
 				runSQL(
 					StringBundler.concat(

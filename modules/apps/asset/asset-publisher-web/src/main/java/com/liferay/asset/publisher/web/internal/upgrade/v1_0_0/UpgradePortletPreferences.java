@@ -112,9 +112,9 @@ public class UpgradePortletPreferences
 
 			ps.setString(1, journalArticleUuid);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					return rs.getString("uuid_");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getString("uuid_");
 				}
 
 				return null;

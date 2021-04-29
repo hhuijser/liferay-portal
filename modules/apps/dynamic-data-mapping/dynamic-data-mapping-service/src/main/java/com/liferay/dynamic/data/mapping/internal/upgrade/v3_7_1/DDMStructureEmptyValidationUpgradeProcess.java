@@ -69,9 +69,9 @@ public class DDMStructureEmptyValidationUpgradeProcess extends UpgradeProcess {
 				PortalUtil.getClassNameId(
 					"com.liferay.dynamic.data.lists.model.DDLRecordSet"));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					String definition = rs.getString("definition");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					String definition = resultSet.getString("definition");
 
 					String newDefinition = _updateDDMFormFieldValidation(
 						definition);
@@ -81,15 +81,15 @@ public class DDMStructureEmptyValidationUpgradeProcess extends UpgradeProcess {
 					}
 
 					ps2.setString(1, newDefinition);
-					ps2.setLong(2, rs.getLong("structureId"));
+					ps2.setLong(2, resultSet.getLong("structureId"));
 
 					ps2.addBatch();
 
-					ps3.setLong(1, rs.getLong("structureId"));
+					ps3.setLong(1, resultSet.getLong("structureId"));
 
-					try (ResultSet rs2 = ps3.executeQuery()) {
-						while (rs2.next()) {
-							definition = rs2.getString("definition");
+					try (ResultSet resultSet2 = ps3.executeQuery()) {
+						while (resultSet2.next()) {
+							definition = resultSet2.getString("definition");
 
 							newDefinition = _updateDDMFormFieldValidation(
 								definition);
@@ -99,7 +99,8 @@ public class DDMStructureEmptyValidationUpgradeProcess extends UpgradeProcess {
 							}
 
 							ps4.setString(1, newDefinition);
-							ps4.setLong(2, rs2.getLong("structureVersionId"));
+							ps4.setLong(
+								2, resultSet2.getLong("structureVersionId"));
 
 							ps4.addBatch();
 						}

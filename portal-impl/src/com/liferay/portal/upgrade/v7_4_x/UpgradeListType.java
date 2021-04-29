@@ -46,9 +46,9 @@ public class UpgradeListType extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				sb.toString())) {
 
-			ResultSet rs = ps.executeQuery();
+			ResultSet resultSet = ps.executeQuery();
 
-			if (rs.next()) {
+			if (resultSet.next()) {
 				return;
 			}
 		}

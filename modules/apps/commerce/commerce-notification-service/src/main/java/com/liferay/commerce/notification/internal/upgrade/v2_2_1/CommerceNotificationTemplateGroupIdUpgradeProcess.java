@@ -43,14 +43,14 @@ public class CommerceNotificationTemplateGroupIdUpgradeProcess
 	protected void doUpgrade() throws Exception {
 		try (Statement s = connection.createStatement();
 
-			ResultSet rs = s.executeQuery(
+			ResultSet resultSet = s.executeQuery(
 				"select commerceNotificationTemplateId, groupId from " +
 					"CommerceNotificationTemplate")) {
 
 			PreparedStatement ps = null;
 
-			while (rs.next()) {
-				long groupId = rs.getLong("groupId");
+			while (resultSet.next()) {
+				long groupId = resultSet.getLong("groupId");
 
 				long channelGroupId = _getCommerceChannelGroupIdBySiteGroupId(
 					groupId);
@@ -59,7 +59,7 @@ public class CommerceNotificationTemplateGroupIdUpgradeProcess
 					continue;
 				}
 
-				long commerceNotificationTemplateId = rs.getLong(
+				long commerceNotificationTemplateId = resultSet.getLong(
 					"commerceNotificationTemplateId");
 
 				ps = connection.prepareStatement(
@@ -86,10 +86,10 @@ public class CommerceNotificationTemplateGroupIdUpgradeProcess
 		try (Statement s = connection.createStatement()) {
 			s.setMaxRows(1);
 
-			try (ResultSet rs = s.executeQuery(sql)) {
-				if (rs.next()) {
-					companyId = rs.getLong("companyId");
-					commerceChannelId = rs.getLong("commerceChannelId");
+			try (ResultSet resultSet = s.executeQuery(sql)) {
+				if (resultSet.next()) {
+					companyId = resultSet.getLong("companyId");
+					commerceChannelId = resultSet.getLong("commerceChannelId");
 				}
 			}
 		}

@@ -51,8 +51,8 @@ public class AssetDisplayLayoutFriendlyURLPrivateLayoutUpgradeProcess
 		ps.setString(4, languageId);
 
 		for (int i = 0;; i++) {
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
+			try (ResultSet resultSet = ps.executeQuery()) {
+				if (resultSet.next()) {
 					friendlyURL = initialFriendlyURL + StringPool.DASH + i;
 
 					ps.setString(3, friendlyURL);
@@ -96,12 +96,12 @@ public class AssetDisplayLayoutFriendlyURLPrivateLayoutUpgradeProcess
 			ps1.setString(1, LayoutConstants.TYPE_ASSET_DISPLAY);
 			ps1.setBoolean(2, true);
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
-					long groupId = rs.getLong("groupId");
-					String friendlyURL = rs.getString("friendlyURL");
-					String languageId = rs.getString("languageId");
-					long plid = rs.getLong("plid");
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
+					long groupId = resultSet.getLong("groupId");
+					String friendlyURL = resultSet.getString("friendlyURL");
+					String languageId = resultSet.getString("languageId");
+					long plid = resultSet.getLong("plid");
 
 					String newFriendlyURL = _getFriendlyURL(
 						ps2, groupId, friendlyURL, languageId);

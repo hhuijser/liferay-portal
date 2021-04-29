@@ -113,13 +113,13 @@ public class SQLConcatTest {
 		try (Connection con = DataAccess.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				SQLTransformer.transform(query));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
-			Assert.assertEquals(expected, rs.getString(1));
+			Assert.assertEquals(expected, resultSet.getString(1));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 	}
 

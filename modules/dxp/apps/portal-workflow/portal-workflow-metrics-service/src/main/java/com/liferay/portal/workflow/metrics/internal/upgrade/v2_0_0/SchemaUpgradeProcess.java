@@ -75,7 +75,7 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement ps1 = connection.prepareStatement(
 					"select WorkflowMetricsSLADefinition.* from " +
 						"WorkflowMetricsSLADefinition");
-				ResultSet rs = ps1.executeQuery();
+				ResultSet resultSet = ps1.executeQuery();
 				PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, sb1.toString());
@@ -83,61 +83,64 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection, sb2.toString())) {
 
-				while (rs.next()) {
-					ps2.setLong(1, rs.getLong("mvccVersion"));
-					ps2.setString(2, rs.getString("uuid_"));
+				while (resultSet.next()) {
+					ps2.setLong(1, resultSet.getLong("mvccVersion"));
+					ps2.setString(2, resultSet.getString("uuid_"));
 					ps2.setLong(
-						3, rs.getLong("workflowMetricsSLADefinitionId"));
-					ps2.setLong(4, rs.getLong("groupId"));
-					ps2.setLong(5, rs.getLong("companyId"));
-					ps2.setLong(6, rs.getLong("userId"));
-					ps2.setString(7, rs.getString("userName"));
-					ps2.setTimestamp(8, rs.getTimestamp("createDate"));
-					ps2.setTimestamp(9, rs.getTimestamp("modifiedDate"));
+						3, resultSet.getLong("workflowMetricsSLADefinitionId"));
+					ps2.setLong(4, resultSet.getLong("groupId"));
+					ps2.setLong(5, resultSet.getLong("companyId"));
+					ps2.setLong(6, resultSet.getLong("userId"));
+					ps2.setString(7, resultSet.getString("userName"));
+					ps2.setTimestamp(8, resultSet.getTimestamp("createDate"));
+					ps2.setTimestamp(9, resultSet.getTimestamp("modifiedDate"));
 					ps2.setBoolean(10, true);
-					ps2.setString(11, rs.getString("calendarKey"));
-					ps2.setString(12, rs.getString("description"));
-					ps2.setLong(13, rs.getLong("duration"));
-					ps2.setString(14, rs.getString("name"));
-					ps2.setString(15, rs.getString("pauseNodeKeys"));
-					ps2.setLong(16, rs.getLong("processId"));
-					ps2.setString(17, rs.getString("processVersion"));
-					ps2.setString(18, rs.getString("startNodeKeys"));
-					ps2.setString(19, rs.getString("stopNodeKeys"));
+					ps2.setString(11, resultSet.getString("calendarKey"));
+					ps2.setString(12, resultSet.getString("description"));
+					ps2.setLong(13, resultSet.getLong("duration"));
+					ps2.setString(14, resultSet.getString("name"));
+					ps2.setString(15, resultSet.getString("pauseNodeKeys"));
+					ps2.setLong(16, resultSet.getLong("processId"));
+					ps2.setString(17, resultSet.getString("processVersion"));
+					ps2.setString(18, resultSet.getString("startNodeKeys"));
+					ps2.setString(19, resultSet.getString("stopNodeKeys"));
 					ps2.setString(20, _DEFAULT_VERSION);
-					ps2.setInt(21, rs.getInt("status"));
-					ps2.setLong(22, rs.getLong("userId"));
-					ps2.setString(23, rs.getString("userName"));
-					ps2.setTimestamp(24, rs.getTimestamp("modifiedDate"));
+					ps2.setInt(21, resultSet.getInt("status"));
+					ps2.setLong(22, resultSet.getLong("userId"));
+					ps2.setString(23, resultSet.getString("userName"));
+					ps2.setTimestamp(
+						24, resultSet.getTimestamp("modifiedDate"));
 
 					ps2.addBatch();
 
 					ps3.setLong(1, 0);
 					ps3.setString(2, PortalUUIDUtil.generate());
 					ps3.setLong(3, _counterLocalService.increment());
-					ps3.setLong(4, rs.getLong("groupId"));
-					ps3.setLong(5, rs.getLong("companyId"));
-					ps3.setLong(6, rs.getLong("userId"));
-					ps3.setString(7, rs.getString("userName"));
-					ps3.setTimestamp(8, rs.getTimestamp("createDate"));
-					ps3.setTimestamp(9, rs.getTimestamp("modifiedDate"));
+					ps3.setLong(4, resultSet.getLong("groupId"));
+					ps3.setLong(5, resultSet.getLong("companyId"));
+					ps3.setLong(6, resultSet.getLong("userId"));
+					ps3.setString(7, resultSet.getString("userName"));
+					ps3.setTimestamp(8, resultSet.getTimestamp("createDate"));
+					ps3.setTimestamp(9, resultSet.getTimestamp("modifiedDate"));
 					ps3.setBoolean(10, true);
-					ps3.setString(11, rs.getString("calendarKey"));
-					ps3.setString(12, rs.getString("description"));
-					ps3.setLong(13, rs.getLong("duration"));
-					ps3.setString(14, rs.getString("name"));
-					ps3.setString(15, rs.getString("pauseNodeKeys"));
-					ps3.setLong(16, rs.getLong("processId"));
-					ps3.setString(17, rs.getString("processVersion"));
-					ps3.setString(18, rs.getString("startNodeKeys"));
-					ps3.setString(19, rs.getString("stopNodeKeys"));
+					ps3.setString(11, resultSet.getString("calendarKey"));
+					ps3.setString(12, resultSet.getString("description"));
+					ps3.setLong(13, resultSet.getLong("duration"));
+					ps3.setString(14, resultSet.getString("name"));
+					ps3.setString(15, resultSet.getString("pauseNodeKeys"));
+					ps3.setLong(16, resultSet.getLong("processId"));
+					ps3.setString(17, resultSet.getString("processVersion"));
+					ps3.setString(18, resultSet.getString("startNodeKeys"));
+					ps3.setString(19, resultSet.getString("stopNodeKeys"));
 					ps3.setString(20, _DEFAULT_VERSION);
 					ps3.setLong(
-						21, rs.getLong("workflowMetricsSLADefinitionId"));
-					ps3.setInt(22, rs.getInt("status"));
-					ps3.setLong(23, rs.getLong("userId"));
-					ps3.setString(24, rs.getString("userName"));
-					ps3.setTimestamp(25, rs.getTimestamp("modifiedDate"));
+						21,
+						resultSet.getLong("workflowMetricsSLADefinitionId"));
+					ps3.setInt(22, resultSet.getInt("status"));
+					ps3.setLong(23, resultSet.getLong("userId"));
+					ps3.setString(24, resultSet.getString("userName"));
+					ps3.setTimestamp(
+						25, resultSet.getTimestamp("modifiedDate"));
 
 					ps3.addBatch();
 				}

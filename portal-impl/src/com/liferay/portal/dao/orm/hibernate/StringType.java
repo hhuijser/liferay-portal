@@ -92,11 +92,12 @@ public class StringType implements CompositeUserType, Serializable {
 
 	@Override
 	public Object nullSafeGet(
-			ResultSet rs, String[] names, SessionImplementor session,
+			ResultSet resultSet, String[] names, SessionImplementor session,
 			Object owner)
 		throws SQLException {
 
-		return StandardBasicTypes.STRING.nullSafeGet(rs, names, session, owner);
+		return StandardBasicTypes.STRING.nullSafeGet(
+			resultSet, names, session, owner);
 	}
 
 	@Override

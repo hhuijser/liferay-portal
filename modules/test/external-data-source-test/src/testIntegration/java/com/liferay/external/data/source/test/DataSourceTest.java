@@ -70,20 +70,20 @@ public class DataSourceTest {
 		try (Connection con = portalDataSource.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select * from TestEntity");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 
 		try (Connection con = _dataSource.getConnection();
 			PreparedStatement ps = con.prepareStatement(
 				"select * from TestEntity");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
-			Assert.assertEquals(pk, rs.getLong("id_"));
+			Assert.assertTrue(resultSet.next());
+			Assert.assertEquals(pk, resultSet.getLong("id_"));
 			Assert.assertEquals(
-				DataSourceTest.class.getName(), rs.getString("data_"));
+				DataSourceTest.class.getName(), resultSet.getString("data_"));
 		}
 	}
 

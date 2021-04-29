@@ -130,10 +130,10 @@ public class ShoppingUpgradeProcess extends UpgradeProcess {
 					StringBundler.concat(
 						"select ", type, "Id from ShoppingItem where ", type,
 						" = [$TRUE$]")));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				_imageLocalService.deleteImage(rs.getLong(1));
+			while (resultSet.next()) {
+				_imageLocalService.deleteImage(resultSet.getLong(1));
 			}
 		}
 	}

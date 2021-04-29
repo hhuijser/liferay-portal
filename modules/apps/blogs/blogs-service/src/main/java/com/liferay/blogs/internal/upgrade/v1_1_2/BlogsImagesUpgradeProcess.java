@@ -72,10 +72,10 @@ public class BlogsImagesUpgradeProcess extends UpgradeProcess {
 				connection.prepareStatement(
 					"update BlogsEntry set smallImageFileEntryId = ?, " +
 						"smallImageId = 0 where entryId = ?"));
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long smallImageId = rs.getLong("smallImageId");
+			while (resultSet.next()) {
+				long smallImageId = resultSet.getLong("smallImageId");
 
 				Image smallImage = _imageLocalService.fetchImage(smallImageId);
 
@@ -83,13 +83,13 @@ public class BlogsImagesUpgradeProcess extends UpgradeProcess {
 					continue;
 				}
 
-				long entryId = rs.getLong("entryId");
-				long groupId = rs.getLong("groupId");
+				long entryId = resultSet.getLong("entryId");
+				long groupId = resultSet.getLong("groupId");
 
-				long companyId = rs.getLong("companyId");
+				long companyId = resultSet.getLong("companyId");
 
 				long userId = PortalUtil.getValidUserId(
-					companyId, rs.getLong("userId"));
+					companyId, resultSet.getLong("userId"));
 
 				byte[] bytes = smallImage.getTextObj();
 

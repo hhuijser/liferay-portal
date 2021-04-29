@@ -45,13 +45,14 @@ public class DDMTemplateUpgradeProcess extends UpgradeProcess {
 
 			ps1.setLong(1, PortalUtil.getClassNameId(DDMStructure.class));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					ps2.setString(
 						1,
 						StringUtil.replace(
-							rs.getString("script"), "randomizer.", "random."));
-					ps2.setLong(2, rs.getLong("templateId"));
+							resultSet.getString("script"), "randomizer.",
+							"random."));
+					ps2.setLong(2, resultSet.getLong("templateId"));
 
 					ps2.addBatch();
 				}
@@ -73,13 +74,14 @@ public class DDMTemplateUpgradeProcess extends UpgradeProcess {
 
 			ps1.setLong(1, PortalUtil.getClassNameId(DDMStructure.class));
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					ps2.setString(
 						1,
 						StringUtil.replace(
-							rs.getString("script"), "randomizer.", "random."));
-					ps2.setLong(2, rs.getLong("templateVersionId"));
+							resultSet.getString("script"), "randomizer.",
+							"random."));
+					ps2.setLong(2, resultSet.getLong("templateVersionId"));
 
 					ps2.addBatch();
 				}

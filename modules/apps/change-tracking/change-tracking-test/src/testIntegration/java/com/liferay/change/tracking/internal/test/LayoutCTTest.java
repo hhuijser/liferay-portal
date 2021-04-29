@@ -129,9 +129,9 @@ public class LayoutCTTest {
 			PreparedStatement ps = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 		finally {
 			_ctCollection = null;
@@ -157,9 +157,9 @@ public class LayoutCTTest {
 			PreparedStatement ps = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 		finally {
 			_ctCollection = null;
@@ -186,9 +186,9 @@ public class LayoutCTTest {
 			PreparedStatement ps = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 		finally {
 			_ctCollection = null;
@@ -217,9 +217,9 @@ public class LayoutCTTest {
 			PreparedStatement ps = con.prepareStatement(
 				"select * from Layout where ctCollectionId = " +
 					_ctCollection.getCtCollectionId());
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 		finally {
 			_ctCollection = null;
@@ -427,14 +427,15 @@ public class LayoutCTTest {
 					"CTEntry.ctCollectionId = ",
 					_ctCollection.getCtCollectionId(),
 					" order by ctEntryId ASC"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
 			Assert.assertEquals(
-				CTConstants.CT_CHANGE_TYPE_DELETION, rs.getLong("changeType"));
+				CTConstants.CT_CHANGE_TYPE_DELETION,
+				resultSet.getLong("changeType"));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 
 		try (Connection con = DataAccess.getConnection();
@@ -450,20 +451,21 @@ public class LayoutCTTest {
 					" and Layout.ctCollectionId = ",
 					CTConstants.CT_COLLECTION_ID_PRODUCTION,
 					" order by ctEntryId ASC"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
 			Assert.assertEquals(
-				CTConstants.CT_CHANGE_TYPE_ADDITION, rs.getLong("changeType"));
+				CTConstants.CT_CHANGE_TYPE_ADDITION,
+				resultSet.getLong("changeType"));
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
 			Assert.assertEquals(
 				CTConstants.CT_CHANGE_TYPE_MODIFICATION,
-				rs.getLong("changeType"));
+				resultSet.getLong("changeType"));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 	}
 
@@ -924,15 +926,15 @@ public class LayoutCTTest {
 				PreparedStatement ps = con.prepareStatement(
 					"select ctCollectionId from Layout where plid = " +
 						layout.getPlid());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				Assert.assertTrue(rs.next());
+				Assert.assertTrue(resultSet.next());
 
 				Assert.assertEquals(
 					_ctCollection.getCtCollectionId(),
-					rs.getLong("ctCollectionId"));
+					resultSet.getLong("ctCollectionId"));
 
-				Assert.assertFalse(rs.next());
+				Assert.assertFalse(resultSet.next());
 			}
 
 			_layoutLocalService.deleteLayout(layout);
@@ -947,9 +949,9 @@ public class LayoutCTTest {
 			try (Connection con = DataAccess.getConnection();
 				PreparedStatement ps = con.prepareStatement(
 					"select * from Layout where plid = " + layout.getPlid());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				Assert.assertFalse(rs.next());
+				Assert.assertFalse(resultSet.next());
 			}
 		}
 	}
@@ -970,13 +972,13 @@ public class LayoutCTTest {
 				PreparedStatement ps = con.prepareStatement(
 					"select COUNT(*) from Layout where plid = " +
 						layout.getPlid());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				Assert.assertTrue(rs.next());
+				Assert.assertTrue(resultSet.next());
 
-				Assert.assertEquals(2, rs.getLong(1));
+				Assert.assertEquals(2, resultSet.getLong(1));
 
-				Assert.assertFalse(rs.next());
+				Assert.assertFalse(resultSet.next());
 			}
 
 			_layoutLocalService.deleteLayout(layout);
@@ -995,15 +997,15 @@ public class LayoutCTTest {
 				PreparedStatement ps = con.prepareStatement(
 					"select ctCollectionId from Layout where plid = " +
 						layout.getPlid());
-				ResultSet rs = ps.executeQuery()) {
+				ResultSet resultSet = ps.executeQuery()) {
 
-				Assert.assertTrue(rs.next());
+				Assert.assertTrue(resultSet.next());
 
 				Assert.assertEquals(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION,
-					rs.getLong("ctCollectionId"));
+					resultSet.getLong("ctCollectionId"));
 
-				Assert.assertFalse(rs.next());
+				Assert.assertFalse(resultSet.next());
 			}
 		}
 	}

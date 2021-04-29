@@ -28,7 +28,7 @@ public interface UpgradeTable {
 		throws Exception;
 
 	public void appendColumn(
-			StringBuilder sb, ResultSet rs, String name, Integer type,
+			StringBuilder sb, ResultSet resultSet, String name, Integer type,
 			boolean last)
 		throws Exception;
 

@@ -40,12 +40,12 @@ public class JournalArticleUpgradeProcess extends UpgradeProcess {
 
 			ps1.setString(1, "%type=\"radio\"%");
 
-			ResultSet rs1 = ps1.executeQuery();
+			ResultSet resultSet1 = ps1.executeQuery();
 
-			while (rs1.next()) {
-				long id = rs1.getLong("id_");
+			while (resultSet1.next()) {
+				long id = resultSet1.getLong("id_");
 
-				String content = rs1.getString("content");
+				String content = resultSet1.getString("content");
 
 				content = _convertRadioDynamicElements(content);
 

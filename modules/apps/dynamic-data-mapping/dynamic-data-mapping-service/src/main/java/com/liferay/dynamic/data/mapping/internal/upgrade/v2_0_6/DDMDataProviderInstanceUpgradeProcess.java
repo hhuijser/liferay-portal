@@ -57,16 +57,17 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb.toString());
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				ps2.setString(
 					1,
 					_updateDDMDataProviderInstance(
-						rs.getLong("dataProviderInstanceId"),
-						rs.getString("definition"), rs.getString("uuid_")));
+						resultSet.getLong("dataProviderInstanceId"),
+						resultSet.getString("definition"),
+						resultSet.getString("uuid_")));
 
-				ps2.setLong(2, rs.getLong("dataProviderInstanceId"));
+				ps2.setLong(2, resultSet.getLong("dataProviderInstanceId"));
 
 				ps2.addBatch();
 			}
@@ -295,14 +296,14 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 					"update DDMStructureVersion set definition = ? where " +
 						"structureVersionId = ?")) {
 
-			try (ResultSet rs = ps1.executeQuery()) {
-				while (rs.next()) {
+			try (ResultSet resultSet = ps1.executeQuery()) {
+				while (resultSet.next()) {
 					JSONObject jsonObject = _jsonFactory.createJSONObject(
-						rs.getString(2));
+						resultSet.getString(2));
 
 					boolean updated = _updateDDMStructure(jsonObject);
 
-					long structureId = rs.getLong(1);
+					long structureId = resultSet.getLong(1);
 
 					if (updated &&
 						!_updatedStructureIds.contains(structureId)) {
@@ -318,14 +319,14 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 
 					ps3.setLong(1, structureId);
 
-					try (ResultSet rs2 = ps3.executeQuery()) {
-						while (rs2.next()) {
+					try (ResultSet resultSet2 = ps3.executeQuery()) {
+						while (resultSet2.next()) {
 							jsonObject = _jsonFactory.createJSONObject(
-								rs2.getString("definition"));
+								resultSet2.getString("definition"));
 
 							updated = _updateDDMStructure(jsonObject);
 
-							long structureVersionId = rs2.getLong(
+							long structureVersionId = resultSet2.getLong(
 								"structureVersionId");
 
 							if (updated &&

@@ -80,14 +80,14 @@ public class SQLEscapedConcatTest {
 				SQLTransformer.transform(
 					"select CONCAT('This is a \\'', data, '\\' for escaped " +
 						"quotes') from SQLConcatTest"));
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			Assert.assertTrue(rs.next());
+			Assert.assertTrue(resultSet.next());
 
 			Assert.assertEquals(
-				"This is a 'test' for escaped quotes", rs.getString(1));
+				"This is a 'test' for escaped quotes", resultSet.getString(1));
 
-			Assert.assertFalse(rs.next());
+			Assert.assertFalse(resultSet.next());
 		}
 	}
 

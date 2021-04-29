@@ -50,9 +50,9 @@ public class UpgradeGroup extends UpgradeProcess {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select companyId from Company")) {
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long companyId = rs.getLong("companyId");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long companyId = resultSet.getLong("companyId");
 
 					companyIds.add(companyId);
 				}

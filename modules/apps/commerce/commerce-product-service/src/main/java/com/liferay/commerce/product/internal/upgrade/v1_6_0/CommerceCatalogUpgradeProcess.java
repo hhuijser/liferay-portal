@@ -87,7 +87,7 @@ public class CommerceCatalogUpgradeProcess extends UpgradeProcess {
 					connection, insertCommerceChannelRelSQL);
 			Statement s1 = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = s1.executeQuery(
+			ResultSet resultSet = s1.executeQuery(
 				"select distinct groupId, companyId, userId, userName, " +
 					"defaultLanguageId from CPDefinition")) {
 
@@ -95,15 +95,16 @@ public class CommerceCatalogUpgradeProcess extends UpgradeProcess {
 				_classNameLocalService.getClassNameId(
 					CPDefinition.class.getName());
 
-			while (rs.next()) {
+			while (resultSet.next()) {
 				long commerceCatalogId = increment();
 				long commerceChannelId = increment();
-				long groupId = rs.getLong("groupId");
-				long companyId = rs.getLong("companyId");
-				long userId = rs.getLong("userId");
-				String userName = rs.getString("userName");
+				long groupId = resultSet.getLong("groupId");
+				long companyId = resultSet.getLong("companyId");
+				long userId = resultSet.getLong("userId");
+				String userName = resultSet.getString("userName");
 				Date now = new Date(System.currentTimeMillis());
-				String defaultLanguageId = rs.getString("defaultLanguageId");
+				String defaultLanguageId = resultSet.getString(
+					"defaultLanguageId");
 
 				Group siteGroup = _groupLocalService.getGroup(groupId);
 

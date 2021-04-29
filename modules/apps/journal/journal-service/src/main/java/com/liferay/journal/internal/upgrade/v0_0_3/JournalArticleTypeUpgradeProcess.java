@@ -127,12 +127,12 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 	protected Set<String> getArticleTypes() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select distinct type_ from JournalArticle");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
 			Set<String> types = new HashSet<>();
 
-			while (rs.next()) {
-				types.add(StringUtil.toLowerCase(rs.getString("type_")));
+			while (resultSet.next()) {
+				types.add(StringUtil.toLowerCase(resultSet.getString("type_")));
 			}
 
 			return types;
@@ -142,10 +142,10 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 	protected boolean hasSelectedArticleTypes() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select count(*) from JournalArticle where type_ != 'general'");
-			ResultSet rs = ps.executeQuery()) {
+			ResultSet resultSet = ps.executeQuery()) {
 
-			while (rs.next()) {
-				int count = rs.getInt(1);
+			while (resultSet.next()) {
+				int count = resultSet.getInt(1);
 
 				if (count > 0) {
 					return true;
@@ -177,9 +177,9 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 
 			ps.setLong(1, companyId);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					long resourcePrimKey = rs.getLong("resourcePrimKey");
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					long resourcePrimKey = resultSet.getLong("resourcePrimKey");
 
 					AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
 						JournalArticle.class.getName(), resourcePrimKey);
@@ -188,7 +188,8 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 						continue;
 					}
 
-					String type = StringUtil.toLowerCase(rs.getString("type_"));
+					String type = StringUtil.toLowerCase(
+						resultSet.getString("type_"));
 
 					long assetCategoryId =
 						journalArticleTypesToAssetCategoryIds.get(type);

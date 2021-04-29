@@ -41,9 +41,9 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 
 			ps.setString(1, name);
 
-			try (ResultSet rs = ps.executeQuery()) {
-				while (rs.next()) {
-					int count = rs.getInt(1);
+			try (ResultSet resultSet = ps.executeQuery()) {
+				while (resultSet.next()) {
+					int count = resultSet.getInt(1);
 
 					if (count > 0) {
 						return true;

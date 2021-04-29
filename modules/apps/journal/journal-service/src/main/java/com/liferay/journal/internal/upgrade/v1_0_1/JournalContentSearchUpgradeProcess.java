@@ -44,15 +44,15 @@ public class JournalContentSearchUpgradeProcess extends UpgradeProcess {
 					connection,
 					"update JournalContentSearch set portletId = ? where " +
 						"contentSearchId = ?");
-			ResultSet rs = ps1.executeQuery()) {
+			ResultSet resultSet = ps1.executeQuery()) {
 
-			while (rs.next()) {
-				long contentSearchId = rs.getLong("contentSearchId");
-				long groupId = rs.getLong("groupId");
-				boolean privateLayout = rs.getBoolean("privateLayout");
-				long layoutId = rs.getLong("layoutId");
-				String portletId = rs.getString("portletId");
-				String articleId = rs.getString("articleId");
+			while (resultSet.next()) {
+				long contentSearchId = resultSet.getLong("contentSearchId");
+				long groupId = resultSet.getLong("groupId");
+				boolean privateLayout = resultSet.getBoolean("privateLayout");
+				long layoutId = resultSet.getLong("layoutId");
+				String portletId = resultSet.getString("portletId");
+				String articleId = resultSet.getString("articleId");
 
 				String newPortletId = StringUtil.replaceFirst(
 					portletId, _OLD_ROOT_PORTLET_ID, _NEW_ROOT_PORTLET_ID);
@@ -67,8 +67,8 @@ public class JournalContentSearchUpgradeProcess extends UpgradeProcess {
 
 				ps2.setString(5, articleId);
 
-				try (ResultSet rs2 = ps2.executeQuery()) {
-					if (rs2.next()) {
+				try (ResultSet resultSet2 = ps2.executeQuery()) {
+					if (resultSet2.next()) {
 						runSQL(
 							"delete from JournalContentSearch where " +
 								"contentSearchId = " + contentSearchId);

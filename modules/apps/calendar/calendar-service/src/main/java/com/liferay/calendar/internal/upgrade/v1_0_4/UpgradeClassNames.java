@@ -101,12 +101,12 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 				ps.setString(1, _RESOURCE_NAMES[0][0]);
 				ps.setString(2, _RESOURCE_NAMES[0][1]);
 
-				ResultSet rs = ps.executeQuery();
+				ResultSet resultSet = ps.executeQuery();
 
-				while (rs.next()) {
+				while (resultSet.next()) {
 					String deleteSQL =
 						"delete from ResourcePermission where " +
-							"resourcePermissionId = " + rs.getLong(1);
+							"resourcePermissionId = " + resultSet.getLong(1);
 
 					runSQL(deleteSQL);
 				}
@@ -131,10 +131,10 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 
 			ps1.setLong(1, PortalUtil.getClassNameId(_CLASS_NAME_CAL_EVENT));
 
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 
-			while (rs.next()) {
-				long entryId = rs.getLong("entryId");
+			while (resultSet.next()) {
+				long entryId = resultSet.getLong("entryId");
 
 				ps2.setLong(1, entryId);
 				ps2.setLong(2, entryId);
@@ -177,12 +177,12 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 
 			ps1.setString(1, _CLASS_NAME_CAL_EVENT + "%");
 
-			ResultSet rs = ps1.executeQuery();
+			ResultSet resultSet = ps1.executeQuery();
 
 			long calEventClassNameId = 0;
 
-			if (rs.next()) {
-				calEventClassNameId = rs.getLong("classNameId");
+			if (resultSet.next()) {
+				calEventClassNameId = resultSet.getLong("classNameId");
 			}
 			else {
 				return;
@@ -190,12 +190,12 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 
 			ps1.setString(1, _CLASS_NAME_CALENDAR_BOOKING + "%");
 
-			rs = ps1.executeQuery();
+			resultSet = ps1.executeQuery();
 
 			long calBookingClassNameId = 0;
 
-			if (rs.next()) {
-				calBookingClassNameId = rs.getLong("classNameId");
+			if (resultSet.next()) {
+				calBookingClassNameId = resultSet.getLong("classNameId");
 			}
 			else {
 				return;
@@ -203,11 +203,11 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 
 			ps2.setString(1, "%" + calEventClassNameId + "%");
 
-			rs = ps2.executeQuery();
+			resultSet = ps2.executeQuery();
 
-			while (rs.next()) {
-				String oldSettings = rs.getString("settings_");
-				long vocabularyId = rs.getLong("vocabularyId");
+			while (resultSet.next()) {
+				String oldSettings = resultSet.getString("settings_");
+				long vocabularyId = resultSet.getLong("vocabularyId");
 
 				String newSettings = StringUtil.replace(
 					oldSettings, String.valueOf(calEventClassNameId),

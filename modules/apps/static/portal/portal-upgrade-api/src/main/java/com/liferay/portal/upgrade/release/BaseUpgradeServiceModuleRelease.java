@@ -34,8 +34,10 @@ public abstract class BaseUpgradeServiceModuleRelease extends UpgradeProcess {
 
 	@Override
 	public void upgrade() throws UpgradeException {
-		try (Connection con = DataAccess.getConnection()) {
-			if (_getBuildNumber(con, getNewBundleSymbolicName()) == null) {
+		try (Connection connection = DataAccess.getConnection()) {
+			if (_getBuildNumber(connection, getNewBundleSymbolicName()) ==
+					null) {
+
 				super.upgrade();
 			}
 		}

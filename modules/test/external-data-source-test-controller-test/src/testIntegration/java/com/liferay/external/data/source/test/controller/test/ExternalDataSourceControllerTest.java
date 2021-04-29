@@ -132,8 +132,8 @@ public class ExternalDataSourceControllerTest {
 
 		DB portalDB = DBManagerUtil.getDB();
 
-		try (Connection con = DataAccess.getConnection()) {
-			portalDB.runSQL(con, "drop table TestEntity");
+		try (Connection connection = DataAccess.getConnection()) {
+			portalDB.runSQL(connection, "drop table TestEntity");
 		}
 	}
 

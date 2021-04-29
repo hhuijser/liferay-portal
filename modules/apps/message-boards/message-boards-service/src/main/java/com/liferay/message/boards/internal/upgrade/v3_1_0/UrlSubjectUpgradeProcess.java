@@ -43,10 +43,11 @@ public class UrlSubjectUpgradeProcess extends UpgradeProcess {
 		_populateUrlSubject();
 	}
 
-	private String _findUniqueUrlSubject(Connection con, String urlSubject)
+	private String _findUniqueUrlSubject(
+			Connection connection, String urlSubject)
 		throws SQLException {
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				"select count(*) from MBMessage where urlSubject like ?")) {
 
 			preparedStatement.setString(1, urlSubject + "%");

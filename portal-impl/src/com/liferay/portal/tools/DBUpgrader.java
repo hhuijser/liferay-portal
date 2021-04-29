@@ -206,8 +206,8 @@ public class DBUpgrader {
 	private static int _getReleaseColumnValue(String columnName)
 		throws Exception {
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select " + columnName +
 					" from Release_ where releaseId = ?")) {
 
@@ -268,8 +268,8 @@ public class DBUpgrader {
 	}
 
 	private static void _updateReleaseState(int state) throws Exception {
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				"update Release_ set modifiedDate = ?, state_ = ? where " +
 					"releaseId = ?")) {
 

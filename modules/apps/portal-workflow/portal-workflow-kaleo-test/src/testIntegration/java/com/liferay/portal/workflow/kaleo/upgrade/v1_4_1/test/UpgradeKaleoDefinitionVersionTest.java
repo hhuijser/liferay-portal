@@ -142,8 +142,9 @@ public class UpgradeKaleoDefinitionVersionTest {
 
 		String sql = sb.toString();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
 			preparedStatement.setLong(1, RandomTestUtil.randomLong());
 			preparedStatement.setLong(2, groupId);
@@ -199,8 +200,8 @@ public class UpgradeKaleoDefinitionVersionTest {
 	}
 
 	private void _setUpOldColumnsAndIndexes() throws Exception {
-		try (Connection con = DataAccess.getConnection()) {
-			_dbInspector = new DBInspector(con);
+		try (Connection connection = DataAccess.getConnection()) {
+			_dbInspector = new DBInspector(connection);
 
 			_addColumn("KaleoDefinition", "startKaleoNodeId");
 

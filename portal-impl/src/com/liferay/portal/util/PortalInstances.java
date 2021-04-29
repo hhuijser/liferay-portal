@@ -184,8 +184,8 @@ public class PortalInstances {
 	public static long[] getCompanyIdsBySQL() throws SQLException {
 		List<Long> companyIds = new ArrayList<>();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				_GET_COMPANY_IDS);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 

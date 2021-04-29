@@ -144,8 +144,8 @@ public class VerifyResourcePermissions extends VerifyProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableResourcedModel.getTableName());
-			Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+			Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				_getVerifyResourcedModelSQL(
 					true, verifiableResourcedModel, role));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -161,8 +161,8 @@ public class VerifyResourcePermissions extends VerifyProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableResourcedModel.getTableName());
-			Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+			Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				_getVerifyResourcedModelSQL(
 					false, verifiableResourcedModel, role));
 			ResultSet resultSet = preparedStatement.executeQuery()) {

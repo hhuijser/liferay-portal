@@ -64,8 +64,8 @@ public class SQLEqualsTest {
 				"typeString STRING null, typeText TEXT null, typeVarchar ",
 				"VARCHAR(75) null);"));
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
 						"insert into SQLEqualsTest (pk, typeBlob, ",
@@ -73,10 +73,10 @@ public class SQLEqualsTest {
 						"typeLong, typeString, typeText, typeVarchar) values (",
 						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")))) {
 
-			boolean autoCommit = con.getAutoCommit();
+			boolean autoCommit = connection.getAutoCommit();
 
 			try {
-				con.setAutoCommit(false);
+				connection.setAutoCommit(false);
 
 				_insert(
 					preparedStatement, 1, "test", false, 5 * Time.DAY, 6.0D, 7,
@@ -90,13 +90,13 @@ public class SQLEqualsTest {
 					preparedStatement, 3, "test 2", true, 6 * Time.DAY, 7.0D, 8,
 					9L, "String 2", "Text 2", "VarChar 2");
 
-				con.commit();
+				connection.commit();
 			}
 			catch (Exception exception) {
-				con.rollback();
+				connection.rollback();
 			}
 			finally {
-				con.setAutoCommit(autoCommit);
+				connection.setAutoCommit(autoCommit);
 			}
 		}
 	}
@@ -203,8 +203,9 @@ public class SQLEqualsTest {
 
 		String sql = SQLTransformer.transform(sb.toString());
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql);
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			Assert.assertTrue(sql, resultSet.next());

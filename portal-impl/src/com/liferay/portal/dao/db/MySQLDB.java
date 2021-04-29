@@ -57,7 +57,7 @@ public class MySQLDB extends BaseDB {
 	}
 
 	@Override
-	public List<Index> getIndexes(Connection con) throws SQLException {
+	public List<Index> getIndexes(Connection connection) throws SQLException {
 		List<Index> indexes = new ArrayList<>();
 
 		StringBundler sb = new StringBundler(4);
@@ -69,7 +69,8 @@ public class MySQLDB extends BaseDB {
 
 		String sql = sb.toString();
 
-		try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+		try (PreparedStatement preparedStatement = connection.prepareStatement(
+				sql);
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {

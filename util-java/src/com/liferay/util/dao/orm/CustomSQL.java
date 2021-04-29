@@ -369,7 +369,7 @@ public class CustomSQL {
 		String functionIsNull = PortalUtil.getCustomSQLFunctionIsNull();
 		String functionIsNotNull = PortalUtil.getCustomSQLFunctionIsNotNull();
 
-		try (Connection con = DataAccess.getConnection()) {
+		try (Connection connection = DataAccess.getConnection()) {
 			if (Validator.isNotNull(functionIsNull) &&
 				Validator.isNotNull(functionIsNotNull)) {
 
@@ -384,8 +384,8 @@ public class CustomSQL {
 							functionIsNotNull);
 				}
 			}
-			else if (con != null) {
-				DatabaseMetaData metaData = con.getMetaData();
+			else if (connection != null) {
+				DatabaseMetaData metaData = connection.getMetaData();
 
 				String dbName = GetterUtil.getString(
 					metaData.getDatabaseProductName());

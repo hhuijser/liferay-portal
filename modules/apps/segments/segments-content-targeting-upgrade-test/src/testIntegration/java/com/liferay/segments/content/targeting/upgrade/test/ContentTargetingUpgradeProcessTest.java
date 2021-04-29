@@ -641,8 +641,8 @@ public class ContentTargetingUpgradeProcessTest {
 	}
 
 	protected void dropContentTargetingTables() throws Exception {
-		try (Connection con = DataAccess.getConnection()) {
-			DBInspector dbInspector = new DBInspector(con);
+		try (Connection connection = DataAccess.getConnection()) {
+			DBInspector dbInspector = new DBInspector(connection);
 
 			if (dbInspector.hasTable("CT_RuleInstance")) {
 				_db.runSQL("drop table CT_RuleInstance");
@@ -668,8 +668,9 @@ public class ContentTargetingUpgradeProcessTest {
 
 		String sql = sb.toString();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
 			preparedStatement.setLong(1, _counterLocalService.increment());
 			preparedStatement.setLong(2, _group.getGroupId());
@@ -705,8 +706,9 @@ public class ContentTargetingUpgradeProcessTest {
 
 		String sql = sb.toString();
 
-		try (Connection con = DataAccess.getConnection();
-			PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+		try (Connection connection = DataAccess.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement(
+				sql)) {
 
 			preparedStatement.setLong(1, contentTargetingUserSegmentId);
 			preparedStatement.setLong(2, _group.getGroupId());

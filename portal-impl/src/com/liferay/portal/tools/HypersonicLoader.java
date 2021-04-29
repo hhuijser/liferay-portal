@@ -41,7 +41,7 @@ import java.util.Map;
  */
 public class HypersonicLoader {
 
-	public static void loadHypersonic(Connection con, String fileName)
+	public static void loadHypersonic(Connection connection, String fileName)
 		throws Exception {
 
 		DBManager dbManager = new DBManagerImpl();
@@ -62,7 +62,7 @@ public class HypersonicLoader {
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		db.runSQLTemplateString(con, sb.toString(), true);
+		db.runSQLTemplateString(connection, sb.toString(), true);
 	}
 
 	public static void main(String[] args) throws Exception {

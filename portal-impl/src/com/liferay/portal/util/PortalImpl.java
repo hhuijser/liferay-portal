@@ -1653,13 +1653,14 @@ public class PortalImpl implements Portal {
 			return ClassNameLocalServiceUtil.getClassNameId(value);
 		}
 
-		try (Connection con = DataAccess.getConnection()) {
-			if (PortalUpgradeProcess.isInLatestSchemaVersion(con)) {
+		try (Connection connection = DataAccess.getConnection()) {
+			if (PortalUpgradeProcess.isInLatestSchemaVersion(connection)) {
 				return ClassNameLocalServiceUtil.getClassNameId(value);
 			}
 
-			try (PreparedStatement preparedStatement = con.prepareStatement(
-					"select classNameId from ClassName_ where value = ?")) {
+			try (PreparedStatement preparedStatement =
+					connection.prepareStatement(
+						"select classNameId from ClassName_ where value = ?")) {
 
 				preparedStatement.setString(1, value);
 

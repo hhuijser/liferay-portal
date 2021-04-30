@@ -24,7 +24,7 @@ import com.liferay.change.tracking.store.service.CTSContentLocalService;
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.change.tracking.sql.CTSQLModeThreadLocal;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,9 +71,9 @@ public class CTStoreCTEventListener implements CTEventListener {
 		// Deleted CTEntries need to read CTSContent from CTCollection
 
 		if (!deletedCTEnties.isEmpty()) {
-			try (SafeClosable safeClosable1 = CTSQLModeThreadLocal.setCTSQLMode(
+			try (SafeCloseable safeCloseable1 = CTSQLModeThreadLocal.setCTSQLMode(
 					CTSQLModeThreadLocal.CTSQLMode.CT_ONLY);
-				SafeClosable safeClosable2 =
+				SafeCloseable safeCloseable2 =
 					CTCollectionThreadLocal.setCTCollectionId(ctCollectionId)) {
 
 				for (CTEntry ctEntry : deletedCTEnties) {
@@ -97,7 +97,7 @@ public class CTStoreCTEventListener implements CTEventListener {
 		// Add or modifed CTEntries need to read CTSContent from production
 
 		if (!addOrModifiedCTEntries.isEmpty()) {
-			try (SafeClosable safeClosable =
+			try (SafeCloseable safeCloseable =
 					CTCollectionThreadLocal.setCTCollectionId(
 						CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -132,7 +132,7 @@ public class CTStoreCTEventListener implements CTEventListener {
 			return;
 		}
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 

@@ -15,7 +15,7 @@
 package com.liferay.portal.upgrade.internal.registry;
 
 import com.liferay.osgi.util.ServiceTrackerFactory;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -152,7 +152,7 @@ public class UpgradeStepRegistratorTracker {
 			List<ServiceRegistration<UpgradeStep>> serviceRegistrations =
 				new ArrayList<>(upgradeInfos.size());
 
-			try (SafeClosable safeClosable =
+			try (SafeCloseable safeCloseable =
 					UpgradeStepRegistratorThreadLocal.setEnabled(false)) {
 
 				for (UpgradeInfo upgradeInfo : upgradeInfos) {

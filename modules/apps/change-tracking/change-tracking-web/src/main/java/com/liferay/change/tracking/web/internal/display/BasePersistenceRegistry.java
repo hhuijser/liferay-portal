@@ -18,7 +18,7 @@ import com.liferay.change.tracking.constants.CTConstants;
 import com.liferay.change.tracking.spi.reference.TableReferenceDefinition;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
@@ -133,7 +133,7 @@ public class BasePersistenceRegistry {
 			}
 		}
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 

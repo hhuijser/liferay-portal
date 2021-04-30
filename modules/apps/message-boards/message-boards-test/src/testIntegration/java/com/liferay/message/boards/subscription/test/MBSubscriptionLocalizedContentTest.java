@@ -20,7 +20,7 @@ import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.MBCategoryLocalServiceUtil;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
 import com.liferay.message.boards.test.util.MBTestUtil;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -54,7 +54,7 @@ public class MBSubscriptionLocalizedContentTest
 	protected long addBaseModel(long userId, long containerModelId)
 		throws Exception {
 
-		try (SafeClosable safeClosable = PropsValuesTestUtil.swap(
+		try (SafeCloseable safeCloseable = PropsValuesTestUtil.swap(
 				"MESSAGE_BOARDS_EMAIL_BULK", false)) {
 
 			ServiceContext serviceContext =
@@ -106,7 +106,7 @@ public class MBSubscriptionLocalizedContentTest
 	protected void updateBaseModel(long userId, long baseModelId)
 		throws Exception {
 
-		try (SafeClosable safeClosable = PropsValuesTestUtil.swap(
+		try (SafeCloseable safeCloseable = PropsValuesTestUtil.swap(
 				"MESSAGE_BOARDS_EMAIL_BULK", false)) {
 
 			MBMessage message = MBMessageLocalServiceUtil.getMessage(

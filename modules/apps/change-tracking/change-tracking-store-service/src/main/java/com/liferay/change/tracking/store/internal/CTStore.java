@@ -21,7 +21,7 @@ import com.liferay.change.tracking.store.model.CTSContent;
 import com.liferay.change.tracking.store.service.CTSContentLocalService;
 import com.liferay.document.library.kernel.store.Store;
 import com.liferay.document.library.kernel.util.DLUtil;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -196,7 +196,7 @@ public class CTStore implements Store {
 				});
 		}
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -269,7 +269,7 @@ public class CTStore implements Store {
 			CTCollectionThreadLocal.getCTCollectionId());
 
 		if (deletedCTSContentIds != null) {
-			try (SafeClosable safeClosable =
+			try (SafeCloseable safeCloseable =
 					CTCollectionThreadLocal.setCTCollectionId(
 						CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -302,7 +302,7 @@ public class CTStore implements Store {
 				return true;
 			}
 
-			try (SafeClosable safeCloseable =
+			try (SafeCloseable safeCloseable =
 					CTCollectionThreadLocal.setCTCollectionId(
 						CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -363,7 +363,7 @@ public class CTStore implements Store {
 			return true;
 		}
 
-		try (SafeClosable safeCloseable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -378,7 +378,7 @@ public class CTStore implements Store {
 
 		try (InputStream inputStream = _store.getFileAsStream(
 				companyId, repositoryId, fileName, versionLabel);
-			SafeClosable safeCloseable =
+			SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 

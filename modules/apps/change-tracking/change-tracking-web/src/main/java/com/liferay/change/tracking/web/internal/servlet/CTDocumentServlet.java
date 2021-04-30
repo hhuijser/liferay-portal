@@ -21,7 +21,7 @@ import com.liferay.change.tracking.service.CTCollectionLocalService;
 import com.liferay.change.tracking.service.CTEntryLocalService;
 import com.liferay.change.tracking.spi.display.CTDisplayRenderer;
 import com.liferay.change.tracking.web.internal.display.CTDisplayRendererRegistry;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -130,9 +130,9 @@ public class CTDocumentServlet extends HttpServlet {
 				"ctEntryId = " + ctEntry.getCtEntryId());
 		}
 
-		try (SafeClosable safeClosable1 = CTSQLModeThreadLocal.setCTSQLMode(
+		try (SafeCloseable safeCloseable1 = CTSQLModeThreadLocal.setCTSQLMode(
 				ctSQLMode);
-			SafeClosable safeClosable2 =
+			SafeCloseable safeCloseable2 =
 				CTCollectionThreadLocal.setCTCollectionId(ctCollectionId)) {
 
 			return ctDisplayRenderer.getDownloadInputStream(ctModel, key);

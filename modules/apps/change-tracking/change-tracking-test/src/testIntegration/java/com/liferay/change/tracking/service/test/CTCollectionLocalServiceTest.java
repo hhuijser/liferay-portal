@@ -31,7 +31,7 @@ import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.service.JournalFolderLocalService;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.layout.test.util.LayoutTestUtil;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.model.Group;
@@ -124,7 +124,7 @@ public class CTCollectionLocalServiceTest {
 
 		serviceContext.setScopeGroupId(_group.getGroupId());
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -170,7 +170,7 @@ public class CTCollectionLocalServiceTest {
 		Assert.assertEquals(1.1, ctJournalArticle1.getVersion(), 0.01);
 		Assert.assertEquals(1.2, ctJournalArticle2.getVersion(), 0.01);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -251,7 +251,7 @@ public class CTCollectionLocalServiceTest {
 
 		JournalFolder ctJournalFolder = null;
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -262,7 +262,7 @@ public class CTCollectionLocalServiceTest {
 		JournalFolder productionJournalFolder = JournalTestUtil.addFolder(
 			_group.getGroupId(), conflictingFolderName);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -316,7 +316,7 @@ public class CTCollectionLocalServiceTest {
 	public void testDeletePreDeletedLayout() throws Exception {
 		Layout layout = LayoutTestUtil.addLayout(_group);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -349,7 +349,7 @@ public class CTCollectionLocalServiceTest {
 
 		Layout layout = LayoutTestUtil.addLayout(_group);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -366,7 +366,7 @@ public class CTCollectionLocalServiceTest {
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
 			StringUtil.randomString(), StringUtil.randomString());
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection2.getCtCollectionId())) {
 
@@ -391,7 +391,7 @@ public class CTCollectionLocalServiceTest {
 			_ctCollection1.getCtCollectionId(), _ctCollection1.getUserId(),
 			_ctCollection1.getName() + " (undo)", StringPool.BLANK);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection3.getCtCollectionId())) {
 
@@ -403,7 +403,7 @@ public class CTCollectionLocalServiceTest {
 			_ctCollection2.getCtCollectionId(), _ctCollection2.getUserId(),
 			_ctCollection2.getName() + " (undo)", StringPool.BLANK);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection4.getCtCollectionId())) {
 
@@ -442,7 +442,7 @@ public class CTCollectionLocalServiceTest {
 
 		String newFriendlyURL = "/testModifyLayout";
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection1.getCtCollectionId())) {
 
@@ -491,7 +491,7 @@ public class CTCollectionLocalServiceTest {
 			_ctCollection1.getCtCollectionId(), _ctCollection1.getUserId(),
 			_ctCollection1.getName() + " (undo)", StringPool.BLANK);
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection2.getCtCollectionId())) {
 

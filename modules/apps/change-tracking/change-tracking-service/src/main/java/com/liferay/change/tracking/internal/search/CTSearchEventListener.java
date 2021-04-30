@@ -22,7 +22,7 @@ import com.liferay.change.tracking.service.CTCollectionLocalService;
 import com.liferay.change.tracking.service.CTEntryLocalService;
 import com.liferay.change.tracking.spi.exception.CTEventException;
 import com.liferay.change.tracking.spi.listener.CTEventListener;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -64,7 +64,7 @@ public class CTSearchEventListener implements CTEventListener {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				try (SafeClosable safeClosable =
+				try (SafeCloseable safeCloseable =
 						CTCollectionThreadLocal.setCTCollectionId(
 							targetCTCollectionId)) {
 
@@ -91,7 +91,7 @@ public class CTSearchEventListener implements CTEventListener {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				try (SafeClosable safeClosable =
+				try (SafeCloseable safeCloseable =
 						CTCollectionThreadLocal.setCTCollectionId(
 							CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 

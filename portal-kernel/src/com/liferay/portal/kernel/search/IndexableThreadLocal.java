@@ -15,7 +15,7 @@
 package com.liferay.portal.kernel.search;
 
 import com.liferay.petra.lang.CentralizedThreadLocal;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 
 /**
  * @author Shuyang Zhou
@@ -26,8 +26,8 @@ public class IndexableThreadLocal {
 		return _forceSync.get();
 	}
 
-	public static SafeClosable setWithSafeClosable(boolean forceSync) {
-		return _forceSync.setWithSafeClosable(forceSync);
+	public static SafeCloseable setWithSafeCloseable(boolean forceSync) {
+		return _forceSync.setWithSafeCloseable(forceSync);
 	}
 
 	private static final CentralizedThreadLocal<Boolean> _forceSync =

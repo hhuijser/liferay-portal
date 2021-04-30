@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.test.util;
 
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.util.PropsUtil;
@@ -25,7 +25,7 @@ import com.liferay.portal.util.PropsValues;
  */
 public class PropsValuesTestUtil {
 
-	public static SafeClosable swap(String propsKeysFieldName, Object value) {
+	public static SafeCloseable swap(String propsKeysFieldName, Object value) {
 		String propsKeysName = ReflectionTestUtil.getFieldValue(
 			PropsKeys.class, propsKeysFieldName);
 

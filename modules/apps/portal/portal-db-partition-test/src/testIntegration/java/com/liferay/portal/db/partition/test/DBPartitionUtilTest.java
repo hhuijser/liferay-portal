@@ -15,7 +15,7 @@
 package com.liferay.portal.db.partition.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.dao.init.DBInitUtil;
@@ -105,7 +105,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 
 	@Test
 	public void testAccessCompanyByCompanyThreadLocal() throws SQLException {
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setInitializingCompanyId(_COMPANY_ID);
 			Connection connection = DataAccess.getConnection();
 			Statement statement = connection.createStatement()) {
@@ -222,7 +222,7 @@ public class DBPartitionUtilTest extends BaseDBPartitionTestCase {
 	public void testUpgrade() throws Exception {
 		_addDBPartition();
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CompanyThreadLocal.setInitializingCompanyId(_COMPANY_ID)) {
 
 			_insertCompanyAndDefaultUser();

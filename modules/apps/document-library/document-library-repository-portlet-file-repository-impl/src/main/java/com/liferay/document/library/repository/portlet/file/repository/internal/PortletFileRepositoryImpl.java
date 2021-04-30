@@ -21,7 +21,7 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLTrashLocalService;
 import com.liferay.document.library.kernel.util.DLAppHelperThreadLocal;
 import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
@@ -274,7 +274,7 @@ public class PortletFileRepositoryImpl implements PortletFileRepository {
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(0)) {
 
 			return _run(

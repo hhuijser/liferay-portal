@@ -20,7 +20,7 @@ import com.liferay.commerce.product.options.web.internal.display.context.CPSpeci
 import com.liferay.commerce.product.options.web.internal.portlet.action.ActionHelper;
 import com.liferay.commerce.product.service.CPOptionCategoryService;
 import com.liferay.commerce.product.service.CPSpecificationOptionService;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.messaging.proxy.ProxyModeThreadLocal;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
@@ -74,8 +74,8 @@ public class CPSpecificationOptionsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(true)) {
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 			ProxyModeThreadLocal.setForceSync(true);
 

@@ -17,7 +17,7 @@ package com.liferay.change.tracking.internal.messaging;
 import com.liferay.change.tracking.constants.CTConstants;
 import com.liferay.change.tracking.service.CTMessageLocalService;
 import com.liferay.change.tracking.spi.listener.CTEventListener;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBus;
@@ -41,7 +41,7 @@ public class CTMessageEventListener implements CTEventListener {
 				List<Message> messages = _ctMessageLocalService.getMessages(
 					ctCollectionId);
 
-				try (SafeClosable safeClosable =
+				try (SafeCloseable safeCloseable =
 						CTCollectionThreadLocal.setCTCollectionId(
 							CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 

@@ -20,7 +20,7 @@ import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.service.CTCollectionLocalService;
 import com.liferay.change.tracking.service.CTPreferencesLocalService;
 import com.liferay.change.tracking.web.internal.constants.CTDestinationNames;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -117,7 +117,7 @@ public class PublishScheduler {
 			long ctCollectionId, long userId, Date startDate)
 		throws PortalException {
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION)) {
 
@@ -164,8 +164,8 @@ public class PublishScheduler {
 
 		_ctCollectionLocalService.updateCTCollection(ctCollection);
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(true)) {
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 			_schedulerEngineHelper.delete(
 				jobName, CTDestinationNames.CT_COLLECTION_SCHEDULED_PUBLISH,

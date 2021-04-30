@@ -14,7 +14,7 @@
 
 package com.liferay.portal.search;
 
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.aop.AopMethodInvocation;
 import com.liferay.portal.kernel.aop.ChainableMethodAdvice;
 import com.liferay.portal.kernel.log.Log;
@@ -126,8 +126,8 @@ public class IndexableAdvice extends ChainableMethodAdvice {
 			}
 		}
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(
 					IndexableThreadLocal.isForceSync())) {
 
 			if (indexableContext._indexableType == IndexableType.DELETE) {

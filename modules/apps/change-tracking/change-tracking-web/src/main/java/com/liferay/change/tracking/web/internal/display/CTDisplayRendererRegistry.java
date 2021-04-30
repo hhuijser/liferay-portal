@@ -21,7 +21,7 @@ import com.liferay.change.tracking.service.CTEntryLocalService;
 import com.liferay.change.tracking.spi.display.CTDisplayRenderer;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.change.tracking.sql.CTSQLModeThreadLocal;
@@ -69,9 +69,9 @@ public class CTDisplayRendererRegistry {
 			return null;
 		}
 
-		try (SafeClosable safeClosable1 =
+		try (SafeCloseable safeCloseable1 =
 				CTCollectionThreadLocal.setCTCollectionId(ctCollectionId);
-			SafeClosable safeClosable2 = CTSQLModeThreadLocal.setCTSQLMode(
+			SafeCloseable safeCloseable2 = CTSQLModeThreadLocal.setCTSQLMode(
 				ctSQLMode)) {
 
 			return (T)ctService.updateWithUnsafeFunction(
@@ -251,9 +251,9 @@ public class CTDisplayRendererRegistry {
 		String name = null;
 
 		if (ctDisplayRenderer != null) {
-			try (SafeClosable safeClosable1 =
+			try (SafeCloseable safeCloseable1 =
 					CTCollectionThreadLocal.setCTCollectionId(ctCollectionId);
-				SafeClosable safeClosable2 = CTSQLModeThreadLocal.setCTSQLMode(
+				SafeCloseable safeCloseable2 = CTSQLModeThreadLocal.setCTSQLMode(
 					ctSQLMode)) {
 
 				name = ctDisplayRenderer.getTitle(locale, model);

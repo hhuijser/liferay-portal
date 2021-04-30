@@ -18,7 +18,7 @@ import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.asset.kernel.service.persistence.AssetTagPersistence;
 import com.liferay.change.tracking.spi.listener.CTEventListener;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.dao.orm.Session;
@@ -39,7 +39,7 @@ public class AssetTagCTEventListener implements CTEventListener {
 	public void onAfterCopy(
 		long sourceCTCollectionId, long targetCTCollectionId) {
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					targetCTCollectionId)) {
 

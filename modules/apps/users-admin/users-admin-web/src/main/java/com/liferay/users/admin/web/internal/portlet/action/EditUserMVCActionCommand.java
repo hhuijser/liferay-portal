@@ -18,7 +18,7 @@ import com.liferay.announcements.kernel.model.AnnouncementsDelivery;
 import com.liferay.asset.kernel.exception.AssetCategoryException;
 import com.liferay.asset.kernel.exception.AssetTagException;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
@@ -169,8 +169,8 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 		long[] deleteUserIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "deleteUserIds"), 0L);
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(true)) {
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 			for (long deleteUserId : deleteUserIds) {
 				if (cmd.equals(Constants.DEACTIVATE) ||

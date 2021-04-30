@@ -17,7 +17,7 @@ package com.liferay.portal.search.internal;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
 import com.liferay.petra.executor.PortalExecutorManager;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskThreadLocal;
 import com.liferay.portal.kernel.log.Log;
@@ -137,9 +137,9 @@ public class SearchEngineInitializer implements Runnable {
 
 						@Override
 						public Void call() throws Exception {
-							try (SafeClosable safeClosable =
+							try (SafeCloseable safeCloseable =
 									BackgroundTaskThreadLocal.
-										setBackgroundTaskIdWithSafeClosable(
+										setBackgroundTaskIdWithSafeCloseable(
 											backgroundTaskId)) {
 
 								reindex(indexer);

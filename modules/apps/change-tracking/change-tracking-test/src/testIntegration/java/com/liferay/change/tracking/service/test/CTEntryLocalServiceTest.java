@@ -24,7 +24,7 @@ import com.liferay.change.tracking.service.CTProcessLocalService;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.service.JournalFolderLocalService;
 import com.liferay.journal.test.util.JournalFolderFixture;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.change.tracking.sql.CTSQLModeThreadLocal;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.model.Group;
@@ -75,7 +75,7 @@ public class CTEntryLocalServiceTest {
 
 		String folderName1 = "Test folder name 1";
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					ctCollection1.getCtCollectionId())) {
 
@@ -104,7 +104,7 @@ public class CTEntryLocalServiceTest {
 
 		String folderName2 = "Test folder name 2";
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					ctCollection2.getCtCollectionId())) {
 
@@ -150,7 +150,7 @@ public class CTEntryLocalServiceTest {
 
 		CTCollection ctCollection3 = _createCTCollection();
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					ctCollection3.getCtCollectionId())) {
 
@@ -187,9 +187,9 @@ public class CTEntryLocalServiceTest {
 			ctCollectionId,
 			_ctEntryLocalService.getCTRowCTCollectionId(ctEntry));
 
-		try (SafeClosable safeClosable1 =
+		try (SafeCloseable safeCloseable1 =
 				CTCollectionThreadLocal.setCTCollectionId(ctCollectionId);
-			SafeClosable safeClosable2 = CTSQLModeThreadLocal.setCTSQLMode(
+			SafeCloseable safeCloseable2 = CTSQLModeThreadLocal.setCTSQLMode(
 				CTSQLModeThreadLocal.CTSQLMode.CT_ONLY)) {
 
 			JournalFolder journalFolder =

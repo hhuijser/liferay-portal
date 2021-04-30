@@ -26,7 +26,7 @@ import com.liferay.item.selector.ItemSelector;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerListFactory;
 import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReferenceComparator;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.exception.DuplicateRoleException;
 import com.liferay.portal.kernel.exception.ModelListenerException;
@@ -296,8 +296,8 @@ public class RolesAdminPortlet extends MVCPortlet {
 		if (!ArrayUtil.isEmpty(addUserIds) ||
 			!ArrayUtil.isEmpty(removeUserIds)) {
 
-			try (SafeClosable safeClosable =
-					ProxyModeThreadLocal.setWithSafeClosable(true)) {
+			try (SafeCloseable safeCloseable =
+					ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 				_userService.addRoleUsers(roleId, addUserIds);
 				_userService.unsetRoleUsers(roleId, removeUserIds);
@@ -325,8 +325,8 @@ public class RolesAdminPortlet extends MVCPortlet {
 			ParamUtil.getString(actionRequest, "addSegmentsEntryIds"), 0L);
 
 		if (ArrayUtil.isNotEmpty(addSegmentsEntryIds)) {
-			try (SafeClosable safeClosable =
-					ProxyModeThreadLocal.setWithSafeClosable(true)) {
+			try (SafeCloseable safeCloseable =
+					ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 				for (long segmentsEntryId : addSegmentsEntryIds) {
 					_segmentsEntryRoleLocalService.addSegmentsEntryRole(
@@ -341,8 +341,8 @@ public class RolesAdminPortlet extends MVCPortlet {
 			ParamUtil.getString(actionRequest, "removeSegmentsEntryIds"), 0L);
 
 		if (ArrayUtil.isNotEmpty(removeSegmentsEntryIds)) {
-			try (SafeClosable safeClosable =
-					ProxyModeThreadLocal.setWithSafeClosable(true)) {
+			try (SafeCloseable safeCloseable =
+					ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 				for (long segmentsEntryId : removeSegmentsEntryIds) {
 					_segmentsEntryRoleLocalService.deleteSegmentsEntryRole(

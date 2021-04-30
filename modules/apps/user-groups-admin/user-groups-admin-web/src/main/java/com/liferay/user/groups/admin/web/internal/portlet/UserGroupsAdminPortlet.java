@@ -14,7 +14,7 @@
 
 package com.liferay.user.groups.admin.web.internal.portlet;
 
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.exception.DuplicateUserGroupException;
 import com.liferay.portal.kernel.exception.NoSuchUserGroupException;
 import com.liferay.portal.kernel.exception.RequiredUserGroupException;
@@ -99,8 +99,8 @@ public class UserGroupsAdminPortlet extends MVCPortlet {
 
 		UserGroup userGroup = null;
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(true)) {
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 			if (userGroupId <= 0) {
 
@@ -152,8 +152,8 @@ public class UserGroupsAdminPortlet extends MVCPortlet {
 		long[] removeUserIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "removeUserIds"), 0L);
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(true)) {
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 			_userService.addUserGroupUsers(userGroupId, addUserIds);
 			_userService.unsetUserGroupUsers(userGroupId, removeUserIds);

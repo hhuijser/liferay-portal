@@ -19,7 +19,7 @@ import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.service.CTCollectionLocalService;
 import com.liferay.change.tracking.service.CTMessageLocalService;
 import com.liferay.change.tracking.service.CTProcessLocalService;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.DestinationNames;
@@ -95,7 +95,7 @@ public class CTMessageBusInterceptorTest {
 		subscriptionSender.setMailId(
 			CTMessageBusInterceptorTest.class.getName(), "test");
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection.getCtCollectionId())) {
 
@@ -143,7 +143,7 @@ public class CTMessageBusInterceptorTest {
 
 		Assert.assertNull(_testMessageListener.getReceivedMessage());
 
-		try (SafeClosable safeClosable =
+		try (SafeCloseable safeCloseable =
 				CTCollectionThreadLocal.setCTCollectionId(
 					_ctCollection.getCtCollectionId())) {
 

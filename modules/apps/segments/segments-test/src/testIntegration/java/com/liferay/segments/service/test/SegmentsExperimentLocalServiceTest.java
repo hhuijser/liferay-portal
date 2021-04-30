@@ -648,40 +648,33 @@ public class SegmentsExperimentLocalServiceTest {
 
 		SegmentsExperiment segmentsExperiment = _addSegmentsExperiment();
 
-		SegmentsExperience variantSegmentsExperience =
-			SegmentsTestUtil.addSegmentsExperience(
-				segmentsExperiment.getGroupId(),
-				segmentsExperiment.getClassNameId(),
-				segmentsExperiment.getClassPK());
-
-		_segmentsExperimentRelLocalService.addSegmentsExperimentRel(
-			segmentsExperiment.getSegmentsExperimentId(),
-			variantSegmentsExperience.getSegmentsExperienceId(),
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
-
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), 1.2,
 			HashMapBuilder.put(
 				segmentsExperiment.getSegmentsExperienceId(), 0.70
 			).put(
-				variantSegmentsExperience.getSegmentsExperienceId(), 0.30
+				() -> {
+					SegmentsExperience variantSegmentsExperience =
+						SegmentsTestUtil.addSegmentsExperience(
+							segmentsExperiment.getGroupId(),
+							segmentsExperiment.getClassNameId(),
+							segmentsExperiment.getClassPK());
+
+					_segmentsExperimentRelLocalService.addSegmentsExperimentRel(
+						segmentsExperiment.getSegmentsExperimentId(),
+						variantSegmentsExperience.getSegmentsExperienceId(),
+						ServiceContextTestUtil.getServiceContext(
+							_group.getGroupId()));
+
+					return variantSegmentsExperience.getSegmentsExperienceId();
+				},
+				0.30
 			).build());
 	}
 
 	@Test(expected = SegmentsExperimentRelSplitException.class)
 	public void testRunSegmentsExperimentWithInvalidSplit() throws Exception {
 		SegmentsExperiment segmentsExperiment = _addSegmentsExperiment();
-
-		SegmentsExperience variantSegmentsExperience =
-			SegmentsTestUtil.addSegmentsExperience(
-				segmentsExperiment.getGroupId(),
-				segmentsExperiment.getClassNameId(),
-				segmentsExperiment.getClassPK());
-
-		_segmentsExperimentRelLocalService.addSegmentsExperimentRel(
-			segmentsExperiment.getSegmentsExperimentId(),
-			variantSegmentsExperience.getSegmentsExperienceId(),
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		double confidenceLevel = 0.95;
 
@@ -690,24 +683,28 @@ public class SegmentsExperimentLocalServiceTest {
 			HashMapBuilder.put(
 				segmentsExperiment.getSegmentsExperienceId(), 0.70
 			).put(
-				variantSegmentsExperience.getSegmentsExperienceId(), 0.40
+				() -> {
+					SegmentsExperience variantSegmentsExperience =
+						SegmentsTestUtil.addSegmentsExperience(
+							segmentsExperiment.getGroupId(),
+							segmentsExperiment.getClassNameId(),
+							segmentsExperiment.getClassPK());
+
+					_segmentsExperimentRelLocalService.addSegmentsExperimentRel(
+						segmentsExperiment.getSegmentsExperimentId(),
+						variantSegmentsExperience.getSegmentsExperienceId(),
+						ServiceContextTestUtil.getServiceContext(
+							_group.getGroupId()));
+
+					return variantSegmentsExperience.getSegmentsExperienceId();
+				},
+				0.40
 			).build());
 	}
 
 	@Test(expected = LockedSegmentsExperimentException.class)
 	public void testRunSegmentsExperimentWithRunningStatus() throws Exception {
 		SegmentsExperiment segmentsExperiment = _addSegmentsExperiment();
-
-		SegmentsExperience variantSegmentsExperience =
-			SegmentsTestUtil.addSegmentsExperience(
-				segmentsExperiment.getGroupId(),
-				segmentsExperiment.getClassNameId(),
-				segmentsExperiment.getClassPK());
-
-		_segmentsExperimentRelLocalService.addSegmentsExperimentRel(
-			segmentsExperiment.getSegmentsExperimentId(),
-			variantSegmentsExperience.getSegmentsExperienceId(),
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		_segmentsExperimentLocalService.updateSegmentsExperimentStatus(
 			segmentsExperiment.getSegmentsExperimentId(),
@@ -720,7 +717,22 @@ public class SegmentsExperimentLocalServiceTest {
 			HashMapBuilder.put(
 				segmentsExperiment.getSegmentsExperienceId(), 0.70
 			).put(
-				variantSegmentsExperience.getSegmentsExperienceId(), 0.30
+				() -> {
+					SegmentsExperience variantSegmentsExperience =
+						SegmentsTestUtil.addSegmentsExperience(
+							segmentsExperiment.getGroupId(),
+							segmentsExperiment.getClassNameId(),
+							segmentsExperiment.getClassPK());
+
+					_segmentsExperimentRelLocalService.addSegmentsExperimentRel(
+						segmentsExperiment.getSegmentsExperimentId(),
+						variantSegmentsExperience.getSegmentsExperienceId(),
+						ServiceContextTestUtil.getServiceContext(
+							_group.getGroupId()));
+
+					return variantSegmentsExperience.getSegmentsExperienceId();
+				},
+				0.30
 			).build());
 	}
 

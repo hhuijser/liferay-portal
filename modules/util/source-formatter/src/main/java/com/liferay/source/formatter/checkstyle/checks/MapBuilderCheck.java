@@ -46,6 +46,9 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 			new BaseBuilderCheck.BuilderInformation(
 				"HashMap", "HashMapBuilder", "put", "putAll"),
 			new BaseBuilderCheck.BuilderInformation(
+				"HashMapDictionary", "HashMapDictionaryBuilder", "put",
+				"putAll"),
+			new BaseBuilderCheck.BuilderInformation(
 				"LinkedHashMap", "LinkedHashMapBuilder", "put", "putAll"),
 			new BaseBuilderCheck.BuilderInformation(
 				"TreeMap", "TreeMapBuilder", "put", "putAll"));

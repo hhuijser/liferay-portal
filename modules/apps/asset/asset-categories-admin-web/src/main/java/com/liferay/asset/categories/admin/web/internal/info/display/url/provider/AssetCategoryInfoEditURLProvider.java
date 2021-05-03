@@ -65,8 +65,7 @@ public class AssetCategoryInfoEditURLProvider
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/edit_category.jsp"
-		).setParameter(
-			"redirect",
+		).setRedirect(
 			() -> {
 				String redirect = ParamUtil.getString(
 					httpServletRequest, "redirect");

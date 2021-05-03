@@ -16,6 +16,7 @@ package com.liferay.portal.kernel.security.auth;
 
 import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.log.Log;
@@ -70,6 +71,11 @@ public class CompanyThreadLocal {
 		return _companyId.setWithSafeClosable(CompanyConstants.SYSTEM);
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #setWithSafeCloseable(Long)}
+	 */
+	@Deprecated
 	public static SafeClosable setWithSafeClosable(Long companyId) {
 		long currentCompanyId = _companyId.get();
 		Locale defaultLocale = LocaleThreadLocal.getDefaultLocale();
@@ -86,6 +92,25 @@ public class CompanyThreadLocal {
 			TimeZoneThreadLocal.setDefaultTimeZone(defaultTimeZone);
 
 			ctCollectionSafeClosable.close();
+		};
+	}
+
+	public static SafeCloseable setWithSafeCloseable(Long companyId) {
+		long currentCompanyId = _companyId.get();
+		Locale defaultLocale = LocaleThreadLocal.getDefaultLocale();
+		TimeZone defaultTimeZone = TimeZoneThreadLocal.getDefaultTimeZone();
+
+		_setCompanyId(companyId);
+
+		SafeCloseable ctCollectionSafeCloseable =
+			CTCollectionThreadLocal.setCTCollectionId(0);
+
+		return () -> {
+			_companyId.set(currentCompanyId);
+			LocaleThreadLocal.setDefaultLocale(defaultLocale);
+			TimeZoneThreadLocal.setDefaultTimeZone(defaultTimeZone);
+
+			ctCollectionSafeCloseable.close();
 		};
 	}
 

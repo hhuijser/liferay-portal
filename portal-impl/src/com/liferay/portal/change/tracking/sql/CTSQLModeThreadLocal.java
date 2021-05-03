@@ -16,6 +16,7 @@ package com.liferay.portal.change.tracking.sql;
 
 import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 
 /**
  * @author Preston Crary
@@ -26,8 +27,19 @@ public class CTSQLModeThreadLocal {
 		return _ctSQLMode.get();
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #setCTSQLModeWithSafeCloseable(CTSQLMode)}
+	 */
+	@Deprecated
 	public static SafeClosable setCTSQLMode(CTSQLMode ctSQLMode) {
 		return _ctSQLMode.setWithSafeClosable(ctSQLMode);
+	}
+
+	public static SafeCloseable setCTSQLModeWithSafeCloseable(
+		CTSQLMode ctSQLMode) {
+
+		return _ctSQLMode.setWithSafeCloseable(ctSQLMode);
 	}
 
 	public static enum CTSQLMode {

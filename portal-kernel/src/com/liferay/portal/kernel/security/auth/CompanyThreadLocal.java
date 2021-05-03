@@ -63,12 +63,27 @@ public class CompanyThreadLocal {
 		_deleteInProcess.set(deleteInProcess);
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #setInitializingCompanyIdWithSafeCloseable(long)}
+	 */
+	@Deprecated
 	public static SafeClosable setInitializingCompanyId(long companyId) {
 		if (companyId > 0) {
 			return _companyId.setWithSafeClosable(companyId);
 		}
 
 		return _companyId.setWithSafeClosable(CompanyConstants.SYSTEM);
+	}
+
+	public static SafeCloseable setInitializingCompanyIdWithSafeCloseable(
+		long companyId) {
+
+		if (companyId > 0) {
+			return _companyId.setWithSafeCloseable(companyId);
+		}
+
+		return _companyId.setWithSafeCloseable(CompanyConstants.SYSTEM);
 	}
 
 	/**

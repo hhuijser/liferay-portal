@@ -29,21 +29,21 @@ public class HashMapDictionaryBuilderTest {
 
 	@Test
 	public void testHashMapDictionaryBuilder() {
-		Dictionary<String, Integer> dictionary = new HashMapDictionary<>();
+		Dictionary<String, Integer> dictionary1 = new HashMapDictionary<>();
 
-		dictionary.put("One", 1);
-		dictionary.put("Three", 3);
-		dictionary.put("Two", 2);
+		dictionary1.put("One", 1);
+		dictionary1.put("Three", 3);
+		dictionary1.put("Two", 2);
 
-		Assert.assertEquals(
-			dictionary,
-			HashMapDictionaryBuilder.put(
-				"One", 1
-			).put(
-				"Three", 3
-			).put(
-				"Two", 2
-			).build());
+		Dictionary<String, Integer> dictionary2 = HashMapDictionaryBuilder.put(
+			"One", 1
+		).put(
+			"Three", 3
+		).put(
+			"Two", 2
+		).build();
+
+		Assert.assertEquals(dictionary1.toString(), dictionary2.toString());
 	}
 
 	@Test
@@ -70,33 +70,34 @@ public class HashMapDictionaryBuilderTest {
 		map.put("Three", 3);
 		map.put("Two", 2);
 
-		HashMapDictionary<String, Integer> dictionary =
+		HashMapDictionary<String, Integer> dictionary1 =
 			new HashMapDictionary<>();
 
-		dictionary.putAll(map);
+		dictionary1.putAll(map);
 
-		Assert.assertEquals(
-			dictionary,
+		HashMapDictionary<String, Integer> dictionary2 =
 			HashMapDictionaryBuilder.putAll(
 				map
-			).build());
+			).build();
+
+		Assert.assertEquals(dictionary1.toString(), dictionary2.toString());
 	}
 
 	@Test
 	public void testUnsafeFunction() {
 		List<String> list = ListUtil.fromArray("hello  ", "  world");
 
-		Dictionary<String, String> dictionary = new HashMapDictionary<>();
+		Dictionary<String, String> dictionary1 = new HashMapDictionary<>();
 
 		for (String s : list) {
-			dictionary.put(s, StringUtil.trim(s.toLowerCase()));
+			dictionary1.put(s, StringUtil.trim(s.toLowerCase()));
 		}
 
-		Assert.assertEquals(
-			dictionary,
-			HashMapDictionaryBuilder.put(
-				list, s -> StringUtil.trim(s.toLowerCase())
-			).build());
+		Dictionary<String, String> dictionary2 = HashMapDictionaryBuilder.put(
+			list, s -> StringUtil.trim(s.toLowerCase())
+		).build();
+
+		Assert.assertEquals(dictionary1.toString(), dictionary2.toString());
 	}
 
 	@Test
@@ -107,37 +108,37 @@ public class HashMapDictionaryBuilderTest {
 		_testUnsafeSupplierValue(false, 2);
 		_testUnsafeSupplierValue(true, 3);
 
-		Dictionary<String, Integer> dictionary = new HashMapDictionary<>();
+		Dictionary<String, Integer> dictionary1 = new HashMapDictionary<>();
 
 		String s1 = "Hello World";
 
 		String[] array1 = StringUtil.split(s1, ' ');
 
-		dictionary.put(s1, array1.length);
+		dictionary1.put(s1, array1.length);
 
 		String s2 = "Hello World Hello World";
 
 		String[] array2 = StringUtil.split(s2, ' ');
 
-		dictionary.put(s2, array2.length);
+		dictionary1.put(s2, array2.length);
 
-		Assert.assertEquals(
-			dictionary,
-			HashMapDictionaryBuilder.put(
-				s1,
-				() -> {
-					String[] array = StringUtil.split(s1, ' ');
+		Dictionary<String, Integer> dictionary2 = HashMapDictionaryBuilder.put(
+			s1,
+			() -> {
+				String[] array = StringUtil.split(s1, ' ');
 
-					return array.length;
-				}
-			).put(
-				s2,
-				() -> {
-					String[] array = StringUtil.split(s2, ' ');
+				return array.length;
+			}
+		).put(
+			s2,
+			() -> {
+				String[] array = StringUtil.split(s2, ' ');
 
-					return array.length;
-				}
-			).build());
+				return array.length;
+			}
+		).build();
+
+		Assert.assertEquals(dictionary1.toString(), dictionary2.toString());
 	}
 
 	private void _testUnsafeSupplierKey(

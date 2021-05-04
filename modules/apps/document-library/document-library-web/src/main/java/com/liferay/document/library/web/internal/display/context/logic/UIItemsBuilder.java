@@ -547,12 +547,6 @@ public class UIItemsBuilder {
 			return;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_getControlPanelRenderURL("/document_library/edit_image")
-		).setBackURL(
-			_getCurrentURL()
-		).build();
-
 		_addJavaScriptUIItem(
 			new JavaScriptMenuItem(), menuItems, DLUIItemKeys.EDIT_IMAGE,
 			LanguageUtil.get(_resourceBundle, "edit-image"),

@@ -243,8 +243,8 @@ public class WelcomeSiteInitializer implements SiteInitializer {
 
 			byte[] bytes = null;
 
-			try (InputStream is = new FileInputStream(file)) {
-				bytes = FileUtil.getBytes(is);
+			try (InputStream inputStream = new FileInputStream(file)) {
+				bytes = FileUtil.getBytes(inputStream);
 			}
 
 			fileEntry = _portletFileRepository.addPortletFileEntry(

@@ -235,16 +235,19 @@ public class LayoutReportsProductNavigationControlMenuEntry
 	private String _getLayoutReportsDataURL(
 		HttpServletRequest httpServletRequest) {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		return PortletURLBuilder.create(
 			_portletURLFactory.create(
 				httpServletRequest, LayoutReportsPortletKeys.LAYOUT_REPORTS,
 				PortletRequest.RESOURCE_PHASE)
 		).setParameter(
-			"plid", themeDisplay.getPlid()
+			"plid",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)httpServletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return themeDisplay.getPlid();
+			}
 		).setParameter(
 			"p_p_resource_id", "/layout_reports/data"
 		).buildString();

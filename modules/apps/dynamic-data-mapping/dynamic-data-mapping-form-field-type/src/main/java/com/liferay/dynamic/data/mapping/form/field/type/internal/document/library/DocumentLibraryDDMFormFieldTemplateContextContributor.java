@@ -27,6 +27,7 @@ import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.item.selector.criteria.file.criterion.FileItemSelectorCriterion;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -72,7 +73,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -242,27 +242,24 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
 			RequestBackedPortletURLFactoryUtil.create(httpServletRequest);
 
-		PortletURL portletURL = requestBackedPortletURLFactory.createActionURL(
-			GetterUtil.getString(
-				portal.getPortletId(httpServletRequest),
-				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM));
-
-		portletURL.setParameter(
-			ActionRequest.ACTION_NAME,
-			"/dynamic_data_mapping_form/upload_file_entry");
-		portletURL.setParameter(
+		return PortletURLBuilder.create(
+			requestBackedPortletURLFactory.createActionURL(
+				GetterUtil.getString(
+					portal.getPortletId(httpServletRequest),
+					DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM))
+		).setActionName(
+			"/dynamic_data_mapping_form/upload_file_entry"
+		).setParameter(
+			"folderId", folderId
+		).setParameter(
 			"formInstanceId",
 			ParamUtil.getString(
 				httpServletRequest, "formInstanceId",
 				String.valueOf(
-					ddmFormFieldRenderingContext.getDDMFormInstanceId())));
-		portletURL.setParameter(
-			"groupId",
-			String.valueOf(
-				ddmFormFieldRenderingContext.getProperty("groupId")));
-		portletURL.setParameter("folderId", String.valueOf(folderId));
-
-		return portletURL.toString();
+					ddmFormFieldRenderingContext.getDDMFormInstanceId()))
+		).setParameter(
+			"groupId", ddmFormFieldRenderingContext.getProperty("groupId")
+		).buildString();
 	}
 
 	protected String getItemSelectorURL(

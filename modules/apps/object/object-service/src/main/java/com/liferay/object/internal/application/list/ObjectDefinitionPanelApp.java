@@ -16,6 +16,7 @@ package com.liferay.object.internal.application.list;
 
 import com.liferay.application.list.BasePanelApp;
 import com.liferay.object.model.ObjectDefinition;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 
@@ -55,13 +56,12 @@ public class ObjectDefinitionPanelApp extends BasePanelApp {
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter(
+		return PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
 			"objectDefinitionId",
-			String.valueOf(_objectDefinition.getObjectDefinitionId()));
-
-		return portletURL;
+			String.valueOf(_objectDefinition.getObjectDefinitionId())
+		).build();
 	}
 
 	private final ObjectDefinition _objectDefinition;

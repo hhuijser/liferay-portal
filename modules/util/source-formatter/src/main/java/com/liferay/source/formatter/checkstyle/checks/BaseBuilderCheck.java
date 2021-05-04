@@ -606,19 +606,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			startLineNumber);
 	}
 
-	private String _getLineNumbers(List<DetailAST> detailASTList) {
-		StringBundler sb = new StringBundler(detailASTList.size() * 2);
-
-		for (DetailAST detailAST : detailASTList) {
-			sb.append(detailAST.getLineNo());
-			sb.append(StringPool.COMMA_AND_SPACE);
-		}
-
-		sb.setIndex(sb.index() - 1);
-
-		return sb.toString();
-	}
-
 	private void _checkInline(
 		DetailAST parentDetailAST,
 		Map<String, List<DetailAST>> expressionDetailASTMap,
@@ -834,6 +821,19 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 
 		return methodName;
+	}
+
+	private String _getLineNumbers(List<DetailAST> detailASTList) {
+		StringBundler sb = new StringBundler(detailASTList.size() * 2);
+
+		for (DetailAST detailAST : detailASTList) {
+			sb.append(detailAST.getLineNo());
+			sb.append(StringPool.COMMA_AND_SPACE);
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		return sb.toString();
 	}
 
 	private List<String> _getVariableNames(DetailAST detailAST) {

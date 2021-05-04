@@ -14,16 +14,19 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,6 +128,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 
 		return identDetailAST.getText();
+	}
+
+	protected Map<String, String[][]> getReservedKeywordsMap() {
+		return Collections.emptyMap();
 	}
 
 	protected abstract List<String> getSupportsFunctionMethodNames();
@@ -371,6 +378,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		if (!allowNullValues()) {
 			_checkNullValues(expressionDetailASTMap, builderClassName);
 		}
+
+		_checkReservedKeywords(expressionDetailASTMap);
 
 		DetailAST parentDetailAST = methodCallDetailAST.getParent();
 
@@ -673,6 +682,69 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 					log(
 						expressionDetailAST, _MSG_INCORRECT_NULL_VALUE,
 						builderClassName);
+				}
+			}
+		}
+	}
+
+	private void _checkReservedKeywords(
+		Map<String, List<DetailAST>> expressionDetailASTMap) {
+
+		Map<String, String[][]> reservedKeywordsMap = getReservedKeywordsMap();
+
+		for (Map.Entry<String, String[][]> entry :
+				reservedKeywordsMap.entrySet()) {
+
+			String methodName = entry.getKey();
+
+			List<DetailAST> expressionDetailASTList =
+				expressionDetailASTMap.get(methodName);
+
+			if (expressionDetailASTList == null) {
+				continue;
+			}
+
+			for (DetailAST expressionDetailAST : expressionDetailASTList) {
+				DetailAST previousDetailAST =
+					expressionDetailAST.getPreviousSibling();
+
+				if (previousDetailAST != null) {
+					continue;
+				}
+
+				DetailAST firstChildDetailAST =
+					expressionDetailAST.getFirstChild();
+
+				String value = null;
+
+				if (firstChildDetailAST.getType() ==
+						TokenTypes.STRING_LITERAL) {
+
+					value = StringUtil.removeChar(
+						firstChildDetailAST.getText(), CharPool.QUOTE);
+				}
+				else if (firstChildDetailAST.getType() == TokenTypes.DOT) {
+					FullIdent fullIdent = FullIdent.createFullIdent(
+						firstChildDetailAST);
+
+					value = fullIdent.getText();
+				}
+				else {
+					continue;
+				}
+
+				String[][] reservedKeywordsArray = entry.getValue();
+
+				for (String[] reservedKeywordArray : reservedKeywordsArray) {
+					String reservedKey = reservedKeywordArray[0];
+
+					if (value.equals(reservedKey)) {
+						log(
+							expressionDetailAST, _MSG_RESERVED_KEYWORD, value,
+							reservedKeywordArray[1]);
+
+						break;
+					}
 				}
 			}
 		}
@@ -993,6 +1065,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	private static final String _MSG_INLINE_BUILDER_1 = "builder.inline.1";
 
 	private static final String _MSG_INLINE_BUILDER_2 = "builder.inline.2";
+
+	private static final String _MSG_RESERVED_KEYWORD = "keyword.reserved";
 
 	private static final String _MSG_USE_BUILDER = "builder.use";
 

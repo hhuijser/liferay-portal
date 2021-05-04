@@ -14,12 +14,14 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -81,6 +83,13 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
+	protected Map<String, String[][]> getReservedKeywordsMap() {
+		return HashMapBuilder.put(
+			"setParameter", _RESERVED_KEYWORDS
+		).build();
+	}
+
+	@Override
 	protected List<String> getSupportsFunctionMethodNames() {
 		return ListUtil.fromArray(
 			"setActionName", "setCMD", "setKeywords", "setMVCPath",
@@ -92,5 +101,16 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 	protected boolean isSupportsNestedMethodCalls() {
 		return true;
 	}
+
+	private static final String[][] _RESERVED_KEYWORDS = {
+		{"ActionRequest.ACTION_NAME", "setActionName"},
+		{"Constants.CMD", "setCMD"}, {"backURL", "setBackURL"},
+		{"cmd", "setCMD"}, {"javax.portlet.action", "setActionName"},
+		{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
+		{"mvcRenderCommandName", "setMVCRenderCommandName"},
+		{"navigation", "setNavigation"}, {"p_p_mode", "setPortletMode"},
+		{"p_p_state", "setWindowState"}, {"redirect", "setRedirect"},
+		{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
+	};
 
 }

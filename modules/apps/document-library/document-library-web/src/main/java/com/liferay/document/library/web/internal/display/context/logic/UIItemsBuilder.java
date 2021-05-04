@@ -547,10 +547,11 @@ public class UIItemsBuilder {
 			return;
 		}
 
-		PortletURL portletURL = _getControlPanelRenderURL(
-			"/document_library/edit_image");
-
-		portletURL.setParameter("backURL", _getCurrentURL());
+		PortletURL portletURL = PortletURLBuilder.create(
+			_getControlPanelRenderURL("/document_library/edit_image")
+		).setBackURL(
+			_getCurrentURL()
+		).build();
 
 		_addJavaScriptUIItem(
 			new JavaScriptMenuItem(), menuItems, DLUIItemKeys.EDIT_IMAGE,

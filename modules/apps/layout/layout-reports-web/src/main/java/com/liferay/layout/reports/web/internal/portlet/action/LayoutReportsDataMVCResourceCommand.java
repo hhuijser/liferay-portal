@@ -59,7 +59,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -237,54 +236,51 @@ public class LayoutReportsDataMVCResourceCommand
 			WebKeys.THEME_DISPLAY);
 
 		if (_isOmniAdmin()) {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName",
-				"/configuration_admin/edit_configuration");
-			portletURL.setParameter(
-				"redirect", _getCompleteURL(portletRequest));
-			portletURL.setParameter(
+			return PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest,
+					ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
+					PortletRequest.RENDER_PHASE)
+			).setMVCRenderCommandName(
+				"/configuration_admin/edit_configuration"
+			).setRedirect(
+				_getCompleteURL(portletRequest)
+			).setParameter(
 				"factoryPid",
-				LayoutReportsGooglePageSpeedConfiguration.class.getName());
-			portletURL.setParameter(
-				"pid",
-				LayoutReportsGooglePageSpeedConfiguration.class.getName());
-
-			return portletURL.toString();
+				LayoutReportsGooglePageSpeedConfiguration.class.getName()
+			).setParameter(
+				"pid", LayoutReportsGooglePageSpeedConfiguration.class.getName()
+			).buildString();
 		}
 		else if (_isCompanyAdmin()) {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter(
-				"mvcRenderCommandName",
-				"/configuration_admin/edit_configuration");
-			portletURL.setParameter(
-				"redirect", _getCompleteURL(portletRequest));
-			portletURL.setParameter(
+			return PortletURLBuilder.create(
+				_portal.getControlPanelPortletURL(
+					portletRequest,
+					ConfigurationAdminPortletKeys.INSTANCE_SETTINGS,
+					PortletRequest.RENDER_PHASE)
+			).setMVCRenderCommandName(
+				"/configuration_admin/edit_configuration"
+			).setRedirect(
+				_getCompleteURL(portletRequest)
+			).setParameter(
 				"factoryPid",
-				LayoutReportsGooglePageSpeedCompanyConfiguration.class.
-					getName());
-			portletURL.setParameter(
+				LayoutReportsGooglePageSpeedCompanyConfiguration.class.getName()
+			).setParameter(
 				"pid",
-				LayoutReportsGooglePageSpeedCompanyConfiguration.class.
-					getName());
-
-			return portletURL.toString();
+				LayoutReportsGooglePageSpeedCompanyConfiguration.class.getName()
+			).buildString();
 		}
 		else if (_isSiteAdmin(themeDisplay.getScopeGroupId())) {
 			try {
-				PortletURL portletURL = _portal.getControlPanelPortletURL(
-					portletRequest,
-					_groupLocalService.getGroup(themeDisplay.getScopeGroupId()),
-					"com_liferay_site_admin_web_portlet_SiteSettingsPortlet", 0,
-					0, PortletRequest.RENDER_PHASE);
-
-				return portletURL.toString();
+				return PortletURLBuilder.create(
+					_portal.getControlPanelPortletURL(
+						portletRequest,
+						_groupLocalService.getGroup(
+							themeDisplay.getScopeGroupId()),
+						"com_liferay_site_admin_web_portlet_" +
+							"SiteSettingsPortlet",
+						0, 0, PortletRequest.RENDER_PHASE)
+				).buildString();
 			}
 			catch (PortalException portalException) {
 				_log.error(portalException, portalException);

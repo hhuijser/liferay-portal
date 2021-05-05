@@ -38,7 +38,7 @@ public class ItemListBuilderCheck extends BaseBuilderCheck {
 
 	@Override
 	protected List<BaseBuilderCheck.BuilderInformation>
-		getBuilderInformationList() {
+		doGetBuilderInformationList() {
 
 		return ListUtil.fromArray(
 			new BaseBuilderCheck.BuilderInformation(

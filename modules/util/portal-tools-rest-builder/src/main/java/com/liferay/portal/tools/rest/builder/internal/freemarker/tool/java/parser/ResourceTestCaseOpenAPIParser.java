@@ -113,7 +113,7 @@ public class ResourceTestCaseOpenAPIParser {
 				}
 			}
 
-			StringBundler sb = new StringBundler();
+			StringBundler sb = new StringBundler(3);
 
 			sb.append(operationId.substring(0, index));
 			sb.append("FormData");

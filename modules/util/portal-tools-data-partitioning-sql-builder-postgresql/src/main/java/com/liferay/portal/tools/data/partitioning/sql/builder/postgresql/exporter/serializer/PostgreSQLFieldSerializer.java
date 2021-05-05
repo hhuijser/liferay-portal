@@ -30,7 +30,7 @@ public class PostgreSQLFieldSerializer implements FieldSerializer {
 
 	@Override
 	public String serialize(Object object) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(3);
 
 		if (object == null) {
 			sb.append("null");

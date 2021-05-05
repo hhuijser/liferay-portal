@@ -37,7 +37,7 @@ public class MySQLDataPartitioningExporter
 
 	@Override
 	public String getControlTableNamesSQL(ExportContext exportContext) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("select c1.");
 		sb.append(getTableNameFieldName());
@@ -63,7 +63,7 @@ public class MySQLDataPartitioningExporter
 
 	@Override
 	public String getPartitionedTableNamesSQL(ExportContext exportContext) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("select c2.");
 		sb.append(getTableNameFieldName());

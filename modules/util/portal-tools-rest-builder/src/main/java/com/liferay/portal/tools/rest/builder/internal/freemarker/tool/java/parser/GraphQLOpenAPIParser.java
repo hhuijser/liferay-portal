@@ -186,7 +186,7 @@ public class GraphQLOpenAPIParser {
 				String className = returnType.substring(
 					pageClassName.length() + 1, returnType.length() - 1);
 
-				StringBundler sb = new StringBundler();
+				StringBundler sb = new StringBundler(4);
 
 				sb.append(Collection.class.getName());
 				sb.append("<");
@@ -263,7 +263,7 @@ public class GraphQLOpenAPIParser {
 			Schema schema = parameter.getSchema();
 
 			if (schema.getType() != null) {
-				StringBundler sb = new StringBundler();
+				StringBundler sb = new StringBundler(3);
 
 				sb.append("@GraphQLName(\"");
 				sb.append(parameter.getName());
@@ -273,7 +273,7 @@ public class GraphQLOpenAPIParser {
 			}
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(3);
 
 		sb.append("@GraphQLName(\"");
 

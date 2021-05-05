@@ -166,9 +166,9 @@ public class CSSBuilder implements AutoCloseable {
 			_parseSassFile(fileName);
 
 			System.out.println(
-				"Parsed " + fileName + " in " +
-					String.valueOf(System.currentTimeMillis() - startTime) +
-						"ms");
+				StringBundler.concat(
+					"Parsed ", fileName, " in ",
+					System.currentTimeMillis() - startTime, "ms"));
 		}
 	}
 
@@ -262,8 +262,9 @@ public class CSSBuilder implements AutoCloseable {
 		}
 		catch (Exception exception) {
 			System.out.println(
-				"Unable to generate RTL version for " + fileName + ", " +
-					exception.getMessage());
+				StringBundler.concat(
+					"Unable to generate RTL version for ", fileName, ", ",
+					exception.getMessage()));
 		}
 
 		return rtlCss;

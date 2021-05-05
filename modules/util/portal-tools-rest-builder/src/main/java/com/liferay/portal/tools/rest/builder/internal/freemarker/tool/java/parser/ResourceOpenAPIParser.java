@@ -333,7 +333,7 @@ public class ResourceOpenAPIParser {
 			return "";
 		}
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(
 			String.format(
@@ -758,7 +758,7 @@ public class ResourceOpenAPIParser {
 	}
 
 	private static String _getPageClassName(String returnType) {
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(Page.class.getName());
 		sb.append("<");
@@ -817,7 +817,7 @@ public class ResourceOpenAPIParser {
 				continue;
 			}
 
-			StringBundler sb = new StringBundler();
+			StringBundler sb = new StringBundler(11);
 
 			String defaultValue = _getDefaultValue(
 				openAPIYAML, parameter.getSchema());

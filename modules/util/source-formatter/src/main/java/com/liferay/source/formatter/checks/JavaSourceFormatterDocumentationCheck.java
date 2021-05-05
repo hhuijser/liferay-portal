@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
@@ -93,8 +92,7 @@ public class JavaSourceFormatterDocumentationCheck extends BaseJavaTermCheck {
 			checkName);
 
 		File markdownFile = getFile(
-			_DOCUMENTATION_DIR_LOCATION + markdownFileName,
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			_DOCUMENTATION_DIR_LOCATION + markdownFileName, getMaxDirLevel());
 
 		if (markdownFile != null) {
 			return true;

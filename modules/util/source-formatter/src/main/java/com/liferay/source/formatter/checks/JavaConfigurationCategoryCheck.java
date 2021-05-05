@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -75,7 +74,7 @@ public class JavaConfigurationCategoryCheck extends BaseFileCheck {
 		final List<String> categoryKeys = new ArrayList<>();
 
 		File configurationCategoriesDir = getFile(
-			_CONFIGURATION_CATEGORIES_DIR_NAME, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			_CONFIGURATION_CATEGORIES_DIR_NAME, getMaxDirLevel());
 
 		if (configurationCategoriesDir == null) {
 			_categoryKeys = categoryKeys;

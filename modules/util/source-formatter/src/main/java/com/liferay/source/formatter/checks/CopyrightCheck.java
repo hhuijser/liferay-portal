@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
@@ -137,8 +136,7 @@ public class CopyrightCheck extends BaseFileCheck {
 		String copyRightFileName = getAttributeValue(
 			_COPYRIGHT_FILE_NAME_KEY, "copyright.txt", absolutePath);
 
-		_copyright = getContent(
-			copyRightFileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		_copyright = getContent(copyRightFileName, getMaxDirLevel());
 
 		if (Validator.isNotNull(_copyright)) {
 			return _copyright;

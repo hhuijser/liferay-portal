@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.SourceCheck;
 import com.liferay.source.formatter.checks.configuration.SourceChecksResult;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterConfiguration;
@@ -78,12 +77,6 @@ import org.apache.tools.ant.types.selectors.SelectorUtils;
  * @author Hugo Huijser
  */
 public abstract class BaseSourceProcessor implements SourceProcessor {
-
-	public static final int PLUGINS_MAX_DIR_LEVEL =
-		ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
-
-	public static final int PORTAL_MAX_DIR_LEVEL =
-		ToolsUtil.PORTAL_MAX_DIR_LEVEL;
 
 	@Override
 	public final void format() throws Exception {
@@ -425,7 +418,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	protected File getPortalDir() {
 		File portalImplDir = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "portal-impl",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			_sourceFormatterArgs.getMaxDirLevel());
 
 		if (portalImplDir == null) {
 			return null;
@@ -679,6 +672,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		sourceCheck.setAllFileNames(_allFileNames);
 		sourceCheck.setBaseDirName(_sourceFormatterArgs.getBaseDirName());
 		sourceCheck.setFileExtensions(_sourceFormatterArgs.getFileExtensions());
+		sourceCheck.setMaxDirLevel(_sourceFormatterArgs.getMaxDirLevel());
 		sourceCheck.setMaxLineLength(_sourceFormatterArgs.getMaxLineLength());
 		sourceCheck.setPluginsInsideModulesDirectoryNames(
 			_pluginsInsideModulesDirectoryNames);

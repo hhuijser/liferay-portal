@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.JSPImportsFormatter;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
@@ -323,6 +322,11 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 	}
 
+	protected int getMaxDirLevel() {
+		return GetterUtil.getInteger(
+			getAttributeValue(CheckstyleUtil.MAX_DIR_LEVEL_KEY));
+	}
+
 	protected List<DetailAST> getMethodCalls(
 		DetailAST detailAST, String methodName) {
 
@@ -581,7 +585,7 @@ public abstract class BaseCheck extends AbstractCheck {
 			getBaseDirName(),
 			"modules/util/source-formatter/src/main/resources/dependencies/" +
 				fileName,
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			getMaxDirLevel());
 
 		JSONObject jsonObject = null;
 

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
@@ -139,7 +138,7 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		throws DocumentException, IOException {
 
 		String checkstyleConfigurationContent = getContent(
-			configurationFileLocation, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			configurationFileLocation, getMaxDirLevel());
 
 		Document document = SourceUtil.readXML(checkstyleConfigurationContent);
 
@@ -153,7 +152,7 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		throws DocumentException, IOException {
 
 		String sourceChecksConfigurationContent = getContent(
-			configurationFileLocation, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			configurationFileLocation, getMaxDirLevel());
 
 		Document document = SourceUtil.readXML(
 			sourceChecksConfigurationContent);

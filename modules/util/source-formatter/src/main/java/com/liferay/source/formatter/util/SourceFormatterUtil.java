@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.ExcludeSyntax;
 import com.liferay.source.formatter.ExcludeSyntaxPattern;
 import com.liferay.source.formatter.SourceFormatterExcludes;
@@ -248,9 +247,8 @@ public class SourceFormatterUtil {
 		return markdownFileName + ".markdown";
 	}
 
-	public static File getPortalDir(String baseDirName) {
-		File portalImplDir = getFile(
-			baseDirName, "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+	public static File getPortalDir(String baseDirName, int maxDirLevel) {
+		File portalImplDir = getFile(baseDirName, "portal-impl", maxDirLevel);
 
 		if (portalImplDir == null) {
 			return null;
@@ -293,7 +291,7 @@ public class SourceFormatterUtil {
 
 	public static List<File> getSuppressionsFiles(
 		String baseDirName, List<String> allFileNames,
-		SourceFormatterExcludes sourceFormatterExcludes) {
+		SourceFormatterExcludes sourceFormatterExcludes, int maxDirLevel) {
 
 		List<File> suppressionsFiles = new ArrayList<>();
 
@@ -301,7 +299,7 @@ public class SourceFormatterUtil {
 
 		String parentDirName = baseDirName;
 
-		for (int j = 0; j < ToolsUtil.PORTAL_MAX_DIR_LEVEL; j++) {
+		for (int j = 0; j < maxDirLevel; j++) {
 			File suppressionsFile = new File(
 				parentDirName + _SUPPRESSIONS_FILE_NAME);
 

@@ -352,7 +352,7 @@ public class JavaTaglibMethodCheck extends BaseJavaTermCheck {
 
 		List<String> tldFileNames = TaglibUtil.getTLDFileNames(
 			getBaseDirName(), _allFileNames, getSourceFormatterExcludes(),
-			isPortalSource());
+			isPortalSource(), getMaxDirLevel());
 
 		if (tldFileNames.isEmpty()) {
 			return _tagAttributesMap.get(fullyQualifiedClassName);
@@ -407,7 +407,7 @@ public class JavaTaglibMethodCheck extends BaseJavaTermCheck {
 		}
 
 		_utilTaglibSrcDirName = TaglibUtil.getUtilTaglibSrcDirName(
-			getBaseDirName());
+			getBaseDirName(), getMaxDirLevel());
 
 		return _utilTaglibSrcDirName;
 	}

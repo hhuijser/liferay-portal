@@ -114,6 +114,11 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	}
 
 	@Override
+	public void setMaxDirLevel(int maxDirLevel) {
+		_maxDirLevel = maxDirLevel;
+	}
+
+	@Override
 	public void setMaxLineLength(int maxLineLength) {
 		_maxLineLength = maxLineLength;
 	}
@@ -380,6 +385,10 @@ public abstract class BaseSourceCheck implements SourceCheck {
 		return SourceUtil.getLineStartPos(content, lineNumber);
 	}
 
+	protected int getMaxDirLevel() {
+		return _maxDirLevel;
+	}
+
 	protected int getMaxLineLength() {
 		return _maxLineLength;
 	}
@@ -392,8 +401,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 				_MODULES_PROPERTIES_FILE_NAME, absolutePath);
 		}
 
-		return getContent(
-			_MODULES_PROPERTIES_FILE_NAME, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		return getContent(_MODULES_PROPERTIES_FILE_NAME, _maxDirLevel);
 	}
 
 	protected List<String> getPluginsInsideModulesDirectoryNames() {
@@ -417,7 +425,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			return getGitContent(fileName, portalBranchName);
 		}
 
-		String content = getContent(fileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		String content = getContent(fileName, _maxDirLevel);
 
 		if (Validator.isNotNull(content)) {
 			return content;
@@ -483,7 +491,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 
 	protected File getPortalDir() {
 		File portalImplDir = SourceFormatterUtil.getFile(
-			getBaseDirName(), "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			getBaseDirName(), "portal-impl", _maxDirLevel);
 
 		if (portalImplDir == null) {
 			return null;
@@ -496,7 +504,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 			String fileName, String absolutePath)
 		throws IOException {
 
-		File file = getFile(fileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		File file = getFile(fileName, _maxDirLevel);
 
 		if (file != null) {
 			return new FileInputStream(file);
@@ -780,6 +788,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	private final Map<String, List<String>> _excludesValuesMap =
 		new ConcurrentHashMap<>();
 	private List<String> _fileExtensions;
+	private int _maxDirLevel;
 	private int _maxLineLength;
 	private List<String> _pluginsInsideModulesDirectoryNames;
 	private Document _portalCustomSQLDocument;

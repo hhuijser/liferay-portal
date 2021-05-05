@@ -243,6 +243,11 @@ public class SourceFormatter {
 				arguments, "output.file.name",
 				SourceFormatterArgs.OUTPUT_FILE_NAME);
 
+			sourceFormatterArgs.setMaxDirLevel(
+				Math.max(
+					ToolsUtil.PORTAL_MAX_DIR_LEVEL,
+					StringUtil.count(baseDirName, CharPool.SLASH) + 1));
+
 			sourceFormatterArgs.setOutputFileName(outputFileName);
 
 			boolean printErrors = ArgumentsUtil.getBoolean(
@@ -639,7 +644,7 @@ public class SourceFormatter {
 	private boolean _containsDir(String dirName) {
 		File directory = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), dirName,
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			_sourceFormatterArgs.getMaxDirLevel());
 
 		if (directory != null) {
 			return true;
@@ -909,7 +914,7 @@ public class SourceFormatter {
 
 		String fileName = "gradle.properties";
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < _sourceFormatterArgs.getMaxDirLevel(); i++) {
 			File file = new File(
 				_sourceFormatterArgs.getBaseDirName() + fileName);
 
@@ -963,7 +968,8 @@ public class SourceFormatter {
 
 		if (_portalSource) {
 			File portalDir = SourceFormatterUtil.getPortalDir(
-				_sourceFormatterArgs.getBaseDirName());
+				_sourceFormatterArgs.getBaseDirName(),
+				_sourceFormatterArgs.getMaxLineLength());
 
 			_excludeWorkingDirCheckoutPrivateApps(portalDir);
 		}
@@ -974,7 +980,7 @@ public class SourceFormatter {
 
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < _sourceFormatterArgs.getMaxDirLevel(); i++) {
 			_readProperties(new File(parentDirName + _PROPERTIES_FILE_NAME));
 
 			parentDirName += "../";
@@ -1024,7 +1030,7 @@ public class SourceFormatter {
 
 		List<File> suppressionsFiles = SourceFormatterUtil.getSuppressionsFiles(
 			_sourceFormatterArgs.getBaseDirName(), _allFileNames,
-			_sourceFormatterExcludes);
+			_sourceFormatterExcludes, _sourceFormatterArgs.getMaxDirLevel());
 
 		_sourceFormatterSuppressions = SuppressionsLoader.loadSuppressions(
 			_sourceFormatterArgs.getBaseDirName(), suppressionsFiles,

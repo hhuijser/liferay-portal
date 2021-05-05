@@ -18,7 +18,6 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
@@ -85,7 +84,7 @@ public class TaglibUtil {
 	public static List<String> getTLDFileNames(
 			String baseDirName, List<String> allFileNames,
 			SourceFormatterExcludes sourceFormatterExcludes,
-			boolean portalSource)
+			boolean portalSource, int maxDirLevel)
 		throws IOException {
 
 		List<String> tldFileNames = SourceFormatterUtil.filterFileNames(
@@ -105,7 +104,7 @@ public class TaglibUtil {
 		};
 
 		for (String tldDirLocation : tldDirLocations) {
-			for (int i = 0; i < (ToolsUtil.PORTAL_MAX_DIR_LEVEL - 1); i++) {
+			for (int i = 0; i < (maxDirLevel - 1); i++) {
 				File file = new File(baseDirName + tldDirLocation);
 
 				if (file.exists()) {
@@ -125,9 +124,11 @@ public class TaglibUtil {
 		return tldFileNames;
 	}
 
-	public static String getUtilTaglibSrcDirName(String baseDirName) {
+	public static String getUtilTaglibSrcDirName(
+		String baseDirName, int maxDirLevel) {
+
 		File utilTaglibDir = SourceFormatterUtil.getFile(
-			baseDirName, "util-taglib/src", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			baseDirName, "util-taglib/src", maxDirLevel);
 
 		if (utilTaglibDir == null) {
 			return StringPool.BLANK;

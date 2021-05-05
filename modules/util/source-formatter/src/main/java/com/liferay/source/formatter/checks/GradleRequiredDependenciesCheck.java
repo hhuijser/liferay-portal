@@ -17,7 +17,6 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -106,7 +105,7 @@ public class GradleRequiredDependenciesCheck extends BaseFileCheck {
 
 		String moduleAppsDirLocation = "modules/apps/";
 
-		for (int i = 0; i < (ToolsUtil.PORTAL_MAX_DIR_LEVEL - 1); i++) {
+		for (int i = 0; i < (getMaxDirLevel() - 1); i++) {
 			File file = new File(getBaseDirName() + moduleAppsDirLocation);
 
 			if (!file.exists()) {

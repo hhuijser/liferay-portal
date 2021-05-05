@@ -387,14 +387,14 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 
 		List<String> tldFileNames = TaglibUtil.getTLDFileNames(
 			getBaseDirName(), _allFileNames, getSourceFormatterExcludes(),
-			isPortalSource());
+			isPortalSource(), getMaxDirLevel());
 
 		if (tldFileNames.isEmpty()) {
 			return _tagSetMethodsMap.get(tagName);
 		}
 
 		String utilTaglibSrcDirName = TaglibUtil.getUtilTaglibSrcDirName(
-			getBaseDirName());
+			getBaseDirName(), getMaxDirLevel());
 
 		outerLoop:
 		for (String tldFileName : tldFileNames) {

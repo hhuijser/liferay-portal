@@ -19,7 +19,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.comparator.PropertyValueComparator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
@@ -89,12 +88,6 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 			String fileName, String content)
 		throws Exception {
 
-		int level = ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
-
-		if (isPortalSource()) {
-			level = ToolsUtil.PORTAL_MAX_DIR_LEVEL;
-		}
-
 		Properties properties = new Properties();
 
 		properties.load(new StringReader(content));
@@ -137,7 +130,7 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 					propertyFileName = propertyFileName.substring(0, pos);
 				}
 
-				File file = getFile(propertyFileName, level);
+				File file = getFile(propertyFileName, getMaxDirLevel());
 
 				if (file == null) {
 					addMessage(
@@ -225,8 +218,7 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 			return _hasPrivateAppsDir;
 		}
 
-		File dxpAppsDir = getFile(
-			"modules/dxp/apps", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		File dxpAppsDir = getFile("modules/dxp/apps", getMaxDirLevel());
 
 		if (dxpAppsDir != null) {
 			_hasPrivateAppsDir = true;
@@ -234,8 +226,7 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 			return _hasPrivateAppsDir;
 		}
 
-		File privateAppsDir = getFile(
-			"modules/private/apps", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		File privateAppsDir = getFile("modules/private/apps", getMaxDirLevel());
 
 		if (privateAppsDir != null) {
 			_hasPrivateAppsDir = true;

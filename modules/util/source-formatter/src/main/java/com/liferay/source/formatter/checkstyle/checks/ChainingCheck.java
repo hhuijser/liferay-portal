@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
@@ -537,8 +536,7 @@ public class ChainingCheck extends BaseCheck {
 
 	private JavaClass _getJavaClass(String requiredChainingClassFileName) {
 		File file = SourceFormatterUtil.getFile(
-			getBaseDirName(), requiredChainingClassFileName,
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			getBaseDirName(), requiredChainingClassFileName, getMaxDirLevel());
 
 		try {
 			if (file != null) {

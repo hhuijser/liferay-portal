@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.portal.tools.ToolsUtil;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -44,6 +46,8 @@ public class SourceFormatterArgs {
 	public static final boolean INCLUDE_GENERATED_FILES = false;
 
 	public static final boolean INCLUDE_SUBREPOSITORIES = false;
+
+	public static final int MAX_DIR_LEVEL = ToolsUtil.PORTAL_MAX_DIR_LEVEL;
 
 	public static final int MAX_LINE_LENGTH = 80;
 
@@ -99,6 +103,10 @@ public class SourceFormatterArgs {
 
 	public String getGitWorkingBranchName() {
 		return _gitWorkingBranchName;
+	}
+
+	public int getMaxDirLevel() {
+		return _maxDirLevel;
 	}
 
 	public int getMaxLineLength() {
@@ -246,6 +254,10 @@ public class SourceFormatterArgs {
 		_includeSubrepositories = includeSubrepositories;
 	}
 
+	public void setMaxDirLevel(int maxDirLevel) {
+		_maxDirLevel = maxDirLevel;
+	}
+
 	public void setMaxLineLength(int maxLineLength) {
 		_maxLineLength = maxLineLength;
 	}
@@ -296,6 +308,7 @@ public class SourceFormatterArgs {
 	private String _gitWorkingBranchName = GIT_WORKING_BRANCH_NAME;
 	private boolean _includeGeneratedFiles = INCLUDE_GENERATED_FILES;
 	private boolean _includeSubrepositories = INCLUDE_SUBREPOSITORIES;
+	private int _maxDirLevel = MAX_DIR_LEVEL;
 	private int _maxLineLength = MAX_LINE_LENGTH;
 	private String _outputFileName = OUTPUT_FILE_NAME;
 	private boolean _printErrors = PRINT_ERRORS;

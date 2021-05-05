@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools.data.partitioning.sql.builder.postgresql.exporter;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.tools.data.partitioning.sql.builder.exporter.BaseDataPartitioningExporter;
 import com.liferay.portal.tools.data.partitioning.sql.builder.exporter.InsertSQLBuilder;
 import com.liferay.portal.tools.data.partitioning.sql.builder.exporter.context.ExportContext;
@@ -31,7 +32,7 @@ public class PostgreSQLDataPartitioningExporter
 
 	@Override
 	public String getControlTableNamesSQL(ExportContext exportContext) {
-		StringBuilder sb = new StringBuilder(11);
+		StringBundler sb = new StringBundler(11);
 
 		sb.append("select c1.");
 		sb.append(getTableNameFieldName());
@@ -51,7 +52,7 @@ public class PostgreSQLDataPartitioningExporter
 
 	@Override
 	public String getPartitionedTableNamesSQL(ExportContext exportContext) {
-		StringBuilder sb = new StringBuilder(9);
+		StringBundler sb = new StringBundler(9);
 
 		sb.append("select c2.");
 		sb.append(getTableNameFieldName());

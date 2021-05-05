@@ -237,8 +237,9 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 		String buildGradleContent = getBuildGradleContent(absolutePath);
 
 		if ((buildGradleContent != null) &&
-			(buildGradleContent.contains(
-				"name: \"com.liferay.petra.string\"") ||
+			(buildGradleContent.contains(":core:petra:petra-string") ||
+			 buildGradleContent.contains(
+				 "name: \"com.liferay.petra.string\"") ||
 			 buildGradleContent.contains(
 				 "name: \"com.liferay.portal.kernel\""))) {
 

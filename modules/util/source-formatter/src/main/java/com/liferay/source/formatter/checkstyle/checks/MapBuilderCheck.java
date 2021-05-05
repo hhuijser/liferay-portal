@@ -31,11 +31,6 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
-	protected String getAssignClassName(DetailAST assignDetailAST) {
-		return getNewInstanceTypeName(assignDetailAST);
-	}
-
-	@Override
 	protected List<BaseBuilderCheck.BuilderInformation>
 		doGetBuilderInformationList() {
 
@@ -52,6 +47,11 @@ public class MapBuilderCheck extends BaseBuilderCheck {
 				"LinkedHashMap", "LinkedHashMapBuilder", "put", "putAll"),
 			new BaseBuilderCheck.BuilderInformation(
 				"TreeMap", "TreeMapBuilder", "put", "putAll"));
+	}
+
+	@Override
+	protected String getAssignClassName(DetailAST assignDetailAST) {
+		return getNewInstanceTypeName(assignDetailAST);
 	}
 
 	@Override

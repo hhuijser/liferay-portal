@@ -45,6 +45,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	protected abstract boolean allowNullValues();
 
+	protected abstract List<BuilderInformation> doGetBuilderInformationList();
+
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
 		if (isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES) ||
@@ -103,8 +105,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			builderInformation -> enforceBuilderNames.contains(
 				builderInformation.getBuilderClassName()));
 	}
-
-	protected abstract List<BuilderInformation> doGetBuilderInformationList();
 
 	protected String getNewInstanceTypeName(DetailAST assignDetailAST) {
 		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();

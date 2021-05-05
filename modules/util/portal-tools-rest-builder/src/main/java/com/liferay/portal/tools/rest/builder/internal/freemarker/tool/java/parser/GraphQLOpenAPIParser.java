@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools.rest.builder.internal.freemarker.tool.java.parser;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.java.JavaMethodParameter;
@@ -80,7 +81,7 @@ public class GraphQLOpenAPIParser {
 		String httpMethod = OpenAPIParserUtil.getHTTPMethod(operation);
 
 		if (httpMethod != null) {
-			StringBuilder sb = new StringBuilder("@GraphQLField(");
+			StringBundler sb = new StringBundler("@GraphQLField(");
 
 			if (operation.getDescription() != null) {
 				sb.append("description=\"");
@@ -185,7 +186,7 @@ public class GraphQLOpenAPIParser {
 				String className = returnType.substring(
 					pageClassName.length() + 1, returnType.length() - 1);
 
-				StringBuilder sb = new StringBuilder();
+				StringBundler sb = new StringBundler();
 
 				sb.append(Collection.class.getName());
 				sb.append("<");
@@ -226,7 +227,7 @@ public class GraphQLOpenAPIParser {
 		List<JavaMethodParameter> javaMethodParameters =
 			javaMethodSignature.getJavaMethodParameters();
 
-		StringBuilder sb = new StringBuilder("@GraphQLName(value=\"");
+		StringBundler sb = new StringBundler("@GraphQLName(value=\"");
 
 		sb.append(javaMethodSignature.getMethodName());
 
@@ -262,7 +263,7 @@ public class GraphQLOpenAPIParser {
 			Schema schema = parameter.getSchema();
 
 			if (schema.getType() != null) {
-				StringBuilder sb = new StringBuilder();
+				StringBundler sb = new StringBundler();
 
 				sb.append("@GraphQLName(\"");
 				sb.append(parameter.getName());
@@ -272,7 +273,7 @@ public class GraphQLOpenAPIParser {
 			}
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append("@GraphQLName(\"");
 

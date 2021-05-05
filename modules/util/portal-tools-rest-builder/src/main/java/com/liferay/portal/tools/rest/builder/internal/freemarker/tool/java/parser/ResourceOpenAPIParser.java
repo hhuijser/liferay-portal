@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools.rest.builder.internal.freemarker.tool.java.parser;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
@@ -136,7 +137,7 @@ public class ResourceOpenAPIParser {
 		Set<String> methodAnnotations = new TreeSet<>();
 
 		if ((operation.getDescription() != null) || operation.isDeprecated()) {
-			StringBuilder sb = new StringBuilder("@Operation(");
+			StringBundler sb = new StringBundler("@Operation(");
 
 			if (operation.isDeprecated()) {
 				methodAnnotations.add("@Deprecated");
@@ -159,7 +160,7 @@ public class ResourceOpenAPIParser {
 		}
 
 		if (operation.getTags() != null) {
-			StringBuilder sb = new StringBuilder("");
+			StringBundler sb = new StringBundler("");
 
 			for (String tag : operation.getTags()) {
 				sb.append("@Tag(name=\"");
@@ -173,7 +174,7 @@ public class ResourceOpenAPIParser {
 		List<JavaMethodParameter> javaMethodParameters =
 			javaMethodSignature.getJavaMethodParameters();
 
-		StringBuilder sb = new StringBuilder("");
+		StringBundler sb = new StringBundler("");
 
 		for (JavaMethodParameter javaMethodParameter : javaMethodParameters) {
 			String parameterName = javaMethodParameter.getParameterName();
@@ -332,7 +333,7 @@ public class ResourceOpenAPIParser {
 			return "";
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(
 			String.format(
@@ -757,7 +758,7 @@ public class ResourceOpenAPIParser {
 	}
 
 	private static String _getPageClassName(String returnType) {
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		sb.append(Page.class.getName());
 		sb.append("<");
@@ -816,7 +817,7 @@ public class ResourceOpenAPIParser {
 				continue;
 			}
 
-			StringBuilder sb = new StringBuilder();
+			StringBundler sb = new StringBundler();
 
 			String defaultValue = _getDefaultValue(
 				openAPIYAML, parameter.getSchema());

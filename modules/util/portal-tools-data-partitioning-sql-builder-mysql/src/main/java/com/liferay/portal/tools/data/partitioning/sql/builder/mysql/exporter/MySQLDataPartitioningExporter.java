@@ -41,8 +41,8 @@ public class MySQLDataPartitioningExporter
 
 		sb.append("select c1.");
 		sb.append(getTableNameFieldName());
-		sb.append(" from information_schema.columns c1 where ");
-		sb.append("c1.table_schema = '");
+		sb.append(" from information_schema.columns c1 where c1.table_schema ");
+		sb.append("= '");
 		sb.append(exportContext.getSchemaName());
 		sb.append("' and c1.");
 		sb.append(getTableNameFieldName());
@@ -67,8 +67,8 @@ public class MySQLDataPartitioningExporter
 
 		sb.append("select c2.");
 		sb.append(getTableNameFieldName());
-		sb.append(" from information_schema.columns c2 where ");
-		sb.append("c2.table_schema = '");
+		sb.append(" from information_schema.columns c2 where c2.table_schema ");
+		sb.append("= '");
 		sb.append(exportContext.getSchemaName());
 		sb.append("' and c2.column_name = 'companyId' group by c2.");
 		sb.append(getTableNameFieldName());

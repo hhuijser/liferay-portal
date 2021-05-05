@@ -817,7 +817,7 @@ public class ResourceOpenAPIParser {
 				continue;
 			}
 
-			StringBundler sb = new StringBundler(11);
+			StringBundler sb = new StringBundler(10);
 
 			String defaultValue = _getDefaultValue(
 				openAPIYAML, parameter.getSchema());
@@ -836,8 +836,7 @@ public class ResourceOpenAPIParser {
 				sb.append("@NotNull");
 			}
 
-			sb.append("@Parameter(hidden=true)");
-			sb.append("@");
+			sb.append("@Parameter(hidden=true)@");
 			sb.append(StringUtil.upperCaseFirstLetter(parameter.getIn()));
 			sb.append("Param(\"");
 			sb.append(parameter.getName());

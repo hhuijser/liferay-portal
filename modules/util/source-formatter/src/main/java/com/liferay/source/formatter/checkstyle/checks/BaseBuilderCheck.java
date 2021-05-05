@@ -47,7 +47,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		if (isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
+		if (isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES) ||
+			ListUtil.isEmpty(getAttributeValues(_ENFORCE_BUILDER_NAMES_KEY))) {
+
 			return;
 		}
 
@@ -89,7 +91,20 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	protected abstract String getAssignClassName(DetailAST assignDetailAST);
 
-	protected abstract List<BuilderInformation> getBuilderInformationList();
+	protected List<BuilderInformation> getBuilderInformationList() {
+		List<BuilderInformation> builderInformationList =
+			doGetBuilderInformationList();
+
+		List<String> enforceBuilderNames = getAttributeValues(
+			_ENFORCE_BUILDER_NAMES_KEY);
+
+		return ListUtil.filter(
+			builderInformationList,
+			builderInformation -> enforceBuilderNames.contains(
+				builderInformation.getBuilderClassName()));
+	}
+
+	protected abstract List<BuilderInformation> doGetBuilderInformationList();
 
 	protected String getNewInstanceTypeName(DetailAST assignDetailAST) {
 		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
@@ -1056,6 +1071,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	}
 
 	private static final String _CHECK_INLINE = "checkInline";
+
+	private static final String _ENFORCE_BUILDER_NAMES_KEY =
+		"enforceBuilderNames";
 
 	private static final String _MSG_INCLUDE_BUILDER = "builder.include";
 

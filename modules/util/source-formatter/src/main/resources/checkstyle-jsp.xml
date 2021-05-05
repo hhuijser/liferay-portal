@@ -275,7 +275,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.MapBuilderCheck">
 			<property name="category" value="Miscellaneous" />
 			<property name="description" value="Checks that `ConcurrentHashMapBuilder`, `HashMapBuilder`, `LinkedHashMapBuilder` or `TreeMapBuilder` is used when possible." />
-			<property name="enabled" value="false" />
+			<property name="enforceBuilderNames" value="" />
 			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
 			<message key="builder.use" value="Use ''{0}'' ({1}, {2})" />
 			<message key="builder.use.instead" value="Use ''{0}'' instead of new instance of ''{1}''" />
@@ -352,7 +352,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.PortletURLBuilderCheck">
 			<property name="category" value="Miscellaneous" />
 			<property name="description" value="Checks that `PortletURLBuilder` is used when possible." />
-			<property name="enabled" value="false" />
+			<property name="enforceBuilderNames" value="" />
 			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
 			<message key="builder.inline.1" value="Inline variable definition ''{0}'' ({1}) inside ''{2}'' ({3})" />
 			<message key="builder.inline.2" value="Inline variable definition ''{0}'' ({1}) and dependent statements ({2}) inside ''{3}'' ({4})" />

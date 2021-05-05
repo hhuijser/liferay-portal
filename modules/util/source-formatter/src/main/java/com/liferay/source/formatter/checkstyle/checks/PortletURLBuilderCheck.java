@@ -35,6 +35,19 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
+	protected List<BaseBuilderCheck.BuilderInformation>
+		doGetBuilderInformationList() {
+
+		return ListUtil.fromArray(
+			new BaseBuilderCheck.BuilderInformation(
+				"PortletURL", "PortletURLBuilder", "setActionName",
+				"setBackURL", "setCMD", "setKeywords", "setMVCPath",
+				"setMVCRenderCommandName", "setNavigation", "setParameter",
+				"setParameters", "setPortletMode", "setProperty", "setRedirect",
+				"setSecure", "setTabs1", "setTabs2", "setWindowState"));
+	}
+
+	@Override
 	protected String getAssignClassName(DetailAST assignDetailAST) {
 		List<DetailAST> identDetailASTList = getAllChildTokens(
 			assignDetailAST, true, TokenTypes.IDENT);
@@ -67,19 +80,6 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 		}
 
 		return null;
-	}
-
-	@Override
-	protected List<BaseBuilderCheck.BuilderInformation>
-		doGetBuilderInformationList() {
-
-		return ListUtil.fromArray(
-			new BaseBuilderCheck.BuilderInformation(
-				"PortletURL", "PortletURLBuilder", "setActionName",
-				"setBackURL", "setCMD", "setKeywords", "setMVCPath",
-				"setMVCRenderCommandName", "setNavigation", "setParameter",
-				"setParameters", "setPortletMode", "setProperty", "setRedirect",
-				"setSecure", "setTabs1", "setTabs2", "setWindowState"));
 	}
 
 	@Override

@@ -79,7 +79,7 @@ public class OAuth2ApplicationScopeAliasesUpgradeProcess
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			ResultSet applicationScopeAliasesResultSet =
-				_getApplicationScopeAliases(companyId)) {
+				_getApplicationScopeAliasesResultSet(companyId)) {
 
 			while (applicationScopeAliasesResultSet.next()) {
 				String scopeAliasesString =
@@ -103,7 +103,7 @@ public class OAuth2ApplicationScopeAliasesUpgradeProcess
 		}
 	}
 
-	private ResultSet _getApplicationScopeAliases(long companyId)
+	private ResultSet _getApplicationScopeAliasesResultSet(long companyId)
 		throws SQLException {
 
 		String sql = StringBundler.concat(

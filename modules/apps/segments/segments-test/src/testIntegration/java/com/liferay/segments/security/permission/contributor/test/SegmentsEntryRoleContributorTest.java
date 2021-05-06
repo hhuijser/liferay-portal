@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -77,11 +78,9 @@ public class SegmentsEntryRoleContributorTest {
 	public void setUp() throws Exception {
 		_configurationTemporarySwapper = new ConfigurationTemporarySwapper(
 			"com.liferay.segments.configuration.SegmentsConfiguration",
-			new HashMapDictionary<String, Object>() {
-				{
-					put("roleSegmentationEnabled", true);
-				}
-			});
+			HashMapDictionaryBuilder.<String, Object>put(
+				"roleSegmentationEnabled", true
+			).build());
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
@@ -249,11 +248,9 @@ public class SegmentsEntryRoleContributorTest {
 	@Test
 	public void testHasPermissionWithDisabledConfiguration() throws Exception {
 		HashMapDictionary<String, Object> properties =
-			new HashMapDictionary<String, Object>() {
-				{
-					put("roleSegmentationEnabled", false);
-				}
-			};
+			HashMapDictionaryBuilder.<String, Object>put(
+				"roleSegmentationEnabled", false
+			).build();
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(

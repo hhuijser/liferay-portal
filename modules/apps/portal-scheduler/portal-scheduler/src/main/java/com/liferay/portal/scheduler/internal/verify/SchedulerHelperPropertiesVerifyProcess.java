@@ -56,12 +56,10 @@ public class SchedulerHelperPropertiesVerifyProcess extends VerifyProcess {
 				SchedulerEngineHelperConfiguration.class.getName(),
 				StringPool.QUESTION);
 
-			boolean auditMessageScheduleJob = GetterUtil.getBoolean(
-				audiMessageScheduleJobString);
-
 			configuration.update(
 				HashMapDictionaryBuilder.<String, Object>put(
-					AUDIT_SCHEDULER_JOB_ENABLED, auditMessageScheduleJob
+					AUDIT_SCHEDULER_JOB_ENABLED,
+					GetterUtil.getBoolean(audiMessageScheduleJobString)
 				).build());
 		}
 	}

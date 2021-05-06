@@ -22,7 +22,7 @@ import com.liferay.change.tracking.service.CTProcessLocalService;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.service.JournalFolderLocalService;
 import com.liferay.journal.test.util.JournalFolderFixture;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
@@ -66,8 +66,8 @@ public class MissingRequirementsConflictTest {
 
 		JournalFolder rootFolder = null;
 
-		try (SafeClosable safeClosable =
-				CTCollectionThreadLocal.setCTCollectionId(
+		try (SafeCloseable safeCloseable =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 					ctCollection1.getCtCollectionId())) {
 
 			rootFolder = _journalFolderFixture.addFolder(
@@ -81,8 +81,8 @@ public class MissingRequirementsConflictTest {
 
 		JournalFolder childFolder = null;
 
-		try (SafeClosable safeClosable =
-				CTCollectionThreadLocal.setCTCollectionId(
+		try (SafeCloseable safeCloseable =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 					ctCollection2.getCtCollectionId())) {
 
 			childFolder = _journalFolderFixture.addFolder(

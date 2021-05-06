@@ -25,7 +25,7 @@ import com.liferay.change.tracking.web.internal.display.BasePersistenceRegistry;
 import com.liferay.change.tracking.web.internal.display.CTDisplayRendererRegistry;
 import com.liferay.change.tracking.web.internal.display.DisplayContextImpl;
 import com.liferay.petra.io.unsync.UnsyncStringWriter;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.change.tracking.sql.CTSQLModeThreadLocal;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
@@ -214,8 +214,8 @@ public class GetEntryRenderDataMVCResourceCommand
 
 			T leftModel = null;
 
-			try (SafeClosable safeClosable =
-					CTCollectionThreadLocal.setCTCollectionId(
+			try (SafeCloseable safeCloseable =
+					CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 						rightCtCollectionId)) {
 
 				leftModel = ctDisplayRenderer.getPreviousVersionedModel(
@@ -407,10 +407,11 @@ public class GetEntryRenderDataMVCResourceCommand
 			CTSQLModeThreadLocal.CTSQLMode ctSQLMode, T model, String type)
 		throws Exception {
 
-		try (SafeClosable safeClosable1 =
-				CTCollectionThreadLocal.setCTCollectionId(ctCollectionId);
-			SafeClosable safeClosable2 = CTSQLModeThreadLocal.setCTSQLMode(
-				ctSQLMode);
+		try (SafeCloseable safeCloseable1 =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
+					ctCollectionId);
+			SafeCloseable safeCloseable2 =
+				CTSQLModeThreadLocal.setCTSQLModeWithSafeCloseable(ctSQLMode);
 			UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter()) {
 
 			PipingServletResponse pipingServletResponse =

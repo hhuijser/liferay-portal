@@ -14,7 +14,7 @@
 
 package com.liferay.portal.background.task.internal.messaging;
 
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.background.task.internal.SerialBackgroundTaskExecutor;
 import com.liferay.portal.background.task.internal.ThreadLocalAwareBackgroundTaskExecutor;
@@ -75,8 +75,8 @@ public class BackgroundTaskMessageListener extends BaseMessageListener {
 		long backgroundTaskId = (Long)message.get(
 			BackgroundTaskConstants.BACKGROUND_TASK_ID);
 
-		try (SafeClosable safeClosable =
-				BackgroundTaskThreadLocal.setBackgroundTaskIdWithSafeClosable(
+		try (SafeCloseable safeCloseable =
+				BackgroundTaskThreadLocal.setBackgroundTaskIdWithSafeCloseable(
 					backgroundTaskId)) {
 
 			ServiceContext serviceContext = new ServiceContext();

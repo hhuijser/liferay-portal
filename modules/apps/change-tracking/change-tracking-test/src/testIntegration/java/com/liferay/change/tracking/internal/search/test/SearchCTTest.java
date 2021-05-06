@@ -23,7 +23,7 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.layout.test.util.LayoutTestUtil;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.change.tracking.CTCollectionThreadLocal;
 import com.liferay.portal.kernel.model.Group;
@@ -98,8 +98,8 @@ public class SearchCTTest {
 		Layout deletedLayout = LayoutTestUtil.addLayout(_group);
 		Layout modifiedLayout = LayoutTestUtil.addLayout(_group);
 
-		try (SafeClosable safeClosable =
-				CTCollectionThreadLocal.setCTCollectionId(
+		try (SafeCloseable safeCloseable =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 					_ctCollection.getCtCollectionId())) {
 
 			addedJournalArticle = JournalTestUtil.addArticle(
@@ -161,8 +161,8 @@ public class SearchCTTest {
 
 		JournalArticle modifiedJournalArticle2 = null;
 
-		try (SafeClosable safeClosable =
-				CTCollectionThreadLocal.setCTCollectionId(
+		try (SafeCloseable safeCloseable =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 					_ctCollection.getCtCollectionId())) {
 
 			addedJournalArticle = JournalTestUtil.addArticle(
@@ -203,8 +203,8 @@ public class SearchCTTest {
 		Layout deletedLayout = LayoutTestUtil.addLayout(_group);
 		Layout modifiedLayout = LayoutTestUtil.addLayout(_group);
 
-		try (SafeClosable safeClosable =
-				CTCollectionThreadLocal.setCTCollectionId(
+		try (SafeCloseable safeCloseable =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
 					_ctCollection.getCtCollectionId())) {
 
 			addedLayout = LayoutTestUtil.addLayout(_group);
@@ -312,8 +312,9 @@ public class SearchCTTest {
 				}
 			);
 
-		try (SafeClosable safeClosable =
-				CTCollectionThreadLocal.setCTCollectionId(ctCollectionId)) {
+		try (SafeCloseable safeCloseable =
+				CTCollectionThreadLocal.setCTCollectionIdWithSafeCloseable(
+					ctCollectionId)) {
 
 			SearchResponse searchResponse = _searcher.search(
 				searchRequestBuilder.build());

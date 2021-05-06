@@ -115,9 +115,9 @@ public class DDLRecordCTDisplayRenderer
 		).setParameter(
 			"groupId", ddlRecord.getGroupId()
 		).setParameter(
-			"version", ddlRecord.getVersion()
-		).setParameter(
 			"recordId", ddlRecord.getPrimaryKey()
+		).setParameter(
+			"version", ddlRecord.getVersion()
 		).buildString();
 	}
 

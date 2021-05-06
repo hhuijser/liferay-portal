@@ -240,6 +240,8 @@ public class LayoutReportsProductNavigationControlMenuEntry
 				httpServletRequest, LayoutReportsPortletKeys.LAYOUT_REPORTS,
 				PortletRequest.RESOURCE_PHASE)
 		).setParameter(
+			"p_p_resource_id", "/layout_reports/data"
+		).setParameter(
 			"plid",
 			() -> {
 				ThemeDisplay themeDisplay =
@@ -248,8 +250,6 @@ public class LayoutReportsProductNavigationControlMenuEntry
 
 				return themeDisplay.getPlid();
 			}
-		).setParameter(
-			"p_p_resource_id", "/layout_reports/data"
 		).buildString();
 	}
 

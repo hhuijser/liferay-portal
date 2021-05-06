@@ -18,6 +18,7 @@ import com.liferay.application.list.BasePanelApp;
 import com.liferay.application.list.PanelApp;
 import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutConstants;
@@ -53,12 +54,11 @@ public class GroupPagesPanelApp extends BasePanelApp {
 	public PortletURL getPortletURL(HttpServletRequest httpServletRequest)
 		throws PortalException {
 
-		PortletURL portletURL = super.getPortletURL(httpServletRequest);
-
-		portletURL.setParameter(
-			"selPlid", String.valueOf(LayoutConstants.DEFAULT_PLID));
-
-		return portletURL;
+		return PortletURLBuilder.create(
+			super.getPortletURL(httpServletRequest)
+		).setParameter(
+			"selPlid", LayoutConstants.DEFAULT_PLID
+		).build();
 	}
 
 	@Override

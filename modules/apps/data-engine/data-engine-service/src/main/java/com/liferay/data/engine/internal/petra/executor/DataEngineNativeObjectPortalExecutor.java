@@ -33,7 +33,7 @@ import com.liferay.petra.executor.PortalExecutorConfig;
 import com.liferay.petra.executor.PortalExecutorManager;
 import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.petra.lang.CentralizedThreadLocal;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.sql.dsl.Column;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -88,8 +88,8 @@ public class DataEngineNativeObjectPortalExecutor {
 
 		_execute(
 			() -> {
-				try (SafeClosable safeClosable =
-						CompanyThreadLocal.setWithSafeClosable(companyId)) {
+				try (SafeCloseable safeCloseable =
+						CompanyThreadLocal.setWithSafeCloseable(companyId)) {
 
 					_dataEngineNativeObjectObserver.
 						createDataEngineNativeObject(

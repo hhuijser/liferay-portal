@@ -14,7 +14,7 @@
 
 package com.liferay.redirect.web.internal.portlet.action;
 
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.messaging.proxy.ProxyModeThreadLocal;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -78,8 +78,8 @@ public class EditRedirectEntryMVCActionCommand extends BaseMVCActionCommand {
 		boolean updateChainedRedirectEntries = ParamUtil.getBoolean(
 			actionRequest, "updateChainedRedirectEntries");
 
-		try (SafeClosable safeClosable =
-				ProxyModeThreadLocal.setWithSafeClosable(true)) {
+		try (SafeCloseable safeCloseable =
+				ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 			if (redirectEntryId == 0) {
 				_redirectEntryService.addRedirectEntry(

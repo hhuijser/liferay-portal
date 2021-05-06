@@ -15,7 +15,7 @@
 package com.liferay.view.count.service.impl.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
@@ -103,8 +103,8 @@ public class ViewCountEntryLocalServiceTest {
 
 			FutureTask<Void> futureTask = new FutureTask<>(
 				() -> {
-					try (SafeClosable safeClosable =
-							ProxyModeThreadLocal.setWithSafeClosable(true)) {
+					try (SafeCloseable safeCloseable =
+							ProxyModeThreadLocal.setWithSafeCloseable(true)) {
 
 						_viewCountEntryLocalService.incrementViewCount(
 							TestPropsValues.getCompanyId(),

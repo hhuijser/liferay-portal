@@ -24,7 +24,7 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.document.library.kernel.store.DLStoreUtil;
 import com.liferay.document.library.kernel.util.DLPreviewableProcessor;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -204,10 +204,12 @@ public class AMThumbnailsOSGiCommandsTest {
 	@Ignore
 	@Test
 	public void testMigrateOnlyProcessesImages() throws Exception {
-		try (SafeClosable safeClosable1 = PropsValuesTestUtil.swap(
-				"DL_FILE_ENTRY_THUMBNAIL_CUSTOM_1_MAX_HEIGHT", 100);
-			SafeClosable safeClosable2 = PropsValuesTestUtil.swap(
-				"DL_FILE_ENTRY_THUMBNAIL_CUSTOM_1_MAX_WIDTH", 100)) {
+		try (SafeCloseable safeCloseable1 =
+				PropsValuesTestUtil.swapWithSafeCloseable(
+					"DL_FILE_ENTRY_THUMBNAIL_CUSTOM_1_MAX_HEIGHT", 100);
+			SafeCloseable safeCloseable2 =
+				PropsValuesTestUtil.swapWithSafeCloseable(
+					"DL_FILE_ENTRY_THUMBNAIL_CUSTOM_1_MAX_WIDTH", 100)) {
 
 			FileEntry pdfFileEntry = _addPDFFileEntry();
 			FileEntry pngFileEntry = _addPNGFileEntry();
@@ -223,10 +225,12 @@ public class AMThumbnailsOSGiCommandsTest {
 	public void testMigrateThrowsExceptionWhenNoValidConfiguration()
 		throws Exception {
 
-		try (SafeClosable safeClosable1 = PropsValuesTestUtil.swap(
-				"DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT", 999);
-			SafeClosable safeClosable2 = PropsValuesTestUtil.swap(
-				"DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT", 999)) {
+		try (SafeCloseable safeCloseable1 =
+				PropsValuesTestUtil.swapWithSafeCloseable(
+					"DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT", 999);
+			SafeCloseable safeCloseable2 =
+				PropsValuesTestUtil.swapWithSafeCloseable(
+					"DL_FILE_ENTRY_THUMBNAIL_MAX_HEIGHT", 999)) {
 
 			_addPNGFileEntry();
 

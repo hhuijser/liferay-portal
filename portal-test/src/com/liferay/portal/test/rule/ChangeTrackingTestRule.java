@@ -15,7 +15,7 @@
 package com.liferay.portal.test.rule;
 
 import com.liferay.petra.lang.CentralizedThreadLocal;
-import com.liferay.petra.lang.SafeClosable;
+import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.kernel.aop.AopMethodInvocation;
 import com.liferay.portal.kernel.aop.ChainableMethodAdvice;
 import com.liferay.portal.kernel.change.tracking.CTAware;
@@ -135,7 +135,7 @@ public class ChangeTrackingTestRule extends ClassTestRule<AutoCloseable> {
 			if ((ctMode == CTMode.REQUIRES_NEW) ||
 				!_hasCurrentTransactionExecutor()) {
 
-				try (SafeClosable safeClosable = _ctSafe.setWithSafeClosable(
+				try (SafeCloseable safeCloseable = _ctSafe.setWithSafeCloseable(
 						Boolean.TRUE)) {
 
 					return aopMethodInvocation.proceed(arguments);

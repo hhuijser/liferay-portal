@@ -171,13 +171,15 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 
 		PortletConfig portletConfig = getPortletConfig();
 
-		PortletContext portletContext = getPortletContext();
-
 		_serviceRegistration = bundleContext.registerService(
 			Servlet.class, new PortletBridgeServlet(),
 			HashMapDictionaryBuilder.<String, Object>put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-				portletContext.getPortletContextName()
+				() -> {
+					PortletContext portletContext = getPortletContext();
+
+					return portletContext.getPortletContextName();
+				}
 			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
 				PortletBridgeServlet.class.getName()

@@ -18,3 +18,4 @@ JavaDuplicateVariableCheck | .java | Finds variables where a variable with the s
 JavaEmptyLineAfterSuperCallCheck | .java | Finds missing emptly line after a `super` call. |
 [JavaUnusedSourceFormatterChecksCheck](checks/java_unused_source_formatter_checks_check.markdown#javaunusedsourceformattercheckscheck) | .java | Finds `*Check` classes that are not configured. |
 [MapBuilderCheck](checks/builder_check.markdown#buildercheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that `ConcurrentHashMapBuilder`, `HashMapBuilder`, `LinkedHashMapBuilder` or `TreeMapBuilder` is used when possible. |
+[PortletURLBuilderCheck](checks/builder_check.markdown#buildercheck) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that `PortletURLBuilder` is used when possible. |

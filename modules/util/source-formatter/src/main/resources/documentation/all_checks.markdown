@@ -306,6 +306,7 @@ ParsePrimitiveTypeCheck | [Performance](performance_checks.markdown#performance-
 PersistenceCallCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds illegal persistence calls across component boundaries. |
 [PersistenceUpdateCheck](checks/persistence_update_check.markdown#persistenceupdatecheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Checks that there are no stale references in service code from persistence updates. |
 PlusStatementCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Performs several checks to statements where `+` is used for concatenation. |
+[PortletURLBuilderCheck](checks/builder_check.markdown#buildercheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | .java, .jsp, .jspf, .tag, .tpl or .vm | Checks that `PortletURLBuilder` is used when possible. |
 PoshiAnnotationsOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .function, .macro or .testcase | Checks the order of annotations. |
 PoshiCommandsOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .function, .macro or .testcase | Checks the order of poshi commands. |
 PoshiEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .function, .macro or .testcase | Finds missing and unnecessary empty lines. |

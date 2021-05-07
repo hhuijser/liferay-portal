@@ -334,7 +334,6 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 				"Missing diamond operator '<>' for type 'CopyOnWriteArraySet'",
 				"Missing generic types '<Position, String>' for type 'EnumMap'",
 				"Missing diamond operator '<>' for type 'HashMap'",
-				"Missing generic types '<String, String>' for type 'HashMap'",
 				"Missing diamond operator '<>' for type 'HashSet'",
 				"Missing diamond operator '<>' for type 'Hashtable'",
 				"Missing diamond operator '<>' for type 'IdentityHashMap'",
@@ -345,14 +344,10 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 				"Missing diamond operator '<>' for type 'TreeMap'",
 				"Missing diamond operator '<>' for type 'TreeSet'",
 				"Missing diamond operator '<>' for type 'Vector'",
-				"Missing generic types '<Map<String, String>>' for type " +
-					"'ArrayList'",
-				"Missing generic types '<String, String>' for type 'HashMap'",
-				"Missing generic types '<String, String>' for type 'HashMap'"
 			},
 			new Integer[] {
-				45, 47, 53, 55, 57, 59, 61, 68, 70, 76, 78, 80, 83, 85, 87, 89,
-				91, 93, 95, 97, 99, 110
+				45, 47, 53, 55, 57, 59, 61, 68, 70, 72, 74, 77, 79, 81, 83, 85,
+				87, 89
 			});
 	}
 

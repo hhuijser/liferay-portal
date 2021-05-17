@@ -295,11 +295,9 @@ public class PortletURLBuilder {
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
 			String value, boolean allowNull) {
 
-			if (!allowNull && Validator.isNull(value)) {
-				return this;
+			if (allowNull || Validator.isNotNull(value)) {
+				setParameter("mvcRenderCommandName", value);
 			}
-
-			setParameter("mvcRenderCommandName", value);
 
 			return this;
 		}
@@ -340,13 +338,7 @@ public class PortletURLBuilder {
 		public AfterParameterStep setParameter(
 			String name, Object value, boolean allowNull) {
 
-			String stringValue = String.valueOf(value);
-
-			if (!allowNull && Validator.isNull(stringValue)) {
-				return this;
-			}
-
-			setParameter(name, stringValue);
+			setParameter(name, String.valueOf(value), allowNull);
 
 			return this;
 		}
@@ -369,11 +361,9 @@ public class PortletURLBuilder {
 		public AfterParameterStep setParameter(
 			String name, String value, boolean allowNull) {
 
-			if (!allowNull && Validator.isNull(value)) {
-				return this;
+			if (allowNull || Validator.isNotNull(value)) {
+				setParameter(name, value);
 			}
-
-			setParameter(name, value);
 
 			return this;
 		}

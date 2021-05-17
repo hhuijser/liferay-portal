@@ -89,15 +89,14 @@ public class ConfigurationModelToDDMFormValuesConverter {
 
 		String[] values = null;
 
-		Configuration configuration = _configurationModel.getConfiguration();
-
 		if (attributeDefinition.getType() == AttributeDefinition.PASSWORD) {
 			values = _PASSWORD_TYPE_VALUES;
 		}
 		else {
 			if (hasConfigurationAttribute(configuration, attributeDefinition)) {
 				values = AttributeDefinitionUtil.getPropertyStringArray(
-					attributeDefinition, configuration);
+					attributeDefinition,
+					_configurationModel.getConfiguration());
 			}
 			else {
 				values = AttributeDefinitionUtil.getDefaultValue(

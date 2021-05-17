@@ -296,7 +296,7 @@ public class PortletURLBuilder {
 			String value, boolean allowNull) {
 
 			if (allowNull || Validator.isNotNull(value)) {
-				setParameter("mvcRenderCommandName", value);
+				_setParameter("mvcRenderCommandName", value, false);
 			}
 
 			return this;

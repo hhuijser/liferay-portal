@@ -346,7 +346,7 @@ public class PortletURLBuilder {
 				return this;
 			}
 
-			setParameter(stringValue);
+			setParameter(name, stringValue);
 
 			return this;
 		}
@@ -373,7 +373,7 @@ public class PortletURLBuilder {
 				return this;
 			}
 
-			setParameter(value);
+			setParameter(name, value);
 
 			return this;
 		}

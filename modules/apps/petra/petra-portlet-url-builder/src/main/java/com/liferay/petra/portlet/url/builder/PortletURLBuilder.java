@@ -336,9 +336,9 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterParameterStep setParameter(
-			String name, Object value, boolean allowNull) {
+			String name, Object value, boolean allowNullValue) {
 
-			setParameter(name, String.valueOf(value), allowNull);
+			setParameter(name, String.valueOf(value), allowNullValue);
 
 			return this;
 		}
@@ -359,10 +359,10 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterParameterStep setParameter(
-			String name, String value, boolean allowNull) {
+			String name, String value, boolean allowNullValue) {
 
-			if (allowNull || Validator.isNotNull(value)) {
-				setParameter(name, value);
+			if (allowNullValue || Validator.isNotNull(value)) {
+				_setParameter(name, value, true);
 			}
 
 			return this;

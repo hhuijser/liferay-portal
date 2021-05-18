@@ -293,9 +293,9 @@ public class PortletURLBuilder {
 
 		@Override
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
-			String value, boolean allowNull) {
+			String value, boolean allowNullValue) {
 
-			if (allowNull || Validator.isNotNull(value)) {
+			if (allowNullValue || Validator.isNotNull(value)) {
 				_setParameter("mvcRenderCommandName", value, false);
 			}
 
@@ -670,7 +670,7 @@ public class PortletURLBuilder {
 			String value);
 
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
-			String value, boolean allowNull);
+			String value, boolean allowNullValue);
 
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
@@ -691,14 +691,14 @@ public class PortletURLBuilder {
 		public AfterParameterStep setParameter(String key, Object value);
 
 		public AfterParameterStep setParameter(
-			String key, Object value, boolean allowNull);
+			String key, Object value, boolean allowNullValue);
 
 		public AfterParameterStep setParameter(String key, String value);
 
 		public AfterParameterStep setParameter(String key, String... values);
 
 		public AfterParameterStep setParameter(
-			String key, String value, boolean allowNull);
+			String key, String value, boolean allowNullValue);
 
 		public AfterParameterStep setParameter(
 			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier);

@@ -295,9 +295,11 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		while (matcher1.find()) {
 			String path = matcher1.group();
 
+			String[] lines = path.split("\n", 2);
+
 			pattern = Pattern.compile("\\{([^{}]+)\\}");
 
-			Matcher matcher2 = pattern.matcher(path);
+			Matcher matcher2 = pattern.matcher(lines[0]);
 
 			Map<String, String> inPathsMap = new LinkedHashMap<>();
 
@@ -310,7 +312,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			pattern = Pattern.compile(
 				"( *-\n( +)in: path(\n\\2.+)*\n){" + inPathCount + "}");
 
-			matcher2 = pattern.matcher(path);
+			matcher2 = pattern.matcher(lines[1]);
 
 			while (matcher2.find()) {
 				String inPaths = matcher2.group();

@@ -290,14 +290,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 	private String _sortPathParameters(String content) {
 		Matcher matcher1 = _pathPattern.matcher(content);
 
-		Pattern pattern = null;
-
 		while (matcher1.find()) {
 			String path = matcher1.group();
 
 			String[] lines = path.split("\n", 2);
 
-			pattern = Pattern.compile("\\{([^{}]+)\\}");
+			Pattern pattern = Pattern.compile("\\{([^{}]+)\\}");
 
 			Matcher matcher2 = pattern.matcher(lines[0]);
 

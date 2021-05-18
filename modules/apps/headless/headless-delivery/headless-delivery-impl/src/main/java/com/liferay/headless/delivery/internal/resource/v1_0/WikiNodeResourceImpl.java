@@ -59,7 +59,7 @@ public class WikiNodeResourceImpl
 
 	@Override
 	public void deleteSiteWikiNodeByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception {
 
 		com.liferay.wiki.model.WikiNode wikiNode =
@@ -80,7 +80,7 @@ public class WikiNodeResourceImpl
 
 	@Override
 	public WikiNode getSiteWikiNodeByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception {
 
 		com.liferay.wiki.model.WikiNode wikiNode =
@@ -141,7 +141,7 @@ public class WikiNodeResourceImpl
 
 	@Override
 	public WikiNode putSiteWikiNodeByExternalReferenceCode(
-			String externalReferenceCode, Long siteId, WikiNode wikiNode)
+			Long siteId, String externalReferenceCode, WikiNode wikiNode)
 		throws Exception {
 
 		com.liferay.wiki.model.WikiNode serviceBuilderWikiNode =

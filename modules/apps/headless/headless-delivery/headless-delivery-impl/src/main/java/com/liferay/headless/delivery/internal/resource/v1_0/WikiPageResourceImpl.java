@@ -84,7 +84,7 @@ public class WikiPageResourceImpl
 
 	@Override
 	public void deleteSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception {
 
 		com.liferay.wiki.model.WikiPage wikiPage =
@@ -113,7 +113,7 @@ public class WikiPageResourceImpl
 
 	@Override
 	public WikiPage getSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception {
 
 		return _toWikiPage(
@@ -266,7 +266,7 @@ public class WikiPageResourceImpl
 
 	@Override
 	public WikiPage putSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId, WikiPage wikiPage)
+			Long siteId, String externalReferenceCode, WikiPage wikiPage)
 		throws Exception {
 
 		com.liferay.wiki.model.WikiPage serviceBuilderWikiPage =

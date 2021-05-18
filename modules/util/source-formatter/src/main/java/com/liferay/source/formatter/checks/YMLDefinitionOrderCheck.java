@@ -288,18 +288,14 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 	}
 
 	private String _sortPathParameters(String content) {
-		Matcher matcher1 = _pathPattern.matcher(content);
-
-		Pattern pattern = null;
+		Matcher matcher1 = _pathPattern1.matcher(content);
 
 		while (matcher1.find()) {
 			String path = matcher1.group();
 
 			String[] lines = path.split("\n", 2);
 
-			pattern = Pattern.compile("\\{([^{}]+)\\}");
-
-			Matcher matcher2 = pattern.matcher(lines[0]);
+			Matcher matcher2 = _pathPattern2.matcher(lines[0]);
 
 			Map<String, String> inPathsMap = new LinkedHashMap<>();
 
@@ -309,7 +305,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			int inPathCount = inPathsMap.size();
 
-			pattern = Pattern.compile(
+			Pattern pattern = Pattern.compile(
 				"( *-\n( +)in: path(\n\\2.+)*\n){" + inPathCount + "}");
 
 			matcher2 = pattern.matcher(lines[1]);
@@ -317,9 +313,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			while (matcher2.find()) {
 				String inPaths = matcher2.group();
 
-				pattern = Pattern.compile(" *-\n( +)in: path(\n\\1.+)*\n");
-
-				Matcher matcher3 = pattern.matcher(inPaths);
+				Matcher matcher3 = _pathPattern3.matcher(inPaths);
 
 				while (matcher3.find()) {
 					String inPath = matcher3.group();
@@ -395,8 +389,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		).put(
 			"query", 2
 		).build();
-	private static final Pattern _pathPattern = Pattern.compile(
+	private static final Pattern _pathPattern1 = Pattern.compile(
 		"(?<=\n)( *)\"([^{}\"]*\\{[^}]+\\}[^{}\"]*){2,}\":(\n\\1 .*)*");
+	private static final Pattern _pathPattern2 = Pattern.compile(
+		"\\{([^{}]+)\\}");
+	private static final Pattern _pathPattern3 = Pattern.compile(
+		" *-\n( +)in: path(\n\\1.+)*\n");
 	private static final Map<String, Integer> _specialQueriesKeyWeightMap =
 		HashMapBuilder.put(
 			"filter", 1

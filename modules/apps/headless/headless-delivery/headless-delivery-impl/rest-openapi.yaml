@@ -11599,16 +11599,16 @@ paths:
             operationId: deleteSiteWikiNodeByExternalReferenceCode
             parameters:
                 - in: path
-                  name: externalReferenceCode
-                  required: true
-                  schema:
-                      type: string
-                - in: path
                   name: siteId
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: externalReferenceCode
+                  required: true
+                  schema:
+                      type: string
             responses:
                 204:
                     content:
@@ -11624,16 +11624,16 @@ paths:
             operationId: getSiteWikiNodeByExternalReferenceCode
             parameters:
                 - in: path
-                  name: externalReferenceCode
-                  required: true
-                  schema:
-                      type: string
-                - in: path
                   name: siteId
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: externalReferenceCode
+                  required: true
+                  schema:
+                      type: string
             responses:
                 200:
                     content:
@@ -11653,16 +11653,16 @@ paths:
             operationId: putSiteWikiNodeByExternalReferenceCode
             parameters:
                 - in: path
-                  name: externalReferenceCode
-                  required: true
-                  schema:
-                      type: string
-                - in: path
                   name: siteId
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: externalReferenceCode
+                  required: true
+                  schema:
+                      type: string
             requestBody:
                 content:
                     application/json:
@@ -11732,16 +11732,16 @@ paths:
             operationId: deleteSiteWikiPageByExternalReferenceCode
             parameters:
                 - in: path
-                  name: externalReferenceCode
-                  required: true
-                  schema:
-                      type: string
-                - in: path
                   name: siteId
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: externalReferenceCode
+                  required: true
+                  schema:
+                      type: string
             responses:
                 204:
                     content:
@@ -11757,16 +11757,16 @@ paths:
             operationId: getSiteWikiPageByExternalReferenceCode
             parameters:
                 - in: path
-                  name: externalReferenceCode
-                  required: true
-                  schema:
-                      type: string
-                - in: path
                   name: siteId
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: externalReferenceCode
+                  required: true
+                  schema:
+                      type: string
             responses:
                 200:
                     content:
@@ -11786,16 +11786,16 @@ paths:
             operationId: putSiteWikiPageByExternalReferenceCode
             parameters:
                 - in: path
-                  name: externalReferenceCode
-                  required: true
-                  schema:
-                      type: string
-                - in: path
                   name: siteId
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: externalReferenceCode
+                  required: true
+                  schema:
+                      type: string
             requestBody:
                 content:
                     application/json:

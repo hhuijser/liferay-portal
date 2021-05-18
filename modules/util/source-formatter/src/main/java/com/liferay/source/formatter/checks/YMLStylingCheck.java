@@ -36,6 +36,9 @@ public class YMLStylingCheck extends BaseFileCheck {
 		content = content.replaceAll(
 			"(\\A|\n)( *)'([^'\"]+)'(:.*)(\\Z|\n)", "$1$2\"$3\"$4$5");
 
+		content = content.replaceAll(
+			"(\\A|\n)( *baseURI: ['\"])([^/].*)", "$1$2/$3");
+
 		return content;
 	}
 

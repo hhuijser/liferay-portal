@@ -52,15 +52,15 @@ public interface WikiPageResource {
 	}
 
 	public void deleteSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public WikiPage getSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public WikiPage putSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId, WikiPage wikiPage)
+			Long siteId, String externalReferenceCode, WikiPage wikiPage)
 		throws Exception;
 
 	public Page<WikiPage> getWikiNodeWikiPagesPage(

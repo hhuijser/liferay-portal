@@ -198,8 +198,8 @@ public abstract class BaseWikiNodeResourceImpl
 	@Override
 	@Parameters(
 		value = {
-			@Parameter(in = ParameterIn.PATH, name = "externalReferenceCode"),
-			@Parameter(in = ParameterIn.PATH, name = "siteId")
+			@Parameter(in = ParameterIn.PATH, name = "siteId"),
+			@Parameter(in = ParameterIn.PATH, name = "externalReferenceCode")
 		}
 	)
 	@Path(
@@ -208,10 +208,10 @@ public abstract class BaseWikiNodeResourceImpl
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "WikiNode")})
 	public void deleteSiteWikiNodeByExternalReferenceCode(
+			@NotNull @Parameter(hidden = true) @PathParam("siteId") Long siteId,
 			@NotNull @Parameter(hidden = true)
 			@PathParam("externalReferenceCode")
-			String externalReferenceCode,
-			@NotNull @Parameter(hidden = true) @PathParam("siteId") Long siteId)
+			String externalReferenceCode)
 		throws Exception {
 	}
 
@@ -227,8 +227,8 @@ public abstract class BaseWikiNodeResourceImpl
 	@Override
 	@Parameters(
 		value = {
-			@Parameter(in = ParameterIn.PATH, name = "externalReferenceCode"),
-			@Parameter(in = ParameterIn.PATH, name = "siteId")
+			@Parameter(in = ParameterIn.PATH, name = "siteId"),
+			@Parameter(in = ParameterIn.PATH, name = "externalReferenceCode")
 		}
 	)
 	@Path(
@@ -237,10 +237,10 @@ public abstract class BaseWikiNodeResourceImpl
 	@Produces({"application/json", "application/xml"})
 	@Tags(value = {@Tag(name = "WikiNode")})
 	public WikiNode getSiteWikiNodeByExternalReferenceCode(
+			@NotNull @Parameter(hidden = true) @PathParam("siteId") Long siteId,
 			@NotNull @Parameter(hidden = true)
 			@PathParam("externalReferenceCode")
-			String externalReferenceCode,
-			@NotNull @Parameter(hidden = true) @PathParam("siteId") Long siteId)
+			String externalReferenceCode)
 		throws Exception {
 
 		return new WikiNode();
@@ -258,8 +258,8 @@ public abstract class BaseWikiNodeResourceImpl
 	@Override
 	@Parameters(
 		value = {
-			@Parameter(in = ParameterIn.PATH, name = "externalReferenceCode"),
-			@Parameter(in = ParameterIn.PATH, name = "siteId")
+			@Parameter(in = ParameterIn.PATH, name = "siteId"),
+			@Parameter(in = ParameterIn.PATH, name = "externalReferenceCode")
 		}
 	)
 	@Path(
@@ -269,10 +269,10 @@ public abstract class BaseWikiNodeResourceImpl
 	@PUT
 	@Tags(value = {@Tag(name = "WikiNode")})
 	public WikiNode putSiteWikiNodeByExternalReferenceCode(
+			@NotNull @Parameter(hidden = true) @PathParam("siteId") Long siteId,
 			@NotNull @Parameter(hidden = true)
 			@PathParam("externalReferenceCode")
 			String externalReferenceCode,
-			@NotNull @Parameter(hidden = true) @PathParam("siteId") Long siteId,
 			WikiNode wikiNode)
 		throws Exception {
 

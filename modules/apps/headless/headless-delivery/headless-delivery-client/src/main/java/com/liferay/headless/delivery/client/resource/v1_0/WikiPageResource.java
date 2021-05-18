@@ -45,30 +45,30 @@ public interface WikiPageResource {
 	}
 
 	public void deleteSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			deleteSiteWikiPageByExternalReferenceCodeHttpResponse(
-				String externalReferenceCode, Long siteId)
+				Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public WikiPage getSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			getSiteWikiPageByExternalReferenceCodeHttpResponse(
-				String externalReferenceCode, Long siteId)
+				Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public WikiPage putSiteWikiPageByExternalReferenceCode(
-			String externalReferenceCode, Long siteId, WikiPage wikiPage)
+			Long siteId, String externalReferenceCode, WikiPage wikiPage)
 		throws Exception;
 
 	public HttpInvoker.HttpResponse
 			putSiteWikiPageByExternalReferenceCodeHttpResponse(
-				String externalReferenceCode, Long siteId, WikiPage wikiPage)
+				Long siteId, String externalReferenceCode, WikiPage wikiPage)
 		throws Exception;
 
 	public Page<WikiPage> getWikiNodeWikiPagesPage(
@@ -242,12 +242,12 @@ public interface WikiPageResource {
 	public static class WikiPageResourceImpl implements WikiPageResource {
 
 		public void deleteSiteWikiPageByExternalReferenceCode(
-				String externalReferenceCode, Long siteId)
+				Long siteId, String externalReferenceCode)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				deleteSiteWikiPageByExternalReferenceCodeHttpResponse(
-					externalReferenceCode, siteId);
+					siteId, externalReferenceCode);
 
 			String content = httpResponse.getContent();
 
@@ -288,7 +288,7 @@ public interface WikiPageResource {
 
 		public HttpInvoker.HttpResponse
 				deleteSiteWikiPageByExternalReferenceCodeHttpResponse(
-					String externalReferenceCode, Long siteId)
+					Long siteId, String externalReferenceCode)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -317,8 +317,8 @@ public interface WikiPageResource {
 					_builder._port +
 						"/o/headless-delivery/v1.0/sites/{siteId}/wiki-pages/by-external-reference-code/{externalReferenceCode}");
 
-			httpInvoker.path("externalReferenceCode", externalReferenceCode);
 			httpInvoker.path("siteId", siteId);
+			httpInvoker.path("externalReferenceCode", externalReferenceCode);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -327,12 +327,12 @@ public interface WikiPageResource {
 		}
 
 		public WikiPage getSiteWikiPageByExternalReferenceCode(
-				String externalReferenceCode, Long siteId)
+				Long siteId, String externalReferenceCode)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				getSiteWikiPageByExternalReferenceCodeHttpResponse(
-					externalReferenceCode, siteId);
+					siteId, externalReferenceCode);
 
 			String content = httpResponse.getContent();
 
@@ -373,7 +373,7 @@ public interface WikiPageResource {
 
 		public HttpInvoker.HttpResponse
 				getSiteWikiPageByExternalReferenceCodeHttpResponse(
-					String externalReferenceCode, Long siteId)
+					Long siteId, String externalReferenceCode)
 			throws Exception {
 
 			HttpInvoker httpInvoker = HttpInvoker.newHttpInvoker();
@@ -402,8 +402,8 @@ public interface WikiPageResource {
 					_builder._port +
 						"/o/headless-delivery/v1.0/sites/{siteId}/wiki-pages/by-external-reference-code/{externalReferenceCode}");
 
-			httpInvoker.path("externalReferenceCode", externalReferenceCode);
 			httpInvoker.path("siteId", siteId);
+			httpInvoker.path("externalReferenceCode", externalReferenceCode);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);
@@ -412,12 +412,12 @@ public interface WikiPageResource {
 		}
 
 		public WikiPage putSiteWikiPageByExternalReferenceCode(
-				String externalReferenceCode, Long siteId, WikiPage wikiPage)
+				Long siteId, String externalReferenceCode, WikiPage wikiPage)
 			throws Exception {
 
 			HttpInvoker.HttpResponse httpResponse =
 				putSiteWikiPageByExternalReferenceCodeHttpResponse(
-					externalReferenceCode, siteId, wikiPage);
+					siteId, externalReferenceCode, wikiPage);
 
 			String content = httpResponse.getContent();
 
@@ -458,7 +458,7 @@ public interface WikiPageResource {
 
 		public HttpInvoker.HttpResponse
 				putSiteWikiPageByExternalReferenceCodeHttpResponse(
-					String externalReferenceCode, Long siteId,
+					Long siteId, String externalReferenceCode,
 					WikiPage wikiPage)
 			throws Exception {
 
@@ -490,8 +490,8 @@ public interface WikiPageResource {
 					_builder._port +
 						"/o/headless-delivery/v1.0/sites/{siteId}/wiki-pages/by-external-reference-code/{externalReferenceCode}");
 
-			httpInvoker.path("externalReferenceCode", externalReferenceCode);
 			httpInvoker.path("siteId", siteId);
+			httpInvoker.path("externalReferenceCode", externalReferenceCode);
 
 			httpInvoker.userNameAndPassword(
 				_builder._login + ":" + _builder._password);

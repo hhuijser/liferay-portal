@@ -3455,8 +3455,8 @@ public class Mutation {
 		description = "Deletes the site's wiki node by external reference code."
 	)
 	public boolean deleteSiteWikiNodeByExternalReferenceCode(
-			@GraphQLName("externalReferenceCode") String externalReferenceCode,
-			@GraphQLName("siteKey") @NotEmpty String siteKey)
+			@GraphQLName("siteKey") @NotEmpty String siteKey,
+			@GraphQLName("externalReferenceCode") String externalReferenceCode)
 		throws Exception {
 
 		_applyVoidComponentServiceObjects(
@@ -3464,7 +3464,7 @@ public class Mutation {
 			this::_populateResourceContext,
 			wikiNodeResource ->
 				wikiNodeResource.deleteSiteWikiNodeByExternalReferenceCode(
-					externalReferenceCode, Long.valueOf(siteKey)));
+					Long.valueOf(siteKey), externalReferenceCode));
 
 		return true;
 	}
@@ -3473,8 +3473,8 @@ public class Mutation {
 		description = "Updates the site's wiki node with the given external reference code, or creates it if it not exists."
 	)
 	public WikiNode updateSiteWikiNodeByExternalReferenceCode(
-			@GraphQLName("externalReferenceCode") String externalReferenceCode,
 			@GraphQLName("siteKey") @NotEmpty String siteKey,
+			@GraphQLName("externalReferenceCode") String externalReferenceCode,
 			@GraphQLName("wikiNode") WikiNode wikiNode)
 		throws Exception {
 
@@ -3483,7 +3483,7 @@ public class Mutation {
 			this::_populateResourceContext,
 			wikiNodeResource ->
 				wikiNodeResource.putSiteWikiNodeByExternalReferenceCode(
-					externalReferenceCode, Long.valueOf(siteKey), wikiNode));
+					Long.valueOf(siteKey), externalReferenceCode, wikiNode));
 	}
 
 	@GraphQLField
@@ -3614,8 +3614,8 @@ public class Mutation {
 		description = "Deletes the wiki page by external reference code."
 	)
 	public boolean deleteSiteWikiPageByExternalReferenceCode(
-			@GraphQLName("externalReferenceCode") String externalReferenceCode,
-			@GraphQLName("siteKey") @NotEmpty String siteKey)
+			@GraphQLName("siteKey") @NotEmpty String siteKey,
+			@GraphQLName("externalReferenceCode") String externalReferenceCode)
 		throws Exception {
 
 		_applyVoidComponentServiceObjects(
@@ -3623,7 +3623,7 @@ public class Mutation {
 			this::_populateResourceContext,
 			wikiPageResource ->
 				wikiPageResource.deleteSiteWikiPageByExternalReferenceCode(
-					externalReferenceCode, Long.valueOf(siteKey)));
+					Long.valueOf(siteKey), externalReferenceCode));
 
 		return true;
 	}
@@ -3632,8 +3632,8 @@ public class Mutation {
 		description = "Updates the wiki page with the given external reference code, or creates it if it not exists."
 	)
 	public WikiPage updateSiteWikiPageByExternalReferenceCode(
-			@GraphQLName("externalReferenceCode") String externalReferenceCode,
 			@GraphQLName("siteKey") @NotEmpty String siteKey,
+			@GraphQLName("externalReferenceCode") String externalReferenceCode,
 			@GraphQLName("wikiPage") WikiPage wikiPage)
 		throws Exception {
 
@@ -3642,7 +3642,7 @@ public class Mutation {
 			this::_populateResourceContext,
 			wikiPageResource ->
 				wikiPageResource.putSiteWikiPageByExternalReferenceCode(
-					externalReferenceCode, Long.valueOf(siteKey), wikiPage));
+					Long.valueOf(siteKey), externalReferenceCode, wikiPage));
 	}
 
 	@GraphQLField(description = "Creates a new wiki page")

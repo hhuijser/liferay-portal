@@ -65,15 +65,15 @@ public interface WikiNodeResource {
 		throws Exception;
 
 	public void deleteSiteWikiNodeByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public WikiNode getSiteWikiNodeByExternalReferenceCode(
-			String externalReferenceCode, Long siteId)
+			Long siteId, String externalReferenceCode)
 		throws Exception;
 
 	public WikiNode putSiteWikiNodeByExternalReferenceCode(
-			String externalReferenceCode, Long siteId, WikiNode wikiNode)
+			Long siteId, String externalReferenceCode, WikiNode wikiNode)
 		throws Exception;
 
 	public Page<com.liferay.portal.vulcan.permission.Permission>

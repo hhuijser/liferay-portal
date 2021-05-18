@@ -562,17 +562,17 @@ public abstract class BaseWikiNodeResourceTestCase {
 			204,
 			wikiNodeResource.
 				deleteSiteWikiNodeByExternalReferenceCodeHttpResponse(
-					wikiNode.getExternalReferenceCode(), wikiNode.getSiteId()));
+					wikiNode.getSiteId(), wikiNode.getExternalReferenceCode()));
 
 		assertHttpResponseStatusCode(
 			404,
 			wikiNodeResource.getSiteWikiNodeByExternalReferenceCodeHttpResponse(
-				wikiNode.getExternalReferenceCode(), wikiNode.getSiteId()));
+				wikiNode.getSiteId(), wikiNode.getExternalReferenceCode()));
 
 		assertHttpResponseStatusCode(
 			404,
 			wikiNodeResource.getSiteWikiNodeByExternalReferenceCodeHttpResponse(
-				wikiNode.getExternalReferenceCode(), wikiNode.getSiteId()));
+				wikiNode.getSiteId(), wikiNode.getExternalReferenceCode()));
 	}
 
 	protected WikiNode
@@ -590,8 +590,8 @@ public abstract class BaseWikiNodeResourceTestCase {
 
 		WikiNode getWikiNode =
 			wikiNodeResource.getSiteWikiNodeByExternalReferenceCode(
-				postWikiNode.getExternalReferenceCode(),
-				postWikiNode.getSiteId());
+				postWikiNode.getSiteId(),
+				postWikiNode.getExternalReferenceCode());
 
 		assertEquals(postWikiNode, getWikiNode);
 		assertValid(getWikiNode);
@@ -621,14 +621,14 @@ public abstract class BaseWikiNodeResourceTestCase {
 								new HashMap<String, Object>() {
 									{
 										put(
+											"siteKey",
+											"\"" + wikiNode.getSiteId() + "\"");
+										put(
 											"externalReferenceCode",
 											"\"" +
 												wikiNode.
 													getExternalReferenceCode() +
 														"\"");
-										put(
-											"siteKey",
-											"\"" + wikiNode.getSiteId() + "\"");
 									}
 								},
 								getGraphQLFields())),
@@ -652,11 +652,11 @@ public abstract class BaseWikiNodeResourceTestCase {
 						new HashMap<String, Object>() {
 							{
 								put(
-									"externalReferenceCode",
-									irrelevantExternalReferenceCode);
-								put(
 									"siteKey",
 									"\"" + irrelevantGroup.getGroupId() + "\"");
+								put(
+									"externalReferenceCode",
+									irrelevantExternalReferenceCode);
 							}
 						},
 						getGraphQLFields())),
@@ -673,16 +673,16 @@ public abstract class BaseWikiNodeResourceTestCase {
 
 		WikiNode putWikiNode =
 			wikiNodeResource.putSiteWikiNodeByExternalReferenceCode(
-				postWikiNode.getExternalReferenceCode(),
-				postWikiNode.getSiteId(), randomWikiNode);
+				postWikiNode.getSiteId(),
+				postWikiNode.getExternalReferenceCode(), randomWikiNode);
 
 		assertEquals(randomWikiNode, putWikiNode);
 		assertValid(putWikiNode);
 
 		WikiNode getWikiNode =
 			wikiNodeResource.getSiteWikiNodeByExternalReferenceCode(
-				putWikiNode.getExternalReferenceCode(),
-				putWikiNode.getSiteId());
+				putWikiNode.getSiteId(),
+				putWikiNode.getExternalReferenceCode());
 
 		assertEquals(randomWikiNode, getWikiNode);
 		assertValid(getWikiNode);

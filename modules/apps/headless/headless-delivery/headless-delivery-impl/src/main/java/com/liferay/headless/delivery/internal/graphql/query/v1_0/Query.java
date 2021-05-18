@@ -3101,8 +3101,8 @@ public class Query {
 		description = "Retrieves the site's wiki node by external reference code."
 	)
 	public WikiNode wikiNodeByExternalReferenceCode(
-			@GraphQLName("externalReferenceCode") String externalReferenceCode,
-			@GraphQLName("siteKey") @NotEmpty String siteKey)
+			@GraphQLName("siteKey") @NotEmpty String siteKey,
+			@GraphQLName("externalReferenceCode") String externalReferenceCode)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -3110,7 +3110,7 @@ public class Query {
 			this::_populateResourceContext,
 			wikiNodeResource ->
 				wikiNodeResource.getSiteWikiNodeByExternalReferenceCode(
-					externalReferenceCode, Long.valueOf(siteKey)));
+					Long.valueOf(siteKey), externalReferenceCode));
 	}
 
 	/**
@@ -3175,8 +3175,8 @@ public class Query {
 		description = "Retrieves the wiki page by external reference code"
 	)
 	public WikiPage wikiPageByExternalReferenceCode(
-			@GraphQLName("externalReferenceCode") String externalReferenceCode,
-			@GraphQLName("siteKey") @NotEmpty String siteKey)
+			@GraphQLName("siteKey") @NotEmpty String siteKey,
+			@GraphQLName("externalReferenceCode") String externalReferenceCode)
 		throws Exception {
 
 		return _applyComponentServiceObjects(
@@ -3184,7 +3184,7 @@ public class Query {
 			this::_populateResourceContext,
 			wikiPageResource ->
 				wikiPageResource.getSiteWikiPageByExternalReferenceCode(
-					externalReferenceCode, Long.valueOf(siteKey)));
+					Long.valueOf(siteKey), externalReferenceCode));
 	}
 
 	/**

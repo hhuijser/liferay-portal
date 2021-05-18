@@ -52,7 +52,7 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 		String packageName = javaClass.getPackageName();
 
 		if (Validator.isNull(packageName)) {
-			return fileContent;
+			return javaTerm.getContent();
 		}
 
 		String className = javaClass.getName();

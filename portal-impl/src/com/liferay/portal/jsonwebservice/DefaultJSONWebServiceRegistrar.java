@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManagerUtil
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMappingResolver;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceNaming;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrator;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrar;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceScannerStrategy;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -39,15 +39,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author     Igor Spasic
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             DefaultJSONWebServiceRegistrar}
+ * @author Igor Spasic
  */
-@Deprecated
-public class DefaultJSONWebServiceRegistrator
-	implements JSONWebServiceRegistrator {
+public class DefaultJSONWebServiceRegistrar implements JSONWebServiceRegistrar {
 
-	public DefaultJSONWebServiceRegistrator() {
+	public DefaultJSONWebServiceRegistrar() {
 		_jsonWebServiceNaming =
 			JSONWebServiceActionsManagerUtil.getJSONWebServiceNaming();
 
@@ -58,7 +54,7 @@ public class DefaultJSONWebServiceRegistrator
 			new SpringJSONWebServiceScannerStrategy();
 	}
 
-	public DefaultJSONWebServiceRegistrator(
+	public DefaultJSONWebServiceRegistrar(
 		JSONWebServiceNaming jsonWebServiceNaming,
 		JSONWebServiceScannerStrategy jsonWebServiceScannerStrategy) {
 
@@ -69,7 +65,7 @@ public class DefaultJSONWebServiceRegistrator
 			_jsonWebServiceNaming);
 	}
 
-	public DefaultJSONWebServiceRegistrator(
+	public DefaultJSONWebServiceRegistrar(
 		JSONWebServiceScannerStrategy jsonWebServiceScannerStrategy) {
 
 		this(
@@ -313,7 +309,7 @@ public class DefaultJSONWebServiceRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		DefaultJSONWebServiceRegistrator.class);
+		DefaultJSONWebServiceRegistrar.class);
 
 	private final JSONWebServiceMappingResolver _jsonWebServiceMappingResolver;
 	private final JSONWebServiceNaming _jsonWebServiceNaming;

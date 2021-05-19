@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.service.ImageLocalService;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -39,9 +39,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.data.cleanup.internal.configuration.DataCleanupConfiguration",
-	immediate = true, service = UpgradeStepRegistrator.class
+	immediate = true, service = UpgradeStepRegistrar.class
 )
-public class DataCleanup implements UpgradeStepRegistrator {
+public class DataCleanup implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

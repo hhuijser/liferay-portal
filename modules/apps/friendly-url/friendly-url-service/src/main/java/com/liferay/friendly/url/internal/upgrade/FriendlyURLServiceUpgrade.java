@@ -19,15 +19,15 @@ import com.liferay.friendly.url.internal.upgrade.v3_0_0.UpgradeCompanyId;
 import com.liferay.friendly.url.internal.upgrade.v3_1_1.FriendlyURLEntryLocalizationUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author José Ángel Jiménez
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class FriendlyURLServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class FriendlyURLServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

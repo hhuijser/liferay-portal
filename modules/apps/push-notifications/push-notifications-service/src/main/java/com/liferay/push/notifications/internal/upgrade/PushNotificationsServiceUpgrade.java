@@ -15,7 +15,7 @@
 package com.liferay.push.notifications.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.push.notifications.internal.upgrade.v1_0_6.UpgradeCompanyId;
 
 import org.osgi.service.component.annotations.Component;
@@ -23,8 +23,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Bruno Farache
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PushNotificationsServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class PushNotificationsServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

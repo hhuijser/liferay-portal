@@ -16,15 +16,15 @@ package com.liferay.dynamic.data.mapping.web.internal.upgrade;
 
 import com.liferay.dynamic.data.mapping.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Miguel Pastor
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class DDMWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class DDMWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

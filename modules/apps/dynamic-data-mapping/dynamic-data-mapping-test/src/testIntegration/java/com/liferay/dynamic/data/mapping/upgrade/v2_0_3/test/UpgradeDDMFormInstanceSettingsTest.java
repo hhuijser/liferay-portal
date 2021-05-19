@@ -36,7 +36,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -239,8 +239,8 @@ public class UpgradeDDMFormInstanceSettingsTest {
 	}
 
 	protected void setUpUpgradeDDMFormInstanceSettings() {
-		_upgradeStepRegistrator.register(
-			new UpgradeStepRegistrator.Registry() {
+		_upgradeStepRegistrar.register(
+			new UpgradeStepRegistrar.Registry() {
 
 				@Override
 				public void register(
@@ -269,7 +269,7 @@ public class UpgradeDDMFormInstanceSettingsTest {
 	@Inject(
 		filter = "(&(objectClass=com.liferay.dynamic.data.mapping.internal.upgrade.DDMServiceUpgrade))"
 	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
+	private static UpgradeStepRegistrar _upgradeStepRegistrar;
 
 	private UpgradeProcess _ddmFormInstanceSettingsUpgradeProcess;
 

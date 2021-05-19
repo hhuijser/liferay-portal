@@ -17,7 +17,7 @@ package com.liferay.social.activities.web.internal.upgrade;
 import com.liferay.portal.kernel.upgrade.BaseReplacePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.social.activities.constants.SocialActivitiesPortletKeys;
 
 import org.osgi.service.component.annotations.Component;
@@ -26,8 +26,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Raymond Augé
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SocialActivitiesWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class SocialActivitiesWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

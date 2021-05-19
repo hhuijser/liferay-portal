@@ -15,7 +15,7 @@
 package com.liferay.user.associated.data.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.user.associated.data.web.internal.upgrade.v1_0_0.ResourceActionUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
@@ -23,8 +23,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Tina Tian
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class UserAssociatedDataWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class UserAssociatedDataWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

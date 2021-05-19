@@ -66,7 +66,7 @@ public class CommerceProductUpgrade implements UpgradeStepRegistrar {
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce product upgrade step registrator started");
+			_log.info("Commerce product upgrade started");
 		}
 
 		registry.register("1.0.0", "1.1.0", new DummyUpgradeProcess());
@@ -190,7 +190,7 @@ public class CommerceProductUpgrade implements UpgradeStepRegistrar {
 		registry.register("3.2.0", "3.2.1", new DummyUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce product upgrade step registrator finished");
+			_log.info("Commerce product upgrade finished");
 		}
 	}
 

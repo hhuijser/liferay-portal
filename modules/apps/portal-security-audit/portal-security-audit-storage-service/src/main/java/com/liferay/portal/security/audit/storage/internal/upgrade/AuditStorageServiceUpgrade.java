@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.security.audit.storage.internal.upgrade.v1_0_1.SchemaUpgradeProcess;
 import com.liferay.portal.security.audit.storage.internal.upgrade.v1_0_1.util.AuditEventTable;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.upgrade.release.BaseUpgradeServiceModuleRelease;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,8 +27,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Samuel Ziemer
  */
-@Component(service = UpgradeStepRegistrator.class)
-public class AuditStorageServiceUpgrade implements UpgradeStepRegistrator {
+@Component(service = UpgradeStepRegistrar.class)
+public class AuditStorageServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

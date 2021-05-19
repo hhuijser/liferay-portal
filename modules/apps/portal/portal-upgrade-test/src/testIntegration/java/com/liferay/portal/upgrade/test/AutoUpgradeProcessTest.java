@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.util.PropsValues;
 
 import org.junit.After;
@@ -101,7 +101,7 @@ public class AutoUpgradeProcessTest {
 		BundleContext bundleContext = bundle.getBundleContext();
 
 		_serviceRegistration = bundleContext.registerService(
-			UpgradeStepRegistrator.class, new TestUpgradeStepRegistrator(),
+			UpgradeStepRegistrar.class, new TestUpgradeStepRegistrator(),
 			null);
 
 		return _releaseLocalService.fetchRelease(_SERVLET_CONTEXT_NAME);
@@ -115,10 +115,10 @@ public class AutoUpgradeProcessTest {
 	@Inject
 	private static ReleaseLocalService _releaseLocalService;
 
-	private ServiceRegistration<UpgradeStepRegistrator> _serviceRegistration;
+	private ServiceRegistration<UpgradeStepRegistrar> _serviceRegistration;
 
 	private static class TestUpgradeStepRegistrator
-		implements UpgradeStepRegistrator {
+		implements UpgradeStepRegistrar {
 
 		@Override
 		public void register(Registry registry) {

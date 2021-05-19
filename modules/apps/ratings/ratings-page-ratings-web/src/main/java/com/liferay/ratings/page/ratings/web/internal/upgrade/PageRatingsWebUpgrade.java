@@ -17,7 +17,7 @@ package com.liferay.ratings.page.ratings.web.internal.upgrade;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.ratings.page.ratings.constants.PageRatingsPortletKeys;
 
 import org.osgi.service.component.annotations.Component;
@@ -25,8 +25,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Roberto Díaz
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PageRatingsWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class PageRatingsWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

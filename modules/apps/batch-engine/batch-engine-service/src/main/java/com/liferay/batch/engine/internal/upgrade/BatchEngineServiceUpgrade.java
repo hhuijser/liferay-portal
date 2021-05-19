@@ -19,7 +19,7 @@ import com.liferay.batch.engine.internal.upgrade.v4_0_1.ClassNameUpgradeProcess;
 import com.liferay.batch.engine.internal.upgrade.v4_1_0.TaskItemDelegateNameUpgradeProcess;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -27,8 +27,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Ivica Cardic
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BatchEngineServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class BatchEngineServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

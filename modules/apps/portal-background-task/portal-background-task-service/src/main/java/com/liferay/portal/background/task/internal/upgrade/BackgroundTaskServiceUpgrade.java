@@ -19,15 +19,15 @@ import com.liferay.portal.background.task.internal.upgrade.v1_0_0.SchemaUpgradeP
 import com.liferay.portal.background.task.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.portal.background.task.internal.upgrade.v2_0_0.util.BackgroundTaskTable;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Cristina Rodríguez
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BackgroundTaskServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class BackgroundTaskServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

@@ -18,15 +18,15 @@ import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.NamespaceUp
 import com.liferay.invitation.invite.members.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.invitation.invite.members.internal.upgrade.v2_0_0.util.MemberRequestTable;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class InviteMembersServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class InviteMembersServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

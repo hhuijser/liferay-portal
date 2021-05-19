@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.users.admin.constants.UsersAdminPortletKeys;
 import com.liferay.users.admin.web.internal.upgrade.v1_0_0.FileUploadsConfigurationUpgradeProcess;
 
@@ -29,8 +29,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Drew Brokke
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class UsersAdminWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class UsersAdminWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

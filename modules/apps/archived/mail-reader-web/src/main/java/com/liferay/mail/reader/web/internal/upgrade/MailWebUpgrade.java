@@ -18,7 +18,7 @@ import com.liferay.mail.reader.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.upgrade.release.BaseUpgradeWebModuleRelease;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,8 +27,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MailWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class MailWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

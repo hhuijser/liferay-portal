@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.reports.engine.console.internal.upgrade.v1_0_1.UpgradeKernelPackage;
 import com.liferay.portal.reports.engine.console.internal.upgrade.v1_0_1.UpgradeLastPublishDate;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.upgrade.release.BaseUpgradeServiceModuleRelease;
 
 import org.osgi.service.component.annotations.Component;
@@ -28,8 +28,8 @@ import org.osgi.service.component.annotations.Reference;
  * @author Wesley Gong
  * @author Calvin Keum
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ReportsServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class ReportsServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

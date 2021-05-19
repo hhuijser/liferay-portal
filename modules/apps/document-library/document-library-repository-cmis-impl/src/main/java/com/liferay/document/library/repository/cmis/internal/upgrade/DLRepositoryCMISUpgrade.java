@@ -16,15 +16,15 @@ package com.liferay.document.library.repository.cmis.internal.upgrade;
 
 import com.liferay.document.library.repository.cmis.internal.upgrade.v1_0_0.UpgradeKernelPackage;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Adolfo Pérez
  */
-@Component(service = UpgradeStepRegistrator.class)
-public class DLRepositoryCMISUpgrade implements UpgradeStepRegistrator {
+@Component(service = UpgradeStepRegistrar.class)
+public class DLRepositoryCMISUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

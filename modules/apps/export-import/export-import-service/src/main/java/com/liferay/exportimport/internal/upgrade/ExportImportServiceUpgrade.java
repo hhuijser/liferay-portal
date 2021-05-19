@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.scheduler.SchedulerEngineHelper;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
@@ -34,9 +34,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {ExportImportServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {ExportImportServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class ExportImportServiceUpgrade implements UpgradeStepRegistrator {
+public class ExportImportServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

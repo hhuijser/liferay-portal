@@ -18,7 +18,7 @@ import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgrade
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.search.elasticsearch.monitoring.web.internal.constants.MonitoringPortletKeys;
 import com.liferay.portal.search.elasticsearch.monitoring.web.internal.upgrade.v1_0_0.MonitoringConfigurationUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.cm.ConfigurationAdmin;
 import org.osgi.service.component.annotations.Component;
@@ -27,8 +27,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Bryan Engler
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MonitoringWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class MonitoringWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

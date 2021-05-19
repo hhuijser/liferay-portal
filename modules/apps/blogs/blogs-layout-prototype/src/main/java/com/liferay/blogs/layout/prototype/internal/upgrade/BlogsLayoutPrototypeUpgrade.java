@@ -16,15 +16,15 @@ package com.liferay.blogs.layout.prototype.internal.upgrade;
 
 import com.liferay.blogs.layout.prototype.internal.upgrade.v1_0_0.UpgradeLocalizedColumn;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Leon Chi
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BlogsLayoutPrototypeUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class BlogsLayoutPrototypeUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

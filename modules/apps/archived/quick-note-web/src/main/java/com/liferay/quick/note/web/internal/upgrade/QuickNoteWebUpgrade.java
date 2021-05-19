@@ -16,7 +16,7 @@ package com.liferay.quick.note.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.quick.note.web.internal.constants.QuickNotePortletKeys;
 
 import org.osgi.service.component.annotations.Component;
@@ -25,8 +25,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Raymond Augé
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class QuickNoteWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class QuickNoteWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

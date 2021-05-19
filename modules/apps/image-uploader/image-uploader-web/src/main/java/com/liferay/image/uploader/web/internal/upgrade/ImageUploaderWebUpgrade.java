@@ -16,15 +16,15 @@ package com.liferay.image.uploader.web.internal.upgrade;
 
 import com.liferay.image.uploader.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ImageUploaderWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class ImageUploaderWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

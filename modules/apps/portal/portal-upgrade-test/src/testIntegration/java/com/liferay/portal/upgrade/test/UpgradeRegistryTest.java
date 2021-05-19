@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.util.PropsValues;
 
 import java.lang.reflect.Field;
@@ -115,7 +115,7 @@ public class UpgradeRegistryTest {
 			new TestUpgradeStepRegistrator(testUpgradeSteps);
 
 		_serviceRegistration = bundleContext.registerService(
-			UpgradeStepRegistrator.class, testUpgradeStepRegistrator, null);
+			UpgradeStepRegistrar.class, testUpgradeStepRegistrator, null);
 
 		Assert.assertTrue(testUpgradeStepRegistrator._registratorCalled);
 
@@ -135,7 +135,7 @@ public class UpgradeRegistryTest {
 
 	private static Field _upgradeDatabaseAutoRunField;
 
-	private ServiceRegistration<UpgradeStepRegistrator> _serviceRegistration;
+	private ServiceRegistration<UpgradeStepRegistrar> _serviceRegistration;
 
 	private static class TestUpgradeStep implements UpgradeStep {
 
@@ -158,7 +158,7 @@ public class UpgradeRegistryTest {
 	}
 
 	private static class TestUpgradeStepRegistrator
-		implements UpgradeStepRegistrator {
+		implements UpgradeStepRegistrar {
 
 		@Override
 		public void register(Registry registry) {

@@ -17,7 +17,7 @@ package com.liferay.calendar.test.util;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 
@@ -49,11 +49,11 @@ public class CalendarUpgradeTestUtil {
 
 		return registry.callService(
 			upgradeClassName,
-			(UpgradeStepRegistrator upgradeStepRegistrator) -> {
+			(UpgradeStepRegistrar upgradeStepRegistrar) -> {
 				SearchRegistry searchRegistry = new SearchRegistry(
 					upgradeStepClassName);
 
-				upgradeStepRegistrator.register(searchRegistry);
+				upgradeStepRegistrar.register(searchRegistry);
 
 				return searchRegistry.getUpgradeStep();
 			});
@@ -68,7 +68,7 @@ public class CalendarUpgradeTestUtil {
 	}
 
 	private static class SearchRegistry
-		implements UpgradeStepRegistrator.Registry {
+		implements UpgradeStepRegistrar.Registry {
 
 		public SearchRegistry(String upgradeStepClassName) {
 			_upgradeStepClassName = upgradeStepClassName;

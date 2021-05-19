@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portlet.documentlibrary.store.StoreFactory;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
@@ -48,8 +48,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class BlogsServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

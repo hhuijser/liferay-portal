@@ -17,7 +17,7 @@ package com.liferay.portal.component.blacklist.internal.upgrade;
 import com.liferay.portal.component.blacklist.internal.configuration.ComponentBlacklistConfiguration;
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -25,8 +25,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Alberto Chaparro
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ComponentBlacklistImplUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class ComponentBlacklistImplUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

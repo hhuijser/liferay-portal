@@ -83,13 +83,13 @@ public class CommerceUpgrade implements UpgradeStepRegistrar {
 
 		registry.register(
 			"2.0.0", "2.1.0",
+			new CPDAvailabilityEstimateUpgradeProcess(
+				_cpDefinitionLocalService),
 			new com.liferay.commerce.internal.upgrade.v2_1_0.
 				CommerceOrderItemUpgradeProcess(
 					_cpDefinitionLocalService, _cpInstanceLocalService),
 			new CommerceSubscriptionEntryUpgradeProcess(
-				_cpDefinitionLocalService, _cpInstanceLocalService),
-			new CPDAvailabilityEstimateUpgradeProcess(
-				_cpDefinitionLocalService));
+				_cpDefinitionLocalService, _cpInstanceLocalService));
 
 		registry.register(
 			"2.1.0", "2.2.0",
@@ -115,14 +115,14 @@ public class CommerceUpgrade implements UpgradeStepRegistrar {
 		registry.register(
 			"3.1.0", "3.2.0",
 			new com.liferay.commerce.internal.upgrade.v3_2_0.
-				CommerceOrderUpgradeProcess(),
-			new com.liferay.commerce.internal.upgrade.v3_2_0.
-				CommerceOrderItemUpgradeProcess(),
+				CPDAvailabilityEstimateUpgradeProcess(),
 			new CommerceAvailabilityEstimateUpgradeProcess(),
 			new CommerceCountryUpgradeProcess(),
-			new CommerceRegionUpgradeProcess(),
 			new com.liferay.commerce.internal.upgrade.v3_2_0.
-				CPDAvailabilityEstimateUpgradeProcess());
+				CommerceOrderItemUpgradeProcess(),
+			new com.liferay.commerce.internal.upgrade.v3_2_0.
+				CommerceOrderUpgradeProcess(),
+			new CommerceRegionUpgradeProcess());
 
 		registry.register(
 			"3.2.0", "4.0.0",
@@ -134,9 +134,9 @@ public class CommerceUpgrade implements UpgradeStepRegistrar {
 			"4.0.0", "4.1.0",
 			new CommerceAddressUpgradeProcess(_classNameLocalService),
 			new com.liferay.commerce.internal.upgrade.v4_1_0.
-				CommerceOrderItemUpgradeProcess(),
+				CommerceCountryUpgradeProcess(),
 			new com.liferay.commerce.internal.upgrade.v4_1_0.
-				CommerceCountryUpgradeProcess());
+				CommerceOrderItemUpgradeProcess());
 
 		registry.register(
 			"4.1.0", "4.1.1",

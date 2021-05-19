@@ -32,14 +32,14 @@ public class CommerceProductTypeGroupedUpgrade implements UpgradeStepRegistrar {
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce product type grouped upgrade 'started'");
+			_log.info("Commerce product type grouped upgrade started");
 		}
 
 		registry.register(
 			"1.0.0", "1.1.0", new CPDefinitionGroupedEntryUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce product type grouped upgrade 'finished'");
+			_log.info("Commerce product type grouped upgrade finished");
 		}
 	}
 

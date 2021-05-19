@@ -15,15 +15,15 @@
 package com.liferay.source.formatter.dependencies;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Alberto Chaparro
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class MajorUpgradeByDropTable implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class MajorUpgradeByDropTable implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

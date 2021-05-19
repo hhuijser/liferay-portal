@@ -277,20 +277,19 @@ public class JSONWebServiceActionsManagerImpl
 	public int registerService(
 		String contextName, String contextPath, Object service) {
 
-		JSONWebServiceRegistrar jsonWebServiceRegistrator =
+		JSONWebServiceRegistrar jsonWebServiceRegistrar =
 			new DefaultJSONWebServiceRegistrar();
 
 		return registerService(
-			contextName, contextPath, service, jsonWebServiceRegistrator);
+			contextName, contextPath, service, jsonWebServiceRegistrar);
 	}
 
 	@Override
 	public int registerService(
 		String contextName, String contextPath, Object service,
-		JSONWebServiceRegistrar jsonWebServiceRegistrator) {
+		JSONWebServiceRegistrar jsonWebServiceRegistrar) {
 
-		jsonWebServiceRegistrator.processBean(
-			contextName, contextPath, service);
+		jsonWebServiceRegistrar.processBean(contextName, contextPath, service);
 
 		int count = getJSONWebServiceActionsCount(contextPath);
 

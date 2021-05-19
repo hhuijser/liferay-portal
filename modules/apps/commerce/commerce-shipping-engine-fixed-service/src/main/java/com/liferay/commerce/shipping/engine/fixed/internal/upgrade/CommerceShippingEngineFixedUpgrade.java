@@ -33,7 +33,7 @@ public class CommerceShippingEngineFixedUpgrade
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce shipping engine fixed upgrade STARTED");
+			_log.info("Commerce shipping engine fixed upgrade started");
 		}
 
 		registry.register(

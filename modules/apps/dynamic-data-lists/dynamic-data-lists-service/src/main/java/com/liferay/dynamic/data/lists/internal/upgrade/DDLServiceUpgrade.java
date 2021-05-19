@@ -27,7 +27,7 @@ import com.liferay.dynamic.data.lists.internal.upgrade.v2_0_0.util.DDLRecordVers
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -37,9 +37,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {DDLServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {DDLServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class DDLServiceUpgrade implements UpgradeStepRegistrator {
+public class DDLServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

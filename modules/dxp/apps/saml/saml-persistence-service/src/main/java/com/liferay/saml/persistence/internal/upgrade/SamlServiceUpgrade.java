@@ -16,7 +16,7 @@ package com.liferay.saml.persistence.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.upgrade.release.BaseUpgradeServiceModuleRelease;
 import com.liferay.saml.persistence.internal.upgrade.v1_1_0.SamlSpAuthRequestUpgradeProcess;
 import com.liferay.saml.persistence.internal.upgrade.v1_1_0.SamlSpMessageUpgradeProcess;
@@ -29,8 +29,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Carlos Sierra Andrés
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SamlServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class SamlServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

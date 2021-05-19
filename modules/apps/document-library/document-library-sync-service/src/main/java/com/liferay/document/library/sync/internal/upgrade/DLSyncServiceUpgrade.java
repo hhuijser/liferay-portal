@@ -15,15 +15,15 @@
 package com.liferay.document.library.sync.internal.upgrade;
 
 import com.liferay.document.library.sync.internal.upgrade.v1_0_0.UpgradeClassNames;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Adolfo Pérez
  */
-@Component(service = UpgradeStepRegistrator.class)
-public class DLSyncServiceUpgrade implements UpgradeStepRegistrator {
+@Component(service = UpgradeStepRegistrar.class)
+public class DLSyncServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

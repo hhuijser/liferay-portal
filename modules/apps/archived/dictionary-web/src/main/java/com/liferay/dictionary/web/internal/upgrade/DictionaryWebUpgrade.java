@@ -17,7 +17,7 @@ package com.liferay.dictionary.web.internal.upgrade;
 import com.liferay.dictionary.web.internal.constants.DictionaryPortletKeys;
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -25,11 +25,11 @@ import org.osgi.service.component.annotations.Component;
  * @author Raymond Augé
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class DictionaryWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class DictionaryWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
-	public void register(UpgradeStepRegistrator.Registry registry) {
+	public void register(UpgradeStepRegistrar.Registry registry) {
 		registry.register("0.0.0", "1.0.0", new DummyUpgradeStep());
 
 		registry.register(

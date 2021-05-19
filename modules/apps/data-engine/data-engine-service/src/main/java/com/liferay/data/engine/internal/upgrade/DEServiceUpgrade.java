@@ -19,7 +19,7 @@ import com.liferay.data.engine.internal.upgrade.v2_0_0.UpgradeCompanyId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeCTModel;
 import com.liferay.portal.kernel.upgrade.UpgradeMVCCVersion;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -28,9 +28,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {DEServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {DEServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class DEServiceUpgrade implements UpgradeStepRegistrator {
+public class DEServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

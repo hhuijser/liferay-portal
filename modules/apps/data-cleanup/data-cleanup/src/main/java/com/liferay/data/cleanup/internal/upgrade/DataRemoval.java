@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import java.util.Map;
 import java.util.function.Supplier;
@@ -37,9 +37,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.data.cleanup.internal.configuration.DataRemovalConfiguration",
-	immediate = true, service = UpgradeStepRegistrator.class
+	immediate = true, service = UpgradeStepRegistrar.class
 )
-public class DataRemoval implements UpgradeStepRegistrator {
+public class DataRemoval implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

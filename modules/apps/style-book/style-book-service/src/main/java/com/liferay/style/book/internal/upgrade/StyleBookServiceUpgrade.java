@@ -16,7 +16,7 @@ package com.liferay.style.book.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeCTModel;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.style.book.internal.upgrade.v1_1_0.StyleBookEntryUpgradeProcess;
 import com.liferay.style.book.internal.upgrade.v1_2_0.StyleBookEntryVersionUpgradeProcess;
 import com.liferay.style.book.internal.upgrade.v1_2_1.util.UpgradeMVCCVersion;
@@ -28,9 +28,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {StyleBookServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {StyleBookServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class StyleBookServiceUpgrade implements UpgradeStepRegistrator {
+public class StyleBookServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

@@ -15,7 +15,7 @@
 package com.liferay.commerce.tax.engine.fixed.internal.upgrade;
 
 import com.liferay.commerce.tax.engine.fixed.internal.upgrade.v2_0_0.CommerceTaxFixedRateAddressRelUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -23,10 +23,10 @@ import org.osgi.service.component.annotations.Component;
  * @author Pei-Jung Lan
  */
 @Component(
-	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
+	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
 public class CommerceTaxEngineFixedUpgradeStepRegistrator
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

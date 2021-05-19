@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import java.sql.Connection;
 
@@ -71,8 +71,8 @@ public class UpgradeCTSchemaVersionTest {
 		_ctPreferences = _ctPreferencesLocalService.updateCTPreferences(
 			_ctPreferences);
 
-		_upgradeStepRegistrator.register(
-			new UpgradeStepRegistrator.Registry() {
+		_upgradeStepRegistrar.register(
+			new UpgradeStepRegistrar.Registry() {
 
 				@Override
 				public void register(
@@ -146,7 +146,7 @@ public class UpgradeCTSchemaVersionTest {
 	@Inject(
 		filter = "(&(component.name=com.liferay.change.tracking.internal.upgrade.ChangeTrackingServiceUpgrade))"
 	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
+	private static UpgradeStepRegistrar _upgradeStepRegistrar;
 
 	@DeleteAfterTestRun
 	private CTCollection _ctCollection;

@@ -15,7 +15,7 @@
 package com.liferay.sync.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.BasePortletIdUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.sync.constants.SyncPortletKeys;
 
 import org.osgi.service.component.annotations.Component;
@@ -25,9 +25,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {SyncWebUpgrade.class, UpgradeStepRegistrator.class}
+	service = {SyncWebUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class SyncWebUpgrade implements UpgradeStepRegistrator {
+public class SyncWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

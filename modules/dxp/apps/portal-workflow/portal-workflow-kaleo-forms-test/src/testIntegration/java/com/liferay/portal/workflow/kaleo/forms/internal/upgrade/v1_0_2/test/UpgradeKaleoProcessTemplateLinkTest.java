@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 
@@ -198,13 +198,13 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 	protected void setUpUpgradeKaleoProcessTemplateLink() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		UpgradeStepRegistrator upgradeStepRegistror = registry.getService(
+		UpgradeStepRegistrar upgradeStepRegistrar = registry.getService(
 			registry.getServiceReference(
 				"com.liferay.portal.workflow.kaleo.forms.internal.upgrade." +
 					"KaleoFormsServiceUpgrade"));
 
-		upgradeStepRegistror.register(
-			new UpgradeStepRegistrator.Registry() {
+		upgradeStepRegistrar.register(
+			new UpgradeStepRegistrar.Registry() {
 
 				@Override
 				public void register(

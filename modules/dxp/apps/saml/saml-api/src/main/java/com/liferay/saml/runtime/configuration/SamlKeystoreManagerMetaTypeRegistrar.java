@@ -22,13 +22,10 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 
 /**
- * @author     Carlos Sierra Andrés
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             SamlKeystoreManagerMetaTypeRegistrar}
+ * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = {})
-@Deprecated
-public class SamlKeystoreManagerMetaTypeRegistrator {
+public class SamlKeystoreManagerMetaTypeRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) throws Exception {
@@ -41,22 +38,22 @@ public class SamlKeystoreManagerMetaTypeRegistrator {
 				"KeyStoreManager.target", "KeyStoreManager.target",
 				"saml-keystore-manager-description");
 
-		_metaTypeRegistrator = new MetaTypeVirtualBundleRegistrator(
+		_metaTypeRegistrar = new MetaTypeVirtualBundleRegistrar(
 			bundleContext, servicesDropDownMetaTypeProvider);
 
-		_metaTypeRegistrator.importPackage(
+		_metaTypeRegistrar.importPackage(
 			"com.liferay.saml.runtime.configuration");
-		_metaTypeRegistrator.requireLanguageKeys(
+		_metaTypeRegistrar.requireLanguageKeys(
 			"(bundle.symbolic.name=com.liferay.saml.api)");
 
-		_metaTypeRegistrator.open();
+		_metaTypeRegistrar.open();
 	}
 
 	@Deactivate
 	protected void deactivate() {
-		_metaTypeRegistrator.close();
+		_metaTypeRegistrar.close();
 	}
 
-	private MetaTypeVirtualBundleRegistrator _metaTypeRegistrator;
+	private MetaTypeVirtualBundleRegistrar _metaTypeRegistrar;
 
 }

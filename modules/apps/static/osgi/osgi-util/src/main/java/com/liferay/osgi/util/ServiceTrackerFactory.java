@@ -142,7 +142,7 @@ public class ServiceTrackerFactory {
 	}
 
 	public static <T, W> ServiceTracker<T, ServiceRegistration<W>>
-		openWrapperServiceRegistrator(
+		openWrapperServiceRegistrar(
 			BundleContext bundleContext, Class<T> trackedClass,
 			Class<W> registeredClass, Function<T, W> wrapperFunction,
 			String... propertyNames) {
@@ -201,6 +201,23 @@ public class ServiceTrackerFactory {
 				}
 
 			});
+	}
+
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #openWrapperServiceRegistrar(BundleContext, Class<T>,
+	 *             Class<W>, Function<T, W>, String...)}
+	 */
+	@Deprecated
+	public static <T, W> ServiceTracker<T, ServiceRegistration<W>>
+		openWrapperServiceRegistrator(
+			BundleContext bundleContext, Class<T> trackedClass,
+			Class<W> registeredClass, Function<T, W> wrapperFunction,
+			String... propertyNames) {
+
+		return openWrapperServiceRegistrar(
+			bundleContext, trackedClass, registeredClass, wrapperFunction,
+			propertyNames);
 	}
 
 	public static <T> T throwException(Throwable throwable) {

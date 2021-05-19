@@ -384,6 +384,7 @@
 		<check name="JavaClassNameCheck">
 			<category name="Naming Conventions" />
 			<description name="Checks if class names follow naming conventions." />
+			<property name="checkRegistrar" value="false" />
 		</check>
 		<check name="JavaCollatorUtilCheck">
 			<category name="Bug Prevention" />

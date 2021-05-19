@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Igor Beslic
  */
 @Component(immediate = true, service = UpgradeStepRegistrar.class)
-public class DispatchUpgradeStepRegistrator implements UpgradeStepRegistrar {
+public class DispatchUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

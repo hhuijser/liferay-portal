@@ -15,7 +15,7 @@
 package com.liferay.portal.workflow.metrics.internal.upgrade;
 
 import com.liferay.counter.kernel.service.CounterLocalService;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.workflow.metrics.internal.upgrade.v2_0_0.SchemaUpgradeProcess;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,10 +27,10 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	service = {
-		UpgradeStepRegistrator.class, WorkflowMetricsServiceUpgrade.class
+		UpgradeStepRegistrar.class, WorkflowMetricsServiceUpgrade.class
 	}
 )
-public class WorkflowMetricsServiceUpgrade implements UpgradeStepRegistrator {
+public class WorkflowMetricsServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

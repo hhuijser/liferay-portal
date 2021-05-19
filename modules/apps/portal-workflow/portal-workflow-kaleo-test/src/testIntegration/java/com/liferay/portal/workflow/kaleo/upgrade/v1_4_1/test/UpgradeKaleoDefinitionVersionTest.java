@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionVersion;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
@@ -212,13 +212,13 @@ public class UpgradeKaleoDefinitionVersionTest {
 	private void _setUpUpgradeKaleoDefinitionVersion() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		UpgradeStepRegistrator upgradeStepRegistror = registry.getService(
+		UpgradeStepRegistrar upgradeStepRegistrar = registry.getService(
 			registry.getServiceReference(
 				"com.liferay.portal.workflow.kaleo.internal.upgrade." +
 					"KaleoServiceUpgrade"));
 
-		upgradeStepRegistror.register(
-			new UpgradeStepRegistrator.Registry() {
+		upgradeStepRegistrar.register(
+			new UpgradeStepRegistrar.Registry() {
 
 				@Override
 				public void register(

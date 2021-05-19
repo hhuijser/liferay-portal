@@ -17,7 +17,7 @@ package com.liferay.wiki.navigation.web.internal.upgrade;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.upgrade.release.BaseUpgradeWebModuleRelease;
 import com.liferay.wiki.navigation.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
 import com.liferay.wiki.navigation.web.internal.upgrade.v1_0_1.UpgradePortletId;
@@ -28,8 +28,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Sergio González
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class WikiNavigationWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class WikiNavigationWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

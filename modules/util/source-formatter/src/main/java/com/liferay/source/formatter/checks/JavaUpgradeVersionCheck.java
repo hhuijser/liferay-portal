@@ -56,7 +56,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 		List<String> implementedClassNames =
 			javaClass.getImplementedClassNames();
 
-		if (!implementedClassNames.contains("UpgradeStepRegistrator")) {
+		if (!implementedClassNames.contains("UpgradeStepRegistrar")) {
 			return javaClass.getContent();
 		}
 

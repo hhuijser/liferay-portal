@@ -757,7 +757,7 @@
 		</check>
 		<check name="JavaUpgradeVersionCheck">
 			<category name="Bug Prevention" />
-			<description name="Verifies that the correct upgrade versions are used in classes that implement `UpgradeStepRegistrator`." />
+			<description name="Verifies that the correct upgrade versions are used in classes that implement `UpgradeStepRegistrar`." />
 		</check>
 		<check name="JavaVariableTypeCheck">
 			<category name="Bug Prevention" />

@@ -67,7 +67,7 @@ public class CommerceUpgrade implements UpgradeStepRegistrar {
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce upgrade step registrator started");
+			_log.info("Commerce upgrade started");
 		}
 
 		registry.register(
@@ -209,7 +209,7 @@ public class CommerceUpgrade implements UpgradeStepRegistrar {
 				CommerceRegionUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce upgrade step registrator finished");
+			_log.info("Commerce upgrade finished");
 		}
 	}
 

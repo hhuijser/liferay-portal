@@ -33,9 +33,7 @@ public class CommerceShippingEngineFixedUpgrade
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce shipping engine fixed upgrade step registrator " +
-					"STARTED");
+			_log.info("Commerce shipping engine fixed upgrade STARTED");
 		}
 
 		registry.register(
@@ -48,9 +46,7 @@ public class CommerceShippingEngineFixedUpgrade
 				v2_0_0.CommerceShippingFixedOptionRelUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce shipping engine fixed upgrade step registrator " +
-					"finished");
+			_log.info("Commerce shipping engine fixed upgrade finished");
 		}
 	}
 

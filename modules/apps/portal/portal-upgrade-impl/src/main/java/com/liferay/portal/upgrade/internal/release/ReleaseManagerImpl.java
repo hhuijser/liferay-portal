@@ -41,7 +41,7 @@ import com.liferay.portal.upgrade.PortalUpgradeProcess;
 import com.liferay.portal.upgrade.internal.executor.UpgradeExecutor;
 import com.liferay.portal.upgrade.internal.graph.ReleaseGraphManager;
 import com.liferay.portal.upgrade.internal.registry.UpgradeInfo;
-import com.liferay.portal.upgrade.internal.registry.UpgradeStepRegistratorThreadLocal;
+import com.liferay.portal.upgrade.internal.registry.UpgradeStepRegistrarThreadLocal;
 import com.liferay.portal.util.PropsValues;
 
 import java.sql.Connection;
@@ -357,7 +357,7 @@ public class ReleaseManagerImpl implements ReleaseManager {
 			final String key, UpgradeInfo upgradeInfo,
 			List<UpgradeInfo> upgradeInfos) {
 
-			if (_activated && UpgradeStepRegistratorThreadLocal.isEnabled() &&
+			if (_activated && UpgradeStepRegistrarThreadLocal.isEnabled() &&
 				(PropsValues.UPGRADE_DATABASE_AUTO_RUN ||
 				 (_releaseLocalService.fetchRelease(key) == null))) {
 

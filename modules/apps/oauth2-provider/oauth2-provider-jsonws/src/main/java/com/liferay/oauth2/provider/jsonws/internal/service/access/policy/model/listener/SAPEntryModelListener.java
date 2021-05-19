@@ -31,24 +31,24 @@ public class SAPEntryModelListener extends BaseModelListener<SAPEntry> {
 
 	@Override
 	public void onAfterCreate(SAPEntry sapEntry) throws ModelListenerException {
-		_sapEntryScopeDescriptorFinderRegistrator.register(
+		_sapEntryScopeDescriptorFinderRegistrar.register(
 			sapEntry.getCompanyId());
 	}
 
 	@Override
 	public void onAfterRemove(SAPEntry sapEntry) throws ModelListenerException {
-		_sapEntryScopeDescriptorFinderRegistrator.register(
+		_sapEntryScopeDescriptorFinderRegistrar.register(
 			sapEntry.getCompanyId());
 	}
 
 	@Override
 	public void onAfterUpdate(SAPEntry sapEntry) throws ModelListenerException {
-		_sapEntryScopeDescriptorFinderRegistrator.register(
+		_sapEntryScopeDescriptorFinderRegistrar.register(
 			sapEntry.getCompanyId());
 	}
 
 	@Reference
 	private SAPEntryScopeDescriptorFinderRegistrar
-		_sapEntryScopeDescriptorFinderRegistrator;
+		_sapEntryScopeDescriptorFinderRegistrar;
 
 }

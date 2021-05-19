@@ -143,7 +143,7 @@ JavaTransactionBoundaryCheck | [Bug Prevention](bug_prevention_checks.markdown#b
 [JavaUnusedSourceFormatterChecksCheck](checks/java_unused_source_formatter_checks_check.markdown#javaunusedsourceformattercheckscheck) | [Miscellaneous](miscellaneous_checks.markdown#miscellaneous-checks) | Finds `*Check` classes that are not configured. |
 [JavaUpgradeClassCheck](checks/java_upgrade_class_check.markdown#javaupgradeclasscheck) | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Performs several checks on Upgrade classes. |
 JavaUpgradeConnectionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds cases where `DataAccess.getConnection` is used (instead of using the availabe global variable `connection`). |
-JavaUpgradeVersionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Verifies that the correct upgrade versions are used in classes that implement `UpgradeStepRegistrator`. |
+JavaUpgradeVersionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Verifies that the correct upgrade versions are used in classes that implement `UpgradeStepRegistrar`. |
 JavaVariableTypeCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Performs several checks on the modifiers on variables. |
 JavaVerifyUpgradeConnectionCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Finds cases where `DataAccess.getConnection` is used (instead of using the availabe global variable `connection`). |
 JavaXMLSecurityCheck | [Security](security_checks.markdown#security-checks) | Finds possible XXE or Quadratic Blowup security vulnerabilities. |

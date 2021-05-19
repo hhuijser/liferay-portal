@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.output.stream.container.constants.OutputStreamContainerConstants;
 import com.liferay.portal.upgrade.internal.executor.SwappedLogExecutor;
 import com.liferay.portal.upgrade.internal.executor.UpgradeExecutor;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;
@@ -58,7 +58,7 @@ public class UpgradeStepRegistratorTracker {
 		_bundleContext = bundleContext;
 
 		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext, UpgradeStepRegistrator.class,
+			bundleContext, UpgradeStepRegistrar.class,
 			new UpgradeStepRegistratorServiceTrackerCustomizer());
 	}
 
@@ -73,7 +73,7 @@ public class UpgradeStepRegistratorTracker {
 	private ReleaseLocalService _releaseLocalService;
 
 	private ServiceTracker
-		<UpgradeStepRegistrator, Collection<ServiceRegistration<UpgradeStep>>>
+		<UpgradeStepRegistrar, Collection<ServiceRegistration<UpgradeStep>>>
 			_serviceTracker;
 
 	@Reference
@@ -84,22 +84,22 @@ public class UpgradeStepRegistratorTracker {
 
 	private class UpgradeStepRegistratorServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
-			<UpgradeStepRegistrator,
+			<UpgradeStepRegistrar,
 			 Collection<ServiceRegistration<UpgradeStep>>> {
 
 		@Override
 		public Collection<ServiceRegistration<UpgradeStep>> addingService(
-			ServiceReference<UpgradeStepRegistrator> serviceReference) {
+			ServiceReference<UpgradeStepRegistrar> serviceReference) {
 
-			UpgradeStepRegistrator upgradeStepRegistrator =
+			UpgradeStepRegistrar upgradeStepRegistrar =
 				_bundleContext.getService(serviceReference);
 
-			if (upgradeStepRegistrator == null) {
+			if (upgradeStepRegistrar == null) {
 				return null;
 			}
 
-			Class<? extends UpgradeStepRegistrator> clazz =
-				upgradeStepRegistrator.getClass();
+			Class<? extends UpgradeStepRegistrar> clazz =
+				upgradeStepRegistrar.getClass();
 
 			Bundle bundle = FrameworkUtil.getBundle(clazz);
 
@@ -123,7 +123,7 @@ public class UpgradeStepRegistratorTracker {
 			UpgradeStepRegistry upgradeStepRegistry = new UpgradeStepRegistry(
 				buildNumber);
 
-			upgradeStepRegistrator.register(upgradeStepRegistry);
+			upgradeStepRegistrar.register(upgradeStepRegistry);
 
 			List<UpgradeInfo> upgradeInfos =
 				upgradeStepRegistry.getUpgradeInfos();
@@ -182,13 +182,13 @@ public class UpgradeStepRegistratorTracker {
 
 		@Override
 		public void modifiedService(
-			ServiceReference<UpgradeStepRegistrator> serviceReference,
+			ServiceReference<UpgradeStepRegistrar> serviceReference,
 			Collection<ServiceRegistration<UpgradeStep>> serviceRegistrations) {
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<UpgradeStepRegistrator> serviceReference,
+			ServiceReference<UpgradeStepRegistrar> serviceReference,
 			Collection<ServiceRegistration<UpgradeStep>> serviceRegistrations) {
 
 			for (ServiceRegistration<UpgradeStep> serviceRegistration :

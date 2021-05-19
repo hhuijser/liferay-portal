@@ -16,7 +16,7 @@ package com.liferay.image.service.internal.upgrade;
 
 import com.liferay.image.service.internal.upgrade.v1_0_0.ImageStorageUpgradeProcess;
 import com.liferay.portal.kernel.service.ImageLocalService;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portlet.documentlibrary.store.StoreFactory;
 
 import org.osgi.service.component.annotations.Component;
@@ -25,8 +25,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class ImageServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class ImageServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

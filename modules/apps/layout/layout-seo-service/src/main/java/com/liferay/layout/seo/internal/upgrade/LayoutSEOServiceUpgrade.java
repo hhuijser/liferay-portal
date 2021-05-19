@@ -17,15 +17,15 @@ package com.liferay.layout.seo.internal.upgrade;
 import com.liferay.layout.seo.internal.upgrade.v2_0_0.SEOEntryUpgradeProcess;
 import com.liferay.layout.seo.internal.upgrade.v2_1_0.SchemaUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Cristina González
  */
-@Component(service = UpgradeStepRegistrator.class)
-public class LayoutSEOServiceUpgrade implements UpgradeStepRegistrator {
+@Component(service = UpgradeStepRegistrar.class)
+public class LayoutSEOServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

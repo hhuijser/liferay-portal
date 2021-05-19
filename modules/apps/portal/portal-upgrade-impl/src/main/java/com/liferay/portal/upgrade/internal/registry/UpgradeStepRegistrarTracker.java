@@ -51,7 +51,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = {})
-public class UpgradeStepRegistratorTracker {
+public class UpgradeStepRegistrarTracker {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
@@ -59,7 +59,7 @@ public class UpgradeStepRegistratorTracker {
 
 		_serviceTracker = ServiceTrackerFactory.open(
 			bundleContext, UpgradeStepRegistrar.class,
-			new UpgradeStepRegistratorServiceTrackerCustomizer());
+			new UpgradeStepRegistrarServiceTrackerCustomizer());
 	}
 
 	@Deactivate
@@ -82,7 +82,7 @@ public class UpgradeStepRegistratorTracker {
 	@Reference
 	private UpgradeExecutor _upgradeExecutor;
 
-	private class UpgradeStepRegistratorServiceTrackerCustomizer
+	private class UpgradeStepRegistrarServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
 			<UpgradeStepRegistrar,
 			 Collection<ServiceRegistration<UpgradeStep>>> {
@@ -152,7 +152,7 @@ public class UpgradeStepRegistratorTracker {
 				new ArrayList<>(upgradeInfos.size());
 
 			try (SafeCloseable safeCloseable =
-					UpgradeStepRegistratorThreadLocal.setEnabled(false)) {
+					UpgradeStepRegistrarThreadLocal.setEnabled(false)) {
 
 				for (UpgradeInfo upgradeInfo : upgradeInfos) {
 					ServiceRegistration<UpgradeStep> serviceRegistration =
@@ -199,7 +199,7 @@ public class UpgradeStepRegistratorTracker {
 		}
 
 		private final Log _log = LogFactoryUtil.getLog(
-			UpgradeStepRegistratorTracker.class);
+			UpgradeStepRegistrarTracker.class);
 
 	}
 

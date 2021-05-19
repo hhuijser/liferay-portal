@@ -187,7 +187,7 @@ public class FormNavigatorEntryProviderImpl
 						formNavigatorEntry.getCategoryKey()))),
 			new PropertyServiceReferenceComparator<>(
 				"form.navigator.entry.order"));
-		_serviceTracker = ServiceTrackerFactory.openWrapperServiceRegistrator(
+		_serviceTracker = ServiceTrackerFactory.openWrapperServiceRegistrar(
 			bundleContext,
 			(Class
 				<com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry

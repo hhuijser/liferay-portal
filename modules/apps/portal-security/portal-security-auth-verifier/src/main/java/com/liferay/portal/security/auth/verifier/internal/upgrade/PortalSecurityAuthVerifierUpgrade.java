@@ -30,8 +30,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Tom Wang
  */
 @Component(immediate = true, service = UpgradeStepRegistrar.class)
-public class PortalSecurityAuthVerifierUpgrade
-	implements UpgradeStepRegistrar {
+public class PortalSecurityAuthVerifierUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

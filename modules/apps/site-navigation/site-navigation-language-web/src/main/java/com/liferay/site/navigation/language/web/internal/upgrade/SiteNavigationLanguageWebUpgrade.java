@@ -29,8 +29,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julio Camarero
  */
 @Component(immediate = true, service = UpgradeStepRegistrar.class)
-public class SiteNavigationLanguageWebUpgrade
-	implements UpgradeStepRegistrar {
+public class SiteNavigationLanguageWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

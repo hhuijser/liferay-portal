@@ -24,8 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Arthur Chan
  */
 @Component(service = UpgradeStepRegistrar.class)
-public class MFAFIDO2CredentialServiceUpgrade
-	implements UpgradeStepRegistrar {
+public class MFAFIDO2CredentialServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

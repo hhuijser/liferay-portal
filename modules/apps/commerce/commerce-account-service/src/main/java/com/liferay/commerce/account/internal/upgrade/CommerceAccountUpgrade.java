@@ -38,8 +38,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
-public class CommerceAccountUpgradeStepRegistrator
-	implements UpgradeStepRegistrar {
+public class CommerceAccountUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {
@@ -91,7 +90,7 @@ public class CommerceAccountUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceAccountUpgradeStepRegistrator.class);
+		CommerceAccountUpgrade.class);
 
 	@Reference(
 		target = "(&(release.bundle.symbolic.name=com.liferay.account.service)(release.schema.version>=2.1.0))"

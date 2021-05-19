@@ -15,12 +15,9 @@
 package com.liferay.portal.kernel.jsonwebservice;
 
 /**
- * @author     Miguel Pastor
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             JSONWebServiceRegistrar}
+ * @author Miguel Pastor
  */
-@Deprecated
-public interface JSONWebServiceRegistrator {
+public interface JSONWebServiceRegistrar {
 
 	public void processBean(
 		String contextName, String contextPath, Object bean);

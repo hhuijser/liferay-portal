@@ -117,7 +117,7 @@ public class UpgradeRegistryTest {
 		_serviceRegistration = bundleContext.registerService(
 			UpgradeStepRegistrar.class, testUpgradeStepRegistrar, null);
 
-		Assert.assertTrue(testUpgradeStepRegistrar._registratorCalled);
+		Assert.assertTrue(testUpgradeStepRegistrar._registrarCalled);
 
 		Assert.assertFalse(testUpgradeSteps[0]._upgradeCalled);
 		Assert.assertFalse(testUpgradeSteps[1]._upgradeCalled);
@@ -162,7 +162,7 @@ public class UpgradeRegistryTest {
 
 		@Override
 		public void register(Registry registry) {
-			_registratorCalled = true;
+			_registrarCalled = true;
 
 			for (TestUpgradeStep testUpgradeStep : _testUpgradeSteps) {
 				registry.register(
@@ -175,7 +175,7 @@ public class UpgradeRegistryTest {
 			_testUpgradeSteps = testUpgradeSteps;
 		}
 
-		private boolean _registratorCalled;
+		private boolean _registrarCalled;
 		private final TestUpgradeStep[] _testUpgradeSteps;
 
 	}

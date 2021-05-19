@@ -35,13 +35,10 @@ import org.osgi.service.metatype.MetaTypeProvider;
 
 /**
  * @author Carlos Sierra Andrés
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             MetaTypeVirtualBundleRegistrar}
  */
-@Deprecated
-public class MetaTypeVirtualBundleRegistrator implements Closeable {
+public class MetaTypeVirtualBundleRegistrar implements Closeable {
 
-	public MetaTypeVirtualBundleRegistrator(
+	public MetaTypeVirtualBundleRegistrar(
 		BundleContext bundleContext,
 		ServicesDropDownMetaTypeProvider servicesDropDownMetaTypeProvider) {
 
@@ -111,7 +108,7 @@ public class MetaTypeVirtualBundleRegistrator implements Closeable {
 			properties);
 	}
 
-	protected MetaTypeVirtualBundleRegistrator importPackage(
+	protected MetaTypeVirtualBundleRegistrar importPackage(
 		String packageString) {
 
 		Attributes mainAttributes = _manifest.getMainAttributes();
@@ -122,7 +119,7 @@ public class MetaTypeVirtualBundleRegistrator implements Closeable {
 		return this;
 	}
 
-	protected MetaTypeVirtualBundleRegistrator requireLanguageKeys(
+	protected MetaTypeVirtualBundleRegistrar requireLanguageKeys(
 		String filterString) {
 
 		Attributes mainAttributes = _manifest.getMainAttributes();

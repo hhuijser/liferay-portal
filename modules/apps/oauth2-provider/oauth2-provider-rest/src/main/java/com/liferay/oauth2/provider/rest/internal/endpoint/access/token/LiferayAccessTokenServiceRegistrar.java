@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 	},
 	service = {}
 )
-public class LiferayAccessTokenServiceRegistrator {
+public class LiferayAccessTokenServiceRegistrar {
 
 	@Activate
 	protected void activate(

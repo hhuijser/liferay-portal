@@ -14,7 +14,7 @@
 
 package com.liferay.oauth2.provider.jsonws.internal.service.access.policy.model.listener;
 
-import com.liferay.oauth2.provider.jsonws.internal.service.access.policy.scope.SAPEntryScopeDescriptorFinderRegistrator;
+import com.liferay.oauth2.provider.jsonws.internal.service.access.policy.scope.SAPEntryScopeDescriptorFinderRegistrar;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
@@ -48,7 +48,7 @@ public class SAPEntryModelListener extends BaseModelListener<SAPEntry> {
 	}
 
 	@Reference
-	private SAPEntryScopeDescriptorFinderRegistrator
+	private SAPEntryScopeDescriptorFinderRegistrar
 		_sapEntryScopeDescriptorFinderRegistrator;
 
 }

@@ -16,7 +16,7 @@ package com.liferay.oauth2.provider.jsonws.internal.security.auth.verifier;
 
 import com.liferay.oauth2.provider.constants.OAuth2ProviderConstants;
 import com.liferay.oauth2.provider.jsonws.internal.service.access.policy.scope.SAPEntryScope;
-import com.liferay.oauth2.provider.jsonws.internal.service.access.policy.scope.SAPEntryScopeDescriptorFinderRegistrator;
+import com.liferay.oauth2.provider.jsonws.internal.service.access.policy.scope.SAPEntryScopeDescriptorFinderRegistrar;
 import com.liferay.oauth2.provider.model.OAuth2Application;
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
 import com.liferay.oauth2.provider.model.OAuth2ScopeGrant;
@@ -294,7 +294,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 	private OAuth2ScopeGrantLocalService _oAuth2ScopeGrantLocalService;
 
 	@Reference
-	private SAPEntryScopeDescriptorFinderRegistrator
+	private SAPEntryScopeDescriptorFinderRegistrar
 		_sapEntryScopeDescriptorFinderRegistrator;
 
 	@Reference

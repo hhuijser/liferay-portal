@@ -57,7 +57,7 @@ public class JavaUpgradeClassCheck extends BaseFileCheck {
 
 		// LPS-59828
 
-		if (!content.contains("implements UpgradeStepRegistrator")) {
+		if (!content.contains("implements UpgradeStepRegistrar")) {
 			return;
 		}
 

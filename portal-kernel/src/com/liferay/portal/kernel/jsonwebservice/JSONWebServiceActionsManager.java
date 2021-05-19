@@ -64,7 +64,7 @@ public interface JSONWebServiceActionsManager {
 
 	public int registerService(
 		String contextName, String contextPath, Object service,
-		JSONWebServiceRegistrator jsonWebServiceRegistrator);
+		JSONWebServiceRegistrar jsonWebServiceRegistrar);
 
 	public int registerServletContext(ServletContext servletContext);
 

@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionMapping;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManager;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceNaming;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrator;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrar;
 import com.liferay.portal.kernel.jsonwebservice.NoSuchJSONWebServiceException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -277,8 +277,8 @@ public class JSONWebServiceActionsManagerImpl
 	public int registerService(
 		String contextName, String contextPath, Object service) {
 
-		JSONWebServiceRegistrator jsonWebServiceRegistrator =
-			new DefaultJSONWebServiceRegistrator();
+		JSONWebServiceRegistrar jsonWebServiceRegistrator =
+			new DefaultJSONWebServiceRegistrar();
 
 		return registerService(
 			contextName, contextPath, service, jsonWebServiceRegistrator);
@@ -287,7 +287,7 @@ public class JSONWebServiceActionsManagerImpl
 	@Override
 	public int registerService(
 		String contextName, String contextPath, Object service,
-		JSONWebServiceRegistrator jsonWebServiceRegistrator) {
+		JSONWebServiceRegistrar jsonWebServiceRegistrator) {
 
 		jsonWebServiceRegistrator.processBean(
 			contextName, contextPath, service);
@@ -328,10 +328,10 @@ public class JSONWebServiceActionsManagerImpl
 			return -1;
 		}
 
-		DefaultJSONWebServiceRegistrator defaultJSONWebServiceRegistrator =
-			new DefaultJSONWebServiceRegistrator();
+		DefaultJSONWebServiceRegistrar defaultJSONWebServiceRegistrar =
+			new DefaultJSONWebServiceRegistrar();
 
-		defaultJSONWebServiceRegistrator.processAllBeans(
+		defaultJSONWebServiceRegistrar.processAllBeans(
 			contextName, contextPath, beanLocator);
 
 		int count = getJSONWebServiceActionsCount(contextPath);

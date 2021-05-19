@@ -16,7 +16,7 @@ package com.liferay.site.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.site.internal.upgrade.v2_0_0.util.SiteFriendlyURLTable;
 
 import org.osgi.service.component.annotations.Component;
@@ -24,8 +24,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author José Ángel Jiménez
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SiteServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class SiteServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

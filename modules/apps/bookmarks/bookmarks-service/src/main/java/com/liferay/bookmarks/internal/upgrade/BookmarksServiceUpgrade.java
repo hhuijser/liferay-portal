@@ -23,7 +23,7 @@ import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.portal.kernel.settings.SettingsFactory;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.ViewCountUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.view.count.service.ViewCountEntryLocalService;
 
 import org.osgi.service.component.annotations.Component;
@@ -32,8 +32,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Miguel Pastor
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class BookmarksServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class BookmarksServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

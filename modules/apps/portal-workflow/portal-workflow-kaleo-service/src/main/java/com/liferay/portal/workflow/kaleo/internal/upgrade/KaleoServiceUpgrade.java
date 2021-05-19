@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.workflow.kaleo.internal.upgrade.v1_0_0.KaleoTaskInstanceTokenUpgradeProcess;
 import com.liferay.portal.workflow.kaleo.internal.upgrade.v1_1_0.WorkflowContextUpgradeProcess;
 import com.liferay.portal.workflow.kaleo.internal.upgrade.v1_2_0.UpgradePortletId;
@@ -57,9 +57,9 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {KaleoServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {KaleoServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class KaleoServiceUpgrade implements UpgradeStepRegistrator {
+public class KaleoServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

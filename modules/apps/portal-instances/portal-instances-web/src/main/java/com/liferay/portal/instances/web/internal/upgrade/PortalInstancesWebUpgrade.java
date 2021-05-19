@@ -16,7 +16,7 @@ package com.liferay.portal.instances.web.internal.upgrade;
 
 import com.liferay.portal.instances.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -24,8 +24,8 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  * @author Pei-Jung Lan
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class PortalInstancesWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class PortalInstancesWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

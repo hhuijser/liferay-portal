@@ -21,7 +21,7 @@ import com.liferay.portal.security.auth.verifier.internal.digest.authentication.
 import com.liferay.portal.security.auth.verifier.internal.portal.session.configuration.PortalSessionAuthVerifierConfiguration;
 import com.liferay.portal.security.auth.verifier.internal.request.parameter.configuration.RequestParameterAuthVerifierConfiguration;
 import com.liferay.portal.security.auth.verifier.internal.tunnel.configuration.TunnelAuthVerifierConfiguration;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -29,9 +29,9 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Tom Wang
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
 public class PortalSecurityAuthVerifierUpgrade
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

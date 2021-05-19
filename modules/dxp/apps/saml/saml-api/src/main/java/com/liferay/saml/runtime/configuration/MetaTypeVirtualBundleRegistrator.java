@@ -34,7 +34,7 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.metatype.MetaTypeProvider;
 
 /**
- * @author Carlos Sierra Andrés
+ * @author     Carlos Sierra Andrés
  * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
  *             MetaTypeVirtualBundleRegistrar}
  */

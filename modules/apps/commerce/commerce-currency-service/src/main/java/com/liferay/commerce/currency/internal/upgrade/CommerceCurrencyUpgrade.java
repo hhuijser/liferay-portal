@@ -28,8 +28,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
-public class CommerceCurrencyUpgradeStepRegistrator
-	implements UpgradeStepRegistrar {
+public class CommerceCurrencyUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {
@@ -49,6 +48,6 @@ public class CommerceCurrencyUpgradeStepRegistrator
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceCurrencyUpgradeStepRegistrator.class);
+		CommerceCurrencyUpgrade.class);
 
 }

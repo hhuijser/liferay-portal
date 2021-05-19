@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.product.type.grouped.internal.upgrade;
+package com.liferay.commerce.product.type.virtual.internal.upgrade;
 
-import com.liferay.commerce.product.type.grouped.internal.upgrade.v1_1_0.CPDefinitionGroupedEntryUpgradeProcess;
+import com.liferay.commerce.product.type.virtual.internal.upgrade.v1_1_0.CPDefinitionVirtualSettingUpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
@@ -22,33 +22,37 @@ import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Ethan Bustad
+ * @author Alessio Antonio Rendina
  */
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
-public class CommerceProductTypeGroupedUpgradeStepRegistrator
-	implements UpgradeStepRegistrar {
+public class CommerceProductTypeVirtualUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Commerce product type grouped upgrade step registrator " +
-					"'started'");
+				"Commerce product type virtual upgrade step registrator " +
+					"STARTED");
 		}
 
 		registry.register(
-			"1.0.0", "1.1.0", new CPDefinitionGroupedEntryUpgradeProcess());
+			"1.0.0", "1.1.0", new CPDefinitionVirtualSettingUpgradeProcess());
+
+		registry.register(
+			"1.1.0", "1.1.1",
+			new com.liferay.commerce.product.type.virtual.internal.upgrade.
+				v1_1_1.CPDefinitionVirtualSettingUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Commerce product type grouped upgrade step registrator " +
-					"'finished'");
+				"Commerce product type virtual upgrade step registrator " +
+					"FINISHED");
 		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceProductTypeGroupedUpgradeStepRegistrator.class);
+		CommerceProductTypeVirtualUpgrade.class);
 
 }

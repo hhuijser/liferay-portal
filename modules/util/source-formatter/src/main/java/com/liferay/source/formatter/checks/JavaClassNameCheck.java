@@ -51,7 +51,9 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 
 		String className = javaClass.getName();
 
-		if (className.endsWith("Registrator")) {
+		if (className.endsWith("Registrator") &&
+			isAttributeValue(_CHECK_REGISTRAR_KEY, absolutePath)) {
+
 			addMessage(
 				fileName,
 				StringBundler.concat(
@@ -171,6 +173,8 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 					packageName, "'"));
 		}
 	}
+
+	private static final String _CHECK_REGISTRAR_KEY = "checkRegistrar";
 
 	private static final String _ENFORCE_IMPLEMENTED_CLASS_NAMES_KEY =
 		"enforceImplementedClassNames";

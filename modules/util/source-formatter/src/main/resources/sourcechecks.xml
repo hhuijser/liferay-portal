@@ -1067,6 +1067,10 @@
 			<category name="Performance" />
 			<description name="Finds `.jspf` files that are not used." />
 		</check>
+		<check name="JSPVarNameCheck">
+			<category name="Styling" />
+			<description name="Checks that values of attribute `var` follow naming conventions." />
+		</check>
 		<check name="LocaleUtilCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds cases where `com.liferay.portal.kernel.util.LocaleUtil` should be used (instead of `java.util.Locale`)." />

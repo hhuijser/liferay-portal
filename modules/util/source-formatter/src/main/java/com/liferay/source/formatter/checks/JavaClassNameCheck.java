@@ -49,13 +49,23 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
+		String className = javaClass.getName();
+
+		if (className.endsWith("Registrator")) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Rename '", className, "' to '",
+					StringUtil.replaceLast(
+						className, "Registrator", "Registrar"),
+					"'"));
+		}
+
 		String packageName = javaClass.getPackageName();
 
 		if (Validator.isNull(packageName)) {
 			return javaTerm.getContent();
 		}
-
-		String className = javaClass.getName();
 
 		_checkTypo(fileName, className, packageName, 1);
 

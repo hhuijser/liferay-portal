@@ -60,10 +60,10 @@ public class RESTExtender {
 
 		_component = _dependencyManager.createComponent();
 
-		CXFJaxRsServiceRegistrator cxfJaxRsServiceRegistrator =
-			new CXFJaxRsServiceRegistrator(properties);
+		CXFJaxRsServiceRegistrar cxfJaxRsServiceRegistrar =
+			new CXFJaxRsServiceRegistrar(properties);
 
-		_component.setImplementation(cxfJaxRsServiceRegistrator);
+		_component.setImplementation(cxfJaxRsServiceRegistrar);
 
 		addBusDependencies();
 		addJaxRsApplicationDependencies();

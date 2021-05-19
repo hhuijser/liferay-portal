@@ -55,9 +55,9 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  */
 @Component(
 	configurationPid = "com.liferay.oauth2.provider.jsonws.internal.configuration.OAuth2JSONWSConfiguration",
-	immediate = true, service = SAPEntryScopeDescriptorFinderRegistrator.class
+	immediate = true, service = SAPEntryScopeDescriptorFinderRegistrar.class
 )
-public class SAPEntryScopeDescriptorFinderRegistrator {
+public class SAPEntryScopeDescriptorFinderRegistrar {
 
 	public List<SAPEntryScope> getRegisteredSAPEntryScopes(long companyId) {
 		return new ArrayList<>(_registeredSAPEntryScopes.get(companyId));
@@ -259,7 +259,7 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		SAPEntryScopeDescriptorFinderRegistrator.class);
+		SAPEntryScopeDescriptorFinderRegistrar.class);
 
 	private BundleContext _bundleContext;
 

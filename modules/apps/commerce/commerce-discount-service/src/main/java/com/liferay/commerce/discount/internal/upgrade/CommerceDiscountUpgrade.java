@@ -55,13 +55,12 @@ public class CommerceDiscountUpgrade implements UpgradeStepRegistrar {
 			new CommerceDiscountExternalReferenceCodeUpgradeProcess());
 
 		registry.register(
-			"2.1.0", "2.2.0",
+			"2.1.0", "2.2.0", new CommerceDiscountAccountRelUpgradeProcess(),
 			new com.liferay.commerce.discount.internal.upgrade.v2_2_0.
-				CommerceDiscountUpgradeProcess(),
-			new CommerceDiscountAccountRelUpgradeProcess(),
+				CommerceDiscountCommerceAccountGroupRelUpgradeProcess(),
 			new CommerceDiscountRuleNameUpgradeProcess(),
 			new com.liferay.commerce.discount.internal.upgrade.v2_2_0.
-				CommerceDiscountCommerceAccountGroupRelUpgradeProcess());
+				CommerceDiscountUpgradeProcess());
 
 		registry.register(
 			"2.2.0", "2.3.0",

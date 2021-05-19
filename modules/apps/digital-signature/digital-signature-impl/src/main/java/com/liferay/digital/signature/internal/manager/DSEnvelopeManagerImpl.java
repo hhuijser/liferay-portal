@@ -75,14 +75,13 @@ public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 
 	@Override
 	public List<DSEnvelope> getDSEnvelopes(
-		long groupId, String... dsEnvelopeIds) {
+		long groupId, String fromDateString) {
 
 		JSONObject jsonObject = _dsHttp.get(
 			groupId,
 			StringBundler.concat(
-				"envelopes/?envelope_ids=",
-				ArrayUtil.toString(dsEnvelopeIds, StringPool.BLANK),
-				"&include=documents,recipients"));
+				"envelopes?from_date=", fromDateString,
+				"&include=recipients,documents&order=desc"));
 
 		return JSONUtil.toList(
 			jsonObject.getJSONArray("envelopes"),
@@ -91,13 +90,14 @@ public class DSEnvelopeManagerImpl implements DSEnvelopeManager {
 
 	@Override
 	public List<DSEnvelope> getDSEnvelopes(
-		long groupId, String fromDateString) {
+		long groupId, String... dsEnvelopeIds) {
 
 		JSONObject jsonObject = _dsHttp.get(
 			groupId,
 			StringBundler.concat(
-				"envelopes?from_date=", fromDateString,
-				"&include=recipients,documents&order=desc"));
+				"envelopes/?envelope_ids=",
+				ArrayUtil.toString(dsEnvelopeIds, StringPool.BLANK),
+				"&include=documents,recipients"));
 
 		return JSONUtil.toList(
 			jsonObject.getJSONArray("envelopes"),

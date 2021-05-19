@@ -131,7 +131,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 			);
 
 			List<SAPEntryScope> sapEntryScopes =
-				_sapEntryScopeDescriptorFinderRegistrator.
+				_sapEntryScopeDescriptorFinderRegistrar.
 					getRegisteredSAPEntryScopes(companyId);
 
 			List<String> serviceAccessPolicyNames = new ArrayList<>(
@@ -295,7 +295,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 
 	@Reference
 	private SAPEntryScopeDescriptorFinderRegistrar
-		_sapEntryScopeDescriptorFinderRegistrator;
+		_sapEntryScopeDescriptorFinderRegistrar;
 
 	@Reference
 	private ScopeLocator _scopeLocator;

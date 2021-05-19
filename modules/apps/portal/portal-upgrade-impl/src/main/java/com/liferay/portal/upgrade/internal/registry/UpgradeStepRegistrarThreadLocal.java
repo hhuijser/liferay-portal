@@ -20,7 +20,7 @@ import com.liferay.petra.lang.SafeCloseable;
 /**
  * @author Preston Crary
  */
-public class UpgradeStepRegistratorThreadLocal {
+public class UpgradeStepRegistrarThreadLocal {
 
 	public static boolean isEnabled() {
 		return _enabled.get();
@@ -32,7 +32,7 @@ public class UpgradeStepRegistratorThreadLocal {
 
 	private static final CentralizedThreadLocal<Boolean> _enabled =
 		new CentralizedThreadLocal<>(
-			UpgradeStepRegistratorThreadLocal.class + "._enabled",
+			UpgradeStepRegistrarThreadLocal.class + "._enabled",
 			() -> Boolean.TRUE);
 
 }

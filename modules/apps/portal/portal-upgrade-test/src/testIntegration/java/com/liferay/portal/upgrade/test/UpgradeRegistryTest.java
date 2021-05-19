@@ -111,13 +111,13 @@ public class UpgradeRegistryTest {
 		testUpgradeSteps[2] = new TestUpgradeStep("3.0.0", "4.0.0");
 		testUpgradeSteps[3] = new TestUpgradeStep("1.0.0", "4.0.0");
 
-		TestUpgradeStepRegistrator testUpgradeStepRegistrator =
-			new TestUpgradeStepRegistrator(testUpgradeSteps);
+		TestUpgradeStepRegistrar testUpgradeStepRegistrar =
+			new TestUpgradeStepRegistrar(testUpgradeSteps);
 
 		_serviceRegistration = bundleContext.registerService(
-			UpgradeStepRegistrar.class, testUpgradeStepRegistrator, null);
+			UpgradeStepRegistrar.class, testUpgradeStepRegistrar, null);
 
-		Assert.assertTrue(testUpgradeStepRegistrator._registratorCalled);
+		Assert.assertTrue(testUpgradeStepRegistrar._registratorCalled);
 
 		Assert.assertFalse(testUpgradeSteps[0]._upgradeCalled);
 		Assert.assertFalse(testUpgradeSteps[1]._upgradeCalled);
@@ -157,7 +157,7 @@ public class UpgradeRegistryTest {
 
 	}
 
-	private static class TestUpgradeStepRegistrator
+	private static class TestUpgradeStepRegistrar
 		implements UpgradeStepRegistrar {
 
 		@Override
@@ -171,7 +171,7 @@ public class UpgradeRegistryTest {
 			}
 		}
 
-		private TestUpgradeStepRegistrator(TestUpgradeStep[] testUpgradeSteps) {
+		private TestUpgradeStepRegistrar(TestUpgradeStep[] testUpgradeSteps) {
 			_testUpgradeSteps = testUpgradeSteps;
 		}
 

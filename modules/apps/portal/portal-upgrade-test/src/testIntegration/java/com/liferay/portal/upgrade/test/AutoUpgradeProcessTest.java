@@ -101,8 +101,7 @@ public class AutoUpgradeProcessTest {
 		BundleContext bundleContext = bundle.getBundleContext();
 
 		_serviceRegistration = bundleContext.registerService(
-			UpgradeStepRegistrar.class, new TestUpgradeStepRegistrator(),
-			null);
+			UpgradeStepRegistrar.class, new TestUpgradeStepRegistrar(), null);
 
 		return _releaseLocalService.fetchRelease(_SERVLET_CONTEXT_NAME);
 	}
@@ -117,7 +116,7 @@ public class AutoUpgradeProcessTest {
 
 	private ServiceRegistration<UpgradeStepRegistrar> _serviceRegistration;
 
-	private static class TestUpgradeStepRegistrator
+	private static class TestUpgradeStepRegistrar
 		implements UpgradeStepRegistrar {
 
 		@Override

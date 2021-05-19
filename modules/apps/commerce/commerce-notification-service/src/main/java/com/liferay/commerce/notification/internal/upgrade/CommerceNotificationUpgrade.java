@@ -40,7 +40,7 @@ public class CommerceNotificationUpgrade implements UpgradeStepRegistrar {
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce notification upgrade step registrator started");
+			_log.info("Commerce notification upgrade started");
 		}
 
 		registry.register("1.0.0", "1.1.0", new DummyUpgradeProcess());
@@ -62,8 +62,7 @@ public class CommerceNotificationUpgrade implements UpgradeStepRegistrar {
 				_classNameLocalService, _groupLocalService));
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce notification upgrade step registrator finished");
+			_log.info("Commerce notification upgrade finished");
 		}
 	}
 

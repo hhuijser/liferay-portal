@@ -18,8 +18,8 @@ import com.liferay.osgi.util.ServiceTrackerFactory;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManager;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrator;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistratorFactory;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrar;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrarFactory;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -114,7 +114,7 @@ public class JSONWebServiceTracker
 
 		try {
 			_jsonWebServiceActionsManager.registerService(
-				contextName, contextPath, service, _jsonWebServiceRegistrator);
+				contextName, contextPath, service, _jsonWebServiceRegistrar);
 		}
 		finally {
 			currentThread.setContextClassLoader(contextClassLoader);
@@ -131,10 +131,10 @@ public class JSONWebServiceTracker
 	}
 
 	@Reference
-	protected void setJSONWebServiceRegistratorFactory(
-		JSONWebServiceRegistratorFactory jsonWebServiceRegistratorFactory) {
+	protected void setJSONWebServiceRegistrarFactory(
+		JSONWebServiceRegistrarFactory jsonWebServiceRegistrarFactory) {
 
-		_jsonWebServiceRegistrator = jsonWebServiceRegistratorFactory.build(
+		_jsonWebServiceRegistrar = jsonWebServiceRegistrarFactory.build(
 			new ServiceJSONWebServiceScannerStrategy());
 	}
 
@@ -148,15 +148,15 @@ public class JSONWebServiceTracker
 		_jsonWebServiceActionsManager = null;
 	}
 
-	protected void unsetJSONWebServiceRegistratorFactory(
-		JSONWebServiceRegistratorFactory jsonWebServiceRegistratorFactory) {
+	protected void unsetJSONWebServiceRegistrarFactory(
+		JSONWebServiceRegistrarFactory jsonWebServiceRegistrarFactory) {
 
-		_jsonWebServiceRegistrator = null;
+		_jsonWebServiceRegistrar = null;
 	}
 
 	private ComponentContext _componentContext;
 	private JSONWebServiceActionsManager _jsonWebServiceActionsManager;
-	private JSONWebServiceRegistrator _jsonWebServiceRegistrator;
+	private JSONWebServiceRegistrar _jsonWebServiceRegistrar;
 	private ServiceTracker<Object, Object> _serviceTracker;
 
 }

@@ -32,9 +32,7 @@ public class CommerceProductTypeVirtualUpgrade implements UpgradeStepRegistrar {
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce product type virtual upgrade step registrator " +
-					"STARTED");
+			_log.info("Commerce product type virtual upgrade STARTED");
 		}
 
 		registry.register(
@@ -46,9 +44,7 @@ public class CommerceProductTypeVirtualUpgrade implements UpgradeStepRegistrar {
 				v1_1_1.CPDefinitionVirtualSettingUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce product type virtual upgrade step registrator " +
-					"FINISHED");
+			_log.info("Commerce product type virtual upgrade FINISHED");
 		}
 	}
 

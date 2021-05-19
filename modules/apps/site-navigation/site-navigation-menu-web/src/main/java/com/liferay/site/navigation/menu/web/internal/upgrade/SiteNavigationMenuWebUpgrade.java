@@ -15,7 +15,7 @@
 package com.liferay.site.navigation.menu.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.site.navigation.menu.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.site.navigation.menu.web.internal.upgrade.v1_0_0.UpgradePortletPreferences;
 import com.liferay.site.navigation.menu.web.internal.upgrade.v1_0_1.PortletPreferencesUpgradeProcess;
@@ -25,8 +25,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Eudaldo Alonso
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class SiteNavigationMenuWebUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class SiteNavigationMenuWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

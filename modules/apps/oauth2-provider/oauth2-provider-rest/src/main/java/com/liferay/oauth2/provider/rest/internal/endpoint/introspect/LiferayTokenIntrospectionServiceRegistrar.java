@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = {}
 )
-public class LiferayTokenIntrospectionServiceRegistrator {
+public class LiferayTokenIntrospectionServiceRegistrar {
 
 	@Activate
 	protected void activate(

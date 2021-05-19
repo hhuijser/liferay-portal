@@ -74,7 +74,7 @@ import org.osgi.service.component.annotations.Reference;
 	configurationPid = "com.liferay.oauth2.provider.configuration.OAuth2ProviderConfiguration",
 	immediate = true, service = {}
 )
-public class AuthorizationCodeGrantServiceRegistrator {
+public class AuthorizationCodeGrantServiceRegistrar {
 
 	public static class LiferayAuthorizationCodeGrantService
 		extends AuthorizationCodeGrantService {
@@ -373,7 +373,7 @@ public class AuthorizationCodeGrantServiceRegistrator {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AuthorizationCodeGrantServiceRegistrator.class);
+		AuthorizationCodeGrantServiceRegistrar.class);
 
 	@Reference
 	private LiferayOAuthDataProvider _liferayOAuthDataProvider;

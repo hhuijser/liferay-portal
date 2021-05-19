@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Deactivate;
  * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = {})
-public class CryptoHashTrackerRegistrator {
+public class CryptoHashTrackerRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {

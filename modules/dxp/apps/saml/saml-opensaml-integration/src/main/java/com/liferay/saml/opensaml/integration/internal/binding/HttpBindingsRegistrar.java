@@ -33,8 +33,8 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Carlos Sierra Andrés
  */
-@Component(immediate = true, service = HttpBindingsRegistrator.class)
-public class HttpBindingsRegistrator {
+@Component(immediate = true, service = HttpBindingsRegistrar.class)
+public class HttpBindingsRegistrar {
 
 	@Activate
 	protected void activate(

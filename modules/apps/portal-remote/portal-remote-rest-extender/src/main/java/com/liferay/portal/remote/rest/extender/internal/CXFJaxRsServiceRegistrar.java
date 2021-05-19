@@ -32,9 +32,9 @@ import org.apache.cxf.jaxrs.provider.json.JSONProvider;
 /**
  * @author Carlos Sierra Andrés
  */
-public class CXFJaxRsServiceRegistrator {
+public class CXFJaxRsServiceRegistrar {
 
-	public CXFJaxRsServiceRegistrator(Map<String, Object> properties) {
+	public CXFJaxRsServiceRegistrar(Map<String, Object> properties) {
 		_properties = properties;
 	}
 

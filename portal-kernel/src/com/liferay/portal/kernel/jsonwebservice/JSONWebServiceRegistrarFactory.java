@@ -15,14 +15,23 @@
 package com.liferay.portal.kernel.jsonwebservice;
 
 /**
- * @author     Miguel Pastor
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             JSONWebServiceRegistrar}
+ * @author Miguel Pastor
  */
-@Deprecated
-public interface JSONWebServiceRegistrator {
+public class JSONWebServiceRegistrarFactory {
 
-	public void processBean(
-		String contextName, String contextPath, Object bean);
+	public JSONWebServiceRegistrar build(
+		JSONWebServiceScannerStrategy jsonWebServiceScannerStrategy) {
+
+		return _jsonWebServiceRegistrarBuilder.build(
+			jsonWebServiceScannerStrategy);
+	}
+
+	public void setJSONWebServiceRegistrarBuilder(
+		JSONWebServiceRegistrarBuilder jsonWebServiceRegistrarBuilder) {
+
+		_jsonWebServiceRegistrarBuilder = jsonWebServiceRegistrarBuilder;
+	}
+
+	private JSONWebServiceRegistrarBuilder _jsonWebServiceRegistrarBuilder;
 
 }

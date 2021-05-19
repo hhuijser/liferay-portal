@@ -19,8 +19,11 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistratorBuilder
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceScannerStrategy;
 
 /**
- * @author Miguel Pastor
+ * @author     Miguel Pastor
+ * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+ *             DefaultJSONWebServiceRegistrarBuilder}
  */
+@Deprecated
 public class DefaultJSONWebServiceRegistratorBuilder
 	implements JSONWebServiceRegistratorBuilder {
 

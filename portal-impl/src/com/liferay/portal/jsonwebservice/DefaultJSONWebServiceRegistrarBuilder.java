@@ -12,17 +12,24 @@
  * details.
  */
 
-package com.liferay.portal.kernel.jsonwebservice;
+package com.liferay.portal.jsonwebservice;
+
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrar;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrarBuilder;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceScannerStrategy;
 
 /**
- * @author     Miguel Pastor
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             JSONWebServiceRegistrar}
+ * @author Miguel Pastor
  */
-@Deprecated
-public interface JSONWebServiceRegistrator {
+public class DefaultJSONWebServiceRegistrarBuilder
+	implements JSONWebServiceRegistrarBuilder {
 
-	public void processBean(
-		String contextName, String contextPath, Object bean);
+	@Override
+	public JSONWebServiceRegistrar build(
+		JSONWebServiceScannerStrategy jsonWebServiceScannerStrategy) {
+
+		return new DefaultJSONWebServiceRegistrar(
+			jsonWebServiceScannerStrategy);
+	}
 
 }

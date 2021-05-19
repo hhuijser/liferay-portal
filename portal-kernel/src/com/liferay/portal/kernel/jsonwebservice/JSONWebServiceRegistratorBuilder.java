@@ -15,8 +15,11 @@
 package com.liferay.portal.kernel.jsonwebservice;
 
 /**
- * @author Miguel Pastor
+ * @author     Miguel Pastor
+ * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+ *             JSONWebServiceRegistrarBuilder}
  */
+@Deprecated
 public interface JSONWebServiceRegistratorBuilder {
 
 	public JSONWebServiceRegistrator build(

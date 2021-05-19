@@ -12,51 +12,49 @@
  * details.
  */
 
-package com.liferay.commerce.inventory.internal.upgrade;
+package com.liferay.commerce.shipping.engine.fixed.internal.upgrade;
 
-import com.liferay.commerce.inventory.internal.upgrade.v1_1_0.CommerceInventoryWarehouseItemUpgradeProcess;
-import com.liferay.commerce.inventory.internal.upgrade.v2_0_0.CommerceInventoryAuditUpgradeProcess;
-import com.liferay.commerce.inventory.internal.upgrade.v2_1_0.MVCCUpgradeProcess;
+import com.liferay.commerce.shipping.engine.fixed.internal.upgrade.v1_1_0.CommerceShippingFixedOptionRelUpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.upgrade.DummyUpgradeProcess;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Luca Pellizzon
  * @author Alessio Antonio Rendina
  */
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
-public class CommerceInventoryUpgradeStepRegistrator
+public class CommerceShippingEngineFixedUpgrade
 	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce inventory upgrade step registrator started");
+			_log.info(
+				"Commerce shipping engine fixed upgrade step registrator " +
+					"STARTED");
 		}
 
 		registry.register(
 			"1.0.0", "1.1.0",
-			new CommerceInventoryWarehouseItemUpgradeProcess());
-
-		registry.register("1.1.0", "1.2.0", new DummyUpgradeProcess());
+			new CommerceShippingFixedOptionRelUpgradeProcess());
 
 		registry.register(
-			"1.2.0", "2.0.0", new CommerceInventoryAuditUpgradeProcess());
-
-		registry.register("2.0.0", "2.1.0", new MVCCUpgradeProcess());
+			"1.1.0", "2.0.0",
+			new com.liferay.commerce.shipping.engine.fixed.internal.upgrade.
+				v2_0_0.CommerceShippingFixedOptionRelUpgradeProcess());
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Commerce inventory upgrade step registrator finished");
+			_log.info(
+				"Commerce shipping engine fixed upgrade step registrator " +
+					"finished");
 		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceInventoryUpgradeStepRegistrator.class);
+		CommerceShippingEngineFixedUpgrade.class);
 
 }

@@ -12,49 +12,49 @@
  * details.
  */
 
-package com.liferay.commerce.shipping.engine.fixed.internal.upgrade;
+package com.liferay.commerce.wish.list.internal.upgrade;
 
-import com.liferay.commerce.shipping.engine.fixed.internal.upgrade.v1_1_0.CommerceShippingFixedOptionRelUpgradeProcess;
+import com.liferay.commerce.product.service.CPDefinitionLocalService;
+import com.liferay.commerce.product.service.CPInstanceLocalService;
+import com.liferay.commerce.wish.list.internal.upgrade.v1_1_0.CommerceWishListItemUpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Alessio Antonio Rendina
+ * @author Alec Sloan
  */
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
-public class CommerceShippingEngineFixedUpgradeStepRegistrator
-	implements UpgradeStepRegistrar {
+public class CommerceWishListItemUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce shipping engine fixed upgrade step registrator " +
-					"STARTED");
+			_log.info("Commerce wish list upgrade step registrator started");
 		}
 
 		registry.register(
 			"1.0.0", "1.1.0",
-			new CommerceShippingFixedOptionRelUpgradeProcess());
-
-		registry.register(
-			"1.1.0", "2.0.0",
-			new com.liferay.commerce.shipping.engine.fixed.internal.upgrade.
-				v2_0_0.CommerceShippingFixedOptionRelUpgradeProcess());
+			new CommerceWishListItemUpgradeProcess(
+				_cpDefinitionLocalService, _cpInstanceLocalService));
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Commerce shipping engine fixed upgrade step registrator " +
-					"finished");
+			_log.info("Commerce wish list upgrade step registrator finished");
 		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceShippingEngineFixedUpgradeStepRegistrator.class);
+		CommerceWishListItemUpgrade.class);
+
+	@Reference
+	private CPDefinitionLocalService _cpDefinitionLocalService;
+
+	@Reference
+	private CPInstanceLocalService _cpInstanceLocalService;
 
 }

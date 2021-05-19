@@ -17,11 +17,9 @@ package com.liferay.portal.upgrade.registry;
 import com.liferay.portal.kernel.upgrade.UpgradeStep;
 
 /**
- * @author     Carlos Sierra Andrés
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link UpgradeStepRegistrar}
+ * @author Carlos Sierra Andrés
  */
-@Deprecated
-public interface UpgradeStepRegistrator {
+public interface UpgradeStepRegistrar {
 
 	public void register(Registry registry);
 

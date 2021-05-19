@@ -68,12 +68,12 @@ public class CommercePriceListUpgrade implements UpgradeStepRegistrar {
 			"2.0.0", "2.1.0",
 			new com.liferay.commerce.price.list.internal.upgrade.v2_1_0.
 				CommercePriceEntryUpgradeProcess(),
+			new CommercePriceListChannelRelUpgradeProcess(),
+			new CommercePriceListDiscountRelUpgradeProcess(),
 			new com.liferay.commerce.price.list.internal.upgrade.v2_1_0.
 				CommercePriceListUpgradeProcess(),
 			new com.liferay.commerce.price.list.internal.upgrade.v2_1_0.
-				CommerceTierPriceEntryUpgradeProcess(),
-			new CommercePriceListChannelRelUpgradeProcess(),
-			new CommercePriceListDiscountRelUpgradeProcess());
+				CommerceTierPriceEntryUpgradeProcess());
 
 		registry.register(
 			"2.1.0", "2.1.1",

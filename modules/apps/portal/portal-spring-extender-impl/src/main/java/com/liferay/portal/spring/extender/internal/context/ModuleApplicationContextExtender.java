@@ -120,7 +120,7 @@ public class ModuleApplicationContextExtender
 				ModuleApplicationContextExtender.this._bundleContext;
 
 			_component.setImplementation(
-				new ModuleApplicationContextRegistrator(
+				new ModuleApplicationContextRegistrar(
 					_configurableApplicationContextConfigurator, _bundle,
 					bundleContext.getBundle()));
 

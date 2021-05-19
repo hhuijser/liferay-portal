@@ -130,7 +130,7 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 			List<String> implementedClassNames =
 				javaClass.getImplementedClassNames();
 
-			if (!implementedClassNames.contains("UpgradeStepRegistrator")) {
+			if (!implementedClassNames.contains("UpgradeStepRegistrar")) {
 				continue;
 			}
 

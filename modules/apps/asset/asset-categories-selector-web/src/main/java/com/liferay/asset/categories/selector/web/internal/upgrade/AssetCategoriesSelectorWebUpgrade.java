@@ -23,8 +23,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Eudaldo Alonso
  */
 @Component(immediate = true, service = UpgradeStepRegistrar.class)
-public class AssetCategoriesSelectorWebUpgrade
-	implements UpgradeStepRegistrar {
+public class AssetCategoriesSelectorWebUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

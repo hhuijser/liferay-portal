@@ -12,27 +12,42 @@
  * details.
  */
 
-package com.liferay.commerce.tax.engine.fixed.internal.upgrade;
+package com.liferay.commerce.product.type.grouped.internal.upgrade;
 
-import com.liferay.commerce.tax.engine.fixed.internal.upgrade.v2_0_0.CommerceTaxFixedRateAddressRelUpgradeProcess;
+import com.liferay.commerce.product.type.grouped.internal.upgrade.v1_1_0.CPDefinitionGroupedEntryUpgradeProcess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Pei-Jung Lan
+ * @author Ethan Bustad
  */
 @Component(
 	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
-public class CommerceTaxEngineFixedUpgradeStepRegistrator
-	implements UpgradeStepRegistrar {
+public class CommerceProductTypeGroupedUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Commerce product type grouped upgrade step registrator " +
+					"'started'");
+		}
+
 		registry.register(
-			"1.0.0", "2.0.0",
-			new CommerceTaxFixedRateAddressRelUpgradeProcess());
+			"1.0.0", "1.1.0", new CPDefinitionGroupedEntryUpgradeProcess());
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Commerce product type grouped upgrade step registrator " +
+					"'finished'");
+		}
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CommerceProductTypeGroupedUpgrade.class);
 
 }

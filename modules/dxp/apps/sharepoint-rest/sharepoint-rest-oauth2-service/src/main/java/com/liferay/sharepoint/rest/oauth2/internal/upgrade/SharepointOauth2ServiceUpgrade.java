@@ -24,9 +24,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	service = {
-		SharepointOauth2ServiceUpgrade.class, UpgradeStepRegistrar.class
-	}
+	service = {SharepointOauth2ServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
 public class SharepointOauth2ServiceUpgrade implements UpgradeStepRegistrar {
 

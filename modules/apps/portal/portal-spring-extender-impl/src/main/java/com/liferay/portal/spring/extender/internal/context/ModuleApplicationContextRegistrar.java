@@ -39,9 +39,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 /**
  * @author Miguel Pastor
  */
-public class ModuleApplicationContextRegistrator {
+public class ModuleApplicationContextRegistrar {
 
-	public ModuleApplicationContextRegistrator(
+	public ModuleApplicationContextRegistrar(
 		ConfigurableApplicationContextConfigurator
 			configurableApplicationContextConfigurator,
 		Bundle extendeeBundle, Bundle extenderBundle) {

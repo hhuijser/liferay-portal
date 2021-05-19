@@ -199,13 +199,13 @@ public class SoapExtender {
 		org.apache.felix.dm.Component component =
 			_dependencyManager.createComponent();
 
-		CXFJaxWsServiceRegistrator cxfJaxWsServiceRegistrator =
-			new CXFJaxWsServiceRegistrator();
+		CXFJaxWsServiceRegistrar cxfJaxWsServiceRegistrar =
+			new CXFJaxWsServiceRegistrar();
 
-		cxfJaxWsServiceRegistrator.setSoapDescriptorBuilder(
+		cxfJaxWsServiceRegistrar.setSoapDescriptorBuilder(
 			_soapDescriptorBuilder);
 
-		component.setImplementation(cxfJaxWsServiceRegistrator);
+		component.setImplementation(cxfJaxWsServiceRegistrar);
 
 		addBusDependencies(component);
 		addJaxWsHandlerServiceDependencies(component);

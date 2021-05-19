@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Carlos Sierra Andrés
  */
 @Component(immediate = true, service = {})
-public class DecrypterRegistrator {
+public class DecrypterRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext)

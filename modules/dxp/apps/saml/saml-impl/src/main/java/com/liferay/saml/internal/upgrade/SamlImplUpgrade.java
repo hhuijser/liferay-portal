@@ -17,7 +17,7 @@ package com.liferay.saml.internal.upgrade;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.PrefsProps;
 import com.liferay.portal.kernel.util.Props;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.saml.internal.upgrade.v1_0_0.SamlConfigurationPreferencesUpgradeProcess;
 import com.liferay.saml.internal.upgrade.v1_0_0.SamlIdpSsoSessionMaxAgePropertyUpgradeProcess;
 import com.liferay.saml.internal.upgrade.v1_0_0.SamlKeyStorePropertiesUpgradeProcess;
@@ -33,9 +33,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {SamlImplUpgrade.class, UpgradeStepRegistrator.class}
+	service = {SamlImplUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class SamlImplUpgrade implements UpgradeStepRegistrator {
+public class SamlImplUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

@@ -14,15 +14,15 @@
 
 package com.liferay.remote.app.internal.upgrade;
 
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Iván Zaera
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
-public class RemoteAppServiceUpgrade implements UpgradeStepRegistrator {
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
+public class RemoteAppServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

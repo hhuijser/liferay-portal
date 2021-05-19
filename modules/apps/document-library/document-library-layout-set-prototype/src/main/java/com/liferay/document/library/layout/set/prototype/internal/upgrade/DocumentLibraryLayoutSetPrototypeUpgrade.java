@@ -16,16 +16,16 @@ package com.liferay.document.library.layout.set.prototype.internal.upgrade;
 
 import com.liferay.document.library.layout.set.prototype.internal.upgrade.v1_0_0.UpgradeLocalizedColumn;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Leon Chi
  */
-@Component(service = UpgradeStepRegistrator.class)
+@Component(service = UpgradeStepRegistrar.class)
 public class DocumentLibraryLayoutSetPrototypeUpgrade
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

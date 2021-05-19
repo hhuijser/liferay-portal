@@ -78,14 +78,12 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		ScopeLocatorImpl scopeLocatorImpl = builder.withPrefixHandlerFactories(
 			propertyAccessor -> defaultPrefixHandler,
-			registrator -> {
+			registrar -> {
 			}
 		).withScopeFinders(
-			registrator -> {
-				registrator.register(
-					_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
-				registrator.register(
-					_COMPANY_ID, applicationName2, scopeFinder);
+			registrar -> {
+				registrar.register(_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
+				registrar.register(_COMPANY_ID, applicationName2, scopeFinder);
 			}
 		).build();
 
@@ -112,20 +110,18 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		scopeLocatorImpl = builder.withPrefixHandlerFactories(
 			propertyAccessor -> defaultPrefixHandler,
-			registrator -> {
-				registrator.register(
+			registrar -> {
+				registrar.register(
 					null, _APPLICATION_NAME,
 					propertyAccessor -> appPrefixHandler);
-				registrator.register(
+				registrar.register(
 					_COMPANY_ID, null,
 					propertyAccessor -> companyPrefixHandler);
 			}
 		).withScopeFinders(
-			registrator -> {
-				registrator.register(
-					_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
-				registrator.register(
-					_COMPANY_ID, applicationName2, scopeFinder);
+			registrar -> {
+				registrar.register(_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
+				registrar.register(_COMPANY_ID, applicationName2, scopeFinder);
 			}
 		).build();
 
@@ -155,10 +151,10 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		Builder builder = new Builder();
 
 		ScopeLocatorImpl scopeLocatorImpl = builder.withScopeFinders(
-			registrator -> {
-				registrator.register(
+			registrar -> {
+				registrar.register(
 					_COMPANY_ID, _APPLICATION_NAME, application1ScopeFinder);
-				registrator.register(
+				registrar.register(
 					_COMPANY_ID, applicationName2, application2ScopeFinder);
 			}
 		).build();
@@ -195,14 +191,12 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		ScopeLocatorImpl scopeLocatorImpl = builder.withScopeMappers(
 			defaultScopeMapper,
-			registrator -> {
+			registrar -> {
 			}
 		).withScopeFinders(
-			registrator -> {
-				registrator.register(
-					_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
-				registrator.register(
-					_COMPANY_ID, applicationName2, scopeFinder);
+			registrar -> {
+				registrar.register(_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
+				registrar.register(_COMPANY_ID, applicationName2, scopeFinder);
 			}
 		).build();
 
@@ -229,16 +223,14 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		scopeLocatorImpl = builder.withScopeMappers(
 			defaultScopeMapper,
-			registrator -> {
-				registrator.register(null, _APPLICATION_NAME, appScopeMapper);
-				registrator.register(_COMPANY_ID, null, companyScopeMapper);
+			registrar -> {
+				registrar.register(null, _APPLICATION_NAME, appScopeMapper);
+				registrar.register(_COMPANY_ID, null, companyScopeMapper);
 			}
 		).withScopeFinders(
-			registrator -> {
-				registrator.register(
-					_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
-				registrator.register(
-					_COMPANY_ID, applicationName2, scopeFinder);
+			registrar -> {
+				registrar.register(_COMPANY_ID, _APPLICATION_NAME, scopeFinder);
+				registrar.register(_COMPANY_ID, applicationName2, scopeFinder);
 			}
 		).build();
 
@@ -283,13 +275,13 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		Builder builder = new Builder();
 
 		ScopeLocatorImpl scopeLocatorImpl = builder.withScopeFinders(
-			registrator -> {
-				registrator.register(_COMPANY_ID, _APPLICATION_NAME, service);
-				registrator.register(_COMPANY_ID, applicationName2, service);
+			registrar -> {
+				registrar.register(_COMPANY_ID, _APPLICATION_NAME, service);
+				registrar.register(_COMPANY_ID, applicationName2, service);
 			}
 		).withScopeMatcherFactories(
 			scopeAlias -> scopeAlias::equals,
-			registrator -> registrator.register(
+			registrar -> registrar.register(
 				String.valueOf(_COMPANY_ID), explicitScopeMatcherFactory)
 		).build();
 
@@ -323,14 +315,14 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		ScopeLocatorImpl scopeLocatorImpl = builder.withPrefixHandlerFactories(
 			propertyAccessor -> PrefixHandler.PASS_THROUGH_PREFIX_HANDLER,
-			registrator -> registrator.register(
+			registrar -> registrar.register(
 				_COMPANY_ID, _APPLICATION_NAME, testPrefixHandlerFactory)
 		).withScopeMatcherFactories(
 			scopeAlias -> scopeAlias::equals,
-			registrator -> registrator.register(
+			registrar -> registrar.register(
 				String.valueOf(_COMPANY_ID), scopeMatcherFactory)
 		).withScopeFinders(
-			registrator -> registrator.register(
+			registrar -> registrar.register(
 				_COMPANY_ID, _APPLICATION_NAME, () -> scopesSet1)
 		).build();
 
@@ -396,7 +388,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 			if (!_scopeMatcherFactoriesInitialized) {
 				withScopeMatcherFactories(
 					scopeAlias -> scopeAlias::equals,
-					registrator -> {
+					registrar -> {
 					});
 			}
 
@@ -404,27 +396,27 @@ public class ScopeLocatorImplTest extends PowerMockito {
 				withPrefixHandlerFactories(
 					propertyAccessor ->
 						PrefixHandler.PASS_THROUGH_PREFIX_HANDLER,
-					registrator -> {
+					registrar -> {
 					});
 			}
 
 			if (!_scopeMappersInitialized) {
 				withScopeMappers(
 					ScopeMapper.PASS_THROUGH_SCOPE_MAPPER,
-					registrator -> {
+					registrar -> {
 					});
 			}
 
 			if (!_scopeFindersInitialized) {
 				withScopeFinders(
-					registrator -> {
+					registrar -> {
 					});
 			}
 
 			if (!_scopeLocatorConfigurationProvidersInitialized) {
 				withScopeLocatorConfigurationProviders(
 					() -> new TestScopeLocatorConfiguration(),
-					registrator -> {
+					registrar -> {
 					});
 			}
 
@@ -611,11 +603,11 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 	private interface CompanyAndKeyConfigurator<T> {
 
-		public void configure(CompanyAndKeyRegistrator<T> registrator);
+		public void configure(CompanyAndKeyRegistrar<T> registrar);
 
 	}
 
-	private interface CompanyAndKeyRegistrator<T> {
+	private interface CompanyAndKeyRegistrar<T> {
 
 		public void register(Long companyId, String key, T service);
 
@@ -623,11 +615,11 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 	private interface KeyConfigurator<T> {
 
-		public void configure(KeyRegistrator<T> registrator);
+		public void configure(KeyRegistrar<T> registrar);
 
 	}
 
-	private interface KeyRegistrator<T> {
+	private interface KeyRegistrar<T> {
 
 		public void register(String key, T service);
 

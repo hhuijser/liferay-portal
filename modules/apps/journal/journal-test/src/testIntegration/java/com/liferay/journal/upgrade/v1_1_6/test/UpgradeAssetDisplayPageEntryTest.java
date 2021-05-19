@@ -40,7 +40,7 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -365,8 +365,8 @@ public class UpgradeAssetDisplayPageEntryTest {
 	}
 
 	protected void setUpUpgradeAssetDisplayPageEntry() {
-		_upgradeStepRegistrator.register(
-			new UpgradeStepRegistrator.Registry() {
+		_upgradeStepRegistrar.register(
+			new UpgradeStepRegistrar.Registry() {
 
 				@Override
 				public void register(
@@ -480,7 +480,7 @@ public class UpgradeAssetDisplayPageEntryTest {
 	@Inject(
 		filter = "(&(objectClass=com.liferay.journal.internal.upgrade.JournalServiceUpgrade))"
 	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
+	private static UpgradeStepRegistrar _upgradeStepRegistrar;
 
 	private UpgradeProcess _assetDisplayPageEntryUpgradeProcess;
 	private final Map<Long, String> _assetEntryClassUuids = new HashMap<>();

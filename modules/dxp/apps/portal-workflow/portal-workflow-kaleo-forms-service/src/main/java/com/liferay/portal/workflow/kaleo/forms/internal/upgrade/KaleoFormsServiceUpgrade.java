@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.upgrade.BaseSQLServerDatetimeUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v1_0_2.KaleoProcessTemplateLinkUpgradeProcess;
 import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v1_1_0.KaleoProcessUpgradeProcess;
 import com.liferay.portal.workflow.kaleo.forms.internal.upgrade.v2_0_0.util.KaleoProcessTable;
@@ -41,9 +41,9 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	service = {KaleoFormsServiceUpgrade.class, UpgradeStepRegistrator.class}
+	service = {KaleoFormsServiceUpgrade.class, UpgradeStepRegistrar.class}
 )
-public class KaleoFormsServiceUpgrade implements UpgradeStepRegistrator {
+public class KaleoFormsServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

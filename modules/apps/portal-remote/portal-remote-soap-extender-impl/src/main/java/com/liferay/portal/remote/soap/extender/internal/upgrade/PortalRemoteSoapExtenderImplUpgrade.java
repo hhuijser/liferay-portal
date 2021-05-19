@@ -17,7 +17,7 @@ package com.liferay.portal.remote.soap.extender.internal.upgrade;
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.remote.soap.extender.internal.configuration.JaxWsApiConfiguration;
 import com.liferay.portal.remote.soap.extender.internal.configuration.SoapExtenderConfiguration;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -25,9 +25,9 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Tom Wang
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
 public class PortalRemoteSoapExtenderImplUpgrade
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

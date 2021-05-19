@@ -17,7 +17,7 @@ package com.liferay.commerce.shipping.engine.fixed.internal.upgrade;
 import com.liferay.commerce.shipping.engine.fixed.internal.upgrade.v1_1_0.CommerceShippingFixedOptionRelUpgradeProcess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -25,10 +25,10 @@ import org.osgi.service.component.annotations.Component;
  * @author Alessio Antonio Rendina
  */
 @Component(
-	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
+	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
 public class CommerceShippingEngineFixedUpgradeStepRegistrator
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

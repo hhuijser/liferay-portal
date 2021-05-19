@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -28,10 +28,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marco Leo
  */
 @Component(
-	enabled = false, immediate = true, service = UpgradeStepRegistrator.class
+	enabled = false, immediate = true, service = UpgradeStepRegistrar.class
 )
 public class CommercePaymentUpgradeStepRegistrator
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

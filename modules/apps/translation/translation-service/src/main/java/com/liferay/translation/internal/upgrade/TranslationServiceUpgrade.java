@@ -15,7 +15,7 @@
 package com.liferay.translation.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.translation.model.TranslationEntryTable;
 
 import org.osgi.service.component.annotations.Component;
@@ -23,8 +23,8 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Adolfo Pérez
  */
-@Component(service = UpgradeStepRegistrator.class)
-public class TranslationServiceUpgrade implements UpgradeStepRegistrator {
+@Component(service = UpgradeStepRegistrar.class)
+public class TranslationServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

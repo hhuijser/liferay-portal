@@ -17,15 +17,15 @@ package com.liferay.document.library.content.internal.upgrade;
 import com.liferay.document.library.content.internal.upgrade.v1_0_0.UpgradeClassNames;
 import com.liferay.portal.kernel.upgrade.CTModelUpgradeProcess;
 import com.liferay.portal.kernel.upgrade.MVCCVersionUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Alejandro Tardín
  */
-@Component(service = UpgradeStepRegistrator.class)
-public class DLContentServiceUpgrade implements UpgradeStepRegistrator {
+@Component(service = UpgradeStepRegistrar.class)
+public class DLContentServiceUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

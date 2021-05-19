@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import java.util.List;
 import java.util.Set;
@@ -273,8 +273,8 @@ public class UpgradeDDMStructureTest {
 	}
 
 	protected void setUpUpgradeDDMStructure() {
-		_upgradeStepRegistrator.register(
-			new UpgradeStepRegistrator.Registry() {
+		_upgradeStepRegistrar.register(
+			new UpgradeStepRegistrar.Registry() {
 
 				@Override
 				public void register(
@@ -325,7 +325,7 @@ public class UpgradeDDMStructureTest {
 	@Inject(
 		filter = "(&(objectClass=com.liferay.dynamic.data.mapping.internal.upgrade.DDMServiceUpgrade))"
 	)
-	private static UpgradeStepRegistrator _upgradeStepRegistrator;
+	private static UpgradeStepRegistrar _upgradeStepRegistrar;
 
 	private UpgradeProcess _ddmStructureUpgradeProcess;
 

@@ -16,7 +16,7 @@ package com.liferay.portal.security.sso.token.internal.upgrade;
 
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.security.sso.token.internal.upgrade.v2_0_0.TokenConfigurationUpgradeProcess;
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -24,9 +24,9 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Tom Wang
  */
-@Component(immediate = true, service = UpgradeStepRegistrator.class)
+@Component(immediate = true, service = UpgradeStepRegistrar.class)
 public class PortalSecuritySSOTokenImplUpgrade
-	implements UpgradeStepRegistrator {
+	implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

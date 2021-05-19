@@ -14,7 +14,7 @@
 
 package com.liferay.segments.content.targeting.upgrade.internal;
 
-import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+import com.liferay.portal.upgrade.registry.UpgradeStepRegistrar;
 import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.ContentTargetingUpgradeProcess;
 import com.liferay.segments.content.targeting.upgrade.internal.v1_0_0.util.RuleConverterRegistry;
 import com.liferay.segments.service.SegmentsEntryLocalService;
@@ -28,10 +28,10 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	service = {
-		SegmentsContentTargetingUpgrade.class, UpgradeStepRegistrator.class
+		SegmentsContentTargetingUpgrade.class, UpgradeStepRegistrar.class
 	}
 )
-public class SegmentsContentTargetingUpgrade implements UpgradeStepRegistrator {
+public class SegmentsContentTargetingUpgrade implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

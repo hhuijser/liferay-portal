@@ -76,10 +76,10 @@ public class CXFEndpointPublisher {
 			ConfigurableUtil.createConfigurable(
 				CXFEndpointPublisherConfiguration.class, properties);
 
-		ServicesRegistrator servicesRegistrator = new ServicesRegistrator(
+		ServicesRegistrar servicesRegistrar = new ServicesRegistrar(
 			bundleContext, properties);
 
-		component.setImplementation(servicesRegistrator);
+		component.setImplementation(servicesRegistrar);
 
 		String[] extensions = cxfEndpointPublisherConfiguration.extensions();
 
@@ -89,7 +89,7 @@ public class CXFEndpointPublisher {
 					_dependencyManager.createServiceDependency();
 
 				serviceDependency.setCallbacks(
-					servicesRegistrator, "addExtension", null);
+					servicesRegistrar, "addExtension", null);
 				serviceDependency.setRequired(true);
 				serviceDependency.setService(Object.class, extension);
 
@@ -116,9 +116,9 @@ public class CXFEndpointPublisher {
 
 	private DependencyManager _dependencyManager;
 
-	private static class ServicesRegistrator {
+	private static class ServicesRegistrar {
 
-		public ServicesRegistrator(
+		public ServicesRegistrar(
 			BundleContext bundleContext, Map<String, Object> properties) {
 
 			_bundleContext = bundleContext;

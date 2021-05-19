@@ -32,12 +32,12 @@ public class OAuth2JSONWSPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) {
-		_sapEntryScopeDescriptorFinderRegistrator.register(
+		_sapEntryScopeDescriptorFinderRegistrar.register(
 			company.getCompanyId());
 	}
 
 	@Reference
 	private SAPEntryScopeDescriptorFinderRegistrar
-		_sapEntryScopeDescriptorFinderRegistrator;
+		_sapEntryScopeDescriptorFinderRegistrar;
 
 }

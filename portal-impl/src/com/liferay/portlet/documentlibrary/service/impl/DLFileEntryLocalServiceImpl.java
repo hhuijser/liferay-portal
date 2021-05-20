@@ -849,6 +849,7 @@ public class DLFileEntryLocalServiceImpl
 						dlLatestFileVersion.getFileEntryTypeId(), dlFileEntry);
 
 					dlLatestFileVersion.setFileEntryTypeId(fileEntryTypeId);
+
 					dlLatestFileVersion.setStatusDate(new Date());
 
 					dlLatestFileVersion = dlFileVersionPersistence.update(
@@ -863,6 +864,7 @@ public class DLFileEntryLocalServiceImpl
 						dlLatestFileVersion.getDescription());
 					dlFileEntry.setExtraSettings(
 						dlLatestFileVersion.getExtraSettings());
+
 					dlFileEntry.setFileEntryTypeId(fileEntryTypeId);
 					dlFileEntry.setVersion(dlLatestFileVersion.getVersion());
 					dlFileEntry.setSize(dlLatestFileVersion.getSize());

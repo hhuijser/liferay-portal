@@ -66,6 +66,16 @@ public interface JSONWebServiceActionsManager {
 		String contextName, String contextPath, Object service,
 		JSONWebServiceRegistrar jsonWebServiceRegistrar);
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #registerService(String, String, Object,
+	 *             JSONWebServiceRegistrar)}
+	 */
+	@Deprecated
+	public int registerService(
+		String contextName, String contextPath, Object service,
+		JSONWebServiceRegistrator jsonWebServiceRegistrator);
+
 	public int registerServletContext(ServletContext servletContext);
 
 	public int unregisterJSONWebServiceActions(Object actionObject);

@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionMapping;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManager;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceNaming;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrar;
+import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceRegistrator;
 import com.liferay.portal.kernel.jsonwebservice.NoSuchJSONWebServiceException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -288,6 +289,31 @@ public class JSONWebServiceActionsManagerImpl
 		JSONWebServiceRegistrar jsonWebServiceRegistrar) {
 
 		jsonWebServiceRegistrar.processBean(
+			contextName, contextPath, service);
+
+		int count = getJSONWebServiceActionsCount(contextPath);
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				StringBundler.concat(
+					"Configured ", count, " actions for ", contextPath));
+		}
+
+		return count;
+	}
+
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 *             #registerService(String, String, Object,
+	 *             JSONWebServiceRegistrar)}
+	 */
+	@Deprecated
+	@Override
+	public int registerService(
+		String contextName, String contextPath, Object service,
+		JSONWebServiceRegistrator jsonWebServiceRegistrator) {
+
+		jsonWebServiceRegistrator.processBean(
 			contextName, contextPath, service);
 
 		int count = getJSONWebServiceActionsCount(contextPath);

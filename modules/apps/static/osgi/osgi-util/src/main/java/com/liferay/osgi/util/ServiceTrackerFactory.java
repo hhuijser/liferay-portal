@@ -205,8 +205,8 @@ public class ServiceTrackerFactory {
 
 	/**
 	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
-	 *             #openWrapperServiceRegistrar(BundleContext, Class<T>,
-	 *             Class<W>, Function<T, W>, String...)}
+	 *             #openWrapperServiceRegistrar(BundleContext, Class, Class,
+	 *             Function, String...)}
 	 */
 	@Deprecated
 	public static <T, W> ServiceTracker<T, ServiceRegistration<W>>

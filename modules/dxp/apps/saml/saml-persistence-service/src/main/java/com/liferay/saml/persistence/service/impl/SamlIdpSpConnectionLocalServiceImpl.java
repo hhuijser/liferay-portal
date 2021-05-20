@@ -58,8 +58,6 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Date now = new Date();
-
 		if (Validator.isNull(samlSpEntityId)) {
 			throw new SamlIdpSpConnectionSamlSpEntityIdException(
 				"SAML SP entity ID is null");
@@ -92,7 +90,7 @@ public class SamlIdpSpConnectionLocalServiceImpl
 		samlIdpSpConnection.setEnabled(enabled);
 		samlIdpSpConnection.setEncryptionForced(encryptionForced);
 		samlIdpSpConnection.setExpandoBridgeAttributes(serviceContext);
-		samlIdpSpConnection.setMetadataUpdatedDate(now);
+		samlIdpSpConnection.setMetadataUpdatedDate(new Date());
 
 		if ((metadataXmlInputStream == null) &&
 			Validator.isNotNull(metadataUrl)) {
@@ -218,8 +216,6 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Date now = new Date();
-
 		if (Validator.isNull(samlSpEntityId)) {
 			throw new SamlIdpSpConnectionSamlSpEntityIdException(
 				"SAML SP entity ID is null");
@@ -275,7 +271,7 @@ public class SamlIdpSpConnectionLocalServiceImpl
 
 		if (Validator.isNotNull(metadataXml)) {
 			samlIdpSpConnection.setMetadataXml(metadataXml);
-			samlIdpSpConnection.setMetadataUpdatedDate(now);
+			samlIdpSpConnection.setMetadataUpdatedDate(new Date());
 		}
 
 		samlIdpSpConnection.setName(name);

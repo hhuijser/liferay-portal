@@ -2654,8 +2654,6 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			String typeSettings)
 		throws PortalException {
 
-		Date now = new Date();
-
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
 
@@ -2669,7 +2667,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setTypeSettings(typeSettingsUnicodeProperties.toString());
 
 		if (layout.isSystem() && (layout.getClassPK() > 0)) {
-			layout.setPublishDate(now);
+			layout.setPublishDate(new Date());
 		}
 
 		return layoutPersistence.update(layout);

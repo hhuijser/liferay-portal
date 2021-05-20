@@ -54,7 +54,6 @@ public class TicketLocalServiceImpl extends TicketLocalServiceBaseImpl {
 		Ticket ticket = ticketPersistence.create(ticketId);
 
 		ticket.setCompanyId(companyId);
-		ticket.setCreateDate(new Date());
 		ticket.setClassNameId(classNameId);
 		ticket.setClassPK(classPK);
 		ticket.setKey(PortalUUIDUtil.generate());

@@ -24,7 +24,6 @@ import com.liferay.sync.constants.SyncDeviceConstants;
 import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.base.SyncDeviceLocalServiceBaseImpl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -45,7 +44,6 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
 
 		long syncDeviceId = counterLocalService.increment();
 
@@ -54,8 +52,6 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 		syncDevice.setCompanyId(user.getCompanyId());
 		syncDevice.setUserId(user.getUserId());
 		syncDevice.setUserName(user.getFullName());
-		syncDevice.setCreateDate(now);
-		syncDevice.setModifiedDate(now);
 		syncDevice.setType(type);
 		syncDevice.setBuildNumber(buildNumber);
 		syncDevice.setFeatureSet(featureSet);
@@ -106,7 +102,6 @@ public class SyncDeviceLocalServiceImpl extends SyncDeviceLocalServiceBaseImpl {
 		SyncDevice syncDevice = syncDevicePersistence.findByPrimaryKey(
 			syncDeviceId);
 
-		syncDevice.setModifiedDate(new Date());
 		syncDevice.setType(type);
 		syncDevice.setBuildNumber(buildNumber);
 		syncDevice.setFeatureSet(featureSet);

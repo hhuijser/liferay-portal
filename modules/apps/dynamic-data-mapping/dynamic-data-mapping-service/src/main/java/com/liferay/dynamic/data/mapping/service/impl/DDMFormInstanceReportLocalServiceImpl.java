@@ -35,8 +35,6 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
-import java.util.Date;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -64,7 +62,6 @@ public class DDMFormInstanceReportLocalServiceImpl
 		ddmFormInstanceReport.setGroupId(ddmFormInstance.getGroupId());
 		ddmFormInstanceReport.setCompanyId(ddmFormInstance.getCompanyId());
 
-		ddmFormInstanceReport.setCreateDate(new Date());
 		ddmFormInstanceReport.setFormInstanceId(
 			ddmFormInstance.getFormInstanceId());
 
@@ -113,7 +110,6 @@ public class DDMFormInstanceReportLocalServiceImpl
 			ddmFormInstanceReportPersistence.findByPrimaryKey(
 				formInstanceReportId);
 
-		ddmFormInstanceReport.setModifiedDate(new Date());
 		ddmFormInstanceReport.setData(
 			_getData(formInstanceRecordVersionId, ddmFormInstanceReportEvent));
 

@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.FullNameValidatorFactory;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -48,7 +47,6 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
 
 		validate(user.getCompanyId(), 0, userId, fullName, emailAddress);
 
@@ -59,8 +57,6 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		entry.setCompanyId(user.getCompanyId());
 		entry.setUserId(user.getUserId());
 		entry.setUserName(user.getFullName());
-		entry.setCreateDate(now);
-		entry.setModifiedDate(now);
 		entry.setFullName(fullName);
 		entry.setEmailAddress(emailAddress);
 		entry.setComments(comments);
@@ -116,7 +112,6 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			entry.getCompanyId(), entryId, entry.getUserId(), fullName,
 			emailAddress);
 
-		entry.setModifiedDate(new Date());
 		entry.setFullName(fullName);
 		entry.setEmailAddress(emailAddress);
 		entry.setComments(comments);

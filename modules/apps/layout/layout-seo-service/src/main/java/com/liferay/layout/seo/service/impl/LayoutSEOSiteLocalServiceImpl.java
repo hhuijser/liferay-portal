@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -60,7 +59,6 @@ public class LayoutSEOSiteLocalServiceImpl
 				openGraphImageFileEntryId, serviceContext);
 		}
 
-		layoutSEOSite.setModifiedDate(new Date());
 		layoutSEOSite.setOpenGraphEnabled(openGraphEnabled);
 
 		if (openGraphImageFileEntryId != 0) {
@@ -92,9 +90,6 @@ public class LayoutSEOSiteLocalServiceImpl
 		layoutSEOSite.setCompanyId(group.getCompanyId());
 
 		layoutSEOSite.setUserId(userId);
-
-		layoutSEOSite.setCreateDate(new Date());
-		layoutSEOSite.setModifiedDate(new Date());
 
 		layoutSEOSite.setOpenGraphEnabled(openGraphEnabled);
 

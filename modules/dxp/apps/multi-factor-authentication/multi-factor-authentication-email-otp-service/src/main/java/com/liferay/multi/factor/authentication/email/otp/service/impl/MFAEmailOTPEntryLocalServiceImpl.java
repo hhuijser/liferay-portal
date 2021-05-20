@@ -56,9 +56,6 @@ public class MFAEmailOTPEntryLocalServiceImpl
 		mfaEmailOTPEntry.setUserId(user.getUserId());
 		mfaEmailOTPEntry.setUserName(user.getFullName());
 
-		mfaEmailOTPEntry.setCreateDate(new Date());
-		mfaEmailOTPEntry.setModifiedDate(new Date());
-
 		return mfaEmailOTPEntryPersistence.update(mfaEmailOTPEntry);
 	}
 

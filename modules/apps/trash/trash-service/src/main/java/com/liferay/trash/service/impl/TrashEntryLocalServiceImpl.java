@@ -121,7 +121,6 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 		trashEntry.setUserId(user.getUserId());
 		trashEntry.setUserName(user.getFullName());
 
-		trashEntry.setCreateDate(new Date());
 		trashEntry.setClassNameId(classNameId);
 		trashEntry.setClassPK(classPK);
 

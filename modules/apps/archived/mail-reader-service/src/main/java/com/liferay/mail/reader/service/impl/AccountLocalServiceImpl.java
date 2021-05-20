@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistry;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -52,7 +51,6 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
 
 		long accountId = counterLocalService.increment();
 
@@ -61,8 +59,6 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		account.setCompanyId(user.getCompanyId());
 		account.setUserId(user.getUserId());
 		account.setUserName(user.getFullName());
-		account.setCreateDate(now);
-		account.setModifiedDate(now);
 		account.setAddress(address);
 		account.setPersonalName(personalName);
 		account.setProtocol(protocol);
@@ -151,7 +147,6 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 
 		Account account = accountPersistence.findByPrimaryKey(accountId);
 
-		account.setModifiedDate(new Date());
 		account.setPersonalName(personalName);
 
 		if (savePassword && Validator.isNotNull(password)) {
@@ -177,8 +172,6 @@ public class AccountLocalServiceImpl extends AccountLocalServiceBaseImpl {
 		throws PortalException {
 
 		Account account = accountPersistence.findByPrimaryKey(accountId);
-
-		account.setModifiedDate(new Date());
 
 		account.setInboxFolderId(inboxFolderId);
 		account.setDraftFolderId(draftFolderId);

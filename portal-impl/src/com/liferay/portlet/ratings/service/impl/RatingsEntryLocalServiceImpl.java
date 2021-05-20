@@ -29,7 +29,6 @@ import com.liferay.ratings.kernel.model.RatingsEntry;
 import com.liferay.ratings.kernel.model.RatingsStats;
 import com.liferay.social.kernel.model.SocialActivityConstants;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -194,7 +193,6 @@ public class RatingsEntryLocalServiceImpl
 				stats = ratingsStatsLocalService.addStats(classNameId, classPK);
 			}
 
-			stats.setModifiedDate(new Date());
 			stats.setTotalScore(stats.getTotalScore() - oldScore + score);
 			stats.setAverageScore(
 				stats.getTotalScore() / stats.getTotalEntries());
@@ -226,7 +224,6 @@ public class RatingsEntryLocalServiceImpl
 				stats = ratingsStatsLocalService.addStats(classNameId, classPK);
 			}
 
-			stats.setModifiedDate(new Date());
 			stats.setTotalEntries(stats.getTotalEntries() + 1);
 			stats.setTotalScore(stats.getTotalScore() + score);
 			stats.setAverageScore(

@@ -293,7 +293,6 @@ public class StyleBookEntryLocalServiceImpl
 			styleBookEntryPersistence.update(oldDefaultStyleBookEntry);
 		}
 
-		styleBookEntry.setModifiedDate(new Date());
 		styleBookEntry.setDefaultStyleBookEntry(defaultStyleBookEntry);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
@@ -315,7 +314,6 @@ public class StyleBookEntryLocalServiceImpl
 		StyleBookEntry styleBookEntry =
 			styleBookEntryPersistence.findByPrimaryKey(styleBookEntryId);
 
-		styleBookEntry.setModifiedDate(new Date());
 		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
@@ -339,7 +337,6 @@ public class StyleBookEntryLocalServiceImpl
 
 		_validate(name);
 
-		styleBookEntry.setModifiedDate(new Date());
 		styleBookEntry.setName(name);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
@@ -362,7 +359,6 @@ public class StyleBookEntryLocalServiceImpl
 		StyleBookEntry styleBookEntry =
 			styleBookEntryPersistence.findByPrimaryKey(styleBookEntryId);
 
-		styleBookEntry.setModifiedDate(new Date());
 		styleBookEntry.setPreviewFileEntryId(previewFileEntryId);
 
 		StyleBookEntry draftStyleBookEntry = fetchDraft(styleBookEntry);
@@ -419,7 +415,6 @@ public class StyleBookEntryLocalServiceImpl
 
 		_validate(name);
 
-		styleBookEntry.setModifiedDate(new Date());
 		styleBookEntry.setFrontendTokensValues(frontendTokensValues);
 		styleBookEntry.setName(name);
 

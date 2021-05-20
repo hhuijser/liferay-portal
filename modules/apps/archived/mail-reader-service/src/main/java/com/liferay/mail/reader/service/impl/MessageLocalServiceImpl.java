@@ -64,7 +64,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		User user = userLocalService.getUser(userId);
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
-		Date now = new Date();
 
 		long messageId = counterLocalService.increment();
 
@@ -75,8 +74,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setCompanyId(user.getCompanyId());
 		message.setUserId(user.getUserId());
 		message.setUserName(user.getFullName());
-		message.setCreateDate(now);
-		message.setModifiedDate(now);
 		message.setAccountId(folder.getAccountId());
 		message.setFolderId(folderId);
 		message.setSender(sender);
@@ -277,7 +274,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
-		message.setModifiedDate(new Date());
 		message.setPreview(getPreview(body));
 		message.setBody(getBody(body));
 		message.setFlags(flags);
@@ -317,7 +313,6 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 
 		Message message = messagePersistence.findByPrimaryKey(messageId);
 
-		message.setModifiedDate(new Date());
 		message.setFolderId(folderId);
 		message.setSender(sender);
 		message.setTo(to);

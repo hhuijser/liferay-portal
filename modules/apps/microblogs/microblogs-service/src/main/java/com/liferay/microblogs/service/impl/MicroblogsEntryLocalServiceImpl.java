@@ -51,7 +51,6 @@ import com.liferay.subscription.service.SubscriptionLocalService;
 import java.io.Serializable;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -79,8 +78,6 @@ public class MicroblogsEntryLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		Date now = new Date();
-
 		validate(type, parentMicroblogsEntryId);
 
 		long microblogsEntryId = counterLocalService.increment();
@@ -95,8 +92,6 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setCompanyId(user.getCompanyId());
 		microblogsEntry.setUserId(user.getUserId());
 		microblogsEntry.setUserName(user.getFullName());
-		microblogsEntry.setCreateDate(now);
-		microblogsEntry.setModifiedDate(now);
 		microblogsEntry.setCreatorClassNameId(creatorClassNameId);
 		microblogsEntry.setCreatorClassPK(creatorClassPK);
 		microblogsEntry.setContent(content);
@@ -129,8 +124,6 @@ public class MicroblogsEntryLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		Date now = new Date();
-
 		validate(type, parentMicroblogsEntryId);
 
 		long microblogsEntryId = counterLocalService.increment();
@@ -145,8 +138,6 @@ public class MicroblogsEntryLocalServiceImpl
 		microblogsEntry.setCompanyId(user.getCompanyId());
 		microblogsEntry.setUserId(user.getUserId());
 		microblogsEntry.setUserName(user.getFullName());
-		microblogsEntry.setCreateDate(now);
-		microblogsEntry.setModifiedDate(now);
 		microblogsEntry.setCreatorClassNameId(
 			classNameLocalService.getClassNameId(User.class));
 		microblogsEntry.setCreatorClassPK(user.getUserId());
@@ -433,7 +424,6 @@ public class MicroblogsEntryLocalServiceImpl
 		MicroblogsEntry microblogsEntry =
 			microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
 
-		microblogsEntry.setModifiedDate(new Date());
 		microblogsEntry.setContent(content);
 		microblogsEntry.setSocialRelationType(socialRelationType);
 

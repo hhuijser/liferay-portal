@@ -32,7 +32,6 @@ import com.liferay.portal.service.base.SystemEventLocalServiceBaseImpl;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -220,7 +219,6 @@ public class SystemEventLocalServiceImpl
 		systemEvent.setCompanyId(companyId);
 		systemEvent.setUserId(userId);
 		systemEvent.setUserName(userName);
-		systemEvent.setCreateDate(new Date());
 		systemEvent.setClassName(className);
 		systemEvent.setClassPK(classPK);
 		systemEvent.setClassUuid(classUuid);

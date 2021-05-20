@@ -33,7 +33,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -178,7 +177,6 @@ public class ImageLocalServiceImpl extends ImageLocalServiceBaseImpl {
 			image = imagePersistence.create(imageId);
 		}
 
-		image.setModifiedDate(new Date());
 		image.setType(type);
 		image.setHeight(height);
 		image.setWidth(width);

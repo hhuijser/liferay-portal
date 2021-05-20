@@ -770,7 +770,6 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 				layoutPageTemplateEntry.getType());
 		}
 
-		layoutPageTemplateEntry.setModifiedDate(new Date());
 		layoutPageTemplateEntry.setName(name);
 
 		layoutPageTemplateEntry = layoutPageTemplateEntryPersistence.update(

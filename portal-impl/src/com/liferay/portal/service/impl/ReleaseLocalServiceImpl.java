@@ -54,11 +54,6 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 			release = releasePersistence.create(releaseId);
 		}
 
-		Date now = new Date();
-
-		release.setCreateDate(now);
-		release.setModifiedDate(now);
-
 		release.setServletContextName(servletContextName);
 		release.setBuildNumber(buildNumber);
 
@@ -85,11 +80,6 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 
 			release = releasePersistence.create(releaseId);
 		}
-
-		Date now = new Date();
-
-		release.setCreateDate(now);
-		release.setModifiedDate(now);
 
 		release.setServletContextName(servletContextName);
 		release.setSchemaVersion(schemaVersion);
@@ -158,7 +148,6 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 
 		Release release = releasePersistence.findByPrimaryKey(releaseId);
 
-		release.setModifiedDate(new Date());
 		release.setSchemaVersion(schemaVersion);
 		release.setBuildNumber(buildNumber);
 		release.setBuildDate(buildDate);

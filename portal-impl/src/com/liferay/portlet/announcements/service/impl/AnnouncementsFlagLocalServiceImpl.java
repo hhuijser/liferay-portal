@@ -18,7 +18,6 @@ import com.liferay.announcements.kernel.model.AnnouncementsFlag;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portlet.announcements.service.base.AnnouncementsFlagLocalServiceBaseImpl;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +34,6 @@ public class AnnouncementsFlagLocalServiceImpl
 		AnnouncementsFlag flag = announcementsFlagPersistence.create(flagId);
 
 		flag.setUserId(userId);
-		flag.setCreateDate(new Date());
 		flag.setEntryId(entryId);
 		flag.setValue(value);
 

@@ -46,7 +46,6 @@ public class SamlSpMessageLocalServiceImpl
 			samlSpMessageId);
 
 		samlSpMessage.setCompanyId(serviceContext.getCompanyId());
-		samlSpMessage.setCreateDate(new Date());
 		samlSpMessage.setSamlIdpEntityId(samlIdpEntityId);
 		samlSpMessage.setSamlIdpResponseKey(samlIdpResponseKey);
 		samlSpMessage.setExpirationDate(expirationDate);

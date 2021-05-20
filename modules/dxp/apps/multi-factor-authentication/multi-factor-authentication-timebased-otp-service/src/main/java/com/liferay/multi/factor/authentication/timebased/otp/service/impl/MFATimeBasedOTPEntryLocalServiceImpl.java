@@ -59,7 +59,6 @@ public class MFATimeBasedOTPEntryLocalServiceImpl
 		mfaTimeBasedOTPEntry.setUserId(userId);
 		mfaTimeBasedOTPEntry.setUserName(user.getFullName());
 
-		mfaTimeBasedOTPEntry.setCreateDate(new Date());
 		mfaTimeBasedOTPEntry.setSharedSecret(sharedSecret);
 
 		return mfaTimeBasedOTPEntryPersistence.update(mfaTimeBasedOTPEntry);

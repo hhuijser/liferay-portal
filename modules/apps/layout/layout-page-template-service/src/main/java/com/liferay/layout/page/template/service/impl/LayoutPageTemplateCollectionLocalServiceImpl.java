@@ -198,7 +198,6 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 			validate(layoutPageTemplateCollection.getGroupId(), name);
 		}
 
-		layoutPageTemplateCollection.setModifiedDate(new Date());
 		layoutPageTemplateCollection.setName(name);
 		layoutPageTemplateCollection.setDescription(description);
 

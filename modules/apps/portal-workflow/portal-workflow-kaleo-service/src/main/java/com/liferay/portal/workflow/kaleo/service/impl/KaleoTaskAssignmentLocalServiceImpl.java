@@ -33,7 +33,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.util.RoleUtil;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskAssignmentLocalServiceBaseImpl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -56,7 +55,6 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getGuestOrUserId());
-		Date now = new Date();
 
 		long kaleoTaskAssignmentId = counterLocalService.increment();
 
@@ -66,8 +64,6 @@ public class KaleoTaskAssignmentLocalServiceImpl
 		kaleoTaskAssignment.setCompanyId(user.getCompanyId());
 		kaleoTaskAssignment.setUserId(user.getUserId());
 		kaleoTaskAssignment.setUserName(user.getFullName());
-		kaleoTaskAssignment.setCreateDate(now);
-		kaleoTaskAssignment.setModifiedDate(now);
 		kaleoTaskAssignment.setKaleoClassName(kaleoClassName);
 		kaleoTaskAssignment.setKaleoClassPK(kaleoClassPK);
 		kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);

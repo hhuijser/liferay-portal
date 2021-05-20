@@ -51,7 +51,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.mail.internet.InternetAddress;
@@ -96,8 +95,6 @@ public class MemberRequestLocalServiceImpl
 			}
 		}
 
-		Date now = new Date();
-
 		long memberRequestId = counterLocalService.increment();
 
 		MemberRequest memberRequest = memberRequestPersistence.create(
@@ -107,8 +104,6 @@ public class MemberRequestLocalServiceImpl
 		memberRequest.setCompanyId(user.getCompanyId());
 		memberRequest.setUserId(userId);
 		memberRequest.setUserName(user.getFullName());
-		memberRequest.setCreateDate(now);
-		memberRequest.setModifiedDate(now);
 		memberRequest.setKey(PortalUUIDUtil.generate());
 		memberRequest.setReceiverUserId(receiverUserId);
 		memberRequest.setInvitedRoleId(invitedRoleId);
@@ -231,7 +226,6 @@ public class MemberRequestLocalServiceImpl
 
 		validate(memberRequest, userId);
 
-		memberRequest.setModifiedDate(new Date());
 		memberRequest.setStatus(status);
 
 		memberRequest = memberRequestPersistence.update(memberRequest);
@@ -266,7 +260,6 @@ public class MemberRequestLocalServiceImpl
 
 		validate(memberRequest, 0);
 
-		memberRequest.setModifiedDate(new Date());
 		memberRequest.setReceiverUserId(receiverUserId);
 
 		memberRequest = memberRequestPersistence.update(memberRequest);

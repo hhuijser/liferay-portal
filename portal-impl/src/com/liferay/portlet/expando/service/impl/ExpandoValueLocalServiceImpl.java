@@ -730,8 +730,6 @@ public class ExpandoValueLocalServiceImpl
 		}
 
 		if (rowModified) {
-			row.setModifiedDate(new Date());
-
 			expandoRowPersistence.update(row);
 		}
 	}
@@ -1705,7 +1703,6 @@ public class ExpandoValueLocalServiceImpl
 			row = expandoRowPersistence.create(rowId);
 
 			row.setCompanyId(companyId);
-			row.setModifiedDate(new Date());
 			row.setTableId(tableId);
 			row.setClassPK(classPK);
 
@@ -1736,8 +1733,6 @@ public class ExpandoValueLocalServiceImpl
 			value.setData(data);
 
 			value = expandoValuePersistence.update(value);
-
-			row.setModifiedDate(new Date());
 
 			expandoRowPersistence.update(row);
 		}

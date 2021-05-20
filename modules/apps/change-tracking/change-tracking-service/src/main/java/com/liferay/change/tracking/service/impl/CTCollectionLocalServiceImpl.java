@@ -219,7 +219,6 @@ public class CTCollectionLocalServiceImpl
 							CTAutoResolutionInfo.class.getName()));
 
 				ctAutoResolutionInfo.setCompanyId(ctCollection.getCompanyId());
-				ctAutoResolutionInfo.setCreateDate(new Date());
 				ctAutoResolutionInfo.setCtCollectionId(
 					ctCollection.getCtCollectionId());
 				ctAutoResolutionInfo.setModelClassNameId(entry.getKey());
@@ -752,8 +751,6 @@ public class CTCollectionLocalServiceImpl
 			ctCollectionId);
 
 		Date modifiedDate = new Date();
-
-		ctCollection.setModifiedDate(modifiedDate);
 
 		ctCollection.setName(name);
 		ctCollection.setDescription(description);

@@ -140,7 +140,6 @@ public class LayoutPageTemplateStructureRelLocalServiceImpl
 			layoutPageTemplateStructureRelPersistence.findByL_S(
 				layoutPageTemplateStructureId, segmentsExperienceId);
 
-		layoutPageTemplateStructureRel.setModifiedDate(new Date());
 		layoutPageTemplateStructureRel.setData(data);
 
 		return layoutPageTemplateStructureRelPersistence.update(

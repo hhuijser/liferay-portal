@@ -74,7 +74,6 @@ import java.net.URISyntaxException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -144,8 +143,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setCompanyId(companyId);
 		oAuth2Application.setUserId(userId);
 		oAuth2Application.setUserName(userName);
-		oAuth2Application.setCreateDate(new Date());
-		oAuth2Application.setModifiedDate(new Date());
 		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
 		oAuth2Application.setClientCredentialUserId(user.getUserId());
 		oAuth2Application.setClientCredentialUserName(user.getScreenName());
@@ -233,8 +230,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setCompanyId(companyId);
 		oAuth2Application.setUserId(userId);
 		oAuth2Application.setUserName(userName);
-		oAuth2Application.setCreateDate(new Date());
-		oAuth2Application.setModifiedDate(new Date());
 		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
 		oAuth2Application.setClientCredentialUserId(user.getUserId());
 		oAuth2Application.setClientCredentialUserName(user.getScreenName());
@@ -576,7 +571,6 @@ public class OAuth2ApplicationLocalServiceImpl
 
 		User user = _userLocalService.getUser(clientCredentialUserId);
 
-		oAuth2Application.setModifiedDate(new Date());
 		oAuth2Application.setOAuth2ApplicationScopeAliasesId(
 			oAuth2ApplicationScopeAliasesId);
 		oAuth2Application.setAllowedGrantTypesList(allowedGrantTypesList);
@@ -612,7 +606,6 @@ public class OAuth2ApplicationLocalServiceImpl
 				return oAuth2Application;
 			}
 
-			oAuth2Application.setModifiedDate(new Date());
 			oAuth2Application.setOAuth2ApplicationScopeAliasesId(0);
 
 			return oAuth2ApplicationPersistence.update(oAuth2Application);
@@ -644,7 +637,6 @@ public class OAuth2ApplicationLocalServiceImpl
 				oAuth2ApplicationScopeAliases.
 					getOAuth2ApplicationScopeAliasesId()) {
 
-			oAuth2Application.setModifiedDate(new Date());
 			oAuth2Application.setOAuth2ApplicationScopeAliasesId(
 				oAuth2ApplicationScopeAliases.
 					getOAuth2ApplicationScopeAliasesId());

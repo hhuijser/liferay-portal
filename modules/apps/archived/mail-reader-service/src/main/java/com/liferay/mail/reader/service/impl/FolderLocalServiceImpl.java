@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistry;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -45,7 +44,6 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
 
 		long folderId = counterLocalService.increment();
 
@@ -54,8 +52,6 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 		folder.setCompanyId(user.getCompanyId());
 		folder.setUserId(user.getUserId());
 		folder.setUserName(user.getFullName());
-		folder.setCreateDate(now);
-		folder.setModifiedDate(now);
 		folder.setAccountId(accountId);
 		folder.setFullName(fullName);
 		folder.setDisplayName(displayName);
@@ -153,7 +149,6 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
-		folder.setModifiedDate(new Date());
 		folder.setFullName(fullName);
 		folder.setDisplayName(displayName);
 		folder.setRemoteMessageCount(remoteMessageCount);

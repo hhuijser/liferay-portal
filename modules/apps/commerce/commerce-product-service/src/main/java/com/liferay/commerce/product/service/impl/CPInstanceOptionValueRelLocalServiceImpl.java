@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -65,11 +64,6 @@ public class CPInstanceOptionValueRelLocalServiceImpl
 		User user = userLocalService.getUser(userId);
 
 		cpInstanceOptionValueRel.setUserName(user.getFullName());
-
-		Date createDate = new Date();
-
-		cpInstanceOptionValueRel.setCreateDate(createDate);
-		cpInstanceOptionValueRel.setModifiedDate(createDate);
 
 		cpInstanceOptionValueRel.setCPDefinitionOptionRelId(
 			cpDefinitionOptionRelId);

@@ -24,7 +24,6 @@ import com.liferay.portal.workflow.kaleo.definition.ScriptLanguage;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoActionLocalServiceBaseImpl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -47,7 +46,6 @@ public class KaleoActionLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getGuestOrUserId());
-		Date now = new Date();
 
 		long kaleoActionId = counterLocalService.increment();
 
@@ -56,8 +54,6 @@ public class KaleoActionLocalServiceImpl
 		kaleoAction.setCompanyId(user.getCompanyId());
 		kaleoAction.setUserId(user.getUserId());
 		kaleoAction.setUserName(user.getFullName());
-		kaleoAction.setCreateDate(now);
-		kaleoAction.setModifiedDate(now);
 		kaleoAction.setKaleoClassName(kaleoClassName);
 		kaleoAction.setKaleoClassPK(kaleoClassPK);
 		kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);

@@ -262,7 +262,6 @@ public class FragmentCollectionLocalServiceImpl
 
 		validate(name);
 
-		fragmentCollection.setModifiedDate(new Date());
 		fragmentCollection.setName(name);
 		fragmentCollection.setDescription(description);
 

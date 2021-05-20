@@ -51,7 +51,6 @@ public class SamlSpAuthRequestLocalServiceImpl
 			samlSpAuthRequestPersistence.create(samlSpAuthRequestId);
 
 		samlSpAuthRequest.setCompanyId(serviceContext.getCompanyId());
-		samlSpAuthRequest.setCreateDate(new Date());
 		samlSpAuthRequest.setSamlIdpEntityId(samlIdpEntityId);
 		samlSpAuthRequest.setSamlSpAuthRequestKey(samlSpAuthRequestKey);
 

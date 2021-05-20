@@ -107,11 +107,6 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 		workflowMetricsSLADefinition.setUserId(user.getUserId());
 		workflowMetricsSLADefinition.setUserName(user.getFullName());
 
-		Date now = new Date();
-
-		workflowMetricsSLADefinition.setCreateDate(now);
-		workflowMetricsSLADefinition.setModifiedDate(now);
-
 		workflowMetricsSLADefinition.setActive(true);
 		workflowMetricsSLADefinition.setCalendarKey(calendarKey);
 		workflowMetricsSLADefinition.setDescription(description);
@@ -330,9 +325,6 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 		workflowMetricsSLADefinitionVersion.setUserName(user.getFullName());
 
 		Date now = new Date();
-
-		workflowMetricsSLADefinitionVersion.setCreateDate(now);
-		workflowMetricsSLADefinitionVersion.setModifiedDate(now);
 
 		workflowMetricsSLADefinitionVersion.setActive(
 			workflowMetricsSLADefinition.isActive());

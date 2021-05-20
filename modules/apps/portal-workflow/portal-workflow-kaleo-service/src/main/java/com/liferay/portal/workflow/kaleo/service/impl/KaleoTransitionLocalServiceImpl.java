@@ -25,7 +25,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTransitionLocalServiceBaseImpl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -51,7 +50,6 @@ public class KaleoTransitionLocalServiceImpl
 		// Kaleo transition
 
 		User user = userLocalService.getUser(serviceContext.getGuestOrUserId());
-		Date now = new Date();
 
 		long kaleoTransitionId = counterLocalService.increment();
 
@@ -61,8 +59,6 @@ public class KaleoTransitionLocalServiceImpl
 		kaleoTransition.setCompanyId(user.getCompanyId());
 		kaleoTransition.setUserId(user.getUserId());
 		kaleoTransition.setUserName(user.getFullName());
-		kaleoTransition.setCreateDate(now);
-		kaleoTransition.setModifiedDate(now);
 		kaleoTransition.setKaleoDefinitionId(kaleoDefinitionId);
 		kaleoTransition.setKaleoDefinitionVersionId(kaleoDefinitionVersionId);
 		kaleoTransition.setKaleoNodeId(kaleoNodeId);

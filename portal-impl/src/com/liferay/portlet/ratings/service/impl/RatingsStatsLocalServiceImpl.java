@@ -23,7 +23,6 @@ import com.liferay.portlet.ratings.service.base.RatingsStatsLocalServiceBaseImpl
 import com.liferay.ratings.kernel.exception.NoSuchStatsException;
 import com.liferay.ratings.kernel.model.RatingsStats;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,11 +37,6 @@ public class RatingsStatsLocalServiceImpl
 		long statsId = counterLocalService.increment();
 
 		RatingsStats stats = ratingsStatsPersistence.create(statsId);
-
-		Date now = new Date();
-
-		stats.setCreateDate(now);
-		stats.setModifiedDate(now);
 
 		stats.setClassNameId(classNameId);
 		stats.setClassPK(classPK);

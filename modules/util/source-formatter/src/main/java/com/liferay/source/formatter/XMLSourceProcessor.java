@@ -52,7 +52,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		throws Exception {
 
 		if ((fileName.endsWith(".function") || fileName.endsWith(".macro") ||
-			 fileName.endsWith(".testcase")) &&
+			 fileName.endsWith(".project") || fileName.endsWith(".testcase")) &&
 			!SourceUtil.isXML(content)) {
 
 			return file;
@@ -92,7 +92,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 	private static final String[] _INCLUDES = {
 		"**/*.action", "**/*.function", "**/*.jrxml", "**/*.macro", "**/*.pom",
-		"**/*.testcase", "**/*.toggle", "**/*.wsdl", "**/*.xml",
+		"**/*.project", "**/*.testcase", "**/*.toggle", "**/*.wsdl", "**/*.xml",
 		"**/definitions/liferay-*.xsd", "**/*.xml.tpl"
 	};
 

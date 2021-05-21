@@ -1109,8 +1109,6 @@ public class JenkinsResultsParserUtil {
 		sb.append(Integer.parseInt(matcher.group("masterNumber")));
 		sb.append(".liferay.com/job/");
 
-		String jobName = null;
-
 		Properties buildProperties = null;
 
 		try {
@@ -1120,6 +1118,8 @@ public class JenkinsResultsParserUtil {
 			throw new RuntimeException(
 				"Unable to get build.properties", ioException);
 		}
+
+		String jobName = null;
 
 		for (String propertyName : buildProperties.stringPropertyNames()) {
 			if (propertyName.startsWith("job.id[")) {
@@ -1750,7 +1750,6 @@ public class JenkinsResultsParserUtil {
 				@Override
 				public Map<String, List<String>> execute() {
 					Properties buildProperties = null;
-					Map<String, List<String>> jenkinsNodeMap = new HashMap<>();
 
 					try {
 						buildProperties = getBuildProperties(_checkCache);
@@ -1759,6 +1758,8 @@ public class JenkinsResultsParserUtil {
 						throw new RuntimeException(
 							"Unable to get build properties", ioException);
 					}
+
+					Map<String, List<String>> jenkinsNodeMap = new HashMap<>();
 
 					for (Object propertyName : buildProperties.keySet()) {
 						Matcher jenkinsSlavesPropertyNameMatcher =

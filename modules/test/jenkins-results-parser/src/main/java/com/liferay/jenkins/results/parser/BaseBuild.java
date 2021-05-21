@@ -3933,10 +3933,6 @@ public abstract class BaseBuild implements Build {
 	}
 
 	private Map<String, String> _getDefaultJobParameters() {
-		Map<String, String> jobParameters = new HashMap<>();
-
-		JSONObject actionsJSONObject = null;
-
 		JSONObject jobJSONObject = null;
 
 		String jobURL = getJobURL();
@@ -3955,6 +3951,8 @@ public abstract class BaseBuild implements Build {
 			throw new RuntimeException(ioException);
 		}
 
+		JSONObject actionsJSONObject = null;
+
 		JSONArray actionsJSONArray = jobJSONObject.getJSONArray("actions");
 
 		for (int i = 0; i < actionsJSONArray.length(); i++) {
@@ -3966,6 +3964,8 @@ public abstract class BaseBuild implements Build {
 				break;
 			}
 		}
+
+		Map<String, String> jobParameters = new HashMap<>();
 
 		if (actionsJSONObject == null) {
 			return jobParameters;

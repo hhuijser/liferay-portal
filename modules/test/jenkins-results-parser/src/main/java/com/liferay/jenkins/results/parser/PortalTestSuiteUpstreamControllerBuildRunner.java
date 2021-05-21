@@ -249,10 +249,6 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 	}
 
 	private Map<String, Long> _getCandidateTestSuiteStaleDurations() {
-		S buildData = getBuildData();
-
-		String upstreamBranchName = buildData.getPortalUpstreamBranchName();
-
 		Properties buildProperties;
 
 		try {
@@ -261,6 +257,10 @@ public class PortalTestSuiteUpstreamControllerBuildRunner
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
 		}
+
+		S buildData = getBuildData();
+
+		String upstreamBranchName = buildData.getPortalUpstreamBranchName();
 
 		Map<String, Long> candidateTestSuiteStaleDurations =
 			new LinkedHashMap<>();

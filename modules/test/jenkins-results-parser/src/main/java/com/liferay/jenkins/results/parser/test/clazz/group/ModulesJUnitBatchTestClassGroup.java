@@ -88,9 +88,6 @@ public class ModulesJUnitBatchTestClassGroup extends JUnitBatchTestClassGroup {
 
 	@Override
 	protected List<String> getRelevantTestClassNamesRelativeExcludesGlobs() {
-		List<String> relevantTestClassNameRelativeExcludesGlobs =
-			new ArrayList<>();
-
 		Set<File> modifiedModuleDirsList = new HashSet<>();
 
 		try {
@@ -107,6 +104,9 @@ public class ModulesJUnitBatchTestClassGroup extends JUnitBatchTestClassGroup {
 					workingDirectory.getPath()),
 				ioException);
 		}
+
+		List<String> relevantTestClassNameRelativeExcludesGlobs =
+			new ArrayList<>();
 
 		for (File modifiedModuleDir : modifiedModuleDirsList) {
 			String modulesTestBatchClassNamesExcludes = null;
@@ -150,9 +150,6 @@ public class ModulesJUnitBatchTestClassGroup extends JUnitBatchTestClassGroup {
 	protected List<String> getRelevantTestClassNamesRelativeIncludesGlobs(
 		List<String> testClassNamesRelativeIncludesGlobs) {
 
-		List<String> relevantTestClassNameRelativeIncludesGlobs =
-			new ArrayList<>();
-
 		Set<File> modifiedModuleDirsList = new HashSet<>();
 
 		try {
@@ -169,6 +166,9 @@ public class ModulesJUnitBatchTestClassGroup extends JUnitBatchTestClassGroup {
 					workingDirectory.getPath()),
 				ioException);
 		}
+
+		List<String> relevantTestClassNameRelativeIncludesGlobs =
+			new ArrayList<>();
 
 		if (testRelevantChanges) {
 			modifiedModuleDirsList.addAll(

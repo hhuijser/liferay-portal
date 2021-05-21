@@ -444,9 +444,6 @@ public class JUnitBatchTestClassGroup extends BatchTestClassGroup {
 	protected List<String> getRelevantTestClassNamesRelativeIncludesGlobs(
 		List<String> testClassNamesRelativeIncludesGlobs) {
 
-		List<String> relevantTestClassNameRelativeIncludesGlobs =
-			new ArrayList<>();
-
 		List<File> moduleDirsList = null;
 
 		try {
@@ -462,6 +459,9 @@ public class JUnitBatchTestClassGroup extends BatchTestClassGroup {
 					workingDirectory.getPath()),
 				ioException);
 		}
+
+		List<String> relevantTestClassNameRelativeIncludesGlobs =
+			new ArrayList<>();
 
 		List<File> modifiedFilesList =
 			portalGitWorkingDirectory.getModifiedFilesList();

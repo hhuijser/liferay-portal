@@ -202,10 +202,6 @@ public class SchemaBuilder {
 			_logger.debug("Create schema for: {}", schemaName);
 		}
 
-		AtomicInteger index = new AtomicInteger();
-		List<Schema.Field> schemaFields = new ArrayList<>();
-		Set<String> previousFieldNames = new HashSet<>();
-
 		JsonObject schemaJsonObject = _extractSchemaJsonObject(
 			schemaName, oasJsonObject);
 
@@ -216,6 +212,10 @@ public class SchemaBuilder {
 						"definition for %s",
 					schemaName));
 		}
+
+		AtomicInteger index = new AtomicInteger();
+		List<Schema.Field> schemaFields = new ArrayList<>();
+		Set<String> previousFieldNames = new HashSet<>();
 
 		_processSchemaJsonObject(
 			null, schemaJsonObject, index, previousFieldNames, schemaFields,

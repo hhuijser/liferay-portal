@@ -6128,9 +6128,6 @@ public class ServiceBuilder {
 		String uadPackagePath = GetterUtil.getString(
 			entityElement.attributeValue("uad-package-path"), _packagePath);
 
-		String uadOutputPath =
-			uadDirPath + "/" + StringUtil.replace(uadPackagePath, '.', '/');
-
 		boolean versioned = GetterUtil.getBoolean(
 			entityElement.attributeValue("versioned"));
 
@@ -6153,15 +6150,6 @@ public class ServiceBuilder {
 
 		boolean deprecated = GetterUtil.getBoolean(
 			entityElement.attributeValue("deprecated"));
-
-		List<EntityColumn> pkEntityColumns = new ArrayList<>();
-		List<EntityColumn> regularEntityColumns = new ArrayList<>();
-		List<EntityColumn> blobEntityColumns = new ArrayList<>();
-		List<EntityColumn> collectionEntityColumns = new ArrayList<>();
-		List<EntityColumn> entityColumns = new ArrayList<>();
-
-		boolean permissionedModel = false;
-		boolean resourcedModel = false;
 
 		List<Element> columnElements = entityElement.elements("column");
 
@@ -6239,6 +6227,15 @@ public class ServiceBuilder {
 						"for " + entityName);
 			}
 		}
+
+		List<EntityColumn> pkEntityColumns = new ArrayList<>();
+		List<EntityColumn> regularEntityColumns = new ArrayList<>();
+		List<EntityColumn> blobEntityColumns = new ArrayList<>();
+		List<EntityColumn> collectionEntityColumns = new ArrayList<>();
+		List<EntityColumn> entityColumns = new ArrayList<>();
+
+		boolean permissionedModel = false;
+		boolean resourcedModel = false;
 
 		columnElements.addAll(0, derivedColumnElements);
 
@@ -6678,6 +6675,9 @@ public class ServiceBuilder {
 					finderUnique, finderWhere, finderDBWhere, finderDBIndex,
 					finderEntityColumns));
 		}
+
+		String uadOutputPath =
+			uadDirPath + "/" + StringUtil.replace(uadPackagePath, '.', '/');
 
 		List<Entity> referenceEntities = new ArrayList<>();
 		List<String> unresolvedReferenceEntityNames = new ArrayList<>();

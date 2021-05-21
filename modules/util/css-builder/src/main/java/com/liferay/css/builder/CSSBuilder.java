@@ -140,13 +140,13 @@ public class CSSBuilder implements AutoCloseable {
 	}
 
 	public void execute() throws Exception {
-		List<String> fileNames = new ArrayList<>();
-
 		File baseDir = _cssBuilderArgs.getBaseDir();
 
 		if (!baseDir.exists()) {
 			throw new IOException("Directory " + baseDir + " does not exist");
 		}
+
+		List<String> fileNames = new ArrayList<>();
 
 		for (String dirName : _cssBuilderArgs.getDirNames()) {
 			List<String> sassFileNames = _collectSassFiles(dirName, baseDir);

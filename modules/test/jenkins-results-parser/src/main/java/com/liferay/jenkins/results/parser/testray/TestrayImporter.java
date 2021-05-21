@@ -1386,12 +1386,6 @@ public class TestrayImporter {
 			return;
 		}
 
-		QAWebsitesBranchInformationBuild qaWebsitesBranchInformationBuild =
-			(QAWebsitesBranchInformationBuild)_topLevelBuild;
-
-		Build.BranchInformation branchInformation =
-			qaWebsitesBranchInformationBuild.getQAWebsitesBranchInformation();
-
 		Properties buildProperties;
 
 		try {
@@ -1400,6 +1394,12 @@ public class TestrayImporter {
 		catch (IOException ioException) {
 			throw new RuntimeException(ioException);
 		}
+
+		QAWebsitesBranchInformationBuild qaWebsitesBranchInformationBuild =
+			(QAWebsitesBranchInformationBuild)_topLevelBuild;
+
+		Build.BranchInformation branchInformation =
+			qaWebsitesBranchInformationBuild.getQAWebsitesBranchInformation();
 
 		String upstreamBranchName = branchInformation.getUpstreamBranchName();
 

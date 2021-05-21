@@ -51,8 +51,6 @@ public class SamlIdpSpSessionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUserById(serviceContext.getUserId());
-
 		SamlIdpSpSession samlIdpSpSession = getSamlIdpSpSession(
 			samlIdpSsoSessionId, samlSpEntityId);
 
@@ -62,6 +60,8 @@ public class SamlIdpSpSessionLocalServiceImpl
 					"Duplicate SAML IDP SP session ", samlIdpSsoSessionId,
 					" for ", samlSpEntityId));
 		}
+
+		User user = userLocalService.getUserById(serviceContext.getUserId());
 
 		SamlPeerBinding samlPeerBinding =
 			samlPeerBindingPersistence.fetchByC_D_SNIF_SNINQ_SNIV_SPEI_First(

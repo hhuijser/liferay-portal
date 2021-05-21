@@ -231,8 +231,6 @@ public class WebDAVUtil {
 	public static String getLockUuid(HttpServletRequest httpServletRequest)
 		throws WebDAVException {
 
-		String token = StringPool.BLANK;
-
 		String value = GetterUtil.getString(httpServletRequest.getHeader("If"));
 
 		if (_log.isDebugEnabled()) {
@@ -246,6 +244,8 @@ public class WebDAVUtil {
 
 			throw new WebDAVException();
 		}
+
+		String token = StringPool.BLANK;
 
 		int beg = value.indexOf(TOKEN_PREFIX);
 

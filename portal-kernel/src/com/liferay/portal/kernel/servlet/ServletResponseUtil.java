@@ -649,8 +649,6 @@ public class ServletResponseUtil {
 					rangeString);
 		}
 
-		List<Range> ranges = new ArrayList<>();
-
 		String[] rangeFields = StringUtil.split(rangeString.substring(6));
 
 		if (rangeFields.length > _MAX_RANGE_FIELDS) {
@@ -667,6 +665,8 @@ public class ServletResponseUtil {
 
 			throw new IOException(sb.toString());
 		}
+
+		List<Range> ranges = new ArrayList<>();
 
 		for (String rangeField : rangeFields) {
 			int index = rangeField.indexOf(StringPool.DASH);

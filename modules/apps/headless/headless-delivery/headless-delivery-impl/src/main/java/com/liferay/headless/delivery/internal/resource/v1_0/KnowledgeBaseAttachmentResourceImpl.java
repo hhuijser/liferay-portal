@@ -86,14 +86,14 @@ public class KnowledgeBaseAttachmentResourceImpl
 				Long knowledgeBaseArticleId, MultipartBody multipartBody)
 		throws Exception {
 
-		KBArticle kbArticle = _kbArticleService.getLatestKBArticle(
-			knowledgeBaseArticleId, WorkflowConstants.STATUS_APPROVED);
-
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		if (binaryFile == null) {
 			throw new BadRequestException("No file found in body");
 		}
+
+		KBArticle kbArticle = _kbArticleService.getLatestKBArticle(
+			knowledgeBaseArticleId, WorkflowConstants.STATUS_APPROVED);
 
 		return _toKnowledgeBaseAttachment(
 			_portletFileRepository.addPortletFileEntry(

@@ -335,11 +335,6 @@ public class MediaWikiImporter implements WikiImporter {
 			return;
 		}
 
-		ProgressTracker progressTracker =
-			ProgressTrackerThreadLocal.getProgressTracker();
-
-		int count = 0;
-
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(
 			imagesInputStream);
 
@@ -348,6 +343,11 @@ public class MediaWikiImporter implements WikiImporter {
 		if (entries == null) {
 			throw new ImportFilesException();
 		}
+
+		ProgressTracker progressTracker =
+			ProgressTrackerThreadLocal.getProgressTracker();
+
+		int count = 0;
 
 		int total = entries.size();
 
@@ -633,13 +633,13 @@ public class MediaWikiImporter implements WikiImporter {
 	protected List<String> readSpecialNamespaces(Element root)
 		throws ImportFilesException {
 
-		List<String> namespaces = new ArrayList<>();
-
 		Element siteinfoElement = root.element("siteinfo");
 
 		if (siteinfoElement == null) {
 			throw new ImportFilesException("Invalid pages XML file");
 		}
+
+		List<String> namespaces = new ArrayList<>();
 
 		Element namespacesElement = siteinfoElement.element("namespaces");
 

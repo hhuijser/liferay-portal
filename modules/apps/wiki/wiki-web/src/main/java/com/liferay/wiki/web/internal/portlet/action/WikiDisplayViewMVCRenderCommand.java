@@ -64,11 +64,18 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 		throws PortletException {
 
 		try {
-			PortletPreferences portletPreferences =
-				renderRequest.getPreferences();
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			WikiNode node = getNode(renderRequest);
+
+			if (node.getGroupId() != themeDisplay.getScopeGroupId()) {
+				throw new NoSuchNodeException(
+					"{nodeId=" + node.getNodeId() + "}");
+			}
+
+			PortletPreferences portletPreferences =
+				renderRequest.getPreferences();
 
 			WikiWebComponentProvider wikiWebComponentProvider =
 				WikiWebComponentProvider.getWikiWebComponentProvider();
@@ -82,13 +89,6 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 					"title", wikiGroupServiceConfiguration.frontPageName()));
 
 			double version = ParamUtil.getDouble(renderRequest, "version");
-
-			WikiNode node = getNode(renderRequest);
-
-			if (node.getGroupId() != themeDisplay.getScopeGroupId()) {
-				throw new NoSuchNodeException(
-					"{nodeId=" + node.getNodeId() + "}");
-			}
 
 			WikiPage page = _wikiPageService.fetchPage(
 				node.getNodeId(), title, version);

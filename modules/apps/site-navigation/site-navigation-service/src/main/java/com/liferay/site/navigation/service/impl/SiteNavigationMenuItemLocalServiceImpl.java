@@ -317,8 +317,6 @@ public class SiteNavigationMenuItemLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
-
 		SiteNavigationMenuItem siteNavigationMenuItem =
 			siteNavigationMenuItemPersistence.fetchByPrimaryKey(
 				siteNavigationMenuItemId);
@@ -331,6 +329,8 @@ public class SiteNavigationMenuItemLocalServiceImpl
 			throw new InvalidSiteNavigationMenuItemTypeException(
 				siteNavigationMenuItem.getType());
 		}
+
+		User user = userLocalService.getUser(userId);
 
 		String name = siteNavigationMenuItemType.getName(typeSettings);
 

@@ -92,14 +92,6 @@ public class ExpandoPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String modelResource = ParamUtil.getString(
-			actionRequest, "modelResource");
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
 		int type = ParamUtil.getInteger(actionRequest, "type");
 
 		String dataType = ParamUtil.getString(actionRequest, "dataType");
@@ -112,14 +104,22 @@ public class ExpandoPortlet extends MVCPortlet {
 			type = _getNumberType(dataType, precisionType, type);
 		}
 
-		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
-			themeDisplay.getCompanyId(), modelResource, resourcePrimKey);
-
 		String name = ParamUtil.getString(actionRequest, "name");
 
 		if (!Field.validateFieldName(name)) {
 			throw new ColumnNameException.MustValidate();
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String modelResource = ParamUtil.getString(
+			actionRequest, "modelResource");
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
+			themeDisplay.getCompanyId(), modelResource, resourcePrimKey);
 
 		expandoBridge.addAttribute(name, type);
 

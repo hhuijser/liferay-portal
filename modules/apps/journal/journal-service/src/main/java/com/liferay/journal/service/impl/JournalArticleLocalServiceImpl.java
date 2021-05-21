@@ -998,7 +998,6 @@ public class JournalArticleLocalServiceImpl
 
 		// Article
 
-		User user = userLocalService.getUser(userId);
 		oldArticleId = StringUtil.toUpperCase(StringUtil.trim(oldArticleId));
 		newArticleId = StringUtil.toUpperCase(StringUtil.trim(newArticleId));
 
@@ -1025,6 +1024,8 @@ public class JournalArticleLocalServiceImpl
 				throw new DuplicateArticleIdException(sb.toString());
 			}
 		}
+
+		User user = userLocalService.getUser(userId);
 
 		long id = counterLocalService.increment();
 
@@ -5503,7 +5504,6 @@ public class JournalArticleLocalServiceImpl
 
 		// Article
 
-		User user = userLocalService.getUser(userId);
 		articleId = StringUtil.toUpperCase(StringUtil.trim(articleId));
 
 		byte[] smallImageBytes = null;
@@ -5554,6 +5554,8 @@ public class JournalArticleLocalServiceImpl
 				version = getNextVersion(article);
 			}
 		}
+
+		User user = userLocalService.getUser(userId);
 
 		Date displayDate = _portal.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,

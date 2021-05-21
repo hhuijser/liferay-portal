@@ -111,14 +111,14 @@ public class MessageBoardAttachmentResourceImpl
 			Long messageBoardMessageId, MultipartBody multipartBody)
 		throws Exception {
 
-		MBMessage mbMessage = _mbMessageService.getMessage(
-			messageBoardMessageId);
-
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		if (binaryFile == null) {
 			throw new BadRequestException("No file found in body");
 		}
+
+		MBMessage mbMessage = _mbMessageService.getMessage(
+			messageBoardMessageId);
 
 		Folder folder = mbMessage.addAttachmentsFolder();
 

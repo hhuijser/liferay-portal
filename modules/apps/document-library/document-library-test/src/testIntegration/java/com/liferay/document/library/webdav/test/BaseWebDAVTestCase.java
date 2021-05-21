@@ -60,8 +60,6 @@ public class BaseWebDAVTestCase {
 	public Tuple service(
 		String method, String path, Map<String, String> headers, byte[] data) {
 
-		WebDAVServlet webDAVServlet = new WebDAVServlet();
-
 		String requestURI = StringBundler.concat(
 			_CONTEXT_PATH, _SERVLET_PATH, _PATH_INFO_PREFACE, path);
 
@@ -134,6 +132,8 @@ public class BaseWebDAVTestCase {
 		}
 
 		try {
+			WebDAVServlet webDAVServlet = new WebDAVServlet();
+
 			MockHttpServletResponse mockHttpServletResponse =
 				new MockHttpServletResponse();
 

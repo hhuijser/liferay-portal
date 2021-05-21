@@ -58,8 +58,6 @@ public class UpdateTaskMVCResourceCommand extends BaseMVCResourceCommand {
 		long workflowTaskId = ParamUtil.getLong(
 			resourceRequest, "workflowTaskId");
 
-		String comment = ParamUtil.getString(resourceRequest, "comment");
-
 		int dueDateMonth = ParamUtil.getInteger(
 			resourceRequest, "dueDateMonth");
 		int dueDateDay = ParamUtil.getInteger(resourceRequest, "dueDateDay");
@@ -85,6 +83,8 @@ public class UpdateTaskMVCResourceCommand extends BaseMVCResourceCommand {
 		if (createDate.after(dueDate)) {
 			throw new WorkflowTaskDueDateException();
 		}
+
+		String comment = ParamUtil.getString(resourceRequest, "comment");
 
 		workflowTaskManager.updateDueDate(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(),

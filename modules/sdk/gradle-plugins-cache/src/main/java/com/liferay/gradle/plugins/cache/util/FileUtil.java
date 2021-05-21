@@ -123,8 +123,6 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 
 		long start = System.currentTimeMillis();
 
-		StringBuilder sb = new StringBuilder();
-
 		SortedSet<File> sortedFiles = null;
 
 		try {
@@ -137,6 +135,8 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 		if (excludeIgnoredFiles) {
 			removeIgnoredFiles(project, sortedFiles);
 		}
+
+		StringBuilder sb = new StringBuilder();
 
 		for (File file : sortedFiles) {
 			if (!file.exists()) {

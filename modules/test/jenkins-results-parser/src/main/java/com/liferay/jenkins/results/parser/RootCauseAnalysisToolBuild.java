@@ -311,12 +311,6 @@ public class RootCauseAnalysisToolBuild extends DefaultTopLevelBuild {
 
 	@Override
 	protected Element getJenkinsReportBodyElement() {
-		String buildURL = getBuildURL();
-
-		Element headingElement = Dom4JUtil.getNewElement(
-			"h1", null, "Jenkins report for ",
-			Dom4JUtil.getNewAnchorElement(buildURL, buildURL));
-
 		Element subheadingElement = null;
 
 		JSONObject jobJSONObject = getBuildJSONObject();
@@ -335,6 +329,12 @@ public class RootCauseAnalysisToolBuild extends DefaultTopLevelBuild {
 					documentException);
 			}
 		}
+
+		String buildURL = getBuildURL();
+
+		Element headingElement = Dom4JUtil.getNewElement(
+			"h1", null, "Jenkins report for ",
+			Dom4JUtil.getNewAnchorElement(buildURL, buildURL));
 
 		return Dom4JUtil.getNewElement(
 			"body", null, headingElement, subheadingElement,

@@ -292,8 +292,6 @@ public class FileUtil {
 			String dirPathString)
 		throws Exception {
 
-		Map<String, InputStream> pathMap = new HashMap<>();
-
 		if ((dirPathString != null) && (File.separatorChar == '\\')) {
 			dirPathString = dirPathString.replace('\\', '/');
 		}
@@ -305,6 +303,8 @@ public class FileUtil {
 
 			throw new NoSuchElementException(errorMessage);
 		}
+
+		Map<String, InputStream> pathMap = new HashMap<>();
 
 		URI uri = url.toURI();
 

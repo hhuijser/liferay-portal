@@ -218,8 +218,6 @@ public class CISystemStatusReportUtil {
 				"Start time must preceed end time");
 		}
 
-		JSONArray successRateJSONArray = new JSONArray();
-
 		Set<LocalDate> localDates = new HashSet<>();
 
 		for (int i = 0;
@@ -292,6 +290,8 @@ public class CISystemStatusReportUtil {
 		}
 
 		int totalBuilds = failedBuilds + passedBuilds + unstableBuilds;
+
+		JSONArray successRateJSONArray = new JSONArray();
 
 		successRateJSONArray.put(title);
 		successRateJSONArray.put(

@@ -88,14 +88,14 @@ public class StartTestableTomcatTask extends StartAppServerTask {
 	}
 
 	private void _deleteLiferayHome() {
-		Project project = getProject();
-
 		File liferayHome = getLiferayHome();
 
 		if (liferayHome == null) {
 			throw new InvalidUserDataException(
 				"No value has been specified for property 'liferayHome'");
 		}
+
+		Project project = getProject();
 
 		project.delete(
 			new File(liferayHome, "data"), new File(liferayHome, "logs"),

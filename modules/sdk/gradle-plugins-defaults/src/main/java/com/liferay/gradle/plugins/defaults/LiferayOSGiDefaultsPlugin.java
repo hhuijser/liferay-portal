@@ -2957,13 +2957,6 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configurePmd(Project project) {
-		PmdExtension pmdExtension = GradleUtil.getExtension(
-			project, PmdExtension.class);
-
-		ResourceHandler resourceHandler = project.getResources();
-
-		TextResourceFactory textResourceFactory = resourceHandler.getText();
-
 		String ruleSet;
 
 		try {
@@ -2974,6 +2967,13 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		catch (IOException ioException) {
 			throw new UncheckedIOException(ioException);
 		}
+
+		PmdExtension pmdExtension = GradleUtil.getExtension(
+			project, PmdExtension.class);
+
+		ResourceHandler resourceHandler = project.getResources();
+
+		TextResourceFactory textResourceFactory = resourceHandler.getText();
 
 		pmdExtension.setRuleSetConfig(textResourceFactory.fromString(ruleSet));
 

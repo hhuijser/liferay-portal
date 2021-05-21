@@ -62,10 +62,6 @@ public class KaleoProcessAssetRendererFactory
 
 		DDLRecord record = _ddlRecordLocalService.fetchDDLRecord(classPK);
 
-		KaleoProcess kaleoProcess =
-			_kaleoProcessLocalService.getDDLRecordSetKaleoProcess(
-				record.getRecordSetId());
-
 		DDLRecordVersion recordVersion = null;
 
 		if (type == TYPE_LATEST) {
@@ -78,6 +74,10 @@ public class KaleoProcessAssetRendererFactory
 			throw new IllegalArgumentException(
 				"Unknown asset renderer type " + type);
 		}
+
+		KaleoProcess kaleoProcess =
+			_kaleoProcessLocalService.getDDLRecordSetKaleoProcess(
+				record.getRecordSetId());
 
 		KaleoProcessAssetRenderer kaleoProcessAssetRenderer =
 			new KaleoProcessAssetRenderer(kaleoProcess, record, recordVersion);

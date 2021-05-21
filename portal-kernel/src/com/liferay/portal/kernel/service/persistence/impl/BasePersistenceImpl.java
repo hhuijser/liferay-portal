@@ -179,8 +179,6 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 
 		dslQuery.toSQL(sb::append, defaultASTNodeListener);
 
-		String[] tableNames = defaultASTNodeListener.getTableNames();
-
 		Select select = null;
 
 		ASTNode astNode = dslQuery;
@@ -208,6 +206,8 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 			throw new IllegalArgumentException(
 				"No Select found for " + dslQuery);
 		}
+
+		String[] tableNames = defaultASTNodeListener.getTableNames();
 
 		ProjectionType projectionType = _getProjectionType(
 			tableNames, select.getExpressions());
@@ -699,12 +699,12 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 
 	@Override
 	public T update(T model) {
-		Class<?> clazz = model.getModelClass();
-
 		if (ReadOnlyTransactionThreadLocal.isReadOnly()) {
 			throw new IllegalStateException(
 				"Update called with read only transaction");
 		}
+
+		Class<?> clazz = model.getModelClass();
 
 		while (model instanceof ModelWrapper) {
 			ModelWrapper<T> modelWrapper = (ModelWrapper<T>)model;

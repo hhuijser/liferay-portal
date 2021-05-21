@@ -441,8 +441,6 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 			long entryId, long overrideClassPK, String name)
 		throws PortalException {
 
-		PermissionChecker permissionChecker = getPermissionChecker();
-
 		TrashEntry entry = trashEntryPersistence.findByPrimaryKey(entryId);
 
 		TrashHandler trashHandler = TrashHandlerRegistryUtil.getTrashHandler(
@@ -452,6 +450,8 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 			throw new RestoreEntryException(
 				RestoreEntryException.NOT_RESTORABLE);
 		}
+
+		PermissionChecker permissionChecker = getPermissionChecker();
 
 		if (!trashHandler.hasTrashPermission(
 				permissionChecker, 0, entry.getClassPK(),

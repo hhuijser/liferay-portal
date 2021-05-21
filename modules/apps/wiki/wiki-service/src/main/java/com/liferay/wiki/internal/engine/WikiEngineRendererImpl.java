@@ -59,14 +59,14 @@ public class WikiEngineRendererImpl implements WikiEngineRenderer {
 			String attachmentURLPrefix)
 		throws PageContentException, WikiFormatException {
 
-		LiferayPortletURL liferayViewPageURL = (LiferayPortletURL)viewPageURL;
-		LiferayPortletURL liferayEditPageURL = (LiferayPortletURL)editPageURL;
-
 		WikiEngine wikiEngine = fetchWikiEngine(page.getFormat());
 
 		if (wikiEngine == null) {
 			throw new WikiFormatException();
 		}
+
+		LiferayPortletURL liferayViewPageURL = (LiferayPortletURL)viewPageURL;
+		LiferayPortletURL liferayEditPageURL = (LiferayPortletURL)editPageURL;
 
 		String content = wikiEngine.convert(
 			page, viewPageURL, editPageURL, attachmentURLPrefix);

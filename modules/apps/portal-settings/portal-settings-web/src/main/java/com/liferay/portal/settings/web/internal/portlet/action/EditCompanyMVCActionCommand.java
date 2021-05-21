@@ -195,14 +195,6 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 
 		Company company = _companyService.getCompanyById(companyId);
 
-		String virtualHostname = ParamUtil.getString(
-			actionRequest, "virtualHostname", company.getVirtualHostname());
-		String mx = ParamUtil.getString(actionRequest, "mx", company.getMx());
-		String homeURL = ParamUtil.getString(
-			actionRequest, "homeURL", company.getHomeURL());
-
-		boolean deleteLogo = ParamUtil.getBoolean(actionRequest, "deleteLogo");
-
 		byte[] logoBytes = null;
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
@@ -213,34 +205,7 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 			logoBytes = FileUtil.getBytes(fileEntry.getContentStream());
 		}
 
-		String name = ParamUtil.getString(
-			actionRequest, "name", company.getName());
-
-		Account account = company.getAccount();
-
-		String legalName = ParamUtil.getString(
-			actionRequest, "legalName", account.getLegalName());
-		String legalId = ParamUtil.getString(
-			actionRequest, "legalId", account.getLegalId());
-		String legalType = ParamUtil.getString(
-			actionRequest, "legalType", account.getLegalType());
-		String sicCode = ParamUtil.getString(
-			actionRequest, "sicCode", account.getSicCode());
-		String tickerSymbol = ParamUtil.getString(
-			actionRequest, "tickerSymbol", account.getTickerSymbol());
-		String industry = ParamUtil.getString(
-			actionRequest, "industry", account.getIndustry());
-		String type = ParamUtil.getString(
-			actionRequest, "type", account.getType());
-		String size = ParamUtil.getString(
-			actionRequest, "size", account.getSize());
-
 		User defaultUser = _userLocalService.getDefaultUser(companyId);
-
-		String languageId = ParamUtil.getString(
-			actionRequest, "languageId", defaultUser.getLanguageId());
-		String timeZoneId = ParamUtil.getString(
-			actionRequest, "timeZoneId", defaultUser.getTimeZoneId());
 
 		List<Address> addresses = UsersAdminUtil.getAddresses(actionRequest);
 
@@ -307,6 +272,40 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 		catch (ReadOnlyException readOnlyException) {
 			throw new SystemException(readOnlyException);
 		}
+
+		Account account = company.getAccount();
+
+		String name = ParamUtil.getString(
+			actionRequest, "name", company.getName());
+		String virtualHostname = ParamUtil.getString(
+			actionRequest, "virtualHostname", company.getVirtualHostname());
+		String mx = ParamUtil.getString(actionRequest, "mx", company.getMx());
+		String homeURL = ParamUtil.getString(
+			actionRequest, "homeURL", company.getHomeURL());
+
+		boolean deleteLogo = ParamUtil.getBoolean(actionRequest, "deleteLogo");
+
+		String legalName = ParamUtil.getString(
+			actionRequest, "legalName", account.getLegalName());
+		String legalId = ParamUtil.getString(
+			actionRequest, "legalId", account.getLegalId());
+		String legalType = ParamUtil.getString(
+			actionRequest, "legalType", account.getLegalType());
+		String sicCode = ParamUtil.getString(
+			actionRequest, "sicCode", account.getSicCode());
+		String tickerSymbol = ParamUtil.getString(
+			actionRequest, "tickerSymbol", account.getTickerSymbol());
+		String industry = ParamUtil.getString(
+			actionRequest, "industry", account.getIndustry());
+		String type = ParamUtil.getString(
+			actionRequest, "type", account.getType());
+		String size = ParamUtil.getString(
+			actionRequest, "size", account.getSize());
+
+		String languageId = ParamUtil.getString(
+			actionRequest, "languageId", defaultUser.getLanguageId());
+		String timeZoneId = ParamUtil.getString(
+			actionRequest, "timeZoneId", defaultUser.getTimeZoneId());
 
 		_companyService.updateCompany(
 			companyId, virtualHostname, mx, homeURL, !deleteLogo, logoBytes,

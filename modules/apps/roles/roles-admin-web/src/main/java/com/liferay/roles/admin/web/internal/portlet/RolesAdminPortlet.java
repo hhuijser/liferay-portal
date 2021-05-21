@@ -140,14 +140,7 @@ public class RolesAdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long roleId = ParamUtil.getLong(actionRequest, "roleId");
-		String name = ParamUtil.getString(actionRequest, "name");
-		int scope = ParamUtil.getInteger(actionRequest, "scope");
-		String primKey = ParamUtil.getString(actionRequest, "primKey");
-		String actionId = ParamUtil.getString(actionRequest, "actionId");
 
 		Role role = _roleLocalService.getRole(roleId);
 
@@ -162,6 +155,14 @@ public class RolesAdminPortlet extends MVCPortlet {
 
 			throw new RolePermissionsException(roleName);
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String name = ParamUtil.getString(actionRequest, "name");
+		int scope = ParamUtil.getInteger(actionRequest, "scope");
+		String primKey = ParamUtil.getString(actionRequest, "primKey");
+		String actionId = ParamUtil.getString(actionRequest, "actionId");
 
 		_resourcePermissionService.removeResourcePermission(
 			themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(), name,
@@ -379,9 +380,6 @@ public class RolesAdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long roleId = ParamUtil.getLong(actionRequest, "roleId");
 
 		Role role = _roleLocalService.getRole(roleId);
@@ -397,6 +395,9 @@ public class RolesAdminPortlet extends MVCPortlet {
 
 			throw new RolePermissionsException(roleName);
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");

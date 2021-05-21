@@ -3659,11 +3659,6 @@ public class StagingImpl implements Staging {
 			PortletRequest portletRequest, long targetGroupId, boolean remote)
 		throws SchedulerException {
 
-		ScheduleInformation scheduleInformation = new ScheduleInformation();
-
-		int recurrenceType = ParamUtil.getInteger(
-			portletRequest, "recurrenceType");
-
 		Calendar startCalendar = ExportImportDateUtil.getCalendar(
 			portletRequest, "schedulerStartDate", true);
 
@@ -3678,6 +3673,11 @@ public class StagingImpl implements Staging {
 
 			throw schedulerException;
 		}
+
+		ScheduleInformation scheduleInformation = new ScheduleInformation();
+
+		int recurrenceType = ParamUtil.getInteger(
+			portletRequest, "recurrenceType");
 
 		String cronText = SchedulerEngineHelperUtil.getCronText(
 			portletRequest, startCalendar, false, recurrenceType);

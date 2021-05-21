@@ -1178,14 +1178,14 @@ public class FileSystemImporter extends BaseImporter {
 			Layout layout, String columnId, JSONObject portletJSONObject)
 		throws Exception {
 
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
 		String rootPortletId = portletJSONObject.getString("portletId");
 
 		if (Validator.isNull(rootPortletId)) {
 			throw new ImporterException("portletId is not specified");
 		}
+
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
 
 		PortletPreferencesTranslator portletPreferencesTranslator =
 			portletPreferencesTranslators.get(rootPortletId);

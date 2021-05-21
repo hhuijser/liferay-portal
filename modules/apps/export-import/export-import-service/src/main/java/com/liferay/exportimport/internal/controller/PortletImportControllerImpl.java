@@ -909,9 +909,6 @@ public class PortletImportControllerImpl implements PortletImportController {
 		Map<String, String[]> parameterMap =
 			portletDataContext.getParameterMap();
 
-		boolean importPermissions = MapUtil.getBoolean(
-			parameterMap, PortletDataHandlerKeys.PERMISSIONS);
-
 		StopWatch stopWatch = new StopWatch();
 
 		stopWatch.start();
@@ -985,6 +982,9 @@ public class PortletImportControllerImpl implements PortletImportController {
 
 			throw exportImportDocumentException;
 		}
+
+		boolean importPermissions = MapUtil.getBoolean(
+			parameterMap, PortletDataHandlerKeys.PERMISSIONS);
 
 		_permissionImporter.clearCache();
 
@@ -1405,7 +1405,6 @@ public class PortletImportControllerImpl implements PortletImportController {
 		// Build compatibility
 
 		Element headerElement = rootElement.element("header");
-		Element portletElement = rootElement.element("portlet");
 
 		int importBuildNumber = GetterUtil.getInteger(
 			headerElement.attributeValue("build-number"));
@@ -1479,6 +1478,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 		if (!expectedRootPortletId.equals(rootPortletId)) {
 			throw new PortletIdException(expectedRootPortletId);
 		}
+
+		Element portletElement = rootElement.element("portlet");
 
 		String schemaVersion = GetterUtil.getString(
 			portletElement.attributeValue("schema-version"), "1.0.0");

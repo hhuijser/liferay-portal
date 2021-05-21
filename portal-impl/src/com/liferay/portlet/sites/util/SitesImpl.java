@@ -592,7 +592,6 @@ public class SitesImpl implements Sites {
 		}
 
 		Group group = layout.getGroup();
-		String oldFriendlyURL = themeDisplay.getLayoutFriendlyURL(layout);
 
 		if (group.isStagingGroup() &&
 			!GroupPermissionUtil.contains(
@@ -604,6 +603,8 @@ public class SitesImpl implements Sites {
 				permissionChecker, Group.class.getName(), group.getGroupId(),
 				ActionKeys.MANAGE_STAGING, ActionKeys.PUBLISH_STAGING);
 		}
+
+		String oldFriendlyURL = themeDisplay.getLayoutFriendlyURL(layout);
 
 		if (LayoutPermissionUtil.contains(
 				permissionChecker, layout, ActionKeys.DELETE)) {

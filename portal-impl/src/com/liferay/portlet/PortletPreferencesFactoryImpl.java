@@ -902,10 +902,6 @@ public class PortletPreferencesFactoryImpl
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			layout.getCompanyId(), portletId);
 
-		long ownerId = 0;
-		int ownerType = 0;
-		long plid = 0;
-
 		if (modeEditGuest) {
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
@@ -925,6 +921,10 @@ public class PortletPreferencesFactoryImpl
 					layout.getLayoutId(), ActionKeys.UPDATE);
 			}
 		}
+
+		long ownerId = 0;
+		int ownerType = 0;
+		long plid = 0;
 
 		long masterLayoutPlid = layout.getMasterLayoutPlid();
 

@@ -77,8 +77,6 @@ public class XugglerRawMetadataProcessor extends BaseRawMetadataProcessor {
 		IContainer container = IContainer.make();
 
 		try {
-			Metadata metadata = new Metadata();
-
 			int result = container.open(
 				file.getCanonicalPath(), IContainer.Type.READ, null);
 
@@ -90,6 +88,8 @@ public class XugglerRawMetadataProcessor extends BaseRawMetadataProcessor {
 				throw new IllegalStateException(
 					"Could not query stream metadata");
 			}
+
+			Metadata metadata = new Metadata();
 
 			long microseconds = container.getDuration();
 

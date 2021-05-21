@@ -3683,6 +3683,12 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
+		List<String> names = new ArrayList<>(nameMap.values());
+
+		if (ListUtil.isNull(names)) {
+			throw new GroupKeyException();
+		}
+
 		Group group = groupPersistence.findByPrimaryKey(groupId);
 
 		String className = group.getClassName();
@@ -3690,12 +3696,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		long classPK = group.getClassPK();
 
 		String groupKey = group.getGroupKey();
-
-		List<String> names = new ArrayList<>(nameMap.values());
-
-		if (ListUtil.isNull(names)) {
-			throw new GroupKeyException();
-		}
 
 		if (nameMap != null) {
 			nameMap = _normalizeNameMap(nameMap);

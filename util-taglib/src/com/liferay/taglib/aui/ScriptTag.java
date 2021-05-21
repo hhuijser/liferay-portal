@@ -114,8 +114,6 @@ public class ScriptTag extends BaseScriptTag {
 				portletId = portlet.getPortletId();
 			}
 
-			StringBundler bodyContentSB = getBodyContentAsStringBundler();
-
 			String load = getLoad();
 			String require = getRequire();
 			String use = getUse();
@@ -125,6 +123,8 @@ public class ScriptTag extends BaseScriptTag {
 					"Attribute \"use\" cannot be used with \"load\" or " +
 						"\"require\"");
 			}
+
+			StringBundler bodyContentSB = getBodyContentAsStringBundler();
 
 			if (getSandbox() || (require != null) || (use != null)) {
 				StringBundler sb = new StringBundler(4);

@@ -241,14 +241,8 @@ public class RulesEngineImpl implements RulesEngine {
 		throws RulesEngineException {
 
 		try {
-			KnowledgeBaseConfiguration knowledgeBaseConfiguration =
-				KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
-
 			KnowledgeBuilderConfiguration knowledgeBuilderConfiguration =
 				KnowledgeBuilderFactory.newKnowledgeBuilderConfiguration();
-
-			KnowledgeBase knowledgeBase = KnowledgeBaseFactory.newKnowledgeBase(
-				knowledgeBaseConfiguration);
 
 			KnowledgeBuilder knowledgeBuilder =
 				KnowledgeBuilderFactory.newKnowledgeBuilder(
@@ -274,6 +268,12 @@ public class RulesEngineImpl implements RulesEngine {
 				throw new RulesEngineException(
 					knowledgeBuilderErrors.toString());
 			}
+
+			KnowledgeBaseConfiguration knowledgeBaseConfiguration =
+				KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
+
+			KnowledgeBase knowledgeBase = KnowledgeBaseFactory.newKnowledgeBase(
+				knowledgeBaseConfiguration);
 
 			knowledgeBase.addKnowledgePackages(
 				knowledgeBuilder.getKnowledgePackages());

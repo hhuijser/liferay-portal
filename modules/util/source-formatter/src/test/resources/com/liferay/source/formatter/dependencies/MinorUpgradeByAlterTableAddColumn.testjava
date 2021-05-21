@@ -23,8 +23,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Alberto Chaparro
  */
 @Component(immediate = true, service = UpgradeStepRegistrar.class)
-public class MinorUpgradeByAlterTableAddColumn
-	implements UpgradeStepRegistrar {
+public class MinorUpgradeByAlterTableAddColumn implements UpgradeStepRegistrar {
 
 	@Override
 	public void register(Registry registry) {

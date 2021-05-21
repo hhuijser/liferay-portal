@@ -46,7 +46,7 @@ public class JavaUpgradeVersionSourceProcessorTest
 
 	@Test
 	public void testMinorUpgradeByAlterTableAddColumn() throws Exception {
-		test("MinorUpgradeByAlterTableAddColumn.testjava", "1.1.0", 31);
+		test("MinorUpgradeByAlterTableAddColumn.testjava", "1.1.0", 30);
 	}
 
 	@Test

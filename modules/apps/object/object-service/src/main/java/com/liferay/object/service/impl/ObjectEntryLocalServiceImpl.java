@@ -540,9 +540,6 @@ public class ObjectEntryLocalServiceImpl
 			Map<String, Serializable> values)
 		throws PortalException {
 
-		Connection connection = CurrentConnectionUtil.getConnection(
-			objectEntryPersistence.getDataSource());
-
 		StringBundler sb = new StringBundler();
 
 		sb.append("insert into ");
@@ -597,6 +594,9 @@ public class ObjectEntryLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug("SQL: " + sql);
 		}
+
+		Connection connection = CurrentConnectionUtil.getConnection(
+			objectEntryPersistence.getDataSource());
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -870,9 +870,6 @@ public class ObjectEntryLocalServiceImpl
 			Map<String, Serializable> values)
 		throws PortalException {
 
-		Connection connection = CurrentConnectionUtil.getConnection(
-			objectEntryPersistence.getDataSource());
-
 		StringBundler sb = new StringBundler();
 
 		sb.append("update ");
@@ -926,6 +923,9 @@ public class ObjectEntryLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug("SQL: " + sql);
 		}
+
+		Connection connection = CurrentConnectionUtil.getConnection(
+			objectEntryPersistence.getDataSource());
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

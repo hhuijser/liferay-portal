@@ -50,8 +50,6 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 
 		// Choice
 
-		Date now = new Date();
-
 		PollsChoice choice = pollsChoicePersistence.findByPrimaryKey(choiceId);
 
 		if (choice.getQuestionId() != questionId) {
@@ -60,6 +58,8 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 		}
 
 		// Question
+
+		Date now = new Date();
 
 		PollsQuestion question = pollsQuestionPersistence.findByPrimaryKey(
 			questionId);

@@ -98,13 +98,6 @@ public class EditRuleMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	protected void updateRule(ActionRequest actionRequest) throws Exception {
-		long ruleId = ParamUtil.getLong(actionRequest, "ruleId");
-
-		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
-			actionRequest, "name");
-		Map<Locale, String> descriptionMap =
-			LocalizationUtil.getLocalizationMap(actionRequest, "description");
-
 		String type = ParamUtil.getString(actionRequest, "type");
 
 		RuleHandler ruleHandler = RuleGroupProcessorUtil.getRuleHandler(type);
@@ -112,6 +105,13 @@ public class EditRuleMVCActionCommand extends BaseMVCActionCommand {
 		if (ruleHandler == null) {
 			throw new UnknownRuleHandlerException(type);
 		}
+
+		long ruleId = ParamUtil.getLong(actionRequest, "ruleId");
+
+		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
+			actionRequest, "name");
+		Map<Locale, String> descriptionMap =
+			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		UnicodeProperties typeSettingsUnicodeProperties =
 			ActionUtil.getTypeSettingsUnicodeProperties(

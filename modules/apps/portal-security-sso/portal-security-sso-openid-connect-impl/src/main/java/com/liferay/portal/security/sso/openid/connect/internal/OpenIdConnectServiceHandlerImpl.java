@@ -136,9 +136,6 @@ public class OpenIdConnectServiceHandlerImpl
 			HttpServletResponse httpServletResponse)
 		throws PortalException {
 
-		AuthenticationSuccessResponse authenticationSuccessResponse =
-			getAuthenticationSuccessResponse(httpServletRequest);
-
 		HttpSession httpSession = httpServletRequest.getSession();
 
 		OpenIdConnectSessionImpl openIdConnectSessionImpl =
@@ -153,6 +150,9 @@ public class OpenIdConnectServiceHandlerImpl
 					OpenIdConnectFlowState.AUTH_REQUESTED, " state: ",
 					openIdConnectSessionImpl.getOpenIdConnectFlowState()));
 		}
+
+		AuthenticationSuccessResponse authenticationSuccessResponse =
+			getAuthenticationSuccessResponse(httpServletRequest);
 
 		validateState(
 			openIdConnectSessionImpl.getState(),

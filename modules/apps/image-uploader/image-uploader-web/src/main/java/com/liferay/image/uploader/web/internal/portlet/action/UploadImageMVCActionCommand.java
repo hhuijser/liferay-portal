@@ -103,9 +103,6 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 		UploadPortletRequest uploadPortletRequest =
 			_portal.getUploadPortletRequest(portletRequest);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String contentType = uploadPortletRequest.getContentType("fileName");
 
 		String fileName = uploadPortletRequest.getFileName("fileName");
@@ -123,6 +120,9 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 		if (!MimeTypesUtil.isWebImage(contentType)) {
 			throw new ImageTypeException();
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		try {
 			TempFileEntryUtil.deleteTempFileEntry(

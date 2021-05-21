@@ -320,8 +320,6 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 	public Lock refresh(String uuid, long companyId, long expirationTime)
 		throws PortalException {
 
-		Date now = new Date();
-
 		List<Lock> locks = lockPersistence.findByUuid_C(uuid, companyId);
 
 		if (locks.isEmpty()) {
@@ -353,6 +351,8 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 				lock.setExpirationDate(null);
 			}
 			else {
+				Date now = new Date();
+
 				lock.setExpirationDate(
 					new Date(now.getTime() + expirationTime));
 			}

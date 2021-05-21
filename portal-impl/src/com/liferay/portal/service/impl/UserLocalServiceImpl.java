@@ -1943,16 +1943,16 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			throw new SystemException(encryptorException);
 		}
 
-		long userId = GetterUtil.getLong(name);
-
-		User user = userPersistence.findByPrimaryKey(userId);
-
 		try {
 			password = Encryptor.decrypt(company.getKeyObj(), password);
 		}
 		catch (EncryptorException encryptorException) {
 			throw new SystemException(encryptorException);
 		}
+
+		long userId = GetterUtil.getLong(name);
+
+		User user = userPersistence.findByPrimaryKey(userId);
 
 		String userPassword = user.getPassword();
 
@@ -2769,8 +2769,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			String socialRelationTypeComparator)
 		throws PortalException {
 
-		User user = userPersistence.findByPrimaryKey(userId);
-
 		if (!socialRelationTypeComparator.equals(StringPool.EQUAL) &&
 			!socialRelationTypeComparator.equals(StringPool.NOT_EQUAL)) {
 
@@ -2778,6 +2776,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				"Invalid social relation type comparator " +
 					socialRelationTypeComparator);
 		}
+
+		User user = userPersistence.findByPrimaryKey(userId);
 
 		return userFinder.countBySocialUsers(
 			user.getCompanyId(), user.getUserId(), socialRelationType,

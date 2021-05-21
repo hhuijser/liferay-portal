@@ -401,9 +401,6 @@ public class PluginsSummaryBuilder {
 
 		int changeLogVersion = 0;
 
-		int moduleIncrementalVersion = GetterUtil.getInteger(
-			pluginPackageProperties.getProperty("module-incremental-version"));
-
 		if (!relengChangeLogFile.exists()) {
 			FileUtil.write(relengChangeLogFile, "TEMP=");
 		}
@@ -541,6 +538,9 @@ public class PluginsSummaryBuilder {
 					"long-description=\n" +
 						pluginPackagePropertiesContent.substring(x);
 		}
+
+		int moduleIncrementalVersion = GetterUtil.getInteger(
+			pluginPackageProperties.getProperty("module-incremental-version"));
 
 		if (moduleIncrementalVersion != changeLogVersion) {
 			pluginPackagePropertiesContent = StringUtil.replace(

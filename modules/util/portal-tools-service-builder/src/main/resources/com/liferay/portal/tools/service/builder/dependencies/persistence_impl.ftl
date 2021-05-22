@@ -757,8 +757,17 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 
 			Date now = new Date();
+		</#if>
 
+		<#if entity.hasEntityColumn("createDate", "Date")>
 			if (isNew && (${entity.variableName}.getCreateDate() == null)) {
+
+			<#if !entity.hasEntityColumn("modifiedDate", "Date")>
+				ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+				Date now = new Date();
+			</#if>
+
 				if (serviceContext == null) {
 					${entity.variableName}.setCreateDate(now);
 				}
@@ -766,8 +775,17 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 					${entity.variableName}.setCreateDate(serviceContext.getCreateDate(now));
 				}
 			}
+		</#if>
 
+		<#if entity.hasEntityColumn("modifiedDate", "Date")>
 			if (!${entity.variableName}ModelImpl.hasSetModifiedDate()) {
+
+			<#if !entity.hasEntityColumn("createDate", "Date")>
+				ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+
+				Date now = new Date();
+			</#if>
+
 				if (serviceContext == null) {
 					${entity.variableName}.setModifiedDate(now);
 				}

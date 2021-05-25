@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.HashMapDictionary;
@@ -1175,6 +1177,21 @@ public class SamlSpAuthRequestPersistenceImpl
 
 		SamlSpAuthRequestModelImpl samlSpAuthRequestModelImpl =
 			(SamlSpAuthRequestModelImpl)samlSpAuthRequest;
+
+		if (isNew && (samlSpAuthRequest.getCreateDate() == null)) {
+			ServiceContext serviceContext =
+				ServiceContextThreadLocal.getServiceContext();
+
+			Date now = new Date();
+
+			if (serviceContext == null) {
+				samlSpAuthRequest.setCreateDate(now);
+			}
+			else {
+				samlSpAuthRequest.setCreateDate(
+					serviceContext.getCreateDate(now));
+			}
+		}
 
 		Session session = null;
 

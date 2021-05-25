@@ -50,6 +50,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131075 CanBeEdited pending implementation
+
 	}
 
 	@description = "Verify that a user can navigate to the correct metric by using the list on the right"
@@ -60,6 +61,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131084 CanBeNavigatedUsingNavigationList pending implementation
+
 	}
 
 	@description = "Verify that Entries can be viewed"
@@ -70,6 +72,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131074 CanBeViewed pending implementation
+
 	}
 
 	@description = "Verify that Entries Previews display the correct information"
@@ -80,6 +83,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131077 DisplayCorrectInfoInPreviews pending implementation
+
 	}
 
 	@description = "Verify that the correct number of Entries are displayed"
@@ -90,6 +94,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131083 DisplayCorrectNumberOfEntries pending implementation
+
 	}
 
 	@description = "Verify that Entries for the Color, Date and Text Fields display a Field List in the Summary Tab"
@@ -100,6 +105,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131078 DisplayFieldListInSummaryTab pending implementation
+
 	}
 
 	@description = "Verify that Entries for the Paragraph, Rich Text, Separator, Image, and Upload Fields do not display any metrics in the Summary Tab"
@@ -110,6 +116,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131082 DisplayNoMetricsInSummaryTab pending implementation
+
 	}
 
 	@description = "Verify that Entries for the Numeric Field display a Field List, Average, Maximum Value, Minimum Value, and Sum in the Summary Tab"
@@ -120,6 +127,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131079 DisplayStatisticsInSummaryTab pending implementation
+
 	}
 
 	@description = "Verify that with Single Approver Workflow enabled and after the form entry was approved, the entry will have an approved label"
@@ -130,6 +138,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131203 WorkflowApprovalChangesLabelToApproved pending implementation
+
 	}
 
 	@description = "Verify that with Single Approver Workflow enabled, the Submit button now reads "Submit for Publication""
@@ -140,6 +149,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131085 WorkflowChangesSubmitButtonToSubmitForPublication pending implementation
+
 	}
 
 	@description = "Verify that with Single Approver Workflow enabled and after the user Submit for Publication, the form entry will have a pending label"
@@ -150,6 +160,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131202 WorkflowSubmissionChangesLabelToPending pending implementation
+
 	}
 
 }

@@ -50,6 +50,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131018 CanBeSubmitted pending implementation
+
 	}
 
 	@description = "Verify that a Form can be submitted from the Forms Widget"
@@ -60,6 +61,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131019 CanBeSubmittedFromWidget pending implementation
+
 	}
 
 	@description = "Verify that a Form that is partially filled out can be submitted"
@@ -70,6 +72,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131020 CanBeSubmittedWhilePartiallyFilled pending implementation
+
 	}
 
 	@description = "Verify that a Form with multiple pages can be submitted"
@@ -80,6 +83,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131151 CanBeSubmittedWithMultiplePages pending implementation
+
 	}
 
 	@description = "Verify that a Form can redirect a user after being submitted"
@@ -90,6 +94,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131026 CanRedirectUserAfterFormSubmission pending implementation
+
 	}
 
 	@description = "Verify that a Form can require user authentication before being accessed"
@@ -100,6 +105,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131024 CanRequireUserAuthentication pending implementation
+
 	}
 
 	@description = "Verify that a Form's Success Page can be restored"
@@ -110,6 +116,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131035 DefaultSuccessPageCanBeRestored pending implementation
+
 	}
 
 	@description = "Verify that the Submit button's default value is restored if the Submit Button Label is left blank"
@@ -120,6 +127,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131032 SubmitButtonRestoredToDefaultIfLeftBlank pending implementation
+
 	}
 
 	@description = "Verify that a Form's Submit button's text can be customized"
@@ -130,6 +138,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131028 SubmitButtonTextCanBeCustomized pending implementation
+
 	}
 
 	@description = "Verify that a Form's Submit button's text can be customized multiple times"
@@ -140,6 +149,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131031 SubmitButtonTextCanBeCustomizedMultipleTimes pending implementation
+
 	}
 
 	@description = "Verify that a Form's Submit button's text can be customized with numbers"
@@ -150,6 +160,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131030 SubmitButtonTextCanBeCustomizedWithNumbers pending implementation
+
 	}
 
 	@description = "Verify that a Form's Submit button's text can be customized with special characters"
@@ -160,6 +171,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131029 SubmitButtonTextCanBeCustomizedWithSpecialCharacters pending implementation
+
 	}
 
 	@description = "Verify that a Form's Success Page can be deleted"
@@ -170,6 +182,7 @@ definition {
 		property portal.acceptance = "false";
 
 		// TODO LPS-131034 SuccessPageCanBeDeleted pending implementation
+
 	}
 
 }

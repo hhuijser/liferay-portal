@@ -103,7 +103,6 @@ public class AppsPortlet extends MVCPortlet {
 	}
 
 	@Activate
-	@Modified
 	protected void activate(
 		BundleContext bundleContext, Map<String, Object> properties) {
 
@@ -112,8 +111,7 @@ public class AppsPortlet extends MVCPortlet {
 				bundleContext, AppBuilderAppsPortletTab.class,
 				"app.builder.apps.tabs.name");
 
-		_appBuilderConfiguration = ConfigurableUtil.createConfigurable(
-			AppBuilderConfiguration.class, properties);
+		modified(properties);
 	}
 
 	@Deactivate
@@ -121,7 +119,13 @@ public class AppsPortlet extends MVCPortlet {
 		_appBuilderAppsPortletTabTrackerMap.close();
 	}
 
-	private volatile ServiceTrackerMap<String, AppBuilderAppsPortletTab>
+	@Modified
+	protected void modified(Map<String, Object> properties) {
+		_appBuilderConfiguration = ConfigurableUtil.createConfigurable(
+			AppBuilderConfiguration.class, properties);
+	}
+
+	private ServiceTrackerMap<String, AppBuilderAppsPortletTab>
 		_appBuilderAppsPortletTabTrackerMap;
 	private volatile AppBuilderConfiguration _appBuilderConfiguration;
 

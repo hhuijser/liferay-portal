@@ -99,9 +99,7 @@ public class SourceFormatter {
 				ExcludeSyntax.GLOB, "**/node_modules_cache/**"),
 			new ExcludeSyntaxPattern(
 				ExcludeSyntax.REGEX,
-				"^((?!/frontend-js-node-shims/src/).)*/node_modules/.*"),
-			new ExcludeSyntaxPattern(
-				ExcludeSyntax.REGEX, ".*/([^/.]+\\.){2,}properties")
+				"^((?!/frontend-js-node-shims/src/).)*/node_modules/.*")
 		};
 
 	public static void main(String[] args) throws Exception {

@@ -201,8 +201,8 @@ public class ActionUtil {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				WikiPage.class.getName(), portletRequest);
 
-			serviceContext.setAddGuestPermissions(true);
 			serviceContext.setAddGroupPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
 
 			boolean workflowEnabled = WorkflowThreadLocal.isEnabled();
 

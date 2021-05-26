@@ -142,8 +142,8 @@ public class StandaloneAppDeployer extends BaseAppDeployer {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);
 		serviceContext.setAttribute("layoutUpdateable", Boolean.FALSE);

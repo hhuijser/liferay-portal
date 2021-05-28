@@ -11624,11 +11624,11 @@ paths:
             responses:
                 204:
                     content:
-                        application/json: { }
-                        application/xml: { }
+                        application/json: {}
+                        application/xml: {}
                     description:
                         ""
-            tags: [ "WikiNode" ]
+            tags: ["WikiNode"]
         get:
             # @review
             description:
@@ -11657,7 +11657,7 @@ paths:
                                 $ref: "#/components/schemas/WikiNode"
                     description:
                         ""
-            tags: [ "WikiNode" ]
+            tags: ["WikiNode"]
         put:
             # @review
             description:
@@ -11696,7 +11696,7 @@ paths:
                                 $ref: "#/components/schemas/WikiNode"
                     description:
                         ""
-            tags: [ "WikiNode" ]
+            tags: ["WikiNode"]
     "/sites/{siteId}/wiki-nodes/permissions":
         get:
             operationId: getSiteWikiNodePermissionsPage
@@ -11757,11 +11757,11 @@ paths:
             responses:
                 204:
                     content:
-                        application/json: { }
-                        application/xml: { }
+                        application/json: {}
+                        application/xml: {}
                     description:
                         ""
-            tags: [ "WikiPage" ]
+            tags: ["WikiPage"]
         get:
             # @review
             description:
@@ -11790,7 +11790,7 @@ paths:
                                 $ref: "#/components/schemas/WikiPage"
                     description:
                         ""
-            tags: [ "WikiPage" ]
+            tags: ["WikiPage"]
         put:
             # @review
             description:
@@ -11829,7 +11829,7 @@ paths:
                                 $ref: "#/components/schemas/WikiPage"
                     description:
                         ""
-            tags: [ "WikiPage" ]
+            tags: ["WikiPage"]
     "/structured-content-folder/{structuredContentFolderId}/permissions":
         get:
             operationId: getStructuredContentFolderPermissionsPage

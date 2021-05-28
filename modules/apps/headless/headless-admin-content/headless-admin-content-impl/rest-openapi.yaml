@@ -395,7 +395,7 @@ paths:
                                 $ref: "../../headless-delivery/headless-delivery-impl/rest-openapi.yaml#StructuredContent"
                     description:
                         ""
-            tags: [ "StructuredContent" ]
+            tags: ["StructuredContent"]
     "/structured-contents/{structuredContentId}/by-version/{version}":
         delete:
             # @review
@@ -418,8 +418,8 @@ paths:
             responses:
                 204:
                     content:
-                        application/json: { }
-                        application/xml: { }
+                        application/json: {}
+                        application/xml: {}
                     description:
                         ""
             tags: ["StructuredContent"]

@@ -491,8 +491,7 @@ public class RuntimePageImpl implements RuntimePage {
 					_log.debug(
 						StringBundler.concat(
 							"Serially rendered portlet ", rendererPortletId,
-							" in ", String.valueOf(stopWatch.getTime()),
-							" ms"));
+							" in ", stopWatch.getTime(), " ms"));
 				}
 			}
 

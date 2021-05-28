@@ -474,15 +474,15 @@ public class StringUtil_IW {
 		return StringUtil.replaceLast(s, oldSubs, newSubs);
 	}
 
-	public com.liferay.portal.kernel.util.StringBundler replaceToStringBundler(
+	public com.liferay.petra.string.StringBundler replaceToStringBundler(
 		java.lang.String s, java.lang.String begin, java.lang.String end,
 		java.util.Map<java.lang.String, java.lang.String> values) {
 		return StringUtil.replaceToStringBundler(s, begin, end, values);
 	}
 
-	public com.liferay.portal.kernel.util.StringBundler replaceWithStringBundler(
+	public com.liferay.petra.string.StringBundler replaceWithStringBundler(
 		java.lang.String s, java.lang.String begin, java.lang.String end,
-		java.util.Map<java.lang.String, com.liferay.portal.kernel.util.StringBundler> values) {
+		java.util.Map<java.lang.String, com.liferay.petra.string.StringBundler> values) {
 		return StringUtil.replaceWithStringBundler(s, begin, end, values);
 	}
 

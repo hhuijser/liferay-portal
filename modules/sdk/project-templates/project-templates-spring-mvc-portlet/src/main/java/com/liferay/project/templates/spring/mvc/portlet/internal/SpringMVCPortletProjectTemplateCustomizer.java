@@ -93,11 +93,15 @@ public class SpringMVCPortletProjectTemplateCustomizer
 
 		File liferayDisplayXML = new File(buildDir, "");
 
-		FileUtil.replace(liferayDisplayXML, "7.0", "7." + minorVersionString);
-		FileUtil.replace(liferayDisplayXML, "7_0", "7_" + minorVersionString);
+		FileUtil.replaceString(
+			liferayDisplayXML, "7.0", "7." + minorVersionString);
+		FileUtil.replaceString(
+			liferayDisplayXML, "7_0", "7_" + minorVersionString);
 
-		FileUtil.replace(liferayPortletXML, "7.0", "7." + minorVersionString);
-		FileUtil.replace(liferayPortletXML, "7_0", "7_" + minorVersionString);
+		FileUtil.replaceString(
+			liferayPortletXML, "7.0", "7." + minorVersionString);
+		FileUtil.replaceString(
+			liferayPortletXML, "7_0", "7_" + minorVersionString);
 	}
 
 	@Override

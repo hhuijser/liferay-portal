@@ -59,7 +59,9 @@ public class SpringMVCPortletProjectTemplateCustomizer
 
 		File buildDir = projectPath.toFile();
 
-		File viewsDir = new File(buildDir, "src/main/webapp/WEB-INF/views");
+		File webappDir = new File(buildDir, "src/main/webapp");
+
+		File viewsDir = new File(webappDir, "WEB-INF/views");
 
 		String packageName = projectTemplatesArgs.getPackageName();
 
@@ -89,9 +91,11 @@ public class SpringMVCPortletProjectTemplateCustomizer
 
 		String minorVersionString = String.valueOf(minorVersion);
 
-		File liferayPortletXML = new File(buildDir, "");
+		File liferayPortletXML = new File(
+			webappDir, "WEB-INF/liferay-display.xml");
 
-		File liferayDisplayXML = new File(buildDir, "");
+		File liferayDisplayXML = new File(
+			webappDir, "WEB-INF/liferay-portlet.xml");
 
 		FileUtil.replaceString(
 			liferayDisplayXML, "7.0", "7." + minorVersionString);

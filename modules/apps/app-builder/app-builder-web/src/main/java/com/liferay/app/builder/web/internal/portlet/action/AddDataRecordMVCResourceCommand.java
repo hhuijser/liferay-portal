@@ -95,8 +95,6 @@ public class AddDataRecordMVCResourceCommand
 			appBuilderAppVersion.getAppBuilderAppId(), ddlRecord,
 			themeDisplay.getScopeGroupId(), themeDisplay.getUserId());
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		WorkflowHandlerRegistryUtil.startWorkflowInstance(
 			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 			themeDisplay.getUserId(),
@@ -106,7 +104,13 @@ public class AddDataRecordMVCResourceCommand
 			HashMapBuilder.<String, Serializable>put(
 				"plid", themeDisplay.getPlid()
 			).put(
-				"portletId", portletDisplay.getId()
+				"portletId",
+				() -> {
+					PortletDisplay portletDisplay =
+						themeDisplay.getPortletDisplay();
+
+					return portletDisplay.getId();
+				}
 			).build());
 
 		return Optional.of(dataRecord);

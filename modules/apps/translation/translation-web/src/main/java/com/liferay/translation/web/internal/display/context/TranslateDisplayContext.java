@@ -446,9 +446,6 @@ public class TranslateDisplayContext {
 	}
 
 	private Map<String, Object> _getInfoFieldEditorConfig(String infoFieldId) {
-		String portletNamespace = PortalUtil.getPortletNamespace(
-			TranslationPortletKeys.TRANSLATION);
-
 		EditorConfiguration editorConfiguration =
 			EditorConfigurationFactoryUtil.getEditorConfiguration(
 				TranslationPortletKeys.TRANSLATION, "translateEditor",
@@ -457,7 +454,13 @@ public class TranslateDisplayContext {
 					"liferay-ui:input-editor:allowBrowseDocuments", true
 				).put(
 					"liferay-ui:input-editor:name",
-					portletNamespace + infoFieldId
+					() -> {
+						String portletNamespace =
+							PortalUtil.getPortletNamespace(
+								TranslationPortletKeys.TRANSLATION);
+
+						return portletNamespace + infoFieldId;
+					}
 				).build(),
 				_themeDisplay,
 				RequestBackedPortletURLFactoryUtil.create(_httpServletRequest));

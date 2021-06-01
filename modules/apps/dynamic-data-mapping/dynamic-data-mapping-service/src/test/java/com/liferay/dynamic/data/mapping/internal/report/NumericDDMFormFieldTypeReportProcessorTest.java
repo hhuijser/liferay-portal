@@ -353,16 +353,15 @@ public class NumericDDMFormFieldTypeReportProcessorTest extends PowerMockito {
 		DDMFormInstanceRecord ddmFormInstanceRecord = mock(
 			DDMFormInstanceRecord.class);
 
-		DDMFormFieldValue ddmFormFieldValue = _mockDDMFormFieldValue(
-			LocaleUtil.US, "", valueString);
-
 		DDMFormValues ddmFormValues = mock(DDMFormValues.class);
 
 		when(
 			ddmFormValues.getDDMFormFieldValuesMap(false)
 		).thenReturn(
 			HashMapBuilder.<String, List<DDMFormFieldValue>>put(
-				"field1", Arrays.asList(ddmFormFieldValue)
+				"field1",
+				Arrays.asList(
+					_mockDDMFormFieldValue(LocaleUtil.US, "", valueString))
 			).build()
 		);
 

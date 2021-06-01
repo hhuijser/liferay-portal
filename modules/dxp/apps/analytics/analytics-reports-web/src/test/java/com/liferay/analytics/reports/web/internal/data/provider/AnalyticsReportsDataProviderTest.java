@@ -275,8 +275,6 @@ public class AnalyticsReportsDataProviderTest {
 
 	@Test
 	public void testGetTotalReads() throws Exception {
-		LocalDate localDate = LocalDate.now();
-
 		AnalyticsReportsDataProvider analyticsReportsDataProvider =
 			new AnalyticsReportsDataProvider(
 				_getHttp(
@@ -289,8 +287,12 @@ public class AnalyticsReportsDataProviderTest {
 							JSONUtil.put(
 								JSONUtil.put(
 									"key",
-									localDate.format(
-										DateTimeFormatter.ISO_LOCAL_DATE)
+									() -> {
+										LocalDate localDate = LocalDate.now();
+
+										return localDate.format(
+											DateTimeFormatter.ISO_LOCAL_DATE);
+									}
 								).put(
 									"value", 5
 								))
@@ -316,8 +318,6 @@ public class AnalyticsReportsDataProviderTest {
 
 	@Test
 	public void testGetTotalViews() throws Exception {
-		LocalDate localDate = LocalDate.now();
-
 		AnalyticsReportsDataProvider analyticsReportsDataProvider =
 			new AnalyticsReportsDataProvider(
 				_getHttp(
@@ -330,8 +330,12 @@ public class AnalyticsReportsDataProviderTest {
 							JSONUtil.put(
 								JSONUtil.put(
 									"key",
-									localDate.format(
-										DateTimeFormatter.ISO_LOCAL_DATE)
+									() -> {
+										LocalDate localDate = LocalDate.now();
+
+										return localDate.format(
+											DateTimeFormatter.ISO_LOCAL_DATE);
+									}
 								).put(
 									"value", 5
 								))

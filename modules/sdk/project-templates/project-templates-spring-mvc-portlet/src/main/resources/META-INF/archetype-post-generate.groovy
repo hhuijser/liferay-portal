@@ -26,7 +26,8 @@ Path buildGradlePath = projectPath.resolve("build.gradle")
 Files.deleteIfExists buildGradlePath
 
 def buildDir = projectPath.toFile()
-def viewsDir = new File(buildDir, "src/main/webapp/WEB-INF/views")
+def webappDir = new File(buildDir, "src/main/webapp")
+def viewsDir = new File(webappDir, "WEB-INF/views")
 def spring4JavaPkgDir = new File(buildDir, "src/main/java/" + request.properties["package"].replaceAll("[.]", "/") + "/spring4")
 
 if (request.properties["viewType"].equals("jsp")) {
@@ -44,3 +45,21 @@ if (request.properties["viewType"].equals("jsp") ||
 	request.properties["framework"].equals("portletmvc4spring")) {
 	spring4JavaPkgDir.deleteDir()
 }
+
+String liferayVersion = request.properties.get("liferayVersion")
+
+char minorVersion = liferayVersion.charAt(2)
+
+File liferayDisplayXML = new File(
+	webappDir, "WEB-INF/liferay-display.xml");
+
+File liferayPortletXML = new File(
+	webappDir, "WEB-INF/liferay-portlet.xml");
+
+def newLiferayDisplayContent = liferayDisplayXML.text.replace("7.0", "7." + minorVersion).replace("7_0", "7_" + minorVersion)
+
+liferayDisplayXML.text = newLiferayDisplayContent
+
+def newLiferayPortletContent = liferayPortletXML.text.replace("7.0", "7." + minorVersion).replace("7_0", "7_" + minorVersion)
+
+liferayPortletXML.text = newLiferayPortletContent

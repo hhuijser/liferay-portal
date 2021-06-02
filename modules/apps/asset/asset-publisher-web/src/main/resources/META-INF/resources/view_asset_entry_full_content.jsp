@@ -420,10 +420,10 @@ Map<String, Object> fragmentsEditorData = HashMapBuilder.<String, Object>put(
 				<%
 				PortletURL exportAssetURL = PortletURLBuilder.create(
 					assetRenderer.getURLExport(liferayPortletRequest, liferayPortletResponse)
+				).setPortletResource(
+					portletDisplay.getId()
 				).setParameter(
 					"plid", themeDisplay.getPlid()
-				).setParameter(
-					"portletResource", portletDisplay.getId()
 				).setWindowState(
 					LiferayWindowState.EXCLUSIVE
 				).build();

@@ -181,12 +181,12 @@ for (int i = 0; i < results.size(); i++) {
 		Constants.EDIT
 	).setRedirect(
 		permissionsAllURL.toString()
+	).setPortletResource(
+		curPortletName
 	).setTabs1(
 		"define-permissions"
 	).setTabs2(
 		"roles"
-	).setParameter(
-		"portletResource", curPortletName
 	).setParameter(
 		"roleId", role.getRoleId()
 	).build();

@@ -245,12 +245,12 @@ public class PortletConfigurationPermissionsDisplayContext {
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/edit_permissions.jsp"
+		).setPortletResource(
+			_getPortletResource()
 		).setParameter(
 			"modelResource", getModelResource()
 		).setParameter(
 			"portletConfiguration", Boolean.TRUE.toString()
-		).setParameter(
-			"portletResource", _getPortletResource()
 		).setParameter(
 			"resourceGroupId", _getResourceGroupId()
 		).setParameter(
@@ -640,6 +640,8 @@ public class PortletConfigurationPermissionsDisplayContext {
 			"updateRolePermissions"
 		).setMVCPath(
 			"/edit_permissions.jsp"
+		).setPortletResource(
+			_getPortletResource()
 		).setParameter(
 			"cur",
 			ParamUtil.getInteger(
@@ -654,8 +656,6 @@ public class PortletConfigurationPermissionsDisplayContext {
 			"modelResourceDescription", getModelResourceDescription()
 		).setParameter(
 			"portletConfiguration", Boolean.TRUE.toString()
-		).setParameter(
-			"portletResource", _getPortletResource()
 		).setParameter(
 			"resourceGroupId", _getResourceGroupId()
 		).setParameter(

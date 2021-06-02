@@ -1715,6 +1715,11 @@ public interface BaseProjectTemplatesTestCase {
 				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
 				"liferay-hook_7_3_0.dtd");
 		}
+		else if (liferayVersion.startsWith("7.4")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
+				"liferay-hook_7_4_0.dtd");
+		}
 	}
 
 	public default void testTemplateWarPortletDTD(

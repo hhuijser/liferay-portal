@@ -57,3 +57,11 @@ if (addOns.equals("false")) {
 else {
 	Files.deleteIfExists uadBuildGradlePath
 }
+
+Path serviceXMLPath = servicePath.resolve("service.xml")
+
+char minorVersion = liferayVersion.charAt(2)
+
+def newserviceXMLContent = serviceXMLPath.text.replace("7.0", "7." + minorVersion).replace("7_0", "7_" + minorVersion)
+
+serviceXMLPath.text = newserviceXMLContent

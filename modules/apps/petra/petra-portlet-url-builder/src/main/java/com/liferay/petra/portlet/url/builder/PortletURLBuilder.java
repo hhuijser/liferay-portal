@@ -180,11 +180,12 @@ public class PortletURLBuilder {
 		implements ActionNameStep, AfterActionNameStep, AfterBackURLStep,
 				   AfterCMDStep, AfterKeywordsStep, AfterMVCPathStep,
 				   AfterMVCRenderCommandNameStep, AfterNavigationStep,
-				   AfterParameterStep, AfterPortletModeStep, AfterRedirectStep,
-				   AfterSecureStep, AfterTabs1Step, AfterTabs2Step,
-				   AfterWindowStateStep, BackURLStep, BuildStep, CMDStep,
-				   KeywordsStep, MVCPathStep, MVCRenderCommandNameStep,
-				   NavigationStep, ParameterStep, PortletModeStep, RedirectStep,
+				   AfterParameterStep, AfterPortletModeStep,
+				   AfterPortletResourceStep, AfterRedirectStep, AfterSecureStep,
+				   AfterTabs1Step, AfterTabs2Step, AfterWindowStateStep,
+				   BackURLStep, BuildStep, CMDStep, KeywordsStep, MVCPathStep,
+				   MVCRenderCommandNameStep, NavigationStep, ParameterStep,
+				   PortletModeStep, PortletResourceStep, RedirectStep,
 				   SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 
 		public PortletURLStep(PortletURL portletURL) {
@@ -399,6 +400,22 @@ public class PortletURLBuilder {
 		}
 
 		@Override
+		public AfterPortletResourceStep setPortletResource(String value) {
+			_setParameter("portletResource", value, false);
+
+			return this;
+		}
+
+		@Override
+		public AfterPortletResourceStep setPortletResource(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			_setParameter("portletResource", valueUnsafeSupplier, false);
+
+			return this;
+		}
+
+		@Override
 		public AfterRedirectStep setRedirect(String value) {
 			_setParameter("redirect", value, false);
 
@@ -550,43 +567,46 @@ public class PortletURLBuilder {
 	public interface AfterActionNameStep
 		extends BackURLStep, BuildStep, CMDStep, KeywordsStep, MVCPathStep,
 				MVCRenderCommandNameStep, NavigationStep, ParameterStep,
-				PortletModeStep, RedirectStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				PortletModeStep, PortletResourceStep, RedirectStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterBackURLStep
 		extends BuildStep, KeywordsStep, NavigationStep, ParameterStep,
-				PortletModeStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				PortletModeStep, PortletResourceStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterCMDStep
 		extends BackURLStep, BuildStep, KeywordsStep, NavigationStep,
-				ParameterStep, PortletModeStep, RedirectStep, SecureStep,
-				Tabs1Step, Tabs2Step, WindowStateStep {
+				ParameterStep, PortletModeStep, PortletResourceStep,
+				RedirectStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterKeywordsStep
 		extends BuildStep, NavigationStep, ParameterStep, PortletModeStep,
-				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
+				PortletResourceStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterMVCPathStep
 		extends BackURLStep, BuildStep, CMDStep, KeywordsStep,
 				MVCRenderCommandNameStep, NavigationStep, ParameterStep,
-				PortletModeStep, RedirectStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				PortletModeStep, PortletResourceStep, RedirectStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterMVCRenderCommandNameStep
 		extends BackURLStep, BuildStep, CMDStep, KeywordsStep, NavigationStep,
-				ParameterStep, PortletModeStep, RedirectStep, SecureStep,
-				Tabs1Step, Tabs2Step, WindowStateStep {
+				ParameterStep, PortletModeStep, PortletResourceStep,
+				RedirectStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterNavigationStep
-		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
-				Tabs1Step, Tabs2Step, WindowStateStep {
+		extends BuildStep, ParameterStep, PortletModeStep, PortletResourceStep,
+				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterParameterStep
@@ -598,10 +618,15 @@ public class PortletURLBuilder {
 		extends BuildStep, SecureStep, WindowStateStep {
 	}
 
+	public interface AfterPortletResourceStep
+		extends BuildStep, ParameterStep, PortletModeStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
+	}
+
 	public interface AfterRedirectStep
 		extends BackURLStep, BuildStep, KeywordsStep, NavigationStep,
-				ParameterStep, PortletModeStep, SecureStep, Tabs1Step,
-				Tabs2Step, WindowStateStep {
+				ParameterStep, PortletModeStep, PortletResourceStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterSecureStep extends BuildStep, WindowStateStep {
@@ -711,6 +736,15 @@ public class PortletURLBuilder {
 	public interface PortletModeStep {
 
 		public AfterPortletModeStep setPortletMode(PortletMode portletMode);
+
+	}
+
+	public interface PortletResourceStep {
+
+		public AfterPortletResourceStep setPortletResource(String value);
+
+		public AfterPortletResourceStep setPortletResource(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
 	}
 

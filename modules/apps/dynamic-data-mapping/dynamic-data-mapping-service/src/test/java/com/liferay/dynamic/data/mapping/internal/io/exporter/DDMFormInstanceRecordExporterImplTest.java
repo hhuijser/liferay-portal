@@ -336,15 +336,7 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValueMap =
 			HashMapBuilder.<String, List<DDMFormFieldValue>>put(
-				"reference1",
-				() -> {
-					List<DDMFormFieldValue> ddmFormFieldValues =
-						new ArrayList<>();
-
-					ddmFormFieldValues.add(ddmFormFieldValue);
-
-					return ddmFormFieldValues;
-				}
+				"reference1", ListUtil.fromArray(ddmFormFieldValue)
 			).build();
 
 		Locale locale = new Locale("pt", "BR");

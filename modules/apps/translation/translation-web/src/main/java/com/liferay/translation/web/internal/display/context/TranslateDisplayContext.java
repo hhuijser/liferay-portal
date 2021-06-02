@@ -161,61 +161,66 @@ public class TranslateDisplayContext {
 				continue;
 			}
 
-			Stream<InfoField> stream = infoFields.stream();
-
 			infoFieldSetEntries.add(
 				HashMapBuilder.<String, Object>put(
 					"fields",
-					stream.map(
-						infoField -> {
-							String infoFieldId =
-								"infoField--" + infoField.getName() + "--";
+					() -> {
+						Stream<InfoField> stream = infoFields.stream();
 
-							Map<String, Object> editorConfiguration = null;
+						return stream.map(
+							infoField -> {
+								String infoFieldId =
+									"infoField--" + infoField.getName() + "--";
 
-							if (getBooleanValue(
-									infoField, TextInfoFieldType.HTML)) {
+								Map<String, Object> editorConfiguration = null;
 
-								editorConfiguration = _getInfoFieldEditorConfig(
-									infoFieldId);
+								if (getBooleanValue(
+										infoField, TextInfoFieldType.HTML)) {
+
+									editorConfiguration =
+										_getInfoFieldEditorConfig(infoFieldId);
+								}
+
+								return HashMapBuilder.<String, Object>put(
+									"editorConfiguration", editorConfiguration
+								).put(
+									"html",
+									getBooleanValue(
+										infoField, TextInfoFieldType.HTML)
+								).put(
+									"id", infoFieldId
+								).put(
+									"label",
+									infoField.getLabel(
+										_themeDisplay.getLocale())
+								).put(
+									"multiline",
+									getBooleanValue(
+										infoField, TextInfoFieldType.MULTILINE)
+								).put(
+									"sourceContent",
+									getSourceStringValue(
+										infoField, getSourceLocale())
+								).put(
+									"sourceContentDir",
+									LanguageUtil.get(
+										getSourceLocale(), "lang.dir")
+								).put(
+									"targetContent",
+									getTargetStringValue(
+										infoField, getTargetLocale())
+								).put(
+									"targetContentDir",
+									LanguageUtil.get(
+										getTargetLocale(), "lang.dir")
+								).put(
+									"targetLanguageId", getTargetLanguageId()
+								).build();
 							}
-
-							return HashMapBuilder.<String, Object>put(
-								"editorConfiguration", editorConfiguration
-							).put(
-								"html",
-								getBooleanValue(
-									infoField, TextInfoFieldType.HTML)
-							).put(
-								"id", infoFieldId
-							).put(
-								"label",
-								infoField.getLabel(_themeDisplay.getLocale())
-							).put(
-								"multiline",
-								getBooleanValue(
-									infoField, TextInfoFieldType.MULTILINE)
-							).put(
-								"sourceContent",
-								getSourceStringValue(
-									infoField, getSourceLocale())
-							).put(
-								"sourceContentDir",
-								LanguageUtil.get(getSourceLocale(), "lang.dir")
-							).put(
-								"targetContent",
-								getTargetStringValue(
-									infoField, getTargetLocale())
-							).put(
-								"targetContentDir",
-								LanguageUtil.get(getTargetLocale(), "lang.dir")
-							).put(
-								"targetLanguageId", getTargetLanguageId()
-							).build();
-						}
-					).collect(
-						Collectors.toList()
-					)
+						).collect(
+							Collectors.toList()
+						);
+					}
 				).put(
 					"legend",
 					getInfoFieldSetLabel(

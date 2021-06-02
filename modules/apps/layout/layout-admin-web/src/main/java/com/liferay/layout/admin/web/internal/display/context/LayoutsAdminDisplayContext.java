@@ -183,6 +183,8 @@ public class LayoutsAdminDisplayContext {
 			"/select_layout_page_template_entry.jsp"
 		).setBackURL(
 			getBackURL()
+		).setPortletResource(
+			getPortletResource()
 		).setParameter(
 			"explicitCreation", true
 		).setParameter(
@@ -191,8 +193,6 @@ public class LayoutsAdminDisplayContext {
 			"liveGroupId", getLiveGroupId()
 		).setParameter(
 			"parentLayoutId", getParentLayoutId()
-		).setParameter(
-			"portletResource", getPortletResource()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
 		).setParameter(
@@ -276,16 +276,15 @@ public class LayoutsAdminDisplayContext {
 			themeDisplay.getURLCurrent()
 		).setBackURL(
 			themeDisplay.getURLCurrent()
-		).setParameter(
-			"groupId", layout.getGroupId()
-		).setParameter(
-			"portletResource",
+		).setPortletResource(
 			() -> {
 				PortletDisplay portletDisplay =
 					themeDisplay.getPortletDisplay();
 
 				return portletDisplay.getId();
 			}
+		).setParameter(
+			"groupId", layout.getGroupId()
 		).setParameter(
 			"privateLayout", layout.isPrivateLayout()
 		).setParameter(
@@ -920,8 +919,7 @@ public class LayoutsAdminDisplayContext {
 			getPortletURL()
 		).setMVCRenderCommandName(
 			"/layout_admin/edit_layout"
-		).setParameter(
-			"portletResource",
+		).setPortletResource(
 			ParamUtil.getString(httpServletRequest, "portletResource")
 		).setParameter(
 			"selPlid", getSelPlid()

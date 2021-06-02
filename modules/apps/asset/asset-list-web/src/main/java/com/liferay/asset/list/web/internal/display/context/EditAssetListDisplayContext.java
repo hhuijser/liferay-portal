@@ -622,8 +622,8 @@ public class EditAssetListDisplayContext {
 			_itemSelector.getItemSelectorURL(
 				RequestBackedPortletURLFactoryUtil.create(_httpServletRequest),
 				getSelectGroupEventName(), itemSelectorCriterion)
-		).setParameter(
-			"portletResource", AssetListPortletKeys.ASSET_LIST
+		).setPortletResource(
+			AssetListPortletKeys.ASSET_LIST
 		).buildString();
 	}
 

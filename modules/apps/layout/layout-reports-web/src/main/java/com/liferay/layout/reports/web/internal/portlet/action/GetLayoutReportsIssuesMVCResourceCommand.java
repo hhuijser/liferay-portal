@@ -190,16 +190,15 @@ public class GetLayoutReportsIssuesMVCResourceCommand
 					completeURL
 				).setBackURL(
 					completeURL
-				).setParameter(
-					"groupId", layout.getGroupId()
-				).setParameter(
-					"portletResource",
+				).setPortletResource(
 					() -> {
 						PortletDisplay portletDisplay =
 							themeDisplay.getPortletDisplay();
 
 						return portletDisplay.getId();
 					}
+				).setParameter(
+					"groupId", layout.getGroupId()
 				).setParameter(
 					"privateLayout", layout.isPrivateLayout()
 				).setParameter(

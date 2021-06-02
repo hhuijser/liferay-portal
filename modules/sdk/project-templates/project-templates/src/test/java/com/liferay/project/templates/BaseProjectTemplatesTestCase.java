@@ -1762,6 +1762,15 @@ public interface BaseProjectTemplatesTestCase {
 				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
 				"liferay-portlet-app_7_3_0.dtd");
 		}
+		else if (liferayVersion.startsWith("7.4")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
+				"liferay-display_7_4_0.dtd");
+
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
+				"liferay-portlet-app_7_4_0.dtd");
+		}
 	}
 
 	public default void testWarsDiff(File warFile1, File warFile2)

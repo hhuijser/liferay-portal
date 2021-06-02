@@ -79,10 +79,10 @@ public class PermissionsPortletConfigurationIcon
 					PortletProvider.Action.VIEW)
 			).setMVCPath(
 				"/edit_permissions.jsp"
+			).setPortletResource(
+				portletDisplay.getId()
 			).setParameter(
 				"portletConfiguration", true
-			).setParameter(
-				"portletResource", portletDisplay.getId()
 			).setParameter(
 				"resourcePrimKey",
 				PortletPermissionUtil.getPrimaryKey(

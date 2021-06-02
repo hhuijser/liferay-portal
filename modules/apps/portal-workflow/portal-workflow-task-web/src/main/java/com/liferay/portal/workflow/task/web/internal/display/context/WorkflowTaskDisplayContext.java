@@ -420,10 +420,10 @@ public class WorkflowTaskDisplayContext {
 			_getEditPortletURL(workflowTask)
 		).setRedirect(
 			themeDisplay.getURLCurrent()
+		).setPortletResource(
+			getPortletResource()
 		).setParameter(
 			"hideDefaultSuccessMessage", true
-		).setParameter(
-			"portletResource", getPortletResource()
 		).setParameter(
 			"refererPlid", themeDisplay.getPlid()
 		).setParameter(

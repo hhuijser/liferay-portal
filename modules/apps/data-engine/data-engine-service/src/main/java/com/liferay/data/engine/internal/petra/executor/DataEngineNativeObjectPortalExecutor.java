@@ -281,9 +281,6 @@ public class DataEngineNativeObjectPortalExecutor {
 					),
 					dataEngineNativeObject.getDataEngineNativeObjectFields()));
 
-			String defaultLanguageId = LocaleUtil.toLanguageId(
-				LocaleUtil.getDefault());
-
 			dataDefinition.setName(
 				HashMapBuilder.<String, Object>putAll(
 					Optional.ofNullable(
@@ -292,7 +289,8 @@ public class DataEngineNativeObjectPortalExecutor {
 						new HashMap<>()
 					)
 				).put(
-					defaultLanguageId, dataEngineNativeObject.getName()
+					LocaleUtil.toLanguageId(LocaleUtil.getDefault()),
+					dataEngineNativeObject.getName()
 				).build());
 
 			if (Validator.isNull(dataDefinition.getId())) {

@@ -151,6 +151,11 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 				gradleWorkspaceDir,
 				"liferay.workspace.target.platform.version=7.3.6");
 		}
+		else if (_liferayVersion.startsWith("7.4")) {
+			writeGradlePropertiesInWorkspace(
+				gradleWorkspaceDir,
+				"liferay.workspace.target.platform.version=7.4.0");
+		}
 
 		File gradleWorkspaceModulesDir = new File(
 			gradleWorkspaceDir, "modules");

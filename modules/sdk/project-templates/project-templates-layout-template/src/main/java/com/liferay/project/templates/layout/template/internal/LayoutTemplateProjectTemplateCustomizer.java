@@ -14,27 +14,31 @@
 
 package com.liferay.project.templates.layout.template.internal;
 
-import java.io.File;
-import java.nio.file.Path;
-
-import org.apache.maven.archetype.ArchetypeGenerationRequest;
-import org.apache.maven.archetype.ArchetypeGenerationResult;
+import aQute.bnd.version.Version;
 
 import com.liferay.project.templates.extensions.ProjectTemplateCustomizer;
 import com.liferay.project.templates.extensions.ProjectTemplatesArgs;
 import com.liferay.project.templates.extensions.util.FileUtil;
 
-import aQute.bnd.version.Version;
+import java.io.File;
+
+import java.nio.file.Path;
+
+import org.apache.maven.archetype.ArchetypeGenerationRequest;
+import org.apache.maven.archetype.ArchetypeGenerationResult;
 
 /**
  * @author Lawrence Lee
  */
-public class LayoutTemplateProjectTemplateCustomizer implements ProjectTemplateCustomizer{
+public class LayoutTemplateProjectTemplateCustomizer
+	implements ProjectTemplateCustomizer {
 
 	@Override
-	public void onAfterGenerateProject(ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
-			ArchetypeGenerationResult archetypeGenerationResult) throws Exception {
-		
+	public void onAfterGenerateProject(
+			ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
+			ArchetypeGenerationResult archetypeGenerationResult)
+		throws Exception {
+
 		Path destinationDirPath = destinationDir.toPath();
 
 		Path projectPath = destinationDirPath.resolve(
@@ -43,27 +47,28 @@ public class LayoutTemplateProjectTemplateCustomizer implements ProjectTemplateC
 		File buildDir = projectPath.toFile();
 
 		File webINFDir = new File(buildDir, "src/main/webapp/WEB-INF");
-		
+
 		Version version = Version.parseVersion(
-				projectTemplatesArgs.getLiferayVersion());
+			projectTemplatesArgs.getLiferayVersion());
 
-			int minorVersion = version.getMinor();
+		int minorVersion = version.getMinor();
 
-			String minorVersionString = String.valueOf(minorVersion);
+		String minorVersionString = String.valueOf(minorVersion);
 
-			File liferayLayoutTemplatesXML = new File(
-					webINFDir, "liferay-layout-templates.xml");
+		File liferayLayoutTemplatesXML = new File(
+			webINFDir, "liferay-layout-templates.xml");
 
-			FileUtil.replaceString(
-					liferayLayoutTemplatesXML, "7.0", "7." + minorVersionString);
-			FileUtil.replaceString(
-					liferayLayoutTemplatesXML, "7_0", "7_" + minorVersionString);
+		FileUtil.replaceString(
+			liferayLayoutTemplatesXML, "7.0", "7." + minorVersionString);
+		FileUtil.replaceString(
+			liferayLayoutTemplatesXML, "7_0", "7_" + minorVersionString);
 	}
 
 	@Override
-	public void onBeforeGenerateProject(ProjectTemplatesArgs projectTemplatesArgs,
-			ArchetypeGenerationRequest archetypeGenerationRequest) throws Exception {
-		
+	public void onBeforeGenerateProject(
+			ProjectTemplatesArgs projectTemplatesArgs,
+			ArchetypeGenerationRequest archetypeGenerationRequest)
+		throws Exception {
 	}
 
 }

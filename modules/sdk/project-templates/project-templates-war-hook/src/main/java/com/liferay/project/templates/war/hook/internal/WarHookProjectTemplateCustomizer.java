@@ -14,26 +14,31 @@
 
 package com.liferay.project.templates.war.hook.internal;
 
-import java.io.File;
-import java.nio.file.Path;
-
-import org.apache.maven.archetype.ArchetypeGenerationRequest;
-import org.apache.maven.archetype.ArchetypeGenerationResult;
+import aQute.bnd.version.Version;
 
 import com.liferay.project.templates.extensions.ProjectTemplateCustomizer;
 import com.liferay.project.templates.extensions.ProjectTemplatesArgs;
 import com.liferay.project.templates.extensions.util.FileUtil;
 
-import aQute.bnd.version.Version;
+import java.io.File;
+
+import java.nio.file.Path;
+
+import org.apache.maven.archetype.ArchetypeGenerationRequest;
+import org.apache.maven.archetype.ArchetypeGenerationResult;
 
 /**
  * @author Lawrence Lee
  */
-public class WarHookProjectTemplateCustomizer implements ProjectTemplateCustomizer{
+public class WarHookProjectTemplateCustomizer
+	implements ProjectTemplateCustomizer {
 
 	@Override
-	public void onAfterGenerateProject(ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
-			ArchetypeGenerationResult archetypeGenerationResult) throws Exception {
+	public void onAfterGenerateProject(
+			ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
+			ArchetypeGenerationResult archetypeGenerationResult)
+		throws Exception {
+
 		Path destinationDirPath = destinationDir.toPath();
 
 		Path projectPath = destinationDirPath.resolve(
@@ -42,27 +47,27 @@ public class WarHookProjectTemplateCustomizer implements ProjectTemplateCustomiz
 		File buildDir = projectPath.toFile();
 
 		File webINFDir = new File(buildDir, "src/main/webapp/WEB-INF");
-		
+
 		Version version = Version.parseVersion(
-				projectTemplatesArgs.getLiferayVersion());
+			projectTemplatesArgs.getLiferayVersion());
 
-			int minorVersion = version.getMinor();
+		int minorVersion = version.getMinor();
 
-			String minorVersionString = String.valueOf(minorVersion);
+		String minorVersionString = String.valueOf(minorVersion);
 
-			File liferayHookXML = new File(
-					webINFDir, "liferay-hook.xml");
+		File liferayHookXML = new File(webINFDir, "liferay-hook.xml");
 
-			FileUtil.replaceString(
-					liferayHookXML, "7.0", "7." + minorVersionString);
-			FileUtil.replaceString(
-					liferayHookXML, "7_0", "7_" + minorVersionString);		
+		FileUtil.replaceString(
+			liferayHookXML, "7.0", "7." + minorVersionString);
+		FileUtil.replaceString(
+			liferayHookXML, "7_0", "7_" + minorVersionString);
 	}
 
 	@Override
-	public void onBeforeGenerateProject(ProjectTemplatesArgs projectTemplatesArgs,
-			ArchetypeGenerationRequest archetypeGenerationRequest) throws Exception {
-		
+	public void onBeforeGenerateProject(
+			ProjectTemplatesArgs projectTemplatesArgs,
+			ArchetypeGenerationRequest archetypeGenerationRequest)
+		throws Exception {
 	}
 
 }

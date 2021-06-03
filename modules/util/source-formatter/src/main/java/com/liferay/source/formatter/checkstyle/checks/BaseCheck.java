@@ -1246,6 +1246,7 @@ public abstract class BaseCheck extends AbstractCheck {
 				typeName.equals("HttpServletRequest") ||
 				typeName.equals("RenderRequest") ||
 				typeName.equals("ResourceRequest") ||
+				typeName.equals("ThemeDisplay") ||
 				typeName.endsWith("PortletRequest")) {
 
 				String methodName = getMethodName(parentDetailAST.getParent());

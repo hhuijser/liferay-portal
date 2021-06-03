@@ -1090,7 +1090,38 @@ public abstract class BaseCheck extends AbstractCheck {
 			if ((detailAST.getLineNo() < lineNumber) &&
 				(count != dependentIdentDetailASTList.size())) {
 
-				variables.addAll(_getVariables(detailAST, false));
+				if (getEndLineNumber(detailAST) < lineNumber) {
+					variables.addAll(_getVariables(detailAST, false));
+				}
+				else {
+					DetailAST elistDetailAST = getParentWithTokenType(
+						identDetailAST, TokenTypes.ELIST);
+
+					if (elistDetailAST == null) {
+						variables.addAll(_getVariables(detailAST, false));
+					}
+					else {
+						while (true) {
+							if (elistDetailAST == null) {
+								break;
+							}
+
+							DetailAST parentDetailAST =
+								elistDetailAST.getParent();
+
+							if (parentDetailAST.getLineNo() >= lineNumber) {
+								variables.addAll(
+									_getVariables(elistDetailAST, false));
+							}
+							else {
+								break;
+							}
+
+							elistDetailAST = getParentWithTokenType(
+								elistDetailAST, TokenTypes.ELIST);
+						}
+					}
+				}
 			}
 		}
 

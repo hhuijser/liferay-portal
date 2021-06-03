@@ -352,6 +352,15 @@ public class PortletURLImpl
 			return true;
 		}
 
+		if (name.startsWith(PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE)) {
+			name = name.substring(
+				PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE.length());
+
+			if (_parametersIncludedInPath.contains(name)) {
+				return true;
+			}
+		}
+
 		return false;
 	}
 

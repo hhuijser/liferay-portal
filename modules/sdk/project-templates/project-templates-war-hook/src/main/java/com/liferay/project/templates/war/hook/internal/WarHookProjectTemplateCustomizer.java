@@ -34,6 +34,11 @@ public class WarHookProjectTemplateCustomizer
 	implements ProjectTemplateCustomizer {
 
 	@Override
+	public String getTemplateName() {
+		return "war-hook";
+	}
+
+	@Override
 	public void onAfterGenerateProject(
 			ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
 			ArchetypeGenerationResult archetypeGenerationResult)
@@ -55,12 +60,12 @@ public class WarHookProjectTemplateCustomizer
 
 		String minorVersionString = String.valueOf(minorVersion);
 
-		File liferayHookXML = new File(webINFDir, "liferay-hook.xml");
+		File liferayHookXMLFile = new File(webINFDir, "liferay-hook.xml");
 
 		FileUtil.replaceString(
-			liferayHookXML, "7.0", "7." + minorVersionString);
+			liferayHookXMLFile, "7.0", "7." + minorVersionString);
 		FileUtil.replaceString(
-			liferayHookXML, "7_0", "7_" + minorVersionString);
+			liferayHookXMLFile, "7_0", "7_" + minorVersionString);
 	}
 
 	@Override

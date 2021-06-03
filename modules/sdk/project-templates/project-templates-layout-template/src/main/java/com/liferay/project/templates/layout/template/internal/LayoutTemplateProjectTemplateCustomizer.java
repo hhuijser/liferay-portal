@@ -34,6 +34,11 @@ public class LayoutTemplateProjectTemplateCustomizer
 	implements ProjectTemplateCustomizer {
 
 	@Override
+	public String getTemplateName() {
+		return "layout-template";
+	}
+
+	@Override
 	public void onAfterGenerateProject(
 			ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
 			ArchetypeGenerationResult archetypeGenerationResult)
@@ -55,13 +60,13 @@ public class LayoutTemplateProjectTemplateCustomizer
 
 		String minorVersionString = String.valueOf(minorVersion);
 
-		File liferayLayoutTemplatesXML = new File(
+		File liferayLayoutTemplatesXMLFile = new File(
 			webINFDir, "liferay-layout-templates.xml");
 
 		FileUtil.replaceString(
-			liferayLayoutTemplatesXML, "7.0", "7." + minorVersionString);
+			liferayLayoutTemplatesXMLFile, "7.0", "7." + minorVersionString);
 		FileUtil.replaceString(
-			liferayLayoutTemplatesXML, "7_0", "7_" + minorVersionString);
+			liferayLayoutTemplatesXMLFile, "7_0", "7_" + minorVersionString);
 	}
 
 	@Override

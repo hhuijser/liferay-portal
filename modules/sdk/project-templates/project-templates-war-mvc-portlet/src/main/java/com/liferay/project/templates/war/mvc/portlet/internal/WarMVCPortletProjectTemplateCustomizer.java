@@ -34,6 +34,11 @@ public class WarMVCPortletProjectTemplateCustomizer
 	implements ProjectTemplateCustomizer {
 
 	@Override
+	public String getTemplateName() {
+		return "war-mvc-portlet";
+	}
+
+	@Override
 	public void onAfterGenerateProject(
 			ProjectTemplatesArgs projectTemplatesArgs, File destinationDir,
 			ArchetypeGenerationResult archetypeGenerationResult)
@@ -55,19 +60,19 @@ public class WarMVCPortletProjectTemplateCustomizer
 
 		String minorVersionString = String.valueOf(minorVersion);
 
-		File liferayPortletXML = new File(webINFDir, "liferay-display.xml");
+		File liferayDisplayXMLFile = new File(webINFDir, "liferay-display.xml");
 
-		File liferayDisplayXML = new File(webINFDir, "liferay-portlet.xml");
-
-		FileUtil.replaceString(
-			liferayDisplayXML, "7.0", "7." + minorVersionString);
-		FileUtil.replaceString(
-			liferayDisplayXML, "7_0", "7_" + minorVersionString);
+		File liferayPortletXMLFile = new File(webINFDir, "liferay-portlet.xml");
 
 		FileUtil.replaceString(
-			liferayPortletXML, "7.0", "7." + minorVersionString);
+			liferayDisplayXMLFile, "7.0", "7." + minorVersionString);
 		FileUtil.replaceString(
-			liferayPortletXML, "7_0", "7_" + minorVersionString);
+			liferayDisplayXMLFile, "7_0", "7_" + minorVersionString);
+
+		FileUtil.replaceString(
+			liferayPortletXMLFile, "7.0", "7." + minorVersionString);
+		FileUtil.replaceString(
+			liferayPortletXMLFile, "7_0", "7_" + minorVersionString);
 	}
 
 	@Override

@@ -26,9 +26,10 @@ Path buildGradlePath = projectPath.resolve("build.gradle")
 Files.deleteIfExists buildGradlePath
 
 def buildDir = projectPath.toFile()
+
 def webappDir = new File(buildDir, "src/main/webapp")
+
 def viewsDir = new File(webappDir, "WEB-INF/views")
-def spring4JavaPkgDir = new File(buildDir, "src/main/java/" + request.properties["package"].replaceAll("[.]", "/") + "/spring4")
 
 if (request.properties["viewType"].equals("jsp")) {
 	viewsDir.eachFileMatch FileType.FILES, ~/.*\.html/, {
@@ -40,6 +41,8 @@ else {
 		File viewFile -> viewFile.delete()
 	}
 }
+
+def spring4JavaPkgDir = new File(buildDir, "src/main/java/" + request.properties["package"].replaceAll("[.]", "/") + "/spring4")
 
 if (request.properties["viewType"].equals("jsp") ||
 	request.properties["framework"].equals("portletmvc4spring")) {

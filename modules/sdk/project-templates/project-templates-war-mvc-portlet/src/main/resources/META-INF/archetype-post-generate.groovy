@@ -23,6 +23,7 @@ Path buildGradlePath = projectPath.resolve("build.gradle")
 Files.deleteIfExists buildGradlePath
 
 def buildDir = projectPath.toFile()
+
 def webINFDir = new File(buildDir, "src/main/webapp/WEB-INF")
 
 String liferayVersion = request.properties.get("liferayVersion")

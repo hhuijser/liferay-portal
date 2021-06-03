@@ -60,8 +60,10 @@ else {
 
 Path serviceXMLPath = servicePath.resolve("service.xml")
 
+File serviceXMLFile = serviceXMLPath.toFile()
+
 char minorVersion = liferayVersion.charAt(2)
 
-def newserviceXMLContent = serviceXMLPath.text.replace("7.0", "7." + minorVersion).replace("7_0", "7_" + minorVersion)
+def newserviceXMLContent = serviceXMLFile.text.replace("7.0", "7." + minorVersion).replace("7_0", "7_" + minorVersion)
 
-serviceXMLPath.text = newserviceXMLContent
+serviceXMLFile.text = newserviceXMLContent

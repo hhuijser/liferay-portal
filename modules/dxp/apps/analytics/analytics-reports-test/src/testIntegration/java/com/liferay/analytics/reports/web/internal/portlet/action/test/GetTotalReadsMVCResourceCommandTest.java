@@ -87,23 +87,23 @@ public class GetTotalReadsMVCResourceCommandTest {
 					"/api/1.0/pages/read-count", () -> "12345"
 				).put(
 					"/api/1.0/pages/read-counts",
-					() -> JSONUtil.put(
-						"histogram",
-						JSONUtil.put(
-							JSONUtil.put(
-								"key",
-								() -> {
-									LocalDate localDate = LocalDate.now();
+					() -> {
+						LocalDate localDate = LocalDate.now();
 
-									return localDate.format(
-										DateTimeFormatter.ISO_LOCAL_DATE);
-								}
-							).put(
-								"value", 5
-							))
-					).put(
-						"value", 5
-					).toJSONString()
+						return () -> JSONUtil.put(
+							"histogram",
+							JSONUtil.put(
+								JSONUtil.put(
+									"key",
+									localDate.format(
+										DateTimeFormatter.ISO_LOCAL_DATE)
+								).put(
+									"value", 5
+								))
+						).put(
+							"value", 5
+						).toJSONString();
+					}
 				).build()));
 
 		try {

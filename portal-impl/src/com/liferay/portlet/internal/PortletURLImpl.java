@@ -1161,7 +1161,13 @@ public class PortletURLImpl
 
 				sb.append(StringPool.EQUAL);
 
-				if (value != null) {
+				if (value == null) {
+					sb.append(
+						processValue(
+							key,
+							LiferayMutablePortletParameters.NULL_PARAM_VALUE));
+				}
+				else {
 					sb.append(processValue(key, value));
 				}
 

@@ -104,7 +104,7 @@ public class RenderURLBuilder {
 		}
 
 		@Override
-		public AfterParameterStep removeRenderParameter(String name) {
+		public AfterParameterStep removeParameter(String name) {
 			MutableRenderParameters mutableRenderParameters =
 				_renderURL.getRenderParameters();
 
@@ -115,7 +115,7 @@ public class RenderURLBuilder {
 
 		@Override
 		public AfterBackURLStep setBackURL(String value) {
-			_setRenderParameter("backURL", value, false);
+			_setParameter("backURL", value, false);
 
 			return this;
 		}
@@ -124,14 +124,14 @@ public class RenderURLBuilder {
 		public AfterBackURLStep setBackURL(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("backURL", valueUnsafeSupplier, false);
+			_setParameter("backURL", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterCMDStep setCMD(String value) {
-			_setRenderParameter(Constants.CMD, value, false);
+			_setParameter(Constants.CMD, value, false);
 
 			return this;
 		}
@@ -140,14 +140,14 @@ public class RenderURLBuilder {
 		public AfterCMDStep setCMD(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter(Constants.CMD, valueUnsafeSupplier, false);
+			_setParameter(Constants.CMD, valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterKeywordsStep setKeywords(String value) {
-			_setRenderParameter("keywords", value, false);
+			_setParameter("keywords", value, false);
 
 			return this;
 		}
@@ -156,14 +156,14 @@ public class RenderURLBuilder {
 		public AfterKeywordsStep setKeywords(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("keywords", valueUnsafeSupplier, false);
+			_setParameter("keywords", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterMVCPathStep setMVCPath(String value) {
-			_setRenderParameter("mvcPath", value, false);
+			_setParameter("mvcPath", value, false);
 
 			return this;
 		}
@@ -172,7 +172,7 @@ public class RenderURLBuilder {
 		public AfterMVCPathStep setMVCPath(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("mvcPath", valueUnsafeSupplier, false);
+			_setParameter("mvcPath", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -181,7 +181,7 @@ public class RenderURLBuilder {
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
 			String value) {
 
-			_setRenderParameter("mvcRenderCommandName", value, false);
+			_setParameter("mvcRenderCommandName", value, false);
 
 			return this;
 		}
@@ -191,7 +191,7 @@ public class RenderURLBuilder {
 			String value, boolean allowNullValue) {
 
 			if (allowNullValue || Validator.isNotNull(value)) {
-				_setRenderParameter("mvcRenderCommandName", value, false);
+				_setParameter("mvcRenderCommandName", value, false);
 			}
 
 			return this;
@@ -201,15 +201,14 @@ public class RenderURLBuilder {
 		public AfterMVCRenderCommandNameStep setMVCRenderCommandName(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter(
-				"mvcRenderCommandName", valueUnsafeSupplier, false);
+			_setParameter("mvcRenderCommandName", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterNavigationStep setNavigation(String value) {
-			_setRenderParameter("navigation", value, false);
+			_setParameter("navigation", value, false);
 
 			return this;
 		}
@@ -218,7 +217,72 @@ public class RenderURLBuilder {
 		public AfterNavigationStep setNavigation(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("navigation", valueUnsafeSupplier, false);
+			_setParameter("navigation", valueUnsafeSupplier, false);
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameter(String key, Object value) {
+			_setParameter(key, String.valueOf(value), true);
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameter(
+			String name, Object value, boolean allowNullValue) {
+
+			setParameter(name, String.valueOf(value), allowNullValue);
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameter(String key, String value) {
+			_setParameter(key, value, true);
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameter(String key, String... values) {
+			MutableRenderParameters mutableRenderParameters =
+				_renderURL.getRenderParameters();
+
+			mutableRenderParameters.setValues(key, values);
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameter(
+			String name, String value, boolean allowNullValue) {
+
+			if (allowNullValue || Validator.isNotNull(value)) {
+				_setParameter(name, value, true);
+			}
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameter(
+			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			_setParameter(key, valueUnsafeSupplier, true);
+
+			return this;
+		}
+
+		@Override
+		public AfterParameterStep setParameters(
+			PortletParameters portletParameters) {
+
+			MutableRenderParameters mutableRenderParameters =
+				_renderURL.getRenderParameters();
+
+			mutableRenderParameters.set(portletParameters);
 
 			return this;
 		}
@@ -237,7 +301,7 @@ public class RenderURLBuilder {
 
 		@Override
 		public AfterRedirectStep setRedirect(String value) {
-			_setRenderParameter("redirect", value, false);
+			_setParameter("redirect", value, false);
 
 			return this;
 		}
@@ -246,74 +310,7 @@ public class RenderURLBuilder {
 		public AfterRedirectStep setRedirect(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("redirect", valueUnsafeSupplier, false);
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameter(String key, Object value) {
-			_setRenderParameter(key, String.valueOf(value), true);
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameter(
-			String name, Object value, boolean allowNullValue) {
-
-			setRenderParameter(name, String.valueOf(value), allowNullValue);
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameter(String key, String value) {
-			_setRenderParameter(key, value, true);
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameter(
-			String key, String... values) {
-
-			MutableRenderParameters mutableRenderParameters =
-				_renderURL.getRenderParameters();
-
-			mutableRenderParameters.setValues(key, values);
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameter(
-			String name, String value, boolean allowNullValue) {
-
-			if (allowNullValue || Validator.isNotNull(value)) {
-				_setRenderParameter(name, value, true);
-			}
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameter(
-			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
-
-			_setRenderParameter(key, valueUnsafeSupplier, true);
-
-			return this;
-		}
-
-		@Override
-		public AfterParameterStep setRenderParameters(
-			PortletParameters portletParameters) {
-
-			MutableRenderParameters mutableRenderParameters =
-				_renderURL.getRenderParameters();
-
-			mutableRenderParameters.set(portletParameters);
+			_setParameter("redirect", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -332,7 +329,7 @@ public class RenderURLBuilder {
 
 		@Override
 		public AfterTabs1Step setTabs1(String value) {
-			_setRenderParameter("tabs1", value, false);
+			_setParameter("tabs1", value, false);
 
 			return this;
 		}
@@ -341,14 +338,14 @@ public class RenderURLBuilder {
 		public AfterTabs1Step setTabs1(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("tabs1", valueUnsafeSupplier, false);
+			_setParameter("tabs1", valueUnsafeSupplier, false);
 
 			return this;
 		}
 
 		@Override
 		public AfterTabs2Step setTabs2(String value) {
-			_setRenderParameter("tabs2", value, false);
+			_setParameter("tabs2", value, false);
 
 			return this;
 		}
@@ -357,7 +354,7 @@ public class RenderURLBuilder {
 		public AfterTabs2Step setTabs2(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
-			_setRenderParameter("tabs2", valueUnsafeSupplier, false);
+			_setParameter("tabs2", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -374,7 +371,7 @@ public class RenderURLBuilder {
 			return this;
 		}
 
-		private void _setRenderParameter(
+		private void _setParameter(
 			String key, String value, boolean validateKey) {
 
 			if (validateKey) {
@@ -387,7 +384,7 @@ public class RenderURLBuilder {
 			mutableRenderParameters.setValue(key, value);
 		}
 
-		private void _setRenderParameter(
+		private void _setParameter(
 			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier,
 			boolean validateKey) {
 
@@ -582,25 +579,24 @@ public class RenderURLBuilder {
 
 	public interface ParameterStep {
 
-		public AfterParameterStep removeRenderParameter(String name);
+		public AfterParameterStep removeParameter(String name);
 
-		public AfterParameterStep setRenderParameter(String key, Object value);
+		public AfterParameterStep setParameter(String key, Object value);
 
-		public AfterParameterStep setRenderParameter(
+		public AfterParameterStep setParameter(
 			String key, Object value, boolean allowNullValue);
 
-		public AfterParameterStep setRenderParameter(String key, String value);
+		public AfterParameterStep setParameter(String key, String value);
 
-		public AfterParameterStep setRenderParameter(
-			String key, String... values);
+		public AfterParameterStep setParameter(String key, String... values);
 
-		public AfterParameterStep setRenderParameter(
+		public AfterParameterStep setParameter(
 			String key, String value, boolean allowNullValue);
 
-		public AfterParameterStep setRenderParameter(
+		public AfterParameterStep setParameter(
 			String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
-		public AfterParameterStep setRenderParameters(
+		public AfterParameterStep setParameters(
 			PortletParameters portletParameters);
 
 	}

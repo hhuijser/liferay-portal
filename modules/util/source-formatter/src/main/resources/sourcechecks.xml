@@ -599,6 +599,9 @@
 			<property name="illegalAPIParameterTypes" value="ThemeDisplay" />
 			<property name="illegalAPIServiceParameterTypes" value="ServiceContext" />
 		</check>
+		<check name="JavaBaseUpgradeCallableCheck">
+			<category name="Bug Prevention" />
+		</check>
 		<check name="JavaCleanUpMethodSuperCleanUpCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that `cleanUp` method in `*Tag` class with `@Override` annotation calls the `cleanUp` method of the superclass." />

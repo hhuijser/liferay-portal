@@ -755,6 +755,9 @@
 			<category name="Bug Prevention" />
 			<description name="Finds cases where `DataAccess.getConnection` is used (instead of using the availabe global variable `connection`)." />
 		</check>
+		<check name="JavaUpgradeIndexCheck">
+			<category name="Bug Prevention" />
+		</check>
 		<check name="JavaUpgradeVersionCheck">
 			<category name="Bug Prevention" />
 			<description name="Verifies that the correct upgrade versions are used in classes that implement `UpgradeStepRegistrator`." />

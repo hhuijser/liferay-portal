@@ -547,8 +547,10 @@ public class PortletURLBuilder {
 			{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
 			{"mvcRenderCommandName", "setMVCRenderCommandName"},
 			{"navigation", "setNavigation"}, {"p_p_mode", "setPortletMode"},
-			{"p_p_state", "setWindowState"}, {"redirect", "setRedirect"},
-			{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
+			{"p_p_state", "setWindowState"},
+			{"portletResource", "setPortletResource"},
+			{"redirect", "setRedirect"},  {"tabs1", "setTabs1"},
+			{"tabs2", "setTabs2"}
 		};
 
 		private final PortletURL _portletURL;

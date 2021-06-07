@@ -601,6 +601,7 @@
 		</check>
 		<check name="JavaBaseUpgradeCallableCheck">
 			<category name="Bug Prevention" />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaCleanUpMethodSuperCleanUpCheck">
 			<category name="Bug Prevention" />
@@ -760,6 +761,7 @@
 		</check>
 		<check name="JavaUpgradeIndexCheck">
 			<category name="Bug Prevention" />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaUpgradeVersionCheck">
 			<category name="Bug Prevention" />

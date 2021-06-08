@@ -28,7 +28,7 @@ public class RedirectURLSettingsImpl implements RedirectURLSettings {
 	@Override
 	public String[] getAllowedDomains(long companyId) {
 		RedirectURLConfiguration redirectURLConfiguration =
-			_redirectURLConfigurationTrackerImpl.
+			_redirectURLManagedServiceFactory.
 				getCompanyRedirectURLConfiguration(companyId);
 
 		return redirectURLConfiguration.allowedDomains();
@@ -37,7 +37,7 @@ public class RedirectURLSettingsImpl implements RedirectURLSettings {
 	@Override
 	public String[] getAllowedIPs(long companyId) {
 		RedirectURLConfiguration redirectURLConfiguration =
-			_redirectURLConfigurationTrackerImpl.
+			_redirectURLManagedServiceFactory.
 				getCompanyRedirectURLConfiguration(companyId);
 
 		return redirectURLConfiguration.allowedIPs();
@@ -46,14 +46,13 @@ public class RedirectURLSettingsImpl implements RedirectURLSettings {
 	@Override
 	public String getSecurityMode(long companyId) {
 		RedirectURLConfiguration redirectURLConfiguration =
-			_redirectURLConfigurationTrackerImpl.
+			_redirectURLManagedServiceFactory.
 				getCompanyRedirectURLConfiguration(companyId);
 
 		return redirectURLConfiguration.securityMode();
 	}
 
 	@Reference
-	private RedirectURLConfigurationTrackerImpl
-		_redirectURLConfigurationTrackerImpl;
+	private RedirectURLManagedServiceFactory _redirectURLManagedServiceFactory;
 
 }

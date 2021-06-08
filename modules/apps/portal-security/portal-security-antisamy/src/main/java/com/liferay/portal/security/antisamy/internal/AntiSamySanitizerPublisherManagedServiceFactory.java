@@ -46,7 +46,8 @@ import org.osgi.service.component.annotations.Modified;
 	property = Constants.SERVICE_PID + "=com.liferay.portal.security.antisamy.configuration.AntiSamyClassNameConfiguration",
 	service = ManagedServiceFactory.class
 )
-public class AntiSamySanitizerPublisher implements ManagedServiceFactory {
+public class AntiSamySanitizerPublisherManagedServiceFactory
+	implements ManagedServiceFactory {
 
 	@Override
 	public void deleted(String pid) {
@@ -57,7 +58,7 @@ public class AntiSamySanitizerPublisher implements ManagedServiceFactory {
 
 	@Override
 	public String getName() {
-		return AntiSamySanitizerPublisher.class.getName();
+		return AntiSamySanitizerPublisherManagedServiceFactory.class.getName();
 	}
 
 	@Override

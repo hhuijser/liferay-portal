@@ -37,11 +37,10 @@ import org.osgi.service.component.annotations.Modified;
 	immediate = true,
 	property = Constants.SERVICE_PID + "=com.liferay.redirect.internal.configuration.RedirectURLConfiguration.scoped",
 	service = {
-		ManagedServiceFactory.class, RedirectURLConfigurationTrackerImpl.class
+		ManagedServiceFactory.class, RedirectURLManagedServiceFactory.class
 	}
 )
-public class RedirectURLConfigurationTrackerImpl
-	implements ManagedServiceFactory {
+public class RedirectURLManagedServiceFactory implements ManagedServiceFactory {
 
 	@Override
 	public void deleted(String pid) {

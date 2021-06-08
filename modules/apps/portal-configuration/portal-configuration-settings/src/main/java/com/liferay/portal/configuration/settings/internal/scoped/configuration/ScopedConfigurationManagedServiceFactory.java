@@ -46,9 +46,10 @@ import org.osgi.service.cm.ManagedServiceFactory;
 /**
  * @author Drew Brokke
  */
-public class ScopedConfigurationManager implements ManagedServiceFactory {
+public class ScopedConfigurationManagedServiceFactory
+	implements ManagedServiceFactory {
 
-	public ScopedConfigurationManager(
+	public ScopedConfigurationManagedServiceFactory(
 		BundleContext bundleContext, Class<?> configurationBeanClass,
 		LocationVariableResolver locationVariableResolver) {
 

@@ -159,7 +159,7 @@ public class CPDefinitionLocalServiceImpl
 		User user = userLocalService.getUser(userId);
 
 		Date expirationDate = null;
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -229,7 +229,7 @@ public class CPDefinitionLocalServiceImpl
 		cpDefinition.setChannelFilterEnabled(false);
 		cpDefinition.setVersion(1);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			cpDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -237,7 +237,7 @@ public class CPDefinitionLocalServiceImpl
 		}
 
 		cpDefinition.setStatusByUserId(user.getUserId());
-		cpDefinition.setStatusDate(serviceContext.getModifiedDate(now));
+		cpDefinition.setStatusDate(serviceContext.getModifiedDate(date));
 		cpDefinition.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinition = cpDefinitionPersistence.update(cpDefinition);
@@ -1556,7 +1556,7 @@ public class CPDefinitionLocalServiceImpl
 		long groupId = cpDefinition.getGroupId();
 
 		Date expirationDate = null;
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -1604,7 +1604,7 @@ public class CPDefinitionLocalServiceImpl
 		cpDefinition.setDisplayDate(displayDate);
 		cpDefinition.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			cpDefinition.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -1612,7 +1612,7 @@ public class CPDefinitionLocalServiceImpl
 		}
 
 		cpDefinition.setStatusByUserId(user.getUserId());
-		cpDefinition.setStatusDate(serviceContext.getModifiedDate(now));
+		cpDefinition.setStatusDate(serviceContext.getModifiedDate(date));
 		cpDefinition.setExpandoBridgeAttributes(serviceContext);
 
 		cpDefinition = cpDefinitionPersistence.update(cpDefinition);
@@ -1862,30 +1862,30 @@ public class CPDefinitionLocalServiceImpl
 		// Commerce product definition
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
+		Date date = new Date();
 
 		CPDefinition cpDefinition = cpDefinitionPersistence.findByPrimaryKey(
 			cpDefinitionId);
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(cpDefinition.getDisplayDate() != null) &&
-			now.before(cpDefinition.getDisplayDate())) {
+			date.before(cpDefinition.getDisplayDate())) {
 
 			status = WorkflowConstants.STATUS_SCHEDULED;
 		}
 
-		Date modifiedDate = serviceContext.getModifiedDate(now);
+		Date modifiedDate = serviceContext.getModifiedDate(date);
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			Date expirationDate = cpDefinition.getExpirationDate();
 
-			if ((expirationDate != null) && expirationDate.before(now)) {
+			if ((expirationDate != null) && expirationDate.before(date)) {
 				cpDefinition.setExpirationDate(null);
 			}
 		}
 
 		if (status == WorkflowConstants.STATUS_EXPIRED) {
-			cpDefinition.setExpirationDate(now);
+			cpDefinition.setExpirationDate(date);
 		}
 
 		cpDefinition.setStatus(status);

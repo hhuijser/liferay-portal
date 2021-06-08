@@ -23,7 +23,7 @@
 
 	boolean hasActivities = false;
 
-	Date now = new Date();
+	Date date = new Date();
 
 	int daysBetween = -1;
 
@@ -36,7 +36,7 @@
 
 		Date activityDate = new Date(activityDescriptor.getCreateDate());
 
-		int curDaysBetween = DateUtil.getDaysBetween(activityDate, now, timeZone);
+		int curDaysBetween = DateUtil.getDaysBetween(activityDate, date, timeZone);
 	%>
 
 		<c:if test="<%= curDaysBetween > daysBetween %>">

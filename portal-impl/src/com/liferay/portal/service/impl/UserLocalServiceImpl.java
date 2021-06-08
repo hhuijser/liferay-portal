@@ -6090,7 +6090,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		// Reset failure count
 
-		Date now = new Date();
+		Date date = new Date();
 		int failedLoginAttempts = user.getFailedLoginAttempts();
 
 		if (failedLoginAttempts > 0) {
@@ -6098,7 +6098,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			long failedLoginTime = lastFailedLoginDate.getTime();
 
-			long elapsedTime = now.getTime() - failedLoginTime;
+			long elapsedTime = date.getTime() - failedLoginTime;
 
 			long requiredElapsedTime =
 				passwordPolicy.getResetFailureCount() * 1000;
@@ -6119,7 +6119,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			long lockoutTime = lockoutDate.getTime();
 
-			long elapsedTime = now.getTime() - lockoutTime;
+			long elapsedTime = date.getTime() - lockoutTime;
 
 			long requiredElapsedTime =
 				passwordPolicy.getLockoutDuration() * 1000;

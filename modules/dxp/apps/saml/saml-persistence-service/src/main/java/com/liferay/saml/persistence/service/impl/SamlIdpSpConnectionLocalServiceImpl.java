@@ -81,11 +81,11 @@ public class SamlIdpSpConnectionLocalServiceImpl
 		SamlIdpSpConnection samlIdpSpConnection =
 			samlIdpSpConnectionPersistence.create(samlIdpSpConnectionId);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		samlIdpSpConnection.setCompanyId(serviceContext.getCompanyId());
-		samlIdpSpConnection.setCreateDate(now);
-		samlIdpSpConnection.setModifiedDate(now);
+		samlIdpSpConnection.setCreateDate(date);
+		samlIdpSpConnection.setModifiedDate(date);
 		samlIdpSpConnection.setAssertionLifetime(assertionLifetime);
 		samlIdpSpConnection.setAttributeNames(attributeNames);
 		samlIdpSpConnection.setAttributesEnabled(attributesEnabled);
@@ -94,7 +94,7 @@ public class SamlIdpSpConnectionLocalServiceImpl
 		samlIdpSpConnection.setEnabled(enabled);
 		samlIdpSpConnection.setEncryptionForced(encryptionForced);
 		samlIdpSpConnection.setExpandoBridgeAttributes(serviceContext);
-		samlIdpSpConnection.setMetadataUpdatedDate(now);
+		samlIdpSpConnection.setMetadataUpdatedDate(date);
 
 		if ((metadataXmlInputStream == null) &&
 			Validator.isNotNull(metadataUrl)) {
@@ -240,9 +240,9 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			}
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
-		samlIdpSpConnection.setModifiedDate(now);
+		samlIdpSpConnection.setModifiedDate(date);
 
 		samlIdpSpConnection.setAssertionLifetime(assertionLifetime);
 		samlIdpSpConnection.setAttributeNames(attributeNames);
@@ -279,7 +279,7 @@ public class SamlIdpSpConnectionLocalServiceImpl
 
 		if (Validator.isNotNull(metadataXml)) {
 			samlIdpSpConnection.setMetadataXml(metadataXml);
-			samlIdpSpConnection.setMetadataUpdatedDate(now);
+			samlIdpSpConnection.setMetadataUpdatedDate(date);
 		}
 
 		samlIdpSpConnection.setName(name);

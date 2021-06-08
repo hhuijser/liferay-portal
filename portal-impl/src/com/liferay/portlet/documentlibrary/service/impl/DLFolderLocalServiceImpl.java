@@ -102,7 +102,7 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		parentFolderId = getParentFolderId(
 			groupId, repositoryId, parentFolderId);
-		Date now = new Date();
+		Date date = new Date();
 
 		validateFolder(groupId, parentFolderId, name);
 
@@ -121,7 +121,7 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		dlFolder.setTreePath(dlFolder.buildTreePath());
 		dlFolder.setName(name);
 		dlFolder.setDescription(description);
-		dlFolder.setLastPostDate(now);
+		dlFolder.setLastPostDate(date);
 		dlFolder.setHidden(hidden);
 		dlFolder.setRestrictionType(DLFolderConstants.RESTRICTION_TYPE_INHERIT);
 		dlFolder.setExpandoBridgeAttributes(serviceContext);
@@ -149,7 +149,7 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		// Parent folder
 
 		if (parentFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			dlFolderLocalService.updateLastPostDate(parentFolderId, now);
+			dlFolderLocalService.updateLastPostDate(parentFolderId, date);
 		}
 
 		return dlFolder;

@@ -511,17 +511,17 @@ public class JournalArticleAssetRenderer
 
 	@Override
 	public boolean isDisplayable() {
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = _article.getDisplayDate();
 
-		if ((displayDate != null) && displayDate.after(now)) {
+		if ((displayDate != null) && displayDate.after(date)) {
 			return false;
 		}
 
 		Date expirationDate = _article.getExpirationDate();
 
-		if ((expirationDate != null) && expirationDate.before(now)) {
+		if ((expirationDate != null) && expirationDate.before(date)) {
 			return false;
 		}
 

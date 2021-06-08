@@ -96,7 +96,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				kaleoInstanceTokenId);
 
 		User user = userLocalService.getUser(serviceContext.getGuestOrUserId());
-		Date now = new Date();
+		Date date = new Date();
 
 		long kaleoTaskInstanceTokenId = counterLocalService.increment();
 
@@ -111,8 +111,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceToken.setCompanyId(user.getCompanyId());
 		kaleoTaskInstanceToken.setUserId(user.getUserId());
 		kaleoTaskInstanceToken.setUserName(user.getFullName());
-		kaleoTaskInstanceToken.setCreateDate(now);
-		kaleoTaskInstanceToken.setModifiedDate(now);
+		kaleoTaskInstanceToken.setCreateDate(date);
+		kaleoTaskInstanceToken.setModifiedDate(date);
 		kaleoTaskInstanceToken.setKaleoDefinitionId(
 			kaleoInstanceToken.getKaleoDefinitionId());
 		kaleoTaskInstanceToken.setKaleoDefinitionVersionId(

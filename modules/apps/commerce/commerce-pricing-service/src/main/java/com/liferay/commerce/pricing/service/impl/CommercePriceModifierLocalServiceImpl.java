@@ -132,7 +132,7 @@ public class CommercePriceModifierLocalServiceImpl
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -170,7 +170,7 @@ public class CommercePriceModifierLocalServiceImpl
 		commercePriceModifier.setDisplayDate(displayDate);
 		commercePriceModifier.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			commercePriceModifier.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -179,7 +179,7 @@ public class CommercePriceModifierLocalServiceImpl
 
 		commercePriceModifier.setStatusByUserId(user.getUserId());
 		commercePriceModifier.setStatusDate(
-			serviceContext.getModifiedDate(now));
+			serviceContext.getModifiedDate(date));
 		commercePriceModifier.setExpandoBridgeAttributes(serviceContext);
 
 		commercePriceModifier = commercePriceModifierPersistence.update(
@@ -413,7 +413,7 @@ public class CommercePriceModifierLocalServiceImpl
 					commercePriceModifier.getCommercePriceModifierId());
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -440,7 +440,7 @@ public class CommercePriceModifierLocalServiceImpl
 		commercePriceModifier.setDisplayDate(displayDate);
 		commercePriceModifier.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			commercePriceModifier.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -449,7 +449,7 @@ public class CommercePriceModifierLocalServiceImpl
 
 		commercePriceModifier.setStatusByUserId(user.getUserId());
 		commercePriceModifier.setStatusDate(
-			serviceContext.getModifiedDate(now));
+			serviceContext.getModifiedDate(date));
 		commercePriceModifier.setExpandoBridgeAttributes(serviceContext);
 
 		commercePriceModifier = commercePriceModifierPersistence.update(
@@ -467,7 +467,7 @@ public class CommercePriceModifierLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
+		Date date = new Date();
 
 		CommercePriceModifier commercePriceModifier =
 			commercePriceModifierPersistence.findByPrimaryKey(
@@ -475,7 +475,7 @@ public class CommercePriceModifierLocalServiceImpl
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(commercePriceModifier.getDisplayDate() != null) &&
-			now.before(commercePriceModifier.getDisplayDate())) {
+			date.before(commercePriceModifier.getDisplayDate())) {
 
 			status = WorkflowConstants.STATUS_SCHEDULED;
 		}
@@ -483,20 +483,20 @@ public class CommercePriceModifierLocalServiceImpl
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			Date expirationDate = commercePriceModifier.getExpirationDate();
 
-			if ((expirationDate != null) && expirationDate.before(now)) {
+			if ((expirationDate != null) && expirationDate.before(date)) {
 				commercePriceModifier.setExpirationDate(null);
 			}
 		}
 
 		if (status == WorkflowConstants.STATUS_EXPIRED) {
-			commercePriceModifier.setExpirationDate(now);
+			commercePriceModifier.setExpirationDate(date);
 		}
 
 		commercePriceModifier.setStatus(status);
 		commercePriceModifier.setStatusByUserId(user.getUserId());
 		commercePriceModifier.setStatusByUserName(user.getFullName());
 		commercePriceModifier.setStatusDate(
-			serviceContext.getModifiedDate(now));
+			serviceContext.getModifiedDate(date));
 
 		return commercePriceModifierPersistence.update(commercePriceModifier);
 	}

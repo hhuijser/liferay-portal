@@ -471,9 +471,9 @@ public class JournalArticleLocalServiceImpl
 		article.setSmallImageId(counterLocalService.increment());
 		article.setSmallImageURL(smallImageURL);
 
-		Date now = new Date();
+		Date date = new Date();
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			article.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -481,7 +481,7 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		article.setStatusByUserId(userId);
-		article.setStatusDate(serviceContext.getModifiedDate(now));
+		article.setStatusDate(serviceContext.getModifiedDate(date));
 		article.setExpandoBridgeAttributes(serviceContext);
 
 		article = journalArticlePersistence.update(article);
@@ -938,15 +938,15 @@ public class JournalArticleLocalServiceImpl
 	 */
 	@Override
 	public void checkArticles() throws PortalException {
-		Date now = new Date();
+		Date date = new Date();
 
-		checkArticlesByExpirationDate(now);
+		checkArticlesByExpirationDate(date);
 
-		checkArticlesByReviewDate(now);
+		checkArticlesByReviewDate(date);
 
-		checkArticlesByDisplayDate(now);
+		checkArticlesByDisplayDate(date);
 
-		_previousCheckDate = now;
+		_previousCheckDate = date;
 	}
 
 	/**
@@ -1829,14 +1829,14 @@ public class JournalArticleLocalServiceImpl
 			return null;
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		for (JournalArticle article : articles) {
 			Date displayDate = article.getDisplayDate();
 			Date expirationDate = article.getExpirationDate();
 
-			if (((displayDate == null) || displayDate.before(now)) &&
-				((expirationDate == null) || expirationDate.after(now))) {
+			if (((displayDate == null) || displayDate.before(date)) &&
+				((expirationDate == null) || expirationDate.after(date))) {
 
 				return article;
 			}
@@ -2354,7 +2354,7 @@ public class JournalArticleLocalServiceImpl
 			PortletRequestModel portletRequestModel, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Date now = new Date();
+		Date date = new Date();
 
 		JournalArticle article = journalArticlePersistence.findByG_A_V(
 			groupId, articleId, version);
@@ -2362,14 +2362,14 @@ public class JournalArticleLocalServiceImpl
 		if (article.isExpired()) {
 			Date expirationDate = article.getExpirationDate();
 
-			if ((expirationDate != null) && expirationDate.before(now)) {
+			if ((expirationDate != null) && expirationDate.before(date)) {
 				return null;
 			}
 		}
 
 		Date displayDate = article.getDisplayDate();
 
-		if ((displayDate != null) && displayDate.after(now) &&
+		if ((displayDate != null) && displayDate.after(date) &&
 			!Objects.equals(viewMode, Constants.PREVIEW)) {
 
 			return null;
@@ -3132,14 +3132,14 @@ public class JournalArticleLocalServiceImpl
 					", urlTitle=", urlTitle, "}"));
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		for (JournalArticle article : articles) {
 			Date displayDate = article.getDisplayDate();
 			Date expirationDate = article.getExpirationDate();
 
-			if ((displayDate != null) && displayDate.before(now) &&
-				((expirationDate == null) || expirationDate.after(now))) {
+			if ((displayDate != null) && displayDate.before(date) &&
+				((expirationDate == null) || expirationDate.after(date))) {
 
 				return article;
 			}
@@ -5572,11 +5572,11 @@ public class JournalArticleLocalServiceImpl
 				ArticleReviewDateException.class);
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		boolean expired = false;
 
-		if ((expirationDate != null) && expirationDate.before(now)) {
+		if ((expirationDate != null) && expirationDate.before(date)) {
 			expired = true;
 		}
 
@@ -5622,7 +5622,7 @@ public class JournalArticleLocalServiceImpl
 			article.setUserId(user.getUserId());
 			article.setUserName(user.getFullName());
 			article.setCreateDate(latestArticle.getCreateDate());
-			article.setModifiedDate(serviceContext.getModifiedDate(now));
+			article.setModifiedDate(serviceContext.getModifiedDate(date));
 			article.setClassNameId(latestArticle.getClassNameId());
 			article.setClassPK(latestArticle.getClassPK());
 			article.setArticleId(articleId);
@@ -5630,7 +5630,7 @@ public class JournalArticleLocalServiceImpl
 			article.setSmallImageId(latestArticle.getSmallImageId());
 			article.setStatusByUserId(user.getUserId());
 			article.setStatusByUserName(user.getFullName());
-			article.setStatusDate(serviceContext.getModifiedDate(now));
+			article.setStatusDate(serviceContext.getModifiedDate(date));
 
 			serviceContext.setAttribute("version", version);
 
@@ -6470,25 +6470,25 @@ public class JournalArticleLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(article.getDisplayDate() != null) &&
-			now.before(article.getDisplayDate())) {
+			date.before(article.getDisplayDate())) {
 
 			status = WorkflowConstants.STATUS_SCHEDULED;
 		}
 
 		int oldStatus = article.getStatus();
 
-		Date modifiedDate = serviceContext.getModifiedDate(now);
+		Date modifiedDate = serviceContext.getModifiedDate(date);
 
 		article.setModifiedDate(modifiedDate);
 
 		Date expirationDate = article.getExpirationDate();
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
-			(expirationDate != null) && expirationDate.before(now)) {
+			(expirationDate != null) && expirationDate.before(date)) {
 
 			article.setExpirationDate(null);
 		}
@@ -6496,7 +6496,7 @@ public class JournalArticleLocalServiceImpl
 		if ((status == WorkflowConstants.STATUS_EXPIRED) &&
 			(expirationDate == null)) {
 
-			article.setExpirationDate(now);
+			article.setExpirationDate(date);
 		}
 
 		article.setStatus(status);
@@ -6507,7 +6507,7 @@ public class JournalArticleLocalServiceImpl
 		article = journalArticlePersistence.update(article);
 
 		if (isExpireAllArticleVersions(article.getCompanyId()) &&
-			(expirationDate != null) && expirationDate.before(now)) {
+			(expirationDate != null) && expirationDate.before(date)) {
 
 			article = setArticlesExpirationDate(article);
 		}

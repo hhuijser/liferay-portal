@@ -217,14 +217,14 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		serviceContext.setAttribute("className", className);
 		serviceContext.setAttribute("classPK", String.valueOf(classPK));
 
-		Date now = new Date();
+		Date date = new Date();
 
 		if (serviceContext.getCreateDate() == null) {
-			serviceContext.setCreateDate(now);
+			serviceContext.setCreateDate(date);
 		}
 
 		if (serviceContext.getModifiedDate() == null) {
-			serviceContext.setModifiedDate(now);
+			serviceContext.setModifiedDate(date);
 		}
 
 		MBMessage message = addMessage(
@@ -401,9 +401,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			anonymous = true;
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
-		Date modifiedDate = serviceContext.getModifiedDate(now);
+		Date modifiedDate = serviceContext.getModifiedDate(date);
 
 		long messageId = counterLocalService.increment();
 
@@ -443,7 +443,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		message.setCompanyId(user.getCompanyId());
 		message.setUserId(user.getUserId());
 		message.setUserName(userName);
-		message.setCreateDate(serviceContext.getCreateDate(now));
+		message.setCreateDate(serviceContext.getCreateDate(date));
 		message.setModifiedDate(modifiedDate);
 
 		if (threadId > 0) {

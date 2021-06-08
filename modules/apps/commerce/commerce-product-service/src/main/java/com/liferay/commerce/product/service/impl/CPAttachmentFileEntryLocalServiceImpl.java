@@ -182,14 +182,14 @@ public class CPAttachmentFileEntryLocalServiceImpl
 			throw new DuplicateCPAttachmentFileEntryException();
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		cpAttachmentFileEntry.setFileEntryId(fileEntryId);
 
 		cpAttachmentFileEntry.setDisplayDate(displayDate);
 		cpAttachmentFileEntry.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			cpAttachmentFileEntry.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -636,7 +636,7 @@ public class CPAttachmentFileEntryLocalServiceImpl
 				"Expiration date " + expirationDate + " is in the past");
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
@@ -650,7 +650,7 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		cpAttachmentFileEntry.setDisplayDate(displayDate);
 		cpAttachmentFileEntry.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			cpAttachmentFileEntry.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -684,7 +684,7 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
+		Date date = new Date();
 
 		CPAttachmentFileEntry cpAttachmentFileEntry =
 			cpAttachmentFileEntryPersistence.findByPrimaryKey(
@@ -692,23 +692,23 @@ public class CPAttachmentFileEntryLocalServiceImpl
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(cpAttachmentFileEntry.getDisplayDate() != null) &&
-			now.before(cpAttachmentFileEntry.getDisplayDate())) {
+			date.before(cpAttachmentFileEntry.getDisplayDate())) {
 
 			status = WorkflowConstants.STATUS_SCHEDULED;
 		}
 
-		Date modifiedDate = serviceContext.getModifiedDate(now);
+		Date modifiedDate = serviceContext.getModifiedDate(date);
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			Date expirationDate = cpAttachmentFileEntry.getExpirationDate();
 
-			if ((expirationDate != null) && expirationDate.before(now)) {
+			if ((expirationDate != null) && expirationDate.before(date)) {
 				cpAttachmentFileEntry.setExpirationDate(null);
 			}
 		}
 
 		if (status == WorkflowConstants.STATUS_EXPIRED) {
-			cpAttachmentFileEntry.setExpirationDate(now);
+			cpAttachmentFileEntry.setExpirationDate(date);
 		}
 
 		cpAttachmentFileEntry.setStatus(status);

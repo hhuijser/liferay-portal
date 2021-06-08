@@ -270,7 +270,7 @@ public class CommerceDiscountLocalServiceImpl
 			serviceContext.getCompanyId(), 0, title, target, useCouponCode,
 			couponCode, limitationType);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -333,7 +333,7 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setDisplayDate(displayDate);
 		commerceDiscount.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			commerceDiscount.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -341,7 +341,7 @@ public class CommerceDiscountLocalServiceImpl
 		}
 
 		commerceDiscount.setStatusByUserId(user.getUserId());
-		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(now));
+		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(date));
 		commerceDiscount.setExpandoBridgeAttributes(serviceContext);
 
 		commerceDiscount = commerceDiscountPersistence.update(commerceDiscount);
@@ -934,7 +934,7 @@ public class CommerceDiscountLocalServiceImpl
 			serviceContext.getCompanyId(), commerceDiscountId, title, target,
 			useCouponCode, couponCode, limitationType);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -968,7 +968,7 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setDisplayDate(displayDate);
 		commerceDiscount.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			commerceDiscount.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -976,7 +976,7 @@ public class CommerceDiscountLocalServiceImpl
 		}
 
 		commerceDiscount.setStatusByUserId(user.getUserId());
-		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(now));
+		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(date));
 		commerceDiscount.setExpandoBridgeAttributes(serviceContext);
 
 		commerceDiscount = commerceDiscountPersistence.update(commerceDiscount);
@@ -1011,7 +1011,7 @@ public class CommerceDiscountLocalServiceImpl
 			serviceContext.getCompanyId(), commerceDiscountId, title, target,
 			useCouponCode, couponCode, limitationType);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -1047,7 +1047,7 @@ public class CommerceDiscountLocalServiceImpl
 		commerceDiscount.setDisplayDate(displayDate);
 		commerceDiscount.setExpirationDate(expirationDate);
 
-		if ((expirationDate == null) || expirationDate.after(now)) {
+		if ((expirationDate == null) || expirationDate.after(date)) {
 			commerceDiscount.setStatus(WorkflowConstants.STATUS_DRAFT);
 		}
 		else {
@@ -1055,7 +1055,7 @@ public class CommerceDiscountLocalServiceImpl
 		}
 
 		commerceDiscount.setStatusByUserId(user.getUserId());
-		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(now));
+		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(date));
 		commerceDiscount.setExpandoBridgeAttributes(serviceContext);
 
 		commerceDiscount = commerceDiscountPersistence.update(commerceDiscount);
@@ -1104,14 +1104,14 @@ public class CommerceDiscountLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
+		Date date = new Date();
 
 		CommerceDiscount commerceDiscount =
 			commerceDiscountPersistence.findByPrimaryKey(commerceDiscountId);
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(commerceDiscount.getDisplayDate() != null) &&
-			now.before(commerceDiscount.getDisplayDate())) {
+			date.before(commerceDiscount.getDisplayDate())) {
 
 			commerceDiscount.setActive(false);
 
@@ -1121,7 +1121,7 @@ public class CommerceDiscountLocalServiceImpl
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			Date expirationDate = commerceDiscount.getExpirationDate();
 
-			if ((expirationDate != null) && expirationDate.before(now)) {
+			if ((expirationDate != null) && expirationDate.before(date)) {
 				commerceDiscount.setExpirationDate(null);
 			}
 
@@ -1134,13 +1134,13 @@ public class CommerceDiscountLocalServiceImpl
 
 		if (status == WorkflowConstants.STATUS_EXPIRED) {
 			commerceDiscount.setActive(false);
-			commerceDiscount.setExpirationDate(now);
+			commerceDiscount.setExpirationDate(date);
 		}
 
 		commerceDiscount.setStatus(status);
 		commerceDiscount.setStatusByUserId(user.getUserId());
 		commerceDiscount.setStatusByUserName(user.getFullName());
-		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(now));
+		commerceDiscount.setStatusDate(serviceContext.getModifiedDate(date));
 
 		return commerceDiscountPersistence.update(commerceDiscount);
 	}

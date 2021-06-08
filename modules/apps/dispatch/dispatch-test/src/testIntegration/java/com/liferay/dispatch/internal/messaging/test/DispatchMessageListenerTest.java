@@ -231,9 +231,9 @@ public class DispatchMessageListenerTest {
 				user.getUserId(), type, null, RandomTestUtil.randomString(),
 				RandomTestUtil.randomBoolean());
 
-		Date now = new Date();
+		Date date = new Date();
 
-		Calendar calendar = CalendarFactoryUtil.getCalendar(now.getTime());
+		Calendar calendar = CalendarFactoryUtil.getCalendar(date.getTime());
 
 		dispatchTrigger = _dispatchTriggerLocalService.updateDispatchTrigger(
 			dispatchTrigger.getDispatchTriggerId(), false, _CRON_EXPRESSION,

@@ -275,7 +275,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		}
 
 		Date expirationDate = null;
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -338,16 +338,16 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 
 		cpInstance.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-		if ((displayDate != null) && now.before(displayDate)) {
+		if ((displayDate != null) && date.before(displayDate)) {
 			cpInstance.setStatus(WorkflowConstants.STATUS_SCHEDULED);
 		}
 
-		if (!neverExpire && expirationDate.before(now)) {
+		if (!neverExpire && expirationDate.before(date)) {
 			cpInstance.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
 		cpInstance.setStatusByUserId(user.getUserId());
-		cpInstance.setStatusDate(serviceContext.getModifiedDate(now));
+		cpInstance.setStatusDate(serviceContext.getModifiedDate(date));
 		cpInstance.setExpandoBridgeAttributes(serviceContext);
 		cpInstance.setUnspsc(unspsc);
 
@@ -1389,7 +1389,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		}
 
 		Date expirationDate = null;
-		Date now = new Date();
+		Date date = new Date();
 
 		Date displayDate = PortalUtil.getDate(
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
@@ -1418,12 +1418,12 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		cpInstance.setDisplayDate(displayDate);
 		cpInstance.setExpirationDate(expirationDate);
 
-		if (!neverExpire && expirationDate.before(now)) {
+		if (!neverExpire && expirationDate.before(date)) {
 			cpInstance.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
 		cpInstance.setStatusByUserId(user.getUserId());
-		cpInstance.setStatusDate(serviceContext.getModifiedDate(now));
+		cpInstance.setStatusDate(serviceContext.getModifiedDate(date));
 		cpInstance.setExpandoBridgeAttributes(serviceContext);
 		cpInstance.setUnspsc(unspsc);
 
@@ -1530,7 +1530,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
+		Date date = new Date();
 
 		CPInstance cpInstance = cpInstancePersistence.findByPrimaryKey(
 			cpInstanceId);
@@ -1546,7 +1546,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(cpInstance.getDisplayDate() != null) &&
-			now.before(cpInstance.getDisplayDate())) {
+			date.before(cpInstance.getDisplayDate())) {
 
 			status = WorkflowConstants.STATUS_SCHEDULED;
 		}
@@ -1554,13 +1554,13 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			Date expirationDate = cpInstance.getExpirationDate();
 
-			if ((expirationDate != null) && expirationDate.before(now)) {
+			if ((expirationDate != null) && expirationDate.before(date)) {
 				cpInstance.setExpirationDate(null);
 			}
 		}
 
 		if (status == WorkflowConstants.STATUS_EXPIRED) {
-			cpInstance.setExpirationDate(now);
+			cpInstance.setExpirationDate(date);
 		}
 
 		if ((cpInstance.getStatus() == WorkflowConstants.STATUS_APPROVED) &&
@@ -1574,7 +1574,7 @@ public class CPInstanceLocalServiceImpl extends CPInstanceLocalServiceBaseImpl {
 		cpInstance.setStatus(status);
 		cpInstance.setStatusByUserId(user.getUserId());
 		cpInstance.setStatusByUserName(user.getFullName());
-		cpInstance.setStatusDate(now);
+		cpInstance.setStatusDate(date);
 
 		return cpInstancePersistence.update(cpInstance);
 	}

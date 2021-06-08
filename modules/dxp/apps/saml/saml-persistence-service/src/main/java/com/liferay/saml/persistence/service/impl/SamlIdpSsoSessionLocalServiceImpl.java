@@ -55,7 +55,7 @@ public class SamlIdpSsoSessionLocalServiceImpl
 		}
 
 		User user = userLocalService.getUserById(serviceContext.getUserId());
-		Date now = new Date();
+		Date date = new Date();
 
 		long samlIdpSsoSessionId = counterLocalService.increment(
 			SamlIdpSsoSession.class.getName());
@@ -66,8 +66,8 @@ public class SamlIdpSsoSessionLocalServiceImpl
 		samlIdpSsoSession.setCompanyId(serviceContext.getCompanyId());
 		samlIdpSsoSession.setUserId(user.getUserId());
 		samlIdpSsoSession.setUserName(user.getFullName());
-		samlIdpSsoSession.setCreateDate(now);
-		samlIdpSsoSession.setModifiedDate(now);
+		samlIdpSsoSession.setCreateDate(date);
+		samlIdpSsoSession.setModifiedDate(date);
 		samlIdpSsoSession.setSamlIdpSsoSessionKey(samlIdpSsoSessionKey);
 
 		return samlIdpSsoSessionPersistence.update(samlIdpSsoSession);

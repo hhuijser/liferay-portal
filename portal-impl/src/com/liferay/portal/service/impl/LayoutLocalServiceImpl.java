@@ -247,7 +247,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			groupId, privateLayout, layoutId, parentLayoutId, name, type,
 			hidden, friendlyURLMap, serviceContext);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		long plid = counterLocalService.increment(Layout.class.getName());
 
@@ -263,8 +263,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setCompanyId(user.getCompanyId());
 		layout.setUserId(user.getUserId());
 		layout.setUserName(user.getFullName());
-		layout.setCreateDate(serviceContext.getCreateDate(now));
-		layout.setModifiedDate(serviceContext.getModifiedDate(now));
+		layout.setCreateDate(serviceContext.getCreateDate(date));
+		layout.setModifiedDate(serviceContext.getModifiedDate(date));
 		layout.setParentPlid(
 			_getParentPlid(groupId, privateLayout, parentLayoutId));
 		layout.setPrivateLayout(privateLayout);
@@ -327,7 +327,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layout.setLayoutPrototypeLinkEnabled(layoutPrototypeLinkEnabled);
 		}
 
-		layout.setPublishDate(serviceContext.getModifiedDate(now));
+		layout.setPublishDate(serviceContext.getModifiedDate(date));
 
 		if (workflowDefinitionLinkLocalService.hasWorkflowDefinitionLink(
 				layout.getCompanyId(), layout.getGroupId(),
@@ -344,7 +344,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		layout.setStatusByUserId(userId);
 		layout.setStatusByUserName(user.getFullName());
-		layout.setStatusDate(serviceContext.getCreateDate(now));
+		layout.setStatusDate(serviceContext.getCreateDate(date));
 		layout.setExpandoBridgeAttributes(serviceContext);
 
 		layout = layoutLocalService.updateLayout(layout);
@@ -406,7 +406,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			 Objects.equals(type, LayoutConstants.TYPE_CONTENT) ||
 			 layout.isTypeAssetDisplay())) {
 
-			serviceContext.setModifiedDate(now);
+			serviceContext.setModifiedDate(date);
 
 			addLayout(
 				userId, groupId, privateLayout, parentLayoutId,
@@ -2487,7 +2487,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			long userId, long plid, String friendlyURL, String languageId)
 		throws PortalException {
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Layout layout = layoutPersistence.findByPrimaryKey(plid);
 
@@ -2504,7 +2504,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layout.getPlid(), layout.isPrivateLayout(), friendlyURL, languageId,
 			new ServiceContext());
 
-		layout.setModifiedDate(now);
+		layout.setModifiedDate(date);
 
 		String defaultLanguageId = LocaleUtil.toLanguageId(
 			LocaleUtil.getSiteDefault());
@@ -2652,7 +2652,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layoutLocalServiceHelper.validateParentLayoutId(
 			groupId, privateLayout, layoutId, parentLayoutId);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Layout layout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, layoutId);
@@ -2668,7 +2668,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layout.setPriority(priority);
 		}
 
-		layout.setModifiedDate(serviceContext.getModifiedDate(now));
+		layout.setModifiedDate(serviceContext.getModifiedDate(date));
 		layout.setParentLayoutId(parentLayoutId);
 		layout.setNameMap(nameMap);
 		layout.setTitleMap(titleMap);
@@ -2766,7 +2766,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			String typeSettings)
 		throws PortalException {
 
-		Date now = new Date();
+		Date date = new Date();
 
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
@@ -2778,11 +2778,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		validateTypeSettingsProperties(layout, typeSettingsUnicodeProperties);
 
-		layout.setModifiedDate(now);
+		layout.setModifiedDate(date);
 		layout.setTypeSettings(typeSettingsUnicodeProperties.toString());
 
 		if (layout.isSystem() && (layout.getClassPK() > 0)) {
-			layout.setPublishDate(now);
+			layout.setPublishDate(date);
 		}
 
 		return layoutPersistence.update(layout);
@@ -2806,12 +2806,12 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			String colorSchemeId, String css)
 		throws PortalException {
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Layout layout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, layoutId);
 
-		layout.setModifiedDate(now);
+		layout.setModifiedDate(date);
 
 		layout.setThemeId(themeId);
 		layout.setColorSchemeId(colorSchemeId);
@@ -2858,11 +2858,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	public Layout updateName(Layout layout, String name, String languageId)
 		throws PortalException {
 
-		Date now = new Date();
+		Date date = new Date();
 
 		layoutLocalServiceHelper.validateName(name, languageId);
 
-		layout.setModifiedDate(now);
+		layout.setModifiedDate(date);
 		layout.setName(name, LocaleUtil.fromLanguageId(languageId));
 
 		layout = layoutPersistence.update(layout);
@@ -2874,7 +2874,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				layoutPrototypeLocalService.getLayoutPrototype(
 					group.getClassPK());
 
-			layoutPrototype.setModifiedDate(now);
+			layoutPrototype.setModifiedDate(date);
 			layoutPrototype.setName(
 				name, LocaleUtil.fromLanguageId(languageId));
 
@@ -2951,7 +2951,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layoutLocalServiceHelper.validateParentLayoutId(
 			groupId, privateLayout, layoutId, parentLayoutId);
 
-		Date now = new Date();
+		Date date = new Date();
 
 		Layout layout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, layoutId);
@@ -2967,7 +2967,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layout.setPriority(priority);
 		}
 
-		layout.setModifiedDate(now);
+		layout.setModifiedDate(date);
 		layout.setParentLayoutId(parentLayoutId);
 
 		Layout draftLayout = layout.fetchDraftLayout();
@@ -3002,7 +3002,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			return layout;
 		}
 
-		Date now = new Date();
+		Date date = new Date();
 
 		long parentLayoutId = LayoutConstants.DEFAULT_PARENT_LAYOUT_ID;
 
@@ -3030,7 +3030,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layout.setPriority(priority);
 		}
 
-		layout.setModifiedDate(now);
+		layout.setModifiedDate(date);
 		layout.setParentPlid(parentPlid);
 		layout.setParentLayoutId(parentLayoutId);
 

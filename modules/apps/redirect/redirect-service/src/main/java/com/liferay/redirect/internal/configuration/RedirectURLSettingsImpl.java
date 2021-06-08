@@ -15,6 +15,7 @@
 package com.liferay.redirect.internal.configuration;
 
 import com.liferay.portal.kernel.redirect.RedirectURLSettings;
+import com.liferay.redirect.internal.configuration.admin.service.RedirectURLManagedServiceFactory;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;

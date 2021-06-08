@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.security.antisamy.internal;
+package com.liferay.portal.security.antisamy.internal.configuration.admin.service;
 
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
 import com.liferay.portal.security.antisamy.configuration.AntiSamyClassNameConfiguration;
 import com.liferay.portal.security.antisamy.configuration.AntiSamyConfiguration;
+import com.liferay.portal.security.antisamy.internal.AntiSamySanitizerImpl;
 
 import java.net.URL;
 

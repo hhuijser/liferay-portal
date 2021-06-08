@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.configuration.settings.internal.scoped.configuration;
+package com.liferay.portal.configuration.settings.internal.scoped.configuration.admin.service;
 
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;

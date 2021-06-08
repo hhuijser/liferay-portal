@@ -12,11 +12,12 @@
  * details.
  */
 
-package com.liferay.redirect.internal.configuration;
+package com.liferay.redirect.internal.configuration.admin.service;
 
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.redirect.internal.configuration.RedirectURLConfiguration;
 
 import java.util.Dictionary;
 import java.util.Map;

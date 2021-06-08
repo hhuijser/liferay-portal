@@ -133,6 +133,9 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 				return;
 			}
 		}
+		else if (implementedClassNames.size() != 1) {
+			return;
+		}
 
 		BNDSettings bndSettings = getBNDSettings(fileName);
 

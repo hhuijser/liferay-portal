@@ -100,7 +100,10 @@ public class JavaClassNameCheck extends BaseJavaTermCheck {
 				continue;
 			}
 
-			if (!className.endsWith(implementedClassName)) {
+			if (!className.endsWith(implementedClassName) &&
+				((implementedClassNames.size() == 1) ||
+				 implementedClassName.equals("ScreenNavigationCategory"))) {
+
 				addMessage(
 					fileName,
 					StringBundler.concat(

@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Validator;
 
+import javax.portlet.ActionResponse;
 import javax.portlet.MimeResponse;
 import javax.portlet.MutableRenderParameters;
 import javax.portlet.PortletMode;
@@ -35,6 +36,12 @@ import javax.portlet.WindowStateException;
  * @author Neil Griffin
  */
 public class RenderURLBuilder {
+
+	public static RenderURLStep createRedirectURL(
+		ActionResponse actionResponse, MimeResponse.Copy copy) {
+
+		return new RenderURLStep(actionResponse.createRedirectURL(copy));
+	}
 
 	public static RenderURLStep createRenderURL(
 		LiferayPortletResponse liferayPortletResponse) {

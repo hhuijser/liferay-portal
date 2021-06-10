@@ -616,7 +616,7 @@ public class ActionURLBuilder {
 	}
 
 	public interface AfterPortletModeStep
-		extends BuildStep, SecureStep, WindowStateStep {
+		extends BuildStep, RenderParameterStep, SecureStep, WindowStateStep {
 	}
 
 	public interface AfterRedirectStep
@@ -626,8 +626,7 @@ public class ActionURLBuilder {
 	}
 
 	public interface AfterRenderParameterStep
-		extends BuildStep, PortletModeStep, RenderParameterStep, SecureStep,
-				WindowStateStep {
+		extends BuildStep, RenderParameterStep, SecureStep, WindowStateStep {
 	}
 
 	public interface AfterSecureStep extends BuildStep, WindowStateStep {

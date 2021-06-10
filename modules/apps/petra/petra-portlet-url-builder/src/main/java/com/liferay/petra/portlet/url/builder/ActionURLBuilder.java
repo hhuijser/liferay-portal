@@ -30,6 +30,7 @@ import javax.portlet.PortletParameters;
 import javax.portlet.PortletSecurityException;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
+import javax.portlet.annotations.PortletSerializable;
 
 /**
  * @author Hugo Huijser
@@ -80,14 +81,15 @@ public class ActionURLBuilder {
 	}
 
 	public static class ActionURLStep
-		implements AfterBackURLStep, AfterCMDStep, AfterKeywordsStep,
-				   AfterMVCActionCommandNameStep, AfterMVCPathStep,
-				   AfterNavigationStep, AfterParameterStep,
+		implements AfterBackURLStep, AfterBeanParameterStep, AfterCMDStep,
+				   AfterKeywordsStep, AfterMVCActionCommandNameStep,
+				   AfterMVCPathStep, AfterNavigationStep, AfterParameterStep,
 				   AfterPortletModeStep, AfterRedirectStep,
 				   AfterRenderParameterStep, AfterSecureStep, AfterTabs1Step,
-				   AfterTabs2Step, AfterWindowStateStep, BackURLStep, BuildStep,
-				   CMDStep, KeywordsStep, MVCActionCommandNameStep, MVCPathStep,
-				   NavigationStep, ParameterStep, PortletModeStep, RedirectStep,
+				   AfterTabs2Step, AfterWindowStateStep, BackURLStep,
+				   BeanParameterStep, BuildStep, CMDStep, KeywordsStep,
+				   MVCActionCommandNameStep, MVCPathStep, NavigationStep,
+				   ParameterStep, PortletModeStep, RedirectStep,
 				   RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
 				   WindowStateStep {
 
@@ -137,6 +139,15 @@ public class ActionURLBuilder {
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
 
 			_setParameter("backURL", valueUnsafeSupplier, false);
+
+			return this;
+		}
+
+		@Override
+		public AfterBeanParameterStep setBeanParameter(
+			PortletSerializable portletSerializable) {
+
+			_actionURL.setBeanParameter(portletSerializable);
 
 			return this;
 		}
@@ -573,41 +584,48 @@ public class ActionURLBuilder {
 	}
 
 	public interface AfterBackURLStep
-		extends BuildStep, KeywordsStep, NavigationStep, ParameterStep,
-				PortletModeStep, RenderParameterStep, SecureStep, Tabs1Step,
-				Tabs2Step, WindowStateStep {
+		extends BeanParameterStep, BuildStep, KeywordsStep, NavigationStep,
+				ParameterStep, PortletModeStep, RenderParameterStep, SecureStep,
+				Tabs1Step, Tabs2Step, WindowStateStep {
+	}
+
+	public interface AfterBeanParameterStep
+		extends BuildStep, ParameterStep, PortletModeStep, RenderParameterStep,
+				SecureStep, WindowStateStep {
 	}
 
 	public interface AfterCMDStep
-		extends BackURLStep, BuildStep, KeywordsStep, NavigationStep,
-				ParameterStep, PortletModeStep, RedirectStep,
+		extends BackURLStep, BeanParameterStep, BuildStep, KeywordsStep,
+				NavigationStep, ParameterStep, PortletModeStep, RedirectStep,
 				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
 				WindowStateStep {
 	}
 
 	public interface AfterKeywordsStep
-		extends BuildStep, NavigationStep, ParameterStep, PortletModeStep,
-				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+		extends BeanParameterStep, BuildStep, NavigationStep, ParameterStep,
+				PortletModeStep, RenderParameterStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterMVCActionCommandNameStep
-		extends BackURLStep, BuildStep, CMDStep, KeywordsStep, NavigationStep,
+		extends BackURLStep, BeanParameterStep, BuildStep, CMDStep,
+				KeywordsStep, NavigationStep, ParameterStep, PortletModeStep,
+				RedirectStep, RenderParameterStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
+	}
+
+	public interface AfterMVCPathStep
+		extends BackURLStep, BeanParameterStep, BuildStep, CMDStep,
+				KeywordsStep, MVCActionCommandNameStep, NavigationStep,
 				ParameterStep, PortletModeStep, RedirectStep,
 				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
 				WindowStateStep {
 	}
 
-	public interface AfterMVCPathStep
-		extends BackURLStep, BuildStep, CMDStep, KeywordsStep,
-				MVCActionCommandNameStep, NavigationStep, ParameterStep,
-				PortletModeStep, RedirectStep, RenderParameterStep, SecureStep,
-				Tabs1Step, Tabs2Step, WindowStateStep {
-	}
-
 	public interface AfterNavigationStep
-		extends BuildStep, ParameterStep, PortletModeStep, RenderParameterStep,
-				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
+		extends BeanParameterStep, BuildStep, ParameterStep, PortletModeStep,
+				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterParameterStep
@@ -620,9 +638,10 @@ public class ActionURLBuilder {
 	}
 
 	public interface AfterRedirectStep
-		extends BackURLStep, BuildStep, KeywordsStep, NavigationStep,
-				ParameterStep, PortletModeStep, RenderParameterStep, SecureStep,
-				Tabs1Step, Tabs2Step, WindowStateStep {
+		extends BackURLStep, BeanParameterStep, BuildStep, KeywordsStep,
+				NavigationStep, ParameterStep, PortletModeStep,
+				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterRenderParameterStep
@@ -633,13 +652,13 @@ public class ActionURLBuilder {
 	}
 
 	public interface AfterTabs1Step
-		extends BuildStep, ParameterStep, PortletModeStep, RenderParameterStep,
-				SecureStep, Tabs2Step, WindowStateStep {
+		extends BeanParameterStep, BuildStep, ParameterStep, PortletModeStep,
+				RenderParameterStep, SecureStep, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterTabs2Step
-		extends BuildStep, ParameterStep, PortletModeStep, RenderParameterStep,
-				SecureStep, WindowStateStep {
+		extends BeanParameterStep, BuildStep, ParameterStep, PortletModeStep,
+				RenderParameterStep, SecureStep, WindowStateStep {
 	}
 
 	public interface AfterWindowStateStep extends BuildStep {
@@ -651,6 +670,13 @@ public class ActionURLBuilder {
 
 		public AfterBackURLStep setBackURL(
 			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
+
+	}
+
+	public interface BeanParameterStep {
+
+		public AfterBeanParameterStep setBeanParameter(
+			PortletSerializable portletSerializable);
 
 	}
 

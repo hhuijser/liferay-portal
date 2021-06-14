@@ -57,12 +57,13 @@ public class ResourceURLBuilder {
 		implements AfterBackURLStep, AfterCacheabilityStep, AfterCMDStep,
 				   AfterKeywordsStep, AfterMVCPathStep,
 				   AfterMVCResourceCommandNameStep, AfterNavigationStep,
-				   AfterParameterStep, AfterRedirectStep, AfterResourceIDStep,
-				   AfterSecureStep, AfterTabs1Step, AfterTabs2Step, BackURLStep,
-				   BuildStep, CacheabilityStep, CMDStep, KeywordsStep,
-				   MVCPathStep, MVCResourceCommandNameStep, NavigationStep,
-				   ParameterStep, RedirectStep, ResourceIDStep, SecureStep,
-				   Tabs1Step, Tabs2Step {
+				   AfterParameterStep, AfterPortletResourceStep,
+				   AfterRedirectStep, AfterResourceIDStep, AfterSecureStep,
+				   AfterTabs1Step, AfterTabs2Step, BackURLStep, BuildStep,
+				   CacheabilityStep, CMDStep, KeywordsStep, MVCPathStep,
+				   MVCResourceCommandNameStep, NavigationStep, ParameterStep,
+				   PortletResourceStep, RedirectStep, ResourceIDStep,
+				   SecureStep, Tabs1Step, Tabs2Step {
 
 		public ResourceURLStep(ResourceURL resourceURL) {
 			_resourceURL = resourceURL;
@@ -270,6 +271,22 @@ public class ResourceURLBuilder {
 		}
 
 		@Override
+		public AfterPortletResourceStep setPortletResource(String value) {
+			_setParameter("portletResource", value, false);
+
+			return this;
+		}
+
+		@Override
+		public AfterPortletResourceStep setPortletResource(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			_setParameter("portletResource", valueUnsafeSupplier, false);
+
+			return this;
+		}
+
+		@Override
 		public AfterRedirectStep setRedirect(String value) {
 			_setParameter("redirect", value, false);
 
@@ -401,8 +418,10 @@ public class ResourceURLBuilder {
 			{Constants.CMD, "setCMD"}, {"backURL", "setBackURL"},
 			{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
 			{"mvcResourceCommandName", "setMVCResourceCommandName"},
-			{"navigation", "setNavigation"}, {"redirect", "setRedirect"},
-			{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
+			{"navigation", "setNavigation"},
+			{"portletResource", "setPortletResource"},
+			{"redirect", "setRedirect"}, {"tabs1", "setTabs1"},
+			{"tabs2", "setTabs2"}
 		};
 
 		private final ResourceURL _resourceURL;
@@ -411,8 +430,8 @@ public class ResourceURLBuilder {
 
 	public interface AfterBackURLStep
 		extends BuildStep, CacheabilityStep, KeywordsStep, NavigationStep,
-				ParameterStep, ResourceIDStep, SecureStep, Tabs1Step,
-				Tabs2Step {
+				ParameterStep, PortletResourceStep, ResourceIDStep, SecureStep,
+				Tabs1Step, Tabs2Step {
 	}
 
 	public interface AfterCacheabilityStep
@@ -421,30 +440,32 @@ public class ResourceURLBuilder {
 
 	public interface AfterCMDStep
 		extends BackURLStep, BuildStep, CacheabilityStep, KeywordsStep,
-				NavigationStep, ParameterStep, RedirectStep, ResourceIDStep,
-				SecureStep, Tabs1Step, Tabs2Step {
+				NavigationStep, ParameterStep, PortletResourceStep,
+				RedirectStep, ResourceIDStep, SecureStep, Tabs1Step, Tabs2Step {
 	}
 
 	public interface AfterKeywordsStep
 		extends BuildStep, CacheabilityStep, NavigationStep, ParameterStep,
-				ResourceIDStep, SecureStep, Tabs1Step, Tabs2Step {
+				PortletResourceStep, ResourceIDStep, SecureStep, Tabs1Step,
+				Tabs2Step {
 	}
 
 	public interface AfterMVCPathStep
 		extends BackURLStep, BuildStep, CacheabilityStep, CMDStep, KeywordsStep,
 				MVCResourceCommandNameStep, NavigationStep, ParameterStep,
-				RedirectStep, ResourceIDStep, SecureStep, Tabs1Step, Tabs2Step {
+				PortletResourceStep, RedirectStep, ResourceIDStep, SecureStep,
+				Tabs1Step, Tabs2Step {
 	}
 
 	public interface AfterMVCResourceCommandNameStep
 		extends BackURLStep, BuildStep, CacheabilityStep, CMDStep, KeywordsStep,
-				NavigationStep, ParameterStep, RedirectStep, ResourceIDStep,
-				SecureStep, Tabs1Step, Tabs2Step {
+				NavigationStep, ParameterStep, PortletResourceStep,
+				RedirectStep, ResourceIDStep, SecureStep, Tabs1Step, Tabs2Step {
 	}
 
 	public interface AfterNavigationStep
-		extends BuildStep, CacheabilityStep, ParameterStep, ResourceIDStep,
-				SecureStep, Tabs1Step, Tabs2Step {
+		extends BuildStep, CacheabilityStep, ParameterStep, PortletResourceStep,
+				ResourceIDStep, SecureStep, Tabs1Step, Tabs2Step {
 	}
 
 	public interface AfterParameterStep
@@ -452,10 +473,15 @@ public class ResourceURLBuilder {
 				SecureStep {
 	}
 
+	public interface AfterPortletResourceStep
+		extends BuildStep, CacheabilityStep, ParameterStep, ResourceIDStep,
+				SecureStep, Tabs1Step, Tabs2Step {
+	}
+
 	public interface AfterRedirectStep
 		extends BackURLStep, BuildStep, CacheabilityStep, KeywordsStep,
-				NavigationStep, ParameterStep, ResourceIDStep, SecureStep,
-				Tabs1Step, Tabs2Step {
+				NavigationStep, ParameterStep, PortletResourceStep,
+				ResourceIDStep, SecureStep, Tabs1Step, Tabs2Step {
 	}
 
 	public interface AfterResourceIDStep extends BuildStep, SecureStep {
@@ -567,6 +593,15 @@ public class ResourceURLBuilder {
 
 		public AfterParameterStep setParameters(
 			PortletParameters portletParameters);
+
+	}
+
+	public interface PortletResourceStep {
+
+		public AfterPortletResourceStep setPortletResource(String value);
+
+		public AfterPortletResourceStep setPortletResource(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
 	}
 

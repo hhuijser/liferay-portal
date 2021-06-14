@@ -810,8 +810,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 					if (value.equals(reservedKey)) {
 						log(
-							expressionDetailAST, _MSG_RESERVED_KEYWORD, value,
-							reservedKeywordArray[1]);
+							expressionDetailAST, _MSG_RESERVED_KEYWORD,
+							methodName, value, reservedKeywordArray[1]);
 
 						break;
 					}

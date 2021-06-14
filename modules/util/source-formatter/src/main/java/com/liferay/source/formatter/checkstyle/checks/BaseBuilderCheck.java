@@ -93,6 +93,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	protected abstract String getAssignClassName(DetailAST assignDetailAST);
 
+	protected List<String> getAvoidCastStringMethodNames() {
+		return Collections.emptyList();
+	}
+
 	protected List<BuilderInformation> getBuilderInformationList() {
 		List<BuilderInformation> builderInformationList =
 			doGetBuilderInformationList();
@@ -387,8 +391,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			return;
 		}
 
+		_checkUnneededCastString(methodCallDetailAST);
+
 		Map<String, List<DetailAST>> expressionDetailASTMap =
-			_getExpressionDetailASTMap(methodCallDetailAST);
+			_getExpressionDetailASTMap(methodCallDetailAST, false);
 
 		if (!allowNullValues()) {
 			_checkNullValues(expressionDetailASTMap, builderClassName);
@@ -814,6 +820,52 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		}
 	}
 
+	private void _checkUnneededCastString(DetailAST methodCallDetailAST) {
+		List<String> avoidCastStringMethodNames =
+			getAvoidCastStringMethodNames();
+
+		if (avoidCastStringMethodNames.isEmpty()) {
+			return;
+		}
+
+		Map<String, List<DetailAST>> expressionDetailASTMap =
+			_getExpressionDetailASTMap(methodCallDetailAST, true);
+
+		for (String avoidCastStringMethodName :
+				getAvoidCastStringMethodNames()) {
+
+			List<DetailAST> expressionDetailASTList =
+				expressionDetailASTMap.get(avoidCastStringMethodName);
+
+			if (expressionDetailASTList == null) {
+				continue;
+			}
+
+			for (DetailAST expressionDetailAST : expressionDetailASTList) {
+				if (expressionDetailAST.getType() != TokenTypes.EXPR) {
+					continue;
+				}
+
+				DetailAST childDetailAST = expressionDetailAST.getFirstChild();
+
+				if (childDetailAST.getType() == TokenTypes.METHOD_CALL) {
+					FullIdent fullIdent = FullIdent.createFullIdentBelow(
+						childDetailAST);
+
+					String methodCall = fullIdent.getText();
+
+					if (methodCall.equals("String.valueOf") ||
+						methodCall.endsWith(".toString")) {
+
+						log(
+							expressionDetailAST, _MSG_UNNEEDED_STRING_CAST,
+							avoidCastStringMethodName);
+					}
+				}
+			}
+		}
+	}
+
 	private BuilderInformation _findBuilderInformationByBuilderClassName(
 		String builderClassName) {
 
@@ -880,7 +932,7 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	}
 
 	private Map<String, List<DetailAST>> _getExpressionDetailASTMap(
-		DetailAST methodCallDetailAST) {
+		DetailAST methodCallDetailAST, boolean lastExpressionOnly) {
 
 		Map<String, List<DetailAST>> expressionDetailASTMap = new HashMap<>();
 
@@ -897,18 +949,27 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			DetailAST elistDetailAST = methodCallDetailAST.findFirstToken(
 				TokenTypes.ELIST);
 
-			DetailAST childDetailAST = elistDetailAST.getFirstChild();
+			if (lastExpressionOnly) {
+				DetailAST childDetailAST = elistDetailAST.getLastChild();
 
-			while (true) {
-				if (childDetailAST == null) {
-					break;
-				}
-
-				if (childDetailAST.getType() != TokenTypes.COMMA) {
+				if (childDetailAST != null) {
 					expressionDetailASTList.add(childDetailAST);
 				}
+			}
+			else {
+				DetailAST childDetailAST = elistDetailAST.getFirstChild();
 
-				childDetailAST = childDetailAST.getNextSibling();
+				while (true) {
+					if (childDetailAST == null) {
+						break;
+					}
+
+					if (childDetailAST.getType() != TokenTypes.COMMA) {
+						expressionDetailASTList.add(childDetailAST);
+					}
+
+					childDetailAST = childDetailAST.getNextSibling();
+				}
 			}
 
 			if (!expressionDetailASTList.isEmpty()) {
@@ -1134,6 +1195,9 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 	private static final String _MSG_INLINE_BUILDER_2 = "builder.inline.2";
 
 	private static final String _MSG_RESERVED_KEYWORD = "keyword.reserved";
+
+	private static final String _MSG_UNNEEDED_STRING_CAST =
+		"string.cast.unneeded";
 
 	private static final String _MSG_USE_BUILDER = "builder.use";
 

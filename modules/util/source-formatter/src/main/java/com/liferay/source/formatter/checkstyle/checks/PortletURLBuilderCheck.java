@@ -83,6 +83,11 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 	}
 
 	@Override
+	protected List<String> getAvoidCastStringMethodNames() {
+		return ListUtil.fromArray("setParameter");
+	}
+
+	@Override
 	protected Map<String, String[][]> getReservedKeywordsMap() {
 		return HashMapBuilder.put(
 			"setParameter", _RESERVED_KEYWORDS

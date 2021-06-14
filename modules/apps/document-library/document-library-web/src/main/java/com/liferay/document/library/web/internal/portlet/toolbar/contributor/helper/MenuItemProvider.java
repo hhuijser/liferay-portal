@@ -162,7 +162,7 @@ public class MenuItemProvider {
 			).setRedirect(
 				PortalUtil.getCurrentURL(portletRequest)
 			).setParameter(
-				"ignoreRootFolder", Boolean.TRUE.toString()
+				"ignoreRootFolder", true
 			).setParameter(
 				"parentFolderId", folderId
 			).setParameter(

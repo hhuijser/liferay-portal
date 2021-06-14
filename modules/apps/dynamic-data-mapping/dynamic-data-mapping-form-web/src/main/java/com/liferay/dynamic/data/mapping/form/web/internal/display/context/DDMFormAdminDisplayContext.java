@@ -1648,7 +1648,7 @@ public class DDMFormAdminDisplayContext {
 				"refererPortletName",
 				DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN
 			).setParameter(
-				"showBackIcon", Boolean.FALSE.toString()
+				"showBackIcon", false
 			).buildString());
 
 		ResourceBundle moduleResourceBundle = ResourceBundleUtil.getBundle(

@@ -421,7 +421,7 @@ public class WorkflowTaskDisplayContext {
 		).setRedirect(
 			themeDisplay.getURLCurrent()
 		).setParameter(
-			"hideDefaultSuccessMessage", Boolean.TRUE.toString()
+			"hideDefaultSuccessMessage", true
 		).setParameter(
 			"portletResource", getPortletResource()
 		).setParameter(
@@ -458,7 +458,7 @@ public class WorkflowTaskDisplayContext {
 				).setRedirect(
 					getCurrentURL()
 				).setParameter(
-					"hideControls", Boolean.TRUE.toString()
+					"hideControls", true
 				).setPortletMode(
 					PortletMode.VIEW
 				).setWindowState(

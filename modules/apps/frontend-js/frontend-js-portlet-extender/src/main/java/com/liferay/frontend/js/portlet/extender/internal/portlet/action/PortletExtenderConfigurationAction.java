@@ -261,7 +261,7 @@ public class PortletExtenderConfigurationAction
 		).setParameter(
 			"p_auth", AuthTokenUtil.getToken(httpServletRequest)
 		).setParameter(
-			"portletConfiguration", Boolean.TRUE.toString()
+			"portletConfiguration", true
 		).setParameter(
 			"portletResource", portletDisplay.getPortletResource()
 		).setParameter(

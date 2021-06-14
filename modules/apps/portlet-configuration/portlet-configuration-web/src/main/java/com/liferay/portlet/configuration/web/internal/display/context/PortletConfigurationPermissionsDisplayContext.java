@@ -248,7 +248,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setParameter(
 			"modelResource", getModelResource()
 		).setParameter(
-			"portletConfiguration", Boolean.TRUE.toString()
+			"portletConfiguration", true
 		).setParameter(
 			"portletResource", _getPortletResource()
 		).setParameter(
@@ -653,7 +653,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 		).setParameter(
 			"modelResourceDescription", getModelResourceDescription()
 		).setParameter(
-			"portletConfiguration", Boolean.TRUE.toString()
+			"portletConfiguration", true
 		).setParameter(
 			"portletResource", _getPortletResource()
 		).setParameter(

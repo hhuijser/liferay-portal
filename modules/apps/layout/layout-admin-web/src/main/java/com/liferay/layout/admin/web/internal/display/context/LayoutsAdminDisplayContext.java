@@ -184,7 +184,7 @@ public class LayoutsAdminDisplayContext {
 		).setBackURL(
 			getBackURL()
 		).setParameter(
-			"explicitCreation", Boolean.TRUE.toString()
+			"explicitCreation", true
 		).setParameter(
 			"groupId", getGroupId()
 		).setParameter(
@@ -1112,7 +1112,7 @@ public class LayoutsAdminDisplayContext {
 					).setParameter(
 						"groupId", themeDisplay.getScopeGroupId()
 					).setParameter(
-						"privateLayout", Boolean.FALSE.toString()
+						"privateLayout", false
 					).setWindowState(
 						LiferayWindowState.MAXIMIZED
 					).buildString() + "\">",

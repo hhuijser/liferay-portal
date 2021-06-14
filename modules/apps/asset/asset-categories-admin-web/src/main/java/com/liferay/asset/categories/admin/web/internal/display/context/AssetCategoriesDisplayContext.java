@@ -594,13 +594,13 @@ public class AssetCategoriesDisplayContext {
 				_httpServletRequest, AssetCategory.class.getName(),
 				PortletProvider.Action.BROWSE)
 		).setParameter(
-			"allowedSelectVocabularies", Boolean.TRUE.toString()
+			"allowedSelectVocabularies", true
 		).setParameter(
 			"eventName", _renderResponse.getNamespace() + "selectCategory"
 		).setParameter(
-			"moveCategory", Boolean.TRUE.toString()
+			"moveCategory", true
 		).setParameter(
-			"singleSelect", Boolean.TRUE.toString()
+			"singleSelect", true
 		).setParameter(
 			"vocabularyIds",
 			() -> {

@@ -122,7 +122,7 @@ PortletURL simplePublishRedirectURL = PortletURLBuilder.createRenderURL(
 ).setParameter(
 	"privateLayout", privateLayout
 ).setParameter(
-	"quickPublish", Boolean.TRUE.toString()
+	"quickPublish", true
 ).build();
 %>
 
@@ -183,7 +183,7 @@ PortletURL simplePublishRedirectURL = PortletURLBuilder.createRenderURL(
 						).setParameter(
 							"privateLayout", privateLayout
 						).setParameter(
-							"quickPublish", Boolean.TRUE.toString()
+							"quickPublish", true
 						).setParameter(
 							"remoteAddress", liveGroupTypeSettings.getProperty("remoteAddress")
 						).setParameter(

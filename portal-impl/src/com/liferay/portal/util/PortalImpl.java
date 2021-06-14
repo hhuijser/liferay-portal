@@ -1864,7 +1864,7 @@ public class PortalImpl implements Portal {
 			).setMVCRenderCommandName(
 				"/login/create_account"
 			).setParameter(
-				"saveLastPath", Boolean.FALSE.toString()
+				"saveLastPath", false
 			).setPortletMode(
 				PortletMode.VIEW
 			).setWindowState(

@@ -239,7 +239,7 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 		).setKeywords(
 			(String)null
 		).setParameter(
-			"resetCur", Boolean.TRUE.toString()
+			"resetCur", true
 		).build();
 	}
 

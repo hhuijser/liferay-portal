@@ -80,7 +80,7 @@ public class PermissionsPortletConfigurationIcon
 			).setMVCPath(
 				"/edit_permissions.jsp"
 			).setParameter(
-				"portletConfiguration", Boolean.TRUE.toString()
+				"portletConfiguration", true
 			).setParameter(
 				"portletResource", portletDisplay.getId()
 			).setParameter(

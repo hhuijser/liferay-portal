@@ -256,7 +256,7 @@ public class AssetCategoriesManagementToolbarDisplayContext
 			"eventName",
 			liferayPortletResponse.getNamespace() + "selectCategory"
 		).setParameter(
-			"singleSelect", Boolean.TRUE.toString()
+			"singleSelect", true
 		).setParameter(
 			"vocabularyIds", _assetCategoriesDisplayContext.getVocabularyId()
 		).setWindowState(

@@ -76,7 +76,7 @@ public class ArchivedSettingsActionDropdownItemsProvider {
 				).setParameter(
 					"name", _archivedSettings.getName()
 				).setParameter(
-					"portletConfiguration", Boolean.TRUE.toString()
+					"portletConfiguration", true
 				).setParameter(
 					"portletResource", _getPortletResource()
 				).buildString());
@@ -114,7 +114,7 @@ public class ArchivedSettingsActionDropdownItemsProvider {
 				).setParameter(
 					"name", _archivedSettings.getName()
 				).setParameter(
-					"portletConfiguration", Boolean.TRUE.toString()
+					"portletConfiguration", true
 				).setParameter(
 					"portletResource", _getPortletResource()
 				).buildString());

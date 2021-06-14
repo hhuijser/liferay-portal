@@ -77,7 +77,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "removed-attachments"));
 	).setParameter(
 		"nodeId", node.getNodeId()
 	).setParameter(
-		"viewTrashAttachments", Boolean.TRUE.toString()
+		"viewTrashAttachments", true
 	).build();
 
 	boolean paginate = true;

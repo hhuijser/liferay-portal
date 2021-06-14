@@ -559,7 +559,7 @@ public class AssetBrowserDisplayContext {
 			).setParameter(
 				"groupType", "site"
 			).setParameter(
-				"showGroupSelector", Boolean.TRUE.toString()
+				"showGroupSelector", true
 			).buildString());
 
 		return breadcrumbEntry;

@@ -84,14 +84,14 @@ public class ActionURLBuilder {
 		implements AfterBackURLStep, AfterBeanParameterStep, AfterCMDStep,
 				   AfterKeywordsStep, AfterMVCActionCommandNameStep,
 				   AfterMVCPathStep, AfterNavigationStep, AfterParameterStep,
-				   AfterPortletModeStep, AfterRedirectStep,
-				   AfterRenderParameterStep, AfterSecureStep, AfterTabs1Step,
-				   AfterTabs2Step, AfterWindowStateStep, BackURLStep,
-				   BeanParameterStep, BuildStep, CMDStep, KeywordsStep,
-				   MVCActionCommandNameStep, MVCPathStep, NavigationStep,
-				   ParameterStep, PortletModeStep, RedirectStep,
-				   RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
-				   WindowStateStep {
+				   AfterPortletModeStep, AfterPortletResourceStep,
+				   AfterRedirectStep, AfterRenderParameterStep, AfterSecureStep,
+				   AfterTabs1Step, AfterTabs2Step, AfterWindowStateStep,
+				   BackURLStep, BeanParameterStep, BuildStep, CMDStep,
+				   KeywordsStep, MVCActionCommandNameStep, MVCPathStep,
+				   NavigationStep, ParameterStep, PortletModeStep,
+				   PortletResourceStep, RedirectStep, RenderParameterStep,
+				   SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 
 		public ActionURLStep(ActionURL actionURL) {
 			_actionURL = actionURL;
@@ -318,6 +318,22 @@ public class ActionURLBuilder {
 			catch (PortletModeException portletModeException) {
 				throw new SystemException(portletModeException);
 			}
+
+			return this;
+		}
+
+		@Override
+		public AfterPortletResourceStep setPortletResource(String value) {
+			_setParameter("portletResource", value, false);
+
+			return this;
+		}
+
+		@Override
+		public AfterPortletResourceStep setPortletResource(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+			_setParameter("portletResource", valueUnsafeSupplier, false);
 
 			return this;
 		}
@@ -575,8 +591,10 @@ public class ActionURLBuilder {
 			{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
 			{"mvcActionCommandName", "setMVCActionCommandName"},
 			{"navigation", "setNavigation"}, {"p_p_mode", "setPortletMode"},
-			{"p_p_state", "setWindowState"}, {"redirect", "setRedirect"},
-			{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
+			{"p_p_state", "setWindowState"},
+			{"portletResource", "setPortletResource"},
+			{"redirect", "setRedirect"}, {"tabs1", "setTabs1"},
+			{"tabs2", "setTabs2"}
 		};
 
 		private final ActionURL _actionURL;
@@ -585,8 +603,9 @@ public class ActionURLBuilder {
 
 	public interface AfterBackURLStep
 		extends BeanParameterStep, BuildStep, KeywordsStep, NavigationStep,
-				ParameterStep, PortletModeStep, RenderParameterStep, SecureStep,
-				Tabs1Step, Tabs2Step, WindowStateStep {
+				ParameterStep, PortletModeStep, PortletResourceStep,
+				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
 	}
 
 	public interface AfterBeanParameterStep
@@ -596,36 +615,36 @@ public class ActionURLBuilder {
 
 	public interface AfterCMDStep
 		extends BackURLStep, BeanParameterStep, BuildStep, KeywordsStep,
-				NavigationStep, ParameterStep, PortletModeStep, RedirectStep,
-				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				NavigationStep, ParameterStep, PortletModeStep,
+				PortletResourceStep, RedirectStep, RenderParameterStep,
+				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterKeywordsStep
 		extends BeanParameterStep, BuildStep, NavigationStep, ParameterStep,
-				PortletModeStep, RenderParameterStep, SecureStep, Tabs1Step,
-				Tabs2Step, WindowStateStep {
+				PortletModeStep, PortletResourceStep, RenderParameterStep,
+				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterMVCActionCommandNameStep
 		extends BackURLStep, BeanParameterStep, BuildStep, CMDStep,
 				KeywordsStep, NavigationStep, ParameterStep, PortletModeStep,
-				RedirectStep, RenderParameterStep, SecureStep, Tabs1Step,
-				Tabs2Step, WindowStateStep {
+				PortletResourceStep, RedirectStep, RenderParameterStep,
+				SecureStep, Tabs1Step, Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterMVCPathStep
 		extends BackURLStep, BeanParameterStep, BuildStep, CMDStep,
 				KeywordsStep, MVCActionCommandNameStep, NavigationStep,
-				ParameterStep, PortletModeStep, RedirectStep,
-				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				ParameterStep, PortletModeStep, PortletResourceStep,
+				RedirectStep, RenderParameterStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterNavigationStep
 		extends BeanParameterStep, BuildStep, ParameterStep, PortletModeStep,
-				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				PortletResourceStep, RenderParameterStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterParameterStep
@@ -637,11 +656,17 @@ public class ActionURLBuilder {
 		extends BuildStep, RenderParameterStep, SecureStep, WindowStateStep {
 	}
 
+	public interface AfterPortletResourceStep
+		extends BeanParameterStep, BuildStep, ParameterStep, PortletModeStep,
+				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
+				WindowStateStep {
+	}
+
 	public interface AfterRedirectStep
 		extends BackURLStep, BeanParameterStep, BuildStep, KeywordsStep,
 				NavigationStep, ParameterStep, PortletModeStep,
-				RenderParameterStep, SecureStep, Tabs1Step, Tabs2Step,
-				WindowStateStep {
+				PortletResourceStep, RenderParameterStep, SecureStep, Tabs1Step,
+				Tabs2Step, WindowStateStep {
 	}
 
 	public interface AfterRenderParameterStep
@@ -764,6 +789,15 @@ public class ActionURLBuilder {
 	public interface PortletModeStep {
 
 		public AfterPortletModeStep setPortletMode(PortletMode portletMode);
+
+	}
+
+	public interface PortletResourceStep {
+
+		public AfterPortletResourceStep setPortletResource(String value);
+
+		public AfterPortletResourceStep setPortletResource(
+			UnsafeSupplier<Object, Exception> valueUnsafeSupplier);
 
 	}
 

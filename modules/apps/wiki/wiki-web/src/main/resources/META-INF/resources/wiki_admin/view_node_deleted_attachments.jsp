@@ -28,7 +28,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 ).setRedirect(
 	currentURL
 ).setParameter(
-	"nodeId", String.valueOf(node.getNodeId())
+	"nodeId", node.getNodeId()
 ).build();
 
 PortalUtil.addPortletBreadcrumbEntry(request, node.getName(), portletURL.toString());

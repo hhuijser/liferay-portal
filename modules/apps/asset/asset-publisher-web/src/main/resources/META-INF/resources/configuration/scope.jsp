@@ -136,9 +136,9 @@ groupItemSelectorCriterion.setIncludeSitesThatIAdminister(true);
 PortletURL itemSelectorURL = PortletURLBuilder.create(
 	itemSelector.getItemSelectorURL(RequestBackedPortletURLFactoryUtil.create(renderRequest), eventName, groupItemSelectorCriterion)
 ).setParameter(
-	"groupId", String.valueOf(layout.getGroupId())
+	"groupId", layout.getGroupId()
 ).setParameter(
-	"plid", String.valueOf(layout.getPlid())
+	"plid", layout.getPlid()
 ).setParameter(
 	"portletResource", assetPublisherDisplayContext.getPortletResource()
 ).build();

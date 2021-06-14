@@ -36,7 +36,7 @@ PortletURL permissionsAllURL = PortletURLBuilder.createRenderURL(
 ).setTabs2(
 	"roles"
 ).setParameter(
-	"roleId", String.valueOf(role.getRoleId())
+	"roleId", role.getRoleId()
 ).build();
 
 List<String> headerNames = new ArrayList<String>();

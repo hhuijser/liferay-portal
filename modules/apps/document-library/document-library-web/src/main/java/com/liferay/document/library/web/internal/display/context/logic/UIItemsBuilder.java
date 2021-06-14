@@ -270,7 +270,7 @@ public class UIItemsBuilder {
 			).setBackURL(
 				_getCurrentURL()
 			).setParameter(
-				"fileEntryId", String.valueOf(_fileEntry.getFileEntryId())
+				"fileEntryId", _fileEntry.getFileEntryId()
 			).buildString());
 	}
 

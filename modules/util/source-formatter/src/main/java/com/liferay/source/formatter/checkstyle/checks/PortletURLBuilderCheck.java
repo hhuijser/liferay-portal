@@ -43,8 +43,9 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 				"PortletURL", "PortletURLBuilder", "setActionName",
 				"setBackURL", "setCMD", "setKeywords", "setMVCPath",
 				"setMVCRenderCommandName", "setNavigation", "setParameter",
-				"setParameters", "setPortletMode", "setProperty", "setRedirect",
-				"setSecure", "setTabs1", "setTabs2", "setWindowState"));
+				"setParameters", "setPortletMode", "setPortletResource",
+				"setProperty", "setRedirect", "setSecure", "setTabs1",
+				"setTabs2", "setWindowState"));
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 		return ListUtil.fromArray(
 			"setActionName", "setCMD", "setKeywords", "setMVCPath",
 			"setMVCRenderCommandName", "setNavigation", "setParameter",
-			"setRedirect", "setTabs1", "setTabs2");
+			"setPortletResource", "setRedirect", "setTabs1", "setTabs2");
 	}
 
 	@Override
@@ -114,7 +115,8 @@ public class PortletURLBuilderCheck extends BaseBuilderCheck {
 		{"keywords", "setKeywords"}, {"mvcPath", "setMVCPath"},
 		{"mvcRenderCommandName", "setMVCRenderCommandName"},
 		{"navigation", "setNavigation"}, {"p_p_mode", "setPortletMode"},
-		{"p_p_state", "setWindowState"}, {"redirect", "setRedirect"},
+		{"p_p_state", "setWindowState"},
+		{"portletResource", "setPortletResource"}, {"redirect", "setRedirect"},
 		{"tabs1", "setTabs1"}, {"tabs2", "setTabs2"}
 	};
 

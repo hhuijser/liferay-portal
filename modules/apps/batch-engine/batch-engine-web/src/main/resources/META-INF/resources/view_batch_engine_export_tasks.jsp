@@ -27,7 +27,7 @@ BatchEngineExportTaskDisplayContext batchEngineExportTaskDisplayContext = (Batch
 <div class="closed container" id="<portlet:namespace />batchEngineExportTasksPanelId">
 	<liferay-ui:search-container
 		id="batchEngineExportTasks"
-		searchContainer="<%= batchEngineExportTaskDisplayContext .getSearchContainer() %>"
+		searchContainer="<%= batchEngineExportTaskDisplayContext.getSearchContainer() %>"
 	>
 		<liferay-ui:search-container-row
 			className="com.liferay.batch.engine.model.BatchEngineExportTask"

@@ -305,9 +305,16 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				line = formatIncorrectSyntax(line, "{ ", "{", false);
-				line = formatIncorrectSyntax(line, " }", "}", false);
-				line = formatIncorrectSyntax(line, " ]", "]", false);
 				line = formatIncorrectSyntax(line, "[ ", "[", false);
+
+				String trimmedLine = StringUtil.trimLeading(line);
+
+				if (!trimmedLine.startsWith("}") &&
+					!trimmedLine.startsWith("]")) {
+
+					line = formatIncorrectSyntax(line, " }", "}", false);
+					line = formatIncorrectSyntax(line, " ]", "]", false);
+				}
 
 				sb.append(line);
 

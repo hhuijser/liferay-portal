@@ -52,8 +52,14 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
 			new Object[][] {
-				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.0.6-2"},
-				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.1.3-1"},
+				{
+					"spring", "guestbook", "com.liferay.docs.guestbook",
+					"7.0.6-2"
+				},
+				{
+					"spring", "guestbook", "com.liferay.docs.guestbook",
+					"7.1.3-1"
+				},
 				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.2.1-1"},
 				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.3.7"},
 				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.4.1-1"},

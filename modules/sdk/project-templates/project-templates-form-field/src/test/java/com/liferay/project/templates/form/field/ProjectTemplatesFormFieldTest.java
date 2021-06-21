@@ -67,7 +67,8 @@ public class ProjectTemplatesFormFieldTest
 			temporaryFolder, liferayVersion);
 
 		writeGradlePropertiesInWorkspace(
-			gradleWorkspaceDir, "liferay.workspace.target.platform.version=7.0.6-2");
+			gradleWorkspaceDir,
+			"liferay.workspace.target.platform.version=7.0.6-2");
 
 		File gradleProjectDir = buildTemplateWithGradle(
 			new File(gradleWorkspaceDir, "modules"), template, name,
@@ -141,7 +142,8 @@ public class ProjectTemplatesFormFieldTest
 			temporaryFolder, liferayVersion);
 
 		writeGradlePropertiesInWorkspace(
-			gradleWorkspaceDir, "liferay.workspace.target.platform.version=7.1.3-1");
+			gradleWorkspaceDir,
+			"liferay.workspace.target.platform.version=7.1.3-1");
 
 		File gradleProjectDir = buildTemplateWithGradle(
 			new File(gradleWorkspaceDir, "modules"), template, name,
@@ -230,7 +232,8 @@ public class ProjectTemplatesFormFieldTest
 			temporaryFolder, liferayVersion);
 
 		writeGradlePropertiesInWorkspace(
-			gradleWorkspaceDir, "liferay.workspace.target.platform.version=7.1.3-1");
+			gradleWorkspaceDir,
+			"liferay.workspace.target.platform.version=7.1.3-1");
 
 		File gradleProjectDir = buildTemplateWithGradle(
 			new File(gradleWorkspaceDir, "modules"), template, name,

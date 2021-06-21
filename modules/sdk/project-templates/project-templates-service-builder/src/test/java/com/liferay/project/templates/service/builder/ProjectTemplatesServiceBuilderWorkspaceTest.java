@@ -52,48 +52,48 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
 			new Object[][] {
-				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.0.6"},
-				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.1.3"},
-				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.2.1"},
-				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.3.6"},
-				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.4.0"},
+				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.0.6-2"},
+				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.1.3-1"},
+				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.2.1-1"},
+				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.3.7"},
+				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.4.1-1"},
 				{
 					"spring", "backend-integration",
-					"com.liferay.docs.guestbook", "7.0.6"
+					"com.liferay.docs.guestbook", "7.0.6-2"
 				},
 				{
 					"spring", "backend-integration",
-					"com.liferay.docs.guestbook", "7.1.3"
+					"com.liferay.docs.guestbook", "7.1.3-1"
 				},
 				{
 					"ds", "backend-integration", "com.liferay.docs.guestbook",
-					"7.2.1"
+					"7.2.1-1"
 				},
 				{
 					"ds", "backend-integration", "com.liferay.docs.guestbook",
-					"7.3.6"
+					"7.3.7"
 				},
 				{
 					"ds", "backend-integration", "com.liferay.docs.guestbook",
-					"7.4.0"
+					"7.4.1-1"
 				},
 				{
 					"spring", "backend-integration",
-					"com.liferay.docs.guestbook", "7.2.1"
+					"com.liferay.docs.guestbook", "7.2.1-1"
 				},
 				{
 					"spring", "backend-integration",
-					"com.liferay.docs.guestbook", "7.3.6"
+					"com.liferay.docs.guestbook", "7.3.7"
 				},
 				{
 					"spring", "backend-integration",
-					"com.liferay.docs.guestbook", "7.4.0"
+					"com.liferay.docs.guestbook", "7.4.1-1"
 				},
-				{"spring", "sample", "com.test.sample", "7.0.6"},
-				{"spring", "sample", "com.test.sample", "7.1.3"},
-				{"ds", "sample", "com.test.sample", "7.2.1"},
-				{"ds", "sample", "com.test.sample", "7.3.6"},
-				{"ds", "sample", "com.test.sample", "7.4.0"}
+				{"spring", "sample", "com.test.sample", "7.0.6-2"},
+				{"spring", "sample", "com.test.sample", "7.1.3-1"},
+				{"ds", "sample", "com.test.sample", "7.2.1-1"},
+				{"ds", "sample", "com.test.sample", "7.3.7"},
+				{"ds", "sample", "com.test.sample", "7.4.1-1"}
 			});
 	}
 
@@ -149,12 +149,12 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 		else if (_liferayVersion.startsWith("7.3")) {
 			writeGradlePropertiesInWorkspace(
 				gradleWorkspaceDir,
-				"liferay.workspace.target.platform.version=7.3.6");
+				"liferay.workspace.target.platform.version=7.3.7");
 		}
 		else if (_liferayVersion.startsWith("7.4")) {
 			writeGradlePropertiesInWorkspace(
 				gradleWorkspaceDir,
-				"liferay.workspace.target.platform.version=7.4.0");
+				"liferay.workspace.target.platform.version=7.4.1-1");
 		}
 
 		File gradleWorkspaceModulesDir = new File(

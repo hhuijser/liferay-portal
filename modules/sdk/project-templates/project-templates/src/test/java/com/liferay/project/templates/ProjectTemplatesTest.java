@@ -84,7 +84,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	@Test
 	public void testBuildTemplateLiferayVersionValid70() throws Exception {
 		_buildTemplateWithGradle(
-			"mvc-portlet", "test", "--liferay-version", "7.0.6");
+			"mvc-portlet", "test", "--liferay-version", "7.0.6-2");
 	}
 
 	@Test

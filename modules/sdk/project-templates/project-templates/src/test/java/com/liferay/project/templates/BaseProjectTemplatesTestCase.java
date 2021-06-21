@@ -674,12 +674,12 @@ public interface BaseProjectTemplatesTestCase {
 			else if (liferayVersion.startsWith("7.3")) {
 				writeGradlePropertiesInWorkspace(
 					workspaceDir,
-					"liferay.workspace.target.platform.version=7.3.6");
+					"liferay.workspace.target.platform.version=7.3.7");
 			}
 			else if (liferayVersion.startsWith("7.4")) {
 				writeGradlePropertiesInWorkspace(
 					workspaceDir,
-					"liferay.workspace.target.platform.version=7.4.0");
+					"liferay.workspace.target.platform.version=7.4.1-1");
 			}
 		}
 		else {
@@ -1305,12 +1305,12 @@ public interface BaseProjectTemplatesTestCase {
 		else if (liferayVersion.startsWith("7.3")) {
 			writeGradlePropertiesInWorkspace(
 				gradleWorkspaceDir,
-				"liferay.workspace.target.platform.version=7.3.6");
+				"liferay.workspace.target.platform.version=7.3.7");
 		}
 		else {
 			writeGradlePropertiesInWorkspace(
 				gradleWorkspaceDir,
-				"liferay.workspace.target.platform.version=7.4.0");
+				"liferay.workspace.target.platform.version=7.4.1-1");
 		}
 
 		File modulesDir = new File(gradleWorkspaceDir, "modules");
@@ -1462,30 +1462,41 @@ public interface BaseProjectTemplatesTestCase {
 
 		File workspaceDir = null;
 
-		if (argsList.contains("7.0.6")) {
-			workspaceDir = buildWorkspace(temporaryFolder, "7.0.6");
+		if (argsList.contains("7.0.6-2")) {
+			workspaceDir = buildWorkspace(temporaryFolder, "7.0.6-2");
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.target.platform.version=7.0.6-2");
+				workspaceDir,
+				"liferay.workspace.target.platform.version=7.0.6-2");
 		}
-		else if (argsList.contains("7.1.3")) {
-			workspaceDir = buildWorkspace(temporaryFolder, "7.1.3");
+		else if (argsList.contains("7.1.3-1")) {
+			workspaceDir = buildWorkspace(temporaryFolder, "7.1.3-1");
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.target.platform.version=7.1.3-1");
+				workspaceDir,
+				"liferay.workspace.target.platform.version=7.1.3-1");
 		}
-		else if (argsList.contains("7.2.1")) {
-			workspaceDir = buildWorkspace(temporaryFolder, "7.2.1");
+		else if (argsList.contains("7.2.1-1")) {
+			workspaceDir = buildWorkspace(temporaryFolder, "7.2.1-1");
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.target.platform.version=7.2.1-1");
+				workspaceDir,
+				"liferay.workspace.target.platform.version=7.2.1-1");
+		}
+		else if (argsList.contains("7.3.7")) {
+			workspaceDir = buildWorkspace(temporaryFolder, "7.3.7");
+
+			writeGradlePropertiesInWorkspace(
+				workspaceDir,
+				"liferay.workspace.target.platform.version=7.3.7");
 		}
 		else {
 			workspaceDir = buildWorkspace(
 				temporaryFolder, getDefaultLiferayVersion());
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.target.platform.version=7.3.6");
+				workspaceDir,
+				"liferay.workspace.target.platform.version=7.4.1-1");
 		}
 
 		File modulesDir = new File(workspaceDir, "modules");

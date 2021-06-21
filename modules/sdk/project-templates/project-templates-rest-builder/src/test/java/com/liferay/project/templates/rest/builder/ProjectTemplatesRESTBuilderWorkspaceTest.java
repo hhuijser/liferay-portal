@@ -56,15 +56,15 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
 			new Object[][] {
-				{"guestbook", "com.liferay.docs.guestbook", "7.1.3"},
-				{"guestbook", "com.liferay.docs.guestbook", "7.2.1"},
-				{"guestbook", "com.liferay.docs.guestbook", "7.3.6"},
-				{"backend-integration", "com.liferay.docs.guestbook", "7.1.3"},
-				{"backend-integration", "com.liferay.docs.guestbook", "7.2.1"},
-				{"backend-integration", "com.liferay.docs.guestbook", "7.3.6"},
-				{"sample", "com.test.sample", "7.1.3"},
-				{"sample", "com.test.sample", "7.2.1"},
-				{"sample", "com.test.sample", "7.3.6"}
+				{"guestbook", "com.liferay.docs.guestbook", "7.1.3-1"},
+				{"guestbook", "com.liferay.docs.guestbook", "7.2.1-1"},
+				{"guestbook", "com.liferay.docs.guestbook", "7.3.7"},
+				{"backend-integration", "com.liferay.docs.guestbook", "7.1.3-1"},
+				{"backend-integration", "com.liferay.docs.guestbook", "7.2.1-1"},
+				{"backend-integration", "com.liferay.docs.guestbook", "7.3.7"},
+				{"sample", "com.test.sample", "7.1.3-1"},
+				{"sample", "com.test.sample", "7.2.1-1"},
+				{"sample", "com.test.sample", "7.3.7"}
 			});
 	}
 

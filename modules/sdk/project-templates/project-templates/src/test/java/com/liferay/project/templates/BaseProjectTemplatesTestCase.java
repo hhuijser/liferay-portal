@@ -1466,26 +1466,26 @@ public interface BaseProjectTemplatesTestCase {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.0.6");
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.product=portal-7.0-ga7");
+				workspaceDir, "liferay.workspace.target.platform.version=7.0.6-2");
 		}
 		else if (argsList.contains("7.1.3")) {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.1.3");
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.product=portal-7.1-ga4");
+				workspaceDir, "liferay.workspace.target.platform.version=7.1.3-1");
 		}
 		else if (argsList.contains("7.2.1")) {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.2.1");
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.product=portal-7.2-ga2");
+				workspaceDir, "liferay.workspace.target.platform.version=7.2.1-1");
 		}
 		else {
 			workspaceDir = buildWorkspace(
 				temporaryFolder, getDefaultLiferayVersion());
 
 			writeGradlePropertiesInWorkspace(
-				workspaceDir, "liferay.workspace.product=portal-7.3-ga6");
+				workspaceDir, "liferay.workspace.target.platform.version=7.3.6");
 		}
 
 		File modulesDir = new File(workspaceDir, "modules");

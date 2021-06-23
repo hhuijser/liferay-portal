@@ -107,20 +107,20 @@ public class ServiceTrackerListTest {
 
 						@Override
 						public TrackedOne addingService(
-							ServiceReference<TrackedOne> reference) {
+							ServiceReference<TrackedOne> serviceReference) {
 
 							return new CustomizedService();
 						}
 
 						@Override
 						public void modifiedService(
-							ServiceReference<TrackedOne> reference,
+							ServiceReference<TrackedOne> serviceReference,
 							TrackedOne service) {
 						}
 
 						@Override
 						public void removedService(
-							ServiceReference<TrackedOne> reference,
+							ServiceReference<TrackedOne> serviceReference,
 							TrackedOne service) {
 						}
 

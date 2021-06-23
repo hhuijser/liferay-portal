@@ -48,10 +48,10 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 
 	@Override
 	public PortalSettingsFormContributor addingService(
-		ServiceReference<PortalSettingsFormContributor> reference) {
+		ServiceReference<PortalSettingsFormContributor> serviceReference) {
 
 		final PortalSettingsFormContributor portalSettingsFormContributor =
-			_bundleContext.getService(reference);
+			_bundleContext.getService(serviceReference);
 
 		MVCActionCommandServiceRegistrationHolder
 			mvcActionCommandServiceRegistrationHolder =
@@ -102,17 +102,17 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 
 	@Override
 	public void modifiedService(
-		ServiceReference<PortalSettingsFormContributor> reference,
+		ServiceReference<PortalSettingsFormContributor> serviceReference,
 		PortalSettingsFormContributor service) {
 
 		unregister(service);
 
-		addingService(reference);
+		addingService(serviceReference);
 	}
 
 	@Override
 	public void removedService(
-		ServiceReference<PortalSettingsFormContributor> reference,
+		ServiceReference<PortalSettingsFormContributor> serviceReference,
 		PortalSettingsFormContributor service) {
 
 		unregister(service);

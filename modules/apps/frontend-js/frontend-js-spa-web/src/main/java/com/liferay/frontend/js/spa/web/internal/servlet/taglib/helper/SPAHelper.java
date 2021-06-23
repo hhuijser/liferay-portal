@@ -319,46 +319,48 @@ public class SPAHelper {
 		}
 
 		@Override
-		public Object addingService(ServiceReference<Object> reference) {
+		public Object addingService(ServiceReference<Object> serviceReference) {
 			List<String> selectors = StringPlus.asList(
-				reference.getProperty(_SPA_NAVIGATION_EXCEPTION_SELECTOR_KEY));
+				serviceReference.getProperty(
+					_SPA_NAVIGATION_EXCEPTION_SELECTOR_KEY));
 
 			_navigationExceptionSelectors.addAll(selectors);
 
 			_navigationExceptionSelectorsString = ListUtil.toString(
 				_navigationExceptionSelectors, (String)null, StringPool.BLANK);
 
-			Object service = _bundleContext.getService(reference);
+			Object service = _bundleContext.getService(serviceReference);
 
-			_serviceReferences.add(reference);
+			_serviceReferences.add(serviceReference);
 
 			return service;
 		}
 
 		@Override
 		public void modifiedService(
-			ServiceReference<Object> reference, Object service) {
+			ServiceReference<Object> serviceReference, Object service) {
 
-			removedService(reference, service);
+			removedService(serviceReference, service);
 
-			addingService(reference);
+			addingService(serviceReference);
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<Object> reference, Object service) {
+			ServiceReference<Object> serviceReference, Object service) {
 
 			List<String> selectors = StringPlus.asList(
-				reference.getProperty(_SPA_NAVIGATION_EXCEPTION_SELECTOR_KEY));
+				serviceReference.getProperty(
+					_SPA_NAVIGATION_EXCEPTION_SELECTOR_KEY));
 
 			_navigationExceptionSelectors.removeAll(selectors);
 
 			_navigationExceptionSelectorsString = ListUtil.toString(
 				_navigationExceptionSelectors, (String)null, StringPool.BLANK);
 
-			_serviceReferences.remove(reference);
+			_serviceReferences.remove(serviceReference);
 
-			_bundleContext.ungetService(reference);
+			_bundleContext.ungetService(serviceReference);
 		}
 
 		private final BundleContext _bundleContext;

@@ -81,6 +81,26 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			"--dependency-management-enabled");
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testBuildTemplateLiferayVersionInvalid62() throws Exception {
+		_buildTemplateWithGradle(
+			"mvc-portlet", "test", "--liferay-version", "6.2");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testBuildTemplateLiferayVersionInvalid70test()
+		throws Exception {
+
+		_buildTemplateWithGradle(
+			"mvc-portlet", "test", "--liferay-version", "7.0test");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testBuildTemplateLiferayVersionInvalidTest() throws Exception {
+		_buildTemplateWithGradle(
+			"mvc-portlet", "test", "--liferay-version", "test.test");
+	}
+
 	@Test
 	public void testBuildTemplateLiferayVersionValid70() throws Exception {
 		_buildTemplateWithGradle(

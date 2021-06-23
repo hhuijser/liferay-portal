@@ -130,8 +130,7 @@ public class A11yTopHeadJSPDynamicInclude implements DynamicInclude {
 			"@liferay/frontend-js-a11y-web/index");
 
 		scriptData.append(
-			null,
-			"FrontendA11y.default(" + propsJSONObject.toString() + ")",
+			null, "FrontendA11y.default(" + propsJSONObject.toString() + ")",
 			resolvedModuleName + " as FrontendA11y",
 			ScriptData.ModulesType.ES6);
 

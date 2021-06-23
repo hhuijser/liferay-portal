@@ -646,23 +646,14 @@ public class MVCPortlet extends LiferayPortlet {
 	private Set<String> _getJspPaths(String path) {
 		PortletContext portletContext = getPortletContext();
 
-		Set<String> pathsSet = ContextResourcePathsUtil.visitResources(
-			portletContext, path, "*.jsp",
-			enumeration -> {
-				Set<String> paths = new HashSet<>();
+		Set<String> pathsSet = _visitResources(portletContext, path, "*.jsp");
 
-				if (enumeration == null) {
-					return paths;
-				}
-
-				while (enumeration.hasMoreElements()) {
-					URL url = enumeration.nextElement();
-
-					paths.add(url.getPath());
-				}
-
-				return paths;
-			});
+		if (pathsSet == null) {
+			pathsSet = _visitResources(portletContext, path, "*.jspx");
+		}
+		else {
+			pathsSet.addAll(_visitResources(portletContext, path, "*.jspx"));
+		}
 
 		if (pathsSet != null) {
 			return pathsSet;
@@ -684,7 +675,9 @@ public class MVCPortlet extends LiferayPortlet {
 
 						queue.add(childPath);
 					}
-					else if (childPath.endsWith(".jsp")) {
+					else if (childPath.endsWith(".jsp") ||
+							 childPath.endsWith(".jspx")) {
+
 						paths.add(childPath);
 					}
 				}
@@ -756,6 +749,28 @@ public class MVCPortlet extends LiferayPortlet {
 					StringUtil.split(getInitParameter("valid-paths")));
 
 				return validPaths;
+			});
+	}
+
+	private Set<String> _visitResources(
+		PortletContext portletContext, String path, String pattern) {
+
+		return ContextResourcePathsUtil.visitResources(
+			portletContext, path, pattern,
+			enumeration -> {
+				Set<String> paths = new HashSet<>();
+
+				if (enumeration == null) {
+					return paths;
+				}
+
+				while (enumeration.hasMoreElements()) {
+					URL url = enumeration.nextElement();
+
+					paths.add(url.getPath());
+				}
+
+				return paths;
 			});
 	}
 

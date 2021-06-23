@@ -139,7 +139,7 @@ public class ProjectTemplatesWorkspaceProductKeyTest
 			else {
 				Assert.assertTrue(
 					gradleOutput.contains(
-						"release.portal.bom:" + getDefaultLiferayVersion()));
+						"release.portal.bom:" + _liferayVersion));
 			}
 		}
 	}

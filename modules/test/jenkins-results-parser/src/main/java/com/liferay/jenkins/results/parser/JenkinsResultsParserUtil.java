@@ -3901,9 +3901,9 @@ public class JenkinsResultsParserUtil {
 
 					@Override
 					public FileVisitResult visitFile(
-						Path path, BasicFileAttributes attributes) {
+						Path path, BasicFileAttributes basicFileAttributes) {
 
-						if (attributes.isSymbolicLink()) {
+						if (basicFileAttributes.isSymbolicLink()) {
 							return FileVisitResult.CONTINUE;
 						}
 

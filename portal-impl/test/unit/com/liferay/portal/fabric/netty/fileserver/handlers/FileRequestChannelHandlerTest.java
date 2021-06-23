@@ -226,7 +226,7 @@ public class FileRequestChannelHandlerTest {
 
 				@Override
 				public FileVisitResult visitFile(
-					Path file, BasicFileAttributes attrs) {
+					Path file, BasicFileAttributes basicFileAttributes) {
 
 					Assert.assertTrue(
 						"Miss file " + file + " from zip stream",

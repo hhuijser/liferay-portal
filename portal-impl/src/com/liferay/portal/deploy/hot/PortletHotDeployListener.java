@@ -385,24 +385,23 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 
 		servletContext.setAttribute(PortletServlet.PORTLET_APP, portletApp);
 
-		Map<String, String> customUserAttributes =
+		Map<String, String> customUserAttributes1 =
 			portletApp.getCustomUserAttributes();
 
 		for (Map.Entry<String, String> entry :
-				customUserAttributes.entrySet()) {
+				customUserAttributes1.entrySet()) {
 
 			String attrCustomClass = entry.getValue();
 
 			Class<?> clazz = classLoader.loadClass(attrCustomClass);
 
-			CustomUserAttributes customUserAttributesInstance =
+			CustomUserAttributes customUserAttributes2 =
 				(CustomUserAttributes)clazz.newInstance();
 
 			Map<String, CustomUserAttributes> customUserAttributesMap =
 				portletContextBag.getCustomUserAttributes();
 
-			customUserAttributesMap.put(
-				attrCustomClass, customUserAttributesInstance);
+			customUserAttributesMap.put(attrCustomClass, customUserAttributes2);
 		}
 
 		Set<PortletFilter> portletFilters = portletApp.getPortletFilters();

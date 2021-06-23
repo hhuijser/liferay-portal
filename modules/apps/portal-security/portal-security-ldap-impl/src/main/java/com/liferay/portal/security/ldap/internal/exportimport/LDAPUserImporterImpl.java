@@ -1179,17 +1179,17 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 	protected User importUser(
 			LDAPImportContext ldapImportContext, String fullUserDN,
-			Attributes userLdapAttribtes, String password)
+			Attributes userLdapAttributes, String password)
 		throws Exception {
 
 		UserImportTransactionThreadLocal.setOriginatesFromImport(true);
 
 		try {
-			userLdapAttribtes = _attributesTransformer.transformUser(
-				userLdapAttribtes);
+			userLdapAttributes = _attributesTransformer.transformUser(
+				userLdapAttributes);
 
 			LDAPUser ldapUser = _ldapToPortalConverter.importLDAPUser(
-				ldapImportContext.getCompanyId(), userLdapAttribtes,
+				ldapImportContext.getCompanyId(), userLdapAttributes,
 				ldapImportContext.getUserMappings(),
 				ldapImportContext.getUserExpandoMappings(),
 				ldapImportContext.getContactMappings(),
@@ -1216,7 +1216,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			}
 
 			String modifyTimestamp = LDAPUtil.getAttributeString(
-				userLdapAttribtes, "modifyTimestamp");
+				userLdapAttributes, "modifyTimestamp");
 
 			try {
 				user = updateUser(

@@ -130,7 +130,7 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 	}
 
 	@Rule
-	public final TestRule skipParentTestsRule =
+	public final TestRule skipParentTestRule =
 		(statement, description) -> new Statement() {
 
 			@Override

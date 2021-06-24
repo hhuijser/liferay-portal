@@ -506,7 +506,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 			throws IllegalAccessException {
 
 			ScopedServiceTrackerMap<ScopeLocatorConfigurationProvider>
-				scopeLocatorConfigurationProvidersScopeServiceTrackerMap =
+				scopeLocatorConfigurationProvidersScopedServiceTrackerMap =
 					_prepareScopedServiceTrackerMapMock(
 						defaultScopeLocatorConfigurationProvider, configurator);
 
@@ -516,7 +516,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 			_scopeLocatorImpl.
 				setScopeLocatorConfigurationProvidersScopedServiceTrackerMap(
-					scopeLocatorConfigurationProvidersScopeServiceTrackerMap);
+					scopeLocatorConfigurationProvidersScopedServiceTrackerMap);
 
 			_scopeLocatorConfigurationProvidersInitialized = true;
 

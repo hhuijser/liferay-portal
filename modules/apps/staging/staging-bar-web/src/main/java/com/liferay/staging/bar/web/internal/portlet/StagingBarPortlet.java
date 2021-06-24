@@ -580,27 +580,27 @@ public class StagingBarPortlet extends MVCPortlet {
 					parentLayout.getPlid(), true);
 
 			if (parentHeadLayoutRevisions.isEmpty()) {
-				LayoutRevision parentLayoutsRevision =
+				LayoutRevision parentLayoutRevision =
 					_layoutRevisionLocalService.fetchLatestLayoutRevision(
 						layoutRevision.getLayoutSetBranchId(),
 						parentLayout.getPlid());
 
-				if (parentLayoutsRevision != null) {
+				if (parentLayoutRevision != null) {
 					_layoutRevisionLocalService.updateLayoutRevision(
 						serviceContext.getUserId(),
-						parentLayoutsRevision.getLayoutRevisionId(),
-						parentLayoutsRevision.getLayoutBranchId(),
-						parentLayoutsRevision.getName(),
-						parentLayoutsRevision.getTitle(),
-						parentLayoutsRevision.getDescription(),
-						parentLayoutsRevision.getKeywords(),
-						parentLayoutsRevision.getRobots(),
-						parentLayoutsRevision.getTypeSettings(),
-						parentLayoutsRevision.getIconImage(),
-						parentLayoutsRevision.getIconImageId(),
-						parentLayoutsRevision.getThemeId(),
-						parentLayoutsRevision.getColorSchemeId(),
-						parentLayoutsRevision.getCss(), serviceContext);
+						parentLayoutRevision.getLayoutRevisionId(),
+						parentLayoutRevision.getLayoutBranchId(),
+						parentLayoutRevision.getName(),
+						parentLayoutRevision.getTitle(),
+						parentLayoutRevision.getDescription(),
+						parentLayoutRevision.getKeywords(),
+						parentLayoutRevision.getRobots(),
+						parentLayoutRevision.getTypeSettings(),
+						parentLayoutRevision.getIconImage(),
+						parentLayoutRevision.getIconImageId(),
+						parentLayoutRevision.getThemeId(),
+						parentLayoutRevision.getColorSchemeId(),
+						parentLayoutRevision.getCss(), serviceContext);
 				}
 			}
 

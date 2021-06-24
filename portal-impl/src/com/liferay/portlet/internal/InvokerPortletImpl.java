@@ -752,12 +752,12 @@ public class InvokerPortletImpl
 		_errorKey = _portletId.concat(PortletException.class.getName());
 
 		if (_log.isDebugEnabled()) {
-			com.liferay.portal.kernel.model.Portlet portletContextPortet =
+			com.liferay.portal.kernel.model.Portlet portletContextPortlet =
 				_liferayPortletContext.getPortlet();
 
 			_log.debug(
 				"Create instance cache wrapper for " +
-					portletContextPortet.getPortletId());
+					portletContextPortlet.getPortletId());
 		}
 	}
 

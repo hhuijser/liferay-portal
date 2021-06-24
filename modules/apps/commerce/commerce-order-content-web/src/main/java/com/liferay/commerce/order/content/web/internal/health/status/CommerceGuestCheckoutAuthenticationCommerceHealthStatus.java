@@ -132,11 +132,11 @@ public class CommerceGuestCheckoutAuthenticationCommerceHealthStatus
 			"com/liferay/commerce/order/content/web/internal/dependencies/";
 
 		try {
-			String journalArticleJsonStirng = StringUtil.read(
+			String journalArticleJsonString = StringUtil.read(
 				classLoader, dependenciesFilePath + "journal-articles.json");
 
 			JSONArray jsonArray = _jsonFactory.createJSONArray(
-				journalArticleJsonStirng);
+				journalArticleJsonString);
 
 			_cpFileImporter.createJournalArticles(
 				jsonArray, classLoader,

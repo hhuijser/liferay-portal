@@ -202,24 +202,24 @@ public class CompanyLocalServiceTest {
 
 		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		Organization companyOrganzation =
+		Organization companyOrganization =
 			OrganizationLocalServiceUtil.addOrganization(
 				userId, OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
 				RandomTestUtil.randomString(), true);
 
-		Group companyOrganizationGroup = companyOrganzation.getGroup();
+		Group companyOrganizationGroup = companyOrganization.getGroup();
 
 		Group group = GroupTestUtil.addGroup(
 			companyId, userId, companyOrganizationGroup.getGroupId());
 
 		CompanyLocalServiceUtil.deleteCompany(company);
 
-		companyOrganzation = OrganizationLocalServiceUtil.fetchOrganization(
-			companyOrganzation.getOrganizationId());
+		companyOrganization = OrganizationLocalServiceUtil.fetchOrganization(
+			companyOrganization.getOrganizationId());
 
 		Assert.assertNull(
 			"The company organization should delete with the company",
-			companyOrganzation);
+			companyOrganization);
 
 		companyOrganizationGroup = GroupLocalServiceUtil.fetchGroup(
 			companyOrganizationGroup.getGroupId());
@@ -416,23 +416,23 @@ public class CompanyLocalServiceTest {
 
 		User companyAdminUser = UserTestUtil.addCompanyAdminUser(company);
 
-		Organization companyOrganzation =
+		Organization companyOrganization =
 			OrganizationLocalServiceUtil.addOrganization(
 				companyAdminUser.getUserId(),
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
 				RandomTestUtil.randomString(), true);
 
-		Group companyOrganizationGroup = companyOrganzation.getGroup();
+		Group companyOrganizationGroup = companyOrganization.getGroup();
 
 		GroupTestUtil.enableLocalStaging(
 			companyOrganizationGroup, companyAdminUser.getUserId());
 
 		CompanyLocalServiceUtil.deleteCompany(company);
 
-		companyOrganzation = OrganizationLocalServiceUtil.fetchOrganization(
-			companyOrganzation.getOrganizationId());
+		companyOrganization = OrganizationLocalServiceUtil.fetchOrganization(
+			companyOrganization.getOrganizationId());
 
-		Assert.assertNull(companyOrganzation);
+		Assert.assertNull(companyOrganization);
 
 		companyOrganizationGroup = GroupLocalServiceUtil.fetchGroup(
 			companyOrganizationGroup.getGroupId());

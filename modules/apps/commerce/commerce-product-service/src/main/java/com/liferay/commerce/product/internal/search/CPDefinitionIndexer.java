@@ -208,32 +208,33 @@ public class CPDefinitionIndexer extends BaseIndexer<CPDefinition> {
 			long commerceChannelId = GetterUtil.getLong(
 				attributes.get("commerceChannelGroupId"));
 
-			BooleanFilter channelBooleanFiler = new BooleanFilter();
+			BooleanFilter channelBooleanFilter = new BooleanFilter();
 
-			BooleanFilter channelFilterEnableBooleanFiler = new BooleanFilter();
+			BooleanFilter channelFilterEnableBooleanFilter =
+				new BooleanFilter();
 
-			channelFilterEnableBooleanFiler.addTerm(
+			channelFilterEnableBooleanFilter.addTerm(
 				CPField.CHANNEL_FILTER_ENABLED, Boolean.TRUE.toString(),
 				BooleanClauseOccur.MUST);
 
 			if (commerceChannelId > 0) {
-				channelFilterEnableBooleanFiler.addTerm(
+				channelFilterEnableBooleanFilter.addTerm(
 					CPField.CHANNEL_GROUP_IDS,
 					String.valueOf(commerceChannelId), BooleanClauseOccur.MUST);
 			}
 			else {
-				channelFilterEnableBooleanFiler.addTerm(
+				channelFilterEnableBooleanFilter.addTerm(
 					CPField.CHANNEL_GROUP_IDS, "-1", BooleanClauseOccur.MUST);
 			}
 
-			channelBooleanFiler.add(
-				channelFilterEnableBooleanFiler, BooleanClauseOccur.SHOULD);
-			channelBooleanFiler.addTerm(
+			channelBooleanFilter.add(
+				channelFilterEnableBooleanFilter, BooleanClauseOccur.SHOULD);
+			channelBooleanFilter.addTerm(
 				CPField.CHANNEL_FILTER_ENABLED, Boolean.FALSE.toString(),
 				BooleanClauseOccur.SHOULD);
 
 			contextBooleanFilter.add(
-				channelBooleanFiler, BooleanClauseOccur.MUST);
+				channelBooleanFilter, BooleanClauseOccur.MUST);
 
 			long[] commerceAccountGroupIds = GetterUtil.getLongValues(
 				searchContext.getAttribute("commerceAccountGroupIds"), null);

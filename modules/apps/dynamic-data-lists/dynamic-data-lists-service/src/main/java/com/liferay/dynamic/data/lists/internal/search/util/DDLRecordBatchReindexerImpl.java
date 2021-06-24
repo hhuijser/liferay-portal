@@ -38,10 +38,10 @@ public class DDLRecordBatchReindexerImpl implements DDLRecordBatchReindexer {
 
 		batchIndexingActionable.setAddCriteriaMethod(
 			dynamicQuery -> {
-				Property recordIdPropery = PropertyFactoryUtil.forName(
+				Property recordIdProperty = PropertyFactoryUtil.forName(
 					"recordId");
 
-				dynamicQuery.add(recordIdPropery.eq(ddlRecordId));
+				dynamicQuery.add(recordIdProperty.eq(ddlRecordId));
 			});
 		batchIndexingActionable.setCompanyId(companyId);
 		batchIndexingActionable.setPerformActionMethod(

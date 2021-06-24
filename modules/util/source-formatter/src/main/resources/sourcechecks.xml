@@ -601,6 +601,7 @@
 		</check>
 		<check name="JavaBaseUpgradeCallableCheck">
 			<category name="Bug Prevention" />
+			<description name="Checks that BaseUpgradeCallable is used instead of Callable or Runnable in Upgrade and Verify classes." />
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaCleanUpMethodSuperCleanUpCheck">
@@ -761,6 +762,7 @@
 		</check>
 		<check name="JavaUpgradeIndexCheck">
 			<category name="Bug Prevention" />
+			<description name="Finds cases where the service builder indexes are updated manually in Upgrade classes. This is not needed because Liferay takes care of it." />
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaUpgradeVersionCheck">

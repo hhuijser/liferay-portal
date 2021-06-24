@@ -111,7 +111,7 @@ public class AssetVocabularyServiceTest {
 	@Test
 	public void testDeleteVocabulary() throws Exception {
 		int initialAssetCategoriesCount = searchCount();
-		int initialResourcesActionsCount =
+		int initialResourceActionsCount =
 			ResourceActionLocalServiceUtil.getResourceActionsCount(
 				AssetVocabulary.class.getName());
 
@@ -132,7 +132,7 @@ public class AssetVocabularyServiceTest {
 
 		Assert.assertEquals(initialAssetCategoriesCount, searchCount());
 		Assert.assertEquals(
-			initialResourcesActionsCount,
+			initialResourceActionsCount,
 			ResourceActionLocalServiceUtil.getResourceActionsCount(
 				AssetVocabulary.class.getName()));
 		Assert.assertNull(

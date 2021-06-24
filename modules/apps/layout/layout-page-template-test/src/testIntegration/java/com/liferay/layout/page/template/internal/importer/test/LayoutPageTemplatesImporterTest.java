@@ -212,13 +212,13 @@ public class LayoutPageTemplatesImporterTest {
 			6, rowStyledLayoutStructureItem.getNumberOfColumns());
 		Assert.assertFalse(rowStyledLayoutStructureItem.isGutters());
 
-		List<String> rowChildrenItemsIds =
+		List<String> rowChildrenItemIds =
 			rowStyledLayoutStructureItem.getChildrenItemIds();
 
 		Assert.assertEquals(
-			rowChildrenItemsIds.toString(), 6, rowChildrenItemsIds.size());
+			rowChildrenItemIds.toString(), 6, rowChildrenItemIds.size());
 
-		for (String rowChildItemId : rowChildrenItemsIds) {
+		for (String rowChildItemId : rowChildrenItemIds) {
 			LayoutStructureItem childLayoutStructureItem =
 				layoutStructure.getLayoutStructureItem(rowChildItemId);
 

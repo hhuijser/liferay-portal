@@ -107,7 +107,7 @@ public class LayoutSetPrototypePropagationTest
 
 	@Test
 	public void testAddGroup() throws Exception {
-		Assert.assertEquals(_initialPrototypeLayoutCount, _initialLayoutCount);
+		Assert.assertEquals(_initialPrototypeLayoutsCount, _initialLayoutCount);
 	}
 
 	@Test
@@ -143,12 +143,12 @@ public class LayoutSetPrototypePropagationTest
 		String friendlyURL = layout.getFriendlyURL();
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount, getGroupLayoutCount());
 
 		propagateChanges(group);
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount + 1, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount + 1, getGroupLayoutCount());
 
 		LayoutLocalServiceUtil.deleteLayout(
 			layout, ServiceContextTestUtil.getServiceContext());
@@ -159,12 +159,12 @@ public class LayoutSetPrototypePropagationTest
 		Assert.assertEquals(friendlyURL, newLayout.getFriendlyURL());
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount + 1, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount + 1, getGroupLayoutCount());
 
 		propagateChanges(group);
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount + 1, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount + 1, getGroupLayoutCount());
 
 		Layout propagatedLayout =
 			LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(
@@ -219,7 +219,7 @@ public class LayoutSetPrototypePropagationTest
 		LayoutTestUtil.addLayout(_layoutSetPrototypeGroup, true);
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount, getGroupLayoutCount());
 
 		LayoutServiceUtil.getLayouts(
 			group.getGroupId(), false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID,
@@ -228,7 +228,7 @@ public class LayoutSetPrototypePropagationTest
 		Thread.sleep(2000);
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount + 1, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount + 1, getGroupLayoutCount());
 	}
 
 	@Test
@@ -600,7 +600,7 @@ public class LayoutSetPrototypePropagationTest
 			TestPropsValues.getUserId(), _prototypeLayout,
 			_layoutSetPrototypeJournalArticle, "column-1");
 
-		_initialPrototypeLayoutCount = LayoutLocalServiceUtil.getLayoutsCount(
+		_initialPrototypeLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
 			_layoutSetPrototypeGroup, true);
 
 		// Group
@@ -657,17 +657,17 @@ public class LayoutSetPrototypePropagationTest
 			_layoutSetPrototypeGroup, true);
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount, getGroupLayoutCount());
 
 		propagateChanges(group);
 
 		if (linkEnabled) {
 			Assert.assertEquals(
-				_initialPrototypeLayoutCount + 1, getGroupLayoutCount());
+				_initialPrototypeLayoutsCount + 1, getGroupLayoutCount());
 		}
 		else {
 			Assert.assertEquals(
-				_initialPrototypeLayoutCount, getGroupLayoutCount());
+				_initialPrototypeLayoutsCount, getGroupLayoutCount());
 		}
 
 		LayoutLocalServiceUtil.deleteLayout(
@@ -675,17 +675,17 @@ public class LayoutSetPrototypePropagationTest
 
 		if (linkEnabled) {
 			Assert.assertEquals(
-				_initialPrototypeLayoutCount + 1, getGroupLayoutCount());
+				_initialPrototypeLayoutsCount + 1, getGroupLayoutCount());
 		}
 		else {
 			Assert.assertEquals(
-				_initialPrototypeLayoutCount, getGroupLayoutCount());
+				_initialPrototypeLayoutsCount, getGroupLayoutCount());
 		}
 
 		propagateChanges(group);
 
 		Assert.assertEquals(
-			_initialPrototypeLayoutCount, getGroupLayoutCount());
+			_initialPrototypeLayoutsCount, getGroupLayoutCount());
 	}
 
 	protected void doTestLayoutPropagationWithLayoutPrototype(
@@ -878,7 +878,7 @@ public class LayoutSetPrototypePropagationTest
 		LayoutSetPrototypePropagationTest.class);
 
 	private int _initialLayoutCount;
-	private int _initialPrototypeLayoutCount;
+	private int _initialPrototypeLayoutsCount;
 
 	@Inject
 	private JournalContent _journalContent;

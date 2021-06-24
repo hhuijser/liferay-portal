@@ -457,16 +457,16 @@ public class JournalConverterUtilTest {
 		DDMFormFieldOptions expectedDDMFormFieldOptions,
 		DDMFormFieldOptions actualDDMFormFieldOptions) {
 
-		Set<String> expectedOptionValues =
+		Set<String> expectedOptionsValues =
 			expectedDDMFormFieldOptions.getOptionsValues();
 
-		for (String expectedOptionValue : expectedOptionValues) {
+		for (String expectedOptionsValue : expectedOptionsValues) {
 			LocalizedValue expectedOptionLabels =
 				expectedDDMFormFieldOptions.getOptionLabels(
-					expectedOptionValue);
+					expectedOptionsValue);
 
 			LocalizedValue actualOptionLabels =
-				actualDDMFormFieldOptions.getOptionLabels(expectedOptionValue);
+				actualDDMFormFieldOptions.getOptionLabels(expectedOptionsValue);
 
 			assertEquals(expectedOptionLabels, actualOptionLabels);
 		}

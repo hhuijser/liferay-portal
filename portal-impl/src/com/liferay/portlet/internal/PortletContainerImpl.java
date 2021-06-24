@@ -1110,7 +1110,7 @@ public class PortletContainerImpl implements PortletContainer {
 			(MutableRenderParametersImpl)
 				liferayStateAwareResponse.getRenderParameters();
 
-		Map<String, String[]> mutableRenderParametersMap =
+		Map<String, String[]> mutableRenderParameterMap =
 			mutableRenderParametersImpl.getParameterMap();
 
 		Map<String, QName> supportedPublicRenderParameterMap = new HashMap<>();
@@ -1130,7 +1130,7 @@ public class PortletContainerImpl implements PortletContainer {
 		Map<String, String[]> privateRenderParameterMap = new HashMap<>();
 
 		for (Map.Entry<String, String[]> entry :
-				mutableRenderParametersMap.entrySet()) {
+				mutableRenderParameterMap.entrySet()) {
 
 			String key = entry.getKey();
 

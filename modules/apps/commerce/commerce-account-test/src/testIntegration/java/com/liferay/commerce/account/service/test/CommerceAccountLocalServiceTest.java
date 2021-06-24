@@ -224,7 +224,7 @@ public class CommerceAccountLocalServiceTest {
 		User organizationUser2 = _userLocalService.getUserByScreenName(
 			_user.getCompanyId(), "organizationUser2");
 
-		List<CommerceAccount> organizationUser1CommerceAccounts =
+		List<CommerceAccount> organizationUserCommerceAccounts1 =
 			_commerceAccountLocalService.getUserCommerceAccounts(
 				organizationUser1.getUserId(),
 				CommerceAccountConstants.DEFAULT_PARENT_ACCOUNT_ID,
@@ -239,21 +239,21 @@ public class CommerceAccountLocalServiceTest {
 
 		Assert.assertEquals(
 			organizationUser1.toString(),
-			organizationUser1CommerceAccounts.size(),
+			organizationUserCommerceAccounts1.size(),
 			organizationUserCommerceAccountsCount1);
 
 		Assert.assertEquals(
 			organizationUser2.toString(), 1,
 			organizationUserCommerceAccountsCount1);
 
-		CommerceAccount organizationUser1CommerceAccount =
-			organizationUser1CommerceAccounts.get(0);
+		CommerceAccount organizationUserCommerceAccount1 =
+			organizationUserCommerceAccounts1.get(0);
 
 		Assert.assertEquals(
 			"businessOrganizationAccount1",
-			organizationUser1CommerceAccount.getName());
+			organizationUserCommerceAccount1.getName());
 
-		List<CommerceAccount> organizationUser2CommerceAccounts =
+		List<CommerceAccount> organizationUserCommerceAccounts2 =
 			_commerceAccountLocalService.getUserCommerceAccounts(
 				organizationUser2.getUserId(),
 				CommerceAccountConstants.DEFAULT_PARENT_ACCOUNT_ID,
@@ -268,7 +268,7 @@ public class CommerceAccountLocalServiceTest {
 
 		Assert.assertEquals(
 			organizationUser2.toString(),
-			organizationUser2CommerceAccounts.size(),
+			organizationUserCommerceAccounts2.size(),
 			organizationUserCommerceAccountsCount2);
 
 		Assert.assertEquals(
@@ -276,15 +276,15 @@ public class CommerceAccountLocalServiceTest {
 			organizationUserCommerceAccountsCount2);
 
 		Assert.assertEquals(
-			organizationUser2CommerceAccounts.toString(), 1,
-			organizationUser2CommerceAccounts.size());
+			organizationUserCommerceAccounts2.toString(), 1,
+			organizationUserCommerceAccounts2.size());
 
-		CommerceAccount organizationUser2CommerceAccount =
-			organizationUser2CommerceAccounts.get(0);
+		CommerceAccount organizationUserCommerceAccount2 =
+			organizationUserCommerceAccounts2.get(0);
 
 		Assert.assertEquals(
 			"businessOrganizationAccount2",
-			organizationUser2CommerceAccount.getName());
+			organizationUserCommerceAccount2.getName());
 	}
 
 	@Test
@@ -321,7 +321,7 @@ public class CommerceAccountLocalServiceTest {
 		User businessUser2 = _userLocalService.getUserByScreenName(
 			_user.getCompanyId(), "businessUser2");
 
-		List<CommerceAccount> businessUser1CommerceAccounts =
+		List<CommerceAccount> businessUserCommerceAccounts1 =
 			_commerceAccountLocalService.getUserCommerceAccounts(
 				businessUser1.getUserId(),
 				CommerceAccountConstants.DEFAULT_PARENT_ACCOUNT_ID,
@@ -335,19 +335,19 @@ public class CommerceAccountLocalServiceTest {
 				CommerceAccountConstants.SITE_TYPE_B2B, StringPool.BLANK, null);
 
 		Assert.assertEquals(
-			businessUser1.toString(), businessUser1CommerceAccounts.size(),
+			businessUser1.toString(), businessUserCommerceAccounts1.size(),
 			businessUserCommerceAccountsCount1);
 
 		Assert.assertEquals(
 			businessUser1.toString(), 1, businessUserCommerceAccountsCount1);
 
-		CommerceAccount businessUser1CommerceAccount =
-			businessUser1CommerceAccounts.get(0);
+		CommerceAccount businessUserCommerceAccount1 =
+			businessUserCommerceAccounts1.get(0);
 
 		Assert.assertEquals(
-			"businessUserAccount1", businessUser1CommerceAccount.getName());
+			"businessUserAccount1", businessUserCommerceAccount1.getName());
 
-		List<CommerceAccount> businessUser2CommerceAccounts =
+		List<CommerceAccount> businessUserCommerceAccounts2 =
 			_commerceAccountLocalService.getUserCommerceAccounts(
 				businessUser2.getUserId(),
 				CommerceAccountConstants.DEFAULT_PARENT_ACCOUNT_ID,
@@ -361,17 +361,17 @@ public class CommerceAccountLocalServiceTest {
 				CommerceAccountConstants.SITE_TYPE_B2B, StringPool.BLANK, null);
 
 		Assert.assertEquals(
-			businessUser2.toString(), businessUser2CommerceAccounts.size(),
+			businessUser2.toString(), businessUserCommerceAccounts2.size(),
 			businessUserCommerceAccountsCount2);
 
 		Assert.assertEquals(
 			businessUser2.toString(), 1, businessUserCommerceAccountsCount2);
 
-		CommerceAccount businessUser2CommerceAccount =
-			businessUser2CommerceAccounts.get(0);
+		CommerceAccount businessUserCommerceAccount2 =
+			businessUserCommerceAccounts2.get(0);
 
 		Assert.assertEquals(
-			"businessUserAccount2", businessUser2CommerceAccount.getName());
+			"businessUserAccount2", businessUserCommerceAccount2.getName());
 	}
 
 	@Test

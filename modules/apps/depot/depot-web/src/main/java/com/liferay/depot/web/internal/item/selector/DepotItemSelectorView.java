@@ -112,7 +112,7 @@ public class DepotItemSelectorView
 
 		SitesItemSelectorViewDisplayContext
 			depotSiteItemSelectorViewDisplayContext =
-				new DepotSiteItemSelectorViewDisplayContext(
+				new DepotSitesItemSelectorViewDisplayContext(
 					(HttpServletRequest)servletRequest, itemSelectedEventName,
 					portletURL, groupItemSelectorCriterion);
 
@@ -142,10 +142,10 @@ public class DepotItemSelectorView
 	@Reference
 	private SiteItemSelectorViewRenderer _siteItemSelectorViewRenderer;
 
-	private class DepotSiteItemSelectorViewDisplayContext
+	private class DepotSitesItemSelectorViewDisplayContext
 		implements SitesItemSelectorViewDisplayContext {
 
-		public DepotSiteItemSelectorViewDisplayContext(
+		public DepotSitesItemSelectorViewDisplayContext(
 			HttpServletRequest httpServletRequest, String itemSelectedEventName,
 			PortletURL portletURL,
 			GroupItemSelectorCriterion groupItemSelectorCriterion) {

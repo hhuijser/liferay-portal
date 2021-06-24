@@ -42,9 +42,7 @@ public class JavaUpgradeIndexCheck extends BaseJavaTermCheck {
 		List<String> extendedClassNames = javaClass.getExtendedClassNames();
 
 		if (extendedClassNames.contains("UpgradeProcess")) {
-			Pattern pattern = Pattern.compile("(create|drop) (unique )?index");
-
-			Matcher matcher = pattern.matcher(fileContent);
+			Matcher matcher = _pattern.matcher(fileContent);
 
 			while (matcher.find()) {
 				addMessage(
@@ -63,5 +61,8 @@ public class JavaUpgradeIndexCheck extends BaseJavaTermCheck {
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CLASS};
 	}
+
+	private static final Pattern _pattern = Pattern.compile(
+		"(create|drop) (unique )?index IX_(?!TEMP)");
 
 }

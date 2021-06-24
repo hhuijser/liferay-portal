@@ -22,5 +22,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":core:petra:petra-lang")
+	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":dxp:apps:commerce-punchout:commerce-punchout-api")
 }

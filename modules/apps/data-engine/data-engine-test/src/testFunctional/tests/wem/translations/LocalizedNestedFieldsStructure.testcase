@@ -354,6 +354,7 @@ definition {
 			targetFieldLabel = "Single Selection");
 
 		var index = "1";
+
 		for (var optionValue : list "Value 1,Value 2") {
 			DataEngine.addFieldOption(
 				fieldFieldLabel = "Multiple Selection",

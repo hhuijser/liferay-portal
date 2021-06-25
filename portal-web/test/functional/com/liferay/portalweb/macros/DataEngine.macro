@@ -82,6 +82,7 @@ definition {
 	macro addFieldGroupWithFields {
 		var index = "1";
 		var firstFieldLabel = "";
+
 		for (var fieldName : list "${fieldNameList}") {
 			if ("${index}" == "1") {
 				firstFieldLabel = "${fieldName}";
@@ -607,6 +608,7 @@ definition {
 
 		if (IsTextEqual(locator1 = "DataEngineBuilder#SIDEBAR_FIELD_NAME_BUTTON", value1 = "Grid")) {
 			var index = "1";
+
 			for (var optionLabel : list "${optionLabelList}") {
 				AssertTextEquals(
 					index = "${index}",
@@ -619,6 +621,7 @@ definition {
 		}
 		else if (IsTextEqual(locator1 = "DataEngineBuilder#SIDEBAR_FIELD_NAME_BUTTON", value1 = "Select from List")) {
 			var index = "1";
+
 			for (var optionLabel : list "${optionLabelList}") {
 				AssertTextEquals(
 					index = "${index}",
@@ -630,6 +633,7 @@ definition {
 		}
 		else {
 			var index = "1";
+
 			for (var optionLabel : list "${optionLabelList}") {
 				AssertTextEquals(
 					index = "${index}",

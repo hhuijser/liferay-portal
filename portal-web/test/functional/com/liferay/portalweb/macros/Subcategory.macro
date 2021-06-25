@@ -66,6 +66,7 @@ definition {
 						locator1 = "WCEditWebContent#DISPLAY_PAGE_DEFAULT_SELECTION",
 						value1 = "${displayPageName}");
 				}
+
 				if ("${displayPageTemplateType}" == "Specific") {
 					AssertTextEquals(
 						locator1 = "WCEditWebContent#DISPLAY_PAGE_SPECIFIC_SELECTION",

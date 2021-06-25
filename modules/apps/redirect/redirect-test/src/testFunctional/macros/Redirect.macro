@@ -153,6 +153,7 @@ definition {
 				checkboxName = "Update References",
 				locator1 = "Checkbox#ANY_CHECKBOX");
 		}
+
 		if ("${noUpdateReferences}" == "true") {
 			if (isSet(noUpdateRedirect)) {
 				FormFields.disableCheckbox(fieldName = "Update Redirect");

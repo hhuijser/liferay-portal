@@ -917,6 +917,7 @@ definition {
 			}
 
 			Click(locator1 = "WorkflowReassignModal#SEARCH_NEW_ASSIGNEE_SPECIFIC");
+
 			if (isSet(nameOfAssignee)) {
 				Click(
 					key_nameOfAssignee = "${nameOfAssignee}",
@@ -1151,6 +1152,7 @@ definition {
 				var key_currentDateDay = MathUtil.sum("${key_currentDateDay}", "1");
 
 				var isLessThan10 = MathUtil.isLessThan("${key_currentDateDay}", "10");
+
 				if ("${isLessThan10}" == "true") {
 					var key_currentDateDay = "0${key_currentDateDay}";
 				}
@@ -1189,6 +1191,7 @@ definition {
 				var key_currentDateDay = MathUtil.sum("${key_currentDateDay}", "1");
 
 				var isLessThan10 = MathUtil.isLessThan("${key_currentDateDay}", "10");
+
 				if ("${isLessThan10}" == "true") {
 					var key_currentDateDay = "0${key_currentDateDay}";
 				}

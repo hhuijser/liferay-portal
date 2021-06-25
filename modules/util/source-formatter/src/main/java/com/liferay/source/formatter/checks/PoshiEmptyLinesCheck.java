@@ -14,8 +14,15 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+
+import java.io.IOException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,7 +34,8 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws IOException {
 
 		content = content.replaceAll("(\\{\n)\n+(?!\t*/[/\\*])", "$1");
 		content = content.replaceAll("(\n\t+[^/\\t].*)\n(\n\t+\\})", "$1$2");
@@ -40,6 +48,7 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 			"(\n\t*[^@\\s].*\n)((\t@.+\n)*\t(function|macro|test) )", "$1\n$2");
 
 		content = _fixMissingEmptyLinesAroundComments(content);
+		content = _fixMissingEmptyLinesBeforeControlStatements(content);
 
 		return content;
 	}
@@ -83,6 +92,54 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 		}
 
 		return content;
+	}
+
+	private String _fixMissingEmptyLinesBeforeControlStatements(String content)
+		throws IOException {
+
+		StringBundler sb = new StringBundler();
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+
+			String indentation = StringPool.BLANK;
+			String line = StringPool.BLANK;
+			String previousIndentation = StringPool.BLANK;
+			String trimmedLine = StringPool.BLANK;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				if (Validator.isNull(line)) {
+					sb.append("\n");
+
+					previousIndentation = StringPool.BLANK;
+
+					continue;
+				}
+
+				indentation = line.replaceAll("(\t+).*", "$1");
+				trimmedLine = line.trim();
+
+				if (indentation.equals(previousIndentation) &&
+					(trimmedLine.startsWith("for (") ||
+					 trimmedLine.startsWith("if (") ||
+					 trimmedLine.startsWith("while ("))) {
+
+					sb.append("\n");
+				}
+
+				sb.append(line);
+
+				sb.append("\n");
+
+				previousIndentation = indentation;
+			}
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
 	}
 
 	private static final Pattern _missingEmptyLineAfterCommentPattern =

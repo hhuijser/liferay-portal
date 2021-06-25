@@ -183,7 +183,7 @@ public class AssetListEntryAssetEntryRelServiceTest {
 					assetListEntry.getAssetListEntryId());
 
 		Assert.assertEquals(
-			originalAssetListEntryAssetEntryRelCount + 1,
+			originalAssetListEntryAssetEntryRelsCount + 1,
 			actualAssetListEntryAssetEntryRelsCount);
 	}
 

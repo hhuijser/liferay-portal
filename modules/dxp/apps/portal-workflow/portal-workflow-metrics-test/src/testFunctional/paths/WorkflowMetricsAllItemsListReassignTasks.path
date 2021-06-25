@@ -2,11 +2,13 @@
 <head>
 <title>WorkflowMetricsAllItemsListReassignTasks</title>
 </head>
+
 <body>
-<table cellpadding="1" cellspacing="1" border="1">
+<table border="1" cellpadding="1" cellspacing="1">
 <thead>
 <tr><td rowspan="1" colspan="3">WorkflowMetricsAllItemsListReassignTasks</td></tr>
 </thead>
+
 <tbody>
 <tr>
 	<td>FILTER_CLEAR_ALL</td>

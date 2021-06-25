@@ -48,7 +48,7 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 			"(\n\t*[^@\\s].*\n)((\t@.+\n)*\t(function|macro|test) )", "$1\n$2");
 
 		content = _fixMissingEmptyLinesAroundComments(content);
-		content = _fixMissingEmptyLinesBeforeControlStatements(content);
+		content = _fixMissingEmptyLinesBeforeFlowControlStatements(content);
 
 		return content;
 	}
@@ -94,7 +94,8 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _fixMissingEmptyLinesBeforeControlStatements(String content)
+	private String _fixMissingEmptyLinesBeforeFlowControlStatements(
+			String content)
 		throws IOException {
 
 		StringBundler sb = new StringBundler();

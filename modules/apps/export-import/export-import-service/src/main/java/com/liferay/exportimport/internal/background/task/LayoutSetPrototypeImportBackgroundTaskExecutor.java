@@ -47,10 +47,10 @@ import java.util.concurrent.Callable;
 /**
  * @author Tamas Molnar
  */
-public class LayoutSetPrototypeImportBackgroundTaskExcecutor
+public class LayoutSetPrototypeImportBackgroundTaskExecutor
 	extends BaseExportImportBackgroundTaskExecutor {
 
-	public LayoutSetPrototypeImportBackgroundTaskExcecutor() {
+	public LayoutSetPrototypeImportBackgroundTaskExecutor() {
 		setBackgroundTaskStatusMessageTranslator(
 			new LayoutExportImportBackgroundTaskStatusMessageTranslator());
 
@@ -61,17 +61,17 @@ public class LayoutSetPrototypeImportBackgroundTaskExcecutor
 
 	@Override
 	public BackgroundTaskExecutor clone() {
-		LayoutSetPrototypeImportBackgroundTaskExcecutor
-			layoutSetPrototypeImportBackgroundTaskExcecutor =
-				new LayoutSetPrototypeImportBackgroundTaskExcecutor();
+		LayoutSetPrototypeImportBackgroundTaskExecutor
+			layoutSetPrototypeImportBackgroundTaskExecutor =
+				new LayoutSetPrototypeImportBackgroundTaskExecutor();
 
-		layoutSetPrototypeImportBackgroundTaskExcecutor.
+		layoutSetPrototypeImportBackgroundTaskExecutor.
 			setBackgroundTaskStatusMessageTranslator(
 				getBackgroundTaskStatusMessageTranslator());
-		layoutSetPrototypeImportBackgroundTaskExcecutor.setIsolationLevel(
+		layoutSetPrototypeImportBackgroundTaskExecutor.setIsolationLevel(
 			getIsolationLevel());
 
-		return layoutSetPrototypeImportBackgroundTaskExcecutor;
+		return layoutSetPrototypeImportBackgroundTaskExecutor;
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class LayoutSetPrototypeImportBackgroundTaskExcecutor
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		LayoutSetPrototypeImportBackgroundTaskExcecutor.class);
+		LayoutSetPrototypeImportBackgroundTaskExecutor.class);
 
 	private static class LayoutImportCallable implements Callable<Void> {
 

@@ -45,7 +45,7 @@ public class BackgroundTaskExecutorConfigurator {
 
 		registerBackgroundTaskExecutor(
 			bundleContext,
-			new LayoutSetPrototypeImportBackgroundTaskExcecutor());
+			new LayoutSetPrototypeImportBackgroundTaskExecutor());
 
 		registerBackgroundTaskExecutor(
 			bundleContext, new LayoutStagingBackgroundTaskExecutor());

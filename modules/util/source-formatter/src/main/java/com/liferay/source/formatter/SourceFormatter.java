@@ -645,12 +645,12 @@ public class SourceFormatter {
 		if (!buildPropertiesAdded &&
 			_sourceFormatterArgs.isFormatCurrentBranch()) {
 
-			List<String> deletedFileNames = GitUtil.getCurrentBranchFileNames(
+			List<String> fileNames = GitUtil.getCurrentBranchFileNames(
 				_sourceFormatterArgs.getBaseDirName(),
 				_sourceFormatterArgs.getGitWorkingBranchName(), true);
 
-			for (String deletedFileName : deletedFileNames) {
-				if (deletedFileName.endsWith(".lfrbuild-portal")) {
+			for (String fileName : fileNames) {
+				if (fileName.endsWith(".lfrbuild-portal")) {
 					dependentFileNames = _addDependentFileName(
 						dependentFileNames, "build.properties");
 

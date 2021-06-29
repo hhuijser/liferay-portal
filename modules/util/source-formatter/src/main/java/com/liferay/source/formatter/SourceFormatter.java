@@ -642,20 +642,38 @@ public class SourceFormatter {
 			}
 		}
 
-		if (!buildPropertiesAdded &&
-			_sourceFormatterArgs.isFormatCurrentBranch()) {
+		if (_sourceFormatterArgs.isFormatCurrentBranch()) {
+			if (!buildPropertiesAdded) {
+				List<String> fileNames = GitUtil.getCurrentBranchFileNames(
+					_sourceFormatterArgs.getBaseDirName(),
+					_sourceFormatterArgs.getGitWorkingBranchName(), true);
 
-			List<String> fileNames = GitUtil.getCurrentBranchFileNames(
-				_sourceFormatterArgs.getBaseDirName(),
-				_sourceFormatterArgs.getGitWorkingBranchName(), true);
+				for (String fileName : fileNames) {
+					if (!buildPropertiesAdded &&
+						fileName.endsWith(".lfrbuild-portal")) {
 
-			for (String fileName : fileNames) {
-				if (fileName.endsWith(".lfrbuild-portal")) {
-					dependentFileNames = _addDependentFileName(
-						dependentFileNames, "build.properties");
+						dependentFileNames = _addDependentFileName(
+							dependentFileNames, "build.properties");
 
-					break;
+						break;
+					}
 				}
+			}
+
+			List<String> deletedFileNames =
+				GitUtil.getCurrentBranchDeletedFileNames(
+					_sourceFormatterArgs.getBaseDirName(),
+					_sourceFormatterArgs.getGitWorkingBranchName());
+
+			if (!deletedFileNames.isEmpty()) {
+				dependentFileNames.addAll(
+					SourceFormatterUtil.filterFileNames(
+						_allFileNames, new String[0],
+						new String[] {
+							"**/source-formatter.properties",
+							"**/source-formatter-suppressions.xml"
+						},
+						_sourceFormatterExcludes, false));
 			}
 		}
 

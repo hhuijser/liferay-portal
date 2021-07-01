@@ -68,7 +68,7 @@ public class SegmentsDisplayContextTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(3);
+		StringBundler sb = new StringBundler(2);
 
 		sb.append("(component.name=");
 		sb.append("com.liferay.segments.web.internal.portlet.SegmentsPortlet)");

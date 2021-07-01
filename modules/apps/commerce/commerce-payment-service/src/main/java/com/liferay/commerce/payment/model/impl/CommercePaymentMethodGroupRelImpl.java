@@ -32,7 +32,7 @@ public class CommercePaymentMethodGroupRelImpl
 
 		return StringBundler.concat(
 			themeDisplay.getPathImage(), "/payment/method?img_id=",
-			String.valueOf(getImageId()), "&t=",
+			getImageId(), "&t=",
 			WebServerServletTokenUtil.getToken(getImageId()));
 	}
 

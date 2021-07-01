@@ -221,8 +221,7 @@ public class DataDefinitionResourceTest
 						).put(
 							"siteKey",
 							StringBundler.concat(
-								StringPool.QUOTE,
-								String.valueOf(dataDefinition.getSiteId()),
+								StringPool.QUOTE, dataDefinition.getSiteId(),
 								StringPool.QUOTE)
 						).build(),
 						getGraphQLFields())),

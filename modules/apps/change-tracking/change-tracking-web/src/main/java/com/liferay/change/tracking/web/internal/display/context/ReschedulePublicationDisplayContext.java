@@ -87,10 +87,9 @@ public class ReschedulePublicationDisplayContext {
 		).put(
 			"scheduledDate",
 			StringBundler.concat(
-				String.valueOf(calendar.get(Calendar.YEAR)), StringPool.DASH,
-				String.valueOf(calendar.get(Calendar.MONTH) + 1),
-				StringPool.DASH,
-				String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)))
+				calendar.get(Calendar.YEAR), StringPool.DASH,
+				calendar.get(Calendar.MONTH) + 1, StringPool.DASH,
+				calendar.get(Calendar.DAY_OF_MONTH))
 		).put(
 			"scheduledTime",
 			JSONUtil.put(

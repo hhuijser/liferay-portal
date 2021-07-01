@@ -136,8 +136,8 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 	}
 
 	protected void clearFilterChainsCache() {
-		if (_filterChains != null) {
-			_filterChains.removeAll();
+		if (_filterChainsPortalCache != null) {
+			_filterChainsPortalCache.removeAll();
 		}
 	}
 
@@ -164,7 +164,7 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 	@Override
 	protected void doPortalInit() throws Exception {
 		if (_INVOKER_FILTER_CHAIN_ENABLED) {
-			_filterChains = PortalCacheHelperUtil.getPortalCache(
+			_filterChainsPortalCache = PortalCacheHelperUtil.getPortalCache(
 				PortalCacheManagerNames.SINGLE_VM, _getPortalCacheName());
 		}
 
@@ -195,7 +195,7 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 		HttpServletRequest httpServletRequest, String uri,
 		FilterChain filterChain) {
 
-		if (_filterChains == null) {
+		if (_filterChainsPortalCache == null) {
 			return _invokerFilterHelper.createInvokerFilterChain(
 				httpServletRequest, _dispatcher, uri, filterChain);
 		}
@@ -208,13 +208,14 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 			key = StringBundler.concat(key, StringPool.QUESTION, queryString);
 		}
 
-		InvokerFilterChain invokerFilterChain = _filterChains.get(key);
+		InvokerFilterChain invokerFilterChain = _filterChainsPortalCache.get(
+			key);
 
 		if (invokerFilterChain == null) {
 			invokerFilterChain = _invokerFilterHelper.createInvokerFilterChain(
 				httpServletRequest, _dispatcher, uri, filterChain);
 
-			_filterChains.put(key, invokerFilterChain);
+			_filterChainsPortalCache.put(key, invokerFilterChain);
 		}
 
 		return invokerFilterChain.clone(filterChain);
@@ -356,7 +357,7 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 
 	private String _contextPath;
 	private Dispatcher _dispatcher;
-	private PortalCache<String, InvokerFilterChain> _filterChains;
+	private PortalCache<String, InvokerFilterChain> _filterChainsPortalCache;
 	private FilterConfig _filterConfig;
 	private InvokerFilterHelper _invokerFilterHelper;
 

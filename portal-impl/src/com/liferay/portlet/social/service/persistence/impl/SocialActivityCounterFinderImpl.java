@@ -132,7 +132,8 @@ public class SocialActivityCounterFinderImpl
 
 		if (endPeriod < SocialCounterPeriodUtil.getActivityDay()) {
 			activityCounters =
-				(List<SocialActivityCounter>)_activityCounters.get(key);
+				(List<SocialActivityCounter>)_activityCountersPortalCache.get(
+					key);
 		}
 
 		if (activityCounters != null) {
@@ -181,11 +182,12 @@ public class SocialActivityCounterFinderImpl
 		}
 		finally {
 			if (activityCounters == null) {
-				_activityCounters.remove(key);
+				_activityCountersPortalCache.remove(key);
 			}
 			else {
 				if (endPeriod < SocialCounterPeriodUtil.getActivityDay()) {
-					_activityCounters.put(key, (Serializable)activityCounters);
+					_activityCountersPortalCache.put(
+						key, (Serializable)activityCounters);
 				}
 			}
 
@@ -355,8 +357,8 @@ public class SocialActivityCounterFinderImpl
 		}
 	}
 
-	private static final PortalCache<String, Serializable> _activityCounters =
-		PortalCacheHelperUtil.getPortalCache(
+	private static final PortalCache<String, Serializable>
+		_activityCountersPortalCache = PortalCacheHelperUtil.getPortalCache(
 			PortalCacheManagerNames.MULTI_VM,
 			SocialActivityCounterFinder.class.getName());
 

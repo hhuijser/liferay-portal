@@ -15,7 +15,7 @@
 package com.liferay.info.exception;
 
 import com.liferay.info.item.capability.InfoItemCapability;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.List;
 import java.util.stream.Collectors;

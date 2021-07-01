@@ -18,7 +18,7 @@ import com.example.sample.model.Foo;
 
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.io.Externalizable;
 import java.io.IOException;

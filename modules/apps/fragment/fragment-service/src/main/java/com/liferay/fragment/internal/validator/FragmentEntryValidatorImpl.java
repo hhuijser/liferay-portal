@@ -18,6 +18,7 @@ import com.liferay.fragment.exception.FragmentEntryConfigurationException;
 import com.liferay.fragment.validator.FragmentEntryValidator;
 import com.liferay.petra.json.validator.JSONValidator;
 import com.liferay.petra.json.validator.JSONValidatorException;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.InputStream;

@@ -14,7 +14,7 @@
 
 package com.liferay.portal.tools.rest.builder;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;

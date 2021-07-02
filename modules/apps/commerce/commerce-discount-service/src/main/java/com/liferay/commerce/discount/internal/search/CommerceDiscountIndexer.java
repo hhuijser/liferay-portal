@@ -328,11 +328,11 @@ public class CommerceDiscountIndexer extends BaseIndexer<CommerceDiscount> {
 					commerceDiscount.getCommerceDiscountId(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, null);
 
-		Stream<CommerceDiscountAccountRel> commerceDiscountAccountRelStream =
+		Stream<CommerceDiscountAccountRel> commerceDiscountAccountRelsStream =
 			commerceDiscountAccountRels.stream();
 
 		LongStream commerceAccountIdLongStream =
-			commerceDiscountAccountRelStream.mapToLong(
+			commerceDiscountAccountRelsStream.mapToLong(
 				CommerceDiscountAccountRel::getCommerceAccountId);
 
 		long[] commerceAccountIds = commerceAccountIdLongStream.toArray();
@@ -347,11 +347,11 @@ public class CommerceDiscountIndexer extends BaseIndexer<CommerceDiscount> {
 						QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceDiscountCommerceAccountGroupRel>
-			commerceDiscountCommerceAccountGroupRelStream =
+			commerceDiscountCommerceAccountGroupRelsStream =
 				commerceDiscountCommerceAccountGroupRels.stream();
 
 		LongStream commerceAccountGroupIdLongStream =
-			commerceDiscountCommerceAccountGroupRelStream.mapToLong(
+			commerceDiscountCommerceAccountGroupRelsStream.mapToLong(
 				CommerceDiscountCommerceAccountGroupRel::
 					getCommerceAccountGroupId);
 

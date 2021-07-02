@@ -93,12 +93,12 @@ public class JSONUtilTest {
 	public void testCreateCollector() {
 		List<String> strings = Arrays.asList("foo", "bar", "baz");
 
-		Stream<String> stringStream = strings.stream();
+		Stream<String> stringsStream = strings.stream();
 
 		Assert.assertTrue(
 			JSONUtil.equals(
 				JSONUtil.concat(JSONUtil.putAll("FOO", "BAR", "BAZ")),
-				stringStream.map(
+				stringsStream.map(
 					String::toUpperCase
 				).collect(
 					JSONUtil.createCollector()

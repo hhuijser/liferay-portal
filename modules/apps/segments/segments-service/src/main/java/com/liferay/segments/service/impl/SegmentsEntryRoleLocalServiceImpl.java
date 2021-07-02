@@ -206,10 +206,10 @@ public class SegmentsEntryRoleLocalServiceImpl
 		List<SegmentsEntryRole> segmentsEntryRoles = getSegmentsEntryRoles(
 			segmentsEntryId);
 
-		Stream<SegmentsEntryRole> segmentsEntryRoleStream =
+		Stream<SegmentsEntryRole> segmentsEntryRolesStream =
 			segmentsEntryRoles.stream();
 
-		return segmentsEntryRoleStream.map(
+		return segmentsEntryRolesStream.map(
 			segmentsEntryRole -> roleLocalService.fetchRole(
 				segmentsEntryRole.getRoleId())
 		).filter(

@@ -588,10 +588,10 @@ public class JournalDisplayContext {
 								getTranslationInfoItemFieldValuesExporters();
 
 					Stream<TranslationInfoItemFieldValuesExporter>
-						translationInfoItemFieldValuesExporterStream =
+						translationInfoItemFieldValuesExportersStream =
 							translationInfoItemFieldValuesExporters.stream();
 
-					return translationInfoItemFieldValuesExporterStream.map(
+					return translationInfoItemFieldValuesExportersStream.map(
 						this::_getExportFileFormatJSONObject
 					).collect(
 						Collectors.toList()

@@ -183,9 +183,9 @@ public class UserSegmentsCriteriaContributorTest {
 		List<Field> fields = segmentsCriteriaContributor.getFields(
 			_getMockPortletRequest());
 
-		Stream<Field> fieldStream = fields.stream();
+		Stream<Field> fieldsStream = fields.stream();
 
-		Optional<Field> optionalField = fieldStream.filter(
+		Optional<Field> optionalField = fieldsStream.filter(
 			field -> StringUtil.endsWith(
 				field.getName(),
 				Normalizer.normalizeIdentifier(expandoColumn.getName()))
@@ -197,11 +197,11 @@ public class UserSegmentsCriteriaContributorTest {
 
 		List<Field.Option> options = field.getOptions();
 
-		Stream<Field.Option> optionStream = options.stream();
+		Stream<Field.Option> optionsStream = options.stream();
 
 		Assert.assertEquals(
 			Arrays.asList(defaultValue),
-			optionStream.map(
+			optionsStream.map(
 				Field.Option::getValue
 			).collect(
 				Collectors.toList()
@@ -216,9 +216,9 @@ public class UserSegmentsCriteriaContributorTest {
 		List<Field> fields = segmentsCriteriaContributor.getFields(
 			_getMockPortletRequest());
 
-		Stream<Field> fieldStream = fields.stream();
+		Stream<Field> fieldsStream = fields.stream();
 
-		Optional<Field> optionalField = fieldStream.filter(
+		Optional<Field> optionalField = fieldsStream.filter(
 			field -> Objects.equals(field.getName(), "groupIds")
 		).findFirst();
 

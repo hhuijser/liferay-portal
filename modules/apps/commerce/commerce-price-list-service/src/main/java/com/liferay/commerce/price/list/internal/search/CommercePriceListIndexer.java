@@ -232,12 +232,13 @@ public class CommercePriceListIndexer extends BaseIndexer<CommercePriceList> {
 				getCommercePriceListAccountRels(
 					commercePriceList.getCommercePriceListId());
 
-		Stream<CommercePriceListAccountRel> commercePriceListAccountRelStream =
+		Stream<CommercePriceListAccountRel> commercePriceListAccountRelsStream =
 			commercePriceListAccountRels.stream();
 
-		long[] commerceAccountIds = commercePriceListAccountRelStream.mapToLong(
-			CommercePriceListAccountRel::getCommerceAccountId
-		).toArray();
+		long[] commerceAccountIds =
+			commercePriceListAccountRelsStream.mapToLong(
+				CommercePriceListAccountRel::getCommerceAccountId
+			).toArray();
 
 		document.addNumber("commerceAccountId", commerceAccountIds);
 
@@ -246,12 +247,13 @@ public class CommercePriceListIndexer extends BaseIndexer<CommercePriceList> {
 				getCommercePriceListChannelRels(
 					commercePriceList.getCommercePriceListId());
 
-		Stream<CommercePriceListChannelRel> commercePriceListChannelRelStream =
+		Stream<CommercePriceListChannelRel> commercePriceListChannelRelsStream =
 			commercePriceListChannelRels.stream();
 
-		long[] commerceChannelIds = commercePriceListChannelRelStream.mapToLong(
-			CommercePriceListChannelRel::getCommerceChannelId
-		).toArray();
+		long[] commerceChannelIds =
+			commercePriceListChannelRelsStream.mapToLong(
+				CommercePriceListChannelRel::getCommerceChannelId
+			).toArray();
 
 		document.addNumber("commerceChannelId", commerceChannelIds);
 
@@ -262,11 +264,11 @@ public class CommercePriceListIndexer extends BaseIndexer<CommercePriceList> {
 						commercePriceList.getCommercePriceListId());
 
 		Stream<CommercePriceListCommerceAccountGroupRel>
-			commercePriceListCommerceAccountGroupRelStream =
+			commercePriceListCommerceAccountGroupRelsStream =
 				commercePriceListCommerceAccountGroupRels.stream();
 
 		long[] commerceAccountGroupIds =
-			commercePriceListCommerceAccountGroupRelStream.mapToLong(
+			commercePriceListCommerceAccountGroupRelsStream.mapToLong(
 				CommercePriceListCommerceAccountGroupRel::
 					getCommerceAccountGroupId
 			).toArray();

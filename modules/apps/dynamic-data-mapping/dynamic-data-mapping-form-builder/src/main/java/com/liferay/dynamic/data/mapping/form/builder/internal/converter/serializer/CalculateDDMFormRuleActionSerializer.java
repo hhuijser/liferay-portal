@@ -59,9 +59,9 @@ public class CalculateDDMFormRuleActionSerializer
 
 		Set<String> keySet = ddmFormFieldsMap.keySet();
 
-		Stream<String> ddmFormFieldStream = keySet.stream();
+		Stream<String> ddmFormFieldsStream = keySet.stream();
 
-		Set<String> ddmFormFieldNames = ddmFormFieldStream.filter(
+		Set<String> ddmFormFieldNames = ddmFormFieldsStream.filter(
 			ddmFormField -> expression.contains(ddmFormField)
 		).collect(
 			Collectors.toSet()

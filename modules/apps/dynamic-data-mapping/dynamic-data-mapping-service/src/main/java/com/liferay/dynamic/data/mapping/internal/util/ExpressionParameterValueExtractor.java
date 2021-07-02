@@ -35,9 +35,9 @@ public class ExpressionParameterValueExtractor {
 		List<String> parameterValues = Arrays.asList(
 			expression.split(_FUNCTION_STRUCTURE_REGEX));
 
-		Stream<String> parameterValueStream = parameterValues.stream();
+		Stream<String> parameterValuesStream = parameterValues.stream();
 
-		return parameterValueStream.filter(
+		return parameterValuesStream.filter(
 			parameterValue -> Validator.isNotNull(parameterValue)
 		).collect(
 			Collectors.toList()

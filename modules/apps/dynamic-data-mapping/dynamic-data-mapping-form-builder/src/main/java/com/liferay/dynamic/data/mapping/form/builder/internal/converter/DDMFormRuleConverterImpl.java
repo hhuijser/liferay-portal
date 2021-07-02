@@ -68,9 +68,9 @@ public class DDMFormRuleConverterImpl implements SPIDDMFormRuleConverter {
 		List<SPIDDMFormRule> spiDDMFormRules,
 		SPIDDMFormRuleSerializerContext spiDDMFormRuleSerializerContext) {
 
-		Stream<SPIDDMFormRule> spiDDMFormRuleStream = spiDDMFormRules.stream();
+		Stream<SPIDDMFormRule> spiDDMFormRulesStream = spiDDMFormRules.stream();
 
-		Stream<DDMFormRule> ddmFormRuleStream = spiDDMFormRuleStream.map(
+		Stream<DDMFormRule> ddmFormRuleStream = spiDDMFormRulesStream.map(
 			formRule -> convertRule(formRule, spiDDMFormRuleSerializerContext));
 
 		return ddmFormRuleStream.collect(Collectors.toList());
@@ -334,10 +334,10 @@ public class DDMFormRuleConverterImpl implements SPIDDMFormRuleConverter {
 	private boolean _hasNestedFunction(
 		List<SPIDDMFormRuleCondition.Operand> operands) {
 
-		Stream<SPIDDMFormRuleCondition.Operand> operandStream =
+		Stream<SPIDDMFormRuleCondition.Operand> operandsStream =
 			operands.stream();
 
-		return operandStream.anyMatch(
+		return operandsStream.anyMatch(
 			operand -> _isNestedFunction(operand.getValue()));
 	}
 

@@ -326,10 +326,10 @@ public class IndividualSegmentsChecker {
 		List<Individual.DataSourceIndividualPK> dataSourceIndividualPKs =
 			individual.getDataSourceIndividualPKs();
 
-		Stream<Individual.DataSourceIndividualPK> dataSourceIndividualPKStream =
-			dataSourceIndividualPKs.stream();
+		Stream<Individual.DataSourceIndividualPK>
+			dataSourceIndividualPKsStream = dataSourceIndividualPKs.stream();
 
-		List<String> individualUuids = dataSourceIndividualPKStream.filter(
+		List<String> individualUuids = dataSourceIndividualPKsStream.filter(
 			dataSourceIndividualPK -> Objects.equals(
 				_asahFaroBackendClient.getDataSourceId(companyId),
 				dataSourceIndividualPK.getDataSourceId())
@@ -341,9 +341,9 @@ public class IndividualSegmentsChecker {
 		);
 
 		if (!ListUtil.isEmpty(individualUuids)) {
-			Stream<String> individualUuidStream = individualUuids.stream();
+			Stream<String> individualUuidsStream = individualUuids.stream();
 
-			userIdOptional = individualUuidStream.map(
+			userIdOptional = individualUuidsStream.map(
 				individualUuid -> _userLocalService.fetchUserByUuidAndCompanyId(
 					individualUuid, companyId)
 			).filter(

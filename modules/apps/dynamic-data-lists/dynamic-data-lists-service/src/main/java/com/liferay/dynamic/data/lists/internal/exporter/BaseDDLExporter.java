@@ -207,9 +207,9 @@ public abstract class BaseDDLExporter implements DDLExporter {
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
 
-		Stream<DDMFormField> ddmFormFieldStream = ddmFormFields.stream();
+		Stream<DDMFormField> ddmFormFieldsStream = ddmFormFields.stream();
 
-		return ddmFormFieldStream.filter(
+		return ddmFormFieldsStream.filter(
 			ddmFormField -> ddmFormFieldValuesMap.containsKey(
 				ddmFormField.getName())
 		).map(

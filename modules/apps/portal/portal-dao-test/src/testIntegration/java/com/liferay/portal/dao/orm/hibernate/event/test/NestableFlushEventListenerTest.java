@@ -184,9 +184,9 @@ public class NestableFlushEventListenerTest {
 	}
 
 	private void _assignKeys(List<ClassName> classNames, long[] keys) {
-		Stream<ClassName> classNameStream = classNames.stream();
+		Stream<ClassName> classNamesStream = classNames.stream();
 
-		Stream<Long> classNameIdStream = classNameStream.map(
+		Stream<Long> classNameIdStream = classNamesStream.map(
 			ClassName::getClassNameId);
 
 		List<Long> classNameIds = classNameIdStream.collect(
@@ -204,9 +204,9 @@ public class NestableFlushEventListenerTest {
 	}
 
 	private void _assignValues(List<ClassName> classNames, String[] values) {
-		Stream<ClassName> classNameStream = classNames.stream();
+		Stream<ClassName> classNamesStream = classNames.stream();
 
-		Stream<String> classNameValueStream = classNameStream.map(
+		Stream<String> classNameValueStream = classNamesStream.map(
 			ClassName::getValue);
 
 		List<String> classNameValues = classNameValueStream.collect(

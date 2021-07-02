@@ -64,11 +64,11 @@ public class DDMFormUploadValidator {
 		List<String> guestUploadFileExtensions = Arrays.asList(
 			getGuestUploadFileExtensions());
 
-		Stream<String> guestUploadFileExtensionStream =
+		Stream<String> guestUploadFileExtensionsStream =
 			guestUploadFileExtensions.stream();
 
 		Optional<String> guestUploadFileExtensionOptional =
-			guestUploadFileExtensionStream.filter(
+			guestUploadFileExtensionsStream.filter(
 				guestUploadFileExtension -> StringUtil.equalsIgnoreCase(
 					FileUtil.getExtension(fileName),
 					StringUtil.trim(guestUploadFileExtension))

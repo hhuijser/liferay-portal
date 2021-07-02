@@ -178,10 +178,10 @@ public class SharingEntryLocalServiceImpl
 		sharingEntry.setShareable(shareable);
 		sharingEntry.setExpirationDate(expirationDate);
 
-		Stream<SharingEntryAction> sharingEntryActionStream =
+		Stream<SharingEntryAction> sharingEntryActionsStream =
 			sharingEntryActions.stream();
 
-		sharingEntryActionStream.map(
+		sharingEntryActionsStream.map(
 			SharingEntryAction::getBitwiseValue
 		).reduce(
 			(bitwiseValue1, bitwiseValue2) -> bitwiseValue1 | bitwiseValue2
@@ -706,10 +706,10 @@ public class SharingEntryLocalServiceImpl
 		sharingEntry.setShareable(shareable);
 		sharingEntry.setExpirationDate(expirationDate);
 
-		Stream<SharingEntryAction> sharingEntryActionStream =
+		Stream<SharingEntryAction> sharingEntryActionsStream =
 			sharingEntryActions.stream();
 
-		sharingEntryActionStream.map(
+		sharingEntryActionsStream.map(
 			SharingEntryAction::getBitwiseValue
 		).reduce(
 			(bitwiseValue1, bitwiseValue2) -> bitwiseValue1 | bitwiseValue2

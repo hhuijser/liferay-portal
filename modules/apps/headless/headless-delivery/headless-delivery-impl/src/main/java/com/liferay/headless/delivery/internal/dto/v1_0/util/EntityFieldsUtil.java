@@ -55,9 +55,9 @@ public class EntityFieldsUtil {
 		List<ExpandoColumn> expandoColumns =
 			expandoColumnLocalService.getColumns(expandoTable.getTableId());
 
-		Stream<ExpandoColumn> expandoColumnStream = expandoColumns.stream();
+		Stream<ExpandoColumn> expandoColumnsStream = expandoColumns.stream();
 
-		return expandoColumnStream.map(
+		return expandoColumnsStream.map(
 			EntityFieldsUtil::_getEntityField
 		).filter(
 			Objects::nonNull

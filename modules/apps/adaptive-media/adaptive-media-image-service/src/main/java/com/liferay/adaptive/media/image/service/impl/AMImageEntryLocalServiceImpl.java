@@ -271,9 +271,9 @@ public class AMImageEntryLocalServiceImpl
 		Collection<AMImageCounter> amImageCounters =
 			_serviceTrackerMap.values();
 
-		Stream<AMImageCounter> amImageCounterStream = amImageCounters.stream();
+		Stream<AMImageCounter> amImageCountersStream = amImageCounters.stream();
 
-		return amImageCounterStream.mapToInt(
+		return amImageCountersStream.mapToInt(
 			amImageCounter -> amImageCounter.countExpectedAMImageEntries(
 				companyId)
 		).sum();

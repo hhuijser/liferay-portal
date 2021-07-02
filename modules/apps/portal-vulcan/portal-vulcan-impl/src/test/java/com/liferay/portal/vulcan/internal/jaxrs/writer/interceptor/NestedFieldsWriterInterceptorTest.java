@@ -923,10 +923,10 @@ public class NestedFieldsWriterInterceptorTest {
 				_toProductOption(30L, "test3"));
 
 			if (name != null) {
-				Stream<ProductOption> productOptionStream =
+				Stream<ProductOption> productOptionsStream =
 					productOptions.stream();
 
-				productOptions = productOptionStream.filter(
+				productOptions = productOptionsStream.filter(
 					productOption -> Objects.equals(
 						productOption.getName(), name)
 				).collect(
@@ -1033,10 +1033,10 @@ public class NestedFieldsWriterInterceptorTest {
 				_toProductOption(3L, "test3"));
 
 			if (name != null) {
-				Stream<ProductOption> productOptionStream =
+				Stream<ProductOption> productOptionsStream =
 					productOptions.stream();
 
-				productOptions = productOptionStream.filter(
+				productOptions = productOptionsStream.filter(
 					productOption -> Objects.equals(
 						productOption.getName(), name)
 				).collect(

@@ -134,10 +134,10 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 		List<DDMFormField> nestedDDMFormFields =
 			ddmFormField.getNestedDDMFormFields();
 
-		Stream<DDMFormField> nestedDDMFormFieldStream =
+		Stream<DDMFormField> nestedDDMFormFieldsStream =
 			nestedDDMFormFields.stream();
 
-		Set<String> nestedDDMFormFieldNames = nestedDDMFormFieldStream.map(
+		Set<String> nestedDDMFormFieldNames = nestedDDMFormFieldsStream.map(
 			DDMFormField::getName
 		).collect(
 			Collectors.toSet()

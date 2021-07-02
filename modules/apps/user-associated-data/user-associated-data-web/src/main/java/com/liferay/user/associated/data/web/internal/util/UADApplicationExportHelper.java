@@ -110,10 +110,10 @@ public class UADApplicationExportHelper {
 					applicationKey, groupId, userId));
 		}
 
-		Stream<UADApplicationExportDisplay> uadApplicationExportDisplayStream =
+		Stream<UADApplicationExportDisplay> uadApplicationExportDisplaysStream =
 			uadApplicationExportDisplays.stream();
 
-		return uadApplicationExportDisplayStream.sorted(
+		return uadApplicationExportDisplaysStream.sorted(
 			Comparator.comparing(UADApplicationExportDisplay::getApplicationKey)
 		).collect(
 			Collectors.toList()

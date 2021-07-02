@@ -12,10 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.file.install.internal;
+package com.liferay.portal.file.install.internal.activator;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.file.install.FileInstaller;
+import com.liferay.portal.file.install.internal.DefaultJarInstaller;
+import com.liferay.portal.file.install.internal.DirectoryWatcher;
+import com.liferay.portal.file.install.internal.Scanner;
 import com.liferay.portal.file.install.internal.configuration.ConfigurationFileInstaller;
 import com.liferay.portal.file.install.internal.configuration.FileSyncConfigurationListener;
 

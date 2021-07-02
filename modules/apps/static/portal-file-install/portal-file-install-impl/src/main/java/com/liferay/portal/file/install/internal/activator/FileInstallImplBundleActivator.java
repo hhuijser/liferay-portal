@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.file.install.internal;
+package com.liferay.portal.file.install.internal.activator;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.file.install.FileInstaller;

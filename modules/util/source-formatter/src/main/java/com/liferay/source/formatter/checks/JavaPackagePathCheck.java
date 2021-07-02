@@ -111,7 +111,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			javaClass.getImplementedClassNames();
 
 		if (!packageName.contains(".internal.") &&
-			!packageName.endsWith(".internal")) {
+			!packageName.endsWith(".internal") &&
+			absolutePath.matches(".*/modules(/dxp)?/apps/.*")) {
 
 			String className = javaClass.getName();
 

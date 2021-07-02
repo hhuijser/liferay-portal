@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.log4j.extender.internal;
+package com.liferay.portal.log4j.extender.internal.activator;
 
 import com.liferay.petra.log4j.Log4JUtil;
 import com.liferay.petra.string.StringBundler;

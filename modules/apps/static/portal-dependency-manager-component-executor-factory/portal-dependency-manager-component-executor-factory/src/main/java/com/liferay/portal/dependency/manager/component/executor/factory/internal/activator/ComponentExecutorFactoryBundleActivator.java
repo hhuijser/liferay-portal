@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.dependency.manager.component.executor.factory.internal;
+package com.liferay.portal.dependency.manager.component.executor.factory.internal.activator;
 
 import com.liferay.portal.kernel.dependency.manager.DependencyManagerSync;
 import com.liferay.portal.kernel.log.Log;

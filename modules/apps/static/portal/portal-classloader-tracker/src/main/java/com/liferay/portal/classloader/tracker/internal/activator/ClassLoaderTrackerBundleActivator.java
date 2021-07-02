@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.classloader.tracker.internal;
+package com.liferay.portal.classloader.tracker.internal.activator;
 
 import com.liferay.petra.lang.ClassLoaderPool;
 import com.liferay.petra.string.StringPool;

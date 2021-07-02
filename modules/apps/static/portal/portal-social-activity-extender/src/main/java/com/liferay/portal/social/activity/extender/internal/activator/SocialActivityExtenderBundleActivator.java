@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.social.activity.extender.internal;
+package com.liferay.portal.social.activity.extender.internal.activator;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

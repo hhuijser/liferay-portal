@@ -39,7 +39,4 @@ public class UniqueStringRandomizerBumperClassTestRule
 	protected void afterClass(Description description, Void v) {
 	}
 
-	private UniqueStringRandomizerBumperClassTestRule() {
-	}
-
 }

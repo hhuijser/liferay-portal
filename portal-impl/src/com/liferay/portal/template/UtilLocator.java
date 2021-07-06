@@ -56,9 +56,6 @@ public class UtilLocator {
 		return bean;
 	}
 
-	private UtilLocator() {
-	}
-
 	private String _getUtilName(String utilName) {
 		if (!utilName.endsWith(BeanLocatorImpl.VELOCITY_SUFFIX)) {
 			utilName += BeanLocatorImpl.VELOCITY_SUFFIX;

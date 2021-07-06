@@ -155,9 +155,6 @@ public class EventsProcessorUtil {
 		}
 	}
 
-	protected EventsProcessorUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		EventsProcessorUtil.class);
 

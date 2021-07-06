@@ -72,9 +72,6 @@ public final class DDMFormEvaluatorEvaluateResponse {
 
 	}
 
-	private DDMFormEvaluatorEvaluateResponse() {
-	}
-
 	private Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
 		_ddmFormFieldsPropertyChanges;
 	private Set<Integer> _disabledPagesIndexes;

@@ -141,9 +141,6 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 			writeFindBugsProjectTaskProvider);
 	}
 
-	private FindSecurityBugsPlugin() {
-	}
-
 	private void _configureConfigurationFindSecurityBugs(
 		final Project project, Configuration findSecurityBugsConfiguration) {
 

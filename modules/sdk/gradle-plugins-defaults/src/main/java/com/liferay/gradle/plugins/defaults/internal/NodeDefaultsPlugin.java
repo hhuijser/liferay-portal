@@ -59,9 +59,6 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 		return NodePlugin.class;
 	}
 
-	private NodeDefaultsPlugin() {
-	}
-
 	private void _configureNode(Project project, String portalVersion) {
 		if (PortalTools.PORTAL_VERSION_7_0_X.equals(portalVersion)) {
 			NodeExtension nodeExtension = GradleUtil.getExtension(

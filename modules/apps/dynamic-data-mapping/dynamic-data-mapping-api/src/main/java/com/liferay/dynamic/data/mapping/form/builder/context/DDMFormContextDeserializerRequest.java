@@ -71,9 +71,6 @@ public class DDMFormContextDeserializerRequest {
 		addProperty("serializedFormContext", serializedFormContext);
 	}
 
-	private DDMFormContextDeserializerRequest() {
-	}
-
 	private final Map<String, Object> _properties = new HashMap<>();
 
 }

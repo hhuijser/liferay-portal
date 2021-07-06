@@ -69,9 +69,6 @@ public class UpgradeTableBuilderDefaultsPlugin
 		return UpgradeTableBuilderPlugin.class;
 	}
 
-	private UpgradeTableBuilderDefaultsPlugin() {
-	}
-
 	private void _configureTaskBuildUpgradeTable(
 		BuildUpgradeTableTask buildUpgradeTableTask) {
 

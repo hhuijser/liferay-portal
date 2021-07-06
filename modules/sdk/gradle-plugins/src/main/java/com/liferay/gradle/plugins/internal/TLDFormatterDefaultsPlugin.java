@@ -46,9 +46,6 @@ public class TLDFormatterDefaultsPlugin
 		return TLDFormatterPlugin.class;
 	}
 
-	private TLDFormatterDefaultsPlugin() {
-	}
-
 	private static final String _PORTAL_TOOL_NAME = "com.liferay.tld.formatter";
 
 }

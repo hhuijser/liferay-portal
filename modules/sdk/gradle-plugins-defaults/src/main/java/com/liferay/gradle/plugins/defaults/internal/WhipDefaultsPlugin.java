@@ -66,9 +66,6 @@ public class WhipDefaultsPlugin extends BaseDefaultsPlugin<WhipPlugin> {
 		return WhipPlugin.class;
 	}
 
-	private WhipDefaultsPlugin() {
-	}
-
 	private void _configureExtensionWhip(
 		Project project, WhipExtension whipExtension) {
 

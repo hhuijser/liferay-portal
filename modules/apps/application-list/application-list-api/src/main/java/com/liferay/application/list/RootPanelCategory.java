@@ -91,9 +91,6 @@ public class RootPanelCategory implements PanelCategory {
 		return true;
 	}
 
-	private RootPanelCategory() {
-	}
-
 	private static final String _ROOT_PANEL_CATEGORY_KEY = "root";
 
 	private static final PanelCategory _panelCategory = new RootPanelCategory();

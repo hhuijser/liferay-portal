@@ -54,9 +54,6 @@ public class CTPersistenceHelperUtil {
 		return ctPersistenceHelper.isRemove(ctModel);
 	}
 
-	private CTPersistenceHelperUtil() {
-	}
-
 	private static volatile CTPersistenceHelper _ctPersistenceHelper =
 		ServiceProxyFactory.newServiceTrackedInstance(
 			CTPersistenceHelper.class, CTPersistenceHelperUtil.class,

@@ -110,9 +110,6 @@ public final class DDMFormInstanceRecordExporterRequest {
 
 	}
 
-	private DDMFormInstanceRecordExporterRequest() {
-	}
-
 	private long _ddmFormInstanceId;
 	private int _end = QueryUtil.ALL_POS;
 	private Locale _locale;

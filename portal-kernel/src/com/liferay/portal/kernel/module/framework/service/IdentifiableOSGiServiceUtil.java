@@ -34,9 +34,6 @@ public class IdentifiableOSGiServiceUtil {
 		return _identifiableOSGiServices.get(osgiServiceIdentifier);
 	}
 
-	private IdentifiableOSGiServiceUtil() {
-	}
-
 	private static final Map<String, IdentifiableOSGiService>
 		_identifiableOSGiServices = new ConcurrentHashMap<>();
 	private static final ServiceTracker

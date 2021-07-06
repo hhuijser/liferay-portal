@@ -94,9 +94,6 @@ public class DDMFormBuilderContextRequest {
 		addProperty("readOnly", readOnly);
 	}
 
-	private DDMFormBuilderContextRequest() {
-	}
-
 	private final Map<String, Object> _properties = new HashMap<>();
 
 }

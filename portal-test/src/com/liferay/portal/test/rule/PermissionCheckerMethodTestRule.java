@@ -85,9 +85,6 @@ public class PermissionCheckerMethodTestRule extends MethodTestRule<Void> {
 		PrincipalThreadLocal.setName(TestPropsValues.getUserId());
 	}
 
-	private PermissionCheckerMethodTestRule() {
-	}
-
 	private String _originalName;
 	private PermissionChecker _originalPermissionChecker;
 

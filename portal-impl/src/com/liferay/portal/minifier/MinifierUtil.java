@@ -129,9 +129,6 @@ public class MinifierUtil {
 		}
 	}
 
-	private MinifierUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(MinifierUtil.class);
 
 	private static final ServiceTracker<JavaScriptMinifier, JavaScriptMinifier>

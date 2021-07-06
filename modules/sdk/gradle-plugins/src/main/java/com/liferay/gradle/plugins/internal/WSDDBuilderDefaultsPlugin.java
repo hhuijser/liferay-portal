@@ -46,9 +46,6 @@ public class WSDDBuilderDefaultsPlugin
 		return WSDDBuilderPlugin.class;
 	}
 
-	private WSDDBuilderDefaultsPlugin() {
-	}
-
 	private static final String _PORTAL_TOOL_NAME =
 		"com.liferay.portal.tools.wsdd.builder";
 

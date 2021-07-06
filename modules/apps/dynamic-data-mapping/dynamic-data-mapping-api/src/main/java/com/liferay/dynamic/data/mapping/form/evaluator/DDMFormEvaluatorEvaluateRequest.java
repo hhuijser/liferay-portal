@@ -135,9 +135,6 @@ public final class DDMFormEvaluatorEvaluateRequest {
 
 	}
 
-	private DDMFormEvaluatorEvaluateRequest() {
-	}
-
 	private long _companyId;
 	private DDMForm _ddmForm;
 	private long _ddmFormInstanceId;

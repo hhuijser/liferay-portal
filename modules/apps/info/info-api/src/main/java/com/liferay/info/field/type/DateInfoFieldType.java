@@ -26,7 +26,4 @@ public class DateInfoFieldType implements InfoFieldType {
 		return "date";
 	}
 
-	private DateInfoFieldType() {
-	}
-
 }

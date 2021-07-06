@@ -37,7 +37,4 @@ public class PortletConfigurationIconComparator
 			portletConfigurationIconFactory1.getWeight());
 	}
 
-	private PortletConfigurationIconComparator() {
-	}
-
 }

@@ -494,9 +494,6 @@ public class PortalInstances {
 		return 0;
 	}
 
-	private PortalInstances() {
-	}
-
 	private static final String _GET_COMPANY_IDS =
 		"select companyId from Company";
 

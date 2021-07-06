@@ -43,9 +43,6 @@ public final class DDMFormLayoutSerializerSerializeResponse {
 
 	}
 
-	private DDMFormLayoutSerializerSerializeResponse() {
-	}
-
 	private String _content;
 
 }

@@ -121,9 +121,6 @@ public class MavenDefaultsPlugin extends BaseDefaultsPlugin<MavenPlugin> {
 
 		};
 
-	private MavenDefaultsPlugin() {
-	}
-
 	private void _configureTaskUploadArchives(Project project) {
 		Task uploadArchivesTask = GradleUtil.getTask(
 			project, BasePlugin.UPLOAD_ARCHIVES_TASK_NAME);

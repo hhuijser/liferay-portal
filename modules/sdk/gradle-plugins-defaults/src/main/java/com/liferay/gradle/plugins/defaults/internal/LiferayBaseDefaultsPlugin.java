@@ -54,9 +54,6 @@ public class LiferayBaseDefaultsPlugin
 		return LiferayBasePlugin.class;
 	}
 
-	private LiferayBaseDefaultsPlugin() {
-	}
-
 	private void _configureLiferayDeployDir(Project project) {
 		File forcedDeployDir = GradleUtil.getProperty(
 			project, "forced.deploy.dir", (File)null);

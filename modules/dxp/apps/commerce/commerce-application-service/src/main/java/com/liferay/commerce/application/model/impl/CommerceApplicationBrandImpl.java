@@ -31,7 +31,5 @@ public class CommerceApplicationBrandImpl
 	 *
 	 * Never reference this class directly. All methods that expect a commerce application brand model instance should use the {@link com.liferay.commerce.application.model.CommerceApplicationBrand} interface instead.
 	 */
-	public CommerceApplicationBrandImpl() {
-	}
 
 }

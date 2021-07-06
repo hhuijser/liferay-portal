@@ -86,7 +86,4 @@ public class DisplayContextUtil {
 		return userInfoJSONObject;
 	}
 
-	private DisplayContextUtil() {
-	}
-
 }

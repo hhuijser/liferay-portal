@@ -67,7 +67,4 @@ public class DXPVariantUtil {
 			toDXPVariantList(locale, segmentsExperimentRels));
 	}
 
-	private DXPVariantUtil() {
-	}
-
 }

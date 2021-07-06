@@ -114,9 +114,6 @@ public class TestIntegrationDefaultsPlugin
 		return TestIntegrationPlugin.class;
 	}
 
-	private TestIntegrationDefaultsPlugin() {
-	}
-
 	private void _configureConfigurationTestModules(
 		final Project project, Configuration testModulesConfiguration) {
 

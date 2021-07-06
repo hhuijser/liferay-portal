@@ -81,7 +81,4 @@ public class JaCoCoPlugin implements Plugin<Project> {
 		test.systemProperty("junit.code.coverage", "true");
 	}
 
-	private JaCoCoPlugin() {
-	}
-
 }

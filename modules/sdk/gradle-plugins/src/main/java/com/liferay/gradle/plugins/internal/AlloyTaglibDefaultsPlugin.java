@@ -105,9 +105,6 @@ public class AlloyTaglibDefaultsPlugin
 		return AlloyTaglibPlugin.class;
 	}
 
-	private AlloyTaglibDefaultsPlugin() {
-	}
-
 	private void _configureConfigurationPortalTool(
 		Configuration portalToolConfiguration,
 		Configuration runtimeConfiguration) {

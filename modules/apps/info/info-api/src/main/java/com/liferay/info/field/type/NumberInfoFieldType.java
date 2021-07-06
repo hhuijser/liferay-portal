@@ -30,7 +30,4 @@ public class NumberInfoFieldType implements InfoFieldType {
 		return "number";
 	}
 
-	private NumberInfoFieldType() {
-	}
-
 }

@@ -177,7 +177,4 @@ public class CTRowUtil {
 		return false;
 	}
 
-	private CTRowUtil() {
-	}
-
 }

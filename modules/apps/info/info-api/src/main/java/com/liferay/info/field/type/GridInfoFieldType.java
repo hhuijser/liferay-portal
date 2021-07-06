@@ -26,7 +26,4 @@ public class GridInfoFieldType implements InfoFieldType {
 		return "grid";
 	}
 
-	private GridInfoFieldType() {
-	}
-
 }

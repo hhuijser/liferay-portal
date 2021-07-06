@@ -294,7 +294,4 @@ public class SchemaUtils {
 		}
 	}
 
-	private SchemaUtils() {
-	}
-
 }

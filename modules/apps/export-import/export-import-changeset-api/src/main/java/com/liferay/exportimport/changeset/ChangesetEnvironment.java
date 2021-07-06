@@ -97,9 +97,6 @@ public class ChangesetEnvironment {
 
 	}
 
-	private ChangesetEnvironment() {
-	}
-
 	private long _groupId;
 	private Map<String, String> _parameterMap;
 	private long _plid;

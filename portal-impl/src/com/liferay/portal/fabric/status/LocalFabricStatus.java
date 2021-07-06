@@ -126,7 +126,4 @@ public class LocalFabricStatus implements FabricStatus {
 
 		};
 
-	private LocalFabricStatus() {
-	}
-
 }

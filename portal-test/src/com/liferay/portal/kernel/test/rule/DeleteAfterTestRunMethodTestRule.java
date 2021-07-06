@@ -292,9 +292,6 @@ public class DeleteAfterTestRunMethodTestRule extends MethodTestRule<Void> {
 
 	}
 
-	private DeleteAfterTestRunMethodTestRule() {
-	}
-
 	private static final Set<Class<?>> _orderedClasses = new LinkedHashSet<>(
 		Arrays.<Class<?>>asList(
 			User.class, Organization.class, Role.class, UserGroup.class,

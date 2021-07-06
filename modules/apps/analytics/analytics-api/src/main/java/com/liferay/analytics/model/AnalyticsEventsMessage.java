@@ -189,17 +189,11 @@ public final class AnalyticsEventsMessage implements Serializable {
 
 		}
 
-		private Event() {
-		}
-
 		private String _applicationId;
 		private Date _eventDate = new Date();
 		private String _eventId;
 		private Map<String, String> _properties = new HashMap<>();
 
-	}
-
-	private AnalyticsEventsMessage() {
 	}
 
 	private Map<String, String> _context = new HashMap<>();

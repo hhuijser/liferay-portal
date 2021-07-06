@@ -33,9 +33,6 @@ public class WarnLogExceptionHandler implements ExceptionHandler {
 		}
 	}
 
-	private WarnLogExceptionHandler() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		WarnLogExceptionHandler.class);
 

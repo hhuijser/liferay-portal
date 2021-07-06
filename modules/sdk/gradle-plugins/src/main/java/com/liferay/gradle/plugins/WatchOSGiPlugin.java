@@ -118,9 +118,6 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 			watchTaskProvider);
 	}
 
-	private WatchOSGiPlugin() {
-	}
-
 	private void _configureTaskBuildBundleDirProvider(
 		final Project project, TaskProvider<Sync> buildBundleDirTaskProvider,
 		final TaskProvider<Jar> jarTaskProvider) {

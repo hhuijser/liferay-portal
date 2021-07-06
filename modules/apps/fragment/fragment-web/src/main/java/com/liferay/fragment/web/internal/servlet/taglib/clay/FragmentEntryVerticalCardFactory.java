@@ -65,9 +65,6 @@ public class FragmentEntryVerticalCardFactory {
 		return null;
 	}
 
-	private FragmentEntryVerticalCardFactory() {
-	}
-
 	private static final FragmentEntryVerticalCardFactory
 		_fragmentEntryVerticalCardFactory =
 			new FragmentEntryVerticalCardFactory();

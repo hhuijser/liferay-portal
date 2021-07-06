@@ -88,9 +88,6 @@ public class Modifications {
 		return _modificationItems.toArray(new ModificationItem[0]);
 	}
 
-	private Modifications() {
-	}
-
 	private final List<ModificationItem> _modificationItems = new ArrayList<>();
 
 }

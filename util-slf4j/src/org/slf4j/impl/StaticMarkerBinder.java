@@ -35,9 +35,6 @@ public class StaticMarkerBinder implements MarkerFactoryBinder {
 		return BasicMarkerFactory.class.getName();
 	}
 
-	private StaticMarkerBinder() {
-	}
-
 	private final IMarkerFactory _iMarkerFactory = new BasicMarkerFactory();
 
 }

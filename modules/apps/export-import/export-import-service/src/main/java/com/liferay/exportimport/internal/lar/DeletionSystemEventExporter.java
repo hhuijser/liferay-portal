@@ -220,9 +220,6 @@ public class DeletionSystemEventExporter {
 				systemEvent.getReferrerClassNameId()));
 	}
 
-	private DeletionSystemEventExporter() {
-	}
-
 	private static final DeletionSystemEventExporter
 		_deletionSystemEventExporter = new DeletionSystemEventExporter();
 

@@ -79,7 +79,4 @@ public class StringUtil {
 		return value.toUpperCase(Locale.getDefault());
 	}
 
-	private StringUtil() {
-	}
-
 }

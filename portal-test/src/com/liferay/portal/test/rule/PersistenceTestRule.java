@@ -80,7 +80,4 @@ public class PersistenceTestRule extends AbstractTestRule<Object, Object> {
 	protected void afterClass(Description description, Object object) {
 	}
 
-	private PersistenceTestRule() {
-	}
-
 }

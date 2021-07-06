@@ -241,9 +241,6 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 	protected static final String RELENG_IGNORE_FILE_NAME =
 		".lfrbuild-releng-ignore";
 
-	private LiferayRelengPlugin() {
-	}
-
 	private void _configureProperties(Project project) {
 		boolean privateModule = false;
 

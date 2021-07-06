@@ -101,15 +101,9 @@ public final class DDMDataProviderRequest {
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private final DDMDataProviderRequest _ddmDataProviderRequest =
 			new DDMDataProviderRequest();
 
-	}
-
-	private DDMDataProviderRequest() {
 	}
 
 	private long _companyId;

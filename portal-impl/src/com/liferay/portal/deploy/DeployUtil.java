@@ -244,9 +244,6 @@ public class DeployUtil {
 		return false;
 	}
 
-	private DeployUtil() {
-	}
-
 	private String _getResourcePath(Set<Path> tempDirPaths, String resource)
 		throws Exception {
 

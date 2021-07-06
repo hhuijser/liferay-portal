@@ -34,7 +34,4 @@ public class NullExpression
 		consumer.accept("NULL");
 	}
 
-	private NullExpression() {
-	}
-
 }

@@ -42,9 +42,6 @@ public final class UpdateFieldPropertyResponse {
 
 	}
 
-	private UpdateFieldPropertyResponse() {
-	}
-
 	private boolean _updated;
 
 }

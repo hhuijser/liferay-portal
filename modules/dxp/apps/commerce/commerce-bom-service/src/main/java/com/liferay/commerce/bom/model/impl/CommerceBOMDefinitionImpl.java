@@ -24,9 +24,6 @@ import com.liferay.commerce.product.service.CPAttachmentFileEntryLocalServiceUti
  */
 public class CommerceBOMDefinitionImpl extends CommerceBOMDefinitionBaseImpl {
 
-	public CommerceBOMDefinitionImpl() {
-	}
-
 	@Override
 	public CommerceBOMFolder fetchCommerceBOMFolder() {
 		return CommerceBOMFolderLocalServiceUtil.fetchCommerceBOMFolder(

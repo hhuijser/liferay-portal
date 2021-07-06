@@ -80,7 +80,4 @@ public class SystemCheckerUtil {
 		}
 	}
 
-	private SystemCheckerUtil() {
-	}
-
 }

@@ -46,9 +46,6 @@ public class JavadocFormatterDefaultsPlugin
 		return JavadocFormatterPlugin.class;
 	}
 
-	private JavadocFormatterDefaultsPlugin() {
-	}
-
 	private static final String _PORTAL_TOOL_NAME =
 		"com.liferay.javadoc.formatter";
 

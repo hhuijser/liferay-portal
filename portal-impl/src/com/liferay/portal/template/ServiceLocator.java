@@ -67,9 +67,6 @@ public class ServiceLocator {
 		return bean;
 	}
 
-	private ServiceLocator() {
-	}
-
 	private String _getServiceName(String serviceName) {
 		if (!serviceName.endsWith(BeanLocatorImpl.VELOCITY_SUFFIX)) {
 			serviceName += BeanLocatorImpl.VELOCITY_SUFFIX;

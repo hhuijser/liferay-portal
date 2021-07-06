@@ -45,9 +45,6 @@ public final class DDMFormSerializerSerializeRequest {
 
 	}
 
-	private DDMFormSerializerSerializeRequest() {
-	}
-
 	private DDMForm _ddmForm;
 
 }

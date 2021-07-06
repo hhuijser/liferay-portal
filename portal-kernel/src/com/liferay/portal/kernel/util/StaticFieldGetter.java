@@ -45,9 +45,6 @@ public class StaticFieldGetter {
 		return object;
 	}
 
-	private StaticFieldGetter() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		StaticFieldGetter.class);
 

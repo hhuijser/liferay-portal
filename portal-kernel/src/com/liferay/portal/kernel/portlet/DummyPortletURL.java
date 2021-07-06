@@ -122,9 +122,6 @@ public class DummyPortletURL implements PortletURL {
 	public void write(Writer writer, boolean escapeXML) {
 	}
 
-	private DummyPortletURL() {
-	}
-
 	private static final DummyPortletURL _dummyPortletURL =
 		new DummyPortletURL();
 

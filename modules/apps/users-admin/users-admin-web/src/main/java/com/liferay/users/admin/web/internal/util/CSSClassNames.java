@@ -54,9 +54,6 @@ public class CSSClassNames {
 			return _build();
 		}
 
-		private Builder() {
-		}
-
 		private Builder _add(String cssClassName, boolean condition) {
 			if (condition) {
 				_streamBuilder.accept(cssClassName);
@@ -76,9 +73,6 @@ public class CSSClassNames {
 
 		private final Stream.Builder<String> _streamBuilder = Stream.builder();
 
-	}
-
-	private CSSClassNames() {
 	}
 
 }

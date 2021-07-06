@@ -80,9 +80,6 @@ public class UnknownDevice extends BaseDevice {
 		return false;
 	}
 
-	private UnknownDevice() {
-	}
-
 	private static final UnknownDevice _unknownDevice = new UnknownDevice();
 
 }

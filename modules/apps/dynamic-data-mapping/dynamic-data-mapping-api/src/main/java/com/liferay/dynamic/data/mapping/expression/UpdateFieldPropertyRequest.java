@@ -78,9 +78,6 @@ public final class UpdateFieldPropertyRequest {
 
 	}
 
-	private UpdateFieldPropertyRequest() {
-	}
-
 	private String _field;
 	private String _instanceId;
 	private final Map<String, Object> _properties = new HashMap<>();

@@ -57,9 +57,6 @@ public final class DDMFormValuesDeserializerDeserializeResponse {
 
 	}
 
-	private DDMFormValuesDeserializerDeserializeResponse() {
-	}
-
 	private DDMFormValues _ddmFormValues;
 	private Exception _exception;
 

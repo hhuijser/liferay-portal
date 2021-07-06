@@ -57,9 +57,6 @@ public final class GetFieldPropertyRequest {
 
 	}
 
-	private GetFieldPropertyRequest() {
-	}
-
 	private String _field;
 	private String _instanceId;
 	private String _property;

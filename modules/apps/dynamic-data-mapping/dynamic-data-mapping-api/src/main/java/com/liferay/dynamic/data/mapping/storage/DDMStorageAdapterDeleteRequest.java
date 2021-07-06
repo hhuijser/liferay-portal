@@ -43,9 +43,6 @@ public final class DDMStorageAdapterDeleteRequest {
 
 	}
 
-	private DDMStorageAdapterDeleteRequest() {
-	}
-
 	private long _primaryKey;
 
 }

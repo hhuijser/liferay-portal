@@ -43,9 +43,6 @@ public final class DDMStorageAdapterSaveResponse {
 
 	}
 
-	private DDMStorageAdapterSaveResponse() {
-	}
-
 	private long _primaryKey;
 
 }

@@ -27,9 +27,6 @@ public class ContentAccessorUtil {
 		return object instanceof ContentAccessor;
 	}
 
-	private ContentAccessorUtil() {
-	}
-
 	private static final ContentAccessorUtil _contentAccessorUtil =
 		new ContentAccessorUtil();
 

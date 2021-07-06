@@ -37,9 +37,6 @@ public class PageMetadata {
 		return _totalPages;
 	}
 
-	protected PageMetadata() {
-	}
-
 	@JsonProperty("number")
 	private long _number;
 

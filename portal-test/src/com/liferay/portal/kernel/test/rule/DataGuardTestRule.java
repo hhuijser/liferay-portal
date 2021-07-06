@@ -174,9 +174,6 @@ public class DataGuardTestRule
 			null);
 	}
 
-	private DataGuardTestRule() {
-	}
-
 	private void _autoDeleteAndAssert(
 			Description description,
 			Map<String, List<BaseModel<?>>> previousDataMap,

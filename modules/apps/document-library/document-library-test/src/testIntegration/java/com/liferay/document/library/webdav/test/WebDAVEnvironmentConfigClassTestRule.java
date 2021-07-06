@@ -57,9 +57,6 @@ public class WebDAVEnvironmentConfigClassTestRule
 		return null;
 	}
 
-	private WebDAVEnvironmentConfigClassTestRule() {
-	}
-
 	private static final BaseWebDAVTestCase _baseWebDAVTestCase =
 		new BaseWebDAVTestCase();
 

@@ -32,7 +32,4 @@ public class StaticMDCBinder {
 		return BasicMDCAdapter.class.getName();
 	}
 
-	private StaticMDCBinder() {
-	}
-
 }

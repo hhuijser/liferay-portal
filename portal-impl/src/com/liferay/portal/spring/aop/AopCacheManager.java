@@ -100,9 +100,6 @@ public class AopCacheManager {
 		return chainableMethodAdvices;
 	}
 
-	private AopCacheManager() {
-	}
-
 	private static final Comparator<ChainableMethodAdvice>
 		_CHAINABLE_METHOD_ADVICE_COMPARATOR = Comparator.comparing(
 			chainableMethodAdvice -> {

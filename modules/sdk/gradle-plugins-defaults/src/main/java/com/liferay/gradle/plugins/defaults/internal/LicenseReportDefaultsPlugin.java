@@ -82,9 +82,6 @@ public class LicenseReportDefaultsPlugin implements Plugin<Project> {
 			new OSGiLicenseReportConfigurator(project));
 	}
 
-	private LicenseReportDefaultsPlugin() {
-	}
-
 	private static class AntLicenseReportConfigurator
 		extends BaseLicenseReportConfigurator<LiferayAntPlugin> {
 

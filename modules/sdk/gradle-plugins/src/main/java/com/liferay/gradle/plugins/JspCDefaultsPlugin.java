@@ -122,9 +122,6 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 		return JspCPlugin.class;
 	}
 
-	private JspCDefaultsPlugin() {
-	}
-
 	private void _configureExtensionBundleAfterEvaluate(
 		BundleExtension bundleExtension,
 		TaskProvider<JavaCompile> compileJSPTaskProvider,

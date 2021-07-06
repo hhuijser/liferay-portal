@@ -179,9 +179,6 @@ public class LiferayCIPlugin implements Plugin<Project> {
 			});
 	}
 
-	private LiferayCIPlugin() {
-	}
-
 	private void _configureTaskDownloadNode(DownloadNodeTask downloadNodeTask) {
 		downloadNodeTask.doFirst(
 			new Action<Task>() {

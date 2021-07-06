@@ -53,9 +53,6 @@ public class NoKnownDevices implements KnownDevices {
 	public void reload() {
 	}
 
-	private NoKnownDevices() {
-	}
-
 	private static final NoKnownDevices _noKnownDevices = new NoKnownDevices();
 
 	private final Set<String> _pointingMethods = Collections.singleton(

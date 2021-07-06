@@ -71,9 +71,6 @@ public class DebugUtils {
 		return matcher.group(2) + matcher.group(1);
 	}
 
-	private DebugUtils() {
-	}
-
 	private static final Pattern _stackLinePattern = Pattern.compile(
 		".+(\\.\\w+)\\((.+)\\)");
 

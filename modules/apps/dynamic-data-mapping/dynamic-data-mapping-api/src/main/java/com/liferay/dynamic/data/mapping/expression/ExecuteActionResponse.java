@@ -56,9 +56,6 @@ public final class ExecuteActionResponse {
 
 	}
 
-	private ExecuteActionResponse() {
-	}
-
 	private final Map<String, Object> _output = new HashMap<>();
 	private boolean _success;
 

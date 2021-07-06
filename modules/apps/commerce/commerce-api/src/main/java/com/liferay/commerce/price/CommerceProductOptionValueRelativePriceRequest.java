@@ -135,9 +135,6 @@ public class CommerceProductOptionValueRelativePriceRequest {
 
 	}
 
-	private CommerceProductOptionValueRelativePriceRequest() {
-	}
-
 	private CommerceContext _commerceContext;
 	private CPDefinitionOptionValueRel _cpDefinitionOptionValueRel;
 	private long _cpInstanceId;

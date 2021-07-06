@@ -60,9 +60,6 @@ public final class ExecuteActionRequest {
 
 	}
 
-	private ExecuteActionRequest() {
-	}
-
 	private String _action;
 	private final Map<String, Object> _parameters = new HashMap<>();
 

@@ -71,9 +71,6 @@ public class PublishPluginDefaultsPlugin
 		return PublishPlugin.class;
 	}
 
-	private PublishPluginDefaultsPlugin() {
-	}
-
 	private void _configurePluginBundle(
 		Project project, final BundleExtension bundleExtension) {
 

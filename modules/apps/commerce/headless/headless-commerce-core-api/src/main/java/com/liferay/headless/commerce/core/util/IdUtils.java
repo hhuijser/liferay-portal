@@ -47,7 +47,4 @@ public class IdUtils {
 		return true;
 	}
 
-	private IdUtils() {
-	}
-
 }

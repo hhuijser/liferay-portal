@@ -57,9 +57,6 @@ public final class DDMFormLayoutDeserializerDeserializeResponse {
 
 	}
 
-	private DDMFormLayoutDeserializerDeserializeResponse() {
-	}
-
 	private DDMFormLayout _ddmFormLayout;
 	private Exception _exception;
 

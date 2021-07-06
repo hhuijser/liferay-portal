@@ -65,9 +65,6 @@ public class CTCollectionThreadLocal {
 		return ctCollectionIdSupplier.getCTCollectionId();
 	}
 
-	private CTCollectionThreadLocal() {
-	}
-
 	private static final CentralizedThreadLocal<Long> _ctCollectionId =
 		new CentralizedThreadLocal<>(
 			CTCollectionThreadLocal.class + "._ctCollectionId",

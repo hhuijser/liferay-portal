@@ -102,9 +102,6 @@ public class IdeaDefaultsPlugin extends BaseDefaultsPlugin<IdeaPlugin> {
 		return IdeaPlugin.class;
 	}
 
-	private IdeaDefaultsPlugin() {
-	}
-
 	private void _configureIdeaModule(
 		final Project project, final SourceSet javaMainSourceSet,
 		IdeaModule ideaModule) {

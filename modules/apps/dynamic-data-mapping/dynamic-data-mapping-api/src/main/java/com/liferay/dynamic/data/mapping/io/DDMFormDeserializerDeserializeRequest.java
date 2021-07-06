@@ -43,9 +43,6 @@ public final class DDMFormDeserializerDeserializeRequest {
 
 	}
 
-	private DDMFormDeserializerDeserializeRequest() {
-	}
-
 	private String _content;
 
 }

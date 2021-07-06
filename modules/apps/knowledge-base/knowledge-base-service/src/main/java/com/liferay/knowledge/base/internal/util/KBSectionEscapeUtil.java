@@ -55,7 +55,4 @@ public class KBSectionEscapeUtil {
 		return sectionsArray;
 	}
 
-	private KBSectionEscapeUtil() {
-	}
-
 }

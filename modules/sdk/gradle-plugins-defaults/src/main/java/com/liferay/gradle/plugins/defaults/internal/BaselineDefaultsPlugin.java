@@ -52,9 +52,6 @@ public class BaselineDefaultsPlugin extends BaseDefaultsPlugin<BaselinePlugin> {
 		return BaselinePlugin.class;
 	}
 
-	private BaselineDefaultsPlugin() {
-	}
-
 	private void _configureTaskBaseline(
 		final BundleExtension bundleExtension, BaselineTask baselineTask) {
 

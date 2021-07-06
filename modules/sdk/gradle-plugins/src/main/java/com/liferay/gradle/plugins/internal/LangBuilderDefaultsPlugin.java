@@ -65,9 +65,6 @@ public class LangBuilderDefaultsPlugin
 		return LangBuilderPlugin.class;
 	}
 
-	private LangBuilderDefaultsPlugin() {
-	}
-
 	private void _configureTaskBuildLang(BuildLangTask buildLangTask) {
 		String translateSubscriptionKey = GradleUtil.getProperty(
 			buildLangTask.getProject(), "microsoft.translator.subscription.key",

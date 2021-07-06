@@ -30,9 +30,6 @@ public class FullNameGeneratorFactory {
 		_fullNameGenerator = fullNameGenerator;
 	}
 
-	private FullNameGeneratorFactory() {
-	}
-
 	private static volatile FullNameGenerator _fullNameGenerator =
 		ServiceProxyFactory.newServiceTrackedInstance(
 			FullNameGenerator.class, FullNameGeneratorFactory.class,

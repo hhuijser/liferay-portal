@@ -30,7 +30,4 @@ public class SelectInfoFieldType implements InfoFieldType {
 		return "select";
 	}
 
-	private SelectInfoFieldType() {
-	}
-
 }

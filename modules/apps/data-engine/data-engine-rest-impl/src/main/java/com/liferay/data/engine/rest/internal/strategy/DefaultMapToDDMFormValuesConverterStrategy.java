@@ -64,9 +64,6 @@ public class DefaultMapToDDMFormValuesConverterStrategy
 				ddmFormFieldValues, ddmForm.getDDMFormFields()));
 	}
 
-	private DefaultMapToDDMFormValuesConverterStrategy() {
-	}
-
 	private void _createDDMFormFieldValues(
 		Map<String, Object> dataRecordValues, DDMFormField ddmFormField,
 		Map<String, DDMFormFieldValue> ddmFormFieldValues, Locale defaultLocale,

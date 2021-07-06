@@ -49,9 +49,6 @@ public class PortalPreferencesCacheUtil {
 		_portalCache.put(portalPreferencesId, preferenceMap);
 	}
 
-	private PortalPreferencesCacheUtil() {
-	}
-
 	private static final PortalCache<Long, Map<PortalPreferenceKey, String[]>>
 		_portalCache = PortalCacheHelperUtil.getPortalCache(
 			PortalCacheManagerNames.MULTI_VM,

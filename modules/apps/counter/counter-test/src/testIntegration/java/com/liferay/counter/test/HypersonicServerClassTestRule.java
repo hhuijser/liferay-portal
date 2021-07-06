@@ -174,9 +174,6 @@ public class HypersonicServerClassTestRule extends ClassTestRule<Server> {
 		return super.createClassStatement(statement, description);
 	}
 
-	private HypersonicServerClassTestRule() {
-	}
-
 	private void _deleteFolder(Path folderPath) throws Exception {
 		if (!Files.exists(folderPath)) {
 			return;

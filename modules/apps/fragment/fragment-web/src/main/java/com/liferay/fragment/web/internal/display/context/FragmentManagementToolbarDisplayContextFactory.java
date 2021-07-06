@@ -57,9 +57,6 @@ public class FragmentManagementToolbarDisplayContextFactory {
 		return null;
 	}
 
-	private FragmentManagementToolbarDisplayContextFactory() {
-	}
-
 	private static final FragmentManagementToolbarDisplayContextFactory
 		_fragmentManagementToolbarDisplayContextFactory =
 			new FragmentManagementToolbarDisplayContextFactory();

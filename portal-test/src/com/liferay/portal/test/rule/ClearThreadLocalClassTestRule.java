@@ -37,7 +37,4 @@ public class ClearThreadLocalClassTestRule extends ClassTestRule<Void> {
 		return null;
 	}
 
-	private ClearThreadLocalClassTestRule() {
-	}
-
 }

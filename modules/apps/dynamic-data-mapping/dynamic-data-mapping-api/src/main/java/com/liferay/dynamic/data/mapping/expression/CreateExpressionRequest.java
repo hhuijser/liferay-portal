@@ -107,9 +107,6 @@ public final class CreateExpressionRequest {
 
 	}
 
-	private CreateExpressionRequest() {
-	}
-
 	private DDMExpressionActionHandler _ddmExpressionActionHandler;
 	private boolean _ddmExpressionDateValidation;
 	private DDMExpressionFieldAccessor _ddmExpressionFieldAccessor;

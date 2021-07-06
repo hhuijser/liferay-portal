@@ -134,9 +134,6 @@ public class ResourceContext {
 
 	}
 
-	private ResourceContext() {
-	}
-
 	private byte[] bytes;
 	private long connectionTimeout;
 	private String contentType;

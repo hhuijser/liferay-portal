@@ -116,7 +116,4 @@ public final class TrafficChannelUtil {
 		);
 	}
 
-	private TrafficChannelUtil() {
-	}
-
 }

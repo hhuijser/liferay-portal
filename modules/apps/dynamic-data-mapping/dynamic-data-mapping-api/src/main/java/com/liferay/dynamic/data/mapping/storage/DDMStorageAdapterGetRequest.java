@@ -49,9 +49,6 @@ public final class DDMStorageAdapterGetRequest {
 
 	}
 
-	private DDMStorageAdapterGetRequest() {
-	}
-
 	private DDMForm _ddmForm;
 	private long _primaryKey;
 

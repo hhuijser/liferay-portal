@@ -120,9 +120,6 @@ public interface InfoLocalizedValue<T> {
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private Locale _defaultLocale;
 		private final Map<Locale, T> _values = new HashMap<>();
 

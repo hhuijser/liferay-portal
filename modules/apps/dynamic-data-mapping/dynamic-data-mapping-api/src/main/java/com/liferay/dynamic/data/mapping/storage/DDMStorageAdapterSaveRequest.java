@@ -116,9 +116,6 @@ public final class DDMStorageAdapterSaveRequest {
 
 	}
 
-	private DDMStorageAdapterSaveRequest() {
-	}
-
 	private String _className;
 	private DDMFormInstance _ddmFormInstance;
 	private DDMFormValues _ddmFormValues;

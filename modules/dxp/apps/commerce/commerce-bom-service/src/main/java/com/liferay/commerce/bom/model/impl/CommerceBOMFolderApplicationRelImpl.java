@@ -26,9 +26,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class CommerceBOMFolderApplicationRelImpl
 	extends CommerceBOMFolderApplicationRelBaseImpl {
 
-	public CommerceBOMFolderApplicationRelImpl() {
-	}
-
 	@Override
 	public CommerceApplicationModel getCommerceApplicationModel()
 		throws PortalException {

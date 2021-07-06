@@ -296,9 +296,6 @@ public class LogAssertionTestRule
 		logger.removeAppender(_logAppender);
 	}
 
-	private LogAssertionTestRule() {
-	}
-
 	private static final Map<Thread, Error> _concurrentFailures =
 		new ConcurrentHashMap<>();
 	private static final LogAppender _logAppender = new LogAppender();

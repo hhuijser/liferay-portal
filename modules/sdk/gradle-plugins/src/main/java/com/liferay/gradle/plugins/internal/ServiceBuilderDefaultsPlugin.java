@@ -166,9 +166,6 @@ public class ServiceBuilderDefaultsPlugin
 		return ServiceBuilderPlugin.class;
 	}
 
-	private ServiceBuilderDefaultsPlugin() {
-	}
-
 	private void _configureTaskBuildDBForLiferayBasePlugin(
 		Project project, BuildDBTask buildDBTask) {
 

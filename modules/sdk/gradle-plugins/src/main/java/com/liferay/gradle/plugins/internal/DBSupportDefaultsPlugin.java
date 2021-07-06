@@ -99,9 +99,6 @@ public class DBSupportDefaultsPlugin
 		return DBSupportPlugin.class;
 	}
 
-	private DBSupportDefaultsPlugin() {
-	}
-
 	private void _configureConfigurationDBSupport(
 		final Project project, final LiferayExtension liferayExtension,
 		Configuration dbSupportConfiguration) {

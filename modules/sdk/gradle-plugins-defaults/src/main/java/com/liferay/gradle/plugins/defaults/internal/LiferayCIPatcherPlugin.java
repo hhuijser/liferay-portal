@@ -38,9 +38,6 @@ public class LiferayCIPatcherPlugin implements Plugin<Project> {
 		_configureTasksNpmInstall(project);
 	}
 
-	private LiferayCIPatcherPlugin() {
-	}
-
 	private void _configureTaskNpmInstall(NpmInstallTask npmInstallTask) {
 		npmInstallTask.setNodeModulesCacheDir(null);
 	}

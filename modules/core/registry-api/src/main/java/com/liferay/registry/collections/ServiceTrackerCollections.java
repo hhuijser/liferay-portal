@@ -296,9 +296,6 @@ public class ServiceTrackerCollections {
 		return registry.getFilter(filterString);
 	}
 
-	private ServiceTrackerCollections() {
-	}
-
 	private static class ServiceTrackerCollectionImpl<S>
 		implements ServiceTrackerList<S> {
 

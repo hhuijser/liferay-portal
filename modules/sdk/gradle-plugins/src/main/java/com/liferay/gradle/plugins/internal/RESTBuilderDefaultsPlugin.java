@@ -63,9 +63,6 @@ public class RESTBuilderDefaultsPlugin
 		return RESTBuilderPlugin.class;
 	}
 
-	private RESTBuilderDefaultsPlugin() {
-	}
-
 	@SuppressWarnings("serial")
 	private void _configureTaskProcessResourcesProvider(
 		final Project project,

@@ -33,9 +33,6 @@ public class DestinationFactoryUtil {
 		return _destinationFactory.getDestinationTypes();
 	}
 
-	private DestinationFactoryUtil() {
-	}
-
 	private static volatile DestinationFactory _destinationFactory =
 		ServiceProxyFactory.newServiceTrackedInstance(
 			DestinationFactory.class, DestinationFactoryUtil.class,

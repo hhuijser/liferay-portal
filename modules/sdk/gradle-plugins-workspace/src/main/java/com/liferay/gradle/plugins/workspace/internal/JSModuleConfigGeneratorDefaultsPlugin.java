@@ -56,9 +56,6 @@ public class JSModuleConfigGeneratorDefaultsPlugin implements Plugin<Project> {
 			});
 	}
 
-	private JSModuleConfigGeneratorDefaultsPlugin() {
-	}
-
 	private void _applyPluginDefaults(Project project) {
 
 		// Extensions

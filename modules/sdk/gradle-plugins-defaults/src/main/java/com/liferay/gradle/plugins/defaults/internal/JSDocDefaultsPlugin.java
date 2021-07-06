@@ -48,9 +48,6 @@ public class JSDocDefaultsPlugin extends BaseDefaultsPlugin<JSDocPlugin> {
 		return JSDocPlugin.class;
 	}
 
-	private JSDocDefaultsPlugin() {
-	}
-
 	private void _configureTaskJSDoc(JSDocTask jsDocTask) {
 		Project project = jsDocTask.getProject();
 

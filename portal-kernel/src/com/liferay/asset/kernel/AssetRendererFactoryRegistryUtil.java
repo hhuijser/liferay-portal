@@ -204,9 +204,6 @@ public class AssetRendererFactoryRegistryUtil {
 		return serviceReferenceComparator.reversed();
 	}
 
-	private AssetRendererFactoryRegistryUtil() {
-	}
-
 	private static final ServiceTrackerMap<String, AssetRendererFactory<?>>
 		_classNameAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(

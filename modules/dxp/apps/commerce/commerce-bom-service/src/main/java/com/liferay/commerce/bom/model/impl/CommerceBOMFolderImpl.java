@@ -27,9 +27,6 @@ import java.util.List;
  */
 public class CommerceBOMFolderImpl extends CommerceBOMFolderBaseImpl {
 
-	public CommerceBOMFolderImpl() {
-	}
-
 	@Override
 	public List<Long> getAncestorCommerceBOMFolderIds() throws PortalException {
 		List<Long> ancestorFolderIds = new ArrayList<>();

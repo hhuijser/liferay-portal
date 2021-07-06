@@ -91,7 +91,4 @@ public class MBMessageUtil {
 		}
 	}
 
-	private MBMessageUtil() {
-	}
-
 }

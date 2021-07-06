@@ -234,9 +234,6 @@ public class OrganizationScreenNavigationEntry
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private String _categoryKey;
 		private String _entryKey;
 		private String _jspPath;

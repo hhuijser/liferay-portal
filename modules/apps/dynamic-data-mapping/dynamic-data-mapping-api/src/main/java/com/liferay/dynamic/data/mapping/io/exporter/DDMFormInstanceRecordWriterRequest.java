@@ -107,9 +107,6 @@ public final class DDMFormInstanceRecordWriterRequest {
 
 	}
 
-	private DDMFormInstanceRecordWriterRequest() {
-	}
-
 	private Map<String, String> _ddmFormFieldsLabel;
 	private List<Map<String, String>> _ddmFormFieldValues;
 

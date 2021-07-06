@@ -38,9 +38,6 @@ public class AggregateUtil {
 		return content;
 	}
 
-	private AggregateUtil() {
-	}
-
 	private static final String[] _CSS_PATH_PLACEHOLDERS = {
 		"[$EMPTY_1$]", "[$EMPTY_2$]", "[$EMPTY_3$]", "[$TOKEN_1$]",
 		"[$TOKEN_2$]", "[$TOKEN_3$]", "[$ABSOLUTE_1$]", "[$ABSOLUTE_2$]",

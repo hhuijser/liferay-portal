@@ -42,9 +42,6 @@ public final class GetFieldPropertyResponse {
 
 	}
 
-	private GetFieldPropertyResponse() {
-	}
-
 	private Object _value;
 
 }

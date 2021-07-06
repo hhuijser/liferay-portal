@@ -26,7 +26,4 @@ public class TagsInfoFieldType implements InfoFieldType {
 		return "tags";
 	}
 
-	private TagsInfoFieldType() {
-	}
-
 }

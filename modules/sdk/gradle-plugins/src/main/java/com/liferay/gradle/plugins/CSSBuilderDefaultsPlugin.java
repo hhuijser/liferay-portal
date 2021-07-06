@@ -71,9 +71,6 @@ public class CSSBuilderDefaultsPlugin
 		return CSSBuilderPlugin.class;
 	}
 
-	private CSSBuilderDefaultsPlugin() {
-	}
-
 	private void _configureTaskBuildCSS(BuildCSSTask buildCSSTask) {
 		Project project = buildCSSTask.getProject();
 

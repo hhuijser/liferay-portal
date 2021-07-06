@@ -49,9 +49,6 @@ public final class AMImageAttribute {
 		return i1 - i2;
 	}
 
-	private AMImageAttribute() {
-	}
-
 	private static final Map<String, AMAttribute<?, ?>> _allowedAMAttributes =
 		new HashMap<>();
 

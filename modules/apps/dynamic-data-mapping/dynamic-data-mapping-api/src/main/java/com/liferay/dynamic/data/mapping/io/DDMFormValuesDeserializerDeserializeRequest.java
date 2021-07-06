@@ -50,9 +50,6 @@ public final class DDMFormValuesDeserializerDeserializeRequest {
 
 	}
 
-	private DDMFormValuesDeserializerDeserializeRequest() {
-	}
-
 	private String _content;
 	private DDMForm _ddmForm;
 

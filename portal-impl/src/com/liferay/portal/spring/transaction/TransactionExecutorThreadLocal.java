@@ -47,9 +47,6 @@ public class TransactionExecutorThreadLocal {
 		transactionExecutors.push(transactionExecutor);
 	}
 
-	private TransactionExecutorThreadLocal() {
-	}
-
 	private static final ThreadLocal<Deque<TransactionExecutor>>
 		_transactionExecutorThreadLocal = new CentralizedThreadLocal<>(
 			TransactionExecutorThreadLocal.class +

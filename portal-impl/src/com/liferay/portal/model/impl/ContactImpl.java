@@ -44,9 +44,6 @@ public class ContactImpl extends ContactBaseImpl {
 
 	private static class ClassNameIds {
 
-		private ClassNameIds() {
-		}
-
 		private static final long _USER_CLASS_NAME_ID =
 			PortalUtil.getClassNameId(User.class);
 

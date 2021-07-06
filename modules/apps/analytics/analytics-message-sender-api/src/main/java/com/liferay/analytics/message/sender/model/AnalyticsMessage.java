@@ -88,9 +88,6 @@ public final class AnalyticsMessage implements Serializable {
 
 	}
 
-	private AnalyticsMessage() {
-	}
-
 	private String _action;
 	private JSONObject _objectJSONObject;
 	private String _type;

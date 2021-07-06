@@ -29,7 +29,4 @@ public class IntegerInfoFieldType implements InfoFieldType {
 		return "integer";
 	}
 
-	private IntegerInfoFieldType() {
-	}
-
 }

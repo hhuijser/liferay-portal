@@ -48,9 +48,6 @@ public class ResourceBundleLoaderUtil {
 		_portalResourceBundleLoader = resourceBundleLoader;
 	}
 
-	private ResourceBundleLoaderUtil() {
-	}
-
 	private static final ServiceTrackerMap<String, ResourceBundleLoader>
 		_bundleSymbolicNameServiceTrackerMap;
 	private static ResourceBundleLoader _portalResourceBundleLoader;

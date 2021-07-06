@@ -42,7 +42,4 @@ public class CompanyProviderClassTestRule extends ClassTestRule<Long> {
 		return companyId;
 	}
 
-	private CompanyProviderClassTestRule() {
-	}
-
 }

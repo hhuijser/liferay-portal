@@ -60,9 +60,6 @@ public class TimeZoneUtil {
 		}
 	}
 
-	private TimeZoneUtil() {
-	}
-
 	private static volatile TimeZone _timeZone = TimeZone.getTimeZone(
 		StringPool.UTC);
 	private static final Map<String, TimeZone> _timeZones =

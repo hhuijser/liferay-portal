@@ -115,9 +115,6 @@ public class NestedFieldsSupportMapToDDMFormValuesConverterStrategy
 		return ddmFormFieldValue;
 	}
 
-	private NestedFieldsSupportMapToDDMFormValuesConverterStrategy() {
-	}
-
 	private void _addMissingValues(
 		Map<String, DDMFormField> ddmFormFieldsMap, Locale locale,
 		Map<String, Object> values) {

@@ -50,9 +50,6 @@ public class JavaDefaultsPlugin extends BaseDefaultsPlugin<JavaPlugin> {
 		return JavaPlugin.class;
 	}
 
-	private JavaDefaultsPlugin() {
-	}
-
 	private void _configureTaskJarEnabled(Jar jar, String portalVersion) {
 		if (PortalTools.PORTAL_VERSION_7_0_X.equals(portalVersion)) {
 			return;

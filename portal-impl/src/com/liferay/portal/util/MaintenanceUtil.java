@@ -102,9 +102,6 @@ public class MaintenanceUtil {
 		}
 	}
 
-	private MaintenanceUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		MaintenanceUtil.class);
 

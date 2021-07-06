@@ -26,7 +26,4 @@ public class RadioInfoFieldType implements InfoFieldType {
 		return "radio";
 	}
 
-	private RadioInfoFieldType() {
-	}
-
 }

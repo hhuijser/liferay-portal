@@ -27,7 +27,4 @@ public class BooleanInfoFieldType implements InfoFieldType {
 		return "boolean";
 	}
 
-	private BooleanInfoFieldType() {
-	}
-
 }

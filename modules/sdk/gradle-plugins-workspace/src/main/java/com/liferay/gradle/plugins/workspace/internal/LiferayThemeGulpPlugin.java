@@ -61,9 +61,6 @@ public class LiferayThemeGulpPlugin implements Plugin<Project> {
 			});
 	}
 
-	private LiferayThemeGulpPlugin() {
-	}
-
 	private void _applyPluginDefaults(Project project) {
 
 		// Plugins

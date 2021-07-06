@@ -464,9 +464,6 @@ public class LiveUsers {
 		return liveUsers;
 	}
 
-	private LiveUsers() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(LiveUsers.class);
 
 	private static final Map<String, Map<Long, Map<Long, Set<String>>>>

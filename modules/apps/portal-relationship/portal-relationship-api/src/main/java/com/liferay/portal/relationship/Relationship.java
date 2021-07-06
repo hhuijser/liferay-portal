@@ -127,9 +127,6 @@ public class Relationship<T extends ClassedModel> {
 
 	}
 
-	private Relationship() {
-	}
-
 	private Stream<? extends ClassedModel> _getInboundMultiRelatedModelStream(
 		T model) {
 

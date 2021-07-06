@@ -166,9 +166,6 @@ public class InfoField<T extends InfoFieldType> implements InfoFieldSetEntry {
 			return new NameStep<>(this);
 		}
 
-		private Builder() {
-		}
-
 		private final Map
 			<InfoFieldType.Attribute<? extends InfoFieldType, ?>, Object>
 				_attributes = new HashMap<>();

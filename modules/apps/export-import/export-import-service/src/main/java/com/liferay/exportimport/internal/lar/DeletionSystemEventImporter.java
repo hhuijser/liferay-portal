@@ -115,9 +115,6 @@ public class DeletionSystemEventImporter {
 		}
 	}
 
-	private DeletionSystemEventImporter() {
-	}
-
 	private boolean _shouldImportDeletionSystemEvent(
 		PortletDataContext portletDataContext,
 		StagedModelType stagedModelType) {

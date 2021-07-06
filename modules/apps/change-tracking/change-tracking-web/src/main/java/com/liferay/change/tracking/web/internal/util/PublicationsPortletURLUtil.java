@@ -100,7 +100,4 @@ public class PublicationsPortletURLUtil {
 		}
 	}
 
-	private PublicationsPortletURLUtil() {
-	}
-
 }

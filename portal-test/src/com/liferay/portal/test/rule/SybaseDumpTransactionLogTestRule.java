@@ -111,9 +111,6 @@ public class SybaseDumpTransactionLogTestRule
 	protected void afterClass(Description description, Void v) {
 	}
 
-	private SybaseDumpTransactionLogTestRule() {
-	}
-
 	private void _dumpTransactionLog() throws SQLException {
 		DB db = DBManagerUtil.getDB();
 

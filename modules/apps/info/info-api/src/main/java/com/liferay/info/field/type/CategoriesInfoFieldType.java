@@ -27,7 +27,4 @@ public class CategoriesInfoFieldType implements InfoFieldType {
 		return "categories";
 	}
 
-	private CategoriesInfoFieldType() {
-	}
-
 }

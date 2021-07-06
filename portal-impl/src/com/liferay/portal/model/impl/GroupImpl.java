@@ -1233,9 +1233,6 @@ public class GroupImpl extends GroupBaseImpl {
 
 	private static class ClassNameIds {
 
-		private ClassNameIds() {
-		}
-
 		private static final long _COMPANY_CLASS_NAME_ID =
 			PortalUtil.getClassNameId(Company.class);
 

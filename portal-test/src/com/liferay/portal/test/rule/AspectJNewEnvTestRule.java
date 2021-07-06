@@ -155,9 +155,6 @@ public class AspectJNewEnvTestRule extends NewEnvTestRule {
 		return new SwitchClassLoaderProcessCallable(processCallable, dumpDir);
 	}
 
-	private AspectJNewEnvTestRule() {
-	}
-
 	private static class SwitchClassLoaderProcessCallable
 		implements ProcessCallable<Serializable> {
 

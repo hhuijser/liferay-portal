@@ -90,9 +90,6 @@ public class DDMFormBuilderSettingsRequest {
 		addProperty("scopeGroupId", scopeGroupId);
 	}
 
-	private DDMFormBuilderSettingsRequest() {
-	}
-
 	private final Map<String, Object> _properties = new HashMap<>();
 
 }

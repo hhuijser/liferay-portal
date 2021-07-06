@@ -145,9 +145,6 @@ public class NewEnvTestRule implements TestRule {
 		method.invoke(object);
 	}
 
-	protected NewEnvTestRule() {
-	}
-
 	protected List<String> createArguments(Description description) {
 		List<String> arguments = new ArrayList<>();
 

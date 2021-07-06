@@ -42,9 +42,6 @@ public final class DDMStorageAdapterGetResponse {
 
 	}
 
-	private DDMStorageAdapterGetResponse() {
-	}
-
 	private DDMFormValues _ddmFormValues;
 
 }

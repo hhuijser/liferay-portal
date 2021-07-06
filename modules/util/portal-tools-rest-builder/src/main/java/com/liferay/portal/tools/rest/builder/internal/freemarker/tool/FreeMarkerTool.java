@@ -901,9 +901,6 @@ public class FreeMarkerTool {
 		return false;
 	}
 
-	private FreeMarkerTool() {
-	}
-
 	private String _getGraphQLBody(
 		JavaMethodSignature javaMethodSignature,
 		List<JavaMethodSignature> javaMethodSignatures,

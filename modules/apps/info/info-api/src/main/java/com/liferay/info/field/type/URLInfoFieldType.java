@@ -26,7 +26,4 @@ public class URLInfoFieldType implements InfoFieldType {
 		return "url";
 	}
 
-	private URLInfoFieldType() {
-	}
-
 }

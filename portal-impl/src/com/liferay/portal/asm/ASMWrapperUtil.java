@@ -253,9 +253,6 @@ public class ASMWrapperUtil {
 		return StringUtil.replace(className, '.', '/');
 	}
 
-	private ASMWrapperUtil() {
-	}
-
 	private static final Method _defineClassMethod;
 	private static final Method _equalsMethod;
 	private static final Method _hashCodeMethod;

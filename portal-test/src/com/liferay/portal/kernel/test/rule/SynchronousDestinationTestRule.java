@@ -456,9 +456,6 @@ public class SynchronousDestinationTestRule
 
 	}
 
-	protected SynchronousDestinationTestRule() {
-	}
-
 	private SyncHandler _createSyncHandler(Sync sync) {
 		SyncHandler syncHandler = new SyncHandler();
 

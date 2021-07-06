@@ -79,9 +79,6 @@ public class ChangeTrackingTestRule extends ClassTestRule<AutoCloseable> {
 		return serviceRegistration::unregister;
 	}
 
-	private ChangeTrackingTestRule() {
-	}
-
 	private static final CentralizedThreadLocal<Boolean> _ctSafe =
 		new CentralizedThreadLocal<>(
 			ChangeTrackingTestRule.class + "._ctSafe", () -> Boolean.FALSE);

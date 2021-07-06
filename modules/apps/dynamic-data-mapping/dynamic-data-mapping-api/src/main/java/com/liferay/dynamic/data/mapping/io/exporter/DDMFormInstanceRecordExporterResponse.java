@@ -39,16 +39,10 @@ public final class DDMFormInstanceRecordExporterResponse {
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private final DDMFormInstanceRecordExporterResponse
 			_ddmFormInstanceRecordExporterFilterResponse =
 				new DDMFormInstanceRecordExporterResponse();
 
-	}
-
-	private DDMFormInstanceRecordExporterResponse() {
 	}
 
 	private byte[] _content;

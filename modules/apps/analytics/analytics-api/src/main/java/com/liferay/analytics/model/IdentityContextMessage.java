@@ -237,9 +237,6 @@ public final class IdentityContextMessage implements Serializable {
 
 	}
 
-	private IdentityContextMessage() {
-	}
-
 	private String _browserPluginDetails;
 	private String _canvasFingerPrint;
 	private boolean _cookiesEnabled;

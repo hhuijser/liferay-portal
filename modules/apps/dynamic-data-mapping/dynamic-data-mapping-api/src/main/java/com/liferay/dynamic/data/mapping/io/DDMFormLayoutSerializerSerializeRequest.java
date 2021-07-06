@@ -46,9 +46,6 @@ public final class DDMFormLayoutSerializerSerializeRequest {
 
 	}
 
-	private DDMFormLayoutSerializerSerializeRequest() {
-	}
-
 	private DDMFormLayout _ddmFormLayout;
 
 }

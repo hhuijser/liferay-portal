@@ -78,7 +78,4 @@ public abstract class Tree<T> {
 
 	}
 
-	private Tree() {
-	}
-
 }

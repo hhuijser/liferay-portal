@@ -51,9 +51,6 @@ public class PortalSessionContext {
 		return _sessionPool.values();
 	}
 
-	protected PortalSessionContext() {
-	}
-
 	private static final Map<String, HttpSession> _sessionPool =
 		new ConcurrentHashMap<>();
 

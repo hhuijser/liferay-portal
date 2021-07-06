@@ -72,9 +72,6 @@ public class StagingGroupServiceTunnelUtil {
 		}
 	}
 
-	private StagingGroupServiceTunnelUtil() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		StagingGroupServiceTunnelUtil.class);
 

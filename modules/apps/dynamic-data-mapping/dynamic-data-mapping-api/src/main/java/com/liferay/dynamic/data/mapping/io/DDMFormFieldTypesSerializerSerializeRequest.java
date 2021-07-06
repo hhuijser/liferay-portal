@@ -50,9 +50,6 @@ public final class DDMFormFieldTypesSerializerSerializeRequest {
 
 	}
 
-	private DDMFormFieldTypesSerializerSerializeRequest() {
-	}
-
 	private List<DDMFormFieldType> _ddmFormFieldTypes;
 
 }

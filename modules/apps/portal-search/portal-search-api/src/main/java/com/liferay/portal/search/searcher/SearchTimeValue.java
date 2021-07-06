@@ -51,14 +51,8 @@ public final class SearchTimeValue {
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private final SearchTimeValue _searchTimeValue = new SearchTimeValue();
 
-	}
-
-	private SearchTimeValue() {
 	}
 
 	private long _duration;

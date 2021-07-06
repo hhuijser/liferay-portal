@@ -104,9 +104,6 @@ public class EclipseDefaultsPlugin extends BaseDefaultsPlugin<EclipsePlugin> {
 		return EclipsePlugin.class;
 	}
 
-	private EclipseDefaultsPlugin() {
-	}
-
 	private void _configureEclipseClasspath(
 		final Project project, EclipseModel eclipseModelExtension) {
 

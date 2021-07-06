@@ -30,7 +30,5 @@ public class CommerceBOMEntryImpl extends CommerceBOMEntryBaseImpl {
 	 *
 	 * Never reference this class directly. All methods that expect a commerce bom entry model instance should use the {@link com.liferay.commerce.bom.model.CommerceBOMEntry} interface instead.
 	 */
-	public CommerceBOMEntryImpl() {
-	}
 
 }

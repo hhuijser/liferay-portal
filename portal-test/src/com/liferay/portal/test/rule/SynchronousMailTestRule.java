@@ -64,9 +64,6 @@ public class SynchronousMailTestRule extends SynchronousDestinationTestRule {
 		return null;
 	}
 
-	private SynchronousMailTestRule() {
-	}
-
 	private void _setCompanyAdminEmailFromAddress(
 			long companyId, String adminEmailFromAddress)
 		throws Exception {

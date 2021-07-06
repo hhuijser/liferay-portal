@@ -33,9 +33,6 @@ public class FullNameDefinitionFactory {
 		return _fullNameDefinitionFactory._getInstance(locale);
 	}
 
-	private FullNameDefinitionFactory() {
-	}
-
 	private FullNameField _getFullNameField(
 		Locale locale, String userNameField, boolean required) {
 

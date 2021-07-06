@@ -95,9 +95,6 @@ public class InstancePool {
 		_instances.clear();
 	}
 
-	private InstancePool() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(InstancePool.class);
 
 	private static final Map<String, Object> _instances =

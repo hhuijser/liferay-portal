@@ -62,7 +62,4 @@ public class FilterUtil {
 		return StringBundler.concat(fieldName, operator, StringPool.NULL);
 	}
 
-	private FilterUtil() {
-	}
-
 }

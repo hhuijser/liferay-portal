@@ -66,9 +66,6 @@ public class TargetPlatformRootProjectConfigurator implements Plugin<Project> {
 			project, normalizedTargetPlatformVersion);
 	}
 
-	private TargetPlatformRootProjectConfigurator() {
-	}
-
 	private void _addDependenciesTargetPlatformBoms(
 		Project project, String targetPlatformVersion) {
 

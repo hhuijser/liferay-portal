@@ -32,7 +32,4 @@ public class TextInfoFieldType implements InfoFieldType {
 		return "text";
 	}
 
-	private TextInfoFieldType() {
-	}
-
 }

@@ -53,10 +53,6 @@ public class JAXRSExtensionContextUtil {
 	}
 
 	public static class TestObject {
-
-		private TestObject() {
-		}
-
 	}
 
 	private static final Map<String, Object> _extendedProperties =

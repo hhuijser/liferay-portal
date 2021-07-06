@@ -181,9 +181,6 @@ public class PermissionExporter {
 		}
 	}
 
-	private PermissionExporter() {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		PermissionExporter.class);
 

@@ -32,7 +32,4 @@ public class SearchFacetComparator implements Comparator<SearchFacet> {
 			searchFacet2.getWeight(), searchFacet1.getWeight());
 	}
 
-	private SearchFacetComparator() {
-	}
-
 }

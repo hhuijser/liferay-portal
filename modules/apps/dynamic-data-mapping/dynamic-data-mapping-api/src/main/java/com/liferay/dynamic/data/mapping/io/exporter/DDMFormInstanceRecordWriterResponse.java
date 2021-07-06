@@ -43,9 +43,6 @@ public final class DDMFormInstanceRecordWriterResponse {
 
 	}
 
-	private DDMFormInstanceRecordWriterResponse() {
-	}
-
 	private byte[] _content;
 
 }

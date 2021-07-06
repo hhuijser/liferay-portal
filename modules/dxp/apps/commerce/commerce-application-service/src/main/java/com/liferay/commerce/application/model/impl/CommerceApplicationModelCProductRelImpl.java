@@ -31,7 +31,5 @@ public class CommerceApplicationModelCProductRelImpl
 	 *
 	 * Never reference this class directly. All methods that expect a commerce application model c product rel model instance should use the {@link com.liferay.commerce.application.model.CommerceApplicationModelCProductRel} interface instead.
 	 */
-	public CommerceApplicationModelCProductRelImpl() {
-	}
 
 }

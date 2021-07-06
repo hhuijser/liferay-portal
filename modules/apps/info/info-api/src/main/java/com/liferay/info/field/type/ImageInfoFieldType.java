@@ -26,7 +26,4 @@ public class ImageInfoFieldType implements InfoFieldType {
 		return "image";
 	}
 
-	private ImageInfoFieldType() {
-	}
-
 }

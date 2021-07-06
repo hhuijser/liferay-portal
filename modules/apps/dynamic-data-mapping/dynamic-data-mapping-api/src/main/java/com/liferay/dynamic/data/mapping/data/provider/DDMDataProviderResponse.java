@@ -75,15 +75,9 @@ public final class DDMDataProviderResponse implements Serializable {
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private DDMDataProviderResponse _ddmDataProviderResponse =
 			new DDMDataProviderResponse();
 
-	}
-
-	private DDMDataProviderResponse() {
 	}
 
 	private final Map<String, Object> _ddmDataProviderResponseOutputs =

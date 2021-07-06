@@ -39,16 +39,10 @@ public final class DDMStorageAdapterDeleteResponse {
 			return this;
 		}
 
-		private Builder() {
-		}
-
 		private final DDMStorageAdapterDeleteResponse
 			_ddmStorageAdapterDeleteResponse =
 				new DDMStorageAdapterDeleteResponse();
 
-	}
-
-	private DDMStorageAdapterDeleteResponse() {
 	}
 
 	private boolean _deleted = true;

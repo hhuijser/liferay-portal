@@ -15,7 +15,7 @@
 package com.liferay.document.library.web.internal.info.list.renderer;
 
 import com.liferay.info.list.renderer.InfoListRenderer;
-import com.liferay.info.taglib.list.renderer.BulletedBasicInfoListRenderer;
+import com.liferay.info.taglib.list.renderer.NumberedBasicInfoListRenderer;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 
 import org.osgi.service.component.annotations.Component;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = InfoListRenderer.class)
-public class BulletedFileEntryBasicListInfoListRenderer
-	extends FileEntryBasicListInfoListRenderer
-	implements BulletedBasicInfoListRenderer<FileEntry> {
+public class UnstyledFileEntryBasicInfoListRenderer
+	extends FileEntryBasicInfoListRenderer
+	implements NumberedBasicInfoListRenderer<FileEntry> {
 }

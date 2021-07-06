@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.asset.info.internal.list.renderer;
+package com.liferay.journal.web.internal.info.list.renderer;
 
-import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.info.list.renderer.InfoListRenderer;
-import com.liferay.info.taglib.list.renderer.BorderedBasicInfoListRenderer;
+import com.liferay.info.taglib.list.renderer.BulletedBasicInfoListRenderer;
+import com.liferay.journal.model.JournalArticle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = InfoListRenderer.class)
-public class BorderedAssetEntryBasicListInfoListRenderer
-	extends AssetEntryBasicListInfoListRenderer
-	implements BorderedBasicInfoListRenderer<AssetEntry> {
+public class BulletedJournalArticleBasicInfoListRenderer
+	extends JournalArticleBasicInfoListRenderer
+	implements BulletedBasicInfoListRenderer<JournalArticle> {
 }

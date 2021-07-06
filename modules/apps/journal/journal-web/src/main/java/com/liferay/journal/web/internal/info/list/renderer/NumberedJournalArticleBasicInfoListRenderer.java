@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.info.list.renderer;
+package com.liferay.journal.web.internal.info.list.renderer;
 
 import com.liferay.info.list.renderer.InfoListRenderer;
 import com.liferay.info.taglib.list.renderer.NumberedBasicInfoListRenderer;
-import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.journal.model.JournalArticle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = InfoListRenderer.class)
-public class NumberedFileEntryBasicListInfoListRenderer
-	extends FileEntryBasicListInfoListRenderer
-	implements NumberedBasicInfoListRenderer<FileEntry> {
+public class NumberedJournalArticleBasicInfoListRenderer
+	extends JournalArticleBasicInfoListRenderer
+	implements NumberedBasicInfoListRenderer<JournalArticle> {
 }

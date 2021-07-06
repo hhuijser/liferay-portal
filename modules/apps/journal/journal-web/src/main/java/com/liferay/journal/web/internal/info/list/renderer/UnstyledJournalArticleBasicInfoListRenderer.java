@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.blogs.web.internal.info.list.renderer;
+package com.liferay.journal.web.internal.info.list.renderer;
 
-import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.info.list.renderer.InfoListRenderer;
-import com.liferay.info.taglib.list.renderer.InlineBasicInfoListRenderer;
+import com.liferay.info.taglib.list.renderer.UnstyledBasicInfoListRenderer;
+import com.liferay.journal.model.JournalArticle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = InfoListRenderer.class)
-public class InlineBlogsEntryBasicListInfoListRenderer
-	extends BlogsEntryBasicListInfoListRenderer
-	implements InlineBasicInfoListRenderer<BlogsEntry> {
+public class UnstyledJournalArticleBasicInfoListRenderer
+	extends JournalArticleBasicInfoListRenderer
+	implements UnstyledBasicInfoListRenderer<JournalArticle> {
 }

@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = InfoListRenderer.class)
-public class UnstyleBlogsEntryBasicListInfoListRenderer
-	extends BlogsEntryBasicListInfoListRenderer
+public class UnstyleBlogsEntryBasicInfoListRenderer
+	extends BlogsEntryBasicInfoListRenderer
 	implements UnstyledBasicInfoListRenderer<BlogsEntry> {
 }

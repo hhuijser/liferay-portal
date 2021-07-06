@@ -12,16 +12,16 @@
  * details.
  */
 
-package com.liferay.journal.web.internal.info.list.renderer;
+package com.liferay.blogs.web.internal.info.list.renderer;
 
+import com.liferay.blogs.model.BlogsEntry;
+import com.liferay.blogs.web.internal.info.item.renderer.BlogsEntryAbstractInfoItemRenderer;
 import com.liferay.info.item.renderer.InfoItemRenderer;
 import com.liferay.info.item.renderer.InfoItemRendererTracker;
 import com.liferay.info.list.renderer.DefaultInfoListRendererContext;
 import com.liferay.info.list.renderer.InfoListRendererContext;
 import com.liferay.info.taglib.list.renderer.BasicInfoListRenderer;
 import com.liferay.info.taglib.servlet.taglib.InfoListBasicListTag;
-import com.liferay.journal.model.JournalArticle;
-import com.liferay.journal.web.internal.info.item.renderer.JournalArticleTitleInfoItemRenderer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -37,34 +37,34 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Pavel Savinov
  */
-public abstract class JournalArticleBasicListInfoListRenderer
-	implements BasicInfoListRenderer<JournalArticle> {
+public abstract class BlogsEntryBasicInfoListRenderer
+	implements BasicInfoListRenderer<BlogsEntry> {
 
 	@Override
 	public List<InfoItemRenderer<?>> getAvailableInfoItemRenderers() {
 		return infoItemRendererTracker.getInfoItemRenderers(
-			JournalArticle.class.getName());
+			BlogsEntry.class.getName());
 	}
 
 	@Override
 	public void render(
-		List<JournalArticle> articles, HttpServletRequest httpServletRequest,
+		List<BlogsEntry> blogEntries, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse) {
 
 		render(
-			articles,
+			blogEntries,
 			new DefaultInfoListRendererContext(
 				httpServletRequest, httpServletResponse));
 	}
 
 	@Override
 	public void render(
-		List<JournalArticle> articles,
+		List<BlogsEntry> blogEntries,
 		InfoListRendererContext infoListRendererContext) {
 
 		InfoListBasicListTag infoListBasicListTag = new InfoListBasicListTag();
 
-		infoListBasicListTag.setInfoListObjects(articles);
+		infoListBasicListTag.setInfoListObjects(blogEntries);
 
 		Optional<String> infoListItemRendererKeyOptional =
 			infoListRendererContext.getListItemRendererKeyOptional();
@@ -77,19 +77,10 @@ public abstract class JournalArticleBasicListInfoListRenderer
 		}
 		else {
 			infoListBasicListTag.setItemRendererKey(
-				JournalArticleTitleInfoItemRenderer.class.getName());
+				BlogsEntryAbstractInfoItemRenderer.class.getName());
 		}
 
 		infoListBasicListTag.setListStyleKey(getListStyle());
-
-		Optional<String> templateKeyOptional =
-			infoListRendererContext.getTemplateKeyOptional();
-
-		if (templateKeyOptional.isPresent() &&
-			Validator.isNotNull(templateKeyOptional.get())) {
-
-			infoListBasicListTag.setTemplateKey(templateKeyOptional.get());
-		}
 
 		try {
 			infoListBasicListTag.doTag(
@@ -97,7 +88,7 @@ public abstract class JournalArticleBasicListInfoListRenderer
 				infoListRendererContext.getHttpServletResponse());
 		}
 		catch (Exception exception) {
-			_log.error("Unable to render journal articles list", exception);
+			_log.error("Unable to render blog entries list", exception);
 		}
 	}
 
@@ -105,6 +96,6 @@ public abstract class JournalArticleBasicListInfoListRenderer
 	protected InfoItemRendererTracker infoItemRendererTracker;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleBasicListInfoListRenderer.class);
+		BlogsEntryBasicInfoListRenderer.class);
 
 }

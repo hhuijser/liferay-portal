@@ -15,7 +15,7 @@
 package com.liferay.journal.web.internal.info.list.renderer;
 
 import com.liferay.info.list.renderer.InfoListRenderer;
-import com.liferay.info.taglib.list.renderer.UnstyledBasicInfoListRenderer;
+import com.liferay.info.taglib.list.renderer.BorderedBasicInfoListRenderer;
 import com.liferay.journal.model.JournalArticle;
 
 import org.osgi.service.component.annotations.Component;
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Pavel Savinov
  */
 @Component(immediate = true, service = InfoListRenderer.class)
-public class UnstyledJournalArticleBasicListInfoListRenderer
-	extends JournalArticleBasicListInfoListRenderer
-	implements UnstyledBasicInfoListRenderer<JournalArticle> {
+public class JournalArticleBorderedBasicInfoListRenderer
+	extends JournalArticleBasicInfoListRenderer
+	implements BorderedBasicInfoListRenderer<JournalArticle> {
 }

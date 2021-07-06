@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.asset.info.internal.list.renderer;
+package com.liferay.document.library.web.internal.info.list.renderer;
 
-import com.liferay.asset.info.internal.item.renderer.AssetEntryTitleInfoItemRenderer;
-import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.document.library.web.internal.info.item.renderer.FileEntryTitleInfoItemRenderer;
 import com.liferay.info.item.renderer.InfoItemRenderer;
 import com.liferay.info.item.renderer.InfoItemRendererTracker;
 import com.liferay.info.list.renderer.DefaultInfoListRendererContext;
@@ -24,6 +23,7 @@ import com.liferay.info.taglib.list.renderer.BasicInfoListRenderer;
 import com.liferay.info.taglib.servlet.taglib.InfoListBasicListTag;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
@@ -37,34 +37,34 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Pavel Savinov
  */
-public abstract class AssetEntryBasicListInfoListRenderer
-	implements BasicInfoListRenderer<AssetEntry> {
+public abstract class FileEntryBasicInfoListRenderer
+	implements BasicInfoListRenderer<FileEntry> {
 
 	@Override
 	public List<InfoItemRenderer<?>> getAvailableInfoItemRenderers() {
 		return infoItemRendererTracker.getInfoItemRenderers(
-			AssetEntry.class.getName());
+			FileEntry.class.getName());
 	}
 
 	@Override
 	public void render(
-		List<AssetEntry> assetEntries, HttpServletRequest httpServletRequest,
+		List<FileEntry> fileEntries, HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse) {
 
 		render(
-			assetEntries,
+			fileEntries,
 			new DefaultInfoListRendererContext(
 				httpServletRequest, httpServletResponse));
 	}
 
 	@Override
 	public void render(
-		List<AssetEntry> assetEntries,
+		List<FileEntry> fileEntries,
 		InfoListRendererContext infoListRendererContext) {
 
 		InfoListBasicListTag infoListBasicListTag = new InfoListBasicListTag();
 
-		infoListBasicListTag.setInfoListObjects(assetEntries);
+		infoListBasicListTag.setInfoListObjects(fileEntries);
 
 		Optional<String> infoListItemRendererKeyOptional =
 			infoListRendererContext.getListItemRendererKeyOptional();
@@ -77,7 +77,7 @@ public abstract class AssetEntryBasicListInfoListRenderer
 		}
 		else {
 			infoListBasicListTag.setItemRendererKey(
-				AssetEntryTitleInfoItemRenderer.class.getName());
+				FileEntryTitleInfoItemRenderer.class.getName());
 		}
 
 		infoListBasicListTag.setListStyleKey(getListStyle());
@@ -97,7 +97,7 @@ public abstract class AssetEntryBasicListInfoListRenderer
 				infoListRendererContext.getHttpServletResponse());
 		}
 		catch (Exception exception) {
-			_log.error("Unable to render journal articles list", exception);
+			_log.error("Unable to render file entries list", exception);
 		}
 	}
 
@@ -105,6 +105,6 @@ public abstract class AssetEntryBasicListInfoListRenderer
 	protected InfoItemRendererTracker infoItemRendererTracker;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AssetEntryBasicListInfoListRenderer.class);
+		FileEntryBasicInfoListRenderer.class);
 
 }

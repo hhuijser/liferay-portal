@@ -104,7 +104,7 @@ public class AssetInfoListRendererTest {
 			(InfoListRenderer<AssetEntry>)
 				_infoListRendererTracker.getInfoListRenderer(
 					"com.liferay.asset.info.internal.list.renderer." +
-						"UnstyledAssetEntryBasicListInfoListRenderer");
+						"UnstyledAssetEntryBasicInfoListRenderer");
 		_layout = LayoutTestUtil.addLayout(_group);
 	}
 

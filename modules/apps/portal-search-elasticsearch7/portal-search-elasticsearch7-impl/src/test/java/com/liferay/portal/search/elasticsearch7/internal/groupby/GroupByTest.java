@@ -25,6 +25,7 @@ import com.liferay.portal.search.test.util.indexing.IndexingFixture;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -164,26 +165,9 @@ public class GroupByTest extends BaseGroupByTestCase {
 
 		Map<String, List<String>> orderedResultsMap =
 			HashMapBuilder.<String, List<String>>put(
-				GROUP_FIELD,
-				() -> {
-					List<String> groupFieldOrderedResults = new ArrayList<>();
-
-					groupFieldOrderedResults.add("three|3|3");
-					groupFieldOrderedResults.add("two|2|2");
-
-					return groupFieldOrderedResults;
-				}
+				GROUP_FIELD, Arrays.asList("three|3|3", "two|2|2")
 			).put(
-				SORT_FIELD,
-				() -> {
-					List<String> sortFieldOrderedResults = new ArrayList<>();
-
-					sortFieldOrderedResults.add("1|2|2");
-					sortFieldOrderedResults.add("2|2|2");
-					sortFieldOrderedResults.add("3|1|1");
-
-					return sortFieldOrderedResults;
-				}
+				SORT_FIELD, Arrays.asList("1|2|2", "2|2|2", "3|1|1")
 			).build();
 
 		assertSearch(

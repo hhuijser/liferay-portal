@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -197,16 +198,7 @@ public class JSONWebServiceInvokerInnerTest extends BaseJSONWebServiceTestCase {
 		expectedMap.put(
 			"data",
 			LinkedHashMapBuilder.<String, Object>put(
-				"array",
-				() -> {
-					List<Integer> list = new ArrayList<>();
-
-					list.add(9);
-					list.add(5);
-					list.add(7);
-
-					return list;
-				}
+				"array", Arrays.asList(9, 5, 7)
 			).put(
 				"id", 2
 			).put(

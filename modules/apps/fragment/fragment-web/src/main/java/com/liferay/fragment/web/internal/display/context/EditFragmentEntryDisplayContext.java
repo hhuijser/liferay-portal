@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -378,39 +379,28 @@ public class EditFragmentEntryDisplayContext {
 			"freeMarkerVariables", freeMarkerVariables
 		).put(
 			"htmlEditorCustomEntities",
-			() -> {
-				List<Map<String, Object>> htmlEditorCustomEntities =
-					new ArrayList<>();
-
-				htmlEditorCustomEntities.add(
-					HashMapBuilder.<String, Object>put(
-						"content", freeMarkerTaglibs
-					).put(
-						"end", "]"
-					).put(
-						"start", "[@"
-					).build());
-
-				htmlEditorCustomEntities.add(
-					HashMapBuilder.<String, Object>put(
-						"content", freeMarkerVariables
-					).put(
-						"end", "}"
-					).put(
-						"start", "${"
-					).build());
-
-				htmlEditorCustomEntities.add(
-					HashMapBuilder.<String, Object>put(
-						"content", resources
-					).put(
-						"end", "]"
-					).put(
-						"start", "[resources:"
-					).build());
-
-				return htmlEditorCustomEntities;
-			}
+			Arrays.asList(
+				HashMapBuilder.<String, Object>put(
+					"content", freeMarkerTaglibs
+				).put(
+					"end", "]"
+				).put(
+					"start", "[@"
+				).build(),
+				HashMapBuilder.<String, Object>put(
+					"content", freeMarkerVariables
+				).put(
+					"end", "}"
+				).put(
+					"start", "${"
+				).build(),
+				HashMapBuilder.<String, Object>put(
+					"content", resources
+				).put(
+					"end", "]"
+				).put(
+					"start", "[resources:"
+				).build())
 		).put(
 			"initialConfiguration", _getConfigurationContent()
 		).put(

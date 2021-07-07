@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.webdav.WebDAVStorage;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -108,16 +109,11 @@ public class JournalWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 	protected List<Resource> getFolders(WebDAVRequest webDAVRequest)
 		throws Exception {
 
-		List<Resource> resources = new ArrayList<>();
-
-		resources.add(
+		return Arrays.asList(
 			_ddmWebDAV.toResource(
-				webDAVRequest, DDMWebDAV.TYPE_STRUCTURES, getRootPath(), true));
-		resources.add(
+				webDAVRequest, DDMWebDAV.TYPE_STRUCTURES, getRootPath(), true),
 			_ddmWebDAV.toResource(
 				webDAVRequest, DDMWebDAV.TYPE_TEMPLATES, getRootPath(), true));
-
-		return resources;
 	}
 
 	protected List<Resource> getStructures(WebDAVRequest webDAVRequest)

@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.ProxyFactory;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -109,12 +110,9 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormFieldValue> createBooleanNestedDDMFormFieldValues() {
-		List<DDMFormFieldValue> ddmFormFieldValues = new ArrayList<>();
-
-		ddmFormFieldValues.add(createHTMLDDMFormFieldValue(0, "nabr"));
-		ddmFormFieldValues.add(createHTMLDDMFormFieldValue(1, "uwyg"));
-
-		return ddmFormFieldValues;
+		return Arrays.asList(
+			createHTMLDDMFormFieldValue(0, "nabr"),
+			createHTMLDDMFormFieldValue(1, "uwyg"));
 	}
 
 	protected Value createBooleanValue() {
@@ -218,13 +216,10 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormFieldValue> createImageDDMFormFieldValues() {
-		List<DDMFormFieldValue> imageDDMFormFieldValues = new ArrayList<>();
-
-		imageDDMFormFieldValues.add(createImageDDMFormFieldValue(0, "uaht"));
-		imageDDMFormFieldValues.add(createImageDDMFormFieldValue(1, "pppj"));
-		imageDDMFormFieldValues.add(createImageDDMFormFieldValue(2, "nmab"));
-
-		return imageDDMFormFieldValues;
+		return Arrays.asList(
+			createImageDDMFormFieldValue(0, "uaht"),
+			createImageDDMFormFieldValue(1, "pppj"),
+			createImageDDMFormFieldValue(2, "nmab"));
 	}
 
 	protected Value createImageValue(int index) {
@@ -262,15 +257,9 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormFieldValue> createSeparatorDDMFormFieldValues() {
-		List<DDMFormFieldValue> separatorDDMFormFieldValues = new ArrayList<>();
-
-		separatorDDMFormFieldValues.add(
-			createSeparatorDDMFormFieldValue(0, "uayx"));
-
-		separatorDDMFormFieldValues.add(
+		return Arrays.asList(
+			createSeparatorDDMFormFieldValue(0, "uayx"),
 			createSeparatorDDMFormFieldValue(1, "lahy"));
-
-		return separatorDDMFormFieldValues;
 	}
 
 	protected List<DDMFormFieldValue> createSeparatorNestedDDMFormFieldValues(

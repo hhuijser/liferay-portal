@@ -30,6 +30,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.ratings.test.util.RatingsTestUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -262,14 +263,8 @@ public class AssetEntryServiceTest {
 		AssetEntry assetEntry4 = AssetTestUtil.addAssetEntry(
 			_group.getGroupId(), dayBeforeYesterday);
 
-		List<AssetEntry> assetEntries = new ArrayList<>(4);
-
-		assetEntries.add(assetEntry3);
-		assetEntries.add(assetEntry1);
-		assetEntries.add(assetEntry2);
-		assetEntries.add(assetEntry4);
-
-		return assetEntries;
+		return Arrays.asList(
+			assetEntry3, assetEntry1, assetEntry2, assetEntry4);
 	}
 
 	protected void validateAssetEntries(

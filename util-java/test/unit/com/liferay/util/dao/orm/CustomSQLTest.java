@@ -29,8 +29,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-import java.sql.SQLException;
-
 import java.util.Collections;
 
 import javax.sql.DataSource;
@@ -238,9 +236,6 @@ public class CustomSQLTest {
 		new QueryDefinition<>();
 
 	private static class TestCustomSQL extends CustomSQL {
-
-		public TestCustomSQL() throws SQLException {
-		}
 
 		@Override
 		public String get(String id) {

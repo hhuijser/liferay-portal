@@ -41,7 +41,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelper;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -150,13 +150,9 @@ public class SelectLayoutCollectionDisplayContext {
 	}
 
 	public List<NavigationItem> getNavigationItems() {
-		List<NavigationItem> navigationItems = new ArrayList<>();
-
-		navigationItems.add(_getNavigationItem("collections", "collections"));
-		navigationItems.add(
+		return Arrays.asList(
+			_getNavigationItem("collections", "collections"),
 			_getNavigationItem("collection-providers", "collection-providers"));
-
-		return navigationItems;
 	}
 
 	public PortletURL getPortletURL() {

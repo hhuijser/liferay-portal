@@ -22,9 +22,6 @@ import java.util.List;
  */
 public abstract class CMISJunction implements CMISCriterion {
 
-	public CMISJunction() {
-	}
-
 	public void add(CMISCriterion cmisCriterion) {
 		_cmisCriterions.add(cmisCriterion);
 	}

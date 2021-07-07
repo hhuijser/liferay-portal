@@ -25,9 +25,6 @@ import java.util.Vector;
  */
 public class OrderedProperties extends Properties {
 
-	public OrderedProperties() {
-	}
-
 	@Override
 	public synchronized Enumeration<Object> keys() {
 		return _names.elements();

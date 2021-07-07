@@ -85,8 +85,6 @@ public class ServiceContext implements Cloneable, Serializable {
 	 * service context parameters and the expando bridge attributes map contains
 	 * optional service context parameters.
 	 */
-	public ServiceContext() {
-	}
 
 	/**
 	 * Returns a new service context object identical to this service context

@@ -33,9 +33,6 @@ import javax.servlet.ServletContext;
  */
 public class PortletConfigFactoryImpl implements PortletConfigFactory {
 
-	public PortletConfigFactoryImpl() {
-	}
-
 	@Override
 	public PortletConfig create(
 		Portlet portlet, ServletContext servletContext) {

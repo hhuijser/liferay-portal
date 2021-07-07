@@ -28,9 +28,6 @@ import java.util.regex.Pattern;
  */
 public class ThemeCompanyLimit implements Serializable {
 
-	public ThemeCompanyLimit() {
-	}
-
 	public List<ThemeCompanyId> getExcludes() {
 		return _excludes;
 	}

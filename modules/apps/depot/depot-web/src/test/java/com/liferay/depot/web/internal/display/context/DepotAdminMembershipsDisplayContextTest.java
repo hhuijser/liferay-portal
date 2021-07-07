@@ -333,9 +333,6 @@ public class DepotAdminMembershipsDisplayContextTest {
 
 	private static class ThemeDisplayBuilder {
 
-		public ThemeDisplayBuilder() {
-		}
-
 		public ThemeDisplay build() {
 			return _themeDisplay;
 		}

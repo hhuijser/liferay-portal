@@ -26,9 +26,6 @@ import java.util.Map;
  */
 public class ClayTableSchemaBuilderImpl implements ClayTableSchemaBuilder {
 
-	public ClayTableSchemaBuilderImpl() {
-	}
-
 	@Override
 	public void addClayTableSchemaField(
 		ClayTableSchemaField clayTableSchemaField) {

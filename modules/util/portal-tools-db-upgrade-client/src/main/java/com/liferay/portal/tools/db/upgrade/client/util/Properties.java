@@ -33,9 +33,6 @@ import java.util.Set;
  */
 public class Properties {
 
-	public Properties() {
-	}
-
 	public String getProperty(String key) {
 		return _properties.get(key);
 	}

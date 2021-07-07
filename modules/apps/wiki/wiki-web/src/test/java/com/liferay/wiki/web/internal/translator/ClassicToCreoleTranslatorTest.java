@@ -31,9 +31,6 @@ public class ClassicToCreoleTranslatorTest {
 	public static final LiferayUnitTestRule liferayUnitTestRule =
 		LiferayUnitTestRule.INSTANCE;
 
-	public ClassicToCreoleTranslatorTest() {
-	}
-
 	@Test
 	public void testBold() throws Exception {
 		String content = "This is '''bold'''.";

@@ -52,8 +52,6 @@ public class XLSBatchEngineExportTaskItemWriter
 		_columnValuesExtractor = new ColumnValuesExtractor(
 			fieldMap, fieldNames);
 
-		_workbook = new XSSFWorkbook();
-
 		_sheet = _workbook.createSheet();
 
 		_write(fieldNames);
@@ -115,6 +113,6 @@ public class XLSBatchEngineExportTaskItemWriter
 	private final OutputStream _outputStream;
 	private int _rowNum;
 	private final Sheet _sheet;
-	private final Workbook _workbook;
+	private final Workbook _workbook = new XSSFWorkbook();
 
 }

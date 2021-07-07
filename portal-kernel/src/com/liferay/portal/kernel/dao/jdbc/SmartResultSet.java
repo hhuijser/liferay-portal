@@ -38,8 +38,6 @@ public class SmartResultSet {
 		_metaData = _resultSet.getMetaData();
 
 		_columnCount = _metaData.getColumnCount();
-
-		_columnIndexCache = new HashMap<>();
 	}
 
 	public int findColumn(String columnName) throws SQLException {
@@ -185,7 +183,7 @@ public class SmartResultSet {
 	}
 
 	private final int _columnCount;
-	private final Map<String, Integer> _columnIndexCache;
+	private final Map<String, Integer> _columnIndexCache = new HashMap<>();
 	private final ResultSetMetaData _metaData;
 	private final ResultSet _resultSet;
 

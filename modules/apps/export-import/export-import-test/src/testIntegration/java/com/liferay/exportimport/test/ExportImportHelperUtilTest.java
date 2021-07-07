@@ -945,7 +945,6 @@ public class ExportImportHelperUtilTest {
 	private class ExportImportTestParameterMapBuilder {
 
 		public ExportImportTestParameterMapBuilder() {
-			_parameterMap = new HashMap<>();
 		}
 
 		public Map<String, String[]> build() {
@@ -1012,7 +1011,7 @@ public class ExportImportHelperUtilTest {
 			return this;
 		}
 
-		private final Map<String, String[]> _parameterMap;
+		private final Map<String, String[]> _parameterMap = new HashMap<>();
 
 	}
 

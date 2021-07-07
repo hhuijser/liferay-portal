@@ -38,8 +38,6 @@ import org.dom4j.Element;
 public class PoshiLogger {
 
 	public PoshiLogger(String testNamespacedClassCommandName) throws Exception {
-		_commandLogger = new CommandLogger();
-
 		_syntaxLogger = _getSyntaxLogger(testNamespacedClassCommandName);
 	}
 
@@ -239,7 +237,7 @@ public class PoshiLogger {
 		_functionLinkId++;
 	}
 
-	private final CommandLogger _commandLogger;
+	private final CommandLogger _commandLogger = new CommandLogger();
 	private int _functionLinkId;
 	private final SyntaxLogger _syntaxLogger;
 

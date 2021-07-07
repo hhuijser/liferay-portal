@@ -43,8 +43,6 @@ public class GroupConfigurationTemporarySwapper implements AutoCloseable {
 		ModifiableSettings modifiableSettings =
 			settings.getModifiableSettings();
 
-		_initialProperties = new HashMapDictionary();
-
 		Enumeration<String> keysEnumeration = properties.keys();
 
 		while (keysEnumeration.hasMoreElements()) {
@@ -80,7 +78,8 @@ public class GroupConfigurationTemporarySwapper implements AutoCloseable {
 	}
 
 	private final long _groupId;
-	private final Dictionary<String, Object> _initialProperties;
+	private final Dictionary<String, Object> _initialProperties =
+		new HashMapDictionary();
 	private final String _pid;
 	private final SettingsFactory _settingsFactory;
 

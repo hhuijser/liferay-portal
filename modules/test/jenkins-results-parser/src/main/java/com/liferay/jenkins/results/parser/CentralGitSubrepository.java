@@ -35,10 +35,6 @@ public class CentralGitSubrepository {
 
 		_centralUpstreamBranchName = centralUpstreamBranchName;
 
-		_ciProperties = new Properties();
-
-		_gitrepoProperties = new Properties();
-
 		_gitrepoProperties.load(new FileInputStream(gitrepoFile));
 
 		_gitSubrepositoryName = _getGitSubrepositoryName();
@@ -272,8 +268,8 @@ public class CentralGitSubrepository {
 
 	private Boolean _centralPullRequestCandidate;
 	private final String _centralUpstreamBranchName;
-	private final Properties _ciProperties;
-	private final Properties _gitrepoProperties;
+	private final Properties _ciProperties = new Properties();
+	private final Properties _gitrepoProperties = new Properties();
 	private final String _gitSubrepositoryDirectory;
 	private final String _gitSubrepositoryName;
 	private final String _gitSubrepositoryUpstreamBranchName;

@@ -386,14 +386,6 @@ public class DataFactory {
 		_counter = new SimpleCounter(
 			BenchmarksPropsValues.MAX_GROUP_COUNT +
 				BenchmarksPropsValues.MAX_COMMERCE_GROUP_COUNT + 1);
-		_timeCounter = new SimpleCounter();
-		_futureDateCounter = new SimpleCounter();
-		_layoutPlidCounter = new SimpleCounter();
-		_layoutSetIdCounter = new SimpleCounter();
-		_portletPreferenceValueIdCounter = new SimpleCounter();
-		_resourcePermissionIdCounter = new SimpleCounter();
-		_socialActivityIdCounter = new SimpleCounter();
-		_userScreenNameCounter = new SimpleCounter();
 
 		List<String> models = ModelHintsUtil.getModels();
 
@@ -7073,7 +7065,7 @@ public class DataFactory {
 	private final String _dlDDMStructureContent;
 	private final String _dlDDMStructureLayoutContent;
 	private List<String> _firstNames;
-	private final SimpleCounter _futureDateCounter;
+	private final SimpleCounter _futureDateCounter = new SimpleCounter();
 	private long _globalGroupId;
 	private long _guestGroupId;
 	private RoleModel _guestRoleModel;
@@ -7086,18 +7078,20 @@ public class DataFactory {
 	private final Map<String, SimpleCounter> _layoutIdCounters =
 		new HashMap<>();
 	private final String _layoutPageTemplateStructureRelData;
-	private final SimpleCounter _layoutPlidCounter;
-	private final SimpleCounter _layoutSetIdCounter;
+	private final SimpleCounter _layoutPlidCounter = new SimpleCounter();
+	private final SimpleCounter _layoutSetIdCounter = new SimpleCounter();
 	private RoleModel _ownerRoleModel;
-	private final SimpleCounter _portletPreferenceValueIdCounter;
+	private final SimpleCounter _portletPreferenceValueIdCounter =
+		new SimpleCounter();
 	private RoleModel _powerUserRoleModel;
-	private final SimpleCounter _resourcePermissionIdCounter;
+	private final SimpleCounter _resourcePermissionIdCounter =
+		new SimpleCounter();
 	private long _sampleUserId;
 	private final Format _simpleDateFormat;
 	private RoleModel _siteMemberRoleModel;
-	private final SimpleCounter _socialActivityIdCounter;
-	private final SimpleCounter _timeCounter;
+	private final SimpleCounter _socialActivityIdCounter = new SimpleCounter();
+	private final SimpleCounter _timeCounter = new SimpleCounter();
 	private RoleModel _userRoleModel;
-	private final SimpleCounter _userScreenNameCounter;
+	private final SimpleCounter _userScreenNameCounter = new SimpleCounter();
 
 }

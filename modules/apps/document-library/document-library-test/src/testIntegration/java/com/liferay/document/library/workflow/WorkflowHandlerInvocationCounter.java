@@ -34,8 +34,6 @@ public class WorkflowHandlerInvocationCounter<T> implements AutoCloseable {
 		WorkflowHandler<T> workflowHandler =
 			WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
 
-		_counts = new HashMap<>();
-
 		WorkflowHandler<T> delegateWorkflowHandler =
 			_createInvocationCounterWorkflowHandler(workflowHandler);
 
@@ -94,7 +92,7 @@ public class WorkflowHandlerInvocationCounter<T> implements AutoCloseable {
 			});
 	}
 
-	private final Map<Method, AtomicInteger> _counts;
+	private final Map<Method, AtomicInteger> _counts = new HashMap<>();
 	private final WorkflowHandlerReplacer<T> _workflowHandlerReplacer;
 
 }

@@ -26,7 +26,6 @@ import jodd.json.ValueConverter;
 public class JSONDeserializerImpl<T> implements JSONDeserializer<T> {
 
 	public JSONDeserializerImpl() {
-		_jsonDeserializer = new PortalJsonParser();
 	}
 
 	@Override
@@ -59,6 +58,6 @@ public class JSONDeserializerImpl<T> implements JSONDeserializer<T> {
 		return this;
 	}
 
-	private final JsonParser _jsonDeserializer;
+	private final JsonParser _jsonDeserializer = new PortalJsonParser();
 
 }

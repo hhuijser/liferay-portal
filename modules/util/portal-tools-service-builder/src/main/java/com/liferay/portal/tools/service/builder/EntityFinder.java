@@ -43,8 +43,6 @@ public class EntityFinder {
 		_dbIndex = dbIndex;
 		_entityColumns = entityColumns;
 
-		_arrayableColumns = new ArrayList<>();
-
 		for (EntityColumn column : _entityColumns) {
 			if (column.hasArrayableOperator()) {
 				_arrayableColumns.add(column);
@@ -175,7 +173,7 @@ public class EntityFinder {
 		return _unique;
 	}
 
-	private final List<EntityColumn> _arrayableColumns;
+	private final List<EntityColumn> _arrayableColumns = new ArrayList<>();
 	private final boolean _dbIndex;
 	private final String _dbWhere;
 	private final List<EntityColumn> _entityColumns;

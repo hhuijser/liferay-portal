@@ -86,8 +86,6 @@ public class ServiceContext implements Cloneable, Serializable {
 	 * optional service context parameters.
 	 */
 	public ServiceContext() {
-		_attributes = new LinkedHashMap<>();
-		_expandoBridgeAttributes = new LinkedHashMap<>();
 	}
 
 	/**
@@ -1549,13 +1547,14 @@ public class ServiceContext implements Cloneable, Serializable {
 	private long[] _assetLinkEntryIds;
 	private double _assetPriority;
 	private String[] _assetTagNames;
-	private Map<String, Serializable> _attributes;
+	private Map<String, Serializable> _attributes = new LinkedHashMap<>();
 	private String _command;
 	private long _companyId;
 	private Date _createDate;
 	private String _currentURL;
 	private boolean _deriveDefaultPermissions;
-	private Map<String, Serializable> _expandoBridgeAttributes;
+	private Map<String, Serializable> _expandoBridgeAttributes =
+		new LinkedHashMap<>();
 	private boolean _failOnPortalException = true;
 	private Date _formDate;
 	private transient Map<String, String> _headers;

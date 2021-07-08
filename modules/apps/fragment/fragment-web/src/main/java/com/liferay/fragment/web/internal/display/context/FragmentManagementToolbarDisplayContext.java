@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Jürgen Kappler
  */
-public abstract class FragmentManagementToolbarDisplayContext
+public class FragmentManagementToolbarDisplayContext
 	extends SearchContainerManagementToolbarDisplayContext {
 
 	public FragmentManagementToolbarDisplayContext(

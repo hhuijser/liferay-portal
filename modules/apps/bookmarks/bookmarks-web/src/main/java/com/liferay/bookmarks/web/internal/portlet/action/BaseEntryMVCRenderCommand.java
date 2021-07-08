@@ -32,7 +32,7 @@ import javax.portlet.RenderResponse;
 /**
  * @author Iván Zaera
  */
-public abstract class GetEntryMVCRenderCommand implements MVCRenderCommand {
+public abstract class BaseEntryMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

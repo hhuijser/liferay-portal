@@ -28,10 +28,10 @@ import javax.portlet.RenderRequest;
 /**
  * @author Eudaldo Alonso
  */
-public abstract class FragmentEntryVerticalCard
+public abstract class BaseFragmentEntryVerticalCard
 	extends BaseBaseClayCard implements VerticalCard {
 
-	public FragmentEntryVerticalCard(
+	public BaseFragmentEntryVerticalCard(
 		FragmentEntry fragmentEntry, RenderRequest renderRequest,
 		RowChecker rowChecker) {
 

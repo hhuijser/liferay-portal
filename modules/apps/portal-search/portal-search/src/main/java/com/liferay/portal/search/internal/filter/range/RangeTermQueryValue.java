@@ -47,9 +47,6 @@ public class RangeTermQueryValue {
 
 	public static class Builder {
 
-		public Builder() {
-		}
-
 		public RangeTermQueryValue build() {
 			return new RangeTermQueryValue(_rangeTermQueryValue);
 		}

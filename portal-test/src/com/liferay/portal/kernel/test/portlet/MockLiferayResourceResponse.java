@@ -50,9 +50,6 @@ import org.w3c.dom.Element;
 public class MockLiferayResourceResponse
 	implements LiferayPortletResponse, ResourceResponse {
 
-	public MockLiferayResourceResponse() {
-	}
-
 	@Override
 	public void addDateHeader(String name, long date) {
 	}

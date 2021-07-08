@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * @author Zsolt Berentey
  */
-public abstract class DLBaseTrashHandler extends BaseTrashHandler {
+public abstract class BaseDLTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public ContainerModel getContainerModel(long containerModelId)

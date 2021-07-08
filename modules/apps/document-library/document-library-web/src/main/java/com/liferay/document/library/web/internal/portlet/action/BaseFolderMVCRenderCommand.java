@@ -33,7 +33,7 @@ import javax.portlet.RenderResponse;
 /**
  * @author Iván Zaera
  */
-public abstract class GetFolderMVCRenderCommand implements MVCRenderCommand {
+public abstract class BaseFolderMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

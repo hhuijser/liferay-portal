@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Pavel Savinov
  */
-public abstract class FileEntryBasicInfoListRenderer
+public abstract class BaseFileEntryBasicInfoListRenderer
 	implements BasicInfoListRenderer<FileEntry> {
 
 	@Override
@@ -105,6 +105,6 @@ public abstract class FileEntryBasicInfoListRenderer
 	protected InfoItemRendererTracker infoItemRendererTracker;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		FileEntryBasicInfoListRenderer.class);
+		BaseFileEntryBasicInfoListRenderer.class);
 
 }

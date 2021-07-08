@@ -32,7 +32,6 @@ import java.util.List;
 public class TimestampConverter extends BaseXStreamConverter {
 
 	public TimestampConverter() {
-		_converter = new SqlTimestampConverter();
 	}
 
 	@Override
@@ -72,6 +71,7 @@ public class TimestampConverter extends BaseXStreamConverter {
 		return null;
 	}
 
-	private final SqlTimestampConverter _converter;
+	private final SqlTimestampConverter _converter =
+		new SqlTimestampConverter();
 
 }

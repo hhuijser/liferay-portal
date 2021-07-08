@@ -26,7 +26,6 @@ import java.util.Vector;
 public class OrderedProperties extends Properties {
 
 	public OrderedProperties() {
-		_names = new Vector<>();
 	}
 
 	@Override
@@ -62,6 +61,6 @@ public class OrderedProperties extends Properties {
 		return new LinkedHashSet(_names);
 	}
 
-	private final Vector<Object> _names;
+	private final Vector<Object> _names = new Vector<>();
 
 }

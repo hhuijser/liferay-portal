@@ -32,7 +32,6 @@ public class ClassicToCreoleTranslatorTest {
 		LiferayUnitTestRule.INSTANCE;
 
 	public ClassicToCreoleTranslatorTest() {
-		_classicToCreoleTranslator = new ClassicToCreoleTranslator();
 	}
 
 	@Test
@@ -291,6 +290,7 @@ public class ClassicToCreoleTranslatorTest {
 		return _classicToCreoleTranslator.translate(content);
 	}
 
-	private final ClassicToCreoleTranslator _classicToCreoleTranslator;
+	private final ClassicToCreoleTranslator _classicToCreoleTranslator =
+		new ClassicToCreoleTranslator();
 
 }

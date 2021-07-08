@@ -31,7 +31,7 @@ import javax.portlet.RenderResponse;
 /**
  * @author Adolfo Pérez
  */
-public abstract class GetMessageMVCRenderCommand implements MVCRenderCommand {
+public abstract class BaseMessageMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

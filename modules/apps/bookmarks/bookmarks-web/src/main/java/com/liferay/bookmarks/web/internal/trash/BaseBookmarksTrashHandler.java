@@ -33,7 +33,7 @@ import java.util.List;
  *
  * @author Eudaldo Alonso
  */
-public abstract class BookmarksBaseTrashHandler extends BaseTrashHandler {
+public abstract class BaseBookmarksTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public ContainerModel getContainerModel(long containerModelId)

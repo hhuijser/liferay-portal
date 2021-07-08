@@ -44,7 +44,7 @@ import org.apache.chemistry.opencmis.commons.enums.Action;
 /**
  * @author Alexander Chow
  */
-public abstract class CMISModel {
+public abstract class BaseCMISModel {
 
 	public abstract long getCompanyId();
 
@@ -142,7 +142,7 @@ public abstract class CMISModel {
 		return user;
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(CMISModel.class);
+	private static final Log _log = LogFactoryUtil.getLog(BaseCMISModel.class);
 
 	private static final Map<String, Action> _mappedActionKeys =
 		HashMapBuilder.<String, Action>put(

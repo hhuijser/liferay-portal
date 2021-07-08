@@ -36,7 +36,7 @@ import javax.portlet.PortletConfig;
  * @author Jorge Ferrer
  * @author Sergio González
  */
-public abstract class ValidateRootFolderConfigurationAction
+public abstract class BaseValidateRootFolderConfigurationAction
 	extends BaseJSPSettingsConfigurationAction {
 
 	@Override
@@ -83,6 +83,6 @@ public abstract class ValidateRootFolderConfigurationAction
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ValidateRootFolderConfigurationAction.class);
+		BaseValidateRootFolderConfigurationAction.class);
 
 }

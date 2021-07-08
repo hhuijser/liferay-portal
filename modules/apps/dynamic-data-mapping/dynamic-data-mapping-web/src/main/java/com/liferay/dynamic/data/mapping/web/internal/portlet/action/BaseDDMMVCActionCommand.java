@@ -42,7 +42,7 @@ import javax.portlet.PortletRequest;
 /**
  * @author Leonardo Barros
  */
-public abstract class DDMBaseMVCActionCommand extends BaseMVCActionCommand {
+public abstract class BaseDDMMVCActionCommand extends BaseMVCActionCommand {
 
 	protected String getRedirect(ActionRequest actionRequest) {
 		String redirect = ParamUtil.getString(actionRequest, "redirect");

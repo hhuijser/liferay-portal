@@ -19,7 +19,6 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -101,7 +100,7 @@ public class UnnecessaryVariableDeclarationCheck
 			detailAST, variableName, false);
 
 		if (!variableTypeName.equals("List") ||
-			!_isAssignNewArrayList(detailAST)) {
+			!isAssignNewArrayList(detailAST)) {
 
 			return;
 		}
@@ -171,55 +170,6 @@ public class UnnecessaryVariableDeclarationCheck
 
 			return;
 		}
-	}
-
-	private boolean _isAssignNewArrayList(DetailAST detailAST) {
-		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
-
-		if (assignDetailAST == null) {
-			return false;
-		}
-
-		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
-
-		if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
-			return false;
-		}
-
-		firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-		if (firstChildDetailAST.getType() != TokenTypes.LITERAL_NEW) {
-			return false;
-		}
-
-		DetailAST identDetailAST = firstChildDetailAST.getFirstChild();
-
-		if ((identDetailAST.getType() != TokenTypes.IDENT) ||
-			!Objects.equals(identDetailAST.getText(), "ArrayList")) {
-
-			return false;
-		}
-
-		DetailAST elistDetailAST = firstChildDetailAST.findFirstToken(
-			TokenTypes.ELIST);
-
-		if (elistDetailAST == null) {
-			return false;
-		}
-
-		firstChildDetailAST = elistDetailAST.getFirstChild();
-
-		if (firstChildDetailAST == null) {
-			return true;
-		}
-
-		firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-		if (firstChildDetailAST.getType() == TokenTypes.NUM_INT) {
-			return true;
-		}
-
-		return false;
 	}
 
 	private static final String

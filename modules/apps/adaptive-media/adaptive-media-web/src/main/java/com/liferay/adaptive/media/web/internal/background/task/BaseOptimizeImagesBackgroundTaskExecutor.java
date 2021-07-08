@@ -30,10 +30,10 @@ import java.util.Map;
 /**
  * @author Sergio González
  */
-public abstract class OptimizeImagesBackgroundTaskExecutor
+public abstract class BaseOptimizeImagesBackgroundTaskExecutor
 	extends BaseBackgroundTaskExecutor {
 
-	public OptimizeImagesBackgroundTaskExecutor() {
+	public BaseOptimizeImagesBackgroundTaskExecutor() {
 		setBackgroundTaskStatusMessageTranslator(
 			new OptimizeImagesBackgroundTaskStatusMessageTranslator());
 		setIsolationLevel(BackgroundTaskConstants.ISOLATION_LEVEL_COMPANY);

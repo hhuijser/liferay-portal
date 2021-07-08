@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * @author Marta Medio
  */
-public abstract class Tree<T> {
+public abstract class BaseTree<T> {
 
 	public abstract <R> R accept(TreeVisitor<T, R> treeVisitor);
 

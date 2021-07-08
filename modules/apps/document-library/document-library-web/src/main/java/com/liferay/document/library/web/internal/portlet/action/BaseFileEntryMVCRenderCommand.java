@@ -35,7 +35,8 @@ import javax.portlet.RenderResponse;
 /**
  * @author Sergio González
  */
-public abstract class GetFileEntryMVCRenderCommand implements MVCRenderCommand {
+public abstract class BaseFileEntryMVCRenderCommand
+	implements MVCRenderCommand {
 
 	@Override
 	public String render(

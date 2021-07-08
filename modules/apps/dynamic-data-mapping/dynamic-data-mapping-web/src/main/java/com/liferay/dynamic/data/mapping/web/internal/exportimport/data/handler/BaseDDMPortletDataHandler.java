@@ -18,7 +18,7 @@ package com.liferay.dynamic.data.mapping.web.internal.exportimport.data.handler;
  * @author Marcellus Tavares
  * @author Juan Fernández
  */
-public abstract class DDMPortletDataHandler {
+public abstract class BaseDDMPortletDataHandler {
 
 	public static final String NAMESPACE = "dynamic_data_mapping";
 

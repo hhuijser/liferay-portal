@@ -22,7 +22,7 @@ import com.liferay.dynamic.data.mapping.expression.UpdateFieldPropertyRequest;
 /**
  * @author Leonardo Barros
  */
-public abstract class SetPropertyFunction<V>
+public abstract class BaseSetPropertyFunction<V>
 	implements DDMExpressionFunction.Function2<String, V, Boolean>,
 			   DDMExpressionObserverAware {
 

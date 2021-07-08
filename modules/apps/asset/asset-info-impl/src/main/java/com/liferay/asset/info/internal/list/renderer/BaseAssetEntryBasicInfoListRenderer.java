@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Pavel Savinov
  */
-public abstract class AssetEntryBasicInfoListRenderer
+public abstract class BaseAssetEntryBasicInfoListRenderer
 	implements BasicInfoListRenderer<AssetEntry> {
 
 	@Override
@@ -105,6 +105,6 @@ public abstract class AssetEntryBasicInfoListRenderer
 	protected InfoItemRendererTracker infoItemRendererTracker;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AssetEntryBasicInfoListRenderer.class);
+		BaseAssetEntryBasicInfoListRenderer.class);
 
 }

@@ -14,7 +14,7 @@
 
 package com.liferay.oauth2.provider.web.internal.tree.tag;
 
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 
 import java.io.IOException;
 
@@ -44,7 +44,7 @@ public class TreeTag extends SimpleTagSupport {
 		try {
 			jspContext.setAttribute("parentNodes", new LinkedList<>());
 
-			for (Tree<?> tree : _trees) {
+			for (BaseTree<?> tree : _trees) {
 				renderTree(tree);
 			}
 		}
@@ -66,7 +66,7 @@ public class TreeTag extends SimpleTagSupport {
 		return nodeJspFragment;
 	}
 
-	public Collection<Tree<?>> getTrees() {
+	public Collection<BaseTree<?>> getTrees() {
 		return _trees;
 	}
 
@@ -78,11 +78,13 @@ public class TreeTag extends SimpleTagSupport {
 		this.nodeJspFragment = nodeJspFragment;
 	}
 
-	public void setTrees(Collection<Tree<?>> trees) {
+	public void setTrees(Collection<BaseTree<?>> trees) {
 		_trees = trees;
 	}
 
-	protected void renderTree(Tree<?> tree) throws IOException, JspException {
+	protected void renderTree(BaseTree<?> tree)
+		throws IOException, JspException {
+
 		JspContext jspContext = getJspContext();
 
 		Object treeObject = jspContext.getAttribute("tree");
@@ -90,7 +92,7 @@ public class TreeTag extends SimpleTagSupport {
 		try {
 			jspContext.setAttribute("tree", tree);
 
-			if (tree instanceof Tree.Leaf) {
+			if (tree instanceof BaseTree.Leaf) {
 				JspFragment leafJspFragment = getLeafJspFragment();
 
 				leafJspFragment.invoke(null);
@@ -114,6 +116,6 @@ public class TreeTag extends SimpleTagSupport {
 	protected JspFragment leafJspFragment;
 	protected JspFragment nodeJspFragment;
 
-	private Collection<Tree<?>> _trees;
+	private Collection<BaseTree<?>> _trees;
 
 }

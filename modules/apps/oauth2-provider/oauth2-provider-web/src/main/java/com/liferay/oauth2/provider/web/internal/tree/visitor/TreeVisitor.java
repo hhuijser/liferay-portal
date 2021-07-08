@@ -14,15 +14,15 @@
 
 package com.liferay.oauth2.provider.web.internal.tree.visitor;
 
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 
 /**
  * @author Carlos Sierra Andrés
  */
 public interface TreeVisitor<T, R> {
 
-	public R visitLeaf(Tree.Leaf<T> leaf);
+	public R visitLeaf(BaseTree.Leaf<T> leaf);
 
-	public R visitNode(Tree.Node<T> node);
+	public R visitNode(BaseTree.Node<T> node);
 
 }

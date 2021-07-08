@@ -16,7 +16,7 @@ package com.liferay.oauth2.provider.web.internal.util;
 
 import com.liferay.oauth2.provider.scope.spi.scope.matcher.ScopeMatcher;
 import com.liferay.oauth2.provider.scope.spi.scope.matcher.ScopeMatcherFactory;
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 import com.liferay.oauth2.provider.web.internal.tree.util.TreeUtil;
 import com.liferay.oauth2.provider.web.internal.tree.visitor.TreeVisitor;
 import com.liferay.petra.string.StringPool;
@@ -35,7 +35,7 @@ import java.util.stream.Stream;
  */
 public class ScopeTreeUtil {
 
-	public static Tree.Node<String> getScopeAliasTreeNode(
+	public static BaseTree.Node<String> getScopeAliasTreeNode(
 		List<String> scopeAliasesList,
 		ScopeMatcherFactory scopeMatcherFactory) {
 
@@ -43,12 +43,12 @@ public class ScopeTreeUtil {
 			new HashSet<>(scopeAliasesList), scopeMatcherFactory);
 	}
 
-	public static Tree.Node<String> getScopeAliasTreeNode(
+	public static BaseTree.Node<String> getScopeAliasTreeNode(
 		Set<String> scopeAliases, ScopeMatcherFactory scopeMatcherFactory) {
 
 		HashMap<String, ScopeMatcher> scopeMatchers = new HashMap<>();
 
-		Tree.Node<String> node = TreeUtil.getTreeNode(
+		BaseTree.Node<String> node = TreeUtil.getTreeNode(
 			scopeAliases, StringPool.BLANK,
 			(scopeAlias1, scopeAlias2) -> {
 				ScopeMatcher scopeMatcher = scopeMatchers.computeIfAbsent(
@@ -57,28 +57,28 @@ public class ScopeTreeUtil {
 				return scopeMatcher.match(scopeAlias2);
 			});
 
-		return (Tree.Node<String>)node.accept(_sortTreeVisitor);
+		return (BaseTree.Node<String>)node.accept(_sortTreeVisitor);
 	}
 
-	private static final TreeVisitor<String, Tree<String>> _sortTreeVisitor =
-		new TreeVisitor<String, Tree<String>>() {
+	private static final TreeVisitor<String, BaseTree<String>>
+		_sortTreeVisitor = new TreeVisitor<String, BaseTree<String>>() {
 
 			@Override
-			public Tree.Leaf<String> visitLeaf(Tree.Leaf<String> leaf) {
+			public BaseTree.Leaf<String> visitLeaf(BaseTree.Leaf<String> leaf) {
 				return leaf;
 			}
 
 			@Override
-			public Tree.Node<String> visitNode(Tree.Node<String> node) {
-				List<Tree<String>> trees = node.getTrees();
+			public BaseTree.Node<String> visitNode(BaseTree.Node<String> node) {
+				List<BaseTree<String>> trees = node.getTrees();
 
-				Stream<Tree<String>> stream = trees.stream();
+				Stream<BaseTree<String>> stream = trees.stream();
 
-				return new Tree.Node<>(
+				return new BaseTree.Node<>(
 					node.getValue(),
 					stream.sorted(
 						Comparator.comparing(
-							Tree::getValue, String.CASE_INSENSITIVE_ORDER)
+							BaseTree::getValue, String.CASE_INSENSITIVE_ORDER)
 					).map(
 						tree -> tree.accept(this)
 					).collect(

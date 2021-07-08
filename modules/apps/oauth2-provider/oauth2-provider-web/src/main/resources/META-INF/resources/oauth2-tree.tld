@@ -33,7 +33,7 @@
 		<variable>
 			<description><![CDATA[This variable contains the tree that is currently being rendered]]></description>
 			<name-given>tree</name-given>
-			<variable-class>com.liferay.oauth2.provider.web.internal.tree.Tree</variable-class>
+			<variable-class>com.liferay.oauth2.provider.web.internal.tree.BaseTree</variable-class>
 		</variable>
 	</tag>
 	<tag>
@@ -48,7 +48,7 @@
 		<variable>
 			<description><![CDATA[This variable contains the tree that is currently being rendered]]></description>
 			<name-given>tree</name-given>
-			<variable-class>com.liferay.oauth2.provider.web.internal.tree.Tree</variable-class>
+			<variable-class>com.liferay.oauth2.provider.web.internal.tree.BaseTree</variable-class>
 		</variable>
 		<attribute>
 			<description><![CDATA[A collection of trees to be rendered]]></description>

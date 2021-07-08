@@ -26,7 +26,7 @@ import com.liferay.oauth2.provider.scope.spi.scope.matcher.ScopeMatcherFactory;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService;
 import com.liferay.oauth2.provider.service.OAuth2ApplicationService;
 import com.liferay.oauth2.provider.service.OAuth2ScopeGrantLocalService;
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 import com.liferay.oauth2.provider.web.internal.util.ScopeTreeUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -105,7 +105,7 @@ public class AssignScopesTreeDisplayContext
 		return _scopeAliasesDescriptionsMap;
 	}
 
-	public Tree.Node<String> getScopeAliasTreeNode() {
+	public BaseTree.Node<String> getScopeAliasTreeNode() {
 		return _scopeAliasTreeNode;
 	}
 
@@ -198,7 +198,7 @@ public class AssignScopesTreeDisplayContext
 	private final Set<String> _assignedDeletedScopeAliases;
 	private final Set<String> _assignedScopeAliases;
 	private final Map<String, String> _scopeAliasesDescriptionsMap;
-	private final Tree.Node<String> _scopeAliasTreeNode;
+	private final BaseTree.Node<String> _scopeAliasTreeNode;
 	private final ScopeDescriptorLocator _scopeDescriptorLocator;
 	private final ScopeLocator _scopeLocator;
 

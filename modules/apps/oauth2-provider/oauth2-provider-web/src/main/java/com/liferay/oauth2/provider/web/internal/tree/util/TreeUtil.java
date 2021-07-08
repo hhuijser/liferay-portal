@@ -14,7 +14,7 @@
 
 package com.liferay.oauth2.provider.web.internal.tree.util;
 
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 import com.liferay.petra.string.StringBundler;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ import org.jgrapht.graph.DirectedAcyclicGraph;
  */
 public class TreeUtil {
 
-	public static <T> Tree.Node<T> getTreeNode(
+	public static <T> BaseTree.Node<T> getTreeNode(
 		Set<T> set, T rootValue, BiPredicate<T, T> biPredicate) {
 
 		DirectedAcyclicGraph<T, String> directedAcyclicGraph =
@@ -80,9 +80,9 @@ public class TreeUtil {
 			directedAcyclicGraph, rootValue, initialVertices);
 	}
 
-	private static <T, E> Tree<T> _createTree(Graph<T, E> graph, T value) {
+	private static <T, E> BaseTree<T> _createTree(Graph<T, E> graph, T value) {
 		if (graph.outDegreeOf(value) == 0) {
-			return new Tree.Leaf<>(value);
+			return new BaseTree.Leaf<>(value);
 		}
 
 		Set<T> set = new HashSet<>();
@@ -94,16 +94,16 @@ public class TreeUtil {
 		return _createTreeNode(graph, value, set);
 	}
 
-	private static <T> Tree.Node<T> _createTreeNode(
+	private static <T> BaseTree.Node<T> _createTreeNode(
 		Graph<T, ?> graph, T value, Set<T> set) {
 
-		List<Tree<T>> trees = new ArrayList<>();
+		List<BaseTree<T>> trees = new ArrayList<>();
 
 		for (T childValue : set) {
 			trees.add(_createTree(graph, childValue));
 		}
 
-		return new Tree.Node<>(value, trees);
+		return new BaseTree.Node<>(value, trees);
 	}
 
 	private static <T> void _filterRedundantPaths(

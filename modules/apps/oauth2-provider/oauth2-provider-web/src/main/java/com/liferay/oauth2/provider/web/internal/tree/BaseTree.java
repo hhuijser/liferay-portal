@@ -28,7 +28,7 @@ public abstract class BaseTree<T> {
 
 	public abstract T getValue();
 
-	public static final class Leaf<T> extends Tree<T> {
+	public static final class Leaf<T> extends BaseTree<T> {
 
 		public Leaf(T value) {
 			_value = value;
@@ -48,14 +48,14 @@ public abstract class BaseTree<T> {
 
 	}
 
-	public static final class Node<T> extends Tree<T> {
+	public static final class Node<T> extends BaseTree<T> {
 
-		public Node(T value, List<Tree<T>> trees) {
+		public Node(T value, List<BaseTree<T>> trees) {
 			_value = value;
 			_trees = trees;
 		}
 
-		public Node(T value, Tree<T>... trees) {
+		public Node(T value, BaseTree<T>... trees) {
 			this(value, Arrays.asList(trees));
 		}
 
@@ -64,7 +64,7 @@ public abstract class BaseTree<T> {
 			return treeVisitor.visitNode(this);
 		}
 
-		public List<Tree<T>> getTrees() {
+		public List<BaseTree<T>> getTrees() {
 			return _trees;
 		}
 
@@ -73,12 +73,12 @@ public abstract class BaseTree<T> {
 			return _value;
 		}
 
-		private final List<Tree<T>> _trees;
+		private final List<BaseTree<T>> _trees;
 		private final T _value;
 
 	}
 
-	private Tree() {
+	private BaseTree() {
 	}
 
 }

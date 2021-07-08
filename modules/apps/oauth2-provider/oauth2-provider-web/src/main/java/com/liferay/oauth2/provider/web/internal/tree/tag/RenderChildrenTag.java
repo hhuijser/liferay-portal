@@ -14,7 +14,7 @@
 
 package com.liferay.oauth2.provider.web.internal.tree.tag;
 
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 
 import java.io.IOException;
 
@@ -36,21 +36,21 @@ public class RenderChildrenTag extends TreeTag {
 
 		Object treeObject = jspContext.getAttribute("tree");
 
-		if (!(treeObject instanceof Tree.Node)) {
+		if (!(treeObject instanceof BaseTree.Node)) {
 			throw new IllegalStateException(
 				"Render children must be used inside the node fragment of a " +
 					"tree tag");
 		}
 
-		Deque<Tree.Node<?>> parentNodes =
-			(Deque<Tree.Node<?>>)jspContext.getAttribute("parentNodes");
+		Deque<BaseTree.Node<?>> parentNodes =
+			(Deque<BaseTree.Node<?>>)jspContext.getAttribute("parentNodes");
 
-		Tree.Node<?> node = (Tree.Node<?>)treeObject;
+		BaseTree.Node<?> node = (BaseTree.Node<?>)treeObject;
 
 		parentNodes.push(node);
 
 		try {
-			for (Tree<?> tree : node.getTrees()) {
+			for (BaseTree<?> tree : node.getTrees()) {
 				renderTree(tree);
 			}
 		}

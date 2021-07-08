@@ -21,7 +21,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 OAuth2Application oAuth2Application = oAuth2AdminPortletDisplayContext.getOAuth2Application();
 
-Tree.Node<String> scopeAliasTreeNode = assignScopesTreeDisplayContext.getScopeAliasTreeNode();
+BaseTree.Node<String> scopeAliasTreeNode = assignScopesTreeDisplayContext.getScopeAliasTreeNode();
 
 pageContext.setAttribute("assignedDeletedScopeAliases", assignScopesTreeDisplayContext.getAssignedDeletedScopeAliases());
 pageContext.setAttribute("assignedScopeAliases", assignScopesTreeDisplayContext.getAssignedScopeAliases());

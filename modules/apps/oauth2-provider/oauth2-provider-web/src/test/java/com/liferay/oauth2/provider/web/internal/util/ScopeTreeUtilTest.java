@@ -16,7 +16,7 @@ package com.liferay.oauth2.provider.web.internal.util;
 
 import com.liferay.oauth2.provider.scope.internal.spi.scope.matcher.ChunkScopeMatcherFactory;
 import com.liferay.oauth2.provider.scope.spi.scope.matcher.ScopeMatcherFactory;
-import com.liferay.oauth2.provider.web.internal.tree.Tree;
+import com.liferay.oauth2.provider.web.internal.tree.BaseTree;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
@@ -47,38 +47,40 @@ public class ScopeTreeUtilTest {
 			"everything.read", "everything.write", "everything",
 			"everything.read.user", "everything.read.user.documents");
 
-		Tree.Node<String> node = ScopeTreeUtil.getScopeAliasTreeNode(
+		BaseTree.Node<String> node = ScopeTreeUtil.getScopeAliasTreeNode(
 			scopeAliasesList, _scopeMatcherFactory);
 
 		Assert.assertEquals(StringPool.BLANK, node.getValue());
 
-		Tree<String> tree = _getTree(node, 0);
+		BaseTree<String> tree = _getTree(node, 0);
 
 		Assert.assertEquals("everything", tree.getValue());
-		Assert.assertFalse(tree instanceof Tree.Leaf);
+		Assert.assertFalse(tree instanceof BaseTree.Leaf);
 
-		Tree<String> firstChildTree = _getTree((Tree.Node<String>)tree, 0);
+		BaseTree<String> firstChildTree = _getTree(
+			(BaseTree.Node<String>)tree, 0);
 
 		Assert.assertEquals("everything.read", firstChildTree.getValue());
-		Assert.assertFalse(firstChildTree instanceof Tree.Leaf);
+		Assert.assertFalse(firstChildTree instanceof BaseTree.Leaf);
 
-		Tree<String> firstGrandChildTree = _getTree(
-			(Tree.Node<String>)firstChildTree, 0);
+		BaseTree<String> firstGrandChildTree = _getTree(
+			(BaseTree.Node<String>)firstChildTree, 0);
 
 		Assert.assertEquals(
 			"everything.read.user", firstGrandChildTree.getValue());
-		Assert.assertFalse(firstGrandChildTree instanceof Tree.Leaf);
+		Assert.assertFalse(firstGrandChildTree instanceof BaseTree.Leaf);
 
-		Tree<String> greatGrandChildTree = _getTree(
-			(Tree.Node<String>)firstGrandChildTree, 0);
+		BaseTree<String> greatGrandChildTree = _getTree(
+			(BaseTree.Node<String>)firstGrandChildTree, 0);
 
 		Assert.assertEquals(
 			"everything.read.user.documents", greatGrandChildTree.getValue());
 
-		Tree<String> lastChildTree = _getLastTree((Tree.Node<String>)tree);
+		BaseTree<String> lastChildTree = _getLastTree(
+			(BaseTree.Node<String>)tree);
 
 		Assert.assertEquals("everything.write", lastChildTree.getValue());
-		Assert.assertTrue(lastChildTree instanceof Tree.Leaf);
+		Assert.assertTrue(lastChildTree instanceof BaseTree.Leaf);
 	}
 
 	@Test
@@ -87,30 +89,32 @@ public class ScopeTreeUtilTest {
 			"everything.read", "everything.write", "everything",
 			"everything.read.user", "analytics.read", "analytics");
 
-		Tree.Node<String> node = ScopeTreeUtil.getScopeAliasTreeNode(
+		BaseTree.Node<String> node = ScopeTreeUtil.getScopeAliasTreeNode(
 			scopeAliasesList, _scopeMatcherFactory);
 
 		Assert.assertEquals(StringPool.BLANK, node.getValue());
 
-		Tree<String> tree = _getTree(node, 0);
+		BaseTree<String> tree = _getTree(node, 0);
 
 		Assert.assertEquals("analytics", tree.getValue());
-		Assert.assertFalse(tree instanceof Tree.Leaf);
+		Assert.assertFalse(tree instanceof BaseTree.Leaf);
 
-		Tree<String> firstChildTree = _getTree((Tree.Node<String>)tree, 0);
+		BaseTree<String> firstChildTree = _getTree(
+			(BaseTree.Node<String>)tree, 0);
 
 		Assert.assertEquals("analytics.read", firstChildTree.getValue());
-		Assert.assertTrue(firstChildTree instanceof Tree.Leaf);
+		Assert.assertTrue(firstChildTree instanceof BaseTree.Leaf);
 
-		Tree<String> lastTree = _getLastTree(node);
+		BaseTree<String> lastTree = _getLastTree(node);
 
 		Assert.assertEquals("everything", lastTree.getValue());
-		Assert.assertFalse(lastTree instanceof Tree.Leaf);
+		Assert.assertFalse(lastTree instanceof BaseTree.Leaf);
 
-		Tree<String> lastChildTree = _getTree((Tree.Node<String>)lastTree, 0);
+		BaseTree<String> lastChildTree = _getTree(
+			(BaseTree.Node<String>)lastTree, 0);
 
 		Assert.assertEquals("everything.read", lastChildTree.getValue());
-		Assert.assertFalse(lastChildTree instanceof Tree.Leaf);
+		Assert.assertFalse(lastChildTree instanceof BaseTree.Leaf);
 	}
 
 	@Test
@@ -118,42 +122,44 @@ public class ScopeTreeUtilTest {
 		List<String> scopeAliasesList = Arrays.asList(
 			"everything.read", "everything.write", "everything");
 
-		Tree.Node<String> node = ScopeTreeUtil.getScopeAliasTreeNode(
+		BaseTree.Node<String> node = ScopeTreeUtil.getScopeAliasTreeNode(
 			scopeAliasesList, _scopeMatcherFactory);
 
 		Assert.assertEquals(StringPool.BLANK, node.getValue());
 
-		Tree<String> tree = _getTree(node, 0);
+		BaseTree<String> tree = _getTree(node, 0);
 
 		Assert.assertEquals("everything", tree.getValue());
-		Assert.assertFalse(tree instanceof Tree.Leaf);
+		Assert.assertFalse(tree instanceof BaseTree.Leaf);
 
-		Tree<String> firstChildTree = _getTree((Tree.Node<String>)tree, 0);
+		BaseTree<String> firstChildTree = _getTree(
+			(BaseTree.Node<String>)tree, 0);
 
 		Assert.assertEquals("everything.read", firstChildTree.getValue());
-		Assert.assertTrue(firstChildTree instanceof Tree.Leaf);
+		Assert.assertTrue(firstChildTree instanceof BaseTree.Leaf);
 
-		Tree<String> lastChildTree = _getLastTree((Tree.Node<String>)tree);
+		BaseTree<String> lastChildTree = _getLastTree(
+			(BaseTree.Node<String>)tree);
 
 		Assert.assertEquals("everything.write", lastChildTree.getValue());
-		Assert.assertTrue(lastChildTree instanceof Tree.Leaf);
+		Assert.assertTrue(lastChildTree instanceof BaseTree.Leaf);
 	}
 
-	private Tree<String> _getLastTree(Tree.Node<String> node) {
-		Collection<Tree<String>> trees = node.getTrees();
+	private BaseTree<String> _getLastTree(BaseTree.Node<String> node) {
+		Collection<BaseTree<String>> trees = node.getTrees();
 
 		return _getTree(node, trees.size() - 1);
 	}
 
-	private List<Tree<String>> _getSortedTrees(Tree.Node<String> node) {
+	private List<BaseTree<String>> _getSortedTrees(BaseTree.Node<String> node) {
 		return ListUtil.sort(
 			node.getTrees(),
 			Comparator.comparing(
-				Tree::getValue, String.CASE_INSENSITIVE_ORDER));
+				BaseTree::getValue, String.CASE_INSENSITIVE_ORDER));
 	}
 
-	private Tree<String> _getTree(Tree.Node<String> node, int index) {
-		List<Tree<String>> trees = _getSortedTrees(node);
+	private BaseTree<String> _getTree(BaseTree.Node<String> node, int index) {
+		List<BaseTree<String>> trees = _getSortedTrees(node);
 
 		return trees.get(index);
 	}

@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * @author Eudaldo Alonso
  */
-public abstract class JournalBaseTrashHandler extends BaseTrashHandler {
+public abstract class BaseJournalTrashHandler extends BaseTrashHandler {
 
 	@Override
 	public ContainerModel getContainerModel(long containerModelId)

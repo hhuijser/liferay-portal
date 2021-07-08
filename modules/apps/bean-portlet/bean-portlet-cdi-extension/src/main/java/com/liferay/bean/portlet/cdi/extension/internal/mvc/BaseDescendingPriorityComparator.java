@@ -21,13 +21,14 @@ import javax.annotation.Priority;
 /**
  * @author Neil Griffin
  */
-public abstract class DescendingPriorityComparator<T> implements Comparator<T> {
+public abstract class BaseDescendingPriorityComparator<T>
+	implements Comparator<T> {
 
-	public DescendingPriorityComparator() {
+	public BaseDescendingPriorityComparator() {
 		this(0);
 	}
 
-	public DescendingPriorityComparator(int defaultPriority) {
+	public BaseDescendingPriorityComparator(int defaultPriority) {
 		_defaultPriority = defaultPriority;
 	}
 

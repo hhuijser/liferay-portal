@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Pavel Savinov
  */
-public abstract class JournalArticleBasicInfoListRenderer
+public abstract class BaseJournalArticleBasicInfoListRenderer
 	implements BasicInfoListRenderer<JournalArticle> {
 
 	@Override
@@ -105,6 +105,6 @@ public abstract class JournalArticleBasicInfoListRenderer
 	protected InfoItemRendererTracker infoItemRendererTracker;
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleBasicInfoListRenderer.class);
+		BaseJournalArticleBasicInfoListRenderer.class);
 
 }

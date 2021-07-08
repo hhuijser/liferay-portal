@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.staging.processes.web.internal.portlet.action;
+package com.liferay.exportimport.web.internal.portlet.action;
 
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -24,9 +24,9 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 /**
- * @author Levente Hudák
+ * @author Daniel Kocsis
  */
-public abstract class GetGroupMVCRenderCommand implements MVCRenderCommand {
+public abstract class BaseGroupMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
@@ -42,7 +42,7 @@ public abstract class GetGroupMVCRenderCommand implements MVCRenderCommand {
 
 				SessionErrors.add(renderRequest, exception.getClass());
 
-				return "/error/error.jsp";
+				return "/error.jsp";
 			}
 
 			throw new PortletException(exception);

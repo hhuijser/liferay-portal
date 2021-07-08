@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Shinn Lok
  */
-public abstract class SyncBaseModelListener<T extends BaseModel<T>>
+public abstract class BaseSyncModelListener<T extends BaseModel<T>>
 	extends BaseModelListener<T> {
 
 	protected SyncDLObject getSyncDLObject(

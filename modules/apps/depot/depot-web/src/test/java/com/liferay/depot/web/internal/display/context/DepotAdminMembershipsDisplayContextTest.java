@@ -334,7 +334,6 @@ public class DepotAdminMembershipsDisplayContextTest {
 	private static class ThemeDisplayBuilder {
 
 		public ThemeDisplayBuilder() {
-			_themeDisplay = new ThemeDisplay();
 		}
 
 		public ThemeDisplay build() {
@@ -349,7 +348,7 @@ public class DepotAdminMembershipsDisplayContextTest {
 			return this;
 		}
 
-		private final ThemeDisplay _themeDisplay;
+		private final ThemeDisplay _themeDisplay = new ThemeDisplay();
 
 	}
 

@@ -59,8 +59,6 @@ public class LiferayWriter
 		_finalEndpointUrl = _getFinalEndpointUrl(_liferayOutputProperties);
 
 		_liferaySink = _liferayWriteOperation.getSink();
-		_result = new Result();
-		_successWrites = new ArrayList<>();
 
 		_indexedRecordJsonObjectConverter =
 			new IndexedRecordJsonObjectConverter(
@@ -258,7 +256,7 @@ public class LiferayWriter
 	private final LiferayOutputProperties _liferayOutputProperties;
 	private final LiferaySink _liferaySink;
 	private final LiferayWriteOperation _liferayWriteOperation;
-	private final Result _result;
-	private final List<IndexedRecord> _successWrites;
+	private final Result _result = new Result();
+	private final List<IndexedRecord> _successWrites = new ArrayList<>();
 
 }

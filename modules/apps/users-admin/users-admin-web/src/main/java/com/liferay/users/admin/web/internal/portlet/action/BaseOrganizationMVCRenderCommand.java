@@ -26,7 +26,7 @@ import javax.portlet.RenderResponse;
 /**
  * @author Pei-Jung Lan
  */
-public abstract class GetOrganizationMVCRenderCommand
+public abstract class BaseOrganizationMVCRenderCommand
 	implements MVCRenderCommand {
 
 	@Override

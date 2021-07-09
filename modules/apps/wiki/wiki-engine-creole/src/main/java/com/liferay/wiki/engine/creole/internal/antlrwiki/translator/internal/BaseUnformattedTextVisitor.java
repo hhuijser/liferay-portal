@@ -27,7 +27,7 @@ import com.liferay.wiki.engine.creole.internal.parser.visitor.BaseASTVisitor;
 /**
  * @author Miguel Pastor
  */
-public abstract class UnformattedTextVisitor extends BaseASTVisitor {
+public abstract class BaseUnformattedTextVisitor extends BaseASTVisitor {
 
 	public String getText() {
 		return _sb.toString();

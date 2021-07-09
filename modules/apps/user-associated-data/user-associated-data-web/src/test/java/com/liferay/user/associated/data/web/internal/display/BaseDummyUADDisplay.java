@@ -28,7 +28,7 @@ import java.util.Map;
 /**
  * @author Drew Brokke
  */
-public abstract class DummyUADDisplay<T extends UserAssociatedEntity>
+public abstract class BaseDummyUADDisplay<T extends UserAssociatedEntity>
 	implements UADDisplay<T> {
 
 	@Override

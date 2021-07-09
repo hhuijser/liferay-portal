@@ -30,7 +30,7 @@ import javax.portlet.PortletException;
 /**
  * @author Leonardo Barros
  */
-public abstract class WorkflowTaskBaseMVCActionCommand
+public abstract class BaseWorkflowTaskMVCActionCommand
 	implements MVCActionCommand {
 
 	@Override

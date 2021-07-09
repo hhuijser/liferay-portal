@@ -30,10 +30,10 @@ import java.util.Map;
 /**
  * @author Andrew Betts
  */
-public abstract class ReindexBackgroundTaskExecutor
+public abstract class BaseReindexBackgroundTaskExecutor
 	extends BaseBackgroundTaskExecutor {
 
-	public ReindexBackgroundTaskExecutor() {
+	public BaseReindexBackgroundTaskExecutor() {
 		setBackgroundTaskStatusMessageTranslator(
 			new ReindexBackgroundTaskStatusMessageTranslator());
 		setIsolationLevel(BackgroundTaskConstants.ISOLATION_LEVEL_COMPANY);

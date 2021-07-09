@@ -20,7 +20,7 @@ import com.liferay.portal.search.sort.SortOrder;
 /**
  * @author Michael C. Han
  */
-public abstract class SortImpl implements Sort {
+public abstract class BaseSortImpl implements Sort {
 
 	@Override
 	public SortOrder getSortOrder() {

@@ -22,16 +22,16 @@ import com.liferay.portal.search.query.function.score.DecayScoreFunction;
  * @author Wade Cao
  * @author André de Oliveira
  */
-public abstract class DecayScoreFunctionImpl
-	extends ScoreFunctionImpl implements DecayScoreFunction {
+public abstract class BaseDecayScoreFunctionImpl
+	extends BaseScoreFunctionImpl implements DecayScoreFunction {
 
-	public DecayScoreFunctionImpl(
+	public BaseDecayScoreFunctionImpl(
 		String field, Object origin, Object scale, Object offset) {
 
 		this(field, origin, scale, offset, null);
 	}
 
-	public DecayScoreFunctionImpl(
+	public BaseDecayScoreFunctionImpl(
 		String field, Object origin, Object scale, Object offset,
 		Double decay) {
 

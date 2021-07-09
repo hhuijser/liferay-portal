@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Michael C. Han
  */
-public abstract class ShapeImpl implements Shape {
+public abstract class BaseShapeImpl implements Shape {
 
 	@Override
 	public List<Coordinate> getCoordinates() {

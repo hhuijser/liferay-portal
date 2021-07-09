@@ -20,11 +20,11 @@ import com.liferay.portal.search.aggregation.pipeline.GapPolicy;
 /**
  * @author Michael C. Han
  */
-public abstract class BucketMetricsPipelineAggregationImpl
+public abstract class BaseBucketMetricsPipelineAggregationImpl
 	extends BasePipelineAggregation
 	implements BucketMetricsPipelineAggregation {
 
-	public BucketMetricsPipelineAggregationImpl(
+	public BaseBucketMetricsPipelineAggregationImpl(
 		String name, String bucketsPath) {
 
 		super(name);

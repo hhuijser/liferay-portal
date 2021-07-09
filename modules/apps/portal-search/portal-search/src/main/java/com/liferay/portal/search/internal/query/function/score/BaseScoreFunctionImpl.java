@@ -22,7 +22,7 @@ import com.liferay.portal.search.query.function.score.ScoreFunctionTranslator;
  * @author Wade Cao
  * @author André de Oliveira
  */
-public abstract class ScoreFunctionImpl implements ScoreFunction {
+public abstract class BaseScoreFunctionImpl implements ScoreFunction {
 
 	@Override
 	public abstract <T> T accept(

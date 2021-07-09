@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = "javax.portlet.name=" + SimilarResultsPortletKeys.SIMILAR_RESULTS,
 	service = PortletSharedSearchContributor.class
 )
-public class SimilarResultsPortletSearchContributor
+public class SimilarResultsPortletSharedSearchContributor
 	implements PortletSharedSearchContributor {
 
 	@Override

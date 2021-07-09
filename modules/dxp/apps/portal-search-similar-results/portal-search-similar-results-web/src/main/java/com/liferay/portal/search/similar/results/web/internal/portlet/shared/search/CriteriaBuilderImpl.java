@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.portal.search.similar.results.web.internal.portlet.search;
+package com.liferay.portal.search.similar.results.web.internal.portlet.shared.search;
 
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.similar.results.web.spi.contributor.helper.CriteriaBuilder;

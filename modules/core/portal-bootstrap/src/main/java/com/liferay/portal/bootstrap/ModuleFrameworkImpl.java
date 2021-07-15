@@ -1903,9 +1903,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 			_log.debug(
 				"Registered required service as " +
 					serviceRegistration.getReference());
-		}
 
-		if (_log.isDebugEnabled()) {
 			_log.debug("Registered required services");
 		}
 	}

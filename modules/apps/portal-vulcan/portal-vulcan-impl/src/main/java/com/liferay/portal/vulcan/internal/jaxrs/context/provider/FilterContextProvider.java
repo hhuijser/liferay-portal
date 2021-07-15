@@ -88,9 +88,7 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("OData filter: " + oDataFilter);
-		}
 
-		if (_log.isDebugEnabled()) {
 			_log.debug("Entity model: " + entityModel);
 		}
 

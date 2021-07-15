@@ -248,8 +248,8 @@ public class MVCCommandNameCheck extends BaseCheck {
 		DetailAST annotationArrayInitDetailAST, String className,
 		String modulePath, boolean validateActionName) {
 
-		if (!(mvcCommandName.startsWith(StringPool.SLASH) ||
-			  mvcCommandName.startsWith(StringPool.TILDE))) {
+		if (!mvcCommandName.startsWith(StringPool.SLASH) &&
+			!mvcCommandName.startsWith(StringPool.TILDE)) {
 
 			return false;
 		}

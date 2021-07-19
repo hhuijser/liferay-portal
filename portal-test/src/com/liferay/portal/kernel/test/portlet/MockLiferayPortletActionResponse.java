@@ -55,7 +55,6 @@ public class MockLiferayPortletActionResponse
 	implements ActionResponse, LiferayPortletResponse {
 
 	public MockLiferayPortletActionResponse() {
-		_mockHttpServletResponse = new MockHttpServletResponse();
 	}
 
 	@Override
@@ -334,6 +333,7 @@ public class MockLiferayPortletActionResponse
 	public void transferMarkupHeadElements() {
 	}
 
-	private final MockHttpServletResponse _mockHttpServletResponse;
+	private final MockHttpServletResponse _mockHttpServletResponse =
+		new MockHttpServletResponse();
 
 }

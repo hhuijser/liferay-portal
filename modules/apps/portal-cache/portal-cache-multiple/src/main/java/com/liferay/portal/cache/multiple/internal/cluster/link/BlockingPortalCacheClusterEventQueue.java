@@ -28,7 +28,6 @@ public class BlockingPortalCacheClusterEventQueue
 	implements PortalCacheClusterEventQueue {
 
 	public BlockingPortalCacheClusterEventQueue() {
-		_blockingQueue = new LinkedBlockingQueue<>();
 	}
 
 	@Override
@@ -62,6 +61,7 @@ public class BlockingPortalCacheClusterEventQueue
 		return portalCacheClusterEvents;
 	}
 
-	private final BlockingQueue<PortalCacheClusterEvent> _blockingQueue;
+	private final BlockingQueue<PortalCacheClusterEvent> _blockingQueue =
+		new LinkedBlockingQueue<>();
 
 }

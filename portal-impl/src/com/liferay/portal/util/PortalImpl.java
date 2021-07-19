@@ -467,8 +467,6 @@ public class PortalImpl implements Portal {
 
 		// Reserved parameter names
 
-		_reservedParams = new HashSet<>();
-
 		// Portal authentication
 
 		_reservedParams.add("p_auth");
@@ -8870,7 +8868,7 @@ public class PortalImpl implements Portal {
 		_portalLocalInetSocketAddress = new AtomicReference<>();
 	private final AtomicReference<InetSocketAddress>
 		_portalServerInetSocketAddress = new AtomicReference<>();
-	private final Set<String> _reservedParams;
+	private final Set<String> _reservedParams = new HashSet<>();
 	private final AtomicReference<InetSocketAddress>
 		_securePortalLocalInetSocketAddress = new AtomicReference<>();
 	private final AtomicReference<InetSocketAddress>

@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.CustomAttributesUtil;
 
 import javax.portlet.PortletURL;
-import javax.portlet.RenderURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -199,21 +198,22 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 	}
 
 	private String _getAddCommerceTierPriceEntryURL() throws Exception {
-		RenderURL portletURL = liferayPortletResponse.createRenderURL();
-
-		portletURL.setParameter(
+		return PortletURLBuilder.createRenderURL(
+			liferayPortletResponse
+		).setParameter(
 			"mvcRenderCommandName",
-			"/cp_definitions/edit_cp_instance_commerce_tier_price_entry");
-		portletURL.setParameter("redirect", cpRequestHelper.getCurrentURL());
-		portletURL.setParameter(
-			"commercePriceEntryId", String.valueOf(getCommercePriceEntryId()));
-		portletURL.setParameter(
-			"cpDefinitionId", String.valueOf(getCPDefinitionId()));
-		portletURL.setParameter(
-			"cpInstanceId", String.valueOf(getCPInstanceId()));
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
-
-		return portletURL.toString();
+			"/cp_definitions/edit_cp_instance_commerce_tier_price_entry"
+		).setParameter(
+			"redirect", cpRequestHelper.getCurrentURL()
+		).setParameter(
+			"commercePriceEntryId", getCommercePriceEntryId()
+		).setParameter(
+			"cpDefinitionId", getCPDefinitionId()
+		).setParameter(
+			"cpInstanceId", getCPInstanceId()
+		).setWindowState(
+			LiferayWindowState.POP_UP
+		).buildString();
 	}
 
 	private final CommercePriceListActionHelper _commercePriceListActionHelper;

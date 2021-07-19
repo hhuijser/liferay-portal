@@ -585,6 +585,11 @@
 			<property name="description" value="Finds unnecessary branching (`break`, `continue` or `return`) statements." />
 			<message key="branching.statement.redundant" value="Redundant ''{0}'' statement" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.RedundantIfStatementCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds redundant if statements that can be combined." />
+			<message key="if.statements.combine" value="Combine redundant if-statements on line ''{0}'' and ''{1}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ReferenceAnnotationCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Performs several checks on classes with @Reference annotation." />

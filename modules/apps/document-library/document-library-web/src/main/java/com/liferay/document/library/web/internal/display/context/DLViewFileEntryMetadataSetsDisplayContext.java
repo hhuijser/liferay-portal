@@ -73,10 +73,9 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 	public PortletURL getCopyDDMStructurePortletURL(DDMStructure ddmStructure) {
 		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"mvcPath", "/document_library/ddm/copy_ddm_structure.jsp"
-		).setParameter(
-			"redirect",
+		).setMVCPath(
+			"/document_library/ddm/copy_ddm_structure.jsp"
+		).setRedirect(
 			PortletURLUtil.getCurrent(
 				_liferayPortletRequest, _liferayPortletResponse)
 		).setParameter(
@@ -93,10 +92,9 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 	public PortletURL getEditDDMStructurePortletURL(DDMStructure ddmStructure) {
 		return PortletURLBuilder.createRenderURL(
 			_liferayPortletResponse
-		).setParameter(
-			"mvcRenderCommandName", "/document_library/edit_ddm_structure"
-		).setParameter(
-			"redirect",
+		).setMVCRenderCommandName(
+			"/document_library/edit_ddm_structure"
+		).setRedirect(
 			PortletURLBuilder.create(
 				PortletURLUtil.getCurrent(
 					_liferayPortletRequest, _liferayPortletResponse)

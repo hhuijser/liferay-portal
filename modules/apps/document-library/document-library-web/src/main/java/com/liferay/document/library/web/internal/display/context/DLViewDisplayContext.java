@@ -82,12 +82,12 @@ public class DLViewDisplayContext {
 	public String getAddFileEntryURL() {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_entry"
-		).setParameter(
-			Constants.CMD, Constants.ADD
-		).setParameter(
-			"redirect", _getRedirect()
+		).setMVCRenderCommandName(
+			"/document_library/edit_file_entry"
+		).setCMD(
+			Constants.ADD
+		).setRedirect(
+			_getRedirect()
 		).setParameter(
 			"groupId",
 			() -> {
@@ -144,8 +144,8 @@ public class DLViewDisplayContext {
 	public String getEditFileEntryURL() {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcRenderCommandName", "/document_library/edit_file_entry"
+		).setMVCRenderCommandName(
+			"/document_library/edit_file_entry"
 		).buildString();
 	}
 
@@ -194,8 +194,8 @@ public class DLViewDisplayContext {
 	public String getSelectFileEntryTypeURL() throws WindowStateException {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcPath", "/document_library/select_file_entry_type.jsp"
+		).setMVCPath(
+			"/document_library/select_file_entry_type.jsp"
 		).setParameter(
 			"fileEntryTypeId", _getFileEntryTypeId()
 		).setWindowState(
@@ -206,8 +206,8 @@ public class DLViewDisplayContext {
 	public String getSelectFolderURL() throws WindowStateException {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcRenderCommandName", "/document_library/select_folder"
+		).setMVCRenderCommandName(
+			"/document_library/select_folder"
 		).setParameter(
 			"folderId", _dlAdminDisplayContext.getFolderId()
 		).setWindowState(
@@ -259,18 +259,18 @@ public class DLViewDisplayContext {
 	public String getViewFileEntryURL() {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcRenderCommandName", "/document_library/view_file_entry"
-		).setParameter(
-			"redirect", _getRedirect()
+		).setMVCRenderCommandName(
+			"/document_library/view_file_entry"
+		).setRedirect(
+			_getRedirect()
 		).buildString();
 	}
 
 	public String getViewMoreFileEntryTypesURL() throws WindowStateException {
 		return PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcPath", "/document_library/view_more_menu_items.jsp"
+		).setMVCPath(
+			"/document_library/view_more_menu_items.jsp"
 		).setParameter(
 			"folderId", _dlAdminDisplayContext.getFolderId()
 		).setParameter(

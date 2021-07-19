@@ -391,15 +391,13 @@ public class PoshiRunner {
 
 					for (Throwable throwable2 : throwables) {
 						if (validRetryThrowableClass.equals(
-								throwable2.getClass())) {
+								throwable2.getClass()) &&
+							((validRetryThrowableShortMessage == null) ||
+							 validRetryThrowableShortMessage.isEmpty() ||
+							 validRetryThrowableShortMessage.equals(
+								 _getShortMessage(throwable2)))) {
 
-							if ((validRetryThrowableShortMessage == null) ||
-								validRetryThrowableShortMessage.isEmpty() ||
-								validRetryThrowableShortMessage.equals(
-									_getShortMessage(throwable2))) {
-
-								return true;
-							}
+							return true;
 						}
 					}
 				}

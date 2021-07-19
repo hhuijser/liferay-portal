@@ -379,6 +379,14 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testRedundantIfStatements() throws Exception {
+		test(
+			"RedundantIfStatements.testjava",
+			"Combine redundant if-statements on line '23' and '27'",
+			23);
+	}
+
+	@Test
 	public void testResultCountSet() throws Exception {
 		test(
 			"ResultSetCount.testjava", "Use resultSet.getInt(1) for count", 35);

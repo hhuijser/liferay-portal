@@ -14,6 +14,7 @@
 
 package com.liferay.users.admin.web.internal.util;
 
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
@@ -24,7 +25,6 @@ import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.OrganizationPermissionUtil;
 
 import javax.portlet.RenderResponse;
-import javax.portlet.RenderURL;
 
 /**
  * @author Samuel Trong Tran
@@ -34,25 +34,35 @@ public class UsersAdminPortletURLUtil {
 	public static String createOrganizationViewTreeURL(
 		long organizationId, RenderResponse renderResponse) {
 
-		RenderURL renderURL = renderResponse.createRenderURL();
+		return PortletURLBuilder.createRenderURL(
+			renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/users_admin/view"
+		).setParameter(
+			"toolbarItem", "view-all-organizations"
+		).setParameter(
+			"organizationId",
+			() -> {
+				if (organizationId ==
+						OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
 
-		renderURL.setParameter("mvcRenderCommandName", "/users_admin/view");
-		renderURL.setParameter("toolbarItem", "view-all-organizations");
+					return null;
+				}
 
-		if (organizationId ==
-				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
+				return organizationId;
+			}
+		).setParameter(
+			"usersListView",
+			() -> {
+				if (organizationId ==
+						OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
 
-			renderURL.setParameter(
-				"usersListView", UserConstants.LIST_VIEW_FLAT_ORGANIZATIONS);
-		}
-		else {
-			renderURL.setParameter(
-				"organizationId", String.valueOf(organizationId));
-			renderURL.setParameter(
-				"usersListView", UserConstants.LIST_VIEW_TREE);
-		}
+					return UserConstants.LIST_VIEW_FLAT_ORGANIZATIONS;
+				}
 
-		return String.valueOf(renderURL);
+				return UserConstants.LIST_VIEW_TREE;
+			}
+		).buildString();
 	}
 
 	public static String createParentOrganizationViewTreeURL(

@@ -41,6 +41,7 @@ public class EntityFinder {
 		_where = where;
 		_dbWhere = dbWhere;
 		_dbIndex = dbIndex;
+
 		_entityColumns = entityColumns;
 
 		for (EntityColumn column : _entityColumns) {

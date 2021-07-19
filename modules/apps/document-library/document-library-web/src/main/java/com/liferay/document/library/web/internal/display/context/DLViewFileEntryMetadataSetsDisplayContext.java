@@ -47,7 +47,6 @@ import java.util.List;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionURL;
 import javax.portlet.PortletURL;
-import javax.portlet.RenderURL;
 
 /**
  * @author Rafael Praxedes
@@ -72,19 +71,17 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 	}
 
 	public PortletURL getCopyDDMStructurePortletURL(DDMStructure ddmStructure) {
-		RenderURL renderURL = _liferayPortletResponse.createRenderURL();
-
-		renderURL.setParameter(
-			"mvcPath", "/document_library/ddm/copy_ddm_structure.jsp");
-		renderURL.setParameter(
+		return PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcPath", "/document_library/ddm/copy_ddm_structure.jsp"
+		).setParameter(
 			"redirect",
-			String.valueOf(
-				PortletURLUtil.getCurrent(
-					_liferayPortletRequest, _liferayPortletResponse)));
-		renderURL.setParameter(
-			"ddmStructureId", String.valueOf(ddmStructure.getStructureId()));
-
-		return renderURL;
+			PortletURLUtil.getCurrent(
+				_liferayPortletRequest, _liferayPortletResponse)
+		).setParameter(
+			"ddmStructureId", ddmStructure.getStructureId()
+		).build();
 	}
 
 	public PortletURL getDeleteDDMStructurePortletURL(
@@ -94,24 +91,21 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 	}
 
 	public PortletURL getEditDDMStructurePortletURL(DDMStructure ddmStructure) {
-		RenderURL renderURL = _liferayPortletResponse.createRenderURL();
-
-		renderURL.setParameter(
-			"mvcRenderCommandName", "/document_library/edit_ddm_structure");
-
-		renderURL.setParameter(
+		return PortletURLBuilder.createRenderURL(
+			_liferayPortletResponse
+		).setParameter(
+			"mvcRenderCommandName", "/document_library/edit_ddm_structure"
+		).setParameter(
 			"redirect",
 			PortletURLBuilder.create(
 				PortletURLUtil.getCurrent(
 					_liferayPortletRequest, _liferayPortletResponse)
 			).setNavigation(
 				"file_entry_metadata_sets"
-			).buildString());
-
-		renderURL.setParameter(
-			"ddmStructureId", String.valueOf(ddmStructure.getStructureId()));
-
-		return renderURL;
+			).buildString()
+		).setParameter(
+			"ddmStructureId", ddmStructure.getStructureId()
+		).build();
 	}
 
 	public String getOrderByCol() {

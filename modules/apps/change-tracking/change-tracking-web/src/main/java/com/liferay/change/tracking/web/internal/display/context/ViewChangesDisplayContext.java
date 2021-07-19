@@ -330,10 +330,10 @@ public class ViewChangesDisplayContext {
 			"discardURL",
 			PortletURLBuilder.createRenderURL(
 				_renderResponse
-			).setParameter(
-				"mvcRenderCommandName", "/change_tracking/view_discard"
-			).setParameter(
-				"redirect", _themeDisplay.getURLCurrent()
+			).setMVCRenderCommandName(
+				"/change_tracking/view_discard"
+			).setRedirect(
+				_themeDisplay.getURLCurrent()
 			).setParameter(
 				"ctCollectionId", _ctCollection.getCtCollectionId()
 			).buildString()

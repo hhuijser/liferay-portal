@@ -253,11 +253,10 @@ public class ViewConflictsDisplayContext {
 						"href",
 						PortletURLBuilder.createRenderURL(
 							_renderResponse
-						).setParameter(
-							"mvcRenderCommandName",
+						).setMVCRenderCommandName(
 							"/change_tracking/view_discard"
-						).setParameter(
-							"redirect", _portal.getCurrentURL(_renderRequest)
+						).setRedirect(
+							_portal.getCurrentURL(_renderRequest)
 						).setParameter(
 							"ctCollectionId", ctEntry.getCtCollectionId()
 						).setParameter(

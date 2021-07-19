@@ -31,11 +31,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class WorkflowHandlerInvocationCounter<T> implements AutoCloseable {
 
 	public WorkflowHandlerInvocationCounter(String className) {
-		WorkflowHandler<T> workflowHandler =
-			WorkflowHandlerRegistryUtil.getWorkflowHandler(className);
-
 		WorkflowHandler<T> delegateWorkflowHandler =
-			_createInvocationCounterWorkflowHandler(workflowHandler);
+			_createInvocationCounterWorkflowHandler(
+				WorkflowHandlerRegistryUtil.getWorkflowHandler(className));
 
 		_workflowHandlerReplacer = new WorkflowHandlerReplacer<>(
 			className, delegateWorkflowHandler);

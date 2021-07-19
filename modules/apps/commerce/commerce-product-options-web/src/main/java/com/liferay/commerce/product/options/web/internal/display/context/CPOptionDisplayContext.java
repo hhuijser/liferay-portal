@@ -93,10 +93,10 @@ public class CPOptionDisplayContext {
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						cpRequestHelper.getLiferayPortletResponse()
-					).setParameter(
-						"mvcRenderCommandName", "/cp_options/add_cp_option"
-					).setParameter(
-						"backURL", cpRequestHelper.getCurrentURL()
+					).setMVCRenderCommandName(
+						"/cp_options/add_cp_option"
+					).setBackURL(
+						cpRequestHelper.getCurrentURL()
 					).setWindowState(
 						LiferayWindowState.POP_UP
 					).buildString());
@@ -172,10 +172,10 @@ public class CPOptionDisplayContext {
 		return getClayDataSetActionDropdownItems(
 			PortletURLBuilder.createRenderURL(
 				cpRequestHelper.getRenderResponse()
-			).setParameter(
-				"mvcRenderCommandName", "/cp_options/edit_cp_option"
-			).setParameter(
-				"redirect", cpRequestHelper.getCurrentURL()
+			).setMVCRenderCommandName(
+				"/cp_options/edit_cp_option"
+			).setRedirect(
+				cpRequestHelper.getCurrentURL()
 			).setParameter(
 				"cpOptionId", "{id}"
 			).setParameter(
@@ -191,10 +191,10 @@ public class CPOptionDisplayContext {
 
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			cpRequestHelper.getRenderResponse()
-		).setParameter(
-			"mvcRenderCommandName", "/cp_options/edit_cp_option_value"
-		).setParameter(
-			"redirect", cpRequestHelper.getCurrentURL()
+		).setMVCRenderCommandName(
+			"/cp_options/edit_cp_option_value"
+		).setRedirect(
+			cpRequestHelper.getCurrentURL()
 		).setParameter(
 			"cpOptionValueId", "{id}"
 		).setParameter(
@@ -220,11 +220,10 @@ public class CPOptionDisplayContext {
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						cpRequestHelper.getLiferayPortletResponse()
-					).setParameter(
-						"mvcRenderCommandName",
+					).setMVCRenderCommandName(
 						"/cp_options/add_cp_option_value"
-					).setParameter(
-						"backURL", cpRequestHelper.getCurrentURL()
+					).setBackURL(
+						cpRequestHelper.getCurrentURL()
 					).setParameter(
 						"cpOptionId", cpOptionId
 					).setWindowState(

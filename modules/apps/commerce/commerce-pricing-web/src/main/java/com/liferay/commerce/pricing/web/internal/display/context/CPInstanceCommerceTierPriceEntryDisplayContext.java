@@ -200,11 +200,10 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 	private String _getAddCommerceTierPriceEntryURL() throws Exception {
 		return PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
-		).setParameter(
-			"mvcRenderCommandName",
+		).setMVCRenderCommandName(
 			"/cp_definitions/edit_cp_instance_commerce_tier_price_entry"
-		).setParameter(
-			"redirect", cpRequestHelper.getCurrentURL()
+		).setRedirect(
+			cpRequestHelper.getCurrentURL()
 		).setParameter(
 			"commercePriceEntryId", getCommercePriceEntryId()
 		).setParameter(

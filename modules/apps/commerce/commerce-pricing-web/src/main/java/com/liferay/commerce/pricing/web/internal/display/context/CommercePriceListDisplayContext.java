@@ -268,11 +268,10 @@ public class CommercePriceListDisplayContext
 			getClayDataSetActionDropdownItems(
 				PortletURLBuilder.createRenderURL(
 					commercePricingRequestHelper.getRenderResponse()
-				).setParameter(
-					"mvcRenderCommandName",
+				).setMVCRenderCommandName(
 					"/commerce_price_list/edit_commerce_price_list"
-				).setParameter(
-					"redirect", commercePricingRequestHelper.getCurrentURL()
+				).setRedirect(
+					commercePricingRequestHelper.getCurrentURL()
 				).setParameter(
 					"commercePriceListId", "{id}"
 				).setParameter(

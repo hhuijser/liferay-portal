@@ -145,8 +145,7 @@ public class CPAttachmentFileEntriesDisplayContext
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						liferayPortletResponse
-					).setParameter(
-						"mvcRenderCommandName",
+					).setMVCRenderCommandName(
 						"/cp_definitions/edit_cp_attachment_file_entry"
 					).setParameter(
 						"cpDefinitionId", getCPDefinitionId()

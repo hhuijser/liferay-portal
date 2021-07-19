@@ -305,10 +305,10 @@ public class CPDefinitionsDisplayContext
 
 		PortletURL portletURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
-		).setParameter(
-			"mvcRenderCommandName", "/cp_definitions/add_cp_definition"
-		).setParameter(
-			"backURL", cpRequestHelper.getCurrentURL()
+		).setMVCRenderCommandName(
+			"/cp_definitions/add_cp_definition"
+		).setBackURL(
+			cpRequestHelper.getCurrentURL()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).build();

@@ -161,10 +161,10 @@ public class CommerceOrderEditDisplayContext {
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						_commerceOrderRequestHelper.getLiferayPortletResponse()
-					).setParameter(
-						"mvcRenderCommandName", mvcRenderCommandName
-					).setParameter(
-						Constants.CMD, Constants.ADD
+					).setMVCRenderCommandName(
+						mvcRenderCommandName
+					).setCMD(
+						Constants.ADD
 					).setParameter(
 						"commerceOrderId", getCommerceOrderId()
 					).setWindowState(

@@ -109,8 +109,7 @@ public class CPDefinitionOptionRelDisplayContext
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						liferayPortletResponse
-					).setParameter(
-						"mvcRenderCommandName",
+					).setMVCRenderCommandName(
 						"/cp_definitions/edit_cp_definition_option_value_rel"
 					).setParameter(
 						"cpDefinitionId", getCPDefinitionId()

@@ -26,9 +26,6 @@ import jodd.util.CsvUtil;
  */
 public class DateArrayConverter implements TypeConverter<Date[]> {
 
-	public DateArrayConverter() {
-	}
-
 	@Override
 	public Date[] convert(Object value) {
 		if (value == null) {

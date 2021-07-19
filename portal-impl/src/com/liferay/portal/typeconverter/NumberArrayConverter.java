@@ -24,9 +24,6 @@ import jodd.util.CsvUtil;
  */
 public class NumberArrayConverter implements TypeConverter<Number[]> {
 
-	public NumberArrayConverter() {
-	}
-
 	@Override
 	public Number[] convert(Object value) {
 		if (value == null) {

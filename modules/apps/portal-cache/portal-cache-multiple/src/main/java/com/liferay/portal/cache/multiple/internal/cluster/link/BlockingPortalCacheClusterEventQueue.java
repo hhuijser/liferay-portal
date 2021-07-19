@@ -27,9 +27,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class BlockingPortalCacheClusterEventQueue
 	implements PortalCacheClusterEventQueue {
 
-	public BlockingPortalCacheClusterEventQueue() {
-	}
-
 	@Override
 	public long coalescedCount() {
 		return 0;

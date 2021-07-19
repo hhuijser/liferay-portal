@@ -25,9 +25,6 @@ import jodd.json.ValueConverter;
  */
 public class JSONDeserializerImpl<T> implements JSONDeserializer<T> {
 
-	public JSONDeserializerImpl() {
-	}
-
 	@Override
 	public T deserialize(String input) {
 		return _jsonDeserializer.parse(input);

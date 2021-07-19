@@ -31,9 +31,6 @@ import java.util.List;
  */
 public class TimestampConverter extends BaseXStreamConverter {
 
-	public TimestampConverter() {
-	}
-
 	@Override
 	public boolean canConvert(Class<?> clazz) {
 		Class<?> superClass = clazz.getSuperclass();

@@ -65,9 +65,6 @@ public class MenuItem implements Serializable {
 		return _fromWikiPage(wikiPage, portletURL);
 	}
 
-	public MenuItem() {
-	}
-
 	public void addChild(MenuItem child) {
 		_children.add(child);
 	}

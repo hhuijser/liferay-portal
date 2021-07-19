@@ -944,9 +944,6 @@ public class ExportImportHelperUtilTest {
 
 	private class ExportImportTestParameterMapBuilder {
 
-		public ExportImportTestParameterMapBuilder() {
-		}
-
 		public Map<String, String[]> build() {
 			return _parameterMap;
 		}

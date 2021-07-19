@@ -29,9 +29,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class CustomJspRegistryImpl implements CustomJspRegistry {
 
-	public CustomJspRegistryImpl() {
-	}
-
 	@Override
 	public String getCustomJspFileName(
 		String servletContextName, String fileName) {

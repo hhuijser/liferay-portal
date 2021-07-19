@@ -74,6 +74,7 @@ public class CombineLines extends SuperClass {
 		int i2 = 0;
 
 		if ((i1 == 0) || (i2 == 0)) {
+			return;
 		}
 
 		if (StringUtil.contains(test1, "Hello World Hello World Hello") ||

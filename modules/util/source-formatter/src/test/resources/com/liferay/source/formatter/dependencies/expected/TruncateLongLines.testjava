@@ -136,12 +136,16 @@ public class TruncateLongLines
 			 ((testString2 != null) && testString2.equals("hello world"))) &&
 			StringUtil.isLowerCase(testString3)) {
 
+			System.out.println("Message1");
+
 			return;
 		}
 
 		if (testString1.equals("hello1") || testString1.equals("hello2") ||
 			testString1.equals("hello3") || testString1.equals("hello4") ||
 			testString1.equals("hello5") || testString1.equals("hello6")) {
+
+			System.out.println("Message2");
 
 			return;
 		}

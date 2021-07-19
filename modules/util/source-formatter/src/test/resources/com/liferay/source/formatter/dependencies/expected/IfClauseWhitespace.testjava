@@ -56,12 +56,16 @@ public class IfClauseWhitespace {
 		if ((testString == null) ||
 			StringUtil.contains(testString, "testString")) {
 
+			System.out.println("Message1");
+
 			return;
 		}
 
 		if (StringUtil.equalsIgnoreCase(
 				testString,
 				"this is a very long string that needs its own line")) {
+
+			System.out.println("Message2");
 
 			return;
 		}

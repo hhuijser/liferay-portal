@@ -98,10 +98,12 @@ public class TruncateLongLines extends ThisIsASuperClassThatAlsoHasASuperLongNam
 		String testString3 = "test";
 
 		if ((testString1.equals("hello world") || testString2.equals("hello world")) && ((testString1 != null) || ((testString3 != null) && testString3.equals("hello world")) || ((testString2 != null) && testString2.equals("hello world"))) && StringUtil.isLowerCase(testString3)) {
+			System.out.println("Message1");
 			return;
 		}
 
 		if (testString1.equals("hello1") || testString1.equals("hello2") || testString1.equals("hello3") || testString1.equals("hello4") || testString1.equals("hello5") || testString1.equals("hello6")) {
+			System.out.println("Message2");
 			return;
 		}
 

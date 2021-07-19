@@ -23,43 +23,43 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a == a) {
-			System.out.println("OK");
+			System.out.println("OK: a == a");
 		}
 
 		if (3 == 3) {
-			System.out.println("OK");
+			System.out.println("OK: 3 == 3");
 		}
 
 		if (-3 == -3) {
-			System.out.println("OK");
+			System.out.println("OK: -3 == -3");
 		}
 
 		if (+3 == +3) {
-			System.out.println("OK");
+			System.out.println("OK: +3 == +3");
 		}
 
 		if (a == 3) {
-			System.out.println("OK");
+			System.out.println("OK: a == 3");
 		}
 
 		if (a == +3) {
-			System.out.println("OK");
+			System.out.println("OK: a == +3");
 		}
 
 		if (a == -3) {
-			System.out.println("OK");
+			System.out.println("OK: a == -3");
 		}
 
 		if (3 == a) {
-			System.out.println("NG");
+			System.out.println("NG: 3 == a");
 		}
 
 		if (+3 == a) {
-			System.out.println("NG");
+			System.out.println("NG: +3 == a");
 		}
 
 		if (-3 == a) {
-			System.out.println("NG");
+			System.out.println("NG: -3 == a");
 		}
 	}
 
@@ -67,43 +67,43 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a >= a) {
-			System.out.println("OK");
+			System.out.println("OK: a >= a");
 		}
 
 		if (3 >= 3) {
-			System.out.println("OK");
+			System.out.println("OK: 3 >= 3");
 		}
 
 		if (-3 >= -3) {
-			System.out.println("OK");
+			System.out.println("OK: -3 >= -3");
 		}
 
 		if (+3 >= +3) {
-			System.out.println("OK");
+			System.out.println("OK: +3 >= +3");
 		}
 
 		if (a >= 3) {
-			System.out.println("OK");
+			System.out.println("OK: a >= 3");
 		}
 
 		if (a >= +3) {
-			System.out.println("OK");
+			System.out.println("OK: a >= +3");
 		}
 
 		if (a >= -3) {
-			System.out.println("OK");
+			System.out.println("OK: a >= -3");
 		}
 
 		if (3 >= a) {
-			System.out.println("NG");
+			System.out.println("NG: 3 >= a");
 		}
 
 		if (+3 >= a) {
-			System.out.println("NG");
+			System.out.println("NG: +3 >= a");
 		}
 
 		if (-3 >= a) {
-			System.out.println("NG");
+			System.out.println("NG: -3 >= a");
 		}
 	}
 
@@ -111,43 +111,43 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a > a) {
-			System.out.println("OK");
+			System.out.println("OK: a > a");
 		}
 
 		if (3 > 3) {
-			System.out.println("OK");
+			System.out.println("OK: 3 > 3");
 		}
 
 		if (-3 > -3) {
-			System.out.println("OK");
+			System.out.println("OK: -3 > -3");
 		}
 
 		if (+3 > +3) {
-			System.out.println("OK");
+			System.out.println("OK: +3 > +3");
 		}
 
 		if (a > 3) {
-			System.out.println("OK");
+			System.out.println("OK: a > 3");
 		}
 
 		if (a > +3) {
-			System.out.println("OK");
+			System.out.println("OK: a > +3");
 		}
 
 		if (a > -3) {
-			System.out.println("OK");
+			System.out.println("OK: a > -3");
 		}
 
 		if (3 > a) {
-			System.out.println("NG");
+			System.out.println("NG: 3 > a");
 		}
 
 		if (+3 > a) {
-			System.out.println("NG");
+			System.out.println("NG: +3 > a");
 		}
 
 		if (-3 > a) {
-			System.out.println("NG");
+			System.out.println("NG: -3 > a");
 		}
 	}
 
@@ -155,43 +155,43 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a <= a) {
-			System.out.println("OK");
+			System.out.println("OK: a <= a");
 		}
 
 		if (3 <= 3) {
-			System.out.println("OK");
+			System.out.println("OK: 3 <= 3");
 		}
 
 		if (-3 <= -3) {
-			System.out.println("OK");
+			System.out.println("OK: -3 <= -3");
 		}
 
 		if (+3 <= +3) {
-			System.out.println("OK");
+			System.out.println("OK: +3 <= +3");
 		}
 
 		if (a <= 3) {
-			System.out.println("OK");
+			System.out.println("OK: a <= 3");
 		}
 
 		if (a <= +3) {
-			System.out.println("OK");
+			System.out.println("OK: a <= +3");
 		}
 
 		if (a <= -3) {
-			System.out.println("OK");
+			System.out.println("OK: a <= -3");
 		}
 
 		if (3 <= a) {
-			System.out.println("NG");
+			System.out.println("NG: 3 <= a");
 		}
 
 		if (+3 <= a) {
-			System.out.println("NG");
+			System.out.println("NG: +3 <= a");
 		}
 
 		if (-3 <= a) {
-			System.out.println("NG");
+			System.out.println("NG: -3 <= a");
 		}
 	}
 
@@ -199,43 +199,43 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a < a) {
-			System.out.println("OK");
+			System.out.println("OK: a < a");
 		}
 
 		if (3 < 3) {
-			System.out.println("OK");
+			System.out.println("OK: 3 < 3");
 		}
 
 		if (-3 < -3) {
-			System.out.println("OK");
+			System.out.println("OK: -3 < -3");
 		}
 
 		if (+3 < +3) {
-			System.out.println("OK");
+			System.out.println("OK: +3 < +3");
 		}
 
 		if (a < 3) {
-			System.out.println("OK");
+			System.out.println("OK: a < 3");
 		}
 
 		if (a < +3) {
-			System.out.println("OK");
+			System.out.println("OK: a < +3");
 		}
 
 		if (a < -3) {
-			System.out.println("OK");
+			System.out.println("OK: a < -3");
 		}
 
 		if (3 < a) {
-			System.out.println("NG");
+			System.out.println("NG: 3 < a");
 		}
 
 		if (+3 < a) {
-			System.out.println("NG");
+			System.out.println("NG: +3 < a");
 		}
 
 		if (-3 < a) {
-			System.out.println("NG");
+			System.out.println("NG: -3 < a");
 		}
 	}
 
@@ -243,43 +243,43 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a != a) {
-			System.out.println("OK");
+			System.out.println("OK: a != a");
 		}
 
 		if (3 != 3) {
-			System.out.println("OK");
+			System.out.println("OK: 3 != 3");
 		}
 
 		if (-3 != -3) {
-			System.out.println("OK");
+			System.out.println("OK: -3 != -3");
 		}
 
 		if (+3 != +3) {
-			System.out.println("OK");
+			System.out.println("OK: +3 != +3");
 		}
 
 		if (a != 3) {
-			System.out.println("OK");
+			System.out.println("OK: a != 3");
 		}
 
 		if (a != +3) {
-			System.out.println("OK");
+			System.out.println("OK: a != +3");
 		}
 
 		if (a != -3) {
-			System.out.println("OK");
+			System.out.println("OK: a != -3");
 		}
 
 		if (3 != a) {
-			System.out.println("NG");
+			System.out.println("NG: 3 != a");
 		}
 
 		if (+3 != a) {
-			System.out.println("NG");
+			System.out.println("NG: +3 != a");
 		}
 
 		if (-3 != a) {
-			System.out.println("NG");
+			System.out.println("NG: -3 != a");
 		}
 	}
 
@@ -287,39 +287,39 @@ public class IncorrectOperatorOrder {
 		int a = 3;
 
 		if (a == a) {
-			System.out.println("OK");
+			System.out.println("OK: a == a");
 		}
 
 		if (a == -a) {
-			System.out.println("OK");
+			System.out.println("OK: a == -a");
 		}
 
 		if (-a == -a) {
-			System.out.println("OK");
+			System.out.println("OK: -a == -a");
 		}
 
 		if (-a == a) {
-			System.out.println("OK");
+			System.out.println("OK: -a == a");
 		}
 
 		if (a == +a) {
-			System.out.println("OK");
+			System.out.println("OK: a == +a");
 		}
 
 		if (+a == +a) {
-			System.out.println("OK");
+			System.out.println("OK: +a == +a");
 		}
 
 		if (+a == a) {
-			System.out.println("OK");
+			System.out.println("OK: +a == a");
 		}
 
 		if (+a == -a) {
-			System.out.println("OK");
+			System.out.println("OK: +a == -");
 		}
 
 		if (-a == +a) {
-			System.out.println("OK");
+			System.out.println("OK: -a == +a");
 		}
 	}
 

@@ -40,6 +40,8 @@ public class IfClauseIncorrectLineBreaks {
 			 test1.equals(test2)) ||
 			StringUtil.isUpperCase(test2)) {
 
+			System.out.println("Message1");
+
 			return;
 		}
 
@@ -47,17 +49,23 @@ public class IfClauseIncorrectLineBreaks {
 			(test1.equals(test2) ||
 			 StringUtil.isUpperCase(test2))) {
 
+			System.out.println("Message2");
+
 			return;
 		}
 
 		if ((test1 == null) || (test1.equals("hello world") &&
 			test2.equals("hello world"))) {
 
+			System.out.println("Message3");
+
 			return;
 		}
 
 		if (test1.equals("hello world") ||
 			test1.equals("HELLO WORLD") || test1.equals("HeLlO WoRlD")) {
+
+			System.out.println("Message4");
 
 			return;
 		}

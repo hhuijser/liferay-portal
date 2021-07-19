@@ -218,11 +218,7 @@ public class StagingImpl implements Staging {
 
 		Group group = _groupLocalService.fetchGroup(groupId);
 
-		if (group == null) {
-			return;
-		}
-
-		if (!_stagingGroupHelper.isStagingGroup(group)) {
+		if ((group == null) || !_stagingGroupHelper.isStagingGroup(group)) {
 			return;
 		}
 

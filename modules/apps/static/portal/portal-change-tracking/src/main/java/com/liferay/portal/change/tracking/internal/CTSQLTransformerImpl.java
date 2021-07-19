@@ -1229,12 +1229,9 @@ public class CTSQLTransformerImpl implements CTSQLTransformer {
 					new LongValue(ctCollectionId));
 			}
 
-			if (ctCollectionId == 0) {
-				return equalsTo(
-					new Column(table, "ctCollectionId"), new LongValue("0"));
-			}
+			if ((ctCollectionId == 0) ||
+				(_releaseServiceTracker.getService() == null)) {
 
-			if (_releaseServiceTracker.getService() == null) {
 				return equalsTo(
 					new Column(table, "ctCollectionId"), new LongValue("0"));
 			}

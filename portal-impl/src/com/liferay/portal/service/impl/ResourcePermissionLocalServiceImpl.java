@@ -2012,12 +2012,8 @@ public class ResourcePermissionLocalServiceImpl
 					0, guestRole.getRoleId(), Boolean.TRUE,
 					guestActionIds.toArray(new String[0]),
 					ResourcePermissionConstants.OPERATOR_SET, true,
-					resourcePermissionsMap)) {
-
-				modified = true;
-			}
-
-			if (_updateResourcePermission(
+					resourcePermissionsMap) ||
+				_updateResourcePermission(
 					companyId, name, ResourceConstants.SCOPE_INDIVIDUAL, name,
 					0, ownerRole.getRoleId(), Boolean.FALSE,
 					ownerActionIds.toArray(new String[0]),

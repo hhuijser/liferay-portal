@@ -1085,11 +1085,9 @@ public class ContentPageEditorDisplayContext {
 			_fragmentRendererTracker.getFragmentRenderers();
 
 		for (FragmentRenderer fragmentRenderer : fragmentRenderers) {
-			if (!fragmentRenderer.isSelectable(httpServletRequest)) {
-				continue;
-			}
+			if (!fragmentRenderer.isSelectable(httpServletRequest) ||
+				!_isAllowedFragmentEntryKey(fragmentRenderer.getKey())) {
 
-			if (!_isAllowedFragmentEntryKey(fragmentRenderer.getKey())) {
 				continue;
 			}
 

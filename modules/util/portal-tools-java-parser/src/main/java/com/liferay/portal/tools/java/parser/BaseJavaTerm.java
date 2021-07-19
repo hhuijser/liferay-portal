@@ -116,21 +116,16 @@ public abstract class BaseJavaTerm implements JavaTerm {
 
 		String trimmedLastLine = StringUtil.trim(lastLine);
 
-		if (trimmedLastLine.startsWith("catch (")) {
+		if (trimmedLastLine.startsWith("catch (") ||
+			trimmedLastLine.startsWith("else if (")) {
+
 			return _getLeadingWhitespace(lastLine) + "\t\t\t";
 		}
 
-		if (trimmedLastLine.startsWith("else if (")) {
-			return _getLeadingWhitespace(lastLine) + "\t\t\t";
-		}
+		if ((trimmedLastLine.startsWith("for (") &&
+			 !trimmedLastLine.endsWith(";")) ||
+			trimmedLastLine.startsWith("if (")) {
 
-		if (trimmedLastLine.startsWith("for (") &&
-			!trimmedLastLine.endsWith(";")) {
-
-			return _getLeadingWhitespace(lastLine) + "\t\t";
-		}
-
-		if (trimmedLastLine.startsWith("if (")) {
 			return _getLeadingWhitespace(lastLine) + "\t\t";
 		}
 

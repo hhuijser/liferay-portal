@@ -431,11 +431,7 @@ public class SiteAdministrationPanelCategoryDisplayContext {
 
 		Group group = getGroup();
 
-		if (group == null) {
-			return _showStagingInfo;
-		}
-
-		if (!group.isStaged() && !group.isStagingGroup()) {
+		if ((group == null) || (!group.isStaged() && !group.isStagingGroup())) {
 			return _showStagingInfo;
 		}
 

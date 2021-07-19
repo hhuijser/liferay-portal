@@ -138,12 +138,9 @@ public class CommerceOrderItemLocalServiceImpl
 				cpInstance.getCPDefinitionId(), json);
 
 		for (CommerceOptionValue commerceOptionValue : commerceOptionValues) {
-			if (Validator.isNull(commerceOptionValue.getPriceType())) {
-				continue;
-			}
-
-			if (_isStaticPriceType(commerceOptionValue.getPriceType()) &&
-				(commerceOptionValue.getCPInstanceId() <= 0)) {
+			if (Validator.isNull(commerceOptionValue.getPriceType()) ||
+				(_isStaticPriceType(commerceOptionValue.getPriceType()) &&
+				 (commerceOptionValue.getCPInstanceId() <= 0))) {
 
 				continue;
 			}

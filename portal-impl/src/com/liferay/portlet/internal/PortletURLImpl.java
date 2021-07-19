@@ -1462,13 +1462,10 @@ public class PortletURLImpl
 						namespace.length());
 				}
 
-				if (resourceParameterNames.contains(renderParameterName)) {
-					continue;
-				}
-
-				if (_lifecycle.equals(PortletRequest.RESOURCE_PHASE) &&
-					_mutableRenderParametersImpl.isPublic(
-						renderParameterName)) {
+				if (resourceParameterNames.contains(renderParameterName) ||
+					(_lifecycle.equals(PortletRequest.RESOURCE_PHASE) &&
+					 _mutableRenderParametersImpl.isPublic(
+						 renderParameterName))) {
 
 					continue;
 				}

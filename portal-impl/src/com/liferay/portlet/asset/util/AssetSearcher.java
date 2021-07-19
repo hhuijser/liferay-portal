@@ -595,13 +595,10 @@ public class AssetSearcher extends BaseSearcher {
 				AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
 					assetCategory.getVocabularyId());
 
-			if (assetVocabulary == null) {
-				continue;
-			}
-
-			if ((assetVocabulary.getVisibilityType() ==
+			if ((assetVocabulary == null) ||
+				((assetVocabulary.getVisibilityType() ==
 					AssetVocabularyConstants.VISIBILITY_TYPE_INTERNAL) &&
-				Objects.equals(fieldName, Field.ASSET_CATEGORY_IDS)) {
+				 Objects.equals(fieldName, Field.ASSET_CATEGORY_IDS))) {
 
 				continue;
 			}

@@ -130,6 +130,7 @@ PythonClassesAndMethodsOrderCheck | .py | Checks the order of classes and method
 PythonImportsCheck | .py | Sorts and groups imports in `.py` files. |
 PythonStylingCheck | .py | Applies rules to enforce consisteny in code style. |
 PythonWhitespaceCheck | .py | Finds missing and unnecessary whitespace. |
+RedundantIfStatementCheck | .java | Finds redundant if statements that can be combined. |
 SQLEmptyLinesCheck | .sql | Finds missing and unnecessary empty lines. |
 SQLStylingCheck | .sql | Applies rules to enforce consisteny in code style. |
 SemiColonCheck | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds cases of unnecessary semicolon. |

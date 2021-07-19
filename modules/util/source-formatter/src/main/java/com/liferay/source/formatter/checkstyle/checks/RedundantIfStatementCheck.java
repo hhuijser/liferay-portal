@@ -79,9 +79,9 @@ public class RedundantIfStatementCheck extends BaseCheck {
 		String line1 = StringPool.BLANK;
 		String line2 = StringPool.BLANK;
 
-		for (int i = startLineNumber1; i <= endLineNumber1; i++) {
-			line1 = getLine(startLineNumber1);
-			line2 = getLine(startLineNumber2);
+		for (int i = -1; i < (endLineNumber1 - startLineNumber1); i++) {
+			line1 = getLine(startLineNumber1 + i);
+			line2 = getLine(startLineNumber2 + i);
 
 			if (!line1.equals(line2)) {
 				return false;

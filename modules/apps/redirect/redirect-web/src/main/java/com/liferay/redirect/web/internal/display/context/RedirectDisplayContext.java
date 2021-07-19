@@ -109,10 +109,10 @@ public class RedirectDisplayContext {
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						_liferayPortletResponse
-					).setParameter(
-						"mvcRenderCommandName", "/redirect/edit_redirect_entry"
-					).setParameter(
-						"redirect", _getPortletURL()
+					).setMVCRenderCommandName(
+						"/redirect/edit_redirect_entry"
+					).setRedirect(
+						_getPortletURL()
 					).setParameter(
 						"redirectEntryId", redirectEntry.getRedirectEntryId()
 					).build());

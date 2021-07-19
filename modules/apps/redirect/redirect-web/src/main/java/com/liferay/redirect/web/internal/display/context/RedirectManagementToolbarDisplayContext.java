@@ -126,11 +126,10 @@ public class RedirectManagementToolbarDisplayContext
 					dropdownItem.setHref(
 						PortletURLBuilder.createRenderURL(
 							liferayPortletResponse
-						).setParameter(
-							"mvcRenderCommandName",
+						).setMVCRenderCommandName(
 							"/redirect/edit_redirect_entry"
-						).setParameter(
-							"redirect", getPortletURL()
+						).setRedirect(
+							getPortletURL()
 						).build());
 
 					dropdownItem.setLabel(

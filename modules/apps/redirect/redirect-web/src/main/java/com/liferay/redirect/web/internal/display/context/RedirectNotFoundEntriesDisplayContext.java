@@ -135,10 +135,10 @@ public class RedirectNotFoundEntriesDisplayContext {
 				dropdownItem.setHref(
 					PortletURLBuilder.createRenderURL(
 						_liferayPortletResponse
-					).setParameter(
-						"mvcRenderCommandName", "/redirect/edit_redirect_entry"
-					).setParameter(
-						"redirect", _themeDisplay.getURLCurrent()
+					).setMVCRenderCommandName(
+						"/redirect/edit_redirect_entry"
+					).setRedirect(
+						_themeDisplay.getURLCurrent()
 					).setParameter(
 						"sourceURL", redirectNotFoundEntry.getUrl()
 					).build());

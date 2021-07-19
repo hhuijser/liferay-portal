@@ -25,9 +25,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class CPDefinitionDiagramEntryImpl
 	extends CPDefinitionDiagramEntryBaseImpl {
 
-	public CPDefinitionDiagramEntryImpl() {
-	}
-
 	@Override
 	public CPDefinition getCPDefinition() throws PortalException {
 		return CPDefinitionLocalServiceUtil.getCPDefinition(

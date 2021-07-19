@@ -57,9 +57,6 @@ public class SegmentsExperimentImpl extends SegmentsExperimentBaseImpl {
 	 * experiment model instance should use the {@link
 	 * com.liferay.segments.model.SegmentsExperiment} interface instead.
 	 */
-	public SegmentsExperimentImpl() {
-	}
-
 	@Override
 	public double getConfidenceLevel() {
 		UnicodeProperties typeSettingsUnicodeProperties =

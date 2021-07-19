@@ -33,6 +33,7 @@ import com.liferay.change.tracking.web.internal.scheduler.ScheduledPublishInfo;
 import com.liferay.change.tracking.web.internal.security.permission.resource.CTCollectionPermission;
 import com.liferay.change.tracking.web.internal.util.PublicationsPortletURLUtil;
 import com.liferay.petra.lang.HashUtil;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.change.tracking.sql.CTSQLModeThreadLocal;
@@ -83,7 +84,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.RenderURL;
 import javax.portlet.ResourceURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -328,19 +328,15 @@ public class ViewChangesDisplayContext {
 			}
 		).put(
 			"discardURL",
-			() -> {
-				RenderURL discardURL = _renderResponse.createRenderURL();
-
-				discardURL.setParameter(
-					"mvcRenderCommandName", "/change_tracking/view_discard");
-				discardURL.setParameter(
-					"redirect", _themeDisplay.getURLCurrent());
-				discardURL.setParameter(
-					"ctCollectionId",
-					String.valueOf(_ctCollection.getCtCollectionId()));
-
-				return discardURL.toString();
-			}
+			PortletURLBuilder.createRenderURL(
+				_renderResponse
+			).setParameter(
+				"mvcRenderCommandName", "/change_tracking/view_discard"
+			).setParameter(
+				"redirect", _themeDisplay.getURLCurrent()
+			).setParameter(
+				"ctCollectionId", _ctCollection.getCtCollectionId()
+			).buildString()
 		).put(
 			"expired",
 			_ctCollection.getStatus() == WorkflowConstants.STATUS_EXPIRED

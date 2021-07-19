@@ -36,8 +36,8 @@ public class UsersAdminPortletURLUtil {
 
 		return PortletURLBuilder.createRenderURL(
 			renderResponse
-		).setParameter(
-			"mvcRenderCommandName", "/users_admin/view"
+		).setMVCRenderCommandName(
+			"/users_admin/view"
 		).setParameter(
 			"toolbarItem", "view-all-organizations"
 		).setParameter(

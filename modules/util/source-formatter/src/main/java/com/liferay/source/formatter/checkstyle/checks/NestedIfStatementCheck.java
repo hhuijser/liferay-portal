@@ -38,7 +38,7 @@ public class NestedIfStatementCheck extends BaseCheck {
 			return;
 		}
 
-		int closingCurlyBraceLineNumber = _getClosingCurlyBraceLineNumber(
+		int closingCurlyBraceLineNumber = getClosingCurlyBraceLineNumber(
 			detailAST);
 
 		if (closingCurlyBraceLineNumber == -1) {
@@ -76,29 +76,13 @@ public class NestedIfStatementCheck extends BaseCheck {
 		}
 
 		int closingCurlyBraceInnerIfStatementLineNumber =
-			_getClosingCurlyBraceLineNumber(firstChildDetailAST);
+			getClosingCurlyBraceLineNumber(firstChildDetailAST);
 
 		if ((closingCurlyBraceLineNumber - 1) ==
 				closingCurlyBraceInnerIfStatementLineNumber) {
 
 			log(detailAST, _MSG_COMBINE_IF_STATEMENTS);
 		}
-	}
-
-	private int _getClosingCurlyBraceLineNumber(DetailAST literalIfDetailAST) {
-		DetailAST lastChildDetailAST = literalIfDetailAST.getLastChild();
-
-		if (lastChildDetailAST.getType() != TokenTypes.SLIST) {
-			return -1;
-		}
-
-		lastChildDetailAST = lastChildDetailAST.getLastChild();
-
-		if (lastChildDetailAST.getType() == TokenTypes.RCURLY) {
-			return lastChildDetailAST.getLineNo();
-		}
-
-		return -1;
 	}
 
 	private static final String _MSG_COMBINE_IF_STATEMENTS =

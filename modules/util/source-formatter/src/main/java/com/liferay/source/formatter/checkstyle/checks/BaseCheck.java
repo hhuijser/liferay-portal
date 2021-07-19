@@ -191,6 +191,22 @@ public abstract class BaseCheck extends AbstractCheck {
 		return s.substring(0, x);
 	}
 
+	protected int getClosingCurlyBraceLineNumber(DetailAST literalIfDetailAST) {
+		DetailAST lastChildDetailAST = literalIfDetailAST.getLastChild();
+
+		if (lastChildDetailAST.getType() != TokenTypes.SLIST) {
+			return -1;
+		}
+
+		lastChildDetailAST = lastChildDetailAST.getLastChild();
+
+		if (lastChildDetailAST.getType() == TokenTypes.RCURLY) {
+			return lastChildDetailAST.getLineNo();
+		}
+
+		return -1;
+	}
+
 	protected List<DetailAST> getDependentIdentDetailASTList(
 		DetailAST variableDefinitionDetailAST, int lineNumber) {
 

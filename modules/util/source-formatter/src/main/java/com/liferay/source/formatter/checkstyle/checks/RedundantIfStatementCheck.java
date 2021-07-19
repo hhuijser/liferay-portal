@@ -40,8 +40,8 @@ public class RedundantIfStatementCheck extends BaseCheck {
 		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
 
 		if ((nextSiblingDetailAST.getType() != TokenTypes.LITERAL_IF) ||
-			(_getClosingCurlyBraceLineNumber(detailAST) == -1) ||
-			(_getClosingCurlyBraceLineNumber(nextSiblingDetailAST) == -1)) {
+			(getClosingCurlyBraceLineNumber(detailAST) == -1) ||
+			(getClosingCurlyBraceLineNumber(nextSiblingDetailAST) == -1)) {
 
 			return;
 		}
@@ -59,22 +59,6 @@ public class RedundantIfStatementCheck extends BaseCheck {
 		log(
 			detailAST, _MSG_COMBINE_IF_STATEMENTS, detailAST.getLineNo(),
 			nextSiblingDetailAST.getLineNo());
-	}
-
-	private int _getClosingCurlyBraceLineNumber(DetailAST literalIfDetailAST) {
-		DetailAST lastChildDetailAST = literalIfDetailAST.getLastChild();
-
-		if (lastChildDetailAST.getType() != TokenTypes.SLIST) {
-			return -1;
-		}
-
-		lastChildDetailAST = lastChildDetailAST.getLastChild();
-
-		if (lastChildDetailAST.getType() == TokenTypes.RCURLY) {
-			return lastChildDetailAST.getLineNo();
-		}
-
-		return -1;
 	}
 
 	private boolean _isSameExpressions(

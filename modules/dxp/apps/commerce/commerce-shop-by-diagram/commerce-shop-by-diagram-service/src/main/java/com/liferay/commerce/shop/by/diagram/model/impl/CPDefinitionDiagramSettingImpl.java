@@ -31,9 +31,6 @@ import java.util.List;
 public class CPDefinitionDiagramSettingImpl
 	extends CPDefinitionDiagramSettingBaseImpl {
 
-	public CPDefinitionDiagramSettingImpl() {
-	}
-
 	@Override
 	public CPAttachmentFileEntry getCPAttachmentFileEntry()
 		throws PortalException {

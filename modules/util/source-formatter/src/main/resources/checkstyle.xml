@@ -334,6 +334,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.EqualClauseIfStatementsCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds consecutive if-statements with identical clauses." />
+			<property name="enabled" value="false" />
 			<message key="if.statements.combine" value="Combine if-statements with identical clauses" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ExceptionCheck">

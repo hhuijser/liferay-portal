@@ -89,6 +89,8 @@ public class DLViewDisplayContext {
 		).setRedirect(
 			_getRedirect()
 		).setParameter(
+			"folderId", _dlAdminDisplayContext.getFolderId()
+		).setParameter(
 			"groupId",
 			() -> {
 				ThemeDisplay themeDisplay =
@@ -99,8 +101,6 @@ public class DLViewDisplayContext {
 			}
 		).setParameter(
 			"repositoryId", _dlAdminDisplayContext.getRepositoryId()
-		).setParameter(
-			"folderId", _dlAdminDisplayContext.getFolderId()
 		).buildString();
 	}
 
@@ -272,9 +272,9 @@ public class DLViewDisplayContext {
 		).setMVCPath(
 			"/document_library/view_more_menu_items.jsp"
 		).setParameter(
-			"folderId", _dlAdminDisplayContext.getFolderId()
-		).setParameter(
 			"eventName", _renderResponse.getNamespace() + "selectAddMenuItem"
+		).setParameter(
+			"folderId", _dlAdminDisplayContext.getFolderId()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).buildString();

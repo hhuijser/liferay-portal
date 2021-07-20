@@ -39,8 +39,6 @@ public class UsersAdminPortletURLUtil {
 		).setMVCRenderCommandName(
 			"/users_admin/view"
 		).setParameter(
-			"toolbarItem", "view-all-organizations"
-		).setParameter(
 			"organizationId",
 			() -> {
 				if (organizationId ==
@@ -51,6 +49,8 @@ public class UsersAdminPortletURLUtil {
 
 				return organizationId;
 			}
+		).setParameter(
+			"toolbarItem", "view-all-organizations"
 		).setParameter(
 			"usersListView",
 			() -> {

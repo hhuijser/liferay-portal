@@ -29,6 +29,7 @@ DockerfileInstructionCheck | Dockerfile | Performs styling rules on instructions
 EmptyCollectionCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks that there are no calls to `Collections.EMPTY_LIST`, `Collections.EMPTY_MAP` or `Collections.EMPTY_SET`. |
 EnumConstantDividerCheck | .java | Find unnecessary empty lines between enum constants. |
 EnumConstantOrderCheck | .java | Checks the order of enum constants. |
+EqualClauseIfStatementsCheck | .java | Finds consecutive if-statements with identical clauses. |
 [ExceptionMessageCheck](checks/message_check.markdown#messagecheck) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Validates messages that are passed to exceptions. |
 FTLEmptyLinesCheck | .ftl | Finds missing and unnecessary empty lines. |
 [FTLIfStatementCheck](checks/if_statement_check.markdown#ifstatementcheck) | .ftl | Finds incorrect use of parentheses in statement. |

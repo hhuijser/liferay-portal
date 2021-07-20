@@ -331,6 +331,11 @@
 			<property name="description" value="Checks the order of enum constants." />
 			<message key="enum.constant.incorrect.order" value="Enum constant ''{0}'' should come after constant ''{1}''" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.EqualClauseIfStatementsCheck">
+			<property name="category" value="Styling" />
+			<property name="description" value="Finds consecutive if-statements with identical clauses." />
+			<message key="if.statements.combine" value="Combine if-statements with identical clauses" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ExceptionCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds private methods that throw unnecessary exception." />

@@ -144,11 +144,8 @@ public class ToggleControlsProductNavigationControlMenuEntry
 		LayoutTypePortlet layoutTypePortlet =
 			themeDisplay.getLayoutTypePortlet();
 
-		if (!layout.isTypePortlet() || (layoutTypePortlet == null)) {
-			return false;
-		}
-
-		if (!layoutTypePortlet.isCustomizable() ||
+		if (!layout.isTypePortlet() || (layoutTypePortlet == null) ||
+			!layoutTypePortlet.isCustomizable() ||
 			!layoutTypePortlet.isCustomizedView()) {
 
 			return false;

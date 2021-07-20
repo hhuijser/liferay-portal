@@ -126,13 +126,10 @@ public abstract class PoshiElement
 
 		generatedPoshiScript = generatedPoshiScript.replaceAll("\\s+", "");
 
-		if ((elements().size() == 0) &&
-			!originalPoshiScript.equals(generatedPoshiScript)) {
+		if (((elements().size() == 0) &&
+			 !originalPoshiScript.equals(generatedPoshiScript)) ||
+			(originalPoshiScript.length() != generatedPoshiScript.length())) {
 
-			return false;
-		}
-
-		if (originalPoshiScript.length() != generatedPoshiScript.length()) {
 			return false;
 		}
 
@@ -670,11 +667,7 @@ public abstract class PoshiElement
 				storedIndices.clear();
 			}
 
-			if (skipBalanceCheck) {
-				continue;
-			}
-
-			if ((c != '}') && (c != ';')) {
+			if (skipBalanceCheck || ((c != '}') && (c != ';'))) {
 				continue;
 			}
 

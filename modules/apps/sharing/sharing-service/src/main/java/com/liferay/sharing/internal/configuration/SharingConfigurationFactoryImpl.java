@@ -118,12 +118,9 @@ public class SharingConfigurationFactoryImpl
 
 		@Override
 		public boolean isAvailable() {
-			if (!_sharingSystemConfiguration.enabled()) {
-				return false;
-			}
-
-			if ((_sharingCompanyConfiguration != null) &&
-				!_sharingCompanyConfiguration.enabled()) {
+			if (!_sharingSystemConfiguration.enabled() ||
+				((_sharingCompanyConfiguration != null) &&
+				 !_sharingCompanyConfiguration.enabled())) {
 
 				return false;
 			}
@@ -137,12 +134,9 @@ public class SharingConfigurationFactoryImpl
 
 		@Override
 		public boolean isEnabled() {
-			if (!_sharingSystemConfiguration.enabled()) {
-				return false;
-			}
-
-			if ((_sharingCompanyConfiguration != null) &&
-				!_sharingCompanyConfiguration.enabled()) {
+			if (!_sharingSystemConfiguration.enabled() ||
+				((_sharingCompanyConfiguration != null) &&
+				 !_sharingCompanyConfiguration.enabled())) {
 
 				return false;
 			}

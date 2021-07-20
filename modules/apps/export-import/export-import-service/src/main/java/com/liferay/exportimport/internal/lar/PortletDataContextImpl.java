@@ -2268,15 +2268,11 @@ public class PortletDataContextImpl implements PortletDataContext {
 				referencesElement.elements("reference")) {
 
 			if (!Objects.equals(
-					referenceElement.attributeValue("class-name"), className)) {
-
-				continue;
-			}
-
-			if ((groupId > 0) &&
-				!Objects.equals(
-					referenceElement.attributeValue("group-id"),
-					String.valueOf(groupId))) {
+					referenceElement.attributeValue("class-name"), className) ||
+				((groupId > 0) &&
+				 !Objects.equals(
+					 referenceElement.attributeValue("group-id"),
+					 String.valueOf(groupId)))) {
 
 				continue;
 			}

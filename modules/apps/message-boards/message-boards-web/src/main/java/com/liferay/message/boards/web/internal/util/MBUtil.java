@@ -247,14 +247,10 @@ public class MBUtil {
 			themeDisplay.getPermissionChecker();
 
 		if (!MBMessagePermission.contains(
-				permissionChecker, parentMessage, ActionKeys.VIEW)) {
-
-			return false;
-		}
-
-		if ((message.getMessageId() != parentMessage.getMessageId()) &&
-			!MBMessagePermission.contains(
-				permissionChecker, message, ActionKeys.VIEW)) {
+				permissionChecker, parentMessage, ActionKeys.VIEW) ||
+			((message.getMessageId() != parentMessage.getMessageId()) &&
+			 !MBMessagePermission.contains(
+				 permissionChecker, message, ActionKeys.VIEW))) {
 
 			return false;
 		}

@@ -279,14 +279,11 @@ public class LayoutPermissionImpl
 			}
 		}
 
-		if (layout.isDraftLayout() &&
+		if ((layout.isDraftLayout() &&
+			 permissionChecker.hasPermission(
+				 group, Layout.class.getName(), layout.getClassPK(),
+				 actionId)) ||
 			permissionChecker.hasPermission(
-				group, Layout.class.getName(), layout.getClassPK(), actionId)) {
-
-			return true;
-		}
-
-		if (permissionChecker.hasPermission(
 				group, Layout.class.getName(), layout.getPlid(), actionId)) {
 
 			return true;

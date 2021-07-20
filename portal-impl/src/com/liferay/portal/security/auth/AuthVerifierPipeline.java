@@ -193,11 +193,9 @@ public class AuthVerifierPipeline {
 	}
 
 	private String _fixLegacyURLPattern(String urlPattern) {
-		if ((urlPattern == null) || (urlPattern.length() == 0)) {
-			return urlPattern;
-		}
+		if ((urlPattern == null) || (urlPattern.length() == 0) ||
+			(urlPattern.charAt(urlPattern.length() - 1) != '*')) {
 
-		if (urlPattern.charAt(urlPattern.length() - 1) != '*') {
 			return urlPattern;
 		}
 

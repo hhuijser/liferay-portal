@@ -1687,15 +1687,10 @@ public class ServiceBuilder {
 	}
 
 	public boolean hasEntityByGenericsName(String genericsName) {
-		if (Validator.isNull(genericsName)) {
-			return false;
-		}
+		if (Validator.isNull(genericsName) ||
+			!genericsName.contains(".model.") ||
+			(getEntityByGenericsName(genericsName) == null)) {
 
-		if (!genericsName.contains(".model.")) {
-			return false;
-		}
-
-		if (getEntityByGenericsName(genericsName) == null) {
 			return false;
 		}
 
@@ -1703,15 +1698,10 @@ public class ServiceBuilder {
 	}
 
 	public boolean hasEntityByParameterTypeValue(String parameterTypeValue) {
-		if (Validator.isNull(parameterTypeValue)) {
-			return false;
-		}
+		if (Validator.isNull(parameterTypeValue) ||
+			!parameterTypeValue.contains(".model.") ||
+			(getEntityByParameterTypeValue(parameterTypeValue) == null)) {
 
-		if (!parameterTypeValue.contains(".model.")) {
-			return false;
-		}
-
-		if (getEntityByParameterTypeValue(parameterTypeValue) == null) {
 			return false;
 		}
 
@@ -1863,11 +1853,9 @@ public class ServiceBuilder {
 	}
 
 	public boolean isDSLEnabled() {
-		if (isVersionGTE_7_4_0()) {
-			return true;
-		}
+		if (isVersionGTE_7_4_0() ||
+			ArrayUtil.contains(_incubationFeatures, "DSL")) {
 
-		if (ArrayUtil.contains(_incubationFeatures, "DSL")) {
 			return true;
 		}
 
@@ -2444,14 +2432,11 @@ public class ServiceBuilder {
 							).put(
 								"flag",
 								() -> {
-									if (entityColumn.isPrimary()) {
-										return "FLAG_PRIMARY";
-									}
-
-									if (changeTrackingEnabled &&
-										Objects.equals(
-											entityColumn.getName(),
-											"ctCollectionId")) {
+									if (entityColumn.isPrimary() ||
+										(changeTrackingEnabled &&
+										 Objects.equals(
+											 entityColumn.getName(),
+											 "ctCollectionId"))) {
 
 										return "FLAG_PRIMARY";
 									}
@@ -4013,15 +3998,9 @@ public class ServiceBuilder {
 		// indexes.sql appending
 
 		for (Entity entity : _entities) {
-			if (!_isTargetEntity(entity)) {
-				continue;
-			}
+			if (!_isTargetEntity(entity) || !entity.isDefaultDataSource() ||
+				entity.isDeprecated()) {
 
-			if (!entity.isDefaultDataSource()) {
-				continue;
-			}
-
-			if (entity.isDeprecated()) {
 				continue;
 			}
 
@@ -4230,11 +4209,7 @@ public class ServiceBuilder {
 		}
 
 		for (Entity entity : _entities) {
-			if (!_isTargetEntity(entity)) {
-				continue;
-			}
-
-			if (!entity.isDefaultDataSource()) {
+			if (!_isTargetEntity(entity) || !entity.isDefaultDataSource()) {
 				continue;
 			}
 
@@ -4295,15 +4270,9 @@ public class ServiceBuilder {
 		}
 
 		for (Entity entity : _entities) {
-			if (!_isTargetEntity(entity)) {
-				continue;
-			}
+			if (!_isTargetEntity(entity) || !entity.isDefaultDataSource() ||
+				entity.isDeprecated()) {
 
-			if (!entity.isDefaultDataSource()) {
-				continue;
-			}
-
-			if (entity.isDeprecated()) {
 				continue;
 			}
 
@@ -5839,11 +5808,8 @@ public class ServiceBuilder {
 		List<JavaType> actualTypeArguments =
 			defaultJavaParameterizedType.getActualTypeArguments();
 
-		if (actualTypeArguments.size() != 2) {
-			return false;
-		}
-
-		if (!_isTypeValue(actualTypeArguments.get(0), Locale.class.getName()) ||
+		if ((actualTypeArguments.size() != 2) ||
+			!_isTypeValue(actualTypeArguments.get(0), Locale.class.getName()) ||
 			!_isTypeValue(actualTypeArguments.get(1), String.class.getName())) {
 
 			return false;

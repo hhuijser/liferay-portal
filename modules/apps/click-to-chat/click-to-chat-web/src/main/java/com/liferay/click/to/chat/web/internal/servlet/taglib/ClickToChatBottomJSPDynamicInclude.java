@@ -66,11 +66,9 @@ public class ClickToChatBottomJSPDynamicInclude extends BaseJSPDynamicInclude {
 			ClickToChatConfigurationUtil.getClickToChatConfiguration(
 				themeDisplay.getCompanyId(), themeDisplay.getSiteGroupId());
 
-		if (clickToChatConfiguration == null) {
-			return;
-		}
+		if ((clickToChatConfiguration == null) ||
+			!clickToChatConfiguration.enabled()) {
 
-		if (!clickToChatConfiguration.enabled()) {
 			return;
 		}
 

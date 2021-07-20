@@ -874,19 +874,7 @@ public class JournalContentDisplayContext {
 
 		JournalArticleDisplay articleDisplay = getArticleDisplay();
 
-		if (articleDisplay == null) {
-			_showArticle = false;
-
-			return _showArticle;
-		}
-
-		if (!hasViewPermission()) {
-			_showArticle = false;
-
-			return _showArticle;
-		}
-
-		if (isExpired()) {
+		if ((articleDisplay == null) || !hasViewPermission() || isExpired()) {
 			_showArticle = false;
 
 			return _showArticle;

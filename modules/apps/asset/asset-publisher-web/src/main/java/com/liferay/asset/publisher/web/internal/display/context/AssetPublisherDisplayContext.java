@@ -1842,30 +1842,14 @@ public class AssetPublisherDisplayContext {
 		String portletName = getPortletName();
 
 		if (Objects.equals(
-				portletName, AssetPublisherPortletKeys.HIGHEST_RATED_ASSETS)) {
-
-			return false;
-		}
-
-		if (Objects.equals(
-				portletName, AssetPublisherPortletKeys.MOST_VIEWED_ASSETS)) {
-
-			return false;
-		}
-
-		if (Objects.equals(
-				portletName, AssetPublisherPortletKeys.RECENT_CONTENT)) {
-
-			return false;
-		}
-
-		if (Objects.equals(
-				portletName, AssetPublisherPortletKeys.RELATED_ASSETS)) {
-
-			return false;
-		}
-
-		if (!_assetPublisherWebHelper.getEmailAssetEntryAddedEnabled(
+				portletName, AssetPublisherPortletKeys.HIGHEST_RATED_ASSETS) ||
+			Objects.equals(
+				portletName, AssetPublisherPortletKeys.MOST_VIEWED_ASSETS) ||
+			Objects.equals(
+				portletName, AssetPublisherPortletKeys.RECENT_CONTENT) ||
+			Objects.equals(
+				portletName, AssetPublisherPortletKeys.RELATED_ASSETS) ||
+			!_assetPublisherWebHelper.getEmailAssetEntryAddedEnabled(
 				_portletPreferences)) {
 
 			return false;

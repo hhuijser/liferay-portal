@@ -762,23 +762,12 @@ public final class SummaryLogger {
 	private static boolean _isMinorStep(Element element) throws Exception {
 		String summary = _getSummary(element);
 
-		if (summary == null) {
-			return false;
-		}
+		if ((summary == null) ||
+			!Objects.equals(element.getName(), "execute") ||
+			Validator.isNull(element.attributeValue("function")) ||
+			(_minorStepElement != null) ||
+			Validator.isNotNull(_majorStepElement.attributeValue("function"))) {
 
-		if (!Objects.equals(element.getName(), "execute")) {
-			return false;
-		}
-
-		if (Validator.isNull(element.attributeValue("function"))) {
-			return false;
-		}
-
-		if (_minorStepElement != null) {
-			return false;
-		}
-
-		if (Validator.isNotNull(_majorStepElement.attributeValue("function"))) {
 			return false;
 		}
 

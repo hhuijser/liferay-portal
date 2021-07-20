@@ -797,11 +797,9 @@ public class JenkinsResultsParserUtil {
 				return "SUCCESS";
 			}
 
-			if (progressiveText.contains("Finished: UNSTABLE")) {
-				return "FAILURE";
-			}
+			if (progressiveText.contains("Finished: UNSTABLE") ||
+				progressiveText.contains("Finished: FAILURE")) {
 
-			if (progressiveText.contains("Finished: FAILURE")) {
 				return "FAILURE";
 			}
 		}

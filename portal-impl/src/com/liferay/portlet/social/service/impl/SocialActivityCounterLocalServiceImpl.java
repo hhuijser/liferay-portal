@@ -194,12 +194,8 @@ public class SocialActivityCounterLocalServiceImpl
 		throws PortalException {
 
 		if (!socialActivitySettingLocalService.isEnabled(
-				activity.getGroupId(), activity.getClassNameId())) {
-
-			return;
-		}
-
-		if (!socialActivitySettingLocalService.isEnabled(
+				activity.getGroupId(), activity.getClassNameId()) ||
+			!socialActivitySettingLocalService.isEnabled(
 				activity.getGroupId(), activity.getClassNameId(),
 				activity.getClassPK())) {
 

@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
+import javax.portlet.RenderURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -56,7 +56,7 @@ public class AssetCategoryUtil {
 
 		BreadcrumbEntry vocabularyBreadcrumbEntry = new BreadcrumbEntry();
 
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		RenderURL renderURL = PortletURLBuilder.createRenderURL(
 			renderResponse
 		).setMVCPath(
 			"/view.jsp"
@@ -66,16 +66,16 @@ public class AssetCategoryUtil {
 			httpServletRequest, "navigation");
 
 		if (Validator.isNotNull(navigation)) {
-			portletURL.setParameter("navigation", navigation);
+			renderURL.setParameter("navigation", navigation);
 		}
 
 		vocabularyBreadcrumbEntry.setTitle(
 			vocabulary.getTitle(themeDisplay.getLocale()));
 
-		portletURL.setParameter(
+		renderURL.setParameter(
 			"vocabularyId", String.valueOf(vocabulary.getVocabularyId()));
 
-		vocabularyBreadcrumbEntry.setURL(portletURL.toString());
+		vocabularyBreadcrumbEntry.setURL(renderURL.toString());
 
 		breadcrumbEntries.add(vocabularyBreadcrumbEntry);
 
@@ -89,10 +89,10 @@ public class AssetCategoryUtil {
 			categoryBreadcrumbEntry.setTitle(
 				curCategory.getTitle(themeDisplay.getLocale()));
 
-			portletURL.setParameter(
+			renderURL.setParameter(
 				"categoryId", String.valueOf(curCategory.getCategoryId()));
 
-			categoryBreadcrumbEntry.setURL(portletURL.toString());
+			categoryBreadcrumbEntry.setURL(renderURL.toString());
 
 			breadcrumbEntries.add(categoryBreadcrumbEntry);
 		}

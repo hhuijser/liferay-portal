@@ -28,7 +28,7 @@ import com.liferay.portal.security.wedeploy.auth.constants.WeDeployAuthActionKey
 import com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthApp;
 import com.liferay.portal.security.wedeploy.auth.web.internal.security.permission.resource.WeDeployAuthPermission;
 
-import javax.portlet.PortletURL;
+import javax.portlet.RenderURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,7 +54,7 @@ public class WeDeployAuthAppsManagementToolbarDisplayContext
 
 	@Override
 	public CreationMenu getCreationMenu() {
-		PortletURL editWeDeployAuthAppURL = PortletURLBuilder.createRenderURL(
+		RenderURL editWeDeployAuthAppURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/wedeploy_auth_admin/edit_wedeploy_auth_app"

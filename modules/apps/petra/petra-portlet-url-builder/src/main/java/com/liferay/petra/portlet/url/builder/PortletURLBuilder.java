@@ -193,8 +193,8 @@ public class PortletURLBuilder {
 		}
 
 		@Override
-		public PortletURL build() {
-			return _portletURL;
+		public <T extends PortletURL> T build() {
+			return (T)_portletURL;
 		}
 
 		@Override
@@ -665,7 +665,7 @@ public class PortletURLBuilder {
 
 	public interface BuildStep {
 
-		public PortletURL build();
+		public <T extends PortletURL> T build();
 
 		public String buildString();
 

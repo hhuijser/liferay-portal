@@ -136,10 +136,10 @@ public class SynonymsDisplayBuilder {
 
 		RenderURL editRenderURL = (RenderURL)PortletURLBuilder.createRenderURL(
 			_renderResponse
-		).setParameter(
-			"mvcRenderCommandName", "/synonyms/edit_synonym_sets"
-		).setParameter(
-			"redirect", _portal.getCurrentURL(_httpServletRequest)
+		).setMVCRenderCommandName(
+			"/synonyms/edit_synonym_sets"
+		).setRedirect(
+			_portal.getCurrentURL(_httpServletRequest)
 		).setParameter(
 			"synonymSetId", synonymSet.getId()
 		).build();

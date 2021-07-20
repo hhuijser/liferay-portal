@@ -325,34 +325,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Portlet deployRemotePortlet(Portlet portlet, String categoryName)
-		throws PortalException {
-
-		return deployRemotePortlet(portlet, new String[] {categoryName});
-	}
-
-	@Override
-	public Portlet deployRemotePortlet(Portlet portlet, String[] categoryNames)
-		throws PortalException {
-
-		return deployRemotePortlet(portlet, categoryNames, true);
-	}
-
-	@Override
-	public Portlet deployRemotePortlet(
-			Portlet portlet, String[] categoryNames, boolean eagerDestroy)
-		throws PortalException {
-
-		long[] companyIds = ListUtil.toLongArray(
-			companyLocalService.getCompanies(false), Company::getCompanyId);
-
-		deployRemotePortlet(
-			companyIds, portlet, categoryNames, eagerDestroy, true);
-
-		return portlet;
-	}
-
-	@Override
 	public Portlet deployRemotePortlet(
 			long[] companyIds, Portlet portlet, String[] categoryNames,
 			boolean eagerDestroy, boolean clearCache)
@@ -377,6 +349,34 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				portletPersistence.flush();
 			},
 			companyIds);
+
+		return portlet;
+	}
+
+	@Override
+	public Portlet deployRemotePortlet(Portlet portlet, String categoryName)
+		throws PortalException {
+
+		return deployRemotePortlet(portlet, new String[] {categoryName});
+	}
+
+	@Override
+	public Portlet deployRemotePortlet(Portlet portlet, String[] categoryNames)
+		throws PortalException {
+
+		return deployRemotePortlet(portlet, categoryNames, true);
+	}
+
+	@Override
+	public Portlet deployRemotePortlet(
+			Portlet portlet, String[] categoryNames, boolean eagerDestroy)
+		throws PortalException {
+
+		long[] companyIds = ListUtil.toLongArray(
+			companyLocalService.getCompanies(false), Company::getCompanyId);
+
+		deployRemotePortlet(
+			companyIds, portlet, categoryNames, eagerDestroy, true);
 
 		return portlet;
 	}

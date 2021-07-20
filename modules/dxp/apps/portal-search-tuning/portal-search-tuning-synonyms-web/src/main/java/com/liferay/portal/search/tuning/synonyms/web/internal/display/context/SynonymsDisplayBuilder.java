@@ -99,18 +99,6 @@ public class SynonymsDisplayBuilder {
 		return StringUtil.replace(synonymSet, ',', ", ");
 	}
 
-	protected RenderURL buildEditRenderURL(SynonymSet synonymSet) {
-		RenderURL editRenderURL = _renderResponse.createRenderURL();
-
-		editRenderURL.setParameter(
-			"mvcRenderCommandName", "/synonyms/edit_synonym_sets");
-		editRenderURL.setParameter(
-			"redirect", _portal.getCurrentURL(_httpServletRequest));
-		editRenderURL.setParameter("synonymSetId", synonymSet.getId());
-
-		return editRenderURL;
-	}
-
 	protected SearchContainer<SynonymSetDisplayContext> buildSearchContainer() {
 		SearchContainer<SynonymSetDisplayContext> searchContainer =
 			new SearchContainer<>(
@@ -146,7 +134,15 @@ public class SynonymsDisplayBuilder {
 
 		String synonyms = synonymSet.getSynonyms();
 
-		RenderURL editRenderURL = buildEditRenderURL(synonymSet);
+		RenderURL editRenderURL = (RenderURL)PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setParameter(
+			"mvcRenderCommandName", "/synonyms/edit_synonym_sets"
+		).setParameter(
+			"redirect", _portal.getCurrentURL(_httpServletRequest)
+		).setParameter(
+			"synonymSetId", synonymSet.getId()
+		).build();
 
 		synonymSetDisplayContext.setDropDownItems(
 			buildSynonymSetDropdownItemList(synonymSet, editRenderURL));

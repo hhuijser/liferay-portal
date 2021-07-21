@@ -155,7 +155,7 @@ public class TaskNodeExecutorTest {
 		).build();
 
 		String content = StringUtil.read(
-			getClass(), "dependencies/workflow-definition-timer-tasks.xml");
+			getClass(), "dependencies/timer-tasks-workflow-definition.xml");
 
 		_workflowDefinition =
 			_workflowDefinitionManager.deployWorkflowDefinition(

@@ -1498,6 +1498,10 @@
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary whitespace in `.xml` files." />
 		</check>
+		<check name="XMLWorkflowDefinitionFileNameCheck">
+			<category name="Styling" />
+			<description name="Checks the file name of workflow definition does not end with `workflow-definition.xml`." />
+		</check>
 
 		<!-- Liferay Source Checks -->
 

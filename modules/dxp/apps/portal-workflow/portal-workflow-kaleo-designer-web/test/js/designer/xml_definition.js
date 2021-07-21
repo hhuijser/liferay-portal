@@ -72,7 +72,9 @@ describe('liferay-kaleo-designer-xml-definition', () => {
 
 	describe('getDefinitionMetadata()', () => {
 		it('has a name', () => {
-			const definition = loadResource('metadata-only-definition.xml');
+			const definition = loadResource(
+				'metadata-only-workflow-definition.xml'
+			);
 
 			const xmlDefinition = new Liferay.KaleoDesignerXMLDefinition({
 				value: definition,
@@ -89,7 +91,7 @@ describe('liferay-kaleo-designer-xml-definition', () => {
 	describe('forEachField()', () => {
 		it('retrieves "receptionType" attribute value', () => {
 			const definition = loadResource(
-				'recipients-with-reception-type-bcc-definition.xml'
+				'recipients-with-reception-type-bcc-workflow-definition.xml'
 			);
 
 			const xmlDefinition = new Liferay.KaleoDesignerXMLDefinition({
@@ -121,7 +123,7 @@ describe('liferay-kaleo-designer-xml-definition', () => {
 
 		it('does not have a "receptionType" if not present in definition', () => {
 			const definition = loadResource(
-				'recipients-with-no-reception-type-definition.xml'
+				'recipients-with-no-reception-type-workflow-definition.xml'
 			);
 
 			const xmlDefinition = new Liferay.KaleoDesignerXMLDefinition({
@@ -141,7 +143,7 @@ describe('liferay-kaleo-designer-xml-definition', () => {
 
 		it('has "users" as recipient', () => {
 			const definition = loadResource(
-				'recipients-with-user-definition.xml'
+				'recipients-with-user-workflow-definition.xml'
 			);
 
 			const xmlDefinition = new Liferay.KaleoDesignerXMLDefinition({
@@ -161,7 +163,7 @@ describe('liferay-kaleo-designer-xml-definition', () => {
 
 		it('has "assignees" as recipient', () => {
 			const definition = loadResource(
-				'recipients-with-assignees-definition.xml'
+				'recipients-with-assignees-workflow-definition.xml'
 			);
 
 			const xmlDefinition = new Liferay.KaleoDesignerXMLDefinition({

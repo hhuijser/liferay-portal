@@ -60,7 +60,7 @@ public class AddMBModerationWorkflowDefinitionPortalInstanceLifecycleListener
 		String content = StringUtil.read(
 			AddMBModerationWorkflowDefinitionPortalInstanceLifecycleListener.
 				class,
-			"dependencies/message-boards-moderation-definition.xml");
+			"dependencies/message-boards-moderation-workflow-definition.xml");
 
 		_workflowDefinitionManager.deployWorkflowDefinition(
 			company.getCompanyId(), defaultUserId,

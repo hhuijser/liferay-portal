@@ -1507,7 +1507,7 @@ public class WorkflowTaskManagerImplTest {
 				_log.debug(workflowException, workflowException);
 			}
 
-			String content = _read("join-xor-definition.xml");
+			String content = _read("join-xor-workflow-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
 				_adminUser.getCompanyId(), _adminUser.getUserId(), _JOIN_XOR,
@@ -1542,7 +1542,7 @@ public class WorkflowTaskManagerImplTest {
 			}
 
 			String content = _read(
-				"single-approver-definition-scripted-assignment.xml");
+				"single-approver-scripted-assignment-workflow-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
 				_adminUser.getCompanyId(), _adminUser.getUserId(),
@@ -1564,7 +1564,7 @@ public class WorkflowTaskManagerImplTest {
 			}
 
 			String content = _read(
-				"single-approver-definition-site-member.xml");
+				"single-approver-site-member-workflow-definition.xml");
 
 			_workflowDefinitionManager.deployWorkflowDefinition(
 				_adminUser.getCompanyId(), _adminUser.getUserId(),

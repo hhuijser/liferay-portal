@@ -134,7 +134,7 @@ public class WorkflowMetricsSLADefinitionTransformerMessageListenerTest
 
 		updateWorkflowDefinition(
 			WorkflowDefinitionUtil.getBytes(
-				"single-approver-definition-updated.xml"));
+				"single-approver-updated-workflow-definition.xml"));
 
 		assertCount(
 			_processWorkflowMetricsIndexNameBuilder.getIndexName(

@@ -40,3 +40,4 @@ XMLTilesDefsFileCheck | [Styling](styling_checks.markdown#styling-checks) | Chec
 XMLToggleFileCheck | [Styling](styling_checks.markdown#styling-checks) | Checks the order of elements in `.toggle` file. |
 XMLWebFileCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | Performs several checks on `web.xml` file. |
 XMLWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | Finds missing and unnecessary whitespace in `.xml` files. |
+XMLWorkflowDefinitionFileNameCheck | [Styling](styling_checks.markdown#styling-checks) | Checks the file name of workflow definition does not end with `workflow-definition.xml`. |

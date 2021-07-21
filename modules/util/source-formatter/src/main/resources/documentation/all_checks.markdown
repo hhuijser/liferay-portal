@@ -437,6 +437,7 @@ XMLTilesDefsFileCheck | [Styling](styling_checks.markdown#styling-checks) | .act
 XMLToggleFileCheck | [Styling](styling_checks.markdown#styling-checks) | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Checks the order of elements in `.toggle` file. |
 XMLWebFileCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Performs several checks on `web.xml` file. |
 XMLWhitespaceCheck | [Styling](styling_checks.markdown#styling-checks) | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Finds missing and unnecessary whitespace in `.xml` files. |
+XMLWorkflowDefinitionFileNameCheck | [Styling](styling_checks.markdown#styling-checks) | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Checks the file name of workflow definition does not end with `workflow-definition.xml`. |
 YMLDefinitionOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .yaml or .yml | Sorts definitions alphabetically in `.yml` files. |
 YMLEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .yaml or .yml | Finds missing and unnecessary empty lines. |
 YMLLongLinesCheck | [Styling](styling_checks.markdown#styling-checks) | .yaml or .yml | Finds lines that are longer than the specified maximum line length. |

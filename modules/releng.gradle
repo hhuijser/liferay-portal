@@ -983,7 +983,7 @@ syncGitRepoReleases {
 
 syncPortalLanguageKeys {
 	doLast {
-		FileTree languagePropertiesFileTree = fileTree(dir: projectDir, excludes: ["apps/archived", "apps/portal-language"], includes: ["apps/**/src/main/resources/content/Language*.properties", "dxp/**/src/main/resources/content/Language*.properties"])
+		FileTree languagePropertiesFileTree = fileTree(dir: projectDir, excludes: ["apps/archived", "apps/portal-language"], includes: ["apps/**/src/main/resources/content/Language*.properties", "apps/**/src/WEB-INF/src/content/Language*.properties", "dxp/**/src/main/resources/content/Language*.properties", "dxp/**/src/WEB-INF/src/content/Language*.properties"])
 
 		FileTree portalLanguagePropertiesFileTree = fileTree(dir: projectDir, includes: ["apps/portal-language/portal-language-lang/src/main/resources/content/Language*.properties"])
 

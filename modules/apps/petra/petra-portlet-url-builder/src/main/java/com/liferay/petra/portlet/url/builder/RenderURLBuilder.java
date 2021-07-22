@@ -105,7 +105,7 @@ public class RenderURLBuilder {
 		}
 
 		@Override
-		public RenderURL build() {
+		public RenderURL buildRenderURL() {
 			return _renderURL;
 		}
 
@@ -610,7 +610,7 @@ public class RenderURLBuilder {
 
 	public interface BuildStep {
 
-		public RenderURL build();
+		public RenderURL buildRenderURL();
 
 		public String buildString();
 

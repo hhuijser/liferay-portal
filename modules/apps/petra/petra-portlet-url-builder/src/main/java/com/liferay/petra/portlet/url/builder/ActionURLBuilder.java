@@ -98,7 +98,7 @@ public class ActionURLBuilder {
 		}
 
 		@Override
-		public ActionURL build() {
+		public ActionURL buildActionURL() {
 			return _actionURL;
 		}
 
@@ -714,7 +714,7 @@ public class ActionURLBuilder {
 
 	public interface BuildStep {
 
-		public ActionURL build();
+		public ActionURL buildActionURL();
 
 		public String buildString();
 

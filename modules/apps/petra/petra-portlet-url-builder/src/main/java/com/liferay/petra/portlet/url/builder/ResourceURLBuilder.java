@@ -70,7 +70,7 @@ public class ResourceURLBuilder {
 		}
 
 		@Override
-		public ResourceURL build() {
+		public ResourceURL buildResourceURL() {
 			return _resourceURL;
 		}
 
@@ -518,7 +518,7 @@ public class ResourceURLBuilder {
 
 	public interface BuildStep {
 
-		public ResourceURL build();
+		public ResourceURL buildResourceURL();
 
 		public String buildString();
 

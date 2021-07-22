@@ -23,15 +23,13 @@ public class XMLWorkflowDefinitionFileNameCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (content.indexOf("\n<workflow-definition\n") == -1) {
-			return content;
-		}
+		if (content.contains("\n<workflow-definition\n") &&
+			!fileName.endsWith("workflow-definition.xml")) {
 
-		if (!fileName.endsWith("workflow-definition.xml")) {
 			addMessage(
 				fileName,
 				"The file name of workflow definition should end with " +
-					"`workflow-definition.xml`");
+					"'workflow-definition.xml'");
 		}
 
 		return content;

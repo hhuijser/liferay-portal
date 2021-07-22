@@ -143,16 +143,13 @@ public class BasicFragmentManagementToolbarDisplayContext
 			).buildString()
 		).put(
 			"deleteFragmentCompositionsAndFragmentEntriesURL",
-			() -> {
-				return PortletURLBuilder.createActionURL(
-					liferayPortletResponse
-				).setActionName(
-					"/fragment" +
-						"/delete_fragment_compositions_and_fragment_entries"
-				).setRedirect(
-					themeDisplay.getURLCurrent()
-				).buildString();
-			}
+			PortletURLBuilder.createActionURL(
+				liferayPortletResponse
+			).setActionName(
+				"/fragment/delete_fragment_compositions_and_fragment_entries"
+			).setRedirect(
+				themeDisplay.getURLCurrent()
+			).buildString()
 		).put(
 			"exportFragmentCompositionsAndFragmentEntriesURL",
 			() -> {

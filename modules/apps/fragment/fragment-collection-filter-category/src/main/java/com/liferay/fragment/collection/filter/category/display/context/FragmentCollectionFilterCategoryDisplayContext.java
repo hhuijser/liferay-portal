@@ -63,12 +63,11 @@ public class FragmentCollectionFilterCategoryDisplayContext {
 		HttpServletRequest httpServletRequest) {
 
 		_fragmentEntryConfigurationParser = fragmentEntryConfigurationParser;
-
 		_fragmentRendererContext = fragmentRendererContext;
 		_httpServletRequest = httpServletRequest;
 
-		_fragmentEntryLink = _fragmentRendererContext.getFragmentEntryLink();
-		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
+		_fragmentEntryLink = fragmentRendererContext.getFragmentEntryLink();
+		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 

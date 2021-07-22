@@ -172,7 +172,7 @@ XMLTestIgnorableErrorLinesFileCheck | .action, .function, .jrxml, .macro, .pom, 
 XMLTilesDefsFileCheck | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Checks the order of elements in `tiles-defs.xml` file. |
 XMLToggleFileCheck | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Checks the order of elements in `.toggle` file. |
 XMLWhitespaceCheck | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Finds missing and unnecessary whitespace in `.xml` files. |
-XMLWorkflowDefinitionFileNameCheck | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Checks the file name of workflow definition does not end with `workflow-definition.xml`. |
+XMLWorkflowDefinitionFileNameCheck | .action, .function, .jrxml, .macro, .pom, .project, .properties, .testcase, .toggle, .tpl, .wsdl, .xml or .xsd | Checks the file name of workflow definition files. |
 YMLDefinitionOrderCheck | .yaml or .yml | Sorts definitions alphabetically in `.yml` files. |
 YMLEmptyLinesCheck | .yaml or .yml | Finds missing and unnecessary empty lines. |
 YMLLongLinesCheck | .yaml or .yml | Finds lines that are longer than the specified maximum line length. |

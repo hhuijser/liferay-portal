@@ -181,6 +181,9 @@ public interface AbsolutePortalURLBuilder {
 	/**
 	 * Returns a URL builder for OSGi whiteboard servlet instances. This method
 	 * requires the servlet class to be annotated with the OSGi {@code
+	 * @Component}. OSGi whiteboard servlets live in {@code
+	 * com.liferay.portal.kernel.util.Portal#PATH_MODULE}.
+	 *
 	 *
 	 * @param  servletPattern the value of the {@code
 	 *         osgi.http.whiteboard.servlet.pattern} property

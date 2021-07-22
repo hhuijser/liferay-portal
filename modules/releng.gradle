@@ -1019,7 +1019,7 @@ syncPortalLanguageKeys {
 					}
 
 					if (!languageKeys.isEmpty() || (languagePropertiesFile.name == "Language.properties")) {
-						languagePropertiesFile.setText languageKeys.join("\n"), "UTF-8"
+						languagePropertiesFile.setText languageKeys.sort().join("\n"), "UTF-8"
 
 						if (!languageKeys.isEmpty()) {
 							logger.lifecycle "Duplicate language key found {}", languagePropertiesFile

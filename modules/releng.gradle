@@ -15,6 +15,7 @@ import groovy.io.FileVisitResult
 
 import groovy.json.JsonSlurper
 
+import java.nio.charset.StandardCharsets
 import java.nio.file.Path
 
 import java.util.jar.Attributes
@@ -88,6 +89,7 @@ task prepareMajorIncrement
 task prepareMajorIncrementAppProperties
 task syncAppProperties
 task syncGitRepoReleases
+task syncPortalLanguageKeys
 task tagAppReleases
 
 buildFixPackChangeLog {
@@ -977,6 +979,72 @@ syncGitRepoReleases {
 	}
 
 	group = "releng"
+}
+
+syncPortalLanguageKeys {
+	doLast {
+		fileTree(dir: projectDir, includes: ["apps/portal-language/portal-language-lang/src/main/resources/content/Language*.properties"]).any {
+			File portalLanguagePropertiesFile ->
+
+			List<String> portalLanguageKeys = []
+			Properties portalLanguageProperties = new Properties()
+
+			portalLanguageProperties.load(new InputStreamReader(new FileInputStream(portalLanguagePropertiesFile), StandardCharsets.UTF_8))
+
+			for (String key : portalLanguageProperties.stringPropertyNames()) {
+				portalLanguageKeys.add(key + '=' + portalLanguageProperties.getProperty(key))
+			}
+
+			fileTree(dir: projectDir, excludes: ["apps/archived", "apps/portal-language"], includes: ["apps/**/src/main/resources/content/Language*.properties", "dxp/**/src/main/resources/content/Language*.properties"]).each {
+				File languagePropertiesFile ->
+
+				if (languagePropertiesFile.name == portalLanguagePropertiesFile.name) {
+					List<String> languageKeys = []
+					Properties languageProperties = new Properties()
+
+					languageProperties.load(new InputStreamReader(new FileInputStream(languagePropertiesFile), StandardCharsets.UTF_8))
+
+					languageProperties.each {
+						String key, String value ->
+
+						if (!portalLanguageProperties.containsKey(key)) {
+							portalLanguageKeys.add(key + '=' + value)
+						}
+						else if (portalLanguageProperties.getProperty(key) != value) {
+							languageKeys.add(key + '=' + value)
+						}
+					}
+
+					if (!languageKeys.isEmpty()) {
+						languagePropertiesFile.setText languageKeys.join("\n"), "UTF-8"
+
+						logger.lifecycle "Duplicate language key found {}", languagePropertiesFile
+					}
+					else {
+						delete languagePropertiesFile
+					}
+				}
+			}
+
+			portalLanguagePropertiesFile.setText portalLanguageKeys.sort().join("\n"), "UTF-8"
+
+			logger.lifecycle "Updated {}", portalLanguagePropertiesFile
+		}
+
+		StartParameter startParameter = gradle.startParameter.newBuild()
+
+		startParameter.currentDir = new File(projectDir, "apps/portal-language/portal-language-lang")
+		startParameter.projectProperties = ["formatLocalChanges": "true"]
+		startParameter.taskNames = ["formatSource"]
+
+		_executeGradle(startParameter, true)
+	}
+
+	group = "releng"
+
+	outputs.upToDateWhen {
+		false
+	}
 }
 
 tagAppReleases {

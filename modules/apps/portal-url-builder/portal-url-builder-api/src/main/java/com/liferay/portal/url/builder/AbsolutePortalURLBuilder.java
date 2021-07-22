@@ -184,7 +184,6 @@ public interface AbsolutePortalURLBuilder {
 	 * @Component}. OSGi whiteboard servlets live in {@code
 	 * com.liferay.portal.kernel.util.Portal#PATH_MODULE}.
 	 *
-	 *
 	 * @param  servletPattern the value of the {@code
 	 *         osgi.http.whiteboard.servlet.pattern} property
 	 * @return a URL builder for OSGi whiteboard servlet instances

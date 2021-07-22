@@ -983,26 +983,34 @@ syncGitRepoReleases {
 
 syncPortalLanguageKeys {
 	doLast {
-		fileTree(dir: projectDir, includes: ["apps/portal-language/portal-language-lang/src/main/resources/content/Language*.properties"]).any {
+		FileTree languagePropertiesFileTree = fileTree(dir: projectDir, excludes: ["apps/archived", "apps/portal-language"], includes: ["apps/**/src/main/resources/content/Language*.properties", "dxp/**/src/main/resources/content/Language*.properties"])
+
+		FileTree portalLanguagePropertiesFileTree = fileTree(dir: projectDir, includes: ["apps/portal-language/portal-language-lang/src/main/resources/content/Language*.properties"])
+
+		portalLanguagePropertiesFileTree.any {
 			File portalLanguagePropertiesFile ->
 
 			List<String> portalLanguageKeys = []
 			Properties portalLanguageProperties = new Properties()
 
-			portalLanguageProperties.load(new InputStreamReader(new FileInputStream(portalLanguagePropertiesFile), StandardCharsets.UTF_8))
+			new InputStreamReader(new FileInputStream(portalLanguagePropertiesFile), StandardCharsets.UTF_8).withReader {
+				portalLanguageProperties.load(it)
+			}
 
 			for (String key : portalLanguageProperties.stringPropertyNames()) {
 				portalLanguageKeys.add(key + '=' + portalLanguageProperties.getProperty(key))
 			}
 
-			fileTree(dir: projectDir, excludes: ["apps/archived", "apps/portal-language"], includes: ["apps/**/src/main/resources/content/Language*.properties", "dxp/**/src/main/resources/content/Language*.properties"]).each {
+			languagePropertiesFileTree.each {
 				File languagePropertiesFile ->
 
 				if (languagePropertiesFile.name == portalLanguagePropertiesFile.name) {
 					List<String> languageKeys = []
 					Properties languageProperties = new Properties()
 
-					languageProperties.load(new InputStreamReader(new FileInputStream(languagePropertiesFile), StandardCharsets.UTF_8))
+					new InputStreamReader(new FileInputStream(languagePropertiesFile), StandardCharsets.UTF_8).withReader {
+						languageProperties.load(it)
+					}
 
 					languageProperties.each {
 						String key, String value ->

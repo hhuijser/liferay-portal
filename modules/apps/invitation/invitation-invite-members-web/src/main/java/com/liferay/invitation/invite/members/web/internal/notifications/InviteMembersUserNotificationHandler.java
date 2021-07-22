@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ResourceBundle;
 
-import javax.portlet.PortletURL;
 import javax.portlet.WindowState;
 
 import org.osgi.service.component.annotations.Component;
@@ -109,21 +108,6 @@ public class InviteMembersUserNotificationHandler
 		LiferayPortletResponse liferayPortletResponse =
 			serviceContext.getLiferayPortletResponse();
 
-		PortletURL confirmURL = PortletURLBuilder.createActionURL(
-			liferayPortletResponse, InviteMembersPortletKeys.INVITE_MEMBERS
-		).setActionName(
-			"updateMemberRequest"
-		).setParameter(
-			"memberRequestId", memberRequestId
-		).setParameter(
-			"status", MembershipRequestConstants.STATUS_APPROVED
-		).setParameter(
-			"userNotificationEventId",
-			userNotificationEvent.getUserNotificationEventId()
-		).setWindowState(
-			WindowState.NORMAL
-		).build();
-
 		return StringUtil.replace(
 			getBodyTemplate(),
 			new String[] {
@@ -131,7 +115,22 @@ public class InviteMembersUserNotificationHandler
 				"[$IGNORE_URL$]", "[$TITLE$]"
 			},
 			new String[] {
-				serviceContext.translate("confirm"), confirmURL.toString(),
+				serviceContext.translate("confirm"),
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse,
+					InviteMembersPortletKeys.INVITE_MEMBERS
+				).setActionName(
+					"updateMemberRequest"
+				).setParameter(
+					"memberRequestId", memberRequestId
+				).setParameter(
+					"status", MembershipRequestConstants.STATUS_APPROVED
+				).setParameter(
+					"userNotificationEventId",
+					userNotificationEvent.getUserNotificationEventId()
+				).setWindowState(
+					WindowState.NORMAL
+				).buildString(),
 				serviceContext.translate("ignore"),
 				PortletURLBuilder.createActionURL(
 					liferayPortletResponse,

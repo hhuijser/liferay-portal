@@ -62,7 +62,6 @@ import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -136,18 +135,18 @@ public class ExportImportChangesetMVCActionCommandImpl
 			long backgroundTaskId)
 		throws IOException {
 
-		PortletURL renderURL = PortletURLBuilder.createRenderURL(
-			_portal.getLiferayPortletResponse(actionResponse),
-			ExportImportPortletKeys.EXPORT_IMPORT
-		).setMVCPath(
-			"/view_export_import.jsp"
-		).setBackURL(
-			actionRequest.getParameter("backURL")
-		).setParameter(
-			"backgroundTaskId", backgroundTaskId
-		).build();
-
-		actionRequest.setAttribute(WebKeys.REDIRECT, renderURL.toString());
+		actionRequest.setAttribute(
+			WebKeys.REDIRECT,
+			PortletURLBuilder.createRenderURL(
+				_portal.getLiferayPortletResponse(actionResponse),
+				ExportImportPortletKeys.EXPORT_IMPORT
+			).setMVCPath(
+				"/view_export_import.jsp"
+			).setBackURL(
+				actionRequest.getParameter("backURL")
+			).setParameter(
+				"backgroundTaskId", backgroundTaskId
+			).buildString());
 
 		hideDefaultSuccessMessage(actionRequest);
 

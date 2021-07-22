@@ -124,14 +124,14 @@ public class EditCommerceOrderMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, long commerceOrderId)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			_commerceOrderHttpHelper.getCommerceCheckoutPortletURL(
-				_portal.getHttpServletRequest(actionRequest))
-		).setParameter(
-			"commerceOrderId", commerceOrderId
-		).build();
-
-		actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
+		actionRequest.setAttribute(
+			WebKeys.REDIRECT,
+			PortletURLBuilder.create(
+				_commerceOrderHttpHelper.getCommerceCheckoutPortletURL(
+					_portal.getHttpServletRequest(actionRequest))
+			).setParameter(
+				"commerceOrderId", commerceOrderId
+			).buildString());
 	}
 
 	protected void checkoutOrSubmitCommerceOrder(

@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -173,35 +172,33 @@ public class MBUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletURLFactoryUtil.create(
-				httpServletRequest, portletDisplay.getId(),
-				PortletRequest.RENDER_PHASE)
-		).setMVCRenderCommandName(
-			"/message_boards/view_message"
-		).setParameter(
-			"messageId", messageId
-		).build();
-
 		return StringBundler.concat(
-			portletURL.toString(), StringPool.POUND,
-			portletDisplay.getNamespace(), "message_", messageId);
+			PortletURLBuilder.create(
+				PortletURLFactoryUtil.create(
+					httpServletRequest, portletDisplay.getId(),
+					PortletRequest.RENDER_PHASE)
+			).setMVCRenderCommandName(
+				"/message_boards/view_message"
+			).setParameter(
+				"messageId", messageId
+			).buildString(),
+			StringPool.POUND, portletDisplay.getNamespace(), "message_",
+			messageId);
 	}
 
 	public static String getMBMessageURL(
 		long messageId, RenderResponse renderResponse) {
 
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
-			renderResponse
-		).setMVCRenderCommandName(
-			"/message_boards/view_message"
-		).setParameter(
-			"messageId", messageId
-		).build();
-
 		return StringBundler.concat(
-			portletURL.toString(), StringPool.POUND,
-			renderResponse.getNamespace(), "message_", messageId);
+			PortletURLBuilder.createRenderURL(
+				renderResponse
+			).setMVCRenderCommandName(
+				"/message_boards/view_message"
+			).setParameter(
+				"messageId", messageId
+			).buildString(),
+			StringPool.POUND, renderResponse.getNamespace(), "message_",
+			messageId);
 	}
 
 	public static String getMBMessageURL(

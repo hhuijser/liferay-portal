@@ -54,7 +54,6 @@ import java.util.ResourceBundle;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionURL;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -292,32 +291,30 @@ public class BlogsEntryActionDropdownItemsProvider {
 	private UnsafeConsumer<DropdownItem, Exception>
 		_getPublishToLiveEntryActionUnsafeConsumer(BlogsEntry blogsEntry) {
 
-		PortletURL publishEntryURL = PortletURLBuilder.createActionURL(
-			_renderResponse
-		).setActionName(
-			"/blogs/publish_entry"
-		).setBackURL(
-			_getRedirectURL()
-		).setParameter(
-			"entryId", blogsEntry.getEntryId()
-		).build();
-
 		return dropdownItem -> {
 			dropdownItem.putData("action", "publishToLive");
-			dropdownItem.putData("publishEntryURL", publishEntryURL.toString());
+			dropdownItem.putData(
+				"publishEntryURL",
+				PortletURLBuilder.createActionURL(
+					_renderResponse
+				).setActionName(
+					"/blogs/publish_entry"
+				).setBackURL(
+					_getRedirectURL()
+				).setParameter(
+					"entryId", blogsEntry.getEntryId()
+				).buildString());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "publish-to-live"));
 		};
 	}
 
 	private String _getRedirectURL() {
-		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/blogs/view"
-		).build();
-
-		return redirectURL.toString();
+		).buildString();
 	}
 
 	private boolean _hasDeletePermission(BlogsEntry blogsEntry) {

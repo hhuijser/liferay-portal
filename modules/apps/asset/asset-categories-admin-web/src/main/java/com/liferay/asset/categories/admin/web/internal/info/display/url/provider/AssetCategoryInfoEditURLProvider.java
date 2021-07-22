@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,7 +57,7 @@ public class AssetCategoryInfoEditURLProvider
 			group = themeDisplay.getScopeGroup();
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
 				httpServletRequest, group,
 				AssetCategoriesAdminPortletKeys.ASSET_CATEGORIES_ADMIN, 0, 0,
@@ -80,9 +79,7 @@ public class AssetCategoryInfoEditURLProvider
 			"categoryId", assetCategory.getCategoryId()
 		).setParameter(
 			"vocabularyId", assetCategory.getVocabularyId()
-		).build();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	@Reference

@@ -145,16 +145,14 @@ public class WikiNodesManagementToolbarDisplayContext {
 
 		return CreationMenuBuilder.addDropdownItem(
 			dropdownItem -> {
-				PortletURL viewNodesURL = PortletURLBuilder.createRenderURL(
-					_liferayPortletResponse
-				).setMVCRenderCommandName(
-					"/wiki_admin/view"
-				).build();
-
 				dropdownItem.setHref(
 					_liferayPortletResponse.createRenderURL(),
 					"mvcRenderCommandName", "/wiki/edit_node", "redirect",
-					viewNodesURL.toString());
+					PortletURLBuilder.createRenderURL(
+						_liferayPortletResponse
+					).setMVCRenderCommandName(
+						"/wiki_admin/view"
+					).buildString());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "add-wiki"));

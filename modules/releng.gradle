@@ -987,18 +987,13 @@ syncPortalLanguageKeys {
 
 		FileTree portalLanguagePropertiesFileTree = fileTree(dir: projectDir, includes: ["apps/portal-language/portal-language-lang/src/main/resources/content/Language*.properties"])
 
-		portalLanguagePropertiesFileTree.any {
+		portalLanguagePropertiesFileTree.each {
 			File portalLanguagePropertiesFile ->
 
-			List<String> portalLanguageKeys = []
 			Properties portalLanguageProperties = new Properties()
 
 			new InputStreamReader(new FileInputStream(portalLanguagePropertiesFile), StandardCharsets.UTF_8).withReader {
 				portalLanguageProperties.load(it)
-			}
-
-			for (String key : portalLanguageProperties.stringPropertyNames()) {
-				portalLanguageKeys.add(key + '=' + portalLanguageProperties.getProperty(key))
 			}
 
 			languagePropertiesFileTree.each {
@@ -1016,7 +1011,7 @@ syncPortalLanguageKeys {
 						String key, String value ->
 
 						if (!portalLanguageProperties.containsKey(key)) {
-							portalLanguageKeys.add(key + '=' + value)
+							portalLanguageProperties.setProperty key, value
 						}
 						else if (portalLanguageProperties.getProperty(key) != value) {
 							languageKeys.add(key + '=' + value)
@@ -1032,6 +1027,12 @@ syncPortalLanguageKeys {
 						delete languagePropertiesFile
 					}
 				}
+			}
+
+			List<String> portalLanguageKeys = []
+
+			for (String key : portalLanguageProperties.stringPropertyNames()) {
+				portalLanguageKeys.add(key + '=' + portalLanguageProperties.getProperty(key))
 			}
 
 			portalLanguagePropertiesFile.setText portalLanguageKeys.sort().join("\n"), "UTF-8"

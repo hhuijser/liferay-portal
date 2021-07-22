@@ -63,6 +63,7 @@ public class FragmentCollectionFilterCategoryDisplayContext {
 		HttpServletRequest httpServletRequest) {
 
 		_fragmentEntryConfigurationParser = fragmentEntryConfigurationParser;
+
 		_fragmentRendererContext = fragmentRendererContext;
 		_httpServletRequest = httpServletRequest;
 

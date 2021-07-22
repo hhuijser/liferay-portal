@@ -23,11 +23,13 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
+import javax.portlet.ActionURL;
 import javax.portlet.MimeResponse;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
 import javax.portlet.PortletSecurityException;
 import javax.portlet.PortletURL;
+import javax.portlet.RenderURL;
 import javax.portlet.WindowState;
 import javax.portlet.WindowStateException;
 
@@ -192,9 +194,29 @@ public class PortletURLBuilder {
 			_portletURL = portletURL;
 		}
 
+		/**
+		 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+		 *             #buildPortletURL()}
+		 */
+		@Deprecated
 		@Override
 		public PortletURL build() {
 			return _portletURL;
+		}
+
+		@Override
+		public ActionURL buildActionURL() {
+			return (ActionURL)_portletURL;
+		}
+
+		@Override
+		public PortletURL buildPortletURL() {
+			return _portletURL;
+		}
+
+		@Override
+		public RenderURL buildRenderURL() {
+			return (RenderURL)_portletURL;
 		}
 
 		@Override
@@ -665,7 +687,18 @@ public class PortletURLBuilder {
 
 	public interface BuildStep {
 
+		/**
+		 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+		 *             #buildPortletURL()}
+		 */
+		@Deprecated
 		public PortletURL build();
+
+		public ActionURL buildActionURL();
+
+		public PortletURL buildPortletURL();
+
+		public RenderURL buildRenderURL();
 
 		public String buildString();
 

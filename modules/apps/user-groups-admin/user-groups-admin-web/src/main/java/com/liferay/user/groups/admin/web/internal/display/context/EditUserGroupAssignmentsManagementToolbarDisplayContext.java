@@ -93,14 +93,11 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		return HashMapBuilder.<String, Object>put(
 			"editUserGroupAssignmentsURL",
 			() -> {
-				PortletURL editUserGroupAssignmentsURL =
-					PortletURLBuilder.createActionURL(
-						_renderResponse
-					).setActionName(
-						"editUserGroupAssignments"
-					).build();
-
-				return editUserGroupAssignmentsURL.toString();
+				return PortletURLBuilder.createActionURL(
+					_renderResponse
+				).setActionName(
+					"editUserGroupAssignments"
+				).buildString();
 			}
 		).put(
 			"portletURL",
@@ -112,7 +109,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 		).put(
 			"selectUsersURL",
 			() -> {
-				PortletURL selectUsersURL = PortletURLBuilder.createActionURL(
+				return PortletURLBuilder.createActionURL(
 					_renderResponse
 				).setMVCPath(
 					"/select_user_group_users.jsp"
@@ -120,9 +117,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 					"userGroupId", _userGroup.getUserGroupId()
 				).setWindowState(
 					LiferayWindowState.POP_UP
-				).build();
-
-				return selectUsersURL.toString();
+				).buildString();
 			}
 		).put(
 			"userGroupName",

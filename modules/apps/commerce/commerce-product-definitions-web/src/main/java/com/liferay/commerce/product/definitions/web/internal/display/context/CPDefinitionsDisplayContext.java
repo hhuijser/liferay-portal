@@ -196,24 +196,22 @@ public class CPDefinitionsDisplayContext
 		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItems =
 			new ArrayList<>();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletProviderUtil.getPortletURL(
-				httpServletRequest, CPDefinition.class.getName(),
-				PortletProvider.Action.MANAGE)
-		).setMVCRenderCommandName(
-			"/cp_definitions/edit_cp_definition"
-		).setParameter(
-			"cpDefinitionId", "{id}"
-		).setParameter(
-			"screenNavigationCategoryKey",
-			CPDefinitionScreenNavigationConstants.CATEGORY_KEY_DETAILS
-		).build();
-
 		clayDataSetActionDropdownItems.add(
 			new ClayDataSetActionDropdownItem(
-				portletURL.toString(), "view", "view",
-				LanguageUtil.get(httpServletRequest, "view"), "get", null,
-				null));
+				PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(
+						httpServletRequest, CPDefinition.class.getName(),
+						PortletProvider.Action.MANAGE)
+				).setMVCRenderCommandName(
+					"/cp_definitions/edit_cp_definition"
+				).setParameter(
+					"cpDefinitionId", "{id}"
+				).setParameter(
+					"screenNavigationCategoryKey",
+					CPDefinitionScreenNavigationConstants.CATEGORY_KEY_DETAILS
+				).buildString(),
+				"view", "view", LanguageUtil.get(httpServletRequest, "view"),
+				"get", null, null));
 
 		clayDataSetActionDropdownItems.add(
 			new ClayDataSetActionDropdownItem(

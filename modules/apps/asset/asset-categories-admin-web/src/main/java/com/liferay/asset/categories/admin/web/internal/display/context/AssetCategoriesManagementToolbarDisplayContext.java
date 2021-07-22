@@ -71,7 +71,10 @@ public class AssetCategoriesManagementToolbarDisplayContext
 		return DropdownItemListBuilder.add(
 			this::_isSetDisplayPageTemplateEnabled,
 			dropdownItem -> {
-				PortletURL setCategoryDisplayPageTemplateURL =
+				dropdownItem.putData(
+					"action", "setCategoryDisplayPageTemplate");
+				dropdownItem.putData(
+					"setCategoryDisplayPageTemplateURL",
 					PortletURLBuilder.createRenderURL(
 						liferayPortletResponse
 					).setMVCPath(
@@ -84,13 +87,7 @@ public class AssetCategoriesManagementToolbarDisplayContext
 					).setParameter(
 						"vocabularyId",
 						_assetCategoriesDisplayContext.getVocabularyId()
-					).build();
-
-				dropdownItem.putData(
-					"action", "setCategoryDisplayPageTemplate");
-				dropdownItem.putData(
-					"setCategoryDisplayPageTemplateURL",
-					setCategoryDisplayPageTemplateURL.toString());
+					).buildString());
 				dropdownItem.setIcon("page");
 				dropdownItem.setLabel(
 					LanguageUtil.get(

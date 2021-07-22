@@ -253,28 +253,27 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItems =
 			new ArrayList<>();
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletProviderUtil.getPortletURL(
-				httpServletRequest, CommerceDiscount.class.getName(),
-				PortletProvider.Action.MANAGE)
-		).setMVCRenderCommandName(
-			"/commerce_discount/edit_commerce_discount"
-		).setRedirect(
-			commercePricingRequestHelper.getCurrentURL()
-		).setParameter(
-			"commerceDiscountId", "{id}"
-		).setParameter(
-			"screenNavigationCategoryKey",
-			CommerceDiscountScreenNavigationConstants.CATEGORY_KEY_DETAILS
-		).setParameter(
-			"usePercentage", "{usePercentage}"
-		).build();
-
 		clayDataSetActionDropdownItems.add(
 			new ClayDataSetActionDropdownItem(
-				portletURL.toString(), "pencil", "edit",
-				LanguageUtil.get(httpServletRequest, "edit"), "get", null,
-				null));
+				PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(
+						httpServletRequest, CommerceDiscount.class.getName(),
+						PortletProvider.Action.MANAGE)
+				).setMVCRenderCommandName(
+					"/commerce_discount/edit_commerce_discount"
+				).setRedirect(
+					commercePricingRequestHelper.getCurrentURL()
+				).setParameter(
+					"commerceDiscountId", "{id}"
+				).setParameter(
+					"screenNavigationCategoryKey",
+					CommerceDiscountScreenNavigationConstants.
+						CATEGORY_KEY_DETAILS
+				).setParameter(
+					"usePercentage", "{usePercentage}"
+				).buildString(),
+				"pencil", "edit", LanguageUtil.get(httpServletRequest, "edit"),
+				"get", null, null));
 
 		clayDataSetActionDropdownItems.add(
 			new ClayDataSetActionDropdownItem(

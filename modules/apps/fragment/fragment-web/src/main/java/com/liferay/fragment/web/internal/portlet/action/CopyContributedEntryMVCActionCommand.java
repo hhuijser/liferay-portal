@@ -52,7 +52,6 @@ import java.net.URL;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -75,50 +74,51 @@ public class CopyContributedEntryMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
-			_portal.getLiferayPortletResponse(actionResponse)
-		).setParameter(
-			"fragmentCollectionId",
-			() -> {
-				ServiceContext serviceContext =
-					ServiceContextFactory.getInstance(actionRequest);
+		sendRedirect(
+			actionRequest, actionResponse,
+			PortletURLBuilder.createRenderURL(
+				_portal.getLiferayPortletResponse(actionResponse)
+			).setParameter(
+				"fragmentCollectionId",
+				() -> {
+					ServiceContext serviceContext =
+						ServiceContextFactory.getInstance(actionRequest);
 
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)actionRequest.getAttribute(
-						WebKeys.THEME_DISPLAY);
+					ThemeDisplay themeDisplay =
+						(ThemeDisplay)actionRequest.getAttribute(
+							WebKeys.THEME_DISPLAY);
 
-				String[] contributedEntryKeys = StringUtil.split(
-					ParamUtil.getString(actionRequest, "contributedEntryKeys"));
+					String[] contributedEntryKeys = StringUtil.split(
+						ParamUtil.getString(
+							actionRequest, "contributedEntryKeys"));
 
-				long fragmentCollectionId = ParamUtil.getLong(
-					actionRequest, "fragmentCollectionId");
+					long fragmentCollectionId = ParamUtil.getLong(
+						actionRequest, "fragmentCollectionId");
 
-				for (String contributedEntryKey : contributedEntryKeys) {
-					FragmentComposition fragmentComposition =
-						_fragmentCollectionContributorTracker.
-							getFragmentComposition(contributedEntryKey);
+					for (String contributedEntryKey : contributedEntryKeys) {
+						FragmentComposition fragmentComposition =
+							_fragmentCollectionContributorTracker.
+								getFragmentComposition(contributedEntryKey);
 
-					FragmentEntry fragmentEntry =
-						_fragmentCollectionContributorTracker.getFragmentEntry(
-							contributedEntryKey);
+						FragmentEntry fragmentEntry =
+							_fragmentCollectionContributorTracker.
+								getFragmentEntry(contributedEntryKey);
 
-					if (fragmentComposition != null) {
-						_addFragmentComposition(
-							fragmentCollectionId, fragmentComposition,
-							serviceContext, themeDisplay);
+						if (fragmentComposition != null) {
+							_addFragmentComposition(
+								fragmentCollectionId, fragmentComposition,
+								serviceContext, themeDisplay);
+						}
+						else if (fragmentEntry != null) {
+							_addFragmentEntry(
+								fragmentCollectionId, fragmentEntry,
+								serviceContext, themeDisplay);
+						}
 					}
-					else if (fragmentEntry != null) {
-						_addFragmentEntry(
-							fragmentCollectionId, fragmentEntry, serviceContext,
-							themeDisplay);
-					}
+
+					return fragmentCollectionId;
 				}
-
-				return fragmentCollectionId;
-			}
-		).build();
-
-		sendRedirect(actionRequest, actionResponse, redirectURL.toString());
+			).buildString());
 	}
 
 	private void _addFragmentComposition(

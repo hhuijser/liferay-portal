@@ -174,15 +174,13 @@ public class ResourceRequestPortletContainerTest
 		// Make a resource request to the target portlet using the portlet
 		// authentication token
 
-		portletURL = PortletURLBuilder.create(
+		String url = PortletURLBuilder.create(
 			PortletURLFactoryUtil.create(
 				httpServletRequest, testTargetPortletId, layout.getPlid(),
 				PortletRequest.RESOURCE_PHASE)
 		).setWindowState(
 			WindowState.MAXIMIZED
-		).build();
-
-		String url = portletURL.toString();
+		).buildString();
 
 		url = HttpUtil.setParameter(url, "p_p_auth", response.getBody());
 

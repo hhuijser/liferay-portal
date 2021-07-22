@@ -276,15 +276,13 @@ public abstract class BaseCPDefinitionsSearchContainerDisplayContext<T>
 			active = true;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletURLUtil.clone(getPortletURL(), liferayPortletResponse)
-		).setParameter(
-			"status", status
-		).build();
-
 		return new ManagementBarFilterItem(
 			active, WorkflowConstants.getStatusLabel(status),
-			portletURL.toString());
+			PortletURLBuilder.create(
+				PortletURLUtil.clone(getPortletURL(), liferayPortletResponse)
+			).setParameter(
+				"status", status
+			).buildString());
 	}
 
 	protected SearchContainer<T> searchContainer;

@@ -34,7 +34,6 @@ import java.io.IOException;
 
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.filter.FilterChain;
@@ -98,15 +97,14 @@ public class GroupPagesRenderParametersRenderFilter implements RenderFilter {
 				HttpServletResponse httpServletResponse =
 					_portal.getHttpServletResponse(renderResponse);
 
-				PortletURL portletURL = PortletURLBuilder.create(
-					_portal.getControlPanelPortletURL(
-						renderRequest, LayoutAdminPortletKeys.GROUP_PAGES,
-						PortletRequest.RENDER_PHASE)
-				).setParameter(
-					"p_v_l_s_g_id", selGroup.getGroupId()
-				).build();
-
-				httpServletResponse.sendRedirect(portletURL.toString());
+				httpServletResponse.sendRedirect(
+					PortletURLBuilder.create(
+						_portal.getControlPanelPortletURL(
+							renderRequest, LayoutAdminPortletKeys.GROUP_PAGES,
+							PortletRequest.RENDER_PHASE)
+					).setParameter(
+						"p_v_l_s_g_id", selGroup.getGroupId()
+					).buildString());
 
 				return;
 			}

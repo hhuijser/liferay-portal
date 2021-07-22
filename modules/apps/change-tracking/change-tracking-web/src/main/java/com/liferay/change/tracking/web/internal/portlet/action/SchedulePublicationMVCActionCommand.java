@@ -33,7 +33,6 @@ import java.util.Date;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -108,15 +107,15 @@ public class SchedulePublicationMVCActionCommand extends BaseMVCActionCommand {
 			return;
 		}
 
-		PortletURL redirectURL = PortletURLBuilder.createRenderURL(
-			_portal.getLiferayPortletResponse(actionResponse)
-		).setMVCRenderCommandName(
-			"/change_tracking/view_scheduled"
-		).build();
-
 		JSONPortletResponseUtil.writeJSON(
 			actionRequest, actionResponse,
-			JSONUtil.put("redirect", redirectURL.toString()));
+			JSONUtil.put(
+				"redirect",
+				PortletURLBuilder.createRenderURL(
+					_portal.getLiferayPortletResponse(actionResponse)
+				).setMVCRenderCommandName(
+					"/change_tracking/view_scheduled"
+				).buildString()));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

@@ -172,15 +172,14 @@ public class SimpleSiteItemSelectorViewDisplayContext
 			active = true;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			PortletURLUtil.clone(
-				getPortletURL(), cpRequestHelper.getRenderResponse())
-		).setParameter(
-			"siteGroupId", siteGroupId
-		).build();
-
 		return new ManagementBarFilterItem(
-			active, String.valueOf(siteGroupId), label, portletURL.toString());
+			active, String.valueOf(siteGroupId), label,
+			PortletURLBuilder.create(
+				PortletURLUtil.clone(
+					getPortletURL(), cpRequestHelper.getRenderResponse())
+			).setParameter(
+				"siteGroupId", siteGroupId
+			).buildString());
 	}
 
 	private final CommerceChannelLocalService _commerceChannelLocalService;

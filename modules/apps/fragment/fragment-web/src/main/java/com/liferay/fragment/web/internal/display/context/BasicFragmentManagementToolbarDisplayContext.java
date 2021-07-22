@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.util.List;
 import java.util.Map;
 
-import javax.portlet.PortletURL;
 import javax.portlet.ResourceURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -145,18 +144,14 @@ public class BasicFragmentManagementToolbarDisplayContext
 		).put(
 			"deleteFragmentCompositionsAndFragmentEntriesURL",
 			() -> {
-				PortletURL deleteFragmentCompositionsAndFragmentEntriesURL =
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/fragment" +
-							"/delete_fragment_compositions_and_fragment_entries"
-					).setRedirect(
-						themeDisplay.getURLCurrent()
-					).build();
-
-				return deleteFragmentCompositionsAndFragmentEntriesURL.
-					toString();
+				return PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/fragment" +
+						"/delete_fragment_compositions_and_fragment_entries"
+				).setRedirect(
+					themeDisplay.getURLCurrent()
+				).buildString();
 			}
 		).put(
 			"exportFragmentCompositionsAndFragmentEntriesURL",

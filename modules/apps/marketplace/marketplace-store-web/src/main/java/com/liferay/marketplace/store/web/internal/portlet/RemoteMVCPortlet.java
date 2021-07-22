@@ -50,7 +50,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -108,13 +107,12 @@ public class RemoteMVCPortlet extends MVCPortlet {
 
 		oAuthManager.deleteAccessToken(themeDisplay.getUser());
 
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
-			PortalUtil.getLiferayPortletResponse(actionResponse)
-		).setMVCPath(
-			"/view.jsp"
-		).build();
-
-		actionResponse.sendRedirect(portletURL.toString());
+		actionResponse.sendRedirect(
+			PortletURLBuilder.createRenderURL(
+				PortalUtil.getLiferayPortletResponse(actionResponse)
+			).setMVCPath(
+				"/view.jsp"
+			).buildString());
 	}
 
 	@Override

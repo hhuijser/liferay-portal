@@ -153,21 +153,21 @@ public class CommerceOrderClayTableUtil {
 			themeDisplay.getRequest(), portletDisplay.getId(),
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
-		PortletURL backURL = PortletURLBuilder.create(
-			portletURL
-		).setParameter(
-			"itemsPerPage",
-			ParamUtil.getString(themeDisplay.getRequest(), "pageSize")
-		).setParameter(
-			"pageNumber", ParamUtil.getString(themeDisplay.getRequest(), "page")
-		).setParameter(
-			"tableName",
-			CommerceOrderDataSetConstants.COMMERCE_DATA_SET_KEY_PLACED_ORDERS
-		).build();
-
 		portletURL.setParameter(
 			PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL",
-			backURL.toString());
+			PortletURLBuilder.create(
+				portletURL
+			).setParameter(
+				"itemsPerPage",
+				ParamUtil.getString(themeDisplay.getRequest(), "pageSize")
+			).setParameter(
+				"pageNumber",
+				ParamUtil.getString(themeDisplay.getRequest(), "page")
+			).setParameter(
+				"tableName",
+				CommerceOrderDataSetConstants.
+					COMMERCE_DATA_SET_KEY_PLACED_ORDERS
+			).buildString());
 
 		portletURL.setParameter(
 			"mvcRenderCommandName",

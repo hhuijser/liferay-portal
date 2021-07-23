@@ -24,7 +24,7 @@
 			renderResponse
 		).setTabs1(
 			"service-provider-connections"
-		).build()
+		).buildPortletURL()
 	%>'
 	total="<%= GetterUtil.getInteger(renderRequest.getAttribute(SamlWebKeys.SAML_IDP_SP_CONNECTIONS_COUNT)) %>"
 >

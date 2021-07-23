@@ -217,7 +217,7 @@ public class SiteMySitesDisplayContext {
 			getTabs1()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTabs1() {

@@ -170,7 +170,7 @@ public class DisplayPortlet extends BaseKBPortlet {
 			"kbFolderId", kbFolderId
 		).setParameter(
 			"kbFolderUrlTitle", kbFolderURLTitle
-		).build();
+		).buildPortletURL();
 
 		if (kbArticle != null) {
 			redirectURL.setParameter("urlTitle", kbArticle.getUrlTitle());

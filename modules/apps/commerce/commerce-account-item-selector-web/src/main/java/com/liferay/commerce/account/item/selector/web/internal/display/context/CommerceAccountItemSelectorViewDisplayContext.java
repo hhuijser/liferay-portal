@@ -55,7 +55,7 @@ public class CommerceAccountItemSelectorViewDisplayContext {
 			ParamUtil.getString(
 				_commerceAccountItemSelectorRequestHelper.getRenderRequest(),
 				"checkedCommerceAccountIds")
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getItemSelectedEventName() {

@@ -331,7 +331,7 @@ public class SelectSiteNavigationMenuDisplayContext {
 				PortalUtil.getCurrentURL(_httpServletRequest))
 		).setParameter(
 			"siteNavigationMenuId", siteNavigationMenuId
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<BreadcrumbEntry> _getLayoutBreadcrumbEntries()

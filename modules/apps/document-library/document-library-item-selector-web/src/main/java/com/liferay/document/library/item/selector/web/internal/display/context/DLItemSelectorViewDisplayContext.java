@@ -134,7 +134,7 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 			"/document_library/image_editor"
 		).setParameter(
 			"folderId", _getFolderId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String[] getExtensions() {
@@ -163,7 +163,7 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 			"folderId", _getFolderId()
 		).setParameter(
 			"selectedTab", getTitle()
-		).build();
+		).buildPortletURL();
 	}
 
 	public List<Object> getRepositoryEntries() throws Exception {
@@ -310,7 +310,7 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 			"/document_library/upload_file_entry"
 		).setParameter(
 			"folderId", _getFolderId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean isShowDragAndDropZone() throws PortalException {

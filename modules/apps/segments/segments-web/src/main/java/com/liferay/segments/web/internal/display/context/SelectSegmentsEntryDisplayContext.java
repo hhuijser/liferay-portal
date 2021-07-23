@@ -318,7 +318,7 @@ public class SelectSegmentsEntryDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/segments/select_segments_entry"
-		).build();
+		).buildPortletURL();
 
 		String keywords = _getKeywords();
 

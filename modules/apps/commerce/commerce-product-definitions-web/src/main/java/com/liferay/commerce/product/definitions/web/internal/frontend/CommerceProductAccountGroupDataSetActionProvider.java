@@ -107,7 +107,7 @@ public class CommerceProductAccountGroupDataSetActionProvider
 			commerceAccountGroupRel.getCommerceAccountGroupRelId()
 		).setParameter(
 			"cpDefinitionId", commerceAccountGroupRel.getClassPK()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference

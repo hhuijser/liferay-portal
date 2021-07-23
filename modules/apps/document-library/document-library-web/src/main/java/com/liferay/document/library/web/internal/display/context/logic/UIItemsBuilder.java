@@ -832,14 +832,14 @@ public class UIItemsBuilder {
 				_getActionURL("/document_library/publish_file_entry")
 			).setParameter(
 				"fileEntryId", _fileEntry.getFileEntryId()
-			).build();
+			).buildPortletURL();
 		}
 		else {
 			portletURL = PortletURLBuilder.create(
 				_getActionURL("/document_library/publish_file_shortcut")
 			).setParameter(
 				"fileShortcutId", _fileShortcut.getFileShortcutId()
-			).build();
+			).buildPortletURL();
 		}
 
 		portletURL.setParameter("redirect", StringPool.BLANK);
@@ -924,7 +924,7 @@ public class UIItemsBuilder {
 				"/document_library/edit_file_entry", Constants.CHECKIN)
 		).setParameter(
 			"fileEntryId", _fileEntry.getFileEntryId()
-		).build();
+		).buildPortletURL();
 
 		if (!_versioningStrategy.isOverridable()) {
 			URLMenuItem urlMenuItem = new URLMenuItem();
@@ -1116,7 +1116,7 @@ public class UIItemsBuilder {
 			_getLiferayPortletResponse()
 		).setActionName(
 			mvcActionCommandName
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(cmd)) {
 			portletURL.setParameter(Constants.CMD, cmd);
@@ -1142,7 +1142,7 @@ public class UIItemsBuilder {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(redirect)) {
 			portletURL.setParameter("redirect", redirect);
@@ -1280,7 +1280,7 @@ public class UIItemsBuilder {
 			_getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(redirect)) {
 			portletURL.setParameter("redirect", redirect);

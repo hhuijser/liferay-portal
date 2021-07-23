@@ -210,7 +210,7 @@ public class CPDefinitionOptionRelDisplayContext
 			"cpDefinitionId", getCPDefinitionId()
 		).setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

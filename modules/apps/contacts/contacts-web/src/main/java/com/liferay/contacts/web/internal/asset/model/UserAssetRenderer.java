@@ -120,7 +120,7 @@ public class UserAssetRenderer extends BaseJSPAssetRenderer<User> {
 			"/users_admin/edit_user"
 		).setParameter(
 			"p_u_i_d", _user.getUserId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

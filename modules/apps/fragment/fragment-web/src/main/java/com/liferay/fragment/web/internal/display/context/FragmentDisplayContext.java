@@ -532,7 +532,7 @@ public class FragmentDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view"
-		).build();
+		).buildPortletURL();
 
 		if (getFragmentCollectionId() > 0) {
 			portletURL.setParameter(
@@ -716,7 +716,7 @@ public class FragmentDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view"
-		).build();
+		).buildPortletURL();
 
 		long fragmentCollectionId = getFragmentCollectionId();
 

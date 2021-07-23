@@ -174,7 +174,7 @@ public class CommerceInventoryWarehousesDisplayContext {
 			_cpRequestHelper.getRenderResponse()
 		).setParameter(
 			"countryTwoLettersISOCode", getCountryTwoLettersIsoCode()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(
 			_cpRequestHelper.getRenderRequest(), "delta");

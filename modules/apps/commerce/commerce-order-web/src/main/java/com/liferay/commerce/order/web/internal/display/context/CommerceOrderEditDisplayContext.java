@@ -199,7 +199,7 @@ public class CommerceOrderEditDisplayContext {
 			"screenNavigationCategoryKey",
 			CommerceOrderScreenNavigationConstants.
 				CATEGORY_KEY_COMMERCE_ORDER_EMAILS
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			_commerceOrderRequestHelper.getRequest(), "redirect");
@@ -274,7 +274,7 @@ public class CommerceOrderEditDisplayContext {
 			"screenNavigationCategoryKey",
 			CommerceOrderScreenNavigationConstants.
 				CATEGORY_KEY_COMMERCE_ORDER_GENERAL
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			_commerceOrderRequestHelper.getRequest(), "redirect");
@@ -340,7 +340,7 @@ public class CommerceOrderEditDisplayContext {
 			"screenNavigationCategoryKey",
 			CommerceOrderScreenNavigationConstants.
 				CATEGORY_KEY_COMMERCE_ORDER_PAYMENTS
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			_commerceOrderRequestHelper.getRequest(), "redirect");
@@ -388,7 +388,7 @@ public class CommerceOrderEditDisplayContext {
 			"screenNavigationCategoryKey",
 			CommerceOrderScreenNavigationConstants.
 				CATEGORY_KEY_COMMERCE_ORDER_SHIPMENTS
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			_commerceOrderRequestHelper.getRequest(), "redirect");
@@ -621,7 +621,7 @@ public class CommerceOrderEditDisplayContext {
 			_commerceOrderRequestHelper.getCurrentURL()
 		).setParameter(
 			"commerceOrderId", _commerceOrder.getCommerceOrderId()
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<StepModel> _getWorkflowSteps() {

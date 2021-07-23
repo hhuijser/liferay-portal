@@ -118,7 +118,7 @@ public class LayoutPortletsDisplayContext {
 			_renderResponse
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<Portlet> getSearchContainer() {

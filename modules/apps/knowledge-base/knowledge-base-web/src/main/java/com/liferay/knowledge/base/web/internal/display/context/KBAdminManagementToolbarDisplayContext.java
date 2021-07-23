@@ -190,7 +190,7 @@ public class KBAdminManagementToolbarDisplayContext {
 								KBFolderConstants.getClassName())
 						).setParameter(
 							"parentResourcePrimKey", parentResourcePrimKey
-						).build());
+						).buildPortletURL());
 
 					dropdownItem.setLabel(
 						LanguageUtil.get(_httpServletRequest, "folder"));
@@ -218,7 +218,7 @@ public class KBAdminManagementToolbarDisplayContext {
 							parentResourceClassNameId
 						).setParameter(
 							"parentResourcePrimKey", parentResourcePrimKey
-						).build());
+						).buildPortletURL());
 
 					dropdownItem.setLabel(
 						LanguageUtil.get(_httpServletRequest, "basic-article"));
@@ -253,7 +253,7 @@ public class KBAdminManagementToolbarDisplayContext {
 								).setParameter(
 									"parentResourcePrimKey",
 									parentResourcePrimKey
-								).build());
+								).buildPortletURL());
 
 							dropdownItem.setLabel(
 								LanguageUtil.get(
@@ -284,7 +284,7 @@ public class KBAdminManagementToolbarDisplayContext {
 							PortalUtil.getCurrentURL(_httpServletRequest)
 						).setParameter(
 							"parentKBFolderId", parentResourcePrimKey
-						).build());
+						).buildPortletURL());
 
 					dropdownItem.setLabel(
 						LanguageUtil.get(_httpServletRequest, "import"));
@@ -319,7 +319,7 @@ public class KBAdminManagementToolbarDisplayContext {
 			"/admin/search.jsp"
 		).setRedirect(
 			_getRedirect()
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
@@ -328,7 +328,7 @@ public class KBAdminManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getTotal() {

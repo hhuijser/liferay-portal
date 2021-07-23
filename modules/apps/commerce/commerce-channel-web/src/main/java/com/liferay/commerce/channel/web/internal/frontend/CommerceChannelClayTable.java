@@ -146,7 +146,7 @@ public class CommerceChannelClayTable
 					"/commerce_channels/edit_commerce_channel"
 				).setCMD(
 					Constants.DELETE
-				).build();
+				).buildPortletURL();
 
 				String redirect = ParamUtil.getString(
 					httpServletRequest, "currentUrl",
@@ -224,7 +224,7 @@ public class CommerceChannelClayTable
 			"modelResourceDescription", channel.getName()
 		).setParameter(
 			"resourcePrimKey", channel.getChannelId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

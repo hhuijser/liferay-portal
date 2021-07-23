@@ -111,7 +111,7 @@ public class ViewModuleManagementToolbarDisplayContext
 			"symbolicName", bundle.getSymbolicName()
 		).setParameter(
 			"version", bundle.getVersion()
-		).build();
+		).buildPortletURL();
 
 		if (_searchContainer != null) {
 			portletURL.setParameter(

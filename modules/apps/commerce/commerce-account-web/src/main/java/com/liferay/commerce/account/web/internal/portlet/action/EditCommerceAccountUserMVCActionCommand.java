@@ -226,7 +226,7 @@ public class EditCommerceAccountUserMVCActionCommand
 
 				return backPortletURL.toString();
 			}
-		).build();
+		).buildPortletURL();
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 

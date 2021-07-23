@@ -30,7 +30,7 @@ PortletURL categoryRedirectURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCPath(
 	"/view_categories.jsp"
-).build();
+).buildPortletURL();
 
 if (parentCategoryId > 0) {
 	categoryRedirectURL.setParameter("categoryId", String.valueOf(parentCategoryId));

@@ -457,7 +457,7 @@ public class JournalManagementToolbarDisplayContext
 				getPortletURL()
 			).setKeywords(
 				StringPool.BLANK
-			).build(),
+			).buildPortletURL(),
 			getNavigationParam(), getNavigation());
 
 		DropdownItem dropdownItem = new DropdownItem();
@@ -540,7 +540,7 @@ public class JournalManagementToolbarDisplayContext
 								"groupId", _themeDisplay.getScopeGroupId()
 							).setParameter(
 								"showSelectFolder", false
-							).build();
+							).buildPortletURL();
 
 						UnsafeConsumer<DropdownItem, Exception> unsafeConsumer =
 							dropdownItem -> {

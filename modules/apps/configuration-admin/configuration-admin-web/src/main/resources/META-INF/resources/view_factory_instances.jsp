@@ -142,7 +142,7 @@ renderResponse.setTitle(categoryDisplayName);
 							"/configuration_admin/view_factory_instances"
 						).setParameter(
 							"factoryPid", configurationModel.getFactoryPid()
-						).build()
+						).buildPortletURL()
 					%>'
 					total="<%= configurationModelIterator.getTotal() %>"
 				>

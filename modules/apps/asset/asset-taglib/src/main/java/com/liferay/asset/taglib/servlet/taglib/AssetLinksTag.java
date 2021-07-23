@@ -299,7 +299,7 @@ public class AssetLinksTag extends IncludeTag {
 				themeDisplay.getURLCurrent()
 			).setWindowState(
 				WindowState.MAXIMIZED
-			).build();
+			).buildPortletURL();
 		}
 
 		viewAssetURL.setParameter(

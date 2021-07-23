@@ -141,7 +141,7 @@ public class AssetListItemsDisplayContext {
 			"assetListEntryId", getAssetListEntryId()
 		).setParameter(
 			"segmentsEntryId", getSegmentsEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	private String _getRedirect() {

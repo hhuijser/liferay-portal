@@ -71,7 +71,7 @@ public class MoveThreadPortletConfigurationIcon
 			"/message_boards/move_thread"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setParameter(

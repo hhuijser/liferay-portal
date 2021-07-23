@@ -150,7 +150,7 @@ public class JournalFolderAssetRenderer
 			"/edit_folder.jsp"
 		).setParameter(
 			"folderId", _folder.getFolderId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

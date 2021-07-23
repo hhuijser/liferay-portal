@@ -59,7 +59,7 @@ public class CommerceRegionsDisplayContext
 			"/commerce_country/edit_commerce_country"
 		).setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey()
-		).build();
+		).buildPortletURL();
 
 		long countryId = getCountryId();
 

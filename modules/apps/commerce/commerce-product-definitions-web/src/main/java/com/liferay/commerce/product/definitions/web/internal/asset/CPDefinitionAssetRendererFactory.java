@@ -128,7 +128,7 @@ public class CPDefinitionAssetRendererFactory
 				CPPortletKeys.CP_DEFINITIONS, 0, 0, PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/cp_definitions/edit_cp_definition"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

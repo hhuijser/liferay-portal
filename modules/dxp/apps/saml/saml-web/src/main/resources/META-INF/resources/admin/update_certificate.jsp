@@ -46,7 +46,7 @@ X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebK
 						"replace"
 					).setParameter(
 						"certificateUsage", certificateUsage.name()
-					).build();
+					).buildPortletURL();
 
 					add(
 						navigationItem -> {

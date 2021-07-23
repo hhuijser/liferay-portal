@@ -34,7 +34,7 @@ PortletURL searchURL = PortletURLBuilder.createRenderURL(
 	"/configuration_admin/search_results"
 ).setRedirect(
 	redirect
-).build();
+).buildPortletURL();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);

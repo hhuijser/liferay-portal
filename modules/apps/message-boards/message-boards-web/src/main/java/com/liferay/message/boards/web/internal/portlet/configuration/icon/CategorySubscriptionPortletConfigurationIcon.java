@@ -84,7 +84,7 @@ public class CategorySubscriptionPortletConfigurationIcon
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/message_boards/edit_category"
-		).build();
+		).buildPortletURL();
 
 		MBCategory category = null;
 

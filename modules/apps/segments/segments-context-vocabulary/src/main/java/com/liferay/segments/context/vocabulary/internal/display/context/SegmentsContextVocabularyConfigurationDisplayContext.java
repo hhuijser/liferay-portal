@@ -199,7 +199,7 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 		).setParameter(
 			"configurationScreenKey",
 			"segments-context-vocabulary-configuration-name"
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTitle() throws IOException {

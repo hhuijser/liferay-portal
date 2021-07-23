@@ -89,7 +89,7 @@ public class SiteTeamsDisplayContext {
 			_renderResponse
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<Team> getSearchContainer() {

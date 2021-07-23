@@ -331,7 +331,7 @@ public class JournalFolderActionDropdownItems {
 			"/journal/publish_folder"
 		).setBackURL(
 			_getRedirect()
-		).build();
+		).buildPortletURL();
 
 		if (_folder != null) {
 			publishFolderURL.setParameter(

@@ -200,7 +200,7 @@ JournalArticleItemSelectorViewDisplayContext journalArticleItemSelectorViewDispl
 						"folderId", curFolder.getFolderId()
 					).setParameter(
 						"groupId", curFolder.getGroupId()
-					).build();
+					).buildPortletURL();
 					%>
 
 					<c:choose>

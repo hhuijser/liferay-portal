@@ -103,7 +103,7 @@ public class AssetTagsSelectorDisplayContext {
 			"groupIds", StringUtil.merge(_getGroupIds())
 		).setParameter(
 			"selectedTagNames", StringUtil.merge(getSelectedTagNames())
-		).build();
+		).buildPortletURL();
 	}
 
 	public String[] getSelectedTagNames() {

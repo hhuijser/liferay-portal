@@ -62,7 +62,7 @@ public class AppManagerSearchResultsManagementToolbarDisplayContext
 			"orderByType", getOrderByType()
 		).setParameter(
 			"state", getState()
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

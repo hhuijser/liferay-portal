@@ -200,7 +200,7 @@ public class PortletConfigurationTemplatesDisplayContext {
 			getPortletResource()
 		).setParameter(
 			"returnToFullPageURL", getReturnToFullPageURL()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

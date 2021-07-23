@@ -145,7 +145,7 @@ public class DDMUserPersonalFolderItemSelectorViewDisplayContext {
 		).setParameter(
 			"folderId",
 			_ddmUserPersonalFolderItemSelectorCriterion.getFolderId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean isSearch() {

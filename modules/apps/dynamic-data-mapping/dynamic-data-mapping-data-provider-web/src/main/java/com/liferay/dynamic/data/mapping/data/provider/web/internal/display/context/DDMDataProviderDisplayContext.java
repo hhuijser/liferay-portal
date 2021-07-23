@@ -370,7 +370,7 @@ public class DDMDataProviderDisplayContext {
 			"/view.jsp"
 		).setParameter(
 			"groupId", _ddmDataProviderRequestHelper.getScopeGroupId()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 
@@ -412,7 +412,7 @@ public class DDMDataProviderDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		DDMDataProviderSearch ddmDataProviderSearch = new DDMDataProviderSearch(
 			_renderRequest, portletURL);

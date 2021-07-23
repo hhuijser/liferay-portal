@@ -33,7 +33,7 @@ PortletURL viewPageURL = PortletURLBuilder.createRenderURL(
 	"nodeName", node.getName()
 ).setParameter(
 	"title", wikiPage.getTitle()
-).build();
+).buildPortletURL();
 
 PortletURL editPageURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -45,7 +45,7 @@ PortletURL editPageURL = PortletURLBuilder.createRenderURL(
 	"nodeId", node.getNodeId()
 ).setParameter(
 	"title", title
-).build();
+).buildPortletURL();
 
 PortletURL viewPageDetailsURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -57,7 +57,7 @@ PortletURL viewPageDetailsURL = PortletURLBuilder.createRenderURL(
 	"nodeId", node.getNodeId()
 ).setParameter(
 	"title", wikiPage.getTitle()
-).build();
+).buildPortletURL();
 
 String[] tabs1Names = {"details", "history", "incoming-links", "outgoing-links", "attachments"};
 String[] tabs1URLs = {

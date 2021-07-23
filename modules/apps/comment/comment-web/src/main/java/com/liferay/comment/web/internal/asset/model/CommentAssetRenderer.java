@@ -161,7 +161,7 @@ public class CommentAssetRenderer
 			"/comment/edit_discussion"
 		).setParameter(
 			"commentId", _workflowableComment.getCommentId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

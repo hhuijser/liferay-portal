@@ -147,7 +147,7 @@ public class UserGroupRolesDisplayContext {
 			"assignRoles", _isAssignRoles()
 		).setParameter(
 			"userGroupId", getUserGroupId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

@@ -149,7 +149,7 @@ public class LayoutsTreeDisplayContext {
 			"groupId", _themeDisplay.getSiteGroupId()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getAddLayoutURL() throws Exception {
@@ -175,7 +175,7 @@ public class LayoutsTreeDisplayContext {
 			"groupId", _themeDisplay.getSiteGroupId()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getAdministrationPortletURL() {
@@ -205,7 +205,7 @@ public class LayoutsTreeDisplayContext {
 			"groupId", _themeDisplay.getScopeGroupId()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getConfigureLayoutURL() throws PortalException {
@@ -215,7 +215,7 @@ public class LayoutsTreeDisplayContext {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/layout_admin/edit_layout"
-		).build();
+		).buildPortletURL();
 
 		Layout layout = _themeDisplay.getLayout();
 

@@ -127,7 +127,7 @@ public class JournalContentSearchDisplayContext {
 			"/search.jsp"
 		).setKeywords(
 			getKeywords()
-		).build();
+		).buildPortletURL();
 
 		String originalKeywords = ParamUtil.getString(
 			_httpServletRequest, "keywords", getKeywords());

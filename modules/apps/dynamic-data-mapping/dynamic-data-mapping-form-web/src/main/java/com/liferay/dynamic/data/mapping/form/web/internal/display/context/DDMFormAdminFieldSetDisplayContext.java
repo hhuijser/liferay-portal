@@ -303,7 +303,7 @@ public class DDMFormAdminFieldSetDisplayContext
 			"currentTab", "element-set"
 		).setParameter(
 			"groupId", getScopeGroupId()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(renderRequest, "delta");
 
@@ -344,7 +344,7 @@ public class DDMFormAdminFieldSetDisplayContext
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		FieldSetSearch fieldSetSearch = new FieldSetSearch(
 			renderRequest, portletURL);

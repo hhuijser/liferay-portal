@@ -123,7 +123,7 @@ public class JournalFeedsDisplayContext {
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getRedirect() {

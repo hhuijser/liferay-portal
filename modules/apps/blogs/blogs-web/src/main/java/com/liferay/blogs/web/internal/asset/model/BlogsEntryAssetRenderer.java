@@ -183,7 +183,7 @@ public class BlogsEntryAssetRenderer
 			"/blogs/edit_entry"
 		).setParameter(
 			"entryId", _entry.getEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

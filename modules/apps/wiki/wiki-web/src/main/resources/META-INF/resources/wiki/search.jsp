@@ -67,7 +67,7 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 				keywords
 			).setParameter(
 				"nodeId", nodeId
-			).build()
+			).buildPortletURL()
 		%>'
 	>
 
@@ -135,7 +135,7 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 				"nodeId", node.getNodeId()
 			).setParameter(
 				"title", title
-			).build();
+			).buildPortletURL();
 
 			WikiEngineRenderer wikiEngineRenderer = (WikiEngineRenderer)request.getAttribute(WikiWebKeys.WIKI_ENGINE_RENDERER);
 

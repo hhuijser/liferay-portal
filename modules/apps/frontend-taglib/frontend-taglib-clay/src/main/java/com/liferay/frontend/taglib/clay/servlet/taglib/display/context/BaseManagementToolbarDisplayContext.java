@@ -285,7 +285,7 @@ public class BaseManagementToolbarDisplayContext
 				liferayPortletResponse
 			).setParameters(
 				currentURLObj.getParameterMap()
-			).build();
+			).buildPortletURL();
 		}
 	}
 

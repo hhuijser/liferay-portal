@@ -143,7 +143,7 @@ public class RolesDisplayContext {
 			"groupId", getGroupId()
 		).setParameter(
 			"roleType", getRoleType()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

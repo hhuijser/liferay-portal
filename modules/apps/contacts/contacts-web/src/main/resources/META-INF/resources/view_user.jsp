@@ -329,7 +329,7 @@ request.setAttribute("view_user.jsp-user", user2);
 															"groupId", "0"
 														).setWindowState(
 															WindowState.MAXIMIZED
-														).build();
+														).buildPortletURL();
 
 														sb.append("<li><a href=\"");
 														sb.append(searchURL);

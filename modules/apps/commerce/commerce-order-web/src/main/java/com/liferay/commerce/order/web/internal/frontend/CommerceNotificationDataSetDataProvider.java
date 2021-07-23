@@ -165,7 +165,7 @@ public class CommerceNotificationDataSetDataProvider
 			"/commerce_order/view_commerce_notification_queue_entry"
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
-		).build();
+		).buildPortletURL();
 
 		long commerceOrderId = ParamUtil.getLong(
 			httpServletRequest, "commerceOrderId");

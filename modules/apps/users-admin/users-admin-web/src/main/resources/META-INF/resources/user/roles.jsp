@@ -175,7 +175,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 							"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
 						).setWindowState(
 							LiferayWindowState.POP_UP
-						).build();
+						).buildPortletURL();
 						%>
 
 						url: '<%= selectRegularRoleURL.toString() %>',
@@ -431,7 +431,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 							"step", "1"
 						).setWindowState(
 							LiferayWindowState.POP_UP
-						).build();
+						).buildPortletURL();
 						%>
 
 						url: '<%= selectOrganizationRoleURL.toString() %>',
@@ -629,7 +629,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 										"step", "1"
 									).setWindowState(
 										LiferayWindowState.POP_UP
-									).build()
+									).buildPortletURL()
 								%>',
 						});
 					});

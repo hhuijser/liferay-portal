@@ -131,7 +131,7 @@ public class CommerceTierPriceEntryDataSetActionProvider
 		).setParameter(
 			"commerceTierPriceEntryId",
 			commerceTierPriceEntry.getCommerceTierPriceEntryId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -166,7 +166,7 @@ public class CommerceTierPriceEntryDataSetActionProvider
 		).setParameter(
 			"commerceTierPriceEntryId",
 			commerceTierPriceEntry.getCommerceTierPriceEntryId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

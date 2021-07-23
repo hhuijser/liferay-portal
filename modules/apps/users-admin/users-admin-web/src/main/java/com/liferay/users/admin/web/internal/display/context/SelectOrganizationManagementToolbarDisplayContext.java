@@ -129,7 +129,7 @@ public class SelectOrganizationManagementToolbarDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_organization.jsp"
-		).build();
+		).buildPortletURL();
 
 		User selUser = _getSelectedUser();
 

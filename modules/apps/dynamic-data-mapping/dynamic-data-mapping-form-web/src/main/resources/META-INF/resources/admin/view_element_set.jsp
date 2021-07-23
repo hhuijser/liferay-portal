@@ -21,7 +21,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	ddmFormAdminDisplayContext.getPortletURL()
 ).setParameter(
 	"displayStyle", displayStyle
-).build();
+).buildPortletURL();
 
 FieldSetPermissionCheckerHelper fieldSetPermissionCheckerHelper = ddmFormAdminDisplayContext.getPermissionCheckerHelper();
 %>

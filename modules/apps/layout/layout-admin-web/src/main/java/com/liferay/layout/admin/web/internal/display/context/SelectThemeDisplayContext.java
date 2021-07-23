@@ -108,7 +108,7 @@ public class SelectThemeDisplayContext {
 			"eventName", getEventName()
 		).setParameter(
 			"themeId", getThemeId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

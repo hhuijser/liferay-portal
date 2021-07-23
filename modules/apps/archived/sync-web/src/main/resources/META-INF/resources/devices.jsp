@@ -31,7 +31,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	tabs1
 ).setParameter(
 	"delta", delta
-).build();
+).buildPortletURL();
 %>
 
 <liferay-frontend:management-bar>

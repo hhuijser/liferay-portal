@@ -123,7 +123,7 @@ public class ProcessingCommerceShipmentItemDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
 			"commerceShipmentItemId", commerceShipmentItemId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -152,7 +152,7 @@ public class ProcessingCommerceShipmentItemDataSetActionProvider
 		).setParameter(
 			"commerceShipmentItemId",
 			commerceShipmentItem.getCommerceShipmentItemId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

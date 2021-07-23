@@ -83,7 +83,7 @@ PortletURL customPublishURL = PortletURLBuilder.createRenderURL(
 	"publishConfigurationButtons", "custom"
 ).setParameter(
 	"selPlid", selPlid
-).build();
+).buildPortletURL();
 
 boolean localPublishing = true;
 
@@ -111,7 +111,7 @@ PortletURL publishTemplatesURL = PortletURLBuilder.createRenderURL(
 	"privateLayout", privateLayout
 ).setParameter(
 	"publishConfigurationButtons", "saved"
-).build();
+).buildPortletURL();
 
 PortletURL simplePublishRedirectURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -123,7 +123,7 @@ PortletURL simplePublishRedirectURL = PortletURLBuilder.createRenderURL(
 	"privateLayout", privateLayout
 ).setParameter(
 	"quickPublish", true
-).build();
+).buildPortletURL();
 %>
 
 <c:if test='<%= !publishConfigurationButtons.equals("template") %>'>

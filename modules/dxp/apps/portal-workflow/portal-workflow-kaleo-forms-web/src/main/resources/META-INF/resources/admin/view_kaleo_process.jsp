@@ -113,7 +113,7 @@ KaleoProcess kaleoProcess = kaleoFormsViewRecordsDisplayContext.getKaleoProcess(
 					"kaleoProcessId", kaleoProcess.getKaleoProcessId()
 				).setParameter(
 					"version", recordVersion.getVersion()
-				).build();
+				).buildPortletURL();
 
 				// Columns
 

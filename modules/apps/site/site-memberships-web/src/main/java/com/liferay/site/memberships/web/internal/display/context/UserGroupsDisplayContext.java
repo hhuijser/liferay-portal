@@ -147,7 +147,7 @@ public class UserGroupsDisplayContext {
 			"user-groups"
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		Role role = getRole();
 

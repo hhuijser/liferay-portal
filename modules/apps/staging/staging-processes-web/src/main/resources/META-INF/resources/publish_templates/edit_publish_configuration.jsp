@@ -87,7 +87,7 @@ PortletURL renderURL = PortletURLBuilder.createRenderURL(
 	"layoutSetBranchName", layoutSetBranchName
 ).setParameter(
 	"privateLayout", privateLayout
-).build();
+).buildPortletURL();
 
 response.setHeader("Ajax-ID", request.getHeader("Ajax-ID"));
 

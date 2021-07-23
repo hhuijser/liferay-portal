@@ -215,7 +215,7 @@ public class FieldDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			_mvcRenderCommandName
-		).build();
+		).buildPortletURL();
 	}
 
 	private String _getDataType(int type) {

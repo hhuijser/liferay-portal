@@ -178,7 +178,7 @@ public class JournalHistoryDisplayContext {
 			"orderByType", getOrderByType()
 		).setParameter(
 			"referringPortletResource", getReferringPortletResource()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getReferringPortletResource() {

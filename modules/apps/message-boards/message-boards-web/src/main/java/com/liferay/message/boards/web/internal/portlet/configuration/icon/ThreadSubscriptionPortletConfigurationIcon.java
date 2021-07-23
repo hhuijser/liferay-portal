@@ -85,7 +85,7 @@ public class ThreadSubscriptionPortletConfigurationIcon
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/message_boards/edit_message"
-		).build();
+		).buildPortletURL();
 
 		MBMessage message = null;
 

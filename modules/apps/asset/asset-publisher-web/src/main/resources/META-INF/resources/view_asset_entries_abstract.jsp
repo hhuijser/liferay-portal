@@ -222,7 +222,7 @@ for (AssetEntry assetEntry : assetEntryResult.getAssetEntries()) {
 								renderResponse
 							).setMVCPath(
 								"/view_content.jsp"
-							).build()
+							).buildPortletURL()
 						%>'
 						viewInContext="<%= assetPublisherDisplayContext.isAssetLinkBehaviorViewInPortlet() %>"
 					/>
@@ -291,7 +291,7 @@ for (AssetEntry assetEntry : assetEntryResult.getAssetEntries()) {
 								"viewMode", Constants.PRINT
 							).setWindowState(
 								LiferayWindowState.POP_UP
-							).build();
+							).buildPortletURL();
 
 							String id = assetEntry.getEntryId() + StringUtil.randomId();
 							%>
@@ -374,7 +374,7 @@ for (AssetEntry assetEntry : assetEntryResult.getAssetEntries()) {
 							"plid", themeDisplay.getPlid()
 						).setWindowState(
 							LiferayWindowState.EXCLUSIVE
-						).build();
+						).buildPortletURL();
 
 						for (String extension : assetPublisherDisplayContext.getExtensions(assetRenderer)) {
 							exportAssetURL.setParameter("targetExtension", extension);

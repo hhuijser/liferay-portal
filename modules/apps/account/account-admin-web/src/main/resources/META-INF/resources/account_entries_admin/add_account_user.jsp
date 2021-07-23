@@ -162,7 +162,7 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 			"validDomains", StringUtil.merge(accountEntryDisplay.getDomains(), StringPool.COMMA)
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 
 		context.put("viewValidDomainsURL", viewValidDomainsURL.toString());
 	}

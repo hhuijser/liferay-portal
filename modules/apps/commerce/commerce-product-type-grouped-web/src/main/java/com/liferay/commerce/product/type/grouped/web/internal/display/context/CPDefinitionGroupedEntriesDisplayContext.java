@@ -136,7 +136,7 @@ public class CPDefinitionGroupedEntriesDisplayContext
 			"/cp_definitions/edit_cp_definition"
 		).setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

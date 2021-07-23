@@ -33,7 +33,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"sourceVersion", sourceVersion
 ).setParameter(
 	"title", HtmlUtil.unescape(wikiPage.getTitle())
-).build();
+).buildPortletURL();
 %>
 
 <clay:container-fluid>

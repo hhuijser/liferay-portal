@@ -76,7 +76,7 @@ public class CommerceAccountAdminDisplayContext
 			"activeNavigation", getNavigation("active")
 		).setParameter(
 			"typeNavigation", getNavigation("type")
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

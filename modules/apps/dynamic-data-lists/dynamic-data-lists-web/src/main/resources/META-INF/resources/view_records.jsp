@@ -110,7 +110,7 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 						"recordId", record.getRecordId()
 					).setParameter(
 						"version", recordVersion.getVersion()
-					).build();
+					).buildPortletURL();
 
 					href = rowURL.toString();
 				}

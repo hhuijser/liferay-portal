@@ -111,7 +111,7 @@ public class CommerceChannelHealthCheckClayTable
 
 						return healthCheck.getKey();
 					}
-				).build();
+				).buildPortletURL();
 
 				long commerceChannelId = ParamUtil.getLong(
 					httpServletRequest, "commerceChannelId");

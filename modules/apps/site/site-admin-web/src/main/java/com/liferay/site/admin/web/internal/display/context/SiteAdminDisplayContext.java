@@ -101,7 +101,7 @@ public class SiteAdminDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		breadcrumbEntry.setURL(mainURL.toString());
 
@@ -236,7 +236,7 @@ public class SiteAdminDisplayContext {
 			"displayStyle", getDisplayStyle()
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getUserGroupsCount(Group group) {

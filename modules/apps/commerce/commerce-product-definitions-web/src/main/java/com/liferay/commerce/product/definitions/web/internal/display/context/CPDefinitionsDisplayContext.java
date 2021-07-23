@@ -309,7 +309,7 @@ public class CPDefinitionsDisplayContext
 			cpRequestHelper.getCurrentURL()
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 
 		for (CPType cpType : getCPTypes()) {
 			portletURL.setParameter("productTypeName", cpType.getName());

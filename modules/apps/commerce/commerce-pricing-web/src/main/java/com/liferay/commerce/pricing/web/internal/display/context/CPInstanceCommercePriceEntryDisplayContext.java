@@ -155,7 +155,7 @@ public class CPInstanceCommercePriceEntryDisplayContext
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey()
 		).setParameter(
 			"screenNavigationEntryKey", "price-lists"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

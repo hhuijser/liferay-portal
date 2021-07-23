@@ -120,7 +120,7 @@ public class SiteAdminManagementToolbarDisplayContext
 				"/site_admin/select_site_initializer"
 			).setRedirect(
 				themeDisplay.getURLCurrent()
-			).build();
+			).buildPortletURL();
 
 			Group group = _siteAdminDisplayContext.getGroup();
 

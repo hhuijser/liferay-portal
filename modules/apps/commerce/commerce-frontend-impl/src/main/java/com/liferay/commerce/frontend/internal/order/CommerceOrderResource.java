@@ -159,7 +159,7 @@ public class CommerceOrderResource {
 			"setCurrent"
 		).setParameter(
 			"commerceOrderId", commerceOrderId
-		).build();
+		).buildPortletURL();
 
 		String redirect = _portal.getCurrentURL(httpServletRequest);
 

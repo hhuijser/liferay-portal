@@ -74,7 +74,7 @@ public class OAuthAuthorizeStrutsAction implements StrutsAction {
 				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE)
 		).setParameter(
 			"saveLastPath", "0"
-		).build();
+		).buildPortletURL();
 
 		String oauthCallback = httpServletRequest.getParameter(
 			OAuth.OAUTH_CALLBACK);

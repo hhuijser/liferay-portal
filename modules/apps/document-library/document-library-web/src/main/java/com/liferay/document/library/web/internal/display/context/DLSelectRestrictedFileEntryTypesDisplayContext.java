@@ -47,7 +47,7 @@ public class DLSelectRestrictedFileEntryTypesDisplayContext
 			"/document_library/select_restricted_file_entry_type.jsp"
 		).setParameter(
 			"includeBasicFileEntryType", true
-		).build();
+		).buildPortletURL();
 	}
 
 }

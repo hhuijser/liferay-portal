@@ -100,7 +100,7 @@ public class CPSpecificationOptionDisplayContext
 			super.getPortletURL()
 		).setNavigation(
 			getNavigation()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

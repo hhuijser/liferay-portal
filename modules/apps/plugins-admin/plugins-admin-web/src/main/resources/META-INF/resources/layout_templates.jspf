@@ -53,7 +53,7 @@ List<LayoutTemplate> layoutTemplates = LayoutTemplateLocalServiceUtil.getLayoutT
 				"/plugins_admin/edit_plugin"
 			).setRedirect(
 				currentURL
-			).build();
+			).buildPortletURL();
 
 			if (pluginPackage != null) {
 				rowURL.setParameter("moduleId", pluginPackage.getModuleId());

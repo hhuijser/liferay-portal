@@ -25,7 +25,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	"dispatch-trigger"
 ).setParameter(
 	"searchContainerId", "dispatchTriggers"
-).build();
+).buildPortletURL();
 %>
 
 <clay:navigation-bar
@@ -68,7 +68,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 								currentURL
 							).setParameter(
 								"dispatchTriggerId", dispatchTrigger.getDispatchTriggerId()
-							).build()
+							).buildPortletURL()
 						%>'
 						property="name"
 					/>

@@ -85,7 +85,7 @@ public class DeleteNodePortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_node"
-			).build();
+			).buildPortletURL();
 
 			if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
 				portletURL.setParameter(Constants.CMD, Constants.MOVE_TO_TRASH);

@@ -209,7 +209,7 @@ public class WikiPageAssetRenderer
 			"nodeId", _page.getNodeId()
 		).setParameter(
 			"title", _page.getTitle()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override
@@ -234,7 +234,7 @@ public class WikiPageAssetRenderer
 			"title", _page.getTitle()
 		).setParameter(
 			"version", _page.getVersion()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override
@@ -288,7 +288,7 @@ public class WikiPageAssetRenderer
 			"targetVersion", _page.getVersion()
 		).setParameter(
 			"title", _page.getTitle()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

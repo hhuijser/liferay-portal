@@ -408,7 +408,7 @@ public class TranslateDisplayContext {
 			"classPK", _classPK
 		).setParameter(
 			"groupId", _getGroupId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean hasTranslationPermission() {

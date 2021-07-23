@@ -125,7 +125,7 @@ public class ViewPasswordPoliciesManagementToolbarDisplayContext {
 			_renderResponse
 		).setParameter(
 			"displayStyle", _displayStyle
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

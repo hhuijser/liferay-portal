@@ -75,7 +75,7 @@ if (phones.isEmpty()) {
 			"screenNavigationCategoryKey", "contact"
 		).setParameter(
 			"screenNavigationEntryKey", "contact-information"
-		).build();
+		).buildPortletURL();
 		%>
 
 		<liferay-ui:icon
@@ -123,7 +123,7 @@ if (emailAddresses.isEmpty()) {
 			"screenNavigationCategoryKey", "contact"
 		).setParameter(
 			"screenNavigationEntryKey", "contact-information"
-		).build();
+		).buildPortletURL();
 		%>
 
 		<liferay-ui:icon
@@ -217,7 +217,7 @@ if (addresses.isEmpty()) {
 			PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE)
 		).setParameter(
 			"screenNavigationCategoryKey", "contact"
-		).build();
+		).buildPortletURL();
 		%>
 
 		<liferay-ui:icon
@@ -271,7 +271,7 @@ if (websites.isEmpty()) {
 			"screenNavigationCategoryKey", "contact"
 		).setParameter(
 			"screenNavigationEntryKey", "contact-information"
-		).build();
+		).buildPortletURL();
 		%>
 
 		<liferay-ui:icon
@@ -322,7 +322,7 @@ if (Validator.isNull(facebook) && Validator.isNull(twitter)) {
 			"screenNavigationCategoryKey", "contact"
 		).setParameter(
 			"screenNavigationEntryKey", "contact-information"
-		).build();
+		).buildPortletURL();
 		%>
 
 		<liferay-ui:icon
@@ -369,7 +369,7 @@ if (Validator.isNull(contact2.getSmsSn())) {
 			"screenNavigationCategoryKey", "contact"
 		).setParameter(
 			"screenNavigationEntryKey", "contact-information"
-		).build();
+		).buildPortletURL();
 		%>
 
 		<liferay-ui:icon

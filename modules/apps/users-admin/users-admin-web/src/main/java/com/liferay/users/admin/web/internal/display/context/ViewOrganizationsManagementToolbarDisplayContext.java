@@ -155,7 +155,7 @@ public class ViewOrganizationsManagementToolbarDisplayContext {
 				"orderByCol", getOrderByCol()
 			).setParameter(
 				"orderByType", getOrderByType()
-			).build();
+			).buildPortletURL();
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {

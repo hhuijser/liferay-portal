@@ -126,7 +126,7 @@ public class CommerceVirtualOrderItemEditDisplayContext {
 			"commerceOrderId", getCommerceOrderId()
 		).setParameter(
 			"screenNavigationCategoryKey", "items"
-		).build();
+		).buildPortletURL();
 	}
 
 	public CommerceVirtualOrderItem getCommerceVirtualOrderItem() {

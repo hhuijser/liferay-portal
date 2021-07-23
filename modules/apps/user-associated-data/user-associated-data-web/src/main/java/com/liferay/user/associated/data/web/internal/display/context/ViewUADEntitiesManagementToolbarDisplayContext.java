@@ -144,7 +144,7 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 				liferayPortletResponse
 			).setParameters(
 				portletURL.getParameterMap()
-			).build();
+			).buildPortletURL();
 		}
 
 		String[] parameterNames = {

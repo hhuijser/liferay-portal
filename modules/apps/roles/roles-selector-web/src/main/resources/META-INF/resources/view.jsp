@@ -67,7 +67,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"className", className
 ).setParameter(
 	"groupId", group.getGroupId()
-).build();
+).buildPortletURL();
 
 if (role != null) {
 	portletURL.setParameter("roleId", String.valueOf(roleId));
@@ -175,7 +175,7 @@ PortletURL clearResultsURL = PortletURLBuilder.create(
 	(PortletURL)request.getAttribute("edit_roles.jsp-portletURL")
 ).setKeywords(
 	StringPool.BLANK
-).build();
+).buildPortletURL();
 
 SearchContainer<?> searchContainer = (SearchContainer<?>)request.getAttribute("liferay-ui:search:searchContainer");
 %>

@@ -67,7 +67,7 @@ public class MoveKBArticlePortletConfigurationIcon
 			"/admin/move_object.jsp"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		KBArticle kbArticle = getKBArticle(portletRequest);
 

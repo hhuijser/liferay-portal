@@ -124,7 +124,7 @@ public class CommercePriceModifierDataSetActionProvider
 		).setParameter(
 			"commercePriceModifierId",
 			commercePriceModifier.getCommercePriceModifierId()
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getPriceModifierEditURL(
@@ -146,7 +146,7 @@ public class CommercePriceModifierDataSetActionProvider
 		).setParameter(
 			"commercePriceModifierId",
 			commercePriceModifier.getCommercePriceModifierId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

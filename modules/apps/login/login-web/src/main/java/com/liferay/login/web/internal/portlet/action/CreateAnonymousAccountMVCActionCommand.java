@@ -200,7 +200,7 @@ public class CreateAnonymousAccountMVCActionCommand
 			"emailAddress", emailAddress
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

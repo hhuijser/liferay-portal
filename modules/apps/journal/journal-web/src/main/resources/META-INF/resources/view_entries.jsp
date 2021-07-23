@@ -290,7 +290,7 @@ Map<String, Object> componentContext = journalDisplayContext.getComponentContext
 					"folderId", curFolder.getFolderId()
 				).setParameter(
 					"groupId", curFolder.getGroupId()
-				).build();
+				).buildPortletURL();
 				%>
 
 				<c:choose>

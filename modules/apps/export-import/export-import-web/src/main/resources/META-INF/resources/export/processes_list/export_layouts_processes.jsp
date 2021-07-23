@@ -43,7 +43,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"privateLayout", privateLayout
 ).setParameter(
 	"searchContainerId", searchContainerId
-).build();
+).buildPortletURL();
 %>
 
 <portlet:actionURL name="/export_import/delete_layout_export_background_tasks" var="deleteBackgroundTasksURL">

@@ -203,7 +203,7 @@ public class DepotAdminSelectRoleDisplayContext {
 				"resetCur", true
 			).setParameter(
 				"step", Step2.TYPE
-			).build();
+			).buildPortletURL();
 		}
 
 		public int getType() {

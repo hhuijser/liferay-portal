@@ -25,7 +25,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	ddmDataProviderDisplayContext.getPortletURL()
 ).setParameter(
 	"displayStyle", displayStyle
-).build();
+).buildPortletURL();
 
 portletDisplay.setShowBackIcon(ddmDataProviderDisplayContext.isShowBackIcon());
 portletDisplay.setURLBack(backURL);

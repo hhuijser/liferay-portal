@@ -202,7 +202,7 @@ public class OrphanPortletsDisplayContext {
 			getBackURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 	}
 
 	public Layout getSelLayout() {

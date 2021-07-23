@@ -126,7 +126,7 @@ public class CommercePricingClassDataSetActionProvider
 			"modelResourceDescription", pricingClass.getTitle()
 		).setParameter(
 			"resourcePrimKey", pricingClass.getPricingClassId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -158,7 +158,7 @@ public class CommercePricingClassDataSetActionProvider
 		).setParameter(
 			"screenNavigationCategoryKey",
 			CommercePricingClassScreenNavigationConstants.CATEGORY_KEY_DETAILS
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference(

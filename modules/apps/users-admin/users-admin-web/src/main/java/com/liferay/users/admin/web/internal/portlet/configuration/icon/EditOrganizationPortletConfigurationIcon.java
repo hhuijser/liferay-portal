@@ -71,7 +71,7 @@ public class EditOrganizationPortletConfigurationIcon
 				"/users_admin/edit_organization"
 			).setBackURL(
 				_portal.getCurrentURL(portletRequest)
-			).build();
+			).buildPortletURL();
 
 			Organization organization = ActionUtil.getOrganization(
 				portletRequest);

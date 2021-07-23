@@ -219,7 +219,7 @@ public class SelectOrganizationsDisplayContext {
 			"eventName", getEventName()
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

@@ -63,7 +63,7 @@ public class CategoryCPAttachmentFileEntriesManagementToolbarDisplayContext
 						currentURLObj
 					).setParameter(
 						"categoryId", assetCategory.getCategoryId()
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "add-image"));

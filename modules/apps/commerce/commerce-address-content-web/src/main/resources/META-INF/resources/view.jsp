@@ -39,7 +39,7 @@ CommerceAddressDisplayContext commerceAddressDisplayContext = (CommerceAddressDi
 			commerceAddressDisplayContext.getPortletURL()
 		).setParameter(
 			"searchContainerId", "commerceAddresses"
-		).build();
+		).buildPortletURL();
 
 		request.setAttribute("view.jsp-portletURL", portletURL);
 		%>

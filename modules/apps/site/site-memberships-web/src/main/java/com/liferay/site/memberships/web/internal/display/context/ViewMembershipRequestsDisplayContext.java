@@ -143,7 +143,7 @@ public class ViewMembershipRequestsDisplayContext {
 
 				return themeDisplay.getSiteGroupIdOrLiveGroupId();
 			}
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

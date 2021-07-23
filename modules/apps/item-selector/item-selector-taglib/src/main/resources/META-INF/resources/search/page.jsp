@@ -21,7 +21,7 @@ PortletURL searchURL = PortletURLBuilder.create(
 	PortletURLUtil.clone(currentURLObj, liferayPortletResponse)
 ).setParameter(
 	"resetCur", true
-).build();
+).buildPortletURL();
 %>
 
 <aui:form action='<%= HttpUtil.removeParameter(searchURL.toString(), liferayPortletResponse.getNamespace() + "keywords") %>' name="searchFm">

@@ -50,7 +50,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	tabs1
 ).setWindowState(
 	WindowState.NORMAL
-).build();
+).buildPortletURL();
 %>
 
 <div class="microblogs-container">
@@ -159,7 +159,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 		"cur", cur
 	).setWindowState(
 		LiferayWindowState.EXCLUSIVE
-	).build();
+	).buildPortletURL();
 
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, results);
 	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);

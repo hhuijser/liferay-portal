@@ -146,7 +146,7 @@ public class BlogEntriesDisplayContext {
 		).setParameter(
 			"entriesNavigation",
 			ParamUtil.getString(_httpServletRequest, "entriesNavigation")
-		).build();
+		).buildPortletURL();
 
 		SearchContainer<BlogsEntry> entriesSearchContainer =
 			new SearchContainer<>(

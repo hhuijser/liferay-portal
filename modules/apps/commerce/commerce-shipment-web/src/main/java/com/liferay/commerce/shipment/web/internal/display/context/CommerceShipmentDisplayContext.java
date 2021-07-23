@@ -282,7 +282,7 @@ public class CommerceShipmentDisplayContext
 			super.getPortletURL()
 		).setNavigation(
 			getNavigation()
-		).build();
+		).buildPortletURL();
 	}
 
 	public List<Region> getRegions(long countryId) {

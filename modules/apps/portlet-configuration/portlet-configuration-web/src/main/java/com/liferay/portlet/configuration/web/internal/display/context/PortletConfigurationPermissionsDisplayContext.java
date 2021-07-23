@@ -261,7 +261,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 			"roleTypes", _getRoleTypesParam()
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getModelResource() {
@@ -666,7 +666,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 			"roleTypes", _getRoleTypesParam()
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 	}
 
 	private int[] _getGroupRoleTypes(Group group, int[] defaultRoleTypes) {

@@ -46,7 +46,7 @@ public class BatchEngineImportTaskDisplayContext extends BaseDisplayContext {
 			renderResponse
 		).setTabs1(
 			"import"
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(httpServletRequest, "delta");
 

@@ -27,7 +27,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	commerceAccountDisplayContext.getPortletURL()
 ).setMVCRenderCommandName(
 	"/commerce_account/view_commerce_account"
-).build();
+).buildPortletURL();
 %>
 
 <portlet:renderURL var="editCommerceAccountURL">

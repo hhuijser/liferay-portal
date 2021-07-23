@@ -59,7 +59,7 @@ public class ImportTranslationDisplayContext {
 			"classPK", _classPK
 		).setParameter(
 			"groupId", _groupId
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getPublishButtonLabel() throws PortalException {

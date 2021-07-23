@@ -126,7 +126,7 @@ public class CommerceNotificationEntryClayTable
 
 				return notificationEntry.getNotificationEntryId();
 			}
-		).build();
+		).buildPortletURL();
 
 		return DropdownItemListBuilder.add(
 			dropdownItem -> {

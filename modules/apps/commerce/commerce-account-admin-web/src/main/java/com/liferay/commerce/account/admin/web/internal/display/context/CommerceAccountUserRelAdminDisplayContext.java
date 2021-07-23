@@ -105,7 +105,7 @@ public class CommerceAccountUserRelAdminDisplayContext
 			super.getPortletURL()
 		).setMVCRenderCommandName(
 			"/commerce_account_admin/edit_commerce_account"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

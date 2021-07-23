@@ -71,7 +71,7 @@ public class SelectUserGroupManagementToolbarDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_user_group.jsp"
-		).build();
+		).buildPortletURL();
 
 		User selUser = _getSelectedUser();
 

@@ -97,7 +97,7 @@ public class CommerceInventoryWarehouseItemSelectorViewDisplayContext
 			super.getPortletURL()
 		).setParameter(
 			"countryId", getCountryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

@@ -73,7 +73,7 @@ public class InfoCollectionProviderActionDropdownItems {
 				"infoCollectionProviderKey", _infoCollectionProvider.getKey()
 			).setWindowState(
 				LiferayWindowState.POP_UP
-			).build();
+			).buildPortletURL();
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "viewInfoCollectionProviderItems");

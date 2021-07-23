@@ -69,7 +69,7 @@ TrashHandler trashHandler = trashDisplayContext.getTrashHandler();
 								"classNameId", PortalUtil.getClassNameId(curTrashRenderer.getClassName())
 							).setParameter(
 								"classPK", curTrashRenderer.getClassPK()
-							).build();
+							).buildPortletURL();
 							%>
 
 							<c:choose>

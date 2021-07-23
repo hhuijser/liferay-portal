@@ -175,7 +175,7 @@ public class SelectLayoutCollectionDisplayContext {
 				_liferayPortletResponse
 			).setParameters(
 				currentURLObj.getParameterMap()
-			).build();
+			).buildPortletURL();
 		}
 	}
 

@@ -129,7 +129,7 @@ public class AssetDisplayPageUsagesDisplayContext {
 			getRedirect()
 		).setParameter(
 			"layoutPageTemplateEntryId", getLayoutPageTemplateEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getRedirect() {

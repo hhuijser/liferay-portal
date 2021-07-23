@@ -115,7 +115,7 @@ public class AssetCategoriesDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/edit_category.jsp"
-		).build();
+		).buildPortletURL();
 
 		long parentCategoryId = BeanParamUtil.getLong(
 			getCategory(), _httpServletRequest, "parentCategoryId");
@@ -432,7 +432,7 @@ public class AssetCategoriesDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		if (parentCategoryId > 0) {
 			backURL.setParameter(
@@ -452,7 +452,7 @@ public class AssetCategoriesDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/edit_vocabulary.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getGroupName() throws Exception {
@@ -883,7 +883,7 @@ public class AssetCategoriesDisplayContext {
 			currentURL
 		).setNavigation(
 			getNavigation()
-		).build();
+		).buildPortletURL();
 
 		if (!isFlattenedNavigationAllowed()) {
 			iteratorURL.setParameter(

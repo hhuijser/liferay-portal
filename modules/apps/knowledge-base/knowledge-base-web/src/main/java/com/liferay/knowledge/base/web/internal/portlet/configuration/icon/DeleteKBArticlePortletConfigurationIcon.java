@@ -67,7 +67,7 @@ public class DeleteKBArticlePortletConfigurationIcon
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"deleteKBArticle"
-		).build();
+		).buildPortletURL();
 
 		String mvcPath = ParamUtil.getString(portletRequest, "mvcPath");
 

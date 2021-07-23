@@ -25,7 +25,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setTabs1(
 	tabs1
-).build();
+).buildPortletURL();
 %>
 
 <aui:form action="<%= portletURL.toString() %>">

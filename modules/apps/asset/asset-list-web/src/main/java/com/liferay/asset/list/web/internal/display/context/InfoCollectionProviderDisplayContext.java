@@ -112,7 +112,7 @@ public class InfoCollectionProviderDisplayContext {
 				_renderResponse
 			).setParameters(
 				currentURLObj.getParameterMap()
-			).build();
+			).buildPortletURL();
 		}
 	}
 

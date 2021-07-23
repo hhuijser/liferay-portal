@@ -90,7 +90,7 @@ public class UserActionDropdownItemsProvider {
 			"groupId", _themeDisplay.getSiteGroupIdOrLiveGroupId()
 		).setParameter(
 			"p_u_i_d", _user.getUserId()
-		).build();
+		).buildPortletURL();
 
 		Group group = _themeDisplay.getScopeGroup();
 

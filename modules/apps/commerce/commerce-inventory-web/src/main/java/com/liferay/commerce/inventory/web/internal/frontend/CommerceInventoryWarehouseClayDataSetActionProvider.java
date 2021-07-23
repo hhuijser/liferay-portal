@@ -137,7 +137,7 @@ public class CommerceInventoryWarehouseClayDataSetActionProvider
 			themeDisplay.getURLCurrent()
 		).setParameter(
 			"commerceInventoryWarehouseItemId", commerceInventoryWarehouseItemId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

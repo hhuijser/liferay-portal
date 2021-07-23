@@ -253,7 +253,7 @@ public class SynonymsDisplayBuilder {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	private final DocumentToSynonymSetTranslator

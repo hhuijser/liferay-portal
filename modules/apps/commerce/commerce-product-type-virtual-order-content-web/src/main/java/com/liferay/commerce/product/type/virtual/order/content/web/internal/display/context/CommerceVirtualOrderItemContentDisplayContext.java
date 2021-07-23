@@ -238,7 +238,7 @@ public class CommerceVirtualOrderItemContentDisplayContext {
 			_commerceVirtualOrderItemContentRequestHelper.getScopeGroupId()
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 
 		if (cpDefinitionVirtualSetting.isUseTermsOfUseJournal()) {
 			JournalArticle termsOfUseJournalArticle =

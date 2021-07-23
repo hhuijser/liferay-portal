@@ -87,7 +87,7 @@ public class WikiAttachmentItemSelectorViewDisplayContext {
 		).setParameter(
 			"resourcePrimKey",
 			_wikiAttachmentItemSelectorCriterion.getWikiPageResourceId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getItemSelectedEventName() {
@@ -134,7 +134,7 @@ public class WikiAttachmentItemSelectorViewDisplayContext {
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
 			"selectedTab", getTitle(httpServletRequest.getLocale())
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTitle(Locale locale) {
@@ -153,7 +153,7 @@ public class WikiAttachmentItemSelectorViewDisplayContext {
 		).setParameter(
 			"resourcePrimKey",
 			_wikiAttachmentItemSelectorCriterion.getWikiPageResourceId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public WikiAttachmentItemSelectorCriterion

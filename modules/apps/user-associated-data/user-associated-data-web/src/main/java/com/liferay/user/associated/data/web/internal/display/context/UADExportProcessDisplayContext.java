@@ -162,7 +162,7 @@ public class UADExportProcessDisplayContext {
 
 				return selectedUser.getUserId();
 			}
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<BackgroundTask> getSearchContainer()

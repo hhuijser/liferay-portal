@@ -256,7 +256,7 @@ public class TemplateDisplayContext {
 			_liferayPortletResponse
 		).setTabs1(
 			_getTabs1()
-		).build();
+		).buildPortletURL();
 	}
 
 	private String _getTabs1() {

@@ -304,7 +304,7 @@ public class DLAdminDisplayContext {
 		).setParameter(
 			"searchFolderId",
 			ParamUtil.getLong(_httpServletRequest, "searchFolderId")
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean isDefaultFolderView() {

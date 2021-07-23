@@ -76,7 +76,7 @@ public class ConfigurationTemplatesPortletConfigurationIcon
 					PortletProvider.Action.VIEW)
 			).setMVCPath(
 				"/edit_configuration_templates.jsp"
-			).build();
+			).buildPortletURL();
 
 			if (Validator.isNotNull(redirect)) {
 				portletURL.setParameter("redirect", redirect);

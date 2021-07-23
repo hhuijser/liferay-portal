@@ -253,7 +253,7 @@ public class ActionUtil {
 
 				return sourceNode.getName();
 			}
-		).build();
+		).buildPortletURL();
 
 		PortletURL editPageURL = PortletURLBuilder.createRenderURL(
 			liferayPortletResponse
@@ -263,7 +263,7 @@ public class ActionUtil {
 			"nodeId", nodeId
 		).setParameter(
 			"title", title
-		).build();
+		).buildPortletURL();
 
 		String attachmentURLPrefix = WikiUtil.getAttachmentURLPrefix(
 			themeDisplay.getPathMain(), themeDisplay.getPlid(), nodeId, title);

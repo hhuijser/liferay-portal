@@ -561,7 +561,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			liferayPortletResponse
 		).setParameter(
 			"cur", ParamUtil.getInteger(liferayPortletRequest, "cur")
-		).build();
+		).buildPortletURL();
 
 		if (delta > 0) {
 			redirectURL.setParameter("delta", String.valueOf(delta));
@@ -577,7 +577,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 				assetEntry)
 		).setRedirect(
 			redirectURL
-		).build();
+		).buildPortletURL();
 
 		String viewURL = null;
 
@@ -631,7 +631,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 				return assetRendererFactory.getType();
 			}
-		).build();
+		).buildPortletURL();
 
 		String urlTitle = assetRenderer.getUrlTitle(
 			liferayPortletRequest.getLocale());

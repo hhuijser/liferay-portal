@@ -287,7 +287,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 			ParamUtil.getString(_renderRequest, "redirect")
 		).setParameter(
 			"kaleoProcessId", _kaleoProcess.getKaleoProcessId()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 
@@ -331,7 +331,7 @@ public class KaleoFormsViewRecordsDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		_searchContainer = new SearchContainer<>(
 			_renderRequest, new DisplayTerms(_renderRequest), null,

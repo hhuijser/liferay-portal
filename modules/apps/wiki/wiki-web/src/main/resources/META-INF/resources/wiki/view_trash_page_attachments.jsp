@@ -67,7 +67,7 @@ WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 		"title", wikiPage.getTitle()
 	).setWindowState(
 		LiferayWindowState.POP_UP
-	).build();
+	).buildPortletURL();
 
 	boolean paginate = false;
 	boolean showPageAttachmentAction = true;

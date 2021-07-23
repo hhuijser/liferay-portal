@@ -131,7 +131,7 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 		).setParameter(
 			"cpDefinitionSpecificationOptionValueId",
 			cpDefinitionSpecificationOptionValueId
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getProductSpecificationEditURL(
@@ -153,7 +153,7 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 			"cpDefinitionSpecificationOptionValueId",
 			cpDefinitionSpecificationOptionValue.
 				getCPDefinitionSpecificationOptionValueId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

@@ -38,7 +38,7 @@ long classPK = selLayout.getPlid();
 		"groupId", selLayout.getGroupId()
 	).setParameter(
 		"selPlid", LayoutConstants.DEFAULT_PLID
-	).build();
+	).buildPortletURL();
 
 	Group group = GroupLocalServiceUtil.getGroup(selLayout.getGroupId());
 

@@ -114,7 +114,7 @@ public class SelectTeamDisplayContext {
 			"/select_team.jsp"
 		).setParameter(
 			"eventName", getEventName()
-		).build();
+		).buildPortletURL();
 
 		String keywords = getKeywords();
 

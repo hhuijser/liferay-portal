@@ -58,7 +58,7 @@ public class GroupPagesPanelApp extends BasePanelApp {
 			super.getPortletURL(httpServletRequest)
 		).setParameter(
 			"selPlid", LayoutConstants.DEFAULT_PLID
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

@@ -76,7 +76,7 @@ public class UnpublishDefinitionPortletConfigurationIcon
 			"/kaleo_designer/unpublish_kaleo_definition_version"
 		).setMVCPath(
 			portletRequest.getParameter("mvcPath")
-		).build();
+		).buildPortletURL();
 
 		KaleoDefinition kaleoDefinition = getKaleoDefinition(portletRequest);
 

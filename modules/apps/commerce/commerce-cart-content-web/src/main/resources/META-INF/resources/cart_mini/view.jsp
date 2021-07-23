@@ -55,7 +55,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	commerceCartContentMiniDisplayContext.getPortletURL()
 ).setParameter(
 	"searchContainerId", "commerceOrderItems"
-).build();
+).buildPortletURL();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 %>

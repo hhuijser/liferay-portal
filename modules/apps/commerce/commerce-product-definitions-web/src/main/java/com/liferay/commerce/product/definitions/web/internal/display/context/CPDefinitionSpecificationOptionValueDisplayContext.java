@@ -154,7 +154,7 @@ public class CPDefinitionSpecificationOptionValueDisplayContext
 			"/cp_definitions/edit_cp_definition"
 		).setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean hasCustomAttributesAvailable() throws Exception {

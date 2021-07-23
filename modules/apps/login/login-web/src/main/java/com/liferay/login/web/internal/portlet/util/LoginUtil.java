@@ -189,7 +189,7 @@ public class LoginUtil {
 			PortletMode.VIEW
 		).setWindowState(
 			WindowState.MAXIMIZED
-		).build();
+		).buildPortletURL();
 	}
 
 	public static void sendPassword(

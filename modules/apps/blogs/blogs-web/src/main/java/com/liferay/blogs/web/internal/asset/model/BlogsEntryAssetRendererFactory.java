@@ -130,7 +130,7 @@ public class BlogsEntryAssetRendererFactory
 				BlogsPortletKeys.BLOGS, 0, 0, PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/blogs/edit_entry"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

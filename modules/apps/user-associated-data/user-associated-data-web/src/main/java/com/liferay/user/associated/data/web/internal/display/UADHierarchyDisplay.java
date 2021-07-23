@@ -108,7 +108,7 @@ public class UADHierarchyDisplay {
 			ParamUtil.getString(httpServletRequest, "applicationKey")
 		).setParameter(
 			"p_u_i_d", ParamUtil.getString(httpServletRequest, "p_u_i_d")
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(scope)) {
 			baseURL.setParameter("scope", scope);
@@ -309,7 +309,7 @@ public class UADHierarchyDisplay {
 			ParamUtil.getString(actionRequest, "applicationKey")
 		).setParameter(
 			"p_u_i_d", ParamUtil.getString(actionRequest, "p_u_i_d")
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(scope)) {
 			portletURL.setParameter("scope", scope);

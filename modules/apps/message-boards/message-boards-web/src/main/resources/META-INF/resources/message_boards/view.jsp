@@ -43,7 +43,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	mvcRenderCommandName
-).build();
+).buildPortletURL();
 
 int cur1 = ParamUtil.getInteger(request, "cur1");
 

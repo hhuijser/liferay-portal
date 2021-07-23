@@ -106,7 +106,7 @@ public class CommerceProductPricingClassDataSetActionProvider
 			"/cp_definitions/edit_cp_definition_pricing_class"
 		).setParameter(
 			"commercePricingClassId", pricingClassId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

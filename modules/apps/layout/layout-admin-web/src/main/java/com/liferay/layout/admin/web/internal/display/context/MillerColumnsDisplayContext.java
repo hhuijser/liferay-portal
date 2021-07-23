@@ -661,7 +661,7 @@ public class MillerColumnsDisplayContext {
 
 							return portletDisplay.getId();
 						}
-					).build()
+					).buildPortletURL()
 				));
 		}
 
@@ -770,7 +770,7 @@ public class MillerColumnsDisplayContext {
 
 							return portletDisplay.getId();
 						}
-					).build()
+					).buildPortletURL()
 				));
 		}
 

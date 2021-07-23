@@ -281,7 +281,7 @@ public class CommerceInventoryDisplayContext {
 			_cpRequestHelper.getCurrentURL()
 		).setParameter(
 			"sku", _sku
-		).build();
+		).buildPortletURL();
 	}
 
 	public CreationMenu getWarehousesCreationMenu() throws Exception {

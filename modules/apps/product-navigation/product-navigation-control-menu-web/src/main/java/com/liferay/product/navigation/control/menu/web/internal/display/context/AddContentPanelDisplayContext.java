@@ -363,7 +363,7 @@ public class AddContentPanelDisplayContext {
 						).setPortletResource(
 							ProductNavigationControlMenuPortletKeys.
 								PRODUCT_NAVIGATION_CONTROL_MENU
-						).build(),
+						).buildPortletURL(),
 						false, _themeDisplay.getLayout());
 				}
 			).build()

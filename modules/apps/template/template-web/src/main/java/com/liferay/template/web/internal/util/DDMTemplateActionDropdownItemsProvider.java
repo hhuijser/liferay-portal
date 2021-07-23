@@ -39,8 +39,8 @@ import javax.servlet.http.HttpServletRequest;
 public class DDMTemplateActionDropdownItemsProvider {
 
 	public DDMTemplateActionDropdownItemsProvider(
-		boolean addDDMTemplateEnabled,
-		DDMTemplate ddmTemplate, HttpServletRequest httpServletRequest,
+		boolean addDDMTemplateEnabled, DDMTemplate ddmTemplate,
+		HttpServletRequest httpServletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
 		_ddmTemplate = ddmTemplate;
@@ -93,7 +93,7 @@ public class DDMTemplateActionDropdownItemsProvider {
 					_themeDisplay.getURLCurrent()
 				).setParameter(
 					"ddmTemplateId", _ddmTemplate.getTemplateId()
-				).build());
+				).buildPortletURL());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "copy"));
 		};
@@ -133,7 +133,7 @@ public class DDMTemplateActionDropdownItemsProvider {
 					_themeDisplay.getURLCurrent()
 				).setParameter(
 					"ddmTemplateId", _ddmTemplate.getTemplateId()
-				).build());
+				).buildPortletURL());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "edit"));
 		};

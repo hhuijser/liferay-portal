@@ -145,7 +145,7 @@ public class EditCommerceOrganizationMVCActionCommand
 			"/commerce_organization/edit_commerce_organization"
 		).setParameter(
 			"organizationId", organization.getOrganizationId()
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

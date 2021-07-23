@@ -23,7 +23,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/portal_instances/view"
-).build();
+).buildPortletURL();
 %>
 
 <clay:management-toolbar

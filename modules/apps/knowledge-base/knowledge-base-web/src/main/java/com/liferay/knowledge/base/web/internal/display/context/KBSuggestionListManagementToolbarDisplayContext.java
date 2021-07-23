@@ -156,7 +156,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getTotal() {
@@ -178,7 +178,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
 		).setParameter(
 			"storeOrderByPreference", true
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems()
@@ -196,7 +196,7 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 						_currentURLObj, _liferayPortletResponse)
 				).setParameter(
 					"storeOrderByPreference", false
-				).build();
+				).buildPortletURL();
 
 				for (String navigationKey : navigationKeys) {
 					add(

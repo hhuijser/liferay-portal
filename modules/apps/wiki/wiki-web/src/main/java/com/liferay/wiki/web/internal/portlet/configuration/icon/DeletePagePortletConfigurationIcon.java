@@ -85,7 +85,7 @@ public class DeletePagePortletConfigurationIcon
 				"/wiki/edit_page"
 			).setCMD(
 				Constants.DELETE
-			).build();
+			).buildPortletURL();
 
 			if (!page.isDraft() &&
 				isTrashEnabled(themeDisplay.getScopeGroupId())) {

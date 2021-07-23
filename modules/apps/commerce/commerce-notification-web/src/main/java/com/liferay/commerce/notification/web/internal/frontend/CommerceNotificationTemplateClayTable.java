@@ -117,7 +117,7 @@ public class CommerceNotificationTemplateClayTable
 						PortletProvider.Action.MANAGE)
 				).setWindowState(
 					LiferayWindowState.POP_UP
-				).build();
+				).buildPortletURL();
 
 				long commerceChannelId = ParamUtil.getLong(
 					httpServletRequest, "commerceChannelId");
@@ -154,7 +154,7 @@ public class CommerceNotificationTemplateClayTable
 					).setParameter(
 						"commerceNotificationTemplateId",
 						notificationTemplate.getNotificationTemplateId()
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));

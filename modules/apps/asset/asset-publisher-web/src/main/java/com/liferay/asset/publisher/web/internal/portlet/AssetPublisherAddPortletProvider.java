@@ -68,7 +68,7 @@ public class AssetPublisherAddPortletProvider
 			super.getPortletURL(httpServletRequest)
 		).setMVCPath(
 			"/view_content.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

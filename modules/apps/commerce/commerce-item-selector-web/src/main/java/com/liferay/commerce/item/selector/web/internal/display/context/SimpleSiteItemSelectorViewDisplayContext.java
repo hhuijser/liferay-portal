@@ -84,7 +84,7 @@ public class SimpleSiteItemSelectorViewDisplayContext
 			super.getPortletURL()
 		).setParameter(
 			"siteGroupId", getGroupId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

@@ -135,7 +135,7 @@ public class LayoutSiteNavigationMenuItemType
 			renderResponse
 		).setActionName(
 			"/navigation_menu/add_layout_site_navigation_menu_item"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

@@ -251,7 +251,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 			PortletMode.VIEW
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 
 		String editorURL = GetterUtil.getString(request.getAttribute("liferay-comment:discussion:editorURL"));
 

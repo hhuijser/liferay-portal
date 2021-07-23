@@ -161,7 +161,7 @@ public class CommerceCurrenciesDisplayContext {
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 	}
 
 	public CommerceCurrency getPrimaryCommerceCurrency()

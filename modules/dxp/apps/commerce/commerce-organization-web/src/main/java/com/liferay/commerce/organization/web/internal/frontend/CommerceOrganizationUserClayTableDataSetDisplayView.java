@@ -215,7 +215,7 @@ public class CommerceOrganizationUserClayTableDataSetDisplayView
 				PortletProvider.Action.MANAGE)
 		).setMVCRenderCommandName(
 			"viewCommerceOrganizationUser"
-		).build();
+		).buildPortletURL();
 
 		long organizationId = ParamUtil.getLong(
 			httpServletRequest, "organizationId");

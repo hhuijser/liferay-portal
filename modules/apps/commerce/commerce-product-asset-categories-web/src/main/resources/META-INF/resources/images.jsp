@@ -25,7 +25,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	currentURLObj
 ).setParameter(
 	"historyKey", liferayPortletResponse.getNamespace() + "images"
-).build();
+).buildPortletURL();
 
 SearchContainer<CPAttachmentFileEntry> cpAttachmentFileEntrySearchContainer = new SearchContainer<>(liferayPortletRequest, portletURL, null, null);
 

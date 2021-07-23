@@ -136,7 +136,7 @@ public class KBArticleAssetRenderer extends BaseJSPAssetRenderer<KBArticle> {
 			"/admin/edit_article.jsp"
 		).setParameter(
 			"resourcePrimKey", _kbArticle.getResourcePrimKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

@@ -111,7 +111,7 @@ public class AMManagementToolbarDisplayContext {
 			_liferayPortletResponse
 		).setParameter(
 			"entriesNavigation", (String)null
-		).build();
+		).buildPortletURL();
 	}
 
 	public List<AMImageConfigurationEntry> getSelectedConfigurationEntries() {

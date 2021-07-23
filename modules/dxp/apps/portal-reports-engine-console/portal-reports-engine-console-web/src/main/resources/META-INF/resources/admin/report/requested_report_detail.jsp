@@ -196,7 +196,7 @@ renderResponse.setTitle(definition.getName(locale));
 				"entryId", entryId
 			).setWindowState(
 				WindowState.NORMAL
-			).build();
+			).buildPortletURL();
 			%>
 
 			<liferay-ui:search-container

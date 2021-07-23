@@ -199,7 +199,7 @@ public class PollsDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/polls/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 
@@ -243,7 +243,7 @@ public class PollsDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		_pollsQuestionSearch = new PollsQuestionSearch(
 			_renderRequest, portletURL);

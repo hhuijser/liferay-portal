@@ -177,7 +177,7 @@ List<String> domains = accountEntryDisplay.getDomains();
 							"/account_entries_admin/account_entry/add_domains.jsp"
 						).setWindowState(
 							LiferayWindowState.POP_UP
-						).build()
+						).buildPortletURL()
 				%>',
 			});
 		});

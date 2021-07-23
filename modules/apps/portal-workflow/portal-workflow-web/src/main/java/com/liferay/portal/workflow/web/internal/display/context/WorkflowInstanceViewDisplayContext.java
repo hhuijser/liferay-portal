@@ -340,7 +340,7 @@ public class WorkflowInstanceViewDisplayContext
 
 				return "asc";
 			}
-		).build();
+		).buildPortletURL();
 
 		String instanceNavigation = ParamUtil.getString(
 			httpServletRequest, "navigation");
@@ -380,7 +380,7 @@ public class WorkflowInstanceViewDisplayContext
 			"orderByType", getOrderByType()
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_INSTANCE
-		).build();
+		).buildPortletURL();
 	}
 
 	public ViewTypeItemList getViewTypes() {

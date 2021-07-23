@@ -217,7 +217,7 @@ public class AssetPublisherPortletToolbarContributor
 			assetPublisherAddItemHolder.getPortletURL()
 		).setPortletResource(
 			AssetPublisherPortletKeys.ASSET_PUBLISHER
-		).build();
+		).buildPortletURL();
 
 		boolean addDisplayPageParameter =
 			_assetPublisherWebHelper.isDefaultAssetPublisher(

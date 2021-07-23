@@ -281,7 +281,7 @@ public class LayoutPageTemplateDisplayContext {
 			_themeDisplay.getURLCurrent()
 		).setTabs1(
 			"page-templates"
-		).build();
+		).buildPortletURL();
 
 		long layoutPageTemplateCollectionId =
 			getLayoutPageTemplateCollectionId();

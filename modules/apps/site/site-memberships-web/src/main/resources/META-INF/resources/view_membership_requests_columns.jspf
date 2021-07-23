@@ -40,7 +40,7 @@ PortletURL previewURL = PortletURLBuilder.createRenderURL(
 	currentURL
 ).setParameter(
 	"membershipRequestId", membershipRequest.getMembershipRequestId()
-).build();
+).buildPortletURL();
 %>
 
 <c:choose>

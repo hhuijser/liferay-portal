@@ -29,7 +29,7 @@ PortletURL viewPageURL = PortletURLBuilder.create(
 	PortletMode.VIEW
 ).setWindowState(
 	WindowState.MAXIMIZED
-).build();
+).buildPortletURL();
 
 StringBundler sb = new StringBundler(8);
 
@@ -59,7 +59,7 @@ WikiPageDisplay pageDisplay = WikiPageLocalServiceUtil.getPageDisplay(
 				redirectURL
 			).setParameter(
 				"nodeId", wikiPage.getNodeId()
-			).build();
+			).buildPortletURL();
 
 			try {
 				editPageURL.setPortletMode(PortletMode.VIEW);

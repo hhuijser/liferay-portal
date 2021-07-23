@@ -122,7 +122,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 						_templatePath + "edit_template.jsp"
 					).setRedirect(
 						PortalUtil.getCurrentURL(_httpServletRequest)
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "add-template"));
@@ -153,7 +153,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/admin/view_templates.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
@@ -162,7 +162,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getTotal() {
@@ -178,7 +178,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 			_liferayPortletResponse
 		).setMVCPath(
 			"/admin/view_templates.jsp"
-		).build();
+		).buildPortletURL();
 
 		_searchContainer = new KBTemplateSearch(
 			_liferayPortletRequest, iteratorURL);
@@ -213,7 +213,7 @@ public class KBTemplatesManagementToolbarDisplayContext {
 			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
 		).setMVCPath(
 			"/admin/view_templates.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	private String _getKeywords() {

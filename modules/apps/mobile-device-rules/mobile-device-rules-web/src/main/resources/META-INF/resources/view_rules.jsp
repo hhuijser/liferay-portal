@@ -47,7 +47,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"groupId", groupId
 ).setParameter(
 	"ruleGroupId", ruleGroupId
-).build();
+).buildPortletURL();
 
 SearchContainer<MDRRule> rulesSearchContainer = new SearchContainer(renderRequest, portletURL, null, "no-classification-rules-are-configured-for-this-device-family");
 
@@ -112,7 +112,7 @@ renderResponse.setTitle(ruleGroup.getName(locale));
 		PortletURLUtil.clone(portletURL, renderResponse)
 	).setParameter(
 		"displayStyle", displayStyle
-	).build();
+	).buildPortletURL();
 	%>
 
 	<liferay-frontend:management-bar-filters>

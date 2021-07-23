@@ -110,7 +110,7 @@ public class SelectSiteInitializerDisplayContext {
 			"/site_admin/select_site_initializer"
 		).setRedirect(
 			getBackURL()
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<SiteInitializerItem> _getSiteInitializerItems()

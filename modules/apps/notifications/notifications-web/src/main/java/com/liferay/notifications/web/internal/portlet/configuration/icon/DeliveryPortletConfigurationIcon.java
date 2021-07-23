@@ -121,7 +121,7 @@ public class DeliveryPortletConfigurationIcon
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/notifications/configuration.jsp"
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

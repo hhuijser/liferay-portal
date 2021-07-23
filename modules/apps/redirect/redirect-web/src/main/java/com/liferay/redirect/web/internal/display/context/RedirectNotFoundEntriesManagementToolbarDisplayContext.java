@@ -289,7 +289,7 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 					getPortletURL()
 				).setParameter(
 					"filterDate", days
-				).build());
+				).buildPortletURL());
 
 			dropdownItem.setLabel(_getFilterDateLabel(days));
 		};

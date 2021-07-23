@@ -188,7 +188,7 @@ public class DepotAdminDisplayContext {
 			_liferayPortletResponse
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 	}
 
 	private final DepotAdminGroupSearchProvider _depotAdminGroupSearchProvider;

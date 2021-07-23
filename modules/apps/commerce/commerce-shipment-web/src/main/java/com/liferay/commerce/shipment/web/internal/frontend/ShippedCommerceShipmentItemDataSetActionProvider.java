@@ -89,7 +89,7 @@ public class ShippedCommerceShipmentItemDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
 			"commerceShipmentItemId", commerceShipmentItemId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

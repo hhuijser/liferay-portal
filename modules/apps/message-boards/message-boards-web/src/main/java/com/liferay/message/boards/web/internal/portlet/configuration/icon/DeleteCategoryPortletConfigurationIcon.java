@@ -94,7 +94,7 @@ public class DeleteCategoryPortletConfigurationIcon
 
 					return cmd;
 				}
-			).build();
+			).buildPortletURL();
 
 			PortletURL parentCategoryURL = _portal.getControlPanelPortletURL(
 				portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,

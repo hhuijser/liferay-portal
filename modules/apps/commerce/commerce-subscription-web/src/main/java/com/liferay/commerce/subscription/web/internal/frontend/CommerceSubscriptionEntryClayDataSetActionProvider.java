@@ -126,7 +126,7 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
 			"commerceSubscriptionEntryId", commerceSubscriptionEntryId
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference

@@ -255,7 +255,7 @@ public class WorkflowDefinitionLinkDisplayContext {
 			"default-configuration"
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_httpServletRequest, "delta");
 

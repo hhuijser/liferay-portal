@@ -282,7 +282,7 @@ public class KaleoFormsAdminDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/admin/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 

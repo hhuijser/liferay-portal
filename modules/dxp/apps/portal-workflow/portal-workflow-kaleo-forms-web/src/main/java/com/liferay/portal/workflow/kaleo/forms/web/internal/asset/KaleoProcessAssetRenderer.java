@@ -147,7 +147,7 @@ public class KaleoProcessAssetRenderer
 			"ddlRecordId", _ddlRecord.getRecordId()
 		).setParameter(
 			"kaleoProcessId", _kaleoProcess.getKaleoProcessId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

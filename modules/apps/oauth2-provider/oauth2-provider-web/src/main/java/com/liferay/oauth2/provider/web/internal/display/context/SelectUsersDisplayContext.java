@@ -143,7 +143,7 @@ public class SelectUsersDisplayContext {
 			"/admin/select_users.jsp"
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

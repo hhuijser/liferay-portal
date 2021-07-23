@@ -176,7 +176,7 @@ public class UsersDisplayContext {
 			"users"
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		Role role = getRole();
 

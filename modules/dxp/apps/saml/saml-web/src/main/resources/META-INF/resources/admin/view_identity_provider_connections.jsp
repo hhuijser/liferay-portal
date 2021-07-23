@@ -24,7 +24,7 @@
 			renderResponse
 		).setTabs1(
 			"identity-provider-connections"
-		).build()
+		).buildPortletURL()
 	%>'
 	total="<%= GetterUtil.getInteger(renderRequest.getAttribute(SamlWebKeys.SAML_SP_IDP_CONNECTIONS_COUNT)) %>"
 >

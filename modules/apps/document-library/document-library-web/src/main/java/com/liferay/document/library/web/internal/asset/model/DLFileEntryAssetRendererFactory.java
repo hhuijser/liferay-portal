@@ -206,7 +206,7 @@ public class DLFileEntryAssetRendererFactory
 			"showMountFolder", false
 		).setParameter(
 			"showSelectFolder", true
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

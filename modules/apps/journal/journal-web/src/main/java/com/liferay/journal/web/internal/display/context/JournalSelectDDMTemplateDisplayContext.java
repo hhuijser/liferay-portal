@@ -203,7 +203,7 @@ public class JournalSelectDDMTemplateDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_ddm_template.jsp"
-		).build();
+		).buildPortletURL();
 
 		long ddmTemplateId = getDDMTemplateId();
 

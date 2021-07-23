@@ -92,7 +92,7 @@ public class PageSubscriptionPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_page"
-			).build();
+			).buildPortletURL();
 
 			if (isSubscribed(portletRequest, page)) {
 				portletURL.setParameter(Constants.CMD, Constants.UNSUBSCRIBE);

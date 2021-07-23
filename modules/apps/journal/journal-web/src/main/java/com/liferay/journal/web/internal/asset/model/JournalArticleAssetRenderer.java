@@ -299,7 +299,7 @@ public class JournalArticleAssetRenderer
 			"groupId", _article.getGroupId()
 		).setParameter(
 			"version", _article.getVersion()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override
@@ -383,7 +383,7 @@ public class JournalArticleAssetRenderer
 			"sourceVersion", previousApprovedArticle.getVersion()
 		).setParameter(
 			"targetVersion", _article.getVersion()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

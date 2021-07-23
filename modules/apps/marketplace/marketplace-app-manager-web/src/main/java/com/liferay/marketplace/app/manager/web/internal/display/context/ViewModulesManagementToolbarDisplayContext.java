@@ -109,7 +109,7 @@ public class ViewModulesManagementToolbarDisplayContext
 			"orderByType", getOrderByType()
 		).setParameter(
 			"state", getState()
-		).build();
+		).buildPortletURL();
 
 		if (_searchContainer != null) {
 			portletURL.setParameter(

@@ -134,7 +134,7 @@ public class SelectUserGroupsDisplayContext {
 			"eventName", getEventName()
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

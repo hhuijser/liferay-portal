@@ -52,7 +52,7 @@ ClassType classType = classTypeReader.getClassType(classTypeId, locale);
 				"classTypeId", classTypeId
 			).setParameter(
 				"eventName", eventName
-			).build()
+			).buildPortletURL()
 		%>'
 		total="<%= classType.getClassTypeFieldsCount() %>"
 	>

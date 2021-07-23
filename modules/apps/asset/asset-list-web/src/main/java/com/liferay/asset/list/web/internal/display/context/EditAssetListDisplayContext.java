@@ -751,7 +751,7 @@ public class EditAssetListDisplayContext {
 			"assetListEntryId", getAssetListEntryId()
 		).setParameter(
 			"segmentsEntryId", getSegmentsEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getRedirectURL() {

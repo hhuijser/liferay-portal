@@ -196,7 +196,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 			"/change_tracking/checkout_ct_collection"
 		).setRedirect(
 			_portal.getCurrentURL(httpServletRequest)
-		).build();
+		).buildPortletURL();
 
 		PortalPreferences portalPreferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(
@@ -322,7 +322,7 @@ public class ChangeTrackingIndicatorDynamicInclude extends BaseDynamicInclude {
 					PortletRequest.RENDER_PHASE)
 			).setMVCRenderCommandName(
 				"/change_tracking/add_ct_collection"
-			).build();
+			).buildPortletURL();
 
 			PortletURL redirectURL = _portal.getControlPanelPortletURL(
 				httpServletRequest, themeDisplay.getScopeGroup(),

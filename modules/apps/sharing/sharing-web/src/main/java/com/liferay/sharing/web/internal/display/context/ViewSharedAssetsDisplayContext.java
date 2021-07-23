@@ -153,7 +153,7 @@ public class ViewSharedAssetsDisplayContext {
 						_liferayPortletResponse
 					).setParameter(
 						"incoming", true
-					).build());
+					).buildPortletURL());
 
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "shared-with-me"));
@@ -167,7 +167,7 @@ public class ViewSharedAssetsDisplayContext {
 						_liferayPortletResponse
 					).setParameter(
 						"incoming", false
-					).build());
+					).buildPortletURL());
 
 				navigationItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "shared-by-me"));
@@ -263,7 +263,7 @@ public class ViewSharedAssetsDisplayContext {
 
 				return "asc";
 			}
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTitle(SharingEntry sharingEntry) {
@@ -394,7 +394,7 @@ public class ViewSharedAssetsDisplayContext {
 							_currentURLObj, _liferayPortletResponse)
 					).setParameter(
 						"className", (String)null
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "all"));

@@ -69,7 +69,7 @@ public class UserGroupDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/analytics_settings/edit_synced_contacts_groups"
-		).build();
+		).buildPortletURL();
 	}
 
 	public UserGroupSearch getUserGroupSearch() {

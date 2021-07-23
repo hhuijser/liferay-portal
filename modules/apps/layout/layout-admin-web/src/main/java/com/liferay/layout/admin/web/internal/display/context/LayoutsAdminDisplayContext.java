@@ -199,7 +199,7 @@ public class LayoutsAdminDisplayContext {
 			"privateLayout", isPrivateLayout()
 		).setParameter(
 			"stagingGroupId", getStagingGroupId()
-		).build();
+		).buildPortletURL();
 
 		String type = ParamUtil.getString(httpServletRequest, "type");
 
@@ -757,7 +757,7 @@ public class LayoutsAdminDisplayContext {
 			getTabs1()
 		).setParameter(
 			"selPlid", LayoutConstants.DEFAULT_PLID
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 
@@ -825,7 +825,7 @@ public class LayoutsAdminDisplayContext {
 			getTabs1()
 		).setParameter(
 			"privateLayout", isPrivateLayout()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 
@@ -854,7 +854,7 @@ public class LayoutsAdminDisplayContext {
 			getRedirect()
 		).setParameter(
 			"groupId", getSelGroupId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public List<BreadcrumbEntry> getRelativeBreadcrumbEntries(Layout layout)
@@ -923,7 +923,7 @@ public class LayoutsAdminDisplayContext {
 			ParamUtil.getString(httpServletRequest, "portletResource")
 		).setParameter(
 			"selPlid", getSelPlid()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getSelectLayoutCollectionURL(
@@ -944,7 +944,7 @@ public class LayoutsAdminDisplayContext {
 				"privateLayout", privateLayout
 			).setParameter(
 				"selPlid", selPlid
-			).build();
+			).buildPortletURL();
 
 		if (Validator.isNotNull(selectedTab)) {
 			selectLayoutCollectionsURL.setParameter("selectedTab", selectedTab);
@@ -996,7 +996,7 @@ public class LayoutsAdminDisplayContext {
 				"privateLayout", privateLayout
 			).setParameter(
 				"selPlid", selPlid
-			).build();
+			).buildPortletURL();
 
 		if (layoutPageTemplateCollectionId > 0) {
 			selectLayoutPageTemplateEntryURL.setParameter(

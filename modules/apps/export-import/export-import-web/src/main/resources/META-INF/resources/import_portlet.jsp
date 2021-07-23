@@ -27,7 +27,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	portletResource
 ).setTabs2(
 	"import"
-).build();
+).buildPortletURL();
 
 boolean validate = ParamUtil.getBoolean(request, "validate", true);
 

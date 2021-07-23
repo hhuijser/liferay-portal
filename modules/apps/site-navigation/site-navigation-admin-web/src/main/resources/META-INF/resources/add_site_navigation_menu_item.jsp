@@ -32,7 +32,7 @@ if (addURL == null) {
 		renderResponse
 	).setActionName(
 		"/site_navigation_admin/add_site_navigation_menu_item"
-	).build();
+	).buildPortletURL();
 }
 
 portletDisplay.setShowBackIcon(true);

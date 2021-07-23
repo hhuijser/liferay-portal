@@ -204,7 +204,7 @@ public class JournalArticleAssetRendererFactory
 				JournalPortletKeys.JOURNAL, 0, 0, PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/edit_article.jsp"
-		).build();
+		).buildPortletURL();
 
 		if (classTypeId > 0) {
 			DDMStructure ddmStructure =

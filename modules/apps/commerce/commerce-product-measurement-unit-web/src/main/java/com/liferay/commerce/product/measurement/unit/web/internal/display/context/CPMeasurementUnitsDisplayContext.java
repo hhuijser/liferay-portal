@@ -131,7 +131,7 @@ public class CPMeasurementUnitsDisplayContext {
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 
 		String toolbarItem = ParamUtil.getString(_renderRequest, "toolbarItem");
 

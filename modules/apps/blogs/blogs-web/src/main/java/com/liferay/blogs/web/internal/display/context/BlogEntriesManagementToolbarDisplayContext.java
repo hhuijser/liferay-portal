@@ -221,7 +221,7 @@ public class BlogEntriesManagementToolbarDisplayContext
 			liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/blogs/view"
-		).build();
+		).buildPortletURL();
 
 		if (searchContainer.getDelta() > 0) {
 			portletURL.setParameter(
@@ -300,7 +300,7 @@ public class BlogEntriesManagementToolbarDisplayContext
 			"/blogs/view"
 		).setParameter(
 			SearchContainer.DEFAULT_CUR_PARAM, "0"
-		).build();
+		).buildPortletURL();
 
 		if (_isSearch()) {
 			sortingURL.setParameter("keywords", _getKeywords());

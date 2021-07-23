@@ -35,7 +35,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	"/commerce_account/view_commerce_account_user"
 ).setParameter(
 	"userId", selectedUser.getUserId()
-).build();
+).buildPortletURL();
 %>
 
 <portlet:renderURL var="editCommerceAccountURL">

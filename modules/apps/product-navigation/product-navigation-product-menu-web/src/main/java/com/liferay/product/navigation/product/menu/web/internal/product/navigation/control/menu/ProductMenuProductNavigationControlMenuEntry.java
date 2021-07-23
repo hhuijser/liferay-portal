@@ -126,7 +126,7 @@ public class ProductMenuProductNavigationControlMenuEntry
 
 					return portletDisplay.getId();
 				}
-			).build();
+			).buildPortletURL();
 
 			try {
 				portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);

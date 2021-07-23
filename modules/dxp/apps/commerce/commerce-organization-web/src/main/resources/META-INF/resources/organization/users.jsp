@@ -53,7 +53,7 @@ CommerceOrganizationDisplayContext commerceOrganizationDisplayContext = (Commerc
 					currentURLObj
 				).setParameter(
 					PortletQName.PUBLIC_RENDER_PARAMETER_NAMESPACE + "backURL", backURL
-				).build()
+				).buildPortletURL()
 			%>'
 		/>
 

@@ -246,7 +246,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"folderId", JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID
-		).build();
+		).buildPortletURL();
 
 		for (JournalFolder ancestorFolder : ancestorFolders) {
 			BreadcrumbEntry folderBreadcrumbEntry = new BreadcrumbEntry();
@@ -290,7 +290,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 			"displayStyle", getDisplayStyle()
 		).setParameter(
 			"selectedTab", _getTitle(_httpServletRequest.getLocale())
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<?> getSearchContainer() throws Exception {
@@ -335,7 +335,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"folderId", _getFolderId()
-		).build();
+		).buildPortletURL();
 
 		SearchContainer<Object> articleAndFolderSearchContainer =
 			new SearchContainer<>(_portletRequest, portletURL, null, null);

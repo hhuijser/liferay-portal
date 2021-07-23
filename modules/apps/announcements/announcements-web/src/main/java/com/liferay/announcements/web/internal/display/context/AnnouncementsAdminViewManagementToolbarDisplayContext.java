@@ -125,7 +125,7 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 						"alert", navigation.equals("alerts")
 					).setParameter(
 						"distributionScope", _getDistributionScope()
-					).build());
+					).buildPortletURL());
 
 				String label = null;
 

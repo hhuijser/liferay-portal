@@ -174,7 +174,7 @@ public class BaseCommerceTaxFixedRateDisplayContext {
 		).setParameter(
 			"screenNavigationCategoryKey",
 			getSelectedScreenNavigationCategoryKey()
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			commerceTaxFixedRateRequestHelper.getRequest(), "redirect");

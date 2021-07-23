@@ -169,7 +169,7 @@ PortletURL embeddedPlayerURL = PortletURLBuilder.createRenderURL(
 	"/image_gallery_display/embedded_player.jsp"
 ).setWindowState(
 	LiferayWindowState.POP_UP
-).build();
+).buildPortletURL();
 %>
 
 <aui:script use="aui-image-viewer,aui-image-viewer-media">

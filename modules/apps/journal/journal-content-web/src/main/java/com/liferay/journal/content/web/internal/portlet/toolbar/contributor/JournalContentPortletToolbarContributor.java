@@ -94,7 +94,7 @@ public class JournalContentPortletToolbarContributor
 			"groupId", scopeGroupId
 		).setParameter(
 			"refererPlid", plid
-		).build();
+		).buildPortletURL();
 
 		List<DDMStructure> ddmStructures =
 			_journalFolderService.getDDMStructures(

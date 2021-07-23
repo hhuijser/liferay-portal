@@ -122,7 +122,7 @@ public class TrashDisplayContext {
 						return PortalUtil.getClassNameId(
 							trashHandlerContainerModelClassName);
 					}
-				).build(),
+				).buildPortletURL(),
 				true));
 
 		return breadcrumbEntries;
@@ -454,7 +454,7 @@ public class TrashDisplayContext {
 			"classNameId", getClassNameId()
 		).setParameter(
 			"classPK", getClassPK()
-		).build();
+		).buildPortletURL();
 
 		SearchContainer<TrashedModel> searchContainer = new SearchContainer(
 			_liferayPortletRequest, iteratorURL, null, emptyResultsMessage);

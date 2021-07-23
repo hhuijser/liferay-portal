@@ -72,7 +72,7 @@ public class AssignMembersPortletConfigurationIcon
 				"/edit_user_group_assignments.jsp"
 			).setRedirect(
 				_portal.getCurrentURL(portletRequest)
-			).build();
+			).buildPortletURL();
 
 			UserGroup userGroup = ActionUtil.getUserGroup(portletRequest);
 

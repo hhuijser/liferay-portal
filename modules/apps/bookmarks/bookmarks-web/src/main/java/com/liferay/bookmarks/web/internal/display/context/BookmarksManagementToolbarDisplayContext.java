@@ -318,7 +318,7 @@ public class BookmarksManagementToolbarDisplayContext {
 				).setParameter(
 					"folderId",
 					BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID
-				).build();
+				).buildPortletURL();
 
 				for (String navigationKey : navigationKeys) {
 					add(
@@ -350,7 +350,7 @@ public class BookmarksManagementToolbarDisplayContext {
 			_liferayPortletResponse
 		).setParameter(
 			"categoryId", StringPool.BLANK
-		).build();
+		).buildPortletURL();
 
 		int deltaEntry = ParamUtil.getInteger(
 			_httpServletRequest, "deltaEntry");

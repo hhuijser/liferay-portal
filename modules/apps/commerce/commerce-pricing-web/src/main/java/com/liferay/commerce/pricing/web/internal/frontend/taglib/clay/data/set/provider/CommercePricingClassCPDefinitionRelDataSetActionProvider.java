@@ -113,7 +113,7 @@ public class CommercePricingClassCPDefinitionRelDataSetActionProvider
 			"cpDefinitionId", cpDefinitionId
 		).setParameter(
 			"screenNavigationCategoryKey", "details"
-		).build();
+		).buildPortletURL();
 	}
 
 	private String _getPricingClassCPDefinitionRelDeleteURL(

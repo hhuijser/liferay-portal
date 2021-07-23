@@ -167,7 +167,7 @@ public class MBMessageAssetRenderer
 			"/message_boards/edit_message"
 		).setParameter(
 			"messageId", _message.getMessageId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

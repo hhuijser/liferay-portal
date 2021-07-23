@@ -100,7 +100,7 @@ public class OrganizationDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/analytics_settings/edit_synced_contacts_organizations"
-		).build();
+		).buildPortletURL();
 	}
 
 	private long _getCompanyId() {

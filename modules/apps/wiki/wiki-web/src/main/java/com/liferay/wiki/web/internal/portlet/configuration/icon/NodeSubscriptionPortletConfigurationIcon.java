@@ -92,7 +92,7 @@ public class NodeSubscriptionPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_node"
-			).build();
+			).buildPortletURL();
 
 			if (isSubscribed(portletRequest, node)) {
 				portletURL.setParameter(Constants.CMD, Constants.UNSUBSCRIBE);

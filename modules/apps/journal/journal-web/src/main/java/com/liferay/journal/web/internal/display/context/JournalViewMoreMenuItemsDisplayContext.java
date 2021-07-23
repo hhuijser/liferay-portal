@@ -195,7 +195,7 @@ public class JournalViewMoreMenuItemsDisplayContext {
 			"eventName", getEventName()
 		).setParameter(
 			"folderId", _folderId
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getRedirect() {

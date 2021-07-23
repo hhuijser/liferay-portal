@@ -23,7 +23,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"/announcements/view"
 ).setTabs1(
 	announcementsRequestHelper.getTabs1()
-).build();
+).buildPortletURL();
 %>
 
 <c:if test="<%= announcementsDisplayContext.isTabs1Visible() %>">

@@ -158,7 +158,7 @@ public class ViewRolesManagementToolbarDisplayContext {
 			"displayStyle", _displayStyle
 		).setParameter(
 			"roleType", _currentRoleTypeContributor.getType()
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

@@ -158,7 +158,7 @@ public class PreviewSegmentsEntryUsersDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/segments/preview_segments_entry_users"
-		).build();
+		).buildPortletURL();
 
 		SegmentsEntry segmentsEntry = getSegmentsEntry();
 

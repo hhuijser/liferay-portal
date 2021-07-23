@@ -91,7 +91,7 @@ public class PasswordPolicyDisplayContext {
 			ParamUtil.getString(_httpServletRequest, "redirect")
 		).setParameter(
 			"passwordPolicyId", _passwordPolicyId
-		).build();
+		).buildPortletURL();
 
 		List<NavigationItem> navigationItems = NavigationItemListBuilder.add(
 			() -> (_passwordPolicyId == 0) || _hasPermission(ActionKeys.UPDATE),

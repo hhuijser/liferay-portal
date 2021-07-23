@@ -54,7 +54,7 @@ portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, local
 				"/plugins_admin/edit_plugin"
 			).setRedirect(
 				currentURL
-			).build();
+			).buildPortletURL();
 
 			if (pluginPackage != null) {
 				rowURL.setParameter("moduleId", pluginPackage.getModuleId());

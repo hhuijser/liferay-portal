@@ -140,7 +140,7 @@ public class CommerceProductOptionValueDataSetActionProvider
 			redirect
 		).setParameter(
 			"cpDefinitionOptionValueRelId", cpDefinitionOptionValueRelId
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getProductOptionValueEditURL(
@@ -165,7 +165,7 @@ public class CommerceProductOptionValueDataSetActionProvider
 		).setParameter(
 			"cpDefinitionOptionValueRelId",
 			cpDefinitionOptionValueRel.getCPDefinitionOptionValueRelId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -197,7 +197,7 @@ public class CommerceProductOptionValueDataSetActionProvider
 			redirect
 		).setParameter(
 			"cpDefinitionOptionValueRelId", cpDefinitionOptionValueRelId
-		).build();
+		).buildPortletURL();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

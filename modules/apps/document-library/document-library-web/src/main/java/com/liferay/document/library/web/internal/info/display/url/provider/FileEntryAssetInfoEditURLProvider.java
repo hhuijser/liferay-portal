@@ -69,7 +69,7 @@ public class FileEntryAssetInfoEditURLProvider
 				0, 0, PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/document_library/edit_file_entry"
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(httpServletRequest, "redirect");
 

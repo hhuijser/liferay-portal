@@ -185,7 +185,7 @@ public class MasterLayoutDisplayContext {
 			_themeDisplay.getURLCurrent()
 		).setTabs1(
 			"master-layouts"
-		).build();
+		).buildPortletURL();
 
 		String keywords = getKeywords();
 

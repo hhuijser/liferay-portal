@@ -86,7 +86,7 @@ public class BlogsItemSelectorViewDisplayContext {
 			liferayPortletResponse, PortletKeys.BLOGS
 		).setActionName(
 			"/blogs/image_editor"
-		).build();
+		).buildPortletURL();
 	}
 
 	public String[] getImageExtensions() throws ConfigurationException {
@@ -127,7 +127,7 @@ public class BlogsItemSelectorViewDisplayContext {
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
 			"selectedTab", getTitle(httpServletRequest.getLocale())
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTitle(Locale locale) {
@@ -141,7 +141,7 @@ public class BlogsItemSelectorViewDisplayContext {
 			liferayPortletResponse, PortletKeys.BLOGS
 		).setActionName(
 			"/blogs/upload_image"
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean isSearch() {

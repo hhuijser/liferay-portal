@@ -60,7 +60,7 @@ public class ObjectDefinitionPanelApp extends BasePanelApp {
 			super.getPortletURL(httpServletRequest)
 		).setParameter(
 			"objectDefinitionId", _objectDefinition.getObjectDefinitionId()
-		).build();
+		).buildPortletURL();
 	}
 
 	private final ObjectDefinition _objectDefinition;

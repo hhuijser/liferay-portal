@@ -286,7 +286,7 @@ public class CommerceAccountClayDataSetDataSetDisplayView
 				PortletProvider.Action.VIEW)
 		).setParameter(
 			"commerceAccountId", commerceAccountId
-		).build();
+		).buildPortletURL();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(
 			httpServletRequest, CommerceAccount.class.getName(),

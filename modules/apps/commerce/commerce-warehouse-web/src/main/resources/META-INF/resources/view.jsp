@@ -120,7 +120,7 @@ CommerceInventoryWarehousesDisplayContext commerceInventoryWarehousesDisplayCont
 							currentURL
 						).setParameter(
 							"commerceInventoryWarehouseId", commerceInventoryWarehouse.getCommerceInventoryWarehouseId()
-						).build()
+						).buildPortletURL()
 					%>'
 					name="name"
 					value="<%= HtmlUtil.escape(commerceInventoryWarehouse.getName()) %>"

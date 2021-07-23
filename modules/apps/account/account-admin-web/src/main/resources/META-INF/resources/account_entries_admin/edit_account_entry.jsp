@@ -30,6 +30,6 @@ AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttrib
 			"/account_admin/edit_account_entry"
 		).setParameter(
 			"accountEntryId", accountEntryDisplay.getAccountEntryId()
-		).build()
+		).buildPortletURL()
 	%>'
 />

@@ -60,7 +60,7 @@ public class AssetCategoryUtil {
 			renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		String navigation = ParamUtil.getString(
 			httpServletRequest, "navigation");

@@ -742,7 +742,7 @@ public class KaleoDesignerDisplayContext {
 			"/view.jsp"
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
-		).build();
+		).buildPortletURL();
 	}
 
 	protected PortletURL getWorkflowInstancesPortletURL() {
@@ -752,7 +752,7 @@ public class KaleoDesignerDisplayContext {
 			PortletRequest.RENDER_PHASE
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	protected boolean isSearch() {

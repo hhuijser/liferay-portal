@@ -684,7 +684,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			portletMode
 		).setWindowState(
 			windowState
-		).build();
+		).buildPortletURL();
 
 		if (parameters == null) {
 			return portletURL;
@@ -1018,7 +1018,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				"action", actionPath
 			).setParameter(
 				"controller", controllerPath
-			).build();
+			).buildPortletURL();
 
 			if (Validator.isNotNull(format)) {
 				portletURL.setParameter("format", format);

@@ -224,7 +224,7 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 			"displayStyle", _displayStyle
 		).setParameter(
 			"passwordPolicyId", _passwordPolicy.getPasswordPolicyId()
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

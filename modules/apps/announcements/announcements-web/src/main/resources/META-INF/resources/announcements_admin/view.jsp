@@ -125,7 +125,7 @@ AnnouncementsAdminViewManagementToolbarDisplayContext announcementsAdminViewMana
 							currentURL
 						).setParameter(
 							"entryId", entry.getEntryId()
-						).build()
+						).buildPortletURL()
 					%>'
 					name="title"
 					value="<%= HtmlUtil.escape(entry.getTitle()) %>"

@@ -171,7 +171,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 			).setParameter(
 				"layoutPrototypeId",
 				_layoutPageTemplateEntry.getLayoutPrototypeId()
-			).build();
+			).buildPortletURL();
 
 		return dropdownItem -> {
 			dropdownItem.setHref(configureLayoutPrototypeURL);

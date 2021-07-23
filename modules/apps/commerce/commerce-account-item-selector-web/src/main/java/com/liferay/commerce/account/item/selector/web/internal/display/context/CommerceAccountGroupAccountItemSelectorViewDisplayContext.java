@@ -63,7 +63,7 @@ public class CommerceAccountGroupAccountItemSelectorViewDisplayContext {
 			ParamUtil.getString(
 				_commerceAccountItemSelectorRequestHelper.getRenderRequest(),
 				"commerceAccountGroupId")
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getItemSelectedEventName() {

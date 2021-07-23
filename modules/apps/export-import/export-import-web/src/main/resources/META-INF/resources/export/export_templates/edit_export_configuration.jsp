@@ -79,7 +79,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"liveGroupId", liveGroupId
 ).setParameter(
 	"privateLayout", privateLayout
-).build();
+).buildPortletURL();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(portletURL.toString());

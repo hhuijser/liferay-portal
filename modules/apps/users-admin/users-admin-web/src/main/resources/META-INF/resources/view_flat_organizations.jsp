@@ -36,7 +36,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	(PortletURL)request.getAttribute("view.jsp-portletURL")
 ).setParameter(
 	"displayStyle", displayStyle
-).build();
+).buildPortletURL();
 
 String keywords = ParamUtil.getString(request, "keywords");
 

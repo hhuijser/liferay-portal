@@ -182,7 +182,7 @@ public class WikiNodesManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getTotalItems() {
@@ -253,7 +253,7 @@ public class WikiNodesManagementToolbarDisplayContext {
 			PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse)
 		).setMVCRenderCommandName(
 			"/wiki_admin/view"
-		).build();
+		).buildPortletURL();
 	}
 
 	private boolean _isTrashEnabled() {

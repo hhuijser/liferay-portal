@@ -74,7 +74,7 @@ public class WikiPageItemSelectorViewDisplayContext {
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
 			"selectedTab", getTitle(httpServletRequest.getLocale())
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getStatus() throws PortalException {

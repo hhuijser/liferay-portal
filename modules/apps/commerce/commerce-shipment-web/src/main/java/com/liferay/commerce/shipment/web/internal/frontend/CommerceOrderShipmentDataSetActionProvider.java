@@ -101,7 +101,7 @@ public class CommerceOrderShipmentDataSetActionProvider
 			_portal.getCurrentURL(httpServletRequest)
 		).setParameter(
 			"commerceShipmentId", commerceShipmentId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

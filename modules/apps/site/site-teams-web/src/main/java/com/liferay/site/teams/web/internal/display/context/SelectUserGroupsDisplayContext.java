@@ -127,7 +127,7 @@ public class SelectUserGroupsDisplayContext {
 			"eventName", getEventName()
 		).setParameter(
 			"teamId", getTeamId()
-		).build();
+		).buildPortletURL();
 
 		String keywords = getKeywords();
 

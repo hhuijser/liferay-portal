@@ -129,7 +129,7 @@ public class UsersAdminImpl implements UsersAdmin {
 			"toolbarItem", "view-all-organizations"
 		).setParameter(
 			"usersListView", "tree"
-		).build();
+		).buildPortletURL();
 
 		List<Organization> ancestorOrganizations = organization.getAncestors();
 

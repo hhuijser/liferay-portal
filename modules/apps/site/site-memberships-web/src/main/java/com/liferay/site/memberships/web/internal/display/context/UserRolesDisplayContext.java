@@ -160,7 +160,7 @@ public class UserRolesDisplayContext {
 			"/users_roles.jsp"
 		).setParameter(
 			"p_u_i_d", _getUserId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

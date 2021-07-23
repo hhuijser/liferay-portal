@@ -143,7 +143,7 @@ public class DisplayPageSiteNavigationMenuItemType
 			renderResponse
 		).setActionName(
 			"/navigation_menu/add_display_page_site_navigation_menu_item"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

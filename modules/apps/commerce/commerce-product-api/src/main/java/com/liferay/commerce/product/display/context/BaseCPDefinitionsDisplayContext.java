@@ -148,7 +148,7 @@ public abstract class BaseCPDefinitionsDisplayContext {
 			"/cp_definitions/edit_cp_definition"
 		).setParameter(
 			"cpDefinitionId", getCPDefinitionId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getPortletURL() throws PortalException {

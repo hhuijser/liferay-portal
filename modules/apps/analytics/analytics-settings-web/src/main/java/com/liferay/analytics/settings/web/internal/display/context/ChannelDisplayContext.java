@@ -130,7 +130,7 @@ public class ChannelDisplayContext {
 			"/configuration_admin/view_configuration_screen"
 		).setParameter(
 			"configurationScreenKey", "1-synced-sites"
-		).build();
+		).buildPortletURL();
 	}
 
 	private long _getCompanyId() {

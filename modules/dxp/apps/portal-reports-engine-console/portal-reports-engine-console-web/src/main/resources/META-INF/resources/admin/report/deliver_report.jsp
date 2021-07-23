@@ -28,7 +28,7 @@ PortletURL backURL = PortletURLBuilder.create(
 	"/admin/report/requested_report_detail.jsp"
 ).setParameter(
 	"entryId", entryId
-).build();
+).buildPortletURL();
 
 portletDisplay.setURLBack(backURL.toString());
 

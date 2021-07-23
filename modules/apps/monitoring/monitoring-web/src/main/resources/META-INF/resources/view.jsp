@@ -33,7 +33,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/monitoring/view"
-).build();
+).buildPortletURL();
 %>
 
 <clay:management-toolbar

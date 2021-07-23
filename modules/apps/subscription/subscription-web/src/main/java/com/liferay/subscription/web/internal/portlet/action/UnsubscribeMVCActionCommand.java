@@ -84,7 +84,7 @@ public class UnsubscribeMVCActionCommand extends BaseMVCActionCommand {
 			"userId", userId
 		).setWindowState(
 			WindowState.MAXIMIZED
-		).build();
+		).buildPortletURL();
 
 		try {
 			_checkUser(userId, actionRequest);

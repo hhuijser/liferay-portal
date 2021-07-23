@@ -36,7 +36,7 @@ PortletURL portletURL = PortletURLBuilder.createActionURL(
 	"nodeId", node.getNodeId()
 ).setParameter(
 	"title", wikiPage.getTitle()
-).build();
+).buildPortletURL();
 
 PortalUtil.addPortletBreadcrumbEntry(request, wikiPage.getTitle(), portletURL.toString());
 
@@ -59,7 +59,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "history
 				"nodeId", node.getNodeId()
 			).setParameter(
 				"title", wikiPage.getTitle()
-			).build()
+			).buildPortletURL()
 		%>'
 		total="<%= SocialActivityLocalServiceUtil.getActivitiesCount(0, WikiPage.class.getName(), wikiPage.getResourcePrimKey()) %>"
 	>

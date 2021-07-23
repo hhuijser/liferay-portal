@@ -116,7 +116,7 @@ catch (Exception exception) {
 					"mbCategoryId", rootTopicId
 				).setWindowState(
 					LiferayWindowState.POP_UP
-				).build();
+				).buildPortletURL();
 				%>
 
 				url: '<%= selectMBCategoryURL.toString() %>',

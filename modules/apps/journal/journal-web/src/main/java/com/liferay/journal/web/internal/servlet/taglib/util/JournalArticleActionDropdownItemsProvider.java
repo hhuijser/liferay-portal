@@ -536,7 +536,7 @@ public class JournalArticleActionDropdownItemsProvider {
 
 						return portletDisplay.getId();
 					}
-				).build());
+				).buildPortletURL());
 			dropdownItem.setLabel(
 				LanguageUtil.get(_httpServletRequest, "import-translation"));
 		};
@@ -666,7 +666,7 @@ public class JournalArticleActionDropdownItemsProvider {
 				"mvcPath", new String[] {"/preview_article_content.jsp"}
 			).put(
 				"version", new String[] {String.valueOf(_article.getVersion())}
-			).build()
+			).buildPortletURL()
 		).setWindowState(
 			LiferayWindowState.POP_UP
 		).buildString();

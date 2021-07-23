@@ -434,7 +434,7 @@ public class CommercePriceListDisplayContext
 			"modelResourceDescription", "{name}"
 		).setParameter(
 			"resourcePrimKey", "{id}"
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

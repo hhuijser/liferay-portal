@@ -252,7 +252,7 @@ public class StagingProcessesWebToolbarDisplayContext {
 			_getStagingRenderURL()
 		).setNavigation(
 			navigation
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<DropdownItem> _getOrderByDropDownItems() {
@@ -282,7 +282,7 @@ public class StagingProcessesWebToolbarDisplayContext {
 			_getStagingRenderURL()
 		).setParameter(
 			"orderByCol", orderByColumnName
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getStagingRenderURL() {
@@ -305,7 +305,7 @@ public class StagingProcessesWebToolbarDisplayContext {
 		).setParameter(
 			"searchContainerId",
 			ParamUtil.getString(_httpServletRequest, "searchContainerId")
-		).build();
+		).buildPortletURL();
 	}
 
 	private final HttpServletRequest _httpServletRequest;

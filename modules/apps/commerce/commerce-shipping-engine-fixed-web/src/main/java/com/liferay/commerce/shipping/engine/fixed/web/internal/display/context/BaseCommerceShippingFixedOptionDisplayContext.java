@@ -109,7 +109,7 @@ public class BaseCommerceShippingFixedOptionDisplayContext {
 		).setParameter(
 			"screenNavigationCategoryKey",
 			getSelectedScreenNavigationCategoryKey()
-		).build();
+		).buildPortletURL();
 
 		CommerceShippingMethod commerceShippingMethod =
 			getCommerceShippingMethod();

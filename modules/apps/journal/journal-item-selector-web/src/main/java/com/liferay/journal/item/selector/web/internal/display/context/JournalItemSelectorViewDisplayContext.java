@@ -81,7 +81,7 @@ public class JournalItemSelectorViewDisplayContext {
 		).setParameter(
 			"resourcePrimKey",
 			_journalItemSelectorCriterion.getResourcePrimKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getItemSelectedEventName() {
@@ -126,7 +126,7 @@ public class JournalItemSelectorViewDisplayContext {
 			_journalItemSelectorCriterion.getResourcePrimKey()
 		).setParameter(
 			"selectedTab", getTitle(httpServletRequest.getLocale())
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTitle(Locale locale) {
@@ -145,7 +145,7 @@ public class JournalItemSelectorViewDisplayContext {
 		).setParameter(
 			"resourcePrimKey",
 			_journalItemSelectorCriterion.getResourcePrimKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean isSearch() {

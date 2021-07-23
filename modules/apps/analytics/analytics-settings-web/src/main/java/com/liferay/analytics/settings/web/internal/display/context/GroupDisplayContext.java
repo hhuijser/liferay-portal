@@ -141,7 +141,7 @@ public class GroupDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			_mvcRenderCommandName
-		).build();
+		).buildPortletURL();
 
 		if (StringUtil.equalsIgnoreCase(
 				_mvcRenderCommandName, "/analytics_settings/edit_channel")) {

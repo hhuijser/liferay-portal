@@ -179,7 +179,7 @@ public class FragmentCollectionsDisplayContext {
 			"/fragment/view_fragment_collections"
 		).setParameter(
 			"eventName", getEventName()
-		).build();
+		).buildPortletURL();
 
 		String keywords = _getKeywords();
 

@@ -144,7 +144,7 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 			"orderByCol", _getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 
 		if (_repositoryEntryBrowserDisplayContext.isSearchEverywhere()) {
 			currentSortingURL.setParameter("scope", "everywhere");
@@ -240,7 +240,7 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 			(String)null
 		).setParameter(
 			"resetCur", true
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getSortingURL() throws PortletException {
@@ -249,7 +249,7 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public ViewTypeItemList getViewTypes() throws PortletException {

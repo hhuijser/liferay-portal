@@ -473,7 +473,7 @@ public class UpdateArticleMVCActionCommand extends BaseMVCActionCommand {
 			"resourcePrimKey", article.getResourcePrimKey()
 		).setParameter(
 			"version", article.getVersion()
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(languageId)) {
 			portletURL.setParameter("languageId", languageId);

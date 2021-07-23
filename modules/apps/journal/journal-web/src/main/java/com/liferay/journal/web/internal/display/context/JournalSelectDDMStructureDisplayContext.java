@@ -209,7 +209,7 @@ public class JournalSelectDDMStructureDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_ddm_structure.jsp"
-		).build();
+		).buildPortletURL();
 
 		long classPK = getClassPK();
 

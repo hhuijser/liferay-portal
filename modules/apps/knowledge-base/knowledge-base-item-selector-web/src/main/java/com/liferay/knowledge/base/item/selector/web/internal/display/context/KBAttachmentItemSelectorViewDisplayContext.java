@@ -110,7 +110,7 @@ public class KBAttachmentItemSelectorViewDisplayContext {
 			PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 		).setParameter(
 			"selectedTab", getTitle(httpServletRequest.getLocale())
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getTitle(Locale locale) {
@@ -127,7 +127,7 @@ public class KBAttachmentItemSelectorViewDisplayContext {
 		).setParameter(
 			"resourcePrimKey",
 			_kbAttachmentItemSelectorCriterion.getResourcePrimKey()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean isSearch() {

@@ -142,7 +142,7 @@ renderResponse.setTitle(cpDefinition.getName(themeDisplay.getLanguageId()));
 								"cpDefinitionGroupedEntryId", cpDefinitionGroupedEntry.getCPDefinitionGroupedEntryId()
 							).setParameter(
 								"cpDefinitionId", cpDefinitionGroupedEntry.getCPDefinitionId()
-							).build();
+							).buildPortletURL();
 
 							CProduct cProduct = cpDefinitionGroupedEntry.getEntryCProduct();
 

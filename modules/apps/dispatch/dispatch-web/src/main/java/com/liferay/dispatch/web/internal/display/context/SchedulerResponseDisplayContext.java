@@ -83,7 +83,7 @@ public class SchedulerResponseDisplayContext extends BaseDisplayContext {
 			"/dispatch/edit_scheduler_response"
 		).setTabs1(
 			"scheduler-response"
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			dispatchRequestHelper.getRequest(), "redirect");

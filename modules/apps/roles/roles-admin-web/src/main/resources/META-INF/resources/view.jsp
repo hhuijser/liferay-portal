@@ -100,7 +100,7 @@ PortletURL portletURL = viewRolesManagementToolbarDisplayContext.getPortletURL()
 					"details"
 				).setParameter(
 					"roleId", role.getRoleId()
-				).build();
+				).buildPortletURL();
 			}
 			%>
 

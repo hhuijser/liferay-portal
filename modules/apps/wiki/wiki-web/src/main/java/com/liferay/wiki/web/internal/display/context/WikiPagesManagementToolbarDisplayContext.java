@@ -160,7 +160,7 @@ public class WikiPagesManagementToolbarDisplayContext {
 
 				return node.getNodeId();
 			}
-		).build();
+		).buildPortletURL();
 	}
 
 	public CreationMenu getCreationMenu() {
@@ -255,7 +255,7 @@ public class WikiPagesManagementToolbarDisplayContext {
 
 				return node.getNodeId();
 			}
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getSortingOrder() {
@@ -270,7 +270,7 @@ public class WikiPagesManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(_getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getTotalItems() {
@@ -416,7 +416,7 @@ public class WikiPagesManagementToolbarDisplayContext {
 			"/wiki/view_pages"
 		).setRedirect(
 			_currentURLObj
-		).build();
+		).buildPortletURL();
 	}
 
 	private boolean _isTrashEnabled() {

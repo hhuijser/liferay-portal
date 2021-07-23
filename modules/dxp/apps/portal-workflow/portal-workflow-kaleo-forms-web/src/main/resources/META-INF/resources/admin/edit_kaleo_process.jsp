@@ -49,7 +49,7 @@ PortletURL backPortletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCPath(
 	"/admin/view.jsp"
-).build();
+).buildPortletURL();
 
 portletDisplay.setURLBack(backPortletURL.toString());
 

@@ -339,7 +339,7 @@ public class DDMDisplayContext {
 					"eventName",
 					ParamUtil.getString(
 						_renderRequest, "eventName", "selectStructure")
-				).build();
+				).buildPortletURL();
 
 				dropdownItem.setHref(
 					_renderResponse.createRenderURL(), "mvcPath",
@@ -417,7 +417,7 @@ public class DDMDisplayContext {
 			"/view.jsp"
 		).setParameter(
 			"groupId", _ddmWebRequestHelper.getScopeGroupId()
-		).build();
+		).buildPortletURL();
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			getCreationMenuDropdownItem(
@@ -429,7 +429,7 @@ public class DDMDisplayContext {
 					redirectURL
 				).setParameter(
 					"groupId", _ddmWebRequestHelper.getScopeGroupId()
-				).build(),
+				).buildPortletURL(),
 				"add")
 		).build();
 	}
@@ -509,7 +509,7 @@ public class DDMDisplayContext {
 							"mode", getTemplateMode()
 						).setParameter(
 							"resourceClassNameId", getResourceClassNameId()
-						).build();
+						).buildPortletURL();
 
 					String message = "add";
 
@@ -561,7 +561,7 @@ public class DDMDisplayContext {
 							).setParameter(
 								"type",
 								DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY
-							).build();
+							).buildPortletURL();
 
 						for (TemplateHandler templateHandler :
 								templateHandlers) {

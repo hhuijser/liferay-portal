@@ -388,7 +388,7 @@ public class CommerceSubscriptionEntryDisplayContext {
 		).setParameter(
 			"commerceSubscriptionEntryId",
 			_commerceSubscriptionEntry.getCommerceSubscriptionEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public boolean hasManageCommerceSubscriptionEntryPermission() {

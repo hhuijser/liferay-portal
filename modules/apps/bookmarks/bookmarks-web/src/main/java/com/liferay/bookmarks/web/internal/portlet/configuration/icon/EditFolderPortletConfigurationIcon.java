@@ -69,7 +69,7 @@ public class EditFolderPortletConfigurationIcon
 			"/bookmarks/edit_folder"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		BookmarksFolder folder = null;
 

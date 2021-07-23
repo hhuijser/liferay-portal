@@ -35,7 +35,7 @@ PortletURL viewFactoryInstancesURL = PortletURLBuilder.createRenderURL(
 	"/configuration_admin/view_factory_instances"
 ).setParameter(
 	"factoryPid", configurationModel.getFactoryPid()
-).build();
+).buildPortletURL();
 
 if (configurationModel.isFactory()) {
 	bindRedirectURL = viewFactoryInstancesURL.toString();

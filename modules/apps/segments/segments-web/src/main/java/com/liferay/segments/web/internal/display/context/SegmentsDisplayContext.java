@@ -396,7 +396,7 @@ public class SegmentsDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		String keywords = _getKeywords();
 

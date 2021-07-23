@@ -28,7 +28,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"/document_library/select_file_entry_type.jsp"
 ).setParameter(
 	"eventName", eventName
-).build();
+).buildPortletURL();
 %>
 
 <clay:navigation-bar

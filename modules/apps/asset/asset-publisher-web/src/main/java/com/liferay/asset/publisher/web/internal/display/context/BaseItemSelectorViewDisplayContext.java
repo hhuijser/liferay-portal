@@ -114,7 +114,7 @@ public abstract class BaseItemSelectorViewDisplayContext
 		).setParameter(
 			"privateLayout",
 			ParamUtil.getBoolean(httpServletRequest, "privateLayout")
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

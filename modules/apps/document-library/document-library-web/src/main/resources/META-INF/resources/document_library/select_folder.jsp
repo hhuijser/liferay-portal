@@ -91,7 +91,7 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 					"selectedFolderId", selectedFolderId
 				).setParameter(
 					"showMountFolder", dlVisualizationHelper.isMountFolderVisible()
-				).build()
+				).buildPortletURL()
 			%>'
 			total="<%= DLAppServiceUtil.getFoldersCount(repositoryId, folderId, dlVisualizationHelper.isMountFolderVisible()) %>"
 		>

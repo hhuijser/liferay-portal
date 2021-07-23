@@ -531,7 +531,7 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 			}
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getAssetTagSelectorURL()
@@ -575,7 +575,7 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 			}
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<DropdownItem> _getFilterAuthorDropdownItems() {
@@ -593,7 +593,7 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 						getPortletURL()
 					).setParameter(
 						"authorIds", (String)null
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "all"));

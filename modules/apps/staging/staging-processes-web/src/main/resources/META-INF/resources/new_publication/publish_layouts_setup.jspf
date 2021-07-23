@@ -138,7 +138,7 @@ PortletURL portletURL = PortletURLBuilder.createActionURL(
 	"/staging_processes/publish_layouts"
 ).setParameter(
 	"stagingGroupId", stagingGroupId
-).build();
+).buildPortletURL();
 
 renderResponse.setTitle(!configuredPublish ? LanguageUtil.get(request, "new-publish-process") : LanguageUtil.format(request, "new-publish-process-based-on-x", exportImportConfiguration.getName(), false));
 

@@ -170,7 +170,7 @@ public class DisplayPageDisplayContext {
 			_themeDisplay.getURLCurrent()
 		).setTabs1(
 			"display-page-templates"
-		).build();
+		).buildPortletURL();
 
 		String keywords = getKeywords();
 

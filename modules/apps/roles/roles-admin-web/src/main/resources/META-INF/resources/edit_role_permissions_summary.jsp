@@ -37,7 +37,7 @@ PortletURL permissionsAllURL = PortletURLBuilder.createRenderURL(
 	"roles"
 ).setParameter(
 	"roleId", role.getRoleId()
-).build();
+).buildPortletURL();
 
 List<String> headerNames = new ArrayList<String>();
 
@@ -189,7 +189,7 @@ for (int i = 0; i < results.size(); i++) {
 		"roles"
 	).setParameter(
 		"roleId", role.getRoleId()
-	).build();
+	).buildPortletURL();
 
 	StringBundler sb = new StringBundler(17);
 

@@ -198,7 +198,7 @@ currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() +
 					"p_u_i_d", (selUser == null) ? "0" : String.valueOf(selUser.getUserId())
 				).setWindowState(
 					LiferayWindowState.POP_UP
-				).build();
+				).buildPortletURL();
 				%>
 
 				url: '<%= selectUserGroupURL.toString() %>',

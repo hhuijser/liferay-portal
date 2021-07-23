@@ -35,7 +35,7 @@ PortletURL microblogsEntriesURL = PortletURLBuilder.createRenderURL(
 	"cur", cur
 ).setWindowState(
 	WindowState.NORMAL
-).build();
+).buildPortletURL();
 
 request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, microblogsEntriesURL);
 %>

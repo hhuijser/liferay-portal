@@ -88,7 +88,7 @@ PortletURLBuilder.create(
 						PortletMode.VIEW
 					).setWindowState(
 						WindowState.MAXIMIZED
-					).build() %>"><%= PortalUtil.getPortletTitle(portlet, application, locale) %></a
+					).buildPortletURL() %>"><%= PortalUtil.getPortletTitle(portlet, application, locale) %></a
 						>
 					</div>
 				</c:if>

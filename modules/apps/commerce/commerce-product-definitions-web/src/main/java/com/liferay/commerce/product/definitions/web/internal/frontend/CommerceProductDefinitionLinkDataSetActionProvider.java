@@ -120,7 +120,7 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 			"cpDefinitionId", cpDefinitionLink.getCPDefinitionId()
 		).setParameter(
 			"cpDefinitionLinkId", cpDefinitionLink.getCPDefinitionLinkId()
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getProductLinkEditURL(
@@ -138,7 +138,7 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 			"cpDefinitionId", cpDefinitionLink.getCPDefinitionId()
 		).setParameter(
 			"cpDefinitionLinkId", cpDefinitionLink.getCPDefinitionLinkId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

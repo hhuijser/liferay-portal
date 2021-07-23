@@ -104,7 +104,7 @@ public class CommerceProductChannelDataSetActionProvider
 			"commerceChannelRelId", commerceChannelRel.getCommerceChannelRelId()
 		).setParameter(
 			"cpDefinitionId", commerceChannelRel.getClassPK()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference

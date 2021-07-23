@@ -69,7 +69,7 @@ public class EditCategoryPortletConfigurationIcon
 			"/message_boards/edit_category"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		MBCategory category = null;
 

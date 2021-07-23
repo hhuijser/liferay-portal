@@ -70,7 +70,7 @@ public class DeleteKBTemplatePortletConfigurationIcon
 			"deleteKBTemplate"
 		).setMVCPath(
 			"/admin/view_template.jsp"
-		).build();
+		).buildPortletURL();
 
 		KBTemplate kbTemplate = (KBTemplate)portletRequest.getAttribute(
 			KBWebKeys.KNOWLEDGE_BASE_KB_TEMPLATE);

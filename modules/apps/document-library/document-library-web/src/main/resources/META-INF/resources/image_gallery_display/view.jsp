@@ -79,7 +79,7 @@ String[] mediaGalleryMimeTypes = dlPortletInstanceSettings.getMimeTypes();
 		renderResponse
 	).setMVCRenderCommandName(
 		"/image_gallery_display/view"
-	).build();
+	).buildPortletURL();
 
 	if (Validator.isNotNull(redirect)) {
 		portletURL.setParameter("redirect", redirect);

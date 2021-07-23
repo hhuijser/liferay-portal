@@ -110,7 +110,7 @@ public class CommerceAccountOrganizationRelAdminDisplayContext
 			super.getPortletURL()
 		).setMVCRenderCommandName(
 			"/commerce_account_admin/edit_commerce_account"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

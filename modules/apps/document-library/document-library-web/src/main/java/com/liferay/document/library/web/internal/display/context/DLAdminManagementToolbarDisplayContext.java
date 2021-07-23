@@ -404,7 +404,7 @@ public class DLAdminManagementToolbarDisplayContext
 			"/document_library/search"
 		).setParameter(
 			"repositoryId", repositoryId
-		).build();
+		).buildPortletURL();
 
 		long searchRepositoryId = ParamUtil.getLong(
 			_httpServletRequest, "searchRepositoryId", repositoryId);
@@ -498,7 +498,7 @@ public class DLAdminManagementToolbarDisplayContext
 
 				return HtmlUtil.escapeJS(navigation);
 			}
-		).build();
+		).buildPortletURL();
 
 		if (curEntry > 0) {
 			displayStyleURL.setParameter("curEntry", String.valueOf(curEntry));
@@ -637,7 +637,7 @@ public class DLAdminManagementToolbarDisplayContext
 						"browseBy", (String)null
 					).setParameter(
 						"fileEntryTypeId", (String)null
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "all"));
@@ -654,7 +654,7 @@ public class DLAdminManagementToolbarDisplayContext
 						"/document_library/view"
 					).setNavigation(
 						"recent"
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "recent"));
@@ -672,7 +672,7 @@ public class DLAdminManagementToolbarDisplayContext
 						"/document_library/view"
 					).setNavigation(
 						"mine"
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "mine"));

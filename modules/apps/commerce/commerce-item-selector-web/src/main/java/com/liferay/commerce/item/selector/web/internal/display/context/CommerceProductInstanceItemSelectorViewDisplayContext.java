@@ -96,7 +96,7 @@ public class CommerceProductInstanceItemSelectorViewDisplayContext
 			"commerceCatalogGroupId", getGroupId()
 		).setParameter(
 			"commercePriceListId", getCommercePriceListId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

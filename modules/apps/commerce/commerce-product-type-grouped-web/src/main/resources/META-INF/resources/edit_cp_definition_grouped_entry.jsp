@@ -35,7 +35,7 @@ PortletURL groupedProductsURL = PortletURLBuilder.createRenderURL(
 	"cpDefinitionId", cpDefinition.getCPDefinitionId()
 ).setParameter(
 	"screenNavigationCategoryKey", cpDefinitionGroupedEntriesDisplayContext.getScreenNavigationCategoryKey()
-).build();
+).buildPortletURL();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(groupedProductsURL.toString());

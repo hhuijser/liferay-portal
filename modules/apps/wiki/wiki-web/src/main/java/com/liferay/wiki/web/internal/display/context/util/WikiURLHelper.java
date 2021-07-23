@@ -66,7 +66,7 @@ public class WikiURLHelper {
 			"all-pages"
 		).setParameter(
 			"nodeId", node.getNodeId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getFrontPageURL(WikiNode wikiNode) {
@@ -78,7 +78,7 @@ public class WikiURLHelper {
 			"tag", StringPool.BLANK
 		).setParameter(
 			"title", _wikiGroupServiceConfiguration.frontPageName()
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getSearchURL() {
@@ -86,7 +86,7 @@ public class WikiURLHelper {
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/wiki/search"
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getUndoTrashURL() {
@@ -96,7 +96,7 @@ public class WikiURLHelper {
 			"/wiki/edit_page"
 		).setCMD(
 			Constants.RESTORE
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getViewDraftPagesURL(WikiNode wikiNode) {
@@ -104,7 +104,7 @@ public class WikiURLHelper {
 			getWikiNodeBaseURL(wikiNode)
 		).setMVCRenderCommandName(
 			"/wiki/view_draft_pages"
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getViewFrontPagePageURL(WikiNode wikiNode) {
@@ -117,7 +117,7 @@ public class WikiURLHelper {
 			getWikiNodeBaseURL(wikiNode)
 		).setMVCRenderCommandName(
 			"/wiki/view_orphan_pages"
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getViewPagesURL(WikiNode wikiNode) {
@@ -125,7 +125,7 @@ public class WikiURLHelper {
 			getWikiNodeBaseURL(wikiNode)
 		).setMVCRenderCommandName(
 			"/wiki/view_pages"
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getViewPageURL(WikiNode wikiNode, String title) {
@@ -137,7 +137,7 @@ public class WikiURLHelper {
 			"nodeName", wikiNode.getName()
 		).setParameter(
 			"title", title
-		).build();
+		).buildPortletURL();
 	}
 
 	public PortletURL getViewRecentChangesURL(WikiNode wikiNode) {
@@ -145,7 +145,7 @@ public class WikiURLHelper {
 			getWikiNodeBaseURL(wikiNode)
 		).setMVCRenderCommandName(
 			"/wiki/view_recent_changes"
-		).build();
+		).buildPortletURL();
 	}
 
 	protected PortletURL getWikiNodeBaseURL(WikiNode node) {
@@ -153,7 +153,7 @@ public class WikiURLHelper {
 			_liferayPortletResponse
 		).setParameter(
 			"nodeName", node.getName()
-		).build();
+		).buildPortletURL();
 
 		long categoryId = _wikiRequestHelper.getCategoryId();
 

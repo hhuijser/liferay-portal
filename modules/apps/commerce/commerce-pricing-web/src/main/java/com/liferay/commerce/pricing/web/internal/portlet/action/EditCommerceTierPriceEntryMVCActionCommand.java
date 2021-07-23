@@ -155,7 +155,7 @@ public class EditCommerceTierPriceEntryMVCActionCommand
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_price_list/edit_commerce_tier_price_entry"
-		).build();
+		).buildPortletURL();
 
 		long commercePriceEntryId = ParamUtil.getLong(
 			actionRequest, "commercePriceEntryId");

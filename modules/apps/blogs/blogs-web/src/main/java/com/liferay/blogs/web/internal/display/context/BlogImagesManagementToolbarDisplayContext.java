@@ -173,7 +173,7 @@ public class BlogImagesManagementToolbarDisplayContext
 			"/blogs/view"
 		).setNavigation(
 			"images"
-		).build();
+		).buildPortletURL();
 
 		int delta = ParamUtil.getInteger(
 			_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM);
@@ -212,7 +212,7 @@ public class BlogImagesManagementToolbarDisplayContext
 			getPortletURL()
 		).setParameter(
 			SearchContainer.DEFAULT_CUR_PARAM, "0"
-		).build();
+		).buildPortletURL();
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 

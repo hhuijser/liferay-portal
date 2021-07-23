@@ -218,7 +218,7 @@ public class ReportsEngineDisplayContext {
 			_liferayPortletResponse
 		).setTabs1(
 			_getTabs1()
-		).build();
+		).buildPortletURL();
 
 		String navigation = ParamUtil.getString(
 			_httpServletRequest, "navigation");

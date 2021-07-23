@@ -71,7 +71,7 @@ public class LayoutSetCTDisplayRenderer
 				0, 0, PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/layout_admin/edit_layout_set"
-		).build();
+		).buildPortletURL();
 
 		String currentURL = _portal.getCurrentURL(httpServletRequest);
 

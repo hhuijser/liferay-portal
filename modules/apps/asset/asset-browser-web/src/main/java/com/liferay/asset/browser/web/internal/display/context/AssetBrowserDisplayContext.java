@@ -253,7 +253,7 @@ public class AssetBrowserDisplayContext {
 				PortalUtil.getLiferayPortletResponse(_renderResponse))
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		long selectedGroupId = ParamUtil.getLong(
 			_httpServletRequest, "selectedGroupId");

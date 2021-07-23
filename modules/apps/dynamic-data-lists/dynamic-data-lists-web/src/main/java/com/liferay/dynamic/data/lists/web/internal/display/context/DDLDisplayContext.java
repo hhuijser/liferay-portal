@@ -346,7 +346,7 @@ public class DDLDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 
@@ -427,7 +427,7 @@ public class DDLDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		RecordSetSearch recordSetSearch = new RecordSetSearch(
 			_renderRequest, portletURL);

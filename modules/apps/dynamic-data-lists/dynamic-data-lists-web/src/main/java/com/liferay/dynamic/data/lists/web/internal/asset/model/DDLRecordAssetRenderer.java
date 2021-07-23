@@ -172,7 +172,7 @@ public class DDLRecordAssetRenderer extends BaseJSPAssetRenderer<DDLRecord> {
 			"recordId", _record.getRecordId()
 		).setParameter(
 			"version", _recordVersion.getVersion()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

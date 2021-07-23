@@ -21,13 +21,13 @@ PortletURL manageCollaboratorsURL = PortletURLBuilder.create(
 	PortletProviderUtil.getPortletURL(request, SharingEntry.class.getName(), PortletProvider.Action.MANAGE)
 ).setWindowState(
 	LiferayWindowState.POP_UP
-).build();
+).buildPortletURL();
 
 PortletURL sharingURL = PortletURLBuilder.create(
 	PortletProviderUtil.getPortletURL(request, SharingEntry.class.getName(), PortletProvider.Action.EDIT)
 ).setWindowState(
 	LiferayWindowState.POP_UP
-).build();
+).buildPortletURL();
 %>
 
 <aui:script sandbox="<%= true %>">

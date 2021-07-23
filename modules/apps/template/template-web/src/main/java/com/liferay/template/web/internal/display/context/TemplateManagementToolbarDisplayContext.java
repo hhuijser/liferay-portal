@@ -135,7 +135,7 @@ public class TemplateManagementToolbarDisplayContext
 			"groupId", _themeDisplay.getScopeGroupId()
 		).setParameter(
 			"type", DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY
-		).build();
+		).buildPortletURL();
 
 		for (TemplateHandler templateHandler : templateHandlers) {
 			addDDMTemplateURL.setParameter(

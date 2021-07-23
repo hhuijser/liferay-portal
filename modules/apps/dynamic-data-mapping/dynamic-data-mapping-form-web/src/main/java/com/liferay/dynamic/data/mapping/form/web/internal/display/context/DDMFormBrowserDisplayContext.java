@@ -83,7 +83,7 @@ public class DDMFormBrowserDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		DDMFormInstanceSearch ddmFormInstanceSearch = new DDMFormInstanceSearch(
 			_renderRequest, portletURL);
@@ -227,7 +227,7 @@ public class DDMFormBrowserDisplayContext {
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 

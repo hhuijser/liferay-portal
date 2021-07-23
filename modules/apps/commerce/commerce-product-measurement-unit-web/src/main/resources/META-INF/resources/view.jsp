@@ -106,7 +106,7 @@ CPMeasurementUnitsDisplayContext cpMeasurementUnitsDisplayContext = (CPMeasureme
 								"cpMeasurementUnitId", cpMeasurementUnit.getCPMeasurementUnitId()
 							).setParameter(
 								"type", cpMeasurementUnitsDisplayContext.getType()
-							).build()
+							).buildPortletURL()
 						%>'
 						name="name"
 						value="<%= HtmlUtil.escape(cpMeasurementUnit.getName(locale)) %>"

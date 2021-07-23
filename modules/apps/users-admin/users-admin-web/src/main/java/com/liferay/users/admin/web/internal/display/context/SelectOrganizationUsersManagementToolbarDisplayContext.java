@@ -120,7 +120,7 @@ public class SelectOrganizationUsersManagementToolbarDisplayContext {
 			"displayStyle", _displayStyle
 		).setParameter(
 			"organizationId", _organization.getOrganizationId()
-		).build();
+		).buildPortletURL();
 
 		String[] keywords = ParamUtil.getStringValues(
 			_httpServletRequest, "keywords");

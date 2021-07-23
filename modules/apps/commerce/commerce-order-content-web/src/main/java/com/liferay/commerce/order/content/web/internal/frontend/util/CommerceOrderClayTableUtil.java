@@ -191,7 +191,7 @@ public class CommerceOrderClayTableUtil {
 			"/commerce_order_content/view_commerce_order_shipments"
 		).setParameter(
 			"commerceOrderItemId", commerceOrderItemId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

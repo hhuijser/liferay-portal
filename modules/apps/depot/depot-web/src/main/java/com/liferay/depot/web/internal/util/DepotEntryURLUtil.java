@@ -106,7 +106,7 @@ public class DepotEntryURLUtil {
 			redirect
 		).setParameter(
 			"depotEntryId", depotEntry.getDepotEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public static ActionURL getUpdateDDMStructuresAvailableActionURL(

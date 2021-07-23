@@ -193,7 +193,7 @@ public class DDMFormAssetRenderer
 		).setParameter(
 			"formInstanceRecordId",
 			_ddmFormInstanceRecord.getFormInstanceRecordId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

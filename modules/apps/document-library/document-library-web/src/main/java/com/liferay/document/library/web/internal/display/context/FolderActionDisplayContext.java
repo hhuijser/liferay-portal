@@ -723,7 +723,7 @@ public class FolderActionDisplayContext {
 			_dlRequestHelper.getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).build();
+		).buildPortletURL();
 
 		if (DLFolderUtil.isRepositoryRoot(folder)) {
 			portletURL.setParameter(

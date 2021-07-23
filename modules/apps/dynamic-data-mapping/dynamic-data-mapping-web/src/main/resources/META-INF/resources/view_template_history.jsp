@@ -33,7 +33,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	redirect
 ).setParameter(
 	"templateId", templateId
-).build();
+).buildPortletURL();
 
 PortletURL backURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -43,7 +43,7 @@ PortletURL backURL = PortletURLBuilder.createRenderURL(
 	redirect
 ).setParameter(
 	"templateId", templateId
-).build();
+).buildPortletURL();
 %>
 
 <c:choose>

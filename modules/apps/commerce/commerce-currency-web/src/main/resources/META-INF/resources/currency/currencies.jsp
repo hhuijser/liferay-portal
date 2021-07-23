@@ -104,7 +104,7 @@ CommerceCurrenciesDisplayContext commerceCurrenciesDisplayContext = (CommerceCur
 							currentURL
 						).setParameter(
 							"commerceCurrencyId", commerceCurrency.getCommerceCurrencyId()
-						).build()
+						).buildPortletURL()
 					%>'
 					name="name"
 					value="<%= HtmlUtil.escape(commerceCurrency.getName(locale)) %>"

@@ -145,7 +145,7 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 					RenderRequest.RENDER_PHASE)
 			).setMVCPath(
 				"/segments_experiment_panel.jsp"
-			).build();
+			).buildPortletURL();
 
 			try {
 				portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);

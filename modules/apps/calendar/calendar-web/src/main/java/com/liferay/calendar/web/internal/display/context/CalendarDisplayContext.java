@@ -366,7 +366,7 @@ public class CalendarDisplayContext {
 			"/view.jsp"
 		).setTabs1(
 			"resources"
-		).build();
+		).buildPortletURL();
 
 		String keywords = getKeywords();
 

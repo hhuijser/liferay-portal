@@ -1867,7 +1867,7 @@ public class PortalImpl implements Portal {
 				PortletMode.VIEW
 			).setWindowState(
 				WindowState.MAXIMIZED
-			).build();
+			).buildPortletURL();
 
 			if (!PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS) {
 				return createAccountURL.toString();

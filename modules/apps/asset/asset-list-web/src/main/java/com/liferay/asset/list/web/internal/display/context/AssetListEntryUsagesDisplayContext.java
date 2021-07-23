@@ -180,7 +180,7 @@ public class AssetListEntryUsagesDisplayContext {
 			getRedirect()
 		).setParameter(
 			"assetListEntryId", getAssetListEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getRedirect() {

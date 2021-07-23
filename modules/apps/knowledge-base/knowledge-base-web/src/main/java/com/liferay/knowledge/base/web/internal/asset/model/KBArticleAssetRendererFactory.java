@@ -128,7 +128,7 @@ public class KBArticleAssetRendererFactory
 				PortletRequest.RENDER_PHASE)
 		).setMVCPath(
 			"/admin/edit_article.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

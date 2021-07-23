@@ -68,7 +68,7 @@ if (Validator.isNotNull(parentTitle)) {
 		PortletURLUtil.clone(viewPageURL, renderResponse)
 	).setParameter(
 		"title", parentTitle
-	).build();
+	).buildPortletURL();
 
 	parentTitle = StringUtil.shorten(parentTitle, 20);
 }
@@ -87,7 +87,7 @@ PortletURL addPageURL = PortletURLBuilder.createRenderURL(
 	"parentTitle", wikiPage.getTitle()
 ).setParameter(
 	"title", StringPool.BLANK
-).build();
+).buildPortletURL();
 
 PortletURL editPageURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -99,7 +99,7 @@ PortletURL editPageURL = PortletURLBuilder.createRenderURL(
 	"nodeId", node.getNodeId()
 ).setParameter(
 	"title", title
-).build();
+).buildPortletURL();
 
 PortletURL printPageURL = PortletURLBuilder.create(
 	PortletURLUtil.clone(viewPageURL, renderResponse)
@@ -107,7 +107,7 @@ PortletURL printPageURL = PortletURLBuilder.create(
 	"viewMode", Constants.PRINT
 ).setWindowState(
 	LiferayWindowState.POP_UP
-).build();
+).buildPortletURL();
 
 PortletURL categorizedPagesURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -115,7 +115,7 @@ PortletURL categorizedPagesURL = PortletURLBuilder.createRenderURL(
 	"/wiki/view_categorized_pages"
 ).setParameter(
 	"nodeId", node.getNodeId()
-).build();
+).buildPortletURL();
 
 PortletURL taggedPagesURL = PortletURLBuilder.createRenderURL(
 	renderResponse
@@ -123,7 +123,7 @@ PortletURL taggedPagesURL = PortletURLBuilder.createRenderURL(
 	"/wiki/view_tagged_pages"
 ).setParameter(
 	"nodeId", node.getNodeId()
-).build();
+).buildPortletURL();
 
 AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(WikiPage.class.getName(), wikiPage.getResourcePrimKey());
 
@@ -325,7 +325,7 @@ if (portletTitleBasedNavigation) {
 								"nodeName", node.getName()
 							).setParameter(
 								"title", originalPage.getTitle()
-							).build();
+							).buildPortletURL();
 							%>
 
 							<div class="page-redirect" onClick="location.href = '<%= originalViewPageURL.toString() %>';">

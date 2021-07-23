@@ -284,7 +284,7 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 				PortletRequest.RENDER_PHASE)
 		).setParameter(
 			"saveLastPath", false
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

@@ -251,7 +251,7 @@ public class LayoutSetPrototypeDisplayContext {
 			"changeDisplayStyle"
 		).setRedirect(
 			PortalUtil.getCurrentURL(_httpServletRequest)
-		).build();
+		).buildPortletURL();
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
 			{

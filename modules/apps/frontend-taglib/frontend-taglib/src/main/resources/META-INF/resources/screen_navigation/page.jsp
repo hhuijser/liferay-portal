@@ -100,7 +100,7 @@ PortletURLBuilder.create(
 									"screenNavigationCategoryKey", screenNavigationEntry.getCategoryKey()
 								).setParameter(
 									"screenNavigationEntryKey", screenNavigationEntry.getEntryKey()
-								).build() %>"><%= screenNavigationEntry.getLabel(themeDisplay.getLocale()) %></a
+								).buildPortletURL() %>"><%= screenNavigationEntry.getLabel(themeDisplay.getLocale()) %></a
 									>
 								</li>
 

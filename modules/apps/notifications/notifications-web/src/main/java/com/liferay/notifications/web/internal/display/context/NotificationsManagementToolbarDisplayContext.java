@@ -175,7 +175,7 @@ public class NotificationsManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {

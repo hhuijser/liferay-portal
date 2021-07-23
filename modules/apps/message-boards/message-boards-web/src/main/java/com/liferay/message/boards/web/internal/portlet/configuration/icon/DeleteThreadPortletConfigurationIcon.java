@@ -95,7 +95,7 @@ public class DeleteThreadPortletConfigurationIcon
 
 				return cmd;
 			}
-		).build();
+		).buildPortletURL();
 
 		try {
 			MBCategory category = ActionUtil.getCategory(portletRequest);

@@ -239,7 +239,7 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 				PortletProvider.Action.MANAGE)
 		).setParameter(
 			"organizationId", organizationId
-		).build();
+		).buildPortletURL();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(
 			httpServletRequest,
@@ -266,7 +266,7 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 			"/commerce_organization/view_commerce_organization"
 		).setParameter(
 			"organizationId", organizationId
-		).build();
+		).buildPortletURL();
 
 		PortletURL backURL = PortletProviderUtil.getPortletURL(
 			httpServletRequest,

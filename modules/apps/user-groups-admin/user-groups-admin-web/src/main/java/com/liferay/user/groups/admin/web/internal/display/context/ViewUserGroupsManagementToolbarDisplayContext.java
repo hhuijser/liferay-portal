@@ -145,7 +145,7 @@ public class ViewUserGroupsManagementToolbarDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 
 		String viewUserGroupsRedirect = ParamUtil.getString(
 			_httpServletRequest, "viewUserGroupsRedirect");

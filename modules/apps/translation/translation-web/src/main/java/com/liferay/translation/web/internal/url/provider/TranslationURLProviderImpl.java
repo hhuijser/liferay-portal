@@ -50,7 +50,7 @@ public class TranslationURLProviderImpl implements TranslationURLProvider {
 			"classPK", classPK
 		).setParameter(
 			"groupId", groupId
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class TranslationURLProviderImpl implements TranslationURLProvider {
 			"classNameId", classNameId
 		).setParameter(
 			"classPK", classPK
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class TranslationURLProviderImpl implements TranslationURLProvider {
 			"classNameId", classNameId
 		).setParameter(
 			"classPK", classPK
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference

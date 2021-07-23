@@ -119,7 +119,7 @@ public class DLViewMoreMenuItemsDisplayContext {
 			"eventName", getEventName()
 		).setParameter(
 			"folderId", _folderId
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getSearchActionURL() {

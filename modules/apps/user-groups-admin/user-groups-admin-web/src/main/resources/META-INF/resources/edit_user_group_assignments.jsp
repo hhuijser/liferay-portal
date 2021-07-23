@@ -23,7 +23,7 @@ PortletURL homeURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCPath(
 	"/view.jsp"
-).build();
+).buildPortletURL();
 
 if (Validator.isNull(backURL)) {
 	backURL = homeURL.toString();

@@ -48,7 +48,7 @@ public class BatchEngineExportTaskDisplayContext extends BaseDisplayContext {
 			"/batch_engine/view_batch_engine_export_tasks"
 		).setTabs1(
 			"export"
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(httpServletRequest, "delta");
 

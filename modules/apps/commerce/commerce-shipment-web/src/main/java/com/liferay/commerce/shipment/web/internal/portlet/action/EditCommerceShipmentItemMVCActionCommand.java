@@ -130,7 +130,7 @@ public class EditCommerceShipmentItemMVCActionCommand
 				CommerceShipment.class.getName(), PortletProvider.Action.EDIT)
 		).setMVCRenderCommandName(
 			"/commerce_shipment/edit_commerce_shipment_item"
-		).build();
+		).buildPortletURL();
 
 		long commerceShipmentId = ParamUtil.getLong(
 			actionRequest, "commerceShipmentId");

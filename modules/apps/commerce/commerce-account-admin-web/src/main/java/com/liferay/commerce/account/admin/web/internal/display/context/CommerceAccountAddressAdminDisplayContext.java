@@ -164,7 +164,7 @@ public class CommerceAccountAddressAdminDisplayContext
 			super.getPortletURL()
 		).setMVCRenderCommandName(
 			"/commerce_account_admin/edit_commerce_account"
-		).build();
+		).buildPortletURL();
 	}
 
 	public long getRegionId() throws PortalException {

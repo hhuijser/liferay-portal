@@ -234,7 +234,7 @@ public class CommerceProductDisplayPageClayTable
 				PortletProvider.Action.MANAGE)
 		).setMVCRenderCommandName(
 			"/commerce_channels/edit_cp_definition_cp_display_layout"
-		).build();
+		).buildPortletURL();
 
 		long commerceChannelId = ParamUtil.getLong(
 			httpServletRequest, "commerceChannelId");

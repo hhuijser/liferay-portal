@@ -87,7 +87,7 @@ public class CommerceShipmentItemDisplayContext
 			super.getPortletURL()
 		).setMVCRenderCommandName(
 			"/commerce_shipment/edit_commerce_shipment"
-		).build();
+		).buildPortletURL();
 	}
 
 	public int getToSendQuantity() throws PortalException {

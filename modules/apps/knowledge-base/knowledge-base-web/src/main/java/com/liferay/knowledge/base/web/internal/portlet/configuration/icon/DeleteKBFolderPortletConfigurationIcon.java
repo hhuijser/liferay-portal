@@ -70,7 +70,7 @@ public class DeleteKBFolderPortletConfigurationIcon
 			"deleteKBFolder"
 		).setMVCPath(
 			"/admin/view_folders.jsp"
-		).build();
+		).buildPortletURL();
 
 		PortletURL redirectURL = _portal.getControlPanelPortletURL(
 			portletRequest, KBPortletKeys.KNOWLEDGE_BASE_ADMIN,

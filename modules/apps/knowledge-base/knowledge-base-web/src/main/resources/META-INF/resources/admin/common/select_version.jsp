@@ -34,7 +34,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"resourcePrimKey", kbArticle.getResourcePrimKey()
 ).setParameter(
 	"sourceVersion", sourceVersion
-).build();
+).buildPortletURL();
 %>
 
 <clay:container-fluid>

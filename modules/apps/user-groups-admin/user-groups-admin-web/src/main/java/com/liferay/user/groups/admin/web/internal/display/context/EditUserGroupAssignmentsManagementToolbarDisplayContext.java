@@ -198,7 +198,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 			"displayStyle", _displayStyle
 		).setParameter(
 			"userGroupId", _userGroup.getUserGroupId()
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(getKeywords())) {
 			portletURL.setParameter("keywords", getKeywords());

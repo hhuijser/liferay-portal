@@ -194,7 +194,7 @@ public class OrganizationsDisplayContext {
 			"organizations"
 		).setParameter(
 			"groupId", getGroupId()
-		).build();
+		).buildPortletURL();
 
 		String displayStyle = getDisplayStyle();
 

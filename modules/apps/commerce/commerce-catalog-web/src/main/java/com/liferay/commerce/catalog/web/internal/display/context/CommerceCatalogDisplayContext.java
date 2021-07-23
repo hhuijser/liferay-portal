@@ -224,7 +224,7 @@ public class CommerceCatalogDisplayContext {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_catalogs/edit_commerce_catalog"
-		).build();
+		).buildPortletURL();
 	}
 
 	public List<HeaderActionModel> getHeaderActionModels() throws Exception {

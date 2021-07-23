@@ -258,7 +258,7 @@ public class FragmentEntryLinkDisplayContext {
 			"fragmentCollectionId", getFragmentCollectionId()
 		).setParameter(
 			"fragmentEntryId", getFragmentEntryId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public String getRedirect() {

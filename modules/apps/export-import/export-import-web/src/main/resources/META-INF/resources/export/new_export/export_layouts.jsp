@@ -82,7 +82,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"liveGroupId", liveGroupId
 ).setParameter(
 	"privateLayout", privateLayout
-).build();
+).buildPortletURL();
 
 if (Validator.isBlank(backURL)) {
 	backURL = portletURL.toString();

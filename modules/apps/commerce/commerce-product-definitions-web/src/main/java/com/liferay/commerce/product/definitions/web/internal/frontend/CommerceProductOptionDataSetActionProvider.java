@@ -116,7 +116,7 @@ public class CommerceProductOptionDataSetActionProvider
 		).setParameter(
 			"cpDefinitionOptionRelId",
 			cpDefinitionOptionRel.getCPDefinitionOptionRelId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

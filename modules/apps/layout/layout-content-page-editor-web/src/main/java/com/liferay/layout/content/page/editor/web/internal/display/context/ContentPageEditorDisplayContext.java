@@ -711,7 +711,7 @@ public class ContentPageEditorDisplayContext {
 			_renderResponse
 		).setActionName(
 			action
-		).build();
+		).buildPortletURL();
 
 		if (Validator.isNotNull(command)) {
 			actionURL.setParameter(Constants.CMD, command);

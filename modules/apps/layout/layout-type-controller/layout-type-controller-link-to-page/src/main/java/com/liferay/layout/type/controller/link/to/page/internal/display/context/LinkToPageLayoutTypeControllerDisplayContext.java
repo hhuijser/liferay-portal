@@ -88,7 +88,7 @@ public class LinkToPageLayoutTypeControllerDisplayContext {
 				getEventName(), layoutItemSelectorCriterion)
 		).setParameter(
 			"layoutUuid", getLinkToLayoutUuid()
-		).build();
+		).buildPortletURL();
 
 		long selPlid = ParamUtil.getLong(_liferayPortletRequest, "selPlid");
 

@@ -105,7 +105,7 @@ CommerceCountriesDisplayContext commerceCountriesDisplayContext = (CommerceCount
 								currentURL
 							).setParameter(
 								"countryId", country.getCountryId()
-							).build()
+							).buildPortletURL()
 						%>'
 						name="name"
 						value="<%= HtmlUtil.escape(country.getTitle(locale)) %>"

@@ -226,7 +226,7 @@ for (long defaultTeamId : defaultTeamIds) {
 		"step", "2"
 	).setWindowState(
 		LiferayWindowState.POP_UP
-	).build();
+	).buildPortletURL();
 
 	String selectSiteRolePortletId = PortletProviderUtil.getPortletId(Role.class.getName(), PortletProvider.Action.BROWSE);
 	%>
@@ -258,7 +258,7 @@ for (long defaultTeamId : defaultTeamIds) {
 		"groupId", liveGroupId
 	).setWindowState(
 		LiferayWindowState.POP_UP
-	).build();
+	).buildPortletURL();
 
 	String selectTeamPortletId = PortletProviderUtil.getPortletId(Team.class.getName(), PortletProvider.Action.BROWSE);
 	%>

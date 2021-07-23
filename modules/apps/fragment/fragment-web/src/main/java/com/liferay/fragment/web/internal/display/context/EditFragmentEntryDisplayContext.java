@@ -216,7 +216,7 @@ public class EditFragmentEntryDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view"
-		).build();
+		).buildPortletURL();
 
 		if (getFragmentCollectionId() > 0) {
 			portletURL.setParameter(

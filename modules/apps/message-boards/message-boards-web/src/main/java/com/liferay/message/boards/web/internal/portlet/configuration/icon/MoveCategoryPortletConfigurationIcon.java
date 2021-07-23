@@ -69,7 +69,7 @@ public class MoveCategoryPortletConfigurationIcon
 			"/message_boards/move_category"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		MBCategory category = null;
 

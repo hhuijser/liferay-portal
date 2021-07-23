@@ -97,7 +97,7 @@ public class RemoteAppEntryClayDataSetActionProvider
 			"/remote_app_admin/edit_remote_app_entry"
 		).setParameter(
 			"remoteAppEntryId", remoteAppClayDataSetEntry.getRemoteAppEntryId()
-		).build();
+		).buildPortletURL();
 
 		String currentURL = ParamUtil.getString(
 			httpServletRequest, "currentURL",

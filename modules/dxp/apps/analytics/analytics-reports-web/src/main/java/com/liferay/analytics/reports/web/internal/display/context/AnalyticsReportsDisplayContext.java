@@ -68,7 +68,7 @@ public class AnalyticsReportsDisplayContext<T> {
 			_renderResponse
 		).setActionName(
 			"/analytics_reports/hide_panel"
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(_renderRequest, "redirect");
 

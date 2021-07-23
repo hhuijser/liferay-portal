@@ -417,7 +417,7 @@ public class MBEntriesManagementToolbarDisplayContext {
 		).setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc"
-		).build();
+		).buildPortletURL();
 	}
 
 	public void populateOrder(SearchContainer searchContainer) {

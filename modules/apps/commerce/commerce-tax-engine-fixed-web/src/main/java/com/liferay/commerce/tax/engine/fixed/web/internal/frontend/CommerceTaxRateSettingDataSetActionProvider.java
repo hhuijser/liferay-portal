@@ -133,7 +133,7 @@ public class CommerceTaxRateSettingDataSetActionProvider
 				PortletProvider.Action.EDIT)
 		).setMVCRenderCommandName(
 			"/commerce_tax_methods/edit_commerce_tax_fixed_rate_address_rel"
-		).build();
+		).buildPortletURL();
 
 		long commerceTaxMethodId = ParamUtil.getLong(
 			httpServletRequest, "commerceTaxMethodId");

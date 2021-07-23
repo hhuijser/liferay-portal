@@ -160,7 +160,7 @@ public class CommercePriceEntryDisplayContext
 			"commercePriceEntryId", "{priceEntryId}"
 		).setParameter(
 			"commercePriceListId", getCommercePriceListId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

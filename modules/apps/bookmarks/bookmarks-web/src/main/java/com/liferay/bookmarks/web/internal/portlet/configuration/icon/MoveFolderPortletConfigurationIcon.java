@@ -69,7 +69,7 @@ public class MoveFolderPortletConfigurationIcon
 			"/bookmarks/move_entry"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		BookmarksFolder folder = null;
 

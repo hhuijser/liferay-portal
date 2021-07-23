@@ -90,7 +90,7 @@ public class CommerceAvailabilityEstimateDisplayContext {
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<CommerceAvailabilityEstimate> getSearchContainer()

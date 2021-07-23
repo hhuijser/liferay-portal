@@ -103,7 +103,7 @@ public class EditLDAPServerMVCActionCommand extends BaseMVCActionCommand {
 				).setMVCRenderCommandName(
 					"/portal_settings_authentication_ldap" +
 						"/portal_settings_edit_ldap_server"
-				).build();
+				).buildPortletURL();
 
 				String redirect = ParamUtil.getString(
 					actionRequest, "redirect");

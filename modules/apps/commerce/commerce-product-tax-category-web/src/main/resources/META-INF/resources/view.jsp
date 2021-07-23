@@ -98,7 +98,7 @@ CPTaxCategoryDisplayContext cpTaxCategoryDisplayContext = (CPTaxCategoryDisplayC
 								currentURL
 							).setParameter(
 								"cpTaxCategoryId", cpTaxCategory.getCPTaxCategoryId()
-							).build()
+							).buildPortletURL()
 						%>'
 						name="name"
 						value="<%= HtmlUtil.escape(cpTaxCategory.getName(languageId)) %>"

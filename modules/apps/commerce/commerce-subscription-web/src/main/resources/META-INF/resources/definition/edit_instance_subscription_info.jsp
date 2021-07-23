@@ -40,7 +40,7 @@ PortletURL productSkusURL = PortletURLBuilder.createRenderURL(
 	"cpDefinitionId", cpDefinition.getCPDefinitionId()
 ).setParameter(
 	"screenNavigationCategoryKey", cpInstanceSubscriptionInfoDisplayContext.getScreenNavigationCategoryKey()
-).build();
+).buildPortletURL();
 
 boolean overrideSubscriptionInfo = BeanParamUtil.getBoolean(cpInstance, request, "overrideSubscriptionInfo", false);
 boolean subscriptionEnabled = BeanParamUtil.getBoolean(cpInstance, request, "subscriptionEnabled", false);

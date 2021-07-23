@@ -126,7 +126,7 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 								renderResponse
 							).setMVCPath(
 								"/view_content.jsp"
-							).build();
+							).buildPortletURL();
 
 							if (trashEntry.getRootEntry() != null) {
 								viewContentURL.setParameter("classNameId", String.valueOf(trashEntry.getClassNameId()));

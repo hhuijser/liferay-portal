@@ -151,7 +151,7 @@ public class CPDefinitionAssetRenderer
 			"/cp_definitions/edit_cp_definition"
 		).setParameter(
 			"cpDefinitionId", _cpDefinition.getCPDefinitionId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

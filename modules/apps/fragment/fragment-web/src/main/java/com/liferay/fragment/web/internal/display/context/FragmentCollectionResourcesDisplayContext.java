@@ -71,7 +71,7 @@ public class FragmentCollectionResourcesDisplayContext {
 		).setParameter(
 			"fragmentCollectionId",
 			_fragmentDisplayContext.getFragmentCollectionId()
-		).build();
+		).buildPortletURL();
 
 		SearchContainer<FileEntry> searchContainer = new SearchContainer(
 			_renderRequest, portletURL, null, "there-are-no-resources");

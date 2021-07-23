@@ -62,7 +62,7 @@ public class CPInstanceItemSelectorViewDisplayContext
 			"checkedCPInstanceIds", getCheckedCPInstanceIds()
 		).setParameter(
 			"commerceCatalogGroupId", getGroupId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

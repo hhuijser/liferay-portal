@@ -80,7 +80,7 @@ public abstract class BaseAddLayoutMVCActionCommand
 			liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/layout_admin/edit_layout"
-		).build();
+		).buildPortletURL();
 
 		String backURL = ParamUtil.getString(actionRequest, "backURL");
 

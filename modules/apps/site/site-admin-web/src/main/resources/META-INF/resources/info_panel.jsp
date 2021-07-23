@@ -157,7 +157,7 @@ request.removeAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 								currentURL
 							).setParameter(
 								"groupId", group.getGroupId()
-							).build();
+							).buildPortletURL();
 							%>
 
 							<c:if test="<%= siteAdminDisplayContext.getUsersCount(group) > 0 %>">

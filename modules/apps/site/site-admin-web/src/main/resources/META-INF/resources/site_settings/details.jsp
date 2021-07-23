@@ -194,7 +194,7 @@ if (parentGroupId != GroupConstants.DEFAULT_PARENT_GROUP_ID) {
 					"includeCurrentGroup", false
 				).setWindowState(
 					LiferayWindowState.POP_UP
-				).build();
+				).buildPortletURL();
 				%>
 
 				url: '<%= groupSelectorURL.toString() %>',

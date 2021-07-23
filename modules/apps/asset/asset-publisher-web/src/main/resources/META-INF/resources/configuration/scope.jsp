@@ -141,7 +141,7 @@ PortletURL itemSelectorURL = PortletURLBuilder.create(
 	"groupId", layout.getGroupId()
 ).setParameter(
 	"plid", layout.getPlid()
-).build();
+).buildPortletURL();
 %>
 
 <aui:script sandbox="<%= true %>">

@@ -21,7 +21,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/wedeploy_auth_admin/view"
-).build();
+).buildPortletURL();
 
 SearchContainer<WeDeployAuthApp> weDeployAuthAppsSearchContainer = new SearchContainer(renderRequest, portletURL, null, "no-wedeploy-apps-were-found");
 

@@ -69,7 +69,7 @@ String redirect = PortalUtil.getLayoutFullURL(layout, themeDisplay);
 								assetPublisherAddItemHolder.getPortletURL()
 							).setRedirect(
 								redirect
-							).build();
+							).buildPortletURL();
 						%>
 
 							<aui:option

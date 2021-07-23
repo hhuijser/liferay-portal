@@ -197,7 +197,7 @@ public class PortletDisplayTemplateDDMDisplay extends BaseDDMDisplay {
 				"groupId", groupId
 			).setWindowState(
 				LiferayWindowState.POP_UP
-			).build();
+			).buildPortletURL();
 		}
 
 		return portletURL.toString();

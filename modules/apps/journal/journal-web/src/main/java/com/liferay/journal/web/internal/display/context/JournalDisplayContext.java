@@ -277,7 +277,7 @@ public class JournalDisplayContext {
 				_liferayPortletResponse)
 		).setMVCPath(
 			"/select_article_translations.jsp"
-		).build();
+		).buildPortletURL();
 
 		SearchContainer<JournalArticleTranslation>
 			articleTranslationsSearchContainer = new SearchContainer<>(

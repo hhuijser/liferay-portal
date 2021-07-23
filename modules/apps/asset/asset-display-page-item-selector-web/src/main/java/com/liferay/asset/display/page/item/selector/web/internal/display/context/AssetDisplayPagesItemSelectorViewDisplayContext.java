@@ -213,7 +213,7 @@ public class AssetDisplayPagesItemSelectorViewDisplayContext {
 			"orderByCol", _getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 	}
 
 	private SearchContainer<LayoutPageTemplateEntry>

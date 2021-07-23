@@ -160,7 +160,7 @@ public class SearchUtil {
 				PortletMode.VIEW
 			).setWindowState(
 				WindowState.MAXIMIZED
-			).build();
+			).buildPortletURL();
 
 			if (Validator.isNull(className) || (classPK <= 0)) {
 				return HttpUtil.setParameter(

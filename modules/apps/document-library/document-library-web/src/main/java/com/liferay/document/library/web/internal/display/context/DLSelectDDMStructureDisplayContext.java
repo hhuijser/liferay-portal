@@ -205,7 +205,7 @@ public class DLSelectDDMStructureDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/document_library/ddm/select_ddm_structure.jsp"
-		).build();
+		).buildPortletURL();
 
 		long ddmStructureId = getDDMStructureId();
 

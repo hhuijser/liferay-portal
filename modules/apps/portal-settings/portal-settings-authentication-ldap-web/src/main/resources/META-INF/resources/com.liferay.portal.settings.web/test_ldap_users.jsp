@@ -164,7 +164,7 @@ boolean showMissingAttributeMessage = false;
 			"userMappingScreenName", ParamUtil.getString(request, "userMappingScreenName")
 		).setWindowState(
 			LiferayWindowState.POP_UP
-		).build()
+		).buildPortletURL()
 	%>'
 	total="<%= searchResults.size() %>"
 >

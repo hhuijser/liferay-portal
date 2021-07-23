@@ -71,7 +71,7 @@ public class CommerceAccountViewPortletProvider
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_account/view_commerce_account"
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference

@@ -51,7 +51,7 @@ public class RemoteAppAdminDisplayContext {
 						"/remote_app_admin/edit_remote_app_entry"
 					).setRedirect(
 						_getRedirect()
-					).build());
+					).buildPortletURL());
 
 				dropdownItem.setLabel(_getLabel("add-remote-web-app"));
 			}

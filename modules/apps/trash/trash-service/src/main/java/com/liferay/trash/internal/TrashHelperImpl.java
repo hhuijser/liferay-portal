@@ -161,7 +161,7 @@ public class TrashHelperImpl implements TrashHelper {
 
 				return themeDisplay.getURLCurrent();
 			}
-		).build();
+		).buildPortletURL();
 
 		TrashEntry trashEntry = _trashEntryLocalService.getEntry(
 			className, classPK);

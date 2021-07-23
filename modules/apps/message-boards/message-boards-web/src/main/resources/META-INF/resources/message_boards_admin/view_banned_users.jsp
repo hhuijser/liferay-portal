@@ -23,7 +23,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	renderResponse
 ).setMVCRenderCommandName(
 	"/message_boards_admin/view_banned_users"
-).build();
+).buildPortletURL();
 %>
 
 <%@ include file="/message_boards/nav.jspf" %>

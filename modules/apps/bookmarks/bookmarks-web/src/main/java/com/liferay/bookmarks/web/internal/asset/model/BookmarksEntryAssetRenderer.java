@@ -152,7 +152,7 @@ public class BookmarksEntryAssetRenderer
 			"folderId", _entry.getFolderId()
 		).setParameter(
 			"showFolderSelector", true
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

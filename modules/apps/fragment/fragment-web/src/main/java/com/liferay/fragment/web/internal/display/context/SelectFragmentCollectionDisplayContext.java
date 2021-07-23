@@ -149,7 +149,7 @@ public class SelectFragmentCollectionDisplayContext {
 			"/fragment/select_fragment_collection"
 		).setParameter(
 			"eventName", getEventName()
-		).build();
+		).buildPortletURL();
 
 		String keywords = _getKeywords();
 

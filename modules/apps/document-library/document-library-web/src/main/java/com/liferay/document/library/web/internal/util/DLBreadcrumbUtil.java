@@ -111,7 +111,7 @@ public class DLBreadcrumbUtil {
 			liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/document_library/view"
-		).build();
+		).buildPortletURL();
 
 		Map<String, Object> data = HashMapBuilder.<String, Object>put(
 			"direction-right", Boolean.TRUE.toString()

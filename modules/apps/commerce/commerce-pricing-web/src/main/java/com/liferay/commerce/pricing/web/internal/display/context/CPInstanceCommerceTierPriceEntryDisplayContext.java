@@ -182,7 +182,7 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 			"commercePriceEntryId", getCommercePriceEntryId()
 		).setParameter(
 			"cpInstanceId", getCPInstanceId()
-		).build();
+		).buildPortletURL();
 	}
 
 	@Override

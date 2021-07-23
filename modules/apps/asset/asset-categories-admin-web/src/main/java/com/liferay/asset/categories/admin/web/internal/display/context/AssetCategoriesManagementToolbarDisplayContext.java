@@ -167,7 +167,7 @@ public class AssetCategoriesManagementToolbarDisplayContext
 					liferayPortletResponse
 				).setMVCPath(
 					"/edit_category.jsp"
-				).build();
+				).buildPortletURL();
 
 				if (_assetCategoriesDisplayContext.getCategoryId() > 0) {
 					addCategoryURL.setParameter(

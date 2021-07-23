@@ -116,7 +116,7 @@ public class CPTaxCategoryDisplayContext {
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<CPTaxCategory> getSearchContainer()

@@ -1667,7 +1667,7 @@ public class ServicePreAction extends Action {
 							PortletRequest.RENDER_PHASE)
 					).setMVCRenderCommandName(
 						"/export_import/publish_layouts"
-					).build();
+					).buildPortletURL();
 
 					if (layout.isPrivateLayout()) {
 						publishToLiveURL.setParameter("tabs1", "private-pages");

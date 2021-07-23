@@ -130,7 +130,7 @@ public class EditCommercePaymentMethodGroupRelMVCActionCommand
 			mvcRenderCommandName
 		).setParameter(
 			"commercePaymentMethodGroupRelId", commercePaymentMethodGroupRelId
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

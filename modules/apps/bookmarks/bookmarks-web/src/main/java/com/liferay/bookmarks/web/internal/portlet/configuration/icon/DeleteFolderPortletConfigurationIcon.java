@@ -92,7 +92,7 @@ public class DeleteFolderPortletConfigurationIcon
 
 				return cmd;
 			}
-		).build();
+		).buildPortletURL();
 
 		BookmarksFolder folder = null;
 

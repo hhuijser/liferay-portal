@@ -25,7 +25,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	"classPK", classPK
 ).setParameter(
 	"selPlid", selPlid
-).build();
+).buildPortletURL();
 
 request.setAttribute("mobile_device_rules_header.jspf-portletURL", portletURL);
 %>

@@ -159,7 +159,7 @@ public class AssetEntryActionDropdownItemsProvider {
 
 					return portletDisplay.getPortletName();
 				}
-			).build();
+			).buildPortletURL();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

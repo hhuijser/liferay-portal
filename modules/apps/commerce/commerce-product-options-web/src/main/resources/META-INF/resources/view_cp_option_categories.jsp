@@ -27,7 +27,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	cpOptionCategoryDisplayContext.getPortletURL()
 ).setParameter(
 	"searchContainerId", "cpOptionCategories"
-).build();
+).buildPortletURL();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 
@@ -142,7 +142,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "specifications"));
 									currentURL
 								).setParameter(
 									"cpOptionCategoryId", cpOptionCategory.getCPOptionCategoryId()
-								).build();
+								).buildPortletURL();
 								%>
 
 								<liferay-ui:search-container-column-text

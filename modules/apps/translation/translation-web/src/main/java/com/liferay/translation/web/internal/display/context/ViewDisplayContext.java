@@ -247,7 +247,7 @@ public class ViewDisplayContext {
 			"classPK", translationEntry.getClassPK()
 		).setParameter(
 			"targetLanguageId", translationEntry.getLanguageId()
-		).build();
+		).buildPortletURL();
 	}
 
 	public TranslationEntryManagementToolbarDisplayContext

@@ -53,7 +53,7 @@ List<Theme> themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId());
 				"/plugins_admin/edit_plugin"
 			).setRedirect(
 				currentURL
-			).build();
+			).buildPortletURL();
 
 			if (pluginPackage != null) {
 				rowURL.setParameter("moduleId", pluginPackage.getModuleId());

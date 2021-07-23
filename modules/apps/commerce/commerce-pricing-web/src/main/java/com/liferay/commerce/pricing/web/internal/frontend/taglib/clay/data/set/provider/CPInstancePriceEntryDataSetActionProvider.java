@@ -130,7 +130,7 @@ public class CPInstancePriceEntryDataSetActionProvider
 			"cpDefinitionId", cpInstance.getCPDefinitionId()
 		).setParameter(
 			"cpInstanceId", cpInstance.getCPInstanceId()
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getInstancePriceEntryEditURL(
@@ -154,7 +154,7 @@ public class CPInstancePriceEntryDataSetActionProvider
 			"cpDefinitionId", cpInstance.getCPDefinitionId()
 		).setParameter(
 			"cpInstanceId", cpInstance.getCPInstanceId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

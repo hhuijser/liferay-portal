@@ -25,7 +25,7 @@ PortletURL portletURL = PortletURLBuilder.create(
 	dispatchLogDisplayContext.getPortletURL()
 ).setParameter(
 	"searchContainerId", "dispatchLogs"
-).build();
+).buildPortletURL();
 
 request.setAttribute("view.jsp-portletURL", portletURL);
 
@@ -64,7 +64,7 @@ SearchContainer<DispatchLog> dispatchLogSearchContainer = DispatchLogSearchConta
 									currentURL
 								).setParameter(
 									"dispatchLogId", dispatchLog.getDispatchLogId()
-								).build()
+								).buildPortletURL()
 							%>'
 							name="start-date"
 						>

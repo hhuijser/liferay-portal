@@ -69,7 +69,7 @@ public class EditKBArticlePortletConfigurationIcon
 			"/admin/edit_article.jsp"
 		).setRedirect(
 			_portal.getCurrentURL(portletRequest)
-		).build();
+		).buildPortletURL();
 
 		KBArticle kbArticle = getKBArticle(portletRequest);
 

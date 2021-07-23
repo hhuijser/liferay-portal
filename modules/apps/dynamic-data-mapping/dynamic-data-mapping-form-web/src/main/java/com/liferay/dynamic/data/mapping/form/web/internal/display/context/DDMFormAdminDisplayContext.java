@@ -941,7 +941,7 @@ public class DDMFormAdminDisplayContext {
 			"currentTab", "forms"
 		).setParameter(
 			"groupId", getScopeGroupId()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(renderRequest, "delta");
 
@@ -1014,7 +1014,7 @@ public class DDMFormAdminDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		DDMFormInstanceSearch ddmFormInstanceSearch = new DDMFormInstanceSearch(
 			renderRequest, portletURL);
@@ -1075,7 +1075,7 @@ public class DDMFormAdminDisplayContext {
 			renderResponse
 		).setActionName(
 			"/admin/share_form_instance"
-		).build();
+		).buildPortletURL();
 
 		if (formInstance != null) {
 			shareFormInstanceURL.setParameter(

@@ -283,7 +283,7 @@ public class DDLViewRecordsDisplayContext {
 			ParamUtil.getString(_liferayPortletRequest, "redirect")
 		).setParameter(
 			"recordSetId", _ddlRecordSet.getRecordSetId()
-		).build();
+		).buildPortletURL();
 
 		String delta = ParamUtil.getString(_liferayPortletRequest, "delta");
 
@@ -323,7 +323,7 @@ public class DDLViewRecordsDisplayContext {
 			getPortletURL()
 		).setParameter(
 			"displayStyle", getDisplayStyle()
-		).build();
+		).buildPortletURL();
 
 		List<String> headerNames = new ArrayList<>();
 

@@ -90,7 +90,7 @@ public class RestoreTrashPortletConfigurationIcon
 				}
 			).setWindowState(
 				LiferayWindowState.POP_UP
-			).build();
+			).buildPortletURL();
 
 			StringBundler sb = new StringBundler(4);
 

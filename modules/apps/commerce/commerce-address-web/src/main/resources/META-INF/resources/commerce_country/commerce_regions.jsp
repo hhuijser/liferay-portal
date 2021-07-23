@@ -101,7 +101,7 @@ CommerceRegionsDisplayContext commerceRegionsDisplayContext = (CommerceRegionsDi
 								"countryId", region.getCountryId()
 							).setParameter(
 								"regionId", region.getRegionId()
-							).build()
+							).buildPortletURL()
 						%>'
 						property="name"
 					/>

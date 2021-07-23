@@ -128,7 +128,7 @@ public class ManagementBarSortTag extends IncludeTag implements BodyTag {
 				PortletURLUtil.clone(_portletURL, liferayPortletResponse)
 			).setParameter(
 				"orderByType", _orderByType
-			).build();
+			).buildPortletURL();
 
 			for (Map.Entry<String, String> entry : _orderColumns.entrySet()) {
 				String orderColumn = entry.getKey();

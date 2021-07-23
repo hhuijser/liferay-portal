@@ -89,7 +89,7 @@ public class ThreadLockPortletConfigurationIcon
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/message_boards/edit_message"
-		).build();
+		).buildPortletURL();
 
 		try {
 			MBMessage message = ActionUtil.getMessage(portletRequest);

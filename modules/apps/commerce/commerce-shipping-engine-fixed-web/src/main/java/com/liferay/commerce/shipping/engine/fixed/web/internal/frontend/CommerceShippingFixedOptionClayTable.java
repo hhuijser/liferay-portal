@@ -224,7 +224,7 @@ public class CommerceShippingFixedOptionClayTable
 			"/commerce_shipping_methods/edit_commerce_shipping_fixed_option"
 		).setParameter(
 			"commerceShippingFixedOptionId", shippingFixedOptionId
-		).build();
+		).buildPortletURL();
 
 		long commerceShippingMethodId = ParamUtil.getLong(
 			httpServletRequest, "commerceShippingMethodId");

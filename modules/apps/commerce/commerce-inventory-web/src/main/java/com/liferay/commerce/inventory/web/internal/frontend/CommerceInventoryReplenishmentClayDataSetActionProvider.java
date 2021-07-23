@@ -139,7 +139,7 @@ public class CommerceInventoryReplenishmentClayDataSetActionProvider
 		).setParameter(
 			"commerceInventoryReplenishmentItemId",
 			commerceInventoryReplenishmentItemId
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

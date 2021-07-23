@@ -139,7 +139,7 @@ public class CPPublisherDisplayContext extends BaseCPPublisherDisplayContext {
 			liferayPortletResponse
 		).setParameter(
 			"delta", delta
-		).build();
+		).buildPortletURL();
 	}
 
 	public SearchContainer<CPCatalogEntry> getSearchContainer()

@@ -86,7 +86,7 @@ public class SignInNavigationPrePageInclude implements PageInclude {
 				"/login/login"
 			).setParameter(
 				"saveLastPath", false
-			).build();
+			).buildPortletURL();
 
 			try {
 				fastLoginURL.setPortletMode(PortletMode.VIEW);

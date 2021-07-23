@@ -93,7 +93,7 @@ public class CommercePricingClassPriceListDataSetActionProvider
 			redirect
 		).setParameter(
 			"commercePriceListId", commercePriceListId
-		).build();
+		).buildPortletURL();
 	}
 
 	@Reference(

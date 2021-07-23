@@ -401,7 +401,7 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 		).setParameter(
 			"screenNavigationCategoryKey",
 			CommerceDiscountScreenNavigationConstants.CATEGORY_KEY_DETAILS
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
@@ -445,7 +445,7 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_discount/edit_commerce_discount"
-		).build();
+		).buildPortletURL();
 	}
 
 	public List<HeaderActionModel> getHeaderActionModels() throws Exception {
@@ -672,7 +672,7 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 			"modelResourceDescription", "{name}"
 		).setParameter(
 			"resourcePrimKey", "{id}"
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

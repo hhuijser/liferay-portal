@@ -231,7 +231,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 								_organization.getOrganizationId()
 							).setParameter(
 								"type", organizationType
-							).build();
+							).buildPortletURL();
 
 						addDropdownItem(
 							dropdownItem -> {
@@ -359,7 +359,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 			"usersListView",
 			GetterUtil.getString(
 				_httpServletRequest.getAttribute("view.jsp-usersListView"))
-		).build();
+		).buildPortletURL();
 
 		String[] keywords = ParamUtil.getStringValues(
 			_httpServletRequest, "keywords");

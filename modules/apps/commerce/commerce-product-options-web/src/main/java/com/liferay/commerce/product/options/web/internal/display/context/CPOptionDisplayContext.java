@@ -200,7 +200,7 @@ public class CPOptionDisplayContext {
 		).setParameter(
 			"screenNavigationCategoryKey",
 			CPDefinitionScreenNavigationConstants.CATEGORY_KEY_DETAILS
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

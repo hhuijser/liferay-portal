@@ -118,7 +118,7 @@ public class CommerceProductInstanceDataSetActionProvider
 			redirect
 		).setParameter(
 			"cpInstanceId", cpInstanceId
-		).build();
+		).buildPortletURL();
 	}
 
 	private PortletURL _getSkuEditURL(
@@ -135,7 +135,7 @@ public class CommerceProductInstanceDataSetActionProvider
 			"cpDefinitionId", cpInstance.getCPDefinitionId()
 		).setParameter(
 			"cpInstanceId", cpInstance.getCPInstanceId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

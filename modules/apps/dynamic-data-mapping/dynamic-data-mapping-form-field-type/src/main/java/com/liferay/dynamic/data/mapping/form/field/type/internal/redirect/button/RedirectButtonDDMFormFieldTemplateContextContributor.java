@@ -95,7 +95,7 @@ public class RedirectButtonDDMFormFieldTemplateContextContributor
 								keyValue -> keyValue[0],
 								keyValue -> new String[] {keyValue[1]})
 						)
-					).build()
+					).buildPortletURL()
 				).buildString();
 			}
 		).put(

@@ -27,7 +27,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	PortletMode.VIEW
 ).setWindowState(
 	WindowState.MAXIMIZED
-).build();
+).buildPortletURL();
 
 pageContext.setAttribute("portletURL", portletURL);
 %>

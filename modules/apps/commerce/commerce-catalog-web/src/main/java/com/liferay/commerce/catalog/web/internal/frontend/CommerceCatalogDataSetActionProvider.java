@@ -113,7 +113,7 @@ public class CommerceCatalogDataSetActionProvider
 			"/commerce_catalogs/edit_commerce_catalog"
 		).setCMD(
 			Constants.DELETE
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			httpServletRequest, "currentUrl",
@@ -135,7 +135,7 @@ public class CommerceCatalogDataSetActionProvider
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_catalogs/edit_commerce_catalog"
-		).build();
+		).buildPortletURL();
 
 		String redirect = ParamUtil.getString(
 			httpServletRequest, "currentUrl",
@@ -172,7 +172,7 @@ public class CommerceCatalogDataSetActionProvider
 			"modelResourceDescription", catalog.getName()
 		).setParameter(
 			"resourcePrimKey", catalog.getCatalogId()
-		).build();
+		).buildPortletURL();
 
 		try {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);

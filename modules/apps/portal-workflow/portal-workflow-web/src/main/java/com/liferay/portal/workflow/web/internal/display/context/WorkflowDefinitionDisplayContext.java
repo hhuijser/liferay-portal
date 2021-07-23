@@ -432,7 +432,7 @@ public class WorkflowDefinitionDisplayContext {
 
 				return "asc";
 			}
-		).build();
+		).buildPortletURL();
 
 		String definitionsNavigation = ParamUtil.getString(
 			httpServletRequest, "definitionsNavigation");
@@ -597,7 +597,7 @@ public class WorkflowDefinitionDisplayContext {
 			"/view.jsp"
 		).setParameter(
 			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK
-		).build();
+		).buildPortletURL();
 	}
 
 	protected OrderByComparator<WorkflowDefinition>
@@ -620,7 +620,7 @@ public class WorkflowDefinitionDisplayContext {
 			PortletRequest.RENDER_PHASE
 		).setMVCPath(
 			"/view.jsp"
-		).build();
+		).buildPortletURL();
 	}
 
 	private String _buildErrorLink(String messageKey, PortletURL portletURL) {

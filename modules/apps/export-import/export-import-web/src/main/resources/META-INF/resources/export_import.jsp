@@ -31,7 +31,7 @@ PortletURL portletURL = PortletURLBuilder.createRenderURL(
 	portletResource
 ).setParameter(
 	"returnToFullPageURL", returnToFullPageURL
-).build();
+).buildPortletURL();
 %>
 
 <c:choose>

@@ -230,7 +230,7 @@ Map<String, Object> fragmentsEditorData = HashMapBuilder.<String, Object>put(
 			renderResponse
 		).setMVCPath(
 			"/view_content.jsp"
-		).build();
+		).buildPortletURL();
 
 		if (print) {
 			assetLingsURL.setParameter("viewMode", Constants.PRINT);
@@ -351,7 +351,7 @@ Map<String, Object> fragmentsEditorData = HashMapBuilder.<String, Object>put(
 												"viewMode", Constants.PRINT
 											).setWindowState(
 												LiferayWindowState.POP_UP
-											).build()
+											).buildPortletURL()
 										%>',
 										'',
 										'directories=0,height=480,left=80,location=1,menubar=1,resizable=1,scrollbars=yes,status=0,toolbar=0,top=180,width=640'
@@ -426,7 +426,7 @@ Map<String, Object> fragmentsEditorData = HashMapBuilder.<String, Object>put(
 					"plid", themeDisplay.getPlid()
 				).setWindowState(
 					LiferayWindowState.EXCLUSIVE
-				).build();
+				).buildPortletURL();
 
 				for (String extension : assetPublisherDisplayContext.getExtensions(assetRenderer)) {
 					exportAssetURL.setParameter("targetExtension", extension);

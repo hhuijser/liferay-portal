@@ -184,7 +184,7 @@ public class KaleoFormsDDMDisplay extends BaseDDMDisplay {
 			"classPK", classPK
 		).setParameter(
 			"eventName", "selectStructure"
-		).build();
+		).buildPortletURL();
 
 		String mode = ParamUtil.getString(liferayPortletRequest, "mode");
 

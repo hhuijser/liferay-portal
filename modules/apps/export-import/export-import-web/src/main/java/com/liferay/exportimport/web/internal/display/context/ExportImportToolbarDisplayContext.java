@@ -213,7 +213,7 @@ public class ExportImportToolbarDisplayContext {
 		).setParameter(
 			"privateLayout",
 			ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
-		).build();
+		).buildPortletURL();
 
 		String orderByType = ParamUtil.getString(
 			_httpServletRequest, "orderByType");

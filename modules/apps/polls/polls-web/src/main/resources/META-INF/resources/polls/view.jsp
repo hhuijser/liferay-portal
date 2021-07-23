@@ -48,7 +48,7 @@
 					currentURL
 				).setParameter(
 					"questionId", question.getQuestionId()
-				).build();
+				).buildPortletURL();
 				%>
 
 				<liferay-ui:search-container-column-text

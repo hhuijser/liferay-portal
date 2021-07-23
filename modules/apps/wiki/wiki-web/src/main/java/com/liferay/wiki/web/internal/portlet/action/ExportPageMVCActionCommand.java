@@ -106,7 +106,7 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 				PortletMode.VIEW
 			).setWindowState(
 				WindowState.MAXIMIZED
-			).build();
+			).buildPortletURL();
 
 			PortletURL editPageURL = PortletURLBuilder.create(
 				PortletURLFactoryUtil.create(
@@ -122,7 +122,7 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 				PortletMode.VIEW
 			).setWindowState(
 				WindowState.MAXIMIZED
-			).build();
+			).buildPortletURL();
 
 			getFile(
 				nodeId, title, version, targetExtension, viewPageURL,

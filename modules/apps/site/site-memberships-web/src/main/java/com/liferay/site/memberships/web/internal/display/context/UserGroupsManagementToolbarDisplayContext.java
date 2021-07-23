@@ -361,7 +361,7 @@ public class UserGroupsManagementToolbarDisplayContext
 			mvcPath
 		).setParameter(
 			"groupId", _userGroupsDisplayContext.getGroupId()
-		).build();
+		).buildPortletURL();
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(

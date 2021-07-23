@@ -259,6 +259,10 @@ public class CPSpecificationOptionLocalServiceImpl
 			).put(
 				CPField.CP_OPTION_CATEGORY_TITLE, keywords
 			).put(
+				CPField.FACETABLE, () -> facetable
+			).put(
+				CPField.KEY, keywords
+			).put(
 				Field.CONTENT, keywords
 			).put(
 				Field.DESCRIPTION, keywords
@@ -266,10 +270,6 @@ public class CPSpecificationOptionLocalServiceImpl
 				Field.ENTRY_CLASS_PK, keywords
 			).put(
 				Field.TITLE, keywords
-			).put(
-				CPField.FACETABLE, () -> facetable
-			).put(
-				CPField.KEY, keywords
 			).put(
 				"params", params
 			).build();

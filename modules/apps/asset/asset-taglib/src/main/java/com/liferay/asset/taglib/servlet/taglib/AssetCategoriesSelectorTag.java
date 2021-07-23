@@ -369,13 +369,6 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 				).put(
 					"selectedCategories", selectedCategoryIds
 				).put(
-					"title",
-					vocabulary.getUnambiguousTitle(
-						vocabularies, themeDisplay.getScopeGroupId(),
-						themeDisplay.getLocale())
-				).put(
-					"visibilityType", vocabulary.getVisibilityType()
-				).put(
 					"selectedItems",
 					() -> {
 						if (Validator.isNull(selectedCategoryIds)) {
@@ -407,6 +400,13 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 					}
 				).put(
 					"singleSelect", !vocabulary.isMultiValued()
+				).put(
+					"title",
+					vocabulary.getUnambiguousTitle(
+						vocabularies, themeDisplay.getScopeGroupId(),
+						themeDisplay.getLocale())
+				).put(
+					"visibilityType", vocabulary.getVisibilityType()
 				).build();
 
 			vocabulariesList.add(vocabularyMap);

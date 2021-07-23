@@ -677,15 +677,15 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 			HashMapBuilder.<String, Serializable>put(
 				CommerceSubscriptionEntryIndexer.FIELD_CP_INSTANCE_ID, keywords
 			).put(
-				CommerceSubscriptionEntryIndexer.FIELD_SKU, keywords
-			).put(
-				Field.ENTRY_CLASS_PK, keywords
-			).put(
 				CommerceSubscriptionEntryIndexer.FIELD_MAX_SUBSCRIPTION_CYCLES,
 				() -> maxSubscriptionCycles
 			).put(
+				CommerceSubscriptionEntryIndexer.FIELD_SKU, keywords
+			).put(
 				CommerceSubscriptionEntryIndexer.FIELD_SUBSCRIPTION_STATUS,
 				() -> subscriptionStatus
+			).put(
+				Field.ENTRY_CLASS_PK, keywords
 			).put(
 				"params",
 				LinkedHashMapBuilder.<String, Object>put(

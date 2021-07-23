@@ -218,7 +218,7 @@ public class ViewHistoryDisplayContext extends BasePublicationsDisplayContext {
 				));
 		}
 
-		Map<String, Object> props = HashMapBuilder.<String, Object>put(
+		return HashMapBuilder.<String, Object>put(
 			"displayStyle", getDisplayStyle()
 		).put(
 			"entries", entriesJSONArray
@@ -239,8 +239,6 @@ public class ViewHistoryDisplayContext extends BasePublicationsDisplayContext {
 						ctProcessIds.toArray(new Long[0])));
 			}
 		).build();
-
-		return props;
 	}
 
 	public SearchContainer<CTProcess> getSearchContainer() {

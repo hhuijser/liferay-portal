@@ -357,6 +357,7 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 			}
 
 			String selectedCategoryIds = categoryIdsTitles.get(index)[0];
+			String selectedCategoryIdTitles = categoryIdsTitles.get(index)[1];
 
 			vocabulariesList.add(
 				HashMapBuilder.<String, Object>put(
@@ -379,9 +380,6 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 							new ArrayList<>();
 
 						String[] categoryIds = selectedCategoryIds.split(",");
-
-						String selectedCategoryIdTitles =
-							categoryIdsTitles.get(index)[1];
 
 						String[] categoryTitles =
 							selectedCategoryIdTitles.split(

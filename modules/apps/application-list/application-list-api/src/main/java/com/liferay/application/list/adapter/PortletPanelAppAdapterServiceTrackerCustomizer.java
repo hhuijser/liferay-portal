@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortletCategoryUtil;
 
-import java.util.Dictionary;
 import java.util.Map;
 
 import org.osgi.framework.BundleContext;
@@ -62,17 +61,16 @@ public class PortletPanelAppAdapterServiceTrackerCustomizer
 
 		PanelApp portletPanelAppAdapter = new PortletPanelAppAdapter(portletId);
 
-		Dictionary<String, Object> panelAppProperties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"panel.category.key",
-				PortletCategoryUtil.getPortletCategoryKey(controlPanelCategory)
-			).put(
-				"service.ranking", () -> getServiceRanking(serviceReference)
-			).build();
-
 		ServiceRegistration<PanelApp> serviceRegistration =
 			_bundleContext.registerService(
-				PanelApp.class, portletPanelAppAdapter, panelAppProperties);
+				PanelApp.class, portletPanelAppAdapter,
+				HashMapDictionaryBuilder.<String, Object>put(
+					"panel.category.key",
+					PortletCategoryUtil.getPortletCategoryKey(
+						controlPanelCategory)
+				).put(
+					"service.ranking", () -> getServiceRanking(serviceReference)
+				).build());
 
 		_serviceRegistrations.put(serviceReference, serviceRegistration);
 

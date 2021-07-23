@@ -72,7 +72,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -648,7 +647,7 @@ public class CPTestUtil {
 
 		SearchContext searchContext = new SearchContext();
 
-		HashMap<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				Field.STATUS, status
 			).put(
@@ -662,9 +661,7 @@ public class CPTestUtil {
 
 					return null;
 				}
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(group.getCompanyId());
 		searchContext.setGroupIds(new long[] {group.getGroupId()});

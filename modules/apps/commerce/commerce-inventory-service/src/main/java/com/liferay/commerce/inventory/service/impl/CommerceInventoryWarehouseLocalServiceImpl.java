@@ -50,7 +50,6 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Luca Pellizzon
@@ -385,7 +384,7 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				CommerceInventoryWarehouseIndexer.FIELD_CITY, keywords
 			).put(
@@ -415,9 +414,7 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 
 					return null;
 				}
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);

@@ -24,8 +24,6 @@ import com.liferay.registry.ServiceRegistration;
 import com.liferay.registry.ServiceTracker;
 import com.liferay.registry.ServiceTrackerCustomizer;
 
-import java.util.Map;
-
 /**
  * @author Preston Crary
  */
@@ -71,17 +69,15 @@ public class PortletResourcePermissionDefinitionTracker {
 					portletResourcePermissionDefinition.
 						getPortletResourcePermissionLogics());
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"resource.name",
-				portletResourcePermissionDefinition.getResourceName()
-			).put(
-				"service.ranking",
-				() -> serviceReference.getProperty("service.ranking")
-			).build();
-
 			return registry.registerService(
 				PortletResourcePermission.class, portletResourcePermission,
-				properties);
+				HashMapBuilder.<String, Object>put(
+					"resource.name",
+					portletResourcePermissionDefinition.getResourceName()
+				).put(
+					"service.ranking",
+					() -> serviceReference.getProperty("service.ranking")
+				).build());
 		}
 
 		@Override

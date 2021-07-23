@@ -253,7 +253,7 @@ public class CPSpecificationOptionLocalServiceImpl
 				"keywords", keywords
 			).build();
 
-		Map<String, Serializable> attributes =
+		searchContext.setAttributes(
 			HashMapBuilder.<String, Serializable>put(
 				CPField.CP_OPTION_CATEGORY_ID, keywords
 			).put(
@@ -272,9 +272,7 @@ public class CPSpecificationOptionLocalServiceImpl
 				Field.TITLE, keywords
 			).put(
 				"params", params
-			).build();
-
-		searchContext.setAttributes(attributes);
+			).build());
 
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);

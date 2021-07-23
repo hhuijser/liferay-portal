@@ -358,7 +358,7 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 
 			String selectedCategoryIds = categoryIdsTitles.get(index)[0];
 
-			Map<String, Object> vocabularyMap =
+			vocabulariesList.add(
 				HashMapBuilder.<String, Object>put(
 					"id", vocabulary.getVocabularyId()
 				).put(
@@ -407,9 +407,7 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 						themeDisplay.getLocale())
 				).put(
 					"visibilityType", vocabulary.getVisibilityType()
-				).build();
-
-			vocabulariesList.add(vocabularyMap);
+				).build());
 		}
 
 		return vocabulariesList;

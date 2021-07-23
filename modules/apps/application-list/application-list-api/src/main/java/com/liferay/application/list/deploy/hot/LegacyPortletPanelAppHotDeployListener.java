@@ -160,7 +160,7 @@ public class LegacyPortletPanelAppHotDeployListener
 				PortletCategoryUtil.getPortletCategoryKey(
 					controlPanelEntryCategory);
 
-			Dictionary<String, Object> properties =
+			propertiesList.add(
 				HashMapDictionaryBuilder.<String, Object>put(
 					"panel.app.portlet.id",
 					getPortletId(
@@ -183,9 +183,7 @@ public class LegacyPortletPanelAppHotDeployListener
 
 						return null;
 					}
-				).build();
-
-			propertiesList.add(properties);
+				).build());
 		}
 
 		return propertiesList;

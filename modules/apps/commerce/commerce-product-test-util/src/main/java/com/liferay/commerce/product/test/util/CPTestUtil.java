@@ -651,15 +651,18 @@ public class CPTestUtil {
 		HashMap<String, Serializable> attributes =
 			HashMapBuilder.<String, Serializable>put(
 				Field.STATUS, status
-			).build();
-
-		if (Validator.isNotNull(keywords)) {
-			attributes.put(
+			).put(
 				"params",
-				LinkedHashMapBuilder.<String, Object>put(
-					"keywords", keywords
-				).build());
-		}
+				() -> {
+					if (Validator.isNotNull(keywords)) {
+						return LinkedHashMapBuilder.<String, Object>put(
+							"keywords", keywords
+						).build();
+					}
+
+					return null;
+				}
+			).build();
 
 		searchContext.setAttributes(attributes);
 

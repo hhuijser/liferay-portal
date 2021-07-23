@@ -403,19 +403,19 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 				LinkedHashMapBuilder.<String, Object>put(
 					"keywords", keywords
 				).build()
-			).build();
-
-		if (active != null) {
-			attributes.put(
-				CommerceInventoryWarehouseIndexer.FIELD_ACTIVE, active);
-		}
-
-		if (Validator.isNotNull(commerceCountryCode)) {
-			attributes.put(
+			).put(
+				CommerceInventoryWarehouseIndexer.FIELD_ACTIVE, () -> active
+			).put(
 				CommerceInventoryWarehouseIndexer.
 					FIELD_COUNTRY_TWO_LETTERS_ISO_CODE,
-				commerceCountryCode);
-		}
+				() -> {
+					if (Validator.isNotNull(commerceCountryCode)) {
+						return commerceCountryCode;
+					}
+
+					return null;
+				}
+			).build();
 
 		searchContext.setAttributes(attributes);
 

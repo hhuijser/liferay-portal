@@ -99,14 +99,10 @@ public class ModelResourcePermissionDefinitionTracker {
 
 					return modelClass.getName();
 				}
+			).put(
+				"service.ranking",
+				() -> serviceReference.getProperty("service.ranking")
 			).build();
-
-			Object serviceRanking = serviceReference.getProperty(
-				"service.ranking");
-
-			if (serviceRanking != null) {
-				properties.put("service.ranking", serviceRanking);
-			}
 
 			return registry.registerService(
 				ModelResourcePermission.class, modelResourcePermission,

@@ -74,14 +74,10 @@ public class PortletResourcePermissionDefinitionTracker {
 			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
 				"resource.name",
 				portletResourcePermissionDefinition.getResourceName()
+			).put(
+				"service.ranking",
+				() -> serviceReference.getProperty("service.ranking")
 			).build();
-
-			Object serviceRanking = serviceReference.getProperty(
-				"service.ranking");
-
-			if (serviceRanking != null) {
-				properties.put("service.ranking", serviceRanking);
-			}
 
 			return registry.registerService(
 				PortletResourcePermission.class, portletResourcePermission,

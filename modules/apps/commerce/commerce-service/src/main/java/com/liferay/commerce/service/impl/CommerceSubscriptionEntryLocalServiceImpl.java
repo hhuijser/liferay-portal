@@ -680,25 +680,18 @@ public class CommerceSubscriptionEntryLocalServiceImpl
 				CommerceSubscriptionEntryIndexer.FIELD_SKU, keywords
 			).put(
 				Field.ENTRY_CLASS_PK, keywords
-			).build();
-
-		if (maxSubscriptionCycles != null) {
-			attributes.put(
+			).put(
 				CommerceSubscriptionEntryIndexer.FIELD_MAX_SUBSCRIPTION_CYCLES,
-				maxSubscriptionCycles);
-		}
-
-		if (subscriptionStatus != null) {
-			attributes.put(
+				() -> maxSubscriptionCycles
+			).put(
 				CommerceSubscriptionEntryIndexer.FIELD_SUBSCRIPTION_STATUS,
-				subscriptionStatus);
-		}
-
-		attributes.put(
-			"params",
-			LinkedHashMapBuilder.<String, Object>put(
-				"keywords", keywords
-			).build());
+				() -> subscriptionStatus
+			).put(
+				"params",
+				LinkedHashMapBuilder.<String, Object>put(
+					"keywords", keywords
+				).build()
+			).build();
 
 		searchContext.setAttributes(attributes);
 

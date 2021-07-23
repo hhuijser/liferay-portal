@@ -168,17 +168,22 @@ public class LegacyPortletPanelAppHotDeployListener
 						portletElement.elementText("portlet-name"))
 				).put(
 					"panel.category.key", controlPanelEntryCategory
+				).put(
+					"panel.app.order",
+					() -> {
+						String controlPanelEntryWeight =
+							portletElement.elementText(
+								"control-panel-entry-weight");
+
+						if (Validator.isNotNull(controlPanelEntryWeight)) {
+							return (int)Math.ceil(
+								GetterUtil.getDouble(controlPanelEntryWeight) *
+									100);
+						}
+
+						return null;
+					}
 				).build();
-
-			String controlPanelEntryWeight = portletElement.elementText(
-				"control-panel-entry-weight");
-
-			if (Validator.isNotNull(controlPanelEntryWeight)) {
-				int panelAppOrder = (int)Math.ceil(
-					GetterUtil.getDouble(controlPanelEntryWeight) * 100);
-
-				properties.put("panel.app.order", panelAppOrder);
-			}
 
 			propertiesList.add(properties);
 		}

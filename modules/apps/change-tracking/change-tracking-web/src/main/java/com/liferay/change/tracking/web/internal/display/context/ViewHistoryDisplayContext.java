@@ -224,18 +224,21 @@ public class ViewHistoryDisplayContext extends BasePublicationsDisplayContext {
 			"entries", entriesJSONArray
 		).put(
 			"spritemap", _themeDisplay.getPathThemeImages() + "/clay/icons.svg"
-		).build();
+		).put(
+			"userInfo",
+			() -> {
+				if (ctProcessIds.isEmpty()) {
+					return null;
+				}
 
-		if (!ctProcessIds.isEmpty()) {
-			props.put(
-				"userInfo",
-				DisplayContextUtil.getUserInfoJSONObject(
+				return DisplayContextUtil.getUserInfoJSONObject(
 					CTProcessTable.INSTANCE.userId.eq(
 						UserTable.INSTANCE.userId),
 					CTProcessTable.INSTANCE, _themeDisplay, _userLocalService,
 					CTProcessTable.INSTANCE.ctProcessId.in(
-						ctProcessIds.toArray(new Long[0]))));
-		}
+						ctProcessIds.toArray(new Long[0])));
+			}
+		).build();
 
 		return props;
 	}

@@ -66,13 +66,9 @@ public class PortletPanelAppAdapterServiceTrackerCustomizer
 			HashMapDictionaryBuilder.<String, Object>put(
 				"panel.category.key",
 				PortletCategoryUtil.getPortletCategoryKey(controlPanelCategory)
+			).put(
+				"service.ranking", () -> getServiceRanking(serviceReference)
 			).build();
-
-		Integer serviceRanking = getServiceRanking(serviceReference);
-
-		if (serviceRanking != null) {
-			panelAppProperties.put("service.ranking", serviceRanking);
-		}
 
 		ServiceRegistration<PanelApp> serviceRegistration =
 			_bundleContext.registerService(

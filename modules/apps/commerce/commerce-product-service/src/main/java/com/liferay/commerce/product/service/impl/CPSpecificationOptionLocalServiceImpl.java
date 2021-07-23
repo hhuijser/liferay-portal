@@ -266,14 +266,13 @@ public class CPSpecificationOptionLocalServiceImpl
 				Field.ENTRY_CLASS_PK, keywords
 			).put(
 				Field.TITLE, keywords
+			).put(
+				CPField.FACETABLE, () -> facetable
+			).put(
+				CPField.KEY, keywords
+			).put(
+				"params", params
 			).build();
-
-		if (facetable != null) {
-			attributes.put(CPField.FACETABLE, facetable);
-		}
-
-		attributes.put(CPField.KEY, keywords);
-		attributes.put("params", params);
 
 		searchContext.setAttributes(attributes);
 

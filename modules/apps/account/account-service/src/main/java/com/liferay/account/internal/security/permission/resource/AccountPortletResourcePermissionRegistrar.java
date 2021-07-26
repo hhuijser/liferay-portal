@@ -42,7 +42,8 @@ public class AccountPortletResourcePermissionRegistrar {
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
 				AccountConstants.RESOURCE_NAME,
-				new AccountPortletPermissionLogic(_organizationLocalService),
+				new AccountPortletResourcePermissionLogic(
+					_organizationLocalService),
 				new StagedPortletPermissionLogic(
 					_stagingPermission,
 					AccountPortletKeys.ACCOUNT_ENTRIES_ADMIN)),

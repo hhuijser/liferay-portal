@@ -28,10 +28,10 @@ import java.util.List;
 /**
  * @author Pei-Jung Lan
  */
-public class AccountPortletPermissionLogic
+public class AccountPortletResourcePermissionLogic
 	implements PortletResourcePermissionLogic {
 
-	public AccountPortletPermissionLogic(
+	public AccountPortletResourcePermissionLogic(
 		OrganizationLocalService organizationLocalService) {
 
 		_organizationLocalService = organizationLocalService;
@@ -69,7 +69,7 @@ public class AccountPortletPermissionLogic
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AccountPortletPermissionLogic.class);
+		AccountPortletResourcePermissionLogic.class);
 
 	private final OrganizationLocalService _organizationLocalService;
 

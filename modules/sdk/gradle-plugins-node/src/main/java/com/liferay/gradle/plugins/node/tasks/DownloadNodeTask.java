@@ -54,10 +54,10 @@ public class DownloadNodeTask extends DefaultTask {
 
 	@TaskAction
 	public void downloadNode() throws IOException {
-		final File nodeDir = getNodeDir();
-		final Project project = getProject();
+		File nodeDir = getNodeDir();
+		Project project = getProject();
 
-		final File nodeFile = _download(getNodeUrl(), null);
+		File nodeFile = _download(getNodeUrl(), null);
 
 		project.delete(nodeDir);
 
@@ -90,7 +90,7 @@ public class DownloadNodeTask extends DefaultTask {
 
 		String npmUrl = getNpmUrl();
 
-		final File npmDir = NodePluginUtil.getNpmDir(nodeDir);
+		File npmDir = NodePluginUtil.getNpmDir(nodeDir);
 
 		if (Validator.isNotNull(npmUrl)) {
 			final File npmFile = _download(npmUrl, null);
@@ -113,7 +113,7 @@ public class DownloadNodeTask extends DefaultTask {
 
 		String yarnUrl = getYarnUrl();
 
-		final File yarnDir = NodePluginUtil.getYarnDir(nodeDir);
+		File yarnDir = NodePluginUtil.getYarnDir(nodeDir);
 
 		if (Validator.isNotNull(yarnUrl)) {
 			final File yarnFile = _download(yarnUrl, null);

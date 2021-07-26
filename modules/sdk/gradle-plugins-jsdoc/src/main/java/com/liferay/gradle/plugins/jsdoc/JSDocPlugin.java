@@ -46,7 +46,7 @@ public class JSDocPlugin extends BaseJSDocPlugin {
 	}
 
 	private JSDocTask _addTaskJSDoc(Project project) {
-		final JSDocTask jsDocTask = GradleUtil.addTask(
+		JSDocTask jsDocTask = GradleUtil.addTask(
 			project, JSDOC_TASK_NAME, JSDocTask.class);
 
 		jsDocTask.setDescription(
@@ -84,7 +84,7 @@ public class JSDocPlugin extends BaseJSDocPlugin {
 	}
 
 	private void _configureTaskJSDocForJavaPlugin(JSDocTask jsDocTask) {
-		final Project project = jsDocTask.getProject();
+		Project project = jsDocTask.getProject();
 
 		jsDocTask.setDestinationDir(
 			new Callable<File>() {

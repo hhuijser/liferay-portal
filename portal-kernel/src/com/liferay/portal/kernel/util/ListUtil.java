@@ -394,7 +394,7 @@ public class ListUtil {
 	}
 
 	public static <E> Iterator<E> reverseIterator(List<E> list) {
-		final ListIterator<E> listIterator = list.listIterator(list.size());
+		ListIterator<E> listIterator = list.listIterator(list.size());
 
 		return new Iterator<E>() {
 
@@ -592,7 +592,7 @@ public class ListUtil {
 	}
 
 	public static <T, R> List<R> toList(List<T> list, Function<T, R> function) {
-		final List<R> result = new ArrayList<>(list.size());
+		List<R> result = new ArrayList<>(list.size());
 
 		for (T t : list) {
 			result.add(function.apply(t));

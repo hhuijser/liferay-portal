@@ -193,22 +193,22 @@ public class LiferaySettingsPlugin implements Plugin<Settings> {
 			final String projectPathPrefix)
 		throws IOException {
 
-		final String buildProfile = System.getProperty("build.profile");
+		String buildProfile = System.getProperty("build.profile");
 
-		final Set<String> buildProfileFileNames =
+		Set<String> buildProfileFileNames =
 			GradlePluginsDefaultsUtil.getBuildProfileFileNames(
 				buildProfile,
 				GradleUtil.getProperty(
 					settings, "liferay.releng.public", true));
 
-		final Set<Path> excludedDirPaths = _getDirPaths(
+		Set<Path> excludedDirPaths = _getDirPaths(
 			"build.exclude.dirs", projectPathRootDirPath);
-		final Set<Path> includedDirPaths = _getDirPaths(
+		Set<Path> includedDirPaths = _getDirPaths(
 			"build.include.dirs", projectPathRootDirPath);
-		final Set<ProjectDirType> excludedProjectDirTypes = _getFlags(
+		Set<ProjectDirType> excludedProjectDirTypes = _getFlags(
 			"build.exclude.", ProjectDirType.class);
 
-		final boolean includeDXPProjects = _includeDXPProjects(
+		boolean includeDXPProjects = _includeDXPProjects(
 			buildProfile, buildProfileFileNames, projectPathRootDirPath);
 
 		Files.walkFileTree(

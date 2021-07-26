@@ -56,10 +56,10 @@ public class JspCPlugin implements Plugin<Project> {
 
 		Configuration jspCConfiguration = _addConfigurationJspC(project);
 
-		final CompileJSPTask generateJSPJavaTask = _addTaskGenerateJSPJava(
+		CompileJSPTask generateJSPJavaTask = _addTaskGenerateJSPJava(
 			project, jspCConfiguration);
 
-		final JavaCompile compileJSPTask = _addTaskCompileJSP(
+		JavaCompile compileJSPTask = _addTaskCompileJSP(
 			generateJSPJavaTask, jspCConfiguration);
 
 		project.afterEvaluate(
@@ -155,7 +155,7 @@ public class JspCPlugin implements Plugin<Project> {
 	private CompileJSPTask _addTaskGenerateJSPJava(
 		Project project, Configuration jspCConfiguration) {
 
-		final CompileJSPTask compileJSPTask = GradleUtil.addTask(
+		CompileJSPTask compileJSPTask = GradleUtil.addTask(
 			project, GENERATE_JSP_JAVA_TASK_NAME, CompileJSPTask.class);
 
 		compileJSPTask.setDescription(

@@ -59,7 +59,7 @@ public class RESTBuilderPlugin implements Plugin<Project> {
 		Configuration restBuilderConfiguration = _addConfigurationRESTBuilder(
 			project);
 
-		final BuildRESTTask buildRESTTask = _addTaskBuildREST(project);
+		BuildRESTTask buildRESTTask = _addTaskBuildREST(project);
 
 		_configureTasksBuildREST(project, restBuilderConfiguration);
 

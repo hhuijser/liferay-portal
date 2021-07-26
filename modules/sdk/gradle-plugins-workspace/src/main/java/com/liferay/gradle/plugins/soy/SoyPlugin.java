@@ -93,7 +93,7 @@ public class SoyPlugin implements Plugin<Project> {
 	}
 
 	private BuildSoyTask _addTaskBuildSoy(Project project) {
-		final BuildSoyTask buildSoyTask = GradleUtil.addTask(
+		BuildSoyTask buildSoyTask = GradleUtil.addTask(
 			project, BUILD_SOY_TASK_NAME, BuildSoyTask.class);
 
 		buildSoyTask.setDescription(
@@ -121,10 +121,9 @@ public class SoyPlugin implements Plugin<Project> {
 	private WrapSoyAlloyTemplateTask _addTaskWrapSoyAlloyTemplate(
 		Project project) {
 
-		final WrapSoyAlloyTemplateTask wrapSoyAlloyTemplateTask =
-			GradleUtil.addTask(
-				project, WRAP_SOY_ALLOY_TEMPLATE_TASK_NAME,
-				WrapSoyAlloyTemplateTask.class);
+		WrapSoyAlloyTemplateTask wrapSoyAlloyTemplateTask = GradleUtil.addTask(
+			project, WRAP_SOY_ALLOY_TEMPLATE_TASK_NAME,
+			WrapSoyAlloyTemplateTask.class);
 
 		wrapSoyAlloyTemplateTask.setDescription(
 			"Wraps the Javascript functions compiled from Closure Templates " +

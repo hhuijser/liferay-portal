@@ -75,19 +75,17 @@ public class AppDockerPlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, DockerRemoteApiPlugin.class);
 
-		final AppDockerExtension appDockerExtension = GradleUtil.addExtension(
+		AppDockerExtension appDockerExtension = GradleUtil.addExtension(
 			project, PLUGIN_NAME, AppDockerExtension.class);
 
-		final Sync prepareAppDockerImageInputDirTask =
+		Sync prepareAppDockerImageInputDirTask =
 			_addTaskPrepareAppDockerImageInputDir(project, appDockerExtension);
 
-		final DockerBuildImage buildAppDockerImageTask =
-			_addTaskBuildAppDockerImage(
-				prepareAppDockerImageInputDirTask, appDockerExtension);
+		DockerBuildImage buildAppDockerImageTask = _addTaskBuildAppDockerImage(
+			prepareAppDockerImageInputDirTask, appDockerExtension);
 
-		final DockerPushImage pushAppDockerImageTask =
-			_addTaskPushAppDockerImage(
-				buildAppDockerImageTask, appDockerExtension);
+		DockerPushImage pushAppDockerImageTask = _addTaskPushAppDockerImage(
+			buildAppDockerImageTask, appDockerExtension);
 
 		project.afterEvaluate(
 			new Action<Project>() {
@@ -120,7 +118,7 @@ public class AppDockerPlugin implements Plugin<Project> {
 		final Sync prepareAppDockerImageInputDirTask,
 		final AppDockerExtension appDockerExtension) {
 
-		final DockerBuildImage dockerBuildImage = GradleUtil.addTask(
+		DockerBuildImage dockerBuildImage = GradleUtil.addTask(
 			prepareAppDockerImageInputDirTask.getProject(),
 			BUILD_APP_DOCKER_IMAGE_TASK_NAME, DockerBuildImage.class);
 

@@ -411,7 +411,7 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 
 		// Test 1, retry to get cluster node when log is enabled
 
-		final ClusterMasterExecutorImpl clusterMasterExecutorImpl =
+		ClusterMasterExecutorImpl clusterMasterExecutorImpl =
 			new ClusterMasterExecutorImpl();
 
 		MockClusterExecutor mockClusterExecutor = new MockClusterExecutor(true);

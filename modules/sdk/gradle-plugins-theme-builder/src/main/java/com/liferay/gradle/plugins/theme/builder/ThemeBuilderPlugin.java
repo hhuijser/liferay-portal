@@ -144,7 +144,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 		Project project, final Iterable<File> parentThemeFiles,
 		final WarPluginConvention warPluginConvention) {
 
-		final BuildThemeTask buildThemeTask = GradleUtil.addTask(
+		BuildThemeTask buildThemeTask = GradleUtil.addTask(
 			project, BUILD_THEME_TASK_NAME, BuildThemeTask.class);
 
 		buildThemeTask.setDescription("Builds the theme files.");

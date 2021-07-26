@@ -48,14 +48,13 @@ public class JSTranspilerBasePlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, NodePlugin.class);
 
-		final NpmInstallTask npmInstallTask =
-			(NpmInstallTask)GradleUtil.getTask(
-				project, NodePlugin.NPM_INSTALL_TASK_NAME);
+		NpmInstallTask npmInstallTask = (NpmInstallTask)GradleUtil.getTask(
+			project, NodePlugin.NPM_INSTALL_TASK_NAME);
 
-		final Configuration jsCompileConfiguration = _addConfigurationJSCompile(
+		Configuration jsCompileConfiguration = _addConfigurationJSCompile(
 			project);
 
-		final Task expandJSCompileDependenciesTask =
+		Task expandJSCompileDependenciesTask =
 			_addTaskExpandJSCompileDependencies(project);
 
 		_configureTasksPackageRun(expandJSCompileDependenciesTask);

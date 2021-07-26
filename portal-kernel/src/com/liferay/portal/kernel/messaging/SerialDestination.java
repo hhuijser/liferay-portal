@@ -44,7 +44,7 @@ public class SerialDestination extends BaseAsyncDestination {
 	protected void dispatch(
 		final Set<MessageListener> messageListeners, final Message message) {
 
-		final Thread currentThread = Thread.currentThread();
+		Thread currentThread = Thread.currentThread();
 
 		Runnable runnable = new MessageRunnable(message) {
 

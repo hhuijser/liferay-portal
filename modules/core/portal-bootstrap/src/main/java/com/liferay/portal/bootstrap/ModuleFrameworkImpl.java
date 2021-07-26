@@ -1598,7 +1598,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 		Set<Bundle> bundles = new HashSet<>();
 
-		final List<Path> jarPaths = new ArrayList<>();
+		List<Path> jarPaths = new ArrayList<>();
 
 		Files.walkFileTree(
 			Paths.get(PropsValues.MODULE_FRAMEWORK_BASE_DIR, "static"),

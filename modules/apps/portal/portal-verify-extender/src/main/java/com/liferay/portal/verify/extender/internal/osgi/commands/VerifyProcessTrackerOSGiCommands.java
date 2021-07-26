@@ -334,8 +334,7 @@ public class VerifyProcessTrackerOSGiCommands {
 		OutputStreamContainer outputStreamContainer =
 			outputStreamContainerFactory.create(outputStreamName);
 
-		final OutputStream outputStream =
-			outputStreamContainer.getOutputStream();
+		OutputStream outputStream = outputStreamContainer.getOutputStream();
 
 		outputStreamContainerFactoryTracker.runWithSwappedLog(
 			new Runnable() {
@@ -415,8 +414,7 @@ public class VerifyProcessTrackerOSGiCommands {
 		OutputStreamContainer outputStreamContainer =
 			outputStreamContainerFactory.create("all-verifiers");
 
-		final OutputStream outputStream =
-			outputStreamContainer.getOutputStream();
+		OutputStream outputStream = outputStreamContainer.getOutputStream();
 
 		outputStreamContainerFactoryTracker.runWithSwappedLog(
 			new AllVerifiersRunnable(outputStream, force),

@@ -37,7 +37,7 @@ public class ServiceTrackerCustomizers {
 
 				Registry registry = RegistryUtil.getRegistry();
 
-				final S service = registry.getService(serviceReference);
+				S service = registry.getService(serviceReference);
 
 				if (service == null) {
 					return null;

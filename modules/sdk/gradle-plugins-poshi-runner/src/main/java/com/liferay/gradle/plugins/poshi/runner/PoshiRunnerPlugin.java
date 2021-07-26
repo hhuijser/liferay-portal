@@ -87,24 +87,23 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, BasePlugin.class);
 
-		final PoshiRunnerExtension poshiRunnerExtension =
-			GradleUtil.addExtension(
-				project, "poshiRunner", PoshiRunnerExtension.class);
+		PoshiRunnerExtension poshiRunnerExtension = GradleUtil.addExtension(
+			project, "poshiRunner", PoshiRunnerExtension.class);
 
 		_addConfigurationPoshiRunner(project, poshiRunnerExtension);
 		_addConfigurationSikuli(project, poshiRunnerExtension);
 
 		_addConfigurationPoshiRunnerResources(project);
 
-		final JavaExec executePQLQueryTask = _addTaskExecutePQLQuery(project);
-		final JavaExec evaluatePoshiConsoleTask = _addTaskEvaluatePoshiConsole(
+		JavaExec executePQLQueryTask = _addTaskExecutePQLQuery(project);
+		JavaExec evaluatePoshiConsoleTask = _addTaskEvaluatePoshiConsole(
 			project);
 
 		_addTaskExpandPoshiRunner(project);
 
-		final Test runPoshiTask = _addTaskRunPoshi(project);
-		final JavaExec validatePoshiTask = _addTaskValidatePoshi(project);
-		final JavaExec writePoshiPropertiesTask = _addTaskWritePoshiProperties(
+		Test runPoshiTask = _addTaskRunPoshi(project);
+		JavaExec validatePoshiTask = _addTaskValidatePoshi(project);
+		JavaExec writePoshiPropertiesTask = _addTaskWritePoshiProperties(
 			project);
 
 		project.afterEvaluate(
@@ -307,7 +306,7 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 
 	@SuppressWarnings("rawtypes")
 	private Test _addTaskRunPoshi(Project project) {
-		final Test test = GradleUtil.addTask(
+		Test test = GradleUtil.addTask(
 			project, RUN_POSHI_TASK_NAME, Test.class);
 
 		test.dependsOn(

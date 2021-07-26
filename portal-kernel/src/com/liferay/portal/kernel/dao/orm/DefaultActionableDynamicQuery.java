@@ -244,7 +244,7 @@ public class DefaultActionableDynamicQuery implements ActionableDynamicQuery {
 	protected long doPerformActions(long previousPrimaryKey)
 		throws PortalException {
 
-		final DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			_modelClass, _classLoader);
 
 		if (_addOrderCriteriaMethod == null) {

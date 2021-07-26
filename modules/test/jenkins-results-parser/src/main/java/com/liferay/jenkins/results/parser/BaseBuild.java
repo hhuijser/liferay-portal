@@ -62,7 +62,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public void addDownstreamBuilds(String... urls) {
-		final Build thisBuild = this;
+		Build thisBuild = this;
 
 		List<Callable<Build>> callables = new ArrayList<>(urls.length);
 

@@ -1052,7 +1052,7 @@ public class JenkinsResultsParserUtil {
 	public static Map<String, JSONObject> getBuildResultJSONObjects(
 		List<String> buildResultJsonURLs) {
 
-		final Map<String, JSONObject> buildResultJSONObjects =
+		Map<String, JSONObject> buildResultJSONObjects =
 			Collections.synchronizedMap(new HashMap<String, JSONObject>());
 
 		List<Callable<Void>> callables = new ArrayList<>();
@@ -1565,16 +1565,15 @@ public class JenkinsResultsParserUtil {
 			return new ArrayList<>();
 		}
 
-		final List<PathMatcher> excludesPathMatchers = new ArrayList<>();
+		List<PathMatcher> excludesPathMatchers = new ArrayList<>();
 
 		if ((excludes != null) && (excludes.length > 0)) {
 			excludesPathMatchers.addAll(toPathMatchers(null, excludes));
 		}
 
-		final List<PathMatcher> includesPathMatchers = toPathMatchers(
-			null, includes);
+		List<PathMatcher> includesPathMatchers = toPathMatchers(null, includes);
 
-		final List<File> includedFiles = new ArrayList<>();
+		List<File> includedFiles = new ArrayList<>();
 
 		try {
 			Files.walkFileTree(
@@ -1634,11 +1633,11 @@ public class JenkinsResultsParserUtil {
 			String[] resourceIncludesRelativeGlobs, File rootDir)
 		throws IOException {
 
-		final List<PathMatcher> pathMatchers = toPathMatchers(
+		List<PathMatcher> pathMatchers = toPathMatchers(
 			getCanonicalPath(rootDir) + File.separator,
 			resourceIncludesRelativeGlobs);
 
-		final List<URL> includedResourceURLs = new ArrayList<>();
+		List<URL> includedResourceURLs = new ArrayList<>();
 
 		Path rootDirPath = rootDir.toPath();
 

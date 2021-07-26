@@ -57,7 +57,7 @@ public class LiferayAntPlugin implements Plugin<Project> {
 
 		Convention convention = project.getConvention();
 
-		final BasePluginConvention basePluginConvention = convention.getPlugin(
+		BasePluginConvention basePluginConvention = convention.getPlugin(
 			BasePluginConvention.class);
 
 		_configureConventionBasePlugin(antBuilder, basePluginConvention);
@@ -66,7 +66,7 @@ public class LiferayAntPlugin implements Plugin<Project> {
 
 		TaskProvider<Delete> cleanTaskProvider = GradleUtil.getTaskProvider(
 			project, BasePlugin.CLEAN_TASK_NAME, Delete.class);
-		final TaskProvider<Task> warTaskProvider = GradleUtil.getTaskProvider(
+		TaskProvider<Task> warTaskProvider = GradleUtil.getTaskProvider(
 			project, _WAR_TASK_NAME);
 
 		_configureTaskCleanProvider(cleanTaskProvider);

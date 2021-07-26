@@ -103,7 +103,7 @@ public class FutureConverterTest {
 	public void testCovertCausedExecutionException() throws Exception {
 		_futureTask.run();
 
-		final Exception exception = new Exception();
+		Exception exception = new Exception();
 
 		Future<Object> future = new FutureConverter<Object, Object>(
 			_futureTask) {
@@ -158,7 +158,7 @@ public class FutureConverterTest {
 
 	@Test
 	public void testExecutionException() throws Exception {
-		final Exception exception = new Exception();
+		Exception exception = new Exception();
 
 		FutureTask<Object> futureTask = new FutureTask<Object>(
 			new Callable<Object>() {

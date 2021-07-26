@@ -71,7 +71,7 @@ public class LiferayCIPlugin implements Plugin<Project> {
 
 		// Containers
 
-		final TaskContainer taskContainer = project.getTasks();
+		TaskContainer taskContainer = project.getTasks();
 
 		taskContainer.withType(
 			DownloadNodeTask.class,
@@ -374,7 +374,7 @@ public class LiferayCIPlugin implements Plugin<Project> {
 	private void _configureTaskYarnInstall(YarnInstallTask yarnInstallTask) {
 		Project project = yarnInstallTask.getProject();
 
-		final String ciRegistry = GradleUtil.getProperty(
+		String ciRegistry = GradleUtil.getProperty(
 			project, "nodejs.npm.ci.registry", (String)null);
 
 		if (Validator.isNull(ciRegistry)) {

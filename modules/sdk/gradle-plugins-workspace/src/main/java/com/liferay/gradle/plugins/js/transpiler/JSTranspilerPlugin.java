@@ -74,17 +74,16 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 		Task expandJSCompileDependenciesTask = GradleUtil.getTask(
 			project,
 			JSTranspilerBasePlugin.EXPAND_JS_COMPILE_DEPENDENCIES_TASK_NAME);
-		final NpmInstallTask npmInstallTask =
-			(NpmInstallTask)GradleUtil.getTask(
-				project, NodePlugin.NPM_INSTALL_TASK_NAME);
+		NpmInstallTask npmInstallTask = (NpmInstallTask)GradleUtil.getTask(
+			project, NodePlugin.NPM_INSTALL_TASK_NAME);
 
-		final DownloadNodeModuleTask downloadMetalCliTask =
-			_addTaskDownloadMetalCli(project);
+		DownloadNodeModuleTask downloadMetalCliTask = _addTaskDownloadMetalCli(
+			project);
 
-		final Configuration soyCompileConfiguration =
-			_addConfigurationSoyCompile(project);
+		Configuration soyCompileConfiguration = _addConfigurationSoyCompile(
+			project);
 
-		final TranspileJSTask transpileJSTask = _addTaskTranspileJS(
+		TranspileJSTask transpileJSTask = _addTaskTranspileJS(
 			expandJSCompileDependenciesTask);
 
 		project.afterEvaluate(
@@ -156,7 +155,7 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 
 		Project project = expandJSCompileDependenciesTask.getProject();
 
-		final TranspileJSTask transpileJSTask = GradleUtil.addTask(
+		TranspileJSTask transpileJSTask = GradleUtil.addTask(
 			project, TRANSPILE_JS_TASK_NAME, TranspileJSTask.class);
 
 		transpileJSTask.dependsOn(expandJSCompileDependenciesTask);
@@ -255,7 +254,7 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 
 		Project project = transpileJSTask.getProject();
 
-		final SourceSet sourceSet = GradleUtil.getSourceSet(
+		SourceSet sourceSet = GradleUtil.getSourceSet(
 			project, SourceSet.MAIN_SOURCE_SET_NAME);
 
 		transpileJSTask.setSourceDir(

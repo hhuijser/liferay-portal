@@ -324,7 +324,7 @@ public class CPSearchResultsDisplayContext {
 	}
 
 	protected PortletURL getPortletURL() {
-		final String urlString = getURLString();
+		String urlString = getURLString();
 
 		return new NullPortletURL() {
 

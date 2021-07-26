@@ -107,8 +107,8 @@ public class OSGiBundleBuilderCommandTest {
 	private void _compareJarDirs(File expectedDir, File actualDir)
 		throws Exception {
 
-		final Path expectedDirPath = expectedDir.toPath();
-		final Path actualDirPath = actualDir.toPath();
+		Path expectedDirPath = expectedDir.toPath();
+		Path actualDirPath = actualDir.toPath();
 
 		Files.walkFileTree(
 			expectedDirPath,

@@ -155,7 +155,7 @@ public class CompanyIdIndexNameBuilderTest {
 	protected void createIndices(String indexNamePrefix, long companyId)
 		throws Exception {
 
-		final CompanyIdIndexNameBuilder companyIdIndexNameBuilder =
+		CompanyIdIndexNameBuilder companyIdIndexNameBuilder =
 			new CompanyIdIndexNameBuilder();
 
 		companyIdIndexNameBuilder.setIndexNamePrefix(indexNamePrefix);

@@ -256,10 +256,10 @@ public class PatchTask extends DefaultTask {
 
 	@TaskAction
 	public void patch() throws Exception {
-		final Project project = getProject();
+		Project project = getProject();
 
 		File patchesTemporaryDir = fixPatchFiles();
-		final File srcTemporaryDir = fixSrcFiles();
+		File srcTemporaryDir = fixSrcFiles();
 
 		for (final File patchFile : getSortedFiles(patchesTemporaryDir)) {
 			final ByteArrayOutputStream byteArrayOutputStream =
@@ -400,9 +400,9 @@ public class PatchTask extends DefaultTask {
 	}
 
 	protected File fixPatchFiles() {
-		final Project project = getProject();
+		Project project = getProject();
 
-		final File temporaryDir = new File(getTemporaryDir(), "patches");
+		File temporaryDir = new File(getTemporaryDir(), "patches");
 
 		project.delete(temporaryDir);
 
@@ -423,9 +423,9 @@ public class PatchTask extends DefaultTask {
 	}
 
 	protected File fixSrcFiles() {
-		final Project project = getProject();
+		Project project = getProject();
 
-		final File temporaryDir = new File(getTemporaryDir(), "src");
+		File temporaryDir = new File(getTemporaryDir(), "src");
 
 		project.delete(temporaryDir);
 

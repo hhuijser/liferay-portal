@@ -340,7 +340,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 		}
 
 		JsonContext jsonContext = _jsonSerializer.createJsonContext(null);
-		final Map<String, Object> map = new LinkedHashMap<>();
+		Map<String, Object> map = new LinkedHashMap<>();
 
 		BeanSerializer beanSerializer = new BeanSerializer(
 			jsonContext, object) {

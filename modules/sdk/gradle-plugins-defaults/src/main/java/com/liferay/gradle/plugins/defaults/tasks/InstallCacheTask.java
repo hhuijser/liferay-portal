@@ -215,13 +215,13 @@ public class InstallCacheTask extends DefaultTask {
 	private File _normalizeTextFile(File file) throws IOException {
 		Project project = getProject();
 
-		final File tempFile = new File(getTemporaryDir(), file.getName());
+		File tempFile = new File(getTemporaryDir(), file.getName());
 
 		_copy(file, tempFile.getParentFile());
 
 		CharsetToolkit charsetToolkit = new CharsetToolkit(tempFile);
 
-		final Charset charset = charsetToolkit.getCharset();
+		Charset charset = charsetToolkit.getCharset();
 
 		project.ant(
 			new Closure<Void>(project) {

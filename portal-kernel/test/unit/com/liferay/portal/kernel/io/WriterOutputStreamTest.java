@@ -45,7 +45,7 @@ public class WriterOutputStreamTest {
 
 	@Test
 	public void testClose() throws IOException {
-		final AtomicBoolean closeAtomicBoolean = new AtomicBoolean();
+		AtomicBoolean closeAtomicBoolean = new AtomicBoolean();
 
 		DummyWriter dummyWriter = new DummyWriter() {
 
@@ -154,7 +154,7 @@ public class WriterOutputStreamTest {
 
 	@Test
 	public void testFlush() throws IOException {
-		final AtomicBoolean flushed = new AtomicBoolean();
+		AtomicBoolean flushed = new AtomicBoolean();
 
 		CharArrayWriter charArrayWriter = new CharArrayWriter() {
 
@@ -308,7 +308,7 @@ public class WriterOutputStreamTest {
 	}
 
 	private void _testWriteBlock(boolean autoFlush) throws IOException {
-		final AtomicBoolean flushed = new AtomicBoolean();
+		AtomicBoolean flushed = new AtomicBoolean();
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter() {
 

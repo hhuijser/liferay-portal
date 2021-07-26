@@ -109,7 +109,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	}
 
 	private BuildLangTask _addTaskBuildLang(Project project) {
-		final BuildLangTask buildLangTask = GradleUtil.addTask(
+		BuildLangTask buildLangTask = GradleUtil.addTask(
 			project, BUILD_LANG_TASK_NAME, BuildLangTask.class);
 
 		buildLangTask.setDescription(
@@ -198,8 +198,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	private void _configureTaskProcessResources(final Project project) {
 		File appDir = GradleUtil.getRootDir(project, "app.bnd");
 
-		final File appBndLocalizationDir = new File(
-			appDir, "app.bnd-localization");
+		File appBndLocalizationDir = new File(appDir, "app.bnd-localization");
 
 		if (!appBndLocalizationDir.exists()) {
 			return;
@@ -208,7 +207,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 		Copy copy = (Copy)GradleUtil.getTask(
 			project, JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
 
-		final Map<String, String> relengProperties = new HashMap<>();
+		Map<String, String> relengProperties = new HashMap<>();
 
 		Map<String, ?> projectProperties = project.getProperties();
 
@@ -224,7 +223,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 			}
 		}
 
-		final Action<FileCopyDetails> action = new Action<FileCopyDetails>() {
+		Action<FileCopyDetails> action = new Action<FileCopyDetails>() {
 
 			@Override
 			public void execute(final FileCopyDetails fileCopyDetails) {

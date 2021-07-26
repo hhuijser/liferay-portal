@@ -270,7 +270,7 @@ public class LPKGArtifactInstaller implements FileInstaller {
 		FrameworkWiring frameworkWiring = systemBundle.adapt(
 			FrameworkWiring.class);
 
-		final DefaultNoticeableFuture<FrameworkEvent> defaultNoticeableFuture =
+		DefaultNoticeableFuture<FrameworkEvent> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		frameworkWiring.refreshBundles(

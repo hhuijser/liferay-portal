@@ -118,7 +118,7 @@ public class DigestUtil {
 	private static SortedSet<File> _flattenAndSort(Iterable<File> files)
 		throws IOException {
 
-		final SortedSet<File> sortedFiles = new TreeSet<>(new FileComparator());
+		SortedSet<File> sortedFiles = new TreeSet<>(new FileComparator());
 
 		if (files == null) {
 			return sortedFiles;

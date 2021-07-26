@@ -43,7 +43,7 @@ public class WelderTestUtil {
 
 		Random random = new Random();
 
-		final byte[] data = new byte[1024 * 1024];
+		byte[] data = new byte[1024 * 1024];
 
 		random.nextBytes(data);
 

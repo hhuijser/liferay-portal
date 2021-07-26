@@ -57,7 +57,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	public static SortedSet<File> flattenAndSort(Iterable<File> files)
 		throws IOException {
 
-		final SortedSet<File> sortedFiles = new TreeSet<>(new FileComparator());
+		SortedSet<File> sortedFiles = new TreeSet<>(new FileComparator());
 
 		for (File file : files) {
 			if (file.isDirectory()) {
@@ -319,7 +319,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	private static String _getGitResult(
 		Project project, final File workingDir, final String... args) {
 
-		final ByteArrayOutputStream byteArrayOutputStream =
+		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
 
 		try {

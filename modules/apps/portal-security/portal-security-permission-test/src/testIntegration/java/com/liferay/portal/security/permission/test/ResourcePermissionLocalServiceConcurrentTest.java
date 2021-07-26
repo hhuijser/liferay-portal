@@ -110,12 +110,11 @@ public class ResourcePermissionLocalServiceConcurrentTest {
 			(ClassLoaderBeanHandler)ProxyUtil.getInvocationHandler(
 				resourcePermissionLocalServiceWrapper.getWrappedService());
 
-		final ResourcePermissionLocalServiceImpl
-			resourcePermissionLocalServiceImpl =
-				(ResourcePermissionLocalServiceImpl)
-					classLoaderBeanHandler.getBean();
+		ResourcePermissionLocalServiceImpl resourcePermissionLocalServiceImpl =
+			(ResourcePermissionLocalServiceImpl)
+				classLoaderBeanHandler.getBean();
 
-		final ResourcePermissionPersistence resourcePermissionPersistence =
+		ResourcePermissionPersistence resourcePermissionPersistence =
 			resourcePermissionLocalServiceImpl.
 				getResourcePermissionPersistence();
 

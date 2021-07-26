@@ -75,7 +75,7 @@ public class LocalFabricAgentTest {
 
 		Assert.assertTrue(fabricWorkers.toString(), fabricWorkers.isEmpty());
 
-		final String result = "Test result";
+		String result = "Test result";
 
 		FabricWorker<String> fabricWorker = fabricAgent.execute(
 			null,
@@ -102,7 +102,7 @@ public class LocalFabricAgentTest {
 
 		Assert.assertTrue(fabricWorkers.toString(), fabricWorkers.isEmpty());
 
-		final ProcessException processException = new ProcessException(
+		ProcessException processException = new ProcessException(
 			"Test exception");
 
 		fabricWorker = fabricAgent.execute(

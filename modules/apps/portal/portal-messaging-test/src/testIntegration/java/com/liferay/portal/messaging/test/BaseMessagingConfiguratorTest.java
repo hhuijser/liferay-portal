@@ -76,7 +76,7 @@ public class BaseMessagingConfiguratorTest {
 	public void testCustomClassLoaderDestinationConfiguration()
 		throws InterruptedException, InvalidSyntaxException {
 
-		final ClassLoader testClassLoader = new ClassLoader() {
+		ClassLoader testClassLoader = new ClassLoader() {
 		};
 
 		CountDownLatch countDownLatch = new CountDownLatch(1);

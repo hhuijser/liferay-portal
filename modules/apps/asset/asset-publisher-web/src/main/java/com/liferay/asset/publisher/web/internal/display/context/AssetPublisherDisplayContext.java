@@ -906,8 +906,7 @@ public class AssetPublisherDisplayContext {
 	}
 
 	public String[] getExtensions(AssetRenderer<?> assetRenderer) {
-		final String[] supportedConversions =
-			assetRenderer.getSupportedConversions();
+		String[] supportedConversions = assetRenderer.getSupportedConversions();
 
 		if (supportedConversions == null) {
 			return getExtensions();

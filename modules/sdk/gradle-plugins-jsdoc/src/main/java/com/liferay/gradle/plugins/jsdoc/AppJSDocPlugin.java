@@ -46,11 +46,11 @@ public class AppJSDocPlugin extends BaseJSDocPlugin {
 	public void apply(Project project) {
 		super.apply(project);
 
-		final AppJSDocConfigurationExtension appJSDocConfigurationExtension =
+		AppJSDocConfigurationExtension appJSDocConfigurationExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, AppJSDocConfigurationExtension.class);
 
-		final JSDocTask appJSDocTask = _addTaskAppJSDoc(project);
+		JSDocTask appJSDocTask = _addTaskAppJSDoc(project);
 
 		_addTaskJarAppJSDoc(appJSDocTask);
 
@@ -77,7 +77,7 @@ public class AppJSDocPlugin extends BaseJSDocPlugin {
 	}
 
 	private JSDocTask _addTaskAppJSDoc(Project project) {
-		final JSDocTask appJSDocTask = GradleUtil.addTask(
+		JSDocTask appJSDocTask = GradleUtil.addTask(
 			project, APP_JSDOC_TASK_NAME, JSDocTask.class);
 
 		appJSDocTask.setDescription(

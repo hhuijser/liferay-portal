@@ -51,7 +51,7 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		final PoshiRunnerResourcesExtension poshiRunnerResourcesExtension =
+		PoshiRunnerResourcesExtension poshiRunnerResourcesExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, PoshiRunnerResourcesExtension.class);
 

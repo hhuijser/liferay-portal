@@ -138,7 +138,7 @@ public class ImageRequestTokenUtil {
 	}
 
 	protected static JsonTokenParser getJsonTokenParser() throws Exception {
-		final Verifier verifier = new HmacSHA256Verifier(_SECRET);
+		Verifier verifier = new HmacSHA256Verifier(_SECRET);
 
 		VerifierProvider verifierProvider = new VerifierProvider() {
 

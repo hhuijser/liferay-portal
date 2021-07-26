@@ -111,7 +111,7 @@ public class NettyRepository implements Repository<Channel> {
 	public NoticeableFuture<Map<Path, Path>> getFiles(
 		Channel channel, Map<Path, Path> pathMap, boolean deleteAfterFetch) {
 
-		final DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
+		DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		if (pathMap.isEmpty()) {
@@ -120,9 +120,9 @@ public class NettyRepository implements Repository<Channel> {
 			return defaultNoticeableFuture;
 		}
 
-		final Map<Path, Path> resultPathMap = new ConcurrentHashMap<>();
+		Map<Path, Path> resultPathMap = new ConcurrentHashMap<>();
 
-		final AtomicInteger counter = new AtomicInteger(pathMap.size());
+		AtomicInteger counter = new AtomicInteger(pathMap.size());
 
 		for (Map.Entry<Path, Path> entry : pathMap.entrySet()) {
 			final Path remoteFilePath = entry.getKey();
@@ -192,7 +192,7 @@ public class NettyRepository implements Repository<Channel> {
 			_log.debug("Fetching remote file " + remoteFilePath);
 		}
 
-		final Path cachedLocalFilePath = pathMap.get(remoteFilePath);
+		Path cachedLocalFilePath = pathMap.get(remoteFilePath);
 
 		boolean[] newMarker = new boolean[1];
 

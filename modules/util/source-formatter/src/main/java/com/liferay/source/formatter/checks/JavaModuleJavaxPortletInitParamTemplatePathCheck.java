@@ -122,7 +122,7 @@ public class JavaModuleJavaxPortletInitParamTemplatePathCheck
 
 		File resourcesDir = new File(resourcesAbsolutePath);
 
-		final Set<String> jspDirNames = new TreeSet<>();
+		Set<String> jspDirNames = new TreeSet<>();
 
 		Files.walkFileTree(
 			resourcesDir.toPath(),

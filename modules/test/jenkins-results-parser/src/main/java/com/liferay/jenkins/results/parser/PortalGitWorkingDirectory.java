@@ -107,18 +107,16 @@ public class PortalGitWorkingDirectory extends GitWorkingDirectory {
 			List<PathMatcher> includesPathMatchers)
 		throws IOException {
 
-		final File modulesDir = new File(getWorkingDirectory(), "modules");
+		File modulesDir = new File(getWorkingDirectory(), "modules");
 
 		if (!modulesDir.exists()) {
 			return new ArrayList<>();
 		}
 
-		final List<PathMatcher> excludedModulesPathMatchers =
-			excludesPathMatchers;
-		final List<PathMatcher> includedModulesPathMatchers =
-			includesPathMatchers;
+		List<PathMatcher> excludedModulesPathMatchers = excludesPathMatchers;
+		List<PathMatcher> includedModulesPathMatchers = includesPathMatchers;
 
-		final List<File> moduleDirsList = new ArrayList<>();
+		List<File> moduleDirsList = new ArrayList<>();
 
 		Files.walkFileTree(
 			modulesDir.toPath(),

@@ -211,7 +211,7 @@ public class JMXProxyUtilTest {
 
 	@Test
 	public void testEquals() {
-		final ObjectName objectName = ObjectName.WILDCARD;
+		ObjectName objectName = ObjectName.WILDCARD;
 
 		Assert.assertTrue(
 			JMXProxyUtil.equals(

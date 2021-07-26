@@ -80,7 +80,7 @@ public class PatcherPlugin implements Plugin<Project> {
 			"copy" + StringUtil.capitalize(patchTask.getName()) +
 				"OriginalLibClasses";
 
-		final Copy copy = GradleUtil.addTask(
+		Copy copy = GradleUtil.addTask(
 			patchTask.getProject(), taskName, Copy.class);
 
 		copy.eachFile(
@@ -156,7 +156,7 @@ public class PatcherPlugin implements Plugin<Project> {
 	protected void configureTaskPatchPatchedSrcDirMappings(
 		PatchTask patchTask) {
 
-		final SourceSet sourceSet = GradleUtil.getSourceSet(
+		SourceSet sourceSet = GradleUtil.getSourceSet(
 			patchTask.getProject(), SourceSet.MAIN_SOURCE_SET_NAME);
 
 		patchTask.patchedSrcDirMapping(

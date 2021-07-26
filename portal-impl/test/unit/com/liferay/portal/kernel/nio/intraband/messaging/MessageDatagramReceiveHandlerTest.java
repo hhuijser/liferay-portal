@@ -161,8 +161,7 @@ public class MessageDatagramReceiveHandlerTest {
 
 		// Normal destination, synchronized, with listener
 
-		final AtomicReference<Message> messageReference =
-			new AtomicReference<>();
+		AtomicReference<Message> messageReference = new AtomicReference<>();
 
 		baseDestination.register(
 			new MessageListener() {
@@ -197,7 +196,7 @@ public class MessageDatagramReceiveHandlerTest {
 		// Normal destination, synchronized, with listener that throws an
 		// exception
 
-		final MessageListenerException messageListenerException =
+		MessageListenerException messageListenerException =
 			new MessageListenerException();
 
 		baseDestination.register(
@@ -234,7 +233,7 @@ public class MessageDatagramReceiveHandlerTest {
 		baseDestination.setName(
 			MessageDatagramReceiveHandlerTest.class.getName());
 
-		final AtomicReference<MessageRoutingBag> messageRoutingBagReference =
+		AtomicReference<MessageRoutingBag> messageRoutingBagReference =
 			new AtomicReference<>();
 
 		IntrabandBridgeDestination intrabandBridgeDestination =

@@ -170,7 +170,7 @@ public class ThemeBuilder {
 	}
 
 	private void _copyTheme(final Path themeDirPath) throws IOException {
-		final Path outputDirPath = _outputDir.toPath();
+		Path outputDirPath = _outputDir.toPath();
 
 		Files.walkFileTree(
 			themeDirPath,

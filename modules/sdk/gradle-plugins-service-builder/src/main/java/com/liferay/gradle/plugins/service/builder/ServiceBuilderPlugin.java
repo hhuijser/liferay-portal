@@ -58,7 +58,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 		Configuration serviceBuilderConfiguration =
 			addConfigurationServiceBuilder(project);
 
-		final BuildServiceTask buildServiceTask = addTaskBuildService(project);
+		BuildServiceTask buildServiceTask = addTaskBuildService(project);
 
 		configureTasksBuildService(project, serviceBuilderConfiguration);
 
@@ -104,7 +104,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected BuildServiceTask addTaskBuildService(final Project project) {
-		final BuildServiceTask buildServiceTask = GradleUtil.addTask(
+		BuildServiceTask buildServiceTask = GradleUtil.addTask(
 			project, BUILD_SERVICE_TASK_NAME, BuildServiceTask.class);
 
 		buildServiceTask.setDescription("Runs Liferay Service Builder.");

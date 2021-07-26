@@ -44,7 +44,7 @@ public class ExecStandardOutputCallable implements Callable<String> {
 
 	@Override
 	public String call() throws Exception {
-		final ByteArrayOutputStream byteArrayOutputStream =
+		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
 
 		try {

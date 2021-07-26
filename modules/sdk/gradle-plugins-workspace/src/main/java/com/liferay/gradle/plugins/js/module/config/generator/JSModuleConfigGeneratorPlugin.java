@@ -53,7 +53,7 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, NodePlugin.class);
 
-		final Task npmInstallTask = GradleUtil.getTask(
+		Task npmInstallTask = GradleUtil.getTask(
 			project, NodePlugin.NPM_INSTALL_TASK_NAME);
 
 		JSModuleConfigGeneratorExtension jsModuleConfigGeneratorExtension =
@@ -61,7 +61,7 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 				project, EXTENSION_NAME,
 				JSModuleConfigGeneratorExtension.class);
 
-		final DownloadNodeModuleTask downloadLiferayModuleConfigGeneratorTask =
+		DownloadNodeModuleTask downloadLiferayModuleConfigGeneratorTask =
 			_addTaskDownloadLiferayModuleConfigGenerator(
 				project, jsModuleConfigGeneratorExtension);
 
@@ -81,7 +81,7 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 	}
 
 	private ConfigJSModulesTask _addTaskConfigJSModules(final Project project) {
-		final ConfigJSModulesTask configJSModulesTask = GradleUtil.addTask(
+		ConfigJSModulesTask configJSModulesTask = GradleUtil.addTask(
 			project, CONFIG_JS_MODULES_TASK_NAME, ConfigJSModulesTask.class);
 
 		configJSModulesTask.mustRunAfter(
@@ -188,7 +188,7 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 		SourceSet sourceSet = GradleUtil.getSourceSet(
 			project, SourceSet.MAIN_SOURCE_SET_NAME);
 
-		final SourceSetOutput sourceSetOutput = sourceSet.getOutput();
+		SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
 		configJSModulesTask.setOutputFile(
 			new Callable<File>() {

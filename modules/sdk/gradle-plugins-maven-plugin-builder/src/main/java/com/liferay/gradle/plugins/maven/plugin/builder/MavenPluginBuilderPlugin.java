@@ -127,7 +127,7 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 		final WriteMavenSettingsTask writeMavenSettingsTask,
 		FileCollection mavenEmbedderClasspath) {
 
-		final Project project = writeMavenSettingsTask.getProject();
+		Project project = writeMavenSettingsTask.getProject();
 
 		BuildPluginDescriptorTask buildPluginDescriptorTask =
 			GradleUtil.addTask(
@@ -137,7 +137,7 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 		buildPluginDescriptorTask.dependsOn(
 			JavaPlugin.COMPILE_JAVA_TASK_NAME, writeMavenSettingsTask);
 
-		final SourceSet sourceSet = GradleUtil.getSourceSet(
+		SourceSet sourceSet = GradleUtil.getSourceSet(
 			project, SourceSet.MAIN_SOURCE_SET_NAME);
 
 		buildPluginDescriptorTask.setClassesDir(

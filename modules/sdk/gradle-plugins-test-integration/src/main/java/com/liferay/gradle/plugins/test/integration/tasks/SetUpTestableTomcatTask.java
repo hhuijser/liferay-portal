@@ -374,7 +374,7 @@ public class SetUpTestableTomcatTask
 	}
 
 	private void _setUpManager() throws Exception {
-		final File managerDir = new File(getDir(), "webapps/manager");
+		File managerDir = new File(getDir(), "webapps/manager");
 
 		if (!managerDir.exists()) {
 			final Project project = getProject();
@@ -399,8 +399,7 @@ public class SetUpTestableTomcatTask
 
 		Document document = null;
 
-		final File tomcatUsersXmlFile = new File(
-			getDir(), "conf/tomcat-users.xml");
+		File tomcatUsersXmlFile = new File(getDir(), "conf/tomcat-users.xml");
 
 		try (InputStreamReader inputStreamReader = new InputStreamReader(
 				new FileInputStream(tomcatUsersXmlFile))) {

@@ -83,11 +83,11 @@ public class JSUnitModulesBatchTestClassGroup
 					excludesPathMatchers, includesPathMatchers));
 		}
 
-		final List<File> projectDirs = new ArrayList<>();
-		final File modulesDir = new File(
+		List<File> projectDirs = new ArrayList<>();
+		File modulesDir = new File(
 			portalGitWorkingDirectory.getWorkingDirectory(), "modules");
 
-		final boolean testGitrepoJSUnit = _testGitrepoJSUnit();
+		boolean testGitrepoJSUnit = _testGitrepoJSUnit();
 
 		for (File moduleDir : moduleDirs) {
 			Path moduleDirPath = moduleDir.toPath();

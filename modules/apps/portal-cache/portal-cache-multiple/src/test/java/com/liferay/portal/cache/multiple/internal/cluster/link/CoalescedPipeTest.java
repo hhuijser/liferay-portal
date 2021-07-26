@@ -39,7 +39,7 @@ public class CoalescedPipeTest {
 
 	@Test
 	public void testBlockingTake() throws InterruptedException {
-		final CoalescedPipe<String> coalescedPipe = new CoalescedPipe<>();
+		CoalescedPipe<String> coalescedPipe = new CoalescedPipe<>();
 
 		ScheduledExecutorService scheduledExecutorService =
 			Executors.newScheduledThreadPool(1);

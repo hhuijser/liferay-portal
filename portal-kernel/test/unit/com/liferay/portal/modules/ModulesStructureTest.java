@@ -161,9 +161,9 @@ public class ModulesStructureTest {
 
 	@Test
 	public void testScanBuildScripts() throws IOException {
-		final String gitRepoBuildGradleTemplate = _getGradleTemplate(
+		String gitRepoBuildGradleTemplate = _getGradleTemplate(
 			"dependencies/git_repo_build_gradle.tmpl");
-		final String gitRepoSettingsGradleTemplate = _getGradleTemplate(
+		String gitRepoSettingsGradleTemplate = _getGradleTemplate(
 			"dependencies/git_repo_settings_gradle.tmpl");
 
 		Files.walkFileTree(
@@ -409,14 +409,14 @@ public class ModulesStructureTest {
 
 	@Test
 	public void testScanIgnoreFiles() throws IOException {
-		final String gitRepoGitIgnoreTemplate = StringUtil.read(
+		String gitRepoGitIgnoreTemplate = StringUtil.read(
 			ModulesStructureTest.class, "dependencies/git_repo_gitignore.tmpl");
-		final String themeGitIgnoreTemplate = StringUtil.read(
+		String themeGitIgnoreTemplate = StringUtil.read(
 			ModulesStructureTest.class, "dependencies/theme_gitignore.tmpl");
-		final String themeNpmIgnoreTemplate = StringUtil.read(
+		String themeNpmIgnoreTemplate = StringUtil.read(
 			ModulesStructureTest.class, "dependencies/theme_npmignore.tmpl");
 
-		final Set<String> gitRepoGitIgnoreTemplateLines = SetUtil.fromString(
+		Set<String> gitRepoGitIgnoreTemplateLines = SetUtil.fromString(
 			gitRepoGitIgnoreTemplate);
 
 		Files.walkFileTree(
@@ -481,7 +481,7 @@ public class ModulesStructureTest {
 
 	@Test
 	public void testScanLog4JConfigurationXML() throws IOException {
-		final Map<String, String> renameMap = HashMapBuilder.put(
+		Map<String, String> renameMap = HashMapBuilder.put(
 			"src/main/resources/META-INF/portal-log4j-ext.xml",
 			"module-log4j-ext.xml"
 		).put(
@@ -626,7 +626,7 @@ public class ModulesStructureTest {
 			return StringUtil.merge(gitIgnoreLines, StringPool.NEW_LINE);
 		}
 
-		final Set<String> pluginDirNames = new TreeSet<>();
+		Set<String> pluginDirNames = new TreeSet<>();
 
 		Files.walkFileTree(
 			dirPath,
@@ -760,7 +760,7 @@ public class ModulesStructureTest {
 			buildGradleTemplate = sb.toString();
 		}
 
-		final Set<String> pluginNames = new TreeSet<>();
+		Set<String> pluginNames = new TreeSet<>();
 
 		pluginNames.add("com.liferay.gradle.plugins.defaults");
 

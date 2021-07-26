@@ -201,7 +201,7 @@ public class DebugUtil {
 			return;
 		}
 
-		final Map<String, Double> checkTypeProcessingTimeMap = new HashMap<>();
+		Map<String, Double> checkTypeProcessingTimeMap = new HashMap<>();
 
 		for (String checkName : _checkNamesMap.get(checkType)) {
 			if (_processingTimeMap.containsKey(checkName)) {

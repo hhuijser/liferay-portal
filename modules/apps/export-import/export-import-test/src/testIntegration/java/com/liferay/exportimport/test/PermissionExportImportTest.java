@@ -139,9 +139,9 @@ public class PermissionExportImportTest {
 			final Group exportGroup, Layout exportLayout)
 		throws Exception {
 
-		final Method getCompanyIdMethod = ReflectionTestUtil.getMethod(
+		Method getCompanyIdMethod = ReflectionTestUtil.getMethod(
 			PortletDataContext.class, "getCompanyId");
-		final Method getGroupIdMethod = ReflectionTestUtil.getMethod(
+		Method getGroupIdMethod = ReflectionTestUtil.getMethod(
 			PortletDataContext.class, "getGroupId");
 
 		PortletDataContext portletDataContext =

@@ -72,8 +72,7 @@ public class LiferayAntDefaultsPlugin implements Plugin<Project> {
 
 		_applyConfigScripts(project);
 
-		final ReplaceRegexTask updateVersionTask = _addTaskUpdateVersion(
-			project);
+		ReplaceRegexTask updateVersionTask = _addTaskUpdateVersion(project);
 
 		_configureProject(project);
 
@@ -103,10 +102,9 @@ public class LiferayAntDefaultsPlugin implements Plugin<Project> {
 	private CopyIvyDependenciesTask _addTaskCopyIvyDependencies(
 		Project project, File inputFile) {
 
-		final CopyIvyDependenciesTask copyIvyDependenciesTask =
-			GradleUtil.addTask(
-				project, COPY_IVY_DEPENDENCIES_TASK_NAME,
-				CopyIvyDependenciesTask.class);
+		CopyIvyDependenciesTask copyIvyDependenciesTask = GradleUtil.addTask(
+			project, COPY_IVY_DEPENDENCIES_TASK_NAME,
+			CopyIvyDependenciesTask.class);
 
 		copyIvyDependenciesTask.setDescription(
 			"Copies the dependencies declared in the ivy.xml file.");

@@ -168,7 +168,7 @@ public class LiferayAppDefaultsPlugin implements Plugin<Project> {
 
 		Task task = project.task(WRITE_APP_PACKAGE_JSON_FILE_TASK_NAME);
 
-		final Map<String, String> packageJsonMap = new HashMap<>();
+		Map<String, String> packageJsonMap = new HashMap<>();
 
 		packageJsonMap.put("description", appDescription);
 		packageJsonMap.put("name", appTitle);

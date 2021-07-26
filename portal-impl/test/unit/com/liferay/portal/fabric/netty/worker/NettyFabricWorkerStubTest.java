@@ -197,7 +197,7 @@ public class NettyFabricWorkerStubTest {
 
 	@Test
 	public void testSetResult() throws Exception {
-		final DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
+		DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		NettyFabricWorkerStub<String> nettyFabricWorkerStub =
@@ -232,7 +232,7 @@ public class NettyFabricWorkerStubTest {
 
 	@Test
 	public void testSetResultWithCancellation() {
-		final DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
+		DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		NettyFabricWorkerStub<String> nettyFabricWorkerStub =
@@ -264,7 +264,7 @@ public class NettyFabricWorkerStubTest {
 
 	@Test
 	public void testSetResultWithException() throws InterruptedException {
-		final DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
+		DefaultNoticeableFuture<Map<Path, Path>> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		NettyFabricWorkerStub<String> nettyFabricWorkerStub =

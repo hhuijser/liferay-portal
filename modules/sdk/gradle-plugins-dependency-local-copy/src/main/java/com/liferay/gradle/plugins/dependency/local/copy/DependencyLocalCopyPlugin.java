@@ -73,7 +73,7 @@ public class DependencyLocalCopyPlugin implements Plugin<Project> {
 		final Project project, final Project dependencyProject,
 		boolean transitive) {
 
-		final String dependencyProjectPath = dependencyProject.getPath();
+		String dependencyProjectPath = dependencyProject.getPath();
 
 		Sync sync = GradleUtil.addTask(
 			project,
@@ -162,7 +162,7 @@ public class DependencyLocalCopyPlugin implements Plugin<Project> {
 		ResolutionStrategy resolutionStrategy =
 			configuration.getResolutionStrategy();
 
-		final DependencySubstitutions dependencySubstitutions =
+		DependencySubstitutions dependencySubstitutions =
 			resolutionStrategy.getDependencySubstitution();
 
 		dependencySubstitutions.all(

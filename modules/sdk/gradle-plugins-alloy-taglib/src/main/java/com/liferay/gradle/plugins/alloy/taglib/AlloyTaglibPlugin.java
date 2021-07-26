@@ -46,7 +46,7 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 	}
 
 	private BuildTaglibsTask _addTaskBuildTaglibs(Project project) {
-		final BuildTaglibsTask buildTaglibsTask = GradleUtil.addTask(
+		BuildTaglibsTask buildTaglibsTask = GradleUtil.addTask(
 			project, BUILD_TAGLIBS_TASK_NAME, BuildTaglibsTask.class);
 
 		buildTaglibsTask.setDescription(

@@ -58,7 +58,7 @@ public class WeDeploySettingsPlugin implements Plugin<Settings> {
 
 	@SuppressWarnings("serial")
 	private void _apply(Settings settings) throws IOException {
-		final Set<String> projectPaths = _includeProjects(settings);
+		Set<String> projectPaths = _includeProjects(settings);
 
 		Gradle gradle = settings.getGradle();
 
@@ -117,12 +117,12 @@ public class WeDeploySettingsPlugin implements Plugin<Settings> {
 	private Set<String> _includeProjects(final Settings settings)
 		throws IOException {
 
-		final String projectPathPrefix = _getProjectPathPrefix(settings);
-		final Set<String> projectPaths = new HashSet<>();
+		String projectPathPrefix = _getProjectPathPrefix(settings);
+		Set<String> projectPaths = new HashSet<>();
 
 		File rootDir = settings.getRootDir();
 
-		final Path rootDirPath = rootDir.toPath();
+		Path rootDirPath = rootDir.toPath();
 
 		Files.walkFileTree(
 			rootDirPath,

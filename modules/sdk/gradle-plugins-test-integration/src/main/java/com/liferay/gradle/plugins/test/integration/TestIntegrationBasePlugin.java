@@ -127,7 +127,7 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 	private Test _addTaskTestIntegration(
 		Project project, final SourceSet testIntegrationSourceSet) {
 
-		final Test test = GradleUtil.addTask(
+		Test test = GradleUtil.addTask(
 			project, TEST_INTEGRATION_TASK_NAME, Test.class);
 
 		test.mustRunAfter(JavaPlugin.TEST_TASK_NAME);
@@ -149,10 +149,9 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 
 			});
 
-		final SourceSetOutput sourceSetOutput =
-			testIntegrationSourceSet.getOutput();
+		SourceSetOutput sourceSetOutput = testIntegrationSourceSet.getOutput();
 
-		final Method getClassesDirsMethod = ReflectionUtil.getMethod(
+		Method getClassesDirsMethod = ReflectionUtil.getMethod(
 			sourceSetOutput, "getClassesDirs");
 
 		if (getClassesDirsMethod != null) {
@@ -286,7 +285,7 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 
 		IdeaModel ideaModel = GradleUtil.getExtension(project, IdeaModel.class);
 
-		final IdeaModule ideaModule = ideaModel.getModule();
+		IdeaModule ideaModule = ideaModel.getModule();
 
 		Map<String, Map<String, Collection<Configuration>>> scopes =
 			ideaModule.getScopes();

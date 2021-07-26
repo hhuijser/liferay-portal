@@ -48,7 +48,7 @@ public class LocalFabricAgent implements FabricAgent {
 			ProcessConfig processConfig, ProcessCallable<T> processCallable)
 		throws ProcessException {
 
-		final FabricWorker<T> fabricWorker = new LocalFabricWorker<>(
+		FabricWorker<T> fabricWorker = new LocalFabricWorker<>(
 			_processExecutor.execute(processConfig, processCallable));
 
 		_fabricWorkerQueue.add(fabricWorker);

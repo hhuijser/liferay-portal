@@ -75,15 +75,15 @@ public class FileUtil {
 			String baseDir, String[] includes, String[] excludes)
 		throws IOException {
 
-		final List<String> fileNames = new ArrayList<>();
+		List<String> fileNames = new ArrayList<>();
 
-		final Path baseDirPath = Paths.get(baseDir);
+		Path baseDirPath = Paths.get(baseDir);
 
 		FileSystem fileSystem = baseDirPath.getFileSystem();
 
-		final List<PathMatcher> includePathMatchers = _getPathMatchers(
+		List<PathMatcher> includePathMatchers = _getPathMatchers(
 			fileSystem, baseDirPath, includes);
-		final List<PathMatcher> excludePathMatchers = _getPathMatchers(
+		List<PathMatcher> excludePathMatchers = _getPathMatchers(
 			fileSystem, baseDirPath, excludes);
 
 		Files.walkFileTree(

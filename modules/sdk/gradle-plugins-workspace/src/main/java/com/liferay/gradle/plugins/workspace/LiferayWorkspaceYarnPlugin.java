@@ -52,7 +52,7 @@ public class LiferayWorkspaceYarnPlugin extends YarnPlugin {
 			GradleUtil.addTaskProvider(
 				project, SET_UP_YARN_TASK_NAME, SetUpYarnTask.class);
 
-		final TaskProvider<YarnInstallTask> yarnInstallTaskProvider =
+		TaskProvider<YarnInstallTask> yarnInstallTaskProvider =
 			GradleUtil.getTaskProvider(
 				project, YARN_INSTALL_TASK_NAME, YarnInstallTask.class);
 

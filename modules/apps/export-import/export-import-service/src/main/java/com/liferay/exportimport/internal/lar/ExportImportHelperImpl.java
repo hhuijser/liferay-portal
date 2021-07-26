@@ -947,7 +947,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			final PortletDataContext portletDataContext)
 		throws Exception {
 
-		final MissingReferences missingReferences = new MissingReferences();
+		MissingReferences missingReferences = new MissingReferences();
 
 		XMLReader xmlReader = SecureXMLFactoryProviderUtil.newXMLReader();
 

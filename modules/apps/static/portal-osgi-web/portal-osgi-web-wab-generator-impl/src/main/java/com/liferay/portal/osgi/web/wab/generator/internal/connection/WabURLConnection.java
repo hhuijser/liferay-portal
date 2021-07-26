@@ -96,7 +96,7 @@ public class WabURLConnection extends URLConnection {
 			path = path.concat(StringUtil.merge(portalProfileNames));
 		}
 
-		final File file = transferToTempFile(new URL(protocols[0], null, path));
+		File file = transferToTempFile(new URL(protocols[0], null, path));
 
 		File processedFile = _wabGenerator.generate(
 			_classLoader, file, parameters);

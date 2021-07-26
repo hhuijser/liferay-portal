@@ -65,12 +65,12 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 
 	@Test
 	public void testWithModuleLayoutTypeController() throws Exception {
-		final String prpName = "categoryId";
-		final String prpValue = RandomTestUtil.randomString(
+		String prpName = "categoryId";
+		String prpValue = RandomTestUtil.randomString(
 			LayoutFriendlyURLRandomizerBumper.INSTANCE,
 			NumericStringRandomizerBumper.INSTANCE,
 			UniqueStringRandomizerBumper.INSTANCE);
-		final AtomicBoolean success = new AtomicBoolean(false);
+		AtomicBoolean success = new AtomicBoolean(false);
 
 		testPortlet = new TestPortlet() {
 
@@ -153,12 +153,12 @@ public class PublicRenderParameterTest extends BasePortletContainerTestCase {
 
 	@Test
 	public void testWithPortalLayoutTypeController() throws Exception {
-		final String prpName = "categoryId";
-		final String prpValue = RandomTestUtil.randomString(
+		String prpName = "categoryId";
+		String prpValue = RandomTestUtil.randomString(
 			LayoutFriendlyURLRandomizerBumper.INSTANCE,
 			NumericStringRandomizerBumper.INSTANCE,
 			UniqueStringRandomizerBumper.INSTANCE);
-		final AtomicBoolean success = new AtomicBoolean(false);
+		AtomicBoolean success = new AtomicBoolean(false);
 
 		testPortlet = new TestPortlet() {
 

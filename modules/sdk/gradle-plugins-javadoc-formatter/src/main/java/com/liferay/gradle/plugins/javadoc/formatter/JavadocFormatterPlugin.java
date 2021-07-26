@@ -49,7 +49,7 @@ public class JavadocFormatterPlugin implements Plugin<Project> {
 	protected Configuration addConfigurationJavadocFormatter(
 		final Project project) {
 
-		final Configuration configuration = GradleUtil.addConfiguration(
+		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 
 		configuration.defaultDependencies(

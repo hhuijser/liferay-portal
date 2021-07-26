@@ -83,7 +83,7 @@ public class HypersonicServerClassTestRule extends ClassTestRule<Server> {
 
 	@Override
 	public Server beforeClass(Description description) throws Exception {
-		final CountDownLatch startCountDownLatch = new CountDownLatch(1);
+		CountDownLatch startCountDownLatch = new CountDownLatch(1);
 
 		Server testServer = new Server() {
 

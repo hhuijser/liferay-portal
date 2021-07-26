@@ -274,7 +274,7 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 
 		String bundleSymbolicName = GradleUtil.getArchivesBaseName(project);
 
-		final Pattern pattern = Pattern.compile(
+		Pattern pattern = Pattern.compile(
 			Pattern.quote(bundleSymbolicName) + "-(\\d.+?)\\.jar");
 
 		ReplaceRegexTask replaceRegexTask =

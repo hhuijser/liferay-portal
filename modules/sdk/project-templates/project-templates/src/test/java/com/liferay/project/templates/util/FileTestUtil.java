@@ -82,12 +82,11 @@ public class FileTestUtil {
 	public static Path getFile(Path rootDirPath, String pattern, int maxDepth)
 		throws IOException {
 
-		final AtomicReference<Path> foundPath = new AtomicReference<>();
+		AtomicReference<Path> foundPath = new AtomicReference<>();
 
 		FileSystem fileSystem = rootDirPath.getFileSystem();
 
-		final PathMatcher pathMatcher = fileSystem.getPathMatcher(
-			"glob:" + pattern);
+		PathMatcher pathMatcher = fileSystem.getPathMatcher("glob:" + pattern);
 
 		Files.walkFileTree(
 			rootDirPath, Collections.singleton(FileVisitOption.FOLLOW_LINKS),

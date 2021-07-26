@@ -90,7 +90,7 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected BuildWSDDTask addTaskBuildWSDD(Project project) {
-		final BuildWSDDTask buildWSDDTask = GradleUtil.addTask(
+		BuildWSDDTask buildWSDDTask = GradleUtil.addTask(
 			project, BUILD_WSDD_TASK_NAME, BuildWSDDTask.class);
 
 		buildWSDDTask.dependsOn(JavaPlugin.COMPILE_JAVA_TASK_NAME);

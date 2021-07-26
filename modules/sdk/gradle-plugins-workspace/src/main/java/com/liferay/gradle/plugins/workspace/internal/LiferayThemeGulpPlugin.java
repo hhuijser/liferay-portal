@@ -72,16 +72,16 @@ public class LiferayThemeGulpPlugin implements Plugin<Project> {
 
 		// Tasks
 
-		final TaskProvider<Task> createLiferayThemeJsonTaskProvider =
+		TaskProvider<Task> createLiferayThemeJsonTaskProvider =
 			GradleUtil.getTaskProvider(
 				project,
 				LiferayThemePlugin.CREATE_LIFERAY_THEME_JSON_TASK_NAME);
-		final TaskProvider<Task> gulpBuildTaskProvider =
-			GradleUtil.getTaskProvider(project, _GULP_BUILD_TASK_NAME);
+		TaskProvider<Task> gulpBuildTaskProvider = GradleUtil.getTaskProvider(
+			project, _GULP_BUILD_TASK_NAME);
 
 		// Containers
 
-		final TaskContainer taskContainer = project.getTasks();
+		TaskContainer taskContainer = project.getTasks();
 
 		taskContainer.withType(
 			ExecuteGulpTask.class,

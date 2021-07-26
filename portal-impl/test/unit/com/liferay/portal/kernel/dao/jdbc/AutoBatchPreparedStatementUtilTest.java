@@ -96,9 +96,9 @@ public class AutoBatchPreparedStatementUtilTest {
 	public void testCINITFailure() throws ClassNotFoundException {
 		PropsTestUtil.setProps(PropsKeys.HIBERNATE_JDBC_BATCH_SIZE, "0");
 
-		final NoSuchMethodException noSuchMethodException =
+		NoSuchMethodException noSuchMethodException =
 			new NoSuchMethodException();
-		final AtomicInteger counter = new AtomicInteger();
+		AtomicInteger counter = new AtomicInteger();
 
 		try (SwappableSecurityManager swappableSecurityManager =
 				new SwappableSecurityManager() {

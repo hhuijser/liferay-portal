@@ -239,7 +239,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 			return _jsonTokenParser;
 		}
 
-		final Verifier verifier = new HmacSHA256Verifier(_SECRET.getBytes());
+		Verifier verifier = new HmacSHA256Verifier(_SECRET.getBytes());
 
 		VerifierProvider verifierProvider = new VerifierProvider() {
 

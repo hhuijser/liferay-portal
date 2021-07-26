@@ -81,7 +81,7 @@ public class NettyUtil {
 
 		EventLoop eventLoop = channel.eventLoop();
 
-		final Future<?> cancellationFuture = eventLoop.schedule(
+		Future<?> cancellationFuture = eventLoop.schedule(
 			new Runnable() {
 
 				@Override

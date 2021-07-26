@@ -151,11 +151,11 @@ public class CharPipeTest {
 
 	@Test
 	public void testClosePeacefullyBlocking() throws Exception {
-		final CharPipe charPipe = new CharPipe();
+		CharPipe charPipe = new CharPipe();
 
 		Reader reader = charPipe.getReader();
 
-		final AtomicLong timestampBeforeClose = new AtomicLong();
+		AtomicLong timestampBeforeClose = new AtomicLong();
 
 		SyncThrowableThread<Void> syncThrowableThread =
 			new SyncThrowableThread<>(

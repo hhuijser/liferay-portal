@@ -74,7 +74,7 @@ public class NettyFabricAgentRegistrationChannelHandler
 	public void exceptionCaught(
 		ChannelHandlerContext channelHandlerContext, Throwable throwable) {
 
-		final Channel channel = channelHandlerContext.channel();
+		Channel channel = channelHandlerContext.channel();
 
 		_log.error("Closing " + channel + " due to:", throwable);
 

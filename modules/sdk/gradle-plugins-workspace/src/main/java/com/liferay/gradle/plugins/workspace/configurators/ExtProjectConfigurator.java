@@ -132,7 +132,7 @@ public class ExtProjectConfigurator extends BaseProjectConfigurator {
 
 	@Override
 	protected Iterable<File> doGetProjectDirs(File rootDir) throws Exception {
-		final Set<File> projectDirs = new HashSet<>();
+		Set<File> projectDirs = new HashSet<>();
 
 		Files.walkFileTree(
 			rootDir.toPath(),
@@ -264,7 +264,7 @@ public class ExtProjectConfigurator extends BaseProjectConfigurator {
 			taskName = JavaPlugin.JAR_TASK_NAME;
 		}
 
-		final Task task = GradleUtil.getTask(project, taskName);
+		Task task = GradleUtil.getTask(project, taskName);
 
 		copy.into(
 			dirName,

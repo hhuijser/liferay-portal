@@ -183,7 +183,7 @@ public class GradleExportedPackageDependenciesCheck extends BaseFileCheck {
 			return _emptyExportPackageBundleSymbolicMap;
 		}
 
-		final List<File> files = new ArrayList<>();
+		List<File> files = new ArrayList<>();
 
 		Files.walkFileTree(
 			portalDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 15,

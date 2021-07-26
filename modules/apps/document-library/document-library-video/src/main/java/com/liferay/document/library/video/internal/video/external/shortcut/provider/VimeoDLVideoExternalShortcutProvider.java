@@ -52,7 +52,7 @@ public class VimeoDLVideoExternalShortcutProvider
 			return null;
 		}
 
-		final JSONObject jsonObject = _getEmbedJSONObject(url);
+		JSONObject jsonObject = _getEmbedJSONObject(url);
 
 		return new DLVideoExternalShortcut() {
 

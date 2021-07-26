@@ -43,7 +43,7 @@ public class ChangeLogBuilderPlugin implements Plugin<Project> {
 	}
 
 	private BuildChangeLogTask _addTaskBuildChangeLog(Project project) {
-		final BuildChangeLogTask buildChangeLogTask = GradleUtil.addTask(
+		BuildChangeLogTask buildChangeLogTask = GradleUtil.addTask(
 			project, BUILD_CHANGE_LOG_TASK_NAME, BuildChangeLogTask.class);
 
 		buildChangeLogTask.setChangeLogHeader(

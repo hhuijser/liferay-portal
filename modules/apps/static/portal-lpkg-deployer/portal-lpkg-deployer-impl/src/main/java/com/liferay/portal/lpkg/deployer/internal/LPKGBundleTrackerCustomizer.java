@@ -836,7 +836,7 @@ public class LPKGBundleTrackerCustomizer
 		FrameworkWiring frameworkWiring = systemBundle.adapt(
 			FrameworkWiring.class);
 
-		final DefaultNoticeableFuture<FrameworkEvent> defaultNoticeableFuture =
+		DefaultNoticeableFuture<FrameworkEvent> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		frameworkWiring.refreshBundles(

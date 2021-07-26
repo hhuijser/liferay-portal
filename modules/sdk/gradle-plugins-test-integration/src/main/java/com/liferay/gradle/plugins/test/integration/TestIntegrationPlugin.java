@@ -92,13 +92,13 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 	public void apply(final Project project) {
 		GradleUtil.applyPlugin(project, TestIntegrationBasePlugin.class);
 
-		final SourceSet testIntegrationSourceSet = GradleUtil.getSourceSet(
+		SourceSet testIntegrationSourceSet = GradleUtil.getSourceSet(
 			project,
 			TestIntegrationBasePlugin.TEST_INTEGRATION_SOURCE_SET_NAME);
-		final Test testIntegrationTask = (Test)GradleUtil.getTask(
+		Test testIntegrationTask = (Test)GradleUtil.getTask(
 			project, TestIntegrationBasePlugin.TEST_INTEGRATION_TASK_NAME);
 
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension =
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME + "Tomcat",
 				TestIntegrationTomcatExtension.class);
@@ -183,10 +183,10 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		Project project, Configuration testModulesConfiguration,
 		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
-		final Copy copy = GradleUtil.addTask(
+		Copy copy = GradleUtil.addTask(
 			project, COPY_TEST_MODULES_TASK_NAME, Copy.class);
 
-		final RenameDependencyClosure renameDependencyClosure =
+		RenameDependencyClosure renameDependencyClosure =
 			new RenameDependencyClosure(
 				project, testModulesConfiguration.getName());
 
@@ -282,10 +282,9 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		Project project, Copy copyTestModulesTask,
 		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
-		final SetUpTestableTomcatTask setUpTestableTomcatTask =
-			GradleUtil.addTask(
-				project, SET_UP_TESTABLE_TOMCAT_TASK_NAME,
-				SetUpTestableTomcatTask.class);
+		SetUpTestableTomcatTask setUpTestableTomcatTask = GradleUtil.addTask(
+			project, SET_UP_TESTABLE_TOMCAT_TASK_NAME,
+			SetUpTestableTomcatTask.class);
 
 		setUpTestableTomcatTask.dependsOn(copyTestModulesTask);
 
@@ -451,10 +450,9 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		Project project, Test testIntegrationTask,
 		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
-		final StopTestableTomcatTask stopTestableTomcatTask =
-			GradleUtil.addTask(
-				project, STOP_TESTABLE_TOMCAT_TASK_NAME,
-				StopTestableTomcatTask.class);
+		StopTestableTomcatTask stopTestableTomcatTask = GradleUtil.addTask(
+			project, STOP_TESTABLE_TOMCAT_TASK_NAME,
+			StopTestableTomcatTask.class);
 
 		Action<Task> action = new Action<Task>() {
 

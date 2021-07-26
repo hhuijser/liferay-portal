@@ -146,7 +146,7 @@ public class LockLocalServiceTest {
 	)
 	@Test
 	public void testLock() throws Exception {
-		final long userId = TestPropsValues.getUserId();
+		long userId = TestPropsValues.getUserId();
 
 		// Lock is new
 
@@ -212,10 +212,10 @@ public class LockLocalServiceTest {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		final Thread testThread = Thread.currentThread();
+		Thread testThread = Thread.currentThread();
 
-		final CountDownLatch createdCountDownLatch = new CountDownLatch(1);
-		final CountDownLatch continueCountDownLatch = new CountDownLatch(1);
+		CountDownLatch createdCountDownLatch = new CountDownLatch(1);
+		CountDownLatch continueCountDownLatch = new CountDownLatch(1);
 
 		ServiceRegistration<ModelListener<Lock>> serviceRegistration =
 			bundleContext.registerService(

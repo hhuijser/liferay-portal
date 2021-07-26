@@ -53,7 +53,7 @@ public class SoyTranslationPlugin implements Plugin<Project> {
 	private ReplaceSoyTranslationTask _addTaskReplaceSoyTranslation(
 		Project project) {
 
-		final ReplaceSoyTranslationTask replaceSoyTranslationTask =
+		ReplaceSoyTranslationTask replaceSoyTranslationTask =
 			GradleUtil.addTask(
 				project, REPLACE_SOY_TRANSLATION_TASK_NAME,
 				ReplaceSoyTranslationTask.class);

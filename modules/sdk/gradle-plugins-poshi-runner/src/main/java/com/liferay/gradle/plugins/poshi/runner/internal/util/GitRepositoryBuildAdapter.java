@@ -79,7 +79,7 @@ public class GitRepositoryBuildAdapter extends BuildAdapter {
 	}
 
 	private String _getGitResult(Project project, final Object... args) {
-		final ByteArrayOutputStream byteArrayOutputStream =
+		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
 
 		project.exec(

@@ -94,7 +94,7 @@ public class WabGenerator
 
 		registerArtifactUrlTransformer(bundleContext);
 
-		final Set<String> requiredForStartupContextPaths =
+		Set<String> requiredForStartupContextPaths =
 			getRequiredForStartupContextPaths(
 				Paths.get(PropsValues.LIFERAY_HOME, "osgi/war"));
 
@@ -102,7 +102,7 @@ public class WabGenerator
 			return;
 		}
 
-		final CountDownLatch countDownLatch = new CountDownLatch(1);
+		CountDownLatch countDownLatch = new CountDownLatch(1);
 
 		BundleTracker<Void> bundleTracker = new BundleTracker<Void>(
 			bundleContext, Bundle.ACTIVE, null) {

@@ -120,7 +120,7 @@ public class HtmlTopTagTest {
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		final JspWriter jspWriter = new MockJspWriter(unsyncStringWriter);
+		JspWriter jspWriter = new MockJspWriter(unsyncStringWriter);
 
 		PageContext pageContext = new MockPageContext() {
 
@@ -162,7 +162,7 @@ public class HtmlTopTagTest {
 
 			@Override
 			public BodyContent pushBody() {
-				final UnsyncStringWriter unsyncStringWriter =
+				UnsyncStringWriter unsyncStringWriter =
 					new UnsyncStringWriter();
 
 				return new MockBodyContent(

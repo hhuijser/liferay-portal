@@ -55,17 +55,17 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, BasePlugin.class);
 
-		final AppTLDDocBuilderExtension appTLDDocBuilderExtension =
+		AppTLDDocBuilderExtension appTLDDocBuilderExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, AppTLDDocBuilderExtension.class);
 
 		Configuration tlddocConfiguration =
 			TLDDocBuilderPlugin.addConfigurationTLDDoc(project);
 
-		final Copy copyAppTLDDocResourcesTask = _addTaskCopyAppTLDDocResources(
+		Copy copyAppTLDDocResourcesTask = _addTaskCopyAppTLDDocResources(
 			project);
 
-		final TLDDocTask appTLDDocTask = _addTaskAppTLDDoc(
+		TLDDocTask appTLDDocTask = _addTaskAppTLDDoc(
 			copyAppTLDDocResourcesTask, tlddocConfiguration);
 
 		_addTaskJarAppTLDDoc(appTLDDocTask);
@@ -97,7 +97,7 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 	private TLDDocTask _addTaskAppTLDDoc(
 		Copy copyAppTLDDocResourcesTask, FileCollection classpath) {
 
-		final Project project = copyAppTLDDocResourcesTask.getProject();
+		Project project = copyAppTLDDocResourcesTask.getProject();
 
 		TLDDocTask tldDocTask = GradleUtil.addTask(
 			project, APP_TLDDOC_TASK_NAME, TLDDocTask.class);

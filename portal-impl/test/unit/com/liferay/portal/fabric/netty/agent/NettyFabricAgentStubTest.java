@@ -133,10 +133,9 @@ public class NettyFabricAgentStubTest {
 
 	@Test
 	public void testExecute() throws Exception {
-		final NettyFabricAgentStub nettyFabricAgentStub =
-			new NettyFabricAgentStub(
-				_embeddedChannel, new MockRepository<Channel>(),
-				Paths.get("RepositoryPath"), 0, Long.MAX_VALUE);
+		NettyFabricAgentStub nettyFabricAgentStub = new NettyFabricAgentStub(
+			_embeddedChannel, new MockRepository<Channel>(),
+			Paths.get("RepositoryPath"), 0, Long.MAX_VALUE);
 
 		AtomicLong idGenerator = ReflectionTestUtil.getFieldValue(
 			nettyFabricAgentStub, "_idGenerator");
@@ -334,7 +333,7 @@ public class NettyFabricAgentStubTest {
 
 	@Test
 	public void testExecuteWithFailure() throws Exception {
-		final Throwable throwable = new Throwable();
+		Throwable throwable = new Throwable();
 
 		ChannelPipeline channelPipeline = _embeddedChannel.pipeline();
 

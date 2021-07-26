@@ -40,7 +40,7 @@ public class SyncProcessRPCCallableTest {
 
 	@Test
 	public void testCallWithException() throws Throwable {
-		final RuntimeException runtimeException = new RuntimeException();
+		RuntimeException runtimeException = new RuntimeException();
 
 		RPCCallable<String> rpcCallable = new SyncProcessRPCCallable<String>(
 			new ProcessCallable<String>() {
@@ -67,7 +67,7 @@ public class SyncProcessRPCCallableTest {
 
 	@Test
 	public void testCallWithResult() throws Throwable {
-		final String result = "result";
+		String result = "result";
 
 		RPCCallable<String> rpcCallable = new SyncProcessRPCCallable<String>(
 			new ProcessCallable<String>() {

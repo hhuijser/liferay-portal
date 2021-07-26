@@ -294,9 +294,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			_kbArticleLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
-		final ActionableDynamicQuery.AddOrderCriteriaMethod
-			addOrderCriteriaMethod =
-				exportActionableDynamicQuery.getAddOrderCriteriaMethod();
+		ActionableDynamicQuery.AddOrderCriteriaMethod addOrderCriteriaMethod =
+			exportActionableDynamicQuery.getAddOrderCriteriaMethod();
 
 		exportActionableDynamicQuery.setAddOrderCriteriaMethod(
 			new ActionableDynamicQuery.AddOrderCriteriaMethod() {

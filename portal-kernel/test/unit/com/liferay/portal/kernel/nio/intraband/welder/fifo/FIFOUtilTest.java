@@ -107,8 +107,8 @@ public class FIFOUtilTest {
 			return;
 		}
 
-		final AtomicInteger checkDeleteCount = new AtomicInteger();
-		final AtomicBoolean checkFlag = new AtomicBoolean();
+		AtomicInteger checkDeleteCount = new AtomicInteger();
+		AtomicBoolean checkFlag = new AtomicBoolean();
 
 		try (SwappableSecurityManager swappableSecurityManager =
 				new SwappableSecurityManager() {

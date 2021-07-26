@@ -29,7 +29,7 @@ import org.gradle.process.ExecSpec;
 public class GitUtil {
 
 	public static void commit(Project project, String message, boolean quiet) {
-		final String messageArg = "--message=\"" + message + "\"";
+		String messageArg = "--message=\"" + message + "\"";
 
 		if (quiet) {
 			project.exec(
@@ -76,7 +76,7 @@ public class GitUtil {
 	public static String getGitResult(
 		Project project, final File workingDir, final Object... args) {
 
-		final ByteArrayOutputStream byteArrayOutputStream =
+		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
 
 		project.exec(

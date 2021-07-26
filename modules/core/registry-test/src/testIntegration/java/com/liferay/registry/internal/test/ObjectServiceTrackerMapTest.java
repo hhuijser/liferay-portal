@@ -254,7 +254,7 @@ public class ObjectServiceTrackerMapTest {
 
 	@Test
 	public void testGetServiceWithServiceCustomizer() {
-		final Registry registry = RegistryUtil.getRegistry();
+		Registry registry = RegistryUtil.getRegistry();
 
 		try (ServiceTrackerMap<String, TrackedTwo> serviceTrackerMap =
 				ServiceTrackerCollections.openSingleValueMap(
@@ -314,7 +314,7 @@ public class ObjectServiceTrackerMapTest {
 
 	@Test
 	public void testGetServiceWithServiceCustomizerAndServiceReferenceMapper() {
-		final Registry registry = RegistryUtil.getRegistry();
+		Registry registry = RegistryUtil.getRegistry();
 
 		try (ServiceTrackerMap<String, TrackedTwo> serviceTrackerMap =
 				ServiceTrackerCollections.openSingleValueMap(

@@ -336,7 +336,7 @@ public class LiferayExtPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(BuildExtInfoTask buildExtInfoTask) {
-					final Sync buildExtInfoBaseDirSync =
+					Sync buildExtInfoBaseDirSync =
 						buildExtInfoBaseDirTaskProvider.get();
 
 					buildExtInfoTask.dependsOn(buildExtInfoBaseDirSync);
@@ -434,13 +434,13 @@ public class LiferayExtPlugin implements Plugin<Project> {
 									Property<String> archiveAppendixProperty =
 										extJar.getArchiveAppendix();
 
-									final String archiveAppendix =
+									String archiveAppendix =
 										archiveAppendixProperty.get();
 
 									Property<String> archiveExtensionProperty =
 										extJar.getArchiveExtension();
 
-									final String archiveExtension =
+									String archiveExtension =
 										archiveExtensionProperty.get();
 
 									copySpec.from(extJar);

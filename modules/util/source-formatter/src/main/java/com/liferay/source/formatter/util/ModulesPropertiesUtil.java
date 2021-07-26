@@ -125,7 +125,7 @@ public class ModulesPropertiesUtil {
 			return Collections.emptyMap();
 		}
 
-		final Map<String, String> moduleInformationMap = new TreeMap<>();
+		Map<String, String> moduleInformationMap = new TreeMap<>();
 
 		Files.walkFileTree(
 			portalDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 15,

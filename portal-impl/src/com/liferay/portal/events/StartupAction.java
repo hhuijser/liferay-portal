@@ -106,7 +106,7 @@ public class StartupAction extends SimpleAction {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		final ServiceRegistration<ModuleServiceLifecycle>
+		ServiceRegistration<ModuleServiceLifecycle>
 			moduleServiceLifecycleServiceRegistration =
 				registry.registerService(
 					ModuleServiceLifecycle.class,

@@ -63,7 +63,7 @@ public class EclipseDefaultsPlugin extends BaseDefaultsPlugin<EclipsePlugin> {
 
 		ExtensionContainer extensionContainer = project.getExtensions();
 
-		final EclipseModel eclipseModelExtension = extensionContainer.getByType(
+		EclipseModel eclipseModelExtension = extensionContainer.getByType(
 			EclipseModel.class);
 
 		// Tasks
@@ -110,7 +110,7 @@ public class EclipseDefaultsPlugin extends BaseDefaultsPlugin<EclipsePlugin> {
 	private void _configureEclipseClasspath(
 		final Project project, EclipseModel eclipseModelExtension) {
 
-		final EclipseClasspath eclipseClasspath =
+		EclipseClasspath eclipseClasspath =
 			eclipseModelExtension.getClasspath();
 
 		FileContentMerger fileContentMerger = eclipseClasspath.getFile();

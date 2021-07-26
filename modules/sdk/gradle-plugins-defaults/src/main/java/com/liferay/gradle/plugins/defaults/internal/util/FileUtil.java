@@ -73,7 +73,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	public static File findFile(File dir, final String fileName)
 		throws IOException {
 
-		final AtomicReference<File> file = new AtomicReference<>(null);
+		AtomicReference<File> file = new AtomicReference<>(null);
 
 		Files.walkFileTree(
 			dir.toPath(),

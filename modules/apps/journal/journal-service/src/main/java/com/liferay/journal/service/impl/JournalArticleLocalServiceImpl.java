@@ -5317,7 +5317,7 @@ public class JournalArticleLocalServiceImpl
 			throw new IllegalArgumentException("Tree path is null");
 		}
 
-		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			getIndexableActionableDynamicQuery();
 
 		indexableActionableDynamicQuery.setAddCriteriaMethod(
@@ -5336,7 +5336,7 @@ public class JournalArticleLocalServiceImpl
 						treePathProperty.ne(treePath)));
 			});
 
-		final Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
+		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
 			JournalArticle.class.getName());
 
 		indexableActionableDynamicQuery.setPerformActionMethod(

@@ -163,13 +163,13 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 		ExtensionContainer extensionContainer = project.getExtensions();
 
-		final LiferayOSGiExtension liferayOSGiExtension =
-			new LiferayOSGiExtension(project);
+		LiferayOSGiExtension liferayOSGiExtension = new LiferayOSGiExtension(
+			project);
 
 		extensionContainer.add(
 			LiferayOSGiExtension.class, PLUGIN_NAME, liferayOSGiExtension);
 
-		final BundleExtension bundleExtension = BndUtil.getBundleExtension(
+		BundleExtension bundleExtension = BndUtil.getBundleExtension(
 			extensionContainer);
 		LiferayExtension liferayExtension = extensionContainer.getByType(
 			LiferayExtension.class);
@@ -179,17 +179,17 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 		// Conventions
 
-		final Convention convention = project.getConvention();
+		Convention convention = project.getConvention();
 
 		BasePluginConvention basePluginConvention = convention.getPlugin(
 			BasePluginConvention.class);
-		final JavaPluginConvention javaPluginConvention = convention.getPlugin(
+		JavaPluginConvention javaPluginConvention = convention.getPlugin(
 			JavaPluginConvention.class);
 
 		SourceSetContainer javaSourceSetContainer =
 			javaPluginConvention.getSourceSets();
 
-		final SourceSet javaMainSourceSet = javaSourceSetContainer.getByName(
+		SourceSet javaMainSourceSet = javaSourceSetContainer.getByName(
 			SourceSet.MAIN_SOURCE_SET_NAME);
 
 		_configureConventionBasePlugin(bundleExtension, basePluginConvention);
@@ -200,7 +200,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 		ConfigurationContainer configurationContainer =
 			project.getConfigurations();
 
-		final Configuration compileIncludeConfiguration =
+		Configuration compileIncludeConfiguration =
 			configurationContainer.maybeCreate(
 				COMPILE_INCLUDE_CONFIGURATION_NAME);
 
@@ -214,7 +214,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 		// Tasks
 
-		final TaskProvider<Copy> deployDependenciesTaskProvider =
+		TaskProvider<Copy> deployDependenciesTaskProvider =
 			GradleUtil.addTaskProvider(
 				project, DEPLOY_DEPENDENCIES_TASK_NAME, Copy.class);
 		TaskProvider<Copy> deployFastTaskProvider = GradleUtil.addTaskProvider(
@@ -632,7 +632,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 						directDeployTask.getTemporaryDir());
 					directDeployTask.setAppServerType("tomcat");
 
-					final Jar jar = jarTaskProvider.get();
+					Jar jar = jarTaskProvider.get();
 
 					directDeployTask.setWebAppFile(
 						new Callable<File>() {
@@ -1202,7 +1202,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 					sb.append("-");
 					sb.append(bundleVersion);
 
-					final String pathName = sb.toString();
+					String pathName = sb.toString();
 
 					deployFastCopy.from(
 						compileJSPTaskProvider,
@@ -1354,7 +1354,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(Copy deployCopy) {
-					final Jar jar = jarTaskProvider.get();
+					Jar jar = jarTaskProvider.get();
 
 					Object sourcePath = jar;
 
@@ -1426,7 +1426,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 					Map<String, Object> plugins = convention.getPlugins();
 
-					final BundleTaskConvention bundleTaskConvention =
+					BundleTaskConvention bundleTaskConvention =
 						new BundleTaskConvention(jar);
 
 					plugins.put("bundle", bundleTaskConvention);

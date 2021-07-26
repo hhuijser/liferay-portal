@@ -91,7 +91,7 @@ public class ConfigJSModulesTask
 	public void executeNode() throws Exception {
 		Project project = getProject();
 
-		final File outputDir = getOutputDir();
+		File outputDir = getOutputDir();
 
 		project.delete(getOutputFile(), outputDir);
 

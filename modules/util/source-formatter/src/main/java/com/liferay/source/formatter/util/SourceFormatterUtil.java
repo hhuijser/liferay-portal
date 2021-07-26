@@ -561,7 +561,7 @@ public class SourceFormatterUtil {
 			final boolean includeSubrepositories)
 		throws IOException {
 
-		final List<String> fileNames = new ArrayList<>();
+		List<String> fileNames = new ArrayList<>();
 
 		Files.walkFileTree(
 			Paths.get(baseDirName),

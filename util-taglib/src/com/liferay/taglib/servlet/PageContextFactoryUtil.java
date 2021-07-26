@@ -36,7 +36,7 @@ public class PageContextFactoryUtil {
 		final HttpServletRequest httpServletRequest,
 		HttpServletResponse httpServletResponse) {
 
-		final ServletConfig servletConfig = new ServletConfig() {
+		ServletConfig servletConfig = new ServletConfig() {
 
 			@Override
 			public String getInitParameter(String name) {

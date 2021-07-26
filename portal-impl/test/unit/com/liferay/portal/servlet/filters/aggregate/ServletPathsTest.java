@@ -141,8 +141,8 @@ public class ServletPathsTest {
 
 	@Test
 	public void testGetContent() throws IOException {
-		final File file1 = new File(_testDir, "test1");
-		final File file2 = new File(_testDir, "test2");
+		File file1 = new File(_testDir, "test1");
+		File file2 = new File(_testDir, "test2");
 
 		String testContent = "Test Content";
 

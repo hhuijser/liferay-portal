@@ -50,7 +50,7 @@ public class BuildSoyTask extends SourceTask {
 
 	@TaskAction
 	public void buildSoy() throws Exception {
-		final List<Path> paths = new ArrayList<>();
+		List<Path> paths = new ArrayList<>();
 
 		for (File file : getSource()) {
 			paths.add(file.toPath());

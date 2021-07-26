@@ -199,11 +199,10 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 			}
 		}
 
-		final BundleExtension bundleExtension = BndUtil.getBundleExtension(
+		BundleExtension bundleExtension = BndUtil.getBundleExtension(
 			project.getExtensions());
 
-		final WorkspaceExtension workspaceExtension = _getWorkspaceExtension(
-			project);
+		WorkspaceExtension workspaceExtension = _getWorkspaceExtension(project);
 
 		configureLiferay(project, workspaceExtension);
 
@@ -260,7 +259,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 
 	@Override
 	protected Iterable<File> doGetProjectDirs(File rootDir) throws Exception {
-		final Set<File> projectDirs = new HashSet<>();
+		Set<File> projectDirs = new HashSet<>();
 
 		Files.walkFileTree(
 			rootDir.toPath(),
@@ -318,7 +317,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 
 	@SuppressWarnings("serial")
 	private void _configureRootTaskDistBundle(final Jar jar) {
-		final Project project = jar.getProject();
+		Project project = jar.getProject();
 
 		Copy copy = (Copy)GradleUtil.getTask(
 			project.getRootProject(),
@@ -366,7 +365,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 		sb.append("-");
 		sb.append(bundleVersion);
 
-		final String pathName = sb.toString();
+		String pathName = sb.toString();
 
 		File dockerWorkDir = new File(
 			workspaceExtension.getDockerDir(), pathName);
@@ -434,7 +433,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	private void _configureTaskTestIntegration(Project project) {
-		final File testClassesIntegrationDir = project.file(
+		File testClassesIntegrationDir = project.file(
 			"test-classes/integration");
 		Task testIntegrationClassesTask = GradleUtil.getTask(
 			project,

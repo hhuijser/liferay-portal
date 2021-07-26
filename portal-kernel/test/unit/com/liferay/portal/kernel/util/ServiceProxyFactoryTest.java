@@ -147,9 +147,9 @@ public class ServiceProxyFactoryTest {
 
 		Assert.assertNotNull(finalizeAction);
 
-		final AtomicBoolean atomicBoolean = new AtomicBoolean();
+		AtomicBoolean atomicBoolean = new AtomicBoolean();
 
-		final ServiceTracker<TestService, TestService> serviceTracker =
+		ServiceTracker<TestService, TestService> serviceTracker =
 			ReflectionTestUtil.getFieldValue(finalizeAction, "_serviceTracker");
 
 		ReflectionTestUtil.setFieldValue(
@@ -364,9 +364,8 @@ public class ServiceProxyFactoryTest {
 			ServiceProxyFactory.class.getName() + ".timeout",
 			String.valueOf(Long.MAX_VALUE));
 
-		final TestService testService =
-			ServiceProxyFactory.newServiceTrackedInstance(
-				TestService.class, TestServiceUtil.class, "testService", true);
+		TestService testService = ServiceProxyFactory.newServiceTrackedInstance(
+			TestService.class, TestServiceUtil.class, "testService", true);
 
 		Assert.assertTrue(ProxyUtil.isProxyClass(testService.getClass()));
 		Assert.assertNotSame(TestServiceImpl.class, testService.getClass());

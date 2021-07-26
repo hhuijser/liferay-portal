@@ -242,11 +242,11 @@ public class ThemeBuilderCompareTest {
 			final Path dirPath, String... excludePatterns)
 		throws Exception {
 
-		final Map<String, byte[]> fileNameDigests = new HashMap<>();
+		Map<String, byte[]> fileNameDigests = new HashMap<>();
 
-		final MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+		MessageDigest messageDigest = MessageDigest.getInstance("MD5");
 
-		final List<PathMatcher> excludePathMatchers = new ArrayList<>(
+		List<PathMatcher> excludePathMatchers = new ArrayList<>(
 			excludePatterns.length);
 
 		FileSystem fileSystem = dirPath.getFileSystem();

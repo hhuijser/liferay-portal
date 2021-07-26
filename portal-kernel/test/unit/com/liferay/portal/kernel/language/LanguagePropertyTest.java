@@ -194,12 +194,11 @@ public class LanguagePropertyTest {
 	}
 
 	private static List<String> _getFileNames(String pattern) throws Exception {
-		final List<String> fileNames = new ArrayList<>();
+		List<String> fileNames = new ArrayList<>();
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		final PathMatcher pathMatcher = fileSystem.getPathMatcher(
-			"glob:" + pattern);
+		PathMatcher pathMatcher = fileSystem.getPathMatcher("glob:" + pattern);
 
 		FileVisitor<Path> simpleFileVisitor = new SimpleFileVisitor<Path>() {
 

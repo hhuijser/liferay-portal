@@ -212,7 +212,7 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 			return _upgradeAbsolutePaths;
 		}
 
-		final List<String> upgradeAbsolutePaths = new ArrayList<>();
+		List<String> upgradeAbsolutePaths = new ArrayList<>();
 
 		Files.walkFileTree(
 			portalDir.toPath(), EnumSet.noneOf(FileVisitOption.class), 20,

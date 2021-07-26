@@ -87,7 +87,7 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 
 		_applyConfigScripts(project);
 
-		final LiferayThemeDefaultsExtension liferayThemeDefaultsExtension =
+		LiferayThemeDefaultsExtension liferayThemeDefaultsExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, LiferayThemeDefaultsExtension.class);
 
@@ -99,13 +99,12 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 		Configuration frontendCSSCommonConfiguration =
 			_addConfigurationFrontendCSSCommon(project);
 
-		final WriteDigestTask writeDigestTask = _addTaskWriteParentThemesDigest(
+		WriteDigestTask writeDigestTask = _addTaskWriteParentThemesDigest(
 			project);
 
-		final Copy expandFrontendCSSCommonTask =
-			_addTaskExpandFrontendCSSCommon(
-				project, frontendCSSCommonConfiguration);
-		final ReplaceRegexTask updateVersionTask = _addTaskUpdateVersion(
+		Copy expandFrontendCSSCommonTask = _addTaskExpandFrontendCSSCommon(
+			project, frontendCSSCommonConfiguration);
+		ReplaceRegexTask updateVersionTask = _addTaskUpdateVersion(
 			project, writeDigestTask);
 
 		File resourcesImporterArchivesDir = project.file(
@@ -393,7 +392,7 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureDeployDir(Project project) {
-		final LiferayExtension liferayExtension = GradleUtil.getExtension(
+		LiferayExtension liferayExtension = GradleUtil.getExtension(
 			project, LiferayExtension.class);
 
 		boolean requiredForStartup = _getPluginPackageProperty(

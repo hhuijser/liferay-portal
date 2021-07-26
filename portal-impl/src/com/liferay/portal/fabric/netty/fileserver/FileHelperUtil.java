@@ -121,9 +121,9 @@ public class FileHelperUtil {
 			final Path fromPath, final Path toPath, boolean tryAtomicMove)
 		throws IOException {
 
-		final AtomicBoolean atomicMove = new AtomicBoolean(tryAtomicMove);
-		final AtomicBoolean touched = new AtomicBoolean();
-		final Map<Path, FileTime> fileTimes = new HashMap<>();
+		AtomicBoolean atomicMove = new AtomicBoolean(tryAtomicMove);
+		AtomicBoolean touched = new AtomicBoolean();
+		Map<Path, FileTime> fileTimes = new HashMap<>();
 
 		try {
 			Files.walkFileTree(
@@ -268,7 +268,7 @@ public class FileHelperUtil {
 	public static long unzip(ZipInputStream zipInputStream, Path destPath)
 		throws IOException {
 
-		final AtomicLong rawSize = new AtomicLong();
+		AtomicLong rawSize = new AtomicLong();
 
 		try (ZipInputStream autoCloseZipInputStream = zipInputStream) {
 			ZipEntry zipEntry = null;
@@ -362,9 +362,9 @@ public class FileHelperUtil {
 			final Path sourcePath, ZipOutputStream zipOutputStream)
 		throws IOException {
 
-		final AtomicLong rawSize = new AtomicLong();
+		AtomicLong rawSize = new AtomicLong();
 
-		final byte[] buffer = new byte[16];
+		byte[] buffer = new byte[16];
 
 		try (ZipOutputStream autoClosezipOutputStream = zipOutputStream) {
 			Files.walkFileTree(

@@ -145,7 +145,7 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 				project.getGradle(), cleanArtifactsPublishCommandsTaskProvider,
 				writeArtifactPublishCommandsTaskProvider);
 
-		final TaskProvider<BuildChangeLogTask> buildChangeLogTaskProvider =
+		TaskProvider<BuildChangeLogTask> buildChangeLogTaskProvider =
 			GradleUtil.getTaskProvider(
 				project, ChangeLogBuilderPlugin.BUILD_CHANGE_LOG_TASK_NAME,
 				BuildChangeLogTask.class);
@@ -418,7 +418,7 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 		Project project, Task printStaleArtifactTask,
 		final WritePropertiesTask recordArtifactTask) {
 
-		final boolean liferayThemeProject = GradleUtil.hasPlugin(
+		boolean liferayThemeProject = GradleUtil.hasPlugin(
 			project, LiferayThemeDefaultsPlugin.class);
 
 		if (liferayThemeProject &&
@@ -693,10 +693,10 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 		WriteArtifactPublishCommandsTask writeArtifactPublishCommandsTask,
 		final WritePropertiesTask recordArtifactTask) {
 
-		final String force = GradleUtil.getTaskPrefixedProperty(
+		String force = GradleUtil.getTaskPrefixedProperty(
 			writeArtifactPublishCommandsTask, "force");
 
-		final boolean liferayThemeProject = GradleUtil.hasPlugin(
+		boolean liferayThemeProject = GradleUtil.hasPlugin(
 			project, LiferayThemeDefaultsPlugin.class);
 
 		if (liferayThemeProject &&
@@ -953,7 +953,7 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 
 		StartParameter startParameter = gradle.getStartParameter();
 
-		final Project currentProject = GradleUtil.getProject(
+		Project currentProject = GradleUtil.getProject(
 			gradle.getRootProject(), startParameter.getCurrentDir());
 
 		TaskProvider<Delete> cleanArtifactsPublishCommandsTaskProvider =
@@ -1000,7 +1000,7 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 
 		StartParameter startParameter = gradle.getStartParameter();
 
-		final Project currentProject = GradleUtil.getProject(
+		Project currentProject = GradleUtil.getProject(
 			gradle.getRootProject(), startParameter.getCurrentDir());
 
 		TaskProvider<MergeFilesTask> mergeArtifactsPublishCommandsTaskProvider =

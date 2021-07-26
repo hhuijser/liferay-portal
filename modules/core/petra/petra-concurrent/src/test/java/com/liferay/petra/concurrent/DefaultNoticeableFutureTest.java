@@ -176,7 +176,7 @@ public class DefaultNoticeableFutureTest {
 
 	@Test
 	public void testConstructor() throws Exception {
-		final AtomicBoolean flag = new AtomicBoolean();
+		AtomicBoolean flag = new AtomicBoolean();
 
 		DefaultNoticeableFuture<?> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<Object>(

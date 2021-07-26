@@ -129,7 +129,7 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 	private void _configureTaskPublishNodeModule(
 		PublishNodeModuleTask publishNodeModuleTask) {
 
-		final Project project = publishNodeModuleTask.getProject();
+		Project project = publishNodeModuleTask.getProject();
 
 		publishNodeModuleTask.doFirst(
 			MavenDefaultsPlugin.failReleaseOnWrongBranchAction);

@@ -63,7 +63,7 @@ public class FileSystemWrapper extends FileSystem {
 	public Iterable<Path> getRootDirectories() {
 		Iterable<Path> iterable = _fileSystem.getRootDirectories();
 
-		final Iterator<Path> iterator = iterable.iterator();
+		Iterator<Path> iterator = iterable.iterator();
 
 		return new Iterable<Path>() {
 

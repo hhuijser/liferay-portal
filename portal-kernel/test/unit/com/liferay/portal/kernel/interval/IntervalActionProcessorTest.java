@@ -27,7 +27,7 @@ public class IntervalActionProcessorTest {
 
 	@Test
 	public void testIntervalActionEndCalculation() throws Exception {
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(125);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -55,7 +55,7 @@ public class IntervalActionProcessorTest {
 	public void testIntervalActionEndCalculationWithInterval()
 		throws Exception {
 
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(125, 200);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -81,7 +81,7 @@ public class IntervalActionProcessorTest {
 
 	@Test
 	public void testIntervalActionPageCalculation() throws Exception {
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(125);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -107,7 +107,7 @@ public class IntervalActionProcessorTest {
 	public void testIntervalActionPageCalculationWithInterval()
 		throws Exception {
 
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(125, 200);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -133,7 +133,7 @@ public class IntervalActionProcessorTest {
 	public void testIntervalActionWithNegativeIncrementStart()
 		throws Exception {
 
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(125, 200);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -173,7 +173,7 @@ public class IntervalActionProcessorTest {
 
 	@Test
 	public void testIntervalActionWithZeroTotal() throws Exception {
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(0);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -199,7 +199,7 @@ public class IntervalActionProcessorTest {
 
 	@Test
 	public void testIntervalWithBooleanType() throws Exception {
-		final IntervalActionProcessor<Boolean> intervalActionProcessor =
+		IntervalActionProcessor<Boolean> intervalActionProcessor =
 			new IntervalActionProcessor<>(3, 1);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(

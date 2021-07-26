@@ -112,9 +112,9 @@ public abstract class ExecuteJavaTask extends DefaultTask {
 	}
 
 	private WorkQueue _createWorkQueue() {
-		final FileCollection classpath = getClasspath();
-		final List<String> jvmArgs = getJvmArgs();
-		final Logger logger = getLogger();
+		FileCollection classpath = getClasspath();
+		List<String> jvmArgs = getJvmArgs();
+		Logger logger = getLogger();
 
 		WorkerExecutor workerExecutor = getWorkerExecutor();
 

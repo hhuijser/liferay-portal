@@ -69,14 +69,14 @@ public class AppJavadocBuilderPlugin implements Plugin<Project> {
 		GradleUtil.applyPlugin(project, BasePlugin.class);
 		GradleUtil.applyPlugin(project, ReportingBasePlugin.class);
 
-		final AppJavadocBuilderExtension appJavadocBuilderExtension =
+		AppJavadocBuilderExtension appJavadocBuilderExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, AppJavadocBuilderExtension.class);
 
 		ReportingExtension reportingExtension = GradleUtil.getExtension(
 			project, ReportingExtension.class);
 
-		final Javadoc appJavadocTask = _addTaskAppJavadoc(
+		Javadoc appJavadocTask = _addTaskAppJavadoc(
 			project, reportingExtension);
 
 		_addTaskJarAppJavadoc(appJavadocTask);
@@ -115,7 +115,7 @@ public class AppJavadocBuilderPlugin implements Plugin<Project> {
 	private Javadoc _addTaskAppJavadoc(
 		Project project, final ReportingExtension reportingExtension) {
 
-		final Javadoc javadoc = GradleUtil.addTask(
+		Javadoc javadoc = GradleUtil.addTask(
 			project, APP_JAVADOC_TASK_NAME, Javadoc.class);
 
 		javadoc.setDescription(

@@ -109,11 +109,11 @@ public class GradlePluginsDefaultsUtil {
 
 		GradleUtil.addMavenArtifactRepository(repositoryHandler, url);
 
-		final String repositoryPrivatePassword = System.getProperty(
+		String repositoryPrivatePassword = System.getProperty(
 			"repository.private.password");
-		final String repositoryPrivateUrl = System.getProperty(
+		String repositoryPrivateUrl = System.getProperty(
 			"repository.private.url");
-		final String repositoryPrivateUsername = System.getProperty(
+		String repositoryPrivateUsername = System.getProperty(
 			"repository.private.username");
 
 		if (Validator.isNotNull(repositoryPrivatePassword) &&

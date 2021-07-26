@@ -67,7 +67,7 @@ public class LocalFabricWorkerTest {
 		LocalFabricWorker<String> localFabricWorker = new LocalFabricWorker<>(
 			new EmbeddedProcessChannel<String>(noticeableFuture));
 
-		final String result = "Test result";
+		String result = "Test result";
 
 		NoticeableFuture<String> resultNoticeableFuture =
 			localFabricWorker.write(
@@ -82,7 +82,7 @@ public class LocalFabricWorkerTest {
 
 		Assert.assertEquals(result, resultNoticeableFuture.get());
 
-		final ProcessException processException = new ProcessException(
+		ProcessException processException = new ProcessException(
 			"Test exception");
 
 		NoticeableFuture<String> exceptionNoticeableFuture =

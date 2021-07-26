@@ -52,7 +52,7 @@ public class PathUtil {
 			deleteDir(toPath);
 		}
 
-		final Map<Path, FileTime> fileTimes = new HashMap<>();
+		Map<Path, FileTime> fileTimes = new HashMap<>();
 
 		try {
 			Files.walkFileTree(

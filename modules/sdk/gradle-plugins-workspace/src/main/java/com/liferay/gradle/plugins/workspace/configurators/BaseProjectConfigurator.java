@@ -103,7 +103,7 @@ public abstract class BaseProjectConfigurator implements ProjectConfigurator {
 
 		copy.from(sourcePath);
 
-		final File dockerDir = workspaceExtension.getDockerDir();
+		File dockerDir = workspaceExtension.getDockerDir();
 
 		copy.into(
 			new Callable<File>() {

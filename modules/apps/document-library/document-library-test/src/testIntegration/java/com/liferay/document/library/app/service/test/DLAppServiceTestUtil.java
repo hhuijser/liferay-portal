@@ -104,7 +104,7 @@ public class DLAppServiceTestUtil {
 	protected static AtomicInteger registerDLSyncEventProcessorMessageListener(
 		final String targetEvent) {
 
-		final AtomicInteger counter = new AtomicInteger();
+		AtomicInteger counter = new AtomicInteger();
 
 		MessageBusUtil.registerMessageListener(
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,

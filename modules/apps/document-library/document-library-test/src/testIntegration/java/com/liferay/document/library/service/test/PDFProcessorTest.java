@@ -433,7 +433,7 @@ public class PDFProcessorTest {
 	}
 
 	protected AtomicBoolean registerCleanUpDLProcessor() {
-		final AtomicBoolean cleanUp = new AtomicBoolean(false);
+		AtomicBoolean cleanUp = new AtomicBoolean(false);
 
 		DLProcessor cleanUpDLProcessor = new DLProcessor() {
 
@@ -510,7 +510,7 @@ public class PDFProcessorTest {
 	protected AtomicInteger registerPDFProcessorMessageListener(
 		final EventType eventType) {
 
-		final AtomicInteger count = new AtomicInteger();
+		AtomicInteger count = new AtomicInteger();
 
 		_messageBus.registerMessageListener(
 			DestinationNames.DOCUMENT_LIBRARY_PDF_PROCESSOR,

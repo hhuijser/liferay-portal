@@ -293,7 +293,7 @@ public class ObjectGraphUtilTest {
 
 	@Test
 	public void testWalkObjectGraphNullReferenceWithException() {
-		final Exception exception1 = new Exception();
+		Exception exception1 = new Exception();
 
 		try {
 			ObjectGraphUtil.walkObjectGraph(

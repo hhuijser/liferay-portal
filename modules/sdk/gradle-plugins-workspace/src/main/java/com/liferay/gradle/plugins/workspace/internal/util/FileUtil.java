@@ -47,7 +47,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 			final boolean childrenOnly)
 		throws IOException {
 
-		final List<String> paths = new ArrayList<>();
+		List<String> paths = new ArrayList<>();
 
 		Files.walkFileTree(
 			path,

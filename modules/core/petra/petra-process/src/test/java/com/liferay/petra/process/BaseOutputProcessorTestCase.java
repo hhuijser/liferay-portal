@@ -28,7 +28,7 @@ import org.junit.Assert;
 public abstract class BaseOutputProcessorTestCase {
 
 	public void testFailToRead(OutputProcessor<?, ?> outputProcessor) {
-		final IOException ioException = new IOException("Unable to read");
+		IOException ioException = new IOException("Unable to read");
 
 		InputStream inputStream = new UnsyncFilterInputStream(
 			new UnsyncByteArrayInputStream(new byte[0])) {

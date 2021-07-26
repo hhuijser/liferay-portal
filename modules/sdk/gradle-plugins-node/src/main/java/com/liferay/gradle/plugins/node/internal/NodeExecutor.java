@@ -154,7 +154,7 @@ public class NodeExecutor {
 	}
 
 	private String _executeGradleExec() {
-		final ByteArrayOutputStream byteArrayOutputStream =
+		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
 
 		_project.exec(

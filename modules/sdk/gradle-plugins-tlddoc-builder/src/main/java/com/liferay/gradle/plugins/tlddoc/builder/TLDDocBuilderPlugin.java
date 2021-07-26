@@ -124,7 +124,7 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 
 		Project project = copyTLDDocResourcesTask.getProject();
 
-		final TLDDocTask tldDocTask = GradleUtil.addTask(
+		TLDDocTask tldDocTask = GradleUtil.addTask(
 			project, TLDDOC_TASK_NAME, TLDDocTask.class);
 
 		tldDocTask.dependsOn(copyTLDDocResourcesTask, validateTLDTask);
@@ -148,7 +148,7 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 	}
 
 	private ValidateSchemaTask _addTaskValidateTLD(Project project) {
-		final ValidateSchemaTask validateSchemaTask = GradleUtil.addTask(
+		ValidateSchemaTask validateSchemaTask = GradleUtil.addTask(
 			project, VALIDATE_TLD_TASK_NAME, ValidateSchemaTask.class);
 
 		validateSchemaTask.setDescription("Validates TLD files.");
@@ -195,7 +195,7 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskTLDDocForJavaPlugin(TLDDocTask tldDocTask) {
-		final Project project = tldDocTask.getProject();
+		Project project = tldDocTask.getProject();
 
 		tldDocTask.setDestinationDir(
 			new Callable<File>() {
@@ -228,7 +228,7 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 	private void _configureTaskValidateSchemaForJavaPlugin(
 		ValidateSchemaTask validateSchemaTask) {
 
-		final Project project = validateSchemaTask.getProject();
+		Project project = validateSchemaTask.getProject();
 
 		validateSchemaTask.setIncludes(Collections.singleton("**/*.tld"));
 

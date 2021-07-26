@@ -96,7 +96,7 @@ public class XSDBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected BuildXSDTask addTaskBuildXSD(Project project) {
-		final BuildXSDTask buildXSDTask = GradleUtil.addTask(
+		BuildXSDTask buildXSDTask = GradleUtil.addTask(
 			project, BUILD_XSD_TASK_NAME, BuildXSDTask.class);
 
 		buildXSDTask.setDescription(

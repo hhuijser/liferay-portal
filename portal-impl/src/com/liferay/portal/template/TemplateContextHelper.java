@@ -238,7 +238,7 @@ public class TemplateContextHelper {
 
 		// Render request
 
-		final PortletRequest portletRequest =
+		PortletRequest portletRequest =
 			(PortletRequest)httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_REQUEST);
 
@@ -250,7 +250,7 @@ public class TemplateContextHelper {
 
 		// Render response
 
-		final PortletResponse portletResponse =
+		PortletResponse portletResponse =
 			(PortletResponse)httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
 

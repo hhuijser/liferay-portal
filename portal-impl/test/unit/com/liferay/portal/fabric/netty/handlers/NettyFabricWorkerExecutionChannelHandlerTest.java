@@ -391,7 +391,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 		// Broken classpath
 
-		final MalformedURLException malformedURLException =
+		MalformedURLException malformedURLException =
 			new MalformedURLException();
 
 		Map<Object, Object> handlers = ReflectionTestUtil.getFieldValue(
@@ -450,7 +450,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path runtimePath3 = Paths.get("runtimePath3");
 		Path mappedRuntimePath3 = Paths.get("mappedRuntimePath3");
 
-		final Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
+		Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
 			bootstrapPath1, mappedBootstrapPath1
 		).put(
 			bootstrapPath2, mappedBootstrapPath2
@@ -556,7 +556,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path bootstrapPath2 = Paths.get("bootstrapPath2");
 		Path bootstrapPath3 = Paths.get("bootstrapPath3");
 
-		final Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
+		Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
 			bootstrapPath1, mappedBootstrapPath1
 		).build();
 
@@ -680,7 +680,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 	public void testLoadPathsMissedInputPaths() throws InterruptedException {
 		Path inputPaths1 = Paths.get("inputPaths1");
 
-		final Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
+		Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
 			inputPaths1, Paths.get("mappedInputPath1")
 		).build();
 
@@ -757,7 +757,7 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path runtimePath3 = Paths.get("runtimePath3");
 		Path mappedRuntimePath3 = Paths.get("mappedRuntimePath3");
 
-		final Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
+		Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>put(
 			runtimePath1, mappedRuntimePath1
 		).put(
 			runtimePath3, mappedRuntimePath3

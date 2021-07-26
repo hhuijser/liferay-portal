@@ -93,14 +93,14 @@ public class NodePlugin implements Plugin<Project> {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void apply(Project project) {
-		final NodeExtension nodeExtension = GradleUtil.addExtension(
+		NodeExtension nodeExtension = GradleUtil.addExtension(
 			project, EXTENSION_NAME, NodeExtension.class);
 
 		_configureExtensionNode(project, nodeExtension);
 
 		Delete cleanNpmTask = _addTaskCleanNpm(project, nodeExtension);
 
-		final DownloadNodeTask downloadNodeTask = _addTaskDownloadNode(
+		DownloadNodeTask downloadNodeTask = _addTaskDownloadNode(
 			project, nodeExtension);
 
 		NpmInstallTask npmInstallTask = _addTaskNpmInstall(
@@ -300,7 +300,7 @@ public class NodePlugin implements Plugin<Project> {
 
 		String taskName = _PACKAGE_RUN_TASK_NAME_PREFIX + suffix;
 
-		final PackageRunTask packageRunTask = GradleUtil.addTask(
+		PackageRunTask packageRunTask = GradleUtil.addTask(
 			project, taskName, PackageRunTask.class);
 
 		packageRunTask.dependsOn(npmInstallTask);
@@ -317,7 +317,7 @@ public class NodePlugin implements Plugin<Project> {
 
 		Project project = npmInstallTask.getProject();
 
-		final PackageRunBuildTask packageRunBuildTask = GradleUtil.addTask(
+		PackageRunBuildTask packageRunBuildTask = GradleUtil.addTask(
 			project, PACKAGE_RUN_BUILD_TASK_NAME, PackageRunBuildTask.class);
 
 		packageRunBuildTask.dependsOn(npmInstallTask);
@@ -368,7 +368,7 @@ public class NodePlugin implements Plugin<Project> {
 
 		Project project = npmInstallTask.getProject();
 
-		final PackageRunTestTask packageRunTestTask = GradleUtil.addTask(
+		PackageRunTestTask packageRunTestTask = GradleUtil.addTask(
 			project, PACKAGE_RUN_TEST_TASK_NAME, PackageRunTestTask.class);
 
 		packageRunTestTask.dependsOn(npmInstallTask);
@@ -569,7 +569,7 @@ public class NodePlugin implements Plugin<Project> {
 		final ExecutePackageManagerTask executePackageManagerTask,
 		final NodeExtension nodeExtension) {
 
-		final Callable<Boolean> useGlobalConcurrentCacheCallable =
+		Callable<Boolean> useGlobalConcurrentCacheCallable =
 			new Callable<Boolean>() {
 
 				@Override
@@ -611,7 +611,7 @@ public class NodePlugin implements Plugin<Project> {
 
 			});
 
-		final Project project = executePackageManagerTask.getProject();
+		Project project = executePackageManagerTask.getProject();
 
 		executePackageManagerTask.setNodeModulesDir(
 			new Callable<File>() {
@@ -685,7 +685,7 @@ public class NodePlugin implements Plugin<Project> {
 	private void _configureTaskPackageRunBuildForJavaPlugin(
 		final PackageRunBuildTask packageRunBuildTask) {
 
-		final Project project = packageRunBuildTask.getProject();
+		Project project = packageRunBuildTask.getProject();
 
 		packageRunBuildTask.doLast(
 			new Action<Task>() {
@@ -815,7 +815,7 @@ public class NodePlugin implements Plugin<Project> {
 	private void _configureTaskPublishNodeModule(
 		PublishNodeModuleTask publishNodeModuleTask) {
 
-		final Project project = publishNodeModuleTask.getProject();
+		Project project = publishNodeModuleTask.getProject();
 
 		publishNodeModuleTask.setModuleDescription(
 			new Callable<String>() {

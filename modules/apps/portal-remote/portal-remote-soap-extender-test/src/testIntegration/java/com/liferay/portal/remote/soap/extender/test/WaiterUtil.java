@@ -54,7 +54,7 @@ public class WaiterUtil {
 			BundleContext bundleContext, final String filterString)
 		throws Exception {
 
-		final CountDownLatch countDownLatch = new CountDownLatch(1);
+		CountDownLatch countDownLatch = new CountDownLatch(1);
 
 		ServiceTracker<?, ?> serviceTracker =
 			new ServiceTracker<Object, Object>(

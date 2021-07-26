@@ -130,7 +130,7 @@ public class ExecutorIntrabandTest {
 
 		Pipe pipe = Pipe.open();
 
-		final Pipe.SourceChannel sourceChannel = pipe.source();
+		Pipe.SourceChannel sourceChannel = pipe.source();
 		Pipe.SinkChannel sinkChannel = pipe.sink();
 
 		try {

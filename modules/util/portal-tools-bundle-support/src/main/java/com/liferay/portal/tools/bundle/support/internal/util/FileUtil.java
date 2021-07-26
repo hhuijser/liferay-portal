@@ -184,7 +184,7 @@ public class FileUtil {
 			Path sourcePath, File sevenZipFile, boolean includeFolder)
 		throws Exception {
 
-		final Path parentPath;
+		Path parentPath;
 
 		if (includeFolder) {
 			parentPath = sourcePath.getParent();
@@ -220,7 +220,7 @@ public class FileUtil {
 	public static void tar(Path sourcePath, File tarFile, boolean includeFolder)
 		throws Exception {
 
-		final Path parentPath;
+		Path parentPath;
 
 		if (includeFolder) {
 			parentPath = sourcePath.getParent();
@@ -286,7 +286,7 @@ public class FileUtil {
 			Path sourcePath, final File zipFile, boolean includeFolder)
 		throws Exception {
 
-		final Path parentPath;
+		Path parentPath;
 
 		if (includeFolder) {
 			parentPath = sourcePath.getParent();

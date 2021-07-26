@@ -116,9 +116,8 @@ public class PoshiRunnerResourcesDefaultsPlugin implements Plugin<Project> {
 
 		RepositoryHandler repositoryHandler = upload.getRepositories();
 
-		final MavenDeployer mavenDeployer =
-			(MavenDeployer)repositoryHandler.getAt(
-				MavenRepositoryHandlerConvention.DEFAULT_MAVEN_DEPLOYER_NAME);
+		MavenDeployer mavenDeployer = (MavenDeployer)repositoryHandler.getAt(
+			MavenRepositoryHandlerConvention.DEFAULT_MAVEN_DEPLOYER_NAME);
 
 		Configuration configuration = upload.getConfiguration();
 
@@ -136,7 +135,7 @@ public class PoshiRunnerResourcesDefaultsPlugin implements Plugin<Project> {
 					AbstractArchiveTask abstractArchiveTask =
 						archivePublishArtifact.getArchiveTask();
 
-					final String name = abstractArchiveTask.getArchiveName();
+					String name = abstractArchiveTask.getArchiveName();
 
 					mavenDeployer.addFilter(
 						name,

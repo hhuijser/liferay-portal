@@ -151,7 +151,7 @@ public class JspServlet extends HttpServlet {
 	public void init(final ServletConfig servletConfig)
 		throws ServletException {
 
-		final ServletContext servletContext = servletConfig.getServletContext();
+		ServletContext servletContext = servletConfig.getServletContext();
 
 		ClassLoader classLoader = servletContext.getClassLoader();
 
@@ -193,7 +193,7 @@ public class JspServlet extends HttpServlet {
 		_jspBundleClassloader = new JspBundleClassloader(
 			_allParticipatingBundles);
 
-		final Map<String, String> defaults = HashMapBuilder.put(
+		Map<String, String> defaults = HashMapBuilder.put(
 			_INIT_PARAMETER_NAME_SCRATCH_DIR,
 			StringBundler.concat(
 				_WORK_DIR, _bundle.getSymbolicName(), StringPool.DASH,
@@ -276,8 +276,7 @@ public class JspServlet extends HttpServlet {
 
 		nameSet.addAll(defaults.keySet());
 
-		final Enumeration<String> enumeration = Collections.enumeration(
-			nameSet);
+		Enumeration<String> enumeration = Collections.enumeration(nameSet);
 
 		_jspServlet.init(
 			new ServletConfig() {

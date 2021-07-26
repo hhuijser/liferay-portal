@@ -242,7 +242,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	private static Set<File> _getNodeModulesBinDirs(File nodeModulesDir)
 		throws IOException {
 
-		final Set<File> nodeModulesBinDirs = new HashSet<>();
+		Set<File> nodeModulesBinDirs = new HashSet<>();
 
 		Files.walkFileTree(
 			nodeModulesDir.toPath(),

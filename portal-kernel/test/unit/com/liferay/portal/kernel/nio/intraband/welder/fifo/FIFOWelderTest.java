@@ -110,9 +110,9 @@ public class FIFOWelderTest {
 
 	@Test
 	public void testWeld() throws Exception {
-		final FIFOWelder serverFIFOWelder = new FIFOWelder();
+		FIFOWelder serverFIFOWelder = new FIFOWelder();
 
-		final FIFOWelder clientFIFOWelder = WelderTestUtil.transform(
+		FIFOWelder clientFIFOWelder = WelderTestUtil.transform(
 			serverFIFOWelder);
 
 		FutureTask<MockRegistrationReference> serverWeldingTask =

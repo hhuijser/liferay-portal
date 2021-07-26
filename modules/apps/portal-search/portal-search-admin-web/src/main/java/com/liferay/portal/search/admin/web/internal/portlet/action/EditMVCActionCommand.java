@@ -122,9 +122,9 @@ public class EditMVCActionCommand extends BaseMVCActionCommand {
 			return;
 		}
 
-		final String jobName = "reindex-".concat(_portalUUID.generate());
+		String jobName = "reindex-".concat(_portalUUID.generate());
 
-		final CountDownLatch countDownLatch = new CountDownLatch(1);
+		CountDownLatch countDownLatch = new CountDownLatch(1);
 
 		MessageListener messageListener = new MessageListener() {
 

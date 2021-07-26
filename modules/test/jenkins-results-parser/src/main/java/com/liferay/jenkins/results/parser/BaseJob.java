@@ -366,7 +366,7 @@ public abstract class BaseJob implements Job {
 
 		List<Callable<BatchTestClassGroup>> callables = new ArrayList<>();
 
-		final Job job = this;
+		Job job = this;
 
 		for (final String batchName : rawBatchNames) {
 			callables.add(

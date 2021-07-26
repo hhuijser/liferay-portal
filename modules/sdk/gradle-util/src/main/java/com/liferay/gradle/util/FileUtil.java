@@ -491,7 +491,7 @@ public class FileUtil {
 		final String password, File destinationFile,
 		final boolean ignoreErrors) {
 
-		final File tmpFile = new File(
+		File tmpFile = new File(
 			destinationFile.getParentFile(),
 			destinationFile.getName() + ".tmp");
 
@@ -537,7 +537,7 @@ public class FileUtil {
 			return file.lastModified();
 		}
 
-		final AtomicLong lastModified = new AtomicLong();
+		AtomicLong lastModified = new AtomicLong();
 
 		Files.walkFileTree(
 			file.toPath(),

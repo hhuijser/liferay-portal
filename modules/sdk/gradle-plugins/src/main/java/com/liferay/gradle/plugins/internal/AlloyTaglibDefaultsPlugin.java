@@ -50,8 +50,8 @@ public class AlloyTaglibDefaultsPlugin
 		ConfigurationContainer configurationContainer =
 			project.getConfigurations();
 
-		final Configuration portalToolConfiguration =
-			configurationContainer.create(_PORTAL_TOOL_CONFIGURATION_NAME);
+		Configuration portalToolConfiguration = configurationContainer.create(
+			_PORTAL_TOOL_CONFIGURATION_NAME);
 
 		Configuration runtimeConfiguration = configurationContainer.getByName(
 			JavaPlugin.RUNTIME_CONFIGURATION_NAME);

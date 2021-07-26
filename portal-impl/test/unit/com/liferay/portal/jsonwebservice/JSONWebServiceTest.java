@@ -54,7 +54,7 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		final Method getDefaultPlidMethod = LayoutLocalService.class.getMethod(
+		Method getDefaultPlidMethod = LayoutLocalService.class.getMethod(
 			"getDefaultPlid", long.class, boolean.class);
 
 		ReflectionTestUtil.setFieldValue(

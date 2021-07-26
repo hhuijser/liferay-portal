@@ -3465,7 +3465,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 		throws PortalException {
 
 		Queue<Folder[]> folders = new LinkedList<>();
-		final List<FileEntry> fileEntries = new ArrayList<>();
+		List<FileEntry> fileEntries = new ArrayList<>();
 
 		Folder curSrcFolder = srcFolder;
 		Folder curDestFolder = destFolder;

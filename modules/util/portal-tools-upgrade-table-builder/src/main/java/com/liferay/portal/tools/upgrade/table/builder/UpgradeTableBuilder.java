@@ -181,12 +181,11 @@ public class UpgradeTableBuilder {
 			String baseDirName, String pattern, final int limit)
 		throws IOException {
 
-		final List<Path> paths = new ArrayList<>();
+		List<Path> paths = new ArrayList<>();
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		final PathMatcher pathMatcher = fileSystem.getPathMatcher(
-			"glob:" + pattern);
+		PathMatcher pathMatcher = fileSystem.getPathMatcher("glob:" + pattern);
 
 		Files.walkFileTree(
 			Paths.get(baseDirName),

@@ -289,8 +289,8 @@ public class TaskQueueTest {
 
 	@Test
 	public void testTake() throws InterruptedException {
-		final TaskQueue<Object> taskQueue = new TaskQueue<>();
-		final Object object = new Object();
+		TaskQueue<Object> taskQueue = new TaskQueue<>();
+		Object object = new Object();
 
 		Assert.assertTrue(taskQueue.offer(object, new boolean[1]));
 		Assert.assertSame(object, taskQueue.take());

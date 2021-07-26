@@ -474,7 +474,7 @@ public class MicroblogsEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		final JSONObject notificationEventJSONObject = JSONUtil.put(
+		JSONObject notificationEventJSONObject = JSONUtil.put(
 			"className", MicroblogsEntry.class.getName()
 		).put(
 			"classPK", microblogsEntry.getMicroblogsEntryId()
@@ -512,7 +512,7 @@ public class MicroblogsEntryLocalServiceImpl
 			"userId", microblogsEntry.getUserId()
 		);
 
-		final List<Long> receiverUserIds = MicroblogsUtil.getSubscriberUserIds(
+		List<Long> receiverUserIds = MicroblogsUtil.getSubscriberUserIds(
 			microblogsEntry);
 
 		Callable<Void> callable = new Callable<Void>() {

@@ -100,7 +100,7 @@ public class NettyFabricAgentStub implements FabricAgent {
 	public <T extends Serializable> FabricWorker<T> execute(
 		ProcessConfig processConfig, ProcessCallable<T> processCallable) {
 
-		final long id = _idGenerator.getAndIncrement();
+		long id = _idGenerator.getAndIncrement();
 
 		FabricPathMappingVisitor fabricPathMappingVisitor =
 			new FabricPathMappingVisitor(
@@ -114,7 +114,7 @@ public class NettyFabricAgentStub implements FabricAgent {
 				id, _channel, _repository,
 				fabricPathMappingVisitor.getPathMap(), _rpcRelayTimeout);
 
-		final DefaultNoticeableFuture<Object> startupNoticeableFuture =
+		DefaultNoticeableFuture<Object> startupNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		_startupNoticeableFutures.put(id, startupNoticeableFuture);
@@ -160,7 +160,7 @@ public class NettyFabricAgentStub implements FabricAgent {
 
 			});
 
-		final ChannelFutureListener channelFutureListener =
+		ChannelFutureListener channelFutureListener =
 			new ChannelFutureListener() {
 
 				@Override
@@ -170,7 +170,7 @@ public class NettyFabricAgentStub implements FabricAgent {
 
 			};
 
-		final ChannelFuture closeChannelFuture = _channel.closeFuture();
+		ChannelFuture closeChannelFuture = _channel.closeFuture();
 
 		closeChannelFuture.addListener(channelFutureListener);
 

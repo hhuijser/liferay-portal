@@ -52,7 +52,7 @@ public class LocalFabricStatusTest extends BaseFabricStatusTestCase {
 		JMXProxyUtil.ProcessCallableExecutor processCallableExecutor =
 			LocalFabricStatus.processCallableExecutor;
 
-		final Serializable serializable = new Serializable() {
+		Serializable serializable = new Serializable() {
 		};
 
 		Future<Serializable> future = processCallableExecutor.execute(
@@ -67,7 +67,7 @@ public class LocalFabricStatusTest extends BaseFabricStatusTestCase {
 
 		Assert.assertSame(serializable, future.get());
 
-		final ProcessException processException = new ProcessException(
+		ProcessException processException = new ProcessException(
 			StringPool.BLANK);
 
 		future = processCallableExecutor.execute(

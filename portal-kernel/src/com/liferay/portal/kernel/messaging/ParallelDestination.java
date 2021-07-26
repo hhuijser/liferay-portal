@@ -39,7 +39,7 @@ public class ParallelDestination extends BaseAsyncDestination {
 	protected void dispatch(
 		Set<MessageListener> messageListeners, final Message message) {
 
-		final Thread currentThread = Thread.currentThread();
+		Thread currentThread = Thread.currentThread();
 
 		for (final MessageListener messageListener : messageListeners) {
 			Runnable runnable = new MessageRunnable(message) {

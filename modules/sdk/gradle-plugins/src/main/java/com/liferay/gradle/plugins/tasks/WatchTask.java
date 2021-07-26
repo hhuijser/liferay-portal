@@ -361,7 +361,7 @@ public class WatchTask extends DefaultTask {
 	private List<File> _getModifiedFiles(
 		IncrementalTaskInputs incrementalTaskInputs) {
 
-		final List<File> modifiedFiles = new ArrayList<>();
+		List<File> modifiedFiles = new ArrayList<>();
 
 		incrementalTaskInputs.outOfDate(
 			new Action<InputFileDetails>() {

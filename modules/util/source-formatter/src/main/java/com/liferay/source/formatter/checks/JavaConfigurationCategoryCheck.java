@@ -71,7 +71,7 @@ public class JavaConfigurationCategoryCheck extends BaseFileCheck {
 			return _categoryKeys;
 		}
 
-		final List<String> categoryKeys = new ArrayList<>();
+		List<String> categoryKeys = new ArrayList<>();
 
 		File configurationCategoriesDir = getFile(
 			_CONFIGURATION_CATEGORIES_DIR_NAME, getMaxDirLevel());

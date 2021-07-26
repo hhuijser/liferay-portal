@@ -50,8 +50,7 @@ public class NettyRPCChannelHandlerTest {
 		EmbeddedChannel embeddedChannel = new EmbeddedChannel(
 			NettyRPCChannelHandler.INSTANCE);
 
-		final AtomicReference<Channel> channelReference =
-			new AtomicReference<>();
+		AtomicReference<Channel> channelReference = new AtomicReference<>();
 
 		RPCSerializable rpcSerializable = new RPCSerializable(
 			System.currentTimeMillis()) {

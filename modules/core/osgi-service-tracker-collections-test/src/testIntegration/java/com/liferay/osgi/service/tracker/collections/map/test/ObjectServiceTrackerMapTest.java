@@ -155,7 +155,7 @@ public class ObjectServiceTrackerMapTest {
 
 	@Test
 	public void testGetServiceInvokesCustomizerOnlyOnce() {
-		final AtomicInteger atomicInteger = new AtomicInteger(0);
+		AtomicInteger atomicInteger = new AtomicInteger(0);
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			_bundleContext, TrackedOne.class, "(target=*)",

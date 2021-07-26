@@ -444,7 +444,7 @@ public class ListServiceTrackerMapTest {
 
 	@Test
 	public void testServiceRegistrationInvokesServiceTrackerMapListener() {
-		final Collection<TrackedOne> trackedOnes = new ArrayList<>();
+		Collection<TrackedOne> trackedOnes = new ArrayList<>();
 
 		ServiceTrackerMapListener<String, TrackedOne, List<TrackedOne>>
 			serviceTrackerMapListener =
@@ -520,9 +520,9 @@ public class ListServiceTrackerMapTest {
 
 	@Test
 	public void testServiceTrackerMapListenerKeyEmitted() throws Throwable {
-		final TrackedOne trackedOne = new TrackedOne();
+		TrackedOne trackedOne = new TrackedOne();
 
-		final Collection<Throwable> throwables = new ArrayList<>();
+		Collection<Throwable> throwables = new ArrayList<>();
 
 		ServiceTrackerMapListener<String, TrackedOne, List<TrackedOne>>
 			serviceTrackerMapListener =

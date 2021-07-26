@@ -715,9 +715,9 @@ public class NettyRepositoryTest {
 			final boolean asyncBrokerFailure, boolean logging)
 		throws InterruptedException {
 
-		final Exception exception = new Exception();
+		Exception exception = new Exception();
 
-		final Path remoteFilePath = Paths.get("remoteFile");
+		Path remoteFilePath = Paths.get("remoteFile");
 
 		_channelPipeline.addLast(
 			new ChannelOutboundHandlerAdapter() {

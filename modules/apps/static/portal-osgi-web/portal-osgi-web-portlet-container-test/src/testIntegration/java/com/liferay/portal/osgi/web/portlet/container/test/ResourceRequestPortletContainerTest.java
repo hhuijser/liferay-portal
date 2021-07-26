@@ -121,7 +121,7 @@ public class ResourceRequestPortletContainerTest
 				"com.liferay.portlet.system", Boolean.TRUE
 			).build();
 
-		final String testTargetPortletId = "testTargetPortletId";
+		String testTargetPortletId = "testTargetPortletId";
 
 		setUpPortlet(testTargetPortlet, properties, testTargetPortletId, false);
 

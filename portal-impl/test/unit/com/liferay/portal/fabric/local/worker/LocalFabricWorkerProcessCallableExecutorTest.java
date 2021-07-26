@@ -64,7 +64,7 @@ public class LocalFabricWorkerProcessCallableExecutorTest {
 
 		Assert.assertEquals(StringPool.BLANK, noticeableFuture.get());
 
-		final ProcessException processException = new ProcessException("");
+		ProcessException processException = new ProcessException("");
 
 		noticeableFuture = processCallableExecutor.execute(
 			new ProcessCallable<Serializable>() {

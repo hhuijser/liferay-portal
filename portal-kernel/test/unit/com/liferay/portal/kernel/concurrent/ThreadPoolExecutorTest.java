@@ -751,14 +751,14 @@ public class ThreadPoolExecutorTest {
 		RecordRejectedExecutionHandler recordRejectedExecutionHandler =
 			new RecordRejectedExecutionHandler();
 
-		final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
 			1, 2, TestUtil.KEEPALIVE_TIME, TimeUnit.MILLISECONDS, true, 3,
 			recordRejectedExecutionHandler, Executors.defaultThreadFactory(),
 			new ThreadPoolHandlerAdapter());
 
-		final TaskQueue<Runnable> taskQueue = threadPoolExecutor.getTaskQueue();
+		TaskQueue<Runnable> taskQueue = threadPoolExecutor.getTaskQueue();
 
-		final CountDownLatch executeLatch = new CountDownLatch(1);
+		CountDownLatch executeLatch = new CountDownLatch(1);
 
 		Thread thread = new Thread() {
 
@@ -975,14 +975,14 @@ public class ThreadPoolExecutorTest {
 		RecordRejectedExecutionHandler recordRejectedExecutionHandler =
 			new RecordRejectedExecutionHandler();
 
-		final ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
 			1, 2, TestUtil.KEEPALIVE_TIME, TimeUnit.MILLISECONDS, true, 3,
 			recordRejectedExecutionHandler, Executors.defaultThreadFactory(),
 			new ThreadPoolHandlerAdapter());
 
-		final TaskQueue<Runnable> taskQueue = threadPoolExecutor.getTaskQueue();
+		TaskQueue<Runnable> taskQueue = threadPoolExecutor.getTaskQueue();
 
-		final CountDownLatch executeLatch = new CountDownLatch(1);
+		CountDownLatch executeLatch = new CountDownLatch(1);
 
 		Thread thread = new Thread() {
 
@@ -1270,7 +1270,7 @@ public class ThreadPoolExecutorTest {
 		Assert.assertFalse(terminationNoticeableFutute.isDone());
 		Assert.assertFalse(terminationNoticeableFutute.cancel(true));
 
-		final AtomicBoolean marker = new AtomicBoolean();
+		AtomicBoolean marker = new AtomicBoolean();
 
 		terminationNoticeableFutute.addFutureListener(
 			new FutureListener<Void>() {

@@ -97,7 +97,7 @@ public class ValidateSchemaTask extends SourceTask {
 	public void validateSchema() {
 		Project project = getProject();
 
-		final AntBuilder antBuilder = project.getAnt();
+		AntBuilder antBuilder = project.getAnt();
 
 		Map<String, Object> args = new HashMap<>();
 

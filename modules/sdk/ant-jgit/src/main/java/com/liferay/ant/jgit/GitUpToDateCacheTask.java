@@ -138,7 +138,7 @@ public class GitUpToDateCacheTask extends Task {
 	}
 
 	protected List<Path> scanSnapshotPaths() {
-		final List<Path> paths = new ArrayList<>();
+		List<Path> paths = new ArrayList<>();
 
 		try {
 			Files.walkFileTree(

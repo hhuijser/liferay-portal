@@ -133,7 +133,7 @@ public class ThemesProjectConfigurator extends BaseProjectConfigurator {
 
 	@Override
 	protected Iterable<File> doGetProjectDirs(File rootDir) throws Exception {
-		final Set<File> projectDirs = new HashSet<>();
+		Set<File> projectDirs = new HashSet<>();
 
 		Files.walkFileTree(
 			rootDir.toPath(),

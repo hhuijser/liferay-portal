@@ -59,9 +59,9 @@ public class SharedSessionPortletContainerTest
 
 	@Test
 	public void testPrivateFalsePortalToPortlet() throws Exception {
-		final String attributeKey = "TEST_ATTRIBUTE";
-		final String attributeValue = "TEST_VALUE";
-		final AtomicReference<Object> sessionValue = new AtomicReference<>();
+		String attributeKey = "TEST_ATTRIBUTE";
+		String attributeValue = "TEST_VALUE";
+		AtomicReference<Object> sessionValue = new AtomicReference<>();
 
 		testPortlet = new TestPortlet() {
 
@@ -127,9 +127,9 @@ public class SharedSessionPortletContainerTest
 
 	@Test
 	public void testPrivateFalsePortletToPortal() throws Exception {
-		final String attributeKey = "TEST_ATTRIBUTE";
-		final String attributeValue = "TEST_VALUE";
-		final AtomicReference<Object> sessionValue = new AtomicReference<>();
+		String attributeKey = "TEST_ATTRIBUTE";
+		String attributeValue = "TEST_VALUE";
+		AtomicReference<Object> sessionValue = new AtomicReference<>();
 
 		testPortlet = new TestPortlet() {
 
@@ -196,9 +196,9 @@ public class SharedSessionPortletContainerTest
 
 	@Test
 	public void testPrivateTruePortalToPortlet() throws Exception {
-		final String attributeKey = "TEST_ATTRIBUTE";
-		final String attributeValue = "TEST_VALUE";
-		final AtomicReference<Object> sessionValue = new AtomicReference<>();
+		String attributeKey = "TEST_ATTRIBUTE";
+		String attributeValue = "TEST_VALUE";
+		AtomicReference<Object> sessionValue = new AtomicReference<>();
 
 		testPortlet = new TestPortlet() {
 
@@ -263,9 +263,9 @@ public class SharedSessionPortletContainerTest
 	public void testPrivateTruePortalToPortletSharedAttribute()
 		throws Exception {
 
-		final String attributeKey = "LIFERAY_SHARED_TEST_ATTRIBUTE";
-		final String attributeValue = "TEST_VALUE";
-		final AtomicReference<Object> sessionValue = new AtomicReference<>();
+		String attributeKey = "LIFERAY_SHARED_TEST_ATTRIBUTE";
+		String attributeValue = "TEST_VALUE";
+		AtomicReference<Object> sessionValue = new AtomicReference<>();
 
 		testPortlet = new TestPortlet() {
 
@@ -328,9 +328,9 @@ public class SharedSessionPortletContainerTest
 
 	@Test
 	public void testPrivateTruePortletToPortal() throws Exception {
-		final String attributeKey = "TEST_ATTRIBUTE";
-		final String attributeValue = "TEST_VALUE";
-		final AtomicReference<Object> sessionValue = new AtomicReference<>();
+		String attributeKey = "TEST_ATTRIBUTE";
+		String attributeValue = "TEST_VALUE";
+		AtomicReference<Object> sessionValue = new AtomicReference<>();
 
 		testPortlet = new TestPortlet() {
 

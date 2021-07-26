@@ -80,7 +80,7 @@ public class OutputStreamWriterTest {
 
 		// Exception close
 
-		final IOException ioException1 = new IOException();
+		IOException ioException1 = new IOException();
 
 		OutputStreamWriter outputStreamWriter = new OutputStreamWriter(
 			new UnsyncByteArrayOutputStream() {
@@ -221,7 +221,7 @@ public class OutputStreamWriterTest {
 
 		// Flush encoder overflow
 
-		final AtomicInteger flushCounter = new AtomicInteger();
+		AtomicInteger flushCounter = new AtomicInteger();
 
 		ReflectionTestUtil.setFieldValue(
 			outputStreamWriter, "_charsetEncoder",
@@ -601,7 +601,7 @@ public class OutputStreamWriterTest {
 	}
 
 	private void _testWriteCharArray(boolean autoFlush) throws IOException {
-		final AtomicBoolean flushed = new AtomicBoolean();
+		AtomicBoolean flushed = new AtomicBoolean();
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream() {
@@ -655,7 +655,7 @@ public class OutputStreamWriterTest {
 	}
 
 	private void _testWriteString(boolean autoFlush) throws IOException {
-		final AtomicBoolean flushed = new AtomicBoolean();
+		AtomicBoolean flushed = new AtomicBoolean();
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream() {

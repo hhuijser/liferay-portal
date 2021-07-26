@@ -73,10 +73,10 @@ public class DownloadGoTask extends DefaultTask {
 
 	@TaskAction
 	public void downloadGo() throws IOException {
-		final File goDir = getGoDir();
-		final Project project = getProject();
+		File goDir = getGoDir();
+		Project project = getProject();
 
-		final File goFile = _download(getGoUrl(), null);
+		File goFile = _download(getGoUrl(), null);
 
 		project.delete(goDir);
 

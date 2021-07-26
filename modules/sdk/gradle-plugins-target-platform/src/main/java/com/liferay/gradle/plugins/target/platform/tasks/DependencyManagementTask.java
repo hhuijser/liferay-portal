@@ -106,9 +106,9 @@ public class DependencyManagementTask extends DefaultTask {
 	}
 
 	private List<String> _getTargetPlatformDependencies(Project project) {
-		final List<String> dependencies = new ArrayList<>();
+		List<String> dependencies = new ArrayList<>();
 
-		final Configuration configuration = GradleUtil.getConfiguration(
+		Configuration configuration = GradleUtil.getConfiguration(
 			project, "targetPlatformIDEBoms");
 
 		DependencySet dependencySet = configuration.getDependencies();

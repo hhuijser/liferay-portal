@@ -289,7 +289,7 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 			return;
 		}
 
-		final List<File> serviceXMLFiles = new ArrayList<>();
+		List<File> serviceXMLFiles = new ArrayList<>();
 
 		Files.walkFileTree(
 			directory.toPath(), EnumSet.noneOf(FileVisitOption.class), maxDepth,

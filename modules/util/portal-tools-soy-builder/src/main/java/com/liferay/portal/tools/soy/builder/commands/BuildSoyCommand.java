@@ -44,7 +44,7 @@ public class BuildSoyCommand implements Command {
 
 	@Override
 	public void execute() throws Exception {
-		final List<Path> paths = new ArrayList<>();
+		List<Path> paths = new ArrayList<>();
 
 		File dir = getDir();
 

@@ -120,11 +120,11 @@ public class JavadocFormatterUtil {
 			String dirName, String[] excludes, String[] includes)
 		throws Exception {
 
-		final List<String> fileNames = new ArrayList<>();
+		List<String> fileNames = new ArrayList<>();
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		final List<PathMatcher> excludeDirPathMatchers = new ArrayList<>();
+		List<PathMatcher> excludeDirPathMatchers = new ArrayList<>();
 
 		for (String exclude : excludes) {
 			if (exclude.endsWith("/**")) {
@@ -135,7 +135,7 @@ public class JavadocFormatterUtil {
 				fileSystem.getPathMatcher("glob:" + exclude));
 		}
 
-		final List<PathMatcher> includeFilePathMatchers = new ArrayList<>();
+		List<PathMatcher> includeFilePathMatchers = new ArrayList<>();
 
 		for (String include : includes) {
 			includeFilePathMatchers.add(

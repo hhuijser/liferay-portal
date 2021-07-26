@@ -452,7 +452,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 	}
 
 	private void _buildPluginDescriptor(final File pomFile) throws Exception {
-		final Project project = getProject();
+		Project project = getProject();
 
 		project.javaexec(
 			new Action<JavaExecSpec>() {

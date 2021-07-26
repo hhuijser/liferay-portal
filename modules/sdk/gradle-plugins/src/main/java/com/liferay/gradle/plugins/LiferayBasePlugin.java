@@ -74,7 +74,7 @@ public class LiferayBasePlugin implements Plugin<Project> {
 
 		ExtensionContainer extensionContainer = project.getExtensions();
 
-		final LiferayExtension liferayExtension = extensionContainer.create(
+		LiferayExtension liferayExtension = extensionContainer.create(
 			LiferayPlugin.PLUGIN_NAME, LiferayExtension.class, project);
 
 		// Configurations

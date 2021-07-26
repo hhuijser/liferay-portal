@@ -1115,8 +1115,7 @@ public class SocialActivityCounterLocalServiceImpl
 			final SocialActivityCounterDefinition activityCounterDefinition)
 		throws PortalException {
 
-		final long classPK = getLimitClassPK(
-			activity, activityCounterDefinition);
+		long classPK = getLimitClassPK(activity, activityCounterDefinition);
 
 		String lockKey = StringUtil.merge(
 			new Object[] {

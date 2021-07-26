@@ -162,7 +162,7 @@ public class ASMUtil {
 		MethodNode containerMethodNode, MethodNode headMethodNode,
 		MethodNode tailMethodNode) {
 
-		final MethodNode methodNode = new MethodNode();
+		MethodNode methodNode = new MethodNode();
 
 		headMethodNode.accept(
 			new AdviceAdapter(

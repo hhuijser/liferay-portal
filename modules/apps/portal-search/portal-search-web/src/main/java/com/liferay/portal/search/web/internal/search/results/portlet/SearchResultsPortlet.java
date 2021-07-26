@@ -380,7 +380,7 @@ public class SearchResultsPortlet extends MVCPortlet {
 	protected PortletURL getPortletURL(
 		RenderRequest renderRequest, String paginationStartParameterName) {
 
-		final String urlString = getURLString(
+		String urlString = getURLString(
 			renderRequest, paginationStartParameterName);
 
 		return new NullPortletURL() {

@@ -116,11 +116,11 @@ public class FileHelperUtilTest {
 	public void testDeleteRegularDirectoryWithUndeleteableFile()
 		throws IOException {
 
-		final IOException ioException = new IOException("Unable to delete");
+		IOException ioException = new IOException("Unable to delete");
 
 		Path regularDirectoryPath = Paths.get("RegularDirectory");
 
-		final Path undeleteableFilePath = regularDirectoryPath.resolve(
+		Path undeleteableFilePath = regularDirectoryPath.resolve(
 			"UndeleteableFile");
 
 		createFile(undeleteableFilePath);
@@ -175,12 +175,11 @@ public class FileHelperUtilTest {
 	public void testDeleteUndeleteableDirectoryWithRegularFile()
 		throws IOException {
 
-		final Path undeleteableDirectoryPath = Paths.get(
-			"UndeleteableDirectory");
+		Path undeleteableDirectoryPath = Paths.get("UndeleteableDirectory");
 
 		Path regularFilePath = undeleteableDirectoryPath.resolve("RegularFile");
 
-		final Path newRegularFilePath = undeleteableDirectoryPath.resolve(
+		Path newRegularFilePath = undeleteableDirectoryPath.resolve(
 			"NewRegularFile");
 
 		createFile(regularFilePath);
@@ -225,9 +224,9 @@ public class FileHelperUtilTest {
 
 	@Test
 	public void testDeleteUndeleteableFile() throws IOException {
-		final IOException ioException = new IOException("Unable to delete");
+		IOException ioException = new IOException("Unable to delete");
 
-		final Path undeleteableFilePath = Paths.get("UndeleteableFile");
+		Path undeleteableFilePath = Paths.get("UndeleteableFile");
 
 		createFile(undeleteableFilePath);
 
@@ -260,9 +259,9 @@ public class FileHelperUtilTest {
 
 	@Test
 	public void testDeleteUnreadableFile() throws IOException {
-		final IOException ioException = new IOException("Unable to read");
+		IOException ioException = new IOException("Unable to read");
 
-		final Path unreadableFilePath = Paths.get("UnreadableFile");
+		Path unreadableFilePath = Paths.get("UnreadableFile");
 
 		createFile(unreadableFilePath);
 
@@ -396,10 +395,10 @@ public class FileHelperUtilTest {
 
 	@Test
 	public void testMoveRegularFileAtomicFailure() throws IOException {
-		final Path regularFromFilePath = Paths.get("RegularFromFile");
+		Path regularFromFilePath = Paths.get("RegularFromFile");
 		Path regularToFilePath = Paths.get("RegularToFile");
 
-		final AtomicMoveNotSupportedException atomicMoveNotSupportedException =
+		AtomicMoveNotSupportedException atomicMoveNotSupportedException =
 			new AtomicMoveNotSupportedException(
 				regularFromFilePath.toString(), regularToFilePath.toString(),
 				"Atomic move not supported");
@@ -434,8 +433,7 @@ public class FileHelperUtilTest {
 	public void testMoveUnmoveableDirectoryWithRegularFile()
 		throws IOException {
 
-		final Path unmoveableFromDirectoryPath = Paths.get(
-			"UnmoveableDirectory");
+		Path unmoveableFromDirectoryPath = Paths.get("UnmoveableDirectory");
 
 		Path regularFromFilePath = unmoveableFromDirectoryPath.resolve(
 			"RegularFromFile");
@@ -445,7 +443,7 @@ public class FileHelperUtilTest {
 		Path regularToFilePath = regularToDirectoryPath.resolve(
 			unmoveableFromDirectoryPath.relativize(regularFromFilePath));
 
-		final Path newRegularFilePath = unmoveableFromDirectoryPath.resolve(
+		Path newRegularFilePath = unmoveableFromDirectoryPath.resolve(
 			"NewRegularFile");
 
 		createFile(regularFromFilePath);
@@ -634,7 +632,7 @@ public class FileHelperUtilTest {
 
 	@Test
 	public void testUnzipUnreadableInputStream() {
-		final IOException ioException1 = new IOException();
+		IOException ioException1 = new IOException();
 
 		try {
 			FileHelperUtil.unzip(

@@ -261,9 +261,9 @@ public class GitHubDevSyncUtil {
 			gitWorkingDirectory.checkoutLocalGitBranch(localGitBranch, "-f");
 		}
 
-		final long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
+		long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
 
-		final RemoteGitBranch upstreamRemoteGitBranch =
+		RemoteGitBranch upstreamRemoteGitBranch =
 			gitWorkingDirectory.getRemoteGitBranch(
 				gitWorkingDirectory.getUpstreamBranchName(),
 				gitWorkingDirectory.getGitRemote("upstream"), true);
@@ -465,7 +465,7 @@ public class GitHubDevSyncUtil {
 		final GitWorkingDirectory gitWorkingDirectory,
 		List<GitRemote> gitHubDevGitRemotes) {
 
-		final long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
+		long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
 
 		List<Callable<Object>> callables = new ArrayList<>();
 
@@ -584,7 +584,7 @@ public class GitHubDevSyncUtil {
 	protected static void deleteFromAllRemotes(
 		final String remoteGitBranchName, final List<GitRemote> gitRemotes) {
 
-		final long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
+		long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
 
 		List<Callable<Boolean>> callables = new ArrayList<>();
 
@@ -950,7 +950,7 @@ public class GitHubDevSyncUtil {
 			throw new RuntimeException("Local Git branch is null");
 		}
 
-		final long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
+		long start = JenkinsResultsParserUtil.getCurrentTimeMillis();
 
 		List<Callable<Boolean>> callables = new ArrayList<>();
 

@@ -77,8 +77,8 @@ public class PublishPluginDefaultsPlugin
 	private void _configurePluginBundle(
 		Project project, final BundleExtension bundleExtension) {
 
-		final PluginBundleExtension pluginBundleExtension =
-			GradleUtil.getExtension(project, PluginBundleExtension.class);
+		PluginBundleExtension pluginBundleExtension = GradleUtil.getExtension(
+			project, PluginBundleExtension.class);
 
 		NamedDomainObjectContainer<PluginConfig> pluginConfigs =
 			pluginBundleExtension.getPlugins();

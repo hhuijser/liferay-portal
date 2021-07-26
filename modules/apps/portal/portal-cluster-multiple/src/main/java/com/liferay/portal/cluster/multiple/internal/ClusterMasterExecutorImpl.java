@@ -83,7 +83,7 @@ public class ClusterMasterExecutorImpl implements ClusterMasterExecutor {
 			}
 		}
 
-		final String masterClusterNodeId = getMasterClusterNodeId(true);
+		String masterClusterNodeId = getMasterClusterNodeId(true);
 
 		ClusterRequest clusterRequest = ClusterRequest.createUnicastRequest(
 			methodHandler, masterClusterNodeId);

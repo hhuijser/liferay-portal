@@ -44,9 +44,9 @@ public class SplitPackagesTest {
 
 	@Test
 	public void testSplitPackage() throws IOException {
-		final Map<Path, Set<String>> moduleMap = new HashMap<>();
+		Map<Path, Set<String>> moduleMap = new HashMap<>();
 
-		final Path portalPath = Paths.get(System.getProperty("user.dir"));
+		Path portalPath = Paths.get(System.getProperty("user.dir"));
 
 		Path portalImplPath = portalPath.resolve("portal-impl");
 
@@ -54,7 +54,7 @@ public class SplitPackagesTest {
 			portalImplPath, portalPath, moduleMap,
 			portalImplPath.resolve("src"));
 
-		final Set<Path> ignorePaths = new HashSet<>(
+		Set<Path> ignorePaths = new HashSet<>(
 			Arrays.asList(
 				portalPath.resolve("portal-impl"),
 				portalPath.resolve("portal-test")));
@@ -148,7 +148,7 @@ public class SplitPackagesTest {
 	}
 
 	private Set<String> _getPackageNames(final Path path) throws IOException {
-		final Set<String> packageNames = new HashSet<>();
+		Set<String> packageNames = new HashSet<>();
 
 		Files.walkFileTree(
 			path,

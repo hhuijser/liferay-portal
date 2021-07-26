@@ -245,7 +245,7 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 							"-include", FileUtil.getAbsolutePath(includeFile));
 					}
 
-					final WriteFindBugsProjectTask writeFindBugsProjectTask =
+					WriteFindBugsProjectTask writeFindBugsProjectTask =
 						writeFindBugsProjectTaskProvider.get();
 
 					findSecurityBugsJavaExec.args(
@@ -475,10 +475,10 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 					SourceSet mainSourceSet = _getSourceSet(
 						javaPluginConvention, SourceSet.MAIN_SOURCE_SET_NAME);
 
-					final SourceDirectorySet javaSourceDirectorySet =
+					SourceDirectorySet javaSourceDirectorySet =
 						mainSourceSet.getJava();
 
-					final JavaCompile compileJSPJavaCompile =
+					JavaCompile compileJSPJavaCompile =
 						compileJSPTaskProivder.get();
 
 					writeFindBugsProjectTask.setAuxClasspath(

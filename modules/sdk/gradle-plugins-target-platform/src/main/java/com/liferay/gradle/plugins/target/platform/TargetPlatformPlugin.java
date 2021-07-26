@@ -80,14 +80,14 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 				"This plugin requires Gradle 5.0 or greater");
 		}
 
-		final TargetPlatformExtension targetPlatformExtension =
+		TargetPlatformExtension targetPlatformExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, TargetPlatformExtension.class);
 
-		final Configuration targetPlatformBomsConfiguration =
+		Configuration targetPlatformBomsConfiguration =
 			_addConfigurationTargetPlatformBoms(project);
 
-		final Configuration targetPlatformDistroConfiguration =
+		Configuration targetPlatformDistroConfiguration =
 			_addConfigurationTargetPlatformDistro(project);
 
 		DependencyManagementTask dependencyManagementTask =
@@ -110,8 +110,7 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 
 			});
 
-		final Set<Project> subprojects =
-			targetPlatformExtension.getSubprojects();
+		Set<Project> subprojects = targetPlatformExtension.getSubprojects();
 
 		gradle.afterProject(
 			new Closure<Void>(project) {
@@ -176,7 +175,7 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 	}
 
 	private ResolveTask _addTaskResolve(Project project) {
-		final ResolveTask resolveTask = GradleUtil.addTask(
+		ResolveTask resolveTask = GradleUtil.addTask(
 			project, RESOLVE_TASK_NAME, ResolveTask.class);
 
 		resolveTask.setDescription(

@@ -106,7 +106,7 @@ public class PathWrapper implements Path {
 
 	@Override
 	public Iterator<Path> iterator() {
-		final Iterator<Path> iterator = _path.iterator();
+		Iterator<Path> iterator = _path.iterator();
 
 		return new Iterator<Path>() {
 

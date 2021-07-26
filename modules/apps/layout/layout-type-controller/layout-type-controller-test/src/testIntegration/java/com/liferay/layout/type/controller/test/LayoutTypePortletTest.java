@@ -272,7 +272,7 @@ public class LayoutTypePortletTest {
 
 		int initialPortletsSize = initialPortlets.size();
 
-		final String portletId = _layoutTypePortlet.addPortletId(
+		String portletId = _layoutTypePortlet.addPortletId(
 			_user.getUserId(),
 			LayoutTypeControllerPortletKeys.
 				LAYOUT_TYPE_CONTROLLER_TEST_PORTLET);
@@ -282,12 +282,12 @@ public class LayoutTypePortletTest {
 		Assert.assertEquals(
 			portlets.toString(), initialPortletsSize + 1, portlets.size());
 
-		final long companyId = TestPropsValues.getCompanyId();
+		long companyId = TestPropsValues.getCompanyId();
 
-		final PortletLocalService portletLocalService =
+		PortletLocalService portletLocalService =
 			PortletLocalServiceUtil.getService();
 
-		final Method getPortletByIdMethod = PortletLocalService.class.getMethod(
+		Method getPortletByIdMethod = PortletLocalService.class.getMethod(
 			"getPortletById", long.class, String.class);
 
 		ReflectionTestUtil.setFieldValue(

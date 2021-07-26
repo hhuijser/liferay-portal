@@ -241,7 +241,7 @@ public class MailboxUtilTest {
 	public void testSendMailSuccess() throws MailboxException {
 		PropsTestUtil.setProps(Collections.emptyMap());
 
-		final long receipt = 100;
+		long receipt = 100;
 
 		MockIntraband mockIntraband = new MockIntraband() {
 

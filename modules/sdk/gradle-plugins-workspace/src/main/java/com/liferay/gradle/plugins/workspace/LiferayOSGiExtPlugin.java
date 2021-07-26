@@ -95,7 +95,7 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 		ConfigurationContainer configurationContainer =
 			project.getConfigurations();
 
-		final Configuration originalModuleConfiguration =
+		Configuration originalModuleConfiguration =
 			configurationContainer.create(ORIGINAL_MODULE_CONFIGURATION_NAME);
 
 		Configuration compileOnlyConfiguration =
@@ -274,7 +274,7 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(Jar jar) {
-					final Sync unzipOriginalModuleSync =
+					Sync unzipOriginalModuleSync =
 						unzipOriginalModuleTaskProvider.get();
 
 					jar.dependsOn(unzipOriginalModuleSync);

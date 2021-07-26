@@ -84,7 +84,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerDeleteExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -138,7 +138,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerDeletePortletDataExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -166,7 +166,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerDeletePortletDataExceptionMessageType()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -251,7 +251,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerExportExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -305,7 +305,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerExportPortletDataExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -333,7 +333,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerExportPortletDataExceptionMessageType()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -419,7 +419,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerImportExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -475,7 +475,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerImportPortletDataExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -504,7 +504,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerImportPortletDataExceptionMessageType()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -593,7 +593,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerPrepareManifestExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -647,7 +647,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerPrepareManifestPortletDataExceptionMessage()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 
@@ -675,7 +675,7 @@ public class PortletDataHandlerExceptionTest {
 	public void testPortletDataHandlerPrepareManifestPortletDataExceptionMessageType()
 		throws Exception {
 
-		final String message = RandomTestUtil.randomString();
+		String message = RandomTestUtil.randomString();
 
 		PortletDataHandler portletDataHandler = new TestPortletDataHandler() {
 

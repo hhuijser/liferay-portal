@@ -36,7 +36,7 @@ public class DependencyCheckerPlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		final DependencyCheckerExtension dependencyCheckerExtension =
+		DependencyCheckerExtension dependencyCheckerExtension =
 			GradleUtil.addExtension(
 				project, PLUGIN_NAME, DependencyCheckerExtension.class);
 

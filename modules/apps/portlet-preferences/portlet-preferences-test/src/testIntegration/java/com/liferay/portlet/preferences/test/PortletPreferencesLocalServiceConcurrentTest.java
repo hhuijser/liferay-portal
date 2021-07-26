@@ -84,12 +84,11 @@ public class PortletPreferencesLocalServiceConcurrentTest {
 			ProxyUtil.fetchInvocationHandler(
 				_portletPreferencesLocalService, AopInvocationHandler.class);
 
-		final PortletPreferencesLocalServiceImpl
-			portletPreferencesLocalServiceImpl =
-				(PortletPreferencesLocalServiceImpl)
-					aopInvocationHandler.getTarget();
+		PortletPreferencesLocalServiceImpl portletPreferencesLocalServiceImpl =
+			(PortletPreferencesLocalServiceImpl)
+				aopInvocationHandler.getTarget();
 
-		final PortletPreferencesPersistence portletPreferencesPersistence =
+		PortletPreferencesPersistence portletPreferencesPersistence =
 			portletPreferencesLocalServiceImpl.
 				getPortletPreferencesPersistence();
 

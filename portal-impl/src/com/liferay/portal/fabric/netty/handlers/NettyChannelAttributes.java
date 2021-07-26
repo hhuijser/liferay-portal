@@ -130,7 +130,7 @@ public class NettyChannelAttributes {
 		NoticeableFuture<T> noticeableFuture =
 			fabricWorker.getProcessNoticeableFuture();
 
-		final Map<Long, FabricWorker<?>> fabricWorkersRef = fabricWorkers;
+		Map<Long, FabricWorker<?>> fabricWorkersRef = fabricWorkers;
 
 		noticeableFuture.addFutureListener(
 			new FutureListener<T>() {

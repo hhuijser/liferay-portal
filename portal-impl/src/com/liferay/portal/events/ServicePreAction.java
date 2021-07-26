@@ -460,7 +460,7 @@ public class ServicePreAction extends Action {
 	private LayoutComposite _getDefaultUserSitesLayoutComposite(final User user)
 		throws Exception {
 
-		final LinkedHashMap<String, Object> groupParams =
+		LinkedHashMap<String, Object> groupParams =
 			LinkedHashMapBuilder.<String, Object>put(
 				"usersGroups", Long.valueOf(user.getUserId())
 			).build();

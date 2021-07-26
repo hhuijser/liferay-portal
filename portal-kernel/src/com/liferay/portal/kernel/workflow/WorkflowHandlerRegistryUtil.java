@@ -122,8 +122,7 @@ public class WorkflowHandlerRegistryUtil {
 			return model;
 		}
 
-		final WorkflowHandler<T> workflowHandler = getWorkflowHandler(
-			className);
+		WorkflowHandler<T> workflowHandler = getWorkflowHandler(className);
 
 		if (workflowHandler == null) {
 			if (WorkflowThreadLocal.isEnabled()) {

@@ -178,7 +178,7 @@ public class LPKGControllerVerifyTest {
 		FrameworkWiring frameworkWiring = frameworkBundle.adapt(
 			FrameworkWiring.class);
 
-		final DefaultNoticeableFuture<FrameworkEvent> defaultNoticeableFuture =
+		DefaultNoticeableFuture<FrameworkEvent> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<>();
 
 		frameworkWiring.refreshBundles(

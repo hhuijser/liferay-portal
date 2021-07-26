@@ -140,8 +140,7 @@ public class DeploymentHelper {
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		final PathMatcher pathMatcher = fileSystem.getPathMatcher(
-			"glob:**/*.jar");
+		PathMatcher pathMatcher = fileSystem.getPathMatcher("glob:**/*.jar");
 
 		Files.walkFileTree(
 			dir.toPath(),

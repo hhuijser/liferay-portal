@@ -209,7 +209,7 @@ public class RestrictedByteArrayCacheOutputStreamTest {
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();
 
-		final AtomicBoolean flushed = new AtomicBoolean();
+		AtomicBoolean flushed = new AtomicBoolean();
 
 		FlushPreAction flushPreAction = new FlushPreAction() {
 

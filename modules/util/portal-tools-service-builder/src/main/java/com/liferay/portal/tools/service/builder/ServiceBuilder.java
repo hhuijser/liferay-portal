@@ -5645,11 +5645,11 @@ public class ServiceBuilder {
 			return updateSQLFilePaths;
 		}
 
-		final AtomicReference<Path> atomicReference = new AtomicReference<>();
+		AtomicReference<Path> atomicReference = new AtomicReference<>();
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
-		final PathMatcher pathMatcher = fileSystem.getPathMatcher(
+		PathMatcher pathMatcher = fileSystem.getPathMatcher(
 			"glob:**/dependencies/update.sql");
 
 		Files.walkFileTree(

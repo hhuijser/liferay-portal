@@ -117,7 +117,7 @@ public class BaseIntrabandTest {
 
 		// Second register
 
-		final DatagramReceiveHandler datagramReceiveHandler2 =
+		DatagramReceiveHandler datagramReceiveHandler2 =
 			new RecordDatagramReceiveHandler();
 
 		Assert.assertSame(
@@ -138,7 +138,7 @@ public class BaseIntrabandTest {
 
 		// Concurrent registering
 
-		final AtomicReference<DatagramReceiveHandler[]> atomicReference =
+		AtomicReference<DatagramReceiveHandler[]> atomicReference =
 			_mockIntraband.datagramReceiveHandlersReference;
 
 		DatagramReceiveHandler[] originalDatagramReceiveHandlers =
@@ -1576,7 +1576,7 @@ public class BaseIntrabandTest {
 
 		// Replied
 
-		final Datagram expectedDatagram = Datagram.createResponseDatagram(
+		Datagram expectedDatagram = Datagram.createResponseDatagram(
 			requestDatagram, _DATA);
 
 		Intraband intraband = new MockIntraband(_DEFAULT_TIMEOUT) {

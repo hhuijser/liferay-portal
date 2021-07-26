@@ -47,7 +47,7 @@ public class WorkspacePlugin implements Plugin<Settings> {
 	public void apply(Settings settings) {
 		Gradle gradle = settings.getGradle();
 
-		final WorkspaceExtension workspaceExtension = _addWorkspaceExtension(
+		WorkspaceExtension workspaceExtension = _addWorkspaceExtension(
 			settings);
 
 		for (ProjectConfigurator projectConfigurator :

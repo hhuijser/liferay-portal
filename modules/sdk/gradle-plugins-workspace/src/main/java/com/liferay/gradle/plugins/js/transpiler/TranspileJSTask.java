@@ -54,8 +54,8 @@ public class TranspileJSTask extends ExecuteNodeScriptTask {
 
 	@Override
 	public void executeNode() throws Exception {
-		final File sourceDir = getSourceDir();
-		final File workingDir = getWorkingDir();
+		File sourceDir = getSourceDir();
+		File workingDir = getWorkingDir();
 
 		if (!sourceDir.equals(workingDir)) {
 			Project project = getProject();

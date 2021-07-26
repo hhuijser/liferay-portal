@@ -68,17 +68,16 @@ public class BaselinePlugin implements Plugin<Project> {
 		GradleUtil.applyPlugin(project, JavaPlugin.class);
 		GradleUtil.applyPlugin(project, ReportingBasePlugin.class);
 
-		final BaselineConfigurationExtension baselineConfigurationExtension =
+		BaselineConfigurationExtension baselineConfigurationExtension =
 			GradleUtil.addExtension(
 				project, EXTENSION_NAME, BaselineConfigurationExtension.class);
 
-		final Jar jar = (Jar)GradleUtil.getTask(
-			project, JavaPlugin.JAR_TASK_NAME);
+		Jar jar = (Jar)GradleUtil.getTask(project, JavaPlugin.JAR_TASK_NAME);
 
-		final Configuration baselineConfiguration = _addConfigurationBaseline(
+		Configuration baselineConfiguration = _addConfigurationBaseline(
 			jar, baselineConfigurationExtension);
 
-		final BaselineTask baselineTask = _addTaskBaseline(jar);
+		BaselineTask baselineTask = _addTaskBaseline(jar);
 
 		_configureTasksBaseline(project, baselineConfigurationExtension);
 
@@ -128,7 +127,7 @@ public class BaselinePlugin implements Plugin<Project> {
 	private BaselineTask _addTaskBaseline(
 		final AbstractArchiveTask newJarTask) {
 
-		final BaselineTask baselineTask = _addTaskBaseline(
+		BaselineTask baselineTask = _addTaskBaseline(
 			newJarTask, BASELINE_TASK_NAME);
 
 		baselineTask.setDescription(
@@ -160,7 +159,7 @@ public class BaselinePlugin implements Plugin<Project> {
 		Dependency dependency = _createDependencyBaseline(
 			newJarTask, majorVersion);
 
-		final Configuration baselineConfiguration =
+		Configuration baselineConfiguration =
 			configurationContainer.detachedConfiguration(dependency);
 
 		_configureConfigurationBaseline(baselineConfiguration);

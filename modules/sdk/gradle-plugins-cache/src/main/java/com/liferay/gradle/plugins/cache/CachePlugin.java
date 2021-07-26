@@ -31,7 +31,7 @@ public class CachePlugin implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		final CacheExtension cacheExtension = GradleUtil.addExtension(
+		CacheExtension cacheExtension = GradleUtil.addExtension(
 			project, EXTENSION_NAME, CacheExtension.class);
 
 		project.afterEvaluate(

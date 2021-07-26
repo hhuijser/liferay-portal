@@ -105,7 +105,7 @@ public class ServiceDependencyManagerTest {
 		ServiceDependencyManager serviceDependencyManager =
 			new ServiceDependencyManager();
 
-		final AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
+		AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
 
 		serviceDependencyManager.addServiceDependencyListener(
 			new ServiceDependencyListener() {
@@ -142,7 +142,7 @@ public class ServiceDependencyManagerTest {
 		ServiceDependencyManager serviceDependencyManager =
 			new ServiceDependencyManager();
 
-		final AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
+		AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
 
 		serviceDependencyManager.addServiceDependencyListener(
 			new ServiceDependencyListener() {
@@ -180,7 +180,7 @@ public class ServiceDependencyManagerTest {
 		ServiceDependencyManager serviceDependencyManager =
 			new ServiceDependencyManager();
 
-		final AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
+		AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
 
 		serviceDependencyManager.addServiceDependencyListener(
 			new ServiceDependencyListener() {
@@ -216,10 +216,10 @@ public class ServiceDependencyManagerTest {
 	public void testWaitForDependencies() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		final ServiceDependencyManager serviceDependencyManager =
+		ServiceDependencyManager serviceDependencyManager =
 			new ServiceDependencyManager();
 
-		final AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
+		AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
 
 		serviceDependencyManager.addServiceDependencyListener(
 			new ServiceDependencyListener() {
@@ -296,10 +296,10 @@ public class ServiceDependencyManagerTest {
 	public void testWaitForDependenciesUnfilled() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		final ServiceDependencyManager serviceDependencyManager =
+		ServiceDependencyManager serviceDependencyManager =
 			new ServiceDependencyManager();
 
-		final AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
+		AtomicBoolean dependenciesSatisfied = new AtomicBoolean(false);
 
 		serviceDependencyManager.addServiceDependencyListener(
 			new ServiceDependencyListener() {

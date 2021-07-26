@@ -54,12 +54,12 @@ public class SourceFormatterDefaultsPlugin
 
 		// Tasks
 
-		final TaskProvider<FormatSourceTask> checkSourceFormattingTaskProvider =
+		TaskProvider<FormatSourceTask> checkSourceFormattingTaskProvider =
 			GradleUtil.getTaskProvider(
 				project,
 				SourceFormatterPlugin.CHECK_SOURCE_FORMATTING_TASK_NAME,
 				FormatSourceTask.class);
-		final TaskProvider<FormatSourceTask> formatSourceTaskProvider =
+		TaskProvider<FormatSourceTask> formatSourceTaskProvider =
 			GradleUtil.getTaskProvider(
 				project, SourceFormatterPlugin.FORMAT_SOURCE_TASK_NAME,
 				FormatSourceTask.class);
@@ -118,7 +118,7 @@ public class SourceFormatterDefaultsPlugin
 		TaskProvider<FormatSourceTask> checkSourceFormattingTaskProvider,
 		TaskProvider<FormatSourceTask> formatSourceTaskProvider) {
 
-		final TaskProvider<Task> packageRunCheckFormatTaskProvider =
+		TaskProvider<Task> packageRunCheckFormatTaskProvider =
 			GradleUtil.fetchTaskProvider(project, "packageRunCheckFormat");
 
 		if (packageRunCheckFormatTaskProvider != null) {
@@ -143,7 +143,7 @@ public class SourceFormatterDefaultsPlugin
 			}
 		}
 
-		final TaskProvider<Task> packageRunFormatTaskProvider =
+		TaskProvider<Task> packageRunFormatTaskProvider =
 			GradleUtil.fetchTaskProvider(project, "packageRunFormat");
 
 		if (packageRunFormatTaskProvider != null) {

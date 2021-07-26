@@ -198,7 +198,7 @@ public class FileUploadChannelHandlerTest {
 
 		FileServerTestUtil.registerForCleanUp(fileResponse.getLocalFile());
 
-		final UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
+		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();
 
 		ReflectionTestUtil.setFieldValue(
@@ -325,7 +325,7 @@ public class FileUploadChannelHandlerTest {
 			noticeableFuture = _asyncBroker.post(fileResponse.getPath());
 		}
 
-		final FileUploadChannelHandler fileUploadChannelHandler =
+		FileUploadChannelHandler fileUploadChannelHandler =
 			new FileUploadChannelHandler(
 				_asyncBroker, fileResponse, getEventLoop(inEventloop));
 
@@ -333,7 +333,7 @@ public class FileUploadChannelHandlerTest {
 			FileServerTestUtil.registerForCleanUp(fileResponse.getLocalFile());
 		}
 
-		final ChannelPipeline channelPipeline = _embeddedChannel.pipeline();
+		ChannelPipeline channelPipeline = _embeddedChannel.pipeline();
 
 		channelPipeline.addFirst(
 			FileUploadChannelHandler.class.getName(), fileUploadChannelHandler);

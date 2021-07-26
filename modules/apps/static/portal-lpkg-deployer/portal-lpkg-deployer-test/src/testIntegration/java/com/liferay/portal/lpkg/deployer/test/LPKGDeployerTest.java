@@ -64,7 +64,7 @@ public class LPKGDeployerTest {
 
 		BundleContext bundleContext = testBundle.getBundleContext();
 
-		final String lpkgDeployerDirString = bundleContext.getProperty(
+		String lpkgDeployerDirString = bundleContext.getProperty(
 			"lpkg.deployer.dir");
 
 		Assert.assertNotNull(
@@ -77,7 +77,7 @@ public class LPKGDeployerTest {
 			"The path " + lpkgDeployerDirString + " does not exist",
 			Files.exists(lpkgDeployerDirPath));
 
-		final List<File> lpkgFiles = new ArrayList<>();
+		List<File> lpkgFiles = new ArrayList<>();
 
 		Files.walkFileTree(
 			lpkgDeployerDirPath,

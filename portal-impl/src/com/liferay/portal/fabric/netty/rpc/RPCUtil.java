@@ -34,12 +34,12 @@ public class RPCUtil {
 	public static <T extends Serializable> NoticeableFuture<T> execute(
 		Channel channel, RPCCallable<T> rpcCallable) {
 
-		final AsyncBroker<Long, T> asyncBroker =
+		AsyncBroker<Long, T> asyncBroker =
 			NettyChannelAttributes.getAsyncBroker(channel);
 
-		final long id = NettyChannelAttributes.nextId(channel);
+		long id = NettyChannelAttributes.nextId(channel);
 
-		final NoticeableFuture<T> noticeableFuture = asyncBroker.post(id);
+		NoticeableFuture<T> noticeableFuture = asyncBroker.post(id);
 
 		ChannelFuture channelFuture = channel.writeAndFlush(
 			new RPCRequest<T>(id, rpcCallable));

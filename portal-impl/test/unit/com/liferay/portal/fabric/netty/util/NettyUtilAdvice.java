@@ -53,7 +53,7 @@ public class NettyUtilAdvice {
 			return;
 		}
 
-		final Future<?> cancellationFuture = _scheduledExecutorService.schedule(
+		Future<?> cancellationFuture = _scheduledExecutorService.schedule(
 			new Runnable() {
 
 				@Override

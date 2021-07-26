@@ -133,13 +133,13 @@ public class FileUtil {
 			FileSystem fileSystem, String[] includes, String baseDirName)
 		throws IOException {
 
-		final List<PathMatcher> pathMatchers = new ArrayList<>();
+		List<PathMatcher> pathMatchers = new ArrayList<>();
 
 		for (String include : includes) {
 			pathMatchers.add(fileSystem.getPathMatcher("glob:" + include));
 		}
 
-		final List<URL> filePaths = new ArrayList<>();
+		List<URL> filePaths = new ArrayList<>();
 
 		if (Validator.isNull(baseDirName)) {
 			return filePaths;

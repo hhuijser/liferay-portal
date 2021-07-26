@@ -64,8 +64,8 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 
 		BuildWSDLTask buildWSDLTask = _addTaskBuildWSDL(project);
 
-		final Configuration wsdlBuilderConfiguration =
-			_addConfigurationWSDLBuilder(project, buildWSDLTask);
+		Configuration wsdlBuilderConfiguration = _addConfigurationWSDLBuilder(
+			project, buildWSDLTask);
 
 		project.afterEvaluate(
 			new Action<Project>() {
@@ -147,7 +147,7 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 	}
 
 	private BuildWSDLTask _addTaskBuildWSDL(Project project) {
-		final BuildWSDLTask buildWSDLTask = GradleUtil.addTask(
+		BuildWSDLTask buildWSDLTask = GradleUtil.addTask(
 			project, BUILD_WSDL_TASK_NAME, BuildWSDLTask.class);
 
 		buildWSDLTask.setDescription("Generates WSDL client stubs.");
@@ -450,7 +450,7 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 
 		TaskContainer taskContainer = project.getTasks();
 
-		final Copy processResourcesTask = (Copy)taskContainer.findByName(
+		Copy processResourcesTask = (Copy)taskContainer.findByName(
 			JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
 
 		taskContainer.withType(

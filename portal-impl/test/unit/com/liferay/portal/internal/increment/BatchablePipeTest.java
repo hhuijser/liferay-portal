@@ -137,11 +137,10 @@ public class BatchablePipeTest {
 
 	@Test
 	public void testConcurrent() throws InterruptedException {
-		final BatchablePipe<String, Integer> batchablePipe =
-			new BatchablePipe<>();
+		BatchablePipe<String, Integer> batchablePipe = new BatchablePipe<>();
 
-		final BlockingQueue<IncreasableEntry<String, Integer>>
-			resultBlockingQueue = new LinkedBlockingQueue<>();
+		BlockingQueue<IncreasableEntry<String, Integer>> resultBlockingQueue =
+			new LinkedBlockingQueue<>();
 
 		ExecutorService putThreadPoolExecutorService =
 			Executors.newFixedThreadPool(5);
@@ -250,7 +249,7 @@ public class BatchablePipeTest {
 	public void testConcurrentPut() {
 		BatchablePipe<String, Integer> batchablePipe = new BatchablePipe<>();
 
-		final IncreasableEntry<String, Integer> increasableEntry1 =
+		IncreasableEntry<String, Integer> increasableEntry1 =
 			new IntegerIncreasableEntry("test", 1);
 		IncreasableEntry<String, Integer> increasableEntry3 =
 			new IntegerIncreasableEntry("test", 3);

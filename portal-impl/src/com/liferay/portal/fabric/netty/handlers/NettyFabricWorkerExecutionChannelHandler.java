@@ -96,7 +96,7 @@ public class NettyFabricWorkerExecutionChannelHandler
 	public void exceptionCaught(
 		ChannelHandlerContext channelHandlerContext, Throwable throwable) {
 
-		final Channel channel = channelHandlerContext.channel();
+		Channel channel = channelHandlerContext.channel();
 
 		_log.error("Closing " + channel + " due to:", throwable);
 
@@ -135,7 +135,7 @@ public class NettyFabricWorkerExecutionChannelHandler
 		ProcessConfig processConfig =
 			nettyFabricWorkerConfig.getProcessConfig();
 
-		final Map<Path, Path> bootstrapPaths = new LinkedHashMap<>();
+		Map<Path, Path> bootstrapPaths = new LinkedHashMap<>();
 
 		for (PathHolder pathHolder :
 				processConfig.getBootstrapClassPathHolders()) {
@@ -143,7 +143,7 @@ public class NettyFabricWorkerExecutionChannelHandler
 			bootstrapPaths.put(Paths.get(pathHolder.toString()), null);
 		}
 
-		final Map<Path, Path> runtimePaths = new LinkedHashMap<>();
+		Map<Path, Path> runtimePaths = new LinkedHashMap<>();
 
 		for (PathHolder pathHolder :
 				processConfig.getRuntimeClassPathHolders()) {
@@ -151,8 +151,7 @@ public class NettyFabricWorkerExecutionChannelHandler
 			runtimePaths.put(Paths.get(pathHolder.toString()), null);
 		}
 
-		final Map<Path, Path> inputPaths =
-			nettyFabricWorkerConfig.getInputPathMap();
+		Map<Path, Path> inputPaths = nettyFabricWorkerConfig.getInputPathMap();
 
 		Map<Path, Path> mergedPaths = HashMapBuilder.<Path, Path>putAll(
 			bootstrapPaths
@@ -244,10 +243,9 @@ public class NettyFabricWorkerExecutionChannelHandler
 		Channel channel, long fabricWorkerId, Serializable result,
 		Throwable throwable) {
 
-		final FabricWorkerResultProcessCallable
-			fabricWorkerResultProcessCallable =
-				new FabricWorkerResultProcessCallable(
-					fabricWorkerId, result, throwable);
+		FabricWorkerResultProcessCallable fabricWorkerResultProcessCallable =
+			new FabricWorkerResultProcessCallable(
+				fabricWorkerId, result, throwable);
 
 		NoticeableFuture<Serializable> noticeableFuture = RPCUtil.execute(
 			channel,

@@ -49,7 +49,7 @@ public class ByteChannelReaderTest {
 		ByteChannelReader byteChannelReader = new ByteChannelReader(
 			readableByteChannel, length);
 
-		final ByteBuffer byteBuffer = byteChannelReader.getBuffer();
+		ByteBuffer byteBuffer = byteChannelReader.getBuffer();
 
 		Answer answer = new Answer<Integer>() {
 

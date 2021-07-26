@@ -248,7 +248,7 @@ public class IncludeTag extends AttributesTagSupport {
 	}
 
 	protected Object getBodyContentWrapper() {
-		final BodyContent bodyContent = getBodyContent();
+		BodyContent bodyContent = getBodyContent();
 
 		if (bodyContent == null) {
 			return null;

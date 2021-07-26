@@ -159,7 +159,7 @@ public class JspPrecompileTest {
 
 		Path jspClassPath = packagePath.resolve(jspClassName.concat(".class"));
 
-		final String className = packagePathString.concat(jspClassName);
+		String className = packagePathString.concat(jspClassName);
 
 		try (InputStream inputStream =
 				PrecompileTestServlet.class.getResourceAsStream(

@@ -118,7 +118,7 @@ public class JAASTest {
 		ReflectionTestUtil.setFieldValue(
 			PropsValues.class, "PORTAL_JAAS_AUTH_TYPE", "screenName");
 
-		final IntegerWrapper counter = new IntegerWrapper();
+		IntegerWrapper counter = new IntegerWrapper();
 
 		JAASHelper jaasHelper = JAASHelper.getInstance();
 

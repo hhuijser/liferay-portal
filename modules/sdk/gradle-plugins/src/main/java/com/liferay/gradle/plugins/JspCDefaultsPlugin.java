@@ -63,7 +63,7 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 
 		ExtensionContainer extensionContainer = project.getExtensions();
 
-		final BundleExtension bundleExtension = BndUtil.getBundleExtension(
+		BundleExtension bundleExtension = BndUtil.getBundleExtension(
 			extensionContainer);
 
 		// Conventions
@@ -76,15 +76,15 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 		SourceSetContainer javaSourceSetContainer =
 			javaPluginConvention.getSourceSets();
 
-		final SourceSet javaMainSourceSet = javaSourceSetContainer.getByName(
+		SourceSet javaMainSourceSet = javaSourceSetContainer.getByName(
 			SourceSet.MAIN_SOURCE_SET_NAME);
 
 		// Tasks
 
-		final TaskProvider<JavaCompile> compileJSPTaskProvider =
+		TaskProvider<JavaCompile> compileJSPTaskProvider =
 			GradleUtil.getTaskProvider(
 				project, JspCPlugin.COMPILE_JSP_TASK_NAME, JavaCompile.class);
-		final TaskProvider<CompileJSPTask> generateJSPJavaTaskProvider =
+		TaskProvider<CompileJSPTask> generateJSPJavaTaskProvider =
 			GradleUtil.getTaskProvider(
 				project, JspCPlugin.GENERATE_JSP_JAVA_TASK_NAME,
 				CompileJSPTask.class);

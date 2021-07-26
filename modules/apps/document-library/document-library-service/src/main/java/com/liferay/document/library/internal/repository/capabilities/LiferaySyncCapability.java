@@ -161,7 +161,7 @@ public class LiferaySyncCapability
 		DLSyncEvent dlSyncEvent = _dlSyncEventLocalService.addDLSyncEvent(
 			event, type, typePK);
 
-		final long modifiedTime = dlSyncEvent.getModifiedTime();
+		long modifiedTime = dlSyncEvent.getModifiedTime();
 
 		TransactionCommitCallbackUtil.registerCallback(
 			new Callable<Void>() {

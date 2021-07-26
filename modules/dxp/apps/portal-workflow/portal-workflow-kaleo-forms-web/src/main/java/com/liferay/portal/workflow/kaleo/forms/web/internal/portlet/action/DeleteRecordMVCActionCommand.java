@@ -82,8 +82,8 @@ public class DeleteRecordMVCActionCommand
 
 		checkKaleoProcessPermission(serviceContext, ActionKeys.DELETE);
 
-		final ThemeDisplay themeDisplay =
-			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long[] ddlRecordIds = getDDLRecordIds(actionRequest);
 

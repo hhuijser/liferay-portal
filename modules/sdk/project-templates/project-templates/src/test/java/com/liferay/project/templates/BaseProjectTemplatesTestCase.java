@@ -826,7 +826,7 @@ public interface BaseProjectTemplatesTestCase {
 			URI gradleDistribution, String... taskPaths)
 		throws IOException {
 
-		final String repositoryUrl =
+		String repositoryUrl =
 			ProjectTemplatesTest.mavenExecutor.getRepositoryUrl();
 
 		String projectPath = projectDir.getPath();
@@ -1369,7 +1369,7 @@ public interface BaseProjectTemplatesTestCase {
 		throws Exception {
 
 		String apiProjectName = name + "-api";
-		final String serviceProjectName = name + "-service";
+		String serviceProjectName = name + "-service";
 
 		testContains(
 			gradleProjectDir, apiProjectName + "/bnd.bnd", "Export-Package:\\",

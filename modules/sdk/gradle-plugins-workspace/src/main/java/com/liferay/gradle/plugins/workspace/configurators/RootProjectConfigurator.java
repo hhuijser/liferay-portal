@@ -177,7 +177,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 	@Override
 	public void apply(Project project) {
-		final WorkspaceExtension workspaceExtension = GradleUtil.getExtension(
+		WorkspaceExtension workspaceExtension = GradleUtil.getExtension(
 			(ExtensionAware)project.getGradle(), WorkspaceExtension.class);
 
 		_configureWorkspaceExtension(project, workspaceExtension);
@@ -201,7 +201,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		Configuration bundleSupportConfiguration =
 			_addConfigurationBundleSupport(project);
 
-		final Configuration providedModulesConfiguration =
+		Configuration providedModulesConfiguration =
 			_addConfigurationProvidedModules(project);
 
 		TargetPlatformRootProjectConfigurator.INSTANCE.apply(project);
@@ -839,7 +839,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	private Download _addTaskDownloadBundle(
 		final Project project, final WorkspaceExtension workspaceExtension) {
 
-		final Download download = GradleUtil.addTask(
+		Download download = GradleUtil.addTask(
 			project, DOWNLOAD_BUNDLE_TASK_NAME, Download.class);
 
 		download.doFirst(
@@ -1247,9 +1247,9 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	private void _configureTaskCopyBundleFromDownload(
 		Copy copy, final Download download) {
 
-		final Project project = copy.getProject();
+		Project project = copy.getProject();
 
-		final Set<String> rootDirNames = new HashSet<>();
+		Set<String> rootDirNames = new HashSet<>();
 
 		copy.dependsOn(download);
 
@@ -1316,7 +1316,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	}
 
 	private void _configureTaskCopyBundlePreserveTimestamps(Copy copy) {
-		final Set<FileCopyDetails> fileCopyDetailsSet = new HashSet<>();
+		Set<FileCopyDetails> fileCopyDetailsSet = new HashSet<>();
 
 		copy.doLast(
 			new Action<Task>() {

@@ -829,8 +829,8 @@ public class ProjectTemplateFilesTest {
 		_testProjectTemplateCustomizer(
 			projectTemplateDirName, projectTemplateDirPath);
 
-		final AtomicBoolean requireAuthorProperty = new AtomicBoolean();
-		final Set<String> archetypeResourceExpressions = new HashSet<>();
+		AtomicBoolean requireAuthorProperty = new AtomicBoolean();
+		Set<String> archetypeResourceExpressions = new HashSet<>();
 
 		Files.walkFileTree(
 			archetypeResourcesDirPath,

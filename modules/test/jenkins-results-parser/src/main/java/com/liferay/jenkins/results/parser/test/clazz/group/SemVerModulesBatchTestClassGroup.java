@@ -73,9 +73,9 @@ public class SemVerModulesBatchTestClassGroup
 	protected static List<File> getModulesProjectDirs(
 		File moduleBaseDir, File modulesDir) {
 
-		final File baseDir = modulesDir;
-		final List<File> modulesProjectDirs = new ArrayList<>();
-		final Path moduleBaseDirPath = moduleBaseDir.toPath();
+		File baseDir = modulesDir;
+		List<File> modulesProjectDirs = new ArrayList<>();
+		Path moduleBaseDirPath = moduleBaseDir.toPath();
 
 		try {
 			Files.walkFileTree(

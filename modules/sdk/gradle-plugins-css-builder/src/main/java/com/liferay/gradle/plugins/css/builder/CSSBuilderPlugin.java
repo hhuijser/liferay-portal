@@ -174,7 +174,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 	private BuildCSSTask _addTaskBuildCSS(
 		Project project, final Sync copyCSSTask) {
 
-		final BuildCSSTask buildCSSTask = GradleUtil.addTask(
+		BuildCSSTask buildCSSTask = GradleUtil.addTask(
 			project, BUILD_CSS_TASK_NAME, BuildCSSTask.class);
 
 		buildCSSTask.dependsOn(copyCSSTask);
@@ -208,7 +208,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 	}
 
 	private Sync _addTaskCopyCSS(Project project) {
-		final Sync copyCSSTask = GradleUtil.addTask(
+		Sync copyCSSTask = GradleUtil.addTask(
 			project, COPY_CSS_TASK_NAME, Sync.class);
 
 		copyCSSTask.setDescription("Copies CSS files to a temp directory.");
@@ -318,7 +318,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 	private void _configureTaskProcessResourcesForJavaPlugin(
 		BuildCSSTask buildCSSTask, final Sync copyCSSTask) {
 
-		final Project project = buildCSSTask.getProject();
+		Project project = buildCSSTask.getProject();
 
 		ProcessResources processResourcesTask =
 			(ProcessResources)GradleUtil.getTask(

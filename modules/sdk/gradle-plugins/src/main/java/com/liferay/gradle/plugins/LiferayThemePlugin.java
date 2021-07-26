@@ -112,7 +112,7 @@ public class LiferayThemePlugin implements Plugin<Project> {
 
 		TaskProvider<Delete> cleanTaskProvider = GradleUtil.getTaskProvider(
 			project, BasePlugin.CLEAN_TASK_NAME, Delete.class);
-		final TaskProvider<Task> createLiferayThemeJsonTaskProvider =
+		TaskProvider<Task> createLiferayThemeJsonTaskProvider =
 			GradleUtil.addTaskProvider(
 				project, CREATE_LIFERAY_THEME_JSON_TASK_NAME, Task.class);
 		TaskProvider<BuildLangTask> buildLangTaskProvider =
@@ -130,7 +130,7 @@ public class LiferayThemePlugin implements Plugin<Project> {
 
 		// Containers
 
-		final TaskContainer taskContainer = project.getTasks();
+		TaskContainer taskContainer = project.getTasks();
 
 		taskContainer.withType(
 			PackageRunBuildTask.class,
@@ -253,7 +253,7 @@ public class LiferayThemePlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(Task createLiferayThemeJsonTask) {
-					final File liferayThemeJsonFile = project.file(
+					File liferayThemeJsonFile = project.file(
 						"liferay-theme.json");
 
 					createLiferayThemeJsonTask.doLast(

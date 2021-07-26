@@ -42,7 +42,7 @@ public class MBPortletPermissionRegistrar {
 			PortletResourcePermission.class,
 			PortletResourcePermissionFactory.create(
 				MBConstants.RESOURCE_NAME,
-				new MBPortletPermissionLogic(_mbBanLocalService),
+				new MBPortletResourcePermissionLogic(_mbBanLocalService),
 				new StagedPortletPermissionLogic(
 					_stagingPermission, MBPortletKeys.MESSAGE_BOARDS_ADMIN)),
 			HashMapDictionaryBuilder.<String, Object>put(

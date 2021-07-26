@@ -22,10 +22,12 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 /**
  * @author Sergio González
  */
-public class MBPortletPermissionLogic
+public class MBPortletResourcePermissionLogic
 	implements PortletResourcePermissionLogic {
 
-	public MBPortletPermissionLogic(MBBanLocalService mbBanLocalService) {
+	public MBPortletResourcePermissionLogic(
+		MBBanLocalService mbBanLocalService) {
+
 		_mbBanLocalService = mbBanLocalService;
 	}
 

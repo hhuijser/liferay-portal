@@ -53,7 +53,7 @@ public class WhipPlugin implements Plugin<Project> {
 			});
 	}
 
-	protected Configuration addWhipConfiguration(final Project project) {
+	protected Configuration addWhipConfiguration(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 

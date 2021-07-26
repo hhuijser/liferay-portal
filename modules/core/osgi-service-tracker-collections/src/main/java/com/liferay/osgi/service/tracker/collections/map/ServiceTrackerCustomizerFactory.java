@@ -70,7 +70,7 @@ public class ServiceTrackerCustomizerFactory {
 
 	public static <S>
 		ServiceTrackerCustomizer<S, ServiceReferenceServiceTuple<S, S>>
-			serviceReferenceServiceTuple(final BundleContext bundleContext) {
+			serviceReferenceServiceTuple(BundleContext bundleContext) {
 
 		return new ServiceTrackerCustomizer
 			<S, ServiceReferenceServiceTuple<S, S>>() {

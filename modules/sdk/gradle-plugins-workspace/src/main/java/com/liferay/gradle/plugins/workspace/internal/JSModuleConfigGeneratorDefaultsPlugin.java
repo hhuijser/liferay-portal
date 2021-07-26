@@ -35,7 +35,7 @@ public class JSModuleConfigGeneratorDefaultsPlugin implements Plugin<Project> {
 		new JSModuleConfigGeneratorDefaultsPlugin();
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Containers
 

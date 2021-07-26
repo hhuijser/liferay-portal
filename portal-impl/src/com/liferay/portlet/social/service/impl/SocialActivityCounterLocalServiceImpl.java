@@ -801,8 +801,8 @@ public class SocialActivityCounterLocalServiceImpl
 	}
 
 	protected SocialActivityCounter addActivityCounter(
-			final long groupId, final User user, final SocialActivity activity,
-			final SocialActivityCounterDefinition activityCounterDefinition)
+			long groupId, User user, SocialActivity activity,
+			SocialActivityCounterDefinition activityCounterDefinition)
 		throws PortalException {
 
 		int ownerType = activityCounterDefinition.getOwnerType();
@@ -1079,9 +1079,9 @@ public class SocialActivityCounterLocalServiceImpl
 	}
 
 	protected SocialActivityCounter lockProtectedAddActivityCounter(
-			final long groupId, final long classNameId, final long classPK,
-			final String name, final int ownerType, final int totalValue,
-			final long previousActivityCounterId, final int periodLength)
+			long groupId, long classNameId, long classPK, String name,
+			int ownerType, int totalValue, long previousActivityCounterId,
+			int periodLength)
 		throws PortalException {
 
 		String lockKey = StringUtil.merge(
@@ -1111,8 +1111,8 @@ public class SocialActivityCounterLocalServiceImpl
 	}
 
 	protected void lockProtectedGetActivityLimit(
-			final long groupId, final User user, final SocialActivity activity,
-			final SocialActivityCounterDefinition activityCounterDefinition)
+			long groupId, User user, SocialActivity activity,
+			SocialActivityCounterDefinition activityCounterDefinition)
 		throws PortalException {
 
 		long classPK = getLimitClassPK(activity, activityCounterDefinition);

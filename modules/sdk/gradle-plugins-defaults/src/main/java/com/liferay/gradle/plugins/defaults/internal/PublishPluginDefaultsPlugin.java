@@ -75,7 +75,7 @@ public class PublishPluginDefaultsPlugin
 	}
 
 	private void _configurePluginBundle(
-		Project project, final BundleExtension bundleExtension) {
+		Project project, BundleExtension bundleExtension) {
 
 		PluginBundleExtension pluginBundleExtension = GradleUtil.getExtension(
 			project, PluginBundleExtension.class);

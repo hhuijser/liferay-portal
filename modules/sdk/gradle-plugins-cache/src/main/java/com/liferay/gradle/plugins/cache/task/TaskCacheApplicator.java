@@ -137,7 +137,7 @@ public class TaskCacheApplicator {
 		task.setEnabled(false);
 	}
 
-	protected Task createRefreshDigestTask(final TaskCache taskCache) {
+	protected Task createRefreshDigestTask(TaskCache taskCache) {
 		Project project = taskCache.getProject();
 
 		Task task = project.task(taskCache.getRefreshDigestTaskName());

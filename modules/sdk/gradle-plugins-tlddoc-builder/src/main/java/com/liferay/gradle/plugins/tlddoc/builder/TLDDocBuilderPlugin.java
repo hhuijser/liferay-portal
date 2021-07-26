@@ -95,7 +95,7 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 			project, CONFIGURATION_NAME, "taglibrarydoc", "tlddoc", "1.3");
 	}
 
-	private Copy _addTaskCopyTLDDocResources(final Project project) {
+	private Copy _addTaskCopyTLDDocResources(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, COPY_TLDDOC_RESOURCES_TASK_NAME, Copy.class);
 
@@ -171,7 +171,7 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksTLDDoc(
-		Project project, final Configuration tlddocConfiguration) {
+		Project project, Configuration tlddocConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

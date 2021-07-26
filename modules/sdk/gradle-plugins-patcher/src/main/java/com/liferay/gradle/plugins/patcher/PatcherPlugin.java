@@ -75,7 +75,7 @@ public class PatcherPlugin implements Plugin<Project> {
 			});
 	}
 
-	protected Copy addTaskCopyOriginalLibClasses(final PatchTask patchTask) {
+	protected Copy addTaskCopyOriginalLibClasses(PatchTask patchTask) {
 		String taskName =
 			"copy" + StringUtil.capitalize(patchTask.getName()) +
 				"OriginalLibClasses";

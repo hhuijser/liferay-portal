@@ -177,8 +177,7 @@ public class UpgradeTableBuilder {
 		Files.write(path, content.getBytes(StandardCharsets.UTF_8));
 	}
 
-	private List<Path> _findFiles(
-			String baseDirName, String pattern, final int limit)
+	private List<Path> _findFiles(String baseDirName, String pattern, int limit)
 		throws IOException {
 
 		List<Path> paths = new ArrayList<>();

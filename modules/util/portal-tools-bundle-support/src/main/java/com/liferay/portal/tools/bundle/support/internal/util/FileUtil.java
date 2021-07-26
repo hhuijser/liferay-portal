@@ -66,8 +66,7 @@ import org.apache.commons.compress.utils.IOUtils;
  */
 public class FileUtil {
 
-	public static void copyDirectory(
-			final Path dirPath, final Path destinationDirPath)
+	public static void copyDirectory(Path dirPath, Path destinationDirPath)
 		throws IOException {
 
 		Files.walkFileTree(
@@ -282,8 +281,7 @@ public class FileUtil {
 		}
 	}
 
-	public static void zip(
-			Path sourcePath, final File zipFile, boolean includeFolder)
+	public static void zip(Path sourcePath, File zipFile, boolean includeFolder)
 		throws Exception {
 
 		Path parentPath;
@@ -448,8 +446,7 @@ public class FileUtil {
 	}
 
 	private static void _unzip(
-			Path zipPath, final Path destinationDirPath,
-			final int stripComponents)
+			Path zipPath, Path destinationDirPath, int stripComponents)
 		throws Exception {
 
 		try (FileSystem fileSystem = _createFileSystem(zipPath, false)) {

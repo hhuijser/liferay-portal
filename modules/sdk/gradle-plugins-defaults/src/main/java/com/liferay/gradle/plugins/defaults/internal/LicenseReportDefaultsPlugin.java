@@ -311,7 +311,7 @@ public class LicenseReportDefaultsPlugin implements Plugin<Project> {
 		}
 
 		private void _addDependenciesLicenseReport(
-			String configurationName, final Set<String> dependencyNames) {
+			String configurationName, Set<String> dependencyNames) {
 
 			Configuration configuration = GradleUtil.getConfiguration(
 				project, configurationName);

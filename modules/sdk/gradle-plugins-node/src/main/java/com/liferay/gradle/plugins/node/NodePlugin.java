@@ -183,14 +183,14 @@ public class NodePlugin implements Plugin<Project> {
 	}
 
 	private DownloadNodeTask _addTaskDownloadNode(
-		Project project, final NodeExtension nodeExtension) {
+		Project project, NodeExtension nodeExtension) {
 
 		return _addTaskDownloadNode(
 			project, DOWNLOAD_NODE_TASK_NAME, nodeExtension);
 	}
 
 	private DownloadNodeTask _addTaskDownloadNode(
-		Project project, String taskName, final NodeExtension nodeExtension) {
+		Project project, String taskName, NodeExtension nodeExtension) {
 
 		DownloadNodeTask downloadNodeTask = GradleUtil.addTask(
 			project, taskName, DownloadNodeTask.class);
@@ -545,7 +545,7 @@ public class NodePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskExecuteNode(
-		ExecuteNodeTask executeNodeTask, final NodeExtension nodeExtension,
+		ExecuteNodeTask executeNodeTask, NodeExtension nodeExtension,
 		boolean useGradleExec) {
 
 		executeNodeTask.setNodeDir(
@@ -899,7 +899,7 @@ public class NodePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksExecutePackageManager(
-		Project project, final NodeExtension nodeExtension) {
+		Project project, NodeExtension nodeExtension) {
 
 		TaskContainer taskContainer = project.getTasks();
 
@@ -919,7 +919,7 @@ public class NodePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksExecutePackageManagerArgs(
-		Project project, final NodeExtension nodeExtension) {
+		Project project, NodeExtension nodeExtension) {
 
 		TaskContainer taskContainer = project.getTasks();
 
@@ -939,7 +939,7 @@ public class NodePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksNpmInstall(
-		Project project, final NodeExtension nodeExtension) {
+		Project project, NodeExtension nodeExtension) {
 
 		TaskContainer taskContainer = project.getTasks();
 

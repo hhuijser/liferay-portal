@@ -109,7 +109,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 			});
 	}
 
-	private Configuration _addConfigurationCSSBuilder(final Project project) {
+	private Configuration _addConfigurationCSSBuilder(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CSS_BUILDER_CONFIGURATION_NAME);
 
@@ -171,9 +171,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 			"font-awesome", "latest.release", false);
 	}
 
-	private BuildCSSTask _addTaskBuildCSS(
-		Project project, final Sync copyCSSTask) {
-
+	private BuildCSSTask _addTaskBuildCSS(Project project, Sync copyCSSTask) {
 		BuildCSSTask buildCSSTask = GradleUtil.addTask(
 			project, BUILD_CSS_TASK_NAME, BuildCSSTask.class);
 
@@ -279,7 +277,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 		}
 	}
 
-	private void _configureTaskCopyCSSForJavaPlugin(final Sync copyCSSTask) {
+	private void _configureTaskCopyCSSForJavaPlugin(Sync copyCSSTask) {
 		copyCSSTask.from(
 			new Callable<File>() {
 
@@ -297,7 +295,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 			});
 	}
 
-	private void _configureTaskCopyCSSForWarPlugin(final Sync copyCSSTask) {
+	private void _configureTaskCopyCSSForWarPlugin(Sync copyCSSTask) {
 		copyCSSTask.from(
 			new Callable<File>() {
 
@@ -316,7 +314,7 @@ public class CSSBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskProcessResourcesForJavaPlugin(
-		BuildCSSTask buildCSSTask, final Sync copyCSSTask) {
+		BuildCSSTask buildCSSTask, Sync copyCSSTask) {
 
 		Project project = buildCSSTask.getProject();
 

@@ -105,7 +105,7 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 		"writeArtifactPublishCommands";
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Plugins
 
@@ -993,9 +993,8 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 	private TaskProvider<MergeFilesTask>
 		_getTaskMergeArtifactsPublishCommandsProvider(
 			Gradle gradle,
-			final TaskProvider<Delete>
-				cleanArtifactsPublishCommandsTaskProvider,
-			final TaskProvider<WriteArtifactPublishCommandsTask>
+			TaskProvider<Delete> cleanArtifactsPublishCommandsTaskProvider,
+			TaskProvider<WriteArtifactPublishCommandsTask>
 				writeArtifactPublishCommandsTaskProvider) {
 
 		StartParameter startParameter = gradle.getStartParameter();

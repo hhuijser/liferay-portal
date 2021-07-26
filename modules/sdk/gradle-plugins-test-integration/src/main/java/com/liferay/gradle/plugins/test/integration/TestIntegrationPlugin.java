@@ -89,7 +89,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 	public static final String TEST_MODULES_CONFIGURATION_NAME = "testModules";
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, TestIntegrationBasePlugin.class);
 
 		SourceSet testIntegrationSourceSet = GradleUtil.getSourceSet(
@@ -145,7 +145,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 			testIntegrationTomcatExtension, startTestableTomcatTask);
 	}
 
-	private Configuration _addConfigurationTestModules(final Project project) {
+	private Configuration _addConfigurationTestModules(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, TEST_MODULES_CONFIGURATION_NAME);
 

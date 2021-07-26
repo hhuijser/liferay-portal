@@ -107,7 +107,7 @@ public class NettyChannelAttributes {
 	}
 
 	public static <T extends Serializable> void putFabricWorker(
-		Channel channel, final long id, FabricWorker<T> fabricWorker) {
+		Channel channel, long id, FabricWorker<T> fabricWorker) {
 
 		Attribute<Map<Long, FabricWorker<?>>> attribute = channel.attr(
 			_fabricWorkersKey);

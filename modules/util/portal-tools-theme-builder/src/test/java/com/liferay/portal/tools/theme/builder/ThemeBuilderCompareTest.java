@@ -239,7 +239,7 @@ public class ThemeBuilderCompareTest {
 	}
 
 	private Map<String, byte[]> _getFileNameDigests(
-			final Path dirPath, String... excludePatterns)
+			Path dirPath, String... excludePatterns)
 		throws Exception {
 
 		Map<String, byte[]> fileNameDigests = new HashMap<>();

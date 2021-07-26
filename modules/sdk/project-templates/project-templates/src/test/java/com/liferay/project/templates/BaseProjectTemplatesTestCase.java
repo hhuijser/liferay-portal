@@ -1363,8 +1363,8 @@ public interface BaseProjectTemplatesTestCase {
 	}
 
 	public default void testBuildTemplateServiceBuilder(
-			File gradleProjectDir, File mavenProjectDir, final File rootProject,
-			String name, String packageName, final String projectPath,
+			File gradleProjectDir, File mavenProjectDir, File rootProject,
+			String name, String packageName, String projectPath,
 			URI gradleDistribution, MavenExecutor mavenExecutor)
 		throws Exception {
 

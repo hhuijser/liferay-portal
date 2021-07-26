@@ -72,7 +72,7 @@ public class TransactionalTestRule implements TestRule {
 	}
 
 	@Override
-	public Statement apply(Statement statement, final Description description) {
+	public Statement apply(Statement statement, Description description) {
 		Statement currentStatement = statement;
 
 		while (true) {
@@ -186,8 +186,7 @@ public class TransactionalTestRule implements TestRule {
 		extends FrameworkMethod {
 
 		@Override
-		public Object invokeExplosively(
-				final Object target, final Object... params)
+		public Object invokeExplosively(Object target, Object... params)
 			throws Throwable {
 
 			try (Closeable closeable = _installTransactionExecutor(

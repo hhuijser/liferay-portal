@@ -60,7 +60,7 @@ public class GitUtil {
 		}
 	}
 
-	public static void executeGit(Project project, final Object... args) {
+	public static void executeGit(Project project, Object... args) {
 		project.exec(
 			new Action<ExecSpec>() {
 
@@ -74,7 +74,7 @@ public class GitUtil {
 	}
 
 	public static String getGitResult(
-		Project project, final File workingDir, final Object... args) {
+		Project project, File workingDir, Object... args) {
 
 		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
@@ -97,7 +97,7 @@ public class GitUtil {
 		return result.trim();
 	}
 
-	public static String getGitResult(Project project, final Object... args) {
+	public static String getGitResult(Project project, Object... args) {
 		return getGitResult(project, project.getProjectDir(), args);
 	}
 

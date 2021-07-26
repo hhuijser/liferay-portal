@@ -133,7 +133,7 @@ public class WarsProjectConfigurator extends BaseProjectConfigurator {
 	protected static final String NAME = "wars";
 
 	private void _configureBaseTaskDeploy(
-		War war, final WorkspaceExtension workspaceExtension) {
+		War war, WorkspaceExtension workspaceExtension) {
 
 		Project project = war.getProject();
 
@@ -166,7 +166,7 @@ public class WarsProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	@SuppressWarnings("serial")
-	private void _configureRootTaskDistBundle(final War war) {
+	private void _configureRootTaskDistBundle(War war) {
 		Project project = war.getProject();
 
 		Copy copy = (Copy)GradleUtil.getTask(

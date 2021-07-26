@@ -470,8 +470,7 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	protected void sendNotificationEvent(
-			final MicroblogsEntry microblogsEntry,
-			ServiceContext serviceContext)
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
 		JSONObject notificationEventJSONObject = JSONUtil.put(

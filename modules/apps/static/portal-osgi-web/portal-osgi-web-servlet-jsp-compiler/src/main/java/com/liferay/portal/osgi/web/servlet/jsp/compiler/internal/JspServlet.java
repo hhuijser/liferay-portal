@@ -148,9 +148,7 @@ public class JspServlet extends HttpServlet {
 	}
 
 	@Override
-	public void init(final ServletConfig servletConfig)
-		throws ServletException {
-
+	public void init(ServletConfig servletConfig) throws ServletException {
 		ServletContext servletContext = servletConfig.getServletContext();
 
 		ClassLoader classLoader = servletContext.getClassLoader();

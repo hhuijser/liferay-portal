@@ -65,9 +65,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 		}
 	}
 
-	public static File[] getFiles(
-		File dir, final String prefix, final String suffix) {
-
+	public static File[] getFiles(File dir, String prefix, String suffix) {
 		return dir.listFiles(
 			new FileFilter() {
 
@@ -104,8 +102,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	}
 
 	public static void syncDir(
-		Project project, final File sourceDir, final File targetDir,
-		boolean nativeSync) {
+		Project project, File sourceDir, File targetDir, boolean nativeSync) {
 
 		ExecResult execResult = null;
 

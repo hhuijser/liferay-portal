@@ -67,7 +67,7 @@ public class LiferayCIPlugin implements Plugin<Project> {
 	public static final Plugin<Project> INSTANCE = new LiferayCIPlugin();
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Containers
 

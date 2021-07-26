@@ -125,7 +125,7 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 	}
 
 	private Test _addTaskTestIntegration(
-		Project project, final SourceSet testIntegrationSourceSet) {
+		Project project, SourceSet testIntegrationSourceSet) {
 
 		Test test = GradleUtil.addTask(
 			project, TEST_INTEGRATION_TASK_NAME, Test.class);
@@ -281,7 +281,7 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 	}
 
 	private void _configureIdeaModule(
-		Project project, final SourceSet testIntegrationSourceSet) {
+		Project project, SourceSet testIntegrationSourceSet) {
 
 		IdeaModel ideaModel = GradleUtil.getExtension(project, IdeaModel.class);
 

@@ -67,9 +67,7 @@ public class JavaDefaultsPlugin extends BaseDefaultsPlugin<JavaPlugin> {
 		}
 	}
 
-	private void _configureTasksJar(
-		Project project, final String portalVersion) {
-
+	private void _configureTasksJar(Project project, String portalVersion) {
 		TaskContainer taskContainer = project.getTasks();
 
 		taskContainer.withType(

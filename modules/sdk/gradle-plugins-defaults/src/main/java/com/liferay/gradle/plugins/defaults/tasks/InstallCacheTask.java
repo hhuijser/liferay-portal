@@ -166,7 +166,7 @@ public class InstallCacheTask extends DefaultTask {
 
 	}
 
-	private void _copy(final File file, final File destinationDir) {
+	private void _copy(File file, File destinationDir) {
 		Project project = getProject();
 
 		project.copy(

@@ -203,8 +203,8 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private void _testBuildTemplateRESTBuilder(
-			File gradleProjectDir, File mavenProjectDir, final File rootProject,
-			String name, String packageName, final String projectPath)
+			File gradleProjectDir, File mavenProjectDir, File rootProject,
+			String name, String packageName, String projectPath)
 		throws Exception {
 
 		String apiProjectName = name + "-api";

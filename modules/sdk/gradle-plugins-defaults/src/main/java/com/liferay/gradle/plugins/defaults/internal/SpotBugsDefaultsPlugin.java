@@ -68,7 +68,7 @@ public class SpotBugsDefaultsPlugin extends BaseDefaultsPlugin<SpotBugsPlugin> {
 	private SpotBugsDefaultsPlugin() {
 	}
 
-	private void _configureSpotBugs(final Project project) {
+	private void _configureSpotBugs(Project project) {
 		SpotBugsExtension spotBugsExtension = GradleUtil.getExtension(
 			project, SpotBugsExtension.class);
 

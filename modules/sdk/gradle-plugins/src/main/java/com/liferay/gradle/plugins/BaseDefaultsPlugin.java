@@ -26,7 +26,7 @@ public abstract class BaseDefaultsPlugin<T extends Plugin<? extends Project>>
 	implements Plugin<Project> {
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Containers
 

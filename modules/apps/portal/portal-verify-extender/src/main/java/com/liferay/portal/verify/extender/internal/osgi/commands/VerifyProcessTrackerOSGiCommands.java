@@ -79,7 +79,7 @@ import org.osgi.service.component.annotations.Reference;
 public class VerifyProcessTrackerOSGiCommands {
 
 	@Descriptor("List latest execution result for a specific verify process")
-	public void check(final String verifyProcessName) {
+	public void check(String verifyProcessName) {
 		try {
 			getVerifyProcesses(_verifyProcesses, verifyProcessName);
 		}
@@ -125,7 +125,7 @@ public class VerifyProcessTrackerOSGiCommands {
 	}
 
 	@Descriptor("Execute a specific verify process")
-	public void execute(final String verifyProcessName) {
+	public void execute(String verifyProcessName) {
 		_execute(_verifyProcesses, verifyProcessName, null, true);
 	}
 

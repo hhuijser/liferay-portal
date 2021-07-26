@@ -131,7 +131,7 @@ public class DBSupportPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBaseDBSupport(
-		Project project, final FileCollection classpath) {
+		Project project, FileCollection classpath) {
 
 		TaskContainer taskContainer = project.getTasks();
 

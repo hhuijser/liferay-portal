@@ -101,7 +101,7 @@ public abstract class BaseBuild implements Build {
 	public abstract void addTimelineData(BaseBuild.TimelineData timelineData);
 
 	@Override
-	public void archive(final String archiveName) {
+	public void archive(String archiveName) {
 		if (!_status.equals("completed")) {
 			throw new RuntimeException("Invalid build status: " + _status);
 		}

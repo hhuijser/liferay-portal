@@ -121,7 +121,7 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 	}
 
 	@SuppressWarnings("serial")
-	private Copy _addTaskImportFiles(final Project project) {
+	private Copy _addTaskImportFiles(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, IMPORT_FILES_TASK_NAME, Copy.class);
 

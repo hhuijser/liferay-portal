@@ -48,7 +48,7 @@ public class DeletionSystemEventImporter {
 	}
 
 	public void importDeletionSystemEvents(
-			final PortletDataContext portletDataContext)
+			PortletDataContext portletDataContext)
 		throws Exception {
 
 		if (!MapUtil.getBoolean(

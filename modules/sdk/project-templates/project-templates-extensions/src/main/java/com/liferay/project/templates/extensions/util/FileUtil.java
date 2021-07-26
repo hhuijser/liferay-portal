@@ -111,7 +111,7 @@ public class FileUtil {
 			});
 	}
 
-	public static void deleteFiles(Path dirPath, final String... fileNames)
+	public static void deleteFiles(Path dirPath, String... fileNames)
 		throws IOException {
 
 		Files.walkFileTree(
@@ -159,8 +159,7 @@ public class FileUtil {
 			});
 	}
 
-	public static void extractDirectory(
-			String dirName, final Path destinationDirPath)
+	public static void extractDirectory(String dirName, Path destinationDirPath)
 		throws Exception {
 
 		Map<String, InputStream> filesAndDirectories = _getFilesFromClasspath(

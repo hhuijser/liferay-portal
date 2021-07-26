@@ -165,7 +165,7 @@ public class SourceFormatterPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksFormatSource(
-		Project project, final FileCollection classpath) {
+		Project project, FileCollection classpath) {
 
 		TaskContainer taskContainer = project.getTasks();
 

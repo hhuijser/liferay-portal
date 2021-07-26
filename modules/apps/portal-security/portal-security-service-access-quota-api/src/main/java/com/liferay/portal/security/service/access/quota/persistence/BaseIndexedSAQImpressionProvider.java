@@ -29,7 +29,7 @@ public abstract class BaseIndexedSAQImpressionProvider
 
 	@Override
 	public void populateSAQImpressions(
-		long companyId, final SAQContextMatcher saqContextMatcher,
+		long companyId, SAQContextMatcher saqContextMatcher,
 		SAQImpressionConsumer saqImpressionConsumer) {
 
 		for (final String metricName : saqContextMatcher.getMetricNames()) {

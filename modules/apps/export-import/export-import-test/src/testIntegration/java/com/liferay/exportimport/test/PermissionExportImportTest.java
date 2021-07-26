@@ -136,7 +136,7 @@ public class PermissionExportImportTest {
 	}
 
 	protected Element exportPortletPermissions(
-			final Group exportGroup, Layout exportLayout)
+			Group exportGroup, Layout exportLayout)
 		throws Exception {
 
 		Method getCompanyIdMethod = ReflectionTestUtil.getMethod(

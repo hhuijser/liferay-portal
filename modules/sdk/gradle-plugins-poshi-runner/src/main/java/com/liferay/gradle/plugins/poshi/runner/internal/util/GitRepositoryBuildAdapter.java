@@ -78,7 +78,7 @@ public class GitRepositoryBuildAdapter extends BuildAdapter {
 		return gitRepositoryBag;
 	}
 
-	private String _getGitResult(Project project, final Object... args) {
+	private String _getGitResult(Project project, Object... args) {
 		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();
 

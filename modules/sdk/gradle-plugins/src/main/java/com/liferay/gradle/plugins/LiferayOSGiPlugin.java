@@ -153,7 +153,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 		"zipZippableResources";
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Plugins
 
@@ -627,7 +627,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 			new Action<DirectDeployTask>() {
 
 				@Override
-				public void execute(final DirectDeployTask directDeployTask) {
+				public void execute(DirectDeployTask directDeployTask) {
 					directDeployTask.setAppServerDeployDir(
 						directDeployTask.getTemporaryDir());
 					directDeployTask.setAppServerType("tomcat");

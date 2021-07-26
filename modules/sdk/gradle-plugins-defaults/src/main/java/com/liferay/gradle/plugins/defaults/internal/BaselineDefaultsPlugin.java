@@ -77,7 +77,7 @@ public class BaselineDefaultsPlugin extends BaseDefaultsPlugin<BaselinePlugin> {
 	}
 
 	private void _configureTasksBaseline(
-		Project project, final BundleExtension bundleExtension) {
+		Project project, BundleExtension bundleExtension) {
 
 		TaskContainer taskContainer = project.getTasks();
 

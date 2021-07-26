@@ -173,7 +173,7 @@ public class ThemesProjectConfigurator extends BaseProjectConfigurator {
 	protected static final String NAME = "themes";
 
 	@SuppressWarnings({"serial", "unused"})
-	private void _configureRootTaskDistBundle(final Task assembleTask) {
+	private void _configureRootTaskDistBundle(Task assembleTask) {
 		Project project = assembleTask.getProject();
 
 		Copy copy = (Copy)GradleUtil.getTask(
@@ -186,7 +186,7 @@ public class ThemesProjectConfigurator extends BaseProjectConfigurator {
 			"osgi/war",
 			new Closure<Void>(project) {
 
-				public void doCall(final CopySpec copySpec) {
+				public void doCall(CopySpec copySpec) {
 					Project project = assembleTask.getProject();
 
 					File warFile = _getWarFile(project);

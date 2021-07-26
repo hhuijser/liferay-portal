@@ -51,7 +51,7 @@ public class FileHelperUtil {
 	public static final Path TEMP_DIR_PATH = Paths.get(
 		System.getProperty("java.io.tmpdir"));
 
-	public static void delete(final boolean quiet, Path... paths) {
+	public static void delete(boolean quiet, Path... paths) {
 		try {
 			for (Path path : paths) {
 				Files.walkFileTree(
@@ -111,14 +111,11 @@ public class FileHelperUtil {
 		delete(false, paths);
 	}
 
-	public static void move(Path fromPath, final Path toPath)
-		throws IOException {
-
+	public static void move(Path fromPath, Path toPath) throws IOException {
 		move(fromPath, toPath, true);
 	}
 
-	public static void move(
-			final Path fromPath, final Path toPath, boolean tryAtomicMove)
+	public static void move(Path fromPath, Path toPath, boolean tryAtomicMove)
 		throws IOException {
 
 		AtomicBoolean atomicMove = new AtomicBoolean(tryAtomicMove);
@@ -358,8 +355,7 @@ public class FileHelperUtil {
 		return zipPath;
 	}
 
-	public static long zip(
-			final Path sourcePath, ZipOutputStream zipOutputStream)
+	public static long zip(Path sourcePath, ZipOutputStream zipOutputStream)
 		throws IOException {
 
 		AtomicLong rawSize = new AtomicLong();

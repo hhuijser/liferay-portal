@@ -110,9 +110,8 @@ public class WorkflowHandlerRegistryUtil {
 	}
 
 	public static <T> T startWorkflowInstance(
-			final long companyId, final long groupId, final long userId,
-			String className, final long classPK, final T model,
-			ServiceContext serviceContext,
+			long companyId, long groupId, long userId, String className,
+			long classPK, T model, ServiceContext serviceContext,
 			Map<String, Serializable> workflowContext)
 		throws PortalException {
 

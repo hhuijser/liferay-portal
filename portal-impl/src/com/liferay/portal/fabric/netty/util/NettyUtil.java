@@ -76,8 +76,7 @@ public class NettyUtil {
 	}
 
 	public static <T> void scheduleCancellation(
-		Channel channel, final NoticeableFuture<T> noticeableFuture,
-		long timeout) {
+		Channel channel, NoticeableFuture<T> noticeableFuture, long timeout) {
 
 		EventLoop eventLoop = channel.eventLoop();
 

@@ -88,7 +88,7 @@ public class FrontendPlugin implements Plugin<Project> {
 	}
 
 	@SuppressWarnings("serial")
-	private void _configureArtifacts(final Project project) {
+	private void _configureArtifacts(Project project) {
 		ArtifactHandler artifacts = project.getArtifacts();
 
 		artifacts.add(

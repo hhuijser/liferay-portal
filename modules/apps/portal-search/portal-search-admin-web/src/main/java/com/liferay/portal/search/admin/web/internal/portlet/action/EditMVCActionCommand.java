@@ -100,7 +100,7 @@ public class EditMVCActionCommand extends BaseMVCActionCommand {
 		sendRedirect(actionRequest, actionResponse, redirect);
 	}
 
-	protected void reindex(final ActionRequest actionRequest) throws Exception {
+	protected void reindex(ActionRequest actionRequest) throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

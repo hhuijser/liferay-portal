@@ -76,7 +76,7 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 		"zipResourcesImporterArchives";
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 		GradleUtil.applyPlugin(project, LiferayThemePlugin.class);
 
 		_applyPlugins(project);
@@ -478,7 +478,7 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksPackageRunBuild(
-		Project project, final Task zipResourcesImporterArchivesTask) {
+		Project project, Task zipResourcesImporterArchivesTask) {
 
 		TaskContainer taskContainer = project.getTasks();
 
@@ -496,7 +496,7 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksPackageRunBuildLocalDependencies(
-		Project project, final Copy expandFrontendCSSCommonTask) {
+		Project project, Copy expandFrontendCSSCommonTask) {
 
 		TaskContainer taskContainer = project.getTasks();
 

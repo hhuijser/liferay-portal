@@ -283,7 +283,7 @@ public class PluginExecutor extends BaseExecutor {
 		return tempFile;
 	}
 
-	protected List<File> getInstalledDirectories(final String context)
+	protected List<File> getInstalledDirectories(String context)
 		throws Exception {
 
 		List<File> installedDirs = new ArrayList<>();

@@ -169,7 +169,7 @@ public class ThemeBuilder {
 		jCommander.usage();
 	}
 
-	private void _copyTheme(final Path themeDirPath) throws IOException {
+	private void _copyTheme(Path themeDirPath) throws IOException {
 		Path outputDirPath = _outputDir.toPath();
 
 		Files.walkFileTree(

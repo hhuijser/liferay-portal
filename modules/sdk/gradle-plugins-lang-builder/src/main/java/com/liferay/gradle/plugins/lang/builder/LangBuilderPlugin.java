@@ -66,7 +66,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 		_configureTasksBuildLang(project, langBuilderConfiguration);
 	}
 
-	private Configuration _addConfigurationLangBuilder(final Project project) {
+	private Configuration _addConfigurationLangBuilder(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 
@@ -195,7 +195,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	}
 
 	@SuppressWarnings("serial")
-	private void _configureTaskProcessResources(final Project project) {
+	private void _configureTaskProcessResources(Project project) {
 		File appDir = GradleUtil.getRootDir(project, "app.bnd");
 
 		File appBndLocalizationDir = new File(appDir, "app.bnd-localization");
@@ -226,7 +226,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 		Action<FileCopyDetails> action = new Action<FileCopyDetails>() {
 
 			@Override
-			public void execute(final FileCopyDetails fileCopyDetails) {
+			public void execute(FileCopyDetails fileCopyDetails) {
 				fileCopyDetails.filter(
 					new Closure<Void>(copy) {
 
@@ -272,7 +272,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBuildLang(
-		Project project, final Configuration langBuilderConfiguration) {
+		Project project, Configuration langBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

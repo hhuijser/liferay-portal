@@ -148,7 +148,7 @@ public class ReleaseManagerImpl implements ReleaseManager {
 	}
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	protected void activate(BundleContext bundleContext) {
 		DB db = DBManagerUtil.getDB();
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(

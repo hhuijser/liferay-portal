@@ -273,7 +273,7 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	private UpdatePropertiesTask _addTaskUpdateProperties(
-		Project project, final WorkspaceExtension workspaceExtension) {
+		Project project, WorkspaceExtension workspaceExtension) {
 
 		UpdatePropertiesTask updatePropertiesTask = GradleUtil.addTask(
 			project, UPDATE_PROPERTIES_TASK_NAME, UpdatePropertiesTask.class);
@@ -309,7 +309,7 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	@SuppressWarnings("serial")
-	private void _configureRootTaskDistBundle(final Task warTask) {
+	private void _configureRootTaskDistBundle(Task warTask) {
 		Project project = warTask.getProject();
 
 		Copy copy = (Copy)GradleUtil.getTask(

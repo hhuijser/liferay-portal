@@ -69,7 +69,7 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 
 	@Override
 	@SuppressWarnings("serial")
-	public void apply(final Project project) {
+	public void apply(Project project) {
 		Gradle gradle = project.getGradle();
 
 		VersionNumber versionNumber = VersionNumber.parse(

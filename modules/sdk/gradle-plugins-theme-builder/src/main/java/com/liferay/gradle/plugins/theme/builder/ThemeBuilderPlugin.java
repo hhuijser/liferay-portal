@@ -79,7 +79,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 		_configureTasksBuildTheme(project, themeBuilderConfiguration);
 	}
 
-	private Configuration _addConfigurationParentThemes(final Project project) {
+	private Configuration _addConfigurationParentThemes(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, PARENT_THEMES_CONFIGURATION_NAME);
 
@@ -101,7 +101,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 		return configuration;
 	}
 
-	private Configuration _addConfigurationThemeBuilder(final Project project) {
+	private Configuration _addConfigurationThemeBuilder(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, THEME_BUILDER_CONFIGURATION_NAME);
 
@@ -208,7 +208,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBuildCSS(
-		BuildCSSTask buildCSSTask, final BuildThemeTask buildThemeTask) {
+		BuildCSSTask buildCSSTask, BuildThemeTask buildThemeTask) {
 
 		buildCSSTask.dependsOn(buildThemeTask);
 
@@ -224,7 +224,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBuildTheme(
-		Project project, final FileCollection classpath) {
+		Project project, FileCollection classpath) {
 
 		TaskContainer taskContainer = project.getTasks();
 

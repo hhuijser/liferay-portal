@@ -160,7 +160,7 @@ public class PanelCategoryRegistry {
 	}
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	protected void activate(BundleContext bundleContext) {
 		_childPanelCategoriesServiceTrackerMap =
 			ServiceTrackerMapBuilder.SelectorFactory.newSelector(
 				bundleContext, PanelCategory.class

@@ -73,7 +73,7 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 	}
 
 	private Jar _addArtifactPoshiRunnerResources(
-		Project project, final Set<File> dirs, String baseName, String appendix,
+		Project project, Set<File> dirs, String baseName, String appendix,
 		String rootDirName, String version) {
 
 		Jar jar = GradleUtil.addTask(

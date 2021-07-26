@@ -22,7 +22,7 @@ import java.io.FileFilter;
  */
 public class FileUtil extends com.liferay.gradle.util.FileUtil {
 
-	public static File[] getFiles(File dir, final String extension) {
+	public static File[] getFiles(File dir, String extension) {
 		return dir.listFiles(
 			new FileFilter() {
 

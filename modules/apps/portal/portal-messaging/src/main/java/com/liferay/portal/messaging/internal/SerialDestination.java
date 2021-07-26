@@ -42,7 +42,7 @@ public class SerialDestination extends BaseAsyncDestination {
 
 	@Override
 	protected void dispatch(
-		Set<MessageListener> messageListeners, final Message message) {
+		Set<MessageListener> messageListeners, Message message) {
 
 		Thread currentThread = Thread.currentThread();
 

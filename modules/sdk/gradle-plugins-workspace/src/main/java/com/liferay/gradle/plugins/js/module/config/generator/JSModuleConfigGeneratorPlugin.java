@@ -80,7 +80,7 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 			});
 	}
 
-	private ConfigJSModulesTask _addTaskConfigJSModules(final Project project) {
+	private ConfigJSModulesTask _addTaskConfigJSModules(Project project) {
 		ConfigJSModulesTask configJSModulesTask = GradleUtil.addTask(
 			project, CONFIG_JS_MODULES_TASK_NAME, ConfigJSModulesTask.class);
 

@@ -43,7 +43,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class RTLServletTracker {
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	protected void activate(BundleContext bundleContext) {
 		String filterString = StringBundler.concat(
 			"(&(objectClass=", ServletContextHelper.class.getName(), ")",
 			"(rtl.required=true))");

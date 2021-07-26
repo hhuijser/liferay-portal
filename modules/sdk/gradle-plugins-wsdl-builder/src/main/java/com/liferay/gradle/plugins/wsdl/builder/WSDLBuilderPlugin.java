@@ -446,7 +446,7 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBuildWSDL(
-		Project project, final Configuration wsdlBuilderConfiguration) {
+		Project project, Configuration wsdlBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

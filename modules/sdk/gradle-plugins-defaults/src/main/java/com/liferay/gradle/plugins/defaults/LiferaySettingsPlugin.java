@@ -189,8 +189,8 @@ public class LiferaySettingsPlugin implements Plugin<Settings> {
 	}
 
 	private void _includeProjects(
-			final Settings settings, final Path projectPathRootDirPath,
-			final String projectPathPrefix)
+			Settings settings, Path projectPathRootDirPath,
+			String projectPathPrefix)
 		throws IOException {
 
 		String buildProfile = System.getProperty("build.profile");

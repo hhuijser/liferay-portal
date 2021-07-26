@@ -210,7 +210,7 @@ public class BackgroundTaskLocalServiceImpl
 
 	@Clusterable(onMaster = true)
 	@Override
-	public void cleanUpBackgroundTask(long backgroundTaskId, final int status) {
+	public void cleanUpBackgroundTask(long backgroundTaskId, int status) {
 		BackgroundTask backgroundTask = fetchBackgroundTask(backgroundTaskId);
 
 		try {

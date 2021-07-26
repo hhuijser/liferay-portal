@@ -313,7 +313,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 	@Override
 	@SuppressWarnings("serial")
-	public void apply(final Project project) {
+	public void apply(Project project) {
 		String portalVersion = PortalTools.getPortalVersion(project);
 
 		File portalRootDir = GradleUtil.getRootDir(
@@ -775,7 +775,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private Task _addTaskCommitCache(
-		Project project, final InstallCacheTask installCacheTask) {
+		Project project, InstallCacheTask installCacheTask) {
 
 		Task task = project.task(COMMIT_CACHE_TASK_NAME);
 
@@ -922,7 +922,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private Copy _addTaskDeployConfigs(
-		Project project, final LiferayExtension liferayExtension) {
+		Project project, LiferayExtension liferayExtension) {
 
 		Copy copy = GradleUtil.addTask(
 			project, DEPLOY_CONFIGS_TASK_NAME, Copy.class);
@@ -1070,7 +1070,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		return copy;
 	}
 
-	private Task _addTaskGeneratePomInfo(final Project project) {
+	private Task _addTaskGeneratePomInfo(Project project) {
 		Task task = project.task(GENERATE_POM_INFO_TASK_NAME);
 
 		task.doLast(
@@ -1428,7 +1428,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		return jar;
 	}
 
-	private ReplaceRegexTask _addTaskSyncVersions(final Project project) {
+	private ReplaceRegexTask _addTaskSyncVersions(Project project) {
 		ReplaceRegexTask replaceRegexTask = GradleUtil.addTask(
 			project, SYNC_VERSIONS_TASK_NAME, ReplaceRegexTask.class);
 
@@ -1498,7 +1498,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	@SuppressWarnings({"serial", "unchecked"})
-	private ReplaceRegexTask _addTaskUpdateFileVersions(final Project project) {
+	private ReplaceRegexTask _addTaskUpdateFileVersions(Project project) {
 		ReplaceRegexTask replaceRegexTask = GradleUtil.addTask(
 			project, UPDATE_FILE_VERSIONS_TASK_NAME, ReplaceRegexTask.class);
 
@@ -1857,7 +1857,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 				@Override
 				@SuppressWarnings("serial")
-				public void execute(final FileCopyDetails fileCopyDetails) {
+				public void execute(FileCopyDetails fileCopyDetails) {
 					fileCopyDetails.filter(
 						new Closure<Void>(copy) {
 
@@ -2699,7 +2699,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureDependenciesTransitive(
-		Project project, String configurationName, final boolean transitive) {
+		Project project, String configurationName, boolean transitive) {
 
 		Configuration configuration = GradleUtil.getConfiguration(
 			project, configurationName);
@@ -3080,7 +3080,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBaselineSyncReleaseVersions(
-		Task task, final File versionOverrideFile) {
+		Task task, File versionOverrideFile) {
 
 		Action<Task> action = new Action<Task>() {
 
@@ -3229,7 +3229,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		}
 	}
 
-	private void _configureTaskBuildREST(final Project project) {
+	private void _configureTaskBuildREST(Project project) {
 		BuildRESTTask buildRESTTask = (BuildRESTTask)GradleUtil.getTask(
 			project, RESTBuilderPlugin.BUILD_REST_TASK_NAME);
 
@@ -3267,7 +3267,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		buildServiceTask.setBuildNumberIncrement(false);
 	}
 
-	private void _configureTaskBuildWSDD(final Project project) {
+	private void _configureTaskBuildWSDD(Project project) {
 		BuildWSDDTask buildWSDDTask = (BuildWSDDTask)GradleUtil.getTask(
 			project, WSDDBuilderPlugin.BUILD_WSDD_TASK_NAME);
 
@@ -3409,9 +3409,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			});
 	}
 
-	private void _configureTaskDeployDemo(
-		Project project, final Task deployTask) {
-
+	private void _configureTaskDeployDemo(Project project, Task deployTask) {
 		project.afterEvaluate(
 			new Action<Project>() {
 
@@ -3550,7 +3548,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		jar.setDuplicatesStrategy(DuplicatesStrategy.EXCLUDE);
 	}
 
-	private void _configureTaskJarSources(final Jar jarSourcesTask) {
+	private void _configureTaskJarSources(Jar jarSourcesTask) {
 		Project project = jarSourcesTask.getProject();
 
 		TaskContainer taskContainer = project.getTasks();
@@ -3561,7 +3559,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 				@Override
 				@SuppressWarnings("serial")
-				public void execute(final PatchTask patchTask) {
+				public void execute(PatchTask patchTask) {
 					jarSourcesTask.from(
 						new Callable<FileCollection>() {
 
@@ -3796,7 +3794,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksCheckOSGiBundleState(
-		Project project, final LiferayExtension liferayExtension) {
+		Project project, LiferayExtension liferayExtension) {
 
 		TaskContainer taskContainer = project.getTasks();
 

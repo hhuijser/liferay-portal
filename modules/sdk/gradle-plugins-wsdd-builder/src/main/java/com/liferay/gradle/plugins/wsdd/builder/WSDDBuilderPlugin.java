@@ -61,7 +61,7 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 		configureTasksBuildWSDD(project, wsddBuilderConfiguration);
 	}
 
-	protected Configuration addConfigurationWSDDBuilder(final Project project) {
+	protected Configuration addConfigurationWSDDBuilder(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 
@@ -203,7 +203,7 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTasksBuildWSDD(
-		Project project, final Configuration wsddBuilderConfiguration) {
+		Project project, Configuration wsddBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

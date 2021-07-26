@@ -44,8 +44,7 @@ public class NettyUtilAdvice {
 					"args(channel, noticeableFuture, timeout)"
 	)
 	public <T> void scheduleCancellation(
-		Channel channel, final NoticeableFuture<T> noticeableFuture,
-		long timeout) {
+		Channel channel, NoticeableFuture<T> noticeableFuture, long timeout) {
 
 		if (timeout == 0) {
 			noticeableFuture.cancel(true);

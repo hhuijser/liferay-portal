@@ -316,7 +316,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	@SuppressWarnings("serial")
-	private void _configureRootTaskDistBundle(final Jar jar) {
+	private void _configureRootTaskDistBundle(Jar jar) {
 		Project project = jar.getProject();
 
 		Copy copy = (Copy)GradleUtil.getTask(
@@ -335,7 +335,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 			});
 	}
 
-	private void _configureRootTaskDistBundle(final Task buildTask) {
+	private void _configureRootTaskDistBundle(Task buildTask) {
 		Project project = buildTask.getProject();
 
 		Copy copy = (Copy)GradleUtil.getTask(
@@ -473,7 +473,7 @@ public class ModulesProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	@SuppressWarnings({"rawtypes", "serial", "unused"})
-	private Closure _copyJarClosure(Project project, final Task assembleTask) {
+	private Closure _copyJarClosure(Project project, Task assembleTask) {
 		return new Closure<Void>(project) {
 
 			public void doCall(CopySpec copySpec) {

@@ -445,7 +445,7 @@ public class AnnotationLocatorTest {
 		}
 	}
 
-	private Method _method(final int value) {
+	private Method _method(int value) {
 		return new Method() {
 
 			@Override
@@ -682,7 +682,7 @@ public class AnnotationLocatorTest {
 		}
 	}
 
-	private Mix _mix(final int value) {
+	private Mix _mix(int value) {
 		return new Mix() {
 
 			@Override
@@ -698,7 +698,7 @@ public class AnnotationLocatorTest {
 		};
 	}
 
-	private Type _type(final int value) {
+	private Type _type(int value) {
 		return new Type() {
 
 			@Override

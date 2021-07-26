@@ -122,7 +122,7 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 		return tldDocTask;
 	}
 
-	private Copy _addTaskCopyAppTLDDocResources(final Project project) {
+	private Copy _addTaskCopyAppTLDDocResources(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, COPY_APP_TLDDOC_RESOURCES_TASK_NAME, Copy.class);
 

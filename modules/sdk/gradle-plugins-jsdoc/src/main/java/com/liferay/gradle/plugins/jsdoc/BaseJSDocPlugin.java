@@ -57,7 +57,7 @@ public abstract class BaseJSDocPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskJSDoc(
-		JSDocTask jsDocTask, final DownloadNodeModuleTask downloadJSDocTask) {
+		JSDocTask jsDocTask, DownloadNodeModuleTask downloadJSDocTask) {
 
 		jsDocTask.dependsOn(downloadJSDocTask);
 

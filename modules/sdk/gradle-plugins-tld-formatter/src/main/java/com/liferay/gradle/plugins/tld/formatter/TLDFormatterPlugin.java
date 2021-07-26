@@ -90,7 +90,7 @@ public class TLDFormatterPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTasksFormatTLD(
-		Project project, final Configuration tldFormatterConfiguration) {
+		Project project, Configuration tldFormatterConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

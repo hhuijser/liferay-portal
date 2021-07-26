@@ -619,7 +619,7 @@ public class ModulesStructureTest {
 	}
 
 	private String _getAntPluginsGitIgnore(
-			final Path dirPath, SortedSet<String> gitIgnoreLines)
+			Path dirPath, SortedSet<String> gitIgnoreLines)
 		throws IOException {
 
 		if (dirPath.equals(_modulesDirPath)) {

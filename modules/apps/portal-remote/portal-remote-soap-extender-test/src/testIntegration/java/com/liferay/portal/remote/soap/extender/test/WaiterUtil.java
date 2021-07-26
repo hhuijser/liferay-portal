@@ -51,7 +51,7 @@ public class WaiterUtil {
 	}
 
 	public static Waiter waitForFilterToDisappear(
-			BundleContext bundleContext, final String filterString)
+			BundleContext bundleContext, String filterString)
 		throws Exception {
 
 		CountDownLatch countDownLatch = new CountDownLatch(1);

@@ -103,7 +103,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 			"com.liferay.portal.tools.service.builder", "latest.release");
 	}
 
-	protected BuildServiceTask addTaskBuildService(final Project project) {
+	protected BuildServiceTask addTaskBuildService(Project project) {
 		BuildServiceTask buildServiceTask = GradleUtil.addTask(
 			project, BUILD_SERVICE_TASK_NAME, BuildServiceTask.class);
 
@@ -365,7 +365,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTasksBuildService(
-		Project project, final Configuration serviceBuilderConfiguration) {
+		Project project, Configuration serviceBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

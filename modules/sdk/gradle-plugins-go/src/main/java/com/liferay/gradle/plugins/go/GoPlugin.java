@@ -122,7 +122,7 @@ public class GoPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksExecuteGo(
-		Project project, final boolean useGradleExec) {
+		Project project, boolean useGradleExec) {
 
 		TaskContainer taskContainer = project.getTasks();
 

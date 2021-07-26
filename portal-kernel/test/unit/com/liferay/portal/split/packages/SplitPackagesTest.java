@@ -147,7 +147,7 @@ public class SplitPackagesTest {
 		}
 	}
 
-	private Set<String> _getPackageNames(final Path path) throws IOException {
+	private Set<String> _getPackageNames(Path path) throws IOException {
 		Set<String> packageNames = new HashSet<>();
 
 		Files.walkFileTree(

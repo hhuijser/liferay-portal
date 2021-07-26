@@ -101,7 +101,7 @@ public class LocalizationImplUnitTest {
 	}
 
 	protected void verifyDefaultImportLocale(
-		String defaultContentLocale, final String portalAvailableLocales,
+		String defaultContentLocale, String portalAvailableLocales,
 		String expectedLocale, boolean expectedResult) {
 
 		LanguageUtil languageUtil = new LanguageUtil();

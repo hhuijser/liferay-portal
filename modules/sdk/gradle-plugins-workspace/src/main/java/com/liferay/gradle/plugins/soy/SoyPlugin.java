@@ -65,7 +65,7 @@ public class SoyPlugin implements Plugin<Project> {
 		_configureTasksBuildSoy(project, soyConfiguration);
 	}
 
-	private Configuration _addConfigurationSoy(final Project project) {
+	private Configuration _addConfigurationSoy(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 
@@ -194,7 +194,7 @@ public class SoyPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBuildSoy(
-		Project project, final Configuration soyConfiguration) {
+		Project project, Configuration soyConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

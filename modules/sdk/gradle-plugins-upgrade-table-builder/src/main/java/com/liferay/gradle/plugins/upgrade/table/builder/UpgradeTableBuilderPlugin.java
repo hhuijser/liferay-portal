@@ -96,7 +96,7 @@ public class UpgradeTableBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBuildUpgradeTable(
-		Project project, final Configuration upgradeTableBuilderConfiguration) {
+		Project project, Configuration upgradeTableBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

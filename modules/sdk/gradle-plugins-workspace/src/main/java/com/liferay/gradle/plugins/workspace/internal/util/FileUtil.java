@@ -43,8 +43,8 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	}
 
 	public static List<String> getRelativePaths(
-			final Path path, final String fileName, final List<String> excludes,
-			final boolean childrenOnly)
+			Path path, String fileName, List<String> excludes,
+			boolean childrenOnly)
 		throws IOException {
 
 		List<String> paths = new ArrayList<>();
@@ -118,7 +118,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	}
 
 	private static void _moveTree(
-			final Path sourceRootDirPath, final Path destinationRootDirPath)
+			Path sourceRootDirPath, Path destinationRootDirPath)
 		throws IOException {
 
 		Files.walkFileTree(

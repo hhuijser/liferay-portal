@@ -555,7 +555,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	}
 
 	private Dockerfile _addTaskCreateDockerfile(
-		Project project, final WorkspaceExtension workspaceExtension,
+		Project project, WorkspaceExtension workspaceExtension,
 		Copy dockerDeploy) {
 
 		Dockerfile dockerfile = GradleUtil.addTask(
@@ -735,7 +735,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 	@SuppressWarnings("serial")
 	private Copy _addTaskDockerDeploy(
-		Project project, final WorkspaceExtension workspaceExtension,
+		Project project, WorkspaceExtension workspaceExtension,
 		Configuration providedModulesConfiguration) {
 
 		Copy copy = GradleUtil.addTask(
@@ -1245,7 +1245,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 	@SuppressWarnings("serial")
 	private void _configureTaskCopyBundleFromDownload(
-		Copy copy, final Download download) {
+		Copy copy, Download download) {
 
 		Project project = copy.getProject();
 

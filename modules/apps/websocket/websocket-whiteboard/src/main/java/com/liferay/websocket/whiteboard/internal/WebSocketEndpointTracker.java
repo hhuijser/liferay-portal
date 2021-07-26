@@ -50,7 +50,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class WebSocketEndpointTracker {
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	protected void activate(BundleContext bundleContext) {
 		Object serverContainer = _servletContext.getAttribute(
 			"javax.websocket.server.ServerContainer");
 

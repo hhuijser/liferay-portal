@@ -74,7 +74,7 @@ public class RESTBuilderPlugin implements Plugin<Project> {
 			});
 	}
 
-	private Configuration _addConfigurationRESTBuilder(final Project project) {
+	private Configuration _addConfigurationRESTBuilder(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 
@@ -113,7 +113,7 @@ public class RESTBuilderPlugin implements Plugin<Project> {
 	}
 
 	@SuppressWarnings("rawtypes")
-	private void _configureTaskBuildREST(final BuildRESTTask buildRESTTask) {
+	private void _configureTaskBuildREST(BuildRESTTask buildRESTTask) {
 		Project project = buildRESTTask.getProject();
 
 		PluginContainer pluginContainer = project.getPlugins();
@@ -228,7 +228,7 @@ public class RESTBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTasksBuildREST(
-		Project project, final Configuration restBuilderConfiguration) {
+		Project project, Configuration restBuilderConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

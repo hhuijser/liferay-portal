@@ -75,7 +75,7 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 		"unzipOriginalModule";
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Plugins
 

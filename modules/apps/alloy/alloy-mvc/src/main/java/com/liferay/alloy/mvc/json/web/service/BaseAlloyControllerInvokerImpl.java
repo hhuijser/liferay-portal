@@ -254,7 +254,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 		};
 	}
 
-	protected JSONSerializable getJSONSerializable(final String content) {
+	protected JSONSerializable getJSONSerializable(String content) {
 		return new JSONSerializable() {
 
 			@Override

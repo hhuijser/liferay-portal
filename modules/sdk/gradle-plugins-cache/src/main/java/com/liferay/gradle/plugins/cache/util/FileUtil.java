@@ -317,7 +317,7 @@ public class FileUtil extends com.liferay.gradle.util.FileUtil {
 	}
 
 	private static String _getGitResult(
-		Project project, final File workingDir, final String... args) {
+		Project project, File workingDir, String... args) {
 
 		ByteArrayOutputStream byteArrayOutputStream =
 			new ByteArrayOutputStream();

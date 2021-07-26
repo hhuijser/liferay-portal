@@ -33,7 +33,7 @@ public class EmbeddedProcessExecutor implements ProcessExecutor {
 
 	@Override
 	public <T extends Serializable> ProcessChannel<T> execute(
-		ProcessConfig processConfig, final ProcessCallable<T> processCallable) {
+		ProcessConfig processConfig, ProcessCallable<T> processCallable) {
 
 		return new EmbeddedProcessChannel<T>(
 			new DefaultNoticeableFuture<T>(

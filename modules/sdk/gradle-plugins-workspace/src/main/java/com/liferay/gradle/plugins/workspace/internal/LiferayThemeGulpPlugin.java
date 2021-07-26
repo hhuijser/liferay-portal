@@ -43,7 +43,7 @@ public class LiferayThemeGulpPlugin implements Plugin<Project> {
 	public static final Plugin<Project> INSTANCE = new LiferayThemeGulpPlugin();
 
 	@Override
-	public void apply(final Project project) {
+	public void apply(Project project) {
 
 		// Containers
 

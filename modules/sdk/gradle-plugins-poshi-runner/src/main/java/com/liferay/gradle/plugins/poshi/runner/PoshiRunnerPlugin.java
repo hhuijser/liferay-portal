@@ -269,7 +269,7 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 		return javaExec;
 	}
 
-	private Copy _addTaskExpandPoshiRunner(final Project project) {
+	private Copy _addTaskExpandPoshiRunner(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, EXPAND_POSHI_RUNNER_TASK_NAME, Copy.class);
 

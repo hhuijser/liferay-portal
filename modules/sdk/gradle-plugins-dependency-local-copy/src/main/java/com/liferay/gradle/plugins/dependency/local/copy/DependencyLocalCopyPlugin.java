@@ -198,7 +198,7 @@ public class DependencyLocalCopyPlugin implements Plugin<Project> {
 			});
 	}
 
-	private void _configureConfigurations(final Task syncLocalCopyTask) {
+	private void _configureConfigurations(Task syncLocalCopyTask) {
 		Project project = syncLocalCopyTask.getProject();
 
 		ConfigurationContainer configurationContainer =

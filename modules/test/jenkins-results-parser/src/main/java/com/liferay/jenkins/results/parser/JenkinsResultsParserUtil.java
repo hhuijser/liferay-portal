@@ -3888,7 +3888,7 @@ public class JenkinsResultsParserUtil {
 		}
 	}
 
-	public static void zip(final File sourceDir, File zipFile) {
+	public static void zip(File sourceDir, File zipFile) {
 		try (FileOutputStream fileOutputStream = new FileOutputStream(zipFile);
 			final ZipOutputStream zipOutputStream = new ZipOutputStream(
 				fileOutputStream)) {

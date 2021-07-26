@@ -451,7 +451,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 		XMLUtil.appendElement(document, repositoryElement, "url", url);
 	}
 
-	private void _buildPluginDescriptor(final File pomFile) throws Exception {
+	private void _buildPluginDescriptor(File pomFile) throws Exception {
 		Project project = getProject();
 
 		project.javaexec(
@@ -782,9 +782,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 		Files.write(path, code.getBytes(StandardCharsets.UTF_8));
 	}
 
-	private void _prepareSources(final File preparedSourceDir)
-		throws Exception {
-
+	private void _prepareSources(File preparedSourceDir) throws Exception {
 		Project project = getProject();
 
 		project.copy(

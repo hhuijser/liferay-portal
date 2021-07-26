@@ -761,7 +761,7 @@ public class MediaQueryProviderImplTest {
 	}
 
 	private AMImageConfigurationEntry _createAMImageConfigurationEntry(
-			final String uuid, final int height, final int width, String url)
+			String uuid, int height, int width, String url)
 		throws Exception {
 
 		AMImageConfigurationEntry amImageConfigurationEntry =

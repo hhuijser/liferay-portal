@@ -67,7 +67,7 @@ public class XSDBuilderPlugin implements Plugin<Project> {
 			});
 	}
 
-	protected Configuration addConfigurationXSDBuilder(final Project project) {
+	protected Configuration addConfigurationXSDBuilder(Project project) {
 		Configuration configuration = GradleUtil.addConfiguration(
 			project, CONFIGURATION_NAME);
 

@@ -54,7 +54,7 @@ public class HttpProxyMockServerSupport {
 	}
 
 	protected static HttpProxyServer startHttpProxyServer(
-		int port, boolean authenticate, final AtomicBoolean hit) {
+		int port, boolean authenticate, AtomicBoolean hit) {
 
 		HttpProxyServerBootstrap httpProxyServerBootstrap =
 			DefaultHttpProxyServer.bootstrap();

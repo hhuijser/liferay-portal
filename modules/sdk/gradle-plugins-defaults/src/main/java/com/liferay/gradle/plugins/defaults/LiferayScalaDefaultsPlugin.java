@@ -91,7 +91,7 @@ public class LiferayScalaDefaultsPlugin implements Plugin<Project> {
 		}
 	}
 
-	private void _configureTaskJar(final Project project) {
+	private void _configureTaskJar(Project project) {
 		Jar jarTask = (Jar)GradleUtil.fetchTask(
 			project, JavaPlugin.JAR_TASK_NAME);
 

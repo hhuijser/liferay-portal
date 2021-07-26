@@ -408,7 +408,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 	@Override
 	public long getLayoutModelDeletionCount(
-			final PortletDataContext portletDataContext, boolean privateLayout)
+			PortletDataContext portletDataContext, boolean privateLayout)
 		throws PortalException {
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -561,8 +561,8 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 	@Override
 	public long getModelDeletionCount(
-			final PortletDataContext portletDataContext,
-			final StagedModelType stagedModelType)
+			PortletDataContext portletDataContext,
+			StagedModelType stagedModelType)
 		throws PortalException {
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -944,7 +944,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 	@Override
 	public MissingReferences validateMissingReferences(
-			final PortletDataContext portletDataContext)
+			PortletDataContext portletDataContext)
 		throws Exception {
 
 		MissingReferences missingReferences = new MissingReferences();

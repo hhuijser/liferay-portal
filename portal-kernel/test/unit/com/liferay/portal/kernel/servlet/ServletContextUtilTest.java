@@ -80,7 +80,7 @@ public class ServletContextUtilTest {
 		testGetRootURI(path, getURI(path));
 	}
 
-	protected ServletContext getServletContext(final String path) {
+	protected ServletContext getServletContext(String path) {
 		return new MockServletContext() {
 
 			@Override

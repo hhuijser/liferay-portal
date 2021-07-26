@@ -40,7 +40,7 @@ public class RPCRequest<T extends Serializable> extends RPCSerializable {
 	}
 
 	@Override
-	public void execute(final Channel channel) {
+	public void execute(Channel channel) {
 		ChannelThreadLocal.setChannel(channel);
 
 		try {

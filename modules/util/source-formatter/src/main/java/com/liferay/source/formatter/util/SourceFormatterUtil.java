@@ -557,8 +557,8 @@ public class SourceFormatterUtil {
 	}
 
 	private static List<String> _scanForFiles(
-			final String baseDirName, final PathMatchers pathMatchers,
-			final boolean includeSubrepositories)
+			String baseDirName, PathMatchers pathMatchers,
+			boolean includeSubrepositories)
 		throws IOException {
 
 		List<String> fileNames = new ArrayList<>();

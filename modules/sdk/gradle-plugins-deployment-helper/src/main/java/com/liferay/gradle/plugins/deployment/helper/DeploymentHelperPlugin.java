@@ -141,7 +141,7 @@ public class DeploymentHelperPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTasksBuildDeploymentHelper(
-		Project project, final Configuration deploymentHelperConfiguration) {
+		Project project, Configuration deploymentHelperConfiguration) {
 
 		TaskContainer taskContainer = project.getTasks();
 

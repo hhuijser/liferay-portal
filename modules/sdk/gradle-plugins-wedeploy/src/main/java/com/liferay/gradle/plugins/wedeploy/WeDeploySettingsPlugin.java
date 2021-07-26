@@ -114,9 +114,7 @@ public class WeDeploySettingsPlugin implements Plugin<Settings> {
 		return projectPath;
 	}
 
-	private Set<String> _includeProjects(final Settings settings)
-		throws IOException {
-
+	private Set<String> _includeProjects(Settings settings) throws IOException {
 		String projectPathPrefix = _getProjectPathPrefix(settings);
 		Set<String> projectPaths = new HashSet<>();
 

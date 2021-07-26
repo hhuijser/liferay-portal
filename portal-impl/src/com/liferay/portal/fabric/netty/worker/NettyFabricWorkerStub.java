@@ -109,7 +109,7 @@ public class NettyFabricWorkerStub<T extends Serializable>
 		_defaultNoticeableFuture.setException(throwable);
 	}
 
-	public void setResult(final T result) {
+	public void setResult(T result) {
 		NoticeableFuture<Map<Path, Path>> noticeableFuture =
 			_repository.getFiles(_channel, _outputPathMap, true);
 

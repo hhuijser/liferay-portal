@@ -56,7 +56,7 @@ import org.gradle.api.tasks.TaskOutputs;
 public class GradleUtil extends com.liferay.gradle.util.GradleUtil {
 
 	public static MavenArtifactRepository addMavenArtifactRepository(
-		RepositoryHandler repositoryHandler, final Object url) {
+		RepositoryHandler repositoryHandler, Object url) {
 
 		return repositoryHandler.maven(
 			new Action<MavenArtifactRepository>() {

@@ -712,7 +712,7 @@ public class NettyRepositoryTest {
 	}
 
 	protected void doTestGetFileChannelFailure(
-			final boolean asyncBrokerFailure, boolean logging)
+			boolean asyncBrokerFailure, boolean logging)
 		throws InterruptedException {
 
 		Exception exception = new Exception();

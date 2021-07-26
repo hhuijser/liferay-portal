@@ -134,8 +134,7 @@ public class DeploymentHelper {
 	}
 
 	protected void addDeploymentFiles(
-			File dir, final StringBuilder sb,
-			final List<ZipEntrySource> zipEntrySources)
+			File dir, StringBuilder sb, List<ZipEntrySource> zipEntrySources)
 		throws IOException {
 
 		FileSystem fileSystem = FileSystems.getDefault();

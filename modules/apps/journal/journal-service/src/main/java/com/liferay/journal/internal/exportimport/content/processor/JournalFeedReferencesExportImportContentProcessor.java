@@ -150,9 +150,7 @@ public class JournalFeedReferencesExportImportContentProcessor
 				String groupIdString = MapUtil.getString(map, "groupId");
 
 				if (groupIdString.equals("@group_id@")) {
-					groupIdString = String.valueOf(groupId);
-
-					return groupIdString;
+					return String.valueOf(groupId);
 				}
 
 				return pathArray[0];

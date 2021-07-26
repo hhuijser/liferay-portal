@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.security.permission.resource.PortletResourcePer
 /**
  * @author Riccardo Alberti
  */
-public class PricingPortletPermissionLogic
+public class PricingPortletResourcePermissionLogic
 	implements PortletResourcePermissionLogic {
 
 	@Override

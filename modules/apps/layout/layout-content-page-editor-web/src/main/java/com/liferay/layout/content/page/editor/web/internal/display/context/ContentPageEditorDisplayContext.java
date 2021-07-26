@@ -1601,18 +1601,23 @@ public class ContentPageEditorDisplayContext {
 						"segmentsExperienceId",
 						String.valueOf(
 							fragmentEntryLink.getSegmentsExperienceId())
+					).put(
+						"icon",
+						() -> {
+							if (fragmentEntry != null) {
+								return fragmentEntry.getIcon();
+							}
+
+							return null;
+						}
+					).put(
+						String.valueOf(
+							fragmentEntryLink.getFragmentEntryLinkId()),
+						fragmentEntryLinkMap
 					).putAll(
 						_getFragmentEntry(
 							fragmentEntryLink, fragmentEntry, content)
 					).build();
-
-				if (fragmentEntry != null) {
-					fragmentEntryLinkMap.put("icon", fragmentEntry.getIcon());
-				}
-
-				fragmentEntryLinksMap.put(
-					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId()),
-					fragmentEntryLinkMap);
 			}
 		}
 		finally {

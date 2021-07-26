@@ -140,23 +140,24 @@ public class JournalFeedReferencesExportImportContentProcessor
 			return null;
 		}
 
-		Map<String, String> map = HashMapBuilder.put(
+		return HashMapBuilder.put(
 			"endPos", String.valueOf(endPos)
 		).put(
 			"feedId", pathArray[1]
 		).put(
-			"groupId", pathArray[0]
+			"groupId",
+			() -> {
+				String groupIdString = MapUtil.getString(map, "groupId");
+
+				if (groupIdString.equals("@group_id@")) {
+					groupIdString = String.valueOf(groupId);
+
+					return groupIdString;
+				}
+
+				return pathArray[0];
+			}
 		).build();
-
-		String groupIdString = MapUtil.getString(map, "groupId");
-
-		if (groupIdString.equals("@group_id@")) {
-			groupIdString = String.valueOf(groupId);
-
-			map.put("groupId", groupIdString);
-		}
-
-		return map;
 	}
 
 	protected boolean isValidateJournalFeedReferences() {

@@ -1594,14 +1594,6 @@ public class ContentPageEditorDisplayContext {
 						String.valueOf(
 							fragmentEntryLink.getFragmentEntryLinkId())
 					).put(
-						"masterLayout",
-						layout.getMasterLayoutPlid() ==
-							fragmentEntryLink.getPlid()
-					).put(
-						"segmentsExperienceId",
-						String.valueOf(
-							fragmentEntryLink.getSegmentsExperienceId())
-					).put(
 						"icon",
 						() -> {
 							if (fragmentEntry != null) {
@@ -1610,6 +1602,14 @@ public class ContentPageEditorDisplayContext {
 
 							return null;
 						}
+					).put(
+						"masterLayout",
+						layout.getMasterLayoutPlid() ==
+							fragmentEntryLink.getPlid()
+					).put(
+						"segmentsExperienceId",
+						String.valueOf(
+							fragmentEntryLink.getSegmentsExperienceId())
 					).put(
 						String.valueOf(
 							fragmentEntryLink.getFragmentEntryLinkId()),

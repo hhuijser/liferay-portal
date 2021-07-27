@@ -58,6 +58,7 @@ import com.liferay.taglib.util.CustomAttributesUtil;
 import java.math.BigDecimal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -250,44 +251,38 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 			getDiscountClayDataSetActionDropdownItems()
 		throws PortalException {
 
-		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItems =
-			new ArrayList<>();
-
-		clayDataSetActionDropdownItems.add(
-			new ClayDataSetActionDropdownItem(
-				PortletURLBuilder.create(
-					PortletProviderUtil.getPortletURL(
-						httpServletRequest, CommerceDiscount.class.getName(),
-						PortletProvider.Action.MANAGE)
-				).setMVCRenderCommandName(
-					"/commerce_discount/edit_commerce_discount"
-				).setRedirect(
-					commercePricingRequestHelper.getCurrentURL()
-				).setParameter(
-					"commerceDiscountId", "{id}"
-				).setParameter(
-					"screenNavigationCategoryKey",
-					CommerceDiscountScreenNavigationConstants.
-						CATEGORY_KEY_DETAILS
-				).setParameter(
-					"usePercentage", "{usePercentage}"
-				).buildString(),
-				"pencil", "edit", LanguageUtil.get(httpServletRequest, "edit"),
-				"get", null, null));
-
-		clayDataSetActionDropdownItems.add(
-			new ClayDataSetActionDropdownItem(
-				null, "trash", "delete",
-				LanguageUtil.get(httpServletRequest, "delete"), "delete",
-				"delete", "headless"));
-
-		clayDataSetActionDropdownItems.add(
-			new ClayDataSetActionDropdownItem(
-				_getManageDiscountPermissionsURL(), null, "permissions",
-				LanguageUtil.get(httpServletRequest, "permissions"), "get",
-				"permissions", "modal-permissions"));
-
-		return clayDataSetActionDropdownItems;
+		return new ArrayList<>(
+			Arrays.asList(
+				new ClayDataSetActionDropdownItem(
+					PortletURLBuilder.create(
+						PortletProviderUtil.getPortletURL(
+							httpServletRequest,
+							CommerceDiscount.class.getName(),
+							PortletProvider.Action.MANAGE)
+					).setMVCRenderCommandName(
+						"/commerce_discount/edit_commerce_discount"
+					).setRedirect(
+						commercePricingRequestHelper.getCurrentURL()
+					).setParameter(
+						"commerceDiscountId", "{id}"
+					).setParameter(
+						"screenNavigationCategoryKey",
+						CommerceDiscountScreenNavigationConstants.
+							CATEGORY_KEY_DETAILS
+					).setParameter(
+						"usePercentage", "{usePercentage}"
+					).buildString(),
+					"pencil", "edit",
+					LanguageUtil.get(httpServletRequest, "edit"), "get", null,
+					null),
+				new ClayDataSetActionDropdownItem(
+					null, "trash", "delete",
+					LanguageUtil.get(httpServletRequest, "delete"), "delete",
+					"delete", "headless"),
+				new ClayDataSetActionDropdownItem(
+					_getManageDiscountPermissionsURL(), null, "permissions",
+					LanguageUtil.get(httpServletRequest, "permissions"), "get",
+					"permissions", "modal-permissions")));
 	}
 
 	public String getDiscountCPDefinitionApiURL() throws PortalException {

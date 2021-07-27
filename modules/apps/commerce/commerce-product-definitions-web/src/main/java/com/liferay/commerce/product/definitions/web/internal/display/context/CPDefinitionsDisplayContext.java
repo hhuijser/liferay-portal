@@ -58,6 +58,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.CustomAttributesUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -193,52 +194,47 @@ public class CPDefinitionsDisplayContext
 			getClayDataSetActionDropdownItems()
 		throws PortalException {
 
-		List<ClayDataSetActionDropdownItem> clayDataSetActionDropdownItems =
-			new ArrayList<>();
-
-		clayDataSetActionDropdownItems.add(
-			new ClayDataSetActionDropdownItem(
-				PortletURLBuilder.create(
-					PortletProviderUtil.getPortletURL(
-						httpServletRequest, CPDefinition.class.getName(),
-						PortletProvider.Action.MANAGE)
-				).setMVCRenderCommandName(
-					"/cp_definitions/edit_cp_definition"
-				).setParameter(
-					"cpDefinitionId", "{id}"
-				).setParameter(
-					"screenNavigationCategoryKey",
-					CPDefinitionScreenNavigationConstants.CATEGORY_KEY_DETAILS
-				).buildString(),
-				"view", "view", LanguageUtil.get(httpServletRequest, "view"),
-				"get", null, null));
-
-		clayDataSetActionDropdownItems.add(
-			new ClayDataSetActionDropdownItem(
-				"/o/headless-commerce-admin-catalog/v1.0/products/{productId}",
-				"trash", "delete",
-				LanguageUtil.get(httpServletRequest, "delete"), "delete",
-				"delete", "async"));
-
-		clayDataSetActionDropdownItems.add(
-			new ClayDataSetActionDropdownItem(
-				PortletURLBuilder.create(
-					PortletURLFactoryUtil.create(
-						cpRequestHelper.getRenderRequest(),
-						cpRequestHelper.getPortletId(),
-						PortletRequest.RENDER_PHASE)
-				).setMVCRenderCommandName(
-					"/cp_definitions/duplicate_cp_definition"
-				).setParameter(
-					"cpDefinitionId", "{id}"
-				).setWindowState(
-					LiferayWindowState.POP_UP
-				).buildString(),
-				"paste", "duplicate",
-				LanguageUtil.get(httpServletRequest, "duplicate"), "post",
-				"update", "modal"));
-
-		return clayDataSetActionDropdownItems;
+		return new ArrayList<>(
+			Arrays.asList(
+				new ClayDataSetActionDropdownItem(
+					PortletURLBuilder.create(
+						PortletProviderUtil.getPortletURL(
+							httpServletRequest, CPDefinition.class.getName(),
+							PortletProvider.Action.MANAGE)
+					).setMVCRenderCommandName(
+						"/cp_definitions/edit_cp_definition"
+					).setParameter(
+						"cpDefinitionId", "{id}"
+					).setParameter(
+						"screenNavigationCategoryKey",
+						CPDefinitionScreenNavigationConstants.
+							CATEGORY_KEY_DETAILS
+					).buildString(),
+					"view", "view",
+					LanguageUtil.get(httpServletRequest, "view"), "get", null,
+					null),
+				new ClayDataSetActionDropdownItem(
+					"/o/headless-commerce-admin-catalog/v1.0/products" +
+						"/{productId}",
+					"trash", "delete",
+					LanguageUtil.get(httpServletRequest, "delete"), "delete",
+					"delete", "async"),
+				new ClayDataSetActionDropdownItem(
+					PortletURLBuilder.create(
+						PortletURLFactoryUtil.create(
+							cpRequestHelper.getRenderRequest(),
+							cpRequestHelper.getPortletId(),
+							PortletRequest.RENDER_PHASE)
+					).setMVCRenderCommandName(
+						"/cp_definitions/duplicate_cp_definition"
+					).setParameter(
+						"cpDefinitionId", "{id}"
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).buildString(),
+					"paste", "duplicate",
+					LanguageUtil.get(httpServletRequest, "duplicate"), "post",
+					"update", "modal")));
 	}
 
 	public long[] getCommerceAccountGroupRelCommerceAccountGroupIds()

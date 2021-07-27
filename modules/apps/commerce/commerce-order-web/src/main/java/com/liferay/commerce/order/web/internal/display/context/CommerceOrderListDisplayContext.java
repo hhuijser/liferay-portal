@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,28 +61,29 @@ public class CommerceOrderListDisplayContext {
 			getClayDataSetActionDropdownItems()
 		throws PortalException {
 
-		return Arrays.asList(
-			new ClayDataSetActionDropdownItem(
-				PortletURLBuilder.create(
-					PortletProviderUtil.getPortletURL(
-						_commerceOrderRequestHelper.getRequest(),
-						CommerceOrder.class.getName(),
-						PortletProvider.Action.MANAGE)
-				).setMVCRenderCommandName(
-					"/commerce_order/edit_commerce_order"
-				).setParameter(
-					"commerceOrderId", "{id}"
-				).buildString(),
-				"view", "view",
-				LanguageUtil.get(
-					_commerceOrderRequestHelper.getRequest(), "view"),
-				"get", null, null),
-			new ClayDataSetActionDropdownItem(
-				"/o/headless-commerce-admin-order/v1.0/orders/{id}", "trash",
-				"delete",
-				LanguageUtil.get(
-					_commerceOrderRequestHelper.getRequest(), "delete"),
-				"delete", "delete", "async"));
+		return new ArrayList<>(
+			Arrays.asList(
+				new ClayDataSetActionDropdownItem(
+					PortletURLBuilder.create(
+						PortletProviderUtil.getPortletURL(
+							_commerceOrderRequestHelper.getRequest(),
+							CommerceOrder.class.getName(),
+							PortletProvider.Action.MANAGE)
+					).setMVCRenderCommandName(
+						"/commerce_order/edit_commerce_order"
+					).setParameter(
+						"commerceOrderId", "{id}"
+					).buildString(),
+					"view", "view",
+					LanguageUtil.get(
+						_commerceOrderRequestHelper.getRequest(), "view"),
+					"get", null, null),
+				new ClayDataSetActionDropdownItem(
+					"/o/headless-commerce-admin-order/v1.0/orders/{id}",
+					"trash", "delete",
+					LanguageUtil.get(
+						_commerceOrderRequestHelper.getRequest(), "delete"),
+					"delete", "delete", "async")));
 	}
 
 	public int getCommerceOrderNotesCount(CommerceOrder commerceOrder)

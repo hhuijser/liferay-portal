@@ -165,9 +165,11 @@ public class GroupByTest extends BaseGroupByTestCase {
 
 		Map<String, List<String>> orderedResultsMap =
 			HashMapBuilder.<String, List<String>>put(
-				GROUP_FIELD, Arrays.asList("three|3|3", "two|2|2")
+				GROUP_FIELD,
+				new ArrayList<>(Arrays.asList("three|3|3", "two|2|2"))
 			).put(
-				SORT_FIELD, Arrays.asList("1|2|2", "2|2|2", "3|1|1")
+				SORT_FIELD,
+				new ArrayList<>(Arrays.asList("1|2|2", "2|2|2", "3|1|1"))
 			).build();
 
 		assertSearch(

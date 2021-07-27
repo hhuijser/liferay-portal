@@ -263,8 +263,8 @@ public class AssetEntryServiceTest {
 		AssetEntry assetEntry4 = AssetTestUtil.addAssetEntry(
 			_group.getGroupId(), dayBeforeYesterday);
 
-		return Arrays.asList(
-			assetEntry3, assetEntry1, assetEntry2, assetEntry4);
+		return new ArrayList<>(
+			Arrays.asList(assetEntry3, assetEntry1, assetEntry2, assetEntry4));
 	}
 
 	protected void validateAssetEntries(

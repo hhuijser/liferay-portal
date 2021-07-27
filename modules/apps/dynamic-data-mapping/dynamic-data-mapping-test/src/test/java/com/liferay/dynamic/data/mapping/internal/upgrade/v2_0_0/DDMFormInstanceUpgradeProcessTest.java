@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.model.ResourceAction;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.model.impl.ResourceActionImpl;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -76,19 +77,23 @@ public class DDMFormInstanceUpgradeProcessTest extends PowerMockito {
 	}
 
 	protected List<ResourceAction> createFormInstanceResourceActionList() {
-		return Arrays.asList(
-			createResourceAction("VIEW", 1), createResourceAction("DELETE", 2),
-			createResourceAction("PERMISSIONS", 4),
-			createResourceAction("UPDATE", 8),
-			createResourceAction("ADD_FORM_INSTANCE_RECORD", 16));
+		return new ArrayList<>(
+			Arrays.asList(
+				createResourceAction("VIEW", 1),
+				createResourceAction("DELETE", 2),
+				createResourceAction("PERMISSIONS", 4),
+				createResourceAction("UPDATE", 8),
+				createResourceAction("ADD_FORM_INSTANCE_RECORD", 16)));
 	}
 
 	protected List<ResourceAction> createRecorSetResourceActionList() {
-		return Arrays.asList(
-			createResourceAction("VIEW", 1), createResourceAction("DELETE", 2),
-			createResourceAction("PERMISSIONS", 4),
-			createResourceAction("ADD_RECORD", 8),
-			createResourceAction("UPDATE", 16));
+		return new ArrayList<>(
+			Arrays.asList(
+				createResourceAction("VIEW", 1),
+				createResourceAction("DELETE", 2),
+				createResourceAction("PERMISSIONS", 4),
+				createResourceAction("ADD_RECORD", 8),
+				createResourceAction("UPDATE", 16)));
 	}
 
 	protected ResourceAction createResourceAction(

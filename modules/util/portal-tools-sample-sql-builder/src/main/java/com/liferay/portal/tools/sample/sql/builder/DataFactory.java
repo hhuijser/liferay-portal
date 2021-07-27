@@ -1036,10 +1036,11 @@ public class DataFactory {
 	public List<PortletPreferencesModel>
 		newAssetPublisherPortletPreferencesModels(long plid) {
 
-		return Arrays.asList(
-			newPortletPreferencesModel(plid, BlogsPortletKeys.BLOGS),
-			newPortletPreferencesModel(plid, JournalPortletKeys.JOURNAL),
-			newPortletPreferencesModel(plid, WikiPortletKeys.WIKI));
+		return new ArrayList<>(
+			Arrays.asList(
+				newPortletPreferencesModel(plid, BlogsPortletKeys.BLOGS),
+				newPortletPreferencesModel(plid, JournalPortletKeys.JOURNAL),
+				newPortletPreferencesModel(plid, WikiPortletKeys.WIKI)));
 	}
 
 	public List<PortletPreferenceValueModel>
@@ -3037,12 +3038,14 @@ public class DataFactory {
 	public List<PortletPreferencesModel> newDDLPortletPreferencesModels(
 		long plid) {
 
-		return Arrays.asList(
-			newPortletPreferencesModel(
-				plid, DDLPortletKeys.DYNAMIC_DATA_LISTS_DISPLAY),
-			newPortletPreferencesModel(plid, DDLPortletKeys.DYNAMIC_DATA_LISTS),
-			newPortletPreferencesModel(
-				plid, DDMPortletKeys.DYNAMIC_DATA_MAPPING));
+		return new ArrayList<>(
+			Arrays.asList(
+				newPortletPreferencesModel(
+					plid, DDLPortletKeys.DYNAMIC_DATA_LISTS_DISPLAY),
+				newPortletPreferencesModel(
+					plid, DDLPortletKeys.DYNAMIC_DATA_LISTS),
+				newPortletPreferencesModel(
+					plid, DDMPortletKeys.DYNAMIC_DATA_MAPPING)));
 	}
 
 	public List<PortletPreferenceValueModel> newDDLPortletPreferenceValueModels(
@@ -4489,9 +4492,10 @@ public class DataFactory {
 	public List<LayoutSetModel> newLayoutSetModels(
 		long groupId, String themeId) {
 
-		return Arrays.asList(
-			newLayoutSetModel(groupId, true, themeId),
-			newLayoutSetModel(groupId, false, themeId));
+		return new ArrayList<>(
+			Arrays.asList(
+				newLayoutSetModel(groupId, true, themeId),
+				newLayoutSetModel(groupId, false, themeId)));
 	}
 
 	public List<MBCategoryModel> newMBCategoryModels(long groupId) {
@@ -6549,13 +6553,14 @@ public class DataFactory {
 	protected List<ResourcePermissionModel> newResourcePermissionModels(
 		String name, String primKey, long ownerId) {
 
-		return Arrays.asList(
-			newResourcePermissionModel(
-				name, primKey, _guestRoleModel.getRoleId(), 0),
-			newResourcePermissionModel(
-				name, primKey, _ownerRoleModel.getRoleId(), ownerId),
-			newResourcePermissionModel(
-				name, primKey, _siteMemberRoleModel.getRoleId(), 0));
+		return new ArrayList<>(
+			Arrays.asList(
+				newResourcePermissionModel(
+					name, primKey, _guestRoleModel.getRoleId(), 0),
+				newResourcePermissionModel(
+					name, primKey, _ownerRoleModel.getRoleId(), ownerId),
+				newResourcePermissionModel(
+					name, primKey, _siteMemberRoleModel.getRoleId(), 0)));
 	}
 
 	protected RoleModel newRoleModel(String name, int type) {

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -112,7 +113,8 @@ public class FooService {
 	}
 
 	public static List<FooData> getFooDatas() {
-		return Arrays.asList(getFooData(1), getFooData(2), getFooData(3));
+		return new ArrayList<>(
+			Arrays.asList(getFooData(1), getFooData(2), getFooData(3)));
 	}
 
 	public static FooData[] getFooDatas2() {

@@ -19,6 +19,7 @@ import com.liferay.data.engine.nativeobject.DataEngineNativeObjectField;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserTable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,17 +38,18 @@ public class UserDataEngineNativeObject implements DataEngineNativeObject {
 
 	@Override
 	public List<DataEngineNativeObjectField> getDataEngineNativeObjectFields() {
-		return Arrays.asList(
-			new DataEngineNativeObjectField(
-				UserTable.INSTANCE.emailAddress, "Email Address", null),
-			new DataEngineNativeObjectField(
-				UserTable.INSTANCE.firstName, "First Name", null),
-			new DataEngineNativeObjectField(
-				UserTable.INSTANCE.jobTitle, "Job Title", null),
-			new DataEngineNativeObjectField(
-				UserTable.INSTANCE.lastName, "Last Name", null),
-			new DataEngineNativeObjectField(
-				UserTable.INSTANCE.middleName, "Middle Name", null));
+		return new ArrayList<>(
+			Arrays.asList(
+				new DataEngineNativeObjectField(
+					UserTable.INSTANCE.emailAddress, "Email Address", null),
+				new DataEngineNativeObjectField(
+					UserTable.INSTANCE.firstName, "First Name", null),
+				new DataEngineNativeObjectField(
+					UserTable.INSTANCE.jobTitle, "Job Title", null),
+				new DataEngineNativeObjectField(
+					UserTable.INSTANCE.lastName, "Last Name", null),
+				new DataEngineNativeObjectField(
+					UserTable.INSTANCE.middleName, "Middle Name", null)));
 	}
 
 	@Override

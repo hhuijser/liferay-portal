@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -77,12 +78,13 @@ public abstract class BaseCPDefinitionsSearchContainerDisplayContext<T>
 	public List<ManagementBarFilterItem> getManagementBarStatusFilterItems()
 		throws PortalException, PortletException {
 
-		return Arrays.asList(
-			getManagementBarFilterItem(WorkflowConstants.STATUS_ANY),
-			getManagementBarFilterItem(WorkflowConstants.STATUS_DRAFT),
-			getManagementBarFilterItem(WorkflowConstants.STATUS_SCHEDULED),
-			getManagementBarFilterItem(WorkflowConstants.STATUS_APPROVED),
-			getManagementBarFilterItem(WorkflowConstants.STATUS_EXPIRED));
+		return new ArrayList<>(
+			Arrays.asList(
+				getManagementBarFilterItem(WorkflowConstants.STATUS_ANY),
+				getManagementBarFilterItem(WorkflowConstants.STATUS_DRAFT),
+				getManagementBarFilterItem(WorkflowConstants.STATUS_SCHEDULED),
+				getManagementBarFilterItem(WorkflowConstants.STATUS_APPROVED),
+				getManagementBarFilterItem(WorkflowConstants.STATUS_EXPIRED)));
 	}
 
 	public String getManagementBarStatusFilterValue() {

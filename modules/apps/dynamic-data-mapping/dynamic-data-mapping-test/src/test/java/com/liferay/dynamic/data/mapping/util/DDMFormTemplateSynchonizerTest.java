@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PropsValues;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -481,7 +482,8 @@ public class DDMFormTemplateSynchonizerTest extends BaseDDMTestCase {
 
 		@Override
 		protected List<DDMTemplate> getDDMFormTemplates() {
-			return Arrays.asList(_createDDMTemplate, _editDDMTemplate);
+			return new ArrayList<>(
+				Arrays.asList(_createDDMTemplate, _editDDMTemplate));
 		}
 
 		@Override

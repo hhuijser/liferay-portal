@@ -379,28 +379,29 @@ public class EditFragmentEntryDisplayContext {
 			"freeMarkerVariables", freeMarkerVariables
 		).put(
 			"htmlEditorCustomEntities",
-			Arrays.asList(
-				HashMapBuilder.<String, Object>put(
-					"content", freeMarkerTaglibs
-				).put(
-					"end", "]"
-				).put(
-					"start", "[@"
-				).build(),
-				HashMapBuilder.<String, Object>put(
-					"content", freeMarkerVariables
-				).put(
-					"end", "}"
-				).put(
-					"start", "${"
-				).build(),
-				HashMapBuilder.<String, Object>put(
-					"content", resources
-				).put(
-					"end", "]"
-				).put(
-					"start", "[resources:"
-				).build())
+			new ArrayList<>(
+				Arrays.asList(
+					HashMapBuilder.<String, Object>put(
+						"content", freeMarkerTaglibs
+					).put(
+						"end", "]"
+					).put(
+						"start", "[@"
+					).build(),
+					HashMapBuilder.<String, Object>put(
+						"content", freeMarkerVariables
+					).put(
+						"end", "}"
+					).put(
+						"start", "${"
+					).build(),
+					HashMapBuilder.<String, Object>put(
+						"content", resources
+					).put(
+						"end", "]"
+					).put(
+						"start", "[resources:"
+					).build()))
 		).put(
 			"initialConfiguration", _getConfigurationContent()
 		).put(

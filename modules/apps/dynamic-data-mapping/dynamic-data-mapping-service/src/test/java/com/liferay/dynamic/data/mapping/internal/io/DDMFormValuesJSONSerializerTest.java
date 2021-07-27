@@ -110,9 +110,10 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormFieldValue> createBooleanNestedDDMFormFieldValues() {
-		return Arrays.asList(
-			createHTMLDDMFormFieldValue(0, "nabr"),
-			createHTMLDDMFormFieldValue(1, "uwyg"));
+		return new ArrayList<>(
+			Arrays.asList(
+				createHTMLDDMFormFieldValue(0, "nabr"),
+				createHTMLDDMFormFieldValue(1, "uwyg")));
 	}
 
 	protected Value createBooleanValue() {
@@ -216,10 +217,11 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormFieldValue> createImageDDMFormFieldValues() {
-		return Arrays.asList(
-			createImageDDMFormFieldValue(0, "uaht"),
-			createImageDDMFormFieldValue(1, "pppj"),
-			createImageDDMFormFieldValue(2, "nmab"));
+		return new ArrayList<>(
+			Arrays.asList(
+				createImageDDMFormFieldValue(0, "uaht"),
+				createImageDDMFormFieldValue(1, "pppj"),
+				createImageDDMFormFieldValue(2, "nmab")));
 	}
 
 	protected Value createImageValue(int index) {
@@ -257,9 +259,10 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormFieldValue> createSeparatorDDMFormFieldValues() {
-		return Arrays.asList(
-			createSeparatorDDMFormFieldValue(0, "uayx"),
-			createSeparatorDDMFormFieldValue(1, "lahy"));
+		return new ArrayList<>(
+			Arrays.asList(
+				createSeparatorDDMFormFieldValue(0, "uayx"),
+				createSeparatorDDMFormFieldValue(1, "lahy")));
 	}
 
 	protected List<DDMFormFieldValue> createSeparatorNestedDDMFormFieldValues(

@@ -359,23 +359,30 @@ public abstract class BaseUserNotificationTestCase {
 			long userId)
 		throws Exception {
 
-		return Arrays.asList(
-			_userNotificationDeliveryLocalService.getUserNotificationDelivery(
-				userId, getPortletId(), 0,
-				UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY,
-				UserNotificationDeliveryConstants.TYPE_EMAIL, true),
-			_userNotificationDeliveryLocalService.getUserNotificationDelivery(
-				userId, getPortletId(), 0,
-				UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY,
-				UserNotificationDeliveryConstants.TYPE_WEBSITE, true),
-			_userNotificationDeliveryLocalService.getUserNotificationDelivery(
-				userId, getPortletId(), 0,
-				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY,
-				UserNotificationDeliveryConstants.TYPE_EMAIL, true),
-			_userNotificationDeliveryLocalService.getUserNotificationDelivery(
-				userId, getPortletId(), 0,
-				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY,
-				UserNotificationDeliveryConstants.TYPE_WEBSITE, true));
+		return new ArrayList<>(
+			Arrays.asList(
+				_userNotificationDeliveryLocalService.
+					getUserNotificationDelivery(
+						userId, getPortletId(), 0,
+						UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY,
+						UserNotificationDeliveryConstants.TYPE_EMAIL, true),
+				_userNotificationDeliveryLocalService.
+					getUserNotificationDelivery(
+						userId, getPortletId(), 0,
+						UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, true),
+				_userNotificationDeliveryLocalService.
+					getUserNotificationDelivery(
+						userId, getPortletId(), 0,
+						UserNotificationDefinition.
+							NOTIFICATION_TYPE_UPDATE_ENTRY,
+						UserNotificationDeliveryConstants.TYPE_EMAIL, true),
+				_userNotificationDeliveryLocalService.
+					getUserNotificationDelivery(
+						userId, getPortletId(), 0,
+						UserNotificationDefinition.
+							NOTIFICATION_TYPE_UPDATE_ENTRY,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, true)));
 	}
 
 	private void _updateUserNotificationDelivery(

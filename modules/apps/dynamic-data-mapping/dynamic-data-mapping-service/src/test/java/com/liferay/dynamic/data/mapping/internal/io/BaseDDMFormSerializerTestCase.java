@@ -27,6 +27,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,12 +69,13 @@ public abstract class BaseDDMFormSerializerTestCase extends BaseDDMTestCase {
 	}
 
 	protected List<DDMFormField> createDDMFormFields() {
-		return Arrays.asList(
-			createNestedDDMFormFields("ParentField", "ChildField"),
-			createRadioDDMFormField("BooleanField"),
-			createSelectDDMFormField("SelectField"),
-			createTextDDMFormField("TextField"),
-			createHTMLDDMFormField("HTMLField"));
+		return new ArrayList<>(
+			Arrays.asList(
+				createNestedDDMFormFields("ParentField", "ChildField"),
+				createRadioDDMFormField("BooleanField"),
+				createSelectDDMFormField("SelectField"),
+				createTextDDMFormField("TextField"),
+				createHTMLDDMFormField("HTMLField")));
 	}
 
 	protected DDMFormField createHTMLDDMFormField(String name) {

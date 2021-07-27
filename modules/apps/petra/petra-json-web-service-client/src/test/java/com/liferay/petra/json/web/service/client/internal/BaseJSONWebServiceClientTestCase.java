@@ -17,6 +17,7 @@ package com.liferay.petra.json.web.service.client.internal;
 import com.liferay.petra.json.web.service.client.server.simulator.HTTPServerSimulator;
 import com.liferay.petra.json.web.service.client.server.simulator.constants.SimulatorConstants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -41,12 +42,14 @@ public abstract class BaseJSONWebServiceClientTestCase {
 	}
 
 	protected List<NameValuePair> getParameters(String status) {
-		return Arrays.asList(
-			new BasicNameValuePair(
-				SimulatorConstants.HTTP_PARAMETER_RESPOND_WITH_STATUS, status),
-			new BasicNameValuePair(
-				SimulatorConstants.HTTP_PARAMETER_RETURN_PARMS_IN_JSON,
-				"true"));
+		return new ArrayList<>(
+			Arrays.asList(
+				new BasicNameValuePair(
+					SimulatorConstants.HTTP_PARAMETER_RESPOND_WITH_STATUS,
+					status),
+				new BasicNameValuePair(
+					SimulatorConstants.HTTP_PARAMETER_RETURN_PARMS_IN_JSON,
+					"true")));
 	}
 
 }

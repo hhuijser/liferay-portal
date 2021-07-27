@@ -106,11 +106,14 @@ public class DDLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 	protected List<Resource> getFolders(WebDAVRequest webDAVRequest)
 		throws Exception {
 
-		return Arrays.asList(
-			_ddmWebDAV.toResource(
-				webDAVRequest, DDMWebDAV.TYPE_STRUCTURES, getRootPath(), true),
-			_ddmWebDAV.toResource(
-				webDAVRequest, DDMWebDAV.TYPE_TEMPLATES, getRootPath(), true));
+		return new ArrayList<>(
+			Arrays.asList(
+				_ddmWebDAV.toResource(
+					webDAVRequest, DDMWebDAV.TYPE_STRUCTURES, getRootPath(),
+					true),
+				_ddmWebDAV.toResource(
+					webDAVRequest, DDMWebDAV.TYPE_TEMPLATES, getRootPath(),
+					true)));
 	}
 
 	protected List<Resource> getStructures(WebDAVRequest webDAVRequest)

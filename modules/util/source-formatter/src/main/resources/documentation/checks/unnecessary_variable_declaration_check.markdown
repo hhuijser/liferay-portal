@@ -65,7 +65,7 @@ Correct:
 
 ```java
 public List<String> method() {
-	return Arrays.asList("a", "b");
+	return new ArrayList<>(Arrays.asList("a", "b"));
 }
 ```
 ---

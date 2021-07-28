@@ -294,7 +294,7 @@ public class BlogEntriesManagementToolbarDisplayContext
 	}
 
 	private PortletURL _getCurrentSortingURL() {
-		PortletURL sortingURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			getPortletURL()
 		).setMVCRenderCommandName(
 			"/blogs/view"
@@ -309,8 +309,6 @@ public class BlogEntriesManagementToolbarDisplayContext
 		).setParameter(
 			SearchContainer.DEFAULT_CUR_PARAM, "0"
 		).buildPortletURL();
-
-		return sortingURL;
 	}
 
 	private String _getKeywords() {

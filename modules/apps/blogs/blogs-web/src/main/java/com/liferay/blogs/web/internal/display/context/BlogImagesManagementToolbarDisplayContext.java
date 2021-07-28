@@ -224,7 +224,7 @@ public class BlogImagesManagementToolbarDisplayContext
 	}
 
 	private PortletURL _getCurrentSortingURL() {
-		PortletURL sortingURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			getPortletURL()
 		).setKeywords(
 			() -> {
@@ -240,8 +240,6 @@ public class BlogImagesManagementToolbarDisplayContext
 		).setParameter(
 			SearchContainer.DEFAULT_CUR_PARAM, "0"
 		).buildPortletURL();
-
-		return sortingURL;
 	}
 
 	private List<DropdownItem> _getOrderByDropdownItems() {

@@ -510,8 +510,6 @@ public class DLAdminManagementToolbarDisplayContext
 				return null;
 			}
 		).setParameter(
-			"folderId", folderId
-		).setParameter(
 			"fileEntryTypeId",
 			() -> {
 				long fileEntryTypeId = _getFileEntryTypeId();
@@ -522,6 +520,8 @@ public class DLAdminManagementToolbarDisplayContext
 
 				return null;
 			}
+		).setParameter(
+			"folderId", folderId
 		).buildPortletURL();
 
 		return new ViewTypeItemList(displayStyleURL, _getDisplayStyle()) {

@@ -171,6 +171,17 @@ public class BlogImagesManagementToolbarDisplayContext
 			_liferayPortletResponse
 		).setMVCRenderCommandName(
 			"/blogs/view"
+		).setKeywords(
+			() -> {
+				String keywords = ParamUtil.getString(
+					_httpServletRequest, "keywords");
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setNavigation(
 			"images"
 		).setParameter(
@@ -201,18 +212,6 @@ public class BlogImagesManagementToolbarDisplayContext
 
 				return null;
 			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = ParamUtil.getString(
-					_httpServletRequest, "keywords");
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
-				}
-
-				return null;
-			}
 		).buildPortletURL();
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
@@ -227,10 +226,7 @@ public class BlogImagesManagementToolbarDisplayContext
 	private PortletURL _getCurrentSortingURL() {
 		PortletURL sortingURL = PortletURLBuilder.create(
 			getPortletURL()
-		).setParameter(
-			SearchContainer.DEFAULT_CUR_PARAM, "0"
-		).setParameter(
-			"keywords",
+		).setKeywords(
 			() -> {
 				String keywords = ParamUtil.getString(
 					_httpServletRequest, "keywords");
@@ -241,6 +237,8 @@ public class BlogImagesManagementToolbarDisplayContext
 
 				return null;
 			}
+		).setParameter(
+			SearchContainer.DEFAULT_CUR_PARAM, "0"
 		).buildPortletURL();
 
 		return sortingURL;

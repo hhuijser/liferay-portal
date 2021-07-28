@@ -298,10 +298,7 @@ public class BlogEntriesManagementToolbarDisplayContext
 			getPortletURL()
 		).setMVCRenderCommandName(
 			"/blogs/view"
-		).setParameter(
-			SearchContainer.DEFAULT_CUR_PARAM, "0"
-		).setParameter(
-			"keywords",
+		).setKeywords(
 			() -> {
 				if (_isSearch()) {
 					return _getKeywords();
@@ -309,6 +306,8 @@ public class BlogEntriesManagementToolbarDisplayContext
 
 				return null;
 			}
+		).setParameter(
+			SearchContainer.DEFAULT_CUR_PARAM, "0"
 		).buildPortletURL();
 
 		return sortingURL;

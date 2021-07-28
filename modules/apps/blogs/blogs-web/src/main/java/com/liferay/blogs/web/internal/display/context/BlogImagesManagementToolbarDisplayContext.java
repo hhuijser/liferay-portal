@@ -185,6 +185,18 @@ public class BlogImagesManagementToolbarDisplayContext
 		).setNavigation(
 			"images"
 		).setParameter(
+			"cur",
+			() -> {
+				int cur = ParamUtil.getInteger(
+					_httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
+
+				if (cur > 0) {
+					return cur;
+				}
+
+				return null;
+			}
+		).setParameter(
 			"delta",
 			() -> {
 				int delta = ParamUtil.getInteger(
@@ -200,18 +212,6 @@ public class BlogImagesManagementToolbarDisplayContext
 			"orderByCol", getOrderByCol()
 		).setParameter(
 			"orderByType", getOrderByType()
-		).setParameter(
-			"cur",
-			() -> {
-				int cur = ParamUtil.getInteger(
-					_httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
-
-				if (cur > 0) {
-					return cur;
-				}
-
-				return null;
-			}
 		).buildPortletURL();
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {

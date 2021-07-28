@@ -491,23 +491,36 @@ public class DLAdminManagementToolbarDisplayContext
 
 				return HtmlUtil.escapeJS(navigation);
 			}
+		).setParameter(
+			"curEntry",
+			() -> {
+				if (curEntry > 0) {
+					return curEntry;
+				}
+
+				return null;
+			}
+		).setParameter(
+			"deltaEntry",
+			() -> {
+				if (deltaEntry > 0) {
+					return deltaEntry;
+				}
+
+				return null;
+			}
+		).setParameter(
+			"folderId", folderId
+		).setParameter(
+			"fileEntryTypeId",
+			() -> {
+				if (fileEntryTypeId != -1) {
+					return fileEntryTypeId;
+				}
+
+				return null;
+			}
 		).buildPortletURL();
-
-		if (curEntry > 0) {
-			displayStyleURL.setParameter("curEntry", String.valueOf(curEntry));
-		}
-
-		if (deltaEntry > 0) {
-			displayStyleURL.setParameter(
-				"deltaEntry", String.valueOf(deltaEntry));
-		}
-
-		displayStyleURL.setParameter("folderId", String.valueOf(folderId));
-
-		if (fileEntryTypeId != -1) {
-			displayStyleURL.setParameter(
-				"fileEntryTypeId", String.valueOf(fileEntryTypeId));
-		}
 
 		return new ViewTypeItemList(displayStyleURL, _getDisplayStyle()) {
 			{

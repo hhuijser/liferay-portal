@@ -1116,13 +1116,18 @@ public class UIItemsBuilder {
 			_getLiferayPortletResponse()
 		).setActionName(
 			mvcActionCommandName
+		).setParameter(
+			Constants.CMD,
+			() -> {
+				if (Validator.isNotNull(cmd)) {
+					return cmd;
+				}
+
+				return null;
+			}
+		).setParameter(
+			"redirect", redirect
 		).buildPortletURL();
-
-		if (Validator.isNotNull(cmd)) {
-			portletURL.setParameter(Constants.CMD, cmd);
-		}
-
-		portletURL.setParameter("redirect", redirect);
 
 		return portletURL;
 	}
@@ -1142,11 +1147,16 @@ public class UIItemsBuilder {
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).buildPortletURL();
+		).setParameter(
+			"redirect",
+			() -> {
+				if (Validator.isNotNull(redirect)) {
+					return redirect;
+				}
 
-		if (Validator.isNotNull(redirect)) {
-			portletURL.setParameter("redirect", redirect);
-		}
+				return null;
+			}
+		).buildPortletURL();
 
 		if (_fileShortcut != null) {
 			portletURL.setParameter(
@@ -1280,11 +1290,16 @@ public class UIItemsBuilder {
 			_getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).buildPortletURL();
+		).setParameter(
+			"redirect",
+			() -> {
+				if (Validator.isNotNull(redirect)) {
+					return redirect;
+				}
 
-		if (Validator.isNotNull(redirect)) {
-			portletURL.setParameter("redirect", redirect);
-		}
+				return null;
+			}
+		).buildPortletURL();
 
 		if (_fileShortcut != null) {
 			portletURL.setParameter(

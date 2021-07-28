@@ -190,6 +190,9 @@ public class FragmentCollectionsDisplayContext {
 		).setParameter(
 			"eventName", getEventName()
 		).setParameter(
+			"includeGlobalFragmentCollections",
+			_isIncludeGlobalFragmentCollections()
+		).setParameter(
 			"orderByCol",
 			() -> {
 				String orderByCol = _getOrderByCol();
@@ -211,9 +214,6 @@ public class FragmentCollectionsDisplayContext {
 
 				return null;
 			}
-		).setParameter(
-			"includeGlobalFragmentCollections",
-			_isIncludeGlobalFragmentCollections()
 		).buildPortletURL();
 
 		return portletURL;

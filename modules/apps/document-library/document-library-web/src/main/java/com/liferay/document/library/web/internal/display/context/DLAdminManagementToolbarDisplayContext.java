@@ -459,13 +459,7 @@ public class DLAdminManagementToolbarDisplayContext
 			return null;
 		}
 
-		int curEntry = ParamUtil.getInteger(_httpServletRequest, "curEntry");
-		int deltaEntry = ParamUtil.getInteger(
-			_httpServletRequest, "deltaEntry");
-
 		long folderId = _getFolderId();
-
-		long fileEntryTypeId = _getFileEntryTypeId();
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 
@@ -494,6 +488,9 @@ public class DLAdminManagementToolbarDisplayContext
 		).setParameter(
 			"curEntry",
 			() -> {
+				int curEntry = ParamUtil.getInteger(
+					_httpServletRequest, "curEntry");
+
 				if (curEntry > 0) {
 					return curEntry;
 				}
@@ -503,6 +500,9 @@ public class DLAdminManagementToolbarDisplayContext
 		).setParameter(
 			"deltaEntry",
 			() -> {
+				int deltaEntry = ParamUtil.getInteger(
+					_httpServletRequest, "deltaEntry");
+
 				if (deltaEntry > 0) {
 					return deltaEntry;
 				}
@@ -514,6 +514,8 @@ public class DLAdminManagementToolbarDisplayContext
 		).setParameter(
 			"fileEntryTypeId",
 			() -> {
+				long fileEntryTypeId = _getFileEntryTypeId();
+
 				if (fileEntryTypeId != -1) {
 					return fileEntryTypeId;
 				}

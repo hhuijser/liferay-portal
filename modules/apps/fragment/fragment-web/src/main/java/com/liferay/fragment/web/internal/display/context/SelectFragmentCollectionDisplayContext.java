@@ -147,10 +147,7 @@ public class SelectFragmentCollectionDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/select_fragment_collection"
-		).setParameter(
-			"eventName", getEventName()
-		).setParameter(
-			"keywords",
+		).setKeywords(
 			() -> {
 				String keywords = _getKeywords();
 
@@ -160,6 +157,8 @@ public class SelectFragmentCollectionDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"eventName", getEventName()
 		).setParameter(
 			"orderByCol",
 			() -> {

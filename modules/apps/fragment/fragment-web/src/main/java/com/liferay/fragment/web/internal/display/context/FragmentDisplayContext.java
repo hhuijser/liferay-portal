@@ -717,6 +717,16 @@ public class FragmentDisplayContext {
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view"
+		).setKeywords(
+			() -> {
+				String keywords = _getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"fragmentCollectionId",
 			() -> {
@@ -735,17 +745,6 @@ public class FragmentDisplayContext {
 
 				if (Validator.isNotNull(fragmentCollectionKey)) {
 					return fragmentCollectionKey;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = _getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

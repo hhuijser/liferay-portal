@@ -300,11 +300,16 @@ public class BlogEntriesManagementToolbarDisplayContext
 			"/blogs/view"
 		).setParameter(
 			SearchContainer.DEFAULT_CUR_PARAM, "0"
-		).buildPortletURL();
+		).setParameter(
+			"keywords",
+			() -> {
+				if (_isSearch()) {
+					return _getKeywords();
+				}
 
-		if (_isSearch()) {
-			sortingURL.setParameter("keywords", _getKeywords());
-		}
+				return null;
+			}
+		).buildPortletURL();
 
 		return sortingURL;
 	}

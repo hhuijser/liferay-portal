@@ -173,30 +173,47 @@ public class BlogImagesManagementToolbarDisplayContext
 			"/blogs/view"
 		).setNavigation(
 			"images"
+		).setParameter(
+			"delta",
+			() -> {
+				int delta = ParamUtil.getInteger(
+					_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM);
+
+				if (delta > 0) {
+					return delta;
+				}
+
+				return null;
+			}
+		).setParameter(
+			"orderByCol", getOrderByCol()
+		).setParameter(
+			"orderByType", getOrderByType()
+		).setParameter(
+			"cur",
+			() -> {
+				int cur = ParamUtil.getInteger(
+					_httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
+
+				if (cur > 0) {
+					return cur;
+				}
+
+				return null;
+			}
+		).setParameter(
+			"keywords",
+			() -> {
+				String keywords = ParamUtil.getString(
+					_httpServletRequest, "keywords");
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).buildPortletURL();
-
-		int delta = ParamUtil.getInteger(
-			_httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM);
-
-		if (delta > 0) {
-			portletURL.setParameter("delta", String.valueOf(delta));
-		}
-
-		portletURL.setParameter("orderByCol", getOrderByCol());
-		portletURL.setParameter("orderByType", getOrderByType());
-
-		int cur = ParamUtil.getInteger(
-			_httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
-
-		if (cur > 0) {
-			portletURL.setParameter("cur", String.valueOf(cur));
-		}
-
-		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
-
-		if (Validator.isNotNull(keywords)) {
-			portletURL.setParameter("keywords", keywords);
-		}
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
 			{
@@ -212,13 +229,19 @@ public class BlogImagesManagementToolbarDisplayContext
 			getPortletURL()
 		).setParameter(
 			SearchContainer.DEFAULT_CUR_PARAM, "0"
+		).setParameter(
+			"keywords",
+			() -> {
+				String keywords = ParamUtil.getString(
+					_httpServletRequest, "keywords");
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).buildPortletURL();
-
-		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
-
-		if (Validator.isNotNull(keywords)) {
-			sortingURL.setParameter("keywords", keywords);
-		}
 
 		return sortingURL;
 	}

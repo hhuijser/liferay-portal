@@ -1112,7 +1112,7 @@ public class UIItemsBuilder {
 	private PortletURL _getActionURL(
 		String mvcActionCommandName, String cmd, String redirect) {
 
-		PortletURL portletURL = PortletURLBuilder.createActionURL(
+		return PortletURLBuilder.createActionURL(
 			_getLiferayPortletResponse()
 		).setActionName(
 			mvcActionCommandName
@@ -1127,8 +1127,6 @@ public class UIItemsBuilder {
 		).setRedirect(
 			redirect
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	private PortletURL _getControlPanelRenderURL(String mvcRenderCommandName) {

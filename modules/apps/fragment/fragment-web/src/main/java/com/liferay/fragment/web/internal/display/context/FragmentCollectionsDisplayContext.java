@@ -179,29 +179,43 @@ public class FragmentCollectionsDisplayContext {
 			"/fragment/view_fragment_collections"
 		).setParameter(
 			"eventName", getEventName()
-		).buildPortletURL();
+		).setParameter(
+			"keywords",
+			() -> {
+				String keywords = _getKeywords();
 
-		String keywords = _getKeywords();
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
 
-		if (Validator.isNotNull(keywords)) {
-			portletURL.setParameter("keywords", keywords);
-		}
+				return null;
+			}
+		).setParameter(
+			"orderByCol",
+			() -> {
+				String orderByCol = _getOrderByCol();
 
-		String orderByCol = _getOrderByCol();
+				if (Validator.isNotNull(orderByCol)) {
+					return orderByCol;
+				}
 
-		if (Validator.isNotNull(orderByCol)) {
-			portletURL.setParameter("orderByCol", orderByCol);
-		}
+				return null;
+			}
+		).setParameter(
+			"orderByType",
+			() -> {
+				String orderByType = getOrderByType();
 
-		String orderByType = getOrderByType();
+				if (Validator.isNotNull(orderByType)) {
+					return orderByType;
+				}
 
-		if (Validator.isNotNull(orderByType)) {
-			portletURL.setParameter("orderByType", orderByType);
-		}
-
-		portletURL.setParameter(
+				return null;
+			}
+		).setParameter(
 			"includeGlobalFragmentCollections",
-			String.valueOf(_isIncludeGlobalFragmentCollections()));
+			_isIncludeGlobalFragmentCollections()
+		).buildPortletURL();
 
 		return portletURL;
 	}

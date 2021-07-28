@@ -205,6 +205,16 @@ public class DLSelectDDMStructureDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/document_library/ddm/select_ddm_structure.jsp"
+		).setKeywords(
+			() -> {
+				String keywords = _getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"ddmStructureId",
 			() -> {
@@ -212,17 +222,6 @@ public class DLSelectDDMStructureDisplayContext {
 
 				if (ddmStructureId != 0) {
 					return ddmStructureId;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = _getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

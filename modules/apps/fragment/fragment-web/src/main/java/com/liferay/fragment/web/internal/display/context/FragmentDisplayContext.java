@@ -528,7 +528,7 @@ public class FragmentDisplayContext {
 			return redirect;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view"
@@ -541,9 +541,7 @@ public class FragmentDisplayContext {
 
 				return null;
 			}
-		).buildPortletURL();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public boolean hasDeletePermission() {

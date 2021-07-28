@@ -173,7 +173,7 @@ public class FragmentCollectionsDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view_fragment_collections"
@@ -215,8 +215,6 @@ public class FragmentCollectionsDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	private boolean _isIncludeGlobalFragmentCollections() {

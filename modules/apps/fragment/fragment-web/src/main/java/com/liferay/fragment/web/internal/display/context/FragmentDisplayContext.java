@@ -713,7 +713,7 @@ public class FragmentDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/view"
@@ -772,8 +772,6 @@ public class FragmentDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	private long _getSelectedFragmentCollectionId() {

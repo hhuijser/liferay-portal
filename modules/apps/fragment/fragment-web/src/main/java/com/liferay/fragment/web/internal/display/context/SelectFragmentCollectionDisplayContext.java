@@ -143,7 +143,7 @@ public class SelectFragmentCollectionDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCRenderCommandName(
 			"/fragment/select_fragment_collection"
@@ -182,8 +182,6 @@ public class SelectFragmentCollectionDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	private OrderByComparator<FragmentCollection>

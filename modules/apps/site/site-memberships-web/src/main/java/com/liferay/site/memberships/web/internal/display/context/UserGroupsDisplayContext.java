@@ -166,19 +166,6 @@ public class UserGroupsDisplayContext {
 		).setTabs1(
 			"user-groups"
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
-			"roleId",
-			() -> {
-				Role role = getRole();
-
-				if (role != null) {
-					return role.getRoleId();
-				}
-
-				return null;
-			}
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -189,6 +176,8 @@ public class UserGroupsDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"groupId", getGroupId()
 		).setParameter(
 			"orderByCol",
 			() -> {
@@ -207,6 +196,17 @@ public class UserGroupsDisplayContext {
 
 				if (Validator.isNotNull(orderByType)) {
 					return orderByType;
+				}
+
+				return null;
+			}
+		).setParameter(
+			"roleId",
+			() -> {
+				Role role = getRole();
+
+				if (role != null) {
+					return role.getRoleId();
 				}
 
 				return null;

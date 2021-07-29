@@ -135,8 +135,6 @@ public class SelectUsersDisplayContext {
 		).setParameter(
 			"eventName", getEventName()
 		).setParameter(
-			"teamId", getTeamId()
-		).setParameter(
 			"orderByCol",
 			() -> {
 				String orderByCol = getOrderByCol();
@@ -158,6 +156,8 @@ public class SelectUsersDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"teamId", getTeamId()
 		).buildPortletURL();
 
 		return portletURL;

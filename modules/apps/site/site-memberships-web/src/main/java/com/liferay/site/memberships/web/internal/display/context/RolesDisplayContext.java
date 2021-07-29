@@ -148,12 +148,6 @@ public class RolesDisplayContext {
 				return null;
 			}
 		).setParameter(
-			"eventName", getEventName()
-		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
-			"roleType", getRoleType()
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -164,6 +158,10 @@ public class RolesDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"eventName", getEventName()
+		).setParameter(
+			"groupId", getGroupId()
 		).setParameter(
 			"orderByCol",
 			() -> {
@@ -186,6 +184,8 @@ public class RolesDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"roleType", getRoleType()
 		).buildPortletURL();
 
 		return portletURL;

@@ -203,8 +203,6 @@ public class OrganizationsDisplayContext {
 		).setTabs1(
 			"organizations"
 		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -215,6 +213,8 @@ public class OrganizationsDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"groupId", getGroupId()
 		).setParameter(
 			"orderByCol",
 			() -> {

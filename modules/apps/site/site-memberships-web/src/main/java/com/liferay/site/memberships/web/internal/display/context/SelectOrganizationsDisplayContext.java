@@ -226,10 +226,6 @@ public class SelectOrganizationsDisplayContext {
 				return null;
 			}
 		).setParameter(
-			"eventName", getEventName()
-		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -240,6 +236,10 @@ public class SelectOrganizationsDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"eventName", getEventName()
+		).setParameter(
+			"groupId", getGroupId()
 		).setParameter(
 			"orderByCol",
 			() -> {

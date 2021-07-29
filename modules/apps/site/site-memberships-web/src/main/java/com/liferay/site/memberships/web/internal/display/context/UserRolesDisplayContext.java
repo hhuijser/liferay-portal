@@ -170,8 +170,6 @@ public class UserRolesDisplayContext {
 				return null;
 			}
 		).setParameter(
-			"p_u_i_d", _getUserId()
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -206,6 +204,8 @@ public class UserRolesDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"p_u_i_d", _getUserId()
 		).setParameter(
 			"roleType",
 			() -> {

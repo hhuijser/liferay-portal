@@ -156,8 +156,6 @@ public class UserGroupRolesDisplayContext {
 		).setParameter(
 			"assignRoles", _isAssignRoles()
 		).setParameter(
-			"userGroupId", getUserGroupId()
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -190,6 +188,8 @@ public class UserGroupRolesDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"userGroupId", getUserGroupId()
 		).buildPortletURL();
 
 		return portletURL;

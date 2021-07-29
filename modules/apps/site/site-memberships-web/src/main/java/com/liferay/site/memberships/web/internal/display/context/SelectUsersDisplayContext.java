@@ -144,10 +144,6 @@ public class SelectUsersDisplayContext {
 				return null;
 			}
 		).setParameter(
-			"eventName", getEventName()
-		).setParameter(
-			"groupId", getGroupId()
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -158,6 +154,10 @@ public class SelectUsersDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"eventName", getEventName()
+		).setParameter(
+			"groupId", getGroupId()
 		).setParameter(
 			"orderByCol",
 			() -> {

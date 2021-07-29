@@ -145,15 +145,6 @@ public class ViewMembershipRequestsDisplayContext {
 				return null;
 			}
 		).setParameter(
-			"groupId",
-			() -> {
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)_httpServletRequest.getAttribute(
-						WebKeys.THEME_DISPLAY);
-
-				return themeDisplay.getSiteGroupIdOrLiveGroupId();
-			}
-		).setParameter(
 			"displayStyle",
 			() -> {
 				String displayStyle = getDisplayStyle();
@@ -163,6 +154,15 @@ public class ViewMembershipRequestsDisplayContext {
 				}
 
 				return null;
+			}
+		).setParameter(
+			"groupId",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)_httpServletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return themeDisplay.getSiteGroupIdOrLiveGroupId();
 			}
 		).setParameter(
 			"orderByCol",

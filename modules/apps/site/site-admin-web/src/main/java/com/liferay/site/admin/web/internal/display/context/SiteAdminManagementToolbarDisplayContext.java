@@ -120,16 +120,21 @@ public class SiteAdminManagementToolbarDisplayContext
 				"/site_admin/select_site_initializer"
 			).setRedirect(
 				themeDisplay.getURLCurrent()
+			).setParameter(
+				"parentGroupId",
+				() -> {
+					Group group = _siteAdminDisplayContext.getGroup();
+
+					if ((group != null) &&
+						_siteAdminDisplayContext.hasAddChildSitePermission(
+							group)) {
+
+						return group.getGroupId();
+					}
+
+					return null;
+				}
 			).buildPortletURL();
-
-			Group group = _siteAdminDisplayContext.getGroup();
-
-			if ((group != null) &&
-				_siteAdminDisplayContext.hasAddChildSitePermission(group)) {
-
-				addSiteURL.setParameter(
-					"parentGroupId", String.valueOf(group.getGroupId()));
-			}
 
 			return CreationMenuBuilder.addPrimaryDropdownItem(
 				dropdownItem -> {

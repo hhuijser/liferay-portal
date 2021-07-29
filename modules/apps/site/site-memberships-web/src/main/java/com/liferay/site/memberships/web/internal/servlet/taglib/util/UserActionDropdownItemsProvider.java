@@ -90,16 +90,20 @@ public class UserActionDropdownItemsProvider {
 			"groupId", _themeDisplay.getSiteGroupIdOrLiveGroupId()
 		).setParameter(
 			"p_u_i_d", _user.getUserId()
+		).setParameter(
+			"roleType",
+			() -> {
+				Group group = _themeDisplay.getScopeGroup();
+
+				if (!group.isSite() && group.isDepot()) {
+					return RoleConstants.TYPE_DEPOT;
+				}
+
+				return null;
+			}
+		).setWindowState(
+			LiferayWindowState.POP_UP
 		).buildPortletURL();
-
-		Group group = _themeDisplay.getScopeGroup();
-
-		if (!group.isSite() && group.isDepot()) {
-			assignRolesURL.setParameter(
-				"roleType", String.valueOf(RoleConstants.TYPE_DEPOT));
-		}
-
-		assignRolesURL.setWindowState(LiferayWindowState.POP_UP);
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "assignRoles");

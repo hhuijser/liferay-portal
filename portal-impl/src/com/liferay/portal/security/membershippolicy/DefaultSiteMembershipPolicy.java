@@ -209,7 +209,7 @@ public class DefaultSiteMembershipPolicy extends BaseSiteMembershipPolicy {
 
 		int total = UserLocalServiceUtil.getGroupUsersCount(group.getGroupId());
 
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(total);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(

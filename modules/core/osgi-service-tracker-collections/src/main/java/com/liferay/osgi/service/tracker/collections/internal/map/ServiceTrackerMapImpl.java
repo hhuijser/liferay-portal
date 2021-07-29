@@ -248,7 +248,7 @@ public class ServiceTrackerMapImpl<K, SR, TS, R>
 		@SuppressWarnings({"rawtypes", "unchecked"})
 		public void modifiedService(
 			ServiceReference<SR> serviceReference,
-			final KeyedServiceReferenceServiceTuple<SR, TS, K>
+			KeyedServiceReferenceServiceTuple<SR, TS, K>
 				keyedServiceReferenceServiceTuple) {
 
 			_removeKeys(keyedServiceReferenceServiceTuple);
@@ -272,7 +272,7 @@ public class ServiceTrackerMapImpl<K, SR, TS, R>
 		@Override
 		public void removedService(
 			ServiceReference<SR> serviceReference,
-			final KeyedServiceReferenceServiceTuple<SR, TS, K>
+			KeyedServiceReferenceServiceTuple<SR, TS, K>
 				keyedServiceReferenceServiceTuple) {
 
 			_removeKeys(keyedServiceReferenceServiceTuple);

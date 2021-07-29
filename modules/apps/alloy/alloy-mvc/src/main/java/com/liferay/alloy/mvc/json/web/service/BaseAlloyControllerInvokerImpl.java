@@ -165,8 +165,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		final User user = UserLocalServiceUtil.getUser(
-			permissionChecker.getUserId());
+		User user = UserLocalServiceUtil.getUser(permissionChecker.getUserId());
 
 		HttpServletRequestWrapper requestWrapper =
 			new HttpServletRequestWrapper(

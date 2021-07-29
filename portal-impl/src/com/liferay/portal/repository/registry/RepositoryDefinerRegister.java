@@ -33,7 +33,7 @@ import java.util.function.BiFunction;
 public class RepositoryDefinerRegister {
 
 	public void afterPropertiesSet() {
-		final Registry registry = RegistryUtil.getRegistry();
+		Registry registry = RegistryUtil.getRegistry();
 
 		_serviceTracker = registry.trackServices(
 			PortalCapabilityLocator.class,

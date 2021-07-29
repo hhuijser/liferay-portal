@@ -225,7 +225,7 @@ public class VirtualHostLocalServiceImpl
 
 		virtualHostPersistence.cacheResult(virtualHosts);
 
-		final Company company = companyPersistence.fetchByPrimaryKey(companyId);
+		Company company = companyPersistence.fetchByPrimaryKey(companyId);
 
 		if (company != null) {
 			TransactionCommitCallbackUtil.registerCallback(

@@ -660,7 +660,7 @@ public class DLFileEntryLocalServiceImpl
 			long groupId, long folderId, boolean includeTrashedEntries)
 		throws PortalException {
 
-		final RepositoryEventTrigger repositoryEventTrigger =
+		RepositoryEventTrigger repositoryEventTrigger =
 			getFolderRepositoryEventTrigger(groupId, folderId);
 
 		ActionableDynamicQuery actionableDynamicQuery =
@@ -925,12 +925,12 @@ public class DLFileEntryLocalServiceImpl
 	public void deleteRepositoryFileEntries(long repositoryId)
 		throws PortalException {
 
-		final RepositoryEventTrigger repositoryEventTrigger =
+		RepositoryEventTrigger repositoryEventTrigger =
 			RepositoryUtil.getRepositoryEventTrigger(repositoryId);
 
 		int total = dlFileEntryPersistence.countByRepositoryId(repositoryId);
 
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(total);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
@@ -965,12 +965,12 @@ public class DLFileEntryLocalServiceImpl
 			long repositoryId, long folderId, boolean includeTrashedEntries)
 		throws PortalException {
 
-		final RepositoryEventTrigger repositoryEventTrigger =
+		RepositoryEventTrigger repositoryEventTrigger =
 			RepositoryUtil.getRepositoryEventTrigger(repositoryId);
 
 		int total = dlFileEntryPersistence.countByR_F(repositoryId, folderId);
 
-		final IntervalActionProcessor<Void> intervalActionProcessor =
+		IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(total);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(

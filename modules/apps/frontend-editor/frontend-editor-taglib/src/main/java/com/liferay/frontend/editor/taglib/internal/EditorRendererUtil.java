@@ -39,7 +39,7 @@ public class EditorRendererUtil {
 		return _editorRendererMap.get(name);
 	}
 
-	public static void start(final BundleContext bundleContext) {
+	public static void start(BundleContext bundleContext) {
 		_serviceTracker = new ServiceTracker<EditorRenderer, EditorRenderer>(
 			bundleContext, EditorRenderer.class,
 			new ServiceTrackerCustomizer<EditorRenderer, EditorRenderer>() {

@@ -90,9 +90,7 @@ public class ImageToolImpl implements ImageTool {
 	}
 
 	@Override
-	public Future<RenderedImage> convertCMYKtoRGB(
-		byte[] bytes, final String type) {
-
+	public Future<RenderedImage> convertCMYKtoRGB(byte[] bytes, String type) {
 		ImageMagick imageMagick = getImageMagick();
 
 		if (!imageMagick.isEnabled()) {

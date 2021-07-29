@@ -1232,8 +1232,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 		return searchContext;
 	}
 
-	protected Company doDeleteCompany(final long companyId)
-		throws PortalException {
+	protected Company doDeleteCompany(long companyId) throws PortalException {
 
 		// Company
 

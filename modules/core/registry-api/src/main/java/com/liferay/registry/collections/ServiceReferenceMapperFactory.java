@@ -24,7 +24,7 @@ import com.liferay.registry.ServiceReference;
 public class ServiceReferenceMapperFactory {
 
 	public static <K, S> ServiceReferenceMapper<K, S> create(
-		final ServiceMapper<K, S> serviceMapper) {
+		ServiceMapper<K, S> serviceMapper) {
 
 		return new ServiceReferenceMapper<K, S>() {
 
@@ -48,7 +48,7 @@ public class ServiceReferenceMapperFactory {
 	}
 
 	public static <K, S> ServiceReferenceMapper<K, S> create(
-		final String propertyKey) {
+		String propertyKey) {
 
 		return new ServiceReferenceMapper<K, S>() {
 

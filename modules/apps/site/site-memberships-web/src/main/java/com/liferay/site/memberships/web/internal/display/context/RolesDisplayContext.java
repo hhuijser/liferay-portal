@@ -133,7 +133,7 @@ public class RolesDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/site_roles.jsp"
@@ -187,8 +187,6 @@ public class RolesDisplayContext {
 		).setParameter(
 			"roleType", getRoleType()
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<Role> getRoleSearchSearchContainer()

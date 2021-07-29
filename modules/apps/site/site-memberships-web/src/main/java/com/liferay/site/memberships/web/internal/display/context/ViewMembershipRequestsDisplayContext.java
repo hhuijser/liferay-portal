@@ -128,7 +128,7 @@ public class ViewMembershipRequestsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/view_membership_requests.jsp"
@@ -187,8 +187,6 @@ public class ViewMembershipRequestsDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<MembershipRequest>

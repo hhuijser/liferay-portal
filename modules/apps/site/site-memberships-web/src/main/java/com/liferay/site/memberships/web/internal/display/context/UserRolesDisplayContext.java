@@ -154,7 +154,7 @@ public class UserRolesDisplayContext {
 	}
 
 	private PortletURL _getPortletURL() throws PortalException {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/users_roles.jsp"
@@ -218,8 +218,6 @@ public class UserRolesDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	private int _getRoleType() {

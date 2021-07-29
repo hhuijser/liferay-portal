@@ -108,7 +108,7 @@ public class SelectTeamDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/select_team.jsp"
@@ -147,8 +147,6 @@ public class SelectTeamDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<Team> getTeamSearchContainer() {

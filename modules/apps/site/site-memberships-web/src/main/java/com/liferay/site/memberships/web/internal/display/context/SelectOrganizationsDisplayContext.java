@@ -211,7 +211,7 @@ public class SelectOrganizationsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/select_organizations.jsp"
@@ -263,8 +263,6 @@ public class SelectOrganizationsDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	private String _displayStyle;

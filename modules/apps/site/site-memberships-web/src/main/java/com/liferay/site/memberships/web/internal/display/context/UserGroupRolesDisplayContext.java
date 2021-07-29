@@ -139,7 +139,7 @@ public class UserGroupRolesDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/user_groups_roles.jsp"
@@ -191,8 +191,6 @@ public class UserGroupRolesDisplayContext {
 		).setParameter(
 			"userGroupId", getUserGroupId()
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<Role> getRoleSearchSearchContainer()

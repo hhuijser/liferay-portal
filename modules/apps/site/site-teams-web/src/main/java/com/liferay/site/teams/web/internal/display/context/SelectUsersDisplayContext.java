@@ -116,7 +116,7 @@ public class SelectUsersDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/select_users.jsp"
@@ -159,8 +159,6 @@ public class SelectUsersDisplayContext {
 		).setParameter(
 			"teamId", getTeamId()
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public String getRedirect() {

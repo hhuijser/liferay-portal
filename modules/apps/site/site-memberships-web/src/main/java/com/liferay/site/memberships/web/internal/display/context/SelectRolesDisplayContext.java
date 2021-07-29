@@ -131,7 +131,7 @@ public class SelectRolesDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/select_site_role.jsp"
@@ -185,8 +185,6 @@ public class SelectRolesDisplayContext {
 		).setParameter(
 			"roleType", getRoleType()
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<Role> getRoleSearchSearchContainer()

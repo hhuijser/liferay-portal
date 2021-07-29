@@ -129,7 +129,7 @@ public class SelectUsersDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/select_users.jsp"
@@ -181,8 +181,6 @@ public class SelectUsersDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<User> getUserSearchContainer() {

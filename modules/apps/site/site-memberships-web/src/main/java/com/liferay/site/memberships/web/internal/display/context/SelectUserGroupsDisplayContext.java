@@ -126,7 +126,7 @@ public class SelectUserGroupsDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_renderResponse
 		).setMVCPath(
 			"/select_user_groups.jsp"
@@ -178,8 +178,6 @@ public class SelectUserGroupsDisplayContext {
 				return null;
 			}
 		).buildPortletURL();
-
-		return portletURL;
 	}
 
 	public SearchContainer<UserGroup> getUserGroupSearchContainer() {

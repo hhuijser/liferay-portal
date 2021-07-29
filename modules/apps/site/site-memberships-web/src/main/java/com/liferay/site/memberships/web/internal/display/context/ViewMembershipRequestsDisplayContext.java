@@ -133,8 +133,6 @@ public class ViewMembershipRequestsDisplayContext {
 		).setMVCPath(
 			"/view_membership_requests.jsp"
 		).setTabs1(
-			getTabs1()
-		).setTabs1(
 			() -> {
 				String tabs1 = getTabs1();
 

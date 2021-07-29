@@ -190,6 +190,16 @@ public class OrganizationsDisplayContext {
 
 				return themeDisplay.getURLCurrent();
 			}
+		).setKeywords(
+			() -> {
+				String keywords = getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setTabs1(
 			"organizations"
 		).setParameter(
@@ -201,17 +211,6 @@ public class OrganizationsDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

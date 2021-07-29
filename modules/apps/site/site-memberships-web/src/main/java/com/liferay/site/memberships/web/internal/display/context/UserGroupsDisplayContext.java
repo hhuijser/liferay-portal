@@ -143,6 +143,26 @@ public class UserGroupsDisplayContext {
 
 				return themeDisplay.getURLCurrent();
 			}
+		).setKeywords(
+			() -> {
+				String keywords = getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
+		).setNavigation(
+			() -> {
+				String navigation = getNavigation();
+
+				if (Validator.isNotNull(navigation)) {
+					return navigation;
+				}
+
+				return null;
+			}
 		).setTabs1(
 			"user-groups"
 		).setParameter(
@@ -165,28 +185,6 @@ public class UserGroupsDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"navigation",
-			() -> {
-				String navigation = getNavigation();
-
-				if (Validator.isNotNull(navigation)) {
-					return navigation;
 				}
 
 				return null;

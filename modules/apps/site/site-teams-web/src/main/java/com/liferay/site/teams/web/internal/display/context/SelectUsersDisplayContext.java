@@ -122,12 +122,7 @@ public class SelectUsersDisplayContext {
 			"/select_users.jsp"
 		).setRedirect(
 			getRedirect()
-		).setParameter(
-			"eventName", getEventName()
-		).setParameter(
-			"teamId", getTeamId()
-		).setParameter(
-			"keywords",
+		).setKeywords(
 			() -> {
 				String keywords = getKeywords();
 
@@ -137,6 +132,10 @@ public class SelectUsersDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"eventName", getEventName()
+		).setParameter(
+			"teamId", getTeamId()
 		).setParameter(
 			"orderByCol",
 			() -> {

@@ -143,6 +143,16 @@ public class UserGroupRolesDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/user_groups_roles.jsp"
+		).setKeywords(
+			() -> {
+				String keywords = getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"assignRoles", _isAssignRoles()
 		).setParameter(
@@ -154,17 +164,6 @@ public class UserGroupRolesDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

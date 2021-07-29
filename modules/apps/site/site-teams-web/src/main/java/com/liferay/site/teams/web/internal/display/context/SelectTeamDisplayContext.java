@@ -112,10 +112,7 @@ public class SelectTeamDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_team.jsp"
-		).setParameter(
-			"eventName", getEventName()
-		).setParameter(
-			"keywords",
+		).setKeywords(
 			() -> {
 				String keywords = getKeywords();
 
@@ -125,6 +122,8 @@ public class SelectTeamDisplayContext {
 
 				return null;
 			}
+		).setParameter(
+			"eventName", getEventName()
 		).setParameter(
 			"orderByCol",
 			() -> {

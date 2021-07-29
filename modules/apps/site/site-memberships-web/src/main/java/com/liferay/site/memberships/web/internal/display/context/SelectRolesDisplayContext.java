@@ -135,6 +135,16 @@ public class SelectRolesDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_site_role.jsp"
+		).setKeywords(
+			() -> {
+				String keywords = getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"eventName", getEventName()
 		).setParameter(
@@ -148,17 +158,6 @@ public class SelectRolesDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

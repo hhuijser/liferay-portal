@@ -158,6 +158,17 @@ public class UserRolesDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/users_roles.jsp"
+		).setKeywords(
+			() -> {
+				String keywords = ParamUtil.getString(
+					_renderRequest, "keywords");
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"p_u_i_d", _getUserId()
 		).setParameter(
@@ -167,18 +178,6 @@ public class UserRolesDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = ParamUtil.getString(
-					_renderRequest, "keywords");
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

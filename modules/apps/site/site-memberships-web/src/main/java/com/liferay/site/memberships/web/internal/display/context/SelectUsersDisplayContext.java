@@ -133,6 +133,16 @@ public class SelectUsersDisplayContext {
 			_renderResponse
 		).setMVCPath(
 			"/select_users.jsp"
+		).setKeywords(
+			() -> {
+				String keywords = getKeywords();
+
+				if (Validator.isNotNull(keywords)) {
+					return keywords;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"eventName", getEventName()
 		).setParameter(
@@ -144,17 +154,6 @@ public class SelectUsersDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"keywords",
-			() -> {
-				String keywords = getKeywords();
-
-				if (Validator.isNotNull(keywords)) {
-					return keywords;
 				}
 
 				return null;

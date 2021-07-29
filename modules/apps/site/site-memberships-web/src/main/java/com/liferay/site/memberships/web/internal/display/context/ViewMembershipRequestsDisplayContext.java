@@ -134,6 +134,16 @@ public class ViewMembershipRequestsDisplayContext {
 			"/view_membership_requests.jsp"
 		).setTabs1(
 			getTabs1()
+		).setTabs1(
+			() -> {
+				String tabs1 = getTabs1();
+
+				if (Validator.isNotNull(tabs1)) {
+					return tabs1;
+				}
+
+				return null;
+			}
 		).setParameter(
 			"groupId",
 			() -> {
@@ -150,17 +160,6 @@ public class ViewMembershipRequestsDisplayContext {
 
 				if (Validator.isNotNull(displayStyle)) {
 					return displayStyle;
-				}
-
-				return null;
-			}
-		).setParameter(
-			"tabs1",
-			() -> {
-				String tabs1 = getTabs1();
-
-				if (Validator.isNotNull(tabs1)) {
-					return tabs1;
 				}
 
 				return null;

@@ -97,7 +97,7 @@ public class MBDiscussionStagingHandler implements DiscussionStagingHandler {
 
 	@Override
 	public ActionableDynamicQuery getCommentExportActionableDynamicQuery(
-		final PortletDataContext portletDataContext) {
+		PortletDataContext portletDataContext) {
 
 		final ExportActionableDynamicQuery actionableDynamicQuery =
 			MBMessageLocalServiceUtil.getExportActionableDynamicQuery(

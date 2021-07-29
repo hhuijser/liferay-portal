@@ -115,7 +115,7 @@ public class TagDynamicIncludeUtil {
 				@Override
 				public void map(
 					ServiceReference<TagDynamicInclude> serviceReference,
-					final Emitter<String> emitter) {
+					Emitter<String> emitter) {
 
 					Registry registry = RegistryUtil.getRegistry();
 

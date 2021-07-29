@@ -110,7 +110,7 @@ public class VelocityServletResourceParser extends URLResourceParser {
 	}
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	protected void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, ServletContext.class, null,
 			new ServiceReferenceMapper<String, ServletContext>() {

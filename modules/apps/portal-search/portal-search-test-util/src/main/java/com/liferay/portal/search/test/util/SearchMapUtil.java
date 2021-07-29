@@ -24,9 +24,8 @@ public class SearchMapUtil {
 
 	@SafeVarargs
 	public static <K, V> Map<K, V> join(
-		final Map<? extends K, ? extends V> map1,
-		final Map<? extends K, ? extends V> map2,
-		final Map<? extends K, ? extends V>... maps) {
+		Map<? extends K, ? extends V> map1, Map<? extends K, ? extends V> map2,
+		Map<? extends K, ? extends V>... maps) {
 
 		return new HashMap<K, V>() {
 			{

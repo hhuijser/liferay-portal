@@ -185,8 +185,8 @@ public class NettyRepository implements Repository<Channel> {
 	}
 
 	protected NoticeableFuture<Path> getFile(
-		Channel channel, final Path remoteFilePath, final Path localFilePath,
-		boolean deleteAfterFetch, final boolean populateCache) {
+		Channel channel, final Path remoteFilePath, Path localFilePath,
+		boolean deleteAfterFetch, boolean populateCache) {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Fetching remote file " + remoteFilePath);

@@ -105,8 +105,7 @@ public abstract class BaseAlloyControllerInvokerImpl
 	}
 
 	protected PageContext createPageContext(
-		final ServletRequest servletRequest,
-		final ServletResponse servletResponse) {
+		ServletRequest servletRequest, ServletResponse servletResponse) {
 
 		return new AlloyMockUtil.MockPageContext() {
 
@@ -128,8 +127,8 @@ public abstract class BaseAlloyControllerInvokerImpl
 	}
 
 	protected RenderResponse createRenderResponse(
-		final HttpServletRequest httpServletRequest, final String portletId,
-		final long plid, final String lifecycle) {
+		HttpServletRequest httpServletRequest, String portletId, long plid,
+		String lifecycle) {
 
 		return new AlloyMockUtil.MockRenderResponse() {
 

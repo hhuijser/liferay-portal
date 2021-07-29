@@ -191,7 +191,7 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 	}
 
 	protected Function<String, ServiceContext> createServiceContextFunction(
-		final int workflowAction) {
+		int workflowAction) {
 
 		return new Function<String, ServiceContext>() {
 
@@ -208,7 +208,7 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 	}
 
 	protected Function<String, ServiceContext> createServiceContextFunction(
-		final long companyId) {
+		long companyId) {
 
 		return new Function<String, ServiceContext>() {
 

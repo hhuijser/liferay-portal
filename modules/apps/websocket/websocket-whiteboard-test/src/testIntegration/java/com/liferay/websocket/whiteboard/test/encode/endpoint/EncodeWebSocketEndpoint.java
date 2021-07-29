@@ -31,7 +31,7 @@ import javax.websocket.Session;
 public class EncodeWebSocketEndpoint extends Endpoint {
 
 	@Override
-	public void onOpen(final Session session, EndpointConfig endpointConfig) {
+	public void onOpen(Session session, EndpointConfig endpointConfig) {
 		session.addMessageHandler(
 			new MessageHandler.Whole<Example>() {
 

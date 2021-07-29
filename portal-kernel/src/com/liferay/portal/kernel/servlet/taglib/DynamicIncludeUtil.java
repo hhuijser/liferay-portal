@@ -91,7 +91,7 @@ public class DynamicIncludeUtil {
 				@Override
 				public void map(
 					ServiceReference<DynamicInclude> serviceReference,
-					final Emitter<String> emitter) {
+					Emitter<String> emitter) {
 
 					Registry registry = RegistryUtil.getRegistry();
 

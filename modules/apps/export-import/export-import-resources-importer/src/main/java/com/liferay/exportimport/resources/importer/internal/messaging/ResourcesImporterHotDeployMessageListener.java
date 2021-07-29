@@ -68,7 +68,7 @@ public class ResourcesImporterHotDeployMessageListener
 	extends HotDeployMessageListener {
 
 	@Activate
-	protected void activate(final BundleContext bundleContext) {
+	protected void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
 
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(

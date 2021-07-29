@@ -35,8 +35,8 @@ import java.util.concurrent.TimeUnit;
 public class NettyUtil {
 
 	public static void bindShutdown(
-		EventExecutorGroup master, final EventExecutorGroup slave,
-		final long quietPeriod, final long timeout) {
+		EventExecutorGroup master, EventExecutorGroup slave, long quietPeriod,
+		long timeout) {
 
 		io.netty.util.concurrent.Future<?> future = master.terminationFuture();
 

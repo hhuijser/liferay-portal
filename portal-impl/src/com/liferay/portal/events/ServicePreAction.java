@@ -457,7 +457,7 @@ public class ServicePreAction extends Action {
 		return new LayoutComposite(layout, layouts);
 	}
 
-	private LayoutComposite _getDefaultUserSitesLayoutComposite(final User user)
+	private LayoutComposite _getDefaultUserSitesLayoutComposite(User user)
 		throws Exception {
 
 		final LinkedHashMap<String, Object> groupParams =

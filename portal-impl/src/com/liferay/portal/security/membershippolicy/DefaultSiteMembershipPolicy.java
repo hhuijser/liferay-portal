@@ -204,7 +204,7 @@ public class DefaultSiteMembershipPolicy extends BaseSiteMembershipPolicy {
 		}
 	}
 
-	protected void verifyLimitedParentMembership(final Group group)
+	protected void verifyLimitedParentMembership(Group group)
 		throws PortalException {
 
 		int total = UserLocalServiceUtil.getGroupUsersCount(group.getGroupId());

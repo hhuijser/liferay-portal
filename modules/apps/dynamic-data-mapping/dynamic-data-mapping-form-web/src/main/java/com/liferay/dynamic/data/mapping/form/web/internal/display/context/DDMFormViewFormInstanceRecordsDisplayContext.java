@@ -183,7 +183,7 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 
 		String ddmFormFieldType = ddmFormField.getType();
 
-		final DDMFormFieldValueRenderer ddmFormFieldValueRenderer =
+		DDMFormFieldValueRenderer ddmFormFieldValueRenderer =
 			_ddmFormFieldTypeServicesTracker.getDDMFormFieldValueRenderer(
 				ddmFormFieldType);
 

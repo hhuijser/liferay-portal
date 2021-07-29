@@ -101,7 +101,7 @@ public class NoticeableFutureConverterTest {
 
 	@Test
 	public void testCovertCausedExecutionException() throws Exception {
-		final Exception exception = new Exception();
+		Exception exception = new Exception();
 
 		NoticeableFuture<Object> noticeableFutureConverter =
 			new NoticeableFutureConverter<Object, Object>(

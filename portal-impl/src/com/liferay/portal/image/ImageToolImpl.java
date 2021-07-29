@@ -100,7 +100,7 @@ public class ImageToolImpl implements ImageTool {
 		}
 
 		File inputFile = _fileImpl.createTempFile(type);
-		final File outputFile = _fileImpl.createTempFile(type);
+		File outputFile = _fileImpl.createTempFile(type);
 
 		try {
 			_fileImpl.write(inputFile, bytes);

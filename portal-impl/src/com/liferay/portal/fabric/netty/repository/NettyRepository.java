@@ -192,7 +192,7 @@ public class NettyRepository implements Repository<Channel> {
 			_log.debug("Fetching remote file " + remoteFilePath);
 		}
 
-		final Path cachedLocalFilePath = pathMap.get(remoteFilePath);
+		Path cachedLocalFilePath = pathMap.get(remoteFilePath);
 
 		boolean[] newMarker = new boolean[1];
 

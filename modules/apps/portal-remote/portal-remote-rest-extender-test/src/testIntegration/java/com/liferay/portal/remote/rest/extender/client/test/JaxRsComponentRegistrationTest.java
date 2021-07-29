@@ -175,7 +175,7 @@ public class JaxRsComponentRegistrationTest {
 	}
 
 	private void _cleanUp() throws Exception {
-		final CountDownLatch countDownLatch = new CountDownLatch(1);
+		CountDownLatch countDownLatch = new CountDownLatch(1);
 
 		ServiceTracker<ServletContextHelper, ServletContextHelper>
 			serviceTracker =

@@ -152,7 +152,7 @@ public class RPCUtilTest {
 				<AttributeKey<AsyncBroker<Long, String>>>getFieldValue(
 					NettyChannelAttributes.class, "_asyncBrokerKey"));
 
-		final AtomicLong keyRef = new AtomicLong();
+		AtomicLong keyRef = new AtomicLong();
 
 		attribute.set(
 			new AsyncBroker<Long, String>() {

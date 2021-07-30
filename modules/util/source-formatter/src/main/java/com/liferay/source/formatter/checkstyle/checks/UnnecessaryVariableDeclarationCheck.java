@@ -53,8 +53,7 @@ public class UnnecessaryVariableDeclarationCheck
 		String variableName = nameDetailAST.getText();
 
 		_checkUnnecessaryListVariableDeclarationBeforeReturn(
-			detailAST, semiDetailAST, variableName,
-			_MSG_UNNECESSARY_LIST_VARIABLE_DECLARATION_BEFORE_RETURN);
+			detailAST, semiDetailAST, variableName);
 
 		checkUnnecessaryStatementBeforeReturn(
 			detailAST, semiDetailAST, variableName,
@@ -93,8 +92,7 @@ public class UnnecessaryVariableDeclarationCheck
 	}
 
 	private void _checkUnnecessaryListVariableDeclarationBeforeReturn(
-		DetailAST detailAST, DetailAST semiDetailAST, String variableName,
-		String messageKey) {
+		DetailAST detailAST, DetailAST semiDetailAST, String variableName) {
 
 		String variableTypeName = getVariableTypeName(
 			detailAST, variableName, false);
@@ -164,7 +162,10 @@ public class UnnecessaryVariableDeclarationCheck
 				if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
 					variableName.equals(firstChildDetailAST.getText())) {
 
-					log(detailAST, messageKey, variableName);
+					log(
+						detailAST,
+						_MSG_UNNECESSARY_LIST_DECLARATION_BEFORE_RETURN,
+						variableName);
 				}
 			}
 
@@ -173,8 +174,8 @@ public class UnnecessaryVariableDeclarationCheck
 	}
 
 	private static final String
-		_MSG_UNNECESSARY_LIST_VARIABLE_DECLARATION_BEFORE_RETURN =
-			"list.variable.declaration.unnecessary.before.return";
+		_MSG_UNNECESSARY_LIST_DECLARATION_BEFORE_RETURN =
+			"list.declaration.unnecessary.before.return";
 
 	private static final String
 		_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN =

@@ -70,7 +70,7 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			!_isUsedInFinallyStatement(detailAST, variableName)) {
 
 			if (!isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
-				checkUnnecessaryListVariableDeclarationBeforeReturn(
+				checkUnnecessaryListVariableBeforeReturn(
 					detailAST, semiDetailAST, variableName,
 					_MSG_UNNECESSARY_LIST_ASSIGN_BEFORE_RETURN);
 			}

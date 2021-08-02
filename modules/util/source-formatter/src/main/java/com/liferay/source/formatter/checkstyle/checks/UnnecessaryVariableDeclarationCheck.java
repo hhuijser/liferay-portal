@@ -15,7 +15,6 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
@@ -53,7 +52,7 @@ public class UnnecessaryVariableDeclarationCheck
 		String variableName = nameDetailAST.getText();
 
 		if (!isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
-			_checkUnnecessaryListVariableDeclarationBeforeReturn(
+			checkUnnecessaryListVariableDeclarationBeforeReturn(
 				detailAST, semiDetailAST, variableName,
 				_MSG_UNNECESSARY_LIST_DECLARATION_BEFORE_RETURN);
 		}
@@ -92,95 +91,6 @@ public class UnnecessaryVariableDeclarationCheck
 			detailAST, firstVariableCallerDetailAST,
 			secondVariableCallerDetailAST, parentDetailAST, variableName,
 			_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN);
-	}
-
-	private void _checkUnnecessaryListVariableDeclarationBeforeReturn(
-		DetailAST detailAST, DetailAST semiDetailAST, String variableName,
-		String messageKey) {
-
-		String variableTypeName = getVariableTypeName(
-			detailAST, variableName, false);
-
-		if (!variableTypeName.equals("List")) {
-			return;
-		}
-
-		if ((detailAST.getType() == TokenTypes.ASSIGN) &&
-			!isAssignNewArrayList(detailAST.getParent())) {
-
-			return;
-		}
-		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
-				 !isAssignNewArrayList(detailAST)) {
-
-			return;
-		}
-
-		DetailAST nextSiblingDetailAST = semiDetailAST.getNextSibling();
-
-		if (nextSiblingDetailAST == null) {
-			return;
-		}
-
-		while (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
-			DetailAST firstChildDetailAST =
-				nextSiblingDetailAST.getFirstChild();
-
-			if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
-				return;
-			}
-
-			firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-			if (firstChildDetailAST.getType() != TokenTypes.DOT) {
-				return;
-			}
-
-			FullIdent fullIdent = FullIdent.createFullIdent(
-				firstChildDetailAST);
-
-			String fullyQualifiedName = fullIdent.getText();
-
-			if (!fullyQualifiedName.equals(variableName + ".add")) {
-				return;
-			}
-
-			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-
-			if ((nextSiblingDetailAST != null) &&
-				(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
-
-				return;
-			}
-
-			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
-
-			if (nextSiblingDetailAST == null) {
-				return;
-			}
-
-			if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
-				continue;
-			}
-
-			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
-				firstChildDetailAST = nextSiblingDetailAST.getFirstChild();
-
-				if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
-					return;
-				}
-
-				firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-				if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
-					variableName.equals(firstChildDetailAST.getText())) {
-
-					log(detailAST, messageKey, variableName);
-				}
-			}
-
-			return;
-		}
 	}
 
 	private static final String

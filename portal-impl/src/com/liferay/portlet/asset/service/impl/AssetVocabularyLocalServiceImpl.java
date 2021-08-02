@@ -349,11 +349,7 @@ public class AssetVocabularyLocalServiceImpl
 
 		AssetVocabulary vocabulary = addDefaultVocabulary(groupId);
 
-		vocabularies = new ArrayList<>();
-
-		vocabularies.add(vocabulary);
-
-		return vocabularies;
+		return ListUtil.fromArray(vocabulary);
 	}
 
 	@Override

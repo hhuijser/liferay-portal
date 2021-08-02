@@ -49,6 +49,7 @@ CompatClassImportsCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-pr
 ConcatCheck | [Performance](performance_checks.markdown#performance-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks for correct use of `StringBundler.concat`. |
 ConfigDefinitionKeysCheck | [Styling](styling_checks.markdown#styling-checks) | .cfg or .config | Sorts definition keys in `.config` files. |
 ConstantNameCheck | [Naming Conventions](naming_conventions_checks.markdown#naming-conventions-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks that variable names of constants follow correct naming rules. |
+ConstructorGlobalVariableDeclarationCheck | [Performance](performance_checks.markdown#performance-checks) | .java | Checks that initial values of global variables are not set in the constructor. |
 [ConstructorMissingEmptyLineCheck](checks/constructor_missing_empty_line_check.markdown#constructormissingemptylinecheck) | [Styling](styling_checks.markdown#styling-checks) | .java | Checks for line breaks when assiging variables in constructor. |
 ConsumerTypeAnnotationCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Performs several checks on classes with @ConsumerType annotation. |
 ContractionsCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Finds contractions in Strings (such as `can't` or `you're`). |
@@ -59,6 +60,7 @@ DeprecatedUsageCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-preve
 DockerfileEmptyLinesCheck | [Styling](styling_checks.markdown#styling-checks) | Dockerfile | Finds missing and unnecessary empty lines. |
 DockerfileInstructionCheck | [Styling](styling_checks.markdown#styling-checks) | Dockerfile | Performs styling rules on instructions in `Dockerfile` files. |
 EmptyCollectionCheck | [Styling](styling_checks.markdown#styling-checks) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks that there are no calls to `Collections.EMPTY_LIST`, `Collections.EMPTY_MAP` or `Collections.EMPTY_SET`. |
+EmptyConstructorCheck | [Bug Prevention](bug_prevention_checks.markdown#bug-prevention-checks) | .java | Finds unnecessary empty constructors. |
 EnumConstantDividerCheck | [Styling](styling_checks.markdown#styling-checks) | .java | Find unnecessary empty lines between enum constants. |
 EnumConstantOrderCheck | [Styling](styling_checks.markdown#styling-checks) | .java | Checks the order of enum constants. |
 EqualClauseIfStatementsCheck | [Styling](styling_checks.markdown#styling-checks) | .java | Finds consecutive if-statements with identical clauses. |

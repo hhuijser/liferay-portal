@@ -51,6 +51,30 @@ public String method(String a, String b) {
 }
 ```
 
+### Example
+
+Incorrect:
+
+```java
+public List<String> method() {
+	...
+
+	list = new ArrayList<>();
+
+	list.add("a");
+	list.add("b");
+
+	return list;
+}
+```
+
+Correct:
+
+```java
+public List<String> method() {
+	return new ListUtil.fromArray("a", "b");
+}
+```
 ---
 
 No need to assign call to variable that is not used after the call.

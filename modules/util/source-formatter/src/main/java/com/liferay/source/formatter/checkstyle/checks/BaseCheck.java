@@ -923,13 +923,25 @@ public abstract class BaseCheck extends AbstractCheck {
 			return false;
 		}
 
-		DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+		DetailAST firstChildDetailAST = null;
 
-		if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
-			return false;
+		if (detailAST.getType() == TokenTypes.EXPR) {
+			firstChildDetailAST = assignDetailAST.findFirstToken(
+				TokenTypes.LITERAL_NEW);
+
+			if (firstChildDetailAST == null) {
+				return false;
+			}
 		}
+		else {
+			firstChildDetailAST = assignDetailAST.getFirstChild();
 
-		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+			if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+				return false;
+			}
+
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+		}
 
 		if (firstChildDetailAST.getType() != TokenTypes.LITERAL_NEW) {
 			return false;

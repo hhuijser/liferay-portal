@@ -52,7 +52,7 @@ public class UnnecessaryVariableDeclarationCheck
 		String variableName = nameDetailAST.getText();
 
 		if (!isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
-			checkUnnecessaryListVariableDeclarationBeforeReturn(
+			checkUnnecessaryListVariableBeforeReturn(
 				detailAST, semiDetailAST, variableName,
 				_MSG_UNNECESSARY_LIST_DECLARATION_BEFORE_RETURN);
 		}

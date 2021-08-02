@@ -25,7 +25,7 @@ import java.util.List;
  */
 public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 
-	protected void checkUnnecessaryListVariableDeclarationBeforeReturn(
+	protected void checkUnnecessaryListVariableBeforeReturn(
 		DetailAST detailAST, DetailAST semiDetailAST, String variableName,
 		String messageKey) {
 

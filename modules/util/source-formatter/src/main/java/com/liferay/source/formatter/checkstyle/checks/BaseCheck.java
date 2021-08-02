@@ -52,6 +52,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -685,6 +686,20 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 
 		return new Tuple(jsonObject, typeNamesFile);
+	}
+
+	protected List<DetailAST> getVariableCallerDetailASTList(
+		DetailAST variableDefinitionDetailAST) {
+
+		DetailAST identDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		if (identDetailAST == null) {
+			return Collections.emptyList();
+		}
+
+		return getVariableCallerDetailASTList(
+			variableDefinitionDetailAST, identDetailAST.getText());
 	}
 
 	protected List<DetailAST> getVariableCallerDetailASTList(

@@ -30,6 +30,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -472,6 +473,12 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			return;
 		}
 
+		String variableName = getVariableName(assignDetailAST, parentDetailAST);
+
+		_checkBuildString(
+			methodCallDetailAST, assignDetailAST, variableName, startLineNumber,
+			endLineNumber);
+
 		firstChildDetailAST = assignDetailAST.getFirstChild();
 
 		DetailAST assignValueDetailAST = null;
@@ -491,8 +498,6 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 		List<String> variableNames = _getVariableNames(
 			parentDetailAST, "get.*");
-
-		String variableName = getVariableName(assignDetailAST, parentDetailAST);
 
 		variableNames.add(variableName);
 
@@ -526,6 +531,73 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			}
 
 			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		}
+	}
+
+	private void _checkBuildString(
+		DetailAST methodCallDetailAST, DetailAST assignDetailAST,
+		String variableName, int startLineNumber, int endLineNumber) {
+
+		Class<?> clazz = getClass();
+
+		String className = clazz.getName();
+
+		if (!className.endsWith("URLBuilderCheck")) {
+			return;
+		}
+
+		List<String> chainedMethodNames = getChainedMethodNames(
+			methodCallDetailAST);
+
+		String methodName = chainedMethodNames.get(
+			chainedMethodNames.size() - 1);
+
+		if (methodName.equals("buildString")) {
+			return;
+		}
+
+		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
+			assignDetailAST, variableName, false);
+
+		if (variableDefinitionDetailAST == null) {
+			return;
+		}
+
+		List<DetailAST> variableCallerDetailASTList =
+			getVariableCallerDetailASTList(
+				variableDefinitionDetailAST, variableName);
+
+		DetailAST lastDetailAST = variableCallerDetailASTList.get(
+			variableCallerDetailASTList.size() - 1);
+
+		if (lastDetailAST.getLineNo() <= endLineNumber) {
+			return;
+		}
+
+		FullIdent fullIdent = FullIdent.createFullIdent(
+			lastDetailAST.getParent());
+
+		if (!Objects.equals(fullIdent.getText(), variableName + ".toString")) {
+			return;
+		}
+
+		if (variableCallerDetailASTList.size() > 1) {
+			DetailAST secondToLastDetailAST = variableCallerDetailASTList.get(
+				variableCallerDetailASTList.size() - 2);
+
+			if (secondToLastDetailAST.getLineNo() > startLineNumber) {
+				return;
+			}
+		}
+
+		if (equals(variableDefinitionDetailAST, assignDetailAST.getParent()) ||
+			equals(
+				getParentWithTokenType(assignDetailAST, TokenTypes.SLIST),
+				getParentWithTokenType(lastDetailAST, TokenTypes.SLIST))) {
+
+			log(
+				fullIdent.getLineNo(), _MSG_USE_BUILD_STRING, variableName,
+				methodName);
 		}
 	}
 
@@ -1198,6 +1270,8 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 
 	private static final String _MSG_UNNEEDED_STRING_CAST =
 		"string.cast.unneeded";
+
+	private static final String _MSG_USE_BUILD_STRING = "build.string.use";
 
 	private static final String _MSG_USE_BUILDER = "builder.use";
 

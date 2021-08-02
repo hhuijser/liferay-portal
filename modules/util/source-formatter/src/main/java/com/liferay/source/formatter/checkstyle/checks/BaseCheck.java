@@ -722,6 +722,129 @@ public abstract class BaseCheck extends AbstractCheck {
 		return variableCallerDetailASTList;
 	}
 
+	protected DetailAST getVariableDefinitionDetailAST(
+		DetailAST detailAST, String variableName) {
+
+		return getVariableDefinitionDetailAST(detailAST, variableName, true);
+	}
+
+	protected DetailAST getVariableDefinitionDetailAST(
+		DetailAST detailAST, String variableName,
+		boolean includeGlobalVariables) {
+
+		DetailAST previousDetailAST = detailAST;
+
+		while (true) {
+			if (includeGlobalVariables &&
+				((previousDetailAST.getType() == TokenTypes.CLASS_DEF) ||
+				 (previousDetailAST.getType() == TokenTypes.ENUM_DEF) ||
+				 (previousDetailAST.getType() == TokenTypes.INTERFACE_DEF))) {
+
+				DetailAST objBlockDetailAST = previousDetailAST.findFirstToken(
+					TokenTypes.OBJBLOCK);
+
+				List<DetailAST> variableDefinitionDetailASTList =
+					getAllChildTokens(
+						objBlockDetailAST, false, TokenTypes.VARIABLE_DEF);
+
+				for (DetailAST variableDefinitionDetailAST :
+						variableDefinitionDetailASTList) {
+
+					if (variableName.equals(
+							_getVariableName(variableDefinitionDetailAST))) {
+
+						return variableDefinitionDetailAST;
+					}
+				}
+			}
+			else if ((previousDetailAST.getType() ==
+						TokenTypes.FOR_EACH_CLAUSE) ||
+					 (previousDetailAST.getType() == TokenTypes.FOR_INIT)) {
+
+				List<DetailAST> variableDefinitionDetailASTList =
+					getAllChildTokens(
+						previousDetailAST, false, TokenTypes.VARIABLE_DEF);
+
+				for (DetailAST variableDefinitionDetailAST :
+						variableDefinitionDetailASTList) {
+
+					if (variableName.equals(
+							_getVariableName(variableDefinitionDetailAST))) {
+
+						return variableDefinitionDetailAST;
+					}
+				}
+			}
+			else if ((previousDetailAST.getType() ==
+						TokenTypes.LITERAL_CATCH) ||
+					 (previousDetailAST.getType() == TokenTypes.PARAMETERS)) {
+
+				List<DetailAST> parameterDefinitionDetailASTList =
+					getAllChildTokens(
+						previousDetailAST, false, TokenTypes.PARAMETER_DEF);
+
+				for (DetailAST parameterDefinitionDetailAST :
+						parameterDefinitionDetailASTList) {
+
+					if (variableName.equals(
+							_getVariableName(parameterDefinitionDetailAST))) {
+
+						return parameterDefinitionDetailAST;
+					}
+				}
+			}
+			else if (previousDetailAST.getType() ==
+						TokenTypes.RESOURCE_SPECIFICATION) {
+
+				DetailAST recourcesDetailAST = previousDetailAST.findFirstToken(
+					TokenTypes.RESOURCES);
+
+				List<DetailAST> resourceDetailASTList = getAllChildTokens(
+					recourcesDetailAST, false, TokenTypes.RESOURCE);
+
+				for (DetailAST resourceDetailAST : resourceDetailASTList) {
+					if (variableName.equals(
+							_getVariableName(resourceDetailAST))) {
+
+						return resourceDetailAST;
+					}
+				}
+			}
+			else if ((previousDetailAST.getType() == TokenTypes.VARIABLE_DEF) &&
+					 variableName.equals(_getVariableName(previousDetailAST))) {
+
+				DetailAST parentDetailAST = previousDetailAST.getParent();
+
+				if (includeGlobalVariables ||
+					(parentDetailAST.getType() != TokenTypes.OBJBLOCK)) {
+
+					return previousDetailAST;
+				}
+			}
+
+			DetailAST previousSiblingDetailAST =
+				previousDetailAST.getPreviousSibling();
+
+			if (previousSiblingDetailAST != null) {
+				previousDetailAST = previousSiblingDetailAST;
+
+				continue;
+			}
+
+			DetailAST parentDetailAST = previousDetailAST.getParent();
+
+			if (parentDetailAST != null) {
+				previousDetailAST = parentDetailAST;
+
+				continue;
+			}
+
+			break;
+		}
+
+		return null;
+	}
+
 	protected String getVariableName(DetailAST methodCallDetailAST) {
 		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
 			TokenTypes.DOT);
@@ -749,118 +872,11 @@ public abstract class BaseCheck extends AbstractCheck {
 		DetailAST detailAST, String variableName,
 		boolean includeGlobalVariables) {
 
-		DetailAST previousDetailAST = detailAST;
+		DetailAST variableDefinitionDetailAST = getVariableDefinitionDetailAST(
+			detailAST, variableName, includeGlobalVariables);
 
-		while (true) {
-			if (includeGlobalVariables &&
-				((previousDetailAST.getType() == TokenTypes.CLASS_DEF) ||
-				 (previousDetailAST.getType() == TokenTypes.ENUM_DEF) ||
-				 (previousDetailAST.getType() == TokenTypes.INTERFACE_DEF))) {
-
-				DetailAST objBlockDetailAST = previousDetailAST.findFirstToken(
-					TokenTypes.OBJBLOCK);
-
-				List<DetailAST> variableDefinitionDetailASTList =
-					getAllChildTokens(
-						objBlockDetailAST, false, TokenTypes.VARIABLE_DEF);
-
-				for (DetailAST variableDefinitionDetailAST :
-						variableDefinitionDetailASTList) {
-
-					if (variableName.equals(
-							_getVariableName(variableDefinitionDetailAST))) {
-
-						return variableDefinitionDetailAST.findFirstToken(
-							TokenTypes.TYPE);
-					}
-				}
-			}
-			else if ((previousDetailAST.getType() ==
-						TokenTypes.FOR_EACH_CLAUSE) ||
-					 (previousDetailAST.getType() == TokenTypes.FOR_INIT)) {
-
-				List<DetailAST> variableDefinitionDetailASTList =
-					getAllChildTokens(
-						previousDetailAST, false, TokenTypes.VARIABLE_DEF);
-
-				for (DetailAST variableDefinitionDetailAST :
-						variableDefinitionDetailASTList) {
-
-					if (variableName.equals(
-							_getVariableName(variableDefinitionDetailAST))) {
-
-						return variableDefinitionDetailAST.findFirstToken(
-							TokenTypes.TYPE);
-					}
-				}
-			}
-			else if ((previousDetailAST.getType() ==
-						TokenTypes.LITERAL_CATCH) ||
-					 (previousDetailAST.getType() == TokenTypes.PARAMETERS)) {
-
-				List<DetailAST> parameterDefinitionDetailASTList =
-					getAllChildTokens(
-						previousDetailAST, false, TokenTypes.PARAMETER_DEF);
-
-				for (DetailAST parameterDefinitionDetailAST :
-						parameterDefinitionDetailASTList) {
-
-					if (variableName.equals(
-							_getVariableName(parameterDefinitionDetailAST))) {
-
-						return parameterDefinitionDetailAST.findFirstToken(
-							TokenTypes.TYPE);
-					}
-				}
-			}
-			else if (previousDetailAST.getType() ==
-						TokenTypes.RESOURCE_SPECIFICATION) {
-
-				DetailAST recourcesDetailAST = previousDetailAST.findFirstToken(
-					TokenTypes.RESOURCES);
-
-				List<DetailAST> resourceDetailASTList = getAllChildTokens(
-					recourcesDetailAST, false, TokenTypes.RESOURCE);
-
-				for (DetailAST resourceDetailAST : resourceDetailASTList) {
-					if (variableName.equals(
-							_getVariableName(resourceDetailAST))) {
-
-						return resourceDetailAST.findFirstToken(
-							TokenTypes.TYPE);
-					}
-				}
-			}
-			else if ((previousDetailAST.getType() == TokenTypes.VARIABLE_DEF) &&
-					 variableName.equals(_getVariableName(previousDetailAST))) {
-
-				DetailAST parentDetailAST = previousDetailAST.getParent();
-
-				if (includeGlobalVariables ||
-					(parentDetailAST.getType() != TokenTypes.OBJBLOCK)) {
-
-					return previousDetailAST.findFirstToken(TokenTypes.TYPE);
-				}
-			}
-
-			DetailAST previousSiblingDetailAST =
-				previousDetailAST.getPreviousSibling();
-
-			if (previousSiblingDetailAST != null) {
-				previousDetailAST = previousSiblingDetailAST;
-
-				continue;
-			}
-
-			DetailAST parentDetailAST = previousDetailAST.getParent();
-
-			if (parentDetailAST != null) {
-				previousDetailAST = parentDetailAST;
-
-				continue;
-			}
-
-			break;
+		if (variableDefinitionDetailAST != null) {
+			return variableDefinitionDetailAST.findFirstToken(TokenTypes.TYPE);
 		}
 
 		return null;

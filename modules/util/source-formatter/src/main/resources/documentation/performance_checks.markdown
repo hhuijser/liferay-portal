@@ -5,6 +5,7 @@ Check | File Extensions | Description
 [ArrayCheck](checks/array_check.markdown#arraycheck) | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks if performance can be improved by using different mehods that can be used by collections. |
 AssignAsUsedCheck | .java | Finds cases where an assign statement can be inlined or moved closer to where it is used. |
 ConcatCheck | .java, .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks for correct use of `StringBundler.concat`. |
+ConstructorGlobalVariableDeclarationCheck | .java | Checks that initial values of global variables are not set in the constructor. |
 [ExceptionCheck](checks/exception_check.markdown#exceptioncheck) | .java | Finds private methods that throw unnecessary exception. |
 [FrameworkBundleCheck](checks/framework_bundle_check.markdown#frameworkbundlecheck) | .java | Checks that `org.osgi.framework.Bundle.getHeaders()` is not used. |
 [GradleDependenciesCheck](checks/gradle_dependencies_check.markdown#gradledependenciescheck) | .gradle | Checks that `petra` modules are not depending on other modules. |

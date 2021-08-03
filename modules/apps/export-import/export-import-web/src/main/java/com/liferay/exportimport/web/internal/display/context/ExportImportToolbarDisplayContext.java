@@ -213,9 +213,6 @@ public class ExportImportToolbarDisplayContext {
 		).setParameter(
 			"orderByCol", ParamUtil.getString(_httpServletRequest, "orderByCol")
 		).setParameter(
-			"privateLayout",
-			ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
-		).setParameter(
 			"orderByType",
 			() -> {
 				String orderByType = ParamUtil.getString(
@@ -227,6 +224,9 @@ public class ExportImportToolbarDisplayContext {
 
 				return "asc";
 			}
+		).setParameter(
+			"privateLayout",
+			ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
 		).setParameter(
 			"searchContainerId",
 			ParamUtil.getString(_httpServletRequest, "searchContainerId")

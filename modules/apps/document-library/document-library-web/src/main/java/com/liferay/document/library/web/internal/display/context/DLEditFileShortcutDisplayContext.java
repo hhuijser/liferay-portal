@@ -52,7 +52,7 @@ public class DLEditFileShortcutDisplayContext {
 	}
 
 	public String getEditFileShortcutURL() {
-		PortletURL portletURL = PortletURLBuilder.createActionURL(
+		return PortletURLBuilder.createActionURL(
 			_liferayPortletResponse
 		).setActionName(
 			"/document_library/edit_file_shortcut"
@@ -64,9 +64,7 @@ public class DLEditFileShortcutDisplayContext {
 
 				return Constants.UPDATE;
 			}
-		).buildPortletURL();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	public long getFileShortcutId() {

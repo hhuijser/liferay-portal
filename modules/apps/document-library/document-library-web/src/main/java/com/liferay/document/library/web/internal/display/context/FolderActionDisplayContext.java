@@ -719,7 +719,7 @@ public class FolderActionDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		PortletURL portletURL = PortletURLBuilder.createRenderURL(
+		return PortletURLBuilder.createRenderURL(
 			_dlRequestHelper.getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
@@ -732,9 +732,7 @@ public class FolderActionDisplayContext {
 
 				return folder.getParentFolderId();
 			}
-		).buildPortletURL();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	private long _getRepositoryId() {

@@ -200,7 +200,7 @@ public class ExportImportToolbarDisplayContext {
 	}
 
 	public String getSortingURL() {
-		PortletURL sortingURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			getRenderURL()
 		).setNavigation(
 			ParamUtil.getString(_httpServletRequest, "navigation", "all")
@@ -230,9 +230,7 @@ public class ExportImportToolbarDisplayContext {
 		).setParameter(
 			"searchContainerId",
 			ParamUtil.getString(_httpServletRequest, "searchContainerId")
-		).buildPortletURL();
-
-		return sortingURL.toString();
+		).buildString();
 	}
 
 	public List<ViewTypeItem> getViewTypeItems() {

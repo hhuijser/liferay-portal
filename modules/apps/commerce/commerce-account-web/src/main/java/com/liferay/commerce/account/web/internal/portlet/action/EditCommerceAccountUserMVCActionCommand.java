@@ -192,7 +192,7 @@ public class EditCommerceAccountUserMVCActionCommand
 	protected String getSaveAndContinueRedirect(ActionRequest actionRequest)
 		throws Exception {
 
-		PortletURL portletURL = PortletURLBuilder.create(
+		return PortletURLBuilder.create(
 			PortletProviderUtil.getPortletURL(
 				actionRequest, CommerceAccount.class.getName(),
 				PortletProvider.Action.VIEW)
@@ -238,9 +238,7 @@ public class EditCommerceAccountUserMVCActionCommand
 			}
 		).setParameter(
 			"userId", ParamUtil.getString(actionRequest, "userId")
-		).buildPortletURL();
-
-		return portletURL.toString();
+		).buildString();
 	}
 
 	protected void updatePassword(

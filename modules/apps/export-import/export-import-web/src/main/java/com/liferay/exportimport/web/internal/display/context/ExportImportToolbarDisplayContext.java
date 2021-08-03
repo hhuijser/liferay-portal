@@ -213,24 +213,25 @@ public class ExportImportToolbarDisplayContext {
 		).setParameter(
 			"privateLayout",
 			ParamUtil.getBoolean(_httpServletRequest, "privateLayout")
-		).buildPortletURL();
+		).setParameter(
+			"orderByType",
+			() -> {
+				String orderByType = ParamUtil.getString(
+					_httpServletRequest, "orderByType");
 
-		String orderByType = ParamUtil.getString(
-			_httpServletRequest, "orderByType");
+				if (orderByType.equals("asc")) {
+					return "desc";
+				}
 
-		if (orderByType.equals("asc")) {
-			sortingURL.setParameter("orderByType", "desc");
-		}
-		else {
-			sortingURL.setParameter("orderByType", "asc");
-		}
-
-		sortingURL.setParameter(
+				return "asc";
+			}
+		).setParameter(
 			"navigation",
-			ParamUtil.getString(_httpServletRequest, "navigation", "all"));
-		sortingURL.setParameter(
+			ParamUtil.getString(_httpServletRequest, "navigation", "all")
+		).setParameter(
 			"searchContainerId",
-			ParamUtil.getString(_httpServletRequest, "searchContainerId"));
+			ParamUtil.getString(_httpServletRequest, "searchContainerId")
+		).buildPortletURL();
 
 		return sortingURL.toString();
 	}

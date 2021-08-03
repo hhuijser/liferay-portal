@@ -77,24 +77,22 @@ public class DeleteNodePortletConfigurationIcon
 			WebKeys.THEME_DISPLAY);
 
 		try {
-			WikiNode node = ActionUtil.getNode(portletRequest);
-
 			PortletURL portletURL = PortletURLBuilder.create(
 				_portal.getControlPanelPortletURL(
 					portletRequest, WikiPortletKeys.WIKI_ADMIN,
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_node"
-			).buildPortletURL();
+			).setParameter(
+				Constants.CMD,
+				() -> {
+					if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
+						return Constants.MOVE_TO_TRASH;
+					}
 
-			if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
-				portletURL.setParameter(Constants.CMD, Constants.MOVE_TO_TRASH);
-			}
-			else {
-				portletURL.setParameter(Constants.CMD, Constants.DELETE);
-			}
-
-			portletURL.setParameter(
+					return Constants.DELETE;
+				}
+			).setParameter(
 				"redirect",
 				PortletURLBuilder.create(
 					_portal.getControlPanelPortletURL(
@@ -102,9 +100,15 @@ public class DeleteNodePortletConfigurationIcon
 						PortletRequest.RENDER_PHASE)
 				).setMVCRenderCommandName(
 					"/wiki_admin/view"
-				).buildString());
+				).buildString()
+			).setParameter(
+				"nodeId",
+				() -> {
+					WikiNode node = ActionUtil.getNode(portletRequest);
 
-			portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
+					return node.getNodeId();
+				}
+			).buildPortletURL();
 
 			return portletURL.toString();
 		}

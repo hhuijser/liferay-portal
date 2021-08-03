@@ -68,18 +68,20 @@ public class AnalyticsReportsDisplayContext<T> {
 			_renderResponse
 		).setActionName(
 			"/analytics_reports/hide_panel"
+		).setParameter(
+			"redirect",
+			() -> {
+				String redirect = ParamUtil.getString(
+					_renderRequest, "redirect");
+
+				if (Validator.isNotNull(redirect)) {
+					return redirect;
+				}
+
+				return _themeDisplay.getLayoutFriendlyURL(
+					_themeDisplay.getLayout());
+			}
 		).buildPortletURL();
-
-		String redirect = ParamUtil.getString(_renderRequest, "redirect");
-
-		if (Validator.isNotNull(redirect)) {
-			portletURL.setParameter("redirect", redirect);
-		}
-		else {
-			portletURL.setParameter(
-				"redirect",
-				_themeDisplay.getLayoutFriendlyURL(_themeDisplay.getLayout()));
-		}
 
 		return String.valueOf(portletURL);
 	}

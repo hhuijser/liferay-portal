@@ -92,18 +92,22 @@ public class PageSubscriptionPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_page"
+			).setParameter(
+				Constants.CMD,
+				() -> {
+					if (isSubscribed(portletRequest, page)) {
+						return Constants.UNSUBSCRIBE;
+					}
+
+					return Constants.SUBSCRIBE;
+				}
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).setParameter(
+				"nodeId", page.getNodeId()
+			).setParameter(
+				"title", page.getTitle()
 			).buildPortletURL();
-
-			if (isSubscribed(portletRequest, page)) {
-				portletURL.setParameter(Constants.CMD, Constants.UNSUBSCRIBE);
-			}
-			else {
-				portletURL.setParameter(Constants.CMD, Constants.SUBSCRIBE);
-			}
-
-			portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
-			portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
-			portletURL.setParameter("title", page.getTitle());
 
 			return portletURL.toString();
 		}

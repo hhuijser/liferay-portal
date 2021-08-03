@@ -92,17 +92,20 @@ public class NodeSubscriptionPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_node"
+			).setParameter(
+				Constants.CMD,
+				() -> {
+					if (isSubscribed(portletRequest, node)) {
+						return Constants.UNSUBSCRIBE;
+					}
+
+					return Constants.SUBSCRIBE;
+				}
+			).setParameter(
+				"redirect", themeDisplay.getURLCurrent()
+			).setParameter(
+				"nodeId", node.getNodeId()
 			).buildPortletURL();
-
-			if (isSubscribed(portletRequest, node)) {
-				portletURL.setParameter(Constants.CMD, Constants.UNSUBSCRIBE);
-			}
-			else {
-				portletURL.setParameter(Constants.CMD, Constants.SUBSCRIBE);
-			}
-
-			portletURL.setParameter("redirect", themeDisplay.getURLCurrent());
-			portletURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
 			return portletURL.toString();
 		}

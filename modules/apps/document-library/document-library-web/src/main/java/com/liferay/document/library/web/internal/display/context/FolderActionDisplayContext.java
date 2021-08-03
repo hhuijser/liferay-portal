@@ -723,17 +723,16 @@ public class FolderActionDisplayContext {
 			_dlRequestHelper.getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			mvcRenderCommandName
-		).buildPortletURL();
+		).setParameter(
+			"folderId",
+			() -> {
+				if (DLFolderUtil.isRepositoryRoot(folder)) {
+					return DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
+				}
 
-		if (DLFolderUtil.isRepositoryRoot(folder)) {
-			portletURL.setParameter(
-				"folderId",
-				String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
-		}
-		else {
-			portletURL.setParameter(
-				"folderId", String.valueOf(folder.getParentFolderId()));
-		}
+				return folder.getParentFolderId();
+			}
+		).buildPortletURL();
 
 		return portletURL.toString();
 	}

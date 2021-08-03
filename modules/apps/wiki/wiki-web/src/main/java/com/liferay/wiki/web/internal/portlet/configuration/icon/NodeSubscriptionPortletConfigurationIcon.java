@@ -92,8 +92,7 @@ public class NodeSubscriptionPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_node"
-			).setParameter(
-				Constants.CMD,
+			).setCMD(
 				() -> {
 					if (isSubscribed(portletRequest, node)) {
 						return Constants.UNSUBSCRIBE;
@@ -101,8 +100,8 @@ public class NodeSubscriptionPortletConfigurationIcon
 
 					return Constants.SUBSCRIBE;
 				}
-			).setParameter(
-				"redirect", themeDisplay.getURLCurrent()
+			).setRedirect(
+				themeDisplay.getURLCurrent()
 			).setParameter(
 				"nodeId", node.getNodeId()
 			).buildPortletURL();

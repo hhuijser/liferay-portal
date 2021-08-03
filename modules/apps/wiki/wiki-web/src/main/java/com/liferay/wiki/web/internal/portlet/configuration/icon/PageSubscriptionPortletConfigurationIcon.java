@@ -92,8 +92,7 @@ public class PageSubscriptionPortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_page"
-			).setParameter(
-				Constants.CMD,
+			).setCMD(
 				() -> {
 					if (isSubscribed(portletRequest, page)) {
 						return Constants.UNSUBSCRIBE;
@@ -101,8 +100,8 @@ public class PageSubscriptionPortletConfigurationIcon
 
 					return Constants.SUBSCRIBE;
 				}
-			).setParameter(
-				"redirect", themeDisplay.getURLCurrent()
+			).setRedirect(
+				themeDisplay.getURLCurrent()
 			).setParameter(
 				"nodeId", page.getNodeId()
 			).setParameter(

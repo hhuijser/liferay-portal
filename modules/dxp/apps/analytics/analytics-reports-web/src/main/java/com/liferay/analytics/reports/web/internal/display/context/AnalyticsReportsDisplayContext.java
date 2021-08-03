@@ -68,8 +68,7 @@ public class AnalyticsReportsDisplayContext<T> {
 			_renderResponse
 		).setActionName(
 			"/analytics_reports/hide_panel"
-		).setParameter(
-			"redirect",
+		).setRedirect(
 			() -> {
 				String redirect = ParamUtil.getString(
 					_renderRequest, "redirect");

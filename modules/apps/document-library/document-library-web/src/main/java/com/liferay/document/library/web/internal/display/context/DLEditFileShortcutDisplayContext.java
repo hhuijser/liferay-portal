@@ -56,8 +56,7 @@ public class DLEditFileShortcutDisplayContext {
 			_liferayPortletResponse
 		).setActionName(
 			"/document_library/edit_file_shortcut"
-		).setParameter(
-			Constants.CMD,
+		).setCMD(
 			() -> {
 				if (_getFileShortcut() == null) {
 					return Constants.ADD;

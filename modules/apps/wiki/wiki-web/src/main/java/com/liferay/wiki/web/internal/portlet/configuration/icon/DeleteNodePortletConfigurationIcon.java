@@ -83,8 +83,7 @@ public class DeleteNodePortletConfigurationIcon
 					PortletRequest.ACTION_PHASE)
 			).setActionName(
 				"/wiki/edit_node"
-			).setParameter(
-				Constants.CMD,
+			).setCMD(
 				() -> {
 					if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
 						return Constants.MOVE_TO_TRASH;
@@ -92,8 +91,7 @@ public class DeleteNodePortletConfigurationIcon
 
 					return Constants.DELETE;
 				}
-			).setParameter(
-				"redirect",
+			).setRedirect(
 				PortletURLBuilder.create(
 					_portal.getControlPanelPortletURL(
 						portletRequest, WikiPortletKeys.WIKI_ADMIN,

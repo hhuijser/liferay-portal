@@ -202,6 +202,8 @@ public class ExportImportToolbarDisplayContext {
 	public String getSortingURL() {
 		PortletURL sortingURL = PortletURLBuilder.create(
 			getRenderURL()
+		).setNavigation(
+			ParamUtil.getString(_httpServletRequest, "navigation", "all")
 		).setParameter(
 			"displayStyle",
 			ParamUtil.getString(
@@ -225,9 +227,6 @@ public class ExportImportToolbarDisplayContext {
 
 				return "asc";
 			}
-		).setParameter(
-			"navigation",
-			ParamUtil.getString(_httpServletRequest, "navigation", "all")
 		).setParameter(
 			"searchContainerId",
 			ParamUtil.getString(_httpServletRequest, "searchContainerId")

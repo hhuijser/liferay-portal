@@ -18,6 +18,7 @@ import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.web.internal.security.permission.resource.BlogsImagesFileEntryPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
@@ -70,13 +71,15 @@ public class BlogImagesManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteImages");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteImages"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -244,22 +247,21 @@ public class BlogImagesManagementToolbarDisplayContext
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "title"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "title");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "title"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "title")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "title"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "title")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(Objects.equals(getOrderByCol(), "size"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "size");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "size"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "size")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "size"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "size")
+			).build()
 		).build();
 	}
 

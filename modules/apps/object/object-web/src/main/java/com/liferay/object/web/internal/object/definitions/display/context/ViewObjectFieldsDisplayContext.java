@@ -15,6 +15,7 @@
 package com.liferay.object.web.internal.object.definitions.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.web.internal.constants.ObjectWebKeys;
 import com.liferay.object.web.internal.display.context.util.ObjectRequestHelper;
@@ -45,13 +46,14 @@ public class ViewObjectFieldsDisplayContext {
 		// TODO Check permissions
 
 		creationMenu.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("addObjectField");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_objectRequestHelper.getRequest(), "add-object-field"));
-				dropdownItem.setTarget("event");
-			});
+			DropdownItemBuilder.setHref(
+				"addObjectField"
+			).setLabel(
+				LanguageUtil.get(
+					_objectRequestHelper.getRequest(), "add-object-field")
+			).setTarget(
+				"event"
+			).build());
 
 		return creationMenu;
 	}

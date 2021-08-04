@@ -26,6 +26,7 @@ import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -93,14 +94,16 @@ public class KaleoFormsViewRecordsDisplayContext {
 
 	public List<DropdownItem> getActionItemsDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteRecords");
-				dropdownItem.setIcon("trash");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_kaleoFormsAdminRequestHelper.getRequest(), "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteRecords"
+			).setIcon(
+				"trash"
+			).setLabel(
+				LanguageUtil.get(
+					_kaleoFormsAdminRequestHelper.getRequest(), "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -124,27 +127,24 @@ public class KaleoFormsViewRecordsDisplayContext {
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcPath",
-					"/admin/edit_request.jsp", "redirect",
-					PortalUtil.getCurrentURL(
-						_kaleoFormsAdminRequestHelper.getRequest()),
-					"backURL",
-					PortalUtil.getCurrentURL(
-						_kaleoFormsAdminRequestHelper.getRequest()),
-					"kaleoProcessId",
-					String.valueOf(_kaleoProcess.getKaleoProcessId()));
-
-				dropdownItem.setLabel(
-					LanguageUtil.format(
-						_kaleoFormsAdminRequestHelper.getRequest(),
-						"submit-new-x",
-						HtmlUtil.escape(
-							_kaleoProcess.getName(
-								_kaleoFormsAdminRequestHelper.getLocale())),
-						false));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcPath",
+				"/admin/edit_request.jsp", "redirect",
+				PortalUtil.getCurrentURL(
+					_kaleoFormsAdminRequestHelper.getRequest()),
+				"backURL",
+				PortalUtil.getCurrentURL(
+					_kaleoFormsAdminRequestHelper.getRequest()),
+				"kaleoProcessId",
+				String.valueOf(_kaleoProcess.getKaleoProcessId())
+			).setLabel(
+				LanguageUtil.format(
+					_kaleoFormsAdminRequestHelper.getRequest(), "submit-new-x",
+					HtmlUtil.escape(
+						_kaleoProcess.getName(
+							_kaleoFormsAdminRequestHelper.getLocale())),
+					false)
+			).build()
 		).build();
 	}
 
@@ -442,15 +442,14 @@ public class KaleoFormsViewRecordsDisplayContext {
 
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-
-				dropdownItem.setHref(getPortletURL(), "navigation", "all");
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_kaleoFormsAdminRequestHelper.getRequest(), "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getPortletURL(), "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(
+					_kaleoFormsAdminRequestHelper.getRequest(), "all")
+			).build()
 		).build();
 	}
 

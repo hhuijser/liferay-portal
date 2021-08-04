@@ -39,6 +39,7 @@ import com.liferay.asset.util.AssetRendererFactoryClassProvider;
 import com.liferay.asset.util.comparator.AssetRendererFactoryTypeNameComparator;
 import com.liferay.dynamic.data.mapping.util.DDMIndexer;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
@@ -198,15 +199,13 @@ public class EditAssetListDisplayContext {
 
 	public List<DropdownItem> getAssetListEntryVariationActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					"javascript:" + _portletResponse.getNamespace() +
-						"openSelectSegmentsEntryDialog();");
-				dropdownItem.setLabel(
-					LanguageUtil.format(
-						_httpServletRequest, "new-x",
-						"personalized-variation"));
-			}
+			DropdownItemBuilder.setHref(
+				"javascript:" + _portletResponse.getNamespace() +
+					"openSelectSegmentsEntryDialog();"
+			).setLabel(
+				LanguageUtil.format(
+					_httpServletRequest, "new-x", "personalized-variation")
+			).build()
 		).build();
 	}
 

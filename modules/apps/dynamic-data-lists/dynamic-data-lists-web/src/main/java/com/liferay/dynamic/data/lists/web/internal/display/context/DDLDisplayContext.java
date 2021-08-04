@@ -42,6 +42,7 @@ import com.liferay.dynamic.data.mapping.util.DDMDisplayRegistry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -127,13 +128,15 @@ public class DDLDisplayContext {
 
 	public List<DropdownItem> getActionItemsDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteRecordSets");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_ddlRequestHelper.getRequest(), "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteRecordSets"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_ddlRequestHelper.getRequest(), "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -174,15 +177,13 @@ public class DDLDisplayContext {
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcPath",
-					"/edit_record_set.jsp", "redirect",
-					PortalUtil.getCurrentURL(_ddlRequestHelper.getRequest()));
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_ddlRequestHelper.getRequest(), "add"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcPath",
+				"/edit_record_set.jsp", "redirect",
+				PortalUtil.getCurrentURL(_ddlRequestHelper.getRequest())
+			).setLabel(
+				LanguageUtil.get(_ddlRequestHelper.getRequest(), "add")
+			).build()
 		).build();
 	}
 
@@ -749,14 +750,13 @@ public class DDLDisplayContext {
 
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-
-				dropdownItem.setHref(getPortletURL(), "navigation", "all");
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_ddlRequestHelper.getRequest(), "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getPortletURL(), "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(_ddlRequestHelper.getRequest(), "all")
+			).build()
 		).build();
 	}
 

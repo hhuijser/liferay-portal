@@ -24,6 +24,7 @@ import com.liferay.commerce.product.model.CPInstance;
 import com.liferay.commerce.product.portlet.action.ActionHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -164,11 +165,13 @@ public class CPInstanceCommerceTierPriceEntryDisplayContext
 
 	public CreationMenu getCreationMenu() throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(_getAddCommerceTierPriceEntryURL());
-				dropdownItem.setLabel(StringPool.BLANK);
-				dropdownItem.setTarget("modal-lg");
-			}
+			DropdownItemBuilder.setHref(
+				_getAddCommerceTierPriceEntryURL()
+			).setLabel(
+				StringPool.BLANK
+			).setTarget(
+				"modal-lg"
+			).build()
 		).build();
 	}
 

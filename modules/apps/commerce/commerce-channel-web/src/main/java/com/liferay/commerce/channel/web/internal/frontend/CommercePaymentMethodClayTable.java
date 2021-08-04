@@ -33,6 +33,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -105,32 +106,30 @@ public class CommercePaymentMethodClayTable
 		throws PortalException {
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.create(
-						PortletProviderUtil.getPortletURL(
-							httpServletRequest,
-							CommercePaymentMethodGroupRel.class.getName(),
-							PortletProvider.Action.EDIT)
-					).setParameter(
-						"commerceChannelId",
-						ParamUtil.getLong(
-							httpServletRequest, "commerceChannelId")
-					).setParameter(
-						"commercePaymentMethodEngineKey",
-						() -> {
-							PaymentMethod paymentMethod = (PaymentMethod)model;
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(
+						httpServletRequest,
+						CommercePaymentMethodGroupRel.class.getName(),
+						PortletProvider.Action.EDIT)
+				).setParameter(
+					"commerceChannelId",
+					ParamUtil.getLong(httpServletRequest, "commerceChannelId")
+				).setParameter(
+					"commercePaymentMethodEngineKey",
+					() -> {
+						PaymentMethod paymentMethod = (PaymentMethod)model;
 
-							return paymentMethod.getKey();
-						}
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildPortletURL());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+						return paymentMethod.getKey();
+					}
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildPortletURL()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 	}
 

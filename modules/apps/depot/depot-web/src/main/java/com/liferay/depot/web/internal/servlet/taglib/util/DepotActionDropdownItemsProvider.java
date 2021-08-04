@@ -18,6 +18,7 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.web.internal.roles.admin.group.type.contributor.DepotEntryPermission;
 import com.liferay.depot.web.internal.util.DepotEntryURLUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -59,15 +60,13 @@ public class DepotActionDropdownItemsProvider {
 	public List<DropdownItem> getActionDropdownItems() {
 		List<DropdownItem> dropdownItems = DropdownItemListBuilder.add(
 			() -> _hasUpdatePermission(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					DepotEntryURLUtil.getEditDepotEntryPortletURL(
-						_depotEntry, _themeDisplay.getURLCurrent(),
-						_liferayPortletRequest));
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				DepotEntryURLUtil.getEditDepotEntryPortletURL(
+					_depotEntry, _themeDisplay.getURLCurrent(),
+					_liferayPortletRequest)
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "edit")
+			).build()
 		).add(
 			() -> _hasDeletePermission(),
 			dropdownItem -> {
@@ -87,15 +86,15 @@ public class DepotActionDropdownItemsProvider {
 			}
 		).add(
 			() -> _hasPermissionsPermission(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "permissionsDepotEntry");
-				dropdownItem.putData(
-					"permissionsDepotEntryURL",
-					DepotEntryURLUtil.getDepotEntryPermissionsURL(
-						_depotEntry, _liferayPortletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "permissions"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "permissionsDepotEntry"
+			).putData(
+				"permissionsDepotEntryURL",
+				DepotEntryURLUtil.getDepotEntryPermissionsURL(
+					_depotEntry, _liferayPortletRequest)
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "permissions")
+			).build()
 		).build();
 
 		if (ListUtil.isEmpty(dropdownItems)) {

@@ -22,6 +22,7 @@ import com.liferay.commerce.subscription.web.internal.frontend.constants.Commerc
 import com.liferay.commerce.subscription.web.internal.model.SubscriptionEntry;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -67,26 +68,22 @@ public class CommerceSubscriptionEntryClayDataSetActionProvider
 			() -> _portletResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), null,
 				CommerceActionKeys.MANAGE_COMMERCE_SUBSCRIPTIONS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getSubscriptionEntryEditURL(
-						subscriptionEntry.getSubscriptionId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				_getSubscriptionEntryEditURL(
+					subscriptionEntry.getSubscriptionId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).build()
 		).add(
 			() -> _portletResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), null,
 				CommerceActionKeys.MANAGE_COMMERCE_SUBSCRIPTIONS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getSubscriptionEntryDeleteURL(
-						subscriptionEntry.getSubscriptionId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getSubscriptionEntryDeleteURL(
+					subscriptionEntry.getSubscriptionId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

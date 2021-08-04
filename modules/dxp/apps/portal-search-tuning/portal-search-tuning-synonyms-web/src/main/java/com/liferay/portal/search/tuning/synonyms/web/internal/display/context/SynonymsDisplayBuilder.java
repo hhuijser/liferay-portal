@@ -17,6 +17,7 @@ package com.liferay.portal.search.tuning.synonyms.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
@@ -179,12 +180,13 @@ public class SynonymsDisplayBuilder {
 		SynonymSet synonymSet, RenderURL editRenderURL) {
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(editRenderURL);
-				dropdownItem.setLabel(
-					_language.get(_httpServletRequest, "edit"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.setHref(
+				editRenderURL
+			).setLabel(
+				_language.get(_httpServletRequest, "edit")
+			).setQuickAction(
+				true
+			).build()
 		).add(
 			dropdownItem -> {
 				dropdownItem.putData("action", "delete");
@@ -215,26 +217,27 @@ public class SynonymsDisplayBuilder {
 
 	protected CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/synonyms/edit_synonym_sets", "redirect",
-					_portal.getCurrentURL(_httpServletRequest));
-				dropdownItem.setLabel(
-					_language.get(_httpServletRequest, "new-synonym-set"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcRenderCommandName",
+				"/synonyms/edit_synonym_sets", "redirect",
+				_portal.getCurrentURL(_httpServletRequest)
+			).setLabel(
+				_language.get(_httpServletRequest, "new-synonym-set")
+			).build()
 		).build();
 	}
 
 	protected List<DropdownItem> getDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteMultipleSynonyms");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					_language.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteMultipleSynonyms"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				_language.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 

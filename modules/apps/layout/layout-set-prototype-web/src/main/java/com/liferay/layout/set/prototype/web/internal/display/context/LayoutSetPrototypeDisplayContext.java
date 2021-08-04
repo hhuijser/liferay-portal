@@ -17,6 +17,7 @@ package com.liferay.layout.set.prototype.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -65,13 +66,15 @@ public class LayoutSetPrototypeDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteLayoutSetPrototypes");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteLayoutSetPrototypes"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -100,18 +103,17 @@ public class LayoutSetPrototypeDisplayContext {
 
 	public CreationMenu getCreationMenu() throws PortalException {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						_renderResponse
-					).setMVCPath(
-						"/edit_layout_set_prototype.jsp"
-					).setRedirect(
-						PortalUtil.getCurrentURL(_httpServletRequest)
-					).buildString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					_renderResponse
+				).setMVCPath(
+					"/edit_layout_set_prototype.jsp"
+				).setRedirect(
+					PortalUtil.getCurrentURL(_httpServletRequest)
+				).buildString()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add")
+			).build()
 		).build();
 	}
 
@@ -333,26 +335,29 @@ public class LayoutSetPrototypeDisplayContext {
 			_httpServletRequest, "status", "all");
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(status.equals("all"));
-				dropdownItem.setHref(getPortletURL(), "status", "all");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				status.equals("all")
+			).setHref(
+				getPortletURL(), "status", "all"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(status.equals("active"));
-				dropdownItem.setHref(getPortletURL(), "status", "active");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "active"));
-			}
+			DropdownItemBuilder.setActive(
+				status.equals("active")
+			).setHref(
+				getPortletURL(), "status", "active"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "active")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(status.equals("inactive"));
-				dropdownItem.setHref(getPortletURL(), "status", "inactive");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "inactive"));
-			}
+			DropdownItemBuilder.setActive(
+				status.equals("inactive")
+			).setHref(
+				getPortletURL(), "status", "inactive"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "inactive")
+			).build()
 		).build();
 	}
 
@@ -366,13 +371,13 @@ public class LayoutSetPrototypeDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(
-					getPortletURL(), "orderByCol", "createDate");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "create-date"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getPortletURL(), "orderByCol", "createDate"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "create-date")
+			).build()
 		).build();
 	}
 

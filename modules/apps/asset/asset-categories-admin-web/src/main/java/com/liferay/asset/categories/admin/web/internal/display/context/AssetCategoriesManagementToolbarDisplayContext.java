@@ -19,6 +19,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -73,33 +74,32 @@ public class AssetCategoriesManagementToolbarDisplayContext
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						this::_isSetDisplayPageTemplateEnabled,
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "setCategoryDisplayPageTemplate");
-							dropdownItem.putData(
-								"setCategoryDisplayPageTemplateURL",
-								PortletURLBuilder.createRenderURL(
-									liferayPortletResponse
-								).setMVCPath(
-									"/set_category_display_page_template.jsp"
-								).setRedirect(
-									currentURLObj
-								).setParameter(
-									"parentCategoryId",
-									_assetCategoriesDisplayContext.
-										getCategoryId()
-								).setParameter(
-									"vocabularyId",
-									_assetCategoriesDisplayContext.
-										getVocabularyId()
-								).buildString());
-							dropdownItem.setIcon("page");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									httpServletRequest,
-									"assign-display-page-template"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "setCategoryDisplayPageTemplate"
+						).putData(
+							"setCategoryDisplayPageTemplateURL",
+							PortletURLBuilder.createRenderURL(
+								liferayPortletResponse
+							).setMVCPath(
+								"/set_category_display_page_template.jsp"
+							).setRedirect(
+								currentURLObj
+							).setParameter(
+								"parentCategoryId",
+								_assetCategoriesDisplayContext.getCategoryId()
+							).setParameter(
+								"vocabularyId",
+								_assetCategoriesDisplayContext.getVocabularyId()
+							).buildString()
+						).setIcon(
+							"page"
+						).setLabel(
+							LanguageUtil.get(
+								httpServletRequest,
+								"assign-display-page-template")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -107,14 +107,15 @@ public class AssetCategoriesManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deleteSelectedCategories");
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "delete"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteSelectedCategories"
+						).setIcon(
+							"times-circle"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "delete")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -241,24 +242,26 @@ public class AssetCategoriesManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(_isNavigationAll());
-				dropdownItem.setHref(getPortletURL(), "navigation", "all");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				_isNavigationAll()
+			).setHref(
+				getPortletURL(), "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "all")
+			).build()
 		).add(
 			_assetCategoriesDisplayContext::isFlattenedNavigationAllowed,
-			dropdownItem -> {
-				dropdownItem.putData("action", "selectCategory");
-				dropdownItem.putData(
-					"categoriesSelectorURL", _getCategoriesSelectorURL());
-				dropdownItem.putData(
-					"viewCategoriesURL", _getViewCategoriesURL());
-				dropdownItem.setActive(_isNavigationCategory());
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "category"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "selectCategory"
+			).putData(
+				"categoriesSelectorURL", _getCategoriesSelectorURL()
+			).putData(
+				"viewCategoriesURL", _getViewCategoriesURL()
+			).setActive(
+				_isNavigationCategory()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "category")
+			).build()
 		).build();
 	}
 

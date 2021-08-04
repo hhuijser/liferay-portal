@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -81,13 +82,15 @@ public class UsersManagementToolbarDisplayContext
 		return new DropdownItemList() {
 			{
 				add(
-					dropdownItem -> {
-						dropdownItem.putData("action", "deleteSelectedUsers");
-						dropdownItem.setIcon("times-circle");
-						dropdownItem.setLabel(
-							LanguageUtil.get(httpServletRequest, "delete"));
-						dropdownItem.setQuickAction(true);
-					});
+					DropdownItemBuilder.putData(
+						"action", "deleteSelectedUsers"
+					).setIcon(
+						"times-circle"
+					).setLabel(
+						LanguageUtil.get(httpServletRequest, "delete")
+					).setQuickAction(
+						true
+					).build());
 
 				try {
 					if (GroupPermissionUtil.contains(
@@ -96,27 +99,26 @@ public class UsersManagementToolbarDisplayContext
 							ActionKeys.ASSIGN_USER_ROLES)) {
 
 						add(
-							dropdownItem -> {
-								dropdownItem.putData("action", "selectRole");
-
-								dropdownItem.putData(
-									"editUsersRolesURL",
-									PortletURLBuilder.createActionURL(
-										liferayPortletResponse
-									).setActionName(
-										"editUsersRoles"
-									).buildString());
-
-								dropdownItem.putData(
-									"selectRoleURL",
-									_getSelectorURL("/site_roles.jsp"));
-
-								dropdownItem.setIcon("add-role");
-								dropdownItem.setLabel(
-									LanguageUtil.get(
-										httpServletRequest, "assign-roles"));
-								dropdownItem.setQuickAction(true);
-							});
+							DropdownItemBuilder.putData(
+								"action", "selectRole"
+							).putData(
+								"editUsersRolesURL",
+								PortletURLBuilder.createActionURL(
+									liferayPortletResponse
+								).setActionName(
+									"editUsersRoles"
+								).buildString()
+							).putData(
+								"selectRoleURL",
+								_getSelectorURL("/site_roles.jsp")
+							).setIcon(
+								"add-role"
+							).setLabel(
+								LanguageUtil.get(
+									httpServletRequest, "assign-roles")
+							).setQuickAction(
+								true
+							).build());
 
 						Role role = _usersDisplayContext.getRole();
 
@@ -126,31 +128,29 @@ public class UsersManagementToolbarDisplayContext
 								role.getTitle(themeDisplay.getLocale()), false);
 
 							add(
-								dropdownItem -> {
-									dropdownItem.putData(
-										"action", "removeUserRole");
-									dropdownItem.putData(
-										"message",
-										LanguageUtil.format(
-											httpServletRequest,
-											"are-you-sure-you-want-to-remove-" +
-												"x-role-to-selected-users",
-											role.getTitle(
-												themeDisplay.getLocale())));
-
-									dropdownItem.putData(
-										"removeUserRoleURL",
-										PortletURLBuilder.create(
-											liferayPortletResponse.
-												createActionURL()
-										).setActionName(
-											"removeUserRole"
-										).buildString());
-
-									dropdownItem.setIcon("remove-role");
-									dropdownItem.setLabel(label);
-									dropdownItem.setQuickAction(true);
-								});
+								DropdownItemBuilder.putData(
+									"action", "removeUserRole"
+								).putData(
+									"message",
+									LanguageUtil.format(
+										httpServletRequest,
+										"are-you-sure-you-want-to-remove-" +
+											"x-role-to-selected-users",
+										role.getTitle(themeDisplay.getLocale()))
+								).putData(
+									"removeUserRoleURL",
+									PortletURLBuilder.create(
+										liferayPortletResponse.createActionURL()
+									).setActionName(
+										"removeUserRole"
+									).buildString()
+								).setIcon(
+									"remove-role"
+								).setLabel(
+									label
+								).setQuickAction(
+									true
+								).build());
 						}
 					}
 				}
@@ -342,13 +342,13 @@ public class UsersManagementToolbarDisplayContext
 	@Override
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(Objects.equals(getNavigation(), "all"));
-				dropdownItem.setHref(
-					getPortletURL(), "navigation", "all", "roleId", "0");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getNavigation(), "all")
+			).setHref(
+				getPortletURL(), "navigation", "all", "roleId", "0"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "all")
+			).build()
 		).add(
 			dropdownItem -> {
 				dropdownItem.putData("action", "selectRoles");

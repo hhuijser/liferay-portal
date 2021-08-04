@@ -19,6 +19,7 @@ import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -87,14 +88,15 @@ public class CommerceNotificationQueueEntriesDisplayContext {
 
 	public CreationMenu getNotificationTemplateCreationMenu() throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(getAddNotificationTemplateURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_commerceNotificationsRequestHelper.getRequest(),
-						"add-notification-template"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				getAddNotificationTemplateURL()
+			).setLabel(
+				LanguageUtil.get(
+					_commerceNotificationsRequestHelper.getRequest(),
+					"add-notification-template")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 	}
 

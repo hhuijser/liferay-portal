@@ -17,6 +17,7 @@ package com.liferay.translation.web.internal.display.context;
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
@@ -93,12 +94,11 @@ public class ViewDisplayContext {
 			() -> _modelResourcePermission.contains(
 				_themeDisplay.getPermissionChecker(), translationEntry,
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(getTranslatePortletURL(translationEntry));
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				getTranslatePortletURL(translationEntry)
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "edit")
+			).build()
 		).add(
 			() -> _modelResourcePermission.contains(
 				_themeDisplay.getPermissionChecker(), translationEntry,

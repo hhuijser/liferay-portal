@@ -36,6 +36,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
@@ -124,13 +125,12 @@ public class CommerceAccountClayDataSetDataSetDisplayView
 		return DropdownItemListBuilder.add(
 			() -> _modelResourcePermission.contains(
 				permissionChecker, account.getAccountId(), ActionKeys.VIEW),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getAccountViewDetailURL(
-						account.getAccountId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "view"));
-			}
+			DropdownItemBuilder.setHref(
+				_getAccountViewDetailURL(
+					account.getAccountId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "view")
+			).build()
 		).add(
 			() -> {
 				CommerceContext commerceContext =
@@ -153,13 +153,11 @@ public class CommerceAccountClayDataSetDataSetDisplayView
 
 				return false;
 			},
-			dropdownItem -> {
-				dropdownItem.setHref(
-					"javascript:setCurrentAccount('" + account.getAccountId() +
-						"')");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "select"));
-			}
+			DropdownItemBuilder.setHref(
+				"javascript:setCurrentAccount('" + account.getAccountId() + "')"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "select")
+			).build()
 		).add(
 			() -> _modelResourcePermission.contains(
 				permissionChecker, account.getAccountId(), ActionKeys.UPDATE),

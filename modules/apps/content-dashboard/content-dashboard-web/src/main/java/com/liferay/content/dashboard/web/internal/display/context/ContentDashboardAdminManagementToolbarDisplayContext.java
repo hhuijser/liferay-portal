@@ -22,6 +22,7 @@ import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
 import com.liferay.content.dashboard.web.internal.item.type.ContentDashboardItemType;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -797,14 +798,13 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 
 				for (int status : _getStatuses()) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(curStatus == status);
-							dropdownItem.setHref(
-								getPortletURL(), "status",
-								String.valueOf(status));
-
-							dropdownItem.setLabel(_getStatusLabel(status));
-						});
+						DropdownItemBuilder.setActive(
+							curStatus == status
+						).setHref(
+							getPortletURL(), "status", String.valueOf(status)
+						).setLabel(
+							_getStatusLabel(status)
+						).build());
 				}
 			}
 		};

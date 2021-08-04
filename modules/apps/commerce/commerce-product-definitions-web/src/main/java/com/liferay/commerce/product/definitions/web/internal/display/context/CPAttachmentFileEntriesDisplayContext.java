@@ -30,6 +30,7 @@ import com.liferay.commerce.product.util.CPInstanceHelper;
 import com.liferay.document.library.display.context.DLMimeTypeDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
@@ -141,22 +142,23 @@ public class CPAttachmentFileEntriesDisplayContext
 
 	public CreationMenu getCreationMenu(int type) throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						liferayPortletResponse
-					).setMVCRenderCommandName(
-						"/cp_definitions/edit_cp_attachment_file_entry"
-					).setParameter(
-						"cpDefinitionId", getCPDefinitionId()
-					).setParameter(
-						"type", type
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildString());
-				dropdownItem.setLabel(_getTypeLabel(type));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setMVCRenderCommandName(
+					"/cp_definitions/edit_cp_attachment_file_entry"
+				).setParameter(
+					"cpDefinitionId", getCPDefinitionId()
+				).setParameter(
+					"type", type
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setLabel(
+				_getTypeLabel(type)
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 	}
 

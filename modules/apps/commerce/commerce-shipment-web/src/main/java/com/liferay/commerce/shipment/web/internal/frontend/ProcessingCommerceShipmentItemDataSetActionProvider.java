@@ -25,6 +25,7 @@ import com.liferay.commerce.model.CommerceShipmentItem;
 import com.liferay.commerce.service.CommerceShipmentItemService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -87,26 +88,26 @@ public class ProcessingCommerceShipmentItemDataSetActionProvider
 						   CommerceShipmentConstants.
 							   SHIPMENT_STATUS_PROCESSING);
 			},
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getShipmentItemEditURL(
-						commerceShipmentItem, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getShipmentItemEditURL(
+					commerceShipmentItem, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _portletResourcePermission.contains(
 				permissionChecker, null,
 				CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getShipmentItemDeleteURL(
-						shipmentItem.getShipmentItemId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setTarget("modal");
-			}
+			DropdownItemBuilder.setHref(
+				_getShipmentItemDeleteURL(
+					shipmentItem.getShipmentItemId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setTarget(
+				"modal"
+			).build()
 		).build();
 	}
 

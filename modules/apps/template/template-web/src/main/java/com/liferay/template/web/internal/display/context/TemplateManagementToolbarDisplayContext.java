@@ -19,6 +19,7 @@ import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -66,13 +67,15 @@ public class TemplateManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteSelectedDDMTemplates");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSelectedDDMTemplates"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -139,14 +142,14 @@ public class TemplateManagementToolbarDisplayContext
 					_templateDisplayContext.getResourceClassNameId()));
 
 			creationMenu.addPrimaryDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(addDDMTemplateURL);
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							httpServletRequest,
-							_templateDisplayContext.getTemplateType(
-								addAllowedClassNameId)));
-				});
+				DropdownItemBuilder.setHref(
+					addDDMTemplateURL
+				).setLabel(
+					LanguageUtil.get(
+						httpServletRequest,
+						_templateDisplayContext.getTemplateType(
+							addAllowedClassNameId))
+				).build());
 		}
 
 		return creationMenu;

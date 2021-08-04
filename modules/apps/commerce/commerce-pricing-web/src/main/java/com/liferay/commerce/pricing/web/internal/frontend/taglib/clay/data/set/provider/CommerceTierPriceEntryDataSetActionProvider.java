@@ -23,6 +23,7 @@ import com.liferay.commerce.pricing.web.internal.frontend.constants.CommercePric
 import com.liferay.commerce.pricing.web.internal.model.TierPriceEntry;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -79,25 +80,24 @@ public class CommerceTierPriceEntryDataSetActionProvider
 			() -> _commercePriceListModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				commercePriceEntry.getCommercePriceListId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getTierPriceEntryEditURL(
-						commerceTierPriceEntry, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getTierPriceEntryEditURL(
+					commerceTierPriceEntry, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _commercePriceListModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				commercePriceEntry.getCommercePriceListId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getTierPriceEntryDeleteURL(
-						commerceTierPriceEntry, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getTierPriceEntryDeleteURL(
+					commerceTierPriceEntry, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

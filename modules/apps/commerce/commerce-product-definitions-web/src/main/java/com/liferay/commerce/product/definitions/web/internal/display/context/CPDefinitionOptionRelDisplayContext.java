@@ -26,6 +26,7 @@ import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldType;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
@@ -105,24 +106,23 @@ public class CPDefinitionOptionRelDisplayContext
 
 	public CreationMenu getCreationMenu() throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						liferayPortletResponse
-					).setMVCRenderCommandName(
-						"/cp_definitions/edit_cp_definition_option_value_rel"
-					).setParameter(
-						"cpDefinitionId", getCPDefinitionId()
-					).setParameter(
-						"cpDefinitionOptionRelId", getCPDefinitionOptionRelId()
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						cpRequestHelper.getRequest(), "add-value"));
-				dropdownItem.setTarget("modal-lg");
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setMVCRenderCommandName(
+					"/cp_definitions/edit_cp_definition_option_value_rel"
+				).setParameter(
+					"cpDefinitionId", getCPDefinitionId()
+				).setParameter(
+					"cpDefinitionOptionRelId", getCPDefinitionOptionRelId()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setLabel(
+				LanguageUtil.get(cpRequestHelper.getRequest(), "add-value")
+			).setTarget(
+				"modal-lg"
+			).build()
 		).build();
 	}
 

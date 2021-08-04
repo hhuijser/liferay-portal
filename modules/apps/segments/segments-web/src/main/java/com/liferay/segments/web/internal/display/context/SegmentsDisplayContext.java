@@ -17,6 +17,7 @@ package com.liferay.segments.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -78,13 +79,15 @@ public class SegmentsDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteSegmentsEntries");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSegmentsEntries"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -111,14 +114,12 @@ public class SegmentsDisplayContext {
 
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/segments/edit_segments_entry", "type",
-					User.class.getName());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "user-segment"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcRenderCommandName",
+				"/segments/edit_segments_entry", "type", User.class.getName()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "user-segment")
+			).build()
 		).build();
 	}
 
@@ -316,12 +317,13 @@ public class SegmentsDisplayContext {
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(_renderResponse.createRenderURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				_renderResponse.createRenderURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).build();
 	}
 
@@ -372,22 +374,21 @@ public class SegmentsDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(_getOrderByCol(), "modified-date"));
-				dropdownItem.setHref(
-					_getPortletURL(), "orderByCol", "modified-date");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "modified-date"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(_getOrderByCol(), "modified-date")
+			).setHref(
+				_getPortletURL(), "orderByCol", "modified-date"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "modified-date")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(_getOrderByCol(), "name"));
-				dropdownItem.setHref(_getPortletURL(), "orderByCol", "name");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "name"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(_getOrderByCol(), "name")
+			).setHref(
+				_getPortletURL(), "orderByCol", "name"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "name")
+			).build()
 		).build();
 	}
 

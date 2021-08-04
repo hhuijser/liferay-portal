@@ -15,6 +15,7 @@
 package com.liferay.oauth2.provider.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
@@ -46,14 +47,15 @@ public class OAuth2AuthorizationsManagementToolbarDisplayContext
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "revokeOAuth2Authorizations");
-				dropdownItem.setIcon("trash");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "revoke-authorizations"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "revokeOAuth2Authorizations"
+			).setIcon(
+				"trash"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "revoke-authorizations")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -88,16 +90,13 @@ public class OAuth2AuthorizationsManagementToolbarDisplayContext
 			{
 				for (String orderByCol : _ORDER_BY_COLUMNS) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								orderByCol.equals(getOrderByCol()));
-							dropdownItem.setHref(
-								getCurrentSortingURL(), "orderByCol",
-								orderByCol);
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									httpServletRequest, orderByCol));
-						});
+						DropdownItemBuilder.setActive(
+							orderByCol.equals(getOrderByCol())
+						).setHref(
+							getCurrentSortingURL(), "orderByCol", orderByCol
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, orderByCol)
+						).build());
 				}
 			}
 		};

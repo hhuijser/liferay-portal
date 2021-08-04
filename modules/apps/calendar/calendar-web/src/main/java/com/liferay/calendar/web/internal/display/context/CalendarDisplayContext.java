@@ -33,6 +33,7 @@ import com.liferay.calendar.web.internal.security.permission.resource.CalendarPo
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
@@ -424,19 +425,21 @@ public class CalendarDisplayContext {
 			new CalendarResourceDisplayTerms(_renderRequest);
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(displayTerms.isActive());
-				dropdownItem.setHref(getPortletURL(), "active", "true");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_themeDisplay.getRequest(), "yes"));
-			}
+			DropdownItemBuilder.setActive(
+				displayTerms.isActive()
+			).setHref(
+				getPortletURL(), "active", "true"
+			).setLabel(
+				LanguageUtil.get(_themeDisplay.getRequest(), "yes")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(!displayTerms.isActive());
-				dropdownItem.setHref(getPortletURL(), "active", "false");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_themeDisplay.getRequest(), "no"));
-			}
+			DropdownItemBuilder.setActive(
+				!displayTerms.isActive()
+			).setHref(
+				getPortletURL(), "active", "false"
+			).setLabel(
+				LanguageUtil.get(_themeDisplay.getRequest(), "no")
+			).build()
 		).build();
 	}
 
@@ -445,25 +448,21 @@ public class CalendarDisplayContext {
 			new CalendarResourceDisplayTerms(_renderRequest);
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					displayTerms.getScope() == _themeDisplay.getScopeGroupId());
-				dropdownItem.setHref(
-					getPortletURL(), "scope", _themeDisplay.getScopeGroupId());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_themeDisplay.getRequest(), "current"));
-			}
+			DropdownItemBuilder.setActive(
+				displayTerms.getScope() == _themeDisplay.getScopeGroupId()
+			).setHref(
+				getPortletURL(), "scope", _themeDisplay.getScopeGroupId()
+			).setLabel(
+				LanguageUtil.get(_themeDisplay.getRequest(), "current")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					displayTerms.getScope() ==
-						_themeDisplay.getCompanyGroupId());
-				dropdownItem.setHref(
-					getPortletURL(), "scope",
-					_themeDisplay.getCompanyGroupId());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_themeDisplay.getRequest(), "global"));
-			}
+			DropdownItemBuilder.setActive(
+				displayTerms.getScope() == _themeDisplay.getCompanyGroupId()
+			).setHref(
+				getPortletURL(), "scope", _themeDisplay.getCompanyGroupId()
+			).setLabel(
+				LanguageUtil.get(_themeDisplay.getRequest(), "global")
+			).build()
 		).build();
 	}
 

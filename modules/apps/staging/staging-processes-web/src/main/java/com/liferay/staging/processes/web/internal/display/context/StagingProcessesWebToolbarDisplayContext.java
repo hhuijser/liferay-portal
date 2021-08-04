@@ -19,6 +19,7 @@ import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalServiceUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -68,11 +69,11 @@ public class StagingProcessesWebToolbarDisplayContext {
 		}
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteEntries");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteEntries"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 
@@ -227,23 +228,23 @@ public class StagingProcessesWebToolbarDisplayContext {
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(_getNavigationURL("all"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setHref(
+				_getNavigationURL("all")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(_getNavigationURL("completed"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "completed"));
-			}
+			DropdownItemBuilder.setHref(
+				_getNavigationURL("completed")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "completed")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(_getNavigationURL("in-progress"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "in-progress"));
-			}
+			DropdownItemBuilder.setHref(
+				_getNavigationURL("in-progress")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "in-progress")
+			).build()
 		).build();
 	}
 
@@ -257,23 +258,23 @@ public class StagingProcessesWebToolbarDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropDownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(_getOrderByURL("name"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "name"));
-			}
+			DropdownItemBuilder.setHref(
+				_getOrderByURL("name")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "name")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(_getOrderByURL("create-date"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "create-date"));
-			}
+			DropdownItemBuilder.setHref(
+				_getOrderByURL("create-date")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "create-date")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(_getOrderByURL("completion-date"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "completion-date"));
-			}
+			DropdownItemBuilder.setHref(
+				_getOrderByURL("completion-date")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "completion-date")
+			).build()
 		).build();
 	}
 

@@ -21,6 +21,7 @@ import com.liferay.commerce.inventory.web.internal.model.Warehouse;
 import com.liferay.commerce.product.constants.CPPortletKeys;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -72,25 +73,24 @@ public class CommerceInventoryWarehouseClayDataSetActionProvider
 
 		return DropdownItemListBuilder.add(
 			() -> _hasPermission(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getWarehouseEditURL(
-						warehouse.getCommerceInventoryWarehouseItemId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getWarehouseEditURL(
+					warehouse.getCommerceInventoryWarehouseItemId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _hasPermission(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getWarehouseDeleteURL(
-						warehouse.getCommerceInventoryWarehouseItemId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getWarehouseDeleteURL(
+					warehouse.getCommerceInventoryWarehouseItemId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

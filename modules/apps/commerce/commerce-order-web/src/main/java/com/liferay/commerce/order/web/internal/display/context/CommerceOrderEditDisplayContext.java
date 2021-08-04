@@ -40,6 +40,7 @@ import com.liferay.commerce.service.CommerceOrderService;
 import com.liferay.commerce.service.CommerceShipmentService;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -157,24 +158,22 @@ public class CommerceOrderEditDisplayContext {
 		throws Exception {
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						_commerceOrderRequestHelper.getLiferayPortletResponse()
-					).setMVCRenderCommandName(
-						mvcRenderCommandName
-					).setCMD(
-						Constants.ADD
-					).setParameter(
-						"commerceOrderId", getCommerceOrderId()
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_commerceOrderRequestHelper.getRequest(),
-						"add-new-address"));
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					_commerceOrderRequestHelper.getLiferayPortletResponse()
+				).setMVCRenderCommandName(
+					mvcRenderCommandName
+				).setCMD(
+					Constants.ADD
+				).setParameter(
+					"commerceOrderId", getCommerceOrderId()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setLabel(
+				LanguageUtil.get(
+					_commerceOrderRequestHelper.getRequest(), "add-new-address")
+			).build()
 		).build();
 	}
 

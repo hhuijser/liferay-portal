@@ -36,6 +36,7 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -118,13 +119,15 @@ public class DDLViewRecordsDisplayContext {
 		}
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteRecords");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_ddlRequestHelper.getRequest(), "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteRecords"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_ddlRequestHelper.getRequest(), "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -142,23 +145,19 @@ public class DDLViewRecordsDisplayContext {
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_liferayPortletResponse.createRenderURL(), "mvcPath",
-					"/edit_record.jsp", "redirect",
-					PortalUtil.getCurrentURL(_ddlRequestHelper.getRequest()),
-					"recordSetId",
-					String.valueOf(_ddlRecordSet.getRecordSetId()),
-					"formDDMTemplateId", String.valueOf(_formDDMTemplateId));
-
-				dropdownItem.setLabel(
-					LanguageUtil.format(
-						_ddlRequestHelper.getRequest(), "add-x",
-						HtmlUtil.escape(
-							_ddmStructure.getName(
-								_ddlRequestHelper.getLocale())),
-						false));
-			}
+			DropdownItemBuilder.setHref(
+				_liferayPortletResponse.createRenderURL(), "mvcPath",
+				"/edit_record.jsp", "redirect",
+				PortalUtil.getCurrentURL(_ddlRequestHelper.getRequest()),
+				"recordSetId", String.valueOf(_ddlRecordSet.getRecordSetId()),
+				"formDDMTemplateId", String.valueOf(_formDDMTemplateId)
+			).setLabel(
+				LanguageUtil.format(
+					_ddlRequestHelper.getRequest(), "add-x",
+					HtmlUtil.escape(
+						_ddmStructure.getName(_ddlRequestHelper.getLocale())),
+					false)
+			).build()
 		).build();
 	}
 
@@ -505,14 +504,13 @@ public class DDLViewRecordsDisplayContext {
 
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-
-				dropdownItem.setHref(getPortletURL(), "navigation", "all");
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_ddlRequestHelper.getRequest(), "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getPortletURL(), "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(_ddlRequestHelper.getRequest(), "all")
+			).build()
 		).build();
 	}
 

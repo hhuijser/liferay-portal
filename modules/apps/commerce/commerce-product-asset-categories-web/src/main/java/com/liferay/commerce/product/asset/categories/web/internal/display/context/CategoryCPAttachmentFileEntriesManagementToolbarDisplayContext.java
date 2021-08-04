@@ -19,6 +19,7 @@ import com.liferay.commerce.product.model.CPAttachmentFileEntry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -52,22 +53,20 @@ public class CategoryCPAttachmentFileEntriesManagementToolbarDisplayContext
 				WebKeys.ASSET_CATEGORY);
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						liferayPortletResponse
-					).setMVCRenderCommandName(
-						"/commerce_product_asset_categories" +
-							"/edit_asset_category_cp_attachment_file_entry"
-					).setRedirect(
-						currentURLObj
-					).setParameter(
-						"categoryId", assetCategory.getCategoryId()
-					).buildPortletURL());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add-image"));
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					liferayPortletResponse
+				).setMVCRenderCommandName(
+					"/commerce_product_asset_categories" +
+						"/edit_asset_category_cp_attachment_file_entry"
+				).setRedirect(
+					currentURLObj
+				).setParameter(
+					"categoryId", assetCategory.getCategoryId()
+				).buildPortletURL()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-image")
+			).build()
 		).build();
 	}
 

@@ -15,6 +15,7 @@
 package com.liferay.social.bookmarks.taglib.internal.util;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.social.bookmarks.SocialBookmark;
@@ -53,19 +54,21 @@ public class SocialBookmarksTagUtil {
 					}
 
 					add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "post");
-							dropdownItem.putData("className", className);
-							dropdownItem.putData(
-								"classPK", String.valueOf(classPK));
-							dropdownItem.putData(
-								"postURL",
-								socialBookmark.getPostURL(title, url));
-							dropdownItem.putData("type", type);
-							dropdownItem.putData("url", url);
-							dropdownItem.setLabel(
-								socialBookmark.getName(locale));
-						});
+						DropdownItemBuilder.putData(
+							"action", "post"
+						).putData(
+							"className", className
+						).putData(
+							"classPK", String.valueOf(classPK)
+						).putData(
+							"postURL", socialBookmark.getPostURL(title, url)
+						).putData(
+							"type", type
+						).putData(
+							"url", url
+						).setLabel(
+							socialBookmark.getName(locale)
+						).build());
 				}
 			}
 		};

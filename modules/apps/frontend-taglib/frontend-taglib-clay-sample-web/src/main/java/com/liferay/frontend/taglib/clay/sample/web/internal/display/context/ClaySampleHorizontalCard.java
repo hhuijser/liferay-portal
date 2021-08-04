@@ -16,6 +16,7 @@ package com.liferay.frontend.taglib.clay.sample.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.HorizontalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 
 import java.util.List;
@@ -28,15 +29,17 @@ public class ClaySampleHorizontalCard implements HorizontalCard {
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref("#1");
-				dropdownItem.setLabel("Custom Edit");
-			}
+			DropdownItemBuilder.setHref(
+				"#1"
+			).setLabel(
+				"Custom Edit"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref("#2");
-				dropdownItem.setLabel("Custom Save");
-			}
+			DropdownItemBuilder.setHref(
+				"#2"
+			).setLabel(
+				"Custom Save"
+			).build()
 		).build();
 	}
 

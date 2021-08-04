@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -70,16 +71,17 @@ public class ViewFlatUsersManagementToolbarDisplayContext
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
 			() -> _showRestoreButton,
-			dropdownItem -> {
-				dropdownItem.setHref(
-					StringBundler.concat(
-						"javascript:", liferayPortletResponse.getNamespace(),
-						"deleteUsers('", Constants.RESTORE, "');"));
-				dropdownItem.setIcon("undo");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "activate"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.setHref(
+				StringBundler.concat(
+					"javascript:", liferayPortletResponse.getNamespace(),
+					"deleteUsers('", Constants.RESTORE, "');")
+			).setIcon(
+				"undo"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "activate")
+			).setQuickAction(
+				true
+			).build()
 		).add(
 			() -> _showDeleteButton,
 			dropdownItem -> {
@@ -126,13 +128,12 @@ public class ViewFlatUsersManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/users_admin/edit_user");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add-user"));
-			}
+			DropdownItemBuilder.setHref(
+				liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName", "/users_admin/edit_user"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-user")
+			).build()
 		).build();
 	}
 

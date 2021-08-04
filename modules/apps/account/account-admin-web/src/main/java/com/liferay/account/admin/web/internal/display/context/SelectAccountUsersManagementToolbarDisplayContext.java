@@ -19,6 +19,7 @@ import com.liferay.account.configuration.AccountEntryEmailDomainsConfiguration;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -72,11 +73,11 @@ public class SelectAccountUsersManagementToolbarDisplayContext
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addAccountEntryUser");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "new-user"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addAccountEntryUser"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "new-user")
+			).build()
 		).build();
 	}
 

@@ -38,6 +38,7 @@ import com.liferay.commerce.product.service.CPTaxCategoryLocalService;
 import com.liferay.commerce.product.service.CommerceChannelService;
 import com.liferay.commerce.tax.configuration.CommerceShippingTaxConfiguration;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -257,12 +258,13 @@ public class CommerceChannelDisplayContext
 
 		if (hasAddChannelPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddChannelURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(httpServletRequest, "add-channel"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddChannelURL()
+				).setLabel(
+					LanguageUtil.get(httpServletRequest, "add-channel")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

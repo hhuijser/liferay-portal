@@ -17,6 +17,7 @@ package com.liferay.wiki.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -144,19 +145,17 @@ public class WikiNodesManagementToolbarDisplayContext {
 		}
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/wiki/edit_node", "redirect",
-					PortletURLBuilder.createRenderURL(
-						_liferayPortletResponse
-					).setMVCRenderCommandName(
-						"/wiki_admin/view"
-					).buildString());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "add-wiki"));
-			}
+			DropdownItemBuilder.setHref(
+				_liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName", "/wiki/edit_node", "redirect",
+				PortletURLBuilder.createRenderURL(
+					_liferayPortletResponse
+				).setMVCRenderCommandName(
+					"/wiki_admin/view"
+				).buildString()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add-wiki")
+			).build()
 		).build();
 	}
 
@@ -229,16 +228,14 @@ public class WikiNodesManagementToolbarDisplayContext {
 					String orderByCol = orderByColEntry.getKey();
 
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								orderByCol.equals(_getOrderByCol()));
-							dropdownItem.setHref(
-								_getPortletURL(), "orderByCol", orderByCol);
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									orderByColEntry.getValue()));
-						});
+						DropdownItemBuilder.setActive(
+							orderByCol.equals(_getOrderByCol())
+						).setHref(
+							_getPortletURL(), "orderByCol", orderByCol
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest, orderByColEntry.getValue())
+						).build());
 				}
 			}
 		};

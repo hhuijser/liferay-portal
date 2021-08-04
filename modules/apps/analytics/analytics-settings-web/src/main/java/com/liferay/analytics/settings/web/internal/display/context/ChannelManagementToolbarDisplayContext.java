@@ -17,6 +17,7 @@ package com.liferay.analytics.settings.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -73,14 +74,13 @@ public class ChannelManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/analytics_settings/add_channel",
-					"redirect", currentURLObj.toString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_resourceBundle, "new-property"));
-			}
+			DropdownItemBuilder.setHref(
+				liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName", "/analytics_settings/add_channel",
+				"redirect", currentURLObj.toString()
+			).setLabel(
+				LanguageUtil.get(_resourceBundle, "new-property")
+			).build()
 		).build();
 	}
 

@@ -21,6 +21,7 @@ import com.liferay.exportimport.util.comparator.ExportImportConfigurationNameCom
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.BaseManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -80,21 +81,17 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					getRenderURL(), "mvcRenderCommandName",
-					"/staging_processes/edit_publish_configuration", "groupId",
-					String.valueOf(_stagingGroupId), "layoutSetBranchId",
-					ParamUtil.getString(
-						httpServletRequest, "layoutSetBranchId"),
-					"layoutSetBranchName",
-					ParamUtil.getString(
-						httpServletRequest, "layoutSetBranchName"),
-					"privateLayout", Boolean.FALSE.toString());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "new"));
-			}
+			DropdownItemBuilder.setHref(
+				getRenderURL(), "mvcRenderCommandName",
+				"/staging_processes/edit_publish_configuration", "groupId",
+				String.valueOf(_stagingGroupId), "layoutSetBranchId",
+				ParamUtil.getString(httpServletRequest, "layoutSetBranchId"),
+				"layoutSetBranchName",
+				ParamUtil.getString(httpServletRequest, "layoutSetBranchName"),
+				"privateLayout", Boolean.FALSE.toString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "new")
+			).build()
 		).build();
 	}
 

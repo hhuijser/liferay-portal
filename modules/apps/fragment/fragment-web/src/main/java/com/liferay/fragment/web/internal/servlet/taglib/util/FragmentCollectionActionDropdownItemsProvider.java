@@ -16,6 +16,7 @@ package com.liferay.fragment.web.internal.servlet.taglib.util;
 
 import com.liferay.fragment.web.internal.display.context.FragmentDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -48,22 +49,21 @@ public class FragmentCollectionActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						_fragmentDisplayContext::hasUpdatePermission,
-						dropdownItem -> {
-							dropdownItem.setHref(
-								PortletURLBuilder.createRenderURL(
-									_renderResponse
-								).setMVCRenderCommandName(
-									"/fragment/edit_fragment_collection"
-								).setRedirect(
-									_fragmentDisplayContext.getRedirect()
-								).setParameter(
-									"fragmentCollectionId",
-									_fragmentDisplayContext.
-										getFragmentCollectionId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "edit"));
-						}
+						DropdownItemBuilder.setHref(
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setMVCRenderCommandName(
+								"/fragment/edit_fragment_collection"
+							).setRedirect(
+								_fragmentDisplayContext.getRedirect()
+							).setParameter(
+								"fragmentCollectionId",
+								_fragmentDisplayContext.
+									getFragmentCollectionId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "edit")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -90,27 +90,24 @@ public class FragmentCollectionActionDropdownItemsProvider {
 						}
 					).add(
 						_fragmentDisplayContext::hasUpdatePermission,
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "openImportCollectionView");
-							dropdownItem.putData(
-								"viewImportURL",
-								PortletURLBuilder.createRenderURL(
-									_renderResponse
-								).setMVCRenderCommandName(
-									"/fragment/view_import"
-								).setParameter(
-									"fragmentCollectionId",
-									_fragmentDisplayContext.
-										getFragmentCollectionId()
-								).setWindowState(
-									LiferayWindowState.POP_UP
-								).buildString());
-
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "import"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "openImportCollectionView"
+						).putData(
+							"viewImportURL",
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setMVCRenderCommandName(
+								"/fragment/view_import"
+							).setParameter(
+								"fragmentCollectionId",
+								_fragmentDisplayContext.
+									getFragmentCollectionId()
+							).setWindowState(
+								LiferayWindowState.POP_UP
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "import")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -119,24 +116,22 @@ public class FragmentCollectionActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						_fragmentDisplayContext::hasDeletePermission,
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deleteFragmentCollection");
-							dropdownItem.putData(
-								"deleteFragmentCollectionURL",
-								PortletURLBuilder.createActionURL(
-									_renderResponse
-								).setActionName(
-									"/fragment/delete_fragment_collection"
-								).setParameter(
-									"fragmentCollectionId",
-									_fragmentDisplayContext.
-										getFragmentCollectionId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "delete"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteFragmentCollection"
+						).putData(
+							"deleteFragmentCollectionURL",
+							PortletURLBuilder.createActionURL(
+								_renderResponse
+							).setActionName(
+								"/fragment/delete_fragment_collection"
+							).setParameter(
+								"fragmentCollectionId",
+								_fragmentDisplayContext.
+									getFragmentCollectionId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "delete")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}

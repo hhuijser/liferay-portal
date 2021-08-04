@@ -21,6 +21,7 @@ import com.liferay.commerce.inventory.web.internal.model.InventoryItem;
 import com.liferay.commerce.product.constants.CPPortletKeys;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -81,13 +82,12 @@ public class CommerceInventoryItemClayDataSetActionProvider
 			}
 		).add(
 			() -> _hasPermission(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getInventoryItemDeleteURL(
-						inventoryItem.getSku(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getInventoryItemDeleteURL(
+					inventoryItem.getSku(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

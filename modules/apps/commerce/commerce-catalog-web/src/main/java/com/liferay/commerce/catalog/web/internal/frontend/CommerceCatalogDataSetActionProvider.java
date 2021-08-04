@@ -20,6 +20,7 @@ import com.liferay.commerce.product.constants.CPPortletKeys;
 import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -70,35 +71,30 @@ public class CommerceCatalogDataSetActionProvider
 		return DropdownItemListBuilder.add(
 			() -> _commerceCatalogModelResourcePermission.contains(
 				permissionChecker, catalog.getCatalogId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getCatalogEditURL(
-						catalog.getCatalogId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, Constants.EDIT));
-			}
+			DropdownItemBuilder.setHref(
+				_getCatalogEditURL(catalog.getCatalogId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, Constants.EDIT)
+			).build()
 		).add(
 			() -> _commerceCatalogModelResourcePermission.contains(
 				permissionChecker, catalog.getCatalogId(),
 				ActionKeys.PERMISSIONS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getManageCatalogPermissionsURL(
-						catalog, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "permissions"));
-				dropdownItem.setTarget("modal-permissions");
-			}
+			DropdownItemBuilder.setHref(
+				_getManageCatalogPermissionsURL(catalog, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "permissions")
+			).setTarget(
+				"modal-permissions"
+			).build()
 		).add(
 			() -> _commerceCatalogModelResourcePermission.contains(
 				permissionChecker, catalog.getCatalogId(), ActionKeys.DELETE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getCatalogDeleteURL(
-						catalog.getCatalogId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, Constants.DELETE));
-			}
+			DropdownItemBuilder.setHref(
+				_getCatalogDeleteURL(catalog.getCatalogId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, Constants.DELETE)
+			).build()
 		).build();
 	}
 

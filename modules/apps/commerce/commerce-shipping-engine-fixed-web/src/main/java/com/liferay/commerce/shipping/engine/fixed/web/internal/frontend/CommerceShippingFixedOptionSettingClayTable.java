@@ -33,6 +33,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -118,26 +119,25 @@ public class CommerceShippingFixedOptionSettingClayTable
 			(ShippingFixedOptionSetting)model;
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getShippingFixedOptionSettingEditURL(
-						httpServletRequest,
-						shippingFixedOptionSetting.
-							getShippingFixedOptionSettingId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getShippingFixedOptionSettingEditURL(
+					httpServletRequest,
+					shippingFixedOptionSetting.
+						getShippingFixedOptionSettingId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getShippingFixedOptionSettingDeleteURL(
-						httpServletRequest,
-						shippingFixedOptionSetting.
-							getShippingFixedOptionSettingId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getShippingFixedOptionSettingDeleteURL(
+					httpServletRequest,
+					shippingFixedOptionSetting.
+						getShippingFixedOptionSettingId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

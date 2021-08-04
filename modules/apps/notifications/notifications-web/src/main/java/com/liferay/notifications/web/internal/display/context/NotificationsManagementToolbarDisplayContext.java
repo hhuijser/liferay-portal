@@ -15,6 +15,7 @@
 package com.liferay.notifications.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -57,30 +58,36 @@ public class NotificationsManagementToolbarDisplayContext {
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
 			() -> !_isActionRequired(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "markNotificationsAsRead");
-				dropdownItem.setIcon("envelope-open");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "mark-as-read"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "markNotificationsAsRead"
+			).setIcon(
+				"envelope-open"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "mark-as-read")
+			).setQuickAction(
+				true
+			).build()
 		).add(
 			() -> !_isActionRequired(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "markNotificationsAsUnread");
-				dropdownItem.setIcon("envelope-closed");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "mark-as-unread"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "markNotificationsAsUnread"
+			).setIcon(
+				"envelope-closed"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "mark-as-unread")
+			).setQuickAction(
+				true
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteNotifications");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteNotifications"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -182,38 +189,32 @@ public class NotificationsManagementToolbarDisplayContext {
 		String navigation = _getNavigation();
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(navigation.equals("all"));
-				dropdownItem.setHref(
-					PortletURLUtil.clone(
-						_currentURLObj, _liferayPortletResponse),
-					SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation",
-					"all");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				navigation.equals("all")
+			).setHref(
+				PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse),
+				SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(navigation.equals("unread"));
-				dropdownItem.setHref(
-					PortletURLUtil.clone(
-						_currentURLObj, _liferayPortletResponse),
-					SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation",
-					"unread");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "unread"));
-			}
+			DropdownItemBuilder.setActive(
+				navigation.equals("unread")
+			).setHref(
+				PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse),
+				SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation", "unread"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "unread")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(navigation.equals("read"));
-				dropdownItem.setHref(
-					PortletURLUtil.clone(
-						_currentURLObj, _liferayPortletResponse),
-					SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation",
-					"read");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "read"));
-			}
+			DropdownItemBuilder.setActive(
+				navigation.equals("read")
+			).setHref(
+				PortletURLUtil.clone(_currentURLObj, _liferayPortletResponse),
+				SearchContainer.DEFAULT_CUR_PARAM, "0", "navigation", "read"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "read")
+			).build()
 		).build();
 	}
 
@@ -223,12 +224,13 @@ public class NotificationsManagementToolbarDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(getSortingURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "date"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getSortingURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "date")
+			).build()
 		).build();
 	}
 

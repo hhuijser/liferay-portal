@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.BaseManag
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -49,23 +50,29 @@ public class ClaySampleManagementToolbarsDisplayContext
 		}
 
 		_actionDropdownItems = DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref("#edit");
-				dropdownItem.setLabel("Edit");
-			}
+			DropdownItemBuilder.setHref(
+				"#edit"
+			).setLabel(
+				"Edit"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setIcon("download");
-				dropdownItem.setLabel("Download");
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.setIcon(
+				"download"
+			).setLabel(
+				"Download"
+			).setQuickAction(
+				true
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref("#delete");
-				dropdownItem.setIcon("trash");
-				dropdownItem.setLabel("Delete");
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.setHref(
+				"#delete"
+			).setIcon(
+				"trash"
+			).setLabel(
+				"Delete"
+			).setQuickAction(
+				true
+			).build()
 		).build();
 
 		return _actionDropdownItems;
@@ -77,55 +84,65 @@ public class ClaySampleManagementToolbarsDisplayContext
 		}
 
 		_creationMenu = CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#1");
-				dropdownItem.setLabel("Sample 1");
-			}
+			DropdownItemBuilder.setHref(
+				"#1"
+			).setLabel(
+				"Sample 1"
+			).build()
 		).addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#2");
-				dropdownItem.setLabel("Sample 2");
-			}
+			DropdownItemBuilder.setHref(
+				"#2"
+			).setLabel(
+				"Sample 2"
+			).build()
 		).addFavoriteDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#3");
-				dropdownItem.setLabel("Favorite 1");
-			}
+			DropdownItemBuilder.setHref(
+				"#3"
+			).setLabel(
+				"Favorite 1"
+			).build()
 		).addFavoriteDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#4");
-				dropdownItem.setLabel("Favorite 2");
-			}
+			DropdownItemBuilder.setHref(
+				"#4"
+			).setLabel(
+				"Favorite 2"
+			).build()
 		).addRestDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#5");
-				dropdownItem.setLabel("Secondary 1");
-			}
+			DropdownItemBuilder.setHref(
+				"#5"
+			).setLabel(
+				"Secondary 1"
+			).build()
 		).addRestDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#6");
-				dropdownItem.setLabel("Secondary 2");
-			}
+			DropdownItemBuilder.setHref(
+				"#6"
+			).setLabel(
+				"Secondary 2"
+			).build()
 		).addRestDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#7");
-				dropdownItem.setLabel("Secondary 3");
-			}
+			DropdownItemBuilder.setHref(
+				"#7"
+			).setLabel(
+				"Secondary 3"
+			).build()
 		).addRestDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#8");
-				dropdownItem.setLabel("Secondary 4");
-			}
+			DropdownItemBuilder.setHref(
+				"#8"
+			).setLabel(
+				"Secondary 4"
+			).build()
 		).addRestDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#9");
-				dropdownItem.setLabel("Secondary 5");
-			}
+			DropdownItemBuilder.setHref(
+				"#9"
+			).setLabel(
+				"Secondary 5"
+			).build()
 		).addRestDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("#10");
-				dropdownItem.setLabel("Secondary 6");
-			}
+			DropdownItemBuilder.setHref(
+				"#10"
+			).setLabel(
+				"Secondary 6"
+			).build()
 		).build();
 
 		_creationMenu.put("maxTotalItems", 8);
@@ -142,15 +159,17 @@ public class ClaySampleManagementToolbarsDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#1");
-							dropdownItem.setLabel("Filter 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#1"
+						).setLabel(
+							"Filter 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#2");
-							dropdownItem.setLabel("Filter 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#2"
+						).setLabel(
+							"Filter 2"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Filter By");
@@ -159,15 +178,17 @@ public class ClaySampleManagementToolbarsDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#3");
-							dropdownItem.setLabel("Order 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#3"
+						).setLabel(
+							"Order 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#4");
-							dropdownItem.setLabel("Order 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#4"
+						).setLabel(
+							"Order 2"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Order By");

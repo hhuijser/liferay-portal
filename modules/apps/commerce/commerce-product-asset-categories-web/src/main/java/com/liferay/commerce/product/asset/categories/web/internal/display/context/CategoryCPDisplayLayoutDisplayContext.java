@@ -26,6 +26,7 @@ import com.liferay.commerce.product.service.CPDisplayLayoutService;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
@@ -167,12 +168,13 @@ public class CategoryCPDisplayLayoutDisplayContext
 
 	public CreationMenu getCreationMenu() throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(getAddCategoryDisplayPageURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add-display-layout"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				getAddCategoryDisplayPageURL()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-display-layout")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 	}
 

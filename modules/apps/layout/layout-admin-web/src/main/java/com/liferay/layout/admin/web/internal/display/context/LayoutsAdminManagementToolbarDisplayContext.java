@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.admin.web.internal.configuration.LayoutConverterConfiguration;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
@@ -78,44 +79,43 @@ public class LayoutsAdminManagementToolbarDisplayContext
 
 				return false;
 			},
-			dropdownItem -> {
-				dropdownItem.putData("action", "convertSelectedPages");
-
-				dropdownItem.putData(
-					"convertLayoutURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/layout_admin/convert_layout"
-					).setRedirect(
-						_themeDisplay.getURLCurrent()
-					).buildString());
-
-				dropdownItem.setIcon("change");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "convert-to-content-page"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "convertSelectedPages"
+			).putData(
+				"convertLayoutURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/layout_admin/convert_layout"
+				).setRedirect(
+					_themeDisplay.getURLCurrent()
+				).buildString()
+			).setIcon(
+				"change"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "convert-to-content-page")
+			).setQuickAction(
+				true
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteSelectedPages");
-
-				dropdownItem.putData(
-					"deleteLayoutURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/layout_admin/delete_layout"
-					).setRedirect(
-						_themeDisplay.getURLCurrent()
-					).buildString());
-
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSelectedPages"
+			).putData(
+				"deleteLayoutURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/layout_admin/delete_layout"
+				).setRedirect(
+					_themeDisplay.getURLCurrent()
+				).buildString()
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -149,14 +149,12 @@ public class LayoutsAdminManagementToolbarDisplayContext
 				(!_layoutsAdminDisplayContext.isPrivateLayout() ||
 				 _layoutsAdminDisplayContext.isFirstColumn() ||
 				 !_layoutsAdminDisplayContext.hasLayouts()),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_layoutsAdminDisplayContext.
-						getSelectLayoutPageTemplateEntryURL(
-							firstLayoutPageTemplateCollectionId, selPlid,
-							false));
-				dropdownItem.setLabel(_getLabel(false));
-			}
+			DropdownItemBuilder.setHref(
+				_layoutsAdminDisplayContext.getSelectLayoutPageTemplateEntryURL(
+					firstLayoutPageTemplateCollectionId, selPlid, false)
+			).setLabel(
+				_getLabel(false)
+			).build()
 		).addPrimaryDropdownItem(
 			() ->
 				_layoutsAdminDisplayContext.isShowPublicPages() &&
@@ -165,12 +163,12 @@ public class LayoutsAdminManagementToolbarDisplayContext
 				(!_layoutsAdminDisplayContext.isPrivateLayout() ||
 				 _layoutsAdminDisplayContext.isFirstColumn() ||
 				 !_layoutsAdminDisplayContext.hasLayouts()),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_layoutsAdminDisplayContext.getSelectLayoutCollectionURL(
-						selPlid, null, false));
-				dropdownItem.setLabel(_getCollectionLayoutLabel(false));
-			}
+			DropdownItemBuilder.setHref(
+				_layoutsAdminDisplayContext.getSelectLayoutCollectionURL(
+					selPlid, null, false)
+			).setLabel(
+				_getCollectionLayoutLabel(false)
+			).build()
 		).addPrimaryDropdownItem(
 			() ->
 				_layoutsAdminDisplayContext.isShowPrivatePages() &&
@@ -179,26 +177,24 @@ public class LayoutsAdminManagementToolbarDisplayContext
 				  _layoutsAdminDisplayContext.isPrivateLayout()) ||
 				 _layoutsAdminDisplayContext.isFirstColumn() ||
 				 !_layoutsAdminDisplayContext.hasLayouts()),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_layoutsAdminDisplayContext.
-						getSelectLayoutPageTemplateEntryURL(
-							firstLayoutPageTemplateCollectionId, selPlid,
-							true));
-				dropdownItem.setLabel(_getLabel(true));
-			}
+			DropdownItemBuilder.setHref(
+				_layoutsAdminDisplayContext.getSelectLayoutPageTemplateEntryURL(
+					firstLayoutPageTemplateCollectionId, selPlid, true)
+			).setLabel(
+				_getLabel(true)
+			).build()
 		).addPrimaryDropdownItem(
 			() ->
 				_layoutsAdminDisplayContext.isShowPrivatePages() &&
 				(_layoutsAdminDisplayContext.isPrivateLayout() ||
 				 _layoutsAdminDisplayContext.isFirstColumn() ||
 				 !_layoutsAdminDisplayContext.hasLayouts()),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_layoutsAdminDisplayContext.getSelectLayoutCollectionURL(
-						selPlid, null, true));
-				dropdownItem.setLabel(_getCollectionLayoutLabel(true));
-			}
+			DropdownItemBuilder.setHref(
+				_layoutsAdminDisplayContext.getSelectLayoutCollectionURL(
+					selPlid, null, true)
+			).setLabel(
+				_getCollectionLayoutLabel(true)
+			).build()
 		).build();
 	}
 

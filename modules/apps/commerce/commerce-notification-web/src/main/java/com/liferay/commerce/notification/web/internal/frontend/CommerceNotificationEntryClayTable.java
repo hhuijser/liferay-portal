@@ -36,6 +36,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -129,11 +130,11 @@ public class CommerceNotificationEntryClayTable
 		).buildPortletURL();
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(portletURL.toString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "resend"));
-			}
+			DropdownItemBuilder.setHref(
+				portletURL.toString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "resend")
+			).build()
 		).add(
 			dropdownItem -> {
 				portletURL.setParameter(Constants.CMD, Constants.DELETE);

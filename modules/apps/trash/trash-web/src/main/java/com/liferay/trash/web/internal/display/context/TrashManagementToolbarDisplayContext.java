@@ -16,6 +16,7 @@ package com.liferay.trash.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -72,21 +73,25 @@ public class TrashManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteSelectedEntries");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSelectedEntries"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "restoreSelectedEntries");
-				dropdownItem.setIcon("restore");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "restore"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "restoreSelectedEntries"
+			).setIcon(
+				"restore"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "restore")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -186,32 +191,29 @@ public class TrashManagementToolbarDisplayContext
 		return new DropdownItemList() {
 			{
 				add(
-					dropdownItem -> {
-						dropdownItem.setActive(
-							Objects.equals(getNavigation(), "all"));
-						dropdownItem.setHref(
-							getPortletURL(), "navigation", "all");
-						dropdownItem.setLabel(
-							LanguageUtil.get(httpServletRequest, "all"));
-					});
+					DropdownItemBuilder.setActive(
+						Objects.equals(getNavigation(), "all")
+					).setHref(
+						getPortletURL(), "navigation", "all"
+					).setLabel(
+						LanguageUtil.get(httpServletRequest, "all")
+					).build());
 
 				for (TrashHandler trashHandler :
 						TrashHandlerRegistryUtil.getTrashHandlers()) {
 
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								Objects.equals(
-									getNavigation(),
-									trashHandler.getClassName()));
-							dropdownItem.setHref(
-								getPortletURL(), "navigation",
-								trashHandler.getClassName());
-							dropdownItem.setLabel(
-								ResourceActionsUtil.getModelResource(
-									_themeDisplay.getLocale(),
-									trashHandler.getClassName()));
-						});
+						DropdownItemBuilder.setActive(
+							Objects.equals(
+								getNavigation(), trashHandler.getClassName())
+						).setHref(
+							getPortletURL(), "navigation",
+							trashHandler.getClassName()
+						).setLabel(
+							ResourceActionsUtil.getModelResource(
+								_themeDisplay.getLocale(),
+								trashHandler.getClassName())
+						).build());
 				}
 			}
 		};

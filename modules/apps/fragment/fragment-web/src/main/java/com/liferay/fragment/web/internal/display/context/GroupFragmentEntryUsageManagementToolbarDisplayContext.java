@@ -18,6 +18,7 @@ import com.liferay.fragment.constants.FragmentActionKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -59,13 +60,15 @@ public class GroupFragmentEntryUsageManagementToolbarDisplayContext
 				themeDisplay.getPermissionChecker(),
 				themeDisplay.getScopeGroupId(),
 				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES),
-			dropdownItem -> {
-				dropdownItem.putData("action", "propagate");
-				dropdownItem.setIcon("propagation");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "propagate"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "propagate"
+			).setIcon(
+				"propagation"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "propagate")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 

@@ -20,6 +20,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -137,14 +138,13 @@ public class BlogEntriesManagementToolbarDisplayContext
 		}
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/blogs/edit_entry", "redirect",
-					currentURLObj.toString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add-blog-entry"));
-			}
+			DropdownItemBuilder.setHref(
+				liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName", "/blogs/edit_entry", "redirect",
+				currentURLObj.toString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-blog-entry")
+			).build()
 		).build();
 	}
 
@@ -263,33 +263,30 @@ public class BlogEntriesManagementToolbarDisplayContext
 	@Override
 	protected List<DropdownItem> getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "title"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "title");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "title"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "title")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "title"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "title")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "display-date"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "display-date");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "display-date"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "display-date")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "display-date"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "display-date")
+			).build()
 		).add(
 			this::_isSearch,
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "relevance"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "relevance");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "relevance"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "relevance")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "relevance"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "relevance")
+			).build()
 		).build();
 	}
 

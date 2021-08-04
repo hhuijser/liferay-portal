@@ -16,6 +16,7 @@ package com.liferay.journal.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -85,21 +86,21 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setActive(_isEverywhereScopeFilter());
-							dropdownItem.setHref(
-								getPortletURL(), "scope", "everywhere");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									httpServletRequest, "everywhere"));
-						}
+						DropdownItemBuilder.setActive(
+							_isEverywhereScopeFilter()
+						).setHref(
+							getPortletURL(), "scope", "everywhere"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "everywhere")
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setActive(!_isEverywhereScopeFilter());
-							dropdownItem.setHref(
-								getPortletURL(), "scope", "current");
-							dropdownItem.setLabel(_getCurrentScopeLabel());
-						}
+						DropdownItemBuilder.setActive(
+							!_isEverywhereScopeFilter()
+						).setHref(
+							getPortletURL(), "scope", "current"
+						).setLabel(
+							_getCurrentScopeLabel()
+						).build()
 					).build());
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "filter-by-location"));

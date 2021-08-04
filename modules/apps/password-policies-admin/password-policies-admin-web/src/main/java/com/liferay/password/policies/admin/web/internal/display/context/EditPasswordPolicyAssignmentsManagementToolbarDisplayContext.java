@@ -17,6 +17,7 @@ package com.liferay.password.policies.admin.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
@@ -348,15 +349,13 @@ public class EditPasswordPolicyAssignmentsManagementToolbarDisplayContext {
 			{
 				for (String orderColumn : _getOrderColumns()) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								Objects.equals(getOrderByCol(), orderColumn));
-							dropdownItem.setHref(
-								getPortletURL(), "orderByCol", orderColumn);
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, orderColumn));
-						});
+						DropdownItemBuilder.setActive(
+							Objects.equals(getOrderByCol(), orderColumn)
+						).setHref(
+							getPortletURL(), "orderByCol", orderColumn
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, orderColumn)
+						).build());
 				}
 			}
 		};

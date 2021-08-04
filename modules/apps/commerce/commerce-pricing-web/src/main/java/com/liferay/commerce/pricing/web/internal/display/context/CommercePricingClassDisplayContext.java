@@ -20,6 +20,7 @@ import com.liferay.commerce.pricing.constants.CommercePricingPortletKeys;
 import com.liferay.commerce.pricing.model.CommercePricingClass;
 import com.liferay.commerce.pricing.service.CommercePricingClassService;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -103,14 +104,15 @@ public class CommercePricingClassDisplayContext
 
 		if (hasAddPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddCommercePricingClassRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							commercePricingRequestHelper.getRequest(),
-							"add-product-group"));
-					dropdownItem.setTarget("modal");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommercePricingClassRenderURL()
+				).setLabel(
+					LanguageUtil.get(
+						commercePricingRequestHelper.getRequest(),
+						"add-product-group")
+				).setTarget(
+					"modal"
+				).build());
 		}
 
 		return creationMenu;

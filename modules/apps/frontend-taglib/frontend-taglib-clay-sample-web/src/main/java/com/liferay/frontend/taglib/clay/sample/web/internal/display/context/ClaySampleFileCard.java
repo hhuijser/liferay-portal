@@ -16,6 +16,7 @@ package com.liferay.frontend.taglib.clay.sample.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.FileCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -38,15 +39,17 @@ public class ClaySampleFileCard implements FileCard {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#A");
-							dropdownItem.setLabel("Option A");
-						}
+						DropdownItemBuilder.setHref(
+							"#A"
+						).setLabel(
+							"Option A"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#B");
-							dropdownItem.setLabel("Option B");
-						}
+						DropdownItemBuilder.setHref(
+							"#B"
+						).setLabel(
+							"Option B"
+						).build()
 					).add(
 						dropdownItem -> dropdownItem.setType("divider")
 					).build());
@@ -57,15 +60,17 @@ public class ClaySampleFileCard implements FileCard {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#C");
-							dropdownItem.setLabel("Option A");
-						}
+						DropdownItemBuilder.setHref(
+							"#C"
+						).setLabel(
+							"Option A"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#D");
-							dropdownItem.setLabel("Option B");
-						}
+						DropdownItemBuilder.setHref(
+							"#D"
+						).setLabel(
+							"Option B"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Group 2");

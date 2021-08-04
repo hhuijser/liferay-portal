@@ -15,6 +15,7 @@
 package com.liferay.sharing.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -385,26 +386,26 @@ public class ViewSharedAssetsDisplayContext {
 			_httpServletRequest, "className");
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(Validator.isNull(className));
-
-				dropdownItem.setHref(
-					PortletURLBuilder.create(
-						PortletURLUtil.clone(
-							_currentURLObj, _liferayPortletResponse)
-					).setParameter(
-						"className", (String)null
-					).buildPortletURL());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				Validator.isNull(className)
+			).setHref(
+				PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setParameter(
+					"className", (String)null
+				).buildPortletURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "openAssetTypesSelector");
-				dropdownItem.setActive(Validator.isNotNull(className));
-				dropdownItem.setLabel(_getClassNameLabel(className));
-			}
+			DropdownItemBuilder.putData(
+				"action", "openAssetTypesSelector"
+			).setActive(
+				Validator.isNotNull(className)
+			).setLabel(
+				_getClassNameLabel(className)
+			).build()
 		).build();
 	}
 

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -96,6 +97,8 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 
 		List<String> splitFinderNames = ListUtil.fromString(
 			finderName, StringPool.UNDERLINE);
+
+		Collections.sort(splitFinderNames);
 
 		outerLoop:
 		for (Map<String, String> finderColumn : finderColumns) {

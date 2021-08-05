@@ -110,6 +110,10 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 
 						String prefix = _comparatorNamesMap.get(comparator);
 
+						if (Validator.isNull(prefix)) {
+							continue;
+						}
+
 						if (!splitFinderName[i].startsWith(prefix)) {
 							addMessage(
 								fileName,

@@ -22,6 +22,7 @@ import com.liferay.commerce.product.model.CPDefinitionOptionRel;
 import com.liferay.commerce.product.service.CPDefinitionOptionRelService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,27 +72,28 @@ public class CommerceProductOptionDataSetActionProvider
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionOptionRel.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductOptionEditURL(
-						cpDefinitionOptionRel, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getProductOptionEditURL(
+					cpDefinitionOptionRel, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionOptionRel.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.putData("method", "delete");
-				dropdownItem.setHref(
-					_getProductOptionDeleteURL(
-						cpDefinitionOptionRel.getCPDefinitionOptionRelId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setTarget("async");
-			}
+			DropdownItemBuilder.putData(
+				"method", "delete"
+			).setHref(
+				_getProductOptionDeleteURL(
+					cpDefinitionOptionRel.getCPDefinitionOptionRelId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setTarget(
+				"async"
+			).build()
 		).build();
 	}
 

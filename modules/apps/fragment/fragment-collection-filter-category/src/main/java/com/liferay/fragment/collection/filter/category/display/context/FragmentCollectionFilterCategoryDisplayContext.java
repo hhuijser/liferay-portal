@@ -22,6 +22,7 @@ import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.renderer.FragmentRendererContext;
 import com.liferay.fragment.util.configuration.FragmentEntryConfigurationParser;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -106,11 +107,11 @@ public class FragmentCollectionFilterCategoryDisplayContext {
 
 		DropdownItemListBuilder.DropdownItemListWrapper
 			dropdownItemListWrapper = DropdownItemListBuilder.add(
-				dropdownItem -> {
-					dropdownItem.setHref(url);
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, "all"));
-				});
+				DropdownItemBuilder.setHref(
+					url
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, "all")
+				).build());
 
 		for (AssetCategory assetCategory : _getAssetCategories()) {
 			dropdownItemListWrapper.add(

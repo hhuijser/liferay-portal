@@ -22,6 +22,7 @@ import com.liferay.commerce.pricing.web.internal.model.PricingClassCPDefinitionR
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -73,29 +74,29 @@ public class CommercePricingClassCPDefinitionRelDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				commercePricingClassCPDefinitionRel.getCommercePricingClassId(),
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getCPDefinitionEditURL(
-						pricingClassCPDefinitionRel.getCPDefinitionId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				_getCPDefinitionEditURL(
+					pricingClassCPDefinitionRel.getCPDefinitionId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).build()
 		).add(
 			() -> _commercePricingClassModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				commercePricingClassCPDefinitionRel.getCommercePricingClassId(),
 				ActionKeys.DELETE),
-			dropdownItem -> {
-				dropdownItem.putData("method", "delete");
-				dropdownItem.setHref(
-					_getPricingClassCPDefinitionRelDeleteURL(
-						commercePricingClassCPDefinitionRel.
-							getCommercePricingClassCPDefinitionRelId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "remove"));
-				dropdownItem.setTarget("async");
-			}
+			DropdownItemBuilder.putData(
+				"method", "delete"
+			).setHref(
+				_getPricingClassCPDefinitionRelDeleteURL(
+					commercePricingClassCPDefinitionRel.
+						getCommercePricingClassCPDefinitionRelId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "remove")
+			).setTarget(
+				"async"
+			).build()
 		).build();
 	}
 

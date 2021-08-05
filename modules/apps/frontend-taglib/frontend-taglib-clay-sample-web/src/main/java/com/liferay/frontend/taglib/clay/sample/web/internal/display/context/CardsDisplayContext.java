@@ -15,6 +15,7 @@
 package com.liferay.frontend.taglib.clay.sample.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -38,15 +39,17 @@ public class CardsDisplayContext {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#1");
-							dropdownItem.setLabel("Group 1 - Option 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#1"
+						).setLabel(
+							"Group 1 - Option 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#2");
-							dropdownItem.setLabel("Group 1 - Option 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#2"
+						).setLabel(
+							"Group 1 - Option 2"
+						).build()
 					).add(
 						dropdownItem -> dropdownItem.setType("divider")
 					).build());
@@ -57,15 +60,17 @@ public class CardsDisplayContext {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#3");
-							dropdownItem.setLabel("Group 2 - Option 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#3"
+						).setLabel(
+							"Group 2 - Option 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#4");
-							dropdownItem.setLabel("Group 2 - Option 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#4"
+						).setLabel(
+							"Group 2 - Option 2"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Group 2");

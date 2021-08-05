@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -75,24 +76,25 @@ public class StyleBookManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "exportSelectedStyleBookEntries");
-							dropdownItem.setIcon("import-export");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "export"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "exportSelectedStyleBookEntries"
+						).setIcon(
+							"import-export"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "export")
+						).setQuickAction(
+							true
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "copySelectedStyleBookEntries");
-							dropdownItem.setIcon("paste");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									httpServletRequest, "make-a-copy"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "copySelectedStyleBookEntries"
+						).setIcon(
+							"paste"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "make-a-copy")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -100,14 +102,15 @@ public class StyleBookManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deleteSelectedStyleBookEntries");
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "delete"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteSelectedStyleBookEntries"
+						).setIcon(
+							"times-circle"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "delete")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -155,23 +158,20 @@ public class StyleBookManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addStyleBookEntry");
-
-				dropdownItem.putData(
-					"addStyleBookEntryURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/style_book/add_style_book_entry"
-					).buildString());
-
-				dropdownItem.putData(
-					"title",
-					LanguageUtil.get(httpServletRequest, "add-style-book"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addStyleBookEntry"
+			).putData(
+				"addStyleBookEntryURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/style_book/add_style_book_entry"
+				).buildString()
+			).putData(
+				"title", LanguageUtil.get(httpServletRequest, "add-style-book")
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add")
+			).build()
 		).build();
 	}
 

@@ -28,6 +28,7 @@ import com.liferay.commerce.tax.engine.fixed.web.internal.frontend.taglib.servle
 import com.liferay.commerce.tax.model.CommerceTaxMethod;
 import com.liferay.commerce.tax.service.CommerceTaxMethodService;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -127,14 +128,15 @@ public class CommerceTaxFixedRateAddressRelsDisplayContext
 
 		if (hasUpdateCommerceChannelPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddTaxRateSettingURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							commerceTaxFixedRateRequestHelper.getRequest(),
-							"add-tax-rate-setting"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddTaxRateSettingURL()
+				).setLabel(
+					LanguageUtil.get(
+						commerceTaxFixedRateRequestHelper.getRequest(),
+						"add-tax-rate-setting")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

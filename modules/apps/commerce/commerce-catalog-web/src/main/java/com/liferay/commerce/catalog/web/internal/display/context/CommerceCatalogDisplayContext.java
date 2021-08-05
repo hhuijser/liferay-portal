@@ -30,6 +30,7 @@ import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.service.CommerceCatalogService;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
@@ -166,13 +167,14 @@ public class CommerceCatalogDisplayContext {
 
 		if (hasAddCatalogPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddCommerceCatalogRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							cpRequestHelper.getRequest(), "add-catalog"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommerceCatalogRenderURL()
+				).setLabel(
+					LanguageUtil.get(
+						cpRequestHelper.getRequest(), "add-catalog")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

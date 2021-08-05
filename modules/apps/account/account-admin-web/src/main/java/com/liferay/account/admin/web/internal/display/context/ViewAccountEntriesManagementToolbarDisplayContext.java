@@ -24,6 +24,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownGroupItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -202,14 +203,13 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName", "/account_admin/edit_account_entry",
-					"backURL", currentURLObj.toString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add-account"));
-			}
+			DropdownItemBuilder.setHref(
+				liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName", "/account_admin/edit_account_entry",
+				"backURL", currentURLObj.toString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-account")
+			).build()
 		).build();
 	}
 

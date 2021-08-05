@@ -22,6 +22,7 @@ import com.liferay.commerce.pricing.web.internal.model.ProductPricingClass;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -68,29 +69,29 @@ public class CommerceProductPricingClassDataSetActionProvider
 			() -> _commercePricingClassModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				productPricingClass.getPricingClassId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getPricingClassEditURL(
-						productPricingClass.getPricingClassId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getPricingClassEditURL(
+					productPricingClass.getPricingClassId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _commercePricingClassModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				productPricingClass.getPricingClassId(), ActionKeys.DELETE),
-			dropdownItem -> {
-				dropdownItem.putData("method", "delete");
-				dropdownItem.setHref(
-					_getProductPricingClassDeleteURL(
-						productPricingClass.getPricingClassId(),
-						productPricingClass.getCpDefinitionId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "remove"));
-				dropdownItem.setTarget("async");
-			}
+			DropdownItemBuilder.putData(
+				"method", "delete"
+			).setHref(
+				_getProductPricingClassDeleteURL(
+					productPricingClass.getPricingClassId(),
+					productPricingClass.getCpDefinitionId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "remove")
+			).setTarget(
+				"async"
+			).build()
 		).build();
 	}
 

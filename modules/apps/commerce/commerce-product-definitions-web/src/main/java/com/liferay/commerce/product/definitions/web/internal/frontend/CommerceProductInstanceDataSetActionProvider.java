@@ -23,6 +23,7 @@ import com.liferay.commerce.product.model.CPInstance;
 import com.liferay.commerce.product.service.CPInstanceService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -77,24 +78,22 @@ public class CommerceProductInstanceDataSetActionProvider
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpInstance.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getSkuEditURL(cpInstance, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getSkuEditURL(cpInstance, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpInstance.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getSkuDeleteURL(
-						sku.getCPInstanceId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getSkuDeleteURL(sku.getCPInstanceId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

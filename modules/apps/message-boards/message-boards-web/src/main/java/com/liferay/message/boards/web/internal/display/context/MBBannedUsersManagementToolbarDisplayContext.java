@@ -15,6 +15,7 @@
 package com.liferay.message.boards.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.message.boards.constants.MBPortletKeys;
 import com.liferay.message.boards.model.MBBan;
@@ -62,14 +63,15 @@ public class MBBannedUsersManagementToolbarDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "unbanUser");
-				dropdownItem.setIcon("unlock");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "unban-user"));
-
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "unbanUser"
+			).setIcon(
+				"unlock"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "unban-user")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 

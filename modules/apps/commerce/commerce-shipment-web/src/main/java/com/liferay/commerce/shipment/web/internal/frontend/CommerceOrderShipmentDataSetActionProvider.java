@@ -21,6 +21,7 @@ import com.liferay.commerce.constants.CommerceShipmentDataSetConstants;
 import com.liferay.commerce.frontend.model.Shipment;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -67,24 +68,22 @@ public class CommerceOrderShipmentDataSetActionProvider
 			() -> _portletResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), null,
 				CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getShipmentEditURL(
-						shipment.getShipmentId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				_getShipmentEditURL(
+					shipment.getShipmentId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).build()
 		).add(
 			() -> _portletResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), null,
 				CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getShipmentDeleteURL(
-						shipment.getShipmentId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getShipmentDeleteURL(
+					shipment.getShipmentId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

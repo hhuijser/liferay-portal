@@ -35,6 +35,7 @@ import com.liferay.document.library.web.internal.settings.DLPortletInstanceSetti
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -125,32 +126,38 @@ public class DLAdminManagementToolbarDisplayContext
 
 		return DropdownItemListBuilder.add(
 			() -> digitalSignatureConfiguration.enabled() && stagedActions,
-			dropdownItem -> {
-				dropdownItem.putData("action", "collectDigitalSignature");
-				dropdownItem.setIcon("signature");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_httpServletRequest, "collect-digital-signature"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "collectDigitalSignature"
+			).setIcon(
+				"signature"
+			).setLabel(
+				LanguageUtil.get(
+					_httpServletRequest, "collect-digital-signature")
+			).setQuickAction(
+				true
+			).build()
 		).add(
 			() -> stagedActions,
-			dropdownItem -> {
-				dropdownItem.putData("action", "download");
-				dropdownItem.setIcon("download");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "download"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "download"
+			).setIcon(
+				"download"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "download")
+			).setQuickAction(
+				true
+			).build()
 		).add(
 			() -> stagedActions && !user.isDefaultUser(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "move");
-				dropdownItem.setIcon("move-folder");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "move"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "move"
+			).setIcon(
+				"move-folder"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "move")
+			).setQuickAction(
+				true
+			).build()
 		).add(
 			() -> stagedActions && !user.isDefaultUser(),
 			dropdownItem -> {
@@ -208,23 +215,26 @@ public class DLAdminManagementToolbarDisplayContext
 			}
 		).add(
 			() -> stagedActions && !user.isDefaultUser(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "checkin");
-				dropdownItem.setIcon("unlock");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "checkin"));
-				dropdownItem.setQuickAction(false);
-			}
+			DropdownItemBuilder.putData(
+				"action", "checkin"
+			).setIcon(
+				"unlock"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "checkin")
+			).setQuickAction(
+				false
+			).build()
 		).add(
 			() -> stagedActions && !user.isDefaultUser(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "checkout");
-				dropdownItem.setIcon("lock");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_httpServletRequest, "checkout[document]"));
-				dropdownItem.setQuickAction(false);
-			}
+			DropdownItemBuilder.putData(
+				"action", "checkout"
+			).setIcon(
+				"lock"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "checkout[document]")
+			).setQuickAction(
+				false
+			).build()
 		).build();
 	}
 
@@ -276,13 +286,17 @@ public class DLAdminManagementToolbarDisplayContext
 
 			for (URLMenuItem urlMenuItem : urlMenuItems) {
 				creationMenu.addDropdownItem(
-					dropdownItem -> {
-						dropdownItem.setData(urlMenuItem.getData());
-						dropdownItem.setHref(urlMenuItem.getURL());
-						dropdownItem.setIcon(urlMenuItem.getIcon());
-						dropdownItem.setLabel(urlMenuItem.getLabel());
-						dropdownItem.setSeparator(urlMenuItem.hasSeparator());
-					});
+					DropdownItemBuilder.setData(
+						urlMenuItem.getData()
+					).setHref(
+						urlMenuItem.getURL()
+					).setIcon(
+						urlMenuItem.getIcon()
+					).setLabel(
+						urlMenuItem.getLabel()
+					).setSeparator(
+						urlMenuItem.hasSeparator()
+					).build());
 			}
 		}
 
@@ -629,62 +643,55 @@ public class DLAdminManagementToolbarDisplayContext
 			_httpServletRequest, "navigation", "home");
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					navigation.equals("home") && (fileEntryTypeId == -1));
-
-				dropdownItem.setHref(
-					PortletURLBuilder.create(
-						PortletURLUtil.clone(
-							_currentURLObj, _liferayPortletResponse)
-					).setMVCRenderCommandName(
-						"/document_library/view"
-					).setNavigation(
-						"home"
-					).setParameter(
-						"browseBy", (String)null
-					).setParameter(
-						"fileEntryTypeId", (String)null
-					).buildPortletURL());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				navigation.equals("home") && (fileEntryTypeId == -1)
+			).setHref(
+				PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setMVCRenderCommandName(
+					"/document_library/view"
+				).setNavigation(
+					"home"
+				).setParameter(
+					"browseBy", (String)null
+				).setParameter(
+					"fileEntryTypeId", (String)null
+				).buildPortletURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(navigation.equals("recent"));
-
-				dropdownItem.setHref(
-					PortletURLBuilder.create(
-						PortletURLUtil.clone(
-							_currentURLObj, _liferayPortletResponse)
-					).setMVCRenderCommandName(
-						"/document_library/view"
-					).setNavigation(
-						"recent"
-					).buildPortletURL());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "recent"));
-			}
+			DropdownItemBuilder.setActive(
+				navigation.equals("recent")
+			).setHref(
+				PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setMVCRenderCommandName(
+					"/document_library/view"
+				).setNavigation(
+					"recent"
+				).buildPortletURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "recent")
+			).build()
 		).add(
 			_themeDisplay::isSignedIn,
-			dropdownItem -> {
-				dropdownItem.setActive(navigation.equals("mine"));
-
-				dropdownItem.setHref(
-					PortletURLBuilder.create(
-						PortletURLUtil.clone(
-							_currentURLObj, _liferayPortletResponse)
-					).setMVCRenderCommandName(
-						"/document_library/view"
-					).setNavigation(
-						"mine"
-					).buildPortletURL());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "mine"));
-			}
+			DropdownItemBuilder.setActive(
+				navigation.equals("mine")
+			).setHref(
+				PortletURLBuilder.create(
+					PortletURLUtil.clone(
+						_currentURLObj, _liferayPortletResponse)
+				).setMVCRenderCommandName(
+					"/document_library/view"
+				).setNavigation(
+					"mine"
+				).buildPortletURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "mine")
+			).build()
 		).add(
 			dropdownItem -> {
 				dropdownItem.setActive(fileEntryTypeId != -1);
@@ -762,17 +769,14 @@ public class DLAdminManagementToolbarDisplayContext
 					String orderByCol = orderByColEntry.getKey();
 
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								orderByCol.equals(_getOrderByCol()));
-							dropdownItem.setHref(
-								_getCurrentSortingURL(), "orderByCol",
-								orderByCol);
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									orderByColEntry.getValue()));
-						});
+						DropdownItemBuilder.setActive(
+							orderByCol.equals(_getOrderByCol())
+						).setHref(
+							_getCurrentSortingURL(), "orderByCol", orderByCol
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest, orderByColEntry.getValue())
+						).build());
 				}
 			}
 		};

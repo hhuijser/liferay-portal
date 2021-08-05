@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplateEntryPermission;
 import com.liferay.layout.page.template.constants.LayoutPageTemplateActionKeys;
@@ -71,17 +72,18 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "exportLayoutPageTemplateEntries");
-							dropdownItem.putData(
-								"exportLayoutPageTemplateEntryURL",
-								_getExportLayoutPageTemplateEntryURL());
-							dropdownItem.setIcon("download");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "export"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "exportLayoutPageTemplateEntries"
+						).putData(
+							"exportLayoutPageTemplateEntryURL",
+							_getExportLayoutPageTemplateEntryURL()
+						).setIcon(
+							"download"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "export")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -89,14 +91,15 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deleteLayoutPageTemplateEntries");
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "delete"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteLayoutPageTemplateEntries"
+						).setIcon(
+							"times-circle"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "delete")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -142,26 +145,24 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(_getSelectMasterLayoutURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "content-page-template"));
-			}
+			DropdownItemBuilder.setHref(
+				_getSelectMasterLayoutURL()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "content-page-template")
+			).build()
 		).addPrimaryDropdownItem(
 			() -> {
 				Group scopeGroup = _themeDisplay.getScopeGroup();
 
 				return !scopeGroup.isLayoutSetPrototype();
 			},
-			dropdownItem -> {
-				dropdownItem.putData("action", "addLayoutPageTemplateEntry");
-				dropdownItem.putData(
-					"addPageTemplateURL", _getAddLayoutPrototypeURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "widget-page-template"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addLayoutPageTemplateEntry"
+			).putData(
+				"addPageTemplateURL", _getAddLayoutPrototypeURL()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "widget-page-template")
+			).build()
 		).build();
 	}
 

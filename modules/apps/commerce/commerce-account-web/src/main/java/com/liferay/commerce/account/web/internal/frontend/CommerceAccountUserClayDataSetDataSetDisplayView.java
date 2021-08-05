@@ -30,6 +30,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchema;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilder;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -108,24 +109,22 @@ public class CommerceAccountUserClayDataSetDataSetDisplayView
 			() -> _accountModelResourcePermission.contains(
 				permissionChecker, member.getAccountId(),
 				CommerceAccountActionKeys.MANAGE_MEMBERS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getAccountUserViewDetailURL(
-						member.getMemberId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "view"));
-			}
+			DropdownItemBuilder.setHref(
+				_getAccountUserViewDetailURL(
+					member.getMemberId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "view")
+			).build()
 		).add(
 			() ->
 				permissionChecker.isCompanyAdmin() ||
 				(member.getMemberId() != _portal.getUserId(httpServletRequest)),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					"javascript:removeCommerceAccountUser('" +
-						member.getMemberId() + "')");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "remove"));
-			}
+			DropdownItemBuilder.setHref(
+				"javascript:removeCommerceAccountUser('" +
+					member.getMemberId() + "')"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "remove")
+			).build()
 		).build();
 	}
 

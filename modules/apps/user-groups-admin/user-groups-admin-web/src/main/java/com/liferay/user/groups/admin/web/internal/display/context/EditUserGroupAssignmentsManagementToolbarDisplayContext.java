@@ -17,6 +17,7 @@ package com.liferay.user.groups.admin.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -79,13 +80,15 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
 			() -> _hasAddUserGroupPermission(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "removeUsers");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "remove"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "removeUsers"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "remove")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -135,11 +138,11 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addUsers");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "add-users"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addUsers"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add-users")
+			).build()
 		).build();
 	}
 
@@ -300,34 +303,33 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(StringPool.BLANK);
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				StringPool.BLANK
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).build();
 	}
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "first-name"));
-				dropdownItem.setHref(
-					getPortletURL(), "orderByCol", "first-name");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "first-name"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "first-name")
+			).setHref(
+				getPortletURL(), "orderByCol", "first-name"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "first-name")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "screen-name"));
-				dropdownItem.setHref(
-					getPortletURL(), "orderByCol", "screen-name");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "screen-name"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "screen-name")
+			).setHref(
+				getPortletURL(), "orderByCol", "screen-name"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "screen-name")
+			).build()
 		).build();
 	}
 

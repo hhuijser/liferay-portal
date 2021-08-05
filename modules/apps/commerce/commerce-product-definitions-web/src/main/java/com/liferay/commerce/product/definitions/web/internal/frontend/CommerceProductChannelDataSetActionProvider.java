@@ -24,6 +24,7 @@ import com.liferay.commerce.product.service.CPDefinitionService;
 import com.liferay.commerce.product.service.CommerceChannelRelService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -72,13 +73,11 @@ public class CommerceProductChannelDataSetActionProvider
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), cpDefinition,
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getChannelDeleteURL(
-						commerceChannelRel, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getChannelDeleteURL(commerceChannelRel, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

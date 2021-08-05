@@ -18,6 +18,7 @@ import com.liferay.announcements.kernel.model.AnnouncementsEntry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -71,13 +72,15 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteEntries");
-				dropdownItem.setIcon("times");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteEntries"
+			).setIcon(
+				"times"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -216,18 +219,17 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 						distributionScopes.entrySet()) {
 
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								currentDistributionScopeLabel.equals(
-									distributionScopeEntry.getKey()));
-							dropdownItem.setHref(
-								navigationURL, "distributionScope",
-								distributionScopeEntry.getValue());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									distributionScopeEntry.getKey()));
-						});
+						DropdownItemBuilder.setActive(
+							currentDistributionScopeLabel.equals(
+								distributionScopeEntry.getKey())
+						).setHref(
+							navigationURL, "distributionScope",
+							distributionScopeEntry.getValue()
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest,
+								distributionScopeEntry.getKey())
+						).build());
 				}
 			}
 		};

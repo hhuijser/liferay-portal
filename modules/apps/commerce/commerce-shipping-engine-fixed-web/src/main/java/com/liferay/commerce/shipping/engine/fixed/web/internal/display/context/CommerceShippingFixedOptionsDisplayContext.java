@@ -26,6 +26,7 @@ import com.liferay.commerce.shipping.engine.fixed.web.internal.FixedCommerceShip
 import com.liferay.commerce.shipping.engine.fixed.web.internal.frontend.taglib.servlet.taglib.CommerceShippingMethodFixedOptionsScreenNavigationCategory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -107,13 +108,14 @@ public class CommerceShippingFixedOptionsDisplayContext
 			WebKeys.THEME_DISPLAY);
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(getAddShippingFixedOptionURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						themeDisplay.getLocale(), "add-shipping-option"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				getAddShippingFixedOptionURL()
+			).setLabel(
+				LanguageUtil.get(
+					themeDisplay.getLocale(), "add-shipping-option")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 	}
 

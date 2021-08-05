@@ -24,6 +24,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -72,14 +73,15 @@ public class AssetListManagementToolbarDisplayContext
 		}
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "deleteSelectedAssetListEntries");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSelectedAssetListEntries"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -118,47 +120,49 @@ public class AssetListManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addAssetListEntry");
-				dropdownItem.putData(
-					"addAssetListEntryURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/asset_list/add_asset_list_entry"
-					).setParameter(
-						"type", AssetListEntryTypeConstants.TYPE_MANUAL
-					).buildString());
-				dropdownItem.putData(
-					"title",
-					LanguageUtil.format(
-						httpServletRequest, "add-x-collection",
-						AssetListEntryTypeConstants.TYPE_MANUAL_LABEL, true));
-				dropdownItem.setHref("#");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "manual-collection"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addAssetListEntry"
+			).putData(
+				"addAssetListEntryURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/asset_list/add_asset_list_entry"
+				).setParameter(
+					"type", AssetListEntryTypeConstants.TYPE_MANUAL
+				).buildString()
+			).putData(
+				"title",
+				LanguageUtil.format(
+					httpServletRequest, "add-x-collection",
+					AssetListEntryTypeConstants.TYPE_MANUAL_LABEL, true)
+			).setHref(
+				"#"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "manual-collection")
+			).build()
 		).addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addAssetListEntry");
-				dropdownItem.putData(
-					"addAssetListEntryURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/asset_list/add_asset_list_entry"
-					).setParameter(
-						"type", AssetListEntryTypeConstants.TYPE_DYNAMIC
-					).buildString());
-				dropdownItem.putData(
-					"title",
-					LanguageUtil.format(
-						httpServletRequest, "add-x-collection",
-						AssetListEntryTypeConstants.TYPE_DYNAMIC_LABEL, true));
-				dropdownItem.setHref("#");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "dynamic-collection"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addAssetListEntry"
+			).putData(
+				"addAssetListEntryURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/asset_list/add_asset_list_entry"
+				).setParameter(
+					"type", AssetListEntryTypeConstants.TYPE_DYNAMIC
+				).buildString()
+			).putData(
+				"title",
+				LanguageUtil.format(
+					httpServletRequest, "add-x-collection",
+					AssetListEntryTypeConstants.TYPE_DYNAMIC_LABEL, true)
+			).setHref(
+				"#"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "dynamic-collection")
+			).build()
 		).build();
 	}
 

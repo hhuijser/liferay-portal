@@ -18,6 +18,7 @@ import com.liferay.account.admin.web.internal.display.AccountEntryDisplay;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -65,12 +66,11 @@ public class ViewAccountGroupAccountEntriesManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "selectAccountGroupAccountEntries");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "assign-accounts"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "selectAccountGroupAccountEntries"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "assign-accounts")
+			).build()
 		).build();
 	}
 

@@ -22,6 +22,7 @@ import com.liferay.bookmarks.service.BookmarksFolderServiceUtil;
 import com.liferay.bookmarks.web.internal.portlet.toolbar.contributor.BookmarksPortletToolbarContributor;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -144,10 +145,11 @@ public class BookmarksManagementToolbarDisplayContext {
 
 			for (URLMenuItem urlMenuItem : urlMenuItems) {
 				creationMenu.addDropdownItem(
-					dropdownItem -> {
-						dropdownItem.setHref(urlMenuItem.getURL());
-						dropdownItem.setLabel(urlMenuItem.getLabel());
-					});
+					DropdownItemBuilder.setHref(
+						urlMenuItem.getURL()
+					).setLabel(
+						urlMenuItem.getLabel()
+					).build());
 			}
 		}
 

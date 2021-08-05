@@ -16,6 +16,7 @@ package com.liferay.wiki.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -189,10 +190,11 @@ public class WikiPagesManagementToolbarDisplayContext {
 
 					for (URLMenuItem urlMenuItem : urlMenuItems) {
 						addDropdownItem(
-							dropdownItem -> {
-								dropdownItem.setHref(urlMenuItem.getURL());
-								dropdownItem.setLabel(urlMenuItem.getLabel());
-							});
+							DropdownItemBuilder.setHref(
+								urlMenuItem.getURL()
+							).setLabel(
+								urlMenuItem.getLabel()
+							).build());
 					}
 				}
 			}

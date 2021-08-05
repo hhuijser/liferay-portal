@@ -20,6 +20,7 @@ import com.liferay.fragment.web.internal.security.permission.resource.FragmentPe
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -72,37 +73,39 @@ public class BasicFragmentManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action",
-								"exportFragmentCompositionsAndFragmentEntries");
-							dropdownItem.setIcon("import-export");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "export"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action",
+							"exportFragmentCompositionsAndFragmentEntries"
+						).setIcon(
+							"import-export"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "export")
+						).setQuickAction(
+							true
+						).build()
 					).add(
 						() -> hasManageFragmentEntriesPermission,
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "copySelectedFragmentEntries");
-							dropdownItem.setIcon("paste");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									httpServletRequest, "make-a-copy"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "copySelectedFragmentEntries"
+						).setIcon(
+							"paste"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "make-a-copy")
+						).setQuickAction(
+							true
+						).build()
 					).add(
 						() -> hasManageFragmentEntriesPermission,
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action",
-								"moveFragmentCompositionsAndFragmentEntries");
-							dropdownItem.setIcon("move-folder");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "move"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action",
+							"moveFragmentCompositionsAndFragmentEntries"
+						).setIcon(
+							"move-folder"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "move")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -111,15 +114,16 @@ public class BasicFragmentManagementToolbarDisplayContext
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> hasManageFragmentEntriesPermission,
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action",
-								"deleteFragmentCompositionsAndFragmentEntries");
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "delete"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action",
+							"deleteFragmentCompositionsAndFragmentEntries"
+						).setIcon(
+							"times-circle"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "delete")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -190,28 +194,25 @@ public class BasicFragmentManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addFragmentEntry");
-
-				dropdownItem.putData(
-					"addFragmentEntryURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/fragment/add_fragment_entry"
-					).setParameter(
-						"fragmentCollectionId",
-						fragmentDisplayContext.getFragmentCollectionId()
-					).setParameter(
-						"type", FragmentConstants.TYPE_COMPONENT
-					).buildString());
-
-				dropdownItem.putData(
-					"title",
-					LanguageUtil.get(httpServletRequest, "add-fragment"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addFragmentEntry"
+			).putData(
+				"addFragmentEntryURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/fragment/add_fragment_entry"
+				).setParameter(
+					"fragmentCollectionId",
+					fragmentDisplayContext.getFragmentCollectionId()
+				).setParameter(
+					"type", FragmentConstants.TYPE_COMPONENT
+				).buildString()
+			).putData(
+				"title", LanguageUtil.get(httpServletRequest, "add-fragment")
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add")
+			).build()
 		).build();
 	}
 

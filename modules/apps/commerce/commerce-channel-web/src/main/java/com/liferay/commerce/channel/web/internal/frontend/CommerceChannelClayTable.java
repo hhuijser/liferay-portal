@@ -30,6 +30,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -125,14 +126,13 @@ public class CommerceChannelClayTable
 			() -> _commerceChannelPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				channel.getChannelId(), ActionKeys.PERMISSIONS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getManageChannelPermissionsURL(
-						channel, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "permissions"));
-				dropdownItem.setTarget("modal-permissions");
-			}
+			DropdownItemBuilder.setHref(
+				_getManageChannelPermissionsURL(channel, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "permissions")
+			).setTarget(
+				"modal-permissions"
+			).build()
 		).add(
 			() -> _commerceChannelPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),

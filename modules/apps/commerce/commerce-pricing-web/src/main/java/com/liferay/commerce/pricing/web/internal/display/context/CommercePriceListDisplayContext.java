@@ -32,6 +32,7 @@ import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.service.CommerceCatalogService;
 import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSetActionDropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -297,13 +298,14 @@ public class CommercePriceListDisplayContext
 				CommercePriceListActionKeys.ADD_COMMERCE_PRICE_LIST)) {
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddCommercePriceListRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							httpServletRequest, "create-new-price-list"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommercePriceListRenderURL()
+				).setLabel(
+					LanguageUtil.get(
+						httpServletRequest, "create-new-price-list")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;
@@ -384,14 +386,13 @@ public class CommercePriceListDisplayContext
 
 		if (hasPermission(getCommercePriceListId(), ActionKeys.UPDATE)) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						getAddCommercePriceModifierRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							httpServletRequest, "add-price-modifier"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommercePriceModifierRenderURL()
+				).setLabel(
+					LanguageUtil.get(httpServletRequest, "add-price-modifier")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

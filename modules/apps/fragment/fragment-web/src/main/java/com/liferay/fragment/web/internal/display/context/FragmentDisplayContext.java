@@ -28,6 +28,7 @@ import com.liferay.fragment.web.internal.constants.FragmentWebKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
 import com.liferay.fragment.web.internal.util.FragmentPortletUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -95,24 +96,22 @@ public class FragmentDisplayContext {
 			getFragmentCollectionsViewContext();
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/fragment/edit_fragment_collection", "redirect",
-					_themeDisplay.getURLCurrent());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "collection"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcRenderCommandName",
+				"/fragment/edit_fragment_collection", "redirect",
+				_themeDisplay.getURLCurrent()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "collection")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "openImportView");
-				dropdownItem.putData(
-					"viewImportURL",
-					(String)fragmentCollectionsViewContext.get(
-						"viewImportURL"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "import"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "openImportView"
+			).putData(
+				"viewImportURL",
+				(String)fragmentCollectionsViewContext.get("viewImportURL")
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "import")
+			).build()
 		).build();
 	}
 
@@ -150,20 +149,18 @@ public class FragmentDisplayContext {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "exportCollections");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "export"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "exportCollections"
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "export")
+						).build()
 					).add(
 						() -> hasManageFragmentEntriesPermission,
-						dropdownItem -> {
-							dropdownItem.putData("action", "openImportView");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "import"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "openImportView"
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "import")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -172,12 +169,11 @@ public class FragmentDisplayContext {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> hasManageFragmentEntriesPermission,
-						dropdownItem -> {
-							dropdownItem.putData("action", "deleteCollections");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "delete"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteCollections"
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "delete")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}

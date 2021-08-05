@@ -17,6 +17,7 @@ package com.liferay.polls.web.internal.portlet.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -85,14 +86,15 @@ public class PollsDisplayContext {
 
 	public List<DropdownItem> getActionItemsDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteQuestions");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_pollsRequestHelper.getRequest(), "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteQuestions"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_pollsRequestHelper.getRequest(), "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -346,14 +348,13 @@ public class PollsDisplayContext {
 
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-
-				dropdownItem.setHref(getPortletURL(), "navigation", "all");
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_pollsRequestHelper.getRequest(), "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getPortletURL(), "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(_pollsRequestHelper.getRequest(), "all")
+			).build()
 		).build();
 	}
 

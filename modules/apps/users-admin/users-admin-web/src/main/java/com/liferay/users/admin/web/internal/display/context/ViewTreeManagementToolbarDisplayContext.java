@@ -16,6 +16,7 @@ package com.liferay.users.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -199,19 +200,15 @@ public class ViewTreeManagementToolbarDisplayContext {
 			{
 				if (hasAddUserPermission()) {
 					addDropdownItem(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								_renderResponse.createRenderURL(),
-								"mvcRenderCommandName",
-								"/users_admin/edit_user", "backURL",
-								currentURL.toString(),
-								"organizationsSearchContainerPrimaryKeys",
-								String.valueOf(
-									_organization.getOrganizationId()));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "new-user"));
-						});
+						DropdownItemBuilder.setHref(
+							_renderResponse.createRenderURL(),
+							"mvcRenderCommandName", "/users_admin/edit_user",
+							"backURL", currentURL.toString(),
+							"organizationsSearchContainerPrimaryKeys",
+							String.valueOf(_organization.getOrganizationId())
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "new-user")
+						).build());
 				}
 
 				if (hasAddOrganizationPermission()) {
@@ -234,13 +231,13 @@ public class ViewTreeManagementToolbarDisplayContext {
 							).buildPortletURL();
 
 						addDropdownItem(
-							dropdownItem -> {
-								dropdownItem.setHref(addOrganizationTypeURL);
-								dropdownItem.setLabel(
-									LanguageUtil.format(
-										_httpServletRequest, "new-x",
-										organizationType));
-							});
+							DropdownItemBuilder.setHref(
+								addOrganizationTypeURL
+							).setLabel(
+								LanguageUtil.format(
+									_httpServletRequest, "new-x",
+									organizationType)
+							).build());
 					}
 				}
 
@@ -249,17 +246,17 @@ public class ViewTreeManagementToolbarDisplayContext {
 						ActionKeys.ASSIGN_MEMBERS)) {
 
 					addDropdownItem(
-						dropdownItem -> {
-							dropdownItem.putData("action", "selectUsers");
-							dropdownItem.putData(
-								"organizationId",
-								String.valueOf(
-									_organization.getOrganizationId()));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "assign-users"));
-							dropdownItem.setQuickAction(true);
-						});
+						DropdownItemBuilder.putData(
+							"action", "selectUsers"
+						).putData(
+							"organizationId",
+							String.valueOf(_organization.getOrganizationId())
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest, "assign-users")
+						).setQuickAction(
+							true
+						).build());
 				}
 			}
 		};
@@ -524,14 +521,13 @@ public class ViewTreeManagementToolbarDisplayContext {
 
 		for (String navigation : new String[] {"all", "active", "inactive"}) {
 			navigationDropdownitems.add(
-				dropdownItem -> {
-					dropdownItem.setActive(
-						Objects.equals(getNavigation(), navigation));
-					dropdownItem.setHref(
-						getPortletURL(), "navigation", navigation);
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, navigation));
-				});
+				DropdownItemBuilder.setActive(
+					Objects.equals(getNavigation(), navigation)
+				).setHref(
+					getPortletURL(), "navigation", navigation
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, navigation)
+				).build());
 		}
 
 		return navigationDropdownitems;
@@ -539,12 +535,13 @@ public class ViewTreeManagementToolbarDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(StringPool.BLANK);
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "name"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				StringPool.BLANK
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "name")
+			).build()
 		).build();
 	}
 

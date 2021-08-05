@@ -34,6 +34,7 @@ import com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScre
 import com.liferay.commerce.product.util.CPInstanceHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -175,25 +176,26 @@ public class CPInstanceDisplayContext extends BaseCPDefinitionsDisplayContext {
 
 	public CreationMenu getCreationMenu() throws Exception {
 		CreationMenu creationMenu = CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(_getEditCPInstancePortletURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(cpRequestHelper.getRequest(), "add-sku"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getEditCPInstancePortletURL()
+			).setLabel(
+				LanguageUtil.get(cpRequestHelper.getRequest(), "add-sku")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 
 		CPDefinition cpDefinition = getCPDefinition();
 
 		if ((cpDefinition != null) && !cpDefinition.isIgnoreSKUCombinations()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(_getAddMultipleCPInstancePortletURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							cpRequestHelper.getRequest(),
-							"generate-all-sku-combinations"));
-				});
+				DropdownItemBuilder.setHref(
+					_getAddMultipleCPInstancePortletURL()
+				).setLabel(
+					LanguageUtil.get(
+						cpRequestHelper.getRequest(),
+						"generate-all-sku-combinations")
+				).build());
 		}
 
 		return creationMenu;

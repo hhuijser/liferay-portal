@@ -17,6 +17,7 @@ package com.liferay.oauth2.provider.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
 import com.liferay.oauth2.provider.model.OAuth2Application;
@@ -61,13 +62,15 @@ public class OAuth2ApplicationsManagementToolbarDisplayContext
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteOAuth2Applications");
-				dropdownItem.setIcon("trash");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteOAuth2Applications"
+			).setIcon(
+				"trash"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -84,16 +87,14 @@ public class OAuth2ApplicationsManagementToolbarDisplayContext
 
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName",
-					"/oauth2_provider/update_oauth2_application", "redirect",
-					currentURLObj.toString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "add-o-auth2-application"));
-			}
+			DropdownItemBuilder.setHref(
+				liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName",
+				"/oauth2_provider/update_oauth2_application", "redirect",
+				currentURLObj.toString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-o-auth2-application")
+			).build()
 		).build();
 	}
 

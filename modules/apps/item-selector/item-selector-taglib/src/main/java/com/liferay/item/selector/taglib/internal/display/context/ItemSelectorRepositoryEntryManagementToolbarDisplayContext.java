@@ -18,6 +18,7 @@ import com.liferay.document.library.display.context.DLUIItemKeys;
 import com.liferay.document.library.portlet.toolbar.contributor.DLPortletToolbarContributor;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -122,14 +123,17 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 						urlMenuItem.getKey())) {
 
 					creationMenu.addDropdownItem(
-						dropdownItem -> {
-							dropdownItem.setData(urlMenuItem.getData());
-							dropdownItem.setHref(urlMenuItem.getURL());
-							dropdownItem.setIcon(urlMenuItem.getIcon());
-							dropdownItem.setLabel(urlMenuItem.getLabel());
-							dropdownItem.setSeparator(
-								urlMenuItem.hasSeparator());
-						});
+						DropdownItemBuilder.setData(
+							urlMenuItem.getData()
+						).setHref(
+							urlMenuItem.getURL()
+						).setIcon(
+							urlMenuItem.getIcon()
+						).setLabel(
+							urlMenuItem.getLabel()
+						).setSeparator(
+							urlMenuItem.hasSeparator()
+						).build());
 				}
 			}
 		}
@@ -164,25 +168,23 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								_repositoryEntryBrowserDisplayContext.
-									isSearchEverywhere());
-							dropdownItem.setHref(
-								_getPortletURL(), "scope", "everywhere");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "everywhere"));
-						}
+						DropdownItemBuilder.setActive(
+							_repositoryEntryBrowserDisplayContext.
+								isSearchEverywhere()
+						).setHref(
+							_getPortletURL(), "scope", "everywhere"
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "everywhere")
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								!_repositoryEntryBrowserDisplayContext.
-									isSearchEverywhere());
-							dropdownItem.setHref(
-								_getPortletURL(), "scope", "current");
-							dropdownItem.setLabel(_getCurrentScopeLabel());
-						}
+						DropdownItemBuilder.setActive(
+							!_repositoryEntryBrowserDisplayContext.
+								isSearchEverywhere()
+						).setHref(
+							_getPortletURL(), "scope", "current"
+						).setLabel(
+							_getCurrentScopeLabel()
+						).build()
 					).build());
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(

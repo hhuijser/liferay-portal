@@ -16,6 +16,7 @@ package com.liferay.object.web.internal.object.definitions.display.context;
 
 import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSetActionDropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.object.web.internal.display.context.util.ObjectRequestHelper;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -73,13 +74,14 @@ public class ViewObjectDefinitionsDisplayContext {
 		// TODO Check permissions
 
 		creationMenu.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref("addObjectDefinition");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_objectRequestHelper.getRequest(), "add-object"));
-				dropdownItem.setTarget("event");
-			});
+			DropdownItemBuilder.setHref(
+				"addObjectDefinition"
+			).setLabel(
+				LanguageUtil.get(
+					_objectRequestHelper.getRequest(), "add-object")
+			).setTarget(
+				"event"
+			).build());
 
 		return creationMenu;
 	}

@@ -16,6 +16,7 @@ package com.liferay.template.web.internal.display.context;
 
 import com.liferay.dynamic.data.mapping.constants.DDMTemplateConstants;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -86,14 +87,14 @@ public class WidgetTemplatesManagementToolbarDisplayContext
 					templateDisplayContext.getResourceClassNameId()));
 
 			creationMenu.addPrimaryDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(addDDMTemplateURL);
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							httpServletRequest,
-							templateDisplayContext.getTemplateTypeLabel(
-								addAllowedClassNameId)));
-				});
+				DropdownItemBuilder.setHref(
+					addDDMTemplateURL
+				).setLabel(
+					LanguageUtil.get(
+						httpServletRequest,
+						templateDisplayContext.getTemplateTypeLabel(
+							addAllowedClassNameId))
+				).build());
 		}
 
 		return creationMenu;

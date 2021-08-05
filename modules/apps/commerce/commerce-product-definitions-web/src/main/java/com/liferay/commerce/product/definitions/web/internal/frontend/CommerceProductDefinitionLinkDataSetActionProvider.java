@@ -23,6 +23,7 @@ import com.liferay.commerce.product.model.CPDefinitionLink;
 import com.liferay.commerce.product.service.CPDefinitionLinkService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -75,25 +76,22 @@ public class CommerceProductDefinitionLinkDataSetActionProvider
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionLink.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductLinkEditURL(
-						cpDefinitionLink, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("modal");
-			}
+			DropdownItemBuilder.setHref(
+				_getProductLinkEditURL(cpDefinitionLink, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"modal"
+			).build()
 		).add(
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionLink.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductLinkDeleteURL(
-						cpDefinitionLink, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getProductLinkDeleteURL(cpDefinitionLink, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

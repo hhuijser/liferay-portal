@@ -16,6 +16,7 @@ package com.liferay.message.boards.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -111,22 +112,25 @@ public class MBEntriesManagementToolbarDisplayContext {
 				dropdownItem.setQuickAction(true);
 			}
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "lockEntries");
-				dropdownItem.setIcon("lock");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "lock"));
-
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "lockEntries"
+			).setIcon(
+				"lock"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "lock")
+			).setQuickAction(
+				true
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "unlockEntries");
-				dropdownItem.setIcon("unlock");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "unlock"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "unlockEntries"
+			).setIcon(
+				"unlock"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "unlock")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -227,17 +231,15 @@ public class MBEntriesManagementToolbarDisplayContext {
 			}
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						_liferayPortletResponse.createRenderURL(),
-						"mvcRenderCommandName", "/message_boards/edit_category",
-						"redirect", _currentURLObj.toString(),
-						"parentCategoryId", String.valueOf(categoryId));
-
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							_httpServletRequest, "category[message-board]"));
-				});
+				DropdownItemBuilder.setHref(
+					_liferayPortletResponse.createRenderURL(),
+					"mvcRenderCommandName", "/message_boards/edit_category",
+					"redirect", _currentURLObj.toString(), "parentCategoryId",
+					String.valueOf(categoryId)
+				).setLabel(
+					LanguageUtil.get(
+						_httpServletRequest, "category[message-board]")
+				).build());
 		}
 
 		if (MBCategoryPermission.contains(
@@ -250,15 +252,14 @@ public class MBEntriesManagementToolbarDisplayContext {
 			}
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						_liferayPortletResponse.createRenderURL(),
-						"mvcRenderCommandName", "/message_boards/edit_message",
-						"redirect", _currentURLObj.toString(), "mbCategoryId",
-						String.valueOf(categoryId));
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, "thread"));
-				});
+				DropdownItemBuilder.setHref(
+					_liferayPortletResponse.createRenderURL(),
+					"mvcRenderCommandName", "/message_boards/edit_message",
+					"redirect", _currentURLObj.toString(), "mbCategoryId",
+					String.valueOf(categoryId)
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, "thread")
+				).build());
 		}
 
 		return creationMenu;
@@ -544,23 +545,21 @@ public class MBEntriesManagementToolbarDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "title"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "title");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "title"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "title")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "title"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "title")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(getOrderByCol(), "modified-date"));
-				dropdownItem.setHref(
-					_getCurrentSortingURL(), "orderByCol", "modified-date");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "modified-date"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "modified-date")
+			).setHref(
+				_getCurrentSortingURL(), "orderByCol", "modified-date"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "modified-date")
+			).build()
 		).build();
 	}
 

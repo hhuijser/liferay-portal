@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -61,14 +62,15 @@ public class SiteNavigationAdminManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "deleteSelectedSiteNavigationMenus");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSelectedSiteNavigationMenus"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -105,22 +107,22 @@ public class SiteNavigationAdminManagementToolbarDisplayContext
 				WebKeys.THEME_DISPLAY);
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addSiteNavigationMenu");
-				dropdownItem.putData(
-					"addSiteNavigationMenuURL",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/site_navigation_admin/add_site_navigation_menu"
-					).setMVCPath(
-						"/edit_site_navigation_menu.jsp"
-					).setRedirect(
-						themeDisplay.getURLCurrent()
-					).buildString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addSiteNavigationMenu"
+			).putData(
+				"addSiteNavigationMenuURL",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/site_navigation_admin/add_site_navigation_menu"
+				).setMVCPath(
+					"/edit_site_navigation_menu.jsp"
+				).setRedirect(
+					themeDisplay.getURLCurrent()
+				).buildString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add")
+			).build()
 		).build();
 	}
 

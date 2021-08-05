@@ -16,6 +16,7 @@ package com.liferay.redirect.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -66,23 +67,25 @@ public class RedirectNotFoundEntriesManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "ignoreSelectedRedirectNotFoundEntries");
-				dropdownItem.setIcon("hidden");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "ignore"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "ignoreSelectedRedirectNotFoundEntries"
+			).setIcon(
+				"hidden"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "ignore")
+			).setQuickAction(
+				true
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "unignoreSelectedRedirectNotFoundEntries");
-				dropdownItem.setIcon("view");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "unignore"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "unignoreSelectedRedirectNotFoundEntries"
+			).setIcon(
+				"view"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "unignore")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 

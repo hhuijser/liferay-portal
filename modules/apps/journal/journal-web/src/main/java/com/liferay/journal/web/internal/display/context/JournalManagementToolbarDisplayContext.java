@@ -18,6 +18,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -97,13 +98,15 @@ public class JournalManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "expireEntries");
-							dropdownItem.setIcon("time");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "expire"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "expireEntries"
+						).setIcon(
+							"time"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "expire")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -111,13 +114,15 @@ public class JournalManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "moveEntries");
-							dropdownItem.setIcon("move-folder");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "move"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "moveEntries"
+						).setIcon(
+							"move-folder"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "move")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -585,15 +590,13 @@ public class JournalManagementToolbarDisplayContext
 			{
 				for (int status : _getStatuses()) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								_journalDisplayContext.getStatus() == status);
-							dropdownItem.setHref(
-								getPortletURL(), "status",
-								String.valueOf(status));
-
-							dropdownItem.setLabel(_getStatusLabel(status));
-						});
+						DropdownItemBuilder.setActive(
+							_journalDisplayContext.getStatus() == status
+						).setHref(
+							getPortletURL(), "status", String.valueOf(status)
+						).setLabel(
+							_getStatusLabel(status)
+						).build());
 				}
 			}
 		};

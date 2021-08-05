@@ -17,6 +17,7 @@ package com.liferay.template.web.internal.display.context;
 import com.liferay.dynamic.data.mapping.constants.DDMActionKeys;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.info.form.InfoForm;
 import com.liferay.info.item.InfoItemFormVariation;
 import com.liferay.info.item.InfoItemServiceTracker;
@@ -91,11 +92,11 @@ public class InformationTemplatesManagementToolbarDisplayContext
 		}
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addInformationTemplate");
-				dropdownItem.setLabel(
-					LanguageUtil.get(themeDisplay.getLocale(), "add"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "addInformationTemplate"
+			).setLabel(
+				LanguageUtil.get(themeDisplay.getLocale(), "add")
+			).build()
 		).build();
 	}
 

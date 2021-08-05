@@ -15,6 +15,7 @@
 package com.liferay.frontend.taglib.clay.sample.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 
 import java.util.List;
@@ -30,27 +31,33 @@ public class DropdownsDisplayContext {
 		}
 
 		_defaultDropdownItems = DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref("#1");
-				dropdownItem.setLabel("Option 1");
-			}
+			DropdownItemBuilder.setHref(
+				"#1"
+			).setLabel(
+				"Option 1"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setDisabled(true);
-				dropdownItem.setHref("#2");
-				dropdownItem.setLabel("Option 2");
-			}
+			DropdownItemBuilder.setDisabled(
+				true
+			).setHref(
+				"#2"
+			).setLabel(
+				"Option 2"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref("#3");
-				dropdownItem.setLabel("Option 3");
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				"#3"
+			).setLabel(
+				"Option 3"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref("#4");
-				dropdownItem.setLabel("Option 4");
-			}
+			DropdownItemBuilder.setHref(
+				"#4"
+			).setLabel(
+				"Option 4"
+			).build()
 		).build();
 
 		return _defaultDropdownItems;
@@ -65,15 +72,17 @@ public class DropdownsDisplayContext {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#1");
-							dropdownItem.setLabel("Group 1 - Option 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#1"
+						).setLabel(
+							"Group 1 - Option 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#2");
-							dropdownItem.setLabel("Group 1 - Option 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#2"
+						).setLabel(
+							"Group 1 - Option 2"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Group 1");
@@ -83,15 +92,17 @@ public class DropdownsDisplayContext {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#3");
-							dropdownItem.setLabel("Group 2 - Option 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#3"
+						).setLabel(
+							"Group 2 - Option 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#4");
-							dropdownItem.setLabel("Group 2 - Option 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#4"
+						).setLabel(
+							"Group 2 - Option 2"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Group 2");
@@ -107,41 +118,53 @@ public class DropdownsDisplayContext {
 		}
 
 		_iconDropdownItems = DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref("#1");
-				dropdownItem.setIcon("check-circle-full");
-				dropdownItem.setLabel("Option 1");
-			}
+			DropdownItemBuilder.setHref(
+				"#1"
+			).setIcon(
+				"check-circle-full"
+			).setLabel(
+				"Option 1"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref("#2");
-				dropdownItem.setIcon("check-circle-full");
-				dropdownItem.setLabel("Option 2");
-			}
+			DropdownItemBuilder.setHref(
+				"#2"
+			).setIcon(
+				"check-circle-full"
+			).setLabel(
+				"Option 2"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref("#3");
-				dropdownItem.setIcon("check-circle-full");
-				dropdownItem.setLabel("Option 3");
-			}
+			DropdownItemBuilder.setHref(
+				"#3"
+			).setIcon(
+				"check-circle-full"
+			).setLabel(
+				"Option 3"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref("#4");
-				dropdownItem.setLabel("Option 4");
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				"#4"
+			).setLabel(
+				"Option 4"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setDisabled(true);
-				dropdownItem.setHref("#5");
-				dropdownItem.setLabel("Option 5");
-			}
+			DropdownItemBuilder.setDisabled(
+				true
+			).setHref(
+				"#5"
+			).setLabel(
+				"Option 5"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setDisabled(true);
-				dropdownItem.setHref("#6");
-				dropdownItem.setLabel("Option 6");
-			}
+			DropdownItemBuilder.setDisabled(
+				true
+			).setHref(
+				"#6"
+			).setLabel(
+				"Option 6"
+			).build()
 		).build();
 
 		return _iconDropdownItems;

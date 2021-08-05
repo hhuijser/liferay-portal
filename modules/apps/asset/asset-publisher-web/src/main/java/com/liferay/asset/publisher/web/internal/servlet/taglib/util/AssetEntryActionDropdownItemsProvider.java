@@ -17,6 +17,7 @@ package com.liferay.asset.publisher.web.internal.servlet.taglib.util;
 import com.liferay.asset.kernel.action.AssetEntryAction;
 import com.liferay.asset.kernel.model.AssetRenderer;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -70,14 +71,15 @@ public class AssetEntryActionDropdownItemsProvider {
 
 				if (editAssetEntryURL != null) {
 					add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"useDialog", Boolean.FALSE.toString());
-							dropdownItem.setHref(editAssetEntryURL.toString());
-							dropdownItem.setIcon("pencil");
-							dropdownItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "edit"));
-						});
+						DropdownItemBuilder.putData(
+							"useDialog", Boolean.FALSE.toString()
+						).setHref(
+							editAssetEntryURL.toString()
+						).setIcon(
+							"pencil"
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "edit")
+						).build());
 				}
 
 				if (ListUtil.isNotEmpty(_assetEntryActions)) {
@@ -107,20 +109,21 @@ public class AssetEntryActionDropdownItemsProvider {
 							_themeDisplay.getLocale());
 
 						add(
-							dropdownItem -> {
-								dropdownItem.putData(
-									"destroyOnHide", Boolean.TRUE.toString());
-								dropdownItem.putData("title", title);
-								dropdownItem.putData(
-									"useDialog", Boolean.TRUE.toString());
-								dropdownItem.setHref(
-									objectAssetEntryAction.getDialogURL(
-										_httpServletRequest,
-										(AssetRenderer<Object>)_assetRenderer));
-								dropdownItem.setIcon(
-									objectAssetEntryAction.getIcon());
-								dropdownItem.setLabel(title);
-							});
+							DropdownItemBuilder.putData(
+								"destroyOnHide", Boolean.TRUE.toString()
+							).putData(
+								"title", title
+							).putData(
+								"useDialog", Boolean.TRUE.toString()
+							).setHref(
+								objectAssetEntryAction.getDialogURL(
+									_httpServletRequest,
+									(AssetRenderer<Object>)_assetRenderer)
+							).setIcon(
+								objectAssetEntryAction.getIcon()
+							).setLabel(
+								title
+							).build());
 					}
 				}
 			}

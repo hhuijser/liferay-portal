@@ -17,6 +17,7 @@ package com.liferay.journal.web.internal.asset.util;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.info.item.InfoItemIdentifier;
 import com.liferay.journal.model.JournalArticle;
@@ -89,17 +90,15 @@ public class JournalArticleLayoutClassedModelUsageActionMenuContributor
 
 				if (approvedArticle != null) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								_getURL(
-									layoutClassedModelUsage,
-									AssetRendererFactory.TYPE_LATEST_APPROVED,
-									InfoItemIdentifier.VERSION_LATEST_APPROVED,
-									httpServletRequest));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									resourceBundle, "view-in-page"));
-						});
+						DropdownItemBuilder.setHref(
+							_getURL(
+								layoutClassedModelUsage,
+								AssetRendererFactory.TYPE_LATEST_APPROVED,
+								InfoItemIdentifier.VERSION_LATEST_APPROVED,
+								httpServletRequest)
+						).setLabel(
+							LanguageUtil.get(resourceBundle, "view-in-page")
+						).build());
 				}
 
 				if (article.isDraft() || article.isPending() ||
@@ -123,15 +122,15 @@ public class JournalArticleLayoutClassedModelUsageActionMenuContributor
 								resourceBundle, key);
 
 							add(
-								dropdownItem -> {
-									dropdownItem.setHref(
-										_getURL(
-											layoutClassedModelUsage,
-											AssetRendererFactory.TYPE_LATEST,
-											InfoItemIdentifier.VERSION_LATEST,
-											httpServletRequest));
-									dropdownItem.setLabel(label);
-								});
+								DropdownItemBuilder.setHref(
+									_getURL(
+										layoutClassedModelUsage,
+										AssetRendererFactory.TYPE_LATEST,
+										InfoItemIdentifier.VERSION_LATEST,
+										httpServletRequest)
+								).setLabel(
+									label
+								).build());
 						}
 					}
 					catch (PortalException portalException) {

@@ -41,6 +41,7 @@ import com.liferay.dynamic.data.mapping.web.internal.util.PortletDisplayTemplate
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
@@ -157,14 +158,15 @@ public class DDMDisplayContext {
 
 	public List<DropdownItem> getActionItemsDropdownItems(String action) {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", action);
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_ddmWebRequestHelper.getRequest(), "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", action
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_ddmWebRequestHelper.getRequest(), "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -774,12 +776,13 @@ public class DDMDisplayContext {
 
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(getPortletURL(), "navigation", "all");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_ddmWebRequestHelper.getRequest(), "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				getPortletURL(), "navigation", "all"
+			).setLabel(
+				LanguageUtil.get(_ddmWebRequestHelper.getRequest(), "all")
+			).build()
 		).build();
 	}
 

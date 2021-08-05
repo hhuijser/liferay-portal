@@ -15,6 +15,7 @@
 package com.liferay.users.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -269,30 +270,33 @@ public class SelectOrganizationManagementToolbarDisplayContext {
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(StringPool.BLANK);
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				StringPool.BLANK
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).build();
 	}
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(Objects.equals(getOrderByCol(), "name"));
-				dropdownItem.setHref(getPortletURL(), "orderByCol", "name");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "name"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "name")
+			).setHref(
+				getPortletURL(), "orderByCol", "name"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "name")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(Objects.equals(getOrderByCol(), "type"));
-				dropdownItem.setHref(getPortletURL(), "orderByCol", "type");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "type"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "type")
+			).setHref(
+				getPortletURL(), "orderByCol", "type"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "type")
+			).build()
 		).build();
 	}
 

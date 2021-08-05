@@ -22,6 +22,7 @@ import com.liferay.commerce.price.list.service.CommercePriceListService;
 import com.liferay.commerce.product.service.CommerceCatalogService;
 import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSetActionDropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -130,14 +131,13 @@ public class CommercePriceEntryDisplayContext
 
 		if (hasPermission(getCommercePriceListId(), ActionKeys.UPDATE)) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						getAddCommerceTierPriceEntryRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							httpServletRequest, "add-new-price-tier"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommerceTierPriceEntryRenderURL()
+				).setLabel(
+					LanguageUtil.get(httpServletRequest, "add-new-price-tier")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -62,13 +63,15 @@ public class SiteAdminManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteSites");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSites"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -113,33 +116,31 @@ public class SiteAdminManagementToolbarDisplayContext
 
 		try {
 			return CreationMenuBuilder.addPrimaryDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						PortletURLBuilder.createRenderURL(
-							liferayPortletResponse
-						).setMVCRenderCommandName(
-							"/site_admin/select_site_initializer"
-						).setRedirect(
-							themeDisplay.getURLCurrent()
-						).setParameter(
-							"parentGroupId",
-							() -> {
-								Group group =
-									_siteAdminDisplayContext.getGroup();
+				DropdownItemBuilder.setHref(
+					PortletURLBuilder.createRenderURL(
+						liferayPortletResponse
+					).setMVCRenderCommandName(
+						"/site_admin/select_site_initializer"
+					).setRedirect(
+						themeDisplay.getURLCurrent()
+					).setParameter(
+						"parentGroupId",
+						() -> {
+							Group group = _siteAdminDisplayContext.getGroup();
 
-								if ((group != null) &&
-									_siteAdminDisplayContext.
-										hasAddChildSitePermission(group)) {
+							if ((group != null) &&
+								_siteAdminDisplayContext.
+									hasAddChildSitePermission(group)) {
 
-									return group.getGroupId();
-								}
-
-								return null;
+								return group.getGroupId();
 							}
-						).buildString());
-					dropdownItem.setLabel(
-						LanguageUtil.get(httpServletRequest, "add"));
-				}
+
+							return null;
+						}
+					).buildString()
+				).setLabel(
+					LanguageUtil.get(httpServletRequest, "add")
+				).build()
 			).build();
 		}
 		catch (Exception exception) {

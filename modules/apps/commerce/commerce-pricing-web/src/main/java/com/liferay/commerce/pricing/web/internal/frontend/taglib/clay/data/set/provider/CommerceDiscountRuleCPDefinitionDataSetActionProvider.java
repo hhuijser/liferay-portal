@@ -22,6 +22,7 @@ import com.liferay.commerce.pricing.web.internal.frontend.constants.CommercePric
 import com.liferay.commerce.pricing.web.internal.model.DiscountRuleCPDefinition;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -75,15 +76,14 @@ public class CommerceDiscountRuleCPDefinitionDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				commerceDiscountRule.getCommerceDiscountId(),
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getDiscountRuleDeleteCPDefinitionURL(
-						discountRuleCPDefinition.getCPDefinitionId(),
-						discountRuleCPDefinition.getDiscountRuleId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, Constants.REMOVE));
-			}
+			DropdownItemBuilder.setHref(
+				_getDiscountRuleDeleteCPDefinitionURL(
+					discountRuleCPDefinition.getCPDefinitionId(),
+					discountRuleCPDefinition.getDiscountRuleId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, Constants.REMOVE)
+			).build()
 		).build();
 	}
 

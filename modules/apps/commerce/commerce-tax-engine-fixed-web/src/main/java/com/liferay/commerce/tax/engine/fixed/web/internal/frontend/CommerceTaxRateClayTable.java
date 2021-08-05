@@ -39,6 +39,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -122,25 +123,22 @@ public class CommerceTaxRateClayTable
 			() -> _commerceChannelModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), commerceChannel,
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getTaxRateEditURL(
-						httpServletRequest, taxRate.getTaxRateId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getTaxRateEditURL(httpServletRequest, taxRate.getTaxRateId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _commerceChannelModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), commerceChannel,
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getTaxRateDeleteURL(
-						httpServletRequest, taxRate.getTaxRateId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getTaxRateDeleteURL(httpServletRequest, taxRate.getTaxRateId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

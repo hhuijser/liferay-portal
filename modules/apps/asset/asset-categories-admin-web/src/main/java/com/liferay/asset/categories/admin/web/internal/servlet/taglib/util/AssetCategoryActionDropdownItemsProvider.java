@@ -25,6 +25,7 @@ import com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.asset.kernel.service.AssetVocabularyServiceUtil;
 import com.liferay.exportimport.kernel.staging.permission.StagingPermissionUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -78,21 +79,19 @@ public class AssetCategoryActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(category, ActionKeys.UPDATE),
-						dropdownItem -> {
-							dropdownItem.setHref(
-								PortletURLBuilder.createRenderURL(
-									_renderResponse
-								).setMVCPath(
-									"/edit_category.jsp"
-								).setParameter(
-									"categoryId", category.getCategoryId()
-								).setParameter(
-									"vocabularyId", category.getVocabularyId()
-								).buildString());
-
-							dropdownItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "edit"));
-						}
+						DropdownItemBuilder.setHref(
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setMVCPath(
+								"/edit_category.jsp"
+							).setParameter(
+								"categoryId", category.getCategoryId()
+							).setParameter(
+								"vocabularyId", category.getVocabularyId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "edit")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -103,29 +102,28 @@ public class AssetCategoryActionDropdownItemsProvider {
 						() ->
 							!_assetCategoriesLimitExceeded &&
 							_hasPermission(category, ActionKeys.ADD_CATEGORY),
-						dropdownItem -> {
-							dropdownItem.setHref(
-								PortletURLBuilder.createRenderURL(
-									_renderResponse
-								).setMVCPath(
-									"/edit_category.jsp"
-								).setParameter(
-									"parentCategoryId", category.getCategoryId()
-								).setParameter(
-									"vocabularyId", category.getVocabularyId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "add-subcategory"));
-						}
+						DropdownItemBuilder.setHref(
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setMVCPath(
+								"/edit_category.jsp"
+							).setParameter(
+								"parentCategoryId", category.getCategoryId()
+							).setParameter(
+								"vocabularyId", category.getVocabularyId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest, "add-subcategory")
+						).build()
 					).add(
 						() -> _getDisplayPageURL(category) != null,
-						dropdownItem -> {
-							dropdownItem.setHref(_getDisplayPageURL(category));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "view-display-page"));
-						}
+						DropdownItemBuilder.setHref(
+							_getDisplayPageURL(category)
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest, "view-display-page")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -134,23 +132,21 @@ public class AssetCategoryActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(category, ActionKeys.UPDATE),
-						dropdownItem -> {
-							dropdownItem.putData("action", "moveCategory");
-							dropdownItem.putData(
-								"categoryId",
-								String.valueOf(category.getCategoryId()));
-							dropdownItem.putData(
-								"categoryTitle",
-								String.valueOf(
-									category.getTitle(
-										_themeDisplay.getLocale())));
-							dropdownItem.putData(
-								"moveCategoryURL",
-								_getSelectCategoryURL(
-									category.getVocabularyId()));
-							dropdownItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "move"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "moveCategory"
+						).putData(
+							"categoryId",
+							String.valueOf(category.getCategoryId())
+						).putData(
+							"categoryTitle",
+							String.valueOf(
+								category.getTitle(_themeDisplay.getLocale()))
+						).putData(
+							"moveCategoryURL",
+							_getSelectCategoryURL(category.getVocabularyId())
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "move")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -159,24 +155,19 @@ public class AssetCategoryActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(category, ActionKeys.PERMISSIONS),
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "permissionsCategory");
-							dropdownItem.putData(
-								"permissionsCategoryURL",
-								PermissionsURLTag.doTag(
-									StringPool.BLANK,
-									AssetCategory.class.getName(),
-									category.getTitle(
-										_themeDisplay.getLocale()),
-									null,
-									String.valueOf(category.getCategoryId()),
-									LiferayWindowState.POP_UP.toString(), null,
-									_httpServletRequest));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "permissions"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "permissionsCategory"
+						).putData(
+							"permissionsCategoryURL",
+							PermissionsURLTag.doTag(
+								StringPool.BLANK, AssetCategory.class.getName(),
+								category.getTitle(_themeDisplay.getLocale()),
+								null, String.valueOf(category.getCategoryId()),
+								LiferayWindowState.POP_UP.toString(), null,
+								_httpServletRequest)
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "permissions")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -185,24 +176,22 @@ public class AssetCategoryActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(category, ActionKeys.DELETE),
-						dropdownItem -> {
-							dropdownItem.putData("action", "deleteCategory");
-
-							dropdownItem.putData(
-								"deleteCategoryURL",
-								PortletURLBuilder.createActionURL(
-									_renderResponse
-								).setActionName(
-									"deleteCategory"
-								).setRedirect(
-									_themeDisplay.getURLCurrent()
-								).setParameter(
-									"categoryId", category.getCategoryId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "delete"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteCategory"
+						).putData(
+							"deleteCategoryURL",
+							PortletURLBuilder.createActionURL(
+								_renderResponse
+							).setActionName(
+								"deleteCategory"
+							).setRedirect(
+								_themeDisplay.getURLCurrent()
+							).setParameter(
+								"categoryId", category.getCategoryId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "delete")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}

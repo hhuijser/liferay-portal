@@ -20,6 +20,7 @@ import com.liferay.commerce.order.content.web.internal.model.OrderItem;
 import com.liferay.commerce.service.CommerceOrderService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -66,14 +67,15 @@ public class CommercePendingOrderItemDataSetActionProvider
 					PermissionThreadLocal.getPermissionChecker(), commerceOrder,
 					ActionKeys.UPDATE) &&
 				commerceOrder.isOpen(),
-			dropdownItem -> {
-				dropdownItem.putData("method", "delete");
-				dropdownItem.setHref(
-					_getDeleteCommerceOrderItemURL(orderItem.getOrderItemId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setTarget("async");
-			}
+			DropdownItemBuilder.putData(
+				"method", "delete"
+			).setHref(
+				_getDeleteCommerceOrderItemURL(orderItem.getOrderItemId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setTarget(
+				"async"
+			).build()
 		).build();
 	}
 

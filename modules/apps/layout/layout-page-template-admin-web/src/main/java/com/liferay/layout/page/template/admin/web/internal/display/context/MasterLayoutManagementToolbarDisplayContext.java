@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplateEntryPermission;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplatePermission;
@@ -70,17 +71,17 @@ public class MasterLayoutManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "exportMasterLayouts");
-							dropdownItem.putData(
-								"exportMasterLayoutURL",
-								_getExportMasterLayoutURL());
-							dropdownItem.setIcon("download");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "export"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "exportMasterLayouts"
+						).putData(
+							"exportMasterLayoutURL", _getExportMasterLayoutURL()
+						).setIcon(
+							"download"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "export")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -88,14 +89,15 @@ public class MasterLayoutManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deleteSelectedMasterLayouts");
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "delete"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteSelectedMasterLayouts"
+						).setIcon(
+							"times-circle"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "delete")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -141,28 +143,25 @@ public class MasterLayoutManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setData(
-					HashMapBuilder.<String, Object>put(
-						"action", "addMasterLayout"
-					).put(
-						"addMasterLayoutURL",
-						PortletURLBuilder.createActionURL(
-							liferayPortletResponse
-						).setActionName(
-							"/layout_page_template_admin/add_master_layout"
-						).setBackURL(
-							_themeDisplay.getURLCurrent()
-						).setParameter(
-							"type",
-							LayoutPageTemplateEntryTypeConstants.
-								TYPE_MASTER_LAYOUT
-						).buildString()
-					).build());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.setData(
+				HashMapBuilder.<String, Object>put(
+					"action", "addMasterLayout"
+				).put(
+					"addMasterLayoutURL",
+					PortletURLBuilder.createActionURL(
+						liferayPortletResponse
+					).setActionName(
+						"/layout_page_template_admin/add_master_layout"
+					).setBackURL(
+						_themeDisplay.getURLCurrent()
+					).setParameter(
+						"type",
+						LayoutPageTemplateEntryTypeConstants.TYPE_MASTER_LAYOUT
+					).buildString()
+				).build()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add")
+			).build()
 		).build();
 	}
 

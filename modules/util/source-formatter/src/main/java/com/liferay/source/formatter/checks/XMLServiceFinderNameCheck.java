@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
@@ -80,52 +82,51 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 					finderColumns.add(attributesMap);
 				}
 
-				String[] splitFinderName = finderName.split(
-					StringPool.UNDERLINE);
+				List<String> splitFinderNames = ListUtil.fromString(
+					finderName, StringPool.UNDERLINE);
 
-				if (splitFinderName.length < finderColumns.size()) {
-					addMessage(
-						fileName,
-						StringBundler.concat(
-							"Finder name '", entityName, "#", finderName,
-							"' should be combined by finder colume names with ",
-							"delimiter '_'"));
-				}
-
-				int i = 0;
+				String newFinderName = StringPool.BLANK;
 
 				for (Map<String, String> finderColumn : finderColumns) {
 					if (!finderColumn.containsKey("name")) {
 						continue;
 					}
 
-					if ((finderColumns.size() == 1) &&
-						!finderColumn.containsKey("comparator")) {
+					String finderColumnName = finderColumn.get("name");
 
-						break;
-					}
+					finderColumnName = StringUtil.upperCase(
+						finderColumnName.substring(0, 1));
 
 					if (finderColumn.containsKey("comparator")) {
-						String comparator = finderColumn.get("comparator");
-
-						String prefix = _comparatorNamesMap.get(comparator);
-
-						if (Validator.isNull(prefix)) {
-							continue;
-						}
-
-						if (!splitFinderName[i].startsWith(prefix)) {
-							addMessage(
-								fileName,
-								StringBundler.concat(
-									"Finder name '", entityName, "#",
-									finderName, " for '",
-									finderColumn.get("name"),
-									"' should start with '", prefix, "'"));
-						}
+						newFinderName += _comparatorNamesMap.get(
+							finderColumn.get("comparator"));
 					}
 
-					i++;
+					newFinderName = newFinderName + finderColumnName;
+
+					int i = 0;
+
+					while (i < splitFinderNames.size()) {
+						String splitFinderName = splitFinderNames.get(i);
+
+						if (splitFinderName.startsWith(newFinderName)) {
+							splitFinderNames.remove(splitFinderName);
+
+							break;
+						}
+
+						i++;
+					}
+
+					if (i == splitFinderNames.size()) {
+						addMessage(
+							fileName,
+							StringBundler.concat(
+								"Finder name '", entityName, "#", finderName,
+								"' should be combined by finder colume names(",
+								"at least the first character) following by ",
+								"each comparator prefix"));
+					}
 				}
 			}
 		}

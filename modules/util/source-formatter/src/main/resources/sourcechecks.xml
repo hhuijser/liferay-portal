@@ -1491,6 +1491,7 @@
 		<check name="XMLServiceFinderNameCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that the `finder name` in `service.xml`." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="XMLStylingCheck">
 			<category name="Styling" />

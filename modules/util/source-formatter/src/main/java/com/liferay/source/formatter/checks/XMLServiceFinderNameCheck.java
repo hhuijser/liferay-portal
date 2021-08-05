@@ -82,56 +82,56 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 					finderColumns.add(attributesMap);
 				}
 
-				List<String> splitFinderNames = ListUtil.fromString(
-					finderName, StringPool.UNDERLINE);
-
-				String newFinderName = StringPool.BLANK;
-
-				for (Map<String, String> finderColumn : finderColumns) {
-					if (!finderColumn.containsKey("name")) {
-						continue;
-					}
-
-					String finderColumnName = finderColumn.get("name");
-
-					finderColumnName = StringUtil.upperCase(
-						finderColumnName.substring(0, 1));
-
-					if (finderColumn.containsKey("comparator")) {
-						newFinderName += _comparatorNamesMap.get(
-							finderColumn.get("comparator"));
-					}
-
-					newFinderName = newFinderName + finderColumnName;
-
-					int i = 0;
-
-					while (i < splitFinderNames.size()) {
-						String splitFinderName = splitFinderNames.get(i);
-
-						if (splitFinderName.startsWith(newFinderName)) {
-							splitFinderNames.remove(splitFinderName);
-
-							break;
-						}
-
-						i++;
-					}
-
-					if (i == splitFinderNames.size()) {
-						addMessage(
-							fileName,
-							StringBundler.concat(
-								"Finder name '", entityName, "#", finderName,
-								"' should be combined by finder colume names(",
-								"at least the first character) following by ",
-								"each comparator prefix"));
-					}
-				}
+				_checkFinderName(
+					fileName, entityName, finderName, finderColumns);
 			}
 		}
 
 		return content;
+	}
+
+	private void _checkFinderName(
+		String fileName, String entityName, String finderName,
+		List<Map<String, String>> finderColumns) {
+
+		List<String> splitFinderNames = ListUtil.fromString(
+			finderName, StringPool.UNDERLINE);
+
+		outerLoop:
+		for (Map<String, String> finderColumn : finderColumns) {
+			if (!finderColumn.containsKey("name")) {
+				continue;
+			}
+
+			String finderColumnName = finderColumn.get("name");
+
+			finderColumnName = StringUtil.upperCase(
+				finderColumnName.substring(0, 1));
+
+			String s = StringPool.BLANK;
+
+			if (finderColumn.containsKey("comparator")) {
+				s += _comparatorNamesMap.get(finderColumn.get("comparator"));
+			}
+
+			s = s + finderColumnName;
+
+			for (String splitFinderName : splitFinderNames) {
+				if (splitFinderName.startsWith(s)) {
+					splitFinderNames.remove(splitFinderName);
+
+					continue outerLoop;
+				}
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Finder name '", entityName, "#", finderName,
+					"' should be combined by finder colume names(",
+					"at least the first character) following by each ",
+					"comparator prefix with delimiter '_'"));
+		}
 	}
 
 	private static final Map<String, String> _comparatorNamesMap =

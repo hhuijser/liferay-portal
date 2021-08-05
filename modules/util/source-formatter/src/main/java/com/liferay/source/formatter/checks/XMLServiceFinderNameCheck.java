@@ -91,6 +91,38 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 							"' should be combined by finder colume names with ",
 							"delimiter '_'"));
 				}
+
+				int i = 0;
+
+				for (Map<String, String> finderColumn : finderColumns) {
+					if (!finderColumn.containsKey("name")) {
+						continue;
+					}
+
+					if ((finderColumns.size() == 1) &&
+						!finderColumn.containsKey("comparator")) {
+
+						break;
+					}
+
+					if (finderColumn.containsKey("comparator")) {
+						String comparator = finderColumn.get("comparator");
+
+						String prefix = _comparatorNamesMap.get(comparator);
+
+						if (!splitFinderName[i].startsWith(prefix)) {
+							addMessage(
+								fileName,
+								StringBundler.concat(
+									"Finder name '", entityName, "#",
+									finderName, " for '",
+									finderColumn.get("name"),
+									"' should start with '", prefix, "'"));
+						}
+					}
+
+					i++;
+				}
 			}
 		}
 
@@ -101,9 +133,9 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 		HashMapBuilder.put(
 			"!=", "Not"
 		).put(
-			"&gt;", "Gt"
+			"<", "Lt"
 		).put(
-			"&lt;", "Lt"
+			">", "Gt"
 		).put(
 			"is", "Is"
 		).put(

@@ -16,6 +16,7 @@ package com.liferay.knowledge.base.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.knowledge.base.constants.KBActionKeys;
@@ -96,13 +97,15 @@ public class KBAdminManagementToolbarDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteEntries");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteEntries"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -176,25 +179,23 @@ public class KBAdminManagementToolbarDisplayContext {
 			}
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						PortletURLBuilder.createRenderURL(
-							_liferayPortletResponse
-						).setMVCPath(
-							"/admin/common/edit_folder.jsp"
-						).setRedirect(
-							PortalUtil.getCurrentURL(_httpServletRequest)
-						).setParameter(
-							"parentResourceClassNameId",
-							PortalUtil.getClassNameId(
-								KBFolderConstants.getClassName())
-						).setParameter(
-							"parentResourcePrimKey", parentResourcePrimKey
-						).buildPortletURL());
-
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, "folder"));
-				});
+				DropdownItemBuilder.setHref(
+					PortletURLBuilder.createRenderURL(
+						_liferayPortletResponse
+					).setMVCPath(
+						"/admin/common/edit_folder.jsp"
+					).setRedirect(
+						PortalUtil.getCurrentURL(_httpServletRequest)
+					).setParameter(
+						"parentResourceClassNameId",
+						PortalUtil.getClassNameId(
+							KBFolderConstants.getClassName())
+					).setParameter(
+						"parentResourcePrimKey", parentResourcePrimKey
+					).buildPortletURL()
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, "folder")
+				).build());
 		}
 
 		if (hasAddKBArticlePermission) {
@@ -205,24 +206,21 @@ public class KBAdminManagementToolbarDisplayContext {
 			String templatePath = _getTemplatePath();
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						PortletURLBuilder.createRenderURL(
-							_liferayPortletResponse
-						).setMVCPath(
-							templatePath + "edit_article.jsp"
-						).setRedirect(
-							PortalUtil.getCurrentURL(_httpServletRequest)
-						).setParameter(
-							"parentResourceClassNameId",
-							parentResourceClassNameId
-						).setParameter(
-							"parentResourcePrimKey", parentResourcePrimKey
-						).buildPortletURL());
-
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, "basic-article"));
-				});
+				DropdownItemBuilder.setHref(
+					PortletURLBuilder.createRenderURL(
+						_liferayPortletResponse
+					).setMVCPath(
+						templatePath + "edit_article.jsp"
+					).setRedirect(
+						PortalUtil.getCurrentURL(_httpServletRequest)
+					).setParameter(
+						"parentResourceClassNameId", parentResourceClassNameId
+					).setParameter(
+						"parentResourcePrimKey", parentResourcePrimKey
+					).buildPortletURL()
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, "basic-article")
+				).build());
 
 			OrderByComparator<KBTemplate> orderByComparator =
 				OrderByComparatorFactoryUtil.create(
@@ -236,30 +234,26 @@ public class KBAdminManagementToolbarDisplayContext {
 			if (!kbTemplates.isEmpty()) {
 				for (KBTemplate kbTemplate : kbTemplates) {
 					creationMenu.addDropdownItem(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								PortletURLBuilder.createRenderURL(
-									_liferayPortletResponse
-								).setMVCPath(
-									templatePath + "edit_article.jsp"
-								).setRedirect(
-									PortalUtil.getCurrentURL(
-										_httpServletRequest)
-								).setParameter(
-									"kbTemplateId", kbTemplate.getKbTemplateId()
-								).setParameter(
-									"parentResourceClassNameId",
-									parentResourceClassNameId
-								).setParameter(
-									"parentResourcePrimKey",
-									parentResourcePrimKey
-								).buildPortletURL());
-
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									HtmlUtil.escape(kbTemplate.getTitle())));
-						});
+						DropdownItemBuilder.setHref(
+							PortletURLBuilder.createRenderURL(
+								_liferayPortletResponse
+							).setMVCPath(
+								templatePath + "edit_article.jsp"
+							).setRedirect(
+								PortalUtil.getCurrentURL(_httpServletRequest)
+							).setParameter(
+								"kbTemplateId", kbTemplate.getKbTemplateId()
+							).setParameter(
+								"parentResourceClassNameId",
+								parentResourceClassNameId
+							).setParameter(
+								"parentResourcePrimKey", parentResourcePrimKey
+							).buildPortletURL()
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest,
+								HtmlUtil.escape(kbTemplate.getTitle()))
+						).build());
 				}
 			}
 		}
@@ -274,21 +268,19 @@ public class KBAdminManagementToolbarDisplayContext {
 			}
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						PortletURLBuilder.createRenderURL(
-							_liferayPortletResponse
-						).setMVCPath(
-							"/admin/import.jsp"
-						).setRedirect(
-							PortalUtil.getCurrentURL(_httpServletRequest)
-						).setParameter(
-							"parentKBFolderId", parentResourcePrimKey
-						).buildPortletURL());
-
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, "import"));
-				});
+				DropdownItemBuilder.setHref(
+					PortletURLBuilder.createRenderURL(
+						_liferayPortletResponse
+					).setMVCPath(
+						"/admin/import.jsp"
+					).setRedirect(
+						PortalUtil.getCurrentURL(_httpServletRequest)
+					).setParameter(
+						"parentKBFolderId", parentResourcePrimKey
+					).buildPortletURL()
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, "import")
+				).build());
 		}
 
 		return creationMenu;
@@ -477,17 +469,15 @@ public class KBAdminManagementToolbarDisplayContext {
 
 				for (String orderByCol : orderColumns) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								orderByCol.equals(_getOrderByCol()));
-							dropdownItem.setHref(
-								_getCurrentSortingURL(), "orderByCol",
-								orderByCol);
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									orderColumnsMap.get(orderByCol)));
-						});
+						DropdownItemBuilder.setActive(
+							orderByCol.equals(_getOrderByCol())
+						).setHref(
+							_getCurrentSortingURL(), "orderByCol", orderByCol
+						).setLabel(
+							LanguageUtil.get(
+								_httpServletRequest,
+								orderColumnsMap.get(orderByCol))
+						).build());
 				}
 			}
 		};

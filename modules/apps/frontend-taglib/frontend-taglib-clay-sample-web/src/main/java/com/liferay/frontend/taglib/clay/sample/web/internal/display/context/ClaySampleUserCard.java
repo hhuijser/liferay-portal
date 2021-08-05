@@ -16,6 +16,7 @@ package com.liferay.frontend.taglib.clay.sample.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.UserCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 
 import java.util.List;
@@ -32,15 +33,17 @@ public class ClaySampleUserCard implements UserCard {
 		}
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref("#1");
-				dropdownItem.setLabel("Edit");
-			}
+			DropdownItemBuilder.setHref(
+				"#1"
+			).setLabel(
+				"Edit"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref("#2");
-				dropdownItem.setLabel("Save");
-			}
+			DropdownItemBuilder.setHref(
+				"#2"
+			).setLabel(
+				"Save"
+			).build()
 		).build();
 	}
 

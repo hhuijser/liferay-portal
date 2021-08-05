@@ -19,6 +19,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -63,22 +64,24 @@ public class AssetTagsManagementToolbarDisplayContext
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						_assetTagsDisplayContext::isShowTagsActions,
-						dropdownItem -> {
-							dropdownItem.putData("action", "mergeTags");
-							dropdownItem.putData(
-								"mergeTagsURL",
-								PortletURLBuilder.createRenderURL(
-									liferayPortletResponse
-								).setMVCPath(
-									"/merge_tag.jsp"
-								).setParameter(
-									"mergeTagIds", "[$MERGE_TAGS_IDS$]"
-								).buildString());
-							dropdownItem.setIcon("merge");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "merge"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "mergeTags"
+						).putData(
+							"mergeTagsURL",
+							PortletURLBuilder.createRenderURL(
+								liferayPortletResponse
+							).setMVCPath(
+								"/merge_tag.jsp"
+							).setParameter(
+								"mergeTagIds", "[$MERGE_TAGS_IDS$]"
+							).buildString()
+						).setIcon(
+							"merge"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "merge")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -86,13 +89,15 @@ public class AssetTagsManagementToolbarDisplayContext
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "deleteTags");
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(httpServletRequest, "delete"));
-							dropdownItem.setQuickAction(true);
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteTags"
+						).setIcon(
+							"times-circle"
+						).setLabel(
+							LanguageUtil.get(httpServletRequest, "delete")
+						).setQuickAction(
+							true
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -114,13 +119,12 @@ public class AssetTagsManagementToolbarDisplayContext
 	@Override
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					liferayPortletResponse.createRenderURL(), "mvcPath",
-					"/edit_tag.jsp");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "add-tag"));
-			}
+			DropdownItemBuilder.setHref(
+				liferayPortletResponse.createRenderURL(), "mvcPath",
+				"/edit_tag.jsp"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "add-tag")
+			).build()
 		).build();
 	}
 

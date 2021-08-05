@@ -37,6 +37,7 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryServiceUtil;
 import com.liferay.exportimport.kernel.staging.permission.StagingPermissionUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
@@ -585,11 +586,11 @@ public class AssetCategoriesDisplayContext {
 
 	public List<DropdownItem> getVocabulariesDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteVocabularies");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteVocabularies"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 
@@ -697,11 +698,11 @@ public class AssetCategoriesDisplayContext {
 		}
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(getEditVocabularyURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "add-vocabulary"));
-			}
+			DropdownItemBuilder.setHref(
+				getEditVocabularyURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add-vocabulary")
+			).build()
 		).build();
 	}
 

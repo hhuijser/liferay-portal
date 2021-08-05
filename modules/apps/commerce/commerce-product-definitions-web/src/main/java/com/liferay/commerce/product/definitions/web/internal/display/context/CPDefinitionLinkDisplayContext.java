@@ -23,6 +23,7 @@ import com.liferay.commerce.product.portlet.action.ActionHelper;
 import com.liferay.commerce.product.service.CPDefinitionLinkService;
 import com.liferay.commerce.product.servlet.taglib.ui.constants.CPDefinitionScreenNavigationConstants;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
@@ -101,13 +102,14 @@ public class CPDefinitionLinkDisplayContext
 			sb.append(type);
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(sb.toString());
-					dropdownItem.setLabel(
-						LanguageUtil.format(
-							httpServletRequest, "add-x-product", type, true));
-					dropdownItem.setTarget("event");
-				});
+				DropdownItemBuilder.setHref(
+					sb.toString()
+				).setLabel(
+					LanguageUtil.format(
+						httpServletRequest, "add-x-product", type, true)
+				).setTarget(
+					"event"
+				).build());
 		}
 
 		return creationMenu;

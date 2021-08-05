@@ -15,6 +15,7 @@
 package com.liferay.layout.page.template.admin.web.internal.servlet.taglib.util;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplateCollectionPermission;
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
@@ -59,25 +60,24 @@ public class LayoutPageTemplateCollectionActionDropdownItem {
 						() -> LayoutPageTemplateCollectionPermission.contains(
 							themeDisplay.getPermissionChecker(),
 							layoutPageTemplateCollection, ActionKeys.UPDATE),
-						dropdownItem -> {
-							dropdownItem.setHref(
-								PortletURLBuilder.createRenderURL(
-									_renderResponse
-								).setMVCRenderCommandName(
-									"/layout_page_template_admin" +
-										"/edit_layout_page_template_collection"
-								).setRedirect(
-									themeDisplay.getURLCurrent()
-								).setTabs1(
-									"page-templates"
-								).setParameter(
-									"layoutPageTemplateCollectionId",
-									layoutPageTemplateCollection.
-										getLayoutPageTemplateCollectionId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "edit"));
-						}
+						DropdownItemBuilder.setHref(
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setMVCRenderCommandName(
+								"/layout_page_template_admin" +
+									"/edit_layout_page_template_collection"
+							).setRedirect(
+								themeDisplay.getURLCurrent()
+							).setTabs1(
+								"page-templates"
+							).setParameter(
+								"layoutPageTemplateCollectionId",
+								layoutPageTemplateCollection.
+									getLayoutPageTemplateCollectionId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "edit")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -89,27 +89,22 @@ public class LayoutPageTemplateCollectionActionDropdownItem {
 							themeDisplay.getPermissionChecker(),
 							layoutPageTemplateCollection,
 							ActionKeys.PERMISSIONS),
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action",
-								"permissionsLayoutPageTemplateCollection");
-							dropdownItem.putData(
-								"permissionsLayoutPageTemplateCollectionURL",
-								PermissionsURLTag.doTag(
-									StringPool.BLANK,
-									LayoutPageTemplateCollection.class.
-										getName(),
-									layoutPageTemplateCollection.getName(),
-									null,
-									String.valueOf(
-										layoutPageTemplateCollection.
-											getLayoutPageTemplateCollectionId()),
-									LiferayWindowState.POP_UP.toString(), null,
-									_httpServletRequest));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "permissions"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "permissionsLayoutPageTemplateCollection"
+						).putData(
+							"permissionsLayoutPageTemplateCollectionURL",
+							PermissionsURLTag.doTag(
+								StringPool.BLANK,
+								LayoutPageTemplateCollection.class.getName(),
+								layoutPageTemplateCollection.getName(), null,
+								String.valueOf(
+									layoutPageTemplateCollection.
+										getLayoutPageTemplateCollectionId()),
+								LiferayWindowState.POP_UP.toString(), null,
+								_httpServletRequest)
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "permissions")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -120,31 +115,29 @@ public class LayoutPageTemplateCollectionActionDropdownItem {
 						() -> LayoutPageTemplateCollectionPermission.contains(
 							themeDisplay.getPermissionChecker(),
 							layoutPageTemplateCollection, ActionKeys.DELETE),
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "deleteLayoutPageTemplateCollection");
-							dropdownItem.putData(
-								"deleteLayoutPageTemplateCollectionURL",
-								PortletURLBuilder.createActionURL(
+						DropdownItemBuilder.putData(
+							"action", "deleteLayoutPageTemplateCollection"
+						).putData(
+							"deleteLayoutPageTemplateCollectionURL",
+							PortletURLBuilder.createActionURL(
+								_renderResponse
+							).setActionName(
+								"/layout_page_template_admin/delete_" +
+									"layout_page_template_collection"
+							).setRedirect(
+								PortletURLBuilder.createRenderURL(
 									_renderResponse
-								).setActionName(
-									"/layout_page_template_admin/delete_" +
-										"layout_page_template_collection"
-								).setRedirect(
-									PortletURLBuilder.createRenderURL(
-										_renderResponse
-									).setTabs1(
-										"page-templates"
-									).buildString()
-								).setParameter(
-									"layoutPageTemplateCollectionId",
-									layoutPageTemplateCollection.
-										getLayoutPageTemplateCollectionId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "delete"));
-						}
+								).setTabs1(
+									"page-templates"
+								).buildString()
+							).setParameter(
+								"layoutPageTemplateCollectionId",
+								layoutPageTemplateCollection.
+									getLayoutPageTemplateCollectionId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "delete")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}

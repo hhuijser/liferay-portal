@@ -16,6 +16,7 @@ package com.liferay.frontend.taglib.clay.sample.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -40,15 +41,17 @@ public class ClaySampleVerticalCard implements VerticalCard {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#1");
-							dropdownItem.setLabel("Option 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#1"
+						).setLabel(
+							"Option 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#2");
-							dropdownItem.setLabel("Option 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#2"
+						).setLabel(
+							"Option 2"
+						).build()
 					).add(
 						dropdownItem -> dropdownItem.setType("divider")
 					).build());
@@ -59,15 +62,17 @@ public class ClaySampleVerticalCard implements VerticalCard {
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
-						dropdownItem -> {
-							dropdownItem.setHref("#3");
-							dropdownItem.setLabel("Option 1");
-						}
+						DropdownItemBuilder.setHref(
+							"#3"
+						).setLabel(
+							"Option 1"
+						).build()
 					).add(
-						dropdownItem -> {
-							dropdownItem.setHref("#4");
-							dropdownItem.setLabel("Option 2");
-						}
+						DropdownItemBuilder.setHref(
+							"#4"
+						).setLabel(
+							"Option 2"
+						).build()
 					).build());
 
 				dropdownGroupItem.setLabel("Group 2");

@@ -21,6 +21,7 @@ import com.liferay.commerce.pricing.web.internal.model.PricingClass;
 import com.liferay.commerce.pricing.web.internal.servlet.taglib.ui.constants.CommercePricingClassScreenNavigationConstants;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -67,38 +68,37 @@ public class CommercePricingClassDataSetActionProvider
 			() -> _commercePricingClassModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				pricingClass.getPricingClassId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getPricingClassEditURL(
-						pricingClass.getPricingClassId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				_getPricingClassEditURL(
+					pricingClass.getPricingClassId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).build()
 		).add(
 			() -> _commercePricingClassModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				pricingClass.getPricingClassId(), ActionKeys.PERMISSIONS),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getManageCatalogPermissionsURL(
-						pricingClass, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "permissions"));
-				dropdownItem.setTarget("modal-permissions");
-			}
+			DropdownItemBuilder.setHref(
+				_getManageCatalogPermissionsURL(
+					pricingClass, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "permissions")
+			).setTarget(
+				"modal-permissions"
+			).build()
 		).add(
 			() -> _commercePricingClassModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				pricingClass.getPricingClassId(), ActionKeys.DELETE),
-			dropdownItem -> {
-				dropdownItem.putData("method", "delete");
-				dropdownItem.setHref(
-					_getPricingClassDeleteURL(
-						pricingClass.getPricingClassId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setTarget("async");
-			}
+			DropdownItemBuilder.putData(
+				"method", "delete"
+			).setHref(
+				_getPricingClassDeleteURL(pricingClass.getPricingClassId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setTarget(
+				"async"
+			).build()
 		).build();
 	}
 

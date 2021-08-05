@@ -18,6 +18,7 @@ import com.liferay.fragment.constants.FragmentActionKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -65,14 +66,15 @@ public class ContributedFragmentManagementToolbarDisplayContext
 				themeDisplay.getPermissionChecker(),
 				themeDisplay.getScopeGroupId(),
 				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES),
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "copyContributedEntriesToFragmentCollection");
-				dropdownItem.setIcon("paste");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "make-a-copy"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "copyContributedEntriesToFragmentCollection"
+			).setIcon(
+				"paste"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "make-a-copy")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 

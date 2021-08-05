@@ -25,6 +25,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchema;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilder;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.CharPool;
@@ -101,25 +102,22 @@ public class CommerceOrganizationClayTableDataSetDisplayView
 			() -> OrganizationPermissionUtil.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				organization.getOrganizationId(), ActionKeys.VIEW),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getViewOrganizationDetailURL(
-						organization.getOrganizationId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "view-details"));
-			}
+			DropdownItemBuilder.setHref(
+				_getViewOrganizationDetailURL(
+					organization.getOrganizationId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "view-details")
+			).build()
 		).add(
 			() -> OrganizationPermissionUtil.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				organization.getOrganizationId(), ActionKeys.VIEW),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getOrganizationViewSuborganizationsURL(
-						organization.getOrganizationId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "view-suborganizations"));
-			}
+			DropdownItemBuilder.setHref(
+				_getOrganizationViewSuborganizationsURL(
+					organization.getOrganizationId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "view-suborganizations")
+			).build()
 		).add(
 			() -> OrganizationPermissionUtil.contains(
 				PermissionThreadLocal.getPermissionChecker(),

@@ -16,6 +16,7 @@ package com.liferay.user.associated.data.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
@@ -61,22 +62,19 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					StringBundler.concat(
-						"javascript:", getNamespace(),
-						"doAnonymizeMultiple();"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "anonymize"));
-			}
+			DropdownItemBuilder.setHref(
+				StringBundler.concat(
+					"javascript:", getNamespace(), "doAnonymizeMultiple();")
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "anonymize")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					StringBundler.concat(
-						"javascript:", getNamespace(), "doDeleteMultiple();"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				StringBundler.concat(
+					"javascript:", getNamespace(), "doDeleteMultiple();")
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

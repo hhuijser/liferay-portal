@@ -34,6 +34,7 @@ import com.liferay.commerce.pricing.web.internal.servlet.taglib.ui.constants.Com
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSetActionDropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -312,14 +313,15 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 
 		if (hasAddPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddCommerceDiscountRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							commercePricingRequestHelper.getRequest(),
-							"add-discount"));
-					dropdownItem.setTarget("modal");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommerceDiscountRenderURL()
+				).setLabel(
+					LanguageUtil.get(
+						commercePricingRequestHelper.getRequest(),
+						"add-discount")
+				).setTarget(
+					"modal"
+				).build());
 		}
 
 		return creationMenu;
@@ -357,14 +359,15 @@ public class CommerceDiscountDisplayContext extends BasePricingDisplayContext {
 
 		if (hasPermission(ActionKeys.UPDATE)) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddCommerceDiscountRuleRenderURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							commercePricingRequestHelper.getRequest(),
-							"add-discount-rule"));
-					dropdownItem.setTarget("modal");
-				});
+				DropdownItemBuilder.setHref(
+					getAddCommerceDiscountRuleRenderURL()
+				).setLabel(
+					LanguageUtil.get(
+						commercePricingRequestHelper.getRequest(),
+						"add-discount-rule")
+				).setTarget(
+					"modal"
+				).build());
 		}
 
 		return creationMenu;

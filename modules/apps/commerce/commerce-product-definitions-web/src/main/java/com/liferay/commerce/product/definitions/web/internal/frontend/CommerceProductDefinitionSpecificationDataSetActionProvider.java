@@ -23,6 +23,7 @@ import com.liferay.commerce.product.model.CPDefinitionSpecificationOptionValue;
 import com.liferay.commerce.product.service.CPDefinitionSpecificationOptionValueService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -83,29 +84,27 @@ public class CommerceProductDefinitionSpecificationDataSetActionProvider
 				permissionChecker,
 				cpDefinitionSpecificationOptionValue.getCPDefinition(),
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductSpecificationEditURL(
-						cpDefinitionSpecificationOptionValue,
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getProductSpecificationEditURL(
+					cpDefinitionSpecificationOptionValue, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> CommerceCatalogPermission.contains(
 				permissionChecker,
 				cpDefinitionSpecificationOptionValue.getCPDefinition(),
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductSpecificationDeleteURL(
-						cpDefinitionSpecificationOptionValue.
-							getCPDefinitionSpecificationOptionValueId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getProductSpecificationDeleteURL(
+					cpDefinitionSpecificationOptionValue.
+						getCPDefinitionSpecificationOptionValueId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

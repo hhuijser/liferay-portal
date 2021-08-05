@@ -21,6 +21,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -105,13 +106,12 @@ public class AssetBrowserManagementToolbarDisplayContext
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(addButtonURL);
-				dropdownItem.setLabel(
-					LanguageUtil.format(
-						httpServletRequest, "add-x", _getAddButtonLabel(),
-						false));
-			}
+			DropdownItemBuilder.setHref(
+				addButtonURL
+			).setLabel(
+				LanguageUtil.format(
+					httpServletRequest, "add-x", _getAddButtonLabel(), false)
+			).build()
 		).build();
 	}
 
@@ -151,33 +151,34 @@ public class AssetBrowserManagementToolbarDisplayContext
 
 		if (groupIds.length <= 1) {
 			return DropdownItemListBuilder.add(
-				dropdownItem -> {
-					dropdownItem.setActive(_isEverywhereScopeFilter());
-					dropdownItem.setHref(
-						getPortletURL(), "scope", "everywhere");
-					dropdownItem.setLabel(
-						LanguageUtil.get(httpServletRequest, "everywhere"));
-				}
+				DropdownItemBuilder.setActive(
+					_isEverywhereScopeFilter()
+				).setHref(
+					getPortletURL(), "scope", "everywhere"
+				).setLabel(
+					LanguageUtil.get(httpServletRequest, "everywhere")
+				).build()
 			).add(
-				dropdownItem -> {
-					dropdownItem.setActive(!_isEverywhereScopeFilter());
-					dropdownItem.setHref(getPortletURL(), "scope", "current");
-					dropdownItem.setLabel(_getCurrentScopeLabel());
-				}
+				DropdownItemBuilder.setActive(
+					!_isEverywhereScopeFilter()
+				).setHref(
+					getPortletURL(), "scope", "current"
+				).setLabel(
+					_getCurrentScopeLabel()
+				).build()
 			).build();
 		}
 
 		return new DropdownItemList() {
 			{
 				add(
-					dropdownItem -> {
-						dropdownItem.setActive(_isEverywhereScopeFilter());
-						dropdownItem.setHref(
-							getPortletURL(), "scope", "everywhere", "groupId",
-							null);
-						dropdownItem.setLabel(
-							LanguageUtil.get(httpServletRequest, "everywhere"));
-					});
+					DropdownItemBuilder.setActive(
+						_isEverywhereScopeFilter()
+					).setHref(
+						getPortletURL(), "scope", "everywhere", "groupId", null
+					).setLabel(
+						LanguageUtil.get(httpServletRequest, "everywhere")
+					).build());
 
 				for (long groupId : groupIds) {
 					Group group = GroupLocalServiceUtil.fetchGroup(groupId);
@@ -187,18 +188,16 @@ public class AssetBrowserManagementToolbarDisplayContext
 					}
 
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								_assetBrowserDisplayContext.getGroupId() ==
-									groupId);
-							dropdownItem.setHref(
-								getPortletURL(), "groupId", groupId, "scope",
-								"current");
-							dropdownItem.setLabel(
-								HtmlUtil.escape(
-									group.getDescriptiveName(
-										_themeDisplay.getLocale())));
-						});
+						DropdownItemBuilder.setActive(
+							_assetBrowserDisplayContext.getGroupId() == groupId
+						).setHref(
+							getPortletURL(), "groupId", groupId, "scope",
+							"current"
+						).setLabel(
+							HtmlUtil.escape(
+								group.getDescriptiveName(
+									_themeDisplay.getLocale()))
+						).build());
 				}
 			}
 		};

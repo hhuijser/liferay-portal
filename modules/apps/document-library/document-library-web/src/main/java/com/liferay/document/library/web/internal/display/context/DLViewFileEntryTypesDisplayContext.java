@@ -20,6 +20,7 @@ import com.liferay.document.library.kernel.service.DLFileEntryTypeServiceUtil;
 import com.liferay.document.library.web.internal.security.permission.resource.DLPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -66,15 +67,13 @@ public class DLViewFileEntryTypesDisplayContext {
 				themeDisplay.getScopeGroupId(), ActionKeys.ADD_DOCUMENT_TYPE)) {
 
 			return CreationMenuBuilder.addPrimaryDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						renderResponse.createRenderURL(),
-						"mvcRenderCommandName",
-						"/document_library/edit_file_entry_type", "redirect",
-						PortalUtil.getCurrentURL(_httpServletRequest));
-					dropdownItem.setLabel(
-						LanguageUtil.get(_httpServletRequest, "new"));
-				}
+				DropdownItemBuilder.setHref(
+					renderResponse.createRenderURL(), "mvcRenderCommandName",
+					"/document_library/edit_file_entry_type", "redirect",
+					PortalUtil.getCurrentURL(_httpServletRequest)
+				).setLabel(
+					LanguageUtil.get(_httpServletRequest, "new")
+				).build()
 			).build();
 		}
 

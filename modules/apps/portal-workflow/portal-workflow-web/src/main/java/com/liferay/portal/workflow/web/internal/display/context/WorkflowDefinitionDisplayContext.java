@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPCreationMenu;
@@ -133,15 +134,14 @@ public class WorkflowDefinitionDisplayContext {
 		return new JSPCreationMenu(pageContext) {
 			{
 				addPrimaryDropdownItem(
-					dropdownItem -> {
-						dropdownItem.setHref(
-							liferayPortletResponse.createRenderURL(), "mvcPath",
-							"/definition/edit_workflow_definition.jsp");
-						dropdownItem.setLabel(
-							LanguageUtil.get(
-								_workflowDefinitionRequestHelper.getRequest(),
-								"new-workflow"));
-					});
+					DropdownItemBuilder.setHref(
+						liferayPortletResponse.createRenderURL(), "mvcPath",
+						"/definition/edit_workflow_definition.jsp"
+					).setLabel(
+						LanguageUtil.get(
+							_workflowDefinitionRequestHelper.getRequest(),
+							"new-workflow")
+					).build());
 			}
 		};
 	}

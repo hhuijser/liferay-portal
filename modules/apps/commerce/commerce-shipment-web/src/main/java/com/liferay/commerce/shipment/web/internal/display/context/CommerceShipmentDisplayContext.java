@@ -34,6 +34,7 @@ import com.liferay.commerce.service.CommerceOrderLocalService;
 import com.liferay.commerce.shipment.web.internal.portlet.action.ActionHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -318,26 +319,25 @@ public class CommerceShipmentDisplayContext
 				CommerceShipmentConstants.SHIPMENT_STATUS_PROCESSING)) {
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(
-						PortletURLBuilder.create(
-							getPortletURL()
-						).setMVCRenderCommandName(
-							"/commerce_shipment/add_commerce_shipment_items"
-						).setRedirect(
-							PortalUtil.getCurrentURL(httpServletRequest)
-						).setParameter(
-							"commerceShipmentId",
-							commerceShipment.getCommerceShipmentId()
-						).setWindowState(
-							LiferayWindowState.POP_UP
-						).buildString());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							httpServletRequest,
-							"add-products-to-this-shipment"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					PortletURLBuilder.create(
+						getPortletURL()
+					).setMVCRenderCommandName(
+						"/commerce_shipment/add_commerce_shipment_items"
+					).setRedirect(
+						PortalUtil.getCurrentURL(httpServletRequest)
+					).setParameter(
+						"commerceShipmentId",
+						commerceShipment.getCommerceShipmentId()
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).buildString()
+				).setLabel(
+					LanguageUtil.get(
+						httpServletRequest, "add-products-to-this-shipment")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

@@ -15,6 +15,7 @@
 package com.liferay.my.subscriptions.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
@@ -45,13 +46,15 @@ public class MySubscriptionsManagementToolbarDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "unsubscribe");
-				dropdownItem.setIcon("times");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "unsubscribe"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "unsubscribe"
+			).setIcon(
+				"times"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "unsubscribe")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 

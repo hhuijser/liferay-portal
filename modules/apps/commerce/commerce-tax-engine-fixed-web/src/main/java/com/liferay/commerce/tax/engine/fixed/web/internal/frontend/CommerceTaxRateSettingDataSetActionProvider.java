@@ -22,6 +22,7 @@ import com.liferay.commerce.tax.engine.fixed.web.internal.model.TaxRateSetting;
 import com.liferay.commerce.tax.model.CommerceTaxMethod;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -77,27 +78,24 @@ public class CommerceTaxRateSettingDataSetActionProvider
 			() -> _commerceChannelModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), commerceChannel,
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getTaxRateSettingEditURL(
-						httpServletRequest,
-						taxRateSetting.getTaxRateSettingId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getTaxRateSettingEditURL(
+					httpServletRequest, taxRateSetting.getTaxRateSettingId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _commerceChannelModelResourcePermission.contains(
 				PermissionThreadLocal.getPermissionChecker(), commerceChannel,
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getTaxRateSettingDeleteURL(
-						httpServletRequest,
-						taxRateSetting.getTaxRateSettingId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getTaxRateSettingDeleteURL(
+					httpServletRequest, taxRateSetting.getTaxRateSettingId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

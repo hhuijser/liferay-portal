@@ -26,6 +26,7 @@ import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServices
 import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSetActionDropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -89,20 +90,21 @@ public class CPOptionDisplayContext {
 
 	public CreationMenu getCreationMenu() throws Exception {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						cpRequestHelper.getLiferayPortletResponse()
-					).setMVCRenderCommandName(
-						"/cp_options/add_cp_option"
-					).setBackURL(
-						cpRequestHelper.getCurrentURL()
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildString());
-				dropdownItem.setLabel("add-option-template");
-				dropdownItem.setTarget("modal");
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					cpRequestHelper.getLiferayPortletResponse()
+				).setMVCRenderCommandName(
+					"/cp_options/add_cp_option"
+				).setBackURL(
+					cpRequestHelper.getCurrentURL()
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setLabel(
+				"add-option-template"
+			).setTarget(
+				"modal"
+			).build()
 		).build();
 	}
 
@@ -216,22 +218,23 @@ public class CPOptionDisplayContext {
 		throws Exception {
 
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.createRenderURL(
-						cpRequestHelper.getLiferayPortletResponse()
-					).setMVCRenderCommandName(
-						"/cp_options/add_cp_option_value"
-					).setBackURL(
-						cpRequestHelper.getCurrentURL()
-					).setParameter(
-						"cpOptionId", cpOptionId
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildString());
-				dropdownItem.setLabel("add-option-value-template");
-				dropdownItem.setTarget("modal");
-			}
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.createRenderURL(
+					cpRequestHelper.getLiferayPortletResponse()
+				).setMVCRenderCommandName(
+					"/cp_options/add_cp_option_value"
+				).setBackURL(
+					cpRequestHelper.getCurrentURL()
+				).setParameter(
+					"cpOptionId", cpOptionId
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setLabel(
+				"add-option-value-template"
+			).setTarget(
+				"modal"
+			).build()
 		).build();
 	}
 

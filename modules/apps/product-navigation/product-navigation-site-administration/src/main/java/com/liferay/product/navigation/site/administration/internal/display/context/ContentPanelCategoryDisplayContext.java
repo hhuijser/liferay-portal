@@ -17,6 +17,7 @@ package com.liferay.product.navigation.site.administration.internal.display.cont
 import com.liferay.application.list.constants.ApplicationListWebKeys;
 import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.application.list.display.context.logic.PanelCategoryHelper;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -70,12 +71,11 @@ public class ContentPanelCategoryDisplayContext {
 			PortletRequest.RENDER_PHASE);
 
 		DropdownItemList dropdownItems = DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(portletURL);
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						themeDisplay.getLocale(), "default-scope"));
-			}
+			DropdownItemBuilder.setHref(
+				portletURL
+			).setLabel(
+				LanguageUtil.get(themeDisplay.getLocale(), "default-scope")
+			).build()
 		).build();
 
 		List<Layout> scopeLayouts = LayoutLocalServiceUtil.getScopeGroupLayouts(
@@ -104,15 +104,14 @@ public class ContentPanelCategoryDisplayContext {
 					PortletRequest.RENDER_PHASE);
 
 			dropdownItems.add(
-				dropdownItem -> {
-					dropdownItem.setHref(layoutItemPortletURL);
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							themeDisplay.getLocale(),
-							HtmlUtil.escape(
-								scopeLayout.getName(
-									themeDisplay.getLocale()))));
-				});
+				DropdownItemBuilder.setHref(
+					layoutItemPortletURL
+				).setLabel(
+					LanguageUtil.get(
+						themeDisplay.getLocale(),
+						HtmlUtil.escape(
+							scopeLayout.getName(themeDisplay.getLocale())))
+				).build());
 		}
 
 		return dropdownItems;

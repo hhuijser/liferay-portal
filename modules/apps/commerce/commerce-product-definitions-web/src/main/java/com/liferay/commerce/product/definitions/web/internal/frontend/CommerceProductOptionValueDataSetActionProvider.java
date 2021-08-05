@@ -24,6 +24,7 @@ import com.liferay.commerce.product.model.CPDefinitionOptionValueRel;
 import com.liferay.commerce.product.service.CPDefinitionOptionValueRelService;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -82,27 +83,26 @@ public class CommerceProductOptionValueDataSetActionProvider
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionOptionRel.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductOptionValueEditURL(
-						cpDefinitionOptionValueRel, httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getProductOptionValueEditURL(
+					cpDefinitionOptionValueRel, httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				cpDefinitionOptionRel.getCPDefinition(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getProductOptionValueDeleteURL(
-						cpDefinitionOptionValueRel.
-							getCPDefinitionOptionValueRelId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getProductOptionValueDeleteURL(
+					cpDefinitionOptionValueRel.
+						getCPDefinitionOptionValueRelId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).add(
 			() -> CommerceCatalogPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),

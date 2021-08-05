@@ -21,6 +21,7 @@ import com.liferay.commerce.order.web.internal.model.OrderItem;
 import com.liferay.commerce.order.web.internal.security.permission.resource.CommerceOrderPermission;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -74,26 +75,26 @@ public class CommerceOrderItemClayDataSetActionProvider
 			() -> _commerceOrderPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				orderItem.getOrderId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getOrderItemEditURL(
-						orderItem.getOrderItemId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getOrderItemEditURL(
+					orderItem.getOrderItemId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
 			() -> _commerceOrderPermission.contains(
 				PermissionThreadLocal.getPermissionChecker(),
 				orderItem.getOrderId(), ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getOrderItemDeleteURL(
-						orderItem.getOrderItemId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setTarget("async");
-			}
+			DropdownItemBuilder.setHref(
+				_getOrderItemDeleteURL(
+					orderItem.getOrderItemId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setTarget(
+				"async"
+			).build()
 		).build();
 	}
 

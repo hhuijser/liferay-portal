@@ -17,6 +17,7 @@ package com.liferay.layout.page.template.admin.web.internal.display.context;
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalServiceUtil;
@@ -57,30 +58,30 @@ public class AssetDisplayPageUsagesManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteAssetDisplayPageEntry");
-				dropdownItem.putData(
-					"deleteAssetDisplayPageEntryMessage",
-					_getDeleteAssetDisplayPageEntryMessage());
-				dropdownItem.putData(
-					"deleteAssetDisplayPageEntryURL",
-					_getPortletURL(
-						"/layout_page_template_admin" +
-							"/delete_asset_display_page_entry"));
-				dropdownItem.setLabel(
-					_getDeleteAssetDisplayPageEntryDropdownItemLabel());
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteAssetDisplayPageEntry"
+			).putData(
+				"deleteAssetDisplayPageEntryMessage",
+				_getDeleteAssetDisplayPageEntryMessage()
+			).putData(
+				"deleteAssetDisplayPageEntryURL",
+				_getPortletURL(
+					"/layout_page_template_admin" +
+						"/delete_asset_display_page_entry")
+			).setLabel(
+				_getDeleteAssetDisplayPageEntryDropdownItemLabel()
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "updateAssetDisplayPageEntry");
-				dropdownItem.putData(
-					"updateAssetDisplayPageEntryURL",
-					_getPortletURL(
-						"/layout_page_template_admin" +
-							"/update_asset_display_page_entry"));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "unassign"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "updateAssetDisplayPageEntry"
+			).putData(
+				"updateAssetDisplayPageEntryURL",
+				_getPortletURL(
+					"/layout_page_template_admin" +
+						"/update_asset_display_page_entry")
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "unassign")
+			).build()
 		).build();
 	}
 

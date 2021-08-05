@@ -17,6 +17,7 @@ package com.liferay.user.groups.admin.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -65,13 +66,15 @@ public class ViewUserGroupsManagementToolbarDisplayContext {
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
 			() -> _hasAddUserGroupPermission(),
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteUserGroups");
-				dropdownItem.setIcon("trash");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteUserGroups"
+			).setIcon(
+				"trash"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -85,14 +88,13 @@ public class ViewUserGroupsManagementToolbarDisplayContext {
 
 	public CreationMenu getCreationMenu() throws PortalException {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcPath",
-					"/edit_user_group.jsp", "redirect",
-					_renderResponse.createRenderURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcPath",
+				"/edit_user_group.jsp", "redirect",
+				_renderResponse.createRenderURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add")
+			).build()
 		).build();
 	}
 
@@ -256,23 +258,25 @@ public class ViewUserGroupsManagementToolbarDisplayContext {
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(StringPool.BLANK);
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				StringPool.BLANK
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).build();
 	}
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(Objects.equals(getOrderByCol(), "name"));
-				dropdownItem.setHref(getPortletURL(), "orderByCol", "name");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "name"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getOrderByCol(), "name")
+			).setHref(
+				getPortletURL(), "orderByCol", "name"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "name")
+			).build()
 		).build();
 	}
 

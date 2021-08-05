@@ -35,6 +35,7 @@ import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSet
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.criteria.UUIDItemSelectorReturnType;
@@ -307,12 +308,13 @@ public class CPDefinitionsDisplayContext
 			portletURL.setParameter("productTypeName", cpType.getName());
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(portletURL.toString());
-					dropdownItem.setLabel(
-						cpType.getLabel(cpRequestHelper.getLocale()));
-					dropdownItem.setTarget("modal");
-				});
+				DropdownItemBuilder.setHref(
+					portletURL.toString()
+				).setLabel(
+					cpType.getLabel(cpRequestHelper.getLocale())
+				).setTarget(
+					"modal"
+				).build());
 		}
 
 		return creationMenu;

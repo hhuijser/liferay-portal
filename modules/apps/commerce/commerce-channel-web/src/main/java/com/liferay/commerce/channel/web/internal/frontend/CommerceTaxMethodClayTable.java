@@ -33,6 +33,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -104,32 +105,29 @@ public class CommerceTaxMethodClayTable
 		throws PortalException {
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					PortletURLBuilder.create(
-						PortletProviderUtil.getPortletURL(
-							httpServletRequest,
-							CommerceTaxMethod.class.getName(),
-							PortletProvider.Action.EDIT)
-					).setParameter(
-						"commerceChannelId",
-						ParamUtil.getLong(
-							httpServletRequest, "commerceChannelId")
-					).setParameter(
-						"commerceTaxMethodEngineKey",
-						() -> {
-							TaxMethod taxMethod = (TaxMethod)model;
+			DropdownItemBuilder.setHref(
+				PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(
+						httpServletRequest, CommerceTaxMethod.class.getName(),
+						PortletProvider.Action.EDIT)
+				).setParameter(
+					"commerceChannelId",
+					ParamUtil.getLong(httpServletRequest, "commerceChannelId")
+				).setParameter(
+					"commerceTaxMethodEngineKey",
+					() -> {
+						TaxMethod taxMethod = (TaxMethod)model;
 
-							return taxMethod.getKey();
-						}
-					).setWindowState(
-						LiferayWindowState.POP_UP
-					).buildString());
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+						return taxMethod.getKey();
+					}
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildString()
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).build();
 	}
 

@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -81,15 +82,15 @@ public class UserGroupsManagementToolbarDisplayContext
 							ActionKeys.ASSIGN_MEMBERS)) {
 
 						add(
-							dropdownItem -> {
-								dropdownItem.putData(
-									"action", "deleteSelectedUserGroups");
-								dropdownItem.setIcon("times-circle");
-								dropdownItem.setLabel(
-									LanguageUtil.get(
-										httpServletRequest, "delete"));
-								dropdownItem.setQuickAction(true);
-							});
+							DropdownItemBuilder.putData(
+								"action", "deleteSelectedUserGroups"
+							).setIcon(
+								"times-circle"
+							).setLabel(
+								LanguageUtil.get(httpServletRequest, "delete")
+							).setQuickAction(
+								true
+							).build());
 					}
 				}
 				catch (Exception exception) {
@@ -105,28 +106,28 @@ public class UserGroupsManagementToolbarDisplayContext
 							ActionKeys.ASSIGN_USER_ROLES)) {
 
 						add(
-							dropdownItem -> {
-								dropdownItem.putData("action", "selectRole");
-
-								dropdownItem.putData(
-									"editUserGroupsRolesURL",
-									PortletURLBuilder.createActionURL(
-										liferayPortletResponse
-									).setActionName(
-										"editUserGroupsRoles"
-									).setTabs1(
-										"user-groups"
-									).buildString());
-
-								dropdownItem.putData(
-									"selectRoleURL",
-									_getSelectorURL("/site_roles.jsp"));
-								dropdownItem.setIcon("add-role");
-								dropdownItem.setLabel(
-									LanguageUtil.get(
-										httpServletRequest, "assign-roles"));
-								dropdownItem.setQuickAction(true);
-							});
+							DropdownItemBuilder.putData(
+								"action", "selectRole"
+							).putData(
+								"editUserGroupsRolesURL",
+								PortletURLBuilder.createActionURL(
+									liferayPortletResponse
+								).setActionName(
+									"editUserGroupsRoles"
+								).setTabs1(
+									"user-groups"
+								).buildString()
+							).putData(
+								"selectRoleURL",
+								_getSelectorURL("/site_roles.jsp")
+							).setIcon(
+								"add-role"
+							).setLabel(
+								LanguageUtil.get(
+									httpServletRequest, "assign-roles")
+							).setQuickAction(
+								true
+							).build());
 
 						Role role = _userGroupsDisplayContext.getRole();
 
@@ -136,32 +137,30 @@ public class UserGroupsManagementToolbarDisplayContext
 								role.getTitle(themeDisplay.getLocale()), false);
 
 							add(
-								dropdownItem -> {
-									dropdownItem.putData(
-										"action", "removeUserGroupRole");
-									dropdownItem.putData(
-										"message",
-										LanguageUtil.format(
-											httpServletRequest,
-											"are-you-sure-you-want-to-remove-" +
-												"x-role-to-selected-user-" +
-													"groups",
-											role.getTitle(
-												themeDisplay.getLocale())));
-
-									dropdownItem.putData(
-										"removeUserGroupRoleURL",
-										PortletURLBuilder.create(
-											liferayPortletResponse.
-												createActionURL()
-										).setActionName(
-											"removeUserGroupRole"
-										).buildString());
-
-									dropdownItem.setIcon("remove-role");
-									dropdownItem.setLabel(label);
-									dropdownItem.setQuickAction(true);
-								});
+								DropdownItemBuilder.putData(
+									"action", "removeUserGroupRole"
+								).putData(
+									"message",
+									LanguageUtil.format(
+										httpServletRequest,
+										"are-you-sure-you-want-to-remove-" +
+											"x-role-to-selected-user-" +
+												"groups",
+										role.getTitle(themeDisplay.getLocale()))
+								).putData(
+									"removeUserGroupRoleURL",
+									PortletURLBuilder.create(
+										liferayPortletResponse.createActionURL()
+									).setActionName(
+										"removeUserGroupRole"
+									).buildString()
+								).setIcon(
+									"remove-role"
+								).setLabel(
+									label
+								).setQuickAction(
+									true
+								).build());
 						}
 					}
 				}
@@ -308,13 +307,13 @@ public class UserGroupsManagementToolbarDisplayContext
 	@Override
 	protected List<DropdownItem> getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(Objects.equals(getNavigation(), "all"));
-				dropdownItem.setHref(
-					getPortletURL(), "navigation", "all", "roleId", "0");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(getNavigation(), "all")
+			).setHref(
+				getPortletURL(), "navigation", "all", "roleId", "0"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "all")
+			).build()
 		).add(
 			dropdownItem -> {
 				dropdownItem.putData("action", "selectRoles");

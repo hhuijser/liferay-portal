@@ -32,6 +32,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuild
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -105,24 +106,23 @@ public class CommerceCategoryDisplayPageClayTable
 		CategoryDisplayPage categoryDisplayPage = (CategoryDisplayPage)model;
 
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getCategoryDisplayPageEditURL(
-						httpServletRequest,
-						categoryDisplayPage.getCategoryDisplayPageId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-				dropdownItem.setTarget("sidePanel");
-			}
+			DropdownItemBuilder.setHref(
+				_getCategoryDisplayPageEditURL(
+					httpServletRequest,
+					categoryDisplayPage.getCategoryDisplayPageId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).setTarget(
+				"sidePanel"
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getCategoryDisplayPageDeleteURL(
-						httpServletRequest,
-						categoryDisplayPage.getCategoryDisplayPageId()));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.setHref(
+				_getCategoryDisplayPageDeleteURL(
+					httpServletRequest,
+					categoryDisplayPage.getCategoryDisplayPageId())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

@@ -20,6 +20,7 @@ import com.liferay.commerce.pricing.web.internal.frontend.constants.CommercePric
 import com.liferay.commerce.pricing.web.internal.model.PricingClassDiscount;
 import com.liferay.frontend.taglib.clay.data.set.ClayDataSetActionProvider;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -63,14 +64,13 @@ public class CommercePricingClassDiscountDataSetActionProvider
 				PermissionThreadLocal.getPermissionChecker(),
 				pricingClassDiscount.getCommerceDiscountId(),
 				ActionKeys.UPDATE),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getDiscountEditURL(
-						pricingClassDiscount.getCommerceDiscountId(),
-						httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "edit"));
-			}
+			DropdownItemBuilder.setHref(
+				_getDiscountEditURL(
+					pricingClassDiscount.getCommerceDiscountId(),
+					httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "edit")
+			).build()
 		).build();
 	}
 

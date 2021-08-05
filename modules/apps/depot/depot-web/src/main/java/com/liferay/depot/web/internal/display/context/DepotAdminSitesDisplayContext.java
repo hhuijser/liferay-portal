@@ -19,6 +19,7 @@ import com.liferay.depot.model.DepotEntryGroupRel;
 import com.liferay.depot.service.DepotEntryGroupRelLocalServiceUtil;
 import com.liferay.depot.web.internal.constants.DepotAdminWebKeys;
 import com.liferay.depot.web.internal.util.DepotEntryURLUtil;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.item.selector.ItemSelector;
@@ -105,32 +106,28 @@ public class DepotAdminSitesDisplayContext {
 							depotEntryGroupRel)));
 			}
 		).add(
-			dropdownItem -> {
-				dropdownItem.setData(
-					HashMapBuilder.<String, Object>put(
-						"action", "disconnect"
-					).put(
-						"url",
-						() -> {
-							ActionURL disconnectSiteActionURL =
-								DepotEntryURLUtil.getDisconnectSiteActionURL(
-									depotEntryGroupRel.
-										getDepotEntryGroupRelId(),
-									_currentURL.toString(),
-									_liferayPortletResponse);
+			DropdownItemBuilder.setData(
+				HashMapBuilder.<String, Object>put(
+					"action", "disconnect"
+				).put(
+					"url",
+					() -> {
+						ActionURL disconnectSiteActionURL =
+							DepotEntryURLUtil.getDisconnectSiteActionURL(
+								depotEntryGroupRel.getDepotEntryGroupRelId(),
+								_currentURL.toString(),
+								_liferayPortletResponse);
 
-							return disconnectSiteActionURL.toString();
-						}
-					).build());
-
-				dropdownItem.setDisabled(
-					depotEntryGroupRel.isDdmStructuresAvailable());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						PortalUtil.getHttpServletRequest(
-							_liferayPortletRequest),
-						"disconnect"));
-			}
+						return disconnectSiteActionURL.toString();
+					}
+				).build()
+			).setDisabled(
+				depotEntryGroupRel.isDdmStructuresAvailable()
+			).setLabel(
+				LanguageUtil.get(
+					PortalUtil.getHttpServletRequest(_liferayPortletRequest),
+					"disconnect")
+			).build()
 		).build();
 	}
 

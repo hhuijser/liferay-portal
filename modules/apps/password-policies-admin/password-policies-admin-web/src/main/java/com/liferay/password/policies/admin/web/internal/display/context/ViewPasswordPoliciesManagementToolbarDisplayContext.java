@@ -17,6 +17,7 @@ package com.liferay.password.policies.admin.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -63,13 +64,15 @@ public class ViewPasswordPoliciesManagementToolbarDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deletePasswordPolicies");
-				dropdownItem.setIcon("trash");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deletePasswordPolicies"
+			).setIcon(
+				"trash"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -83,14 +86,13 @@ public class ViewPasswordPoliciesManagementToolbarDisplayContext {
 
 	public CreationMenu getCreationMenu() throws PortalException {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcPath",
-					"/edit_password_policy.jsp", "redirect",
-					_renderResponse.createRenderURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "add"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcPath",
+				"/edit_password_policy.jsp", "redirect",
+				_renderResponse.createRenderURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add")
+			).build()
 		).build();
 	}
 

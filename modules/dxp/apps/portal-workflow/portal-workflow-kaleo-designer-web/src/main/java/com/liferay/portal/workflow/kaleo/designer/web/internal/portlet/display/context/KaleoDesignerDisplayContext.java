@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.designer.web.internal.portlet.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPCreationMenu;
 import com.liferay.petra.function.UnsafeConsumer;
@@ -153,21 +154,20 @@ public class KaleoDesignerDisplayContext {
 		return new JSPCreationMenu(pageContext) {
 			{
 				addPrimaryDropdownItem(
-					dropdownItem -> {
-						dropdownItem.setHref(
-							liferayPortletResponse.createRenderURL(
-								KaleoDesignerPortletKeys.KALEO_DESIGNER),
-							"mvcPath",
-							"/designer/edit_kaleo_definition_version.jsp",
-							"redirect",
-							PortalUtil.getCurrentURL(
-								_kaleoDesignerRequestHelper.getRequest()),
-							"clearSessionMessage", "true");
-						dropdownItem.setLabel(
-							LanguageUtil.get(
-								_kaleoDesignerRequestHelper.getRequest(),
-								"new-workflow"));
-					});
+					DropdownItemBuilder.setHref(
+						liferayPortletResponse.createRenderURL(
+							KaleoDesignerPortletKeys.KALEO_DESIGNER),
+						"mvcPath",
+						"/designer/edit_kaleo_definition_version.jsp",
+						"redirect",
+						PortalUtil.getCurrentURL(
+							_kaleoDesignerRequestHelper.getRequest()),
+						"clearSessionMessage", "true"
+					).setLabel(
+						LanguageUtil.get(
+							_kaleoDesignerRequestHelper.getRequest(),
+							"new-workflow")
+					).build());
 			}
 		};
 	}

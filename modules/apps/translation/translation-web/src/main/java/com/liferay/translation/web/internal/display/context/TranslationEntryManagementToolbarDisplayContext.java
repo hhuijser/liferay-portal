@@ -16,6 +16,7 @@ package com.liferay.translation.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -62,23 +63,22 @@ public class TranslationEntryManagementToolbarDisplayContext
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData(
-					"action", "deleteSelectedTranslationEntries");
-
-				dropdownItem.putData(
-					"delete-translation-entries-url",
-					PortletURLBuilder.createActionURL(
-						liferayPortletResponse
-					).setActionName(
-						"/translation/delete_translation_entry"
-					).buildString());
-
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteSelectedTranslationEntries"
+			).putData(
+				"delete-translation-entries-url",
+				PortletURLBuilder.createActionURL(
+					liferayPortletResponse
+				).setActionName(
+					"/translation/delete_translation_entry"
+				).buildString()
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -155,16 +155,15 @@ public class TranslationEntryManagementToolbarDisplayContext
 			{
 				for (int status : _getStatuses()) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(_getStatus() == status);
-							dropdownItem.setHref(
-								getPortletURL(), "status",
-								String.valueOf(status));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									httpServletRequest,
-									WorkflowConstants.getStatusLabel(status)));
-						});
+						DropdownItemBuilder.setActive(
+							_getStatus() == status
+						).setHref(
+							getPortletURL(), "status", String.valueOf(status)
+						).setLabel(
+							LanguageUtil.get(
+								httpServletRequest,
+								WorkflowConstants.getStatusLabel(status))
+						).build());
 				}
 			}
 		};

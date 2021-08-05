@@ -25,6 +25,7 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchema;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilder;
 import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaBuilderFactory;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
@@ -107,13 +108,12 @@ public class CommerceOrganizationUserClayTableDataSetDisplayView
 		return DropdownItemListBuilder.add(
 			() -> OrganizationPermissionUtil.contains(
 				permissionChecker, user.getOrganizationId(), ActionKeys.VIEW),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_getOrganizationUserViewDetailURL(
-						user.getUserId(), httpServletRequest));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "view"));
-			}
+			DropdownItemBuilder.setHref(
+				_getOrganizationUserViewDetailURL(
+					user.getUserId(), httpServletRequest)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "view")
+			).build()
 		).add(
 			() ->
 				permissionChecker.isCompanyAdmin() ||

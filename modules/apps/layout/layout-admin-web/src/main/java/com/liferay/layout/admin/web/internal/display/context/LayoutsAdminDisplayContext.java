@@ -21,6 +21,7 @@ import com.liferay.asset.list.model.AssetListEntry;
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
 import com.liferay.layout.admin.web.internal.configuration.LayoutConverterConfiguration;
@@ -144,37 +145,32 @@ public class LayoutsAdminDisplayContext {
 	public List<DropdownItem> getAddLayoutDropdownItems() {
 		return DropdownItemListBuilder.add(
 			() -> isShowPublicPages(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					getSelectLayoutPageTemplateEntryURL(false));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "public-page"));
-			}
+			DropdownItemBuilder.setHref(
+				getSelectLayoutPageTemplateEntryURL(false)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "public-page")
+			).build()
 		).add(
 			() -> isShowPublicPages(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					getSelectLayoutCollectionURL(
-						LayoutConstants.DEFAULT_PLID, null, false));
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "public-collection-page"));
-			}
+			DropdownItemBuilder.setHref(
+				getSelectLayoutCollectionURL(
+					LayoutConstants.DEFAULT_PLID, null, false)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "public-collection-page")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(getSelectLayoutPageTemplateEntryURL(true));
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "private-page"));
-			}
+			DropdownItemBuilder.setHref(
+				getSelectLayoutPageTemplateEntryURL(true)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "private-page")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					getSelectLayoutCollectionURL(
-						LayoutConstants.DEFAULT_PLID, null, true));
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						httpServletRequest, "private-collection-page"));
-			}
+			DropdownItemBuilder.setHref(
+				getSelectLayoutCollectionURL(
+					LayoutConstants.DEFAULT_PLID, null, true)
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "private-collection-page")
+			).build()
 		).build();
 	}
 

@@ -24,6 +24,7 @@ import com.liferay.commerce.inventory.service.CommerceInventoryWarehouseItemServ
 import com.liferay.commerce.inventory.service.CommerceInventoryWarehouseService;
 import com.liferay.commerce.product.display.context.util.CPRequestHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -204,14 +205,14 @@ public class CommerceInventoryDisplayContext {
 
 		if (_hasPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getCreateInventoryItemActionURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							_cpRequestHelper.getRequest(),
-							"add-inventory-item"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getCreateInventoryItemActionURL()
+				).setLabel(
+					LanguageUtil.get(
+						_cpRequestHelper.getRequest(), "add-inventory-item")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;
@@ -242,13 +243,14 @@ public class CommerceInventoryDisplayContext {
 
 		if (_hasPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getCreateReplenishmentActionURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							_cpRequestHelper.getRequest(), "add-income"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getCreateReplenishmentActionURL()
+				).setLabel(
+					LanguageUtil.get(
+						_cpRequestHelper.getRequest(), "add-income")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;
@@ -289,23 +291,24 @@ public class CommerceInventoryDisplayContext {
 
 		if (_hasPermission()) {
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getAddQuantityActionURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							_cpRequestHelper.getRequest(), "add-inventory"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getAddQuantityActionURL()
+				).setLabel(
+					LanguageUtil.get(
+						_cpRequestHelper.getRequest(), "add-inventory")
+				).setTarget(
+					"modal-lg"
+				).build());
 
 			creationMenu.addDropdownItem(
-				dropdownItem -> {
-					dropdownItem.setHref(getTransferQuantitiesActionURL());
-					dropdownItem.setLabel(
-						LanguageUtil.get(
-							_cpRequestHelper.getRequest(),
-							"create-a-transfer"));
-					dropdownItem.setTarget("modal-lg");
-				});
+				DropdownItemBuilder.setHref(
+					getTransferQuantitiesActionURL()
+				).setLabel(
+					LanguageUtil.get(
+						_cpRequestHelper.getRequest(), "create-a-transfer")
+				).setTarget(
+					"modal-lg"
+				).build());
 		}
 
 		return creationMenu;

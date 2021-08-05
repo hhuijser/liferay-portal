@@ -18,6 +18,7 @@ import com.liferay.asset.categories.admin.web.constants.AssetCategoriesAdminPort
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.exportimport.kernel.staging.permission.StagingPermissionUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -58,18 +59,17 @@ public class AssetVocabularyActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(vocabulary, ActionKeys.UPDATE),
-						dropdownItem -> {
-							dropdownItem.setHref(
-								PortletURLBuilder.createRenderURL(
-									_renderResponse
-								).setMVCPath(
-									"/edit_vocabulary.jsp"
-								).setParameter(
-									"vocabularyId", vocabulary.getVocabularyId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "edit"));
-						}
+						DropdownItemBuilder.setHref(
+							PortletURLBuilder.createRenderURL(
+								_renderResponse
+							).setMVCPath(
+								"/edit_vocabulary.jsp"
+							).setParameter(
+								"vocabularyId", vocabulary.getVocabularyId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "edit")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -79,25 +79,21 @@ public class AssetVocabularyActionDropdownItemsProvider {
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(
 							vocabulary, ActionKeys.PERMISSIONS),
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "permissionsVocabulary");
-							dropdownItem.putData(
-								"permissionsVocabularyURL",
-								PermissionsURLTag.doTag(
-									StringPool.BLANK,
-									AssetVocabulary.class.getName(),
-									vocabulary.getTitle(
-										_themeDisplay.getLocale()),
-									null,
-									String.valueOf(
-										vocabulary.getVocabularyId()),
-									LiferayWindowState.POP_UP.toString(), null,
-									_httpServletRequest));
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "permissions"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "permissionsVocabulary"
+						).putData(
+							"permissionsVocabularyURL",
+							PermissionsURLTag.doTag(
+								StringPool.BLANK,
+								AssetVocabulary.class.getName(),
+								vocabulary.getTitle(_themeDisplay.getLocale()),
+								null,
+								String.valueOf(vocabulary.getVocabularyId()),
+								LiferayWindowState.POP_UP.toString(), null,
+								_httpServletRequest)
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "permissions")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}
@@ -106,23 +102,22 @@ public class AssetVocabularyActionDropdownItemsProvider {
 				dropdownGroupItem.setDropdownItems(
 					DropdownItemListBuilder.add(
 						() -> _hasPermission(vocabulary, ActionKeys.DELETE),
-						dropdownItem -> {
-							dropdownItem.putData("action", "deleteVocabulary");
-							dropdownItem.putData(
-								"deleteVocabularyURL",
-								PortletURLBuilder.createActionURL(
-									_renderResponse
-								).setActionName(
-									"deleteVocabulary"
-								).setRedirect(
-									_getDefaultRedirect()
-								).setParameter(
-									"vocabularyId", vocabulary.getVocabularyId()
-								).buildString());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "delete"));
-						}
+						DropdownItemBuilder.putData(
+							"action", "deleteVocabulary"
+						).putData(
+							"deleteVocabularyURL",
+							PortletURLBuilder.createActionURL(
+								_renderResponse
+							).setActionName(
+								"deleteVocabulary"
+							).setRedirect(
+								_getDefaultRedirect()
+							).setParameter(
+								"vocabularyId", vocabulary.getVocabularyId()
+							).buildString()
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, "delete")
+						).build()
 					).build());
 				dropdownGroupItem.setSeparator(true);
 			}

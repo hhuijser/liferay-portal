@@ -17,6 +17,7 @@ package com.liferay.portal.reports.engine.console.web.internal.admin.display.con
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -100,30 +101,26 @@ public class ReportsEngineDisplayContext {
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			() -> isDefinitionsTabSelected(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_liferayPortletResponse.createRenderURL(), "mvcPath",
-					"/admin/definition/edit_definition.jsp", "redirect",
-					PortalUtil.getCurrentURL(
-						_reportsEngineRequestHelper.getRequest()));
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_reportsEngineRequestHelper.getRequest(), "add"));
-			}
+			DropdownItemBuilder.setHref(
+				_liferayPortletResponse.createRenderURL(), "mvcPath",
+				"/admin/definition/edit_definition.jsp", "redirect",
+				PortalUtil.getCurrentURL(
+					_reportsEngineRequestHelper.getRequest())
+			).setLabel(
+				LanguageUtil.get(
+					_reportsEngineRequestHelper.getRequest(), "add")
+			).build()
 		).addPrimaryDropdownItem(
 			() -> isSourcesTabSelected(),
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_liferayPortletResponse.createRenderURL(), "mvcPath",
-					"/admin/data_source/edit_data_source.jsp", "redirect",
-					PortalUtil.getCurrentURL(
-						_reportsEngineRequestHelper.getRequest()));
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_reportsEngineRequestHelper.getRequest(), "add"));
-			}
+			DropdownItemBuilder.setHref(
+				_liferayPortletResponse.createRenderURL(), "mvcPath",
+				"/admin/data_source/edit_data_source.jsp", "redirect",
+				PortalUtil.getCurrentURL(
+					_reportsEngineRequestHelper.getRequest())
+			).setLabel(
+				LanguageUtil.get(
+					_reportsEngineRequestHelper.getRequest(), "add")
+			).build()
 		).build();
 	}
 

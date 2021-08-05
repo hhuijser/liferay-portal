@@ -15,6 +15,7 @@
 package com.liferay.knowledge.base.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
@@ -69,13 +70,15 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteKBComments");
-				dropdownItem.setIcon("times-circle");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-				dropdownItem.setQuickAction(true);
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteKBComments"
+			).setIcon(
+				"times-circle"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).setQuickAction(
+				true
+			).build()
 		).build();
 	}
 
@@ -200,15 +203,13 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 
 				for (String navigationKey : navigationKeys) {
 					add(
-						dropdownItem -> {
-							dropdownItem.setActive(
-								navigation.equals(navigationKey));
-							dropdownItem.setHref(
-								navigationURL, "navigation", navigationKey);
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, navigationKey));
-						});
+						DropdownItemBuilder.setActive(
+							navigation.equals(navigationKey)
+						).setHref(
+							navigationURL, "navigation", navigationKey
+						).setLabel(
+							LanguageUtil.get(_httpServletRequest, navigationKey)
+						).build());
 				}
 			}
 		};

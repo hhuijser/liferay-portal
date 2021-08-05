@@ -15,6 +15,7 @@
 package com.liferay.layout.page.template.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplateCollectionPermission;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplatePermission;
@@ -63,15 +64,14 @@ public class LayoutPageTemplateDisplayContext {
 
 	public List<DropdownItem> getActionDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_renderResponse.createRenderURL(), "mvcRenderCommandName",
-					"/layout_page_template_admin" +
-						"/edit_layout_page_template_collection",
-					"redirect", _themeDisplay.getURLCurrent());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "new"));
-			}
+			DropdownItemBuilder.setHref(
+				_renderResponse.createRenderURL(), "mvcRenderCommandName",
+				"/layout_page_template_admin" +
+					"/edit_layout_page_template_collection",
+				"redirect", _themeDisplay.getURLCurrent()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "new")
+			).build()
 		).build();
 	}
 
@@ -80,11 +80,11 @@ public class LayoutPageTemplateDisplayContext {
 			() -> LayoutPageTemplateCollectionPermission.contains(
 				_themeDisplay.getPermissionChecker(),
 				getLayoutPageTemplateCollectionId(), ActionKeys.DELETE),
-			dropdownItem -> {
-				dropdownItem.putData("action", "deleteCollections");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "delete"));
-			}
+			DropdownItemBuilder.putData(
+				"action", "deleteCollections"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "delete")
+			).build()
 		).build();
 	}
 

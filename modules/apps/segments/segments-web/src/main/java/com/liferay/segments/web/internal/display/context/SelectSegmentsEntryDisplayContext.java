@@ -15,6 +15,7 @@
 package com.liferay.segments.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -238,12 +239,13 @@ public class SelectSegmentsEntryDisplayContext {
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(true);
-				dropdownItem.setHref(_renderResponse.createRenderURL());
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "all"));
-			}
+			DropdownItemBuilder.setActive(
+				true
+			).setHref(
+				_renderResponse.createRenderURL()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "all")
+			).build()
 		).build();
 	}
 
@@ -294,22 +296,21 @@ public class SelectSegmentsEntryDisplayContext {
 
 	private List<DropdownItem> _getOrderByDropdownItems() {
 		return DropdownItemListBuilder.add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(_getOrderByCol(), "modified-date"));
-				dropdownItem.setHref(
-					_getPortletURL(), "orderByCol", "modified-date");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "modified-date"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(_getOrderByCol(), "modified-date")
+			).setHref(
+				_getPortletURL(), "orderByCol", "modified-date"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "modified-date")
+			).build()
 		).add(
-			dropdownItem -> {
-				dropdownItem.setActive(
-					Objects.equals(_getOrderByCol(), "name"));
-				dropdownItem.setHref(_getPortletURL(), "orderByCol", "name");
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "name"));
-			}
+			DropdownItemBuilder.setActive(
+				Objects.equals(_getOrderByCol(), "name")
+			).setHref(
+				_getPortletURL(), "orderByCol", "name"
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "name")
+			).build()
 		).build();
 	}
 

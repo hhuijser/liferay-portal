@@ -19,6 +19,7 @@ import com.liferay.adaptive.media.web.internal.constants.AMWebKeys;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
@@ -58,16 +59,14 @@ public class AMManagementToolbarDisplayContext {
 
 	public CreationMenu getCreationMenu() {
 		return CreationMenuBuilder.addDropdownItem(
-			dropdownItem -> {
-				dropdownItem.setHref(
-					_liferayPortletResponse.createRenderURL(),
-					"mvcRenderCommandName",
-					"/adaptive_media/edit_image_configuration_entry",
-					"redirect", _currentURLObj.toString());
-				dropdownItem.setLabel(
-					LanguageUtil.get(
-						_httpServletRequest, "add-image-resolution"));
-			}
+			DropdownItemBuilder.setHref(
+				_liferayPortletResponse.createRenderURL(),
+				"mvcRenderCommandName",
+				"/adaptive_media/edit_image_configuration_entry", "redirect",
+				_currentURLObj.toString()
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "add-image-resolution")
+			).build()
 		).build();
 	}
 

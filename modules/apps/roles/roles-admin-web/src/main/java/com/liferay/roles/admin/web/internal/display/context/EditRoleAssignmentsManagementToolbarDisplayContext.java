@@ -18,6 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownGroupItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -139,36 +140,33 @@ public class EditRoleAssignmentsManagementToolbarDisplayContext {
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			dropdownItem -> {
-				dropdownItem.putData("action", "addSegmentEntry");
+			DropdownItemBuilder.putData(
+				"action", "addSegmentEntry"
+			).putData(
+				"addSegmentEntryURL",
+				PortletURLBuilder.create(
+					PortletProviderUtil.getPortletURL(
+						_renderRequest, SegmentsEntry.class.getName(),
+						PortletProvider.Action.EDIT)
+				).setRedirect(
+					ParamUtil.getString(_httpServletRequest, "redirect")
+				).setBackURL(
+					ParamUtil.getString(_httpServletRequest, "backURL")
+				).setParameter(
+					"groupId",
+					() -> {
+						ThemeDisplay themeDisplay =
+							(ThemeDisplay)_httpServletRequest.getAttribute(
+								WebKeys.THEME_DISPLAY);
 
-				dropdownItem.putData(
-					"addSegmentEntryURL",
-					PortletURLBuilder.create(
-						PortletProviderUtil.getPortletURL(
-							_renderRequest, SegmentsEntry.class.getName(),
-							PortletProvider.Action.EDIT)
-					).setRedirect(
-						ParamUtil.getString(_httpServletRequest, "redirect")
-					).setBackURL(
-						ParamUtil.getString(_httpServletRequest, "backURL")
-					).setParameter(
-						"groupId",
-						() -> {
-							ThemeDisplay themeDisplay =
-								(ThemeDisplay)_httpServletRequest.getAttribute(
-									WebKeys.THEME_DISPLAY);
-
-							return themeDisplay.getCompanyGroupId();
-						}
-					).buildString());
-
-				dropdownItem.putData(
-					"sessionKey", RolesAdminWebKeys.MODAL_SEGMENT_STATE);
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(_httpServletRequest, "new-segment"));
-			}
+						return themeDisplay.getCompanyGroupId();
+					}
+				).buildString()
+			).putData(
+				"sessionKey", RolesAdminWebKeys.MODAL_SEGMENT_STATE
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, "new-segment")
+			).build()
 		).build();
 	}
 

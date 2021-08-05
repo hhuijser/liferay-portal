@@ -16,6 +16,7 @@ package com.liferay.journal.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.web.internal.security.permission.resource.JournalArticlePermission;
@@ -72,24 +73,24 @@ public class JournalHistoryManagementToolbarDisplayContext
 							ActionKeys.DELETE)) {
 
 						add(
-							dropdownItem -> {
-								dropdownItem.putData(
-									"action", "deleteArticles");
-								dropdownItem.putData(
-									"deleteArticlesURL",
-									PortletURLBuilder.createActionURL(
-										liferayPortletResponse
-									).setActionName(
-										"/journal/delete_articles"
-									).setRedirect(
-										themeDisplay.getURLCurrent()
-									).buildString());
-								dropdownItem.setIcon("times-circle");
-								dropdownItem.setLabel(
-									LanguageUtil.get(
-										httpServletRequest, "delete"));
-								dropdownItem.setQuickAction(true);
-							});
+							DropdownItemBuilder.putData(
+								"action", "deleteArticles"
+							).putData(
+								"deleteArticlesURL",
+								PortletURLBuilder.createActionURL(
+									liferayPortletResponse
+								).setActionName(
+									"/journal/delete_articles"
+								).setRedirect(
+									themeDisplay.getURLCurrent()
+								).buildString()
+							).setIcon(
+								"times-circle"
+							).setLabel(
+								LanguageUtil.get(httpServletRequest, "delete")
+							).setQuickAction(
+								true
+							).build());
 					}
 				}
 				catch (Exception exception) {
@@ -104,24 +105,24 @@ public class JournalHistoryManagementToolbarDisplayContext
 							ActionKeys.EXPIRE)) {
 
 						add(
-							dropdownItem -> {
-								dropdownItem.putData(
-									"action", "expireArticles");
-								dropdownItem.putData(
-									"expireArticlesURL",
-									PortletURLBuilder.createActionURL(
-										liferayPortletResponse
-									).setActionName(
-										"/journal/expire_articles"
-									).setRedirect(
-										themeDisplay.getURLCurrent()
-									).buildString());
-								dropdownItem.setIcon("time");
-								dropdownItem.setLabel(
-									LanguageUtil.get(
-										httpServletRequest, "expire"));
-								dropdownItem.setQuickAction(true);
-							});
+							DropdownItemBuilder.putData(
+								"action", "expireArticles"
+							).putData(
+								"expireArticlesURL",
+								PortletURLBuilder.createActionURL(
+									liferayPortletResponse
+								).setActionName(
+									"/journal/expire_articles"
+								).setRedirect(
+									themeDisplay.getURLCurrent()
+								).buildString()
+							).setIcon(
+								"time"
+							).setLabel(
+								LanguageUtil.get(httpServletRequest, "expire")
+							).setQuickAction(
+								true
+							).build());
 					}
 				}
 				catch (Exception exception) {

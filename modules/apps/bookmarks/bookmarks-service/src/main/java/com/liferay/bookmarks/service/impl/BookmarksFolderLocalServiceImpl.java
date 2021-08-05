@@ -516,7 +516,7 @@ public class BookmarksFolderLocalServiceImpl
 					long previousId, long companyId, long parentPrimaryKey,
 					int size) {
 
-					return bookmarksFolderPersistence.findByF_C_P_NotS(
+					return bookmarksFolderPersistence.findByGtF_C_P_NotS(
 						previousId, companyId, parentPrimaryKey,
 						WorkflowConstants.STATUS_IN_TRASH, QueryUtil.ALL_POS,
 						size, new FolderIdComparator(true));

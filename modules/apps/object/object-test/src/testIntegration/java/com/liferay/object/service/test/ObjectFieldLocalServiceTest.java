@@ -130,7 +130,8 @@ public class ObjectFieldLocalServiceTest {
 
 		for (String reservedName : reservedNames) {
 			try {
-				_testAddSystemObjectField(_createObjectField(reservedName, "String"));
+				_testAddSystemObjectField(
+					_createObjectField(reservedName, "String"));
 
 				Assert.fail();
 			}

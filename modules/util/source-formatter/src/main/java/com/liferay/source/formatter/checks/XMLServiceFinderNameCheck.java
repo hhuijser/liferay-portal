@@ -143,13 +143,13 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 		).put(
 			"<", "Lt"
 		).put(
-			"<=", "Lt"
+			"<=", "Lte"
 		).put(
 			"=", StringPool.BLANK
 		).put(
 			">", "Gt"
 		).put(
-			">=", "Gt"
+			">=", "Gte"
 		).put(
 			"is", "Is"
 		).put(

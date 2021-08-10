@@ -66,7 +66,14 @@ public class BNDCapabilityCheck extends BaseFileCheck {
 
 		sb.setIndex(sb.index() - 1);
 
-		return sb.toString();
+		String replacement = sb.toString();
+
+		if (StringUtil.count(replacement, "\\\n") == 1) {
+			replacement = replacement.replaceFirst(
+				"\\\\\n\t", StringPool.SPACE);
+		}
+
+		return replacement;
 	}
 
 	private String _formatCapabilities(String content, String definitionKey) {
@@ -143,9 +150,19 @@ public class BNDCapabilityCheck extends BaseFileCheck {
 			}
 		}
 
-		capability.addProperty(sb.toString());
+		if (sb.index() != 0) {
+			if (capability == null) {
+				capability = new Capability(sb.toString());
 
-		capability.sortProperties();
+				capabilitiesList.add(capability);
+
+				return capabilitiesList;
+			}
+
+			capability.addProperty(sb.toString());
+
+			capability.sortProperties();
+		}
 
 		capabilitiesList.add(capability);
 

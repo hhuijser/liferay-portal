@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
@@ -94,6 +95,32 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 	private void _checkFinderName(
 		String fileName, String entityName, String finderName,
 		List<Map<String, String>> finderColumns) {
+
+		if (finderColumns.size() == 1) {
+			Map<String, String> finderColumn = finderColumns.get(0);
+
+			if (!finderColumn.containsKey("name")) {
+				return;
+			}
+
+			String s = TextFormatter.format(
+				finderColumn.get("name"), TextFormatter.G);
+
+			if (finderColumn.containsKey("comparator")) {
+				s = _comparatorNamesMap.get(finderColumn.get("comparator")) + s;
+			}
+
+			if (!s.equals(finderName)) {
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Finder name '", entityName, "#", finderName,
+						"' should be combined by comparator prefix and finder ",
+						"colume name"));
+			}
+
+			return;
+		}
 
 		List<String> splitFinderNames = ListUtil.fromString(
 			finderName, StringPool.UNDERLINE);

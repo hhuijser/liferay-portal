@@ -250,7 +250,7 @@ public class CPDefinitionsDisplayContext
 	}
 
 	public List<CommerceCatalog> getCommerceCatalogs() throws PortalException {
-		return _commerceCatalogService.searchCommerceCatalogs(
+		return _commerceCatalogService.search(
 			cpRequestHelper.getCompanyId(), null, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}

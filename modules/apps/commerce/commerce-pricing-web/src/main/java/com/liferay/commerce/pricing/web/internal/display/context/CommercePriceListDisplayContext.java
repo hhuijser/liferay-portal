@@ -114,7 +114,7 @@ public class CommercePriceListDisplayContext
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		return commerceCatalogService.searchCommerceCatalogs(
+		return commerceCatalogService.search(
 			themeDisplay.getCompanyId(), null, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}

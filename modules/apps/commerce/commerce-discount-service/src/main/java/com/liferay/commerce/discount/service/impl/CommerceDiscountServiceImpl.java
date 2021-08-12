@@ -423,8 +423,8 @@ public class CommerceDiscountServiceImpl
 			Sort sort)
 		throws PortalException {
 
-		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+		List<CommerceChannel> commerceChannels = _commerceChannelService.search(
+			companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

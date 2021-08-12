@@ -201,7 +201,7 @@ public class CommerceShipmentDataSetDataProvider
 		throws PortalException {
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelLocalService.searchCommerceChannels(companyId);
+			_commerceChannelLocalService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

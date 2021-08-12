@@ -546,16 +546,14 @@ public class CommerceInventoryWarehouseLocalServiceWrapper
 	@Override
 	public java.util.List
 		<com.liferay.commerce.inventory.model.CommerceInventoryWarehouse>
-				searchCommerceInventoryWarehouses(
+				search(
 					long companyId, Boolean active, String commerceCountryCode,
 					String keywords, int start, int end,
 					com.liferay.portal.kernel.search.Sort sort)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _commerceInventoryWarehouseLocalService.
-			searchCommerceInventoryWarehouses(
-				companyId, active, commerceCountryCode, keywords, start, end,
-				sort);
+		return _commerceInventoryWarehouseLocalService.search(
+			companyId, active, commerceCountryCode, keywords, start, end, sort);
 	}
 
 	@Override

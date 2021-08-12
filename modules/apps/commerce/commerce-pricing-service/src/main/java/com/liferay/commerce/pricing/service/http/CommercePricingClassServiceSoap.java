@@ -366,7 +366,7 @@ public class CommercePricingClassServiceSoap {
 	}
 
 	public static com.liferay.commerce.pricing.model.CommercePricingClassSoap[]
-			searchCommercePricingClassesByCPDefinitionId(
+			searchByCPDefinitionId(
 				long cpDefinitionId, String title, int start, int end)
 		throws RemoteException {
 
@@ -374,9 +374,8 @@ public class CommercePricingClassServiceSoap {
 			java.util.List
 				<com.liferay.commerce.pricing.model.CommercePricingClass>
 					returnValue =
-						CommercePricingClassServiceUtil.
-							searchCommercePricingClassesByCPDefinitionId(
-								cpDefinitionId, title, start, end);
+						CommercePricingClassServiceUtil.searchByCPDefinitionId(
+							cpDefinitionId, title, start, end);
 
 			return com.liferay.commerce.pricing.model.CommercePricingClassSoap.
 				toSoapModels(returnValue);

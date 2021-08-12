@@ -280,13 +280,13 @@ public class CommerceAccountLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.commerce.account.model.CommerceAccount>
-			searchCommerceAccounts(
+			search(
 				long companyId, long parentCommerceAccountId, String keywords,
 				int type, Boolean active, int start, int end,
 				com.liferay.portal.kernel.search.Sort sort)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _commerceAccountLocalService.searchCommerceAccounts(
+		return _commerceAccountLocalService.search(
 			companyId, parentCommerceAccountId, keywords, type, active, start,
 			end, sort);
 	}

@@ -236,13 +236,13 @@ public class CommerceAccountLocalServiceUtil {
 			active);
 	}
 
-	public static List<CommerceAccount> searchCommerceAccounts(
+	public static List<CommerceAccount> search(
 			long companyId, long parentCommerceAccountId, String keywords,
 			int type, Boolean active, int start, int end,
 			com.liferay.portal.kernel.search.Sort sort)
 		throws PortalException {
 
-		return getService().searchCommerceAccounts(
+		return getService().search(
 			companyId, parentCommerceAccountId, keywords, type, active, start,
 			end, sort);
 	}

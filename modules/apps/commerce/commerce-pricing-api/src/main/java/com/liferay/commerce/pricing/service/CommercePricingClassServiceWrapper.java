@@ -183,6 +183,17 @@ public class CommercePricingClassServiceWrapper
 	}
 
 	@Override
+	public java.util.List
+		<com.liferay.commerce.pricing.model.CommercePricingClass>
+				searchByCPDefinitionId(
+					long cpDefinitionId, String title, int start, int end)
+			throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return _commercePricingClassService.searchByCPDefinitionId(
+			cpDefinitionId, title, start, end);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.search.BaseModelSearchResult
 		<com.liferay.commerce.pricing.model.CommercePricingClass>
 				searchCommercePricingClasses(
@@ -192,18 +203,6 @@ public class CommercePricingClassServiceWrapper
 
 		return _commercePricingClassService.searchCommercePricingClasses(
 			companyId, keywords, start, end, sort);
-	}
-
-	@Override
-	public java.util.List
-		<com.liferay.commerce.pricing.model.CommercePricingClass>
-				searchCommercePricingClassesByCPDefinitionId(
-					long cpDefinitionId, String title, int start, int end)
-			throws com.liferay.portal.kernel.security.auth.PrincipalException {
-
-		return _commercePricingClassService.
-			searchCommercePricingClassesByCPDefinitionId(
-				cpDefinitionId, title, start, end);
 	}
 
 	@Override

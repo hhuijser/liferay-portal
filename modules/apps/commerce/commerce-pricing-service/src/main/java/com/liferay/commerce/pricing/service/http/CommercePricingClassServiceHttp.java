@@ -635,16 +635,15 @@ public class CommercePricingClassServiceHttp {
 
 	public static java.util.List
 		<com.liferay.commerce.pricing.model.CommercePricingClass>
-				searchCommercePricingClassesByCPDefinitionId(
+				searchByCPDefinitionId(
 					HttpPrincipal httpPrincipal, long cpDefinitionId,
 					String title, int start, int end)
 			throws com.liferay.portal.kernel.security.auth.PrincipalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				CommercePricingClassServiceUtil.class,
-				"searchCommercePricingClassesByCPDefinitionId",
-				_searchCommercePricingClassesByCPDefinitionIdParameterTypes13);
+				CommercePricingClassServiceUtil.class, "searchByCPDefinitionId",
+				_searchByCPDefinitionIdParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, cpDefinitionId, title, start, end);
@@ -826,9 +825,8 @@ public class CommercePricingClassServiceHttp {
 			long.class, String.class, int.class, int.class,
 			com.liferay.portal.kernel.search.Sort.class
 		};
-	private static final Class<?>[]
-		_searchCommercePricingClassesByCPDefinitionIdParameterTypes13 =
-			new Class[] {long.class, String.class, int.class, int.class};
+	private static final Class<?>[] _searchByCPDefinitionIdParameterTypes13 =
+		new Class[] {long.class, String.class, int.class, int.class};
 	private static final Class<?>[]
 		_updateCommercePricingClassParameterTypes14 = new Class[] {
 			long.class, long.class, java.util.Map.class, java.util.Map.class,

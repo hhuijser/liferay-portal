@@ -441,7 +441,7 @@ public class CommerceAccountLocalServiceImpl
 	}
 
 	@Override
-	public List<CommerceAccount> searchCommerceAccounts(
+	public List<CommerceAccount> search(
 			long companyId, long parentCommerceAccountId, String keywords,
 			int type, Boolean active, int start, int end, Sort sort)
 		throws PortalException {

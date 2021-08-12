@@ -251,7 +251,7 @@ public class CommerceAccountGroupAdminDisplayContext {
 				_getKeywords());
 
 		List<CommerceAccountGroup> results =
-			_commerceAccountGroupService.searchCommerceAccountGroups(
+			_commerceAccountGroupService.search(
 				_commerceAccountGroupAdminRequestHelper.getCompanyId(),
 				_getKeywords(), _searchContainer.getStart(),
 				_searchContainer.getEnd(), null);

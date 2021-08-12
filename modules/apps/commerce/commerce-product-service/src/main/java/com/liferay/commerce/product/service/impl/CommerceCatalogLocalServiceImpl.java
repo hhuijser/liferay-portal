@@ -271,7 +271,7 @@ public class CommerceCatalogLocalServiceImpl
 
 	@Override
 	public List<CommerceCatalog> search(long companyId) throws PortalException {
-		return searchCommerceCatalogs(
+		return search(
 			companyId, StringPool.BLANK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -286,7 +286,7 @@ public class CommerceCatalogLocalServiceImpl
 
 		searchContext.setKeywords(keywords);
 
-		return searchCommerceCatalogs(searchContext);
+		return search(searchContext);
 	}
 
 	@Override

@@ -424,7 +424,7 @@ public class CommerceDiscountServiceImpl
 		throws PortalException {
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

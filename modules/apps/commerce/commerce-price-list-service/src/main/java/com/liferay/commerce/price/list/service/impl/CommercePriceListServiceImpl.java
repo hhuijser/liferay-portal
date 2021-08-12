@@ -403,7 +403,7 @@ public class CommercePriceListServiceImpl
 		throws PortalException {
 
 		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
+			_commerceCatalogService.search(
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
@@ -427,7 +427,7 @@ public class CommercePriceListServiceImpl
 		throws PortalException {
 
 		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
+			_commerceCatalogService.search(
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
@@ -470,7 +470,7 @@ public class CommercePriceListServiceImpl
 		throws PortalException {
 
 		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
+			_commerceCatalogService.search(
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
@@ -489,7 +489,7 @@ public class CommercePriceListServiceImpl
 		throws PortalException {
 
 		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
+			_commerceCatalogService.search(
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();

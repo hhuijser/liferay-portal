@@ -64,7 +64,7 @@ public class CommerceProductPricingClassDataSetDataProvider
 
 		List<CommercePricingClass> commercePricingClasses =
 			_commercePricingClassService.
-				searchCommercePricingClassesByCPDefinitionId(
+				searchByCPDefinitionId(
 					cpDefinitionId, filter.getKeywords(),
 					pagination.getStartPosition(), pagination.getEndPosition());
 

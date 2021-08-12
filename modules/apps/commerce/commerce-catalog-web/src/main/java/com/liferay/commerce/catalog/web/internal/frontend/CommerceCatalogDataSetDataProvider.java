@@ -59,7 +59,7 @@ public class CommerceCatalogDataSetDataProvider
 				WebKeys.THEME_DISPLAY);
 
 		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
+			_commerceCatalogService.search(
 				themeDisplay.getCompanyId(), filter.getKeywords(),
 				pagination.getStartPosition(), pagination.getEndPosition(),
 				new Sort(Field.NAME, false));

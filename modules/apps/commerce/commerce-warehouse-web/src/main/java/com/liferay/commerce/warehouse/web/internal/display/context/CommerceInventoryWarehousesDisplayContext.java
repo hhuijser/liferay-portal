@@ -254,7 +254,7 @@ public class CommerceInventoryWarehousesDisplayContext {
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
 			_commerceInventoryWarehouseService.
-				searchCommerceInventoryWarehouses(
+				search(
 					_cpRequestHelper.getCompanyId(), active,
 					countryTwoLettersIsoCode, getKeywords(),
 					_searchContainer.getStart(), _searchContainer.getEnd(),

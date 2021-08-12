@@ -106,7 +106,7 @@ public class CommerceChannelItemSelectorViewDisplayContext
 			cpRequestHelper.getCompanyId(), getKeywords());
 
 		List<CommerceChannel> results =
-			_commerceChannelService.searchCommerceChannels(
+			_commerceChannelService.search(
 				cpRequestHelper.getCompanyId(), getKeywords(),
 				_searchContainer.getStart(), _searchContainer.getEnd(), null);
 

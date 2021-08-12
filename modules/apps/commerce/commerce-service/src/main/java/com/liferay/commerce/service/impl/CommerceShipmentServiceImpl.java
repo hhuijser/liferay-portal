@@ -117,7 +117,7 @@ public class CommerceShipmentServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 
@@ -140,7 +140,7 @@ public class CommerceShipmentServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		if (commerceChannels.isEmpty()) {
 			return Collections.emptyList();
@@ -167,7 +167,7 @@ public class CommerceShipmentServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 
@@ -213,7 +213,7 @@ public class CommerceShipmentServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		if (commerceChannels.isEmpty()) {
 			return 0;
@@ -238,7 +238,7 @@ public class CommerceShipmentServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 
@@ -259,7 +259,7 @@ public class CommerceShipmentServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SHIPMENTS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

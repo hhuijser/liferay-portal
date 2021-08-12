@@ -107,7 +107,7 @@ public class OrderHelper {
 		throws Exception {
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+			_commerceChannelService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

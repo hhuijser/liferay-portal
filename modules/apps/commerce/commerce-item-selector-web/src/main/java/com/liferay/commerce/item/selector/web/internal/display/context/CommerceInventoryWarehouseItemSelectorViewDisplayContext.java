@@ -166,7 +166,7 @@ public class CommerceInventoryWarehouseItemSelectorViewDisplayContext
 
 			results =
 				_commerceInventoryWarehouseService.
-					searchCommerceInventoryWarehouses(
+					search(
 						cpRequestHelper.getCompanyId(), true, country.getA2(),
 						getKeywords(), searchContainer.getStart(),
 						searchContainer.getEnd(),

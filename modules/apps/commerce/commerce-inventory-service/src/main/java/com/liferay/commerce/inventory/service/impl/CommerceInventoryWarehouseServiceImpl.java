@@ -280,7 +280,7 @@ public class CommerceInventoryWarehouseServiceImpl
 			CommerceInventoryActionKeys.MANAGE_INVENTORY);
 
 		return commerceInventoryWarehouseLocalService.
-			searchCommerceInventoryWarehouses(
+			search(
 				companyId, active, commerceCountryCode, keywords, start, end,
 				sort);
 	}

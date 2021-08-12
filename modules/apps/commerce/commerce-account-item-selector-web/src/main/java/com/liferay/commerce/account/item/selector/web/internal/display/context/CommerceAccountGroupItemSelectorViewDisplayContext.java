@@ -102,7 +102,7 @@ public class CommerceAccountGroupItemSelectorViewDisplayContext {
 				getKeywords());
 
 		List<CommerceAccountGroup> results =
-			_commerceAccountGroupLocalService.searchCommerceAccountGroups(
+			_commerceAccountGroupLocalService.search(
 				_commerceAccountItemSelectorRequestHelper.getCompanyId(),
 				getKeywords(), _searchContainer.getStart(),
 				_searchContainer.getEnd(), null);

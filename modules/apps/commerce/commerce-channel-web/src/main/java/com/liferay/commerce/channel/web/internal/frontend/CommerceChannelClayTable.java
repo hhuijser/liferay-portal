@@ -173,11 +173,9 @@ public class CommerceChannelClayTable
 
 		List<Channel> channels = new ArrayList<>();
 
-		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(
-				_portal.getCompanyId(httpServletRequest), filter.getKeywords(),
-				pagination.getStartPosition(), pagination.getEndPosition(),
-				sort);
+		List<CommerceChannel> commerceChannels = _commerceChannelService.search(
+			_portal.getCompanyId(httpServletRequest), filter.getKeywords(),
+			pagination.getStartPosition(), pagination.getEndPosition(), sort);
 
 		for (CommerceChannel commerceChannel : commerceChannels) {
 			channels.add(

@@ -141,7 +141,7 @@ public class CommerceAccountGroupServiceImpl
 			getPermissionChecker(), null,
 			CommerceAccountActionKeys.VIEW_COMMERCE_ACCOUNT_GROUPS);
 
-		return commerceAccountGroupLocalService.searchCommerceAccountGroups(
+		return commerceAccountGroupLocalService.search(
 			companyId, keywords, start, end, sort);
 	}
 

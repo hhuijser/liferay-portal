@@ -230,7 +230,7 @@ public class CommerceAccountServiceImpl extends CommerceAccountServiceBaseImpl {
 				accountType = -1;
 			}
 
-			return commerceAccountLocalService.searchCommerceAccounts(
+			return commerceAccountLocalService.search(
 				user.getCompanyId(), parentCommerceAccountId, keywords,
 				accountType, active, start, end,
 				SortFactoryUtil.create("name", false));

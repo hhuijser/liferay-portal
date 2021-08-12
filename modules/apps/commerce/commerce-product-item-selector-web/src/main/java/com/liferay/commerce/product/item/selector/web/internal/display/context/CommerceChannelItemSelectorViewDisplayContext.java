@@ -105,10 +105,9 @@ public class CommerceChannelItemSelectorViewDisplayContext
 		int total = _commerceChannelService.searchCommerceChannelsCount(
 			cpRequestHelper.getCompanyId(), getKeywords());
 
-		List<CommerceChannel> results =
-			_commerceChannelService.searchCommerceChannels(
-				cpRequestHelper.getCompanyId(), getKeywords(),
-				_searchContainer.getStart(), _searchContainer.getEnd(), null);
+		List<CommerceChannel> results = _commerceChannelService.search(
+			cpRequestHelper.getCompanyId(), getKeywords(),
+			_searchContainer.getStart(), _searchContainer.getEnd(), null);
 
 		_searchContainer.setTotal(total);
 		_searchContainer.setResults(results);

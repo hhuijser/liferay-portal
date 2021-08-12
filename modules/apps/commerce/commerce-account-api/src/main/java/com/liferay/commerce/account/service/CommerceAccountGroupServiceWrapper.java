@@ -106,13 +106,12 @@ public class CommerceAccountGroupServiceWrapper
 
 	@Override
 	public java.util.List
-		<com.liferay.commerce.account.model.CommerceAccountGroup>
-				searchCommerceAccountGroups(
-					long companyId, String keywords, int start, int end,
-					com.liferay.portal.kernel.search.Sort sort)
+		<com.liferay.commerce.account.model.CommerceAccountGroup> search(
+				long companyId, String keywords, int start, int end,
+				com.liferay.portal.kernel.search.Sort sort)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _commerceAccountGroupService.searchCommerceAccountGroups(
+		return _commerceAccountGroupService.search(
 			companyId, keywords, start, end, sort);
 	}
 

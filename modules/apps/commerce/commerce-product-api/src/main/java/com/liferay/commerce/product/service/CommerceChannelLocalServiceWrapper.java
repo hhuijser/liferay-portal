@@ -465,20 +465,20 @@ public class CommerceChannelLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.commerce.product.model.CommerceChannel>
-			searchCommerceChannels(long companyId)
+			search(long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _commerceChannelLocalService.searchCommerceChannels(companyId);
+		return _commerceChannelLocalService.search(companyId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.commerce.product.model.CommerceChannel>
-			searchCommerceChannels(
+			search(
 				long companyId, String keywords, int start, int end,
 				com.liferay.portal.kernel.search.Sort sort)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
-		return _commerceChannelLocalService.searchCommerceChannels(
+		return _commerceChannelLocalService.search(
 			companyId, keywords, start, end, sort);
 	}
 

@@ -111,7 +111,7 @@ public interface CommerceAccountGroupLocalService extends BaseLocalService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CommerceAccountGroup> searchCommerceAccountGroups(
+	public List<CommerceAccountGroup> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException;
 

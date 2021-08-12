@@ -270,16 +270,14 @@ public class CommerceCatalogLocalServiceImpl
 	}
 
 	@Override
-	public List<CommerceCatalog> searchCommerceCatalogs(long companyId)
-		throws PortalException {
-
+	public List<CommerceCatalog> search(long companyId) throws PortalException {
 		return searchCommerceCatalogs(
 			companyId, StringPool.BLANK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
 	@Override
-	public List<CommerceCatalog> searchCommerceCatalogs(
+	public List<CommerceCatalog> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException {
 
@@ -390,8 +388,7 @@ public class CommerceCatalogLocalServiceImpl
 		return commerceCatalogs;
 	}
 
-	protected List<CommerceCatalog> searchCommerceCatalogs(
-			SearchContext searchContext)
+	protected List<CommerceCatalog> search(SearchContext searchContext)
 		throws PortalException {
 
 		Indexer<CommerceCatalog> indexer =

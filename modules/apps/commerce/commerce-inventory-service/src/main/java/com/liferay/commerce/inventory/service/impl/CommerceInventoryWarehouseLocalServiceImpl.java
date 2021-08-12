@@ -290,7 +290,7 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 	}
 
 	@Override
-	public List<CommerceInventoryWarehouse> searchCommerceInventoryWarehouses(
+	public List<CommerceInventoryWarehouse> search(
 			long companyId, Boolean active, String commerceCountryCode,
 			String keywords, int start, int end, Sort sort)
 		throws PortalException {
@@ -471,8 +471,8 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 		return commerceInventoryWarehouses;
 	}
 
-	protected List<CommerceInventoryWarehouse>
-			searchCommerceInventoryWarehouses(SearchContext searchContext)
+	protected List<CommerceInventoryWarehouse> search(
+			SearchContext searchContext)
 		throws PortalException {
 
 		Indexer<CommerceInventoryWarehouse> indexer =

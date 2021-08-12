@@ -152,14 +152,12 @@ public class CommerceChannelServiceImpl extends CommerceChannelServiceBaseImpl {
 	}
 
 	@Override
-	public List<CommerceChannel> searchCommerceChannels(long companyId)
-		throws PortalException {
-
+	public List<CommerceChannel> search(long companyId) throws PortalException {
 		return commerceChannelLocalService.searchCommerceChannels(companyId);
 	}
 
 	@Override
-	public List<CommerceChannel> searchCommerceChannels(
+	public List<CommerceChannel> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException {
 

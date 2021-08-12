@@ -129,7 +129,7 @@ public class CommerceAccountGroupServiceImpl
 	}
 
 	@Override
-	public List<CommerceAccountGroup> searchCommerceAccountGroups(
+	public List<CommerceAccountGroup> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException {
 

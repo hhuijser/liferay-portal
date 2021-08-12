@@ -228,6 +228,15 @@ public class CommercePricingClassServiceImpl
 	}
 
 	@Override
+	public List<CommercePricingClass> searchByCPDefinitionId(
+			long cpDefinitionId, String title, int start, int end)
+		throws PrincipalException {
+
+		return commercePricingClassFinder.findByCPDefinitionId(
+			cpDefinitionId, title, start, end, true);
+	}
+
+	@Override
 	public BaseModelSearchResult<CommercePricingClass>
 			searchCommercePricingClasses(
 				long companyId, String keywords, int start, int end, Sort sort)
@@ -235,16 +244,6 @@ public class CommercePricingClassServiceImpl
 
 		return commercePricingClassLocalService.searchCommercePricingClasses(
 			companyId, keywords, start, end, sort);
-	}
-
-	@Override
-	public List<CommercePricingClass>
-			searchCommercePricingClassesByCPDefinitionId(
-				long cpDefinitionId, String title, int start, int end)
-		throws PrincipalException {
-
-		return commercePricingClassFinder.findByCPDefinitionId(
-			cpDefinitionId, title, start, end, true);
 	}
 
 	@Override

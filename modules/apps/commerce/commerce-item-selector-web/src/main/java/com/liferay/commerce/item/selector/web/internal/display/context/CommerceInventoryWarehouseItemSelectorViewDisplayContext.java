@@ -164,14 +164,12 @@ public class CommerceInventoryWarehouseItemSelectorViewDisplayContext
 						cpRequestHelper.getCompanyId(), true, country.getA2(),
 						getKeywords());
 
-			results =
-				_commerceInventoryWarehouseService.
-					searchCommerceInventoryWarehouses(
-						cpRequestHelper.getCompanyId(), true, country.getA2(),
-						getKeywords(), searchContainer.getStart(),
-						searchContainer.getEnd(),
-						CommerceUtil.getCommerceInventoryWarehouseSort(
-							orderByCol, orderByType));
+			results = _commerceInventoryWarehouseService.search(
+				cpRequestHelper.getCompanyId(), true, country.getA2(),
+				getKeywords(), searchContainer.getStart(),
+				searchContainer.getEnd(),
+				CommerceUtil.getCommerceInventoryWarehouseSort(
+					orderByCol, orderByType));
 		}
 		else if (country != null) {
 			total =

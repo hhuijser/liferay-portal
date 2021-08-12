@@ -134,7 +134,7 @@ public class CommerceCatalogServiceImpl extends CommerceCatalogServiceBaseImpl {
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException {
 
-		return commerceCatalogLocalService.searchCommerceCatalogs(
+		return commerceCatalogLocalService.search(
 			companyId, keywords, start, end, sort);
 	}
 

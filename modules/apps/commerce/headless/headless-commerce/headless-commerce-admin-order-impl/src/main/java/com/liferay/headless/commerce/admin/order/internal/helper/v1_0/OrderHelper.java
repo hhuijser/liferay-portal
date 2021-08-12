@@ -106,8 +106,8 @@ public class OrderHelper {
 	private long[] _getCommerceChannelGroupIds(long companyId)
 		throws Exception {
 
-		List<CommerceChannel> commerceChannels =
-			_commerceChannelService.searchCommerceChannels(companyId);
+		List<CommerceChannel> commerceChannels = _commerceChannelService.search(
+			companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

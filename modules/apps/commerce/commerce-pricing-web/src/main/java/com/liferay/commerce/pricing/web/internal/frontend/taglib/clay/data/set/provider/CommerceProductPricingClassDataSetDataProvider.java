@@ -63,10 +63,9 @@ public class CommerceProductPricingClassDataSetDataProvider
 			httpServletRequest, "cpDefinitionId");
 
 		List<CommercePricingClass> commercePricingClasses =
-			_commercePricingClassService.
-				searchCommercePricingClassesByCPDefinitionId(
-					cpDefinitionId, filter.getKeywords(),
-					pagination.getStartPosition(), pagination.getEndPosition());
+			_commercePricingClassService.searchByCPDefinitionId(
+				cpDefinitionId, filter.getKeywords(),
+				pagination.getStartPosition(), pagination.getEndPosition());
 
 		for (CommercePricingClass commercePricingClass :
 				commercePricingClasses) {

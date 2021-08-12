@@ -148,7 +148,7 @@ public class CommerceSubscriptionEntryServiceImpl
 			CommerceActionKeys.MANAGE_COMMERCE_SUBSCRIPTIONS);
 
 		List<CommerceChannel> commerceChannels =
-			_commerceChannelLocalService.searchCommerceChannels(companyId);
+			_commerceChannelLocalService.search(companyId);
 
 		Stream<CommerceChannel> stream = commerceChannels.stream();
 

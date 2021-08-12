@@ -279,10 +279,8 @@ public class CommerceInventoryWarehouseServiceImpl
 			getPermissionChecker(), null,
 			CommerceInventoryActionKeys.MANAGE_INVENTORY);
 
-		return commerceInventoryWarehouseLocalService.
-			searchCommerceInventoryWarehouses(
-				companyId, active, commerceCountryCode, keywords, start, end,
-				sort);
+		return commerceInventoryWarehouseLocalService.search(
+			companyId, active, commerceCountryCode, keywords, start, end, sort);
 	}
 
 	@Override

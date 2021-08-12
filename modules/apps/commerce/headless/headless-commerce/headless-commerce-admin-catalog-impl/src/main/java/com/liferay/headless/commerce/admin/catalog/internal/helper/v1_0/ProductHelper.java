@@ -88,7 +88,7 @@ public class ProductHelper {
 		throws Exception {
 
 		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogLocalService.searchCommerceCatalogs(companyId);
+			_commerceCatalogLocalService.search(companyId);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
 

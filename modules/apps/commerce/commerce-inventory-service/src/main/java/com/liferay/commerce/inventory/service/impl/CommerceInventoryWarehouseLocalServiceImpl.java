@@ -300,7 +300,7 @@ public class CommerceInventoryWarehouseLocalServiceImpl
 
 		searchContext.setKeywords(keywords);
 
-		return searchCommerceInventoryWarehouses(searchContext);
+		return search(searchContext);
 	}
 
 	@Override

@@ -282,9 +282,8 @@ public class CommercePricingClassLocalServiceImpl
 	}
 
 	@Override
-	public List<CommercePricingClass>
-		searchCommercePricingClassesByCPDefinitionId(
-			long cpDefinitionId, String title, int start, int end) {
+	public List<CommercePricingClass> searchByCPDefinitionId(
+		long cpDefinitionId, String title, int start, int end) {
 
 		return commercePricingClassFinder.findByCPDefinitionId(
 			cpDefinitionId, title, start, end);

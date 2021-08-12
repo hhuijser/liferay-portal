@@ -153,7 +153,7 @@ public class CommerceChannelServiceImpl extends CommerceChannelServiceBaseImpl {
 
 	@Override
 	public List<CommerceChannel> search(long companyId) throws PortalException {
-		return commerceChannelLocalService.searchCommerceChannels(companyId);
+		return commerceChannelLocalService.search(companyId);
 	}
 
 	@Override
@@ -168,7 +168,7 @@ public class CommerceChannelServiceImpl extends CommerceChannelServiceBaseImpl {
 		portletResourcePermission.check(
 			getPermissionChecker(), null, CPActionKeys.VIEW_COMMERCE_CHANNELS);
 
-		return commerceChannelLocalService.searchCommerceChannels(
+		return commerceChannelLocalService.search(
 			companyId, keywords, start, end, sort);
 	}
 

@@ -402,9 +402,8 @@ public class CommercePriceListServiceImpl
 			OrderByComparator<CommercePriceList> orderByComparator)
 		throws PortalException {
 
-		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
-				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		List<CommerceCatalog> commerceCatalogs = _commerceCatalogService.search(
+			companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
 
@@ -426,9 +425,8 @@ public class CommercePriceListServiceImpl
 	public int getCommercePriceListsCount(long companyId, int status)
 		throws PortalException {
 
-		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
-				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		List<CommerceCatalog> commerceCatalogs = _commerceCatalogService.search(
+			companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
 
@@ -469,9 +467,8 @@ public class CommercePriceListServiceImpl
 			Sort sort)
 		throws PortalException {
 
-		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
-				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		List<CommerceCatalog> commerceCatalogs = _commerceCatalogService.search(
+			companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
 
@@ -488,9 +485,8 @@ public class CommercePriceListServiceImpl
 			long companyId, String keywords, int status)
 		throws PortalException {
 
-		List<CommerceCatalog> commerceCatalogs =
-			_commerceCatalogService.searchCommerceCatalogs(
-				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		List<CommerceCatalog> commerceCatalogs = _commerceCatalogService.search(
+			companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<CommerceCatalog> stream = commerceCatalogs.stream();
 

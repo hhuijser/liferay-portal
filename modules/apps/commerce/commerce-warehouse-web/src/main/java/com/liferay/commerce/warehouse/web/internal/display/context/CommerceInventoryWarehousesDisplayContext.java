@@ -253,13 +253,12 @@ public class CommerceInventoryWarehousesDisplayContext {
 		_searchContainer.setSearch(search);
 
 		List<CommerceInventoryWarehouse> commerceInventoryWarehouses =
-			_commerceInventoryWarehouseService.
-				searchCommerceInventoryWarehouses(
-					_cpRequestHelper.getCompanyId(), active,
-					countryTwoLettersIsoCode, getKeywords(),
-					_searchContainer.getStart(), _searchContainer.getEnd(),
-					CommerceUtil.getCommerceInventoryWarehouseSort(
-						orderByCol, orderByType));
+			_commerceInventoryWarehouseService.search(
+				_cpRequestHelper.getCompanyId(), active,
+				countryTwoLettersIsoCode, getKeywords(),
+				_searchContainer.getStart(), _searchContainer.getEnd(),
+				CommerceUtil.getCommerceInventoryWarehouseSort(
+					orderByCol, orderByType));
 
 		int commerceInventoryWarehousesCount =
 			_commerceInventoryWarehouseService.

@@ -400,18 +400,19 @@ public class CommerceCatalogLocalServiceUtil {
 		return getService().search(companyId);
 	}
 
-	public static int search(long companyId, String keywords)
-		throws PortalException {
-
-		return getService().search(companyId, keywords);
-	}
-
 	public static List<CommerceCatalog> search(
 			long companyId, String keywords, int start, int end,
 			com.liferay.portal.kernel.search.Sort sort)
 		throws PortalException {
 
 		return getService().search(companyId, keywords, start, end, sort);
+	}
+
+	public static int searchCommerceCatalogsCount(
+			long companyId, String keywords)
+		throws PortalException {
+
+		return getService().searchCommerceCatalogsCount(companyId, keywords);
 	}
 
 	/**

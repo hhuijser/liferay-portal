@@ -277,16 +277,6 @@ public class CommerceCatalogLocalServiceImpl
 	}
 
 	@Override
-	public int search(long companyId, String keywords) throws PortalException {
-		SearchContext searchContext = buildSearchContext(
-			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-		searchContext.setKeywords(keywords);
-
-		return searchCommerceCatalogsCount(searchContext);
-	}
-
-	@Override
 	public List<CommerceCatalog> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException {
@@ -297,6 +287,18 @@ public class CommerceCatalogLocalServiceImpl
 		searchContext.setKeywords(keywords);
 
 		return search(searchContext);
+	}
+
+	@Override
+	public int searchCommerceCatalogsCount(long companyId, String keywords)
+		throws PortalException {
+
+		SearchContext searchContext = buildSearchContext(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		searchContext.setKeywords(keywords);
+
+		return searchCommerceCatalogsCount(searchContext);
 	}
 
 	@Indexable(type = IndexableType.REINDEX)

@@ -338,11 +338,12 @@ public interface CommerceCatalogLocalService
 	public List<CommerceCatalog> search(long companyId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int search(long companyId, String keywords) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<CommerceCatalog> search(
 			long companyId, String keywords, int start, int end, Sort sort)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCommerceCatalogsCount(long companyId, String keywords)
 		throws PortalException;
 
 	/**

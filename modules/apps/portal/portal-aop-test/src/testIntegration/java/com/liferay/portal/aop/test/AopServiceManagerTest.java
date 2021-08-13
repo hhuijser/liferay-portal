@@ -88,9 +88,9 @@ public class AopServiceManagerTest {
 	public void testAopService() {
 		Dictionary<String, Object> properties =
 			HashMapDictionaryBuilder.<String, Object>put(
-				"key", "value"
-			).put(
 				Constants.SERVICE_RANKING, 1
+			).put(
+				"key", "value"
 			).build();
 
 		ServiceRegistration<AopService> aopServiceServiceRegistration =

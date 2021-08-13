@@ -106,18 +106,18 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 
 			Dictionary<String, Object> testApplicationProperties =
 				HashMapDictionaryBuilder.<String, Object>put(
-					"prefix", "methods"
-				).put(
 					"osgi.jaxrs.name", TestApplication.class.getName()
+				).put(
+					"prefix", "methods"
 				).build();
 
 			Dictionary<String, Object> annotatedApplicationProperties =
 				HashMapDictionaryBuilder.<String, Object>put(
 					"oauth2.scope.checker.type", "annotations"
 				).put(
-					"prefix", "annotations"
-				).put(
 					"osgi.jaxrs.name", TestAnnotatedApplication.class.getName()
+				).put(
+					"prefix", "annotations"
 				).build();
 
 			Dictionary<String, Object> scopeMapperProperties =
@@ -127,6 +127,8 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 
 			Dictionary<String, Object> bundlePrefixProperties =
 				HashMapDictionaryBuilder.<String, Object>put(
+					"include.bundle.symbolic.name", false
+				).put(
 					"osgi.jaxrs.name",
 					new String[] {
 						"com.liferay.oauth2.provider.internal.test." +
@@ -136,8 +138,6 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 					}
 				).put(
 					"service.properties", new String[] {"prefix"}
-				).put(
-					"include.bundle.symbolic.name", false
 				).build();
 
 			createFactoryConfiguration(

@@ -144,9 +144,9 @@ public class GCloudNaturalLanguageDocumentAssetAutoTaggerTest {
 				new ConfigurationTemporarySwapper(
 					_CLASS_NAME_G_CLOUD_NATURAL_LANGUAGE_ASSET_AUTO_TAGGER_COMPANY_CONFIGURATION,
 					HashMapDictionaryBuilder.<String, Object>put(
-						"entityEndpointEnabled", false
-					).put(
 						"classificationEndpointEnabled", false
+					).put(
+						"entityEndpointEnabled", false
 					).build())) {
 
 			unsafeRunnable.run();

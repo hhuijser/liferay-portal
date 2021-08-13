@@ -85,9 +85,9 @@ public class AuthVerifierTest {
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-no-allowed"
 			).put(
-				"auth.verifier.guest.allowed", false
-			).put(
 				"auth-verifier-guest-allowed-test-servlet-context-helper", true
+			).put(
+				"auth.verifier.guest.allowed", false
 			).build());
 
 		_registerServletContextHelper(
@@ -95,9 +95,9 @@ public class AuthVerifierTest {
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-allowed"
 			).put(
-				"auth.verifier.guest.allowed", true
-			).put(
 				"auth-verifier-guest-allowed-test-servlet-context-helper", true
+			).put(
+				"auth.verifier.guest.allowed", true
 			).build());
 
 		_registerServletContextHelper(
@@ -110,14 +110,14 @@ public class AuthVerifierTest {
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				"(auth-verifier-guest-allowed-test-servlet-context-helper=true)"
+			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
 				"cxf-servlet"
 			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
 				"/guestAllowed"
-			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-				"(auth-verifier-guest-allowed-test-servlet-context-helper=true)"
 			).build(),
 			GuestAllowedHttpServlet::new);
 
@@ -126,9 +126,9 @@ public class AuthVerifierTest {
 			HashMapDictionaryBuilder.<String, Object>put(
 				JaxrsWhiteboardConstants.JAX_RS_NAME, "filter-enabled"
 			).put(
-				"auth.verifier.guest.allowed", true
-			).put(
 				"auth-verifier-tracker-test-servlet-context-helper", true
+			).put(
+				"auth.verifier.guest.allowed", true
 			).build());
 
 		_registerServletContextHelper(
@@ -168,14 +168,14 @@ public class AuthVerifierTest {
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				"auth-verifier-filter-tracker-remote-access-test"
+			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
 				"cxf-servlet"
 			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
 				"/remoteAccess"
-			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-				"auth-verifier-filter-tracker-remote-access-test"
 			).build(),
 			RemoteAccessHttpServlet::new);
 
@@ -185,13 +185,13 @@ public class AuthVerifierTest {
 				JaxrsWhiteboardConstants.JAX_RS_NAME,
 				"auth-verifier-filter-override-matched"
 			).put(
-				"auth.verifier.guest.allowed", true
-			).put(
 				"auth-verifier-matched-test-auth-verifier-filter-helper", true
 			).put(
 				"auth.verifier.auth.verifier." +
 					"AuthVerifierTest$TestAuthVerifier.urls.includes",
 				"*"
+			).put(
+				"auth.verifier.guest.allowed", true
 			).build());
 
 		_registerServletContextHelper(
@@ -200,13 +200,13 @@ public class AuthVerifierTest {
 				JaxrsWhiteboardConstants.JAX_RS_NAME,
 				"auth-verifier-filter-override-not-matched"
 			).put(
-				"auth.verifier.guest.allowed", true
-			).put(
 				"auth-verifier-matched-test-auth-verifier-filter-helper", true
 			).put(
 				"auth.verifier.auth.verifier." +
 					"AuthVerifierTest$TestAuthVerifier.urls.includes",
 				"/wrongPath"
+			).put(
+				"auth.verifier.guest.allowed", true
 			).build());
 
 		_registerServletContextHelper(
@@ -215,20 +215,20 @@ public class AuthVerifierTest {
 				JaxrsWhiteboardConstants.JAX_RS_NAME,
 				"auth-verifier-filter-override-missing"
 			).put(
-				"auth.verifier.guest.allowed", true
-			).put(
 				"auth-verifier-matched-test-auth-verifier-filter-helper", true
+			).put(
+				"auth.verifier.guest.allowed", true
 			).build());
 
 		_registerServlet(
 			HashMapDictionaryBuilder.<String, Object>put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
+				"(auth-verifier-matched-test-auth-verifier-filter-helper=true)"
+			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
 				"cxf-servlet"
 			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN, "/*"
-			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
-				"(auth-verifier-matched-test-auth-verifier-filter-helper=true)"
 			).build(),
 			AuthVerifierMatchedHttpServlet::new);
 

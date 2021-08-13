@@ -139,9 +139,9 @@ public class LanguageResourcesTest {
 		return _bundleContext.registerService(
 			ResourceBundle.class, new TestResourceBundle(value),
 			HashMapDictionaryBuilder.<String, Object>put(
-				"language.id", _languageId
-			).put(
 				Constants.SERVICE_RANKING, serviceRanking
+			).put(
+				"language.id", _languageId
 			).build());
 	}
 

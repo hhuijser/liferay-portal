@@ -153,9 +153,9 @@ public class AccountEntryUserRelLocalServiceTest {
 		ConfigurationTestUtil.saveConfiguration(
 			pid,
 			HashMapDictionaryBuilder.<String, Object>put(
-				"enableEmailDomainValidation", false
-			).put(
 				"blockedEmailDomains", "test.com"
+			).put(
+				"enableEmailDomainValidation", false
 			).build());
 
 		try {

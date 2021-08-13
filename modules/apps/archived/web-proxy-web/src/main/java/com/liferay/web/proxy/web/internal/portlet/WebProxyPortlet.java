@@ -181,16 +181,6 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 					return portletContext.getPortletContextName();
 				}
 			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
-				PortletBridgeServlet.class.getName()
-			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
-				"/pbhs/*"
-			).put(
-				HttpWhiteboardConstants.
-					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + "cssRegex",
-				portletConfig.getInitParameter("cssRegex")
-			).put(
 				HttpWhiteboardConstants.
 					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
 						"ignorePostToGetRequestHeaders",
@@ -202,13 +192,23 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 				"accept-encoding,connection,keep-alive"
 			).put(
 				HttpWhiteboardConstants.
-					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + "jsRegex",
-				portletConfig.getInitParameter("jsRegex")
-			).put(
-				HttpWhiteboardConstants.
 					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
 						"mementoSessionKey",
 				portletConfig.getInitParameter("mementoSessionKey")
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + "cssRegex",
+				portletConfig.getInitParameter("cssRegex")
+			).put(
+				HttpWhiteboardConstants.
+					HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + "jsRegex",
+				portletConfig.getInitParameter("jsRegex")
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
+				PortletBridgeServlet.class.getName()
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN,
+				"/pbhs/*"
 			).build());
 	}
 

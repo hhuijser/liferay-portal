@@ -314,9 +314,9 @@ public class ServletContextHelperRegistrationImpl
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
 				_servletContextName
 			).put(
-				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX, prefix
-			).put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PATTERN, "/*"
+			).put(
+				HttpWhiteboardConstants.HTTP_WHITEBOARD_RESOURCE_PREFIX, prefix
 			).build());
 	}
 

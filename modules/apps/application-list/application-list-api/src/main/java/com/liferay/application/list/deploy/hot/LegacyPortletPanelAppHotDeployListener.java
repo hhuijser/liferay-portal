@@ -162,13 +162,6 @@ public class LegacyPortletPanelAppHotDeployListener
 
 			propertiesList.add(
 				HashMapDictionaryBuilder.<String, Object>put(
-					"panel.app.portlet.id",
-					getPortletId(
-						hotDeployEvent.getServletContextName(),
-						portletElement.elementText("portlet-name"))
-				).put(
-					"panel.category.key", controlPanelEntryCategory
-				).put(
 					"panel.app.order",
 					() -> {
 						String controlPanelEntryWeight =
@@ -183,6 +176,13 @@ public class LegacyPortletPanelAppHotDeployListener
 
 						return null;
 					}
+				).put(
+					"panel.app.portlet.id",
+					getPortletId(
+						hotDeployEvent.getServletContextName(),
+						portletElement.elementText("portlet-name"))
+				).put(
+					"panel.category.key", controlPanelEntryCategory
 				).build());
 		}
 

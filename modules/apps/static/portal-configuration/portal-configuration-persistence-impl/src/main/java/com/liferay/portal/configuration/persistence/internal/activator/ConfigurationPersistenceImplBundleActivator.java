@@ -68,10 +68,10 @@ public class ConfigurationPersistenceImplBundleActivator
 				},
 				_configurationPersistenceManager,
 				HashMapDictionaryBuilder.<String, Object>put(
+					Constants.SERVICE_RANKING, Integer.MAX_VALUE - 1000
+				).put(
 					PersistenceManager.PROPERTY_NAME,
 					ConfigurationPersistenceManager.class.getName()
-				).put(
-					Constants.SERVICE_RANKING, Integer.MAX_VALUE - 1000
 				).build());
 
 		_configurationUpgradeStepFactoryRegistration =

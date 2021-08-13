@@ -359,7 +359,8 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 	private String _sortMethodCalls(String content) {
 		content = _sortChainedMethodCalls(
 			content, "put", 2, "ConcurrentHashMapBuilder", "HashMapBuilder",
-			"JSONObject", "JSONUtil", "SoyContext", "TreeMapBuilder");
+			"HashMapDictionaryBuilder", "JSONObject", "JSONUtil", "SoyContext",
+			"TreeMapBuilder");
 		content = _sortChainedMethodCalls(
 			content, "setParameter", 2, "PortletURLBuilder");
 

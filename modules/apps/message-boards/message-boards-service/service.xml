@@ -280,7 +280,7 @@
 		<finder name="ThreadId" return-type="Collection">
 			<finder-column name="threadId" />
 		</finder>
-		<finder db-index="false" name="ThreadReplies" return-type="Collection" where="parentMessageId != 0">
+		<finder db-index="false" name="ThreadIdReplies" return-type="Collection" where="parentMessageId != 0">
 			<finder-column name="threadId" />
 		</finder>
 		<finder name="ParentMessageId" return-type="Collection">

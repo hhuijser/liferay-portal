@@ -112,13 +112,13 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 						expectedFinderName;
 			}
 
-			if (!expectedFinderName.equals(finderName)) {
+			if (!finderName.startsWith(expectedFinderName)) {
 				addMessage(
 					fileName,
 					StringBundler.concat(
 						"Finder name '", entityName, "#", finderName,
-						"' should be combined by comparator prefix and finder ",
-						"colume name"));
+						"' should starts with the combination of comparator ",
+						"prefix and finder colume name"));
 			}
 
 			return;

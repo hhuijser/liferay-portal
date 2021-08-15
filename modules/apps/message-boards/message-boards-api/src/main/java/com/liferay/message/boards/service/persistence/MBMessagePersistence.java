@@ -1031,7 +1031,7 @@ public interface MBMessagePersistence
 	 * @param threadId the thread ID
 	 * @return the matching message-boards messages
 	 */
-	public java.util.List<MBMessage> findByThreadReplies(long threadId);
+	public java.util.List<MBMessage> findByThreadIdReplies(long threadId);
 
 	/**
 	 * Returns a range of all the message-boards messages where threadId = &#63;.
@@ -1045,7 +1045,7 @@ public interface MBMessagePersistence
 	 * @param end the upper bound of the range of message-boards messages (not inclusive)
 	 * @return the range of matching message-boards messages
 	 */
-	public java.util.List<MBMessage> findByThreadReplies(
+	public java.util.List<MBMessage> findByThreadIdReplies(
 		long threadId, int start, int end);
 
 	/**
@@ -1061,7 +1061,7 @@ public interface MBMessagePersistence
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching message-boards messages
 	 */
-	public java.util.List<MBMessage> findByThreadReplies(
+	public java.util.List<MBMessage> findByThreadIdReplies(
 		long threadId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 			orderByComparator);
@@ -1080,7 +1080,7 @@ public interface MBMessagePersistence
 	 * @param useFinderCache whether to use the finder cache
 	 * @return the ordered range of matching message-boards messages
 	 */
-	public java.util.List<MBMessage> findByThreadReplies(
+	public java.util.List<MBMessage> findByThreadIdReplies(
 		long threadId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 			orderByComparator,
@@ -1094,7 +1094,7 @@ public interface MBMessagePersistence
 	 * @return the first matching message-boards message
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
-	public MBMessage findByThreadReplies_First(
+	public MBMessage findByThreadIdReplies_First(
 			long threadId,
 			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 				orderByComparator)
@@ -1107,7 +1107,7 @@ public interface MBMessagePersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
-	public MBMessage fetchByThreadReplies_First(
+	public MBMessage fetchByThreadIdReplies_First(
 		long threadId,
 		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 			orderByComparator);
@@ -1120,7 +1120,7 @@ public interface MBMessagePersistence
 	 * @return the last matching message-boards message
 	 * @throws NoSuchMessageException if a matching message-boards message could not be found
 	 */
-	public MBMessage findByThreadReplies_Last(
+	public MBMessage findByThreadIdReplies_Last(
 			long threadId,
 			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 				orderByComparator)
@@ -1133,7 +1133,7 @@ public interface MBMessagePersistence
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching message-boards message, or <code>null</code> if a matching message-boards message could not be found
 	 */
-	public MBMessage fetchByThreadReplies_Last(
+	public MBMessage fetchByThreadIdReplies_Last(
 		long threadId,
 		com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 			orderByComparator);
@@ -1147,7 +1147,7 @@ public interface MBMessagePersistence
 	 * @return the previous, current, and next message-boards message
 	 * @throws NoSuchMessageException if a message-boards message with the primary key could not be found
 	 */
-	public MBMessage[] findByThreadReplies_PrevAndNext(
+	public MBMessage[] findByThreadIdReplies_PrevAndNext(
 			long messageId, long threadId,
 			com.liferay.portal.kernel.util.OrderByComparator<MBMessage>
 				orderByComparator)
@@ -1158,7 +1158,7 @@ public interface MBMessagePersistence
 	 *
 	 * @param threadId the thread ID
 	 */
-	public void removeByThreadReplies(long threadId);
+	public void removeByThreadIdReplies(long threadId);
 
 	/**
 	 * Returns the number of message-boards messages where threadId = &#63;.
@@ -1166,7 +1166,7 @@ public interface MBMessagePersistence
 	 * @param threadId the thread ID
 	 * @return the number of matching message-boards messages
 	 */
-	public int countByThreadReplies(long threadId);
+	public int countByThreadIdReplies(long threadId);
 
 	/**
 	 * Returns all the message-boards messages where parentMessageId = &#63;.

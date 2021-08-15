@@ -321,10 +321,10 @@ public class MBMessagePersistenceTest {
 	}
 
 	@Test
-	public void testCountByThreadReplies() throws Exception {
-		_persistence.countByThreadReplies(RandomTestUtil.nextLong());
+	public void testCountByThreadIdReplies() throws Exception {
+		_persistence.countByThreadIdReplies(RandomTestUtil.nextLong());
 
-		_persistence.countByThreadReplies(0L);
+		_persistence.countByThreadIdReplies(0L);
 	}
 
 	@Test

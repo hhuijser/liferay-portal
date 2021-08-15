@@ -786,7 +786,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 					childMessage = mbMessagePersistence.update(childMessage);
 
 					List<MBMessage> repliesMessages =
-						mbMessagePersistence.findByThreadReplies(
+						mbMessagePersistence.findByThreadIdReplies(
 							message.getThreadId());
 
 					for (MBMessage repliesMessage : repliesMessages) {
@@ -1511,7 +1511,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		long threadId, int status, int start, int end) {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return mbMessagePersistence.findByThreadReplies(
+			return mbMessagePersistence.findByThreadIdReplies(
 				threadId, start, end);
 		}
 

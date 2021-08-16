@@ -92,6 +92,34 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private String _checkCaps(String name) {
+		for (String[] array : _ALL_CAPS_STRINGS) {
+			String s = array[1];
+
+			int x = -1;
+
+			while (true) {
+				x = name.indexOf(s, x + 1);
+
+				if (x == -1) {
+					break;
+				}
+
+				int y = x + s.length();
+
+				if ((y != name.length()) &&
+					!Character.isUpperCase(name.charAt(y))) {
+
+					continue;
+				}
+
+				return name.substring(0, x) + array[0] + name.substring(y);
+			}
+		}
+
+		return name;
+	}
+
 	private void _checkFinderName(
 		String fileName, String entityName, String finderName,
 		List<Map<String, String>> finderColumns) {
@@ -103,8 +131,9 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 				return;
 			}
 
-			String expectedFinderName = TextFormatter.format(
-				finderColumn.get("name"), TextFormatter.G);
+			String expectedFinderName = _checkCaps(
+				TextFormatter.format(
+					finderColumn.get("name"), TextFormatter.G));
 
 			if (finderColumn.containsKey("comparator")) {
 				expectedFinderName =
@@ -166,6 +195,10 @@ public class XMLServiceFinderNameCheck extends BaseFileCheck {
 					"comparator prefix with delimiter '_'"));
 		}
 	}
+
+	private static final String[][] _ALL_CAPS_STRINGS = {
+		{"DDL", "Ddl"}, {"DDM", "Ddm"}, {"DL", "Dl"}, {"PK", "Pk"}
+	};
 
 	private static final Map<String, String> _comparatorNamesMap =
 		HashMapBuilder.put(

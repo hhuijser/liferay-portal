@@ -145,16 +145,15 @@ public interface CommercePricingClassService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<CommercePricingClass> searchByCPDefinitionId(
+			long cpDefinitionId, String title, int start, int end)
+		throws PrincipalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public BaseModelSearchResult<CommercePricingClass>
 			searchCommercePricingClasses(
 				long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CommercePricingClass>
-			searchCommercePricingClassesByCPDefinitionId(
-				long cpDefinitionId, String title, int start, int end)
-		throws PrincipalException;
 
 	public CommercePricingClass updateCommercePricingClass(
 			long commercePricingClassId, long userId,

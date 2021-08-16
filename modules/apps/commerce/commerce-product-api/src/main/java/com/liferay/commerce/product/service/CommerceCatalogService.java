@@ -99,7 +99,7 @@ public interface CommerceCatalogService extends BaseService {
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CommerceCatalog> searchCommerceCatalogs(
+	public List<CommerceCatalog> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException;
 

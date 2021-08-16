@@ -523,6 +523,16 @@ public class CommercePricingClassLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List
+		<com.liferay.commerce.pricing.model.CommercePricingClass>
+			searchByCPDefinitionId(
+				long cpDefinitionId, String title, int start, int end) {
+
+		return _commercePricingClassLocalService.searchByCPDefinitionId(
+			cpDefinitionId, title, start, end);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.search.BaseModelSearchResult
 		<com.liferay.commerce.pricing.model.CommercePricingClass>
 				searchCommercePricingClasses(
@@ -532,17 +542,6 @@ public class CommercePricingClassLocalServiceWrapper
 
 		return _commercePricingClassLocalService.searchCommercePricingClasses(
 			companyId, keywords, start, end, sort);
-	}
-
-	@Override
-	public java.util.List
-		<com.liferay.commerce.pricing.model.CommercePricingClass>
-			searchCommercePricingClassesByCPDefinitionId(
-				long cpDefinitionId, String title, int start, int end) {
-
-		return _commercePricingClassLocalService.
-			searchCommercePricingClassesByCPDefinitionId(
-				cpDefinitionId, title, start, end);
 	}
 
 	/**

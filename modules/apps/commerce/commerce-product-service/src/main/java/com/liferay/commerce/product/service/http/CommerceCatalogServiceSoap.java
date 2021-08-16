@@ -202,14 +202,14 @@ public class CommerceCatalogServiceSoap {
 	}
 
 	public static com.liferay.commerce.product.model.CommerceCatalogSoap[]
-			searchCommerceCatalogs(
+			search(
 				long companyId, String keywords, int start, int end,
 				com.liferay.portal.kernel.search.Sort sort)
 		throws RemoteException {
 
 		try {
 			java.util.List<com.liferay.commerce.product.model.CommerceCatalog>
-				returnValue = CommerceCatalogServiceUtil.searchCommerceCatalogs(
+				returnValue = CommerceCatalogServiceUtil.search(
 					companyId, keywords, start, end, sort);
 
 			return com.liferay.commerce.product.model.CommerceCatalogSoap.

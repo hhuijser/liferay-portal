@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.commerce.product.service.internal.workflow;
+package com.liferay.commerce.product.internal.workflow;
 
-import com.liferay.commerce.product.model.CPAttachmentFileEntry;
-import com.liferay.commerce.product.service.CPAttachmentFileEntryLocalService;
+import com.liferay.commerce.product.model.CPDefinition;
+import com.liferay.commerce.product.service.CPDefinitionLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -33,19 +33,19 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Alessio Antonio Rendina
+ * @author Marco Leo
  */
 @Component(
 	enabled = false,
-	property = "model.class.name=com.liferay.commerce.product.model.CPAttachmentFileEntry",
+	property = "model.class.name=com.liferay.commerce.product.model.CPDefinition",
 	service = WorkflowHandler.class
 )
-public class CPAttachmentFileEntryWorkflowHandler
-	extends BaseWorkflowHandler<CPAttachmentFileEntry> {
+public class CPDefinitionWorkflowHandler
+	extends BaseWorkflowHandler<CPDefinition> {
 
 	@Override
 	public String getClassName() {
-		return CPAttachmentFileEntry.class.getName();
+		return CPDefinition.class.getName();
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class CPAttachmentFileEntryWorkflowHandler
 	}
 
 	@Override
-	public CPAttachmentFileEntry updateStatus(
+	public CPDefinition updateStatus(
 			int status, Map<String, Serializable> workflowContext)
 		throws PortalException {
 
@@ -72,12 +72,11 @@ public class CPAttachmentFileEntryWorkflowHandler
 		ServiceContext serviceContext = (ServiceContext)workflowContext.get(
 			"serviceContext");
 
-		return _cpAttachmentFileEntryLocalService.updateStatus(
+		return _cpDefinitionLocalService.updateStatus(
 			userId, classPK, status, serviceContext, workflowContext);
 	}
 
 	@Reference
-	private CPAttachmentFileEntryLocalService
-		_cpAttachmentFileEntryLocalService;
+	private CPDefinitionLocalService _cpDefinitionLocalService;
 
 }

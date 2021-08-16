@@ -398,15 +398,14 @@ public class CommerceChannelServiceHttp {
 	}
 
 	public static java.util.List
-		<com.liferay.commerce.product.model.CommerceChannel>
-				searchCommerceChannels(
-					HttpPrincipal httpPrincipal, long companyId)
+		<com.liferay.commerce.product.model.CommerceChannel> search(
+				HttpPrincipal httpPrincipal, long companyId)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				CommerceChannelServiceUtil.class, "searchCommerceChannels",
-				_searchCommerceChannelsParameterTypes8);
+				CommerceChannelServiceUtil.class, "search",
+				_searchParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId);
@@ -441,17 +440,15 @@ public class CommerceChannelServiceHttp {
 	}
 
 	public static java.util.List
-		<com.liferay.commerce.product.model.CommerceChannel>
-				searchCommerceChannels(
-					HttpPrincipal httpPrincipal, long companyId,
-					String keywords, int start, int end,
-					com.liferay.portal.kernel.search.Sort sort)
+		<com.liferay.commerce.product.model.CommerceChannel> search(
+				HttpPrincipal httpPrincipal, long companyId, String keywords,
+				int start, int end, com.liferay.portal.kernel.search.Sort sort)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				CommerceChannelServiceUtil.class, "searchCommerceChannels",
-				_searchCommerceChannelsParameterTypes9);
+				CommerceChannelServiceUtil.class, "search",
+				_searchParameterTypes9);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, keywords, start, end, sort);
@@ -692,13 +689,13 @@ public class CommerceChannelServiceHttp {
 		new Class[] {int.class, int.class};
 	private static final Class<?>[] _getCommerceChannelsParameterTypes7 =
 		new Class[] {long.class};
-	private static final Class<?>[] _searchCommerceChannelsParameterTypes8 =
-		new Class[] {long.class};
-	private static final Class<?>[] _searchCommerceChannelsParameterTypes9 =
-		new Class[] {
-			long.class, String.class, int.class, int.class,
-			com.liferay.portal.kernel.search.Sort.class
-		};
+	private static final Class<?>[] _searchParameterTypes8 = new Class[] {
+		long.class
+	};
+	private static final Class<?>[] _searchParameterTypes9 = new Class[] {
+		long.class, String.class, int.class, int.class,
+		com.liferay.portal.kernel.search.Sort.class
+	};
 	private static final Class<?>[]
 		_searchCommerceChannelsCountParameterTypes10 = new Class[] {
 			long.class, String.class

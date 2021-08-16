@@ -400,7 +400,7 @@ public class CommerceInventoryWarehouseServiceSoap {
 
 	public static
 		com.liferay.commerce.inventory.model.CommerceInventoryWarehouseSoap[]
-				searchCommerceInventoryWarehouses(
+				search(
 					long companyId, Boolean active, String commerceCountryCode,
 					String keywords, int start, int end,
 					com.liferay.portal.kernel.search.Sort sort)
@@ -410,10 +410,9 @@ public class CommerceInventoryWarehouseServiceSoap {
 			java.util.List
 				<com.liferay.commerce.inventory.model.
 					CommerceInventoryWarehouse> returnValue =
-						CommerceInventoryWarehouseServiceUtil.
-							searchCommerceInventoryWarehouses(
-								companyId, active, commerceCountryCode,
-								keywords, start, end, sort);
+						CommerceInventoryWarehouseServiceUtil.search(
+							companyId, active, commerceCountryCode, keywords,
+							start, end, sort);
 
 			return com.liferay.commerce.inventory.model.
 				CommerceInventoryWarehouseSoap.toSoapModels(returnValue);

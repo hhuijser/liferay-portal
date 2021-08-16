@@ -165,6 +165,14 @@ public class CommercePricingClassServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
+	public static List<CommercePricingClass> searchByCPDefinitionId(
+			long cpDefinitionId, String title, int start, int end)
+		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
+		return getService().searchByCPDefinitionId(
+			cpDefinitionId, title, start, end);
+	}
+
 	public static com.liferay.portal.kernel.search.BaseModelSearchResult
 		<CommercePricingClass> searchCommercePricingClasses(
 				long companyId, String keywords, int start, int end,
@@ -173,15 +181,6 @@ public class CommercePricingClassServiceUtil {
 
 		return getService().searchCommercePricingClasses(
 			companyId, keywords, start, end, sort);
-	}
-
-	public static List<CommercePricingClass>
-			searchCommercePricingClassesByCPDefinitionId(
-				long cpDefinitionId, String title, int start, int end)
-		throws com.liferay.portal.kernel.security.auth.PrincipalException {
-
-		return getService().searchCommercePricingClassesByCPDefinitionId(
-			cpDefinitionId, title, start, end);
 	}
 
 	public static CommercePricingClass updateCommercePricingClass(

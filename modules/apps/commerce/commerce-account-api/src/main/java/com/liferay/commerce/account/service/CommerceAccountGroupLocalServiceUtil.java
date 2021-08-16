@@ -125,13 +125,12 @@ public class CommerceAccountGroupLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static List<CommerceAccountGroup> searchCommerceAccountGroups(
+	public static List<CommerceAccountGroup> search(
 			long companyId, String keywords, int start, int end,
 			com.liferay.portal.kernel.search.Sort sort)
 		throws PortalException {
 
-		return getService().searchCommerceAccountGroups(
-			companyId, keywords, start, end, sort);
+		return getService().search(companyId, keywords, start, end, sort);
 	}
 
 	public static int searchCommerceAccountsGroupCount(

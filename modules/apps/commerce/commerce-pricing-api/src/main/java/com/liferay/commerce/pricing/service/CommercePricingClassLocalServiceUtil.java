@@ -455,6 +455,13 @@ public class CommercePricingClassLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
+	public static List<CommercePricingClass> searchByCPDefinitionId(
+		long cpDefinitionId, String title, int start, int end) {
+
+		return getService().searchByCPDefinitionId(
+			cpDefinitionId, title, start, end);
+	}
+
 	public static com.liferay.portal.kernel.search.BaseModelSearchResult
 		<CommercePricingClass> searchCommercePricingClasses(
 				long companyId, String keywords, int start, int end,
@@ -463,14 +470,6 @@ public class CommercePricingClassLocalServiceUtil {
 
 		return getService().searchCommercePricingClasses(
 			companyId, keywords, start, end, sort);
-	}
-
-	public static List<CommercePricingClass>
-		searchCommercePricingClassesByCPDefinitionId(
-			long cpDefinitionId, String title, int start, int end) {
-
-		return getService().searchCommercePricingClassesByCPDefinitionId(
-			cpDefinitionId, title, start, end);
 	}
 
 	/**

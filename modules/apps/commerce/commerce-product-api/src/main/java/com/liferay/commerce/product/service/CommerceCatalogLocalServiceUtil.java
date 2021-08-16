@@ -394,19 +394,18 @@ public class CommerceCatalogLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	public static List<CommerceCatalog> searchCommerceCatalogs(long companyId)
+	public static List<CommerceCatalog> search(long companyId)
 		throws PortalException {
 
-		return getService().searchCommerceCatalogs(companyId);
+		return getService().search(companyId);
 	}
 
-	public static List<CommerceCatalog> searchCommerceCatalogs(
+	public static List<CommerceCatalog> search(
 			long companyId, String keywords, int start, int end,
 			com.liferay.portal.kernel.search.Sort sort)
 		throws PortalException {
 
-		return getService().searchCommerceCatalogs(
-			companyId, keywords, start, end, sort);
+		return getService().search(companyId, keywords, start, end, sort);
 	}
 
 	public static int searchCommerceCatalogsCount(

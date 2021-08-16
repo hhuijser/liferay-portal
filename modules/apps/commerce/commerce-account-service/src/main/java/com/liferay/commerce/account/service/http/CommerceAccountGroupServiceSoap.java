@@ -187,7 +187,7 @@ public class CommerceAccountGroupServiceSoap {
 	}
 
 	public static com.liferay.commerce.account.model.CommerceAccountGroupSoap[]
-			searchCommerceAccountGroups(
+			search(
 				long companyId, String keywords, int start, int end,
 				com.liferay.portal.kernel.search.Sort sort)
 		throws RemoteException {
@@ -195,10 +195,8 @@ public class CommerceAccountGroupServiceSoap {
 		try {
 			java.util.List
 				<com.liferay.commerce.account.model.CommerceAccountGroup>
-					returnValue =
-						CommerceAccountGroupServiceUtil.
-							searchCommerceAccountGroups(
-								companyId, keywords, start, end, sort);
+					returnValue = CommerceAccountGroupServiceUtil.search(
+						companyId, keywords, start, end, sort);
 
 			return com.liferay.commerce.account.model.CommerceAccountGroupSoap.
 				toSoapModels(returnValue);

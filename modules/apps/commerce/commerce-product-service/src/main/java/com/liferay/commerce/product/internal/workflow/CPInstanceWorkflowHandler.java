@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.service.internal.workflow;
+package com.liferay.commerce.product.internal.workflow;
 
 import com.liferay.commerce.product.model.CPInstance;
 import com.liferay.commerce.product.service.CPInstanceLocalService;

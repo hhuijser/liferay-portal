@@ -20,6 +20,11 @@ import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.HTMLSourceProcessor;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -49,6 +54,10 @@ public class XMLTagAttributesCheck extends BaseTagAttributesCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
+		if (getSourceProcessor() instanceof HTMLSourceProcessor) {
+			content = _formatHTMLIncorrectLineBreaks(content);
+		}
+
 		content = formatIncorrectLineBreak(fileName, content);
 
 		content = _formatTagAttributes(absolutePath, content);
@@ -61,6 +70,43 @@ public class XMLTagAttributesCheck extends BaseTagAttributesCheck {
 	@Override
 	protected Tag sortHTMLTagAttributes(Tag tag) {
 		return tag;
+	}
+
+	private String _formatHTMLIncorrectLineBreaks(String content) {
+		Matcher matcher = _htmlTagPattern.matcher(content);
+
+		while (matcher.find()) {
+			int x = matcher.start();
+
+			while (true) {
+				x = content.indexOf(">", x + 1);
+
+				if (x == -1) {
+					return content;
+				}
+
+				String tag = content.substring(matcher.start(), x + 1);
+
+				if (ToolsUtil.isInsideQuotes(content, x) ||
+					(getLevel(tag, "<", ">") != 0)) {
+
+					continue;
+				}
+
+				if (tag.contains("\n")) {
+					String replacement = StringUtil.replace(
+						tag, new String[] {"\t", "\n>", "\n"},
+						new String[] {"", ">", " "});
+
+					return StringUtil.replaceFirst(
+						content, tag, replacement, matcher.start());
+				}
+
+				break;
+			}
+		}
+
+		return content.replaceAll("(</\\w+)\\s+(>)", "$1$2");
 	}
 
 	private String _formatTagAttributes(String absolutePath, String content)
@@ -154,5 +200,7 @@ public class XMLTagAttributesCheck extends BaseTagAttributesCheck {
 		"xs:complexType", "xs:element", "xs:enumeration", "xs:extension",
 		"xs:group", "xs:restriction", "xs:simpleType"
 	};
+
+	private static final Pattern _htmlTagPattern = Pattern.compile("\t<\\w+");
 
 }

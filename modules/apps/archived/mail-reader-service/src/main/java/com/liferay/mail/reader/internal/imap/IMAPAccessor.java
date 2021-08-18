@@ -1036,16 +1036,11 @@ public class IMAPAccessor {
 			com.liferay.mail.reader.model.Message message =
 				MessageLocalServiceUtil.getMessage(messageId);
 
-			StringBundler sb = new StringBundler(6);
-
-			sb.append(message.getTo());
-			sb.append(StringPool.COMMA);
-			sb.append(message.getCc());
-			sb.append(StringPool.COMMA);
-			sb.append(message.getBcc());
-			sb.append(StringPool.COMMA);
-
-			return InternetAddress.parse(sb.toString(), true);
+			return InternetAddress.parse(
+				StringBundler.concat(
+					message.getTo(), StringPool.COMMA, message.getCc(),
+					StringPool.COMMA, message.getBcc(), StringPool.COMMA),
+				true);
 		}
 		catch (AddressException addressException) {
 			throw new MailException(

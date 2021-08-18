@@ -34,19 +34,17 @@ public class RoleUpgradeProcess extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(8);
-
-			sb.append("select distinct Role_.roleId from Role_ inner join ");
-			sb.append("AccountRole on AccountRole.roleId = Role_.roleId ");
-			sb.append("where AccountRole.accountEntryId = ");
-			sb.append(AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT);
-			sb.append(" and Role_.classNameId = ");
-			sb.append(PortalUtil.getClassNameId(AccountRole.class));
-			sb.append(" and Role_.type_ = ");
-			sb.append(RoleConstants.TYPE_PROVIDER);
-
 			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select distinct Role_.roleId from Role_ inner join ",
+							"AccountRole on AccountRole.roleId = Role_.roleId ",
+							"where AccountRole.accountEntryId = ",
+							AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,
+							" and Role_.classNameId = ",
+							PortalUtil.getClassNameId(AccountRole.class),
+							" and Role_.type_ = ",
+							RoleConstants.TYPE_PROVIDER));
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
 						connection.prepareStatement(

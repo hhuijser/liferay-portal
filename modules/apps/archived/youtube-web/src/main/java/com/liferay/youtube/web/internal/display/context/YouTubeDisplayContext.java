@@ -111,14 +111,9 @@ public class YouTubeDisplayContext {
 	}
 
 	public String getImageURL() {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(HttpUtil.getProtocol(_httpServletRequest));
-		sb.append("://img.youtube.com/vi/");
-		sb.append(getId());
-		sb.append("/0.jpg");
-
-		return sb.toString();
+		return StringBundler.concat(
+			HttpUtil.getProtocol(_httpServletRequest), "://img.youtube.com/vi/",
+			getId(), "/0.jpg");
 	}
 
 	public String getPresetSize() {

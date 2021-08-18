@@ -137,17 +137,15 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 		}
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("select uuid_, eventId, groupId, companyId, userId, ");
-			sb.append("userName, createDate, modifiedDate, title, ");
-			sb.append("description, location, startDate, endDate, ");
-			sb.append("durationHour, durationMinute, allDay, type_, ");
-			sb.append("repeating, recurrence, remindBy, firstReminder, ");
-			sb.append("secondReminder from CalEvent");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select uuid_, eventId, groupId, companyId, userId, ",
+							"userName, createDate, modifiedDate, title, ",
+							"description, location, startDate, endDate, ",
+							"durationHour, durationMinute, allDay, type_, ",
+							"repeating, recurrence, remindBy, firstReminder, ",
+							"secondReminder from CalEvent"))) {
 
 				ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -952,17 +950,15 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 	private CalendarBooking _importCalEvent(long calEventId) throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("select uuid_, eventId, groupId, companyId, userId, ");
-			sb.append("userName, createDate, modifiedDate, title, ");
-			sb.append("description, location, startDate, endDate, ");
-			sb.append("durationHour, durationMinute, allDay, type_, ");
-			sb.append("repeating, recurrence, remindBy, firstReminder, ");
-			sb.append("secondReminder from CalEvent where eventId = ?");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select uuid_, eventId, groupId, companyId, userId, ",
+							"userName, createDate, modifiedDate, title, ",
+							"description, location, startDate, endDate, ",
+							"durationHour, durationMinute, allDay, type_, ",
+							"repeating, recurrence, remindBy, firstReminder, ",
+							"secondReminder from CalEvent where eventId = ?"))) {
 
 				preparedStatement.setLong(1, calEventId);
 
@@ -1320,13 +1316,10 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	private boolean _isAssetLinkImported(long entryId1, long entryId2, int type)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select count(*) from AssetLink where ((entryId1 = ? and ");
-		sb.append("entryId2 = ?) or (entryId2 = ? and entryId1 = ?)) and ");
-		sb.append("type_ = ?");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"select count(*) from AssetLink where ((entryId1 = ? and ",
+			"entryId2 = ?) or (entryId2 = ? and entryId1 = ?)) and ",
+			"type_ = ?");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

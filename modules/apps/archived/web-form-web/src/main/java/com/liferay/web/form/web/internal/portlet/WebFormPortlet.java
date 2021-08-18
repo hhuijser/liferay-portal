@@ -413,14 +413,10 @@ public class WebFormPortlet extends MVCPortlet {
 	}
 
 	protected String getCSVFormattedValue(String value) {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(CharPool.QUOTE);
-		sb.append(
-			StringUtil.replace(value, CharPool.QUOTE, StringPool.DOUBLE_QUOTE));
-		sb.append(CharPool.QUOTE);
-
-		return sb.toString();
+		return StringBundler.concat(
+			CharPool.QUOTE,
+			StringUtil.replace(value, CharPool.QUOTE, StringPool.DOUBLE_QUOTE),
+			CharPool.QUOTE);
 	}
 
 	protected String getMailBody(Map<String, String> fieldsMap) {

@@ -77,14 +77,11 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 			"com_liferay_announcements_web_portlet_AnnouncementsAdminPortlet";
 		long ownerId = 0;
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("insert into ResourcePermission (mvccVersion, ");
-		sb.append("resourcePermissionId, companyId, name, scope, primKey, ");
-		sb.append("primKeyId, roleId, ownerId, actionIds, viewActionId) ");
-		sb.append("values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into ResourcePermission (mvccVersion, ",
+			"resourcePermissionId, companyId, name, scope, primKey, ",
+			"primKeyId, roleId, ownerId, actionIds, viewActionId) ",
+			"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -113,13 +110,10 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 	protected void addResourceAction(String actionId, long bitwiseValue) {
 		long resourceActionId = increment(ResourceAction.class.getName());
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("insert into ResourceAction (mvccVersion, ");
-		sb.append("resourceActionId, name, actionId, bitwiseValue) values ");
-		sb.append("(?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into ResourceAction (mvccVersion, ",
+			"resourceActionId, name, actionId, bitwiseValue) values ",
+			"(?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -165,17 +159,9 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 	protected String getKey(
 		long companyId, int scope, String primKey, long roleId) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(companyId);
-		sb.append(StringPool.PERIOD);
-		sb.append(scope);
-		sb.append(StringPool.PERIOD);
-		sb.append(primKey);
-		sb.append(StringPool.PERIOD);
-		sb.append(roleId);
-
-		return sb.toString();
+		return StringBundler.concat(
+			companyId, StringPool.PERIOD, scope, StringPool.PERIOD, primKey,
+			StringPool.PERIOD, roleId);
 	}
 
 	protected void updateResourcePermission(
@@ -204,23 +190,11 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeResourcePermission(String name) throws Exception {
-		StringBundler sb1 = new StringBundler(4);
-
-		sb1.append("select resourceActionId, bitwiseValue from ");
-		sb1.append("ResourceAction where actionId = 'ADD_ENTRY' and name = '");
-		sb1.append(name);
-		sb1.append("'");
-
-		StringBundler sb2 = new StringBundler(5);
-
-		sb2.append("select resourcePermissionId, companyId, scope, primKey, ");
-		sb2.append("primKeyId, roleId, actionIds from ResourcePermission ");
-		sb2.append("where name = '");
-		sb2.append(name);
-		sb2.append("'");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select resourceActionId, bitwiseValue from ",
+					"ResourceAction where actionId = 'ADD_ENTRY' and name = '",
+					name, "'"));
 			ResultSet resultSet1 = preparedStatement1.executeQuery()) {
 
 			if (!resultSet1.next()) {
@@ -238,7 +212,11 @@ public class PermissionUpgradeProcess extends UpgradeProcess {
 			long bitwiseValue = resultSet1.getLong("bitwiseValue");
 
 			try (PreparedStatement preparedStatement2 =
-					connection.prepareStatement(sb2.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select resourcePermissionId, companyId, scope, primKey, ",
+							"primKeyId, roleId, actionIds from ResourcePermission ",
+							"where name = '", name, "'"));
 				ResultSet resultSet = preparedStatement2.executeQuery()) {
 
 				while (resultSet.next()) {

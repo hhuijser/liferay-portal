@@ -48,7 +48,7 @@ public class CapabilityVerificationException extends RuntimeException {
 		return StringBundler.concat(
 			"Failed validation of capability ", _infoItemCapability.getKey(),
 			" for item class name ", _infoItemClassName,
-			". An implementation for the following services is ", "required: ",
+			". An implementation for the following services is required: ",
 			_getMissingServiceClassNames(), ".");
 	}
 

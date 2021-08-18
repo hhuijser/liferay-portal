@@ -194,8 +194,7 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 		for (FileEntry fileEntry : getResources()) {
 			zipWriter.addEntry(
 				StringBundler.concat(
-					path, StringPool.SLASH, "resources/",
-					fileEntry.getFileName()),
+					path, "/resources/", fileEntry.getFileName()),
 				fileEntry.getContentStream());
 		}
 	}

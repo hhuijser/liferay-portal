@@ -76,9 +76,9 @@ public class ExportImportPortletPreferencesProcessorHelperImpl
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"Unable to export portlet preferences ",
-								"value for class ", className,
-								" with primary key ", primaryKeyLong));
+								"Unable to export portlet preferences value ",
+								"for class ", className, " with primary key ",
+								primaryKeyLong));
 					}
 
 					continue;

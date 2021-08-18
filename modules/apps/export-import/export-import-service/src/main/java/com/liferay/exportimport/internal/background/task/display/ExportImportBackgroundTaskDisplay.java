@@ -139,7 +139,7 @@ public class ExportImportBackgroundTaskDisplay
 	protected String getStagedModelMessage(Locale locale) {
 		return StringBundler.concat(
 			"<strong>", LanguageUtil.get(locale, getStatusMessageKey()),
-			StringPool.TRIPLE_PERIOD, "</strong>",
+			"...</strong>",
 			ResourceActionsUtil.getModelResource(locale, _stagedModelType),
 			"<em>", HtmlUtil.escape(_stagedModelName), "</em>");
 	}

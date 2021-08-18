@@ -207,9 +207,7 @@ public class DraftExportImportConfigurationMessageListener
 		dynamicQuery.add(
 			taskContextMapProperty.like(
 				StringBundler.concat(
-					StringPool.PERCENT, StringPool.QUOTE,
-					"exportImportConfigurationId", StringPool.QUOTE,
-					StringPool.COLON,
+					"%\"exportImportConfigurationId\":",
 					exportImportConfiguration.getExportImportConfigurationId(),
 					StringPool.PERCENT)));
 

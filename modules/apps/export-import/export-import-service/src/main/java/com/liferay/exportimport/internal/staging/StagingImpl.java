@@ -1242,10 +1242,9 @@ public class StagingImpl implements Staging {
 			errorMessage = LanguageUtil.get(
 				resourceBundle,
 				StringBundler.concat(
-					"the-lar-file-could-not-be-imported-because-it-",
-					"requires-page-templates-or-site-templates-that-could-",
-					"not-be-found.-please-import-the-following-templates-",
-					"manually"));
+					"the-lar-file-could-not-be-imported-because-it-requires-",
+					"page-templates-or-site-templates-that-could-not-be-",
+					"found.-please-import-the-following-templates-manually"));
 
 			errorMessagesJSONArray = JSONFactoryUtil.createJSONArray();
 

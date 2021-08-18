@@ -182,13 +182,8 @@ public class DataProviderInstanceUpgradeProcess extends UpgradeProcess {
 	protected String createOutputPathValue(
 		Locale locale, Value key, Value value) {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(key.getString(locale));
-		sb.append(CharPool.SEMICOLON);
-		sb.append(value.getString(locale));
-
-		return sb.toString();
+		return StringBundler.concat(
+			key.getString(locale), CharPool.SEMICOLON, value.getString(locale));
 	}
 
 	@Override

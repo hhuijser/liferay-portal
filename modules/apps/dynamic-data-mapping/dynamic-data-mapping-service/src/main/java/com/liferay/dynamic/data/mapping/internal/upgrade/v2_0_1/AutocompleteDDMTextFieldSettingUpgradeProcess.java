@@ -47,15 +47,12 @@ public class AutocompleteDDMTextFieldSettingUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("select DDMStructure.structureId, DDMStructure.definition ");
-		sb.append("from DDMFormInstance inner join DDMStructure on ");
-		sb.append("DDMFormInstance.structureId = DDMStructure.structureId ");
-		sb.append("where DDMStructure.definition like '%\"type\":\"text\"%'");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureId, DDMStructure.definition ",
+					"from DDMFormInstance inner join DDMStructure on ",
+					"DDMFormInstance.structureId = DDMStructure.structureId ",
+					"where DDMStructure.definition like '%\"type\":\"text\"%'"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

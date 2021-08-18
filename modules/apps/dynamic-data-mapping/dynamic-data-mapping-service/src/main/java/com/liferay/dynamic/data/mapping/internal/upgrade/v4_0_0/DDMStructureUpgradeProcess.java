@@ -45,19 +45,16 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 	private long _getParentStructureLayoutId(long parentStructureId)
 		throws Exception {
 
-		StringBundler sb1 = new StringBundler(8);
-
-		sb1.append("select DDMStructureLayout.structureLayoutId  from ");
-		sb1.append("DDMStructureLayout inner join DDMStructureVersion on ");
-		sb1.append("DDMStructureVersion.structureVersionId = ");
-		sb1.append("DDMStructureLayout.structureVersionId inner join ");
-		sb1.append("DDMStructure on DDMStructure.structureId = ");
-		sb1.append("DDMStructureVersion.structureId and DDMStructure.version ");
-		sb1.append("= DDMStructureVersion.version where ");
-		sb1.append("DDMStructure.structureId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString())) {
+				StringBundler.concat(
+					"select DDMStructureLayout.structureLayoutId  from ",
+					"DDMStructureLayout inner join DDMStructureVersion on ",
+					"DDMStructureVersion.structureVersionId = ",
+					"DDMStructureLayout.structureVersionId inner join ",
+					"DDMStructure on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId and DDMStructure.version ",
+					"= DDMStructureVersion.version where ",
+					"DDMStructure.structureId = ?"))) {
 
 			preparedStatement1.setLong(1, parentStructureId);
 
@@ -119,27 +116,24 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeStructureLayoutDefinition() throws Exception {
-		StringBundler sb1 = new StringBundler(16);
-
-		sb1.append("select DDMStructure.structureId, ");
-		sb1.append("DDMStructure.parentStructureId, DDMStructure.classNameId ");
-		sb1.append(", DDMStructure.structureKey, DDMStructureLayout.groupId, ");
-		sb1.append("DDMStructureLayout.structureLayoutId, ");
-		sb1.append("DDMStructureLayout.definition as ");
-		sb1.append("structureLayoutDefinition, ");
-		sb1.append("DDMStructureVersion.definition as ");
-		sb1.append("structureVersionDefinition from DDMStructureLayout inner ");
-		sb1.append("join DDMStructureVersion on ");
-		sb1.append("DDMStructureVersion.structureVersionId = ");
-		sb1.append("DDMStructureLayout.structureVersionId inner join ");
-		sb1.append("DDMStructure on DDMStructure.structureId = ");
-		sb1.append("DDMStructureVersion.structureId and DDMStructure.version ");
-		sb1.append("= DDMStructureVersion.version where ");
-		sb1.append("DDMStructure.classNameId = ? or DDMStructure.classNameId ");
-		sb1.append("= ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureId, ",
+					"DDMStructure.parentStructureId, DDMStructure.classNameId ",
+					", DDMStructure.structureKey, DDMStructureLayout.groupId, ",
+					"DDMStructureLayout.structureLayoutId, ",
+					"DDMStructureLayout.definition as ",
+					"structureLayoutDefinition, ",
+					"DDMStructureVersion.definition as ",
+					"structureVersionDefinition from DDMStructureLayout inner ",
+					"join DDMStructureVersion on ",
+					"DDMStructureVersion.structureVersionId = ",
+					"DDMStructureLayout.structureVersionId inner join ",
+					"DDMStructure on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId and DDMStructure.version ",
+					"= DDMStructureVersion.version where ",
+					"DDMStructure.classNameId = ? or DDMStructure.classNameId ",
+					"= ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -186,17 +180,14 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeStructureVersionDefinition() throws Exception {
-		StringBundler sb1 = new StringBundler(6);
-
-		sb1.append("select DDMStructure.structureKey, DDMStructureVersion.* ");
-		sb1.append("from DDMStructureVersion inner join DDMStructure on ");
-		sb1.append("DDMStructure.structureId = ");
-		sb1.append("DDMStructureVersion.structureId where ");
-		sb1.append("DDMStructure.classNameId = ? or DDMStructure.classNameId ");
-		sb1.append("= ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureKey, DDMStructureVersion.* ",
+					"from DDMStructureVersion inner join DDMStructure on ",
+					"DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId where ",
+					"DDMStructure.classNameId = ? or DDMStructure.classNameId ",
+					"= ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

@@ -37,14 +37,11 @@ public class DataProviderInstanceUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select DDMDataProviderInstance.definition, ");
-		sb.append("DDMDataProviderInstance.dataProviderInstanceId from ");
-		sb.append("DDMDataProviderInstance");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMDataProviderInstance.definition, ",
+					"DDMDataProviderInstance.dataProviderInstanceId from ",
+					"DDMDataProviderInstance"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

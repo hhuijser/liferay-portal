@@ -65,17 +65,14 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("select DDMStructure.definition, DDMStructure.version, ");
-		sb.append("DDMStructure.structureId, DDLRecordSet.recordSetId from ");
-		sb.append("DDLRecordSet inner join DDMStructure on ");
-		sb.append("DDLRecordSet.DDMStructureId = DDMStructure.structureId ");
-		sb.append("where DDLRecordSet.scope = ? and DDMStructure.definition ");
-		sb.append("like ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.definition, DDMStructure.version, ",
+					"DDMStructure.structureId, DDLRecordSet.recordSetId from ",
+					"DDLRecordSet inner join DDMStructure on ",
+					"DDLRecordSet.DDMStructureId = DDMStructure.structureId ",
+					"where DDLRecordSet.scope = ? and DDMStructure.definition ",
+					"like ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -197,16 +194,13 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 	protected void updateRecords(DDMForm ddmForm, long recordSetId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select DDLRecordVersion.DDMStorageId, DDMContent.data_ ");
-		sb.append("from DDLRecordVersion inner join DDLRecordSet on ");
-		sb.append("DDLRecordVersion.recordSetId = DDLRecordSet.recordSetId ");
-		sb.append("inner join DDMContent on DDLRecordVersion.DDMStorageId = ");
-		sb.append("DDMContent.contentId where DDLRecordSet.recordSetId = ? ");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDLRecordVersion.DDMStorageId, DDMContent.data_ ",
+					"from DDLRecordVersion inner join DDLRecordSet on ",
+					"DDLRecordVersion.recordSetId = DDLRecordSet.recordSetId ",
+					"inner join DDMContent on DDLRecordVersion.DDMStorageId = ",
+					"DDMContent.contentId where DDLRecordSet.recordSetId = ? "));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

@@ -387,21 +387,13 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append(themeDisplay.getPathContext());
-
-		sb.append("/documents/");
-		sb.append(fileEntry.getRepositoryId());
-		sb.append(StringPool.SLASH);
-		sb.append(fileEntry.getFolderId());
-		sb.append(StringPool.SLASH);
-		sb.append(
-			URLCodec.encodeURL(_html.unescape(fileEntry.getTitle()), true));
-		sb.append(StringPool.SLASH);
-		sb.append(fileEntry.getUuid());
-
-		return _html.escape(sb.toString());
+		return _html.escape(
+			StringBundler.concat(
+				themeDisplay.getPathContext(), "/documents/",
+				fileEntry.getRepositoryId(), StringPool.SLASH,
+				fileEntry.getFolderId(), StringPool.SLASH,
+				URLCodec.encodeURL(_html.unescape(fileEntry.getTitle()), true),
+				StringPool.SLASH, fileEntry.getUuid()));
 	}
 
 	private String _getGuestUploadURL(

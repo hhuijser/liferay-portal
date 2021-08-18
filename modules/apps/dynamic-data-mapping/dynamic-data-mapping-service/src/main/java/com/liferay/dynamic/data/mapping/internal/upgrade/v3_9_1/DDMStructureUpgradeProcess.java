@@ -93,17 +93,14 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeDDMStructure() throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("select DDMStructure.structureId, ");
-		sb.append("DDMStructureVersion.definition from DDMStructure inner ");
-		sb.append("join DDMStructureVersion on DDMStructure.structureId = ");
-		sb.append("DDMStructureVersion.structureId where ");
-		sb.append("DDMStructure.version = DDMStructureVersion.version and ");
-		sb.append("DDMStructure.classNameId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureId, ",
+					"DDMStructureVersion.definition from DDMStructure inner ",
+					"join DDMStructureVersion on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId where ",
+					"DDMStructure.version = DDMStructureVersion.version and ",
+					"DDMStructure.classNameId = ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -132,16 +129,13 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeDDMStructureVersion() throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select DDMStructureVersion.structureVersionId, ");
-		sb.append("DDMStructureVersion.definition from DDMStructure inner ");
-		sb.append("join DDMStructureVersion on DDMStructure.structureId = ");
-		sb.append("DDMStructureVersion.structureId where ");
-		sb.append("DDMStructure.classNameId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructureVersion.structureVersionId, ",
+					"DDMStructureVersion.definition from DDMStructure inner ",
+					"join DDMStructureVersion on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId where ",
+					"DDMStructure.classNameId = ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

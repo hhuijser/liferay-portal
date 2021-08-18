@@ -59,15 +59,9 @@ public class GeolocationDDMFormFieldValueRenderer
 				return StringPool.BLANK;
 			}
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("Latitude: ");
-			sb.append(jsonObject.get("lat"));
-			sb.append(StringPool.COMMA_AND_SPACE);
-			sb.append("Longitude: ");
-			sb.append(jsonObject.get("lng"));
-
-			return sb.toString();
+			return StringBundler.concat(
+				"Latitude: ", jsonObject.get("lat"), StringPool.COMMA_AND_SPACE,
+				"Longitude: ", jsonObject.get("lng"));
 		}
 
 		return StringPool.BLANK;

@@ -47,16 +47,14 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("update DDMDataProviderInstance set definition = ? where ");
-		sb.append("dataProviderInstanceId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from DDMDataProviderInstance");
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb.toString());
+					connection,
+					StringBundler.concat(
+						"update DDMDataProviderInstance set definition = ? where ",
+						"dataProviderInstanceId = ?"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -272,18 +270,15 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _updateDDMStructures() throws Exception {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("select DDMStructure.structureId, DDMStructure.definition ");
-		sb.append("from DDMDataProviderInstanceLink join DDMStructureVersion ");
-		sb.append("on DDMStructureVersion.structureId = ");
-		sb.append("DDMDataProviderInstanceLink.structureId left join ");
-		sb.append("DDMStructure on DDMStructure.structureId = ");
-		sb.append("DDMDataProviderInstanceLink.structureId and ");
-		sb.append("DDMStructure.version = DDMStructureVersion.version");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureId, DDMStructure.definition ",
+					"from DDMDataProviderInstanceLink join DDMStructureVersion ",
+					"on DDMStructureVersion.structureId = ",
+					"DDMDataProviderInstanceLink.structureId left join ",
+					"DDMStructure on DDMStructure.structureId = ",
+					"DDMDataProviderInstanceLink.structureId and ",
+					"DDMStructure.version = DDMStructureVersion.version"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

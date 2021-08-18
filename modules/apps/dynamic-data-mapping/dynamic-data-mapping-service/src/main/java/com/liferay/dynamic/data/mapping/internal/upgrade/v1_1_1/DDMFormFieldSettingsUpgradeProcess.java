@@ -46,16 +46,13 @@ public class DDMFormFieldSettingsUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select DDMStructure.structureId, DDMStructure.definition ");
-		sb.append("from DDLRecordSet inner join DDMStructure on ");
-		sb.append("DDLRecordSet.DDMStructureId = DDMStructure.structureId ");
-		sb.append("where DDLRecordSet.scope = ? and DDMStructure.definition ");
-		sb.append("like ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureId, DDMStructure.definition ",
+					"from DDLRecordSet inner join DDMStructure on ",
+					"DDLRecordSet.DDMStructureId = DDMStructure.structureId ",
+					"where DDLRecordSet.scope = ? and DDMStructure.definition ",
+					"like ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

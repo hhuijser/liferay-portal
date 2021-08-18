@@ -219,13 +219,12 @@ public class TextDDMFormFieldTypeSettingsTest
 
 		Assert.assertEquals(actions.toString(), 1, actions.size());
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("call('getDataProviderInstanceOutputParameters', '");
-		sb.append("dataProviderInstanceId=ddmDataProviderInstanceId', '");
-		sb.append("ddmDataProviderInstanceOutput=outputParameterNames')");
-
-		Assert.assertEquals(sb.toString(), actions.get(0));
+		Assert.assertEquals(
+			StringBundler.concat(
+				"call('getDataProviderInstanceOutputParameters', '",
+				"dataProviderInstanceId=ddmDataProviderInstanceId', '",
+				"ddmDataProviderInstanceOutput=outputParameterNames')"),
+			actions.get(0));
 
 		DDMFormRule ddmFormRule1 = ddmFormRules.get(1);
 

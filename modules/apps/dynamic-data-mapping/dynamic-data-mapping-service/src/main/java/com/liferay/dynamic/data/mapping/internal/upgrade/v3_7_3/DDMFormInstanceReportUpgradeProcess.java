@@ -71,36 +71,6 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		runSQL("delete from DDMFormInstanceReport;");
 
-		StringBundler sb1 = new StringBundler(21);
-
-		sb1.append("select DDMContent.data_, ");
-		sb1.append("DDMFormInstanceRecord.formInstanceRecordId, ");
-		sb1.append("DDMStructureVersion.definition from DDMContent inner ");
-		sb1.append("join DDMFormInstanceRecordVersion on ");
-		sb1.append("DDMContent.contentId = ");
-		sb1.append("DDMFormInstanceRecordVersion.storageId inner join ");
-		sb1.append("DDMFormInstanceRecord on ");
-		sb1.append("DDMFormInstanceRecord.formInstanceRecordId = ");
-		sb1.append("DDMFormInstanceRecordVersion.formInstanceRecordId inner ");
-		sb1.append("join DDMFormInstanceVersion on ");
-		sb1.append("DDMFormInstanceVersion.formInstanceId = ");
-		sb1.append("DDMFormInstanceRecordVersion.formInstanceId and ");
-		sb1.append("DDMFormInstanceVersion.version = ");
-		sb1.append("DDMFormInstanceRecordVersion.formInstanceVersion inner ");
-		sb1.append("join DDMStructureVersion on ");
-		sb1.append("DDMStructureVersion.structureVersionId = ");
-		sb1.append("DDMFormInstanceVersion.structureVersionId where ");
-		sb1.append("DDMFormInstanceRecord.version = ");
-		sb1.append("DDMFormInstanceRecordVersion.version and ");
-		sb1.append("DDMFormInstanceRecord.formInstanceId = ? and ");
-		sb1.append("DDMFormInstanceRecordVersion.status = ?");
-
-		StringBundler sb2 = new StringBundler(3);
-
-		sb2.append("insert into DDMFormInstanceReport (formInstanceReportId, ");
-		sb2.append("groupId, companyId, createDate, modifiedDate, ");
-		sb2.append("formInstanceId, data_) values (?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select formInstanceId, groupId, companyId, createDate from " +
 					"DDMFormInstance")) {
@@ -113,7 +83,29 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 				JSONObject dataJSONObject = _jsonFactory.createJSONObject();
 
 				try (PreparedStatement preparedStatement2 =
-						connection.prepareStatement(sb1.toString())) {
+						connection.prepareStatement(
+							StringBundler.concat(
+								"select DDMContent.data_, ",
+								"DDMFormInstanceRecord.formInstanceRecordId, ",
+								"DDMStructureVersion.definition from DDMContent inner ",
+								"join DDMFormInstanceRecordVersion on ",
+								"DDMContent.contentId = ",
+								"DDMFormInstanceRecordVersion.storageId inner join ",
+								"DDMFormInstanceRecord on ",
+								"DDMFormInstanceRecord.formInstanceRecordId = ",
+								"DDMFormInstanceRecordVersion.formInstanceRecordId inner ",
+								"join DDMFormInstanceVersion on ",
+								"DDMFormInstanceVersion.formInstanceId = ",
+								"DDMFormInstanceRecordVersion.formInstanceId and ",
+								"DDMFormInstanceVersion.version = ",
+								"DDMFormInstanceRecordVersion.formInstanceVersion inner ",
+								"join DDMStructureVersion on ",
+								"DDMStructureVersion.structureVersionId = ",
+								"DDMFormInstanceVersion.structureVersionId where ",
+								"DDMFormInstanceRecord.version = ",
+								"DDMFormInstanceRecordVersion.version and ",
+								"DDMFormInstanceRecord.formInstanceId = ? and ",
+								"DDMFormInstanceRecordVersion.status = ?"))) {
 
 					preparedStatement2.setLong(1, formInstanceId);
 					preparedStatement2.setInt(
@@ -145,7 +137,11 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 
 				try (PreparedStatement preparedStatement3 =
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-							connection, sb2.toString())) {
+							connection,
+							StringBundler.concat(
+								"insert into DDMFormInstanceReport (formInstanceReportId, ",
+								"groupId, companyId, createDate, modifiedDate, ",
+								"formInstanceId, data_) values (?, ?, ?, ?, ?, ?, ?)"))) {
 
 					preparedStatement3.setLong(1, increment());
 					preparedStatement3.setLong(2, groupId);

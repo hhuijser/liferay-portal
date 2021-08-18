@@ -66,14 +66,13 @@ public class LocalizableTextDDMFormFieldValueAccessorTest extends PowerMockito {
 
 	@Test
 	public void testNotEmpty() {
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("{\"title\":\"Welcome to Liferay Forms!\",");
-		sb.append("\"type\":\"document\"}");
-
 		DDMFormFieldValue ddmFormFieldValue =
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
-				"localizableText", new UnlocalizedValue(sb.toString()));
+				"localizableText",
+				new UnlocalizedValue(
+					StringBundler.concat(
+						"{\"title\":\"Welcome to Liferay Forms!\",",
+						"\"type\":\"document\"}")));
 
 		Assert.assertFalse(
 			_localizableTextDDMFormFieldValueAccessor.isEmpty(

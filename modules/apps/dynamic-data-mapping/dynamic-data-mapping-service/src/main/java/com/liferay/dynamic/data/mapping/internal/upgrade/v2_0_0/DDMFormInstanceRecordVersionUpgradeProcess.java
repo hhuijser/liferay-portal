@@ -40,30 +40,25 @@ public class DDMFormInstanceRecordVersionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb1 = new StringBundler(5);
-
-		sb1.append("select DDLRecordVersion.* , DDMFormInstance.groupId as ");
-		sb1.append("formInstanceGroupId, DDMFormInstance.version as ");
-		sb1.append("formInstanceVersion from DDLRecordVersion inner join ");
-		sb1.append("DDMFormInstance on DDLRecordVersion.recordSetId = ");
-		sb1.append("DDMFormInstance.formInstanceId");
-
-		StringBundler sb2 = new StringBundler(7);
-
-		sb2.append("insert into DDMFormInstanceRecordVersion(");
-		sb2.append("formInstanceRecordVersionId, groupId, companyId, userId, ");
-		sb2.append("userName, createDate, formInstanceId, ");
-		sb2.append("formInstanceVersion, formInstanceRecordId, version, ");
-		sb2.append("status, statusByUserId, statusByUserName, statusDate, ");
-		sb2.append("storageId) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
-		sb2.append("?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DDLRecordVersion.* , DDMFormInstance.groupId as ",
+					"formInstanceGroupId, DDMFormInstance.version as ",
+					"formInstanceVersion from DDLRecordVersion inner join ",
+					"DDMFormInstance on DDLRecordVersion.recordSetId = ",
+					"DDMFormInstance.formInstanceId"));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into DDMFormInstanceRecordVersion(",
+						"formInstanceRecordVersionId, groupId, companyId, userId, ",
+						"userName, createDate, formInstanceId, ",
+						"formInstanceVersion, formInstanceRecordId, version, ",
+						"status, statusByUserId, statusByUserName, statusDate, ",
+						"storageId) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?)"))) {
 
 			while (resultSet.next()) {
 				long recordVersionId = resultSet.getLong("recordVersionId");

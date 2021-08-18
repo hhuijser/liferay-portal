@@ -49,19 +49,16 @@ public class DDMStructureLayoutUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select DDMStructureLayout.structureLayoutId, ");
-		sb.append("DDMStructureLayout.definition from DDMStructureLayout ");
-		sb.append("inner join DDMStructureVersion on ");
-		sb.append("DDMStructureLayout.structureVersionId = ");
-		sb.append("DDMStructureVersion.structureVersionId inner join ");
-		sb.append("DDMStructure on DDMStructure.structureId = ");
-		sb.append("DDMStructureVersion.structureId where ");
-		sb.append("DDMStructure.classNameId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructureLayout.structureLayoutId, ",
+					"DDMStructureLayout.definition from DDMStructureLayout ",
+					"inner join DDMStructureVersion on ",
+					"DDMStructureLayout.structureVersionId = ",
+					"DDMStructureVersion.structureVersionId inner join ",
+					"DDMStructure on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId where ",
+					"DDMStructure.classNameId = ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

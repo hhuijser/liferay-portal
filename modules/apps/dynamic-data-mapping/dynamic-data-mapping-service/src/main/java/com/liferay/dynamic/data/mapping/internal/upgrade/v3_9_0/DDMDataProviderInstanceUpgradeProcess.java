@@ -105,13 +105,9 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 				String outputPathValue = valueStringParts[0];
 
 				if (outputPathType.equals("List")) {
-					StringBundler sb = new StringBundler(3);
-
-					sb.append(StringPool.DOLLAR);
-					sb.append(StringPool.DOUBLE_PERIOD);
-					sb.append(outputPathValue);
-
-					outputPathValue = sb.toString();
+					outputPathValue = StringBundler.concat(
+						StringPool.DOLLAR, StringPool.DOUBLE_PERIOD,
+						outputPathValue);
 				}
 
 				valuesMap.put(valueEntry.getKey(), outputPathValue);

@@ -51,6 +51,9 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
+import javax.portlet.HeaderRequest;
+import javax.portlet.HeaderResponse;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
@@ -80,6 +83,7 @@ public class MVCPortlet extends LiferayPortlet {
 		super.destroy();
 
 		_actionMVCCommandCache.close();
+		_headerMVCCommandCache.close();
 		_renderMVCCommandCache.close();
 		_resourceMVCCommandCache.close();
 	}
@@ -227,6 +231,11 @@ public class MVCPortlet extends LiferayPortlet {
 			getInitParameter("mvc-action-command-package-prefix"),
 			getPortletName(), portletId, MVCActionCommand.class,
 			"ActionCommand");
+		_headerMVCCommandCache = new MVCCommandCache<>(
+			MVCHeaderCommand.EMPTY,
+			getInitParameter("mvc-header-command-package-prefix"),
+			getPortletName(), portletId, MVCHeaderCommand.class,
+			"HeaderCommand");
 		_renderMVCCommandCache = new MVCCommandCache<>(
 			MVCRenderCommand.EMPTY,
 			getInitParameter("mvc-render-command-package-prefix"),
@@ -301,6 +310,49 @@ public class MVCPortlet extends LiferayPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
+	}
+
+	@Override
+	public void renderHeaders(
+			HeaderRequest headerRequest, HeaderResponse headerResponse)
+		throws IOException, PortletException {
+
+		PortletConfig portletConfig = getPortletConfig();
+
+		PortletContext portletContext = portletConfig.getPortletContext();
+
+		if (portletContext.getEffectiveMajorVersion() >= 3) {
+			String mvcRenderCommandName = ParamUtil.getString(
+				headerRequest, "mvcRenderCommandName", "/");
+
+			String mvcPath = ParamUtil.getString(headerRequest, "mvcPath");
+
+			if (!mvcRenderCommandName.equals("/") ||
+				Validator.isNull(mvcPath)) {
+
+				MVCHeaderCommand mvcHeaderCommand =
+					_headerMVCCommandCache.getMVCCommand(mvcRenderCommandName);
+
+				mvcPath = null;
+
+				if (mvcHeaderCommand != MVCRenderCommand.EMPTY) {
+					mvcPath = mvcHeaderCommand.renderHeaders(
+						headerRequest, headerResponse);
+				}
+
+				if (MVCRenderConstants.MVC_PATH_VALUE_SKIP_DISPATCH.equals(
+						mvcPath)) {
+
+					return;
+				}
+
+				if (Validator.isNotNull(mvcPath)) {
+					headerRequest.setAttribute(
+						getMVCPathAttributeName(headerResponse.getNamespace()),
+						mvcPath);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -467,6 +519,10 @@ public class MVCPortlet extends LiferayPortlet {
 
 	protected MVCCommandCache<MVCActionCommand> getActionMVCCommandCache() {
 		return _actionMVCCommandCache;
+	}
+
+	protected MVCCommandCache<MVCHeaderCommand> getHeaderMVCCommandCache() {
+		return _headerMVCCommandCache;
 	}
 
 	protected String getMVCPathAttributeName(String namespace) {
@@ -783,6 +839,7 @@ public class MVCPortlet extends LiferayPortlet {
 		new ConcurrentHashMap<>();
 
 	private MVCCommandCache<MVCActionCommand> _actionMVCCommandCache;
+	private MVCCommandCache<MVCHeaderCommand> _headerMVCCommandCache;
 	private MVCCommandCache<MVCRenderCommand> _renderMVCCommandCache;
 	private MVCCommandCache<MVCResourceCommand> _resourceMVCCommandCache;
 	private Set<String> _validPaths;

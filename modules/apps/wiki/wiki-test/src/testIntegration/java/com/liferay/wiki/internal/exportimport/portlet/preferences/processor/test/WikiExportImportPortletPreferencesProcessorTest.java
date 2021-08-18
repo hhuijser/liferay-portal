@@ -82,16 +82,13 @@ public class WikiExportImportPortletPreferencesProcessorTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("(&(javax.portlet.name=");
-		sb.append(WikiPortletKeys.WIKI);
-		sb.append(")(objectClass=");
-		sb.append(ExportImportPortletPreferencesProcessor.class.getName());
-		sb.append("))");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(&(javax.portlet.name=", WikiPortletKeys.WIKI,
+					")(objectClass=",
+					ExportImportPortletPreferencesProcessor.class.getName(),
+					"))")));
 
 		_serviceTracker.open();
 	}

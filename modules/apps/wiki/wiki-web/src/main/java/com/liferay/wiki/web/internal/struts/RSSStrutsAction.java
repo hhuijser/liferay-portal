@@ -100,14 +100,8 @@ public class RSSStrutsAction implements StrutsAction {
 		String layoutFullURL = _portal.getLayoutFullURL(
 			themeDisplay.getScopeGroupId(), WikiPortletKeys.WIKI);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(layoutFullURL);
-		sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-		sb.append("wiki/");
-		sb.append(nodeId);
-
-		String feedURL = sb.toString();
+		String feedURL = StringBundler.concat(
+			layoutFullURL, Portal.FRIENDLY_URL_SEPARATOR, "wiki/", nodeId);
 
 		String entryURL = feedURL + StringPool.SLASH + title;
 

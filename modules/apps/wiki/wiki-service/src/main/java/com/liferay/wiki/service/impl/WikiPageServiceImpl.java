@@ -486,15 +486,8 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			return pages.get(0);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{nodeId=");
-		sb.append(nodeId);
-		sb.append(", title=");
-		sb.append(title);
-		sb.append("}");
-
-		throw new NoSuchPageException(sb.toString());
+		throw new NoSuchPageException(
+			StringBundler.concat("{nodeId=", nodeId, ", title=", title, "}"));
 	}
 
 	@Override

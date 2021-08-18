@@ -1075,15 +1075,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			return page;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{resourcePrimKey=");
-		sb.append(resourcePrimKey);
-		sb.append(", status=");
-		sb.append(status);
-		sb.append("}");
-
-		throw new NoSuchPageException(sb.toString());
+		throw new NoSuchPageException(
+			StringBundler.concat(
+				"{resourcePrimKey=", resourcePrimKey, ", status=", status,
+				"}"));
 	}
 
 	@Override
@@ -1099,17 +1094,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			return page;
 		}
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{resourcePrimKey=");
-		sb.append(resourcePrimKey);
-		sb.append(", nodeId=");
-		sb.append(nodeId);
-		sb.append(", status=");
-		sb.append(status);
-		sb.append("}");
-
-		throw new NoSuchPageException(sb.toString());
+		throw new NoSuchPageException(
+			StringBundler.concat(
+				"{resourcePrimKey=", resourcePrimKey, ", nodeId=", nodeId,
+				", status=", status, "}"));
 	}
 
 	@Override
@@ -1123,17 +1111,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			return page;
 		}
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{nodeId=");
-		sb.append(nodeId);
-		sb.append(", title=");
-		sb.append(title);
-		sb.append(", status=");
-		sb.append(status);
-		sb.append("}");
-
-		throw new NoSuchPageException(sb.toString());
+		throw new NoSuchPageException(
+			StringBundler.concat(
+				"{nodeId=", nodeId, ", title=", title, ", status=", status,
+				"}"));
 	}
 
 	/**
@@ -3013,19 +2994,11 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		WikiPage previousVersionPage = getPreviousVersionPage(page);
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathMain());
-		sb.append("/wiki/get_page_attachment?p_l_id=");
-		sb.append(serviceContext.getPlid());
-		sb.append("&nodeId=");
-		sb.append(page.getNodeId());
-		sb.append("&title=");
-		sb.append(URLCodec.encodeURL(page.getTitle()));
-		sb.append("&fileName=");
-
-		String attachmentURLPrefix = sb.toString();
+		String attachmentURLPrefix = StringBundler.concat(
+			serviceContext.getPortalURL(), serviceContext.getPathMain(),
+			"/wiki/get_page_attachment?p_l_id=", serviceContext.getPlid(),
+			"&nodeId=", page.getNodeId(), "&title=",
+			URLCodec.encodeURL(page.getTitle()), "&fileName=");
 
 		String pageDiffs = StringPool.BLANK;
 

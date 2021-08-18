@@ -1131,15 +1131,10 @@ public class WikiPageLocalServiceTest {
 
 		long classNameId = PortalUtil.getClassNameId(WikiPage.class.getName());
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("multiValued=true\nrequiredClassNameIds=");
-		sb.append(classNameId);
-		sb.append(":-1\nselectedClassNameIds=");
-		sb.append(classNameId);
-		sb.append(":-1");
-
-		assetVocabulary.setSettings(sb.toString());
+		assetVocabulary.setSettings(
+			StringBundler.concat(
+				"multiValued=true\nrequiredClassNameIds=", classNameId,
+				":-1\nselectedClassNameIds=", classNameId, ":-1"));
 
 		AssetVocabularyLocalServiceUtil.updateAssetVocabulary(assetVocabulary);
 

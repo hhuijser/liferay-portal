@@ -73,18 +73,9 @@ public class WikiUtil {
 	public static String getAttachmentURLPrefix(
 		String mainPath, long plid, long nodeId, String title) {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(mainPath);
-		sb.append("/wiki/get_page_attachment?p_l_id=");
-		sb.append(plid);
-		sb.append("&nodeId=");
-		sb.append(nodeId);
-		sb.append("&title=");
-		sb.append(URLCodec.encodeURL(title));
-		sb.append("&fileName=");
-
-		return sb.toString();
+		return StringBundler.concat(
+			mainPath, "/wiki/get_page_attachment?p_l_id=", plid, "&nodeId=",
+			nodeId, "&title=", URLCodec.encodeURL(title), "&fileName=");
 	}
 
 	public static DiffVersionsInfo getDiffVersionsInfo(
@@ -160,18 +151,10 @@ public class WikiUtil {
 		PortletURL curEditPageURL = PortletURLUtil.clone(
 			editPageURL, renderResponse);
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(themeDisplay.getPathMain());
-		sb.append("/wiki/get_page_attachment?p_l_id=");
-		sb.append(themeDisplay.getPlid());
-		sb.append("&nodeId=");
-		sb.append(page.getNodeId());
-		sb.append("&title=");
-		sb.append(URLCodec.encodeURL(page.getTitle()));
-		sb.append("&fileName=");
-
-		String attachmentURLPrefix = sb.toString();
+		String attachmentURLPrefix = StringBundler.concat(
+			themeDisplay.getPathMain(), "/wiki/get_page_attachment?p_l_id=",
+			themeDisplay.getPlid(), "&nodeId=", page.getNodeId(), "&title=",
+			URLCodec.encodeURL(page.getTitle()), "&fileName=");
 
 		if (!preview && (version == 0)) {
 			WikiPageDisplay pageDisplay = _wikiPageLocalService.getDisplay(

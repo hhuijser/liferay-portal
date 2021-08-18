@@ -24,7 +24,6 @@ import com.liferay.dynamic.data.mapping.model.DDMFormRule;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceService;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.SetUtil;
 
 import java.util.Arrays;
@@ -137,9 +136,8 @@ public class DDMFormTemplateContextFactoryHelperTest extends PowerMockito {
 		return new DDMFormRule(
 			Arrays.asList(
 				StringBundler.concat(
-					"call(", StringPool.APOSTROPHE,
-					_DATA_PROVIDER_INSTANCE_UUID, StringPool.APOSTROPHE,
-					", 'input=Field1', 'Field2=output')")),
+					"call('", _DATA_PROVIDER_INSTANCE_UUID,
+					"', 'input=Field1', 'Field2=output')")),
 			"not(equals(getValue('Field1'), 'Option'))");
 	}
 

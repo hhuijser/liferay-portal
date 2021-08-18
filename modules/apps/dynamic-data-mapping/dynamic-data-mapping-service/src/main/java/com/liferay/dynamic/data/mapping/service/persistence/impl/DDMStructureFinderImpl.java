@@ -674,8 +674,7 @@ public class DDMStructureFinderImpl
 
 		return StringBundler.concat(
 			"AND EXISTS (SELECT 1 FROM DDMStructureVersion WHERE ",
-			"(DDMStructureVersion.structureId = ",
-			"DDMStructure.structureId) AND ",
+			"(DDMStructureVersion.structureId = DDMStructure.structureId) AND ",
 			"(DDMStructureVersion.version = DDMStructure.version) AND ",
 			"(DDMStructureVersion.status = ?))");
 	}

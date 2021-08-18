@@ -53,12 +53,12 @@ public class DDMFormInstanceRecordVersionUpgradeProcess extends UpgradeProcess {
 					connection,
 					StringBundler.concat(
 						"insert into DDMFormInstanceRecordVersion(",
-						"formInstanceRecordVersionId, groupId, companyId, userId, ",
-						"userName, createDate, formInstanceId, ",
+						"formInstanceRecordVersionId, groupId, companyId, ",
+						"userId, userName, createDate, formInstanceId, ",
 						"formInstanceVersion, formInstanceRecordId, version, ",
-						"status, statusByUserId, statusByUserName, statusDate, ",
-						"storageId) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
-						"?, ?)"))) {
+						"status, statusByUserId, statusByUserName, ",
+						"statusDate, storageId) values(?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			while (resultSet.next()) {
 				long recordVersionId = resultSet.getLong("recordVersionId");

@@ -92,9 +92,8 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 
 	protected void upgradeDDMStructureDefinition() throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				StringBundler.concat(
-					"select DDMStructure.definition, DDMStructure.structureId ",
-					"from DDMStructure"));
+				"select DDMStructure.definition, DDMStructure.structureId " +
+					"from DDMStructure");
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

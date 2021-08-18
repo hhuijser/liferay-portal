@@ -100,10 +100,11 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 					StringBundler.concat(
 						"insert into DDMFormInstanceRecord(uuid_, ",
 						"formInstanceRecordId, groupId, companyId, userId, ",
-						"userName, versionUserId, versionUserName, createDate, ",
-						"modifiedDate, formInstanceId, formInstanceVersion, ",
-						"storageId, version, lastPublishDate) values(?, ?, ?, ?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+						"userName, versionUserId, versionUserName, ",
+						"createDate, modifiedDate, formInstanceId, ",
+						"formInstanceVersion, storageId, version, ",
+						"lastPublishDate) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?)"))) {
 
 			while (resultSet.next()) {
 				String uuid = PortalUUIDUtil.generate();

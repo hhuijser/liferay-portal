@@ -52,7 +52,8 @@ public class AutocompleteDDMTextFieldSettingUpgradeProcess
 					"select DDMStructure.structureId, DDMStructure.definition ",
 					"from DDMFormInstance inner join DDMStructure on ",
 					"DDMFormInstance.structureId = DDMStructure.structureId ",
-					"where DDMStructure.definition like '%\"type\":\"text\"%'"));
+					"where DDMStructure.definition like ",
+					"'%\"type\":\"text\"%'"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

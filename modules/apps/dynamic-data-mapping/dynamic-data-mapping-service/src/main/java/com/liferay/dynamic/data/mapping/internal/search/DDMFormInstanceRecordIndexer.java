@@ -23,7 +23,6 @@ import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordLocalServic
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceRecordVersionLocalService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.util.DDMIndexer;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
@@ -163,9 +162,7 @@ public class DDMFormInstanceRecordIndexer
 
 		for (Locale locale : locales) {
 			document.addText(
-				StringBundler.concat(
-					"ddmContent", StringPool.UNDERLINE,
-					LocaleUtil.toLanguageId(locale)),
+				"ddmContent_" + LocaleUtil.toLanguageId(locale),
 				extractContent(ddmFormInstanceRecordVersion, locale));
 		}
 	}
@@ -178,10 +175,7 @@ public class DDMFormInstanceRecordIndexer
 
 		addSearchTerm(
 			searchQuery, searchContext,
-			StringBundler.concat(
-				"ddmContent", StringPool.UNDERLINE,
-				LocaleUtil.toLanguageId(locale)),
-			false);
+			"ddmContent_ " + LocaleUtil.toLanguageId(locale), false);
 	}
 
 	@Override

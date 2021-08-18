@@ -94,8 +94,8 @@ public class DDMFormInstanceReportLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Unable to update dynamic data mapping form ",
-						"instance report ", formInstanceReportId),
+						"Unable to update dynamic data mapping form instance ",
+						"report ", formInstanceReportId),
 					exception);
 			}
 		}

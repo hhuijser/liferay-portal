@@ -183,8 +183,7 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		String actual = ddmFormInstanceRecordCSVWriter.writeRecords(
 			ddmFormFieldValues);
 
-		Assert.assertEquals(
-			StringBundler.concat("value1,false,134.5\n", ",true,45"), actual);
+		Assert.assertEquals("value1,false,134.5\n,true,45", actual);
 	}
 
 	@Test

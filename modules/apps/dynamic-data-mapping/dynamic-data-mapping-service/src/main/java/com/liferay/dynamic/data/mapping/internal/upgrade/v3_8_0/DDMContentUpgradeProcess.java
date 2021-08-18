@@ -55,8 +55,9 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 				StringBundler.concat(
 					"select DDMContent.contentId, DDMContent.data_, ",
 					"DDMStructureVersion.structureVersionId, ",
-					"DDMStructureVersion.definition from DDMContent inner join ",
-					"DDMFormInstanceRecordVersion on DDMContent.contentId = ",
+					"DDMStructureVersion.definition from DDMContent inner ",
+					"join DDMFormInstanceRecordVersion on ",
+					"DDMContent.contentId = ",
 					"DDMFormInstanceRecordVersion.storageId inner join ",
 					"DDMFormInstanceVersion on ",
 					"DDMFormInstanceRecordVersion.formInstanceId = ",

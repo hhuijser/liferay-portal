@@ -54,17 +54,10 @@ public class LayoutPageTemplateEntryImpl
 			jsSB.append(fragmentEntryLink.getJs());
 		}
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("<html><head><style>");
-		sb.append(cssSB.toString());
-		sb.append("</style><script>");
-		sb.append(jsSB.toString());
-		sb.append("</script></head><body>");
-		sb.append(htmlSB.toString());
-		sb.append("</body></html>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<html><head><style>", cssSB.toString(), "</style><script>",
+			jsSB.toString(), "</script></head><body>", htmlSB.toString(),
+			"</body></html>");
 	}
 
 	@Override

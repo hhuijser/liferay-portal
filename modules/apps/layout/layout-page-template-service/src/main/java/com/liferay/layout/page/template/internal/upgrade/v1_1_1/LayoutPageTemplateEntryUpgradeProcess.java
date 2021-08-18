@@ -37,17 +37,15 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("select layoutPageTemplateEntryId, companyId, name, ");
-		sb.append("layoutPrototypeId from LayoutPageTemplateEntry where ");
-		sb.append("type_ = ");
-		sb.append(LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE);
-		sb.append(" and groupId in (select groupId from Group_ where site = ");
-		sb.append("[$FALSE$])");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				SQLTransformer.transform(sb.toString()));
+				SQLTransformer.transform(
+					StringBundler.concat(
+						"select layoutPageTemplateEntryId, companyId, name, ",
+						"layoutPrototypeId from LayoutPageTemplateEntry where ",
+						"type_ = ",
+						LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE,
+						" and groupId in (select groupId from Group_ where site = ",
+						"[$FALSE$])")));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -74,17 +72,12 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 		String newName = name;
 
 		for (int i = 1;; i++) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("select count(*) from LayoutPageTemplateEntry where ");
-			sb.append("groupId = ");
-			sb.append(company.getGroupId());
-			sb.append(" and name = '");
-			sb.append(newName);
-			sb.append("'");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select count(*) from LayoutPageTemplateEntry where ",
+							"groupId = ", company.getGroupId(), " and name = '",
+							newName, "'"));
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				if (resultSet.next() && (resultSet.getInt(1) > 0)) {

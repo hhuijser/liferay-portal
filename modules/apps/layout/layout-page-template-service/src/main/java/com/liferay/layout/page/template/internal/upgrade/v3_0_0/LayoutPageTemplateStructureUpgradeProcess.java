@@ -48,14 +48,11 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeLayoutPageTemplatesStructures() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select layoutPageTemplateStructureId, groupId, companyId, ");
-		sb.append("userId, userName, createDate, data_ from ");
-		sb.append("LayoutPageTemplateStructure");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select layoutPageTemplateStructureId, groupId, companyId, ",
+					"userId, userName, createDate, data_ from ",
+					"LayoutPageTemplateStructure"))) {
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
@@ -88,15 +85,12 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 		long groupId, long companyId, long userId, String userName,
 		Timestamp createDate, long layoutPageTemplateStructureId, String data) {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("insert into LayoutPageTemplateStructureRel (uuid_, ");
-		sb.append("lPageTemplateStructureRelId, groupId, companyId, userId, ");
-		sb.append("userName, createDate, modifiedDate, ");
-		sb.append("layoutPageTemplateStructureId, segmentsExperienceId, ");
-		sb.append("data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into LayoutPageTemplateStructureRel (uuid_, ",
+			"lPageTemplateStructureRelId, groupId, companyId, userId, ",
+			"userName, createDate, modifiedDate, ",
+			"layoutPageTemplateStructureId, segmentsExperienceId, ",
+			"data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

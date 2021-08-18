@@ -34,19 +34,16 @@ public class LayoutPermissionsUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("select Layout.companyId, Layout.plid, Layout.privateLayout");
-		sb.append(", Layout.groupId, Layout.userId from Layout left join ");
-		sb.append("ResourcePermission on (ResourcePermission.companyId = ");
-		sb.append("Layout.companyId and ResourcePermission.name = '");
-		sb.append(Layout.class.getName());
-		sb.append("' and ResourcePermission.scope = ");
-		sb.append(ResourceConstants.SCOPE_INDIVIDUAL);
-		sb.append(" and ResourcePermission.primKeyId = Layout.plid) where ");
-		sb.append("ResourcePermission.resourcePermissionId is null");
-
-		String sql = SQLTransformer.transform(sb.toString());
+		String sql = SQLTransformer.transform(
+			StringBundler.concat(
+				"select Layout.companyId, Layout.plid, Layout.privateLayout",
+				", Layout.groupId, Layout.userId from Layout left join ",
+				"ResourcePermission on (ResourcePermission.companyId = ",
+				"Layout.companyId and ResourcePermission.name = '",
+				Layout.class.getName(), "' and ResourcePermission.scope = ",
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				" and ResourcePermission.primKeyId = Layout.plid) where ",
+				"ResourcePermission.resourcePermissionId is null"));
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement = connection.prepareStatement(

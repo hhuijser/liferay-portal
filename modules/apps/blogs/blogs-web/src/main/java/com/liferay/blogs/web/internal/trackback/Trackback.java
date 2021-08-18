@@ -69,17 +69,9 @@ public class Trackback {
 			url, new char[] {CharPool.CLOSE_BRACKET, CharPool.OPEN_BRACKET},
 			new String[] {"%5D", "%5B"});
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("[...] ");
-		sb.append(excerpt);
-		sb.append(" [...] [url=");
-		sb.append(url);
-		sb.append("]");
-		sb.append(themeDisplay.translate("read-more"));
-		sb.append("[/url]");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"[...] ", excerpt, " [...] [url=", url, "]",
+			themeDisplay.translate("read-more"), "[/url]");
 	}
 
 	protected String buildBody(
@@ -95,30 +87,17 @@ public class Trackback {
 	protected String buildEntryURL(BlogsEntry entry, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(_portal.getLayoutFullURL(themeDisplay));
-		sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-		sb.append("blogs/");
-		sb.append(entry.getUrlTitle());
-
-		return sb.toString();
+		return StringBundler.concat(
+			_portal.getLayoutFullURL(themeDisplay),
+			Portal.FRIENDLY_URL_SEPARATOR, "blogs/", entry.getUrlTitle());
 	}
 
 	protected String buildHTMLBody(
 		ThemeDisplay themeDisplay, String excerpt, String url) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("[...] ");
-		sb.append(excerpt);
-		sb.append(" [...] <a href=\"");
-		sb.append(url);
-		sb.append("\">");
-		sb.append(themeDisplay.translate("read-more"));
-		sb.append("</a>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"[...] ", excerpt, " [...] <a href=\"", url, "\">",
+			themeDisplay.translate("read-more"), "</a>");
 	}
 
 	@Reference

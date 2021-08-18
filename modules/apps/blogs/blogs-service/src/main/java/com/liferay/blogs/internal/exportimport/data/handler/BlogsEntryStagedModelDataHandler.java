@@ -157,14 +157,11 @@ public class BlogsEntryStagedModelDataHandler
 				}
 				else {
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Unable to export small image ");
-						sb.append(entry.getSmallImageId());
-						sb.append(" to blogs entry ");
-						sb.append(entry.getEntryId());
-
-						_log.warn(sb.toString());
+						_log.warn(
+							StringBundler.concat(
+								"Unable to export small image ",
+								entry.getSmallImageId(), " to blogs entry ",
+								entry.getEntryId()));
 					}
 
 					entry.setSmallImage(false);

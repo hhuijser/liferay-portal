@@ -123,16 +123,13 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 			long groupClassNameId, long defaultUserId, long adminUserId)
 		throws SQLException {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select Calendar.calendarId from Calendar join ");
-		sb.append("CalendarResource on Calendar.calendarResourceId = ");
-		sb.append("CalendarResource.calendarResourceId where ");
-		sb.append("CalendarResource.classNameId = ? and ");
-		sb.append("CalendarResource.userId = ?");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select Calendar.calendarId from Calendar join ",
+					"CalendarResource on Calendar.calendarResourceId = ",
+					"CalendarResource.calendarResourceId where ",
+					"CalendarResource.classNameId = ? and ",
+					"CalendarResource.userId = ?"))) {
 
 			preparedStatement.setLong(1, groupClassNameId);
 			preparedStatement.setLong(2, defaultUserId);

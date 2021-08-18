@@ -203,17 +203,13 @@ public class UpgradeClassNamesTest {
 	protected void addAssetVocabulary(long classNameId) throws Exception {
 		Group group = GroupTestUtil.addGroup();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("multiValued=true\nselectedClassNameIds=");
-		sb.append(classNameId);
-		sb.append(":-1");
-
 		_assetVocabulary = _assetVocabularyLocalService.addVocabulary(
 			TestPropsValues.getUserId(), group.getGroupId(),
 			RandomTestUtil.randomString(),
 			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(), sb.toString(),
+			RandomTestUtil.randomLocaleStringMap(),
+			StringBundler.concat(
+				"multiValued=true\nselectedClassNameIds=", classNameId, ":-1"),
 			ServiceContextTestUtil.getServiceContext());
 	}
 

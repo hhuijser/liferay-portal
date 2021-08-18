@@ -277,9 +277,7 @@ public class FileInstallConfigTest {
 
 		String special = "üß";
 
-		String line = StringBundler.concat(
-			"testKey", StringPool.EQUAL, StringPool.QUOTE, special,
-			StringPool.QUOTE);
+		String line = StringBundler.concat("testKey=\"", special, "\"");
 
 		_configuration = _createConfiguration(
 			configurationPid, line, StandardCharsets.UTF_8);

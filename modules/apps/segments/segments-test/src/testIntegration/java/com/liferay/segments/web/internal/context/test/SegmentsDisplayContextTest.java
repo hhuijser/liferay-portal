@@ -72,7 +72,8 @@ public class SegmentsDisplayContextTest {
 			registry.getFilter(
 				StringBundler.concat(
 					"(component.name=",
-					"com.liferay.segments.web.internal.portlet.SegmentsPortlet)")));
+					"com.liferay.segments.web.internal.portlet.",
+					"SegmentsPortlet)")));
 
 		_serviceTracker.open();
 	}

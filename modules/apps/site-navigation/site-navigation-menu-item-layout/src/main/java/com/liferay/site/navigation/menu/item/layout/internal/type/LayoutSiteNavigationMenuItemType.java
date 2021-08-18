@@ -404,8 +404,7 @@ public class LayoutSiteNavigationMenuItemType
 		dynamicQuery.add(
 			typeSettingsProperty.like(
 				StringBundler.concat(
-					StringPool.PERCENT, "layoutUuid", StringPool.EQUAL,
-					curLayout.getUuid(), StringPool.PERCENT)));
+					"%layoutUuid=", curLayout.getUuid(), StringPool.PERCENT)));
 
 		Property siteNavigationMenuIdProperty = PropertyFactoryUtil.forName(
 			"siteNavigationMenuId");

@@ -275,17 +275,10 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 				classNameId, classPK, ruleGroupId);
 
 		if (ruleGroupInstance != null) {
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("{classNameId=");
-			sb.append(classNameId);
-			sb.append(", classPK=");
-			sb.append(classPK);
-			sb.append(", ruleGroupId=");
-			sb.append(ruleGroupId);
-			sb.append("}");
-
-			throw new DuplicateRuleGroupInstanceException(sb.toString());
+			throw new DuplicateRuleGroupInstanceException(
+				StringBundler.concat(
+					"{classNameId=", classNameId, ", classPK=", classPK,
+					", ruleGroupId=", ruleGroupId, "}"));
 		}
 
 		_mdrRuleGroupPersistence.findByPrimaryKey(ruleGroupId);

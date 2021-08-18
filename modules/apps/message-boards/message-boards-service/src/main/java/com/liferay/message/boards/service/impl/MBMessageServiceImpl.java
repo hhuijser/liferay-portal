@@ -249,14 +249,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 		if (_lockManager.isLocked(
 				MBThread.class.getName(), parentMessage.getThreadId())) {
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Thread is locked for class name ");
-			sb.append(MBThread.class.getName());
-			sb.append(" and class PK ");
-			sb.append(parentMessage.getThreadId());
-
-			throw new LockedThreadException(sb.toString());
+			throw new LockedThreadException(
+				StringBundler.concat(
+					"Thread is locked for class name ",
+					MBThread.class.getName(), " and class PK ",
+					parentMessage.getThreadId()));
 		}
 
 		if (!ModelResourcePermissionUtil.contains(
@@ -293,14 +290,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 		if (_lockManager.isLocked(
 				MBThread.class.getName(), message.getThreadId())) {
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Thread is locked for class name ");
-			sb.append(MBThread.class.getName());
-			sb.append(" and class PK ");
-			sb.append(message.getThreadId());
-
-			throw new LockedThreadException(sb.toString());
+			throw new LockedThreadException(
+				StringBundler.concat(
+					"Thread is locked for class name ",
+					MBThread.class.getName(), " and class PK ",
+					message.getThreadId()));
 		}
 
 		ModelResourcePermissionUtil.check(
@@ -882,14 +876,11 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 		if (_lockManager.isLocked(
 				MBThread.class.getName(), message.getThreadId())) {
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Thread is locked for class name ");
-			sb.append(MBThread.class.getName());
-			sb.append(" and class PK ");
-			sb.append(message.getThreadId());
-
-			throw new LockedThreadException(sb.toString());
+			throw new LockedThreadException(
+				StringBundler.concat(
+					"Thread is locked for class name ",
+					MBThread.class.getName(), " and class PK ",
+					message.getThreadId()));
 		}
 
 		if (!ModelResourcePermissionUtil.contains(

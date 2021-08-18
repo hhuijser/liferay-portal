@@ -138,14 +138,9 @@ public class NestedPortletsPortlet extends MVCPortlet {
 
 			processColumnMatcher.reset();
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(theme.getThemeId());
-			sb.append(LayoutTemplateConstants.CUSTOM_SEPARATOR);
-			sb.append(renderResponse.getNamespace());
-			sb.append(layoutTemplateId);
-
-			templateId = sb.toString();
+			templateId = StringBundler.concat(
+				theme.getThemeId(), LayoutTemplateConstants.CUSTOM_SEPARATOR,
+				renderResponse.getNamespace(), layoutTemplateId);
 
 			content = processColumnMatcher.replaceAll(
 				"$1" + renderResponse.getNamespace() + "_$2$3");

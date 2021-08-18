@@ -67,14 +67,10 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 	@Override
 	public void deleteThread(long threadId) throws PortalException {
 		if (_lockManager.isLocked(MBThread.class.getName(), threadId)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Thread is locked for class name ");
-			sb.append(MBThread.class.getName());
-			sb.append(" and class PK ");
-			sb.append(threadId);
-
-			throw new LockedThreadException(sb.toString());
+			throw new LockedThreadException(
+				StringBundler.concat(
+					"Thread is locked for class name ",
+					MBThread.class.getName(), " and class PK ", threadId));
 		}
 
 		List<MBMessage> messages = _mbMessageLocalService.getThreadMessages(
@@ -389,14 +385,10 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 		throws PortalException {
 
 		if (_lockManager.isLocked(MBThread.class.getName(), threadId)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Thread is locked for class name ");
-			sb.append(MBThread.class.getName());
-			sb.append(" and class PK ");
-			sb.append(threadId);
-
-			throw new LockedThreadException(sb.toString());
+			throw new LockedThreadException(
+				StringBundler.concat(
+					"Thread is locked for class name ",
+					MBThread.class.getName(), " and class PK ", threadId));
 		}
 
 		MBThread thread = mbThreadLocalService.getThread(threadId);
@@ -431,14 +423,10 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 	@Override
 	public MBThread moveThreadToTrash(long threadId) throws PortalException {
 		if (_lockManager.isLocked(MBThread.class.getName(), threadId)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Thread is locked for class name ");
-			sb.append(MBThread.class.getName());
-			sb.append(" and class PK ");
-			sb.append(threadId);
-
-			throw new LockedThreadException(sb.toString());
+			throw new LockedThreadException(
+				StringBundler.concat(
+					"Thread is locked for class name ",
+					MBThread.class.getName(), " and class PK ", threadId));
 		}
 
 		List<MBMessage> messages = _mbMessageLocalService.getThreadMessages(

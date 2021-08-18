@@ -246,15 +246,12 @@ public class MDRActionStagedModelDataHandler
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append("Unable to find layout with uuid ");
-				sb.append(layoutUuid);
-				sb.append(" in group ");
-				sb.append(groupId);
-				sb.append(". Site redirect may not match the target layout.");
-
-				_log.warn(sb.toString(), exception);
+				_log.warn(
+					StringBundler.concat(
+						"Unable to find layout with uuid ", layoutUuid,
+						" in group ", groupId,
+						". Site redirect may not match the target layout."),
+					exception);
 			}
 		}
 	}

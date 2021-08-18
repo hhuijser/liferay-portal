@@ -141,19 +141,11 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 	}
 
 	protected String getEntryRowIds() {
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("['");
-		sb.append(_liferayPortletResponse.getNamespace());
-		sb.append(RowChecker.ROW_IDS);
-		sb.append(MBCategory.class.getSimpleName());
-		sb.append("', '");
-		sb.append(_liferayPortletResponse.getNamespace());
-		sb.append(RowChecker.ROW_IDS);
-		sb.append(MBThread.class.getSimpleName());
-		sb.append("']");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"['", _liferayPortletResponse.getNamespace(), RowChecker.ROW_IDS,
+			MBCategory.class.getSimpleName(), "', '",
+			_liferayPortletResponse.getNamespace(), RowChecker.ROW_IDS,
+			MBThread.class.getSimpleName(), "']");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(EntriesChecker.class);

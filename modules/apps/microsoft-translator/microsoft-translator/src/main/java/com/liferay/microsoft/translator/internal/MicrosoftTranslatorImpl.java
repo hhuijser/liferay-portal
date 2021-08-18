@@ -65,17 +65,11 @@ public class MicrosoftTranslatorImpl implements MicrosoftTranslator {
 
 		Http.Options options = new Http.Options();
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("https://api.microsofttranslator.com/v2/http.svc/Translate?");
-		sb.append("text=");
-		sb.append(URLCodec.encodeURL(fromText));
-		sb.append("&from=");
-		sb.append(fromLanguageId);
-		sb.append("&to=");
-		sb.append(toLanguageId);
-
-		options.setLocation(sb.toString());
+		options.setLocation(
+			StringBundler.concat(
+				"https://api.microsofttranslator.com/v2/http.svc/Translate?",
+				"text=", URLCodec.encodeURL(fromText), "&from=", fromLanguageId,
+				"&to=", toLanguageId));
 
 		String accessToken = _microsoftTranslatorAuthenticator.getAccessToken();
 

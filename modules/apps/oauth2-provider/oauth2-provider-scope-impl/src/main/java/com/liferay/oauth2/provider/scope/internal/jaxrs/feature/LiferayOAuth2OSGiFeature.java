@@ -190,17 +190,13 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 	protected void registerDescriptors(String osgiJaxRsName) {
 		String bundleSymbolicName = _bundle.getSymbolicName();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("(&(bundle.symbolic.name=");
-		sb.append(bundleSymbolicName);
-		sb.append(")(objectClass=");
-		sb.append(ResourceBundleLoader.class.getName());
-		sb.append(")(resource.bundle.base.name=content.Language))");
-
 		ServiceTracker<ResourceBundleLoader, ResourceBundleLoader>
 			serviceTracker = ServiceTrackerFactory.open(
-				_bundleContext, sb.toString());
+				_bundleContext,
+				StringBundler.concat(
+					"(&(bundle.symbolic.name=", bundleSymbolicName,
+					")(objectClass=", ResourceBundleLoader.class.getName(),
+					")(resource.bundle.base.name=content.Language))"));
 
 		_serviceTrackers.add(serviceTracker);
 

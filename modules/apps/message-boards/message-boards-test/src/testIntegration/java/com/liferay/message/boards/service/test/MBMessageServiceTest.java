@@ -195,12 +195,11 @@ public class MBMessageServiceTest {
 				for (LogEntry logEntry : logCapture3.getLogEntries()) {
 					String message = logEntry.getMessage();
 
-					StringBundler sb = new StringBundler(2);
-
-					sb.append("com.liferay.portal.kernel.exception.");
-					sb.append("SystemException:");
-
-					Assert.assertTrue(message.startsWith(sb.toString()));
+					Assert.assertTrue(
+						message.startsWith(
+							StringBundler.concat(
+								"com.liferay.portal.kernel.exception.",
+								"SystemException:")));
 				}
 
 				for (LogEntry logEntry : logCapture4.getLogEntries()) {

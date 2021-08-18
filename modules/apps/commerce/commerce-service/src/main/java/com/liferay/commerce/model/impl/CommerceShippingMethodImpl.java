@@ -29,15 +29,10 @@ public class CommerceShippingMethodImpl extends CommerceShippingMethodBaseImpl {
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(themeDisplay.getPathImage());
-		sb.append("/shipping/method?img_id=");
-		sb.append(getImageId());
-		sb.append("&t=");
-		sb.append(WebServerServletTokenUtil.getToken(getImageId()));
-
-		return sb.toString();
+		return StringBundler.concat(
+			themeDisplay.getPathImage(), "/shipping/method?img_id=",
+			getImageId(), "&t=",
+			WebServerServletTokenUtil.getToken(getImageId()));
 	}
 
 }

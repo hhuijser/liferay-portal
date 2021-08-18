@@ -194,16 +194,10 @@ public class CommerceAccountDisplayContext {
 		ThemeDisplay themeDisplay =
 			_commerceAccountRequestHelper.getThemeDisplay();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(themeDisplay.getPathImage());
-		sb.append("/organization_logo?img_id=");
-		sb.append(commerceAccount.getLogoId());
-		sb.append("&t=");
-		sb.append(
+		return StringBundler.concat(
+			themeDisplay.getPathImage(), "/organization_logo?img_id=",
+			commerceAccount.getLogoId(), "&t=",
 			WebServerServletTokenUtil.getToken(commerceAccount.getLogoId()));
-
-		return sb.toString();
 	}
 
 	public PortletURL getPortletURL() throws PortalException {

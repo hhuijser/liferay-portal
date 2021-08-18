@@ -269,15 +269,10 @@ public class CommerceOrderContentDisplayContext {
 			_cpRequestHelper.getLocale());
 
 		if (!commercePaymentMethod.isActive()) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(name);
-			sb.append(" (");
-			sb.append(
-				LanguageUtil.get(_cpRequestHelper.getRequest(), "inactive"));
-			sb.append(CharPool.CLOSE_PARENTHESIS);
-
-			name = sb.toString();
+			name = StringBundler.concat(
+				name, " (",
+				LanguageUtil.get(_cpRequestHelper.getRequest(), "inactive"),
+				CharPool.CLOSE_PARENTHESIS);
 		}
 
 		return name;

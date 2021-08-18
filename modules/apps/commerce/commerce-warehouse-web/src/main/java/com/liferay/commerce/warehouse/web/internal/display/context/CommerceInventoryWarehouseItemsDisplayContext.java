@@ -121,22 +121,13 @@ public class CommerceInventoryWarehouseItemsDisplayContext {
 
 		RenderResponse renderResponse = _cpRequestHelper.getRenderResponse();
 
-		StringBundler sb = new StringBundler(12);
-
-		sb.append(renderResponse.getNamespace());
-		sb.append("updateCommerceInventoryWarehouseItem");
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(commerceInventoryWarehouseId);
-		sb.append(StringPool.COMMA_AND_SPACE);
-		sb.append(commerceInventoryWarehouseItemId);
-		sb.append(StringPool.COMMA_AND_SPACE);
-		sb.append(mvccVersion);
-		sb.append(StringPool.COMMA_AND_SPACE);
-		sb.append(index);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-		sb.append(StringPool.SEMICOLON);
-
-		return sb.toString();
+		return StringBundler.concat(
+			renderResponse.getNamespace(),
+			"updateCommerceInventoryWarehouseItem", StringPool.OPEN_PARENTHESIS,
+			commerceInventoryWarehouseId, StringPool.COMMA_AND_SPACE,
+			commerceInventoryWarehouseItemId, StringPool.COMMA_AND_SPACE,
+			mvccVersion, StringPool.COMMA_AND_SPACE, index,
+			StringPool.CLOSE_PARENTHESIS, StringPool.SEMICOLON);
 	}
 
 	public boolean hasManageCommerceInventoryWarehousePermission() {

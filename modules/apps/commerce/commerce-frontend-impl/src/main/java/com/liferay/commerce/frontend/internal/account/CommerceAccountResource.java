@@ -309,15 +309,9 @@ public class CommerceAccountResource {
 	}
 
 	protected String getLogoThumbnailSrc(long logoId, String imagePath) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(imagePath);
-		sb.append("/organization_logo?img_id=");
-		sb.append(logoId);
-		sb.append("&t=");
-		sb.append(WebServerServletTokenUtil.getToken(logoId));
-
-		return sb.toString();
+		return StringBundler.concat(
+			imagePath, "/organization_logo?img_id=", logoId, "&t=",
+			WebServerServletTokenUtil.getToken(logoId));
 	}
 
 	protected List<Order> getOrders(
@@ -389,15 +383,9 @@ public class CommerceAccountResource {
 	}
 
 	protected String getUserPortraitSrc(User user, String imagePath) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(imagePath);
-		sb.append("/user_portrait?screenName=");
-		sb.append(user.getScreenName());
-		sb.append("&amp;companyId=");
-		sb.append(user.getCompanyId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			imagePath, "/user_portrait?screenName=", user.getScreenName(),
+			"&amp;companyId=", user.getCompanyId());
 	}
 
 	private String _getOrderLinkURL(

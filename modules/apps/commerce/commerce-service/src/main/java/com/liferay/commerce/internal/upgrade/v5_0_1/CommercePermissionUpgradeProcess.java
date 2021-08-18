@@ -50,18 +50,13 @@ public class CommercePermissionUpgradeProcess
 	protected void doUpgrade() throws Exception {
 		Map<String, String> resourceActionNames = _getResourceActionNames();
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("select ResourcePermissionId from ResourcePermission where ");
-		sb.append("name in ('90', '");
-		sb.append(_PORTLET_NAME_COMMERCE_DISCOUNT);
-		sb.append("', '");
-		sb.append(_PORTLET_NAME_COMMERCE_PRICE_LIST);
-		sb.append("')");
-
 		try (Statement statement = connection.createStatement(
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-			ResultSet resultSet = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet = statement.executeQuery(
+				StringBundler.concat(
+					"select ResourcePermissionId from ResourcePermission where ",
+					"name in ('90', '", _PORTLET_NAME_COMMERCE_DISCOUNT, "', '",
+					_PORTLET_NAME_COMMERCE_PRICE_LIST, "')"))) {
 
 			while (resultSet.next()) {
 				ResourcePermission resourcePermission =

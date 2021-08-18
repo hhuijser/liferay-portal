@@ -103,17 +103,12 @@ public class CommerceAccountAddressClayDataSetDataSetDisplayView
 				permissionChecker, commerceAccountId,
 				CommerceAccountActionKeys.MANAGE_ADDRESSES),
 			dropdownItem -> {
-				StringBundler sb = new StringBundler(7);
-
-				sb.append("javascript:deleteCommerceAddress");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(StringPool.APOSTROPHE);
-				sb.append(address.getAddressId());
-				sb.append(StringPool.APOSTROPHE);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-				sb.append(StringPool.SEMICOLON);
-
-				dropdownItem.setHref(sb.toString());
+				dropdownItem.setHref(
+					StringBundler.concat(
+						"javascript:deleteCommerceAddress",
+						StringPool.OPEN_PARENTHESIS, StringPool.APOSTROPHE,
+						address.getAddressId(), StringPool.APOSTROPHE,
+						StringPool.CLOSE_PARENTHESIS, StringPool.SEMICOLON));
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
@@ -123,17 +118,12 @@ public class CommerceAccountAddressClayDataSetDataSetDisplayView
 				permissionChecker, commerceAccountId,
 				CommerceAccountActionKeys.MANAGE_ADDRESSES),
 			dropdownItem -> {
-				StringBundler sb = new StringBundler(7);
-
-				sb.append("javascript:editCommerceAddress");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(StringPool.APOSTROPHE);
-				sb.append(address.getAddressId());
-				sb.append(StringPool.APOSTROPHE);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-				sb.append(StringPool.SEMICOLON);
-
-				dropdownItem.setHref(sb.toString());
+				dropdownItem.setHref(
+					StringBundler.concat(
+						"javascript:editCommerceAddress",
+						StringPool.OPEN_PARENTHESIS, StringPool.APOSTROPHE,
+						address.getAddressId(), StringPool.APOSTROPHE,
+						StringPool.CLOSE_PARENTHESIS, StringPool.SEMICOLON));
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "edit"));

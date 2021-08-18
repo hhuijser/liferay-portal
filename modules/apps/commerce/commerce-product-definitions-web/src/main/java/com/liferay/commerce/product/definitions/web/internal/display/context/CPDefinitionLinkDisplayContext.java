@@ -94,15 +94,12 @@ public class CPDefinitionLinkDisplayContext
 		CreationMenu creationMenu = new CreationMenu();
 
 		for (String type : getCPDefinitionLinkTypes()) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(liferayPortletResponse.getNamespace());
-			sb.append("addCommerceProductDefinitionLink");
-			sb.append(type);
-
 			creationMenu.addDropdownItem(
 				dropdownItem -> {
-					dropdownItem.setHref(sb.toString());
+					dropdownItem.setHref(
+						StringBundler.concat(
+							liferayPortletResponse.getNamespace(),
+							"addCommerceProductDefinitionLink", type));
 					dropdownItem.setLabel(
 						LanguageUtil.format(
 							httpServletRequest, "add-x-product", type, true));

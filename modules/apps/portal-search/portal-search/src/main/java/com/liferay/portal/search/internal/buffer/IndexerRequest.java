@@ -115,23 +115,11 @@ public class IndexerRequest {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
-
-		sb.append("{classModel=");
-		sb.append(_classedModel);
-		sb.append(", forceSync=");
-		sb.append(_forceSync);
-		sb.append(", indexer=");
-		sb.append(ClassUtil.getClassName(_indexer));
-		sb.append(", method=");
-		sb.append(_method);
-		sb.append(", modelClassName=");
-		sb.append(_modelClassName);
-		sb.append(", modelPrimaryKey=");
-		sb.append(_modelPrimaryKey);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{classModel=", _classedModel, ", forceSync=", _forceSync,
+			", indexer=", ClassUtil.getClassName(_indexer), ", method=",
+			_method, ", modelClassName=", _modelClassName, ", modelPrimaryKey=",
+			_modelPrimaryKey, "}");
 	}
 
 	private final ClassedModel _classedModel;

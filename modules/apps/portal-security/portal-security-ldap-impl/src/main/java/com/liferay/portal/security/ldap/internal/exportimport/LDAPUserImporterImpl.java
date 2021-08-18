@@ -977,15 +977,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 				ldapImportContext.getCompanyId());
 
 		if (ldapImportConfiguration.importGroupCacheEnabled()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(ldapImportContext.getLdapServerId());
-			sb.append(StringPool.UNDERLINE);
-			sb.append(ldapImportContext.getCompanyId());
-			sb.append(StringPool.UNDERLINE);
-			sb.append(userGroupDNSafeLdapName);
-
-			userGroupIdKey = sb.toString();
+			userGroupIdKey = StringBundler.concat(
+				ldapImportContext.getLdapServerId(), StringPool.UNDERLINE,
+				ldapImportContext.getCompanyId(), StringPool.UNDERLINE,
+				userGroupDNSafeLdapName);
 
 			userGroupId = _portalCache.get(userGroupIdKey);
 		}

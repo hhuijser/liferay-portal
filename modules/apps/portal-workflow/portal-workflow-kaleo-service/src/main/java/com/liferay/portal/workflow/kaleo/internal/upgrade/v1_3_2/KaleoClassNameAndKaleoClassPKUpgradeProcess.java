@@ -47,21 +47,13 @@ public class KaleoClassNameAndKaleoClassPKUpgradeProcess
 			return;
 		}
 
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("update ");
-		sb.append(tableName);
-		sb.append(" set kaleoClassName = ?, kaleoClassPK = ");
-		sb.append(columnName);
-		sb.append(" where kaleoClassName is null and kaleoClassPK is null ");
-		sb.append("and ");
-		sb.append(columnName);
-		sb.append(" is not null and ");
-		sb.append(columnName);
-		sb.append(" > 0 ");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"update ", tableName,
+					" set kaleoClassName = ?, kaleoClassPK = ", columnName,
+					" where kaleoClassName is null and kaleoClassPK is null ",
+					"and ", columnName, " is not null and ", columnName,
+					" > 0 "))) {
 
 			preparedStatement.setString(1, kaleoClassName);
 

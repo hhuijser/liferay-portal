@@ -99,17 +99,12 @@ public class S3FileCache {
 			Supplier<InputStream> inputStreamSupplier, Date lastModifiedDate)
 		throws IOException {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(getCacheDirName());
-		sb.append(
+		String cacheFileName = StringBundler.concat(
+			getCacheDirName(),
 			DateUtil.getCurrentDate(
-				_CACHE_DIR_PATTERN, LocaleUtil.getDefault()));
-		sb.append(_s3KeyTransformer.getNormalizedFileName(fileName));
-
-		sb.append(lastModifiedDate.getTime());
-
-		String cacheFileName = sb.toString();
+				_CACHE_DIR_PATTERN, LocaleUtil.getDefault()),
+			_s3KeyTransformer.getNormalizedFileName(fileName),
+			lastModifiedDate.getTime());
 
 		File cacheFile = new File(cacheFileName);
 

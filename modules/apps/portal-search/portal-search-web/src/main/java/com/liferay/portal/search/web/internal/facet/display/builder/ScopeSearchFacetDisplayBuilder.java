@@ -227,15 +227,10 @@ public class ScopeSearchFacetDisplayBuilder {
 			String name = group.getDescriptiveName(_locale);
 
 			if (group.isStagingGroup()) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append(name);
-				sb.append(StringPool.SPACE);
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(_language.get(_httpServletRequest, "staged"));
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-
-				name = sb.toString();
+				name = StringBundler.concat(
+					name, StringPool.SPACE, StringPool.OPEN_PARENTHESIS,
+					_language.get(_httpServletRequest, "staged"),
+					StringPool.CLOSE_PARENTHESIS);
 			}
 
 			return name;

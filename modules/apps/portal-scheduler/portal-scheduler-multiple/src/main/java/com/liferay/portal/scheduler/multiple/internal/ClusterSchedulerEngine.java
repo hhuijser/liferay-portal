@@ -592,18 +592,15 @@ public class ClusterSchedulerEngine
 
 				if (schedulerResponses == null) {
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(8);
-
-						sb.append("Property \"");
-						sb.append(PropsKeys.SCHEDULER_ENABLED);
-						sb.append("\" is disabled in the master node. To ");
-						sb.append("ensure consistent behavior, this property ");
-						sb.append("must have the same value in all cluster ");
-						sb.append("nodes. If scheduler needs to be enabled, ");
-						sb.append("please stop all nodes and restart them in ");
-						sb.append("an ordered way.");
-
-						_log.warn(sb.toString());
+						_log.warn(
+							StringBundler.concat(
+								"Property \"", PropsKeys.SCHEDULER_ENABLED,
+								"\" is disabled in the master node. To ",
+								"ensure consistent behavior, this property ",
+								"must have the same value in all cluster ",
+								"nodes. If scheduler needs to be enabled, ",
+								"please stop all nodes and restart them in ",
+								"an ordered way."));
 					}
 
 					return;
@@ -634,16 +631,14 @@ public class ClusterSchedulerEngine
 				return;
 			}
 			catch (Exception exception) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append(
-					"Unable to load memory clustered jobs from master in ");
-				sb.append(_callMasterTimeout);
-				sb.append(" seconds, you might need to increase value set to ");
-				sb.append("\"clusterable.advice.call.master.timeout\", will ");
-				sb.append("retry again");
-
-				_log.error(sb.toString(), exception);
+				_log.error(
+					StringBundler.concat(
+						"Unable to load memory clustered jobs from master in ",
+						_callMasterTimeout,
+						" seconds, you might need to increase value set to ",
+						"\"clusterable.advice.call.master.timeout\", will ",
+						"retry again"),
+					exception);
 			}
 		}
 	}

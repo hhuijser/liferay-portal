@@ -112,13 +112,10 @@ public class AssetDisplayPageFriendlyURLProviderImpl
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(_getGroupFriendlyURL(groupId, locale, themeDisplay));
-		sb.append(layoutDisplayPageProvider.getURLSeparator());
-		sb.append(layoutDisplayPageObjectProvider.getURLTitle(locale));
-
-		return sb.toString();
+		return StringBundler.concat(
+			_getGroupFriendlyURL(groupId, locale, themeDisplay),
+			layoutDisplayPageProvider.getURLSeparator(),
+			layoutDisplayPageObjectProvider.getURLTitle(locale));
 	}
 
 	private String _getGroupFriendlyURL(

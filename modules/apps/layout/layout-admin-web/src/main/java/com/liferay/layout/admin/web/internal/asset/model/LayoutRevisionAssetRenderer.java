@@ -104,25 +104,15 @@ public class LayoutRevisionAssetRenderer
 
 		Locale locale = getLocale(portletRequest);
 
-		StringBundler sb = new StringBundler(15);
-
-		sb.append(LanguageUtil.get(locale, "page"));
-		sb.append(": ");
-		sb.append(_layoutRevision.getHTMLTitle(locale));
-		sb.append("\n");
-		sb.append(LanguageUtil.get(locale, "site-pages-variation"));
-		sb.append(": ");
-		sb.append(LanguageUtil.get(locale, _layoutSetBranch.getName()));
-		sb.append("\n");
-		sb.append(LanguageUtil.get(locale, "page-variation"));
-		sb.append(": ");
-		sb.append(LanguageUtil.get(locale, _layoutBranch.getName()));
-		sb.append("\n");
-		sb.append(LanguageUtil.get(locale, "revision-id"));
-		sb.append(": ");
-		sb.append(_layoutRevision.getLayoutRevisionId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			LanguageUtil.get(locale, "page"), ": ",
+			_layoutRevision.getHTMLTitle(locale), "\n",
+			LanguageUtil.get(locale, "site-pages-variation"), ": ",
+			LanguageUtil.get(locale, _layoutSetBranch.getName()), "\n",
+			LanguageUtil.get(locale, "page-variation"), ": ",
+			LanguageUtil.get(locale, _layoutBranch.getName()), "\n",
+			LanguageUtil.get(locale, "revision-id"), ": ",
+			_layoutRevision.getLayoutRevisionId());
 	}
 
 	@Override

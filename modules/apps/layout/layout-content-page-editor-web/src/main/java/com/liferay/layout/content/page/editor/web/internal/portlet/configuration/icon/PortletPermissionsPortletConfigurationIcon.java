@@ -73,15 +73,10 @@ public class PortletPermissionsPortletConfigurationIcon
 		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		try {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("Liferay.Util.openModal({title: '");
-			sb.append(HtmlUtil.escapeJS(getMessage(portletRequest)));
-			sb.append("', url: '");
-			sb.append(_generatePermissionURL(portletRequest));
-			sb.append("'});");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"Liferay.Util.openModal({title: '",
+				HtmlUtil.escapeJS(getMessage(portletRequest)), "', url: '",
+				_generatePermissionURL(portletRequest), "'});");
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

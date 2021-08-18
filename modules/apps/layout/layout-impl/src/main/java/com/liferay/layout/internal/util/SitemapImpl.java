@@ -248,20 +248,13 @@ public class SitemapImpl implements Sitemap {
 
 				Element locationElement = sitemapElement.addElement("loc");
 
-				StringBundler sb = new StringBundler(10);
-
-				sb.append(portalURL);
-				sb.append(_portal.getPathContext());
-				sb.append("/sitemap.xml?p_l_id=");
-				sb.append(layout.getPlid());
-				sb.append("&layoutUuid=");
-				sb.append(layout.getUuid());
-				sb.append("&groupId=");
-				sb.append(layoutSet.getGroupId());
-				sb.append("&privateLayout=");
-				sb.append(layout.isPrivateLayout());
-
-				locationElement.addText(sb.toString());
+				locationElement.addText(
+					StringBundler.concat(
+						portalURL, _portal.getPathContext(),
+						"/sitemap.xml?p_l_id=", layout.getPlid(),
+						"&layoutUuid=", layout.getUuid(), "&groupId=",
+						layoutSet.getGroupId(), "&privateLayout=",
+						layout.isPrivateLayout()));
 
 				_removeOldestElement(element, sitemapElement);
 			}

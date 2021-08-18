@@ -52,18 +52,16 @@ public class LayoutClassedModelUsageUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeLayoutClassedModelUsage() throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("insert into LayoutClassedModelUsage (mvccVersion, uuid_, ");
-		sb.append("layoutClassedModelUsageId, groupId, createDate, ");
-		sb.append("modifiedDate, classNameId, classPK, containerKey, ");
-		sb.append("containerType, plid, type_ ) values (?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?)");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into LayoutClassedModelUsage (mvccVersion, uuid_, ",
+						"layoutClassedModelUsageId, groupId, createDate, ",
+						"modifiedDate, classNameId, classPK, containerKey, ",
+						"containerType, plid, type_ ) values (?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?)"))) {
 
 			List<AssetEntryUsage> assetEntryUsages =
 				_assetEntryUsageLocalService.getAssetEntryUsages(

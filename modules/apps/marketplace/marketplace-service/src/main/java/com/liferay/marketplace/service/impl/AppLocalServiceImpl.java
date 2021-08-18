@@ -268,15 +268,12 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 					"Unable to open file at " + app.getFilePath());
 			}
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
-			sb.append(StringPool.SLASH);
-			sb.append(encodeSafeFileName(app.getTitle()));
-			sb.append(StringPool.PERIOD);
-			sb.append(FileUtil.getExtension(app.getFileName()));
-
-			File file = new File(sb.toString());
+			File file = new File(
+				StringBundler.concat(
+					SystemProperties.get(SystemProperties.TMP_DIR),
+					StringPool.SLASH, encodeSafeFileName(app.getTitle()),
+					StringPool.PERIOD,
+					FileUtil.getExtension(app.getFileName())));
 
 			FileUtil.write(file, inputStream);
 

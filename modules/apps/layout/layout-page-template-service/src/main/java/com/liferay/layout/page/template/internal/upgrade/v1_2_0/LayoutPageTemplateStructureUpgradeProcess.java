@@ -66,18 +66,14 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 		long classNameId = PortalUtil.getClassNameId(
 			LayoutPageTemplateEntry.class.getName());
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("select layoutPageTemplateEntryId, groupId, companyId, ");
-		sb.append("userId, userName, createDate from LayoutPageTemplateEntry ");
-		sb.append("where type_ in (");
-		sb.append(LayoutPageTemplateEntryTypeConstants.TYPE_BASIC);
-		sb.append(", ");
-		sb.append(LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE);
-		sb.append(")");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select layoutPageTemplateEntryId, groupId, companyId, ",
+					"userId, userName, createDate from LayoutPageTemplateEntry ",
+					"where type_ in (",
+					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, ", ",
+					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
+					")"))) {
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {
@@ -147,14 +143,11 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 		JSONObject jsonObject = _generateLayoutPageTemplateStructureData(
 			groupId, classNameId, classPK);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("insert into LayoutPageTemplateStructure (uuid_, ");
-		sb.append("layoutPageTemplateStructureId, groupId, companyId, ");
-		sb.append("userId, userName, createDate, modifiedDate, classNameId, ");
-		sb.append("classPK, data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into LayoutPageTemplateStructure (uuid_, ",
+			"layoutPageTemplateStructureId, groupId, companyId, ",
+			"userId, userName, createDate, modifiedDate, classNameId, ",
+			"classPK, data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

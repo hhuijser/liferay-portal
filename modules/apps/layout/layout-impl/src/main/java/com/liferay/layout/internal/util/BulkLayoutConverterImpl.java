@@ -346,13 +346,10 @@ public class BulkLayoutConverterImpl implements BulkLayoutConverter {
 		throws PortalException {
 
 		if (layout.isDraftLayout()) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("Layout with PLID ");
-			sb.append(layout.getPlid());
-			sb.append(" is a draft. You cannot get the draft of a draft.");
-
-			throw new PortalException(sb.toString());
+			throw new PortalException(
+				StringBundler.concat(
+					"Layout with PLID ", layout.getPlid(),
+					" is a draft. You cannot get the draft of a draft."));
 		}
 
 		Layout draftLayout = layout.fetchDraftLayout();

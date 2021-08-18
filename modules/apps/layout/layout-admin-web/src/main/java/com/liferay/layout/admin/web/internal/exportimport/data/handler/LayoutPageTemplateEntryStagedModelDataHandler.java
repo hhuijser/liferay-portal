@@ -506,19 +506,14 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 				(existingLayoutPageTemplateEntry.getCompanyId() ==
 					importedLayoutPageTemplateEntry.getCompanyId())) {
 
-				StringBundler sb = new StringBundler(8);
-
-				sb.append("Layout page template ");
-				sb.append(
-					layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
-				sb.append(" cannot be imported because a layout prototype ");
-				sb.append("with UUID ");
-				sb.append(layoutPrototype.getUuid());
-				sb.append(" and company ID ");
-				sb.append(portletDataContext.getCompanyId());
-				sb.append(" already exists");
-
-				throw new UnsupportedOperationException(sb.toString());
+				throw new UnsupportedOperationException(
+					StringBundler.concat(
+						"Layout page template ",
+						layoutPageTemplateEntry.getLayoutPageTemplateEntryId(),
+						" cannot be imported because a layout prototype ",
+						"with UUID ", layoutPrototype.getUuid(),
+						" and company ID ", portletDataContext.getCompanyId(),
+						" already exists"));
 			}
 		}
 	}

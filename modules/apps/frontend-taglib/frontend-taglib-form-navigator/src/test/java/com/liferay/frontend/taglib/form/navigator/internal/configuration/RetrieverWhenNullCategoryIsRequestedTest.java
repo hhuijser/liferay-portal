@@ -14,8 +14,6 @@
 
 package com.liferay.frontend.taglib.form.navigator.internal.configuration;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.Iterator;
@@ -45,11 +43,7 @@ public class RetrieverWhenNullCategoryIsRequestedTest
 
 		createConfiguration(
 			"form1",
-			new String[] {
-				StringBundler.concat(
-					"add", StringPool.EQUAL,
-					"formNavigatorEntryKey1,formNavigatorEntryKey2")
-			});
+			new String[] {"add=formNavigatorEntryKey1,formNavigatorEntryKey2"});
 	}
 
 	@Test

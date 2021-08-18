@@ -14,8 +14,6 @@
 
 package com.liferay.frontend.taglib.form.navigator.internal.configuration;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.Iterator;
@@ -47,18 +45,14 @@ public class RetrieverWhenThereAreConfigurationsFormSeveralFormsTest
 		createConfiguration(
 			"form1",
 			new String[] {
-				StringBundler.concat(
-					"general", StringPool.EQUAL,
-					"formNavigatorEntryKey1,formNavigatorEntryKey2,",
-					"formNavigatorEntryKey3")
+				"general=formNavigatorEntryKey1,formNavigatorEntryKey2," +
+					"formNavigatorEntryKey3"
 			});
 		createConfiguration(
 			"form2",
 			new String[] {
-				StringBundler.concat(
-					"general", StringPool.EQUAL,
-					"formNavigatorEntryKey4,formNavigatorEntryKey5,",
-					"formNavigatorEntryKey6")
+				"general=formNavigatorEntryKey4,formNavigatorEntryKey5," +
+					"formNavigatorEntryKey6"
 			});
 	}
 

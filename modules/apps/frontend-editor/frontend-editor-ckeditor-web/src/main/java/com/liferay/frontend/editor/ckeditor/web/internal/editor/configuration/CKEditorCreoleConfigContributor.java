@@ -80,15 +80,13 @@ public class CKEditorCreoleConfigContributor
 			"title=" + LanguageUtil.get(themeDisplay.getLocale(), "browse")
 		).put(
 			"format_tags", "p;h1;h2;h3;h4;h5;h6;pre"
-		);
-
-		jsonObject.put(
+		).put(
 			"removePlugins",
 			StringBundler.concat(
-				"bidi,codemirror,colorbutton,colordialog,div,",
-				"elementspath,font,forms,indentblock,justify,keystrokes,",
-				"link,maximize,newpage,pagebreak,preview,print,save,",
-				"showblocks,smiley,stylescombo,templates,video")
+				"bidi,codemirror,colorbutton,colordialog,div,elementspath,",
+				"font,forms,indentblock,justify,keystrokes,link,maximize,",
+				"newpage,pagebreak,preview,print,save,showblocks,smiley,",
+				"stylescombo,templates,video")
 		).put(
 			"toolbar_creole",
 			getToolbarsCreoleJSONArray(inputEditorTaglibAttributes)

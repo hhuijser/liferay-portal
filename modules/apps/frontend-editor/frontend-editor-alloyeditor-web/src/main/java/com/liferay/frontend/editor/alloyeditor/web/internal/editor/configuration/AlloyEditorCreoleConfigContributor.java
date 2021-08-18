@@ -103,12 +103,11 @@ public class AlloyEditorCreoleConfigContributor
 		jsonObject.put(
 			"removePlugins",
 			StringBundler.concat(
-				removePlugins, ",",
-				StringBundler.concat(
-					"ae_dragresize,ae_tableresize,bidi,div,font,forms,",
-					"indentblock,justify,keystrokes,maximize,newpage,pagebreak,",
-					"preview,print,save,showblocks,smiley,stylescombo,",
-					"templates,video"))
+				removePlugins,
+				",ae_dragresize,ae_tableresize,bidi,div,font,forms,",
+				"indentblock,justify,keystrokes,maximize,newpage,pagebreak,",
+				"preview,print,save,showblocks,smiley,stylescombo,templates,",
+				"video")
 		).put(
 			"toolbars", getToolbarsJSONObject(themeDisplay.getLocale())
 		);

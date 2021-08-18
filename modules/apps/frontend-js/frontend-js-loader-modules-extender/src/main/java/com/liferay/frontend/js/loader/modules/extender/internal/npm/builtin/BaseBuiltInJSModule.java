@@ -106,13 +106,12 @@ public abstract class BaseBuiltInJSModule implements JSModule {
 
 	@Override
 	public String getResolvedURL() {
-		return StringBundler.concat("/o/js/resolved-module/", getResolvedId());
+		return "/o/js/resolved-module/" + getResolvedId();
 	}
 
 	@Override
 	public String getURL() {
-		return StringBundler.concat(
-			"/o/js/module/", ModuleNameUtil.getModuleId(_jsPackage, _name));
+		return "/o/js/module/" + ModuleNameUtil.getModuleId(_jsPackage, _name);
 	}
 
 	@Override

@@ -126,14 +126,6 @@ public class CopyContributedEntryMVCActionCommand extends BaseMVCActionCommand {
 			ServiceContext serviceContext, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(fragmentComposition.getName());
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
 		long previewFileEntryId = 0;
 
 		String imagePreviewURL = fragmentComposition.getImagePreviewURL(
@@ -148,8 +140,13 @@ public class CopyContributedEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		_fragmentCompositionService.addFragmentComposition(
 			themeDisplay.getScopeGroupId(), fragmentCollectionId,
-			StringPool.BLANK, sb.toString(), null,
-			fragmentComposition.getData(), previewFileEntryId,
+			StringPool.BLANK,
+			StringBundler.concat(
+				fragmentComposition.getName(), StringPool.SPACE,
+				StringPool.OPEN_PARENTHESIS,
+				LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"),
+				StringPool.CLOSE_PARENTHESIS),
+			null, fragmentComposition.getData(), previewFileEntryId,
 			WorkflowConstants.STATUS_APPROVED, serviceContext);
 	}
 
@@ -157,14 +154,6 @@ public class CopyContributedEntryMVCActionCommand extends BaseMVCActionCommand {
 			long fragmentCollectionId, FragmentEntry fragmentEntry,
 			ServiceContext serviceContext, ThemeDisplay themeDisplay)
 		throws PortalException {
-
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(fragmentEntry.getName());
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		long previewFileEntryId = 0;
 
@@ -179,11 +168,16 @@ public class CopyContributedEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		_fragmentEntryService.addFragmentEntry(
 			themeDisplay.getScopeGroupId(), fragmentCollectionId,
-			StringPool.BLANK, sb.toString(), fragmentEntry.getCss(),
-			fragmentEntry.getHtml(), fragmentEntry.getJs(),
-			fragmentEntry.getConfiguration(), previewFileEntryId,
-			fragmentEntry.getType(), WorkflowConstants.STATUS_APPROVED,
-			serviceContext);
+			StringPool.BLANK,
+			StringBundler.concat(
+				fragmentEntry.getName(), StringPool.SPACE,
+				StringPool.OPEN_PARENTHESIS,
+				LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"),
+				StringPool.CLOSE_PARENTHESIS),
+			fragmentEntry.getCss(), fragmentEntry.getHtml(),
+			fragmentEntry.getJs(), fragmentEntry.getConfiguration(),
+			previewFileEntryId, fragmentEntry.getType(),
+			WorkflowConstants.STATUS_APPROVED, serviceContext);
 	}
 
 	private long _getPreviewFileEntryId(

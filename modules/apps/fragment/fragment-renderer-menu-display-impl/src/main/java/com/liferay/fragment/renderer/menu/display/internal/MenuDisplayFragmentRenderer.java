@@ -217,14 +217,9 @@ public class MenuDisplayFragmentRenderer implements FragmentRenderer {
 	}
 
 	private String _getFragmentId(FragmentEntryLink fragmentEntryLink) {
-		StringBundler fragmentIdSB = new StringBundler(4);
-
-		fragmentIdSB.append("fragment-");
-		fragmentIdSB.append(fragmentEntryLink.getFragmentEntryId());
-		fragmentIdSB.append("-");
-		fragmentIdSB.append(fragmentEntryLink.getNamespace());
-
-		return fragmentIdSB.toString();
+		return StringBundler.concat(
+			"fragment-", fragmentEntryLink.getFragmentEntryId(), "-",
+			fragmentEntryLink.getNamespace());
 	}
 
 	private NavigationMenuTag _getNavigationMenuTag(

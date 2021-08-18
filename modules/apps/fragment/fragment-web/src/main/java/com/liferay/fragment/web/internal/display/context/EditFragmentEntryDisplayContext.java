@@ -517,17 +517,14 @@ public class EditFragmentEntryDisplayContext {
 			return;
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(getFragmentEntryTitle());
-		sb.append(" (");
-		sb.append(
-			LanguageUtil.get(
-				_httpServletRequest,
-				WorkflowConstants.getStatusLabel(fragmentEntry.getStatus())));
-		sb.append(")");
-
-		_renderResponse.setTitle(sb.toString());
+		_renderResponse.setTitle(
+			StringBundler.concat(
+				getFragmentEntryTitle(), " (",
+				LanguageUtil.get(
+					_httpServletRequest,
+					WorkflowConstants.getStatusLabel(
+						fragmentEntry.getStatus())),
+				")"));
 	}
 
 	private String _configurationContent;

@@ -168,16 +168,12 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _computeControlPanelPlids() throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select Layout.plid, Group_.groupKey from Layout inner ");
-		sb.append("join Group_ on Layout.groupId = Group_.groupId where ");
-		sb.append("Layout.type_ = '");
-		sb.append(LayoutConstants.TYPE_CONTROL_PANEL);
-		sb.append("'");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select Layout.plid, Group_.groupKey from Layout inner ",
+					"join Group_ on Layout.groupId = Group_.groupId where ",
+					"Layout.type_ = '", LayoutConstants.TYPE_CONTROL_PANEL,
+					"'"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -205,22 +201,16 @@ public class PortletPreferencesUpgradeProcess extends UpgradeProcess {
 
 		long companyControlPanelPlid = _companyControlPanelPlids.get(companyId);
 
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("select PortletPreferences.portletPreferencesId, ");
-		sb.append("PortletPreferences.plid from PortletPreferences inner ");
-		sb.append("join Layout on PortletPreferences.plid = Layout.plid ");
-		sb.append("where PortletPreferences.portletId like ");
-		sb.append("CONCAT('%_INSTANCE_', '");
-		sb.append(namespace);
-		sb.append("') and (Layout.groupId = ");
-		sb.append(groupId);
-		sb.append(" or PortletPreferences.plid = ");
-		sb.append(companyControlPanelPlid);
-		sb.append(")");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select PortletPreferences.portletPreferencesId, ",
+					"PortletPreferences.plid from PortletPreferences inner ",
+					"join Layout on PortletPreferences.plid = Layout.plid ",
+					"where PortletPreferences.portletId like ",
+					"CONCAT('%_INSTANCE_', '", namespace,
+					"') and (Layout.groupId = ", groupId,
+					" or PortletPreferences.plid = ", companyControlPanelPlid,
+					")"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {

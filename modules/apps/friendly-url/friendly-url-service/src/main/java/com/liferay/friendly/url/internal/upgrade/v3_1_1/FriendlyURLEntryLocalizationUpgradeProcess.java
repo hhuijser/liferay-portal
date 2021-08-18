@@ -56,16 +56,13 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 		String uniqueURLTitle = _getUniqueURLTitle(
 			ctCollectionId, urlTitle, groupId);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("insert into FriendlyURLEntryLocalization (mvccVersion, ");
-		sb.append("ctCollectionId, friendlyURLEntryLocalizationId, ");
-		sb.append("companyId, friendlyURLEntryId, languageId, urlTitle, ");
-		sb.append("groupId, classNameId, classPK) values (?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"insert into FriendlyURLEntryLocalization (mvccVersion, ",
+					"ctCollectionId, friendlyURLEntryLocalizationId, ",
+					"companyId, friendlyURLEntryId, languageId, urlTitle, ",
+					"groupId, classNameId, classPK) values (?, ?, ?, ?, ?, ?, ",
+					"?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, 0);
 			preparedStatement.setLong(2, ctCollectionId);
@@ -89,47 +86,40 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _addMissingFriendlyURLEntryLocalizations() throws Exception {
-		StringBundler sb1 = new StringBundler(8);
-
-		sb1.append("select JournalArticle.id_, ");
-		sb1.append("JournalArticle.resourcePrimKey, JournalArticle.groupId, ");
-		sb1.append("JournalArticle.companyId from (select resourcePrimKey, ");
-		sb1.append("max(version) as latestVersion from JournalArticle group ");
-		sb1.append("by resourcePrimKey) LatestVersion inner join ");
-		sb1.append("JournalArticle on JournalArticle.resourcePrimKey = ");
-		sb1.append("LatestVersion.resourcePrimKey and JournalArticle.version ");
-		sb1.append("= LatestVersion.latestVersion");
-
 		try (Statement statement1 = connection.createStatement();
-			ResultSet resultSet1 = statement1.executeQuery(sb1.toString())) {
+			ResultSet resultSet1 = statement1.executeQuery(
+				StringBundler.concat(
+					"select JournalArticle.id_, ",
+					"JournalArticle.resourcePrimKey, JournalArticle.groupId, ",
+					"JournalArticle.companyId from (select resourcePrimKey, ",
+					"max(version) as latestVersion from JournalArticle group ",
+					"by resourcePrimKey) LatestVersion inner join ",
+					"JournalArticle on JournalArticle.resourcePrimKey = ",
+					"LatestVersion.resourcePrimKey and JournalArticle.version ",
+					"= LatestVersion.latestVersion"))) {
 
 			while (resultSet1.next()) {
 				long id = resultSet1.getLong(1);
 				long resourcePrimKey = resultSet1.getLong(2);
 
-				StringBundler sb2 = new StringBundler(15);
-
-				sb2.append("select TEMP_TABLE_1.title, ");
-				sb2.append("TEMP_TABLE_1.languageId from (select title, ");
-				sb2.append("languageId from JournalArticleLocalization where ");
-				sb2.append("articlePK = ");
-				sb2.append(id);
-				sb2.append(") TEMP_TABLE_1 left join (select ");
-				sb2.append("friendlyURLEntryLocalizationId, languageId from ");
-				sb2.append("FriendlyURLEntryLocalization where classPK = ");
-				sb2.append(resourcePrimKey);
-				sb2.append(" and classNameId = ");
-				sb2.append(_CLASS_NAME_ID);
-				sb2.append(") TEMP_TABLE_2 on TEMP_TABLE_1.languageId = ");
-				sb2.append("TEMP_TABLE_2.languageId where ");
-				sb2.append("TEMP_TABLE_2.friendlyURLEntryLocalizationId is ");
-				sb2.append("null");
-
 				Map<String, String> urlTitleMap = new HashMap<>();
 
 				try (Statement statement2 = connection.createStatement();
 					ResultSet resultSet2 = statement2.executeQuery(
-						sb2.toString())) {
+						StringBundler.concat(
+							"select TEMP_TABLE_1.title, ",
+							"TEMP_TABLE_1.languageId from (select title, ",
+							"languageId from JournalArticleLocalization where ",
+							"articlePK = ", id,
+							") TEMP_TABLE_1 left join (select ",
+							"friendlyURLEntryLocalizationId, languageId from ",
+							"FriendlyURLEntryLocalization where classPK = ",
+							resourcePrimKey, " and classNameId = ",
+							_CLASS_NAME_ID,
+							") TEMP_TABLE_2 on TEMP_TABLE_1.languageId = ",
+							"TEMP_TABLE_2.languageId where ",
+							"TEMP_TABLE_2.friendlyURLEntryLocalizationId is ",
+							"null"))) {
 
 					while (resultSet2.next()) {
 						String title = resultSet2.getString(1);
@@ -179,14 +169,11 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 	private long _getFriendlyURLEntryCTCollectionId(long friendlyURLEntryId)
 		throws SQLException {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select ctCollectionId from FriendlyURLEntry where ");
-		sb.append("friendlyURLEntryId = ");
-		sb.append(friendlyURLEntryId);
-
 		try (Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet = statement.executeQuery(
+				StringBundler.concat(
+					"select ctCollectionId from FriendlyURLEntry where ",
+					"friendlyURLEntryId = ", friendlyURLEntryId))) {
 
 			if (resultSet.next()) {
 				return resultSet.getLong(1);
@@ -199,16 +186,12 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 	private long _getFriendlyURLEntryId(long resourcePrimKey)
 		throws SQLException {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select friendlyURLEntryId from FriendlyURLEntryMapping ");
-		sb.append("where classNameId = ");
-		sb.append(_CLASS_NAME_ID);
-		sb.append(" and classPK = ");
-		sb.append(resourcePrimKey);
-
 		try (Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet = statement.executeQuery(
+				StringBundler.concat(
+					"select friendlyURLEntryId from FriendlyURLEntryMapping ",
+					"where classNameId = ", _CLASS_NAME_ID, " and classPK = ",
+					resourcePrimKey))) {
 
 			if (resultSet.next()) {
 				return resultSet.getLong(1);
@@ -224,20 +207,12 @@ public class FriendlyURLEntryLocalizationUpgradeProcess extends UpgradeProcess {
 
 		int count = 0;
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("select count(*) from FriendlyURLEntryLocalization where ");
-		sb.append("ctCollectionId = ");
-		sb.append(ctCollectionId);
-		sb.append(" and urlTitle = '");
-		sb.append(urlTitle);
-		sb.append("' and groupId = ");
-		sb.append(groupId);
-		sb.append(" and classNameId = ");
-		sb.append(_CLASS_NAME_ID);
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select count(*) from FriendlyURLEntryLocalization where ",
+					"ctCollectionId = ", ctCollectionId, " and urlTitle = '",
+					urlTitle, "' and groupId = ", groupId,
+					" and classNameId = ", _CLASS_NAME_ID));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {

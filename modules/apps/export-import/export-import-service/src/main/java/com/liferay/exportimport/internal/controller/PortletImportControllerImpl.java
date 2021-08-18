@@ -372,14 +372,12 @@ public class PortletImportControllerImpl implements PortletImportController {
 			portletDataHandler.isDataPortletInstanceLevel()) {
 
 			if (_log.isDebugEnabled()) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Do not import portlet data for portlet ");
-				sb.append(portletDataContext.getPortletId());
-				sb.append(" because the portlet does not have a portlet data ");
-				sb.append("handler");
-
-				_log.debug(sb.toString());
+				_log.debug(
+					StringBundler.concat(
+						"Do not import portlet data for portlet ",
+						portletDataContext.getPortletId(),
+						" because the portlet does not have a portlet data ",
+						"handler"));
 			}
 
 			return null;
@@ -867,14 +865,12 @@ public class PortletImportControllerImpl implements PortletImportController {
 
 		if (portletDataHandler == null) {
 			if (_log.isDebugEnabled()) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Do not delete portlet data for portlet ");
-				sb.append(portletDataContext.getPortletId());
-				sb.append(" because the portlet does not have a ");
-				sb.append("PortletDataHandler");
-
-				_log.debug(sb.toString());
+				_log.debug(
+					StringBundler.concat(
+						"Do not delete portlet data for portlet ",
+						portletDataContext.getPortletId(),
+						" because the portlet does not have a ",
+						"PortletDataHandler"));
 			}
 
 			return null;

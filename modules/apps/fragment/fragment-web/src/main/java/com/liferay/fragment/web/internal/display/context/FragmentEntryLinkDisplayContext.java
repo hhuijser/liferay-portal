@@ -138,15 +138,10 @@ public class FragmentEntryLinkDisplayContext {
 			return name;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(name);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(LanguageUtil.get(themeDisplay.getLocale(), "draft"));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
+		return StringBundler.concat(
+			name, StringPool.SPACE, StringPool.OPEN_PARENTHESIS,
+			LanguageUtil.get(themeDisplay.getLocale(), "draft"),
+			StringPool.CLOSE_PARENTHESIS);
 	}
 
 	public String getFragmentEntryLinkTypeLabel(

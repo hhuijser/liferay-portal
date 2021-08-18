@@ -137,19 +137,11 @@ public class ExportImportBackgroundTaskDisplay
 	}
 
 	protected String getStagedModelMessage(Locale locale) {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("<strong>");
-		sb.append(LanguageUtil.get(locale, getStatusMessageKey()));
-		sb.append(StringPool.TRIPLE_PERIOD);
-		sb.append("</strong>");
-		sb.append(
-			ResourceActionsUtil.getModelResource(locale, _stagedModelType));
-		sb.append("<em>");
-		sb.append(HtmlUtil.escape(_stagedModelName));
-		sb.append("</em>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<strong>", LanguageUtil.get(locale, getStatusMessageKey()),
+			StringPool.TRIPLE_PERIOD, "</strong>",
+			ResourceActionsUtil.getModelResource(locale, _stagedModelType),
+			"<em>", HtmlUtil.escape(_stagedModelName), "</em>");
 	}
 
 	protected String getStatusMessageKey() {

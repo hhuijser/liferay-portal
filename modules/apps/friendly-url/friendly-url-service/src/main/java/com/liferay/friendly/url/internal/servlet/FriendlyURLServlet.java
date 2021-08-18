@@ -749,15 +749,10 @@ public class FriendlyURLServlet extends HttpServlet {
 				 friendlyURL +
 					 VirtualLayoutConstants.CANONICAL_URL_SEPARATOR))) {
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("{companyId=");
-			sb.append(companyId);
-			sb.append(", friendlyURL=");
-			sb.append(friendlyURL);
-			sb.append("}");
-
-			throw new NoSuchGroupException(sb.toString());
+			throw new NoSuchGroupException(
+				StringBundler.concat(
+					"{companyId=", companyId, ", friendlyURL=", friendlyURL,
+					"}"));
 		}
 
 		return group;

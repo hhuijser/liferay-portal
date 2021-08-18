@@ -38,27 +38,25 @@ public class FragmentEntryVersionUpgradeProcess extends UpgradeProcess {
 
 	protected void insertIntoFragmentEntryVersion() throws Exception {
 		try (Statement s = connection.createStatement()) {
-			StringBundler sb = new StringBundler(17);
-
-			sb.append("insert into FragmentEntryVersion(");
-			sb.append("fragmentEntryVersionId, version, uuid_, ");
-			sb.append("fragmentEntryId, groupId, companyId, userId, ");
-			sb.append("userName, createDate, modifiedDate, ");
-			sb.append("fragmentCollectionId, fragmentEntryKey, name, css, ");
-			sb.append("html, js, cacheable, configuration, ");
-			sb.append("previewFileEntryId, readOnly, type_, lastPublishDate, ");
-			sb.append("status, statusByUserId, statusByUserName, statusDate) ");
-			sb.append("select fragmentEntryId as fragmentEntryVersionId, 1 ");
-			sb.append("as version, uuid_, fragmentEntryId, groupId, ");
-			sb.append("companyId, userId, userName, createDate, ");
-			sb.append("modifiedDate, fragmentCollectionId, fragmentEntryKey, ");
-			sb.append("name, css, html, js, cacheable, configuration, ");
-			sb.append("previewFileEntryId, readOnly, type_, lastPublishDate, ");
-			sb.append("status, statusByUserId, statusByUserName, statusDate ");
-			sb.append("from FragmentEntry where status = ");
-			sb.append(WorkflowConstants.STATUS_APPROVED);
-
-			s.execute(sb.toString());
+			s.execute(
+				StringBundler.concat(
+					"insert into FragmentEntryVersion(",
+					"fragmentEntryVersionId, version, uuid_, ",
+					"fragmentEntryId, groupId, companyId, userId, ",
+					"userName, createDate, modifiedDate, ",
+					"fragmentCollectionId, fragmentEntryKey, name, css, ",
+					"html, js, cacheable, configuration, ",
+					"previewFileEntryId, readOnly, type_, lastPublishDate, ",
+					"status, statusByUserId, statusByUserName, statusDate) ",
+					"select fragmentEntryId as fragmentEntryVersionId, 1 ",
+					"as version, uuid_, fragmentEntryId, groupId, ",
+					"companyId, userId, userName, createDate, ",
+					"modifiedDate, fragmentCollectionId, fragmentEntryKey, ",
+					"name, css, html, js, cacheable, configuration, ",
+					"previewFileEntryId, readOnly, type_, lastPublishDate, ",
+					"status, statusByUserId, statusByUserName, statusDate ",
+					"from FragmentEntry where status = ",
+					WorkflowConstants.STATUS_APPROVED));
 		}
 	}
 

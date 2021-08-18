@@ -192,14 +192,11 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 		}
 
 		for (FileEntry fileEntry : getResources()) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(path);
-			sb.append(StringPool.SLASH);
-			sb.append("resources/");
-			sb.append(fileEntry.getFileName());
-
-			zipWriter.addEntry(sb.toString(), fileEntry.getContentStream());
+			zipWriter.addEntry(
+				StringBundler.concat(
+					path, StringPool.SLASH, "resources/",
+					fileEntry.getFileName()),
+				fileEntry.getContentStream());
 		}
 	}
 

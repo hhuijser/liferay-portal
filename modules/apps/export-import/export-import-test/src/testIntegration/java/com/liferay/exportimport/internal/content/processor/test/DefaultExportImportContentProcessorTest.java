@@ -131,14 +131,11 @@ public class DefaultExportImportContentProcessorTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("(&(content.processor.type=LayoutReferences)(objectClass=");
-		sb.append(ExportImportContentProcessor.class.getName());
-		sb.append("))");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(&(content.processor.type=LayoutReferences)(objectClass=",
+					ExportImportContentProcessor.class.getName(), "))")));
 
 		_serviceTracker.open();
 	}
@@ -310,20 +307,13 @@ public class DefaultExportImportContentProcessorTest {
 	public void testExportDLReferencesInvalidReference() throws Exception {
 		_portletDataContextExport.setZipWriter(new TestReaderWriter());
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("{{/documents/}}");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("[[/documents/]]");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("<a href=/documents/>Link</a>");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("<a href=\"/documents/\">Link</a>");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("<a href='/documents/'>Link</a>");
-
 		_exportImportContentProcessor.replaceExportContentReferences(
-			_portletDataContextExport, _referrerStagedModel, sb.toString(),
+			_portletDataContextExport, _referrerStagedModel,
+			StringBundler.concat(
+				"{{/documents/}}", StringPool.NEW_LINE, "[[/documents/]]",
+				StringPool.NEW_LINE, "<a href=/documents/>Link</a>",
+				StringPool.NEW_LINE, "<a href=\"/documents/\">Link</a>",
+				StringPool.NEW_LINE, "<a href='/documents/'>Link</a>"),
 			true, true);
 	}
 

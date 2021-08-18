@@ -49,13 +49,12 @@ public class FragmentEntryUpgradeProcess extends UpgradeProcess {
 		throws Exception {
 
 		try (Statement s = connection.createStatement()) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("update FragmentEntry set headId = -1 * fragmentEntryId");
-			sb.append(", head = [$TRUE$] where status = ");
-			sb.append(WorkflowConstants.STATUS_APPROVED);
-
-			s.execute(SQLTransformer.transform(sb.toString()));
+			s.execute(
+				SQLTransformer.transform(
+					StringBundler.concat(
+						"update FragmentEntry set headId = -1 * fragmentEntryId",
+						", head = [$TRUE$] where status = ",
+						WorkflowConstants.STATUS_APPROVED)));
 		}
 	}
 
@@ -63,13 +62,12 @@ public class FragmentEntryUpgradeProcess extends UpgradeProcess {
 		throws Exception {
 
 		try (Statement s = connection.createStatement()) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("update FragmentEntry set headId = fragmentEntryId, ");
-			sb.append("head = [$FALSE$] where status != ");
-			sb.append(WorkflowConstants.STATUS_APPROVED);
-
-			s.execute(SQLTransformer.transform(sb.toString()));
+			s.execute(
+				SQLTransformer.transform(
+					StringBundler.concat(
+						"update FragmentEntry set headId = fragmentEntryId, ",
+						"head = [$FALSE$] where status != ",
+						WorkflowConstants.STATUS_APPROVED)));
 		}
 	}
 

@@ -115,14 +115,9 @@ public class MBCategoryAssetRenderer extends BaseJSPAssetRenderer<MBCategory> {
 			WindowState windowState)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(_company.getPortalURL(_mbCategory.getGroupId()));
-		sb.append(_historyRouterBasePath);
-		sb.append("/questions/");
-		sb.append(_mbCategory.getCategoryId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			_company.getPortalURL(_mbCategory.getGroupId()),
+			_historyRouterBasePath, "/questions/", _mbCategory.getCategoryId());
 	}
 
 	@Override

@@ -224,14 +224,9 @@ public class MBMessageAssetRenderer
 	}
 
 	private String _getQuestionsURL(String portalURL) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(portalURL);
-		sb.append(_historyRouterPath);
-		sb.append("/questions/question/");
-		sb.append(_mbMessage.getMessageId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			portalURL, _historyRouterPath, "/questions/question/",
+			_mbMessage.getMessageId());
 	}
 
 	private final Company _company;

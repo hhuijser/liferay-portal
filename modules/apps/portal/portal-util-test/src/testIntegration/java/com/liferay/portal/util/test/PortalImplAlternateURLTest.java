@@ -158,37 +158,22 @@ public class PortalImplAlternateURLTest {
 	private String _generateAssetPublisherContentURL(
 		String portalDomain, String languageId, String groupFriendlyURL) {
 
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("http://");
-		sb.append(portalDomain);
-		sb.append(languageId);
-		sb.append(PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
-		sb.append(Portal.FRIENDLY_URL_SEPARATOR);
-		sb.append("asset_publisher");
-		sb.append(groupFriendlyURL);
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(StringPool.CONTENT);
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append("content-title");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"http://", portalDomain, languageId,
+			PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING,
+			Portal.FRIENDLY_URL_SEPARATOR, "asset_publisher", groupFriendlyURL,
+			StringPool.FORWARD_SLASH, StringPool.CONTENT,
+			StringPool.FORWARD_SLASH, "content-title");
 	}
 
 	private String _generateURL(
 		String portalDomain, String languageId, String groupFriendlyURL,
 		String layoutFriendlyURL) {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("http://");
-		sb.append(portalDomain);
-		sb.append(languageId);
-		sb.append(PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
-		sb.append(groupFriendlyURL);
-		sb.append(layoutFriendlyURL);
-
-		return sb.toString();
+		return StringBundler.concat(
+			"http://", portalDomain, languageId,
+			PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING,
+			groupFriendlyURL, layoutFriendlyURL);
 	}
 
 	private ThemeDisplay _getThemeDisplay(Group group, String portalURL)

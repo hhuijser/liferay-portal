@@ -88,15 +88,9 @@ public abstract class BasePortletToolbarContributorLocator
 	}
 
 	protected String getKey(String portletId, String value) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(portletId);
-		sb.append(StringPool.PERIOD);
-		sb.append(getPropertyName());
-		sb.append(StringPool.PERIOD);
-		sb.append(value);
-
-		return sb.toString();
+		return StringBundler.concat(
+			portletId, StringPool.PERIOD, getPropertyName(), StringPool.PERIOD,
+			value);
 	}
 
 	protected abstract String getParameterName();

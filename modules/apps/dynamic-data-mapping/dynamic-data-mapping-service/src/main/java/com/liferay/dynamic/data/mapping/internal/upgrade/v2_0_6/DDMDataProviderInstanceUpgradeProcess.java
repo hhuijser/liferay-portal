@@ -52,9 +52,8 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
-					StringBundler.concat(
-						"update DDMDataProviderInstance set definition = ? where ",
-						"dataProviderInstanceId = ?"));
+					"update DDMDataProviderInstance set definition = ? where " +
+						"dataProviderInstanceId = ?");
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -273,8 +272,8 @@ public class DDMDataProviderInstanceUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select DDMStructure.structureId, DDMStructure.definition ",
-					"from DDMDataProviderInstanceLink join DDMStructureVersion ",
-					"on DDMStructureVersion.structureId = ",
+					"from DDMDataProviderInstanceLink join ",
+					"DDMStructureVersion on DDMStructureVersion.structureId = ",
 					"DDMDataProviderInstanceLink.structureId left join ",
 					"DDMStructure on DDMStructure.structureId = ",
 					"DDMDataProviderInstanceLink.structureId and ",

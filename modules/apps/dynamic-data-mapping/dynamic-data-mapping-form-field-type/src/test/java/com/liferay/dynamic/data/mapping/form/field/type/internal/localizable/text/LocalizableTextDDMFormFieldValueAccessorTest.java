@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.form.field.type.internal.localizable.te
 import com.liferay.dynamic.data.mapping.model.UnlocalizedValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormValuesTestUtil;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -70,9 +69,8 @@ public class LocalizableTextDDMFormFieldValueAccessorTest extends PowerMockito {
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"localizableText",
 				new UnlocalizedValue(
-					StringBundler.concat(
-						"{\"title\":\"Welcome to Liferay Forms!\",",
-						"\"type\":\"document\"}")));
+					"{\"title\":\"Welcome to Liferay Forms!\"," +
+						"\"type\":\"document\"}"));
 
 		Assert.assertFalse(
 			_localizableTextDDMFormFieldValueAccessor.isEmpty(

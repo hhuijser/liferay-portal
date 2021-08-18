@@ -79,7 +79,6 @@ import com.liferay.journal.article.dynamic.data.mapping.form.field.type.constant
 import com.liferay.layout.dynamic.data.mapping.form.field.type.constants.LayoutDDMFormFieldTypeConstants;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.editor.configuration.EditorConfiguration;
@@ -852,9 +851,7 @@ public class DDMFormAdminDisplayContext {
 	public String getLexiconIconsPath() {
 		ThemeDisplay themeDisplay = ddmFormAdminRequestHelper.getThemeDisplay();
 
-		return StringBundler.concat(
-			themeDisplay.getPathThemeImages(), "/clay/icons.svg",
-			StringPool.POUND);
+		return themeDisplay.getPathThemeImages() + "/clay/icons.svg#";
 	}
 
 	public String getMainRequire() {

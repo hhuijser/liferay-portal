@@ -94,19 +94,12 @@ public class ShippingMethodCheckoutStepDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(commerceShippingOption.getLabel());
-		sb.append(" (+");
-
-		sb.append(
+		return StringBundler.concat(
+			commerceShippingOption.getLabel(), " (+",
 			_commercePriceFormatter.format(
 				_commerceOrder.getCommerceCurrency(),
-				commerceShippingOption.getAmount(), themeDisplay.getLocale()));
-
-		sb.append(CharPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
+				commerceShippingOption.getAmount(), themeDisplay.getLocale()),
+			CharPool.CLOSE_PARENTHESIS);
 	}
 
 	public List<CommerceShippingOption> getCommerceShippingOptions(

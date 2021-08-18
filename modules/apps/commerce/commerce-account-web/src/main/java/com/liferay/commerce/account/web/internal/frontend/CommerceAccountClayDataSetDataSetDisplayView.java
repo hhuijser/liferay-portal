@@ -311,15 +311,10 @@ public class CommerceAccountClayDataSetDataSetDisplayView
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(commerceAddress.getStreet1());
-		sb.append(StringPool.SPACE);
-		sb.append(commerceAddress.getCity());
-		sb.append(StringPool.SPACE);
-		sb.append(commerceAddress.getZip());
-
-		return sb.toString();
+		return StringBundler.concat(
+			commerceAddress.getStreet1(), StringPool.SPACE,
+			commerceAddress.getCity(), StringPool.SPACE,
+			commerceAddress.getZip());
 	}
 
 	@Reference

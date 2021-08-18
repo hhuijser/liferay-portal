@@ -200,20 +200,10 @@ public class CommerceCountryUpgradeProcess extends UpgradeProcess {
 			columnName = "commerceCountryId";
 		}
 
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("update ");
-		sb.append(tableName);
-		sb.append(" set ");
-		sb.append(columnName);
-		sb.append(" = ");
-		sb.append(newCountryId);
-		sb.append(" where ");
-		sb.append(columnName);
-		sb.append(" = ");
-		sb.append(oldCountryId);
-
-		runSQL(sb.toString());
+		runSQL(
+			StringBundler.concat(
+				"update ", tableName, " set ", columnName, " = ", newCountryId,
+				" where ", columnName, " = ", oldCountryId));
 	}
 
 	private static final String[] _TABLE_NAMES = {

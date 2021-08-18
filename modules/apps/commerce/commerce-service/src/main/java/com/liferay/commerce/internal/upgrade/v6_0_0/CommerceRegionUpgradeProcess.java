@@ -122,16 +122,10 @@ public class CommerceRegionUpgradeProcess extends UpgradeProcess {
 			String tableName, long newRegionId, long oldRegionId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("update ");
-		sb.append(tableName);
-		sb.append(" set regionId = ");
-		sb.append(newRegionId);
-		sb.append(" where regionId = ");
-		sb.append(oldRegionId);
-
-		runSQL(sb.toString());
+		runSQL(
+			StringBundler.concat(
+				"update ", tableName, " set regionId = ", newRegionId,
+				" where regionId = ", oldRegionId));
 	}
 
 	private static final String[] _TABLE_NAMES = {

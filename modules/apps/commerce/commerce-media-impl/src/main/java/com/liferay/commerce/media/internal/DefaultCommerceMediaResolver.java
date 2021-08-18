@@ -50,15 +50,9 @@ public class DefaultCommerceMediaResolver implements CommerceMediaResolver {
 
 	@Override
 	public String getDefaultURL(long groupId) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(_portal.getPathModule());
-		sb.append(StringPool.SLASH);
-		sb.append(CommerceMediaConstants.SERVLET_PATH);
-		sb.append("/default/?groupId=");
-		sb.append(groupId);
-
-		return sb.toString();
+		return StringBundler.concat(
+			_portal.getPathModule(), StringPool.SLASH,
+			CommerceMediaConstants.SERVLET_PATH, "/default/?groupId=", groupId);
 	}
 
 	@Override

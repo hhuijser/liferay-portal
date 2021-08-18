@@ -314,25 +314,17 @@ public class CommerceCatalogDisplayContext {
 	}
 
 	public String getPriceListsApiUrl(String type) throws PortalException {
-		StringBundler filterSB = new StringBundler(6);
+		String encodedFilter = URLCodec.encodeURL(
+			StringBundler.concat(
+				"(catalogId/any(x:(x eq ", getCommerceCatalogId(),
+				"))) and type eq ", StringPool.APOSTROPHE, type,
+				StringPool.APOSTROPHE),
+			true);
 
-		filterSB.append("(catalogId/any(x:(x eq ");
-		filterSB.append(getCommerceCatalogId());
-		filterSB.append("))) and type eq ");
-		filterSB.append(StringPool.APOSTROPHE);
-		filterSB.append(type);
-		filterSB.append(StringPool.APOSTROPHE);
-
-		String encodedFilter = URLCodec.encodeURL(filterSB.toString(), true);
-
-		StringBundler apiUrlSB = new StringBundler(4);
-
-		apiUrlSB.append(_portal.getPortalURL(cpRequestHelper.getRequest()));
-		apiUrlSB.append("/o/headless-commerce-admin-pricing/v2.0/price-lists");
-		apiUrlSB.append("?filter=");
-		apiUrlSB.append(encodedFilter);
-
-		return apiUrlSB.toString();
+		return StringBundler.concat(
+			_portal.getPortalURL(cpRequestHelper.getRequest()),
+			"/o/headless-commerce-admin-pricing/v2.0/price-lists", "?filter=",
+			encodedFilter);
 	}
 
 	public boolean hasAddCatalogPermission() {

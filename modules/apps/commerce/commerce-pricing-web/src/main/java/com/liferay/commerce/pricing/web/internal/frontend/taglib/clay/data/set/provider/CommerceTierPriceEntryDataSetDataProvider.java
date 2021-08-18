@@ -136,17 +136,11 @@ public class CommerceTierPriceEntryDataSetDataProvider
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(commerceTierPriceEntry.getDiscountLevel1());
-		sb.append(" - ");
-		sb.append(commerceTierPriceEntry.getDiscountLevel2());
-		sb.append(" - ");
-		sb.append(commerceTierPriceEntry.getDiscountLevel3());
-		sb.append(" - ");
-		sb.append(commerceTierPriceEntry.getDiscountLevel4());
-
-		return sb.toString();
+		return StringBundler.concat(
+			commerceTierPriceEntry.getDiscountLevel1(), " - ",
+			commerceTierPriceEntry.getDiscountLevel2(), " - ",
+			commerceTierPriceEntry.getDiscountLevel3(), " - ",
+			commerceTierPriceEntry.getDiscountLevel4());
 	}
 
 	private String _getEndDate(

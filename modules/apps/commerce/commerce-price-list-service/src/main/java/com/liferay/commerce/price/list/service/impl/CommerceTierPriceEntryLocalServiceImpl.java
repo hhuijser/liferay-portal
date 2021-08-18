@@ -352,16 +352,11 @@ public class CommerceTierPriceEntryLocalServiceImpl
 				expirationDateMinute, neverExpire, serviceContext);
 		}
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("{commercePriceEntryId=");
-		sb.append(commercePriceEntryId);
-		sb.append(StringPool.COMMA_AND_SPACE);
-		sb.append("priceEntryExternalReferenceCode=");
-		sb.append(priceEntryExternalReferenceCode);
-		sb.append(CharPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchPriceEntryException(sb.toString());
+		throw new NoSuchPriceEntryException(
+			StringBundler.concat(
+				"{commercePriceEntryId=", commercePriceEntryId,
+				StringPool.COMMA_AND_SPACE, "priceEntryExternalReferenceCode=",
+				priceEntryExternalReferenceCode, CharPool.CLOSE_CURLY_BRACE));
 	}
 
 	/**

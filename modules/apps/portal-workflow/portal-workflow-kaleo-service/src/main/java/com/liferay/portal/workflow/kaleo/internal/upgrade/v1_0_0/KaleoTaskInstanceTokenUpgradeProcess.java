@@ -67,17 +67,15 @@ public class KaleoTaskInstanceTokenUpgradeProcess extends UpgradeProcess {
 	protected long getKaleoInstanceTokenId(long kaleoInstanceTokenId)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"select KaleoNode.type_, ",
-			"KaleoInstanceToken.kaleoInstanceTokenId from KaleoNode ",
-			"inner join KaleoInstanceToken on (KaleoNode.kaleoNodeId = ",
-			"KaleoInstanceToken.currentKaleoNodeId) where ",
-			"KaleoInstanceToken.kaleoInstanceTokenId = (select ",
-			"parentKaleoInstanceTokenId from KaleoInstanceToken where ",
-			"kaleoInstanceTokenId = ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"select KaleoNode.type_, ",
+					"KaleoInstanceToken.kaleoInstanceTokenId from KaleoNode ",
+					"inner join KaleoInstanceToken on (KaleoNode.kaleoNodeId ",
+					"= KaleoInstanceToken.currentKaleoNodeId) where ",
+					"KaleoInstanceToken.kaleoInstanceTokenId = (select ",
+					"parentKaleoInstanceTokenId from KaleoInstanceToken where ",
+					"kaleoInstanceTokenId = ?)"))) {
 
 			preparedStatement.setLong(1, kaleoInstanceTokenId);
 

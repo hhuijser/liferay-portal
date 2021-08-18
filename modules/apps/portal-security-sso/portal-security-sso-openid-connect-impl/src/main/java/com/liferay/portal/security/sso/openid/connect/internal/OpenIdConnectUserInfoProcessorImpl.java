@@ -67,10 +67,10 @@ public class OpenIdConnectUserInfoProcessorImpl
 
 			throw new OpenIdConnectServiceException.UserMappingException(
 				StringBundler.concat(
-					"Unable to map OpenId Connect user to the portal, ",
-					"missing or invalid profile information: ",
-					"{emailAddresss=", emailAddress, ", firstName=", firstName,
-					", lastName=", lastName, "}"));
+					"Unable to map OpenId Connect user to the portal, missing ",
+					"or invalid profile information: {emailAddresss=",
+					emailAddress, ", firstName=", firstName, ", lastName=",
+					lastName, "}"));
 		}
 
 		long creatorUserId = 0;

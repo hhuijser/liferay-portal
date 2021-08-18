@@ -1096,8 +1096,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 		}
 
 		return StringBundler.concat(
-			originalAttributeId, StringPool.SEMICOLON, "range=", start,
-			StringPool.DASH, end);
+			originalAttributeId, ";range=", start, StringPool.DASH, end);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

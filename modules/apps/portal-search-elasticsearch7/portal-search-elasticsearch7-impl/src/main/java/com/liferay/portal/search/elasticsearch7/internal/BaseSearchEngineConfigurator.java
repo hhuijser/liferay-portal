@@ -174,10 +174,9 @@ public abstract class BaseSearchEngineConfigurator
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								StringBundler.concat(
-									"The search index writer's task queue ",
-									"is at its maximum capacity. The ",
-									"current thread will handle the ",
-									"request."));
+									"The search index writer's task queue is ",
+									"at its maximum capacity. The current ",
+									"thread will handle the request."));
 						}
 
 						super.rejectedExecution(runnable, threadPoolExecutor);

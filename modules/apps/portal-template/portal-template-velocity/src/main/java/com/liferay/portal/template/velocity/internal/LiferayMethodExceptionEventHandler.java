@@ -41,8 +41,7 @@ public class LiferayMethodExceptionEventHandler
 
 		_log.error(
 			StringBundler.concat(
-				"Unable to execute method ", method, StringPool.SPACE,
-				StringPool.OPEN_CURLY_BRACE, "exception=", exception,
+				"Unable to execute method ", method, " {exception=", exception,
 				StringPool.COMMA_AND_SPACE, getKeyValuePair(clazz),
 				StringPool.CLOSE_CURLY_BRACE),
 			exception);

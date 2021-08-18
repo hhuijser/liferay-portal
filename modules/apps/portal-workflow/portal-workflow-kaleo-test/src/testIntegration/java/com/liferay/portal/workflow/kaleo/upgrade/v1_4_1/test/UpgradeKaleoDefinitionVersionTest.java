@@ -130,16 +130,14 @@ public class UpgradeKaleoDefinitionVersionTest {
 			long companyId, long groupId, String name, int version)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into KaleoDefinition (kaleoDefinitionId, groupId, ",
-			"companyId, userId, userName, createDate, modifiedDate, ",
-			"name, title, description, content, version, active_, ",
-			"startKaleoNodeId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
-			"?, ?, ?, ?)");
-
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into KaleoDefinition (kaleoDefinitionId, groupId, ",
+					"companyId, userId, userName, createDate, modifiedDate, ",
+					"name, title, description, content, version, active_, ",
+					"startKaleoNodeId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+					"?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, RandomTestUtil.randomLong());
 			preparedStatement.setLong(2, groupId);

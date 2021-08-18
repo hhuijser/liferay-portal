@@ -113,11 +113,12 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 					connection,
 					StringBundler.concat(
 						"insert into KaleoDefinitionVersion ",
-						"(kaleoDefinitionVersionId, groupId, companyId, userId, ",
-						"userName, statusByUserId, statusByUserName, statusDate, ",
-						"createDate, modifiedDate, name, title, description, ",
-						"content, version, startKaleoNodeId, status) values (?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )"));
+						"(kaleoDefinitionVersionId, groupId, companyId, ",
+						"userId, userName, statusByUserId, statusByUserName, ",
+						"statusDate, createDate, modifiedDate, name, title, ",
+						"description, content, version, startKaleoNodeId, ",
+						"status) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ? )"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {

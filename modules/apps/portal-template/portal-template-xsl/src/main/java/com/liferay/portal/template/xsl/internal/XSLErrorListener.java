@@ -128,18 +128,11 @@ public class XSLErrorListener implements ErrorListener {
 			_lineNumber = locator.getLineNumber();
 			_columnNumber = locator.getColumnNumber();
 
-			StringBundler sb = new StringBundler(8);
-
-			sb.append(LanguageUtil.get(_locale, "line"));
-			sb.append(" #");
-			sb.append(locator.getLineNumber());
-			sb.append("; ");
-			sb.append(LanguageUtil.get(_locale, "column"));
-			sb.append(" #");
-			sb.append(locator.getColumnNumber());
-			sb.append("; ");
-
-			_location = sb.toString();
+			_location = StringBundler.concat(
+				LanguageUtil.get(_locale, "line"), " #",
+				locator.getLineNumber(), "; ",
+				LanguageUtil.get(_locale, "column"), " #",
+				locator.getColumnNumber(), "; ");
 		}
 		else {
 			_location = StringPool.BLANK;

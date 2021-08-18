@@ -157,17 +157,13 @@ public class TokenAutoLogin extends BaseAutoLogin {
 				}
 				else {
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(7);
-
-						sb.append("The property \"");
-						sb.append(PropsKeys.COMPANY_SECURITY_AUTH_TYPE);
-						sb.append("\" must be set to either \"");
-						sb.append(CompanyConstants.AUTH_TYPE_EA);
-						sb.append("\" or \"");
-						sb.append(CompanyConstants.AUTH_TYPE_SN);
-						sb.append("\"");
-
-						_log.warn(sb.toString());
+						_log.warn(
+							StringBundler.concat(
+								"The property \"",
+								PropsKeys.COMPANY_SECURITY_AUTH_TYPE,
+								"\" must be set to either \"",
+								CompanyConstants.AUTH_TYPE_EA, "\" or \"",
+								CompanyConstants.AUTH_TYPE_SN, "\""));
 					}
 				}
 			}
@@ -190,16 +186,13 @@ public class TokenAutoLogin extends BaseAutoLogin {
 		}
 		else {
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(6);
-
-				sb.append("Incompatible setting for: ");
-				sb.append(PropsKeys.COMPANY_SECURITY_AUTH_TYPE);
-				sb.append(". Please configure to either: ");
-				sb.append(CompanyConstants.AUTH_TYPE_EA);
-				sb.append(" or ");
-				sb.append(CompanyConstants.AUTH_TYPE_SN);
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Incompatible setting for: ",
+						PropsKeys.COMPANY_SECURITY_AUTH_TYPE,
+						". Please configure to either: ",
+						CompanyConstants.AUTH_TYPE_EA, " or ",
+						CompanyConstants.AUTH_TYPE_SN));
 			}
 		}
 

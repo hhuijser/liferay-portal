@@ -1095,16 +1095,9 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			end += systemLDAPConfiguration.rangeSize();
 		}
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(originalAttributeId);
-		sb.append(StringPool.SEMICOLON);
-		sb.append("range=");
-		sb.append(start);
-		sb.append(StringPool.DASH);
-		sb.append(end);
-
-		return sb.toString();
+		return StringBundler.concat(
+			originalAttributeId, StringPool.SEMICOLON, "range=", start,
+			StringPool.DASH, end);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

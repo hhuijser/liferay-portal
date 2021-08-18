@@ -274,13 +274,11 @@ public class OpenIdConnectAuthenticationHandlerImpl
 
 	private URI _getLoginRedirectURI(HttpServletRequest httpServletRequest) {
 		try {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(_portal.getPortalURL(httpServletRequest));
-			sb.append(_portal.getPathContext());
-			sb.append(OpenIdConnectConstants.REDIRECT_URL_PATTERN);
-
-			return new URI(sb.toString());
+			return new URI(
+				StringBundler.concat(
+					_portal.getPortalURL(httpServletRequest),
+					_portal.getPathContext(),
+					OpenIdConnectConstants.REDIRECT_URL_PATTERN));
 		}
 		catch (URISyntaxException uriSyntaxException) {
 			throw new SystemException(

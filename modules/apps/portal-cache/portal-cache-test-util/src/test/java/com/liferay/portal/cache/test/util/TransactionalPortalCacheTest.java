@@ -670,15 +670,10 @@ public class TransactionalPortalCacheTest {
 
 		StackTraceElement stackTraceElement = stackTraceElements[2];
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(stackTraceElement.getClassName());
-		sb.append(StringPool.UNDERLINE);
-		sb.append(stackTraceElement.getMethodName());
-		sb.append("_LineNumber_");
-		sb.append(stackTraceElement.getLineNumber());
-
-		String threadNamePrefix = sb.toString();
+		String threadNamePrefix = StringBundler.concat(
+			stackTraceElement.getClassName(), StringPool.UNDERLINE,
+			stackTraceElement.getMethodName(), "_LineNumber_",
+			stackTraceElement.getLineNumber());
 
 		TestCallable testCallable1 = new TestCallable(
 			transactionalPortalCache, key1, value1, readOnly1, skipReplicator);

@@ -102,15 +102,12 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 			(serviceRegistrationHolder._serviceRanking > serviceRanking)) {
 
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append(ClassUtil.getClassName(serviceRegistrationHolder));
-				sb.append(" is already registered with a higher ranking of ");
-				sb.append(serviceRegistrationHolder._serviceRanking);
-				sb.append(" for: ");
-				sb.append(modelSearchConfigurator.getClassName());
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						ClassUtil.getClassName(serviceRegistrationHolder),
+						" is already registered with a higher ranking of ",
+						serviceRegistrationHolder._serviceRanking, " for: ",
+						modelSearchConfigurator.getClassName()));
 			}
 
 			return modelSearchConfigurator;

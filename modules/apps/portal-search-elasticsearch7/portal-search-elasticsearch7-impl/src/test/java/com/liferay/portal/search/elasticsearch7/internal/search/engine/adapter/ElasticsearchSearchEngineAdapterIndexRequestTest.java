@@ -145,25 +145,17 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 
 	@Test
 	public void testExecuteAnalyzeIndexRequestWithCharFilters() {
-		StringBundler sb = new StringBundler(15);
-
-		sb.append("{\n");
-		sb.append("    \"settings\": {\n");
-		sb.append("        \"analysis\": {\n");
-		sb.append("            \"char_filter\": {\n");
-		sb.append("                \"custom_cf\": {\n");
-		sb.append("                    \"type\": \"mapping\",\n");
-		sb.append("                    \"mappings\": [\n");
-		sb.append("                        \"- => +\",\n");
-		sb.append("                        \"2 => 3\"\n");
-		sb.append("                    ]\n");
-		sb.append("                }\n");
-		sb.append("            }\n");
-		sb.append("        }\n");
-		sb.append("    }\n");
-		sb.append("}");
-
-		_putSettings(sb.toString());
+		_putSettings(
+			StringBundler.concat(
+				"{\n", "    \"settings\": {\n", "        \"analysis\": {\n",
+				"            \"char_filter\": {\n",
+				"                \"custom_cf\": {\n",
+				"                    \"type\": \"mapping\",\n",
+				"                    \"mappings\": [\n",
+				"                        \"- => +\",\n",
+				"                        \"2 => 3\"\n",
+				"                    ]\n", "                }\n",
+				"            }\n", "        }\n", "    }\n", "}"));
 
 		AnalyzeIndexRequest analyzeIndexRequest = new AnalyzeIndexRequest();
 
@@ -249,22 +241,15 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 	@Ignore
 	@Test
 	public void testExecuteAnalyzeIndexRequestWithNormalizer() {
-		StringBundler sb = new StringBundler(12);
-
-		sb.append("{\n");
-		sb.append("    \"settings\": {\n");
-		sb.append("        \"analysis\": {\n");
-		sb.append("            \"normalizer\": {\n");
-		sb.append("                \"custom_normalizer\": {\n");
-		sb.append("                    \"type\": \"custom\",\n");
-		sb.append("                    \"filter\": [\"uppercase\"]\n");
-		sb.append("                }\n");
-		sb.append("            }\n");
-		sb.append("        }\n");
-		sb.append("    }\n");
-		sb.append("}");
-
-		_putSettings(sb.toString());
+		_putSettings(
+			StringBundler.concat(
+				"{\n", "    \"settings\": {\n", "        \"analysis\": {\n",
+				"            \"normalizer\": {\n",
+				"                \"custom_normalizer\": {\n",
+				"                    \"type\": \"custom\",\n",
+				"                    \"filter\": [\"uppercase\"]\n",
+				"                }\n", "            }\n", "        }\n",
+				"    }\n", "}"));
 
 		AnalyzeIndexRequest analyzeIndexRequest = new AnalyzeIndexRequest();
 
@@ -327,24 +312,16 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 		CreateIndexRequest createIndexRequest = new CreateIndexRequest(
 			"test_index_2");
 
-		StringBundler sb = new StringBundler(14);
-
-		sb.append("{\n");
-		sb.append("    \"settings\": {\n");
-		sb.append("        \"number_of_shards\": 1\n");
-		sb.append("    },\n");
-		sb.append("    \"mappings\": {\n");
-		sb.append("        \"type1\": {\n");
-		sb.append("            \"properties\": {\n");
-		sb.append("                \"field1\": {\n");
-		sb.append("                    \"type\": \"text\"\n");
-		sb.append("                }\n");
-		sb.append("            }\n");
-		sb.append("        }\n");
-		sb.append("    }\n");
-		sb.append("}");
-
-		createIndexRequest.setSource(sb.toString());
+		createIndexRequest.setSource(
+			StringBundler.concat(
+				"{\n", "    \"settings\": {\n",
+				"        \"number_of_shards\": 1\n", "    },\n",
+				"    \"mappings\": {\n", "        \"type1\": {\n",
+				"            \"properties\": {\n",
+				"                \"field1\": {\n",
+				"                    \"type\": \"text\"\n",
+				"                }\n", "            }\n", "        }\n",
+				"    }\n", "}"));
 
 		CreateIndexResponse createIndexResponse = _searchEngineAdapter.execute(
 			createIndexRequest);
@@ -552,15 +529,10 @@ public class ElasticsearchSearchEngineAdapterIndexRequestTest {
 		UpdateIndexSettingsIndexRequest updateIndexSettingsIndexRequest =
 			new UpdateIndexSettingsIndexRequest("test_index_2");
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{\n");
-		sb.append("    \"index\": {\n");
-		sb.append("        \"refresh_interval\": \"2s\"\n");
-		sb.append("    }\n");
-		sb.append("}");
-
-		updateIndexSettingsIndexRequest.setSettings(sb.toString());
+		updateIndexSettingsIndexRequest.setSettings(
+			StringBundler.concat(
+				"{\n", "    \"index\": {\n",
+				"        \"refresh_interval\": \"2s\"\n", "    }\n", "}"));
 
 		UpdateIndexSettingsIndexResponse indexSettingsIndexResponse =
 			_searchEngineAdapter.execute(updateIndexSettingsIndexRequest);

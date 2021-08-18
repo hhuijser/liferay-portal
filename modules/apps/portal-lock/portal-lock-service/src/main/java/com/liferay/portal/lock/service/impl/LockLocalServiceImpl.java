@@ -323,15 +323,9 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 		List<Lock> locks = lockPersistence.findByUuid_C(uuid, companyId);
 
 		if (locks.isEmpty()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("{uuid=");
-			sb.append(uuid);
-			sb.append(", companyId=");
-			sb.append(companyId);
-			sb.append("}");
-
-			throw new NoSuchLockException(sb.toString());
+			throw new NoSuchLockException(
+				StringBundler.concat(
+					"{uuid=", uuid, ", companyId=", companyId, "}"));
 		}
 
 		Lock lock = locks.get(0);

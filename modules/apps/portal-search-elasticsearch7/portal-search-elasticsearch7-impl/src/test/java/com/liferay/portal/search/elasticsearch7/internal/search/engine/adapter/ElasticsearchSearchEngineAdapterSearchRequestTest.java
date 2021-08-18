@@ -96,24 +96,23 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 
 		_createIndex();
 
-		StringBundler sb = new StringBundler(14);
-
-		sb.append("{\n\"dynamic_templates\": [\n{\n");
-		sb.append("\"template_en\": {\n\"mapping\": {\n");
-		sb.append("\"analyzer\": \"english\",\n\"store\": true,\n");
-		sb.append("\"term_vector\": \"with_positions_offsets\",\n");
-		sb.append("\"type\": \"text\"\n},\n");
-		sb.append("\"match\": \"\\\\w+_en\\\\b|\\\\w+_en_[A-Z]{2}\\\\b\",\n");
-		sb.append("\"match_mapping_type\": \"string\",\n");
-		sb.append("\"match_pattern\": \"regex\"\n}\n}\n],\n");
-		sb.append("\"properties\": {\n\"companyId\": {\n");
-		sb.append("\"store\": true,\n\"type\": \"keyword\"\n},\n");
-		sb.append("\"languageId\": {\n\"index\": false,\n");
-		sb.append("\"store\": true,\n\"type\": \"keyword\"\n},");
-		sb.append("\"keywordSuggestion\" : {\n\"type\" : \"completion\"\n");
-		sb.append("}\n\n}\n}");
-
-		_putMapping(_MAPPING_NAME, sb.toString());
+		_putMapping(
+			_MAPPING_NAME,
+			StringBundler.concat(
+				"{\n\"dynamic_templates\": [\n{\n",
+				"\"template_en\": {\n\"mapping\": {\n",
+				"\"analyzer\": \"english\",\n\"store\": true,\n",
+				"\"term_vector\": \"with_positions_offsets\",\n",
+				"\"type\": \"text\"\n},\n",
+				"\"match\": \"\\\\w+_en\\\\b|\\\\w+_en_[A-Z]{2}\\\\b\",\n",
+				"\"match_mapping_type\": \"string\",\n",
+				"\"match_pattern\": \"regex\"\n}\n}\n],\n",
+				"\"properties\": {\n\"companyId\": {\n",
+				"\"store\": true,\n\"type\": \"keyword\"\n},\n",
+				"\"languageId\": {\n\"index\": false,\n",
+				"\"store\": true,\n\"type\": \"keyword\"\n},",
+				"\"keywordSuggestion\" : {\n\"type\" : \"completion\"\n",
+				"}\n\n}\n}"));
 	}
 
 	@After
@@ -318,15 +317,8 @@ public class ElasticsearchSearchEngineAdapterSearchRequestTest {
 	}
 
 	protected String getUID(String value) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(_DEFAULT_COMPANY_ID);
-		sb.append("_");
-		sb.append(_LOCALIZED_FIELD_NAME);
-		sb.append("_");
-		sb.append(value);
-
-		return sb.toString();
+		return StringBundler.concat(
+			_DEFAULT_COMPANY_ID, "_", _LOCALIZED_FIELD_NAME, "_", value);
 	}
 
 	protected void indexSuggestKeyword(String value) throws IOException {

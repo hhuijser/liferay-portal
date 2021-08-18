@@ -83,15 +83,9 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 		}
 
 		if (vote != null) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("{questionId=");
-			sb.append(questionId);
-			sb.append(", userId=");
-			sb.append(userId);
-			sb.append("}");
-
-			throw new DuplicateVoteException(sb.toString());
+			throw new DuplicateVoteException(
+				StringBundler.concat(
+					"{questionId=", questionId, ", userId=", userId, "}"));
 		}
 
 		String userName = user.getFullName();

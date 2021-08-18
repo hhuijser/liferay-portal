@@ -110,11 +110,19 @@
 			<artifactId>junit</artifactId>
 			<scope>provided</scope>
 		</dependency>
+#if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")} || ${liferayVersion.startsWith("7.3")})
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<scope>provided</scope>
 		</dependency>
+#else
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-1.2-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#end
 #if (!${liferayVersion.startsWith("7.1")})
 		<dependency>
 			<groupId>org.apache.felix</groupId>

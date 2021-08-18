@@ -54,13 +54,15 @@ public class ArticleExpirationDateUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select JournalArticle.* from JournalArticle left join ",
-							"JournalArticle tempJournalArticle on ",
-							"(JournalArticle.groupId = tempJournalArticle.groupId) ",
-							"and (JournalArticle.articleId = ",
+							"select JournalArticle.* from JournalArticle left ",
+							"join JournalArticle tempJournalArticle on ",
+							"(JournalArticle.groupId = ",
+							"tempJournalArticle.groupId) and ",
+							"(JournalArticle.articleId = ",
 							"tempJournalArticle.articleId) and ",
-							"(JournalArticle.version < tempJournalArticle.version) ",
-							"and (JournalArticle.status = ",
+							"(JournalArticle.version < ",
+							"tempJournalArticle.version) and ",
+							"(JournalArticle.status = ",
 							"tempJournalArticle.status) where ",
 							"(JournalArticle.classNameId = ",
 							JournalArticleConstants.CLASS_NAME_ID_DEFAULT,

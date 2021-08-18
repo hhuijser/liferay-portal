@@ -72,9 +72,10 @@ public class ImageTypeContentUpgradeProcess extends UpgradeProcess {
 					"JournalArticleImage.companyId, ",
 					"JournalArticle.resourcePrimKey, JournalArticle.userId ",
 					"from JournalArticleImage inner join JournalArticle on ",
-					"(JournalArticle.groupId = JournalArticleImage.groupId and ",
-					"JournalArticle.articleId = JournalArticleImage.articleId ",
-					"and JournalArticle.version = JournalArticleImage.version)"))) {
+					"(JournalArticle.groupId = JournalArticleImage.groupId ",
+					"and JournalArticle.articleId = ",
+					"JournalArticleImage.articleId and JournalArticle.version ",
+					"= JournalArticleImage.version)"))) {
 
 			while (resultSet1.next()) {
 				long articleImageId = resultSet1.getLong(1);

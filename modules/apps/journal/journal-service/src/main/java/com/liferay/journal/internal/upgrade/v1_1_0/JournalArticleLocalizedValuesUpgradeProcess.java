@@ -131,8 +131,9 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 							resultSet.getString(5),
 							StringBundler.concat(
 								"insert into JournalArticleLocalization(",
-								"articleLocalizationId, companyId, articlePK, title, ",
-								"description, languageId) values(?, ?, ?, ?, ?, ?)"));
+								"articleLocalizationId, companyId, articlePK, ",
+								"title, description, languageId) values(?, ?, ",
+								"?, ?, ?, ?)"));
 
 				updateJournalArticleLocalizedFieldsUpgradeCallables.add(
 					updateJournalArticleLocalizedFieldsUpgradeCallable);

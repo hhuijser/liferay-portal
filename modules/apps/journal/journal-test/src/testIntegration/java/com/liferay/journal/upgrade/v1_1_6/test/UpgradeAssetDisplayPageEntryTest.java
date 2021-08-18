@@ -135,13 +135,12 @@ public class UpgradeAssetDisplayPageEntryTest {
 			String classUuid)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into AssetEntry (entryId, groupId, companyId, ",
-			"classNameId, classPK, classUuid) values (?, ?, ?, ?, ?, ?)");
-
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into AssetEntry (entryId, groupId, companyId, ",
+					"classNameId, classPK, classUuid) values (?, ?, ?, ?, ?, ",
+					"?)"))) {
 
 			preparedStatement.setLong(1, _counterLocalService.increment());
 			preparedStatement.setLong(2, groupId);
@@ -159,16 +158,14 @@ public class UpgradeAssetDisplayPageEntryTest {
 			String layoutUuid)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into JournalArticle (uuid_, id_, resourcePrimKey, ",
-			"groupId, companyId, userId, userName, createDate, ",
-			"modifiedDate, folderId, classNameId, classPK, treePath, ",
-			"articleId, version, layoutUuid) values (?, ?, ?, ?, ?, ?, ",
-			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into JournalArticle (uuid_, id_, resourcePrimKey, ",
+					"groupId, companyId, userId, userName, createDate, ",
+					"modifiedDate, folderId, classNameId, classPK, treePath, ",
+					"articleId, version, layoutUuid) values (?, ?, ?, ?, ?, ",
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setString(1, PortalUUIDUtil.generate());
 			preparedStatement.setLong(2, _counterLocalService.increment());

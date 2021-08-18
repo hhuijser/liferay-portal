@@ -215,10 +215,11 @@ public class UpgradeJournalArticles extends BasePortletIdUpgradeProcess {
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select distinct PortletPreferences.portletPreferencesId ",
-					"from PortletPreferences inner join PortletPreferenceValue ",
-					"on PortletPreferenceValue.portletPreferencesId = ",
-					"PortletPreferences.portletPreferencesId where portletId = ",
-					"'", oldRootPortletId, "' OR portletId like '",
+					"from PortletPreferences inner join ",
+					"PortletPreferenceValue on ",
+					"PortletPreferenceValue.portletPreferencesId = ",
+					"PortletPreferences.portletPreferencesId where portletId ",
+					"= '", oldRootPortletId, "' OR portletId like '",
 					oldRootPortletId, "_INSTANCE_%' OR portletId like '",
 					oldRootPortletId, "_USER_%_INSTANCE_%'"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {

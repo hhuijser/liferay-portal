@@ -335,8 +335,8 @@ public class JournalArticleExportImportContentProcessor
 								stagedModel.getModelClassName(),
 								" and primary key ",
 								stagedModel.getPrimaryKeyObj(),
-								" references missing journal ",
-								"article with class primary key ", classPK));
+								" references missing journal article with ",
+								"class primary key ", classPK));
 					}
 
 					continue;
@@ -367,9 +367,9 @@ public class JournalArticleExportImportContentProcessor
 								stagedModel.getModelClassName(),
 								" and primary key ",
 								stagedModel.getPrimaryKeyObj(),
-								" references journal article ",
-								"with class primary key ", classPK,
-								" that could not be exported ", "due to ",
+								" references journal article with class ",
+								"primary key ", classPK,
+								" that could not be exported due to ",
 								exception);
 
 							if (Validator.isNotNull(exception.getMessage())) {
@@ -523,11 +523,10 @@ public class JournalArticleExportImportContentProcessor
 							_log.debug(
 								StringBundler.concat(
 									"An invalid web content article was ",
-									"detected during import when ",
-									"validating the content below. This is ",
-									"not an error; it typically means the ",
-									"web content article was deleted.\n",
-									content));
+									"detected during import when validating ",
+									"the content below. This is not an error; ",
+									"it typically means the web content ",
+									"article was deleted.\n", content));
 						}
 
 						return;

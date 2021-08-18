@@ -95,19 +95,13 @@ public class WikiActivityInterpreter extends BaseSocialActivityInterpreter {
 				"fileEntryTitle");
 
 			if ((fileEntry != null) && !fileEntry.isInTrash()) {
-				StringBundler sb = new StringBundler(9);
-
-				sb.append(serviceContext.getPathMain());
-				sb.append("/wiki/get_page_attachment?p_l_id=");
-				sb.append(serviceContext.getPlid());
-				sb.append("&nodeId=");
-				sb.append(pageResource.getNodeId());
-				sb.append("&title=");
-				sb.append(URLCodec.encodeURL(pageResource.getTitle()));
-				sb.append("&fileName=");
-				sb.append(fileEntryTitle);
-
-				link = sb.toString();
+				link = StringBundler.concat(
+					serviceContext.getPathMain(),
+					"/wiki/get_page_attachment?p_l_id=",
+					serviceContext.getPlid(), "&nodeId=",
+					pageResource.getNodeId(), "&title=",
+					URLCodec.encodeURL(pageResource.getTitle()), "&fileName=",
+					fileEntryTitle);
 			}
 
 			return wrapLink(link, fileEntryTitle);

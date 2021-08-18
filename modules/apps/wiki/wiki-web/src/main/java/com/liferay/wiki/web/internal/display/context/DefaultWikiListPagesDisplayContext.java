@@ -678,36 +678,31 @@ public class DefaultWikiListPagesDisplayContext
 		javaScriptMenuItem.setKey(WikiUIItemKeys.PRINT);
 		javaScriptMenuItem.setLabel("print");
 
-		StringBundler sb = new StringBundler(5);
+		javaScriptMenuItem.setOnClick(
+			StringBundler.concat(
+				"window.open('",
+				HtmlUtil.escapeJS(
+					PortletURLBuilder.createRenderURL(
+						_wikiRequestHelper.getLiferayPortletResponse()
+					).setMVCRenderCommandName(
+						"/wiki/view"
+					).setParameter(
+						"nodeName",
+						() -> {
+							WikiNode wikiNode = wikiPage.getNode();
 
-		sb.append("window.open('");
-
-		sb.append(
-			HtmlUtil.escapeJS(
-				PortletURLBuilder.createRenderURL(
-					_wikiRequestHelper.getLiferayPortletResponse()
-				).setMVCRenderCommandName(
-					"/wiki/view"
-				).setParameter(
-					"nodeName",
-					() -> {
-						WikiNode wikiNode = wikiPage.getNode();
-
-						return wikiNode.getName();
-					}
-				).setParameter(
-					"title", wikiPage.getTitle()
-				).setParameter(
-					"viewMode", Constants.PRINT
-				).setWindowState(
-					LiferayWindowState.POP_UP
-				).buildString()));
-
-		sb.append("', '', 'directories=0,height=480,left=80,location=1,");
-		sb.append("menubar=1,resizable=1,scrollbars=yes,status=0,");
-		sb.append("toolbar=0,top=180,width=640');");
-
-		javaScriptMenuItem.setOnClick(sb.toString());
+							return wikiNode.getName();
+						}
+					).setParameter(
+						"title", wikiPage.getTitle()
+					).setParameter(
+						"viewMode", Constants.PRINT
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).buildString()),
+				"', '', 'directories=0,height=480,left=80,location=1,",
+				"menubar=1,resizable=1,scrollbars=yes,status=0,",
+				"toolbar=0,top=180,width=640');"));
 
 		menuItems.add(javaScriptMenuItem);
 	}

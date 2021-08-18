@@ -58,15 +58,9 @@ public class DefaultWikiPageInfoPanelDisplayContext
 		ThemeDisplay themeDisplay =
 			_wikiPageInfoPanelRequestHelper.getThemeDisplay();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(themeDisplay.getPathMain());
-		sb.append("/wiki/rss?nodeId=");
-		sb.append(page.getNodeId());
-		sb.append("&title=");
-		sb.append(page.getTitle());
-
-		return sb.toString();
+		return StringBundler.concat(
+			themeDisplay.getPathMain(), "/wiki/rss?nodeId=", page.getNodeId(),
+			"&title=", page.getTitle());
 	}
 
 	@Override

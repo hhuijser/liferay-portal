@@ -188,14 +188,12 @@ public class IndexerWriterImpl<T extends BaseModel<?>>
 				}
 				catch (Exception exception) {
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Error reindexing all ");
-						sb.append(_modelSearchSettings.getClassName());
-						sb.append(" for company: ");
-						sb.append(companyId);
-
-						_log.warn(sb.toString(), exception);
+						_log.warn(
+							StringBundler.concat(
+								"Error reindexing all ",
+								_modelSearchSettings.getClassName(),
+								" for company: ", companyId),
+							exception);
 					}
 				}
 			}

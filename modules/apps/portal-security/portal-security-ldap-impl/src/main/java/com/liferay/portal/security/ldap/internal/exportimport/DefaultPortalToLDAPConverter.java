@@ -111,20 +111,14 @@ public class DefaultPortalToLDAPConverter implements PortalToLDAPConverter {
 			return groupBinding.getNameInNamespace();
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(
+		return StringBundler.concat(
 			GetterUtil.getString(
 				groupMappings.getProperty(GroupConverterKeys.GROUP_NAME),
-				_DEFAULT_DN));
-		sb.append(StringPool.EQUAL);
-		sb.append(Rdn.escapeValue(userGroup.getName()));
-		sb.append(StringPool.COMMA);
-		sb.append(
+				_DEFAULT_DN),
+			StringPool.EQUAL, Rdn.escapeValue(userGroup.getName()),
+			StringPool.COMMA,
 			_safePortalLDAP.getGroupsDNSafeLdapName(
 				ldapServerId, userGroup.getCompanyId()));
-
-		return sb.toString();
 	}
 
 	@Override
@@ -439,19 +433,14 @@ public class DefaultPortalToLDAPConverter implements PortalToLDAPConverter {
 			return userBinding.getNameInNamespace();
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(
+		return StringBundler.concat(
 			GetterUtil.getString(
-				userMappings.getProperty(_userDNFieldName), _DEFAULT_DN));
-		sb.append(StringPool.EQUAL);
-		sb.append(BeanPropertiesUtil.getStringSilent(user, _userDNFieldName));
-		sb.append(StringPool.COMMA);
-		sb.append(
+				userMappings.getProperty(_userDNFieldName), _DEFAULT_DN),
+			StringPool.EQUAL,
+			BeanPropertiesUtil.getStringSilent(user, _userDNFieldName),
+			StringPool.COMMA,
 			_safePortalLDAP.getUsersDNSafeLdapName(
 				ldapServerId, user.getCompanyId()));
-
-		return sb.toString();
 	}
 
 	@Override

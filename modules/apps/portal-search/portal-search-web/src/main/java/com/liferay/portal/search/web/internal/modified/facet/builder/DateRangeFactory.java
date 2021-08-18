@@ -48,15 +48,9 @@ public class DateRangeFactory {
 	}
 
 	public String getRangeString(String from, String to) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("[");
-		sb.append(_normalizeRangeBoundary(from, "000000"));
-		sb.append(" TO ");
-		sb.append(_normalizeRangeBoundary(to, "235959"));
-		sb.append("]");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"[", _normalizeRangeBoundary(from, "000000"), " TO ",
+			_normalizeRangeBoundary(to, "235959"), "]");
 	}
 
 	public Map<String, String> getRangeStrings(Calendar calendar) {

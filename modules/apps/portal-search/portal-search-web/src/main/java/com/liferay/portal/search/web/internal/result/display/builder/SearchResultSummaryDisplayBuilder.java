@@ -306,15 +306,10 @@ public class SearchResultSummaryDisplayBuilder {
 		Group group = _groupLocalService.fetchGroup(assetRenderer.getGroupId());
 
 		if ((group != null) && group.isStagingGroup()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(title);
-			sb.append(StringPool.SPACE);
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(_language.get(_httpServletRequest, "staged"));
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-
-			title = sb.toString();
+			title = StringBundler.concat(
+				title, StringPool.SPACE, StringPool.OPEN_PARENTHESIS,
+				_language.get(_httpServletRequest, "staged"),
+				StringPool.CLOSE_PARENTHESIS);
 		}
 
 		return title;

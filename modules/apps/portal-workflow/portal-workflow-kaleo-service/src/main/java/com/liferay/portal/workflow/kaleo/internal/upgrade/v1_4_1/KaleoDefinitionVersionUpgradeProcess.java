@@ -100,43 +100,35 @@ public class KaleoDefinitionVersionUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeKaleoDefinitionVersion() throws Exception {
-		StringBundler sb1 = new StringBundler(3);
-
-		sb1.append("select * from KaleoDefinition kd where not exists ");
-		sb1.append("(select 1 from KaleoDefinitionVersion kdv where kdv.name ");
-		sb1.append("= kd.name and kdv.companyId = kd.companyId)");
-
-		StringBundler sb2 = new StringBundler(6);
-
-		sb2.append("insert into KaleoDefinitionVersion ");
-		sb2.append("(kaleoDefinitionVersionId, groupId, companyId, userId, ");
-		sb2.append("userName, statusByUserId, statusByUserName, statusDate, ");
-		sb2.append("createDate, modifiedDate, name, title, description, ");
-		sb2.append("content, version, startKaleoNodeId, status) values (?, ");
-		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
-
 		List<PreparedStatement> preparedStatements = new ArrayList<>(17);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select * from KaleoDefinition kd where not exists ",
+					"(select 1 from KaleoDefinitionVersion kdv where kdv.name ",
+					"= kd.name and kdv.companyId = kd.companyId)"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString());
+					connection,
+					StringBundler.concat(
+						"insert into KaleoDefinitionVersion ",
+						"(kaleoDefinitionVersionId, groupId, companyId, userId, ",
+						"userName, statusByUserId, statusByUserName, statusDate, ",
+						"createDate, modifiedDate, name, title, description, ",
+						"content, version, startKaleoNodeId, status) values (?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
 				if (hasColumn(tableName, "kaleoDefinitionId")) {
-					StringBundler sb3 = new StringBundler(4);
-
-					sb3.append("update ");
-					sb3.append(tableName);
-					sb3.append(" set kaleoDefinitionVersionId = ? where ");
-					sb3.append("kaleoDefinitionId = ? ");
-
 					preparedStatements.add(
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-							connection, sb3.toString()));
+							connection,
+							StringBundler.concat(
+								"update ", tableName,
+								" set kaleoDefinitionVersionId = ? where ",
+								"kaleoDefinitionId = ? ")));
 				}
 			}
 

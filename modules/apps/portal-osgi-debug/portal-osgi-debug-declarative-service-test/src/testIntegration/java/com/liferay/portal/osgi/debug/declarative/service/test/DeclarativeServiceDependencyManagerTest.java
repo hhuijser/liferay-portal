@@ -154,14 +154,10 @@ public class DeclarativeServiceDependencyManagerTest {
 			message = message.replaceAll("\\n", "");
 			message = message.replaceAll("_", "");
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("name: ");
-			sb.append(DeclarativeServiceTestComponent.class.getName());
-			sb.append(", unsatisfied references: {name: ");
-			sb.append("declarativeServiceTestReference, target: null}");
-
-			String s = sb.toString();
+			String s = StringBundler.concat(
+				"name: ", DeclarativeServiceTestComponent.class.getName(),
+				", unsatisfied references: {name: ",
+				"declarativeServiceTestReference, target: null}");
 
 			Assert.assertTrue(
 				message, message.contains(s.replaceAll("\\s", "")));

@@ -98,17 +98,15 @@ public class SidecarManager implements ElasticsearchConfigurationObserver {
 			_startupSuccessful = false;
 
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(7);
-
-				sb.append("Liferay automatically starts a child process of ");
-				sb.append("Elasticsearch named sidecar for convenient ");
-				sb.append("development and demonstration purposes. Do NOT ");
-				sb.append("use sidecar in production. Refer to the ");
-				sb.append("documentation for details on the limitations of ");
-				sb.append("sidecar and instructions on configuring a remote ");
-				sb.append("Elasticsearch connection in the Control Panel.");
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Liferay automatically starts a child process of ",
+						"Elasticsearch named sidecar for convenient ",
+						"development and demonstration purposes. Do NOT ",
+						"use sidecar in production. Refer to the ",
+						"documentation for details on the limitations of ",
+						"sidecar and instructions on configuring a remote ",
+						"Elasticsearch connection in the Control Panel."));
 			}
 
 			if (_sidecar != null) {

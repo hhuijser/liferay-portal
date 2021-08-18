@@ -94,14 +94,10 @@ public class Netlogon {
 				SmbException smbException = new SmbException(
 					netrLogonSamLogon.getStatus(), false);
 
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Unable to authenticate user ");
-				sb.append(userName);
-				sb.append(": ");
-				sb.append(smbException.getMessage());
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Unable to authenticate user ", userName, ": ",
+						smbException.getMessage()));
 			}
 
 			return null;

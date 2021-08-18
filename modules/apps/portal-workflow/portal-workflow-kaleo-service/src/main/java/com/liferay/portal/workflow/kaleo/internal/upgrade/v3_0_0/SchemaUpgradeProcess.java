@@ -183,33 +183,27 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeKaleoDefinitionId() throws Exception {
-		StringBundler sb1 = new StringBundler(6);
-
-		sb1.append("select KaleoDefinition.kaleoDefinitionId, ");
-		sb1.append("KaleoDefinitionVersion.kaleoDefinitionVersionId from ");
-		sb1.append("KaleoDefinitionVersion inner join KaleoDefinition on ");
-		sb1.append("KaleoDefinition.companyId = ");
-		sb1.append("KaleoDefinitionVersion.companyId and ");
-		sb1.append("KaleoDefinition.name = KaleoDefinitionVersion.name");
-
 		List<PreparedStatement> preparedStatements = new ArrayList<>(18);
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select KaleoDefinition.kaleoDefinitionId, ",
+					"KaleoDefinitionVersion.kaleoDefinitionVersionId from ",
+					"KaleoDefinitionVersion inner join KaleoDefinition on ",
+					"KaleoDefinition.companyId = ",
+					"KaleoDefinitionVersion.companyId and ",
+					"KaleoDefinition.name = KaleoDefinitionVersion.name"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			for (String tableName : _TABLE_NAMES) {
-				StringBundler sb2 = new StringBundler(4);
-
-				sb2.append("update ");
-				sb2.append(tableName);
-				sb2.append(" set kaleoDefinitionId = ? where ");
-				sb2.append("kaleoDefinitionVersionId = ? ");
-
 				preparedStatements.add(
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-						connection, sb2.toString()));
+						connection,
+						StringBundler.concat(
+							"update ", tableName,
+							" set kaleoDefinitionId = ? where ",
+							"kaleoDefinitionVersionId = ? ")));
 			}
 
 			while (resultSet.next()) {

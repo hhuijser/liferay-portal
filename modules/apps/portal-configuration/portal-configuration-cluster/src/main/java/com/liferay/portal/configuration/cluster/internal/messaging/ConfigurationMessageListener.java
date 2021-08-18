@@ -57,14 +57,6 @@ public class ConfigurationMessageListener extends BaseMessageListener {
 	}
 
 	protected void reloadConfiguration(String pid, int type) throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("(");
-		sb.append(Constants.SERVICE_PID);
-		sb.append("=");
-		sb.append(pid);
-		sb.append(")");
-
 		_reloadablePersistenceManager.reload(pid);
 
 		Dictionary<String, ?> dictionary = _reloadablePersistenceManager.load(
@@ -74,7 +66,9 @@ public class ConfigurationMessageListener extends BaseMessageListener {
 			ConfigurationThreadLocal.setLocalUpdate(true);
 
 			Configuration[] configurations =
-				_configurationAdmin.listConfigurations(sb.toString());
+				_configurationAdmin.listConfigurations(
+					StringBundler.concat(
+						"(", Constants.SERVICE_PID, "=", pid, ")"));
 
 			if (configurations == null) {
 				return;

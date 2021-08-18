@@ -216,15 +216,12 @@ public class IndexerRegistryImpl implements IndexerRegistry {
 					indexerPostProcessors.add(indexerPostProcessor);
 
 					if (_log.isDebugEnabled()) {
-						StringBundler sb = new StringBundler(5);
-
-						sb.append("Registration of indexer post processor ");
-						sb.append("for ");
-						sb.append(indexerClassName);
-						sb.append(" will be completed once the indexer ");
-						sb.append("becomes available");
-
-						_log.debug(sb.toString());
+						_log.debug(
+							StringBundler.concat(
+								"Registration of indexer post processor ",
+								"for ", indexerClassName,
+								" will be completed once the indexer ",
+								"becomes available"));
 					}
 				}
 			}

@@ -66,13 +66,7 @@ public class Filter {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("{_expression=");
-		sb.append(_expression);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat("{_expression=", _expression, "}");
 	}
 
 	private Filter() {

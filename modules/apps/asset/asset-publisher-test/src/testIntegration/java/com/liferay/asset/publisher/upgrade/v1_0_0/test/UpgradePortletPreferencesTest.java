@@ -390,9 +390,9 @@ public class UpgradePortletPreferencesTest {
 		DDMStructure ddmStructure, DDMFormField ddmFormField) {
 
 		return StringBundler.concat(
-			"ddm", StringPool.DOUBLE_UNDERLINE, ddmFormField.getIndexType(),
-			StringPool.DOUBLE_UNDERLINE, ddmStructure.getStructureId(),
-			StringPool.DOUBLE_UNDERLINE, ddmFormField.getName());
+			"ddm__", ddmFormField.getIndexType(), StringPool.DOUBLE_UNDERLINE,
+			ddmStructure.getStructureId(), StringPool.DOUBLE_UNDERLINE,
+			ddmFormField.getName());
 	}
 
 	protected String getPortletId() {

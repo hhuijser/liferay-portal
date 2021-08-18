@@ -49,8 +49,8 @@ public abstract class BaseUpgradeAssetDisplayPageEntry extends UpgradeProcess {
 						"insert into AssetDisplayPageEntry (uuid_, ",
 						"assetDisplayPageEntryId, groupId, companyId, userId, ",
 						"userName, createDate, modifiedDate, classNameId, ",
-						"classPK, layoutPageTemplateEntryId, type_, plid) values( ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+						"classPK, layoutPageTemplateEntryId, type_, plid) ",
+						"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {

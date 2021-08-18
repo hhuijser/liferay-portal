@@ -105,10 +105,8 @@ public class CommerceAccountAddressClayDataSetDataSetDisplayView
 			dropdownItem -> {
 				dropdownItem.setHref(
 					StringBundler.concat(
-						"javascript:deleteCommerceAddress",
-						StringPool.OPEN_PARENTHESIS, StringPool.APOSTROPHE,
-						address.getAddressId(), StringPool.APOSTROPHE,
-						StringPool.CLOSE_PARENTHESIS, StringPool.SEMICOLON));
+						"javascript:deleteCommerceAddress('",
+						address.getAddressId(), "');"));
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "delete"));
@@ -120,10 +118,8 @@ public class CommerceAccountAddressClayDataSetDataSetDisplayView
 			dropdownItem -> {
 				dropdownItem.setHref(
 					StringBundler.concat(
-						"javascript:editCommerceAddress",
-						StringPool.OPEN_PARENTHESIS, StringPool.APOSTROPHE,
-						address.getAddressId(), StringPool.APOSTROPHE,
-						StringPool.CLOSE_PARENTHESIS, StringPool.SEMICOLON));
+						"javascript:editCommerceAddress('",
+						address.getAddressId(), "');"));
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "edit"));

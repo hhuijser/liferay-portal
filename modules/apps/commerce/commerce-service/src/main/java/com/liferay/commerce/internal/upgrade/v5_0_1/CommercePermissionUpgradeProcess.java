@@ -54,9 +54,9 @@ public class CommercePermissionUpgradeProcess
 				ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 			ResultSet resultSet = statement.executeQuery(
 				StringBundler.concat(
-					"select ResourcePermissionId from ResourcePermission where ",
-					"name in ('90', '", _PORTLET_NAME_COMMERCE_DISCOUNT, "', '",
-					_PORTLET_NAME_COMMERCE_PRICE_LIST, "')"))) {
+					"select ResourcePermissionId from ResourcePermission ",
+					"where name in ('90', '", _PORTLET_NAME_COMMERCE_DISCOUNT,
+					"', '", _PORTLET_NAME_COMMERCE_PRICE_LIST, "')"))) {
 
 			while (resultSet.next()) {
 				ResourcePermission resourcePermission =

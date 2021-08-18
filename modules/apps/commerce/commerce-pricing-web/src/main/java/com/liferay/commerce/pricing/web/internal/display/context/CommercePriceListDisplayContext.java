@@ -312,13 +312,13 @@ public class CommercePriceListDisplayContext
 	public String getPriceListsApiUrl(String portletName) {
 		String encodedFilter = URLCodec.encodeURL(
 			StringBundler.concat(
-				"type eq ", StringPool.APOSTROPHE,
-				getCommercePriceListType(portletName), StringPool.APOSTROPHE),
+				"type eq '", getCommercePriceListType(portletName),
+				StringPool.APOSTROPHE),
 			true);
 
 		return StringBundler.concat(
 			PortalUtil.getPortalURL(httpServletRequest),
-			"/o/headless-commerce-admin-pricing/v2.0/price-lists", "?filter=",
+			"/o/headless-commerce-admin-pricing/v2.0/price-lists?filter=",
 			encodedFilter);
 	}
 

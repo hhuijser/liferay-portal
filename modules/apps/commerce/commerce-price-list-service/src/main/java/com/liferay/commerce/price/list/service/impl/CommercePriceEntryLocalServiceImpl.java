@@ -28,7 +28,6 @@ import com.liferay.commerce.product.service.CPDefinitionLocalService;
 import com.liferay.commerce.product.service.CPInstanceLocalService;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -458,9 +457,8 @@ public class CommercePriceEntryLocalServiceImpl
 
 		throw new NoSuchCPInstanceException(
 			StringBundler.concat(
-				"{cProductId=", cProductId, StringPool.COMMA_AND_SPACE,
-				"cpInstanceUuid=", cpInstanceUuid, StringPool.COMMA_AND_SPACE,
-				"skuExternalReferenceCode=", skuExternalReferenceCode,
+				"{cProductId=", cProductId, ", cpInstanceUuid=", cpInstanceUuid,
+				", skuExternalReferenceCode=", skuExternalReferenceCode,
 				CharPool.CLOSE_CURLY_BRACE));
 	}
 

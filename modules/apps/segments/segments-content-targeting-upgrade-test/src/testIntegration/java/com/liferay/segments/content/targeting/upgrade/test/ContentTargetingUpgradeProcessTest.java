@@ -657,14 +657,11 @@ public class ContentTargetingUpgradeProcessTest {
 			String typeSettings)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("insert into CT_RuleInstance(ruleInstanceId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("userSegmentId, ruleKey, typeSettings) values (?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into CT_RuleInstance(ruleInstanceId, groupId, ",
+			"companyId, userId, userName, createDate, modifiedDate, ",
+			"userSegmentId, ruleKey, typeSettings) values (?, ?, ?, ?, ",
+			"?, ?, ?, ?, ?, ?)");
 
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -696,13 +693,10 @@ public class ContentTargetingUpgradeProcessTest {
 			Map<Locale, String> descriptionMap)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("insert into CT_UserSegment(userSegmentId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("name, description) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into CT_UserSegment(userSegmentId, groupId, ",
+			"companyId, userId, userName, createDate, modifiedDate, ",
+			"name, description) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -765,17 +759,10 @@ public class ContentTargetingUpgradeProcessTest {
 	private String _getCustomFieldFilterString(
 		ExpandoColumn expandoColumn, String expandoValue) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("(customField/_");
-		sb.append(expandoColumn.getColumnId());
-		sb.append("_");
-		sb.append(Normalizer.normalizeIdentifier(expandoColumn.getName()));
-		sb.append(" eq '");
-		sb.append(expandoValue);
-		sb.append("')");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"(customField/_", expandoColumn.getColumnId(), "_",
+			Normalizer.normalizeIdentifier(expandoColumn.getName()), " eq '",
+			expandoValue, "')");
 	}
 
 	private String _getCustomFieldRuleTypeSettings(

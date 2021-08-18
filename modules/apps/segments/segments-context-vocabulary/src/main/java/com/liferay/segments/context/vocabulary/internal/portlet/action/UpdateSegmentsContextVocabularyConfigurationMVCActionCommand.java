@@ -136,15 +136,11 @@ public class UpdateSegmentsContextVocabularyConfigurationMVCActionCommand
 
 		String factoryPid = pid.substring(index + 1);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(configuration.getFactoryPid());
-		sb.append(StringPool.DASH);
-		sb.append(factoryPid);
-		sb.append(".config");
-
 		File file = new File(
-			PropsValues.MODULE_FRAMEWORK_CONFIGS_DIR, sb.toString());
+			PropsValues.MODULE_FRAMEWORK_CONFIGS_DIR,
+			StringBundler.concat(
+				configuration.getFactoryPid(), StringPool.DASH, factoryPid,
+				".config"));
 
 		file = file.getAbsoluteFile();
 

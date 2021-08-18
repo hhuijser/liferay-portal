@@ -656,14 +656,12 @@ public class InsuranceSiteInitializer implements SiteInitializer {
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
 		for (KeyValuePair pathKeyValuePair : pathKeyValuePairs) {
-			StringBundler sb = new StringBundler(2);
-
-			sb.append(
-				_PATH + StringPool.FORWARD_SLASH + pathKeyValuePair.getKey());
-			sb.append(StringPool.FORWARD_SLASH);
-
 			Enumeration<URL> enumeration = _bundle.findEntries(
-				sb.toString(), pathKeyValuePair.getValue(), true);
+				StringBundler.concat(
+					_PATH + StringPool.FORWARD_SLASH +
+						pathKeyValuePair.getKey(),
+					StringPool.FORWARD_SLASH),
+				pathKeyValuePair.getValue(), true);
 
 			while (enumeration.hasMoreElements()) {
 				URL url = enumeration.nextElement();

@@ -124,15 +124,11 @@ public class StyleBookEntryLocalServiceImpl
 
 		StyleBookEntry styleBookEntry = getStyleBookEntry(styleBookEntryId);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(styleBookEntry.getName());
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		String name = sb.toString();
+		String name = StringBundler.concat(
+			styleBookEntry.getName(), StringPool.SPACE,
+			StringPool.OPEN_PARENTHESIS,
+			LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"),
+			StringPool.CLOSE_PARENTHESIS);
 
 		StyleBookEntry copyStyleBookEntry = addStyleBookEntry(
 			userId, groupId, styleBookEntry.getFrontendTokensValues(), name,

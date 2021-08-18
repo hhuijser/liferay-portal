@@ -571,17 +571,12 @@ public class LPKGBundleTrackerCustomizer
 					!location.equals(installedBundle.getLocation())) {
 
 					if (_log.isInfoEnabled()) {
-						StringBundler sb = new StringBundler(7);
-
-						sb.append("Skipping installation of ");
-						sb.append(symbolicName);
-						sb.append(" with version ");
-						sb.append(version.toString());
-						sb.append(" in ");
-						sb.append(bundle.getSymbolicName());
-						sb.append(" because an identical bundle exists");
-
-						_log.info(sb.toString());
+						_log.info(
+							StringBundler.concat(
+								"Skipping installation of ", symbolicName,
+								" with version ", version.toString(), " in ",
+								bundle.getSymbolicName(),
+								" because an identical bundle exists"));
 					}
 
 					return true;

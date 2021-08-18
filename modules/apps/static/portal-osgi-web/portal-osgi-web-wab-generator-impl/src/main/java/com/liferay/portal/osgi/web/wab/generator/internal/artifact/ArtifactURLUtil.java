@@ -68,18 +68,12 @@ public class ArtifactURLUtil {
 			contextName = symbolicName;
 		}
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(artifact.getPath());
-		sb.append("?");
-		sb.append(Constants.BUNDLE_SYMBOLICNAME);
-		sb.append("=");
-		sb.append(symbolicName);
-		sb.append("&Web-ContextPath=/");
-		sb.append(contextName);
-		sb.append("&protocol=file");
-
-		return new URL("webbundle", null, sb.toString());
+		return new URL(
+			"webbundle", null,
+			StringBundler.concat(
+				artifact.getPath(), "?", Constants.BUNDLE_SYMBOLICNAME, "=",
+				symbolicName, "&Web-ContextPath=/", contextName,
+				"&protocol=file"));
 	}
 
 	private static String _readServletContextName(Jar jar) throws Exception {

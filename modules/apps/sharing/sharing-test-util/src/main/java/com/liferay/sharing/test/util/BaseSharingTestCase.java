@@ -256,22 +256,18 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 
 			T model = getModel(TestPropsValues.getUser(), _group);
 
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("1234 IN (SELECT SharingEntry.classPK FROM ");
-			sb.append("SharingEntry WHERE (SharingEntry.toUserId = ");
-			sb.append(TestPropsValues.getUserId());
-			sb.append(") AND (SharingEntry.classNameId = ");
-			sb.append(
-				_classNameLocalService.getClassNameId(
-					model.getModelClassName()));
-			sb.append("))");
-
 			PermissionSQLContributor permissionSQLContributor =
 				getPermissionSQLContributor();
 
 			Assert.assertEquals(
-				sb.toString(),
+				StringBundler.concat(
+					"1234 IN (SELECT SharingEntry.classPK FROM ",
+					"SharingEntry WHERE (SharingEntry.toUserId = ",
+					TestPropsValues.getUserId(),
+					") AND (SharingEntry.classNameId = ",
+					_classNameLocalService.getClassNameId(
+						model.getModelClassName()),
+					"))"),
 				permissionSQLContributor.getPermissionSQL(
 					model.getModelClassName(), "1234", null, null, null));
 		}

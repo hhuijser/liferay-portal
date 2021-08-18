@@ -42,12 +42,9 @@ public class SegmentsExperienceUpgradeProcess extends UpgradeProcess {
 	private void _updateSegmentsExperience(
 		long segmentsExperienceId, String segmentsExperienceKey) {
 
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("update SegmentsExperience set segmentsExperienceKey = ? ");
-		sb.append("where segmentsExperienceId = ?");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"update SegmentsExperience set segmentsExperienceKey = ? ",
+			"where segmentsExperienceId = ?");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -65,12 +62,9 @@ public class SegmentsExperienceUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _updateSegmentsExperiences() throws Exception {
-		StringBundler sb = new StringBundler(1);
-
-		sb.append("select segmentsExperienceId from SegmentsExperience");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select segmentsExperienceId from SegmentsExperience"))) {
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
 				while (resultSet.next()) {

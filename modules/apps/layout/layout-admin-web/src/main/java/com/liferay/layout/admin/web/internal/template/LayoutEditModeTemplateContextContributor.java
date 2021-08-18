@@ -49,13 +49,11 @@ public class LayoutEditModeTemplateContextContributor
 		if (layoutMode.equals(Constants.EDIT) ||
 			layoutMode.equals(Constants.PREVIEW)) {
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(GetterUtil.getString(contextObjects.get("bodyCssClass")));
-			sb.append(StringPool.SPACE);
-			sb.append("has-edit-mode-menu");
-
-			contextObjects.put("bodyCssClass", sb.toString());
+			contextObjects.put(
+				"bodyCssClass",
+				StringBundler.concat(
+					GetterUtil.getString(contextObjects.get("bodyCssClass")),
+					StringPool.SPACE, "has-edit-mode-menu"));
 		}
 	}
 

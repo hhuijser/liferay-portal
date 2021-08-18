@@ -65,17 +65,15 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeLayout() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select layoutPageTemplateEntryId, userId, groupId, name, ");
-		sb.append("type_, layoutPrototypeId from LayoutPageTemplateEntry ");
-		sb.append("where plid is null or plid = 0");
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement s = connection.createStatement();
-			ResultSet resultSet = s.executeQuery(sb.toString());
+			ResultSet resultSet = s.executeQuery(
+				StringBundler.concat(
+					"select layoutPageTemplateEntryId, userId, groupId, name, ",
+					"type_, layoutPrototypeId from LayoutPageTemplateEntry ",
+					"where plid is null or plid = 0"));
 			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

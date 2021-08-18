@@ -65,14 +65,6 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(getAllowedContentText());
-		sb.append(" a[*](*); div[*](*){text-align}; img[*](*){*}; p[*](*); ");
-		sb.append(getAllowedContentLists());
-		sb.append(getAllowedContentTable());
-		sb.append(" span[*](*){*}; ");
-
 		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
 			requestBackedPortletURLFactory, "_EDITOR_NAME_selectItem",
 			getFileItemSelectorCriterion(), getLayoutItemSelectorURL());
@@ -81,7 +73,12 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 			getImageItemSelectorCriterion(), getURLItemSelectorCriterion());
 
 		jsonObject.put(
-			"allowedContent", sb.toString()
+			"allowedContent",
+			StringBundler.concat(
+				getAllowedContentText(),
+				" a[*](*); div[*](*){text-align}; img[*](*){*}; p[*](*); ",
+				getAllowedContentLists(), getAllowedContentTable(),
+				" span[*](*){*}; ")
 		).put(
 			"documentBrowseLinkUrl", itemSelectorURL.toString()
 		).put(

@@ -64,19 +64,17 @@ public class LayoutPrototypeUpgradeProcess extends UpgradeProcess {
 	protected void upgradeLayoutPrototype() throws Exception {
 		Date date = new Date(System.currentTimeMillis());
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("insert into LayoutPageTemplateEntry (uuid_, ");
-		sb.append("layoutPageTemplateEntryId, groupId, companyId, userId, ");
-		sb.append("userName, createDate, modifiedDate, ");
-		sb.append("layoutPageTemplateCollectionId, name, type_, ");
-		sb.append("layoutPrototypeId, status) values (?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?)");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into LayoutPageTemplateEntry (uuid_, ",
+						"layoutPageTemplateEntryId, groupId, companyId, userId, ",
+						"userName, createDate, modifiedDate, ",
+						"layoutPageTemplateCollectionId, name, type_, ",
+						"layoutPrototypeId, status) values (?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?)"))) {
 
 			Set<String> existingNames = new HashSet<>();
 

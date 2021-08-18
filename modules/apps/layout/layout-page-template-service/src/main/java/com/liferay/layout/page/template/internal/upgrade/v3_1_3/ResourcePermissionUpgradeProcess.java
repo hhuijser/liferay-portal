@@ -37,26 +37,21 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _insertResourcePermissions() {
-		StringBundler sb1 = new StringBundler(5);
-
-		sb1.append("select mvccVersion, resourcePermissionId, companyId, ");
-		sb1.append("scope, primKey, primKeyId, roleId, ownerId, actionIds, ");
-		sb1.append("viewActionId from ResourcePermission where name = '");
-		sb1.append(LayoutAdminPortletKeys.GROUP_PAGES);
-		sb1.append("'");
-
-		StringBundler sb2 = new StringBundler(4);
-
-		sb2.append("insert into ResourcePermission (mvccVersion, ");
-		sb2.append("resourcePermissionId, companyId, name, scope, primKey, ");
-		sb2.append("primKeyId, roleId, ownerId, actionIds, viewActionId) ");
-		sb2.append("values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (Statement s = connection.createStatement();
-			ResultSet resultSet = s.executeQuery(sb1.toString());
+			ResultSet resultSet = s.executeQuery(
+				StringBundler.concat(
+					"select mvccVersion, resourcePermissionId, companyId, ",
+					"scope, primKey, primKeyId, roleId, ownerId, actionIds, ",
+					"viewActionId from ResourcePermission where name = '",
+					LayoutAdminPortletKeys.GROUP_PAGES, "'"));
 			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
-					connection.prepareStatement(sb2.toString()))) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"insert into ResourcePermission (mvccVersion, ",
+							"resourcePermissionId, companyId, name, scope, primKey, ",
+							"primKeyId, roleId, ownerId, actionIds, viewActionId) ",
+							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")))) {
 
 			while (resultSet.next()) {
 				long mvccVersion = resultSet.getLong("mvccVersion");

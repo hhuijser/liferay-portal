@@ -259,14 +259,11 @@ public class MasterLayoutsImporterTest {
 	private File _generateZipFile(String testCaseName) throws Exception {
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(_BASE_PATH + testCaseName);
-		sb.append(StringPool.FORWARD_SLASH + _ROOT_FOLDER);
-		sb.append(StringPool.FORWARD_SLASH);
-
 		Enumeration<URL> enumeration = _bundle.findEntries(
-			sb.toString(),
+			StringBundler.concat(
+				_BASE_PATH + testCaseName,
+				StringPool.FORWARD_SLASH + _ROOT_FOLDER,
+				StringPool.FORWARD_SLASH),
 			LayoutPageTemplateExportImportConstants.FILE_NAME_MASTER_PAGE,
 			true);
 

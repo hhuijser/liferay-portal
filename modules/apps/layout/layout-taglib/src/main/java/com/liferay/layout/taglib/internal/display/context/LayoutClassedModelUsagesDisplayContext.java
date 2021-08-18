@@ -151,14 +151,9 @@ public class LayoutClassedModelUsagesDisplayContext {
 				return layout.getName(_themeDisplay.getLocale());
 			}
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(layout.getName(_themeDisplay.getLocale()));
-			sb.append(" (");
-			sb.append(LanguageUtil.get(_themeDisplay.getLocale(), "draft"));
-			sb.append(")");
-
-			return sb.toString();
+			return StringBundler.concat(
+				layout.getName(_themeDisplay.getLocale()), " (",
+				LanguageUtil.get(_themeDisplay.getLocale(), "draft"), ")");
 		}
 
 		long plid = layoutClassedModelUsage.getPlid();
@@ -182,14 +177,9 @@ public class LayoutClassedModelUsagesDisplayContext {
 			return layoutPageTemplateEntry.getName();
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(layoutPageTemplateEntry.getName());
-		sb.append(" (");
-		sb.append(LanguageUtil.get(_themeDisplay.getLocale(), "draft"));
-		sb.append(")");
-
-		return sb.toString();
+		return StringBundler.concat(
+			layoutPageTemplateEntry.getName(), " (",
+			LanguageUtil.get(_themeDisplay.getLocale(), "draft"), ")");
 	}
 
 	public String getLayoutClassedModelUsageTypeLabel(

@@ -85,16 +85,13 @@ public class DLExportImportPortletPreferencesProcessorTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("(&(javax.portlet.name=");
-		sb.append(DLPortletKeys.DOCUMENT_LIBRARY);
-		sb.append(")(objectClass=");
-		sb.append(ExportImportPortletPreferencesProcessor.class.getName());
-		sb.append("))");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(&(javax.portlet.name=", DLPortletKeys.DOCUMENT_LIBRARY,
+					")(objectClass=",
+					ExportImportPortletPreferencesProcessor.class.getName(),
+					"))")));
 
 		_serviceTracker.open();
 	}

@@ -185,14 +185,12 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 								exception);
 						}
 						else {
-							StringBundler sb = new StringBundler(4);
-
-							sb.append("Unable to find file version ");
-							sb.append(dlFileVersion.getVersion());
-							sb.append(" for file entry ");
-							sb.append(dlFileEntry.getName());
-
-							_log.warn(sb.toString(), exception);
+							_log.warn(
+								StringBundler.concat(
+									"Unable to find file version ",
+									dlFileVersion.getVersion(),
+									" for file entry ", dlFileEntry.getName()),
+								exception);
 						}
 					}
 				}

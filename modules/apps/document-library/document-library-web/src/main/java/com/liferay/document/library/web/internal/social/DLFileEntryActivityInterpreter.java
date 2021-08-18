@@ -104,16 +104,10 @@ public class DLFileEntryActivityInterpreter
 	protected String getFolderLink(
 		FileEntry fileEntry, ServiceContext serviceContext) {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathMain());
-		sb.append("/document_library/find_folder?groupId=");
-		sb.append(fileEntry.getRepositoryId());
-		sb.append("&folderId=");
-		sb.append(fileEntry.getFolderId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			serviceContext.getPortalURL(), serviceContext.getPathMain(),
+			"/document_library/find_folder?groupId=",
+			fileEntry.getRepositoryId(), "&folderId=", fileEntry.getFolderId());
 	}
 
 	@Override

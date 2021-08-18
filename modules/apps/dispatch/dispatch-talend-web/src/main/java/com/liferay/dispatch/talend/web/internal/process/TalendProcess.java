@@ -57,15 +57,9 @@ public class TalendProcess {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{mainMethodArguments=");
-		sb.append(_mainMethodArguments.toString());
-		sb.append(", processConfig=");
-		sb.append(_processConfig.toString());
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{mainMethodArguments=", _mainMethodArguments.toString(),
+			", processConfig=", _processConfig.toString(), "}");
 	}
 
 	public static class Builder {

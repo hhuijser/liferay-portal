@@ -145,19 +145,18 @@ public class DLFileEntryAutoTaggerTest {
 			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("com.liferay.document.library.asset.auto.tagger.tensorflow.");
-		sb.append("internal.configuration.");
-		sb.append("TensorFlowImageAssetAutoTagProviderCompanyConfiguration");
-
 		Dictionary<String, Object> dictionary =
 			HashMapDictionaryBuilder.<String, Object>put(
 				"enabled", true
 			).build();
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
-				new ConfigurationTemporarySwapper(sb.toString(), dictionary)) {
+				new ConfigurationTemporarySwapper(
+					StringBundler.concat(
+						"com.liferay.document.library.asset.auto.tagger.tensorflow.",
+						"internal.configuration.",
+						"TensorFlowImageAssetAutoTagProviderCompanyConfiguration"),
+					dictionary)) {
 
 			unsafeRunnable.run();
 		}

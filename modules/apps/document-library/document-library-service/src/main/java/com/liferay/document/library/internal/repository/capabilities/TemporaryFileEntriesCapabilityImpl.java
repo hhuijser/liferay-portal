@@ -302,17 +302,11 @@ public class TemporaryFileEntriesCapabilityImpl
 	private String _getFolderPath(
 		TemporaryFileEntriesScope temporaryFileEntriesScope) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(_FOLDER_NAME_TEMP);
-		sb.append(StringPool.SLASH);
-		sb.append(temporaryFileEntriesScope.getCallerUuid());
-		sb.append(StringPool.SLASH);
-		sb.append(temporaryFileEntriesScope.getUserId());
-		sb.append(StringPool.SLASH);
-		sb.append(temporaryFileEntriesScope.getFolderPath());
-
-		return sb.toString();
+		return StringBundler.concat(
+			_FOLDER_NAME_TEMP, StringPool.SLASH,
+			temporaryFileEntriesScope.getCallerUuid(), StringPool.SLASH,
+			temporaryFileEntriesScope.getUserId(), StringPool.SLASH,
+			temporaryFileEntriesScope.getFolderPath());
 	}
 
 	private void _runWithoutSystemEvents(

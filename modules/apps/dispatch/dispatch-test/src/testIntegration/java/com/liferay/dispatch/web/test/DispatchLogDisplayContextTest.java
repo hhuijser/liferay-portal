@@ -84,14 +84,12 @@ public class DispatchLogDisplayContextTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("(component.name=");
-		sb.append("com.liferay.dispatch.web.internal.portlet.action.");
-		sb.append("ViewDispatchLogMVCRenderCommand)");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(component.name=",
+					"com.liferay.dispatch.web.internal.portlet.action.",
+					"ViewDispatchLogMVCRenderCommand)")));
 
 		_serviceTracker.open();
 	}

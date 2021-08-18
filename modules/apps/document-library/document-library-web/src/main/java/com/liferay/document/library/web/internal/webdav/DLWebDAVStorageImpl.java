@@ -359,16 +359,12 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 				if ((folder.getParentFolderId() != parentFolderId) ||
 					(webDAVRequest.getGroupId() != folder.getRepositoryId())) {
 
-					StringBundler sb = new StringBundler(6);
-
-					sb.append("No DLFolder exists with the key ");
-					sb.append("{parendFolderId=");
-					sb.append(parentFolderId);
-					sb.append(", repositoryId=");
-					sb.append(webDAVRequest.getGroupId());
-					sb.append(StringPool.CLOSE_CURLY_BRACE);
-
-					throw new NoSuchFolderException(sb.toString());
+					throw new NoSuchFolderException(
+						StringBundler.concat(
+							"No DLFolder exists with the key ",
+							"{parendFolderId=", parentFolderId,
+							", repositoryId=", webDAVRequest.getGroupId(),
+							StringPool.CLOSE_CURLY_BRACE));
 				}
 
 				return toResource(webDAVRequest, folder, false);
@@ -969,14 +965,11 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 				if (!hasLock(fileEntry, lockUuid) &&
 					(fileEntry.getLock() != null)) {
 
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("Inconsistent file lock state for file entry ");
-					sb.append(fileEntry.getPrimaryKey());
-					sb.append(" and lock UUID ");
-					sb.append(lockUuid);
-
-					throw new LockException(sb.toString());
+					throw new LockException(
+						StringBundler.concat(
+							"Inconsistent file lock state for file entry ",
+							fileEntry.getPrimaryKey(), " and lock UUID ",
+							lockUuid));
 				}
 
 				_dlAppService.deleteFileEntryByTitle(

@@ -331,16 +331,12 @@ public class UIItemsBuilder {
 
 		String jsNamespace = getNamespace() + _fileVersion.getFileVersionId();
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(jsNamespace);
-		sb.append("compareVersionDialog('");
-		sb.append(HtmlUtil.escapeJS(selectFileVersionURL.toString()));
-		sb.append("');");
-
 		JavaScriptMenuItem javaScriptMenuItem = _addJavaScriptUIItem(
 			new JavaScriptMenuItem(), menuItems, DLUIItemKeys.COMPARE_TO,
-			"compare-to", sb.toString());
+			"compare-to",
+			StringBundler.concat(
+				jsNamespace, "compareVersionDialog('",
+				HtmlUtil.escapeJS(selectFileVersionURL.toString()), "');"));
 
 		javaScriptMenuItem.setData(data);
 
@@ -767,17 +763,13 @@ public class UIItemsBuilder {
 				"Unable to create permissions URL", exception);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("Liferay.Util.openModal({title: '");
-		sb.append(UnicodeLanguageUtil.get(_resourceBundle, "permissions"));
-		sb.append("', url: '");
-		sb.append(HtmlUtil.escapeJS(permissionsURL));
-		sb.append("'});");
-
 		_addJavaScriptUIItem(
 			new JavaScriptToolbarItem(), toolbarItems, DLUIItemKeys.PERMISSIONS,
-			LanguageUtil.get(_resourceBundle, "permissions"), sb.toString());
+			LanguageUtil.get(_resourceBundle, "permissions"),
+			StringBundler.concat(
+				"Liferay.Util.openModal({title: '",
+				UnicodeLanguageUtil.get(_resourceBundle, "permissions"),
+				"', url: '", HtmlUtil.escapeJS(permissionsURL), "'});"));
 	}
 
 	public void addPublishMenuItem(
@@ -1215,20 +1207,13 @@ public class UIItemsBuilder {
 	}
 
 	private String _getEditImageOnClickJavaScript() {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(getNamespace());
-		sb.append("editWithImageEditor({fileEntryId: '");
-		sb.append(_fileEntry.getFileEntryId());
-		sb.append("', imageURL: '");
-		sb.append(
+		return StringBundler.concat(
+			getNamespace(), "editWithImageEditor({fileEntryId: '",
+			_fileEntry.getFileEntryId(), "', imageURL: '",
 			HtmlUtil.escapeJS(
 				_dlURLHelper.getPreviewURL(
-					_fileEntry, _fileVersion, _themeDisplay,
-					StringPool.BLANK)));
-		sb.append("'});");
-
-		return sb.toString();
+					_fileEntry, _fileVersion, _themeDisplay, StringPool.BLANK)),
+			"'});");
 	}
 
 	private LiferayPortletRequest _getLiferayPortletRequest() {

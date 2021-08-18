@@ -169,13 +169,11 @@ public class DispatchTriggerLocalServiceImpl
 		}
 		catch (SchedulerException schedulerException) {
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(3);
-
-				sb.append("Unable to fetch previous fire date for dispatch ");
-				sb.append("trigger ID ");
-				sb.append(dispatchTriggerId);
-
-				_log.warn(sb.toString(), schedulerException);
+				_log.warn(
+					StringBundler.concat(
+						"Unable to fetch previous fire date for dispatch ",
+						"trigger ID ", dispatchTriggerId),
+					schedulerException);
 			}
 		}
 

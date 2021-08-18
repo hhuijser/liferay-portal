@@ -154,23 +154,12 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 	}
 
 	protected String getEntryRowIds() {
-		StringBundler sb = new StringBundler(13);
-
-		sb.append("['");
-		sb.append(_liferayPortletResponse.getNamespace());
-		sb.append(RowChecker.ROW_IDS);
-		sb.append(_SIMPLE_NAME_FOLDER);
-		sb.append("', '");
-		sb.append(_liferayPortletResponse.getNamespace());
-		sb.append(RowChecker.ROW_IDS);
-		sb.append(_SIMPLE_NAME_DL_FILE_SHORTCUT);
-		sb.append("', '");
-		sb.append(_liferayPortletResponse.getNamespace());
-		sb.append(RowChecker.ROW_IDS);
-		sb.append(_SIMPLE_NAME_FILE_ENTRY);
-		sb.append("']");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"['", _liferayPortletResponse.getNamespace(), RowChecker.ROW_IDS,
+			_SIMPLE_NAME_FOLDER, "', '", _liferayPortletResponse.getNamespace(),
+			RowChecker.ROW_IDS, _SIMPLE_NAME_DL_FILE_SHORTCUT, "', '",
+			_liferayPortletResponse.getNamespace(), RowChecker.ROW_IDS,
+			_SIMPLE_NAME_FILE_ENTRY, "']");
 	}
 
 	private static final String _SIMPLE_NAME_DL_FILE_SHORTCUT =

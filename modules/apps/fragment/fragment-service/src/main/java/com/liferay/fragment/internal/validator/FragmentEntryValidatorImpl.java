@@ -197,15 +197,10 @@ public class FragmentEntryValidatorImpl implements FragmentEntryValidator {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", getClass());
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(
+		return StringBundler.concat(
 			LanguageUtil.get(
-				resourceBundle, "fragment-configuration-is-invalid"));
-		sb.append(System.lineSeparator());
-		sb.append(message);
-
-		return sb.toString();
+				resourceBundle, "fragment-configuration-is-invalid"),
+			System.lineSeparator(), message);
 	}
 
 }

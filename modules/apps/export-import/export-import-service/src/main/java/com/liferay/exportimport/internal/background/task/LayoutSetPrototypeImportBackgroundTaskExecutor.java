@@ -122,14 +122,12 @@ public class LayoutSetPrototypeImportBackgroundTaskExecutor
 
 				mergeFailCount++;
 
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Merge fail count increased to ");
-				sb.append(mergeFailCount);
-				sb.append(" for layout set prototype ");
-				sb.append(layoutSetPrototype.getLayoutSetPrototypeId());
-
-				_log.error(sb.toString(), throwable);
+				_log.error(
+					StringBundler.concat(
+						"Merge fail count increased to ", mergeFailCount,
+						" for layout set prototype ",
+						layoutSetPrototype.getLayoutSetPrototypeId()),
+					throwable);
 
 				SitesUtil.setMergeFailCount(layoutSetPrototype, mergeFailCount);
 			}

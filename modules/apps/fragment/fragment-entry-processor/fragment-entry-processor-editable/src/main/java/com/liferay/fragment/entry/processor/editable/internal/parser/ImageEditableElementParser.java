@@ -138,14 +138,11 @@ public class ImageEditableElementParser implements EditableElementParser {
 		String src = replaceableElement.attr("src");
 
 		if (Validator.isNull(src.trim())) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJ");
-			sb.append("CAYAAAA7KqwyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs");
-			sb.append("4c6QAAAARnQU1BAACxjwv8YQUAAAAkSURBVHgB7cxBEQAACAIwtH8P");
-			sb.append("zw52kxD8OBZgNXsPQUOUwCIgAz0DHTyygaAAAAAASUVORK5CYII=");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAJ",
+				"CAYAAAA7KqwyAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs",
+				"4c6QAAAARnQU1BAACxjwv8YQUAAAAkSURBVHgB7cxBEQAACAIwtH8P",
+				"zw52kxD8OBZgNXsPQUOUwCIgAz0DHTyygaAAAAAASUVORK5CYII=");
 		}
 
 		return src;

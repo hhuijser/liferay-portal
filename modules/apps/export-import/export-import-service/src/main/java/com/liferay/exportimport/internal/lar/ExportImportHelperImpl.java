@@ -1483,14 +1483,8 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 	}
 
 	private String _getZipWriterFileName(String id) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(id);
-		sb.append(StringPool.DASH);
-		sb.append(Time.getTimestamp());
-		sb.append(".lar");
-
-		return sb.toString();
+		return StringBundler.concat(
+			id, StringPool.DASH, Time.getTimestamp(), ".lar");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

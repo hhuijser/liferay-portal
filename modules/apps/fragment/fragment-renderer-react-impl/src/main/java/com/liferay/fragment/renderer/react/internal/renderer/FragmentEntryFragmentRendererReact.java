@@ -165,14 +165,10 @@ public class FragmentEntryFragmentRendererReact implements FragmentRenderer {
 
 		sb.append("<div id=\"");
 
-		StringBundler fragmentIdSB = new StringBundler(4);
-
-		fragmentIdSB.append("fragment-");
-		fragmentIdSB.append(fragmentEntryLink.getFragmentEntryId());
-		fragmentIdSB.append("-");
-		fragmentIdSB.append(fragmentEntryLink.getNamespace());
-
-		sb.append(fragmentIdSB.toString());
+		sb.append(
+			StringBundler.concat(
+				"fragment-", fragmentEntryLink.getFragmentEntryId(), "-",
+				fragmentEntryLink.getNamespace()));
 
 		sb.append("\" >");
 		sb.append(fragmentEntryLink.getHtml());

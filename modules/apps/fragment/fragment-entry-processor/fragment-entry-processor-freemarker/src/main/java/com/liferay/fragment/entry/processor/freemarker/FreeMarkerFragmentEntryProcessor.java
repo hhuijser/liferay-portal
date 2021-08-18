@@ -134,14 +134,9 @@ public class FreeMarkerFragmentEntryProcessor
 			).put(
 				"fragmentElementId",
 				() -> {
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("fragment-");
-					sb.append(fragmentEntryLink.getFragmentEntryId());
-					sb.append("-");
-					sb.append(fragmentEntryLinkNamespace);
-
-					return sb.toString();
+					return StringBundler.concat(
+						"fragment-", fragmentEntryLink.getFragmentEntryId(),
+						"-", fragmentEntryLinkNamespace);
 				}
 			).put(
 				"fragmentEntryLinkNamespace", fragmentEntryLinkNamespace

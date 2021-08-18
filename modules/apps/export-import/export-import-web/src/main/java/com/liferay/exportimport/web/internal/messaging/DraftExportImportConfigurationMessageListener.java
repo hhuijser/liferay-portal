@@ -204,17 +204,14 @@ public class DraftExportImportConfigurationMessageListener
 		Property taskContextMapProperty = PropertyFactoryUtil.forName(
 			"taskContextMap");
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(StringPool.PERCENT);
-		sb.append(StringPool.QUOTE);
-		sb.append("exportImportConfigurationId");
-		sb.append(StringPool.QUOTE);
-		sb.append(StringPool.COLON);
-		sb.append(exportImportConfiguration.getExportImportConfigurationId());
-		sb.append(StringPool.PERCENT);
-
-		dynamicQuery.add(taskContextMapProperty.like(sb.toString()));
+		dynamicQuery.add(
+			taskContextMapProperty.like(
+				StringBundler.concat(
+					StringPool.PERCENT, StringPool.QUOTE,
+					"exportImportConfigurationId", StringPool.QUOTE,
+					StringPool.COLON,
+					exportImportConfiguration.getExportImportConfigurationId(),
+					StringPool.PERCENT)));
 
 		return _backgroundTaskLocalService.dynamicQuery(dynamicQuery);
 	}

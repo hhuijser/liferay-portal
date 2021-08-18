@@ -673,12 +673,6 @@ public class LayoutReferencesExportImportContentProcessor
 			}
 		}
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(VirtualLayoutConstants.CANONICAL_URL_SEPARATOR);
-		sb.append(GroupConstants.CONTROL_PANEL_FRIENDLY_URL);
-		sb.append(PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL);
-
 		content = StringUtil.replace(
 			content, _DATA_HANDLER_COMPANY_DEFAULT_GROUP_URL,
 			companyDefaultGroupPortalURL);
@@ -818,7 +812,11 @@ public class LayoutReferencesExportImportContentProcessor
 			content, _DATA_HANDLER_PUBLIC_SERVLET_MAPPING,
 			PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
 		content = StringUtil.replace(
-			content, _DATA_HANDLER_SITE_ADMIN_URL, sb.toString());
+			content, _DATA_HANDLER_SITE_ADMIN_URL,
+			StringBundler.concat(
+				VirtualLayoutConstants.CANONICAL_URL_SEPARATOR,
+				GroupConstants.CONTROL_PANEL_FRIENDLY_URL,
+				PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL));
 		content = StringUtil.replace(
 			content, _DATA_HANDLER_VIRTUAL_HOST_PRIVATE_LAYOUT_FRIENDLY_URL,
 			virtualHostPrivateLayoutFriendlyURLReplacement);
@@ -1125,15 +1123,9 @@ public class LayoutReferencesExportImportContentProcessor
 				InetAddressUtil.isLocalInetAddress(
 					InetAddress.getByName(uri.getHost()))) {
 
-				StringBundler sb = new StringBundler(5);
-
-				sb.append(uri.getScheme());
-				sb.append("://");
-				sb.append(uri.getHost());
-				sb.append(StringPool.COLON);
-				sb.append(uri.getPort());
-
-				return sb.toString();
+				return StringBundler.concat(
+					uri.getScheme(), "://", uri.getHost(), StringPool.COLON,
+					uri.getPort());
 			}
 		}
 		catch (UnknownHostException unknownHostException) {

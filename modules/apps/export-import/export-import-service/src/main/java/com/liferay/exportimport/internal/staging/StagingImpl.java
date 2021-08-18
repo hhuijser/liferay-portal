@@ -1239,14 +1239,13 @@ public class StagingImpl implements Staging {
 			LayoutPrototypeException layoutPrototypeException =
 				(LayoutPrototypeException)exception;
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("the-lar-file-could-not-be-imported-because-it-");
-			sb.append("requires-page-templates-or-site-templates-that-could-");
-			sb.append("not-be-found.-please-import-the-following-templates-");
-			sb.append("manually");
-
-			errorMessage = LanguageUtil.get(resourceBundle, sb.toString());
+			errorMessage = LanguageUtil.get(
+				resourceBundle,
+				StringBundler.concat(
+					"the-lar-file-could-not-be-imported-because-it-",
+					"requires-page-templates-or-site-templates-that-could-",
+					"not-be-found.-please-import-the-following-templates-",
+					"manually"));
 
 			errorMessagesJSONArray = JSONFactoryUtil.createJSONArray();
 

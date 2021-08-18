@@ -208,15 +208,11 @@ public class FragmentEntryLocalServiceImpl
 				publishedFragmentEntry.fetchDraftFragmentEntry();
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(fragmentEntry.getName());
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		String name = sb.toString();
+		String name = StringBundler.concat(
+			fragmentEntry.getName(), StringPool.SPACE,
+			StringPool.OPEN_PARENTHESIS,
+			LanguageUtil.get(LocaleUtil.getMostRelevantLocale(), "copy"),
+			StringPool.CLOSE_PARENTHESIS);
 
 		FragmentEntry copyPublishedFragmentEntry = null;
 

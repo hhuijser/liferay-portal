@@ -189,21 +189,18 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeDDMStructureLayout() throws Exception {
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("select DDMStructure.structureId, ");
-		sb.append("DDMStructureLayout.structureLayoutId, ");
-		sb.append("DDMStructureLayout.structureVersionId, ");
-		sb.append("DDMStructureLayout.definition from DDMStructureLayout ");
-		sb.append("inner join DDMStructureVersion on ");
-		sb.append("DDMStructureLayout.structureVersionId = ");
-		sb.append("DDMStructureVersion.structureVersionId inner join ");
-		sb.append("DDMStructure on DDMStructure.structureId = ");
-		sb.append("DDMStructureVersion.structureId where ");
-		sb.append("DDMStructure.classNameId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.structureId, ",
+					"DDMStructureLayout.structureLayoutId, ",
+					"DDMStructureLayout.structureVersionId, ",
+					"DDMStructureLayout.definition from DDMStructureLayout ",
+					"inner join DDMStructureVersion on ",
+					"DDMStructureLayout.structureVersionId = ",
+					"DDMStructureVersion.structureVersionId inner join ",
+					"DDMStructure on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId where ",
+					"DDMStructure.classNameId = ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -315,16 +312,13 @@ public class DDMStructureUpgradeProcess extends UpgradeProcess {
 			return;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select DDMStructureVersion.structureVersionId, ");
-		sb.append("DDMStructureVersion.definition from DDMStructure inner ");
-		sb.append("join DDMStructureVersion on DDMStructure.structureId = ");
-		sb.append("DDMStructureVersion.structureId where ");
-		sb.append("DDMStructure.classNameId = ?");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructureVersion.structureVersionId, ",
+					"DDMStructureVersion.definition from DDMStructure inner ",
+					"join DDMStructureVersion on DDMStructure.structureId = ",
+					"DDMStructureVersion.structureId where ",
+					"DDMStructure.classNameId = ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

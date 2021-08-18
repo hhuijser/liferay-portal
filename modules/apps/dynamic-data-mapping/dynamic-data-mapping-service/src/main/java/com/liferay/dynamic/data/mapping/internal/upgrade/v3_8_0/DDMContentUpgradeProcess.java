@@ -51,24 +51,21 @@ public class DDMContentUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(13);
-
-		sb.append("select DDMContent.contentId, DDMContent.data_, ");
-		sb.append("DDMStructureVersion.structureVersionId, ");
-		sb.append("DDMStructureVersion.definition from DDMContent inner join ");
-		sb.append("DDMFormInstanceRecordVersion on DDMContent.contentId = ");
-		sb.append("DDMFormInstanceRecordVersion.storageId inner join ");
-		sb.append("DDMFormInstanceVersion on ");
-		sb.append("DDMFormInstanceRecordVersion.formInstanceId = ");
-		sb.append("DDMFormInstanceVersion.formInstanceId and ");
-		sb.append("DDMFormInstanceRecordVersion.formInstanceVersion = ");
-		sb.append("DDMFormInstanceVersion.version inner join ");
-		sb.append("DDMStructureVersion on ");
-		sb.append("DDMFormInstanceVersion.structureVersionId = ");
-		sb.append("DDMStructureVersion.structureVersionId");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMContent.contentId, DDMContent.data_, ",
+					"DDMStructureVersion.structureVersionId, ",
+					"DDMStructureVersion.definition from DDMContent inner join ",
+					"DDMFormInstanceRecordVersion on DDMContent.contentId = ",
+					"DDMFormInstanceRecordVersion.storageId inner join ",
+					"DDMFormInstanceVersion on ",
+					"DDMFormInstanceRecordVersion.formInstanceId = ",
+					"DDMFormInstanceVersion.formInstanceId and ",
+					"DDMFormInstanceRecordVersion.formInstanceVersion = ",
+					"DDMFormInstanceVersion.version inner join ",
+					"DDMStructureVersion on ",
+					"DDMFormInstanceVersion.structureVersionId = ",
+					"DDMStructureVersion.structureVersionId"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

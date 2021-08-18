@@ -621,17 +621,10 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 	}
 
 	protected String getDocLibraryFieldValue(FileEntry fileEntry) {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{\"groupId\":");
-		sb.append(fileEntry.getGroupId());
-		sb.append(",\"uuid\":\"");
-		sb.append(fileEntry.getUuid());
-		sb.append("\",\"version\":\"");
-		sb.append(fileEntry.getVersion());
-		sb.append("\"}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{\"groupId\":", fileEntry.getGroupId(), ",\"uuid\":\"",
+			fileEntry.getUuid(), "\",\"version\":\"", fileEntry.getVersion(),
+			"\"}");
 	}
 
 	protected void setUpJSONStorageAdapter() {

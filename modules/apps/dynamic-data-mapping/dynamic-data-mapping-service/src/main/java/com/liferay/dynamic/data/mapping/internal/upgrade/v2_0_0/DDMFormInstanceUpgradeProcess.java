@@ -119,30 +119,25 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 			"com.liferay.dynamic.data.lists",
 			"com.liferay.dynamic.data.mapping");
 
-		StringBundler sb1 = new StringBundler(7);
-
-		sb1.append("select DDLRecordSet.*, TEMP_TABLE.structureVersionId ");
-		sb1.append("from DDLRecordSet inner join (select structureId, ");
-		sb1.append("max(structureVersionId) as structureVersionId from ");
-		sb1.append("DDMStructureVersion group by ");
-		sb1.append("DDMStructureVersion.structureId) TEMP_TABLE on ");
-		sb1.append("DDLRecordSet.DDMStructureId = TEMP_TABLE.structureId ");
-		sb1.append("where scope = 2");
-
-		StringBundler sb2 = new StringBundler(5);
-
-		sb2.append("insert into DDMFormInstance(uuid_, formInstanceId, ");
-		sb2.append("groupId, companyId, userId, userName, versionUserId, ");
-		sb2.append("versionUserName, createDate, modifiedDate, structureId, ");
-		sb2.append("version, name, description, settings_, lastPublishDate) ");
-		sb2.append("values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DDLRecordSet.*, TEMP_TABLE.structureVersionId ",
+					"from DDLRecordSet inner join (select structureId, ",
+					"max(structureVersionId) as structureVersionId from ",
+					"DDMStructureVersion group by ",
+					"DDMStructureVersion.structureId) TEMP_TABLE on ",
+					"DDLRecordSet.DDMStructureId = TEMP_TABLE.structureId ",
+					"where scope = 2"));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into DDMFormInstance(uuid_, formInstanceId, ",
+						"groupId, companyId, userId, userName, versionUserId, ",
+						"versionUserName, createDate, modifiedDate, structureId, ",
+						"version, name, description, settings_, lastPublishDate) ",
+						"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			while (resultSet.next()) {
 				long recordSetId = resultSet.getLong("recordSetId");
@@ -284,13 +279,10 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateDDMStructure(long ddmStructureId) throws Exception {
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("update DDMStructure set classNameId = ? where structureId ");
-		sb.append("= ?");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"update DDMStructure set classNameId = ? where structureId ",
+					"= ?"))) {
 
 			preparedStatement.setLong(
 				1,
@@ -305,13 +297,10 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 	protected void updateDDMStructureLink(long ddmStructureId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("update DDMStructureLink set classNameId = ? where ");
-		sb.append("structureId = ?");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"update DDMStructureLink set classNameId = ? where ",
+					"structureId = ?"))) {
 
 			preparedStatement.setLong(
 				1,
@@ -348,18 +337,16 @@ public class DDMFormInstanceUpgradeProcess extends UpgradeProcess {
 			Timestamp statusDate)
 		throws SQLException {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("insert into DDMFormInstanceVersion(formInstanceVersionId, ");
-		sb.append("groupId, companyId, userId, userName, createDate, ");
-		sb.append("formInstanceId, structureVersionId, name, description, ");
-		sb.append("settings_, version, status, statusByUserId, ");
-		sb.append("statusByUserName, statusDate) values(?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into DDMFormInstanceVersion(formInstanceVersionId, ",
+						"groupId, companyId, userId, userName, createDate, ",
+						"formInstanceId, structureVersionId, name, description, ",
+						"settings_, version, status, statusByUserId, ",
+						"statusByUserName, statusDate) values(?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement2.setLong(1, _counterLocalService.increment());
 			preparedStatement2.setLong(2, groupId);

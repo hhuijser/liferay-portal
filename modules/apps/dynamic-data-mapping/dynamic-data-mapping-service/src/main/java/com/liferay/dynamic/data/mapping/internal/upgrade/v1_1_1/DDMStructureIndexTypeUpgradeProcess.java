@@ -42,13 +42,10 @@ public class DDMStructureIndexTypeUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _upgradeDDMStructureDefinition() throws Exception {
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("select DDMStructure.definition, DDMStructure.structureId ");
-		sb.append("from DDMStructure where structureKey = ? ");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDMStructure.definition, DDMStructure.structureId ",
+					"from DDMStructure where structureKey = ? "));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

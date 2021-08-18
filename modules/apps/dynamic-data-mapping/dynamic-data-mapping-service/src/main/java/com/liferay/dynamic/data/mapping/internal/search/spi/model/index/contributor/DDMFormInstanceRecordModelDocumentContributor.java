@@ -98,14 +98,10 @@ public class DDMFormInstanceRecordModelDocumentContributor
 		Set<Locale> locales = ddmFormValues.getAvailableLocales();
 
 		for (Locale locale : locales) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("ddmContent");
-			sb.append(StringPool.UNDERLINE);
-			sb.append(LocaleUtil.toLanguageId(locale));
-
 			document.addText(
-				sb.toString(),
+				StringBundler.concat(
+					"ddmContent", StringPool.UNDERLINE,
+					LocaleUtil.toLanguageId(locale)),
 				extractContent(ddmFormInstanceRecordVersion, locale));
 		}
 	}

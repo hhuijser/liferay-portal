@@ -229,17 +229,15 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeDDLDDMContentReferences() throws Exception {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("select DDMContent.contentId, DDMContent.data_, ");
-		sb.append("DDMStructure.structureId from DDLRecordVersion inner join ");
-		sb.append("DDLRecordSet on DDLRecordVersion.recordSetId = ");
-		sb.append("DDLRecordSet.recordSetId inner join DDMContent on  ");
-		sb.append("DDLRecordVersion.DDMStorageId = DDMContent.contentId ");
-		sb.append("inner join DDMStructure on DDLRecordSet.DDMStructureId = ");
-		sb.append("DDMStructure.structureId");
-
-		upgradeDDMContentReferences(sb.toString());
+		upgradeDDMContentReferences(
+			StringBundler.concat(
+				"select DDMContent.contentId, DDMContent.data_, ",
+				"DDMStructure.structureId from DDLRecordVersion inner join ",
+				"DDLRecordSet on DDLRecordVersion.recordSetId = ",
+				"DDLRecordSet.recordSetId inner join DDMContent on  ",
+				"DDLRecordVersion.DDMStorageId = DDMContent.contentId ",
+				"inner join DDMStructure on DDLRecordSet.DDMStructureId = ",
+				"DDMStructure.structureId"));
 	}
 
 	protected void upgradeDDMContentReferences(String query) throws Exception {
@@ -349,19 +347,17 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeDLDDMContentReferences() throws Exception {
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("select DDMContent.contentId, DDMContent.data_,");
-		sb.append("DDMStructure.structureId from DLFileEntryMetadata inner ");
-		sb.append("join DDMContent on DLFileEntryMetadata.DDMStorageId = ");
-		sb.append("DDMContent.contentId inner join DDMStructure on ");
-		sb.append("DLFileEntryMetadata.DDMStructureId = DDMStructure.");
-		sb.append("structureId inner join DLFileVersion on ");
-		sb.append("DLFileEntryMetadata.fileVersionId = DLFileVersion.");
-		sb.append("fileVersionId and DLFileEntryMetadata.fileEntryId = ");
-		sb.append("DLFileVersion.fileEntryId");
-
-		upgradeDDMContentReferences(sb.toString());
+		upgradeDDMContentReferences(
+			StringBundler.concat(
+				"select DDMContent.contentId, DDMContent.data_,",
+				"DDMStructure.structureId from DLFileEntryMetadata inner ",
+				"join DDMContent on DLFileEntryMetadata.DDMStorageId = ",
+				"DDMContent.contentId inner join DDMStructure on ",
+				"DLFileEntryMetadata.DDMStructureId = DDMStructure.",
+				"structureId inner join DLFileVersion on ",
+				"DLFileEntryMetadata.fileVersionId = DLFileVersion.",
+				"fileVersionId and DLFileEntryMetadata.fileEntryId = ",
+				"DLFileVersion.fileEntryId"));
 	}
 
 	protected class RadioDDMFormFieldValueTransformer

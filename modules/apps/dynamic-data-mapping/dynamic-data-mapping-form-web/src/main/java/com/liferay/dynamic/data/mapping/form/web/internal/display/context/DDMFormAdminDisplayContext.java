@@ -852,13 +852,9 @@ public class DDMFormAdminDisplayContext {
 	public String getLexiconIconsPath() {
 		ThemeDisplay themeDisplay = ddmFormAdminRequestHelper.getThemeDisplay();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(themeDisplay.getPathThemeImages());
-		sb.append("/clay/icons.svg");
-		sb.append(StringPool.POUND);
-
-		return sb.toString();
+		return StringBundler.concat(
+			themeDisplay.getPathThemeImages(), "/clay/icons.svg",
+			StringPool.POUND);
 	}
 
 	public String getMainRequire() {

@@ -40,14 +40,11 @@ public abstract class BaseDDMFormDeserializerTestCase extends BaseDDMTestCase {
 
 	@Test
 	public void testDDMFormAndFieldsDefaultLocales() throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("ddm-form-");
-		sb.append(getDeserializerType());
-		sb.append("-deserializer-different-default-locale");
-		sb.append(getTestFileExtension());
-
-		String serializedDDMForm = read(sb.toString());
+		String serializedDDMForm = read(
+			StringBundler.concat(
+				"ddm-form-", getDeserializerType(),
+				"-deserializer-different-default-locale",
+				getTestFileExtension()));
 
 		DDMForm ddmForm = deserialize(serializedDDMForm);
 
@@ -76,14 +73,10 @@ public abstract class BaseDDMFormDeserializerTestCase extends BaseDDMTestCase {
 
 	@Test
 	public void testDDMFormDeserialization() throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("ddm-form-");
-		sb.append(getDeserializerType());
-		sb.append("-deserializer-test-data");
-		sb.append(getTestFileExtension());
-
-		String serializedDDMForm = read(sb.toString());
+		String serializedDDMForm = read(
+			StringBundler.concat(
+				"ddm-form-", getDeserializerType(), "-deserializer-test-data",
+				getTestFileExtension()));
 
 		DDMForm ddmForm = deserialize(serializedDDMForm);
 

@@ -42,19 +42,16 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 	}
 
 	private void _updateCheckboxFieldType() throws Exception {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select DDMField.storageId, DDMField.fieldName from ");
-		sb.append("DLFileEntryType inner join DDMStructureLink on ");
-		sb.append("DDMStructureLink.classPK = ");
-		sb.append("DLFileEntryType.fileEntryTypeId inner join ");
-		sb.append("DDMStructureVersion on DDMStructureVersion.structureId = ");
-		sb.append("DDMStructureLink.structureId inner join DDMField on ");
-		sb.append("DDMStructureVersion.structureVersionId = ");
-		sb.append("DDMField.structureVersionId and DDMField.fieldType like ? ");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select DDMField.storageId, DDMField.fieldName from ",
+					"DLFileEntryType inner join DDMStructureLink on ",
+					"DDMStructureLink.classPK = ",
+					"DLFileEntryType.fileEntryTypeId inner join ",
+					"DDMStructureVersion on DDMStructureVersion.structureId = ",
+					"DDMStructureLink.structureId inner join DDMField on ",
+					"DDMStructureVersion.structureVersionId = ",
+					"DDMField.structureVersionId and DDMField.fieldType like ? "))) {
 
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				"select fieldAttributeId, smallAttributeValue from " +

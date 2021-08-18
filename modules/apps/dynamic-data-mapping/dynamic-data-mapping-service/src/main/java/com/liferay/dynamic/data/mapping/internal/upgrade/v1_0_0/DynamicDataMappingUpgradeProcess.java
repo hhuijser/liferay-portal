@@ -967,18 +967,15 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeDDLFieldTypeReferences() throws Exception {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("select DDLRecordVersion.*, DDMContent.data_, ");
-		sb.append("DDMStructure.structureId from DDLRecordVersion inner join ");
-		sb.append("DDLRecordSet on DDLRecordVersion.recordSetId = ");
-		sb.append("DDLRecordSet.recordSetId inner join DDMContent on  ");
-		sb.append("DDLRecordVersion.DDMStorageId = DDMContent.contentId ");
-		sb.append("inner join DDMStructure on DDLRecordSet.DDMStructureId = ");
-		sb.append("DDMStructure.structureId");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDLRecordVersion.*, DDMContent.data_, ",
+					"DDMStructure.structureId from DDLRecordVersion inner join ",
+					"DDLRecordSet on DDLRecordVersion.recordSetId = ",
+					"DDLRecordSet.recordSetId inner join DDMContent on  ",
+					"DDLRecordVersion.DDMStorageId = DDMContent.contentId ",
+					"inner join DDMStructure on DDLRecordSet.DDMStructureId = ",
+					"DDMStructure.structureId"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -1020,21 +1017,18 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeDLFieldTypeReferences() throws Exception {
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("select DLFileVersion.*, DDMContent.contentId, ");
-		sb.append("DDMContent.data_, DDMStructure.structureId from ");
-		sb.append("DLFileEntryMetadata inner join DDMContent on ");
-		sb.append("DLFileEntryMetadata.DDMStorageId = DDMContent.contentId ");
-		sb.append("inner join DDMStructure on ");
-		sb.append("DLFileEntryMetadata.DDMStructureId = DDMStructure.");
-		sb.append("structureId inner join DLFileVersion on ");
-		sb.append("DLFileEntryMetadata.fileVersionId = DLFileVersion.");
-		sb.append("fileVersionId and DLFileEntryMetadata.fileEntryId = ");
-		sb.append("DLFileVersion.fileEntryId");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DLFileVersion.*, DDMContent.contentId, ",
+					"DDMContent.data_, DDMStructure.structureId from ",
+					"DLFileEntryMetadata inner join DDMContent on ",
+					"DLFileEntryMetadata.DDMStorageId = DDMContent.contentId ",
+					"inner join DDMStructure on ",
+					"DLFileEntryMetadata.DDMStructureId = DDMStructure.",
+					"structureId inner join DLFileVersion on ",
+					"DLFileEntryMetadata.fileVersionId = DLFileVersion.",
+					"fileVersionId and DLFileEntryMetadata.fileEntryId = ",
+					"DLFileVersion.fileEntryId"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -1077,34 +1071,28 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 
 	protected void upgradeExpandoStorageAdapter() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb1 = new StringBundler(5);
-
-			sb1.append("select DDMStructure.*, DDMStorageLink.* from ");
-			sb1.append("DDMStorageLink inner join DDMStructure on ");
-			sb1.append("DDMStorageLink.structureId = ");
-			sb1.append("DDMStructure.structureId where ");
-			sb1.append("DDMStructure.storageType = 'expando'");
-
-			StringBundler sb2 = new StringBundler(4);
-
-			sb2.append("insert into DDMContent (uuid_, contentId, groupId, ");
-			sb2.append("companyId, userId, userName, createDate, ");
-			sb2.append("modifiedDate, name, description, data_) values (?, ");
-			sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-			StringBundler sb3 = new StringBundler(2);
-
-			sb3.append("update DDMStorageLink set classNameId = ? where ");
-			sb3.append("classNameId = ? and classPK = ?");
-
 			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(sb1.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select DDMStructure.*, DDMStorageLink.* from ",
+							"DDMStorageLink inner join DDMStructure on ",
+							"DDMStorageLink.structureId = ",
+							"DDMStructure.structureId where ",
+							"DDMStructure.storageType = 'expando'"));
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-						connection, sb2.toString());
+						connection,
+						StringBundler.concat(
+							"insert into DDMContent (uuid_, contentId, groupId, ",
+							"companyId, userId, userName, createDate, ",
+							"modifiedDate, name, description, data_) values (?, ",
+							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 				PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-						connection, sb3.toString());
+						connection,
+						StringBundler.concat(
+							"update DDMStorageLink set classNameId = ? where ",
+							"classNameId = ? and classPK = ?"));
 				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				Set<Long> expandoRowIds = new HashSet<>();
@@ -1196,22 +1184,6 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 	protected void upgradeStructuresAndAddStructureVersionsAndLayouts()
 		throws Exception {
 
-		StringBundler sb1 = new StringBundler(6);
-
-		sb1.append("insert into DDMStructureVersion (structureVersionId, ");
-		sb1.append("groupId, companyId, userId, userName, createDate, ");
-		sb1.append("structureId, version, parentStructureId, name, ");
-		sb1.append("description, definition, storageType, type_, status, ");
-		sb1.append("statusByUserId, statusByUserName, statusDate) values (?, ");
-		sb1.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		StringBundler sb2 = new StringBundler(4);
-
-		sb2.append("insert into DDMStructureLayout (uuid_, ");
-		sb2.append("structureLayoutId, groupId, companyId, userId, userName, ");
-		sb2.append("createDate, modifiedDate, structureVersionId, ");
-		sb2.append("definition) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from DDMStructure");
@@ -1222,10 +1194,22 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 						"structureId = ?");
 			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb1.toString());
+					connection,
+					StringBundler.concat(
+						"insert into DDMStructureVersion (structureVersionId, ",
+						"groupId, companyId, userId, userName, createDate, ",
+						"structureId, version, parentStructureId, name, ",
+						"description, definition, storageType, type_, status, ",
+						"statusByUserId, statusByUserName, statusDate) values (?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString());
+					connection,
+					StringBundler.concat(
+						"insert into DDMStructureLayout (uuid_, ",
+						"structureLayoutId, groupId, companyId, userId, userName, ",
+						"createDate, modifiedDate, structureVersionId, ",
+						"definition) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -1364,15 +1348,6 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void upgradeTemplatesAndAddTemplateVersions() throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("insert into DDMTemplateVersion (templateVersionId, ");
-		sb.append("groupId, companyId, userId, userName, createDate, ");
-		sb.append("classNameId, classPK, templateId, version, name, ");
-		sb.append("description, language, script, status, statusByUserId, ");
-		sb.append("statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select * from DDMTemplate");
@@ -1388,7 +1363,14 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 						"templateId = ?");
 			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb.toString());
+					connection,
+					StringBundler.concat(
+						"insert into DDMTemplateVersion (templateVersionId, ",
+						"groupId, companyId, userId, userName, createDate, ",
+						"classNameId, classPK, templateId, version, name, ",
+						"description, language, script, status, statusByUserId, ",
+						"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -1504,16 +1486,14 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 
 	protected void upgradeXMLStorageAdapter() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("select DDMStorageLink.classPK, DDMStorageLink.");
-			sb.append("structureId from DDMStorageLink inner join ");
-			sb.append("DDMStructure on (DDMStorageLink.structureId = ");
-			sb.append("DDMStructure.structureId) where DDMStorageLink.");
-			sb.append("classNameId = ? and DDMStructure.storageType = ?");
-
 			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select DDMStorageLink.classPK, DDMStorageLink.",
+							"structureId from DDMStorageLink inner join ",
+							"DDMStructure on (DDMStorageLink.structureId = ",
+							"DDMStructure.structureId) where DDMStorageLink.",
+							"classNameId = ? and DDMStructure.storageType = ?"));
 				PreparedStatement preparedStatement2 =
 					connection.prepareStatement(
 						"select companyId, data_ from DDMContent where " +

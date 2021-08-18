@@ -234,14 +234,11 @@ public class DDMTemplateStagedModelDataHandler
 				}
 				else {
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Unable to export small image ");
-						sb.append(template.getSmallImageId());
-						sb.append(" to template ");
-						sb.append(template.getTemplateKey());
-
-						_log.warn(sb.toString());
+						_log.warn(
+							StringBundler.concat(
+								"Unable to export small image ",
+								template.getSmallImageId(), " to template ",
+								template.getTemplateKey()));
 					}
 
 					template.setSmallImage(false);

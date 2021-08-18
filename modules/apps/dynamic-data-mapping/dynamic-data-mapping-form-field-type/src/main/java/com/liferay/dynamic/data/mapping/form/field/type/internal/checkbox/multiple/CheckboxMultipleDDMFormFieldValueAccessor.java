@@ -82,13 +82,11 @@ public class CheckboxMultipleDDMFormFieldValueAccessor
 				optionsValuesJSONArray.getString(i));
 
 			if (matcher.matches()) {
-				StringBundler sb = new StringBundler(3);
-
-				sb.append(StringPool.OPEN_BRACKET);
-				sb.append(getOptionsLabels(ddmFormFieldValue, locale));
-				sb.append(StringPool.CLOSE_BRACKET);
-
-				return createJSONArray(sb.toString());
+				return createJSONArray(
+					StringBundler.concat(
+						StringPool.OPEN_BRACKET,
+						getOptionsLabels(ddmFormFieldValue, locale),
+						StringPool.CLOSE_BRACKET));
 			}
 		}
 

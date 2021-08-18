@@ -85,30 +85,25 @@ public class DDMFormInstanceRecordUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb1 = new StringBundler(6);
-
-		sb1.append("select DDLRecord.*, DDMFormInstance.groupId as ");
-		sb1.append("formInstanceGroupId, DDMFormInstance.version as ");
-		sb1.append("formInstanceVersion, DDMFormInstance.name as ");
-		sb1.append("formInstanceName from DDLRecord inner join ");
-		sb1.append("DDMFormInstance on DDLRecord.recordSetId = ");
-		sb1.append("DDMFormInstance.formInstanceId");
-
-		StringBundler sb2 = new StringBundler(6);
-
-		sb2.append("insert into DDMFormInstanceRecord(uuid_, ");
-		sb2.append("formInstanceRecordId, groupId, companyId, userId, ");
-		sb2.append("userName, versionUserId, versionUserName, createDate, ");
-		sb2.append("modifiedDate, formInstanceId, formInstanceVersion, ");
-		sb2.append("storageId, version, lastPublishDate) values(?, ?, ?, ?, ");
-		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DDLRecord.*, DDMFormInstance.groupId as ",
+					"formInstanceGroupId, DDMFormInstance.version as ",
+					"formInstanceVersion, DDMFormInstance.name as ",
+					"formInstanceName from DDLRecord inner join ",
+					"DDMFormInstance on DDLRecord.recordSetId = ",
+					"DDMFormInstance.formInstanceId"));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into DDMFormInstanceRecord(uuid_, ",
+						"formInstanceRecordId, groupId, companyId, userId, ",
+						"userName, versionUserId, versionUserName, createDate, ",
+						"modifiedDate, formInstanceId, formInstanceVersion, ",
+						"storageId, version, lastPublishDate) values(?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			while (resultSet.next()) {
 				String uuid = PortalUUIDUtil.generate();

@@ -470,14 +470,11 @@ public class JournalArticleStagedModelDataHandler
 				}
 				else {
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Unable to export small image ");
-						sb.append(article.getSmallImageId());
-						sb.append(" to article ");
-						sb.append(article.getArticleId());
-
-						_log.warn(sb.toString());
+						_log.warn(
+							StringBundler.concat(
+								"Unable to export small image ",
+								article.getSmallImageId(), " to article ",
+								article.getArticleId()));
 					}
 
 					article.setSmallImage(false);

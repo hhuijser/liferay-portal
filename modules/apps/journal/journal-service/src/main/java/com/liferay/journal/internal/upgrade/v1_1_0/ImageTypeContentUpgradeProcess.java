@@ -60,23 +60,21 @@ public class ImageTypeContentUpgradeProcess extends UpgradeProcess {
 	protected void copyJournalArticleImagesToJournalRepository()
 		throws Exception {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select JournalArticleImage.articleImageId, ");
-		sb.append("JournalArticleImage.groupId, ");
-		sb.append("JournalArticleImage.companyId, ");
-		sb.append("JournalArticle.resourcePrimKey, JournalArticle.userId ");
-		sb.append("from JournalArticleImage inner join JournalArticle on ");
-		sb.append("(JournalArticle.groupId = JournalArticleImage.groupId and ");
-		sb.append("JournalArticle.articleId = JournalArticleImage.articleId ");
-		sb.append("and JournalArticle.version = JournalArticleImage.version)");
-
 		List<SaveImageFileEntryUpgradeCallable>
 			saveImageFileEntryUpgradeCallables = new ArrayList<>();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement statement = connection.createStatement();
-			ResultSet resultSet1 = statement.executeQuery(sb.toString())) {
+			ResultSet resultSet1 = statement.executeQuery(
+				StringBundler.concat(
+					"select JournalArticleImage.articleImageId, ",
+					"JournalArticleImage.groupId, ",
+					"JournalArticleImage.companyId, ",
+					"JournalArticle.resourcePrimKey, JournalArticle.userId ",
+					"from JournalArticleImage inner join JournalArticle on ",
+					"(JournalArticle.groupId = JournalArticleImage.groupId and ",
+					"JournalArticle.articleId = JournalArticleImage.articleId ",
+					"and JournalArticle.version = JournalArticleImage.version)"))) {
 
 			while (resultSet1.next()) {
 				long articleImageId = resultSet1.getLong(1);

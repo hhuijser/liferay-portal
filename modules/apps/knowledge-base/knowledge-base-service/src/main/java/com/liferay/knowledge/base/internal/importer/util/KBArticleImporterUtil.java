@@ -81,14 +81,10 @@ public class KBArticleImporterUtil {
 				fileEntriesMap);
 		}
 		catch (Exception exception) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Unable to import image file ");
-			sb.append(imageFileName);
-			sb.append(": ");
-			sb.append(exception.getLocalizedMessage());
-
-			throw new KBArticleImportException(sb.toString());
+			throw new KBArticleImportException(
+				StringBundler.concat(
+					"Unable to import image file ", imageFileName, ": ",
+					exception.getLocalizedMessage()));
 		}
 	}
 

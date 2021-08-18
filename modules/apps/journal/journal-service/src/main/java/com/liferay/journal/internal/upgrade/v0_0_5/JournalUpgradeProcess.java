@@ -165,19 +165,17 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 
 	protected void addDDMStorageLinks() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(8);
-
-			sb.append("select DDMStructure.structureId, JournalArticle.id_ ");
-			sb.append("from JournalArticle inner join DDMStructure on (");
-			sb.append("DDMStructure.groupId in (select distinct Group_.");
-			sb.append("groupId from Group_ where (Group_.groupId = ");
-			sb.append("JournalArticle.groupId) or (Group_.companyId = ");
-			sb.append("JournalArticle.companyId and Group_.friendlyURL = ?)) ");
-			sb.append("and DDMStructure.structureKey = JournalArticle.");
-			sb.append("DDMStructureKey and JournalArticle.classNameId != ?)");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select DDMStructure.structureId, JournalArticle.id_ ",
+							"from JournalArticle inner join DDMStructure on (",
+							"DDMStructure.groupId in (select distinct Group_.",
+							"groupId from Group_ where (Group_.groupId = ",
+							"JournalArticle.groupId) or (Group_.companyId = ",
+							"JournalArticle.companyId and Group_.friendlyURL = ?)) ",
+							"and DDMStructure.structureKey = JournalArticle.",
+							"DDMStructureKey and JournalArticle.classNameId != ?)"))) {
 
 				preparedStatement.setString(
 					1, GroupConstants.GLOBAL_FRIENDLY_URL);
@@ -217,18 +215,16 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 			long journalArticleClassNameId = PortalUtil.getClassNameId(
 				JournalArticle.class.getName());
 
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("select DDMTemplate.templateId, JournalArticle.id_ ");
-			sb.append("from JournalArticle inner join DDMTemplate on (");
-			sb.append("DDMTemplate.groupId = JournalArticle.groupId and ");
-			sb.append("DDMTemplate.templateKey = ");
-			sb.append("JournalArticle.DDMTemplateKey and ");
-			sb.append("JournalArticle.classNameId != ? and ");
-			sb.append("DDMTemplate.classNameId = ?)");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select DDMTemplate.templateId, JournalArticle.id_ ",
+							"from JournalArticle inner join DDMTemplate on (",
+							"DDMTemplate.groupId = JournalArticle.groupId and ",
+							"DDMTemplate.templateKey = ",
+							"JournalArticle.DDMTemplateKey and ",
+							"JournalArticle.classNameId != ? and ",
+							"DDMTemplate.classNameId = ?)"))) {
 
 				preparedStatement.setLong(1, ddmStructureClassNameId);
 				preparedStatement.setLong(2, ddmStructureClassNameId);

@@ -136,16 +136,10 @@ public class JournalUtil {
 			smallImageURL = article.getSmallImageURL();
 		}
 		else if ((themeDisplay != null) && article.isSmallImage()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(themeDisplay.getPathImage());
-			sb.append("/journal/article?img_id=");
-			sb.append(article.getSmallImageId());
-			sb.append("&t=");
-			sb.append(
+			smallImageURL = StringBundler.concat(
+				themeDisplay.getPathImage(), "/journal/article?img_id=",
+				article.getSmallImageId(), "&t=",
 				WebServerServletTokenUtil.getToken(article.getSmallImageId()));
-
-			smallImageURL = sb.toString();
 		}
 
 		_addReservedEl(

@@ -251,17 +251,10 @@ public class JournalArticleModelValidator
 				_journalArticlePersistence.findByG_A(groupId, articleId);
 
 			if (!articles.isEmpty()) {
-				StringBundler sb = new StringBundler(7);
-
-				sb.append("{groupId=");
-				sb.append(groupId);
-				sb.append(", articleId=");
-				sb.append(articleId);
-				sb.append(", version=");
-				sb.append(version);
-				sb.append("}");
-
-				throw new DuplicateArticleIdException(sb.toString());
+				throw new DuplicateArticleIdException(
+					StringBundler.concat(
+						"{groupId=", groupId, ", articleId=", articleId,
+						", version=", version, "}"));
 			}
 		}
 
@@ -305,16 +298,12 @@ public class JournalArticleModelValidator
 				(classNameId ==
 					JournalArticleConstants.CLASS_NAME_ID_DEFAULT)) {
 
-				StringBundler sb = new StringBundler(6);
-
-				sb.append("Required field ");
-				sb.append(field.getName());
-				sb.append(" is not present for structure ");
-				sb.append(ddmStructure.getNameCurrentValue());
-				sb.append(" for locale ");
-				sb.append(defaultlocale);
-
-				throw new StorageFieldRequiredException(sb.toString());
+				throw new StorageFieldRequiredException(
+					StringBundler.concat(
+						"Required field ", field.getName(),
+						" is not present for structure ",
+						ddmStructure.getNameCurrentValue(), " for locale ",
+						defaultlocale));
 			}
 		}
 	}

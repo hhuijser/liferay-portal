@@ -56,14 +56,10 @@ public class RatingsEntryUpgradeProcess extends UpgradeProcess {
 				long entryId = resultSet.getLong("entryId");
 				double score = resultSet.getDouble("score");
 
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("update RatingsEntry set score = ");
-				sb.append(score * 2);
-				sb.append(" where entryId = ");
-				sb.append(entryId);
-
-				runSQL(sb.toString());
+				runSQL(
+					StringBundler.concat(
+						"update RatingsEntry set score = ", score * 2,
+						" where entryId = ", entryId));
 			}
 		}
 	}

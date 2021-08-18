@@ -133,18 +133,6 @@ public class JournalDDMTemplateManagementToolbarDisplayContext
 				for (String templateLanguageType :
 						_getTemplateLanguageTypes()) {
 
-					StringBundler sb = new StringBundler(6);
-
-					sb.append(
-						LanguageUtil.get(
-							httpServletRequest,
-							templateLanguageType + "[stands-for]"));
-					sb.append(StringPool.SPACE);
-					sb.append(StringPool.OPEN_PARENTHESIS);
-					sb.append(StringPool.PERIOD);
-					sb.append(templateLanguageType);
-					sb.append(StringPool.CLOSE_PARENTHESIS);
-
 					addPrimaryDropdownItem(
 						dropdownItem -> {
 							dropdownItem.setHref(
@@ -155,7 +143,16 @@ public class JournalDDMTemplateManagementToolbarDisplayContext
 								"language", templateLanguageType);
 							dropdownItem.setLabel(
 								LanguageUtil.format(
-									httpServletRequest, "add-x", sb.toString(),
+									httpServletRequest, "add-x",
+									StringBundler.concat(
+										LanguageUtil.get(
+											httpServletRequest,
+											templateLanguageType +
+												"[stands-for]"),
+										StringPool.SPACE,
+										StringPool.OPEN_PARENTHESIS,
+										StringPool.PERIOD, templateLanguageType,
+										StringPool.CLOSE_PARENTHESIS),
 									false));
 						});
 				}

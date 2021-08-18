@@ -243,14 +243,11 @@ public class JournalFeedReferencesExportImportContentProcessor
 
 				String path = ExportImportPathUtil.getModelPath(journalFeed);
 
-				StringBundler exportedReferenceSB = new StringBundler(4);
-
-				exportedReferenceSB.append(Portal.FRIENDLY_URL_SEPARATOR);
-				exportedReferenceSB.append("[$journalfeed-reference=");
-				exportedReferenceSB.append(path);
-				exportedReferenceSB.append("$]");
-
-				sb.replace(beginPos, endPos, exportedReferenceSB.toString());
+				sb.replace(
+					beginPos, endPos,
+					StringBundler.concat(
+						Portal.FRIENDLY_URL_SEPARATOR,
+						"[$journalfeed-reference=", path, "$]"));
 			}
 			catch (Exception exception) {
 				StringBundler exceptionSB = new StringBundler(6);

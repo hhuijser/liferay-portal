@@ -329,17 +329,14 @@ public class JournalArticleExportImportContentProcessor
 
 				if (journalArticle == null) {
 					if (_log.isInfoEnabled()) {
-						StringBundler messageSB = new StringBundler(7);
-
-						messageSB.append("Staged model with class name ");
-						messageSB.append(stagedModel.getModelClassName());
-						messageSB.append(" and primary key ");
-						messageSB.append(stagedModel.getPrimaryKeyObj());
-						messageSB.append(" references missing journal ");
-						messageSB.append("article with class primary key ");
-						messageSB.append(classPK);
-
-						_log.info(messageSB.toString());
+						_log.info(
+							StringBundler.concat(
+								"Staged model with class name ",
+								stagedModel.getModelClassName(),
+								" and primary key ",
+								stagedModel.getPrimaryKeyObj(),
+								" references missing journal ",
+								"article with class primary key ", classPK));
 					}
 
 					continue;
@@ -365,20 +362,15 @@ public class JournalArticleExportImportContentProcessor
 					}
 					catch (Exception exception) {
 						if (_log.isDebugEnabled()) {
-							StringBundler messageSB = new StringBundler(10);
-
-							messageSB.append("Staged model with class name ");
-							messageSB.append(stagedModel.getModelClassName());
-							messageSB.append(" and primary key ");
-							messageSB.append(stagedModel.getPrimaryKeyObj());
-							messageSB.append(" references journal article ");
-							messageSB.append("with class primary key ");
-							messageSB.append(classPK);
-							messageSB.append(" that could not be exported ");
-							messageSB.append("due to ");
-							messageSB.append(exception);
-
-							String errorMessage = messageSB.toString();
+							String errorMessage = StringBundler.concat(
+								"Staged model with class name ",
+								stagedModel.getModelClassName(),
+								" and primary key ",
+								stagedModel.getPrimaryKeyObj(),
+								" references journal article ",
+								"with class primary key ", classPK,
+								" that could not be exported ", "due to ",
+								exception);
 
 							if (Validator.isNotNull(exception.getMessage())) {
 								errorMessage = StringBundler.concat(
@@ -528,16 +520,14 @@ public class JournalArticleExportImportContentProcessor
 
 					if (ExportImportThreadLocal.isImportInProcess()) {
 						if (_log.isDebugEnabled()) {
-							StringBundler sb = new StringBundler(6);
-
-							sb.append("An invalid web content article was ");
-							sb.append("detected during import when ");
-							sb.append("validating the content below. This is ");
-							sb.append("not an error; it typically means the ");
-							sb.append("web content article was deleted.\n");
-							sb.append(content);
-
-							_log.debug(sb.toString());
+							_log.debug(
+								StringBundler.concat(
+									"An invalid web content article was ",
+									"detected during import when ",
+									"validating the content below. This is ",
+									"not an error; it typically means the ",
+									"web content article was deleted.\n",
+									content));
 						}
 
 						return;

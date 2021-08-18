@@ -111,18 +111,13 @@ public class JournalContentCompatibilityConverterTest {
 	public void testGetLinkToLayoutValue() throws Exception {
 		Layout layout = LayoutTestUtil.addLayout(_group);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(layout.getLayoutId());
-		sb.append(StringPool.AT);
-		sb.append(layout.isPublicLayout() ? "public" : "private");
-		sb.append(StringPool.AT);
-		sb.append(layout.getGroupId());
-
 		String value = ReflectionTestUtil.invoke(
 			_journalContentCompatibilityConverter, "_convertLinkToLayoutValue",
 			new Class<?>[] {Locale.class, String.class}, LocaleUtil.US,
-			sb.toString());
+			StringBundler.concat(
+				layout.getLayoutId(), StringPool.AT,
+				layout.isPublicLayout() ? "public" : "private", StringPool.AT,
+				layout.getGroupId()));
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -138,16 +133,12 @@ public class JournalContentCompatibilityConverterTest {
 	public void testGetLinkToLayoutValueWithoutGroupId() throws Exception {
 		Layout layout = LayoutTestUtil.addLayout(_group);
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(layout.getLayoutId());
-		sb.append(StringPool.AT);
-		sb.append(layout.isPublicLayout() ? "public" : "private");
-
 		String value = ReflectionTestUtil.invoke(
 			_journalContentCompatibilityConverter, "_convertLinkToLayoutValue",
 			new Class<?>[] {Locale.class, String.class}, LocaleUtil.US,
-			sb.toString());
+			StringBundler.concat(
+				layout.getLayoutId(), StringPool.AT,
+				layout.isPublicLayout() ? "public" : "private"));
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 

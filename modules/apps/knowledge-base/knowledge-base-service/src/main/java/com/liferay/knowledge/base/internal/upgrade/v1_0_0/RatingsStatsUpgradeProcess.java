@@ -58,16 +58,11 @@ public class RatingsStatsUpgradeProcess extends UpgradeProcess {
 				double totalScore = resultSet.getDouble("totalScore");
 				double averageScore = resultSet.getDouble("averageScore");
 
-				StringBundler sb = new StringBundler(6);
-
-				sb.append("update RatingsStats set totalScore = ");
-				sb.append(totalScore * 2);
-				sb.append(", averageScore = ");
-				sb.append(averageScore * 2);
-				sb.append(" where statsId = ");
-				sb.append(statsId);
-
-				runSQL(sb.toString());
+				runSQL(
+					StringBundler.concat(
+						"update RatingsStats set totalScore = ", totalScore * 2,
+						", averageScore = ", averageScore * 2,
+						" where statsId = ", statsId));
 			}
 		}
 	}

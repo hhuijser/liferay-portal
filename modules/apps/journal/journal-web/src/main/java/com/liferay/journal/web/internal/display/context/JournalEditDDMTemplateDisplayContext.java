@@ -360,18 +360,11 @@ public class JournalEditDDMTemplateDisplayContext {
 	}
 
 	public String getTemplateLanguageTypeLabel(String templateLanguageType) {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(
+		return StringBundler.concat(
 			LanguageUtil.get(
-				_httpServletRequest, templateLanguageType + "[stands-for]"));
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(StringPool.PERIOD);
-		sb.append(templateLanguageType);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
+				_httpServletRequest, templateLanguageType + "[stands-for]"),
+			StringPool.SPACE, StringPool.OPEN_PARENTHESIS, StringPool.PERIOD,
+			templateLanguageType, StringPool.CLOSE_PARENTHESIS);
 	}
 
 	public String[] getTemplateLanguageTypes() {

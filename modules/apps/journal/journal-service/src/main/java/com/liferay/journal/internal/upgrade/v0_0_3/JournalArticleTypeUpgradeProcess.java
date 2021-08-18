@@ -166,9 +166,10 @@ public class JournalArticleTypeUpgradeProcess extends UpgradeProcess {
 					"select JournalArticle.resourcePrimKey, ",
 					"JournalArticle.type_ from JournalArticle left join ",
 					"JournalArticle tempJournalArticle on ",
-					"(JournalArticle.groupId = tempJournalArticle.groupId) and ",
-					"(JournalArticle.articleId = tempJournalArticle.articleId) ",
-					"and (JournalArticle.version < tempJournalArticle.version) ",
+					"(JournalArticle.groupId = tempJournalArticle.groupId) ",
+					"and (JournalArticle.articleId = ",
+					"tempJournalArticle.articleId) and ",
+					"(JournalArticle.version < tempJournalArticle.version) ",
 					"where JournalArticle.companyId = ? and ",
 					"tempJournalArticle.id_ is null"))) {
 

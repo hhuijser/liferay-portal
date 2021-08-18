@@ -111,9 +111,8 @@ public class KBArticleExportImportPortletPreferencesProcessor
 				StringBundler.concat(
 					"Unable to save converted portlet preference ",
 					"resourcePrimKey=", resourcePrimKey,
-					" (the root article) while importing KB Article ",
-					"portlet. (portletId=", portletDataContext.getPortletId(),
-					")"),
+					" (the root article) while importing KB Article portlet. ",
+					"(portletId=", portletDataContext.getPortletId(), ")"),
 				readOnlyException);
 		}
 

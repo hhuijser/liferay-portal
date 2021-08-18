@@ -168,14 +168,16 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select DDMStructure.structureId, JournalArticle.id_ ",
-							"from JournalArticle inner join DDMStructure on (",
-							"DDMStructure.groupId in (select distinct Group_.",
-							"groupId from Group_ where (Group_.groupId = ",
-							"JournalArticle.groupId) or (Group_.companyId = ",
-							"JournalArticle.companyId and Group_.friendlyURL = ?)) ",
-							"and DDMStructure.structureKey = JournalArticle.",
-							"DDMStructureKey and JournalArticle.classNameId != ?)"))) {
+							"select DDMStructure.structureId, ",
+							"JournalArticle.id_ from JournalArticle inner ",
+							"join DDMStructure on (DDMStructure.groupId in ",
+							"(select distinct Group_.groupId from Group_ ",
+							"where (Group_.groupId = JournalArticle.groupId) ",
+							"or (Group_.companyId = JournalArticle.companyId ",
+							"and Group_.friendlyURL = ?)) and ",
+							"DDMStructure.structureKey = ",
+							"JournalArticle.DDMStructureKey and ",
+							"JournalArticle.classNameId != ?)"))) {
 
 				preparedStatement.setString(
 					1, GroupConstants.GLOBAL_FRIENDLY_URL);
@@ -218,9 +220,10 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select DDMTemplate.templateId, JournalArticle.id_ ",
-							"from JournalArticle inner join DDMTemplate on (",
-							"DDMTemplate.groupId = JournalArticle.groupId and ",
+							"select DDMTemplate.templateId, ",
+							"JournalArticle.id_ from JournalArticle inner ",
+							"join DDMTemplate on (DDMTemplate.groupId = ",
+							"JournalArticle.groupId and ",
 							"DDMTemplate.templateKey = ",
 							"JournalArticle.DDMTemplateKey and ",
 							"JournalArticle.classNameId != ? and ",

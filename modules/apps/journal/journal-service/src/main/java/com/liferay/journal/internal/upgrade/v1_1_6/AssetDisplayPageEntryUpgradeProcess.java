@@ -79,22 +79,24 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 				SQLTransformer.transform(
 					StringBundler.concat(
 						"select JournalArticle.groupId, ",
-						"JournalArticle.resourcePrimKey, AssetEntry.classUuid from ",
-						"JournalArticle inner join AssetEntry on ( ",
+						"JournalArticle.resourcePrimKey, AssetEntry.classUuid ",
+						"from JournalArticle inner join AssetEntry on ( ",
 						"AssetEntry.classNameId = ? and AssetEntry.classPK = ",
-						"JournalArticle.resourcePrimKey ) inner join Group_ on ( ",
-						"Group_.groupId = JournalArticle.groupId) where ",
+						"JournalArticle.resourcePrimKey ) inner join Group_ ",
+						"on ( Group_.groupId = JournalArticle.groupId) where ",
 						"JournalArticle.companyId = ? and ",
 						"JournalArticle.layoutUuid is not null and ",
 						"JournalArticle.layoutUuid != '' and ",
 						"Group_.remoteStagingGroupCount = 0 and not exists ( ",
 						"select 1 from AssetDisplayPageEntry where ",
-						"AssetDisplayPageEntry.groupId = JournalArticle.groupId ",
-						"and AssetDisplayPageEntry.classNameId = ? and ",
+						"AssetDisplayPageEntry.groupId = ",
+						"JournalArticle.groupId and ",
+						"AssetDisplayPageEntry.classNameId = ? and ",
 						"AssetDisplayPageEntry.classPK = ",
 						"JournalArticle.resourcePrimKey) group by ",
-						"JournalArticle.groupId, JournalArticle.resourcePrimKey, ",
-						"AssetEntry.classUuid ")))) {
+						"JournalArticle.groupId, ",
+						"JournalArticle.resourcePrimKey, ",
+						"AssetEntry.classUuid")))) {
 
 			preparedStatement1.setLong(1, journalArticleClassNameId);
 			preparedStatement1.setLong(2, company.getCompanyId());
@@ -181,9 +183,9 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
-						"select groupId, liveGroupId from Group_ where companyId = ",
-						"? and liveGroupId is not null and liveGroupId != 0 and ",
-						"remoteStagingGroupCount = 0")))) {
+						"select groupId, liveGroupId from Group_ where ",
+						"companyId = ? and liveGroupId is not null and ",
+						"liveGroupId != 0 and remoteStagingGroupCount = 0")))) {
 
 			preparedStatement.setLong(1, companyId);
 

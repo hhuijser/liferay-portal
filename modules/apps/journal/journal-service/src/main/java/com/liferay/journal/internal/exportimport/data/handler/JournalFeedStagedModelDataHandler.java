@@ -287,9 +287,8 @@ public class JournalFeedStagedModelDataHandler
 				_log.warn(
 					StringBundler.concat(
 						"A feed with the ID ", feedId,
-						" cannot be imported because layout with friendly ",
-						"URL ", feed.getTargetLayoutFriendlyUrl(),
-						" does not exist: ",
+						" cannot be imported because layout with friendly URL ",
+						feed.getTargetLayoutFriendlyUrl(), " does not exist: ",
 						feedTargetLayoutFriendlyUrlException.getMessage()));
 			}
 		}

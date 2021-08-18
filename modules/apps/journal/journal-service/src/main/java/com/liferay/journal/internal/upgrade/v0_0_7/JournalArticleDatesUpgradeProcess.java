@@ -47,8 +47,8 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 			try (ResultSet resultSet = s.executeQuery(
 					StringBundler.concat(
 						"select resourcePrimKey, min(createDate) from ",
-						"JournalArticle group by resourcePrimKey having count(*) > ",
-						"1"))) {
+						"JournalArticle group by resourcePrimKey having ",
+						"count(*) > 1"))) {
 
 				while (resultSet.next()) {
 					long resourcePrimKey = resultSet.getLong(1);

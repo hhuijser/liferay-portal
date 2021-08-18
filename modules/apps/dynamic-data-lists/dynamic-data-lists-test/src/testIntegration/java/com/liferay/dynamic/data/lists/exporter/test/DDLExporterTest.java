@@ -170,16 +170,11 @@ public class DDLExporterTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"No", CharPool.COMMA, "1/1/1970", CharPool.COMMA, "1",
-					CharPool.COMMA, "file.txt", CharPool.COMMA,
-					"\"Latitude: -8.035, Longitude: -34.918\"", CharPool.COMMA,
-					"2", CharPool.COMMA, "Link to Page content", CharPool.COMMA,
-					"3", CharPool.COMMA, "Option 1", CharPool.COMMA, "Option 1",
-					CharPool.COMMA, "Text content", CharPool.COMMA,
-					"Text Area content", CharPool.COMMA, "Text HTML content",
-					CharPool.COMMA, "Approved", CharPool.COMMA,
-					formatDate(recordVersion.getStatusDate()), CharPool.COMMA,
-					recordVersion.getUserName()),
+					"No,1/1/1970,1,file.txt,\"Latitude: -8.035, Longitude: ",
+					"-34.918\",2,Link to Page content,3,Option 1,Option 1,",
+					"Text content,Text Area content,Text HTML content,",
+					"Approved,", formatDate(recordVersion.getStatusDate()),
+					CharPool.COMMA, recordVersion.getUserName()),
 				data);
 		}
 	}
@@ -361,9 +356,9 @@ public class DDLExporterTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"\"I'm \"\"good\"\"\"", CharPool.COMMA, "Approved",
-					CharPool.COMMA, formatDate(recordVersion0.getStatusDate()),
-					CharPool.COMMA, recordVersion0.getUserName()),
+					"\"I'm \"\"good\"\"\",Approved,",
+					formatDate(recordVersion0.getStatusDate()), CharPool.COMMA,
+					recordVersion0.getUserName()),
 				row0);
 		}
 	}

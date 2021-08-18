@@ -52,10 +52,10 @@ public class DDLRecordSetVersionUpgradeProcess extends UpgradeProcess {
 					StringBundler.concat(
 						"insert into DDLRecordSetVersion (recordSetVersionId, ",
 						"groupId, companyId, userId, userName, createDate, ",
-						"recordSetId, DDMStructureVersionId, name, description, ",
-						"settings_, version,  status, statusByUserId, ",
-						"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+						"recordSetId, DDMStructureVersionId, name, ",
+						"description, settings_, version,  status, ",
+						"statusByUserId, statusByUserName, statusDate) values ",
+						"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {

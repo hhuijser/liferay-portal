@@ -153,9 +153,10 @@ public class DLFileEntryAutoTaggerTest {
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
 					StringBundler.concat(
-						"com.liferay.document.library.asset.auto.tagger.tensorflow.",
-						"internal.configuration.",
-						"TensorFlowImageAssetAutoTagProviderCompanyConfiguration"),
+						"com.liferay.document.library.asset.auto.tagger.",
+						"tensorflow.internal.configuration.",
+						"TensorFlowImageAssetAutoTagProviderCompany",
+						"Configuration"),
 					dictionary)) {
 
 			unsafeRunnable.run();

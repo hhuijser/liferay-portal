@@ -35,7 +35,8 @@ public class DDMStructureLinkUpgradeProcess extends UpgradeProcess {
 					"inner join DDMStructureLink on ",
 					"DDMStructureLink.structureId = ",
 					"DLFileEntryType.dataDefinitionId and ",
-					"DDMStructureLink.classPK = DLFileEntryType.fileEntryTypeId"));
+					"DDMStructureLink.classPK = ",
+					"DLFileEntryType.fileEntryTypeId"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

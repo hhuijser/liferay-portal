@@ -69,8 +69,8 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
 					"select layoutPageTemplateEntryId, groupId, companyId, ",
-					"userId, userName, createDate from LayoutPageTemplateEntry ",
-					"where type_ in (",
+					"userId, userName, createDate from ",
+					"LayoutPageTemplateEntry where type_ in (",
 					LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, ", ",
 					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE,
 					")"))) {
@@ -145,9 +145,9 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 
 		String sql = StringBundler.concat(
 			"insert into LayoutPageTemplateStructure (uuid_, ",
-			"layoutPageTemplateStructureId, groupId, companyId, ",
-			"userId, userName, createDate, modifiedDate, classNameId, ",
-			"classPK, data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"layoutPageTemplateStructureId, groupId, companyId, userId, ",
+			"userName, createDate, modifiedDate, classNameId, classPK, data_) ",
+			"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

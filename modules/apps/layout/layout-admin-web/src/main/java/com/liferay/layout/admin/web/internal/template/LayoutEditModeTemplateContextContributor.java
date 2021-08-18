@@ -14,8 +14,6 @@
 
 package com.liferay.layout.admin.web.internal.template;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -51,9 +49,8 @@ public class LayoutEditModeTemplateContextContributor
 
 			contextObjects.put(
 				"bodyCssClass",
-				StringBundler.concat(
-					GetterUtil.getString(contextObjects.get("bodyCssClass")),
-					StringPool.SPACE, "has-edit-mode-menu"));
+				GetterUtil.getString(contextObjects.get("bodyCssClass")) +
+					" has-edit-mode-menu");
 		}
 	}
 

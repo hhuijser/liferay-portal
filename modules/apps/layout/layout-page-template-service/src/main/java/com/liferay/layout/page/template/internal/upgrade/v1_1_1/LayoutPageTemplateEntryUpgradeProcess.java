@@ -44,8 +44,8 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 						"layoutPrototypeId from LayoutPageTemplateEntry where ",
 						"type_ = ",
 						LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE,
-						" and groupId in (select groupId from Group_ where site = ",
-						"[$FALSE$])")));
+						" and groupId in (select groupId from Group_ where ",
+						"site = [$FALSE$])")));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -75,9 +75,9 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select count(*) from LayoutPageTemplateEntry where ",
-							"groupId = ", company.getGroupId(), " and name = '",
-							newName, "'"));
+							"select count(*) from LayoutPageTemplateEntry ",
+							"where groupId = ", company.getGroupId(),
+							" and name = '", newName, "'"));
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				if (resultSet.next() && (resultSet.getInt(1) > 0)) {

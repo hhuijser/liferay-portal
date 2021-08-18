@@ -86,17 +86,15 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 		throws UpgradeException {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("select orp.resourcePermissionId from ");
-			sb.append("ResourcePermission orp, ResourcePermission nrp where ");
-			sb.append("orp.companyId = nrp.companyId and orp.scope = ");
-			sb.append("nrp.scope and orp.primKey = nrp.primKey and ");
-			sb.append("orp.roleId = nrp.roleId and orp.name = ? and nrp.name ");
-			sb.append("= ?");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString())) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select orp.resourcePermissionId from ",
+							"ResourcePermission orp, ResourcePermission nrp where ",
+							"orp.companyId = nrp.companyId and orp.scope = ",
+							"nrp.scope and orp.primKey = nrp.primKey and ",
+							"orp.roleId = nrp.roleId and orp.name = ? and nrp.name ",
+							"= ?"))) {
 
 				preparedStatement.setString(1, _RESOURCE_NAMES[0][0]);
 				preparedStatement.setString(2, _RESOURCE_NAMES[0][1]);

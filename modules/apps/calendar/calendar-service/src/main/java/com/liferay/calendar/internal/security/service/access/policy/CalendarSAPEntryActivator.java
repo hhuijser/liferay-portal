@@ -64,15 +64,10 @@ public class CalendarSAPEntryActivator {
 			return;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(CalendarBookingService.class.getName());
-		sb.append("#search");
-		sb.append(StringPool.NEW_LINE);
-		sb.append(CalendarBookingService.class.getName());
-		sb.append("#searchCount");
-
-		String allowedServiceSignatures = sb.toString();
+		String allowedServiceSignatures = StringBundler.concat(
+			CalendarBookingService.class.getName(), "#search",
+			StringPool.NEW_LINE, CalendarBookingService.class.getName(),
+			"#searchCount");
 
 		ResourceBundleLoader resourceBundleLoader =
 			new AggregateResourceBundleLoader(

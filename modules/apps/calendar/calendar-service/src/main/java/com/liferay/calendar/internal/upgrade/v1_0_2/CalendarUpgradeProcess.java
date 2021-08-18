@@ -59,16 +59,14 @@ public class CalendarUpgradeProcess extends UpgradeProcess {
 
 	public void updateCalendarTimeZoneIds() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("select Calendar.calendarId, CalendarResource.");
-			sb.append("classNameId, User_.timeZoneId from Calendar inner ");
-			sb.append("join CalendarResource on Calendar.calendarResourceId ");
-			sb.append("= CalendarResource.calendarResourceId inner join ");
-			sb.append("User_ on CalendarResource.userId = User_.userId");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select Calendar.calendarId, CalendarResource.",
+							"classNameId, User_.timeZoneId from Calendar inner ",
+							"join CalendarResource on Calendar.calendarResourceId ",
+							"= CalendarResource.calendarResourceId inner join ",
+							"User_ on CalendarResource.userId = User_.userId"));
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				long userClassNameId = PortalUtil.getClassNameId(User.class);

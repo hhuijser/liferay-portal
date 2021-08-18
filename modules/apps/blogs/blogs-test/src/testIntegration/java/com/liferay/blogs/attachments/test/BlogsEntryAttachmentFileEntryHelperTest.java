@@ -222,19 +222,13 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 	}
 
 	protected String getModifiedTempFileEntryImgTag(FileEntry tempFileEntry) {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("<img ");
-		sb.append(EditorConstants.ATTRIBUTE_DATA_IMAGE_ID);
-		sb.append("=\"");
-		sb.append(tempFileEntry.getFileEntryId());
-		sb.append("\" class=\"test-class\" id=\"test-id\" src=\"");
-		sb.append(
+		return StringBundler.concat(
+			"<img ", EditorConstants.ATTRIBUTE_DATA_IMAGE_ID, "=\"",
+			tempFileEntry.getFileEntryId(),
+			"\" class=\"test-class\" id=\"test-id\" src=\"",
 			PortletFileRepositoryUtil.getPortletFileEntryURL(
-				null, tempFileEntry, StringPool.BLANK));
-		sb.append("\" title=\"test-title\" />");
-
-		return sb.toString();
+				null, tempFileEntry, StringPool.BLANK),
+			"\" title=\"test-title\" />");
 	}
 
 	private List<BlogsEntryAttachmentFileEntryReference>

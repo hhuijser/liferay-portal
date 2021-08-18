@@ -73,14 +73,12 @@ public class EditEntryMVCActionCommandTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("(component.name=");
-		sb.append("com.liferay.blogs.web.internal.portlet.action.");
-		sb.append("EditEntryMVCActionCommand)");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(component.name=",
+					"com.liferay.blogs.web.internal.portlet.action.",
+					"EditEntryMVCActionCommand)")));
 
 		_serviceTracker.open();
 	}

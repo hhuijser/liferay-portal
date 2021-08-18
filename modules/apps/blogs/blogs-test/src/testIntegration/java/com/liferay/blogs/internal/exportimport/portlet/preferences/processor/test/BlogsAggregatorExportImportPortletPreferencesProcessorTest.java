@@ -66,16 +66,13 @@ public class BlogsAggregatorExportImportPortletPreferencesProcessorTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("(&(objectClass=");
-		sb.append(ExportImportPortletPreferencesProcessor.class.getName());
-		sb.append(")(javax.portlet.name=");
-		sb.append(BlogsPortletKeys.BLOGS_AGGREGATOR);
-		sb.append("))");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(&(objectClass=",
+					ExportImportPortletPreferencesProcessor.class.getName(),
+					")(javax.portlet.name=", BlogsPortletKeys.BLOGS_AGGREGATOR,
+					"))")));
 
 		_serviceTracker.open();
 	}

@@ -90,14 +90,12 @@ public class BlogEntriesDisplayContextTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("(component.name=");
-		sb.append("com.liferay.blogs.web.internal.portlet.action.");
-		sb.append("ViewMVCRenderCommand)");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(component.name=",
+					"com.liferay.blogs.web.internal.portlet.action.",
+					"ViewMVCRenderCommand)")));
 
 		_serviceTracker.open();
 	}

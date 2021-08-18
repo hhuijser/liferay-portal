@@ -248,9 +248,9 @@ public class UpgradeResourceBlockTest extends BaseUpgradeResourceBlock {
 		runSQL(
 			StringBundler.concat(
 				"insert into ResourceTypePermission(mvccVersion, ",
-				"resourceTypePermissionId, companyId, groupId, name, ",
-				"roleId, actionIds) values (1, ", resourceTypePermissionId,
-				", ", _COMPANY_ID, ", ", groupId, ", '",
+				"resourceTypePermissionId, companyId, groupId, name, roleId, ",
+				"actionIds) values (1, ", resourceTypePermissionId, ", ",
+				_COMPANY_ID, ", ", groupId, ", '",
 				UpgradeResourceBlockTest.class.getName(), "', ", roleId, ", ",
 				actionIds, ")"));
 	}

@@ -595,12 +595,12 @@ public class ClusterSchedulerEngine
 						_log.warn(
 							StringBundler.concat(
 								"Property \"", PropsKeys.SCHEDULER_ENABLED,
-								"\" is disabled in the master node. To ",
-								"ensure consistent behavior, this property ",
-								"must have the same value in all cluster ",
-								"nodes. If scheduler needs to be enabled, ",
-								"please stop all nodes and restart them in ",
-								"an ordered way."));
+								"\" is disabled in the master node. To ensure ",
+								"consistent behavior, this property must have ",
+								"the same value in all cluster nodes. If ",
+								"scheduler needs to be enabled, please stop ",
+								"all nodes and restart them in an ordered ",
+								"way."));
 					}
 
 					return;

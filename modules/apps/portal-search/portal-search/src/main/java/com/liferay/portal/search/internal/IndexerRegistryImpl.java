@@ -218,10 +218,10 @@ public class IndexerRegistryImpl implements IndexerRegistry {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							StringBundler.concat(
-								"Registration of indexer post processor ",
-								"for ", indexerClassName,
-								" will be completed once the indexer ",
-								"becomes available"));
+								"Registration of indexer post processor for ",
+								indexerClassName,
+								" will be completed once the indexer becomes ",
+								"available"));
 					}
 				}
 			}

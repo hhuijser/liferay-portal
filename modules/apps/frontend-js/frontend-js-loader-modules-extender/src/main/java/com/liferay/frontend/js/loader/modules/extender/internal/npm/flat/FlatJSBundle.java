@@ -81,15 +81,8 @@ public class FlatJSBundle implements JSBundle {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(getId());
-		sb.append(StringPool.COLON);
-		sb.append(getName());
-		sb.append(StringPool.AT);
-		sb.append(getVersion());
-
-		return sb.toString();
+		return StringBundler.concat(
+			getId(), StringPool.COLON, getName(), StringPool.AT, getVersion());
 	}
 
 	private final Bundle _bundle;

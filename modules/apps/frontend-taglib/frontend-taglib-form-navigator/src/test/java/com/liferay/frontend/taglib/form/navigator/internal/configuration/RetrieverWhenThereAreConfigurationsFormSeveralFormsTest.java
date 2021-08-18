@@ -44,22 +44,22 @@ public class RetrieverWhenThereAreConfigurationsFormSeveralFormsTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		StringBundler sb1 = new StringBundler(4);
-
-		sb1.append("general");
-		sb1.append(StringPool.EQUAL);
-		sb1.append("formNavigatorEntryKey1,formNavigatorEntryKey2,");
-		sb1.append("formNavigatorEntryKey3");
-
-		StringBundler sb2 = new StringBundler(4);
-
-		sb2.append("general");
-		sb2.append(StringPool.EQUAL);
-		sb2.append("formNavigatorEntryKey4,formNavigatorEntryKey5,");
-		sb2.append("formNavigatorEntryKey6");
-
-		createConfiguration("form1", new String[] {sb1.toString()});
-		createConfiguration("form2", new String[] {sb2.toString()});
+		createConfiguration(
+			"form1",
+			new String[] {
+				StringBundler.concat(
+					"general", StringPool.EQUAL,
+					"formNavigatorEntryKey1,formNavigatorEntryKey2,",
+					"formNavigatorEntryKey3")
+			});
+		createConfiguration(
+			"form2",
+			new String[] {
+				StringBundler.concat(
+					"general", StringPool.EQUAL,
+					"formNavigatorEntryKey4,formNavigatorEntryKey5,",
+					"formNavigatorEntryKey6")
+			});
 	}
 
 	@Test

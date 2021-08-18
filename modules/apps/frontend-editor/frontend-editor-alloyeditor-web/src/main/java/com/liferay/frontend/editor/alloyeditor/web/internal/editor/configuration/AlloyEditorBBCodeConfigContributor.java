@@ -77,15 +77,14 @@ public class AlloyEditorBBCodeConfigContributor
 
 		String removePlugins = jsonObject.getString("removePlugins");
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("bidi,div,font,forms,indentblock,keystrokes,maximize,");
-		sb.append("newpage,pagebreak,preview,print,save,showblocks,smiley,");
-		sb.append("stylescombo,templates,video");
-
 		jsonObject.put(
 			"removePlugins",
-			StringBundler.concat(removePlugins, ",", sb.toString())
+			StringBundler.concat(
+				removePlugins, ",",
+				StringBundler.concat(
+					"bidi,div,font,forms,indentblock,keystrokes,maximize,",
+					"newpage,pagebreak,preview,print,save,showblocks,smiley,",
+					"stylescombo,templates,video"))
 		).put(
 			"smiley_images",
 			toJSONArray(BBCodeTranslatorUtil.getEmoticonFiles())

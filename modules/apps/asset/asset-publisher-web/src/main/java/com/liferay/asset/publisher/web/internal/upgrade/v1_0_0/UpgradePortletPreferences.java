@@ -99,16 +99,13 @@ public class UpgradePortletPreferences
 	protected String getJournalArticleResourceUuid(String journalArticleUuid)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select JournalArticleResource.uuid_ from ");
-		sb.append("JournalArticleResource inner join JournalArticle on ");
-		sb.append("JournalArticle.resourcePrimKey = ");
-		sb.append("JournalArticleResource.resourcePrimKey where ");
-		sb.append("JournalArticle.uuid_ = ?");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select JournalArticleResource.uuid_ from ",
+					"JournalArticleResource inner join JournalArticle on ",
+					"JournalArticle.resourcePrimKey = ",
+					"JournalArticleResource.resourcePrimKey where ",
+					"JournalArticle.uuid_ = ?"))) {
 
 			preparedStatement.setString(1, journalArticleUuid);
 
@@ -268,17 +265,10 @@ public class UpgradePortletPreferences
 				if ((ddmFormField != null) &&
 					Validator.isNotNull(ddmFormField.getIndexType())) {
 
-					StringBundler sb = new StringBundler(7);
-
-					sb.append(values[0]);
-					sb.append(_DDM_FIELD_SEPARATOR);
-					sb.append(ddmFormField.getIndexType());
-					sb.append(_DDM_FIELD_SEPARATOR);
-					sb.append(values[1]);
-					sb.append(_DDM_FIELD_SEPARATOR);
-					sb.append(fieldName);
-
-					value = sb.toString();
+					value = StringBundler.concat(
+						values[0], _DDM_FIELD_SEPARATOR,
+						ddmFormField.getIndexType(), _DDM_FIELD_SEPARATOR,
+						values[1], _DDM_FIELD_SEPARATOR, fieldName);
 				}
 			}
 			else if ((values.length == 4) && oldDDMPreferenceValueFormat) {

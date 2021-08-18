@@ -41,22 +41,19 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 		long fileEntryClassNameId = PortalUtil.getClassNameId(
 			FileEntry.class.getName());
 
-		StringBundler sb1 = new StringBundler(11);
-
-		sb1.append("select assetDisplayPageEntry1.assetDisplayPageEntryId ");
-		sb1.append("from AssetDisplayPageEntry assetDisplayPageEntry1 inner ");
-		sb1.append("join AssetDisplayPageEntry assetDisplayPageEntry2 on ");
-		sb1.append("assetDisplayPageEntry1.groupId = ");
-		sb1.append("assetDisplayPageEntry2.groupId and ");
-		sb1.append("assetDisplayPageEntry2.classNameId = ");
-		sb1.append(fileEntryClassNameId);
-		sb1.append(" and assetDisplayPageEntry1.classPK = ");
-		sb1.append("assetDisplayPageEntry2.classPK where ");
-		sb1.append("assetDisplayPageEntry1.classNameId = ");
-		sb1.append(dlFileEntryClassNameId);
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select assetDisplayPageEntry1.assetDisplayPageEntryId ",
+					"from AssetDisplayPageEntry assetDisplayPageEntry1 inner ",
+					"join AssetDisplayPageEntry assetDisplayPageEntry2 on ",
+					"assetDisplayPageEntry1.groupId = ",
+					"assetDisplayPageEntry2.groupId and ",
+					"assetDisplayPageEntry2.classNameId = ",
+					fileEntryClassNameId,
+					" and assetDisplayPageEntry1.classPK = ",
+					"assetDisplayPageEntry2.classPK where ",
+					"assetDisplayPageEntry1.classNameId = ",
+					dlFileEntryClassNameId));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

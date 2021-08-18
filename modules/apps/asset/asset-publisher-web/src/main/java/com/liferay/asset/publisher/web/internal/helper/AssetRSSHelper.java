@@ -277,14 +277,9 @@ public class AssetRSSHelper {
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				assetEntry.getClassName());
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(getAssetPublisherURL(portletRequest));
-		sb.append(assetRendererFactory.getType());
-		sb.append("/id/");
-		sb.append(assetEntry.getEntryId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			getAssetPublisherURL(portletRequest),
+			assetRendererFactory.getType(), "/id/", assetEntry.getEntryId());
 	}
 
 	protected String getEntryURLViewInContext(

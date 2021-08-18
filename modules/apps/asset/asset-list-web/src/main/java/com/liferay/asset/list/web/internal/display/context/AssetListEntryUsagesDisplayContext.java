@@ -284,14 +284,9 @@ public class AssetListEntryUsagesDisplayContext {
 	}
 
 	private String _getName(String name) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(name);
-		sb.append(" (");
-		sb.append(LanguageUtil.get(_themeDisplay.getLocale(), "draft"));
-		sb.append(")");
-
-		return sb.toString();
+		return StringBundler.concat(
+			name, " (", LanguageUtil.get(_themeDisplay.getLocale(), "draft"),
+			")");
 	}
 
 	private String _getOrderByCol() {

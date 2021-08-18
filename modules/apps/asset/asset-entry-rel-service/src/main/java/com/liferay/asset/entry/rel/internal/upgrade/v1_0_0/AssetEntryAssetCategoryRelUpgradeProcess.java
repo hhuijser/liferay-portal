@@ -111,19 +111,13 @@ public class AssetEntryAssetCategoryRelUpgradeProcess extends UpgradeProcess {
 		@Override
 		protected Boolean doCall() throws Exception {
 			try (Connection connection = DataAccess.getConnection()) {
-				StringBundler sb = new StringBundler(9);
-
-				sb.append("insert into AssetEntryAssetCategoryRel (");
-				sb.append("assetEntryAssetCategoryRelId, assetEntryId, ");
-				sb.append("assetCategoryId) values (");
-				sb.append(increment());
-				sb.append(", ");
-				sb.append(_assetEntryId);
-				sb.append(", ");
-				sb.append(_assetCategoryId);
-				sb.append(")");
-
-				runSQL(connection, sb.toString());
+				runSQL(
+					connection,
+					StringBundler.concat(
+						"insert into AssetEntryAssetCategoryRel (",
+						"assetEntryAssetCategoryRelId, assetEntryId, ",
+						"assetCategoryId) values (", increment(), ", ",
+						_assetEntryId, ", ", _assetCategoryId, ")"));
 			}
 			catch (Exception exception) {
 				_log.error(

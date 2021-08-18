@@ -652,13 +652,10 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 			urlTitle = urlTitle.replaceAll(StringPool.SLASH, StringPool.DASH);
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(StringPool.DASH);
-			sb.append(StringPool.DASH);
-			sb.append(StringPool.PLUS);
-
-			urlTitle = urlTitle.replaceAll(sb.toString(), StringPool.DASH);
+			urlTitle = urlTitle.replaceAll(
+				StringBundler.concat(
+					StringPool.DASH, StringPool.DASH, StringPool.PLUS),
+				StringPool.DASH);
 
 			baseAssetViewURL.setParameter("urlTitle", urlTitle);
 		}

@@ -280,19 +280,14 @@ public abstract class BaseSegmentsEntryProvider
 		if (Validator.isNotNull(modelFilterString) &&
 			(oDataRetriever != null)) {
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("(");
-			sb.append(modelFilterString);
-			sb.append(") and (classPK eq '");
-			sb.append(classPK);
-			sb.append("')");
-
 			boolean matchesModel = false;
 
 			try {
 				int count = oDataRetriever.getResultsCount(
-					segmentsEntry.getCompanyId(), sb.toString(),
+					segmentsEntry.getCompanyId(),
+					StringBundler.concat(
+						"(", modelFilterString, ") and (classPK eq '", classPK,
+						"')"),
 					LocaleUtil.getDefault());
 
 				if (count > 0) {

@@ -293,15 +293,9 @@ public class LayoutSiteNavigationMenuItemType
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(pathImage);
-		sb.append("/layout_icon?img_id=");
-		sb.append(layout.getIconImageId());
-		sb.append("&t=");
-		sb.append(WebServerServletTokenUtil.getToken(layout.getIconImageId()));
-
-		return sb.toString();
+		return StringBundler.concat(
+			pathImage, "/layout_icon?img_id=", layout.getIconImageId(), "&t=",
+			WebServerServletTokenUtil.getToken(layout.getIconImageId()));
 	}
 
 	@Override
@@ -404,18 +398,14 @@ public class LayoutSiteNavigationMenuItemType
 		DynamicQuery dynamicQuery =
 			_siteNavigationMenuItemLocalService.dynamicQuery();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(StringPool.PERCENT);
-		sb.append("layoutUuid");
-		sb.append(StringPool.EQUAL);
-		sb.append(curLayout.getUuid());
-		sb.append(StringPool.PERCENT);
-
 		Property typeSettingsProperty = PropertyFactoryUtil.forName(
 			"typeSettings");
 
-		dynamicQuery.add(typeSettingsProperty.like(sb.toString()));
+		dynamicQuery.add(
+			typeSettingsProperty.like(
+				StringBundler.concat(
+					StringPool.PERCENT, "layoutUuid", StringPool.EQUAL,
+					curLayout.getUuid(), StringPool.PERCENT)));
 
 		Property siteNavigationMenuIdProperty = PropertyFactoryUtil.forName(
 			"siteNavigationMenuId");

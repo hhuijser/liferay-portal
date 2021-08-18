@@ -501,17 +501,9 @@ public class WabProcessor {
 			Matcher matcher = _versionMavenPattern.matcher(_bundleVersion);
 
 			if (matcher.matches()) {
-				StringBundler sb = new StringBundler(7);
-
-				sb.append(matcher.group(1));
-				sb.append(".");
-				sb.append(matcher.group(3));
-				sb.append(".");
-				sb.append(matcher.group(5));
-				sb.append(".");
-				sb.append(matcher.group(7));
-
-				_bundleVersion = sb.toString();
+				_bundleVersion = StringBundler.concat(
+					matcher.group(1), ".", matcher.group(3), ".",
+					matcher.group(5), ".", matcher.group(7));
 			}
 			else {
 				_bundleVersion =

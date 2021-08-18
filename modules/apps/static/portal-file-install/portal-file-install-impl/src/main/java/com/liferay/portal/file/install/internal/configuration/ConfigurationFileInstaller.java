@@ -208,16 +208,11 @@ public class ConfigurationFileInstaller implements FileInstaller {
 	private Configuration _findExistingConfiguration(String fileName)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(DirectoryWatcher.FILENAME);
-		sb.append(StringPool.EQUAL);
-		sb.append(_escapeFilterValue(fileName));
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
 		Configuration[] configurations = _configurationAdmin.listConfigurations(
-			sb.toString());
+			StringBundler.concat(
+				StringPool.OPEN_PARENTHESIS, DirectoryWatcher.FILENAME,
+				StringPool.EQUAL, _escapeFilterValue(fileName),
+				StringPool.CLOSE_PARENTHESIS));
 
 		if ((configurations != null) && (configurations.length > 0)) {
 			return configurations[0];

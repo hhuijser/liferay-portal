@@ -92,15 +92,9 @@ public class FileInstallDeployTest {
 		try {
 			_updateConfiguration(
 				() -> {
-					StringBundler sb = new StringBundler(5);
-
-					sb.append(_TEST_KEY);
-					sb.append(StringPool.EQUAL);
-					sb.append(StringPool.QUOTE);
-					sb.append(_TEST_VALUE_1);
-					sb.append(StringPool.QUOTE);
-
-					String content = sb.toString();
+					String content = StringBundler.concat(
+						_TEST_KEY, StringPool.EQUAL, StringPool.QUOTE,
+						_TEST_VALUE_1, StringPool.QUOTE);
 
 					Files.write(path, content.getBytes());
 				});
@@ -115,15 +109,9 @@ public class FileInstallDeployTest {
 
 			_updateConfiguration(
 				() -> {
-					StringBundler sb = new StringBundler(5);
-
-					sb.append(_TEST_KEY);
-					sb.append(StringPool.EQUAL);
-					sb.append(StringPool.QUOTE);
-					sb.append(_TEST_VALUE_2);
-					sb.append(StringPool.QUOTE);
-
-					String content = sb.toString();
+					String content = StringBundler.concat(
+						_TEST_KEY, StringPool.EQUAL, StringPool.QUOTE,
+						_TEST_VALUE_2, StringPool.QUOTE);
 
 					Files.write(path, content.getBytes());
 

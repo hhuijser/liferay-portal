@@ -92,14 +92,9 @@ public class RestoreTrashPortletConfigurationIcon
 				LiferayWindowState.POP_UP
 			).buildPortletURL();
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(portletResponse.getNamespace());
-			sb.append("restoreDialog('");
-			sb.append(moveURL);
-			sb.append("')");
-
-			return sb.toString();
+			return StringBundler.concat(
+				portletResponse.getNamespace(), "restoreDialog('", moveURL,
+				"')");
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

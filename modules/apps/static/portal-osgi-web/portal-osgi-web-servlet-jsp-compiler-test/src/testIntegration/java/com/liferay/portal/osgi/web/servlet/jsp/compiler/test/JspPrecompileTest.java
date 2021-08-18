@@ -344,14 +344,9 @@ public class JspPrecompileTest {
 	private boolean _containsCompilerLog(
 		LogCapture logCapture, String jspName) {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("Compiling JSP: ");
-		sb.append(_JSP_PACKAGE_NAME);
-		sb.append(
+		String compilerLog = StringBundler.concat(
+			"Compiling JSP: ", _JSP_PACKAGE_NAME,
 			StringUtil.replace(jspName, CharPool.PERIOD, CharPool.UNDERLINE));
-
-		String compilerLog = sb.toString();
 
 		for (LogEntry logEntry : logCapture.getLogEntries()) {
 			String message = logEntry.getMessage();
@@ -367,19 +362,13 @@ public class JspPrecompileTest {
 	private void _invokeJSP(String jspFileName, String expectedMessage)
 		throws IOException {
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("http://localhost:8080/web");
-		sb.append(_group.getFriendlyURL());
-		sb.append(StringPool.QUESTION);
-		sb.append("p_p_id=");
-		sb.append(JspPrecompilePortlet.PORTLET_NAME);
-		sb.append(StringPool.AMPERSAND);
-		sb.append(JspPrecompilePortlet.getJspFileNameParameterName());
-		sb.append("=/");
-		sb.append(jspFileName);
-
-		URL url = new URL(sb.toString());
+		URL url = new URL(
+			StringBundler.concat(
+				"http://localhost:8080/web", _group.getFriendlyURL(),
+				StringPool.QUESTION, "p_p_id=",
+				JspPrecompilePortlet.PORTLET_NAME, StringPool.AMPERSAND,
+				JspPrecompilePortlet.getJspFileNameParameterName(), "=/",
+				jspFileName));
 
 		try (InputStream inputStream = url.openStream()) {
 			String content = StringUtil.read(inputStream);

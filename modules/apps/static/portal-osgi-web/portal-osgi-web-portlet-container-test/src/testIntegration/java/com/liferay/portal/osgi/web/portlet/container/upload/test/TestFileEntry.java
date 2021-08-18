@@ -415,15 +415,7 @@ public class TestFileEntry implements FileEntry {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(_groupId);
-		sb.append("_");
-		sb.append(_folderId);
-		sb.append("_");
-		sb.append(_fileName);
-
-		return sb.toString();
+		return StringBundler.concat(_groupId, "_", _folderId, "_", _fileName);
 	}
 
 	@Override

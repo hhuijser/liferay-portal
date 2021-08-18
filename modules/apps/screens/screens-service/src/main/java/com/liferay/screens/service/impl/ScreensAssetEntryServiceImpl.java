@@ -284,19 +284,12 @@ public class ScreensAssetEntryServiceImpl
 	}
 
 	protected String getFileEntryPreviewURL(FileEntry fileEntry) {
-		StringBundler sb = new StringBundler(9);
-
-		sb.append(_portal.getPathContext());
-		sb.append("/documents/");
-		sb.append(fileEntry.getRepositoryId());
-		sb.append(StringPool.SLASH);
-		sb.append(fileEntry.getFolderId());
-		sb.append(StringPool.SLASH);
-		sb.append(URLCodec.encodeURL(HtmlUtil.unescape(fileEntry.getTitle())));
-		sb.append(StringPool.SLASH);
-		sb.append(fileEntry.getUuid());
-
-		return sb.toString();
+		return StringBundler.concat(
+			_portal.getPathContext(), "/documents/",
+			fileEntry.getRepositoryId(), StringPool.SLASH,
+			fileEntry.getFolderId(), StringPool.SLASH,
+			URLCodec.encodeURL(HtmlUtil.unescape(fileEntry.getTitle())),
+			StringPool.SLASH, fileEntry.getUuid());
 	}
 
 	protected JSONObject getJournalArticleJSONObject(AssetEntry assetEntry)

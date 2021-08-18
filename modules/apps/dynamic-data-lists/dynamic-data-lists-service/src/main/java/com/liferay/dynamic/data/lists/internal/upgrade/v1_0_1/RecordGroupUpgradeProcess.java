@@ -28,15 +28,12 @@ public class RecordGroupUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("select DDLRecordSet.groupId, DDLRecord.recordId from ");
-		sb.append("DDLRecord inner join DDLRecordSet on ");
-		sb.append("DDLRecord.recordSetId = DDLRecordSet.recordSetId where ");
-		sb.append("DDLRecord.groupId != DDLRecordSet.groupId");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DDLRecordSet.groupId, DDLRecord.recordId from ",
+					"DDLRecord inner join DDLRecordSet on ",
+					"DDLRecord.recordSetId = DDLRecordSet.recordSetId where ",
+					"DDLRecord.groupId != DDLRecordSet.groupId"));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(

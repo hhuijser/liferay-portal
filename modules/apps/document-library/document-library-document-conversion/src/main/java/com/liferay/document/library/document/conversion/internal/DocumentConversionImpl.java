@@ -179,15 +179,10 @@ public class DocumentConversionImpl implements DocumentConversion {
 
 	@Override
 	public String getFilePath(String id, String targetExtension) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
-		sb.append("/liferay/document_conversion/");
-		sb.append(id);
-		sb.append(StringPool.PERIOD);
-		sb.append(targetExtension);
-
-		return sb.toString();
+		return StringBundler.concat(
+			SystemProperties.get(SystemProperties.TMP_DIR),
+			"/liferay/document_conversion/", id, StringPool.PERIOD,
+			targetExtension);
 	}
 
 	@Override

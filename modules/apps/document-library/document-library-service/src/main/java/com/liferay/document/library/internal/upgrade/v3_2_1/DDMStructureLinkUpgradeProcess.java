@@ -28,17 +28,14 @@ public class DDMStructureLinkUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("select DLFileEntryType.fileEntryTypeId, ");
-		sb.append("DLFileEntryType.dataDefinitionId from DLFileEntryType ");
-		sb.append("inner join DDMStructureLink on ");
-		sb.append("DDMStructureLink.structureId = ");
-		sb.append("DLFileEntryType.dataDefinitionId and ");
-		sb.append("DDMStructureLink.classPK = DLFileEntryType.fileEntryTypeId");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select DLFileEntryType.fileEntryTypeId, ",
+					"DLFileEntryType.dataDefinitionId from DLFileEntryType ",
+					"inner join DDMStructureLink on ",
+					"DDMStructureLink.structureId = ",
+					"DLFileEntryType.dataDefinitionId and ",
+					"DDMStructureLink.classPK = DLFileEntryType.fileEntryTypeId"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

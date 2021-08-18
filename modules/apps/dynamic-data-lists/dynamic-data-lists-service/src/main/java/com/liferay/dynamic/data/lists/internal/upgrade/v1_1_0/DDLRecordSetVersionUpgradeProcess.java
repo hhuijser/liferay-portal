@@ -37,30 +37,25 @@ public class DDLRecordSetVersionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb1 = new StringBundler(7);
-
-		sb1.append("select DDLRecordSet.*, TEMP_TABLE.structureVersionId ");
-		sb1.append("from DDLRecordSet inner join (select structureId, ");
-		sb1.append("max(structureVersionId) as structureVersionId from ");
-		sb1.append("DDMStructureVersion group by ");
-		sb1.append("DDMStructureVersion.structureId) TEMP_TABLE on ");
-		sb1.append("DDLRecordSet.DDMStructureId = TEMP_TABLE.structureId ");
-		sb1.append("where scope != 2");
-
-		StringBundler sb2 = new StringBundler(6);
-
-		sb2.append("insert into DDLRecordSetVersion (recordSetVersionId, ");
-		sb2.append("groupId, companyId, userId, userName, createDate, ");
-		sb2.append("recordSetId, DDMStructureVersionId, name, description, ");
-		sb2.append("settings_, version,  status, statusByUserId, ");
-		sb2.append("statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ");
-		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DDLRecordSet.*, TEMP_TABLE.structureVersionId ",
+					"from DDLRecordSet inner join (select structureId, ",
+					"max(structureVersionId) as structureVersionId from ",
+					"DDMStructureVersion group by ",
+					"DDMStructureVersion.structureId) TEMP_TABLE on ",
+					"DDLRecordSet.DDMStructureId = TEMP_TABLE.structureId ",
+					"where scope != 2"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into DDLRecordSetVersion (recordSetVersionId, ",
+						"groupId, companyId, userId, userName, createDate, ",
+						"recordSetId, DDMStructureVersionId, name, description, ",
+						"settings_, version,  status, statusByUserId, ",
+						"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {

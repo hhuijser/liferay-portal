@@ -88,7 +88,7 @@ public class HTMLImageAttachmentElementHandler
 			StringBundler.concat(
 				"<\\s*?img", _ATTRIBUTE_LIST_REGEXP,
 				EditorConstants.ATTRIBUTE_DATA_IMAGE_ID, "\\s*?=\\s*?\"",
-				"([^\"]*)", "\"", _ATTRIBUTE_LIST_REGEXP, "/>"));
+				"([^\"]*)\"", _ATTRIBUTE_LIST_REGEXP, "/>"));
 	}
 
 	@Reference(

@@ -658,8 +658,7 @@ public class InsuranceSiteInitializer implements SiteInitializer {
 		for (KeyValuePair pathKeyValuePair : pathKeyValuePairs) {
 			Enumeration<URL> enumeration = _bundle.findEntries(
 				StringBundler.concat(
-					_PATH + StringPool.FORWARD_SLASH +
-						pathKeyValuePair.getKey(),
+					_PATH, StringPool.FORWARD_SLASH, pathKeyValuePair.getKey(),
 					StringPool.FORWARD_SLASH),
 				pathKeyValuePair.getValue(), true);
 

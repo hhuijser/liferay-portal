@@ -73,9 +73,8 @@ public class BundleBlacklistSetUpBatchTest {
 		}
 
 		String configBody = StringBundler.concat(
-			"blacklistBundleSymbolicNames=", StringPool.QUOTE,
-			_JAR_BUNDLE_SYMBOLIC_NAME, StringPool.COMMA,
-			_WAR_BUNDLE_SYMBOLIC_NAME, StringPool.QUOTE);
+			"blacklistBundleSymbolicNames=\"", _JAR_BUNDLE_SYMBOLIC_NAME,
+			StringPool.COMMA, _WAR_BUNDLE_SYMBOLIC_NAME, StringPool.QUOTE);
 
 		try (OutputStream outputStream = new FileOutputStream(
 				liferayHome + "/osgi/configs/" + blacklistConfigName)) {

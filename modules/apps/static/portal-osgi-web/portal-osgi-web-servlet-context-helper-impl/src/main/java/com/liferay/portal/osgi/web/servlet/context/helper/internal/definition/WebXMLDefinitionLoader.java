@@ -943,8 +943,8 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 					StringBundler.concat(
 						"Unexpected error retrieving the annotation ",
 						WebServlet.class, "from class ", clazz,
-						" because a some dependency may not be present in ",
-						"the classpath"),
+						" because a some dependency may not be present in the ",
+						"classpath"),
 					exception);
 			}
 

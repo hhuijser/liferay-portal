@@ -657,15 +657,13 @@ public class ContentTargetingUpgradeProcessTest {
 			String typeSettings)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into CT_RuleInstance(ruleInstanceId, groupId, ",
-			"companyId, userId, userName, createDate, modifiedDate, ",
-			"userSegmentId, ruleKey, typeSettings) values (?, ?, ?, ?, ",
-			"?, ?, ?, ?, ?, ?)");
-
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into CT_RuleInstance(ruleInstanceId, groupId, ",
+					"companyId, userId, userName, createDate, modifiedDate, ",
+					"userSegmentId, ruleKey, typeSettings) values (?, ?, ?, ",
+					"?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, _counterLocalService.increment());
 			preparedStatement.setLong(2, _group.getGroupId());
@@ -693,14 +691,12 @@ public class ContentTargetingUpgradeProcessTest {
 			Map<Locale, String> descriptionMap)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into CT_UserSegment(userSegmentId, groupId, ",
-			"companyId, userId, userName, createDate, modifiedDate, ",
-			"name, description) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into CT_UserSegment(userSegmentId, groupId, ",
+					"companyId, userId, userName, createDate, modifiedDate, ",
+					"name, description) values (?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, contentTargetingUserSegmentId);
 			preparedStatement.setLong(2, _group.getGroupId());

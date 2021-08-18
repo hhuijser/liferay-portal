@@ -180,15 +180,9 @@ public abstract class AlloyPortlet extends GenericPortlet {
 	}
 
 	protected String getPath(PortletRequest portletRequest) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("/alloy_mvc/jsp/");
-		sb.append(friendlyURLMapper.getMapping());
-		sb.append("/controllers/");
-		sb.append(getControllerPath(portletRequest));
-		sb.append("_controller.jsp");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"/alloy_mvc/jsp/", friendlyURLMapper.getMapping(), "/controllers/",
+			getControllerPath(portletRequest), "_controller.jsp");
 	}
 
 	protected void include(

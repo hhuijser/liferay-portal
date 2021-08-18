@@ -50,22 +50,18 @@ public abstract class BaseTinyMCEEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(
-			HtmlUtil.escape(
-				PortalUtil.getStaticResourceURL(
-					themeDisplay.getRequest(),
-					themeDisplay.getPathThemeCss() + "/clay.css")));
-		sb.append(StringPool.COMMA);
-		sb.append(
-			HtmlUtil.escape(
-				PortalUtil.getStaticResourceURL(
-					themeDisplay.getRequest(),
-					themeDisplay.getPathThemeCss() + "/main.css")));
-
 		jsonObject.put(
-			"content_css", sb.toString()
+			"content_css",
+			StringBundler.concat(
+				HtmlUtil.escape(
+					PortalUtil.getStaticResourceURL(
+						themeDisplay.getRequest(),
+						themeDisplay.getPathThemeCss() + "/clay.css")),
+				StringPool.COMMA,
+				HtmlUtil.escape(
+					PortalUtil.getStaticResourceURL(
+						themeDisplay.getRequest(),
+						themeDisplay.getPathThemeCss() + "/main.css")))
 		).put(
 			"convert_urls", Boolean.FALSE
 		).put(

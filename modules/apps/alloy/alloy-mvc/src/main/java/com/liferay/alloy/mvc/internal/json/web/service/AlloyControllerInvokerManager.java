@@ -420,14 +420,8 @@ public class AlloyControllerInvokerManager {
 	}
 
 	protected String getAPIPath(String controller, Method method) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(StringPool.SLASH);
-		sb.append(controller);
-		sb.append(StringPool.SLASH);
-		sb.append(method.getName());
-
-		return sb.toString();
+		return StringBundler.concat(
+			StringPool.SLASH, controller, StringPool.SLASH, method.getName());
 	}
 
 	protected String getClassBinaryName(String className) {

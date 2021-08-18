@@ -104,73 +104,64 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	protected void verifyDLFileEntriesAndFolders(long groupId)
 		throws Exception {
 
-		StringBundler sb1 = new StringBundler(50);
-
-		sb1.append("select DLFolder.companyId, DLFolder.userId, ");
-		sb1.append("DLFolder.userName, DLFolder.createDate, ");
-		sb1.append("DLFolder.modifiedDate, DLFolder.repositoryId, ");
-		sb1.append("DLFolder.parentFolderId as parentFolderId, ");
-		sb1.append("DLFolder.treePath, DLFolder.name, '' as extension, '' as ");
-		sb1.append("mimeType, DLFolder.description, '' as changeLog, '' as ");
-		sb1.append("version, 0 as versionId, 0 as size_, '");
-		sb1.append(SyncDLObjectConstants.TYPE_FOLDER);
-		sb1.append("' as type, DLFolder.folderId as typePK, DLFolder.uuid_ ");
-		sb1.append("as typeUuid, DLFolder.status from DLFolder where ");
-		sb1.append("DLFolder.repositoryId = ");
-		sb1.append(groupId);
-		sb1.append(" union all select DLFileVersion.companyId, ");
-		sb1.append("DLFileVersion.userId, DLFileVersion.userName, ");
-		sb1.append("DLFileVersion.createDate, DLFileVersion.modifiedDate, ");
-		sb1.append("DLFileVersion.repositoryId, DLFileVersion.folderId as ");
-		sb1.append("parentFolderId, DLFileVersion.treePath, ");
-		sb1.append("DLFileVersion.title as name, DLFileVersion.extension, ");
-		sb1.append("DLFileVersion.mimeType, DLFileVersion.description, ");
-		sb1.append("DLFileVersion.changeLog, DLFileVersion.version, ");
-		sb1.append("DLFileVersion.fileVersionId as versionId, ");
-		sb1.append("DLFileVersion.size_ as size_, '");
-		sb1.append(SyncDLObjectConstants.TYPE_FILE);
-		sb1.append("' as type, DLFileVersion.fileEntryId as typePK, ");
-		sb1.append("DLFileEntry.uuid_ as typeUuid, DLFileVersion.status from ");
-		sb1.append("DLFileEntry, DLFileVersion where ");
-		sb1.append("DLFileEntry.repositoryId = ");
-		sb1.append(groupId);
-		sb1.append(" and DLFileEntry.fileEntryId = DLFileVersion.fileEntryId ");
-		sb1.append("and DLFileEntry.version = DLFileVersion.version union ");
-		sb1.append("all select DLFileVersion.companyId, ");
-		sb1.append("DLFileVersion.userId, DLFileVersion.userName, ");
-		sb1.append("DLFileVersion.createDate, DLFileVersion.modifiedDate, ");
-		sb1.append("DLFileVersion.repositoryId, DLFileVersion.folderId as ");
-		sb1.append("parentFolderId, DLFileVersion.treePath, ");
-		sb1.append("DLFileVersion.title as name, DLFileVersion.extension, ");
-		sb1.append("DLFileVersion.mimeType, DLFileVersion.description, ");
-		sb1.append("DLFileVersion.changeLog, DLFileVersion.version, ");
-		sb1.append("DLFileVersion.fileVersionId as versionId, ");
-		sb1.append("DLFileVersion.size_ as size_, '");
-		sb1.append(SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY);
-		sb1.append("' as type, DLFileVersion.fileEntryId as typePK, ");
-		sb1.append("DLFileEntry.uuid_ as typeUuid, DLFileVersion.status from ");
-		sb1.append("DLFileEntry, DLFileVersion where ");
-		sb1.append("DLFileEntry.repositoryId = ");
-		sb1.append(groupId);
-		sb1.append(" and DLFileEntry.fileEntryId = DLFileVersion.fileEntryId ");
-		sb1.append("and DLFileVersion.version = '");
-		sb1.append(DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
-		sb1.append("'");
-
-		StringBundler sb2 = new StringBundler(6);
-
-		sb2.append("insert into SyncDLObject (syncDLObjectId, companyId, ");
-		sb2.append("userId, userName, createTime, modifiedTime, ");
-		sb2.append("repositoryId, parentFolderId, treePath, name, extension, ");
-		sb2.append("mimeType, description, changeLog, version, versionId, ");
-		sb2.append("size_, event, type_, typePK, typeUuid) values (?, ?, ?, ");
-		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select DLFolder.companyId, DLFolder.userId, ",
+					"DLFolder.userName, DLFolder.createDate, ",
+					"DLFolder.modifiedDate, DLFolder.repositoryId, ",
+					"DLFolder.parentFolderId as parentFolderId, ",
+					"DLFolder.treePath, DLFolder.name, '' as extension, '' as ",
+					"mimeType, DLFolder.description, '' as changeLog, '' as ",
+					"version, 0 as versionId, 0 as size_, '",
+					SyncDLObjectConstants.TYPE_FOLDER,
+					"' as type, DLFolder.folderId as typePK, DLFolder.uuid_ ",
+					"as typeUuid, DLFolder.status from DLFolder where ",
+					"DLFolder.repositoryId = ", groupId,
+					" union all select DLFileVersion.companyId, ",
+					"DLFileVersion.userId, DLFileVersion.userName, ",
+					"DLFileVersion.createDate, DLFileVersion.modifiedDate, ",
+					"DLFileVersion.repositoryId, DLFileVersion.folderId as ",
+					"parentFolderId, DLFileVersion.treePath, ",
+					"DLFileVersion.title as name, DLFileVersion.extension, ",
+					"DLFileVersion.mimeType, DLFileVersion.description, ",
+					"DLFileVersion.changeLog, DLFileVersion.version, ",
+					"DLFileVersion.fileVersionId as versionId, ",
+					"DLFileVersion.size_ as size_, '",
+					SyncDLObjectConstants.TYPE_FILE,
+					"' as type, DLFileVersion.fileEntryId as typePK, ",
+					"DLFileEntry.uuid_ as typeUuid, DLFileVersion.status from ",
+					"DLFileEntry, DLFileVersion where ",
+					"DLFileEntry.repositoryId = ", groupId,
+					" and DLFileEntry.fileEntryId = DLFileVersion.fileEntryId ",
+					"and DLFileEntry.version = DLFileVersion.version union ",
+					"all select DLFileVersion.companyId, ",
+					"DLFileVersion.userId, DLFileVersion.userName, ",
+					"DLFileVersion.createDate, DLFileVersion.modifiedDate, ",
+					"DLFileVersion.repositoryId, DLFileVersion.folderId as ",
+					"parentFolderId, DLFileVersion.treePath, ",
+					"DLFileVersion.title as name, DLFileVersion.extension, ",
+					"DLFileVersion.mimeType, DLFileVersion.description, ",
+					"DLFileVersion.changeLog, DLFileVersion.version, ",
+					"DLFileVersion.fileVersionId as versionId, ",
+					"DLFileVersion.size_ as size_, '",
+					SyncDLObjectConstants.TYPE_PRIVATE_WORKING_COPY,
+					"' as type, DLFileVersion.fileEntryId as typePK, ",
+					"DLFileEntry.uuid_ as typeUuid, DLFileVersion.status from ",
+					"DLFileEntry, DLFileVersion where ",
+					"DLFileEntry.repositoryId = ", groupId,
+					" and DLFileEntry.fileEntryId = DLFileVersion.fileEntryId ",
+					"and DLFileVersion.version = '",
+					DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION, "'"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString());
+					connection,
+					StringBundler.concat(
+						"insert into SyncDLObject (syncDLObjectId, companyId, ",
+						"userId, userName, createTime, modifiedTime, ",
+						"repositoryId, parentFolderId, treePath, name, extension, ",
+						"mimeType, description, changeLog, version, versionId, ",
+						"size_, event, type_, typePK, typeUuid) values (?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -226,15 +217,13 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	}
 
 	protected void verifyLocks(long groupId) throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select Lock_.expirationDate, Lock_.userId, ");
-		sb.append("Lock_.userName, DLFileVersion.fileEntryId from ");
-		sb.append("DLFileVersion, Lock_ where DLFileVersion.version = '");
-		sb.append(DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
-		sb.append("' and CAST_TEXT(DLFileVersion.fileEntryId) = Lock_.key_");
-
-		String sql = SQLTransformer.transform(sb.toString());
+		String sql = SQLTransformer.transform(
+			StringBundler.concat(
+				"select Lock_.expirationDate, Lock_.userId, ",
+				"Lock_.userName, DLFileVersion.fileEntryId from ",
+				"DLFileVersion, Lock_ where DLFileVersion.version = '",
+				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION,
+				"' and CAST_TEXT(DLFileVersion.fileEntryId) = Lock_.key_"));
 
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				sql);

@@ -137,13 +137,8 @@ public class InfoItemFieldValues {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("{infoFieldValues: ");
-		sb.append(_builder._infoFieldValues);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{infoFieldValues: ", _builder._infoFieldValues, "}");
 	}
 
 	public static class Builder {

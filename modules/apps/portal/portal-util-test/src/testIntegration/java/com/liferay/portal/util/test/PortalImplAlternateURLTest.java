@@ -162,8 +162,7 @@ public class PortalImplAlternateURLTest {
 			"http://", portalDomain, languageId,
 			PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING,
 			Portal.FRIENDLY_URL_SEPARATOR, "asset_publisher", groupFriendlyURL,
-			StringPool.FORWARD_SLASH, StringPool.CONTENT,
-			StringPool.FORWARD_SLASH, "content-title");
+			"/content/content-title");
 	}
 
 	private String _generateURL(

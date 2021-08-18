@@ -140,12 +140,12 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select uuid_, eventId, groupId, companyId, userId, ",
-							"userName, createDate, modifiedDate, title, ",
-							"description, location, startDate, endDate, ",
-							"durationHour, durationMinute, allDay, type_, ",
-							"repeating, recurrence, remindBy, firstReminder, ",
-							"secondReminder from CalEvent"))) {
+							"select uuid_, eventId, groupId, companyId, ",
+							"userId, userName, createDate, modifiedDate, ",
+							"title, description, location, startDate, ",
+							"endDate, durationHour, durationMinute, allDay, ",
+							"type_, repeating, recurrence, remindBy, ",
+							"firstReminder, secondReminder from CalEvent"))) {
 
 				ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -953,12 +953,13 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select uuid_, eventId, groupId, companyId, userId, ",
-							"userName, createDate, modifiedDate, title, ",
-							"description, location, startDate, endDate, ",
-							"durationHour, durationMinute, allDay, type_, ",
-							"repeating, recurrence, remindBy, firstReminder, ",
-							"secondReminder from CalEvent where eventId = ?"))) {
+							"select uuid_, eventId, groupId, companyId, ",
+							"userId, userName, createDate, modifiedDate, ",
+							"title, description, location, startDate, ",
+							"endDate, durationHour, durationMinute, allDay, ",
+							"type_, repeating, recurrence, remindBy, ",
+							"firstReminder, secondReminder from CalEvent ",
+							"where eventId = ?"))) {
 
 				preparedStatement.setLong(1, calEventId);
 
@@ -1316,13 +1317,11 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	private boolean _isAssetLinkImported(long entryId1, long entryId2, int type)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"select count(*) from AssetLink where ((entryId1 = ? and ",
-			"entryId2 = ?) or (entryId2 = ? and entryId1 = ?)) and ",
-			"type_ = ?");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"select count(*) from AssetLink where ((entryId1 = ? and ",
+					"entryId2 = ?) or (entryId2 = ? and entryId1 = ?)) and ",
+					"type_ = ?"))) {
 
 			preparedStatement.setLong(1, entryId1);
 			preparedStatement.setLong(2, entryId2);

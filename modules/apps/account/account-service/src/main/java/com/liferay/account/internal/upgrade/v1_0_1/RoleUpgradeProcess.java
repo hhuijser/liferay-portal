@@ -37,9 +37,9 @@ public class RoleUpgradeProcess extends UpgradeProcess {
 			try (PreparedStatement preparedStatement1 =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select distinct Role_.roleId from Role_ inner join ",
-							"AccountRole on AccountRole.roleId = Role_.roleId ",
-							"where AccountRole.accountEntryId = ",
+							"select distinct Role_.roleId from Role_ inner ",
+							"join AccountRole on AccountRole.roleId = ",
+							"Role_.roleId where AccountRole.accountEntryId = ",
 							AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,
 							" and Role_.classNameId = ",
 							PortalUtil.getClassNameId(AccountRole.class),

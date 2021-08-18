@@ -268,12 +268,6 @@ public class IMAPMailbox extends BaseMailbox {
 			String subject, String body, List<MailFile> mailFiles)
 		throws PortalException {
 
-		Account account = AccountLocalServiceUtil.getAccount(accountId);
-
-		String sender = StringBundler.concat(
-			user.getFullName(), " <", account.getAddress(),
-			StringPool.GREATER_THAN);
-
 		Address[] toAddresses = parseAddresses(to);
 		Address[] ccAddresses = parseAddresses(cc);
 		Address[] bccAddresses = parseAddresses(bcc);
@@ -283,6 +277,12 @@ public class IMAPMailbox extends BaseMailbox {
 
 			throw new MailException(MailException.MESSAGE_HAS_NO_RECIPIENTS);
 		}
+
+		Account account = AccountLocalServiceUtil.getAccount(accountId);
+
+		String sender = StringBundler.concat(
+			user.getFullName(), " <", account.getAddress(),
+			StringPool.GREATER_THAN);
 
 		Message message = null;
 

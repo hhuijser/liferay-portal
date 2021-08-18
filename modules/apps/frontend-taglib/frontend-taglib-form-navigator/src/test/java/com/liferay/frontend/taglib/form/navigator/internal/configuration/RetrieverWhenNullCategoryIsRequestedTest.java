@@ -43,13 +43,13 @@ public class RetrieverWhenNullCategoryIsRequestedTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("add");
-		sb.append(StringPool.EQUAL);
-		sb.append("formNavigatorEntryKey1,formNavigatorEntryKey2");
-
-		createConfiguration("form1", new String[] {sb.toString()});
+		createConfiguration(
+			"form1",
+			new String[] {
+				StringBundler.concat(
+					"add", StringPool.EQUAL,
+					"formNavigatorEntryKey1,formNavigatorEntryKey2")
+			});
 	}
 
 	@Test

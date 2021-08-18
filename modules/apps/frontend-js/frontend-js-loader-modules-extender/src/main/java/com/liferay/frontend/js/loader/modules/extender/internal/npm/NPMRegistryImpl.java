@@ -446,15 +446,12 @@ public class NPMRegistryImpl implements NPMRegistry {
 			for (String bridge : bridges) {
 				bridge = bridge.trim();
 
-				StringBundler sb = new StringBundler(5);
-
-				sb.append(packageJSONObject.getString("name"));
-				sb.append(StringPool.AT);
-				sb.append(packageJSONObject.getString("version"));
-				sb.append("/bridge/");
-				sb.append(bridge);
-
-				_globalAliases.put(bridge, sb.toString());
+				_globalAliases.put(
+					bridge,
+					StringBundler.concat(
+						packageJSONObject.getString("name"), StringPool.AT,
+						packageJSONObject.getString("version"), "/bridge/",
+						bridge));
 			}
 		}
 	}

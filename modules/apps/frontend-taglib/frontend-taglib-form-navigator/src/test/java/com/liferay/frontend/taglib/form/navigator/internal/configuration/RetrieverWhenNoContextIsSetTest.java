@@ -43,13 +43,13 @@ public class RetrieverWhenNoContextIsSetTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("general");
-		sb.append(StringPool.EQUAL);
-		sb.append("formNavigatorEntryKey1,formNavigatorEntryKey2");
-
-		createConfiguration("form1", new String[] {sb.toString()});
+		createConfiguration(
+			"form1",
+			new String[] {
+				StringBundler.concat(
+					"general", StringPool.EQUAL,
+					"formNavigatorEntryKey1,formNavigatorEntryKey2")
+			});
 	}
 
 	@Test

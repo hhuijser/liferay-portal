@@ -211,14 +211,10 @@ public class AuthorizationCodeGrantServiceContainerRequestFilter
 		String loginURL = authorizeScreenConfiguration.loginURL();
 
 		if (Validator.isBlank(loginURL)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(_portal.getPortalURL(_httpServletRequest));
-			sb.append(_portal.getPathContext());
-			sb.append(_portal.getPathMain());
-			sb.append("/portal/login");
-
-			loginURL = sb.toString();
+			loginURL = StringBundler.concat(
+				_portal.getPortalURL(_httpServletRequest),
+				_portal.getPathContext(), _portal.getPathMain(),
+				"/portal/login");
 		}
 		else if (!_http.hasDomain(loginURL)) {
 			String portalURL = _portal.getPortalURL(_httpServletRequest);

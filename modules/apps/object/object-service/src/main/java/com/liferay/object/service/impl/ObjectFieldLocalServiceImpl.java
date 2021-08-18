@@ -218,18 +218,11 @@ public class ObjectFieldLocalServiceImpl
 	private String _getAlterTableAddColumnSQL(
 		String tableName, String columnName, String type) {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("alter table ");
-		sb.append(tableName);
-		sb.append(" add ");
-		sb.append(columnName);
-		sb.append(StringPool.SPACE);
-		sb.append(DynamicObjectDefinitionTable.getDataType(type));
-		sb.append(DynamicObjectDefinitionTable.getSQLColumnNull(type));
-		sb.append(StringPool.SEMICOLON);
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"alter table ", tableName, " add ", columnName, StringPool.SPACE,
+			DynamicObjectDefinitionTable.getDataType(type),
+			DynamicObjectDefinitionTable.getSQLColumnNull(type),
+			StringPool.SEMICOLON);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("SQL: " + sql);

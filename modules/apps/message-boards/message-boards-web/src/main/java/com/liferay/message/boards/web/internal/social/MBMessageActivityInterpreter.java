@@ -61,14 +61,10 @@ public class MBMessageActivityInterpreter
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathMain());
-		sb.append("/message_boards/find_category?mbCategoryId=");
-		sb.append(message.getCategoryId());
-
-		String categoryLink = sb.toString();
+		String categoryLink = StringBundler.concat(
+			serviceContext.getPortalURL(), serviceContext.getPathMain(),
+			"/message_boards/find_category?mbCategoryId=",
+			message.getCategoryId());
 
 		categoryLink = addNoSuchEntryRedirect(
 			categoryLink, MBCategory.class.getName(), message.getCategoryId(),

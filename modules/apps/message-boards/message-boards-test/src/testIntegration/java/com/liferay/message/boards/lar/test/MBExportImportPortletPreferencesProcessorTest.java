@@ -83,16 +83,13 @@ public class MBExportImportPortletPreferencesProcessorTest {
 	public static void setUpClass() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("(&(javax.portlet.name=");
-		sb.append(MBPortletKeys.MESSAGE_BOARDS);
-		sb.append(")(objectClass=");
-		sb.append(ExportImportPortletPreferencesProcessor.class.getName());
-		sb.append("))");
-
 		_serviceTracker = registry.trackServices(
-			registry.getFilter(sb.toString()));
+			registry.getFilter(
+				StringBundler.concat(
+					"(&(javax.portlet.name=", MBPortletKeys.MESSAGE_BOARDS,
+					")(objectClass=",
+					ExportImportPortletPreferencesProcessor.class.getName(),
+					"))")));
 
 		_serviceTracker.open();
 	}

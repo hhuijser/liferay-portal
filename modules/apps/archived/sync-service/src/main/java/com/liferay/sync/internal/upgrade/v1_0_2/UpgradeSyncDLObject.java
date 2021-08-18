@@ -158,10 +158,11 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					StringBundler.concat(
 						"insert into SyncDLObject (syncDLObjectId, companyId, ",
 						"userId, userName, createTime, modifiedTime, ",
-						"repositoryId, parentFolderId, treePath, name, extension, ",
-						"mimeType, description, changeLog, version, versionId, ",
-						"size_, event, type_, typePK, typeUuid) values (?, ?, ?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+						"repositoryId, parentFolderId, treePath, name, ",
+						"extension, mimeType, description, changeLog, ",
+						"version, versionId, size_, event, type_, typePK, ",
+						"typeUuid) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -217,16 +218,15 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	}
 
 	protected void verifyLocks(long groupId) throws Exception {
-		String sql = SQLTransformer.transform(
-			StringBundler.concat(
-				"select Lock_.expirationDate, Lock_.userId, ",
-				"Lock_.userName, DLFileVersion.fileEntryId from ",
-				"DLFileVersion, Lock_ where DLFileVersion.version = '",
-				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION,
-				"' and CAST_TEXT(DLFileVersion.fileEntryId) = Lock_.key_"));
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sql);
+				SQLTransformer.transform(
+					StringBundler.concat(
+						"select Lock_.expirationDate, Lock_.userId, ",
+						"Lock_.userName, DLFileVersion.fileEntryId from ",
+						"DLFileVersion, Lock_ where DLFileVersion.version = '",
+						DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION,
+						"' and CAST_TEXT(DLFileVersion.fileEntryId) = ",
+						"Lock_.key_")));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

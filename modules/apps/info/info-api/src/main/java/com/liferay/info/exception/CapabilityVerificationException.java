@@ -45,18 +45,11 @@ public class CapabilityVerificationException extends RuntimeException {
 
 	@Override
 	public String getMessage() {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("Failed validation of capability ");
-		sb.append(_infoItemCapability.getKey());
-		sb.append(" for item class name ");
-		sb.append(_infoItemClassName);
-		sb.append(". An implementation for the following services is ");
-		sb.append("required: ");
-		sb.append(_getMissingServiceClassNames());
-		sb.append(".");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"Failed validation of capability ", _infoItemCapability.getKey(),
+			" for item class name ", _infoItemClassName,
+			". An implementation for the following services is ", "required: ",
+			_getMissingServiceClassNames(), ".");
 	}
 
 	public List<Class<?>> getMissingServiceClasses() {

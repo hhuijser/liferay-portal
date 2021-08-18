@@ -242,7 +242,7 @@ public class EditableValuesMappingExportImportContentProcessor
 						"Staged model with class name ",
 						stagedModel.getModelClassName(), " and primary key ",
 						stagedModel.getPrimaryKeyObj(),
-						" references asset entry with class ", "primary key ",
+						" references asset entry with class primary key ",
 						classPK, " and class name ",
 						_portal.getClassName(classNameId),
 						" that could not be exported due to ", exception);

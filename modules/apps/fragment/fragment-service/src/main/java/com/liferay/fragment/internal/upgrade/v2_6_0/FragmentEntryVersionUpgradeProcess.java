@@ -41,21 +41,20 @@ public class FragmentEntryVersionUpgradeProcess extends UpgradeProcess {
 			s.execute(
 				StringBundler.concat(
 					"insert into FragmentEntryVersion(",
-					"fragmentEntryVersionId, version, uuid_, ",
-					"fragmentEntryId, groupId, companyId, userId, ",
-					"userName, createDate, modifiedDate, ",
-					"fragmentCollectionId, fragmentEntryKey, name, css, ",
-					"html, js, cacheable, configuration, ",
-					"previewFileEntryId, readOnly, type_, lastPublishDate, ",
-					"status, statusByUserId, statusByUserName, statusDate) ",
-					"select fragmentEntryId as fragmentEntryVersionId, 1 ",
-					"as version, uuid_, fragmentEntryId, groupId, ",
-					"companyId, userId, userName, createDate, ",
+					"fragmentEntryVersionId, version, uuid_, fragmentEntryId, ",
+					"groupId, companyId, userId, userName, createDate, ",
 					"modifiedDate, fragmentCollectionId, fragmentEntryKey, ",
 					"name, css, html, js, cacheable, configuration, ",
 					"previewFileEntryId, readOnly, type_, lastPublishDate, ",
-					"status, statusByUserId, statusByUserName, statusDate ",
-					"from FragmentEntry where status = ",
+					"status, statusByUserId, statusByUserName, statusDate) ",
+					"select fragmentEntryId as fragmentEntryVersionId, 1 as ",
+					"version, uuid_, fragmentEntryId, groupId, companyId, ",
+					"userId, userName, createDate, modifiedDate, ",
+					"fragmentCollectionId, fragmentEntryKey, name, css, html, ",
+					"js, cacheable, configuration, previewFileEntryId, ",
+					"readOnly, type_, lastPublishDate, status, ",
+					"statusByUserId, statusByUserName, statusDate from ",
+					"FragmentEntry where status = ",
 					WorkflowConstants.STATUS_APPROVED));
 		}
 	}

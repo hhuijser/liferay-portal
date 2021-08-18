@@ -131,6 +131,7 @@ public class LinksToLayoutsExportImportContentProcessor
 						type, StringPool.AT, layout.getPlid()));
 
 				oldLinksToLayout.add(oldLinkToLayout);
+
 				newLinksToLayout.add(newLinkToLayout);
 
 				Element entityElement = portletDataContext.getExportDataElement(

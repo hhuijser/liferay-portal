@@ -52,8 +52,8 @@ public class FragmentEntryUpgradeProcess extends UpgradeProcess {
 			s.execute(
 				SQLTransformer.transform(
 					StringBundler.concat(
-						"update FragmentEntry set headId = -1 * fragmentEntryId",
-						", head = [$TRUE$] where status = ",
+						"update FragmentEntry set headId = -1 * ",
+						"fragmentEntryId, head = [$TRUE$] where status = ",
 						WorkflowConstants.STATUS_APPROVED)));
 		}
 	}

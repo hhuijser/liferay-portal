@@ -245,25 +245,14 @@ public class UpgradeResourceBlockTest extends BaseUpgradeResourceBlock {
 			long actionIds)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(15);
-
-		sb.append("insert into ResourceTypePermission(mvccVersion, ");
-		sb.append("resourceTypePermissionId, companyId, groupId, name, ");
-		sb.append("roleId, actionIds) values (1, ");
-		sb.append(resourceTypePermissionId);
-		sb.append(", ");
-		sb.append(_COMPANY_ID);
-		sb.append(", ");
-		sb.append(groupId);
-		sb.append(", '");
-		sb.append(UpgradeResourceBlockTest.class.getName());
-		sb.append("', ");
-		sb.append(roleId);
-		sb.append(", ");
-		sb.append(actionIds);
-		sb.append(")");
-
-		runSQL(sb.toString());
+		runSQL(
+			StringBundler.concat(
+				"insert into ResourceTypePermission(mvccVersion, ",
+				"resourceTypePermissionId, companyId, groupId, name, ",
+				"roleId, actionIds) values (1, ", resourceTypePermissionId,
+				", ", _COMPANY_ID, ", ", groupId, ", '",
+				UpgradeResourceBlockTest.class.getName(), "', ", roleId, ", ",
+				actionIds, ")"));
 	}
 
 	private void _testUpgrade(boolean hasUserId) throws Exception {

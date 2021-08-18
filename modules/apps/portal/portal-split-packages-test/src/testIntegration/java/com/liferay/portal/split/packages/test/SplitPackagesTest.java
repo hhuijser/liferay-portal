@@ -187,15 +187,8 @@ public class SplitPackagesTest {
 
 		@Override
 		public String toString() {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("{name=");
-			sb.append(_name);
-			sb.append(", version=");
-			sb.append(_version);
-			sb.append("}");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"{name=", _name, ", version=", _version, "}");
 		}
 
 		private ExportPackage(String name, String version) {

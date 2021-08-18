@@ -134,16 +134,10 @@ public class PortalImplControlPanelFullURLTest {
 	}
 
 	private String _getQueryString(String portletId) {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("?p_p_id=");
-		sb.append(portletId);
-		sb.append("&p_p_lifecycle=0&p_p_state=");
-		sb.append(WindowState.MAXIMIZED.toString());
-		sb.append("&p_p_mode=");
-		sb.append(PortletMode.VIEW.toString());
-
-		return sb.toString();
+		return StringBundler.concat(
+			"?p_p_id=", portletId, "&p_p_lifecycle=0&p_p_state=",
+			WindowState.MAXIMIZED.toString(), "&p_p_mode=",
+			PortletMode.VIEW.toString());
 	}
 
 	@Inject

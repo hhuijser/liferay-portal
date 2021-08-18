@@ -365,16 +365,9 @@ public class ReleaseManagerOSGiCommands {
 		String moduleName, String currentSchemaVersion,
 		String finalSchemaVersion) {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("There are upgrade processes available for ");
-		sb.append(moduleName);
-		sb.append(" from ");
-		sb.append(currentSchemaVersion);
-		sb.append(" to ");
-		sb.append(finalSchemaVersion);
-
-		return sb.toString();
+		return StringBundler.concat(
+			"There are upgrade processes available for ", moduleName, " from ",
+			currentSchemaVersion, " to ", finalSchemaVersion);
 	}
 
 	private String _getPendingUpgradeProcessMessage(

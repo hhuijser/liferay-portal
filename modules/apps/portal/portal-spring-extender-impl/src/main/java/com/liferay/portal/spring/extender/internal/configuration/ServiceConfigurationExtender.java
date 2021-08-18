@@ -179,17 +179,10 @@ public class ServiceConfigurationExtender
 		}
 
 		private String _getVersionRangerFilter(Version version) {
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("(&(release.schema.version>=");
-			sb.append(version.getMajor());
-			sb.append(".");
-			sb.append(version.getMinor());
-			sb.append(".0)(!(release.schema.version>=");
-			sb.append(version.getMajor() + 1);
-			sb.append(".0.0)))");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"(&(release.schema.version>=", version.getMajor(), ".",
+				version.getMinor(), ".0)(!(release.schema.version>=",
+				version.getMajor() + 1, ".0.0)))");
 		}
 
 		private final org.apache.felix.dm.Component _component;

@@ -113,16 +113,9 @@ public class DBTest {
 	}
 
 	private String _getAlterColumType(String columnName, String newType) {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("alter_column_type ");
-		sb.append(_TABLE_NAME);
-		sb.append(StringPool.SPACE);
-		sb.append(columnName);
-		sb.append(StringPool.SPACE);
-		sb.append(newType);
-
-		return sb.toString();
+		return StringBundler.concat(
+			"alter_column_type ", _TABLE_NAME, StringPool.SPACE, columnName,
+			StringPool.SPACE, newType);
 	}
 
 	private static final String _TABLE_NAME = "DBTest";

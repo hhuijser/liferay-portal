@@ -510,10 +510,9 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 					StringBundler.concat(
 						"Layout page template ",
 						layoutPageTemplateEntry.getLayoutPageTemplateEntryId(),
-						" cannot be imported because a layout prototype ",
-						"with UUID ", layoutPrototype.getUuid(),
-						" and company ID ", portletDataContext.getCompanyId(),
-						" already exists"));
+						" cannot be imported because a layout prototype with ",
+						"UUID ", layoutPrototype.getUuid(), " and company ID ",
+						portletDataContext.getCompanyId(), " already exists"));
 			}
 		}
 	}

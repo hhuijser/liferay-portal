@@ -70,11 +70,11 @@ public class LayoutPrototypeUpgradeProcess extends UpgradeProcess {
 					connection,
 					StringBundler.concat(
 						"insert into LayoutPageTemplateEntry (uuid_, ",
-						"layoutPageTemplateEntryId, groupId, companyId, userId, ",
-						"userName, createDate, modifiedDate, ",
+						"layoutPageTemplateEntryId, groupId, companyId, ",
+						"userId, userName, createDate, modifiedDate, ",
 						"layoutPageTemplateCollectionId, name, type_, ",
-						"layoutPrototypeId, status) values (?, ?, ?, ?, ?, ?, ?, ",
-						"?, ?, ?, ?, ?, ?)"))) {
+						"layoutPrototypeId, status) values (?, ?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?, ?)"))) {
 
 			Set<String> existingNames = new HashSet<>();
 

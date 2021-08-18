@@ -50,8 +50,8 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 	protected void upgradeLayoutPageTemplatesStructures() throws Exception {
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
-					"select layoutPageTemplateStructureId, groupId, companyId, ",
-					"userId, userName, createDate, data_ from ",
+					"select layoutPageTemplateStructureId, groupId, ",
+					"companyId, userId, userName, createDate, data_ from ",
 					"LayoutPageTemplateStructure"))) {
 
 			try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -89,8 +89,8 @@ public class LayoutPageTemplateStructureUpgradeProcess extends UpgradeProcess {
 			"insert into LayoutPageTemplateStructureRel (uuid_, ",
 			"lPageTemplateStructureRelId, groupId, companyId, userId, ",
 			"userName, createDate, modifiedDate, ",
-			"layoutPageTemplateStructureId, segmentsExperienceId, ",
-			"data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"layoutPageTemplateStructureId, segmentsExperienceId, data_) ",
+			"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

@@ -49,9 +49,10 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 					connection.prepareStatement(
 						StringBundler.concat(
 							"insert into ResourcePermission (mvccVersion, ",
-							"resourcePermissionId, companyId, name, scope, primKey, ",
-							"primKeyId, roleId, ownerId, actionIds, viewActionId) ",
-							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")))) {
+							"resourcePermissionId, companyId, name, scope, ",
+							"primKey, primKeyId, roleId, ownerId, actionIds, ",
+							"viewActionId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+							"?, ?)")))) {
 
 			while (resultSet.next()) {
 				long mvccVersion = resultSet.getLong("mvccVersion");

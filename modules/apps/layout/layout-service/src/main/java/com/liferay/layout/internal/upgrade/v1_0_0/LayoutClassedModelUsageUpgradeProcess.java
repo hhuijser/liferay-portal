@@ -57,11 +57,11 @@ public class LayoutClassedModelUsageUpgradeProcess extends UpgradeProcess {
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					StringBundler.concat(
-						"insert into LayoutClassedModelUsage (mvccVersion, uuid_, ",
-						"layoutClassedModelUsageId, groupId, createDate, ",
-						"modifiedDate, classNameId, classPK, containerKey, ",
-						"containerType, plid, type_ ) values (?, ?, ?, ?, ?, ?, ?, ",
-						"?, ?, ?, ?, ?)"))) {
+						"insert into LayoutClassedModelUsage (mvccVersion, ",
+						"uuid_, layoutClassedModelUsageId, groupId, ",
+						"createDate, modifiedDate, classNameId, classPK, ",
+						"containerKey, containerType, plid, type_ ) values ",
+						"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			List<AssetEntryUsage> assetEntryUsages =
 				_assetEntryUsageLocalService.getAssetEntryUsages(

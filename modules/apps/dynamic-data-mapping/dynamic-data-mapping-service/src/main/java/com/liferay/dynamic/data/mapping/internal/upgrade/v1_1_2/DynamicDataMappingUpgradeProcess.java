@@ -235,8 +235,8 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 				"DDMStructure.structureId from DDLRecordVersion inner join ",
 				"DDLRecordSet on DDLRecordVersion.recordSetId = ",
 				"DDLRecordSet.recordSetId inner join DDMContent on  ",
-				"DDLRecordVersion.DDMStorageId = DDMContent.contentId ",
-				"inner join DDMStructure on DDLRecordSet.DDMStructureId = ",
+				"DDLRecordVersion.DDMStorageId = DDMContent.contentId inner ",
+				"join DDMStructure on DDLRecordSet.DDMStructureId = ",
 				"DDMStructure.structureId"));
 	}
 
@@ -350,8 +350,8 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 		upgradeDDMContentReferences(
 			StringBundler.concat(
 				"select DDMContent.contentId, DDMContent.data_,",
-				"DDMStructure.structureId from DLFileEntryMetadata inner ",
-				"join DDMContent on DLFileEntryMetadata.DDMStorageId = ",
+				"DDMStructure.structureId from DLFileEntryMetadata inner join ",
+				"DDMContent on DLFileEntryMetadata.DDMStorageId = ",
 				"DDMContent.contentId inner join DDMStructure on ",
 				"DLFileEntryMetadata.DDMStructureId = DDMStructure.",
 				"structureId inner join DLFileVersion on ",

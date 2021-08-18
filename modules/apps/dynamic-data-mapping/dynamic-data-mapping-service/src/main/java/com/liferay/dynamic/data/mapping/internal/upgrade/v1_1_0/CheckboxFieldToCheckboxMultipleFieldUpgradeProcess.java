@@ -200,7 +200,7 @@ public class CheckboxFieldToCheckboxMultipleFieldUpgradeProcess
 					"from DDLRecordVersion inner join DDLRecordSet on ",
 					"DDLRecordVersion.recordSetId = DDLRecordSet.recordSetId ",
 					"inner join DDMContent on DDLRecordVersion.DDMStorageId = ",
-					"DDMContent.contentId where DDLRecordSet.recordSetId = ? "));
+					"DDMContent.contentId where DDLRecordSet.recordSetId = ?"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

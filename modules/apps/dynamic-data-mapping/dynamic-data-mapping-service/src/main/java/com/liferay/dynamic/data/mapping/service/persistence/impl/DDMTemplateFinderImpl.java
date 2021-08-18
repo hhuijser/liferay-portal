@@ -1098,9 +1098,9 @@ public class DDMTemplateFinderImpl
 
 		return StringBundler.concat(
 			"AND EXISTS (SELECT 1 FROM DDMTemplateVersion WHERE ",
-			"(DDMTemplateVersion.templateId = DDMTemplate.templateId) ",
-			"AND (DDMTemplateVersion.version = DDMTemplate.version) ",
-			"AND (DDMTemplateVersion.status = ?))");
+			"(DDMTemplateVersion.templateId = DDMTemplate.templateId) AND ",
+			"(DDMTemplateVersion.version = DDMTemplate.version) AND ",
+			"(DDMTemplateVersion.status = ?))");
 	}
 
 	@Reference

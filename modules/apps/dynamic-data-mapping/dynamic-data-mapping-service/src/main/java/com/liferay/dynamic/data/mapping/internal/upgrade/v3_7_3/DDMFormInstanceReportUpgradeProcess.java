@@ -87,22 +87,25 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 							StringBundler.concat(
 								"select DDMContent.data_, ",
 								"DDMFormInstanceRecord.formInstanceRecordId, ",
-								"DDMStructureVersion.definition from DDMContent inner ",
-								"join DDMFormInstanceRecordVersion on ",
+								"DDMStructureVersion.definition from ",
+								"DDMContent inner join ",
+								"DDMFormInstanceRecordVersion on ",
 								"DDMContent.contentId = ",
-								"DDMFormInstanceRecordVersion.storageId inner join ",
-								"DDMFormInstanceRecord on ",
+								"DDMFormInstanceRecordVersion.storageId inner ",
+								"join DDMFormInstanceRecord on ",
 								"DDMFormInstanceRecord.formInstanceRecordId = ",
-								"DDMFormInstanceRecordVersion.formInstanceRecordId inner ",
-								"join DDMFormInstanceVersion on ",
+								"DDMFormInstanceRecordVersion.",
+								"formInstanceRecordId inner join ",
+								"DDMFormInstanceVersion on ",
 								"DDMFormInstanceVersion.formInstanceId = ",
-								"DDMFormInstanceRecordVersion.formInstanceId and ",
-								"DDMFormInstanceVersion.version = ",
-								"DDMFormInstanceRecordVersion.formInstanceVersion inner ",
-								"join DDMStructureVersion on ",
+								"DDMFormInstanceRecordVersion.formInstanceId ",
+								"and DDMFormInstanceVersion.version = ",
+								"DDMFormInstanceRecordVersion.",
+								"formInstanceVersion inner join ",
+								"DDMStructureVersion on ",
 								"DDMStructureVersion.structureVersionId = ",
-								"DDMFormInstanceVersion.structureVersionId where ",
-								"DDMFormInstanceRecord.version = ",
+								"DDMFormInstanceVersion.structureVersionId ",
+								"where DDMFormInstanceRecord.version = ",
 								"DDMFormInstanceRecordVersion.version and ",
 								"DDMFormInstanceRecord.formInstanceId = ? and ",
 								"DDMFormInstanceRecordVersion.status = ?"))) {
@@ -139,9 +142,10 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 							connection,
 							StringBundler.concat(
-								"insert into DDMFormInstanceReport (formInstanceReportId, ",
-								"groupId, companyId, createDate, modifiedDate, ",
-								"formInstanceId, data_) values (?, ?, ?, ?, ?, ?, ?)"))) {
+								"insert into DDMFormInstanceReport ",
+								"(formInstanceReportId, groupId, companyId, ",
+								"createDate, modifiedDate, formInstanceId, ",
+								"data_) values (?, ?, ?, ?, ?, ?, ?)"))) {
 
 					preparedStatement3.setLong(1, increment());
 					preparedStatement3.setLong(2, groupId);

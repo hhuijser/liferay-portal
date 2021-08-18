@@ -60,8 +60,8 @@ public class GeolocationDDMFormFieldValueRenderer
 			}
 
 			return StringBundler.concat(
-				"Latitude: ", jsonObject.get("lat"), StringPool.COMMA_AND_SPACE,
-				"Longitude: ", jsonObject.get("lng"));
+				"Latitude: ", jsonObject.get("lat"), ", Longitude: ",
+				jsonObject.get("lng"));
 		}
 
 		return StringPool.BLANK;

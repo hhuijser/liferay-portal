@@ -970,8 +970,8 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select DDLRecordVersion.*, DDMContent.data_, ",
-					"DDMStructure.structureId from DDLRecordVersion inner join ",
-					"DDLRecordSet on DDLRecordVersion.recordSetId = ",
+					"DDMStructure.structureId from DDLRecordVersion inner ",
+					"join DDLRecordSet on DDLRecordVersion.recordSetId = ",
 					"DDLRecordSet.recordSetId inner join DDMContent on  ",
 					"DDLRecordVersion.DDMStorageId = DDMContent.contentId ",
 					"inner join DDMStructure on DDLRecordSet.DDMStructureId = ",
@@ -1083,16 +1083,15 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
-							"insert into DDMContent (uuid_, contentId, groupId, ",
-							"companyId, userId, userName, createDate, ",
-							"modifiedDate, name, description, data_) values (?, ",
-							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+							"insert into DDMContent (uuid_, contentId, ",
+							"groupId, companyId, userId, userName, ",
+							"createDate, modifiedDate, name, description, ",
+							"data_) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 				PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
-						StringBundler.concat(
-							"update DDMStorageLink set classNameId = ? where ",
-							"classNameId = ? and classPK = ?"));
+						"update DDMStorageLink set classNameId = ? where " +
+							"classNameId = ? and classPK = ?");
 				ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 				Set<Long> expandoRowIds = new HashSet<>();
@@ -1200,16 +1199,18 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 						"groupId, companyId, userId, userName, createDate, ",
 						"structureId, version, parentStructureId, name, ",
 						"description, definition, storageType, type_, status, ",
-						"statusByUserId, statusByUserName, statusDate) values (?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+						"statusByUserId, statusByUserName, statusDate) values ",
+						"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+						"?)"));
 			PreparedStatement preparedStatement4 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					StringBundler.concat(
 						"insert into DDMStructureLayout (uuid_, ",
-						"structureLayoutId, groupId, companyId, userId, userName, ",
-						"createDate, modifiedDate, structureVersionId, ",
-						"definition) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+						"structureLayoutId, groupId, companyId, userId, ",
+						"userName, createDate, modifiedDate, ",
+						"structureVersionId, definition) values (?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -1368,9 +1369,10 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 						"insert into DDMTemplateVersion (templateVersionId, ",
 						"groupId, companyId, userId, userName, createDate, ",
 						"classNameId, classPK, templateId, version, name, ",
-						"description, language, script, status, statusByUserId, ",
-						"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
-						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+						"description, language, script, status, ",
+						"statusByUserId, statusByUserName, statusDate) values ",
+						"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+						"?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -1493,7 +1495,8 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 							"structureId from DDMStorageLink inner join ",
 							"DDMStructure on (DDMStorageLink.structureId = ",
 							"DDMStructure.structureId) where DDMStorageLink.",
-							"classNameId = ? and DDMStructure.storageType = ?"));
+							"classNameId = ? and DDMStructure.storageType = ",
+							"?"));
 				PreparedStatement preparedStatement2 =
 					connection.prepareStatement(
 						"select companyId, data_ from DDMContent where " +

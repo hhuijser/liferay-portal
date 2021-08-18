@@ -50,8 +50,8 @@ public class OpenOfficeConfigurationScanner {
 			_log.warn(
 				StringBundler.concat(
 					"Conversion using a remote OpenOffice instance is not ",
-					"fully supported. Please use a local instance to ",
-					"prevent any limitations and problems."));
+					"fully supported. Please use a local instance to prevent ",
+					"any limitations and problems."));
 		}
 	}
 

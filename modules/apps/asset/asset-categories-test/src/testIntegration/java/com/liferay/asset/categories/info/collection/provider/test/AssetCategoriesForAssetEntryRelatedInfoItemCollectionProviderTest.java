@@ -99,17 +99,15 @@ public class AssetCategoriesForAssetEntryRelatedInfoItemCollectionProviderTest {
 			_portal.getClassNameId(JournalArticle.class.getName()),
 			journalArticle.getResourcePrimKey());
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("com.liferay.asset.categories.admin.web.internal.info.");
-		sb.append("collection.provider.");
-		sb.append("AssetCategoriesForAssetEntryRelatedInfoItemCollection");
-		sb.append("Provider");
-
 		RelatedInfoItemCollectionProvider<AssetEntry, AssetCategory>
 			relatedInfoItemCollectionProvider =
 				_infoItemServiceTracker.getInfoItemService(
-					RelatedInfoItemCollectionProvider.class, sb.toString());
+					RelatedInfoItemCollectionProvider.class,
+					StringBundler.concat(
+						"com.liferay.asset.categories.admin.web.internal.info.",
+						"collection.provider.",
+						"AssetCategoriesForAssetEntryRelatedInfoItemCollection",
+						"Provider"));
 
 		Assert.assertNotNull(relatedInfoItemCollectionProvider);
 

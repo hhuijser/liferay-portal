@@ -52,29 +52,21 @@ public class UpgradeAssetDisplayPageEntry
 		long fileEntryClassNameId = PortalUtil.getClassNameId(
 			FileEntry.class.getName());
 
-		StringBundler sb1 = new StringBundler(7);
-
-		sb1.append("select groupId, companyId, userId, userName, fileEntryId ");
-		sb1.append("from DLFileEntry where fileEntryId not in (select ");
-		sb1.append("classPK from AssetDisplayPageEntry where classNameId in (");
-		sb1.append(dlFileEntryClassNameId);
-		sb1.append(", ");
-		sb1.append(fileEntryClassNameId);
-		sb1.append("))");
-
-		StringBundler sb2 = new StringBundler(5);
-
-		sb2.append("insert into AssetDisplayPageEntry (uuid_, ");
-		sb2.append("assetDisplayPageEntryId, groupId, companyId, userId, ");
-		sb2.append("userName, createDate, modifiedDate, classNameId, ");
-		sb2.append("classPK, layoutPageTemplateEntryId, type_, plid) values( ");
-		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select groupId, companyId, userId, userName, fileEntryId ",
+					"from DLFileEntry where fileEntryId not in (select ",
+					"classPK from AssetDisplayPageEntry where classNameId in (",
+					dlFileEntryClassNameId, ", ", fileEntryClassNameId, "))"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into AssetDisplayPageEntry (uuid_, ",
+						"assetDisplayPageEntryId, groupId, companyId, userId, ",
+						"userName, createDate, modifiedDate, classNameId, ",
+						"classPK, layoutPageTemplateEntryId, type_, plid) values( ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {

@@ -389,27 +389,16 @@ public class UpgradePortletPreferencesTest {
 	protected String getExpectedOrderByColumnValue(
 		DDMStructure ddmStructure, DDMFormField ddmFormField) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("ddm");
-		sb.append(StringPool.DOUBLE_UNDERLINE);
-		sb.append(ddmFormField.getIndexType());
-		sb.append(StringPool.DOUBLE_UNDERLINE);
-		sb.append(ddmStructure.getStructureId());
-		sb.append(StringPool.DOUBLE_UNDERLINE);
-		sb.append(ddmFormField.getName());
-
-		return sb.toString();
+		return StringBundler.concat(
+			"ddm", StringPool.DOUBLE_UNDERLINE, ddmFormField.getIndexType(),
+			StringPool.DOUBLE_UNDERLINE, ddmStructure.getStructureId(),
+			StringPool.DOUBLE_UNDERLINE, ddmFormField.getName());
 	}
 
 	protected String getPortletId() {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(AssetPublisherPortletKeys.ASSET_PUBLISHER);
-		sb.append("_INSTANCE_");
-		sb.append(StringUtil.randomId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			AssetPublisherPortletKeys.ASSET_PUBLISHER, "_INSTANCE_",
+			StringUtil.randomId());
 	}
 
 	protected PortletPreferences getPortletPreferences(String portletId)

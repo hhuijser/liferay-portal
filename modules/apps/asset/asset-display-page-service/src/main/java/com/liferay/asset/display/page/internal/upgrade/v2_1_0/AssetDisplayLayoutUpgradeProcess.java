@@ -128,17 +128,15 @@ public class AssetDisplayLayoutUpgradeProcess extends UpgradeProcess {
 			AssetDisplayPageEntryTable.class,
 			new AlterTableAddColumn("plid", "LONG"));
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select assetDisplayPageEntryId, userId, groupId, ");
-		sb.append("classNameId, classPK, layoutPageTemplateEntryId from ");
-		sb.append("AssetDisplayPageEntry where plid is null or plid = 0");
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement s = connection.createStatement();
-			ResultSet resultSet = s.executeQuery(sb.toString());
+			ResultSet resultSet = s.executeQuery(
+				StringBundler.concat(
+					"select assetDisplayPageEntryId, userId, groupId, ",
+					"classNameId, classPK, layoutPageTemplateEntryId from ",
+					"AssetDisplayPageEntry where plid is null or plid = 0"));
 			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.autoBatch(
 					connection.prepareStatement(

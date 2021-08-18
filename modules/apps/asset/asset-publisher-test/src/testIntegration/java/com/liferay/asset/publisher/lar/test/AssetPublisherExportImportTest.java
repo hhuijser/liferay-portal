@@ -842,19 +842,14 @@ public class AssetPublisherExportImportTest
 
 		Assert.assertEquals(null, portletPreferences.getValue("scopeId", null));
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(AssetPublisherHelper.SCOPE_ID_GROUP_PREFIX);
-		sb.append(companyGroup.getGroupId());
-		sb.append(StringPool.COMMA);
-		sb.append(AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX);
-		sb.append(importedLayout.getUuid());
-		sb.append(StringPool.COMMA);
-		sb.append(AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX);
-		sb.append(importedSecondLayout.getUuid());
-
 		Assert.assertEquals(
-			sb.toString(),
+			StringBundler.concat(
+				AssetPublisherHelper.SCOPE_ID_GROUP_PREFIX,
+				companyGroup.getGroupId(), StringPool.COMMA,
+				AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX,
+				importedLayout.getUuid(), StringPool.COMMA,
+				AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX,
+				importedSecondLayout.getUuid()),
 			StringUtil.merge(portletPreferences.getValues("scopeIds", null)));
 	}
 
@@ -884,16 +879,12 @@ public class AssetPublisherExportImportTest
 
 		Assert.assertEquals(null, portletPreferences.getValue("scopeId", null));
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX);
-		sb.append(importedLayout.getUuid());
-		sb.append(StringPool.COMMA);
-		sb.append(AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX);
-		sb.append(importedSecondLayout.getUuid());
-
 		Assert.assertEquals(
-			sb.toString(),
+			StringBundler.concat(
+				AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX,
+				importedLayout.getUuid(), StringPool.COMMA,
+				AssetPublisherHelper.SCOPE_ID_LAYOUT_UUID_PREFIX,
+				importedSecondLayout.getUuid()),
 			StringUtil.merge(portletPreferences.getValues("scopeIds", null)));
 	}
 

@@ -36,32 +36,21 @@ public abstract class BaseUpgradeAssetDisplayPageEntry extends UpgradeProcess {
 
 		long modelClassNameId = PortalUtil.getClassNameId(modelClassName);
 
-		StringBundler sb1 = new StringBundler(10);
-
-		sb1.append("select distinct groupId, companyId, ");
-		sb1.append(pkColumnName);
-		sb1.append(" from ");
-		sb1.append(tableName);
-		sb1.append(" where ");
-		sb1.append(pkColumnName);
-		sb1.append(" not in (select classPK from AssetDisplayPageEntry where ");
-		sb1.append("classNameId in (");
-		sb1.append(modelClassNameId);
-		sb1.append("))");
-
-		StringBundler sb2 = new StringBundler(5);
-
-		sb2.append("insert into AssetDisplayPageEntry (uuid_, ");
-		sb2.append("assetDisplayPageEntryId, groupId, companyId, userId, ");
-		sb2.append("userName, createDate, modifiedDate, classNameId, ");
-		sb2.append("classPK, layoutPageTemplateEntryId, type_, plid) values( ");
-		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select distinct groupId, companyId, ", pkColumnName,
+					" from ", tableName, " where ", pkColumnName,
+					" not in (select classPK from AssetDisplayPageEntry where ",
+					"classNameId in (", modelClassNameId, "))"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString())) {
+					connection,
+					StringBundler.concat(
+						"insert into AssetDisplayPageEntry (uuid_, ",
+						"assetDisplayPageEntryId, groupId, companyId, userId, ",
+						"userName, createDate, modifiedDate, classNameId, ",
+						"classPK, layoutPageTemplateEntryId, type_, plid) values( ",
+						"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			try (ResultSet resultSet = preparedStatement1.executeQuery()) {
 				while (resultSet.next()) {

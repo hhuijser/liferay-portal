@@ -148,11 +148,8 @@ public class ElasticsearchSearchEngineInformation
 
 				if (!Validator.isBlank(localClusterNodesString)) {
 					clusterNodesString = StringBundler.concat(
-						"Remote Cluster", StringPool.SPACE, StringPool.EQUAL,
-						StringPool.SPACE, clusterNodesString,
-						StringPool.COMMA_AND_SPACE, "Local Cluster",
-						StringPool.SPACE, StringPool.EQUAL, StringPool.SPACE,
-						localClusterNodesString);
+						"Remote Cluster = ", clusterNodesString,
+						", Local Cluster = ", localClusterNodesString);
 				}
 			}
 
@@ -168,9 +165,7 @@ public class ElasticsearchSearchEngineInformation
 		String vendor = elasticsearchSearchEngine.getVendor();
 
 		if (operationModeResolver.isDevelopmentModeEnabled()) {
-			return StringBundler.concat(
-				vendor, StringPool.SPACE, StringPool.OPEN_PARENTHESIS,
-				"Sidecar", StringPool.CLOSE_PARENTHESIS);
+			return vendor + " (Sidecar)";
 		}
 
 		return vendor;
@@ -302,30 +297,25 @@ public class ElasticsearchSearchEngineInformation
 
 			Stream<NodeInformation> stream = nodeInformations.stream();
 
-			String nodesString = stream.map(
-				nodeInfo -> {
-					return StringBundler.concat(
-						nodeInfo.getName(), StringPool.SPACE,
-						StringPool.OPEN_PARENTHESIS, nodeInfo.getVersion(),
-						StringPool.CLOSE_PARENTHESIS);
-				}
-			).collect(
-				Collectors.joining(StringPool.COMMA_AND_SPACE)
-			);
-
 			return StringBundler.concat(
 				clusterName, StringPool.COLON, StringPool.SPACE,
-				StringPool.OPEN_BRACKET, nodesString, StringPool.CLOSE_BRACKET);
+				StringPool.OPEN_BRACKET,
+				stream.map(
+					nodeInfo -> StringBundler.concat(
+						nodeInfo.getName(), StringPool.SPACE,
+						StringPool.OPEN_PARENTHESIS, nodeInfo.getVersion(),
+						StringPool.CLOSE_PARENTHESIS)
+				).collect(
+					Collectors.joining(StringPool.COMMA_AND_SPACE)
+				),
+				StringPool.CLOSE_BRACKET);
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn("Unable to get node information", exception);
 			}
 
-			return StringBundler.concat(
-				StringPool.OPEN_PARENTHESIS, "Error", StringPool.COLON,
-				StringPool.SPACE, exception.toString(),
-				StringPool.CLOSE_PARENTHESIS);
+			return StringBundler.concat("(Error: ", exception.toString(), ")");
 		}
 	}
 

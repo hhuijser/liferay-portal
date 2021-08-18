@@ -717,8 +717,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		return StringBundler.concat(
 			"AND ((KaleoTaskAssignmentInstance.assigneeClassName = '",
-			User.class.getName(), "') ",
-			"AND (KaleoTaskAssignmentInstance.assigneeClassPK = ",
+			User.class.getName(),
+			"') AND (KaleoTaskAssignmentInstance.assigneeClassPK = ",
 			kaleoTaskInstanceTokenQuery.getUserId(), "))");
 	}
 

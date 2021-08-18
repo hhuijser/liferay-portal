@@ -406,15 +406,9 @@ public class JournalFeedLocalServiceImpl
 				groupId, feedId);
 
 			if (feed != null) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append("{groupId=");
-				sb.append(groupId);
-				sb.append(", feedId=");
-				sb.append(feedId);
-				sb.append("}");
-
-				throw new DuplicateFeedIdException(sb.toString());
+				throw new DuplicateFeedIdException(
+					StringBundler.concat(
+						"{groupId=", groupId, ", feedId=", feedId, "}"));
 			}
 		}
 
@@ -436,14 +430,10 @@ public class JournalFeedLocalServiceImpl
 			companyId, targetLayoutFriendlyUrl);
 
 		if (plid <= 0) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("No layout exists for company ");
-			sb.append(companyId);
-			sb.append(" and friendly URL ");
-			sb.append(targetLayoutFriendlyUrl);
-
-			throw new FeedTargetLayoutFriendlyUrlException(sb.toString());
+			throw new FeedTargetLayoutFriendlyUrlException(
+				StringBundler.concat(
+					"No layout exists for company ", companyId,
+					" and friendly URL ", targetLayoutFriendlyUrl));
 		}
 
 		if (contentField.equals(JournalFeedConstants.RENDERED_WEB_CONTENT) ||

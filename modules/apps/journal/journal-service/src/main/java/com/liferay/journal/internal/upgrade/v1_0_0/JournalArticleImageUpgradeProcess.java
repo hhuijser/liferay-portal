@@ -31,15 +31,12 @@ import java.sql.ResultSet;
 public class JournalArticleImageUpgradeProcess extends UpgradeProcess {
 
 	protected void deleteOrphanJournalArticleImages() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("delete from JournalArticleImage where not exists");
-		sb.append("(select 1 from Image where");
-		sb.append("(JournalArticleImage.articleImageId = Image.imageId))");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"delete from JournalArticleImage where not exists",
+					"(select 1 from Image where",
+					"(JournalArticleImage.articleImageId = Image.imageId))"))) {
 
 			preparedStatement.executeUpdate();
 		}

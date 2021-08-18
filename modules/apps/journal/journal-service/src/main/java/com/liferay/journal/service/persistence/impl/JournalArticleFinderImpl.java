@@ -754,15 +754,10 @@ public class JournalArticleFinderImpl
 			closeSession(session);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("No JournalArticle exists with the key {resourcePrimKey=");
-		sb.append(resourcePrimKey);
-		sb.append(", displayDate=");
-		sb.append(displayDate);
-		sb.append("}");
-
-		throw new NoSuchArticleException(sb.toString());
+		throw new NoSuchArticleException(
+			StringBundler.concat(
+				"No JournalArticle exists with the key {resourcePrimKey=",
+				resourcePrimKey, ", displayDate=", displayDate, "}"));
 	}
 
 	@Override
@@ -1883,26 +1878,20 @@ public class JournalArticleFinderImpl
 		}
 
 		if (queryDefinition.isExcludeStatus()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("(JournalArticle.status != ");
-			sb.append(queryDefinition.getStatus());
-			sb.append(") AND (tempJournalArticle.status != ");
-			sb.append(queryDefinition.getStatus());
-			sb.append(")");
-
-			sql = StringUtil.replace(sql, "[$STATUS_JOIN$]", sb.toString());
+			sql = StringUtil.replace(
+				sql, "[$STATUS_JOIN$]",
+				StringBundler.concat(
+					"(JournalArticle.status != ", queryDefinition.getStatus(),
+					") AND (tempJournalArticle.status != ",
+					queryDefinition.getStatus(), ")"));
 		}
 		else {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("(JournalArticle.status = ");
-			sb.append(queryDefinition.getStatus());
-			sb.append(") AND (tempJournalArticle.status = ");
-			sb.append(queryDefinition.getStatus());
-			sb.append(")");
-
-			sql = StringUtil.replace(sql, "[$STATUS_JOIN$]", sb.toString());
+			sql = StringUtil.replace(
+				sql, "[$STATUS_JOIN$]",
+				StringBundler.concat(
+					"(JournalArticle.status = ", queryDefinition.getStatus(),
+					") AND (tempJournalArticle.status = ",
+					queryDefinition.getStatus(), ")"));
 		}
 
 		return sql;

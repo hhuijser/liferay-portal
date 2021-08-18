@@ -37,12 +37,6 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _updateCreateDate() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select resourcePrimKey, min(createDate) from ");
-		sb.append("JournalArticle group by resourcePrimKey having count(*) > ");
-		sb.append("1");
-
 		try (Statement s = connection.createStatement();
 			PreparedStatement preparedStatement =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
@@ -50,7 +44,12 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 					"update JournalArticle set createDate = ? where " +
 						"resourcePrimKey = ?")) {
 
-			try (ResultSet resultSet = s.executeQuery(sb.toString())) {
+			try (ResultSet resultSet = s.executeQuery(
+					StringBundler.concat(
+						"select resourcePrimKey, min(createDate) from ",
+						"JournalArticle group by resourcePrimKey having count(*) > ",
+						"1"))) {
+
 				while (resultSet.next()) {
 					long resourcePrimKey = resultSet.getLong(1);
 
@@ -69,22 +68,19 @@ public class JournalArticleDatesUpgradeProcess extends UpgradeProcess {
 	}
 
 	private void _updateModifiedDate() throws Exception {
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("select classPK, version, AssetEntry.modifiedDate from ");
-		sb.append("AssetEntry, (select modifiedDate, ");
-		sb.append("JournalArticle.resourcePrimKey, version from ");
-		sb.append("JournalArticle, (select resourcePrimKey, max(version) as ");
-		sb.append("maxVersion from JournalArticle where status = ? group by ");
-		sb.append("resourcePrimKey) LatestVersion where ");
-		sb.append("JournalArticle.resourcePrimKey = ");
-		sb.append("LatestVersion.resourcePrimKey and version = maxVersion) ");
-		sb.append("JournalArticle where classNameId = ? and classPK = ");
-		sb.append("JournalArticle.resourcePrimKey and ");
-		sb.append("AssetEntry.modifiedDate != JournalArticle.modifiedDate");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select classPK, version, AssetEntry.modifiedDate from ",
+					"AssetEntry, (select modifiedDate, ",
+					"JournalArticle.resourcePrimKey, version from ",
+					"JournalArticle, (select resourcePrimKey, max(version) as ",
+					"maxVersion from JournalArticle where status = ? group by ",
+					"resourcePrimKey) LatestVersion where ",
+					"JournalArticle.resourcePrimKey = ",
+					"LatestVersion.resourcePrimKey and version = maxVersion) ",
+					"JournalArticle where classNameId = ? and classPK = ",
+					"JournalArticle.resourcePrimKey and ",
+					"AssetEntry.modifiedDate != JournalArticle.modifiedDate"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

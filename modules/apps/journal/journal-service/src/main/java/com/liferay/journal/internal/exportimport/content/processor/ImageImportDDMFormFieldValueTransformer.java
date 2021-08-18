@@ -107,14 +107,11 @@ public class ImageImportDDMFormFieldValueTransformer
 
 			value.addString(locale, fileEntryJSON);
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("//dynamic-element[@type='image']");
-			sb.append("/dynamic-content[contains(text(),");
-			sb.append(HtmlUtil.escapeXPathAttribute(valueString));
-			sb.append(")]");
-
-			XPath xPath = SAXReaderUtil.createXPath(sb.toString());
+			XPath xPath = SAXReaderUtil.createXPath(
+				StringBundler.concat(
+					"//dynamic-element[@type='image']",
+					"/dynamic-content[contains(text(),",
+					HtmlUtil.escapeXPathAttribute(valueString), ")]"));
 
 			List<Node> imageNodes = xPath.selectNodes(_document);
 

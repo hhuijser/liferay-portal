@@ -127,14 +127,11 @@ public class KBArticleImporter {
 				assetCategoryException);
 		}
 		catch (Exception exception) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Unable to add basic KB article for file entry ");
-			sb.append(fileEntryName);
-			sb.append(": ");
-			sb.append(exception.getLocalizedMessage());
-
-			throw new KBArticleImportException(sb.toString(), exception);
+			throw new KBArticleImportException(
+				StringBundler.concat(
+					"Unable to add basic KB article for file entry ",
+					fileEntryName, ": ", exception.getLocalizedMessage()),
+				exception);
 		}
 
 		try {
@@ -150,14 +147,11 @@ public class KBArticleImporter {
 				serviceContext);
 		}
 		catch (Exception exception) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Unable to update KB article for file entry ");
-			sb.append(fileEntryName);
-			sb.append(": ");
-			sb.append(exception.getLocalizedMessage());
-
-			throw new KBArticleImportException(sb.toString(), exception);
+			throw new KBArticleImportException(
+				StringBundler.concat(
+					"Unable to update KB article for file entry ",
+					fileEntryName, ": ", exception.getLocalizedMessage()),
+				exception);
 		}
 	}
 

@@ -437,13 +437,9 @@ public class JournalArticleAssetRenderer
 				_article.getGroupId(), layout.isPrivateLayout()),
 			themeDisplay);
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(groupFriendlyURL);
-		sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
-		sb.append(_article.getUrlTitle(themeDisplay.getLocale()));
-
-		String friendlyURL = sb.toString();
+		String friendlyURL = StringBundler.concat(
+			groupFriendlyURL, JournalArticleConstants.CANONICAL_URL_SEPARATOR,
+			_article.getUrlTitle(themeDisplay.getLocale()));
 
 		if (!_article.isApproved()) {
 			friendlyURL = HttpUtil.addParameter(

@@ -97,14 +97,11 @@ public class MoveArticlesAndFoldersMVCActionCommand
 		}
 
 		if (!invalidArticleIds.isEmpty()) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Folder ");
-			sb.append(newFolderId);
-			sb.append(" does not allow the structures for articles: ");
-			sb.append(StringUtil.merge(invalidArticleIds));
-
-			throw new InvalidDDMStructureException(sb.toString());
+			throw new InvalidDDMStructureException(
+				StringBundler.concat(
+					"Folder ", newFolderId,
+					" does not allow the structures for articles: ",
+					StringUtil.merge(invalidArticleIds)));
 		}
 	}
 

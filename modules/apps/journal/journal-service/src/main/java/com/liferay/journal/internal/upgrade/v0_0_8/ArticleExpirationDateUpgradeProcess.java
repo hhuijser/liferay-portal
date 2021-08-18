@@ -51,26 +51,23 @@ public class ArticleExpirationDateUpgradeProcess extends UpgradeProcess {
 				return;
 			}
 
-			StringBundler sb = new StringBundler(15);
-
-			sb.append("select JournalArticle.* from JournalArticle left join ");
-			sb.append("JournalArticle tempJournalArticle on ");
-			sb.append("(JournalArticle.groupId = tempJournalArticle.groupId) ");
-			sb.append("and (JournalArticle.articleId = ");
-			sb.append("tempJournalArticle.articleId) and ");
-			sb.append("(JournalArticle.version < tempJournalArticle.version) ");
-			sb.append("and (JournalArticle.status = ");
-			sb.append("tempJournalArticle.status) where ");
-			sb.append("(JournalArticle.classNameId = ");
-			sb.append(JournalArticleConstants.CLASS_NAME_ID_DEFAULT);
-			sb.append(") and (tempJournalArticle.version is null) and ");
-			sb.append("(JournalArticle.expirationDate is not null) and ");
-			sb.append("(JournalArticle.status = ");
-			sb.append(WorkflowConstants.STATUS_APPROVED);
-			sb.append(")");
-
 			try (PreparedStatement preparedStatement =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select JournalArticle.* from JournalArticle left join ",
+							"JournalArticle tempJournalArticle on ",
+							"(JournalArticle.groupId = tempJournalArticle.groupId) ",
+							"and (JournalArticle.articleId = ",
+							"tempJournalArticle.articleId) and ",
+							"(JournalArticle.version < tempJournalArticle.version) ",
+							"and (JournalArticle.status = ",
+							"tempJournalArticle.status) where ",
+							"(JournalArticle.classNameId = ",
+							JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
+							") and (tempJournalArticle.version is null) and ",
+							"(JournalArticle.expirationDate is not null) and ",
+							"(JournalArticle.status = ",
+							WorkflowConstants.STATUS_APPROVED, ")"));
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 
 				while (resultSet.next()) {

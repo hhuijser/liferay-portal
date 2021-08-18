@@ -235,15 +235,14 @@ public class JournalTransformerTest {
 			UnsecureSAXReaderUtil.read(xml), null, script,
 			TemplateConstants.LANG_TYPE_VM, false, new HashMap<>());
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<script type=\"text/javascript\">");
-		sb.append("Liferay.Service('/assetentry/increment-view-counter',");
-		sb.append("{userId:0, className:'");
-		sb.append("com.liferay.journal.model.JournalArticle', classPK:1});");
-		sb.append("</script>");
-
-		Assert.assertEquals(sb.toString(), content);
+		Assert.assertEquals(
+			StringBundler.concat(
+				"<script type=\"text/javascript\">",
+				"Liferay.Service('/assetentry/increment-view-counter',",
+				"{userId:0, className:'",
+				"com.liferay.journal.model.JournalArticle', classPK:1});",
+				"</script>"),
+			content);
 	}
 
 	@Test

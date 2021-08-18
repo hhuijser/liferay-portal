@@ -212,22 +212,15 @@ public class UpgradeJournalArticles extends BasePortletIdUpgradeProcess {
 			String oldRootPortletId, String newRootPortletId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("select distinct PortletPreferences.portletPreferencesId ");
-		sb.append("from PortletPreferences inner join PortletPreferenceValue ");
-		sb.append("on PortletPreferenceValue.portletPreferencesId = ");
-		sb.append("PortletPreferences.portletPreferencesId where portletId = ");
-		sb.append("'");
-		sb.append(oldRootPortletId);
-		sb.append("' OR portletId like '");
-		sb.append(oldRootPortletId);
-		sb.append("_INSTANCE_%' OR portletId like '");
-		sb.append(oldRootPortletId);
-		sb.append("_USER_%_INSTANCE_%'");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select distinct PortletPreferences.portletPreferencesId ",
+					"from PortletPreferences inner join PortletPreferenceValue ",
+					"on PortletPreferenceValue.portletPreferencesId = ",
+					"PortletPreferences.portletPreferencesId where portletId = ",
+					"'", oldRootPortletId, "' OR portletId like '",
+					oldRootPortletId, "_INSTANCE_%' OR portletId like '",
+					oldRootPortletId, "_USER_%_INSTANCE_%'"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {

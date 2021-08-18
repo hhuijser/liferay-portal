@@ -69,18 +69,14 @@ public class JournalDDMTemplateHelper {
 			String variableName =
 				templateVariableDefinitionClass.getSimpleName();
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(
+			dataContent = StringBundler.concat(
 				_getVariableAssignmentCode(
 					variableName,
 					"serviceLocator.findService(\"" +
 						templateVariableDefinition.getName() + "\")",
-					language));
-			sb.append("[$CURSOR$]");
-			sb.append(_getVariableReferenceCode(variableName, null, language));
-
-			dataContent = sb.toString();
+					language),
+				"[$CURSOR$]",
+				_getVariableReferenceCode(variableName, null, language));
 		}
 		else {
 			try {
@@ -189,36 +185,20 @@ public class JournalDDMTemplateHelper {
 		if (StringUtil.equalsIgnoreCase(
 				language, TemplateConstants.LANG_TYPE_FTL)) {
 
-			StringBundler sb = new StringBundler(9);
-
-			sb.append("<#if ");
-			sb.append(variableName);
-			sb.append("?has_content>\n\t<#list ");
-			sb.append(variableName);
-			sb.append(" as ");
-			sb.append(itemName);
-			sb.append(">\n\t\t");
-			sb.append(_getVariableReferenceCode(itemName, accessor, language));
-			sb.append("[$CURSOR$]\n\t</#list>\n</#if>");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"<#if ", variableName, "?has_content>\n\t<#list ", variableName,
+				" as ", itemName, ">\n\t\t",
+				_getVariableReferenceCode(itemName, accessor, language),
+				"[$CURSOR$]\n\t</#list>\n</#if>");
 		}
 		else if (StringUtil.equalsIgnoreCase(
 					language, TemplateConstants.LANG_TYPE_VM)) {
 
-			StringBundler sb = new StringBundler(9);
-
-			sb.append("#if (!$");
-			sb.append(variableName);
-			sb.append(".isEmpty())\n\t#foreach ($");
-			sb.append(itemName);
-			sb.append(" in $");
-			sb.append(variableName);
-			sb.append(")\n\t\t");
-			sb.append(_getVariableReferenceCode(itemName, accessor, language));
-			sb.append("[$CURSOR$]#end\n#end");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"#if (!$", variableName, ".isEmpty())\n\t#foreach ($", itemName,
+				" in $", variableName, ")\n\t\t",
+				_getVariableReferenceCode(itemName, accessor, language),
+				"[$CURSOR$]#end\n#end");
 		}
 
 		return StringPool.BLANK;

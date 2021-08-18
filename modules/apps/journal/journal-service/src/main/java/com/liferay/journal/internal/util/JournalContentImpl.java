@@ -534,15 +534,9 @@ public class JournalContentImpl
 		public static String encode(
 			long groupId, String articleId, String ddmTemplateKey) {
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(groupId);
-			sb.append(StringPool.UNDERLINE);
-			sb.append(articleId);
-			sb.append(StringPool.UNDERLINE);
-			sb.append(ddmTemplateKey);
-
-			return sb.toString();
+			return StringBundler.concat(
+				groupId, StringPool.UNDERLINE, articleId, StringPool.UNDERLINE,
+				ddmTemplateKey);
 		}
 
 		@Override

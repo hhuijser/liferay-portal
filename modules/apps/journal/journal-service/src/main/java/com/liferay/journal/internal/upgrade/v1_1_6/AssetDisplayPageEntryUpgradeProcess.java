@@ -70,33 +70,31 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 
 		_init(company.getCompanyId());
 
-		StringBundler sb = new StringBundler(17);
-
-		sb.append("select JournalArticle.groupId, ");
-		sb.append("JournalArticle.resourcePrimKey, AssetEntry.classUuid from ");
-		sb.append("JournalArticle inner join AssetEntry on ( ");
-		sb.append("AssetEntry.classNameId = ? and AssetEntry.classPK = ");
-		sb.append("JournalArticle.resourcePrimKey ) inner join Group_ on ( ");
-		sb.append("Group_.groupId = JournalArticle.groupId) where ");
-		sb.append("JournalArticle.companyId = ? and ");
-		sb.append("JournalArticle.layoutUuid is not null and ");
-		sb.append("JournalArticle.layoutUuid != '' and ");
-		sb.append("Group_.remoteStagingGroupCount = 0 and not exists ( ");
-		sb.append("select 1 from AssetDisplayPageEntry where ");
-		sb.append("AssetDisplayPageEntry.groupId = JournalArticle.groupId ");
-		sb.append("and AssetDisplayPageEntry.classNameId = ? and ");
-		sb.append("AssetDisplayPageEntry.classPK = ");
-		sb.append("JournalArticle.resourcePrimKey) group by ");
-		sb.append("JournalArticle.groupId, JournalArticle.resourcePrimKey, ");
-		sb.append("AssetEntry.classUuid ");
-
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
 		User user = company.getDefaultUser();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
-				SQLTransformer.transform(sb.toString()))) {
+				SQLTransformer.transform(
+					StringBundler.concat(
+						"select JournalArticle.groupId, ",
+						"JournalArticle.resourcePrimKey, AssetEntry.classUuid from ",
+						"JournalArticle inner join AssetEntry on ( ",
+						"AssetEntry.classNameId = ? and AssetEntry.classPK = ",
+						"JournalArticle.resourcePrimKey ) inner join Group_ on ( ",
+						"Group_.groupId = JournalArticle.groupId) where ",
+						"JournalArticle.companyId = ? and ",
+						"JournalArticle.layoutUuid is not null and ",
+						"JournalArticle.layoutUuid != '' and ",
+						"Group_.remoteStagingGroupCount = 0 and not exists ( ",
+						"select 1 from AssetDisplayPageEntry where ",
+						"AssetDisplayPageEntry.groupId = JournalArticle.groupId ",
+						"and AssetDisplayPageEntry.classNameId = ? and ",
+						"AssetDisplayPageEntry.classPK = ",
+						"JournalArticle.resourcePrimKey) group by ",
+						"JournalArticle.groupId, JournalArticle.resourcePrimKey, ",
+						"AssetEntry.classUuid ")))) {
 
 			preparedStatement1.setLong(1, journalArticleClassNameId);
 			preparedStatement1.setLong(2, company.getCompanyId());
@@ -179,15 +177,13 @@ public class AssetDisplayPageEntryUpgradeProcess extends UpgradeProcess {
 		_stagedGroupIds.clear();
 		_uuidsMaps.clear();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select groupId, liveGroupId from Group_ where companyId = ");
-		sb.append("? and liveGroupId is not null and liveGroupId != 0 and ");
-		sb.append("remoteStagingGroupCount = 0");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement = connection.prepareStatement(
-				SQLTransformer.transform(sb.toString()))) {
+				SQLTransformer.transform(
+					StringBundler.concat(
+						"select groupId, liveGroupId from Group_ where companyId = ",
+						"? and liveGroupId is not null and liveGroupId != 0 and ",
+						"remoteStagingGroupCount = 0")))) {
 
 			preparedStatement.setLong(1, companyId);
 

@@ -996,15 +996,10 @@ public class JournalArticleLocalServiceImpl
 			if (journalArticlePersistence.countByG_A(groupId, newArticleId) >
 					0) {
 
-				StringBundler sb = new StringBundler(5);
-
-				sb.append("{groupId=");
-				sb.append(groupId);
-				sb.append(", articleId=");
-				sb.append(newArticleId);
-				sb.append("}");
-
-				throw new DuplicateArticleIdException(sb.toString());
+				throw new DuplicateArticleIdException(
+					StringBundler.concat(
+						"{groupId=", groupId, ", articleId=", newArticleId,
+						"}"));
 			}
 		}
 
@@ -1084,15 +1079,10 @@ public class JournalArticleLocalServiceImpl
 		for (Map.Entry<Locale, String> entry : newTitleMap.entrySet()) {
 			Locale locale = entry.getKey();
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(entry.getValue());
-			sb.append(StringPool.SPACE);
-			sb.append(LanguageUtil.get(locale, "duplicate"));
-			sb.append(StringPool.SPACE);
-			sb.append(uniqueUrlTitleCount);
-
-			String urlTitle = sb.toString();
+			String urlTitle = StringBundler.concat(
+				entry.getValue(), StringPool.SPACE,
+				LanguageUtil.get(locale, "duplicate"), StringPool.SPACE,
+				uniqueUrlTitleCount);
 
 			newTitleMap.put(locale, urlTitle);
 			newUniqueURLTitleMap.put(
@@ -5588,14 +5578,10 @@ public class JournalArticleLocalServiceImpl
 			double latestArticleVersion = latestArticle.getVersion();
 
 			if ((version > 0) && (version != latestArticleVersion)) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Version ");
-				sb.append(version);
-				sb.append(" is not the same as ");
-				sb.append(latestArticleVersion);
-
-				throw new ArticleVersionException(sb.toString());
+				throw new ArticleVersionException(
+					StringBundler.concat(
+						"Version ", version, " is not the same as ",
+						latestArticleVersion));
 			}
 
 			serviceContext.validateModifiedDate(
@@ -6296,14 +6282,9 @@ public class JournalArticleLocalServiceImpl
 		double oldVersion = oldArticle.getVersion();
 
 		if ((version > 0) && (version != oldVersion)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("Version ");
-			sb.append(version);
-			sb.append(" is not the same as ");
-			sb.append(oldVersion);
-
-			throw new ArticleVersionException(sb.toString());
+			throw new ArticleVersionException(
+				StringBundler.concat(
+					"Version ", version, " is not the same as ", oldVersion));
 		}
 
 		boolean incrementVersion = false;

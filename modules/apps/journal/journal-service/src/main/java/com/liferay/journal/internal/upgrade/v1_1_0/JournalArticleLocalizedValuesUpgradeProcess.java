@@ -112,12 +112,6 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 	}
 
 	protected void updateJournalArticleLocalizedFields() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("insert into JournalArticleLocalization(");
-		sb.append("articleLocalizationId, companyId, articlePK, title, ");
-		sb.append("description, languageId) values(?, ?, ?, ?, ?, ?)");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement = connection.prepareStatement(
 				"select id_, companyId, title, description, " +
@@ -134,7 +128,11 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 						new UpdateJournalArticleLocalizedFieldsUpgradeCallable(
 							resultSet.getLong(1), resultSet.getLong(2),
 							resultSet.getString(3), resultSet.getString(4),
-							resultSet.getString(5), sb.toString());
+							resultSet.getString(5),
+							StringBundler.concat(
+								"insert into JournalArticleLocalization(",
+								"articleLocalizationId, companyId, articlePK, title, ",
+								"description, languageId) values(?, ?, ?, ?, ?, ?)"));
 
 				updateJournalArticleLocalizedFieldsUpgradeCallables.add(
 					updateJournalArticleLocalizedFieldsUpgradeCallable);
@@ -295,14 +293,11 @@ public class JournalArticleLocalizedValuesUpgradeProcess
 		@Override
 		protected Boolean doCall() throws Exception {
 			try {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("update JournalArticle set defaultLanguageId = '");
-				sb.append(_defaultLanguageId);
-				sb.append("' where id_ = ");
-				sb.append(_id);
-
-				runSQL(connection, sb.toString());
+				runSQL(
+					connection,
+					StringBundler.concat(
+						"update JournalArticle set defaultLanguageId = '",
+						_defaultLanguageId, "' where id_ = ", _id));
 			}
 			catch (Exception exception) {
 				_log.error(

@@ -317,13 +317,12 @@ public class CommerceCatalogDisplayContext {
 		String encodedFilter = URLCodec.encodeURL(
 			StringBundler.concat(
 				"(catalogId/any(x:(x eq ", getCommerceCatalogId(),
-				"))) and type eq ", StringPool.APOSTROPHE, type,
-				StringPool.APOSTROPHE),
+				"))) and type eq '", type, StringPool.APOSTROPHE),
 			true);
 
 		return StringBundler.concat(
 			_portal.getPortalURL(cpRequestHelper.getRequest()),
-			"/o/headless-commerce-admin-pricing/v2.0/price-lists", "?filter=",
+			"/o/headless-commerce-admin-pricing/v2.0/price-lists?filter=",
 			encodedFilter);
 	}
 

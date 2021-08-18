@@ -123,7 +123,7 @@ public class CommerceInventoryWarehouseItemsDisplayContext {
 
 		return StringBundler.concat(
 			renderResponse.getNamespace(),
-			"updateCommerceInventoryWarehouseItem", StringPool.OPEN_PARENTHESIS,
+			"updateCommerceInventoryWarehouseItem(",
 			commerceInventoryWarehouseId, StringPool.COMMA_AND_SPACE,
 			commerceInventoryWarehouseItemId, StringPool.COMMA_AND_SPACE,
 			mvccVersion, StringPool.COMMA_AND_SPACE, index,

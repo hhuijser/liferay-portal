@@ -22,7 +22,6 @@ import com.liferay.commerce.price.list.service.CommercePriceEntryLocalServiceUti
 import com.liferay.commerce.price.list.service.CommerceTierPriceEntryLocalServiceUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
@@ -109,7 +108,7 @@ public class CommerceTierPriceEntryTestUtil {
 		throw new NoSuchPriceEntryException(
 			StringBundler.concat(
 				"{commercePriceEntryId=", commercePriceEntryId,
-				StringPool.COMMA_AND_SPACE, "priceEntryExternalReferenceCode=",
+				", priceEntryExternalReferenceCode=",
 				priceEntryExternalReferenceCode, CharPool.CLOSE_CURLY_BRACE));
 	}
 

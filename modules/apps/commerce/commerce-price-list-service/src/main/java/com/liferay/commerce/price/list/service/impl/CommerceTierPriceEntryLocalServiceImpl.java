@@ -29,7 +29,6 @@ import com.liferay.commerce.price.list.service.persistence.CommercePriceEntryPer
 import com.liferay.commerce.price.list.util.comparator.CommerceTierPriceEntryMinQuantityComparator;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -355,7 +354,7 @@ public class CommerceTierPriceEntryLocalServiceImpl
 		throw new NoSuchPriceEntryException(
 			StringBundler.concat(
 				"{commercePriceEntryId=", commercePriceEntryId,
-				StringPool.COMMA_AND_SPACE, "priceEntryExternalReferenceCode=",
+				", priceEntryExternalReferenceCode=",
 				priceEntryExternalReferenceCode, CharPool.CLOSE_CURLY_BRACE));
 	}
 

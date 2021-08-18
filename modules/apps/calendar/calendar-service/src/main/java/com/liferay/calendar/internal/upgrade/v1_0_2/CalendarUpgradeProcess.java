@@ -63,9 +63,10 @@ public class CalendarUpgradeProcess extends UpgradeProcess {
 					connection.prepareStatement(
 						StringBundler.concat(
 							"select Calendar.calendarId, CalendarResource.",
-							"classNameId, User_.timeZoneId from Calendar inner ",
-							"join CalendarResource on Calendar.calendarResourceId ",
-							"= CalendarResource.calendarResourceId inner join ",
+							"classNameId, User_.timeZoneId from Calendar ",
+							"inner join CalendarResource on ",
+							"Calendar.calendarResourceId = ",
+							"CalendarResource.calendarResourceId inner join ",
 							"User_ on CalendarResource.userId = User_.userId"));
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 

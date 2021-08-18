@@ -90,11 +90,11 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 					connection.prepareStatement(
 						StringBundler.concat(
 							"select orp.resourcePermissionId from ",
-							"ResourcePermission orp, ResourcePermission nrp where ",
-							"orp.companyId = nrp.companyId and orp.scope = ",
-							"nrp.scope and orp.primKey = nrp.primKey and ",
-							"orp.roleId = nrp.roleId and orp.name = ? and nrp.name ",
-							"= ?"))) {
+							"ResourcePermission orp, ResourcePermission nrp ",
+							"where orp.companyId = nrp.companyId and ",
+							"orp.scope = nrp.scope and orp.primKey = ",
+							"nrp.primKey and orp.roleId = nrp.roleId and ",
+							"orp.name = ? and nrp.name = ?"))) {
 
 				preparedStatement.setString(1, _RESOURCE_NAMES[0][0]);
 				preparedStatement.setString(2, _RESOURCE_NAMES[0][1]);

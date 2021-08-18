@@ -98,8 +98,8 @@ public class
 					StringBundler.concat(
 						"com.liferay.asset.categories.admin.web.internal.info.",
 						"collection.provider.",
-						"AssetEntriesWithSameAssetCategoryRelatedInfoItemCollection",
-						"Provider"));
+						"AssetEntriesWithSameAssetCategoryRelatedInfoItem",
+						"CollectionProvider"));
 
 		Assert.assertNotNull(relatedInfoItemCollectionProvider);
 

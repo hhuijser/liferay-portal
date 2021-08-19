@@ -357,7 +357,7 @@ public class ExportImportPathUtil {
 		return StringBundler.concat(
 			getPortletPath(portletDataContext, portletId), "/preferences/",
 			getOwnerTypePath(ownerType), ownerId, CharPool.FORWARD_SLASH, plid,
-			CharPool.FORWARD_SLASH, "portlet-preferences.xml");
+			"/portlet-preferences.xml");
 	}
 
 	/**
@@ -394,7 +394,7 @@ public class ExportImportPathUtil {
 			getRootPath(portletDataContext), StringPool.FORWARD_SLASH,
 			PATH_PREFIX_SERVICE, StringPool.FORWARD_SLASH, serviceName,
 			StringPool.FORWARD_SLASH, getOwnerTypePath(ownerType), ownerId,
-			CharPool.FORWARD_SLASH, "portlet-preferences.xml");
+			"/portlet-preferences.xml");
 	}
 
 	/**

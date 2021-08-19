@@ -289,9 +289,8 @@ public class MVCPortlet extends LiferayPortlet {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"No render mappings found for MVC render ",
-							"command name \"",
-							HtmlUtil.escape(mvcRenderCommandName),
+							"No render mappings found for MVC render command ",
+							"name \"", HtmlUtil.escape(mvcRenderCommandName),
 							"\" for portlet ",
 							renderRequest.getAttribute(WebKeys.PORTLET_ID)));
 				}

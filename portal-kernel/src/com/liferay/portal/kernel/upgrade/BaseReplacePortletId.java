@@ -129,9 +129,10 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 			try (PreparedStatement preparedStatement1 =
 					connection.prepareStatement(
 						StringBundler.concat(
-							"select RA1.resourceActionId from ResourceAction RA1 ",
-							"inner join ResourceAction RA2 on RA1.actionId = ",
-							"RA2.actionId where RA1.name = ? and RA2.name = ?"));
+							"select RA1.resourceActionId from ResourceAction ",
+							"RA1 inner join ResourceAction RA2 on ",
+							"RA1.actionId = RA2.actionId where RA1.name = ? ",
+							"and RA2.name = ?"));
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,

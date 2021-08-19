@@ -59,18 +59,16 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 
 		long fileEntryId = increment();
 
-		String sql = StringBundler.concat(
-			"insert into DLFileEntry (uuid_, fileEntryId, groupId, ",
-			"companyId, userId, userName, createDate, modifiedDate, ",
-			"classNameId, classPK, repositoryId, folderId, name, ",
-			"extension, mimeType, title, description, extraSettings, ",
-			"fileEntryTypeId, version, size_, smallImageId, ",
-			"largeImageId, custom1ImageId, custom2ImageId) values (?, ",
-			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
-			"?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into DLFileEntry (uuid_, fileEntryId, groupId, ",
+					"companyId, userId, userName, createDate, modifiedDate, ",
+					"classNameId, classPK, repositoryId, folderId, name, ",
+					"extension, mimeType, title, description, extraSettings, ",
+					"fileEntryTypeId, version, size_, smallImageId, ",
+					"largeImageId, custom1ImageId, custom2ImageId) values (?, ",
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+					"?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setString(1, PortalUUIDUtil.generate());
 			preparedStatement.setLong(2, fileEntryId);
@@ -134,17 +132,16 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			String title, long size)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into DLFileVersion (uuid_, fileVersionId, groupId, ",
-			"companyId, userId, userName, createDate, modifiedDate, ",
-			"repositoryId, folderId, fileEntryId, extension, mimeType, ",
-			"title, description, changeLog, extraSettings, ",
-			"fileEntryTypeId, version, size_, status, statusByUserId, ",
-			"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
-			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into DLFileVersion (uuid_, fileVersionId, ",
+					"groupId, companyId, userId, userName, createDate, ",
+					"modifiedDate, repositoryId, folderId, fileEntryId, ",
+					"extension, mimeType, title, description, changeLog, ",
+					"extraSettings, fileEntryTypeId, version, size_, status, ",
+					"statusByUserId, statusByUserName, statusDate) values (?, ",
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+					"?, ?, ?, ?)"))) {
 
 			preparedStatement.setString(1, PortalUUIDUtil.generate());
 			preparedStatement.setLong(2, fileVersionId);
@@ -189,17 +186,15 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 			boolean hidden)
 		throws Exception {
 
-		String sql = StringBundler.concat(
-			"insert into DLFolder (uuid_, folderId, groupId, ",
-			"companyId, userId, userName, createDate, modifiedDate, ",
-			"repositoryId, mountPoint, parentFolderId, name, ",
-			"description, lastPostDate, defaultFileEntryTypeId, ",
-			"hidden_, overrideFileEntryTypes, status, statusByUserId, ",
-			"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
-			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into DLFolder (uuid_, folderId, groupId, ",
+					"companyId, userId, userName, createDate, modifiedDate, ",
+					"repositoryId, mountPoint, parentFolderId, name, ",
+					"description, lastPostDate, defaultFileEntryTypeId, ",
+					"hidden_, overrideFileEntryTypes, status, statusByUserId, ",
+					"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setString(1, PortalUUIDUtil.generate());
 			preparedStatement.setLong(2, folderId);
@@ -323,13 +318,11 @@ public abstract class BaseUpgradeAttachments extends UpgradeProcess {
 		long resourcePermissionId = increment(
 			ResourcePermission.class.getName());
 
-		String sql = StringBundler.concat(
-			"insert into ResourcePermission (resourcePermissionId, ",
-			"companyId, name, scope, primKey, roleId, ownerId, ",
-			"actionIds) values (?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql)) {
+				StringBundler.concat(
+					"insert into ResourcePermission (resourcePermissionId, ",
+					"companyId, name, scope, primKey, roleId, ownerId, ",
+					"actionIds) values (?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, resourcePermissionId);
 			preparedStatement.setLong(2, companyId);

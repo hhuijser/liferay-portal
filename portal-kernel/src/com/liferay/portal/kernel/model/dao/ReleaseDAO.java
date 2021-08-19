@@ -40,10 +40,10 @@ public class ReleaseDAO {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(
-					"insert into Release_ (mvccVersion, releaseId, createDate, ",
-					"modifiedDate, servletContextName, schemaVersion, ",
-					"buildNumber, buildDate, verified, state_, testString) ",
-					"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+					"insert into Release_ (mvccVersion, releaseId, ",
+					"createDate, modifiedDate, servletContextName, ",
+					"schemaVersion, buildNumber, buildDate, verified, state_, ",
+					"testString) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, 0);
 			preparedStatement.setLong(2, increment());

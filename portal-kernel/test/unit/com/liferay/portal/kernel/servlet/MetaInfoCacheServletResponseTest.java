@@ -1789,8 +1789,8 @@ public class MetaInfoCacheServletResponseTest {
 			StringBundler.concat(
 				"{bufferSize=0, charsetName=null, committed=false, ",
 				"contentLength=-1, contentType=null, error=false, ",
-				"errorMessage=null, headers={}, location=null, ",
-				"locale=null, status=200}"),
+				"errorMessage=null, headers={}, location=null, locale=null, ",
+				"status=200}"),
 			metaInfoCacheServletResponse.toString());
 	}
 

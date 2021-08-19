@@ -77,9 +77,10 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 				StringBundler.concat(
 					"select KaleoProcessLink.kaleoProcessLinkId, ",
 					"KaleoProcessLink.DDMTemplateId from KaleoProcessLink ",
-					"where (KaleoProcessLink.DDMTemplateId > 0) and not exists ",
-					"(select 1 from DDMTemplateLink where (DDMTemplateLink.",
-					"classPK = KaleoProcessLink.kaleoProcessLinkId) and ",
+					"where (KaleoProcessLink.DDMTemplateId > 0) and not ",
+					"exists (select 1 from DDMTemplateLink where ",
+					"(DDMTemplateLink.classPK = ",
+					"KaleoProcessLink.kaleoProcessLinkId) and ",
 					"(DDMTemplateLink.classNameId = ",
 					kaleoProcessLinkClassNameId, "))"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {

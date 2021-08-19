@@ -68,15 +68,13 @@ public class SQLServerDB extends BaseDB {
 			return indexes;
 		}
 
-		String sql = StringBundler.concat(
-			"select sys.tables.name as table_name, sys.indexes.name as ",
-			"index_name, is_unique from sys.indexes inner join ",
-			"sys.tables on sys.tables.object_id = ",
-			"sys.indexes.object_id where sys.indexes.name like ",
-			"'LIFERAY_%' or sys.indexes.name like 'IX_%'");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql);
+				StringBundler.concat(
+					"select sys.tables.name as table_name, sys.indexes.name ",
+					"as index_name, is_unique from sys.indexes inner join ",
+					"sys.tables on sys.tables.object_id = ",
+					"sys.indexes.object_id where sys.indexes.name like ",
+					"'LIFERAY_%' or sys.indexes.name like 'IX_%'"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -105,7 +103,7 @@ public class SQLServerDB extends BaseDB {
 	public String getRecreateSQL(String databaseName) {
 		return StringBundler.concat(
 			"drop database ", databaseName, ";\n", "create database ",
-			databaseName, ";\n", "\n", "go\n", "\n");
+			databaseName, ";\n\n", "go\n\n");
 	}
 
 	@Override

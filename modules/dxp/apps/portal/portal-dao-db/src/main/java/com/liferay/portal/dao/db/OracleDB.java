@@ -65,13 +65,11 @@ public class OracleDB extends BaseDB {
 	public List<Index> getIndexes(Connection connection) throws SQLException {
 		List<Index> indexes = new ArrayList<>();
 
-		String sql = StringBundler.concat(
-			"select index_name, table_name, uniqueness from ",
-			"user_indexes where index_name like 'LIFERAY_%' or ",
-			"index_name like 'IX_%'");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sql);
+				StringBundler.concat(
+					"select index_name, table_name, uniqueness from ",
+					"user_indexes where index_name like 'LIFERAY_%' or ",
+					"index_name like 'IX_%'"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -95,7 +93,7 @@ public class OracleDB extends BaseDB {
 	@Override
 	public String getPopulateSQL(String databaseName, String sqlContent) {
 		return StringBundler.concat(
-			"connect &1/&2;\n", "set define off;\n", "\n", sqlContent, "quit");
+			"connect &1/&2;\n", "set define off;\n\n", sqlContent, "quit");
 	}
 
 	@Override

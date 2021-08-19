@@ -272,9 +272,10 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select KaleoProcessLink.kaleoProcessLinkId, ",
-					"KaleoProcessLink.DDMTemplateId FROM KaleoProcessLink join ",
-					"DDMTemplate on DDMTemplate.templateId = KaleoProcessLink.",
-					"DDMTemplateId where DDMTemplate.resourceClassNameId <> ",
+					"KaleoProcessLink.DDMTemplateId FROM KaleoProcessLink ",
+					"join DDMTemplate on DDMTemplate.templateId = ",
+					"KaleoProcessLink.DDMTemplateId where ",
+					"DDMTemplate.resourceClassNameId <> ",
 					_KALEO_PROCESS_CLASS_NAME_ID));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =

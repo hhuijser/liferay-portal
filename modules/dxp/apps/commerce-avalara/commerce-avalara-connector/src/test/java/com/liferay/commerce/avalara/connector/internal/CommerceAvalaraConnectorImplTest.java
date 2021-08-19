@@ -15,7 +15,6 @@
 package com.liferay.commerce.avalara.connector.internal;
 
 import com.liferay.commerce.avalara.connector.constants.CommerceAvalaraConstants;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
@@ -51,8 +50,7 @@ public class CommerceAvalaraConnectorImplTest {
 			CommerceAvalaraConstants.MACHINE_NAME,
 			"https://sandbox-rest.avatax.com");
 
-		String securityHeader = StringBundler.concat(
-			"1100068273", StringPool.COLON, "13F38C128580E9A1");
+		String securityHeader = "1100068273:13F38C128580E9A1";
 
 		byte[] securityHeaderBytes = securityHeader.getBytes();
 

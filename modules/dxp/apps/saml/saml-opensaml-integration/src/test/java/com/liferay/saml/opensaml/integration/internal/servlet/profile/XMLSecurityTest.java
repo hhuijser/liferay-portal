@@ -204,8 +204,8 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 
 		authnRequestXML = StringBundler.concat(
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ",
-			"saml2p:AuthnRequest [\n<!ENTITY xxe PUBLIC ",
-			"\"SOME//PUBLIC//ID\" ", "\"http://localhost/saml-request\">\n]>",
+			"saml2p:AuthnRequest [\n<!ENTITY xxe PUBLIC \"SOME//PUBLIC//ID\" ",
+			"\"http://localhost/saml-request\">\n]>",
 			authnRequestXML.substring(38));
 
 		authnRequestXML =

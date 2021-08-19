@@ -63,22 +63,22 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 							"pauseNodeKeys, processId, processVersion, ",
 							"startNodeKeys, stopNodeKeys, version, status, ",
 							"statusByUserId, statusByUserName, statusDate) ",
-							"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
-							"?, ?, ?, ?, ?, ?, ?, ?, ?)"));
+							"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 				PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						StringBundler.concat(
 							"insert into WMSLADefinitionVersion (mvccVersion, ",
-							"uuid_, wmSLADefinitionVersionId, groupId, companyId, ",
-							"userId, userName, createDate, modifiedDate, active_, ",
-							"calendarKey, description, duration, name, ",
-							"pauseNodeKeys, processId, processVersion, ",
-							"startNodeKeys, stopNodeKeys, version, ",
-							"wmSLADefinitionId, status, statusByUserId, ",
-							"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ",
-							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
-							"?, ?, ?)"))) {
+							"uuid_, wmSLADefinitionVersionId, groupId, ",
+							"companyId, userId, userName, createDate, ",
+							"modifiedDate, active_, calendarKey, description, ",
+							"duration, name, pauseNodeKeys, processId, ",
+							"processVersion, startNodeKeys, stopNodeKeys, ",
+							"version, wmSLADefinitionId, status, ",
+							"statusByUserId, statusByUserName, statusDate) ",
+							"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 				while (resultSet.next()) {
 					preparedStatement2.setLong(

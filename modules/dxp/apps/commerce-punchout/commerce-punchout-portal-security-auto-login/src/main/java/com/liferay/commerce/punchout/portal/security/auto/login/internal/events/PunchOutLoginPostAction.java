@@ -183,8 +183,7 @@ public class PunchOutLoginPostAction extends Action {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Adding attribute to session (key=", key,
-						StringPool.COMMA, StringPool.SPACE, "value=",
+						"Adding attribute to session (key=", key, ", value=",
 						mapElement.getValue(), StringPool.CLOSE_PARENTHESIS));
 			}
 

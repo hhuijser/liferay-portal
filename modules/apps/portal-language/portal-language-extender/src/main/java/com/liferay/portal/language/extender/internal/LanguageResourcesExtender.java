@@ -164,9 +164,9 @@ public class LanguageResourcesExtender
 				_bundleContext.registerService(
 					ResourceBundle.class, resourceBundle,
 					HashMapDictionaryBuilder.<String, Object>put(
-						"language.id", languageId
-					).put(
 						Constants.SERVICE_RANKING, serviceRanking
+					).put(
+						"language.id", languageId
 					).build());
 
 			serviceRegistrations.add(serviceRegistration);

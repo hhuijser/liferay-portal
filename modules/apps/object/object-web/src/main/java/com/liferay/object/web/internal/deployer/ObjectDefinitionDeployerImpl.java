@@ -76,10 +76,10 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 					"javax.portlet.display-name",
 					objectDefinition.getShortName()
 				).put(
-					"javax.portlet.name", objectDefinition.getPortletId()
-				).put(
 					"javax.portlet.init-param.view-template",
 					"/object_entries/view_object_entries.jsp"
+				).put(
+					"javax.portlet.name", objectDefinition.getPortletId()
 				).build()));
 	}
 

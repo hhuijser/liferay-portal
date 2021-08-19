@@ -126,14 +126,12 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 		throws Exception {
 
 		if (hasResourceAction(newName)) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("select RA1.resourceActionId from ResourceAction RA1 ");
-			sb.append("inner join ResourceAction RA2 on RA1.actionId = ");
-			sb.append("RA2.actionId where RA1.name = ? and RA2.name = ?");
-
 			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select RA1.resourceActionId from ResourceAction RA1 ",
+							"inner join ResourceAction RA2 on RA1.actionId = ",
+							"RA2.actionId where RA1.name = ? and RA2.name = ?"));
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
@@ -189,15 +187,11 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 	private void _deleteConflictingPreferences(String orClauses)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("select PP1.portletPreferencesId from PortletPreferences ");
-		sb.append("PP1 inner join PortletPreferences PP2 on PP1.plid = ");
-		sb.append("PP2.plid where ");
-		sb.append(orClauses);
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select PP1.portletPreferencesId from PortletPreferences ",
+					"PP1 inner join PortletPreferences PP2 on PP1.plid = ",
+					"PP2.plid where ", orClauses));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,

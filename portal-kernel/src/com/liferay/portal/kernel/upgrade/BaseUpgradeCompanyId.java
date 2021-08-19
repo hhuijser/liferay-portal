@@ -171,20 +171,10 @@ public abstract class BaseUpgradeCompanyId extends UpgradeProcess {
 				return String.valueOf(companyIds.get(0));
 			}
 
-			StringBundler sb = new StringBundler(10);
-
-			sb.append("select max(companyId) from ");
-			sb.append(foreignTableName);
-			sb.append(" where ");
-			sb.append(foreignTableName);
-			sb.append(".");
-			sb.append(foreignColumnName);
-			sb.append(" = ");
-			sb.append(_tableName);
-			sb.append(".");
-			sb.append(_columnName);
-
-			return sb.toString();
+			return StringBundler.concat(
+				"select max(companyId) from ", foreignTableName, " where ",
+				foreignTableName, ".", foreignColumnName, " = ", _tableName,
+				".", _columnName);
 		}
 
 		protected String getUpdateSQL(
@@ -197,15 +187,8 @@ public abstract class BaseUpgradeCompanyId extends UpgradeProcess {
 		}
 
 		protected String getUpdateSQL(String selectSQL) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("update ");
-			sb.append(_tableName);
-			sb.append(" set companyId = (");
-			sb.append(selectSQL);
-			sb.append(")");
-
-			return sb.toString();
+			return StringBundler.concat(
+				"update ", _tableName, " set companyId = (", selectSQL, ")");
 		}
 
 		private final String _columnName;

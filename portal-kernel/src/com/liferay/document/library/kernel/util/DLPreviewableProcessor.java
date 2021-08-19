@@ -522,14 +522,8 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 		String binPath = getBinPath(
 			portletDataContext, fileEntry, binPathSegment);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("bin-path-preview-");
-		sb.append(binPathSegment);
-		sb.append("-");
-		sb.append(binPathSuffix);
-
-		String binPathName = sb.toString();
+		String binPathName = StringBundler.concat(
+			"bin-path-preview-", binPathSegment, "-", binPathSuffix);
 
 		fileEntryElement.addAttribute(binPathName, binPath);
 
@@ -616,40 +610,22 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	protected String getBinPath(
 		PortletDataContext portletDataContext, FileEntry fileEntry, int index) {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(
+		return StringBundler.concat(
 			ExportImportPathUtil.getPortletPath(
-				portletDataContext, PortletKeys.DOCUMENT_LIBRARY));
-		sb.append("/bin/");
-		sb.append(fileEntry.getFileEntryId());
-		sb.append(StringPool.SLASH);
-		sb.append(THUMBNAIL_PATH);
-		sb.append(fileEntry.getVersion());
-		sb.append(StringPool.SLASH);
-		sb.append(index);
-
-		return sb.toString();
+				portletDataContext, PortletKeys.DOCUMENT_LIBRARY),
+			"/bin/", fileEntry.getFileEntryId(), StringPool.SLASH,
+			THUMBNAIL_PATH, fileEntry.getVersion(), StringPool.SLASH, index);
 	}
 
 	protected String getBinPath(
 		PortletDataContext portletDataContext, FileEntry fileEntry,
 		String type) {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(
+		return StringBundler.concat(
 			ExportImportPathUtil.getPortletPath(
-				portletDataContext, PortletKeys.DOCUMENT_LIBRARY));
-		sb.append("/bin/");
-		sb.append(fileEntry.getFileEntryId());
-		sb.append(StringPool.SLASH);
-		sb.append(PREVIEW_PATH);
-		sb.append(fileEntry.getVersion());
-		sb.append(StringPool.SLASH);
-		sb.append(type);
-
-		return sb.toString();
+				portletDataContext, PortletKeys.DOCUMENT_LIBRARY),
+			"/bin/", fileEntry.getFileEntryId(), StringPool.SLASH, PREVIEW_PATH,
+			fileEntry.getVersion(), StringPool.SLASH, type);
 	}
 
 	protected File getDecryptedTempFile(String id) {
@@ -1030,14 +1006,8 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 			binPathSegment = String.valueOf(fileIndex + 1);
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("bin-path-preview-");
-		sb.append(binPathSegment);
-		sb.append("-");
-		sb.append(binPathSuffix);
-
-		String binPathName = sb.toString();
+		String binPathName = StringBundler.concat(
+			"bin-path-preview-", binPathSegment, "-", binPathSuffix);
 
 		String binPath = fileEntryElement.attributeValue(binPathName);
 

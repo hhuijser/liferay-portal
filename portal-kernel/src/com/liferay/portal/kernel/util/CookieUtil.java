@@ -138,29 +138,12 @@ public class CookieUtil {
 	}
 
 	public static String toString(Cookie cookie) {
-		StringBundler sb = new StringBundler(19);
-
-		sb.append("{comment=");
-		sb.append(cookie.getComment());
-		sb.append(", domain=");
-		sb.append(cookie.getDomain());
-		sb.append(", httpOnly=");
-		sb.append(cookie.isHttpOnly());
-		sb.append(", maxAge=");
-		sb.append(cookie.getMaxAge());
-		sb.append(", name=");
-		sb.append(cookie.getName());
-		sb.append(", path=");
-		sb.append(cookie.getPath());
-		sb.append(", secure=");
-		sb.append(cookie.getSecure());
-		sb.append(", value=");
-		sb.append(cookie.getValue());
-		sb.append(", version=");
-		sb.append(cookie.getVersion());
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{comment=", cookie.getComment(), ", domain=", cookie.getDomain(),
+			", httpOnly=", cookie.isHttpOnly(), ", maxAge=", cookie.getMaxAge(),
+			", name=", cookie.getName(), ", path=", cookie.getPath(),
+			", secure=", cookie.getSecure(), ", value=", cookie.getValue(),
+			", version=", cookie.getVersion(), "}");
 	}
 
 }

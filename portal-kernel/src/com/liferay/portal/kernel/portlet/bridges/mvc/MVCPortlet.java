@@ -287,15 +287,13 @@ public class MVCPortlet extends LiferayPortlet {
 			}
 			else if (!mvcRenderCommandName.equals("/")) {
 				if (_log.isWarnEnabled()) {
-					StringBundler sb = new StringBundler(5);
-
-					sb.append("No render mappings found for MVC render ");
-					sb.append("command name \"");
-					sb.append(HtmlUtil.escape(mvcRenderCommandName));
-					sb.append("\" for portlet ");
-					sb.append(renderRequest.getAttribute(WebKeys.PORTLET_ID));
-
-					_log.warn(sb.toString());
+					_log.warn(
+						StringBundler.concat(
+							"No render mappings found for MVC render ",
+							"command name \"",
+							HtmlUtil.escape(mvcRenderCommandName),
+							"\" for portlet ",
+							renderRequest.getAttribute(WebKeys.PORTLET_ID)));
 				}
 			}
 		}

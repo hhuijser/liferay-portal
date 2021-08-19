@@ -145,13 +145,10 @@ public class ModulesStructureTest {
 						path,
 						path.resolveSibling(".lfrbuild-portal-deprecated"));
 
-					StringBundler sb = new StringBundler(3);
-
-					sb.append("Renamed archived module build marker to ");
-					sb.append("'.lfrbuild-portal-deprecated' ");
-					sb.append(path);
-
-					Assert.fail(sb.toString());
+					Assert.fail(
+						StringBundler.concat(
+							"Renamed archived module build marker to ",
+							"'.lfrbuild-portal-deprecated' ", path));
 
 					return FileVisitResult.CONTINUE;
 				}
@@ -1533,17 +1530,13 @@ public class ModulesStructureTest {
 					ModulesStructureTestUtil.read(jsonPath));
 
 				if (matcher.find()) {
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("Version must match the project version (");
-					sb.append(projectVersion);
-					sb.append(") ");
-					sb.append(jsonPath);
-
 					String jsonVersion = matcher.group(2);
 
 					Assert.assertTrue(
-						sb.toString(), jsonVersion.equals(projectVersion));
+						StringBundler.concat(
+							"Version must match the project version (",
+							projectVersion, ") ", jsonPath),
+						jsonVersion.equals(projectVersion));
 				}
 			}
 		}

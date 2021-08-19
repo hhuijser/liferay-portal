@@ -144,15 +144,7 @@ public abstract class BaseSocialActivityInterpreter
 	}
 
 	protected String buildLink(String link, String text) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<a href=\"");
-		sb.append(link);
-		sb.append("\">");
-		sb.append(text);
-		sb.append("</a>");
-
-		return sb.toString();
+		return StringBundler.concat("<a href=\"", link, "\">", text, "</a>");
 	}
 
 	protected SocialActivityFeedEntry doInterpret(

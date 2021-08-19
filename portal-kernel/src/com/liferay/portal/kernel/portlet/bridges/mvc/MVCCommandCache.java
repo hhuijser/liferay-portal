@@ -106,14 +106,9 @@ public class MVCCommandCache<T extends MVCCommand> {
 				return _emptyMVCCommand;
 			}
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(_packagePrefix);
-			sb.append(Character.toUpperCase(mvcCommandName.charAt(0)));
-			sb.append(mvcCommandName.substring(1));
-			sb.append(_mvcCommandPostFix);
-
-			className = sb.toString();
+			className = StringBundler.concat(
+				_packagePrefix, Character.toUpperCase(mvcCommandName.charAt(0)),
+				mvcCommandName.substring(1), _mvcCommandPostFix);
 
 			mvcCommand = (T)InstanceFactory.newInstance(className);
 

@@ -204,15 +204,9 @@ public class StringUtil {
 	 *         space, followed by the suffix enclosed in parentheses
 	 */
 	public static String appendParentheticalSuffix(String s, String suffix) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(s);
-		sb.append(StringPool.SPACE);
-		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(suffix);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
+		return StringBundler.concat(
+			s, StringPool.SPACE, StringPool.OPEN_PARENTHESIS, suffix,
+			StringPool.CLOSE_PARENTHESIS);
 	}
 
 	/**

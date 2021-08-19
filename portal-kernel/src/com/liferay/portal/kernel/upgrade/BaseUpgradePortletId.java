@@ -130,31 +130,16 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 	}
 
 	protected String getTypeSettingsCriteria(String portletId) {
-		StringBundler sb = new StringBundler(21);
-
-		sb.append("typeSettings like '%=");
-		sb.append(portletId);
-		sb.append(",%' OR typeSettings like '%=");
-		sb.append(portletId);
-		sb.append("\n%' OR typeSettings like '%=");
-		sb.append(portletId);
-		sb.append("' OR typeSettings like '%,");
-		sb.append(portletId);
-		sb.append(",%' OR typeSettings like '%,");
-		sb.append(portletId);
-		sb.append("\n%' OR typeSettings like '%,");
-		sb.append(portletId);
-		sb.append("' OR typeSettings like '%=");
-		sb.append(portletId);
-		sb.append("_INSTANCE_%' OR typeSettings like '%,");
-		sb.append(portletId);
-		sb.append("_INSTANCE_%' OR typeSettings like '%=");
-		sb.append(portletId);
-		sb.append("_USER_%' OR typeSettings like '%,");
-		sb.append(portletId);
-		sb.append("_USER_%'");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"typeSettings like '%=", portletId, ",%' OR typeSettings like '%=",
+			portletId, "\n%' OR typeSettings like '%=", portletId,
+			"' OR typeSettings like '%,", portletId,
+			",%' OR typeSettings like '%,", portletId,
+			"\n%' OR typeSettings like '%,", portletId,
+			"' OR typeSettings like '%=", portletId,
+			"_INSTANCE_%' OR typeSettings like '%,", portletId,
+			"_INSTANCE_%' OR typeSettings like '%=", portletId,
+			"_USER_%' OR typeSettings like '%,", portletId, "_USER_%'");
 	}
 
 	protected String[] getUninstanceablePortletIds() {

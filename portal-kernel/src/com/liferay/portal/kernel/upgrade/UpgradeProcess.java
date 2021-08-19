@@ -183,16 +183,9 @@ public abstract class UpgradeProcess
 
 		@Override
 		public String getSQL(String tableName) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("alter_column_name ");
-			sb.append(tableName);
-			sb.append(StringPool.SPACE);
-			sb.append(_oldColumnName);
-			sb.append(StringPool.SPACE);
-			sb.append(_newColumn);
-
-			return sb.toString();
+			return StringBundler.concat(
+				"alter_column_name ", tableName, StringPool.SPACE,
+				_oldColumnName, StringPool.SPACE, _newColumn);
 		}
 
 		@Override
@@ -220,16 +213,9 @@ public abstract class UpgradeProcess
 
 		@Override
 		public String getSQL(String tableName) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("alter_column_type ");
-			sb.append(tableName);
-			sb.append(StringPool.SPACE);
-			sb.append(_columnName);
-			sb.append(StringPool.SPACE);
-			sb.append(_newType);
-
-			return sb.toString();
+			return StringBundler.concat(
+				"alter_column_type ", tableName, StringPool.SPACE, _columnName,
+				StringPool.SPACE, _newType);
 		}
 
 		@Override
@@ -267,16 +253,10 @@ public abstract class UpgradeProcess
 
 		@Override
 		public String getSQL(String tableName) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("alter table ");
-			sb.append(tableName);
-			sb.append(" add ");
-			sb.append(_columnName);
-			sb.append(StringPool.SPACE);
-			sb.append(_columnType);
-
-			return StringUtil.trim(sb.toString());
+			return StringUtil.trim(
+				StringBundler.concat(
+					"alter table ", tableName, " add ", _columnName,
+					StringPool.SPACE, _columnType));
 		}
 
 		@Override
@@ -302,14 +282,8 @@ public abstract class UpgradeProcess
 
 		@Override
 		public String getSQL(String tableName) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("alter table ");
-			sb.append(tableName);
-			sb.append(" drop column ");
-			sb.append(_columnName);
-
-			return sb.toString();
+			return StringBundler.concat(
+				"alter table ", tableName, " drop column ", _columnName);
 		}
 
 		@Override

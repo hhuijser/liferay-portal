@@ -38,15 +38,12 @@ public class ReleaseDAO {
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("insert into Release_ (mvccVersion, releaseId, createDate, ");
-		sb.append("modifiedDate, servletContextName, schemaVersion, ");
-		sb.append("buildNumber, buildDate, verified, state_, testString) ");
-		sb.append("values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"insert into Release_ (mvccVersion, releaseId, createDate, ",
+					"modifiedDate, servletContextName, schemaVersion, ",
+					"buildNumber, buildDate, verified, state_, testString) ",
+					"values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 
 			preparedStatement.setLong(1, 0);
 			preparedStatement.setLong(2, increment());

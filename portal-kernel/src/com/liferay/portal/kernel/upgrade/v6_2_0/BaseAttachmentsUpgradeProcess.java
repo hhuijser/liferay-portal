@@ -56,18 +56,15 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 
 		long fileEntryId = increment();
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("insert into DLFileEntry (uuid_, fileEntryId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("classNameId, classPK, repositoryId, folderId, name, ");
-		sb.append("extension, mimeType, title, description, extraSettings, ");
-		sb.append("fileEntryTypeId, version, size_, smallImageId, ");
-		sb.append("largeImageId, custom1ImageId, custom2ImageId) values (?, ");
-		sb.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into DLFileEntry (uuid_, fileEntryId, groupId, ",
+			"companyId, userId, userName, createDate, modifiedDate, ",
+			"classNameId, classPK, repositoryId, folderId, name, ",
+			"extension, mimeType, title, description, extraSettings, ",
+			"fileEntryTypeId, version, size_, smallImageId, ",
+			"largeImageId, custom1ImageId, custom2ImageId) values (?, ",
+			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+			"?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -134,17 +131,14 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 			String title, long size)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("insert into DLFileVersion (uuid_, fileVersionId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("repositoryId, folderId, fileEntryId, extension, mimeType, ");
-		sb.append("title, description, changeLog, extraSettings, ");
-		sb.append("fileEntryTypeId, version, size_, status, statusByUserId, ");
-		sb.append("statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into DLFileVersion (uuid_, fileVersionId, groupId, ",
+			"companyId, userId, userName, createDate, modifiedDate, ",
+			"repositoryId, folderId, fileEntryId, extension, mimeType, ",
+			"title, description, changeLog, extraSettings, ",
+			"fileEntryTypeId, version, size_, status, statusByUserId, ",
+			"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
+			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -192,17 +186,14 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 			boolean hidden)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("insert into DLFolder (uuid_, folderId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("repositoryId, mountPoint, parentFolderId, name, ");
-		sb.append("description, lastPostDate, defaultFileEntryTypeId, ");
-		sb.append("hidden_, overrideFileEntryTypes, status, statusByUserId, ");
-		sb.append("statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into DLFolder (uuid_, folderId, groupId, ",
+			"companyId, userId, userName, createDate, modifiedDate, ",
+			"repositoryId, mountPoint, parentFolderId, name, ",
+			"description, lastPostDate, defaultFileEntryTypeId, ",
+			"hidden_, overrideFileEntryTypes, status, statusByUserId, ",
+			"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ?, ",
+			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {
@@ -283,16 +274,13 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 			return -1;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("insert into Repository (uuid_, repositoryId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("classNameId, name, description, portletId, typeSettings, ");
-		sb.append("dlFolderId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?)");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"insert into Repository (uuid_, repositoryId, groupId, ",
+					"companyId, userId, userName, createDate, modifiedDate, ",
+					"classNameId, name, description, portletId, typeSettings, ",
+					"dlFolderId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+					"?, ?)"))) {
 
 			preparedStatement.setString(1, PortalUUIDUtil.generate());
 			preparedStatement.setLong(2, repositoryId);
@@ -332,13 +320,10 @@ public abstract class BaseAttachmentsUpgradeProcess extends UpgradeProcess {
 		long resourcePermissionId = increment(
 			ResourcePermission.class.getName());
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("insert into ResourcePermission (resourcePermissionId, ");
-		sb.append("companyId, name, scope, primKey, roleId, ownerId, ");
-		sb.append("actionIds) values (?, ?, ?, ?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into ResourcePermission (resourcePermissionId, ",
+			"companyId, name, scope, primKey, roleId, ownerId, ",
+			"actionIds) values (?, ?, ?, ?, ?, ?, ?, ?)");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql)) {

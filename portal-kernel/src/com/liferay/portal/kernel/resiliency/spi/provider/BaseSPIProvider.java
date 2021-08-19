@@ -135,15 +135,8 @@ public abstract class BaseSPIProvider implements SPIProvider {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{name=");
-		sb.append(getName());
-		sb.append(", classPath=");
-		sb.append(getClassPath());
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{name=", getName(), ", classPath=", getClassPath(), "}");
 	}
 
 	protected static class WeldServerCallable

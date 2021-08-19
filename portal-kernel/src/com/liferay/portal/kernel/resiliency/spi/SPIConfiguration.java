@@ -160,35 +160,16 @@ public class SPIConfiguration implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
-
-		sb.append("{baseDir=");
-		sb.append(_baseDir);
-		sb.append(", connectorPort=");
-		sb.append(_connectorPort);
-		sb.append(", extraSettings=");
-		sb.append(_extraSettings);
-		sb.append(", javaExecutable=");
-		sb.append(_javaExecutable);
-		sb.append(", jvmArguments=");
-		sb.append(_jvmArguments);
-		sb.append(", pingInterval=");
-		sb.append(_pingInterval);
-		sb.append(", portletIds=[");
-		sb.append(StringUtil.merge(_portletIds));
-		sb.append("], registerTimeout=");
-		sb.append(_registerTimeout);
-		sb.append(", servletContextName=[");
-		sb.append(StringUtil.merge(_servletContextNames));
-		sb.append("], shutdownTimeout=");
-		sb.append(_shutdownTimeout);
-		sb.append(", spiAgentClassName=");
-		sb.append(_spiAgentClassName);
-		sb.append(", spiId=");
-		sb.append(_spiId);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{baseDir=", _baseDir, ", connectorPort=", _connectorPort,
+			", extraSettings=", _extraSettings, ", javaExecutable=",
+			_javaExecutable, ", jvmArguments=", _jvmArguments,
+			", pingInterval=", _pingInterval, ", portletIds=[",
+			StringUtil.merge(_portletIds), "], registerTimeout=",
+			_registerTimeout, ", servletContextName=[",
+			StringUtil.merge(_servletContextNames), "], shutdownTimeout=",
+			_shutdownTimeout, ", spiAgentClassName=", _spiAgentClassName,
+			", spiId=", _spiId, "}");
 	}
 
 	public String toXMLString() {

@@ -283,17 +283,13 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 			HttpServletResponse.SC_REQUEST_URI_TOO_LONG);
 
 		if (_log.isWarnEnabled()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("Rejected ");
-			sb.append(
-				StringUtil.shorten(
-					originalURI, _INVOKER_FILTER_URI_MAX_LENGTH));
-			sb.append(" because it has more than ");
-			sb.append(_INVOKER_FILTER_URI_MAX_LENGTH);
-			sb.append(" characters");
-
-			_log.warn(sb.toString());
+			_log.warn(
+				StringBundler.concat(
+					"Rejected ",
+					StringUtil.shorten(
+						originalURI, _INVOKER_FILTER_URI_MAX_LENGTH),
+					" because it has more than ",
+					_INVOKER_FILTER_URI_MAX_LENGTH, " characters"));
 		}
 
 		return false;

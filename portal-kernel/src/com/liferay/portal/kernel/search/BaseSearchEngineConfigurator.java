@@ -179,14 +179,12 @@ public abstract class BaseSearchEngineConfigurator
 						ThreadPoolExecutor threadPoolExecutor) {
 
 						if (_log.isWarnEnabled()) {
-							StringBundler sb = new StringBundler(4);
-
-							sb.append("The search index writer's task queue ");
-							sb.append("is at its maximum capacity. The ");
-							sb.append("current thread will handle the ");
-							sb.append("request.");
-
-							_log.warn(sb.toString());
+							_log.warn(
+								StringBundler.concat(
+									"The search index writer's task queue ",
+									"is at its maximum capacity. The ",
+									"current thread will handle the ",
+									"request."));
 						}
 
 						super.rejectedExecution(runnable, threadPoolExecutor);

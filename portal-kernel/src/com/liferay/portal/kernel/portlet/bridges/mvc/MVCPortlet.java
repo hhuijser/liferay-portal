@@ -321,37 +321,33 @@ public class MVCPortlet extends LiferayPortlet {
 
 		PortletContext portletContext = portletConfig.getPortletContext();
 
-		if (portletContext.getEffectiveMajorVersion() >= 3) {
-			String mvcRenderCommandName = ParamUtil.getString(
-				headerRequest, "mvcRenderCommandName", "/");
+		if (portletContext.getEffectiveMajorVersion() < 3) {
+			return;
+		}
 
-			String mvcPath = ParamUtil.getString(headerRequest, "mvcPath");
+		String mvcPath = ParamUtil.getString(headerRequest, "mvcPath");
+		String mvcRenderCommandName = ParamUtil.getString(
+			headerRequest, "mvcRenderCommandName", "/");
 
-			if (!mvcRenderCommandName.equals("/") ||
-				Validator.isNull(mvcPath)) {
+		if (mvcRenderCommandName.equals("/") && Validator.isNotNull(mvcPath)) {
+			return;
+		}
 
-				MVCHeaderCommand mvcHeaderCommand =
-					_headerMVCCommandCache.getMVCCommand(mvcRenderCommandName);
+		MVCHeaderCommand mvcHeaderCommand =
+			_headerMVCCommandCache.getMVCCommand(mvcRenderCommandName);
 
-				mvcPath = null;
+		if (mvcHeaderCommand == MVCRenderCommand.EMPTY) {
+			return;
+		}
 
-				if (mvcHeaderCommand != MVCRenderCommand.EMPTY) {
-					mvcPath = mvcHeaderCommand.renderHeaders(
-						headerRequest, headerResponse);
-				}
+		mvcPath = mvcHeaderCommand.renderHeaders(headerRequest, headerResponse);
 
-				if (MVCRenderConstants.MVC_PATH_VALUE_SKIP_DISPATCH.equals(
-						mvcPath)) {
+		if (Validator.isNotNull(mvcPath) &&
+			!MVCRenderConstants.MVC_PATH_VALUE_SKIP_DISPATCH.equals(mvcPath)) {
 
-					return;
-				}
-
-				if (Validator.isNotNull(mvcPath)) {
-					headerRequest.setAttribute(
-						getMVCPathAttributeName(headerResponse.getNamespace()),
-						mvcPath);
-				}
-			}
+			headerRequest.setAttribute(
+				getMVCPathAttributeName(headerResponse.getNamespace()),
+				mvcPath);
 		}
 	}
 

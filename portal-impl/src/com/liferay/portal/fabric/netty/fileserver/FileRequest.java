@@ -82,17 +82,9 @@ public class FileRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{deleteAfterFetch=");
-		sb.append(_deleteAfterFetch);
-		sb.append(", lastModifiedTime=");
-		sb.append(_lastModifiedTime);
-		sb.append(", pathHolder=");
-		sb.append(_pathHolder);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{deleteAfterFetch=", _deleteAfterFetch, ", lastModifiedTime=",
+			_lastModifiedTime, ", pathHolder=", _pathHolder, "}");
 	}
 
 	private static final long serialVersionUID = 1L;

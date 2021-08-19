@@ -303,15 +303,9 @@ public class SocialActivitySettingLocalServiceImpl
 	protected String encodeKey(
 		long groupId, String className, int activityType) {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(groupId);
-		sb.append(StringPool.POUND);
-		sb.append(className);
-		sb.append(StringPool.POUND);
-		sb.append(activityType);
-
-		return sb.toString();
+		return StringBundler.concat(
+			groupId, StringPool.POUND, className, StringPool.POUND,
+			activityType);
 	}
 
 	protected SocialActivityDefinition getActivityDefinition(

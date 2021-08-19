@@ -557,17 +557,13 @@ public class ServiceComponentLocalServiceImpl
 		}
 		else if (PropsValues.SCHEMA_MODULE_BUILD_AUTO_UPGRADE) {
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(7);
-
-				sb.append("Auto upgrading ");
-				sb.append(buildNamespace);
-				sb.append(" database to build number ");
-				sb.append(buildNumber);
-				sb.append(" is not supported for a production environment. ");
-				sb.append("Write an UpgradeStep to ensure data is upgraded ");
-				sb.append("correctly.");
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Auto upgrading ", buildNamespace,
+						" database to build number ", buildNumber,
+						" is not supported for a production environment. ",
+						"Write an UpgradeStep to ensure data is upgraded ",
+						"correctly."));
 			}
 
 			if (!tablesSQL.equals(previousServiceComponent.getTablesSQL())) {

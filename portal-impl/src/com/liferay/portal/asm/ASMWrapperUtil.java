@@ -46,14 +46,9 @@ public class ASMWrapperUtil {
 
 		Package pkg = clazz.getPackage();
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(pkg.getName());
-		sb.append(StringPool.PERIOD);
-		sb.append(interfaceClass.getSimpleName());
-		sb.append("ASMWrapper");
-
-		String asmWrapperClassName = sb.toString();
+		String asmWrapperClassName = StringBundler.concat(
+			pkg.getName(), StringPool.PERIOD, interfaceClass.getSimpleName(),
+			"ASMWrapper");
 
 		Class<?> asmWrapperClass = null;
 

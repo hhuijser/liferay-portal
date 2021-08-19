@@ -151,18 +151,12 @@ public class PasswordPolicyRelLocalServiceImpl
 			return passwordPolicyRel;
 		}
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("No PasswordPolicyRel exists with the key {");
-		sb.append("passwordPolicyId=");
-		sb.append(passwordPolicyId);
-		sb.append(", classNameId=");
-		sb.append(classNameId);
-		sb.append(", classPK=");
-		sb.append(classPK);
-		sb.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchPasswordPolicyRelException(sb.toString());
+		throw new NoSuchPasswordPolicyRelException(
+			StringBundler.concat(
+				"No PasswordPolicyRel exists with the key {",
+				"passwordPolicyId=", passwordPolicyId, ", classNameId=",
+				classNameId, ", classPK=", classPK,
+				StringPool.CLOSE_CURLY_BRACE));
 	}
 
 	@Override

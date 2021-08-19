@@ -127,20 +127,18 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	private void _upgradeCompanyScopePermissions(String className)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select ResourceTypePermission.companyId, ");
-		sb.append("ResourceTypePermission.roleId, ");
-		sb.append("ResourceTypePermission.actionIds from ");
-		sb.append("ResourceTypePermission inner join Role_ on Role_.roleId =");
-		sb.append("ResourceTypePermission.roleId where ");
-		sb.append("ResourceTypePermission.groupId = 0 and Role_.type_ = ");
-		sb.append(RoleConstants.TYPE_REGULAR);
-		sb.append(" and ResourceTypePermission.name = ?");
-
 		try (PreparedStatement selectPreparedStatement =
 				connection.prepareStatement(
-					SQLTransformer.transform(sb.toString()))) {
+					SQLTransformer.transform(
+						StringBundler.concat(
+							"select ResourceTypePermission.companyId, ",
+							"ResourceTypePermission.roleId, ",
+							"ResourceTypePermission.actionIds from ",
+							"ResourceTypePermission inner join Role_ on Role_.roleId =",
+							"ResourceTypePermission.roleId where ",
+							"ResourceTypePermission.groupId = 0 and Role_.type_ = ",
+							RoleConstants.TYPE_REGULAR,
+							" and ResourceTypePermission.name = ?")))) {
 
 			selectPreparedStatement.setString(1, className);
 
@@ -202,20 +200,18 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	private void _upgradeGroupTemplateScopePermissions(String className)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select ResourceTypePermission.companyId, ");
-		sb.append("ResourceTypePermission.roleId, ");
-		sb.append("ResourceTypePermission.actionIds from ");
-		sb.append("ResourceTypePermission inner join Role_ on Role_.roleId =");
-		sb.append("ResourceTypePermission.roleId where ");
-		sb.append("ResourceTypePermission.groupId = 0 and Role_.type_ != ");
-		sb.append(RoleConstants.TYPE_REGULAR);
-		sb.append(" and ResourceTypePermission.name = ?");
-
 		try (PreparedStatement selectPreparedStatement =
 				connection.prepareStatement(
-					SQLTransformer.transform(sb.toString()))) {
+					SQLTransformer.transform(
+						StringBundler.concat(
+							"select ResourceTypePermission.companyId, ",
+							"ResourceTypePermission.roleId, ",
+							"ResourceTypePermission.actionIds from ",
+							"ResourceTypePermission inner join Role_ on Role_.roleId =",
+							"ResourceTypePermission.roleId where ",
+							"ResourceTypePermission.groupId = 0 and Role_.type_ != ",
+							RoleConstants.TYPE_REGULAR,
+							" and ResourceTypePermission.name = ?")))) {
 
 			selectPreparedStatement.setString(1, className);
 
@@ -312,14 +308,11 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	private static final String _INSERT_SQL;
 
 	static {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("insert into ResourcePermission(mvccVersion, ");
-		sb.append("resourcePermissionId, companyId, name, scope, primKey, ");
-		sb.append("primKeyId, roleId, ownerId, actionIds, viewActionId) ");
-		sb.append("values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-		_INSERT_SQL = sb.toString();
+		_INSERT_SQL = StringBundler.concat(
+			"insert into ResourcePermission(mvccVersion, ",
+			"resourcePermissionId, companyId, name, scope, primKey, ",
+			"primKeyId, roleId, ownerId, actionIds, viewActionId) ",
+			"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	}
 
 }

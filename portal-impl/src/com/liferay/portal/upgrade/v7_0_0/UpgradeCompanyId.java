@@ -225,20 +225,10 @@ public class UpgradeCompanyId extends BaseCompanyIdUpgradeProcess {
 				return String.valueOf(companyIds.get(0));
 			}
 
-			StringBundler sb = new StringBundler(10);
-
-			sb.append("select companyId from ");
-			sb.append(foreignTableName);
-			sb.append(" where ");
-			sb.append(foreignTableName);
-			sb.append(".");
-			sb.append(foreignColumnName);
-			sb.append(" = ");
-			sb.append(getTableName());
-			sb.append(".");
-			sb.append(columnName);
-
-			return sb.toString();
+			return StringBundler.concat(
+				"select companyId from ", foreignTableName, " where ",
+				foreignTableName, ".", foreignColumnName, " = ", getTableName(),
+				".", columnName);
 		}
 
 		private String _getUpdateSQL(
@@ -249,14 +239,9 @@ public class UpgradeCompanyId extends BaseCompanyIdUpgradeProcess {
 			String selectSQL = _getSelectSQL(
 				foreignTableName, foreignColumnName, columnName);
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(getUpdateSQL(selectSQL));
-			sb.append(" where ownerType = ");
-			sb.append(ownerType);
-			sb.append(" and (companyId is null or companyId = 0)");
-
-			return sb.toString();
+			return StringBundler.concat(
+				getUpdateSQL(selectSQL), " where ownerType = ", ownerType,
+				" and (companyId is null or companyId = 0)");
 		}
 
 	}

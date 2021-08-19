@@ -140,19 +140,12 @@ public class LocalizationImpl implements Localization {
 		}
 
 		if (_log.isWarnEnabled()) {
-			StringBundler sb = new StringBundler(9);
-
-			sb.append("Language ");
-			sb.append(LocaleUtil.toLanguageId(contentDefaultLocale));
-			sb.append(" is missing for ");
-			sb.append(className);
-			sb.append(" with primary key ");
-			sb.append(primaryKey);
-			sb.append(". Setting default language to ");
-			sb.append(LocaleUtil.toLanguageId(defaultLocale));
-			sb.append(".");
-
-			_log.warn(sb.toString());
+			_log.warn(
+				StringBundler.concat(
+					"Language ", LocaleUtil.toLanguageId(contentDefaultLocale),
+					" is missing for ", className, " with primary key ",
+					primaryKey, ". Setting default language to ",
+					LocaleUtil.toLanguageId(defaultLocale), "."));
 		}
 
 		return defaultLocale;

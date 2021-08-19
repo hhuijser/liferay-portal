@@ -338,18 +338,15 @@ public class PortletBagImpl implements PortletBag {
 		if (resourceBundleLoader == null) {
 			synchronized (this) {
 				if (_resourceBundleLoader == null) {
-					StringBundler sb = new StringBundler(5);
-
-					sb.append("(resource.bundle.base.name=");
-					sb.append(getResourceBundleBaseName());
-					sb.append(")(servlet.context.name=");
-					sb.append(_servletContext.getServletContextName());
-					sb.append(")");
-
 					_resourceBundleLoader =
 						ServiceProxyFactory.newServiceTrackedInstance(
 							ResourceBundleLoader.class, PortletBagImpl.class,
-							this, "_resourceBundleLoader", sb.toString(),
+							this, "_resourceBundleLoader",
+							StringBundler.concat(
+								"(resource.bundle.base.name=",
+								getResourceBundleBaseName(),
+								")(servlet.context.name=",
+								_servletContext.getServletContextName(), ")"),
 							false);
 				}
 

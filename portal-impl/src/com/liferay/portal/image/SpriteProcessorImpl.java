@@ -237,14 +237,10 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 					exception instanceof NullPointerException) {
 
 					if (_log.isWarnEnabled()) {
-						StringBundler sb = new StringBundler(4);
-
-						sb.append("Unable to generate ");
-						sb.append(spriteFileName);
-						sb.append(" for ");
-						sb.append(servletContext.getServletContextName());
-
-						_log.warn(sb.toString());
+						_log.warn(
+							StringBundler.concat(
+								"Unable to generate ", spriteFileName, " for ",
+								servletContext.getServletContextName()));
 					}
 
 					return null;

@@ -75,15 +75,9 @@ public abstract class JSONAction implements Action {
 			json = getJSON(httpServletRequest, httpServletResponse);
 
 			if (Validator.isNotNull(callback)) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append("/**/");
-				sb.append(callback);
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append(json);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-
-				json = sb.toString();
+				json = StringBundler.concat(
+					"/**/", callback, StringPool.OPEN_PARENTHESIS, json,
+					StringPool.CLOSE_PARENTHESIS);
 			}
 		}
 		catch (PrincipalException principalException) {

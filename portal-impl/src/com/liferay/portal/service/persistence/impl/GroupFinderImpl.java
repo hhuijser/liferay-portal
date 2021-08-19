@@ -685,15 +685,10 @@ public class GroupFinderImpl
 			closeSession(session);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("No Group exists with the key {companyId=");
-		sb.append(companyId);
-		sb.append(", groupKey=");
-		sb.append(groupKey);
-		sb.append("}");
-
-		throw new NoSuchGroupException(sb.toString());
+		throw new NoSuchGroupException(
+			StringBundler.concat(
+				"No Group exists with the key {companyId=", companyId,
+				", groupKey=", groupKey, "}"));
 	}
 
 	@Override
@@ -1218,15 +1213,11 @@ public class GroupFinderImpl
 
 				if (!groupsTree.isEmpty()) {
 					for (Group group : groupsTree) {
-						StringBundler sb = new StringBundler(5);
-
-						sb.append(StringPool.PERCENT);
-						sb.append(StringPool.SLASH);
-						sb.append(group.getGroupId());
-						sb.append(StringPool.SLASH);
-						sb.append(StringPool.PERCENT);
-
-						queryPos.add(sb.toString());
+						queryPos.add(
+							StringBundler.concat(
+								StringPool.PERCENT, StringPool.SLASH,
+								group.getGroupId(), StringPool.SLASH,
+								StringPool.PERCENT));
 					}
 				}
 			}

@@ -1058,19 +1058,12 @@ public class ResourcePermissionLocalServiceImpl
 			individualResource.getScope(), individualResource.getPrimKey());
 
 		if (count < 1) {
-			StringBundler sb = new StringBundler(9);
-
-			sb.append("{companyId=");
-			sb.append(individualResource.getCompanyId());
-			sb.append(", name=");
-			sb.append(individualResource.getName());
-			sb.append(", primKey=");
-			sb.append(individualResource.getPrimKey());
-			sb.append(", scope=");
-			sb.append(individualResource.getScope());
-			sb.append("}");
-
-			throw new NoSuchResourcePermissionException(sb.toString());
+			throw new NoSuchResourcePermissionException(
+				StringBundler.concat(
+					"{companyId=", individualResource.getCompanyId(), ", name=",
+					individualResource.getName(), ", primKey=",
+					individualResource.getPrimKey(), ", scope=",
+					individualResource.getScope(), "}"));
 		}
 
 		// Iterate the list of resources in reverse order to test permissions

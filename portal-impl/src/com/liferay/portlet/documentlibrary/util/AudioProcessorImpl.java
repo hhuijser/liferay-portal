@@ -71,15 +71,13 @@ public class AudioProcessorImpl
 		}
 
 		if (!valid && _log.isWarnEnabled()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("Liferay is incorrectly configured to generate video ");
-			sb.append("previews using video containers other than MP3 or ");
-			sb.append("OGG. Please change the property ");
-			sb.append(PropsKeys.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS);
-			sb.append(" in portal-ext.properties.");
-
-			_log.warn(sb.toString());
+			_log.warn(
+				StringBundler.concat(
+					"Liferay is incorrectly configured to generate video ",
+					"previews using video containers other than MP3 or ",
+					"OGG. Please change the property ",
+					PropsKeys.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS,
+					" in portal-ext.properties."));
 		}
 
 		FileUtil.mkdirs(PREVIEW_TMP_PATH);

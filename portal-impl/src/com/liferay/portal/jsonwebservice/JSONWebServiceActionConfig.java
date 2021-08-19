@@ -71,14 +71,9 @@ public class JSONWebServiceActionConfig
 		_actionMethod = newActionMethod;
 
 		if (Validator.isNotNull(_contextName)) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(StringPool.SLASH);
-			sb.append(_contextName);
-			sb.append(StringPool.PERIOD);
-			sb.append(path.substring(1));
-
-			path = sb.toString();
+			path = StringBundler.concat(
+				StringPool.SLASH, _contextName, StringPool.PERIOD,
+				path.substring(1));
 		}
 
 		_path = path;
@@ -218,29 +213,12 @@ public class JSONWebServiceActionConfig
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
-
-		sb.append("{actionClass=");
-		sb.append(_actionClass);
-		sb.append(", actionMethod=");
-		sb.append(_actionMethod);
-		sb.append(", contextName=");
-		sb.append(_contextName);
-		sb.append(", contextPath=");
-		sb.append(_contextPath);
-		sb.append(", deprecated=");
-		sb.append(_deprecated);
-		sb.append(", method=");
-		sb.append(_method);
-		sb.append(", path=");
-		sb.append(_path);
-		sb.append(", realActionMethod=");
-		sb.append(_realActionMethod);
-		sb.append(", signature=");
-		sb.append(_signature);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{actionClass=", _actionClass, ", actionMethod=", _actionMethod,
+			", contextName=", _contextName, ", contextPath=", _contextPath,
+			", deprecated=", _deprecated, ", method=", _method, ", path=",
+			_path, ", realActionMethod=", _realActionMethod, ", signature=",
+			_signature, "}");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

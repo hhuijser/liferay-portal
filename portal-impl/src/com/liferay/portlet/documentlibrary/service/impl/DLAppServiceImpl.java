@@ -1437,15 +1437,10 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 			}
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("No DLFileEntry exists with the key {uuid=");
-		sb.append(uuid);
-		sb.append(", groupId=");
-		sb.append(groupId);
-		sb.append(StringPool.CLOSE_CURLY_BRACE);
-
-		throw new NoSuchFileEntryException(sb.toString());
+		throw new NoSuchFileEntryException(
+			StringBundler.concat(
+				"No DLFileEntry exists with the key {uuid=", uuid, ", groupId=",
+				groupId, StringPool.CLOSE_CURLY_BRACE));
 	}
 
 	/**
@@ -3636,14 +3631,11 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 			return repositoryProvider.getRepository(repositoryId);
 		}
 		catch (InvalidRepositoryIdException invalidRepositoryIdException) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("No Group exists with the key {repositoryId=");
-			sb.append(repositoryId);
-			sb.append("}");
-
 			throw new NoSuchGroupException(
-				sb.toString(), invalidRepositoryIdException);
+				StringBundler.concat(
+					"No Group exists with the key {repositoryId=", repositoryId,
+					"}"),
+				invalidRepositoryIdException);
 		}
 	}
 

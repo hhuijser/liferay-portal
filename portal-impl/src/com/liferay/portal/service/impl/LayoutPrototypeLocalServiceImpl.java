@@ -130,15 +130,13 @@ public class LayoutPrototypeLocalServiceImpl
 				layoutPrototype.getCompanyId(), layoutPrototype.getUuid());
 
 			if (count > 0) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append("Layout prototype cannot be deleted because it is ");
-				sb.append("used by layout with company ID ");
-				sb.append(layoutPrototype.getCompanyId());
-				sb.append(" and layout prototype UUID ");
-				sb.append(layoutPrototype.getUuid());
-
-				throw new RequiredLayoutPrototypeException(sb.toString());
+				throw new RequiredLayoutPrototypeException(
+					StringBundler.concat(
+						"Layout prototype cannot be deleted because it is ",
+						"used by layout with company ID ",
+						layoutPrototype.getCompanyId(),
+						" and layout prototype UUID ",
+						layoutPrototype.getUuid()));
 			}
 		}
 

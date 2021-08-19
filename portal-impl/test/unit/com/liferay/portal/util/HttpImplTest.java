@@ -656,15 +656,11 @@ public class HttpImplTest {
 		String newURL = _httpImpl.addParameter(
 			url, parameterName, parameterValue);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(url);
-		sb.append(StringPool.QUESTION);
-		sb.append(parameterName);
-		sb.append(StringPool.EQUAL);
-		sb.append(parameterValue);
-
-		Assert.assertEquals(sb.toString(), newURL);
+		Assert.assertEquals(
+			StringBundler.concat(
+				url, StringPool.QUESTION, parameterName, StringPool.EQUAL,
+				parameterValue),
+			newURL);
 	}
 
 	private void _testDecodeURL(String url, String expectedMessage) {

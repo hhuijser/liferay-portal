@@ -675,17 +675,9 @@ public class Table {
 	public void updateColumnValue(
 		String columnName, String oldValue, String newValue) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("update ");
-		sb.append(_tableName);
-		sb.append(" set ");
-		sb.append(columnName);
-		sb.append(" = ? where ");
-		sb.append(columnName);
-		sb.append(" = ?");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"update ", _tableName, " set ", columnName, " = ? where ",
+			columnName, " = ?");
 
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(

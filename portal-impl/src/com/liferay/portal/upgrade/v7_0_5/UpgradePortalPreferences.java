@@ -88,20 +88,17 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 
 							String value = valueElement.getStringValue();
 
-							StringBundler sb = new StringBundler(10);
-
-							sb.append("Detected a value of \"");
-							sb.append(value);
-							sb.append("\" for portal property ");
-							sb.append(obsoletePortalPreference);
-							sb.append(" stored in portal preferences. ");
-							sb.append("Storing this property in portal ");
-							sb.append("preferences is no longer supported; ");
-							sb.append("please set this property to this ");
-							sb.append("value in portal-ext.properties if you ");
-							sb.append("wish to retain it.");
-
-							_log.warn(sb.toString());
+							_log.warn(
+								StringBundler.concat(
+									"Detected a value of \"", value,
+									"\" for portal property ",
+									obsoletePortalPreference,
+									" stored in portal preferences. ",
+									"Storing this property in portal ",
+									"preferences is no longer supported; ",
+									"please set this property to this ",
+									"value in portal-ext.properties if you ",
+									"wish to retain it."));
 						}
 
 						portletPreferencesElement.remove(element);

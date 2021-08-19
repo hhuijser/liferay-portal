@@ -42,17 +42,14 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 					"create table ", tempTableName, " (threadId LONG NOT NULL ",
 					"PRIMARY KEY)"));
 
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("insert into ");
-			sb.append(tempTableName);
-			sb.append(" select MBMessage.threadId from MBMessage inner join ");
-			sb.append("MBThread on MBMessage.threadId = MBThread.threadId ");
-			sb.append("where MBThread.categoryId = -1 group by ");
-			sb.append("MBMessage.threadId having count(MBMessage.messageId) ");
-			sb.append("= 1");
-
-			runSQL(sb.toString());
+			runSQL(
+				StringBundler.concat(
+					"insert into ", tempTableName,
+					" select MBMessage.threadId from MBMessage inner join ",
+					"MBThread on MBMessage.threadId = MBThread.threadId ",
+					"where MBThread.categoryId = -1 group by ",
+					"MBMessage.threadId having count(MBMessage.messageId) ",
+					"= 1"));
 
 			_deleteAssetEntry(tempTableName);
 			_deleteTable("MBDiscussion", tempTableName);
@@ -74,19 +71,16 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 	}
 
 	protected void populateMBDiscussionGroupId() throws Exception {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select MBThread.groupId, MBDiscussion.discussionId from ");
-		sb.append("MBDiscussion inner join MBThread on MBDiscussion.threadId ");
-		sb.append("= MBThread.threadId where MBDiscussion.groupId = 0");
-
 		try (PreparedStatement preparedStatement1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
 					"update MBDiscussion set groupId = ? where discussionId " +
 						"= ?");
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select MBThread.groupId, MBDiscussion.discussionId from ",
+					"MBDiscussion inner join MBThread on MBDiscussion.threadId ",
+					"= MBThread.threadId where MBDiscussion.groupId = 0"))) {
 
 			try (ResultSet resultSet = preparedStatement2.executeQuery()) {
 				while (resultSet.next()) {

@@ -98,17 +98,12 @@ public class FileRequestTest {
 
 	@Test
 	public void testToString() {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{deleteAfterFetch=");
-		sb.append(_DELETE_AFTER_FETCH);
-		sb.append(", lastModifiedTime=");
-		sb.append(_LAST_MODIFIED_TIME);
-		sb.append(", pathHolder=");
-		sb.append(_path);
-		sb.append("}");
-
-		Assert.assertEquals(sb.toString(), _fileRequest.toString());
+		Assert.assertEquals(
+			StringBundler.concat(
+				"{deleteAfterFetch=", _DELETE_AFTER_FETCH,
+				", lastModifiedTime=", _LAST_MODIFIED_TIME, ", pathHolder=",
+				_path, "}"),
+			_fileRequest.toString());
 	}
 
 	private static final boolean _DELETE_AFTER_FETCH = true;

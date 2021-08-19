@@ -35,27 +35,17 @@ public class RepositoryHelperUtil {
 		int index = name.lastIndexOf(CharPool.PERIOD);
 
 		if (index == -1) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(name);
-			sb.append(StringPool.DASH);
-			sb.append(System.currentTimeMillis());
-			sb.append(StringPool.DASH);
-			sb.append(idGenerator.getAndIncrement());
-
-			return repositoryPath.resolve(sb.toString());
+			return repositoryPath.resolve(
+				StringBundler.concat(
+					name, StringPool.DASH, System.currentTimeMillis(),
+					StringPool.DASH, idGenerator.getAndIncrement()));
 		}
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(name.substring(0, index));
-		sb.append(StringPool.DASH);
-		sb.append(System.currentTimeMillis());
-		sb.append(StringPool.DASH);
-		sb.append(idGenerator.getAndIncrement());
-		sb.append(name.substring(index));
-
-		return repositoryPath.resolve(sb.toString());
+		return repositoryPath.resolve(
+			StringBundler.concat(
+				name.substring(0, index), StringPool.DASH,
+				System.currentTimeMillis(), StringPool.DASH,
+				idGenerator.getAndIncrement(), name.substring(index)));
 	}
 
 	protected static final AtomicLong idGenerator = new AtomicLong();

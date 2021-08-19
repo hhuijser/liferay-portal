@@ -328,14 +328,9 @@ public class PortalRequestProcessor {
 			}
 		}
 
-		StringBundler lastPathSB = new StringBundler(4);
-
-		lastPathSB.append(portalURL);
-		lastPathSB.append(lastPath.getContextPath());
-		lastPathSB.append(lastPath.getPath());
-		lastPathSB.append(parameters);
-
-		return lastPathSB.toString();
+		return StringBundler.concat(
+			portalURL, lastPath.getContextPath(), lastPath.getPath(),
+			parameters);
 	}
 
 	private void _internalModuleRelativeForward(

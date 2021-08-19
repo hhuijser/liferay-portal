@@ -45,13 +45,8 @@ public class ConjunctionImpl extends CriterionImpl implements Conjunction {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("{_conjunction=");
-		sb.append(String.valueOf(_conjunction));
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{_conjunction=", String.valueOf(_conjunction), "}");
 	}
 
 	private final org.hibernate.criterion.Conjunction _conjunction;

@@ -84,17 +84,14 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 	}
 
 	public void populateCompanyIds() throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("select MDRRuleGroup.companyId, ");
-		sb.append("MDRRuleGroupInstance.ruleGroupInstanceId from ");
-		sb.append("MDRRuleGroup left join MDRRuleGroupInstance on ");
-		sb.append("MDRRuleGroup.ruleGroupId = ");
-		sb.append("MDRRuleGroupInstance.ruleGroupId where ");
-		sb.append("MDRRuleGroupInstance.companyId = 0");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select MDRRuleGroup.companyId, ",
+					"MDRRuleGroupInstance.ruleGroupInstanceId from ",
+					"MDRRuleGroup left join MDRRuleGroupInstance on ",
+					"MDRRuleGroup.ruleGroupId = ",
+					"MDRRuleGroupInstance.ruleGroupId where ",
+					"MDRRuleGroupInstance.companyId = 0"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection,
@@ -117,37 +114,30 @@ public class UpgradeMobileDeviceRules extends UpgradeProcess {
 	}
 
 	public void populateResourcePermissions() throws Exception {
-		StringBundler sb1 = new StringBundler(12);
-
-		sb1.append("select MDRRuleGroupInstance.companyId, ");
-		sb1.append("MDRRuleGroupInstance.ruleGroupInstanceId, ");
-		sb1.append("MDRRuleGroupInstance.userId from MDRRuleGroupInstance ");
-		sb1.append("where not exists (select 1 from ResourcePermission where ");
-		sb1.append("(MDRRuleGroupInstance.companyId = ResourcePermission.");
-		sb1.append("companyId) and (MDRRuleGroupInstance.ruleGroupInstanceId ");
-		sb1.append("= ResourcePermission.primKeyId) and ");
-		sb1.append("(MDRRuleGroupInstance.userId = ");
-		sb1.append("ResourcePermission.ownerId) and (ResourcePermission.name ");
-		sb1.append("= '");
-		sb1.append(_CLASS_NAME);
-		sb1.append("'))");
-
-		StringBundler sb2 = new StringBundler(4);
-
-		sb2.append("insert into ResourcePermission (resourcePermissionId, ");
-		sb2.append("companyId, name, scope, primKey, primKeyId, roleId, ");
-		sb2.append("ownerId, actionIds, viewActionId) values (?, ?, ?, ?, ?, ");
-		sb2.append("?, ?, ?, ?, ?)");
-
 		Map<Long, Long> ownerRoleIds = getOwnerRoleIds();
 
 		long actionIds = getActionIds(_CLASS_NAME);
 
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select MDRRuleGroupInstance.companyId, ",
+					"MDRRuleGroupInstance.ruleGroupInstanceId, ",
+					"MDRRuleGroupInstance.userId from MDRRuleGroupInstance ",
+					"where not exists (select 1 from ResourcePermission where ",
+					"(MDRRuleGroupInstance.companyId = ResourcePermission.",
+					"companyId) and (MDRRuleGroupInstance.ruleGroupInstanceId ",
+					"= ResourcePermission.primKeyId) and ",
+					"(MDRRuleGroupInstance.userId = ",
+					"ResourcePermission.ownerId) and (ResourcePermission.name ",
+					"= '", _CLASS_NAME, "'))"));
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sb2.toString());
+					connection,
+					StringBundler.concat(
+						"insert into ResourcePermission (resourcePermissionId, ",
+						"companyId, name, scope, primKey, primKeyId, roleId, ",
+						"ownerId, actionIds, viewActionId) values (?, ?, ?, ?, ?, ",
+						"?, ?, ?, ?, ?)"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {

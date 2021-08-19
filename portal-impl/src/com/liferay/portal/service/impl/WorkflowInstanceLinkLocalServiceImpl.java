@@ -162,19 +162,10 @@ public class WorkflowInstanceLinkLocalServiceImpl
 			getWorkflowInstanceLinks(companyId, groupId, className, classPK);
 
 		if (workflowInstanceLinks.isEmpty()) {
-			StringBundler sb = new StringBundler(9);
-
-			sb.append("{companyId=");
-			sb.append(companyId);
-			sb.append(", groupId=");
-			sb.append(groupId);
-			sb.append(", className=");
-			sb.append(className);
-			sb.append(", classPK=");
-			sb.append(classPK);
-			sb.append("}");
-
-			throw new NoSuchWorkflowInstanceLinkException(sb.toString());
+			throw new NoSuchWorkflowInstanceLinkException(
+				StringBundler.concat(
+					"{companyId=", companyId, ", groupId=", groupId,
+					", className=", className, ", classPK=", classPK, "}"));
 		}
 
 		return workflowInstanceLinks.get(0);

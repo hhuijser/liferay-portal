@@ -114,19 +114,9 @@ public class SocialActivityCounterFinderImpl
 		long groupId, String name, int startPeriod, int endPeriod,
 		int periodLength) {
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append(groupId);
-		sb.append(StringPool.POUND);
-		sb.append(name);
-		sb.append(StringPool.POUND);
-		sb.append(startPeriod);
-		sb.append(StringPool.POUND);
-		sb.append(endPeriod);
-		sb.append(StringPool.POUND);
-		sb.append(periodLength);
-
-		String key = sb.toString();
+		String key = StringBundler.concat(
+			groupId, StringPool.POUND, name, StringPool.POUND, startPeriod,
+			StringPool.POUND, endPeriod, StringPool.POUND, periodLength);
 
 		List<SocialActivityCounter> activityCounters = null;
 

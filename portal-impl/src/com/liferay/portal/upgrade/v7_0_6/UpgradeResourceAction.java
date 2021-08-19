@@ -52,17 +52,14 @@ public class UpgradeResourceAction extends UpgradeProcess {
 				try (ResultSet resultSet2 = preparedStatement2.executeQuery()) {
 					while (resultSet2.next()) {
 						if (_log.isInfoEnabled()) {
-							StringBundler sb = new StringBundler(7);
-
-							sb.append("Deleting resource action ");
-							sb.append(resultSet2.getString("actionId"));
-							sb.append(" from resource ");
-							sb.append(name);
-							sb.append(" because its bitwise value is the ");
-							sb.append("same as another resource action on ");
-							sb.append("the same resource");
-
-							_log.info(sb.toString());
+							_log.info(
+								StringBundler.concat(
+									"Deleting resource action ",
+									resultSet2.getString("actionId"),
+									" from resource ", name,
+									" because its bitwise value is the ",
+									"same as another resource action on ",
+									"the same resource"));
 						}
 
 						try (PreparedStatement preparedStatement3 =

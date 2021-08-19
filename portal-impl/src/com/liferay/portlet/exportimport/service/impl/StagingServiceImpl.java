@@ -203,20 +203,14 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		}
 		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
-				StringBundler sb = new StringBundler(9);
-
-				sb.append(
-					"StagingServiceImpl#propagateExportImportLifecycleEvent(");
-				sb.append(code);
-				sb.append(StringPool.COMMA_AND_SPACE);
-				sb.append(processFlag);
-				sb.append(StringPool.COMMA_AND_SPACE);
-				sb.append(processId);
-				sb.append(StringPool.COMMA_AND_SPACE);
-				sb.append(arguments);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-
-				_log.debug(sb.toString(), portalException);
+				_log.debug(
+					StringBundler.concat(
+						"StagingServiceImpl#propagateExportImportLifecycleEvent(",
+						code, StringPool.COMMA_AND_SPACE, processFlag,
+						StringPool.COMMA_AND_SPACE, processId,
+						StringPool.COMMA_AND_SPACE, arguments,
+						StringPool.CLOSE_PARENTHESIS),
+					portalException);
 			}
 
 			throw portalException;

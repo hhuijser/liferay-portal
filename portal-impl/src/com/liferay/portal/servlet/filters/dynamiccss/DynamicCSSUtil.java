@@ -191,14 +191,9 @@ public class DynamicCSSUtil {
 				themePathId = StringUtil.replace(
 					themePathId, CharPool.UNDERLINE, StringPool.BLANK);
 
-				StringBundler sb = new StringBundler(4);
-
-				sb.append(themePathId);
-				sb.append(PortletConstants.WAR_SEPARATOR);
-				sb.append(themePathId);
-				sb.append("theme");
-
-				themePathId = sb.toString();
+				themePathId = StringBundler.concat(
+					themePathId, PortletConstants.WAR_SEPARATOR, themePathId,
+					"theme");
 
 				themeId = PortalUtil.getJsSafePortletId(themePathId);
 			}

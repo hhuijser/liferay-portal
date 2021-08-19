@@ -363,18 +363,12 @@ public class PropertiesDocBuilder {
 					propertiesSections.add(propertiesSection);
 				}
 				else {
-					StringBundler sb = new StringBundler(8);
-
-					sb.append("Properties section should consist of 3 or ");
-					sb.append("more lines:");
-					sb.append(StringPool.NEW_LINE);
-					sb.append("##");
-					sb.append(StringPool.NEW_LINE);
-					sb.append("## Comments");
-					sb.append(StringPool.NEW_LINE);
-					sb.append("##");
-
-					System.out.println(sb.toString());
+					System.out.println(
+						StringBundler.concat(
+							"Properties section should consist of 3 or ",
+							"more lines:", StringPool.NEW_LINE, "##",
+							StringPool.NEW_LINE, "## Comments",
+							StringPool.NEW_LINE, "##"));
 
 					return null;
 				}

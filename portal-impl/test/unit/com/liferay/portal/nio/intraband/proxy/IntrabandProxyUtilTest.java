@@ -2027,16 +2027,11 @@ public class IntrabandProxyUtilTest {
 			IntrabandProxyUtil.toClass(classNode, classLoader);
 
 			if (proxyClassesDumpEnabled) {
-				StringBundler sb = new StringBundler(6);
-
-				sb.append(SystemProperties.get(SystemProperties.TMP_DIR));
-				sb.append(StringPool.SLASH);
-				sb.append(PropsValues.INTRABAND_PROXY_DUMP_CLASSES_DIR);
-				sb.append(StringPool.SLASH);
-				sb.append(classNode.name);
-				sb.append(".class");
-
-				String filePath = sb.toString();
+				String filePath = StringBundler.concat(
+					SystemProperties.get(SystemProperties.TMP_DIR),
+					StringPool.SLASH,
+					PropsValues.INTRABAND_PROXY_DUMP_CLASSES_DIR,
+					StringPool.SLASH, classNode.name, ".class");
 
 				File classFile = new File(filePath);
 

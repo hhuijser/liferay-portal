@@ -308,15 +308,9 @@ public class ComboServlet extends HttpServlet {
 			resourcePath = portlet.getContextPath() + resourcePath;
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(resourcePath);
-		sb.append(StringPool.QUESTION);
-		sb.append(minifierType);
-		sb.append("&languageId=");
-		sb.append(ParamUtil.getString(httpServletRequest, "languageId"));
-
-		String fileContentKey = sb.toString();
+		String fileContentKey = StringBundler.concat(
+			resourcePath, StringPool.QUESTION, minifierType, "&languageId=",
+			ParamUtil.getString(httpServletRequest, "languageId"));
 
 		FileContentBag fileContentBag = _fileContentBagPortalCache.get(
 			fileContentKey);

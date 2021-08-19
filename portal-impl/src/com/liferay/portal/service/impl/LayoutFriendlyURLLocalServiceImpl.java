@@ -215,15 +215,9 @@ public class LayoutFriendlyURLLocalServiceImpl
 			layoutFriendlyURLPersistence.fetchByP_L(plid, languageId);
 
 		if ((layoutFriendlyURL == null) && !useDefault) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("{plid=");
-			sb.append(plid);
-			sb.append(", languageId=");
-			sb.append(languageId);
-			sb.append("}");
-
-			throw new NoSuchLayoutFriendlyURLException(sb.toString());
+			throw new NoSuchLayoutFriendlyURLException(
+				StringBundler.concat(
+					"{plid=", plid, ", languageId=", languageId, "}"));
 		}
 
 		if (layoutFriendlyURL == null) {

@@ -84,19 +84,9 @@ public class RPCResponse<T extends Serializable> extends RPCSerializable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("{cancelled=");
-		sb.append(_cancelled);
-		sb.append(", id=");
-		sb.append(id);
-		sb.append(", result=");
-		sb.append(_result);
-		sb.append(", throwable=");
-		sb.append(_throwable);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{cancelled=", _cancelled, ", id=", id, ", result=", _result,
+			", throwable=", _throwable, "}");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(RPCResponse.class);

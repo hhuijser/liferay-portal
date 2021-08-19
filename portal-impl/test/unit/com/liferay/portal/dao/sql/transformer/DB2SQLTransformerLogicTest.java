@@ -42,15 +42,9 @@ public class DB2SQLTransformerLogicTest
 
 	@Override
 	public String getDropTableIfExistsTextTransformedSQL() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("BEGIN\n");
-		sb.append("DECLARE CONTINUE HANDLER FOR SQLSTATE '42704'\n");
-		sb.append("BEGIN END;\n");
-		sb.append("EXECUTE IMMEDIATE 'DROP TABLE Foo';\n");
-		sb.append("END");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"BEGIN\n", "DECLARE CONTINUE HANDLER FOR SQLSTATE '42704'\n",
+			"BEGIN END;\n", "EXECUTE IMMEDIATE 'DROP TABLE Foo';\n", "END");
 	}
 
 	@Override

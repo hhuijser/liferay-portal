@@ -479,19 +479,17 @@ public class LayoutSetBranchLocalServiceImpl
 				layoutBranch.getName(), mergeLayoutSetBranch.getName(),
 				layoutRevision.getPlid());
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(mergeLayoutSetBranch.getDescription());
-			sb.append(StringPool.SPACE);
-			sb.append(
-				LanguageUtil.format(
-					locale, "merged-from-x-x",
-					new String[] {mergeLayoutSetBranch.getName(), nowString},
-					false));
-
 			layoutBranch = layoutBranchLocalService.addLayoutBranch(
 				layoutSetBranch.getLayoutSetBranchId(),
-				layoutRevision.getPlid(), layoutBranchName, sb.toString(),
+				layoutRevision.getPlid(), layoutBranchName,
+				StringBundler.concat(
+					mergeLayoutSetBranch.getDescription(), StringPool.SPACE,
+					LanguageUtil.format(
+						locale, "merged-from-x-x",
+						new String[] {
+							mergeLayoutSetBranch.getName(), nowString
+						},
+						false)),
 				false, serviceContext);
 
 			layoutRevisionLocalService.addLayoutRevision(

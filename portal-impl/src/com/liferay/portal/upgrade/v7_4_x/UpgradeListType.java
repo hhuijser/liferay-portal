@@ -36,15 +36,11 @@ public class UpgradeListType extends UpgradeProcess {
 	}
 
 	private void _addListType(String name, String type) throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("select * from ListType where name = ");
-		sb.append(StringUtil.quote(name));
-		sb.append("and type_ = ");
-		sb.append(StringUtil.quote(type));
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString())) {
+				StringBundler.concat(
+					"select * from ListType where name = ",
+					StringUtil.quote(name), "and type_ = ",
+					StringUtil.quote(type)))) {
 
 			ResultSet resultSet = preparedStatement.executeQuery();
 

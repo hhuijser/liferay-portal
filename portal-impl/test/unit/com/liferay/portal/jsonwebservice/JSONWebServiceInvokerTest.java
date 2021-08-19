@@ -420,15 +420,15 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 
 		Assert.assertTrue(invokerResult.getResult() instanceof Map);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{\"height\":177,\"id\":173,\"name\":\"John Doe\",");
-		sb.append("\"spy\":{\"height\":173,\"id\":7,\"name\":\"James Bond\",");
-		sb.append("\"thief\":{\"height\":59,\"id\":-13,\"name\":\"Dr. Evil\",");
-		sb.append("\"value\":\"fun\",\"world\":\"Welcome -13 to Jupiter\"},");
-		sb.append("\"value\":\"licensed\"},\"value\":\"foo!\"}");
-
-		Assert.assertEquals(toMap(sb.toString()), toMap(toJSON(result)));
+		Assert.assertEquals(
+			toMap(
+				StringBundler.concat(
+					"{\"height\":177,\"id\":173,\"name\":\"John Doe\",",
+					"\"spy\":{\"height\":173,\"id\":7,\"name\":\"James Bond\",",
+					"\"thief\":{\"height\":59,\"id\":-13,\"name\":\"Dr. Evil\",",
+					"\"value\":\"fun\",\"world\":\"Welcome -13 to Jupiter\"},",
+					"\"value\":\"licensed\"},\"value\":\"foo!\"}")),
+			toMap(toJSON(result)));
 	}
 
 	@Test

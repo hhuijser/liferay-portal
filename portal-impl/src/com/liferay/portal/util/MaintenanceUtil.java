@@ -36,14 +36,10 @@ public class MaintenanceUtil {
 			_log.debug(status);
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(Time.getRFC822());
-		sb.append(StringPool.SPACE);
-		sb.append(HtmlUtil.escape(status));
-		sb.append("<br />");
-
-		_status = _status.concat(sb.toString());
+		_status = _status.concat(
+			StringBundler.concat(
+				Time.getRFC822(), StringPool.SPACE, HtmlUtil.escape(status),
+				"<br />"));
 	}
 
 	public static void cancel() {

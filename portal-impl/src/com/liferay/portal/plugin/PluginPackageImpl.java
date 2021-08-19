@@ -363,14 +363,8 @@ public class PluginPackageImpl
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(StringPool.SLASH);
-		sb.append(_context);
-		sb.append(StringPool.COLON);
-		sb.append(_moduleId);
-
-		return sb.toString();
+		return StringBundler.concat(
+			StringPool.SLASH, _context, StringPool.COLON, _moduleId);
 	}
 
 	private String _author;

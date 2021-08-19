@@ -302,14 +302,12 @@ public class SystemEventAdvice extends ChainableMethodAdvice {
 			!StagedModel.class.isAssignableFrom(parameterType)) {
 
 			if (_log.isDebugEnabled()) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("If send is true, the first parameter of ");
-				sb.append(aopMethodInvocation);
-				sb.append(" must implement AuditedModel, GroupedModel, or ");
-				sb.append("StagedModel");
-
-				_log.debug(sb.toString());
+				_log.debug(
+					StringBundler.concat(
+						"If send is true, the first parameter of ",
+						aopMethodInvocation,
+						" must implement AuditedModel, GroupedModel, or ",
+						"StagedModel"));
 			}
 
 			return false;

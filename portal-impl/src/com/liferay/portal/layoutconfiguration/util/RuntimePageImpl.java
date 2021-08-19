@@ -437,15 +437,11 @@ public class RuntimePageImpl implements RuntimePage {
 					rendererPortletId, headerRequestMap);
 
 				if (_log.isDebugEnabled()) {
-					StringBundler sb = new StringBundler(5);
-
-					sb.append("Serially rendered headers for portlet ");
-					sb.append(rendererPortletId);
-					sb.append(" in ");
-					sb.append(stopWatch.getTime());
-					sb.append(" ms");
-
-					_log.debug(sb.toString());
+					_log.debug(
+						StringBundler.concat(
+							"Serially rendered headers for portlet ",
+							rendererPortletId, " in ", stopWatch.getTime(),
+							" ms"));
 				}
 			}
 

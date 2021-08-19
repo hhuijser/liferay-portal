@@ -1165,16 +1165,14 @@ public class SitesImpl implements Sites {
 				PropsValues.LAYOUT_SET_PROTOTYPE_MERGE_FAIL_THRESHOLD) {
 
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(6);
-
-				sb.append("Merge not performed because the fail threshold ");
-				sb.append("was reached for layoutSetPrototypeId ");
-				sb.append(layoutSetPrototype.getLayoutSetPrototypeId());
-				sb.append(" and layoutId ");
-				sb.append(layoutSetPrototypeLayoutSet.getLayoutSetId());
-				sb.append(". Update the count in the database to try again.");
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Merge not performed because the fail threshold ",
+						"was reached for layoutSetPrototypeId ",
+						layoutSetPrototype.getLayoutSetPrototypeId(),
+						" and layoutId ",
+						layoutSetPrototypeLayoutSet.getLayoutSetId(),
+						". Update the count in the database to try again."));
 			}
 
 			return false;
@@ -1437,16 +1435,13 @@ public class SitesImpl implements Sites {
 
 			mergeFailCount++;
 
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("Merge fail count increased to ");
-			sb.append(mergeFailCount);
-			sb.append(" for layout set prototype ");
-			sb.append(layoutSetPrototype.getLayoutSetPrototypeId());
-			sb.append(" and layout set ");
-			sb.append(layoutSet.getLayoutSetId());
-
-			_log.error(sb.toString(), exception);
+			_log.error(
+				StringBundler.concat(
+					"Merge fail count increased to ", mergeFailCount,
+					" for layout set prototype ",
+					layoutSetPrototype.getLayoutSetPrototypeId(),
+					" and layout set ", layoutSet.getLayoutSetId()),
+				exception);
 
 			layoutSetPrototypeSettingsUnicodeProperties.setProperty(
 				MERGE_FAIL_COUNT, String.valueOf(mergeFailCount));
@@ -1766,16 +1761,13 @@ public class SitesImpl implements Sites {
 				PropsValues.LAYOUT_PROTOTYPE_MERGE_FAIL_THRESHOLD) {
 
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(6);
-
-				sb.append("Merge not performed because the fail threshold ");
-				sb.append("was reached for layoutPrototypeId ");
-				sb.append(layoutPrototype.getLayoutPrototypeId());
-				sb.append(" and layoutId ");
-				sb.append(layoutPrototypeLayout.getLayoutId());
-				sb.append(". Update the count in the database to try again.");
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Merge not performed because the fail threshold ",
+						"was reached for layoutPrototypeId ",
+						layoutPrototype.getLayoutPrototypeId(),
+						" and layoutId ", layoutPrototypeLayout.getLayoutId(),
+						". Update the count in the database to try again."));
 			}
 
 			return;

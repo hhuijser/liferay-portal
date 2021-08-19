@@ -1338,15 +1338,11 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 	}
 
 	public String getInvokerFilterContent() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(getInvokerFilterContent("ASYNC"));
-		sb.append(getInvokerFilterContent("ERROR"));
-		sb.append(getInvokerFilterContent("FORWARD"));
-		sb.append(getInvokerFilterContent("INCLUDE"));
-		sb.append(getInvokerFilterContent("REQUEST"));
-
-		return sb.toString();
+		return StringBundler.concat(
+			getInvokerFilterContent("ASYNC"), getInvokerFilterContent("ERROR"),
+			getInvokerFilterContent("FORWARD"),
+			getInvokerFilterContent("INCLUDE"),
+			getInvokerFilterContent("REQUEST"));
 	}
 
 	public String getInvokerFilterContent(String dispatcher) {

@@ -91,39 +91,23 @@ public class NettyFabricServerConfig implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
-
-		sb.append("{bossGroupThreadCount=");
-		sb.append(getBossGroupThreadCount());
-		sb.append(", fileServerFolderCompressionLevel=");
-		sb.append(getFileServerFolderCompressionLevel());
-		sb.append(", fileServerGroupThreadCount=");
-		sb.append(getFileServerGroupThreadCount());
-		sb.append(", nettyFabricServerHost=");
-		sb.append(getNettyFabricServerHost());
-		sb.append(", nettyFabricServerPort=");
-		sb.append(getNettyFabricServerPort());
-		sb.append(", registrationGroupThreadCount=");
-		sb.append(getRegistrationGroupThreadCount());
-		sb.append(", repositoryGetFileTimeout=");
-		sb.append(getRepositoryGetFileTimeout());
-		sb.append(", repositoryParentPath=");
-		sb.append(getRepositoryParentPath());
-		sb.append(", rpcGroupThreadCount=");
-		sb.append(getRPCGroupThreadCount());
-		sb.append(", rpcRelayTimeout=");
-		sb.append(getRPCRelayTimeout());
-		sb.append(", workerGroupThreadCount=");
-		sb.append(getWorkerGroupThreadCount());
-		sb.append(", workerStartupTimeout=");
-		sb.append(getWorkerStartupTimeout());
-		sb.append(", shutdownQuietPeriod=");
-		sb.append(getShutdownQuietPeriod());
-		sb.append(", shutdownTimeout=");
-		sb.append(getShutdownTimeout());
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{bossGroupThreadCount=", getBossGroupThreadCount(),
+			", fileServerFolderCompressionLevel=",
+			getFileServerFolderCompressionLevel(),
+			", fileServerGroupThreadCount=", getFileServerGroupThreadCount(),
+			", nettyFabricServerHost=", getNettyFabricServerHost(),
+			", nettyFabricServerPort=", getNettyFabricServerPort(),
+			", registrationGroupThreadCount=",
+			getRegistrationGroupThreadCount(), ", repositoryGetFileTimeout=",
+			getRepositoryGetFileTimeout(), ", repositoryParentPath=",
+			getRepositoryParentPath(), ", rpcGroupThreadCount=",
+			getRPCGroupThreadCount(), ", rpcRelayTimeout=",
+			getRPCRelayTimeout(), ", workerGroupThreadCount=",
+			getWorkerGroupThreadCount(), ", workerStartupTimeout=",
+			getWorkerStartupTimeout(), ", shutdownQuietPeriod=",
+			getShutdownQuietPeriod(), ", shutdownTimeout=",
+			getShutdownTimeout(), "}");
 	}
 
 	private static final long serialVersionUID = 1L;

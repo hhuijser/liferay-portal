@@ -44,56 +44,22 @@ public class PostgreSQLDB extends BaseDB {
 	public static String getCreateRulesSQL(
 		String tableName, String columnName) {
 
-		StringBundler sb = new StringBundler(45);
-
-		sb.append("create or replace rule delete_");
-		sb.append(tableName);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(columnName);
-		sb.append(" as on delete to ");
-		sb.append(tableName);
-		sb.append(" do also select case when exists(select 1 from ");
-		sb.append("pg_catalog.pg_largeobject_metadata where (oid = old.");
-		sb.append(columnName);
-		sb.append(")) then lo_unlink(old.");
-		sb.append(columnName);
-		sb.append(") end from ");
-		sb.append(tableName);
-		sb.append(" where ");
-		sb.append(tableName);
-		sb.append(StringPool.PERIOD);
-		sb.append(columnName);
-		sb.append(" = old.");
-		sb.append(columnName);
-
-		sb.append(";\ncreate or replace rule update_");
-		sb.append(tableName);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(columnName);
-		sb.append(" as on update to ");
-		sb.append(tableName);
-		sb.append(" where old.");
-		sb.append(columnName);
-		sb.append(" is distinct from new.");
-		sb.append(columnName);
-		sb.append(" and old.");
-		sb.append(columnName);
-		sb.append(" is not null do also select case when exists(select 1 ");
-		sb.append("from pg_catalog.pg_largeobject_metadata where (oid = old.");
-		sb.append(columnName);
-		sb.append(")) then lo_unlink(old.");
-		sb.append(columnName);
-		sb.append(") end from ");
-		sb.append(tableName);
-		sb.append(" where ");
-		sb.append(tableName);
-		sb.append(StringPool.PERIOD);
-		sb.append(columnName);
-		sb.append(" = old.");
-		sb.append(columnName);
-		sb.append(StringPool.SEMICOLON);
-
-		return sb.toString();
+		return StringBundler.concat(
+			"create or replace rule delete_", tableName, StringPool.UNDERLINE,
+			columnName, " as on delete to ", tableName,
+			" do also select case when exists(select 1 from ",
+			"pg_catalog.pg_largeobject_metadata where (oid = old.", columnName,
+			")) then lo_unlink(old.", columnName, ") end from ", tableName,
+			" where ", tableName, StringPool.PERIOD, columnName, " = old.",
+			columnName, ";\ncreate or replace rule update_", tableName,
+			StringPool.UNDERLINE, columnName, " as on update to ", tableName,
+			" where old.", columnName, " is distinct from new.", columnName,
+			" and old.", columnName,
+			" is not null do also select case when exists(select 1 ",
+			"from pg_catalog.pg_largeobject_metadata where (oid = old.",
+			columnName, ")) then lo_unlink(old.", columnName, ") end from ",
+			tableName, " where ", tableName, StringPool.PERIOD, columnName,
+			" = old.", columnName, StringPool.SEMICOLON);
 	}
 
 	public PostgreSQLDB(int majorVersion, int minorVersion) {
@@ -113,13 +79,10 @@ public class PostgreSQLDB extends BaseDB {
 	public List<Index> getIndexes(Connection connection) throws SQLException {
 		List<Index> indexes = new ArrayList<>();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select indexname, tablename, indexdef from pg_indexes ");
-		sb.append("where schemaname = current_schema() and (indexname like ");
-		sb.append("'liferay_%' or indexname like 'ix_%')");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"select indexname, tablename, indexdef from pg_indexes ",
+			"where schemaname = current_schema() and (indexname like ",
+			"'liferay_%' or indexname like 'ix_%')");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql);
@@ -146,28 +109,14 @@ public class PostgreSQLDB extends BaseDB {
 
 	@Override
 	public String getPopulateSQL(String databaseName, String sqlContent) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("\\c ");
-		sb.append(databaseName);
-		sb.append(";\n\n");
-		sb.append(sqlContent);
-
-		return sb.toString();
+		return StringBundler.concat("\\c ", databaseName, ";\n\n", sqlContent);
 	}
 
 	@Override
 	public String getRecreateSQL(String databaseName) {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("drop database ");
-		sb.append(databaseName);
-		sb.append(";\n");
-		sb.append("create database ");
-		sb.append(databaseName);
-		sb.append(" encoding = 'UNICODE';\n");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"drop database ", databaseName, ";\n", "create database ",
+			databaseName, " encoding = 'UNICODE';\n");
 	}
 
 	@Override

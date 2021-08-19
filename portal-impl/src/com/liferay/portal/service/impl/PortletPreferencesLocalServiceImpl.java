@@ -134,23 +134,12 @@ public class PortletPreferencesLocalServiceImpl
 		}
 
 		if (_log.isDebugEnabled()) {
-			StringBundler sb = new StringBundler(13);
-
-			sb.append("Add {companyId=");
-			sb.append(companyId);
-			sb.append(", ownerId=");
-			sb.append(ownerId);
-			sb.append(", ownerType=");
-			sb.append(ownerType);
-			sb.append(", plid=");
-			sb.append(plid);
-			sb.append(", portletId=");
-			sb.append(portletId);
-			sb.append(", defaultPreferences=");
-			sb.append(defaultPreferences);
-			sb.append("}");
-
-			_log.debug(sb.toString());
+			_log.debug(
+				StringBundler.concat(
+					"Add {companyId=", companyId, ", ownerId=", ownerId,
+					", ownerType=", ownerType, ", plid=", plid, ", portletId=",
+					portletId, ", defaultPreferences=", defaultPreferences,
+					"}"));
 		}
 
 		try {

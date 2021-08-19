@@ -116,13 +116,8 @@ public class FileImpl implements com.liferay.portal.kernel.util.File {
 			return fileNameWithParentheticalSuffix;
 		}
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(fileNameWithParentheticalSuffix);
-		sb.append(StringPool.PERIOD);
-		sb.append(extension);
-
-		return sb.toString();
+		return StringBundler.concat(
+			fileNameWithParentheticalSuffix, StringPool.PERIOD, extension);
 	}
 
 	@Override

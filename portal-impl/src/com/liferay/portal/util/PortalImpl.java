@@ -3951,15 +3951,9 @@ public class PortalImpl implements Portal {
 
 		long plid = LayoutConstants.DEFAULT_PLID;
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(groupId);
-		sb.append(StringPool.SPACE);
-		sb.append(privateLayout);
-		sb.append(StringPool.SPACE);
-		sb.append(portletId);
-
-		String key = sb.toString();
+		String key = StringBundler.concat(
+			groupId, StringPool.SPACE, privateLayout, StringPool.SPACE,
+			portletId);
 
 		Long plidObj = _plidToPortletIdMap.get(key);
 
@@ -5605,14 +5599,8 @@ public class PortalImpl implements Portal {
 		x = url.indexOf(CharPool.QUESTION);
 
 		if (x != -1) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(url.substring(0, x));
-			sb.append(JSESSIONID);
-			sb.append(sessionId);
-			sb.append(url.substring(x));
-
-			return sb.toString();
+			return StringBundler.concat(
+				url.substring(0, x), JSESSIONID, sessionId, url.substring(x));
 		}
 
 		// In IE6, http://www.abc.com;jsessionid=XYZ does not work, but

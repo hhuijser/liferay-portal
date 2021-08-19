@@ -243,14 +243,11 @@ public class HotDeployImpl implements HotDeploy {
 		else {
 			if (!_dependentHotDeployEvents.contains(hotDeployEvent)) {
 				if (_log.isInfoEnabled()) {
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("Queueing ");
-					sb.append(servletContextName);
-					sb.append(" for deploy because it is missing ");
-					sb.append(getRequiredServletContextNames(hotDeployEvent));
-
-					_log.info(sb.toString());
+					_log.info(
+						StringBundler.concat(
+							"Queueing ", servletContextName,
+							" for deploy because it is missing ",
+							getRequiredServletContextNames(hotDeployEvent)));
 				}
 
 				_dependentHotDeployEvents.add(hotDeployEvent);
@@ -260,15 +257,12 @@ public class HotDeployImpl implements HotDeploy {
 					for (HotDeployEvent dependentHotDeployEvent :
 							_dependentHotDeployEvents) {
 
-						StringBundler sb = new StringBundler(3);
-
-						sb.append(servletContextName);
-						sb.append(" is still in queue because it is missing ");
-						sb.append(
-							getRequiredServletContextNames(
-								dependentHotDeployEvent));
-
-						_log.info(sb.toString());
+						_log.info(
+							StringBundler.concat(
+								servletContextName,
+								" is still in queue because it is missing ",
+								getRequiredServletContextNames(
+									dependentHotDeployEvent)));
 					}
 				}
 			}

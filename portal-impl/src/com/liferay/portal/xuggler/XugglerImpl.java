@@ -133,17 +133,14 @@ public class XugglerImpl implements Xuggler {
 
 		_informAdministrator = false;
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("Liferay does not have the Xuggler native libraries ");
-		sb.append("installed. In order to generate video and audio previews, ");
-		sb.append("please follow the instructions for Xuggler in the Server ");
-		sb.append("Administration section of the Control Panel at: ");
-		sb.append("http://<server>/group/control_panel/manage/-/server");
-		sb.append("/external-services. Warning: ");
-		sb.append(errorMessage);
-
-		_log.warn(sb.toString());
+		_log.warn(
+			StringBundler.concat(
+				"Liferay does not have the Xuggler native libraries ",
+				"installed. In order to generate video and audio previews, ",
+				"please follow the instructions for Xuggler in the Server ",
+				"Administration section of the Control Panel at: ",
+				"http://<server>/group/control_panel/manage/-/server",
+				"/external-services. Warning: ", errorMessage));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(XugglerImpl.class);

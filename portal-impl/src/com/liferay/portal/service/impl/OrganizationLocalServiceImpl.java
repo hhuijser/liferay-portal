@@ -2279,17 +2279,16 @@ public class OrganizationLocalServiceImpl
 	protected long[] getReindexOrganizationIds(Organization organization)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(organization.getOrganizationId());
-		sb.append(StringPool.FORWARD_SLASH);
-
 		List<Organization> organizations =
 			organizationPersistence.findByC_LikeT(
 				organization.getCompanyId(),
-				CustomSQLUtil.keywords(sb.toString())[0], QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new OrganizationNameComparator(true));
+				CustomSQLUtil.keywords(
+					StringBundler.concat(
+						StringPool.FORWARD_SLASH,
+						organization.getOrganizationId(),
+						StringPool.FORWARD_SLASH))[0],
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new OrganizationNameComparator(true));
 
 		long[] organizationIds = new long[organizations.size()];
 

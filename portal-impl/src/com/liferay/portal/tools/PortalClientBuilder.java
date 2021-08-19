@@ -210,24 +210,18 @@ public class PortalClientBuilder {
 			soapNamespace.substring(0, pos) + ".client.soap" +
 				soapNamespace.substring(pos);
 
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("com.liferay.client.soap.portal.kernel.util=");
-		sb.append("http://util.kernel.portal.liferay.com\n");
-
-		sb.append("com.liferay.client.soap.portal.model=");
-		sb.append("http://model.portal.liferay.com\n");
-
-		sb.append("com.liferay.client.soap.portal.service=");
-		sb.append("http://service.portal.liferay.com\n");
-
-		sb.append(soapNamespace);
-		sb.append(".model=http://model.knowledgebase.liferay.com\n");
-
-		sb.append(soapNamespace);
-		sb.append(".service.http=urn:http.service.knowledgebase.liferay.com\n");
-
-		FileUtil.write(mappingFile, sb.toString());
+		FileUtil.write(
+			mappingFile,
+			StringBundler.concat(
+				"com.liferay.client.soap.portal.kernel.util=",
+				"http://util.kernel.portal.liferay.com\n",
+				"com.liferay.client.soap.portal.model=",
+				"http://model.portal.liferay.com\n",
+				"com.liferay.client.soap.portal.service=",
+				"http://service.portal.liferay.com\n", soapNamespace,
+				".model=http://model.knowledgebase.liferay.com\n",
+				soapNamespace,
+				".service.http=urn:http.service.knowledgebase.liferay.com\n"));
 	}
 
 	private final HttpServlet _axisHttpServlet;

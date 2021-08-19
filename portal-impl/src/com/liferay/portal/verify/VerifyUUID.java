@@ -96,14 +96,6 @@ public class VerifyUUID extends VerifyProcess {
 			}
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("update ");
-		sb.append(verifiableUUIDModel.getTableName());
-		sb.append(" set uuid_ = ? where ");
-		sb.append(verifiableUUIDModel.getPrimaryKeyColumnName());
-		sb.append(" = ?");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableUUIDModel.getTableName());
 			Connection connection = DataAccess.getConnection();
@@ -115,7 +107,12 @@ public class VerifyUUID extends VerifyProcess {
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.autoBatch(
-					connection.prepareStatement(sb.toString()))) {
+					connection.prepareStatement(
+						StringBundler.concat(
+							"update ", verifiableUUIDModel.getTableName(),
+							" set uuid_ = ? where ",
+							verifiableUUIDModel.getPrimaryKeyColumnName(),
+							" = ?")))) {
 
 			while (resultSet.next()) {
 				long pk = resultSet.getLong(

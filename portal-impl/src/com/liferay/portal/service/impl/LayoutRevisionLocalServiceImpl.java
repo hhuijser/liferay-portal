@@ -336,17 +336,10 @@ public class LayoutRevisionLocalServiceImpl
 			return layoutRevisions.get(0);
 		}
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{layoutSetBranchId=");
-		sb.append(layoutSetBranchId);
-		sb.append(", layoutBranchId=");
-		sb.append(layoutBranchId);
-		sb.append(", plid=");
-		sb.append(plid);
-		sb.append("}");
-
-		throw new NoSuchLayoutRevisionException(sb.toString());
+		throw new NoSuchLayoutRevisionException(
+			StringBundler.concat(
+				"{layoutSetBranchId=", layoutSetBranchId, ", layoutBranchId=",
+				layoutBranchId, ", plid=", plid, "}"));
 	}
 
 	@Override

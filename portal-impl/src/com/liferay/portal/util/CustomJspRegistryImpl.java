@@ -40,14 +40,9 @@ public class CustomJspRegistryImpl implements CustomJspRegistry {
 				fileName, StringPool.PERIOD, servletContextName);
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(fileName.substring(0, pos));
-		sb.append(CharPool.PERIOD);
-		sb.append(servletContextName);
-		sb.append(fileName.substring(pos));
-
-		return sb.toString();
+		return StringBundler.concat(
+			fileName.substring(0, pos), CharPool.PERIOD, servletContextName,
+			fileName.substring(pos));
 	}
 
 	@Override

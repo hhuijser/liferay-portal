@@ -51,15 +51,9 @@ public class InvokerPortletUtil {
 	public static String encodeResponseKey(
 		long plid, String portletId, String languageId) {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(StringUtil.toHexString(plid));
-		sb.append(StringPool.UNDERLINE);
-		sb.append(portletId);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(languageId);
-
-		return sb.toString();
+		return StringBundler.concat(
+			StringUtil.toHexString(plid), StringPool.UNDERLINE, portletId,
+			StringPool.UNDERLINE, languageId);
 	}
 
 	public static Map<String, InvokerPortletResponse> getResponses(

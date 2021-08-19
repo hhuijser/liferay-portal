@@ -475,15 +475,10 @@ public class DLImpl implements DL {
 	public String getFileEntryImage(
 		FileEntry fileEntry, ThemeDisplay themeDisplay) {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<img src=\"");
-		sb.append(themeDisplay.getPathThemeImages());
-		sb.append("/file_system/small/");
-		sb.append(fileEntry.getIcon());
-		sb.append(".png\" style=\"border-width: 0; text-align: left;\">");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<img src=\"", themeDisplay.getPathThemeImages(),
+			"/file_system/small/", fileEntry.getIcon(),
+			".png\" style=\"border-width: 0; text-align: left;\">");
 	}
 
 	@Override
@@ -739,15 +734,8 @@ public class DLImpl implements DL {
 			return StringBundler.concat(id, StringPool.PERIOD, version);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(id);
-		sb.append(StringPool.PERIOD);
-		sb.append(version);
-		sb.append(StringPool.PERIOD);
-		sb.append(languageId);
-
-		return sb.toString();
+		return StringBundler.concat(
+			id, StringPool.PERIOD, version, StringPool.PERIOD, languageId);
 	}
 
 	/**

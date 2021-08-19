@@ -257,14 +257,12 @@ public class MainServlet extends HttpServlet {
 
 		if (_log.isWarnEnabled()) {
 			if (!StringPool.DEFAULT_CHARSET_NAME.startsWith("UTF-")) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("The default JVM character set \"");
-				sb.append(StringPool.DEFAULT_CHARSET_NAME);
-				sb.append("\" is not UTF. Please review the JVM property ");
-				sb.append("\"file.encoding\".");
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"The default JVM character set \"",
+						StringPool.DEFAULT_CHARSET_NAME,
+						"\" is not UTF. Please review the JVM property ",
+						"\"file.encoding\"."));
 			}
 
 			TimeZone timeZone = TimeZone.getDefault();
@@ -274,14 +272,11 @@ public class MainServlet extends HttpServlet {
 			if (!Objects.equals("UTC", timeZoneID) &&
 				!Objects.equals("GMT", timeZoneID)) {
 
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("The default JVM time zone \"");
-				sb.append(timeZoneID);
-				sb.append("\" is not UTC or GMT. Please review the JVM ");
-				sb.append("property \"user.timezone\".");
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"The default JVM time zone \"", timeZoneID,
+						"\" is not UTC or GMT. Please review the JVM ",
+						"property \"user.timezone\"."));
 			}
 		}
 
@@ -843,15 +838,11 @@ public class MainServlet extends HttpServlet {
 		for (String langType :
 				LayoutTemplateLocalServiceImpl.supportedLangTypes) {
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("(&(language.type=");
-			sb.append(langType);
-			sb.append(")(objectClass=");
-			sb.append(TemplateManager.class.getName());
-			sb.append("))");
-
-			filters.add(registry.getFilter(sb.toString()));
+			filters.add(
+				registry.getFilter(
+					StringBundler.concat(
+						"(&(language.type=", langType, ")(objectClass=",
+						TemplateManager.class.getName(), "))")));
 		}
 
 		serviceDependencyManager.registerDependencies(

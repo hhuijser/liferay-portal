@@ -37,13 +37,8 @@ public class DialectImpl implements Dialect {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("{_dialect=");
-		sb.append(String.valueOf(_dialect));
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{_dialect=", String.valueOf(_dialect), "}");
 	}
 
 	private final org.hibernate.dialect.Dialect _dialect;

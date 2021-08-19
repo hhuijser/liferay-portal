@@ -235,23 +235,12 @@ public class FileHelperUtil {
 
 				double compressionRatio = rawSize / zippedSize;
 
-				StringBundler sb = new StringBundler(13);
-
-				sb.append("Unzipped ");
-				sb.append(sourcePath);
-				sb.append(" (");
-				sb.append(zippedSize);
-				sb.append(" bytes) to ");
-				sb.append(destPath);
-				sb.append(" (");
-				sb.append(rawSize);
-				sb.append(" bytes)\" in ");
-				sb.append(time);
-				sb.append("s with a ");
-				sb.append(compressionRatio);
-				sb.append("compression ratio");
-
-				_log.debug(sb.toString());
+				_log.debug(
+					StringBundler.concat(
+						"Unzipped ", sourcePath, " (", zippedSize,
+						" bytes) to ", destPath, " (", rawSize, " bytes)\" in ",
+						time, "s with a ", compressionRatio,
+						"compression ratio"));
 			}
 		}
 		catch (IOException ioException) {
@@ -328,23 +317,11 @@ public class FileHelperUtil {
 
 				double compressionRatio = rawSize / zippedSize;
 
-				StringBundler sb = new StringBundler(13);
-
-				sb.append("Zipped ");
-				sb.append(sourcePath);
-				sb.append(" (");
-				sb.append(rawSize);
-				sb.append(" bytes) to ");
-				sb.append(zipPath);
-				sb.append(" (");
-				sb.append(zippedSize);
-				sb.append(" bytes)\" in ");
-				sb.append(time);
-				sb.append("s with a ");
-				sb.append(compressionRatio);
-				sb.append("compression ratio");
-
-				_log.debug(sb.toString());
+				_log.debug(
+					StringBundler.concat(
+						"Zipped ", sourcePath, " (", rawSize, " bytes) to ",
+						zipPath, " (", zippedSize, " bytes)\" in ", time,
+						"s with a ", compressionRatio, "compression ratio"));
 			}
 		}
 		catch (IOException ioException) {

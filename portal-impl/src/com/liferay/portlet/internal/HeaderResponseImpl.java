@@ -415,15 +415,8 @@ public class HeaderResponseImpl
 			}
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(name);
-		sb.append(StringPool.COLON);
-		sb.append(scope);
-		sb.append(StringPool.COLON);
-		sb.append(versionKey);
-
-		String outputKey = sb.toString();
+		String outputKey = StringBundler.concat(
+			name, StringPool.COLON, scope, StringPool.COLON, versionKey);
 
 		if (outputData.addOutputKey(outputKey)) {
 			if (parsedElement != null) {

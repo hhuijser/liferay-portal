@@ -1952,14 +1952,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		if (autoPassword) {
 			if (LDAPSettingsUtil.isPasswordPolicyEnabled(user.getCompanyId())) {
 				if (_log.isWarnEnabled()) {
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("When LDAP password policy is enabled, it is ");
-					sb.append("possible that portal generated passwords will ");
-					sb.append("not match the LDAP policy. Using ");
-					sb.append("RegExpToolkit to generate new password.");
-
-					_log.warn(sb.toString());
+					_log.warn(
+						StringBundler.concat(
+							"When LDAP password policy is enabled, it is ",
+							"possible that portal generated passwords will ",
+							"not match the LDAP policy. Using ",
+							"RegExpToolkit to generate new password."));
 				}
 
 				RegExpToolkit regExpToolkit = new RegExpToolkit();
@@ -3979,16 +3977,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			TicketConstants.TYPE_PASSWORD, null, expirationDate,
 			serviceContext);
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathMain());
-		sb.append("/portal/update_password?p_l_id=");
-		sb.append(serviceContext.getPlid());
-		sb.append("&ticketKey=");
-		sb.append(ticket.getKey());
-
-		String passwordResetURL = sb.toString();
+		String passwordResetURL = StringBundler.concat(
+			serviceContext.getPortalURL(), serviceContext.getPathMain(),
+			"/portal/update_password?p_l_id=", serviceContext.getPlid(),
+			"&ticketKey=", ticket.getKey());
 
 		sendPasswordNotification(
 			user, companyId, null, passwordResetURL, fromName, fromAddress,

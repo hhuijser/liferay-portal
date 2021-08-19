@@ -74,16 +74,14 @@ public class DBUpgrader {
 			return;
 		}
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("The database contains changes from a previous upgrade ");
-		sb.append("attempt that failed. Please restore the old database and ");
-		sb.append("file system and retry the upgrade. A patch may be ");
-		sb.append("required if the upgrade failed due to a bug or an ");
-		sb.append("unforeseen data permutation that resulted from a corrupt ");
-		sb.append("database.");
-
-		throw new IllegalStateException(sb.toString());
+		throw new IllegalStateException(
+			StringBundler.concat(
+				"The database contains changes from a previous upgrade ",
+				"attempt that failed. Please restore the old database and ",
+				"file system and retry the upgrade. A patch may be ",
+				"required if the upgrade failed due to a bug or an ",
+				"unforeseen data permutation that resulted from a corrupt ",
+				"database."));
 	}
 
 	public static void checkRequiredBuildNumber(int requiredBuildNumber)
@@ -92,16 +90,12 @@ public class DBUpgrader {
 		int buildNumber = _getReleaseColumnValue("buildNumber");
 
 		if (buildNumber > ReleaseInfo.getParentBuildNumber()) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("Attempting to deploy an older Liferay Portal version. ");
-			sb.append("Current build number is ");
-			sb.append(buildNumber);
-			sb.append(" and attempting to deploy number ");
-			sb.append(ReleaseInfo.getParentBuildNumber());
-			sb.append(".");
-
-			throw new IllegalStateException(sb.toString());
+			throw new IllegalStateException(
+				StringBundler.concat(
+					"Attempting to deploy an older Liferay Portal version. ",
+					"Current build number is ", buildNumber,
+					" and attempting to deploy number ",
+					ReleaseInfo.getParentBuildNumber(), "."));
 		}
 		else if (buildNumber < requiredBuildNumber) {
 			String msg =

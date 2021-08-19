@@ -55,15 +55,11 @@ public class UpgradeMySQL extends UpgradeProcess {
 			Statement statement, String tableName, String columnName)
 		throws SQLException {
 
-		StringBundler sb = new StringBundler(5);
+		try (ResultSet resultSet = statement.executeQuery(
+				StringBundler.concat(
+					"show columns from ", tableName, " like \"", columnName,
+					"\""))) {
 
-		sb.append("show columns from ");
-		sb.append(tableName);
-		sb.append(" like \"");
-		sb.append(columnName);
-		sb.append("\"");
-
-		try (ResultSet resultSet = statement.executeQuery(sb.toString())) {
 			if (!resultSet.next()) {
 				throw new IllegalStateException(
 					StringBundler.concat(

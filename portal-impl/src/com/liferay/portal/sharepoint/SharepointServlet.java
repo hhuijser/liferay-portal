@@ -135,23 +135,18 @@ public class SharepointServlet extends HttpServlet {
 	protected void vtiInfHtml(HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(13);
-
-		sb.append("<!-- FrontPage Configuration Information");
-		sb.append(StringPool.NEW_LINE);
-		sb.append(" FPVersion=\"6.0.2.9999\"");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("FPShtmlScriptUrl=\"_vti_bin/shtml.dll/_vti_rpc\"");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("FPAuthorScriptUrl=\"_vti_bin/_vti_aut/author.dll\"");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("FPAdminScriptUrl=\"_vti_bin/_vti_adm/admin.dll\"");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("TPScriptUrl=\"_vti_bin/owssvr.dll\"");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("-->");
-
-		ServletResponseUtil.write(httpServletResponse, sb.toString());
+		ServletResponseUtil.write(
+			httpServletResponse,
+			StringBundler.concat(
+				"<!-- FrontPage Configuration Information", StringPool.NEW_LINE,
+				" FPVersion=\"6.0.2.9999\"", StringPool.NEW_LINE,
+				"FPShtmlScriptUrl=\"_vti_bin/shtml.dll/_vti_rpc\"",
+				StringPool.NEW_LINE,
+				"FPAuthorScriptUrl=\"_vti_bin/_vti_aut/author.dll\"",
+				StringPool.NEW_LINE,
+				"FPAdminScriptUrl=\"_vti_bin/_vti_adm/admin.dll\"",
+				StringPool.NEW_LINE, "TPScriptUrl=\"_vti_bin/owssvr.dll\"",
+				StringPool.NEW_LINE, "-->"));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

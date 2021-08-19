@@ -432,17 +432,10 @@ public class ExpandoColumnLocalServiceImpl
 			tableId, name);
 
 		if ((column != null) && (column.getColumnId() != columnId)) {
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("{tableId=");
-			sb.append(tableId);
-			sb.append(", columnId=");
-			sb.append(columnId);
-			sb.append(", name=");
-			sb.append(name);
-			sb.append("}");
-
-			throw new DuplicateColumnNameException(sb.toString());
+			throw new DuplicateColumnNameException(
+				StringBundler.concat(
+					"{tableId=", tableId, ", columnId=", columnId, ", name=",
+					name, "}"));
 		}
 
 		if ((type != ExpandoColumnConstants.BOOLEAN) &&

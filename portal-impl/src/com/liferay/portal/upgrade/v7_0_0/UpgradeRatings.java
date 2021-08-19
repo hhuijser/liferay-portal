@@ -110,14 +110,11 @@ public class UpgradeRatings extends UpgradeProcess {
 
 	protected void upgradeRatingsStats() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("select classNameId, classPK, count(1) as ");
-			sb.append("totalEntries, sum(RatingsEntry.score) as totalScore, ");
-			sb.append("sum(RatingsEntry.score) / count(1) as averageScore ");
-			sb.append("from RatingsEntry group by classNameId, classPK");
-
-			String selectSQL = sb.toString();
+			String selectSQL = StringBundler.concat(
+				"select classNameId, classPK, count(1) as ",
+				"totalEntries, sum(RatingsEntry.score) as totalScore, ",
+				"sum(RatingsEntry.score) / count(1) as averageScore ",
+				"from RatingsEntry group by classNameId, classPK");
 
 			String updateSQL =
 				"update RatingsStats set totalEntries = ?, totalScore = ?, " +

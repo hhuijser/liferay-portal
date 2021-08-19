@@ -58,16 +58,12 @@ public class UpgradeOracle extends UpgradeProcess {
 				catch (SQLException sqlException) {
 					if (sqlException.getErrorCode() == 1441) {
 						if (_log.isWarnEnabled()) {
-							StringBundler sb = new StringBundler(6);
-
-							sb.append("Unable to alter length of column ");
-							sb.append(columnName);
-							sb.append(" for table ");
-							sb.append(tableName);
-							sb.append(" because it contains values that are ");
-							sb.append("larger than the new column length");
-
-							_log.warn(sb.toString());
+							_log.warn(
+								StringBundler.concat(
+									"Unable to alter length of column ",
+									columnName, " for table ", tableName,
+									" because it contains values that are ",
+									"larger than the new column length"));
 						}
 					}
 					else {

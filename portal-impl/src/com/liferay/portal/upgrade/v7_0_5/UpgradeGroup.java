@@ -42,18 +42,16 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	protected void updateParentGroup() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("select stagingGroup_.groupId, ");
-			sb.append("liveGroup_.parentGroupId from Group_ stagingGroup_ ");
-			sb.append("inner join Group_ liveGroup_ on (liveGroup_.groupId = ");
-			sb.append("stagingGroup_.liveGroupId) where ");
-			sb.append("(stagingGroup_.remoteStagingGroupCount = 0) and ");
-			sb.append("(liveGroup_.parentGroupId != ");
-			sb.append("stagingGroup_.parentGroupId)");
-
 			try (PreparedStatement preparedStatement1 =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select stagingGroup_.groupId, ",
+							"liveGroup_.parentGroupId from Group_ stagingGroup_ ",
+							"inner join Group_ liveGroup_ on (liveGroup_.groupId = ",
+							"stagingGroup_.liveGroupId) where ",
+							"(stagingGroup_.remoteStagingGroupCount = 0) and ",
+							"(liveGroup_.parentGroupId != ",
+							"stagingGroup_.parentGroupId)"));
 				PreparedStatement preparedStatement2 =
 					connection.prepareStatement(
 						"select treePath from Group_ where groupId = ?");
@@ -89,15 +87,9 @@ public class UpgradeGroup extends UpgradeProcess {
 									"Unable to find group " + parentGroupId);
 							}
 
-							StringBundler treePathSB = new StringBundler(5);
-
-							treePathSB.append(StringPool.SLASH);
-							treePathSB.append(parentGroupId);
-							treePathSB.append(StringPool.SLASH);
-							treePathSB.append(groupId);
-							treePathSB.append(StringPool.SLASH);
-
-							treePath = treePathSB.toString();
+							treePath = StringBundler.concat(
+								StringPool.SLASH, parentGroupId,
+								StringPool.SLASH, groupId, StringPool.SLASH);
 						}
 
 						preparedStatement3.setLong(1, parentGroupId);

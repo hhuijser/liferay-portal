@@ -97,15 +97,12 @@ public class PortletSessionImplTest {
 		Assert.assertSame(_mockHttpSession, portletSessionImpl.session);
 		Assert.assertSame(_portletContext, portletSessionImpl.portletContext);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(LiferayPortletSession.PORTLET_SCOPE_NAMESPACE);
-		sb.append(_PORTLET_NAME);
-		sb.append(LiferayPortletSession.LAYOUT_SEPARATOR);
-		sb.append(_PLID);
-		sb.append(StringPool.QUESTION);
-
-		Assert.assertEquals(sb.toString(), portletSessionImpl.scopePrefix);
+		Assert.assertEquals(
+			StringBundler.concat(
+				LiferayPortletSession.PORTLET_SCOPE_NAMESPACE, _PORTLET_NAME,
+				LiferayPortletSession.LAYOUT_SEPARATOR, _PLID,
+				StringPool.QUESTION),
+			portletSessionImpl.scopePrefix);
 	}
 
 	@Test

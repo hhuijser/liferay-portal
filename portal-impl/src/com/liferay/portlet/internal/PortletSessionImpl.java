@@ -58,15 +58,9 @@ public class PortletSessionImpl implements LiferayPortletSession {
 		this.session = _wrapHttpSession(session);
 		this.portletContext = portletContext;
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(PORTLET_SCOPE_NAMESPACE);
-		sb.append(portletName);
-		sb.append(LAYOUT_SEPARATOR);
-		sb.append(plid);
-		sb.append(StringPool.QUESTION);
-
-		scopePrefix = sb.toString();
+		scopePrefix = StringBundler.concat(
+			PORTLET_SCOPE_NAMESPACE, portletName, LAYOUT_SEPARATOR, plid,
+			StringPool.QUESTION);
 	}
 
 	@Override

@@ -71,14 +71,11 @@ public class LoginAction implements Action {
 		if (PropsValues.COMPANY_SECURITY_AUTH_REQUIRES_HTTPS &&
 			!httpServletRequest.isSecure()) {
 
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(PortalUtil.getPortalURL(httpServletRequest, true));
-			sb.append(httpServletRequest.getRequestURI());
-			sb.append(StringPool.QUESTION);
-			sb.append(httpServletRequest.getQueryString());
-
-			httpServletResponse.sendRedirect(sb.toString());
+			httpServletResponse.sendRedirect(
+				StringBundler.concat(
+					PortalUtil.getPortalURL(httpServletRequest, true),
+					httpServletRequest.getRequestURI(), StringPool.QUESTION,
+					httpServletRequest.getQueryString()));
 
 			return null;
 		}

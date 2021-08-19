@@ -58,19 +58,14 @@ public class XugglerRawMetadataProcessor extends BaseRawMetadataProcessor {
 	protected String convertTime(long microseconds) {
 		long milliseconds = microseconds / 1000L;
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(_decimalFormatter.format(milliseconds / Time.HOUR));
-		sb.append(StringPool.COLON);
-		sb.append(
-			_decimalFormatter.format(milliseconds % Time.HOUR / Time.MINUTE));
-		sb.append(StringPool.COLON);
-		sb.append(
-			_decimalFormatter.format(milliseconds % Time.MINUTE / Time.SECOND));
-		sb.append(StringPool.PERIOD);
-		sb.append(_decimalFormatter.format(milliseconds % Time.SECOND / 10));
-
-		return sb.toString();
+		return StringBundler.concat(
+			_decimalFormatter.format(milliseconds / Time.HOUR),
+			StringPool.COLON,
+			_decimalFormatter.format(milliseconds % Time.HOUR / Time.MINUTE),
+			StringPool.COLON,
+			_decimalFormatter.format(milliseconds % Time.MINUTE / Time.SECOND),
+			StringPool.PERIOD,
+			_decimalFormatter.format(milliseconds % Time.SECOND / 10));
 	}
 
 	protected Metadata extractMetadata(File file) throws Exception {

@@ -1610,16 +1610,11 @@ public class HttpImpl implements Http {
 			long contentLengthLong = response.getContentLengthLong();
 
 			if (contentLengthLong > _MAX_BYTE_ARRAY_LENGTH) {
-				StringBundler sb = new StringBundler(5);
-
-				sb.append("Retrieving ");
-				sb.append(location);
-				sb.append(" yields a file of size ");
-				sb.append(contentLengthLong);
-				sb.append(
-					" bytes that is too large to convert to a byte array");
-
-				throw new OutOfMemoryError(sb.toString());
+				throw new OutOfMemoryError(
+					StringBundler.concat(
+						"Retrieving ", location, " yields a file of size ",
+						contentLengthLong,
+						" bytes that is too large to convert to a byte array"));
 			}
 
 			return FileUtil.getBytes(inputStream);

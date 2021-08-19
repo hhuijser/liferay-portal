@@ -115,14 +115,11 @@ public class AuthenticatedSessionManagerImpl
 					String referer = httpServletRequest.getHeader(
 						HttpHeaders.REFERER);
 
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("Ignoring login attempt because the password ");
-					sb.append("parameter was found for the request with the ");
-					sb.append("referer header: ");
-					sb.append(referer);
-
-					_log.warn(sb.toString());
+					_log.warn(
+						StringBundler.concat(
+							"Ignoring login attempt because the password ",
+							"parameter was found for the request with the ",
+							"referer header: ", referer));
 				}
 
 				return;

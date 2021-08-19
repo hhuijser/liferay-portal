@@ -203,24 +203,13 @@ public class JSONWebServiceActionsManagerImpl
 		}
 		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				StringBundler sb = new StringBundler(14);
-
-				sb.append("Unable to register service method {actionClass=");
-				sb.append(actionClass);
-				sb.append(", actionMethod=");
-				sb.append(actionMethod);
-				sb.append(", contextName=");
-				sb.append(contextName);
-				sb.append(", contextPath=");
-				sb.append(contextPath);
-				sb.append(", method=");
-				sb.append(method);
-				sb.append(", path=");
-				sb.append(path);
-				sb.append("} due to ");
-				sb.append(exception.getMessage());
-
-				_log.warn(sb.toString());
+				_log.warn(
+					StringBundler.concat(
+						"Unable to register service method {actionClass=",
+						actionClass, ", actionMethod=", actionMethod,
+						", contextName=", contextName, ", contextPath=",
+						contextPath, ", method=", method, ", path=", path,
+						"} due to ", exception.getMessage()));
 			}
 		}
 	}
@@ -244,27 +233,14 @@ public class JSONWebServiceActionsManagerImpl
 			}
 		}
 		catch (Exception exception) {
-			StringBundler sb = new StringBundler(17);
-
-			sb.append("Something went wrong attempting to register service ");
-			sb.append("method {contextName=");
-			sb.append(contextName);
-			sb.append(",contextPath=");
-			sb.append(contextPath);
-			sb.append(",actionObject=");
-			sb.append(actionObject);
-			sb.append(",actionClass=");
-			sb.append(actionClass);
-			sb.append(",actionMethod=");
-			sb.append(actionMethod);
-			sb.append(",path=");
-			sb.append(path);
-			sb.append(",method=");
-			sb.append(method);
-			sb.append("} due to ");
-			sb.append(exception.getMessage());
-
-			_log.warn(sb.toString());
+			_log.warn(
+				StringBundler.concat(
+					"Something went wrong attempting to register service ",
+					"method {contextName=", contextName, ",contextPath=",
+					contextPath, ",actionObject=", actionObject,
+					",actionClass=", actionClass, ",actionMethod=",
+					actionMethod, ",path=", path, ",method=", method,
+					"} due to ", exception.getMessage()));
 		}
 	}
 
@@ -677,14 +653,9 @@ public class JSONWebServiceActionsManagerImpl
 			contextName = servletContext.getServletContextName();
 
 			if (Validator.isNotNull(contextName)) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append(StringPool.SLASH);
-				sb.append(contextName);
-				sb.append(StringPool.PERIOD);
-				sb.append(path.substring(1));
-
-				path = sb.toString();
+				path = StringBundler.concat(
+					StringPool.SLASH, contextName, StringPool.PERIOD,
+					path.substring(1));
 			}
 		}
 

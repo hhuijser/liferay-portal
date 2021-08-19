@@ -48,19 +48,14 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 		long kaleoProcessClassNameId = _classNameLocalService.getClassNameId(
 			KaleoProcess.class.getName());
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select KaleoProcess.kaleoProcessId, KaleoProcess.");
-		sb.append("DDMTemplateId from KaleoProcess where (KaleoProcess.");
-		sb.append("DDMTemplateId > 0) and not exists (select 1 from ");
-		sb.append("DDMTemplateLink where (DDMTemplateLink.classPK = ");
-		sb.append("KaleoProcess.kaleoProcessId) and (DDMTemplateLink.");
-		sb.append("classNameId = ");
-		sb.append(kaleoProcessClassNameId);
-		sb.append("))");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select KaleoProcess.kaleoProcessId, KaleoProcess.",
+					"DDMTemplateId from KaleoProcess where (KaleoProcess.",
+					"DDMTemplateId > 0) and not exists (select 1 from ",
+					"DDMTemplateLink where (DDMTemplateLink.classPK = ",
+					"KaleoProcess.kaleoProcessId) and (DDMTemplateLink.",
+					"classNameId = ", kaleoProcessClassNameId, "))"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {
@@ -78,19 +73,15 @@ public class KaleoProcessTemplateLinkUpgradeProcess extends UpgradeProcess {
 			_classNameLocalService.getClassNameId(
 				KaleoProcessLink.class.getName());
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select KaleoProcessLink.kaleoProcessLinkId, ");
-		sb.append("KaleoProcessLink.DDMTemplateId from KaleoProcessLink ");
-		sb.append("where (KaleoProcessLink.DDMTemplateId > 0) and not exists ");
-		sb.append("(select 1 from DDMTemplateLink where (DDMTemplateLink.");
-		sb.append("classPK = KaleoProcessLink.kaleoProcessLinkId) and ");
-		sb.append("(DDMTemplateLink.classNameId = ");
-		sb.append(kaleoProcessLinkClassNameId);
-		sb.append("))");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select KaleoProcessLink.kaleoProcessLinkId, ",
+					"KaleoProcessLink.DDMTemplateId from KaleoProcessLink ",
+					"where (KaleoProcessLink.DDMTemplateId > 0) and not exists ",
+					"(select 1 from DDMTemplateLink where (DDMTemplateLink.",
+					"classPK = KaleoProcessLink.kaleoProcessLinkId) and ",
+					"(DDMTemplateLink.classNameId = ",
+					kaleoProcessLinkClassNameId, "))"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			while (resultSet.next()) {

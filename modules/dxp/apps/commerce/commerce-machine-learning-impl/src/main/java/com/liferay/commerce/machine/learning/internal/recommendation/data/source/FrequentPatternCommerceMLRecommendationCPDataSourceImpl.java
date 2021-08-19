@@ -109,14 +109,11 @@ public class FrequentPatternCommerceMLRecommendationCPDataSourceImpl
 					getRecommendedEntryClassPK();
 
 			if (_log.isTraceEnabled()) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Recommended entry ");
-				sb.append(recommendedEntryClassPK);
-				sb.append(" has score ");
-				sb.append(frequentPatternCommerceMLRecommendation.getScore());
-
-				_log.trace(sb.toString());
+				_log.trace(
+					StringBundler.concat(
+						"Recommended entry ", recommendedEntryClassPK,
+						" has score ",
+						frequentPatternCommerceMLRecommendation.getScore()));
 			}
 
 			try {

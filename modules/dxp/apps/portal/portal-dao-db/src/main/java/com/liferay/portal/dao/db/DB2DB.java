@@ -60,29 +60,17 @@ public class DB2DB extends BaseDB {
 
 	@Override
 	public String getPopulateSQL(String databaseName, String sqlContent) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("connect to ");
-		sb.append(databaseName);
-		sb.append(";\n");
-		sb.append(sqlContent);
-
-		return sb.toString();
+		return StringBundler.concat(
+			"connect to ", databaseName, ";\n", sqlContent);
 	}
 
 	@Override
 	public String getRecreateSQL(String databaseName) {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("drop database ");
-		sb.append(databaseName);
-		sb.append(";\n");
-		sb.append("create database ");
-		sb.append(databaseName);
-		sb.append(" pagesize 32768 temporary tablespace managed by automatic ");
-		sb.append("storage;\n");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"drop database ", databaseName, ";\n", "create database ",
+			databaseName,
+			" pagesize 32768 temporary tablespace managed by automatic ",
+			"storage;\n");
 	}
 
 	@Override
@@ -140,15 +128,12 @@ public class DB2DB extends BaseDB {
 
 		boolean reorgTableRequired = false;
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("select num_reorg_rec_alters from table(");
-		sb.append("sysproc.admin_get_tab_info(current_schema, '");
-		sb.append(StringUtil.toUpperCase(tableName));
-		sb.append("')) where reorg_pending = 'Y'");
-
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select num_reorg_rec_alters from table(",
+					"sysproc.admin_get_tab_info(current_schema, '",
+					StringUtil.toUpperCase(tableName),
+					"')) where reorg_pending = 'Y'"));
 			ResultSet resultSet = preparedStatement.executeQuery()) {
 
 			if (resultSet.next()) {

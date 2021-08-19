@@ -227,20 +227,17 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateKaleoProcess() throws Exception {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select KaleoProcess.kaleoProcessId, ");
-		sb.append("KaleoProcess.DDLRecordSetId, KaleoProcess.DDMTemplateId, ");
-		sb.append("DDLRecordSet.DDMStructureId FROM KaleoProcess join ");
-		sb.append("DDLRecordSet on DDLRecordSet.recordSetId = ");
-		sb.append("KaleoProcess.DDLRecordSetId join DDMStructure on ");
-		sb.append("DDMStructure.structureId = DDLRecordSet.DDMStructureId ");
-		sb.append("where DDMStructure.classNameId <> ");
-		sb.append(_KALEO_PROCESS_CLASS_NAME_ID);
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select KaleoProcess.kaleoProcessId, ",
+					"KaleoProcess.DDLRecordSetId, KaleoProcess.DDMTemplateId, ",
+					"DDLRecordSet.DDMStructureId FROM KaleoProcess join ",
+					"DDLRecordSet on DDLRecordSet.recordSetId = ",
+					"KaleoProcess.DDLRecordSetId join DDMStructure on ",
+					"DDMStructure.structureId = DDLRecordSet.DDMStructureId ",
+					"where DDMStructure.classNameId <> ",
+					_KALEO_PROCESS_CLASS_NAME_ID));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
@@ -271,17 +268,14 @@ public class KaleoProcessUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected void updateKaleoProcessLink() throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("select KaleoProcessLink.kaleoProcessLinkId, ");
-		sb.append("KaleoProcessLink.DDMTemplateId FROM KaleoProcessLink join ");
-		sb.append("DDMTemplate on DDMTemplate.templateId = KaleoProcessLink.");
-		sb.append("DDMTemplateId where DDMTemplate.resourceClassNameId <> ");
-		sb.append(_KALEO_PROCESS_CLASS_NAME_ID);
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select KaleoProcessLink.kaleoProcessLinkId, ",
+					"KaleoProcessLink.DDMTemplateId FROM KaleoProcessLink join ",
+					"DDMTemplate on DDMTemplate.templateId = KaleoProcessLink.",
+					"DDMTemplateId where DDMTemplate.resourceClassNameId <> ",
+					_KALEO_PROCESS_CLASS_NAME_ID));
 			ResultSet resultSet = preparedStatement1.executeQuery();
 			PreparedStatement preparedStatement2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(

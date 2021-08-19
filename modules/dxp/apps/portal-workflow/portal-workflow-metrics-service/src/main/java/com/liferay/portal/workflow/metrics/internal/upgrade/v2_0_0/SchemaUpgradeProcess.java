@@ -47,31 +47,6 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 				return;
 			}
 
-			StringBundler sb1 = new StringBundler(9);
-
-			sb1.append("insert into WMSLADefinition (mvccVersion, uuid_, ");
-			sb1.append("wmSLADefinitionId, groupId, companyId, userId, ");
-			sb1.append("userName, createDate, modifiedDate, active_, ");
-			sb1.append("calendarKey, description, duration, name, ");
-			sb1.append("pauseNodeKeys, processId, processVersion, ");
-			sb1.append("startNodeKeys, stopNodeKeys, version, status, ");
-			sb1.append("statusByUserId, statusByUserName, statusDate) ");
-			sb1.append("values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
-			sb1.append("?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-			StringBundler sb2 = new StringBundler(10);
-
-			sb2.append("insert into WMSLADefinitionVersion (mvccVersion, ");
-			sb2.append("uuid_, wmSLADefinitionVersionId, groupId, companyId, ");
-			sb2.append("userId, userName, createDate, modifiedDate, active_, ");
-			sb2.append("calendarKey, description, duration, name, ");
-			sb2.append("pauseNodeKeys, processId, processVersion, ");
-			sb2.append("startNodeKeys, stopNodeKeys, version, ");
-			sb2.append("wmSLADefinitionId, status, statusByUserId, ");
-			sb2.append("statusByUserName, statusDate) values (?, ?, ?, ?, ?, ");
-			sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ");
-			sb2.append("?, ?, ?)");
-
 			try (PreparedStatement preparedStatement1 =
 					connection.prepareStatement(
 						"select WorkflowMetricsSLADefinition.* from " +
@@ -79,10 +54,31 @@ public class SchemaUpgradeProcess extends UpgradeProcess {
 				ResultSet resultSet = preparedStatement1.executeQuery();
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-						connection, sb1.toString());
+						connection,
+						StringBundler.concat(
+							"insert into WMSLADefinition (mvccVersion, uuid_, ",
+							"wmSLADefinitionId, groupId, companyId, userId, ",
+							"userName, createDate, modifiedDate, active_, ",
+							"calendarKey, description, duration, name, ",
+							"pauseNodeKeys, processId, processVersion, ",
+							"startNodeKeys, stopNodeKeys, version, status, ",
+							"statusByUserId, statusByUserName, statusDate) ",
+							"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+							"?, ?, ?, ?, ?, ?, ?, ?, ?)"));
 				PreparedStatement preparedStatement3 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-						connection, sb2.toString())) {
+						connection,
+						StringBundler.concat(
+							"insert into WMSLADefinitionVersion (mvccVersion, ",
+							"uuid_, wmSLADefinitionVersionId, groupId, companyId, ",
+							"userId, userName, createDate, modifiedDate, active_, ",
+							"calendarKey, description, duration, name, ",
+							"pauseNodeKeys, processId, processVersion, ",
+							"startNodeKeys, stopNodeKeys, version, ",
+							"wmSLADefinitionId, status, statusByUserId, ",
+							"statusByUserName, statusDate) values (?, ?, ?, ?, ?, ",
+							"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ",
+							"?, ?, ?)"))) {
 
 				while (resultSet.next()) {
 					preparedStatement2.setLong(

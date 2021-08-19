@@ -116,14 +116,10 @@ public class UserCommerceMLRecommendationCPDataSourceImpl
 				userCommerceMLRecommendation.getRecommendedEntryClassPK();
 
 			if (_log.isTraceEnabled()) {
-				StringBundler sb = new StringBundler(4);
-
-				sb.append("Recommended item: ");
-				sb.append(recommendedEntryClassPK);
-				sb.append(" score: ");
-				sb.append(userCommerceMLRecommendation.getScore());
-
-				_log.trace(sb.toString());
+				_log.trace(
+					StringBundler.concat(
+						"Recommended item: ", recommendedEntryClassPK,
+						" score: ", userCommerceMLRecommendation.getScore()));
 			}
 
 			try {

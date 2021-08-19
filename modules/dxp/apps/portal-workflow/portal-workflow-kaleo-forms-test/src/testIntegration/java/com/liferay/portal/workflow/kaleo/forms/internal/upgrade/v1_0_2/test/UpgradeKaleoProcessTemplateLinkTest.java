@@ -109,15 +109,12 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 	}
 
 	protected void addKaleoProcess(long kaleoProcessId) throws Exception {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("insert into KaleoProcess (uuid_, kaleoProcessId, groupId, ");
-		sb.append("companyId, userId, userName, createDate, modifiedDate, ");
-		sb.append("DDLRecordSetId, DDMTemplateId, workflowDefinitionName, ");
-		sb.append("workflowDefinitionVersion) values (?, ?, ?, ?, ?, ?, ?, ");
-		sb.append("?, ?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into KaleoProcess (uuid_, kaleoProcessId, groupId, ",
+			"companyId, userId, userName, createDate, modifiedDate, ",
+			"DDLRecordSetId, DDMTemplateId, workflowDefinitionName, ",
+			"workflowDefinitionVersion) values (?, ?, ?, ?, ?, ?, ?, ",
+			"?, ?, ?, ?, ?)");
 
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -143,13 +140,10 @@ public class UpgradeKaleoProcessTemplateLinkTest {
 	protected void addKaleoProcessLink(long kaleoProcessLinkId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("insert into KaleoProcessLink (kaleoProcessLinkId, ");
-		sb.append("kaleoProcessId, workflowTaskName, DDMTemplateId) values ");
-		sb.append("(?, ?, ?, ?)");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"insert into KaleoProcessLink (kaleoProcessLinkId, ",
+			"kaleoProcessId, workflowTaskName, DDMTemplateId) values ",
+			"(?, ?, ?, ?)");
 
 		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(

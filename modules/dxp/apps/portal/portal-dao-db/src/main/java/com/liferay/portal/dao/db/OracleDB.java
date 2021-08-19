@@ -65,13 +65,10 @@ public class OracleDB extends BaseDB {
 	public List<Index> getIndexes(Connection connection) throws SQLException {
 		List<Index> indexes = new ArrayList<>();
 
-		StringBundler sb = new StringBundler(3);
-
-		sb.append("select index_name, table_name, uniqueness from ");
-		sb.append("user_indexes where index_name like 'LIFERAY_%' or ");
-		sb.append("index_name like 'IX_%'");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"select index_name, table_name, uniqueness from ",
+			"user_indexes where index_name like 'LIFERAY_%' or ",
+			"index_name like 'IX_%'");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql);
@@ -97,15 +94,8 @@ public class OracleDB extends BaseDB {
 
 	@Override
 	public String getPopulateSQL(String databaseName, String sqlContent) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("connect &1/&2;\n");
-		sb.append("set define off;\n");
-		sb.append("\n");
-		sb.append(sqlContent);
-		sb.append("quit");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"connect &1/&2;\n", "set define off;\n", "\n", sqlContent, "quit");
 	}
 
 	@Override

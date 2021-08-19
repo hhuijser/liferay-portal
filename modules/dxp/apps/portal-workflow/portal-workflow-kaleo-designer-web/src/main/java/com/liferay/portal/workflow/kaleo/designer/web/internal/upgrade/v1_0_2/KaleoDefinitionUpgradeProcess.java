@@ -81,22 +81,19 @@ public class KaleoDefinitionUpgradeProcess extends UpgradeProcess {
 	protected void addKaleoDefinitionsFromKaleoDefinitionVersion()
 		throws PortalException, SQLException {
 
-		StringBundler sb1 = new StringBundler(10);
-
-		sb1.append("select KaleoDefinitionVersion.* from ");
-		sb1.append("KaleoDefinitionVersion join (select name,  ");
-		sb1.append("max(kaleoDefinitionVersionId) as ");
-		sb1.append("kaleoDefinitionVersionId from KaleoDefinitionVersion ");
-		sb1.append("group by name) sub on sub.name = KaleoDefinitionVersion.");
-		sb1.append("name and sub.kaleoDefinitionVersionId = ");
-		sb1.append("KaleoDefinitionVersion.kaleoDefinitionVersionId left ");
-		sb1.append("join KaleoDefinition on KaleoDefinitionVersion.name = ");
-		sb1.append("KaleoDefinition.name where KaleoDefinition.");
-		sb1.append("kaleoDefinitionId is null");
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb1.toString());
+				StringBundler.concat(
+					"select KaleoDefinitionVersion.* from ",
+					"KaleoDefinitionVersion join (select name,  ",
+					"max(kaleoDefinitionVersionId) as ",
+					"kaleoDefinitionVersionId from KaleoDefinitionVersion ",
+					"group by name) sub on sub.name = KaleoDefinitionVersion.",
+					"name and sub.kaleoDefinitionVersionId = ",
+					"KaleoDefinitionVersion.kaleoDefinitionVersionId left ",
+					"join KaleoDefinition on KaleoDefinitionVersion.name = ",
+					"KaleoDefinition.name where KaleoDefinition.",
+					"kaleoDefinitionId is null"));
 			ResultSet resultSet = preparedStatement1.executeQuery()) {
 
 			while (resultSet.next()) {

@@ -152,14 +152,9 @@ public class AkismetMBMessageLocalServiceWrapper
 			return contentURL;
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(serviceContext.getPortalURL());
-		sb.append(serviceContext.getPathMain());
-		sb.append("/message_boards/find_entry?messageId=");
-		sb.append(message.getMessageId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			serviceContext.getPortalURL(), serviceContext.getPathMain(),
+			"/message_boards/find_entry?messageId=", message.getMessageId());
 	}
 
 	private boolean _isCheckSpamEnabled(

@@ -182,14 +182,11 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		String authnRequestXML = OpenSamlUtil.marshall(
 			getAuthnRequest(redirectURL));
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ");
-		sb.append("saml2p:AuthnRequest [\n<!ENTITY xxe SYSTEM ");
-		sb.append("\"http://localhost/saml-request\">\n]>");
-		sb.append(authnRequestXML.substring(38));
-
-		authnRequestXML = sb.toString();
+		authnRequestXML = StringBundler.concat(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ",
+			"saml2p:AuthnRequest [\n<!ENTITY xxe SYSTEM ",
+			"\"http://localhost/saml-request\">\n]>",
+			authnRequestXML.substring(38));
 
 		authnRequestXML =
 			authnRequestXML.substring(0, authnRequestXML.length() - 22) +
@@ -205,15 +202,11 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		String authnRequestXML = OpenSamlUtil.marshall(
 			getAuthnRequest(redirectURL));
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ");
-		sb.append("saml2p:AuthnRequest [\n<!ENTITY xxe PUBLIC ");
-		sb.append("\"SOME//PUBLIC//ID\" ");
-		sb.append("\"http://localhost/saml-request\">\n]>");
-		sb.append(authnRequestXML.substring(38));
-
-		authnRequestXML = sb.toString();
+		authnRequestXML = StringBundler.concat(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ",
+			"saml2p:AuthnRequest [\n<!ENTITY xxe PUBLIC ",
+			"\"SOME//PUBLIC//ID\" ", "\"http://localhost/saml-request\">\n]>",
+			authnRequestXML.substring(38));
 
 		authnRequestXML =
 			authnRequestXML.substring(0, authnRequestXML.length() - 22) +
@@ -229,15 +222,13 @@ public class XMLSecurityTest extends BaseSamlTestCase {
 		String authnRequestXML = OpenSamlUtil.marshall(
 			getAuthnRequest(redirectURL));
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ");
-		sb.append("saml2p:AuthnRequest [\n<!ENTITY % remote SYSTEM ");
-		sb.append("\"http://localhost/saml-request\">\n%remote;\n]>");
-
-		sb.append(authnRequestXML.substring(38));
-
-		decodeAuthnRequest(sb.toString(), redirectURL);
+		decodeAuthnRequest(
+			StringBundler.concat(
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE ",
+				"saml2p:AuthnRequest [\n<!ENTITY % remote SYSTEM ",
+				"\"http://localhost/saml-request\">\n%remote;\n]>",
+				authnRequestXML.substring(38)),
+			redirectURL);
 	}
 
 	protected void decodeAuthnRequest(

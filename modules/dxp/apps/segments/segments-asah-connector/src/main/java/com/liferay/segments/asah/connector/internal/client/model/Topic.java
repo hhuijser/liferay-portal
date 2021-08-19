@@ -50,17 +50,8 @@ public class Topic {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("{id=");
-		sb.append(_id);
-		sb.append(", terms=");
-		sb.append(_terms);
-		sb.append(", weight=");
-		sb.append(_weight);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"{id=", _id, ", terms=", _terms, ", weight=", _weight, "}");
 	}
 
 	public static class TopicTerm {

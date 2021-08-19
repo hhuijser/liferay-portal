@@ -129,15 +129,10 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		entry.setPortletId(portletId);
 		entry.setReportParameters(reportParameters);
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(pageURL);
-		sb.append("&");
-		sb.append(_portal.getPortletNamespace(portletId));
-		sb.append("entryId=");
-		sb.append(entryId);
-
-		entry.setPageURL(sb.toString());
+		entry.setPageURL(
+			StringBundler.concat(
+				pageURL, "&", _portal.getPortletNamespace(portletId),
+				"entryId=", entryId));
 
 		entry.setStatus(ReportStatus.PENDING.getValue());
 

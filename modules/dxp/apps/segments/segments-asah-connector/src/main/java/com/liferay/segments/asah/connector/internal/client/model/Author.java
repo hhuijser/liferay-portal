@@ -40,15 +40,7 @@ public class Author {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("{id=");
-		sb.append(_id);
-		sb.append(", name=");
-		sb.append(_name);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat("{id=", _id, ", name=", _name, "}");
 	}
 
 	private String _id;

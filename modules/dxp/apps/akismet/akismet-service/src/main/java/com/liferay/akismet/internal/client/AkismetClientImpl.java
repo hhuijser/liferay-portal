@@ -78,15 +78,10 @@ public class AkismetClientImpl implements AkismetClient {
 			long userId, String content, AkismetEntry akismetEntry)
 		throws PortalException {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(Http.HTTP_WITH_SLASH);
-		sb.append(_akismetServiceConfiguration.akismetApiKey());
-		sb.append(StringPool.PERIOD);
-		sb.append(AkismetConstants.URL_REST);
-		sb.append(AkismetConstants.PATH_CHECK_SPAM);
-
-		String location = sb.toString();
+		String location = StringBundler.concat(
+			Http.HTTP_WITH_SLASH, _akismetServiceConfiguration.akismetApiKey(),
+			StringPool.PERIOD, AkismetConstants.URL_REST,
+			AkismetConstants.PATH_CHECK_SPAM);
 
 		User user = _userLocalService.getUser(userId);
 
@@ -127,15 +122,10 @@ public class AkismetClientImpl implements AkismetClient {
 			_log.debug("Submitting message as ham: " + permalink);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(Http.HTTP_WITH_SLASH);
-		sb.append(_akismetServiceConfiguration.akismetApiKey());
-		sb.append(StringPool.PERIOD);
-		sb.append(AkismetConstants.URL_REST);
-		sb.append(AkismetConstants.PATH_SUBMIT_HAM);
-
-		String location = sb.toString();
+		String location = StringBundler.concat(
+			Http.HTTP_WITH_SLASH, _akismetServiceConfiguration.akismetApiKey(),
+			StringPool.PERIOD, AkismetConstants.URL_REST,
+			AkismetConstants.PATH_SUBMIT_HAM);
 
 		String response = _sendRequest(
 			location, companyId, ipAddress, userAgent, referrer, permalink,
@@ -181,15 +171,10 @@ public class AkismetClientImpl implements AkismetClient {
 			_log.debug("Submitting message as spam: " + permalink);
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(Http.HTTP_WITH_SLASH);
-		sb.append(_akismetServiceConfiguration.akismetApiKey());
-		sb.append(StringPool.PERIOD);
-		sb.append(AkismetConstants.URL_REST);
-		sb.append(AkismetConstants.PATH_SUBMIT_SPAM);
-
-		String location = sb.toString();
+		String location = StringBundler.concat(
+			Http.HTTP_WITH_SLASH, _akismetServiceConfiguration.akismetApiKey(),
+			StringPool.PERIOD, AkismetConstants.URL_REST,
+			AkismetConstants.PATH_SUBMIT_SPAM);
 
 		String response = _sendRequest(
 			location, companyId, ipAddress, userAgent, referrer, permalink,

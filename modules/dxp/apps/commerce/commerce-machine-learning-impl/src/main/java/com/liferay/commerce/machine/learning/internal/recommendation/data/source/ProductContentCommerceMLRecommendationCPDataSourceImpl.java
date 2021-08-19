@@ -111,16 +111,13 @@ public class ProductContentCommerceMLRecommendationCPDataSourceImpl
 					getRecommendedEntryClassPK();
 
 			if (_log.isTraceEnabled()) {
-				StringBundler sb = new StringBundler(6);
-
-				sb.append("Recommended item: ");
-				sb.append(recommendedEntryClassPK);
-				sb.append(" rank: ");
-				sb.append(productContentCommerceMLRecommendation.getRank());
-				sb.append(" score: ");
-				sb.append(productContentCommerceMLRecommendation.getScore());
-
-				_log.trace(sb.toString());
+				_log.trace(
+					StringBundler.concat(
+						"Recommended item: ", recommendedEntryClassPK,
+						" rank: ",
+						productContentCommerceMLRecommendation.getRank(),
+						" score: ",
+						productContentCommerceMLRecommendation.getScore()));
 			}
 
 			try {

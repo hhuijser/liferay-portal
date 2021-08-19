@@ -56,8 +56,7 @@ public class ProjectionListImpl
 
 	@Override
 	public String toString() {
-		return StringBundler.concat(
-			"{_projectionList=", String.valueOf(_projectionList), "}");
+		return StringBundler.concat("{_projectionList=", _projectionList, "}");
 	}
 
 	private final org.hibernate.criterion.ProjectionList _projectionList;

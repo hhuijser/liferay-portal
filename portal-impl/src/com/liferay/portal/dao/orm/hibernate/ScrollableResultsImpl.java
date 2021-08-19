@@ -102,7 +102,7 @@ public class ScrollableResultsImpl implements ScrollableResults {
 	@Override
 	public String toString() {
 		return StringBundler.concat(
-			"{_scrollableResults=", String.valueOf(_scrollableResults), "}");
+			"{_scrollableResults=", _scrollableResults, "}");
 	}
 
 	private final org.hibernate.ScrollableResults _scrollableResults;

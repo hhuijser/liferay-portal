@@ -32,7 +32,7 @@ public class OrderImpl implements Order {
 
 	@Override
 	public String toString() {
-		return StringBundler.concat("{_order=", String.valueOf(_order), "}");
+		return StringBundler.concat("{_order=", _order, "}");
 	}
 
 	private final org.hibernate.criterion.Order _order;

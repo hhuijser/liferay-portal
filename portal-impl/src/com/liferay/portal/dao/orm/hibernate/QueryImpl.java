@@ -367,8 +367,8 @@ public class QueryImpl implements Query {
 	@Override
 	public String toString() {
 		return StringBundler.concat(
-			"{names=", Arrays.toString(_names), ", _query=",
-			String.valueOf(_query), ", _strictName=", _strictName, "}");
+			"{names=", Arrays.toString(_names), ", _query=", _query,
+			", _strictName=", _strictName, "}");
 	}
 
 	@Override

@@ -424,8 +424,8 @@ public class SQLQueryImpl implements SQLQuery {
 	@Override
 	public String toString() {
 		return StringBundler.concat(
-			"{names=", Arrays.toString(_names), ", _sqlQuery=",
-			String.valueOf(_sqlQuery), ", _strictName=", _strictName, "}");
+			"{names=", Arrays.toString(_names), ", _sqlQuery=", _sqlQuery,
+			", _strictName=", _strictName, "}");
 	}
 
 	@Override

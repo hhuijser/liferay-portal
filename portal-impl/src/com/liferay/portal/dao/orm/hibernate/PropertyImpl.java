@@ -395,8 +395,7 @@ public class PropertyImpl extends ProjectionImpl implements Property {
 
 	@Override
 	public String toString() {
-		return StringBundler.concat(
-			"{_property=", String.valueOf(_property), "}");
+		return StringBundler.concat("{_property=", _property, "}");
 	}
 
 	private final org.hibernate.criterion.Property _property;

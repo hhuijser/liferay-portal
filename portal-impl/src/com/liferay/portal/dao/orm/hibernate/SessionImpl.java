@@ -352,8 +352,7 @@ public class SessionImpl implements Session {
 
 	@Override
 	public String toString() {
-		return StringBundler.concat(
-			"{_session=", String.valueOf(_session), "}");
+		return StringBundler.concat("{_session=", _session, "}");
 	}
 
 	private Query _createQuery(String queryString, boolean strictName)

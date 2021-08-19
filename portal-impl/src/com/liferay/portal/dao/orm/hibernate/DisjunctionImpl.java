@@ -45,8 +45,7 @@ public class DisjunctionImpl extends CriterionImpl implements Disjunction {
 
 	@Override
 	public String toString() {
-		return StringBundler.concat(
-			"{_disjunction=", String.valueOf(_disjunction), "}");
+		return StringBundler.concat("{_disjunction=", _disjunction, "}");
 	}
 
 	private final org.hibernate.criterion.Disjunction _disjunction;

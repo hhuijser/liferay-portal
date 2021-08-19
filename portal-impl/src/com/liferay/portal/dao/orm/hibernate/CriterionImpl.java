@@ -32,8 +32,7 @@ public class CriterionImpl implements Criterion {
 
 	@Override
 	public String toString() {
-		return StringBundler.concat(
-			"{_criterion=", String.valueOf(_criterion), "}");
+		return StringBundler.concat("{_criterion=", _criterion, "}");
 	}
 
 	private final org.hibernate.criterion.Criterion _criterion;

@@ -40,6 +40,7 @@ public abstract class BaseStringConcatenationCheck extends BaseCheck {
 		String text = fullIdent.getText();
 
 		if ((text.startsWith("CharPool.") || text.startsWith("StringPool.")) &&
+			!text.endsWith(".DEFAULT_CHARSET_NAME") &&
 			!text.endsWith(".NEW_LINE") && !text.endsWith(".NO_BREAK_SPACE") &&
 			!text.endsWith(".TAB")) {
 

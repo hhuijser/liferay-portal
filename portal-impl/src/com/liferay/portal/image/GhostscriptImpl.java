@@ -41,12 +41,12 @@ public class GhostscriptImpl implements Ghostscript {
 		if (!isEnabled()) {
 			throw new IllegalStateException(
 				StringBundler.concat(
-					"Cannot execute the Ghostscript command. Please ",
-					"install ImageMagick and Ghostscript and enable ",
-					"ImageMagick in portal-ext.properties or in the Server ",
-					"Administration section of the Control Panel at: ",
+					"Cannot execute the Ghostscript command. Please install ",
+					"ImageMagick and Ghostscript and enable ImageMagick in ",
+					"portal-ext.properties or in the Server Administration ",
+					"section of the Control Panel at: ",
 					"http://<server>/group/control_panel/manage/-/server",
-					"/external-services"));
+					"/external-services."));
 		}
 
 		LinkedList<String> arguments = new LinkedList<>();
@@ -116,9 +116,9 @@ public class GhostscriptImpl implements Ghostscript {
 			throw new FileNotFoundException(
 				StringBundler.concat(
 					"Unable to find the Ghostscript command. Please verify ",
-					"the path specified in the Server Administration ",
-					"control panel at: http://<server>/group/control_panel",
-					"/manage/-/server/external-services"));
+					"the path specified in the Server Administration control ",
+					"panel at: http://<server>/group/control_panel/manage/-",
+					"/server/external-services."));
 		}
 
 		return commandPath;

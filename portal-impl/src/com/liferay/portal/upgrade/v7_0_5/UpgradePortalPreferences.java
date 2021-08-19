@@ -93,12 +93,12 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 									"Detected a value of \"", value,
 									"\" for portal property ",
 									obsoletePortalPreference,
-									" stored in portal preferences. ",
-									"Storing this property in portal ",
-									"preferences is no longer supported; ",
-									"please set this property to this ",
-									"value in portal-ext.properties if you ",
-									"wish to retain it."));
+									" stored in portal preferences. Storing ",
+									"this property in portal preferences is ",
+									"no longer supported; please set this ",
+									"property to this value in ",
+									"portal-ext.properties if you wish to ",
+									"retain it."));
 						}
 
 						portletPreferencesElement.remove(element);

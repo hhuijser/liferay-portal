@@ -175,7 +175,7 @@ public class ImageMagickImpl implements ImageMagick {
 					"ImageMagick in portal-ext.properties or in the Server ",
 					"Administration section of the Control Panel at: ",
 					"http://<server>/group/control_panel/manage/-/server",
-					"/external-services"));
+					"/external-services."));
 
 			_warned = true;
 		}

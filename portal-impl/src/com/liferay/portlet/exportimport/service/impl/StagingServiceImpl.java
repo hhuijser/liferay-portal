@@ -205,8 +205,9 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"StagingServiceImpl#propagateExportImportLifecycleEvent(",
-						code, StringPool.COMMA_AND_SPACE, processFlag,
+						"StagingServiceImpl#",
+						"propagateExportImportLifecycleEvent(", code,
+						StringPool.COMMA_AND_SPACE, processFlag,
 						StringPool.COMMA_AND_SPACE, processId,
 						StringPool.COMMA_AND_SPACE, arguments,
 						StringPool.CLOSE_PARENTHESIS),

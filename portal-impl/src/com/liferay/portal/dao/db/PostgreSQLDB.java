@@ -55,11 +55,11 @@ public class PostgreSQLDB extends BaseDB {
 			StringPool.UNDERLINE, columnName, " as on update to ", tableName,
 			" where old.", columnName, " is distinct from new.", columnName,
 			" and old.", columnName,
-			" is not null do also select case when exists(select 1 ",
-			"from pg_catalog.pg_largeobject_metadata where (oid = old.",
-			columnName, ")) then lo_unlink(old.", columnName, ") end from ",
-			tableName, " where ", tableName, StringPool.PERIOD, columnName,
-			" = old.", columnName, StringPool.SEMICOLON);
+			" is not null do also select case when exists(select 1 from ",
+			"pg_catalog.pg_largeobject_metadata where (oid = old.", columnName,
+			")) then lo_unlink(old.", columnName, ") end from ", tableName,
+			" where ", tableName, StringPool.PERIOD, columnName, " = old.",
+			columnName, StringPool.SEMICOLON);
 	}
 
 	public PostgreSQLDB(int majorVersion, int minorVersion) {
@@ -80,9 +80,9 @@ public class PostgreSQLDB extends BaseDB {
 		List<Index> indexes = new ArrayList<>();
 
 		String sql = StringBundler.concat(
-			"select indexname, tablename, indexdef from pg_indexes ",
-			"where schemaname = current_schema() and (indexname like ",
-			"'liferay_%' or indexname like 'ix_%')");
+			"select indexname, tablename, indexdef from pg_indexes where ",
+			"schemaname = current_schema() and (indexname like 'liferay_%' or ",
+			"indexname like 'ix_%')");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql);

@@ -74,8 +74,8 @@ public class AudioProcessorImpl
 			_log.warn(
 				StringBundler.concat(
 					"Liferay is incorrectly configured to generate video ",
-					"previews using video containers other than MP3 or ",
-					"OGG. Please change the property ",
+					"previews using video containers other than MP3 or OGG. ",
+					"Please change the property ",
 					PropsKeys.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS,
 					" in portal-ext.properties."));
 		}

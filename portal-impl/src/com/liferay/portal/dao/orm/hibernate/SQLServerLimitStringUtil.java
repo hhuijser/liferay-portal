@@ -63,7 +63,7 @@ public class SQLServerLimitStringUtil {
 			"select * from (select *, row_number() over (", outerOrderBy,
 			") as _page_row_num from (", innerSelectFrom, selectFromWhere,
 			innerOrderBy,
-			" ) _temp_table_1 ) _temp_table_2 where _page_row_num ", "between ",
+			" ) _temp_table_1 ) _temp_table_2 where _page_row_num between ",
 			offset + 1, " and ", limit, " order by _page_row_num");
 	}
 

@@ -46,11 +46,11 @@ public class UpgradeGroup extends UpgradeProcess {
 					connection.prepareStatement(
 						StringBundler.concat(
 							"select stagingGroup_.groupId, ",
-							"liveGroup_.parentGroupId from Group_ stagingGroup_ ",
-							"inner join Group_ liveGroup_ on (liveGroup_.groupId = ",
-							"stagingGroup_.liveGroupId) where ",
-							"(stagingGroup_.remoteStagingGroupCount = 0) and ",
-							"(liveGroup_.parentGroupId != ",
+							"liveGroup_.parentGroupId from Group_ ",
+							"stagingGroup_ inner join Group_ liveGroup_ on ",
+							"(liveGroup_.groupId = stagingGroup_.liveGroupId) ",
+							"where (stagingGroup_.remoteStagingGroupCount = ",
+							"0) and (liveGroup_.parentGroupId != ",
 							"stagingGroup_.parentGroupId)"));
 				PreparedStatement preparedStatement2 =
 					connection.prepareStatement(

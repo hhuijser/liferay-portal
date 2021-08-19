@@ -1956,8 +1956,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 						StringBundler.concat(
 							"When LDAP password policy is enabled, it is ",
 							"possible that portal generated passwords will ",
-							"not match the LDAP policy. Using ",
-							"RegExpToolkit to generate new password."));
+							"not match the LDAP policy. Using RegExpToolkit ",
+							"to generate new password."));
 				}
 
 				RegExpToolkit regExpToolkit = new RegExpToolkit();

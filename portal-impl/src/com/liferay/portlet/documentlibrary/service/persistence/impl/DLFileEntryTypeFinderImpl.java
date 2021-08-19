@@ -509,9 +509,8 @@ public class DLFileEntryTypeFinderImpl
 		return StringBundler.concat(
 			prefix, "((DLFileEntryType.companyId = 0) AND ",
 			"(DLFileEntryType.groupId = 0) AND (",
-			"(LOWER(DLFileEntryType.name) LIKE ? ",
-			"[$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$] ",
-			"(DLFileEntryType.description LIKE ? ",
+			"(LOWER(DLFileEntryType.name) LIKE ? [$AND_OR_NULL_CHECK$]) ",
+			"[$AND_OR_CONNECTOR$] (DLFileEntryType.description LIKE ? ",
 			"[$AND_OR_NULL_CHECK$]) ))) UNION ALL (");
 	}
 

@@ -275,8 +275,8 @@ public class MainServlet extends HttpServlet {
 				_log.warn(
 					StringBundler.concat(
 						"The default JVM time zone \"", timeZoneID,
-						"\" is not UTC or GMT. Please review the JVM ",
-						"property \"user.timezone\"."));
+						"\" is not UTC or GMT. Please review the JVM property ",
+						"\"user.timezone\"."));
 			}
 		}
 

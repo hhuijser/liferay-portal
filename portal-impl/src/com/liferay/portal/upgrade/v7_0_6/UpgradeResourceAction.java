@@ -57,9 +57,9 @@ public class UpgradeResourceAction extends UpgradeProcess {
 									"Deleting resource action ",
 									resultSet2.getString("actionId"),
 									" from resource ", name,
-									" because its bitwise value is the ",
-									"same as another resource action on ",
-									"the same resource"));
+									" because its bitwise value is the same ",
+									"as another resource action on the same ",
+									"resource"));
 						}
 
 						try (PreparedStatement preparedStatement3 =

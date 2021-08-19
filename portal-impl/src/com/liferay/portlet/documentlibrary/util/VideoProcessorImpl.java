@@ -80,8 +80,8 @@ public class VideoProcessorImpl
 			_log.warn(
 				StringBundler.concat(
 					"Liferay is incorrectly configured to generate video ",
-					"previews using video containers other than MP4 or ",
-					"OGV. Please change the property ",
+					"previews using video containers other than MP4 or OGV. ",
+					"Please change the property ",
 					PropsKeys.DL_FILE_ENTRY_PREVIEW_VIDEO_CONTAINERS,
 					" in portal-ext.properties."));
 		}

@@ -1167,8 +1167,8 @@ public class SitesImpl implements Sites {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Merge not performed because the fail threshold ",
-						"was reached for layoutSetPrototypeId ",
+						"Merge not performed because the fail threshold was ",
+						"reached for layoutSetPrototypeId ",
 						layoutSetPrototype.getLayoutSetPrototypeId(),
 						" and layoutId ",
 						layoutSetPrototypeLayoutSet.getLayoutSetId(),
@@ -1763,8 +1763,8 @@ public class SitesImpl implements Sites {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Merge not performed because the fail threshold ",
-						"was reached for layoutPrototypeId ",
+						"Merge not performed because the fail threshold was ",
+						"reached for layoutPrototypeId ",
 						layoutPrototype.getLayoutPrototypeId(),
 						" and layoutId ", layoutPrototypeLayout.getLayoutId(),
 						". Update the count in the database to try again."));

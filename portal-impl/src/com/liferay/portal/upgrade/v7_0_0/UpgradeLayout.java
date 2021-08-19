@@ -27,8 +27,8 @@ public class UpgradeLayout extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			runSQL(
 				StringBundler.concat(
-					"delete from Layout where layoutPrototypeUuid != '' ",
-					"and layoutPrototypeUuid not in (select uuid_ from ",
+					"delete from Layout where layoutPrototypeUuid != '' and ",
+					"layoutPrototypeUuid not in (select uuid_ from ",
 					"LayoutPrototype) and layoutPrototypeLinkEnabled = TRUE"));
 		}
 	}
@@ -63,8 +63,8 @@ public class UpgradeLayout extends UpgradeProcess {
 			runSQL(
 				StringBundler.concat(
 					"update Layout set layoutPrototypeUuid = null where ",
-					"layoutPrototypeUuid != '' and layoutPrototypeUuid not ",
-					"in (select uuid_ from LayoutPrototype) and ",
+					"layoutPrototypeUuid != '' and layoutPrototypeUuid not in ",
+					"(select uuid_ from LayoutPrototype) and ",
 					"layoutPrototypeLinkEnabled = FALSE"));
 		}
 	}

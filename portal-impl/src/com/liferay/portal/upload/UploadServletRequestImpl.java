@@ -148,8 +148,9 @@ public class UploadServletRequestImpl
 
 						UploadException uploadException = new UploadException(
 							StringBundler.concat(
-								"Request reached the maximum permitted size of ",
-								uploadServletRequestImplMaxSize, " bytes"));
+								"Request reached the maximum permitted size ",
+								"of ", uploadServletRequestImplMaxSize,
+								" bytes"));
 
 						uploadException.setExceededUploadRequestSizeLimit(true);
 

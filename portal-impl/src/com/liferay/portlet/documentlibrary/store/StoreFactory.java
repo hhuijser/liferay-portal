@@ -95,8 +95,8 @@ public class StoreFactory {
 				StringBundler.concat(
 					"Liferay is configured with the legacy property ",
 					"\"dl.hook.impl=", dlHookImpl,
-					"\" in portal-ext.properties. Please reconfigure to ",
-					"use the new property \"", PropsKeys.DL_STORE_IMPL,
+					"\" in portal-ext.properties. Please reconfigure to use ",
+					"the new property \"", PropsKeys.DL_STORE_IMPL,
 					"\". Liferay will attempt to temporarily set \"",
 					PropsKeys.DL_STORE_IMPL, "=", PropsValues.DL_STORE_IMPL,
 					"\"."));

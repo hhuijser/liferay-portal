@@ -134,10 +134,10 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 							"select ResourceTypePermission.companyId, ",
 							"ResourceTypePermission.roleId, ",
 							"ResourceTypePermission.actionIds from ",
-							"ResourceTypePermission inner join Role_ on Role_.roleId =",
-							"ResourceTypePermission.roleId where ",
-							"ResourceTypePermission.groupId = 0 and Role_.type_ = ",
-							RoleConstants.TYPE_REGULAR,
+							"ResourceTypePermission inner join Role_ on ",
+							"Role_.roleId = ResourceTypePermission.roleId ",
+							"where ResourceTypePermission.groupId = 0 and ",
+							"Role_.type_ = ", RoleConstants.TYPE_REGULAR,
 							" and ResourceTypePermission.name = ?")))) {
 
 			selectPreparedStatement.setString(1, className);
@@ -207,10 +207,10 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 							"select ResourceTypePermission.companyId, ",
 							"ResourceTypePermission.roleId, ",
 							"ResourceTypePermission.actionIds from ",
-							"ResourceTypePermission inner join Role_ on Role_.roleId =",
-							"ResourceTypePermission.roleId where ",
-							"ResourceTypePermission.groupId = 0 and Role_.type_ != ",
-							RoleConstants.TYPE_REGULAR,
+							"ResourceTypePermission inner join Role_ on ",
+							"Role_.roleId = ResourceTypePermission.roleId ",
+							"where ResourceTypePermission.groupId = 0 and ",
+							"Role_.type_ != ", RoleConstants.TYPE_REGULAR,
 							" and ResourceTypePermission.name = ?")))) {
 
 			selectPreparedStatement.setString(1, className);
@@ -311,8 +311,8 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 		_INSERT_SQL = StringBundler.concat(
 			"insert into ResourcePermission(mvccVersion, ",
 			"resourcePermissionId, companyId, name, scope, primKey, ",
-			"primKeyId, roleId, ownerId, actionIds, viewActionId) ",
-			"values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"primKeyId, roleId, ownerId, actionIds, viewActionId) values(?, ",
+			"?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 	}
 
 }

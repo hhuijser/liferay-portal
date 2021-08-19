@@ -236,7 +236,7 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 		}
 
 		return StringBundler.concat(
-			" and ", columnName, " not like ", StringPool.APOSTROPHE,
+			" and ", columnName, " not like '",
 			wildcardMode.getLeadingWildcard(), value,
 			wildcardMode.getTrailingWildcard(), StringPool.APOSTROPHE);
 	}
@@ -245,9 +245,9 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 		String columnName, String columnValue, WildcardMode wildcardMode) {
 
 		return StringBundler.concat(
-			" where ", columnName, " like ", StringPool.APOSTROPHE,
-			wildcardMode.getLeadingWildcard(), columnValue,
-			wildcardMode.getTrailingWildcard(), StringPool.APOSTROPHE);
+			" where ", columnName, " like '", wildcardMode.getLeadingWildcard(),
+			columnValue, wildcardMode.getTrailingWildcard(),
+			StringPool.APOSTROPHE);
 	}
 
 	private String _transformColumnName(String columnName) {

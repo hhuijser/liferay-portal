@@ -46,10 +46,9 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 				StringBundler.concat(
 					"insert into ", tempTableName,
 					" select MBMessage.threadId from MBMessage inner join ",
-					"MBThread on MBMessage.threadId = MBThread.threadId ",
-					"where MBThread.categoryId = -1 group by ",
-					"MBMessage.threadId having count(MBMessage.messageId) ",
-					"= 1"));
+					"MBThread on MBMessage.threadId = MBThread.threadId where ",
+					"MBThread.categoryId = -1 group by MBMessage.threadId ",
+					"having count(MBMessage.messageId) = 1"));
 
 			_deleteAssetEntry(tempTableName);
 			_deleteTable("MBDiscussion", tempTableName);
@@ -79,8 +78,9 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				StringBundler.concat(
 					"select MBThread.groupId, MBDiscussion.discussionId from ",
-					"MBDiscussion inner join MBThread on MBDiscussion.threadId ",
-					"= MBThread.threadId where MBDiscussion.groupId = 0"))) {
+					"MBDiscussion inner join MBThread on ",
+					"MBDiscussion.threadId = MBThread.threadId where ",
+					"MBDiscussion.groupId = 0"))) {
 
 			try (ResultSet resultSet = preparedStatement2.executeQuery()) {
 				while (resultSet.next()) {

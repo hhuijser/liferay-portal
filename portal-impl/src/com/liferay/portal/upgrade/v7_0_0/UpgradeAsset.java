@@ -115,7 +115,8 @@ public class UpgradeAsset extends UpgradeProcess {
 					"TEMP_TABLE inner join JournalArticle on ",
 					"(JournalArticle.resourcePrimKey = TEMP_TABLE.primKey and ",
 					"JournalArticle.indexable = ? and JournalArticle.status = ",
-					"0 and JournalArticle.version = TEMP_TABLE.maxVersion))"))) {
+					"0 and JournalArticle.version = ",
+					"TEMP_TABLE.maxVersion))"))) {
 
 			preparedStatement1.setBoolean(1, false);
 			preparedStatement1.setLong(2, classNameId);

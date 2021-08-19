@@ -125,9 +125,9 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 					connection.prepareStatement(
 						StringBundler.concat(
 							"select fileVersionId, DDMStructureId from ",
-							"DLFileEntryMetadata where fileVersionId in (select ",
-							"fileVersionId from DLFileEntryMetadata group by ",
-							"fileVersionId having count(*) >= 2) and ",
+							"DLFileEntryMetadata where fileVersionId in ",
+							"(select fileVersionId from DLFileEntryMetadata ",
+							"group by fileVersionId having count(*) >= 2) and ",
 							"DDMStructureId = ?"));
 				PreparedStatement preparedStatement2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(

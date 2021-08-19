@@ -62,9 +62,8 @@ public class MySQLDB extends BaseDB {
 
 		String sql = StringBundler.concat(
 			"select distinct(index_name), table_name, non_unique from ",
-			"information_schema.statistics where index_schema = ",
-			"database() and (index_name like 'LIFERAY_%' or index_name ",
-			"like 'IX_%')");
+			"information_schema.statistics where index_schema = database() ",
+			"and (index_name like 'LIFERAY_%' or index_name like 'IX_%')");
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				sql);

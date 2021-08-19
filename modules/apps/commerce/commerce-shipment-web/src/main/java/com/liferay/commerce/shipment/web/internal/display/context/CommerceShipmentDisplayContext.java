@@ -149,8 +149,7 @@ public class CommerceShipmentDisplayContext
 	}
 
 	public List<CommerceChannel> getCommerceChannels() throws PortalException {
-		return _commerceChannelService.searchCommerceChannels(
-			cpRequestHelper.getCompanyId());
+		return _commerceChannelService.search(cpRequestHelper.getCompanyId());
 	}
 
 	public List<CommerceOrder> getCommerceOrders() throws PortalException {

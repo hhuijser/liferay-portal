@@ -312,18 +312,15 @@ public class CommerceAccountGroupServiceHttp {
 	}
 
 	public static java.util.List
-		<com.liferay.commerce.account.model.CommerceAccountGroup>
-				searchCommerceAccountGroups(
-					HttpPrincipal httpPrincipal, long companyId,
-					String keywords, int start, int end,
-					com.liferay.portal.kernel.search.Sort sort)
+		<com.liferay.commerce.account.model.CommerceAccountGroup> search(
+				HttpPrincipal httpPrincipal, long companyId, String keywords,
+				int start, int end, com.liferay.portal.kernel.search.Sort sort)
 			throws com.liferay.portal.kernel.exception.PortalException {
 
 		try {
 			MethodKey methodKey = new MethodKey(
-				CommerceAccountGroupServiceUtil.class,
-				"searchCommerceAccountGroups",
-				_searchCommerceAccountGroupsParameterTypes6);
+				CommerceAccountGroupServiceUtil.class, "search",
+				_searchParameterTypes6);
 
 			MethodHandler methodHandler = new MethodHandler(
 				methodKey, companyId, keywords, start, end, sort);
@@ -469,11 +466,10 @@ public class CommerceAccountGroupServiceHttp {
 		_getCommerceAccountGroupsCountParameterTypes5 = new Class[] {
 			long.class
 		};
-	private static final Class<?>[]
-		_searchCommerceAccountGroupsParameterTypes6 = new Class[] {
-			long.class, String.class, int.class, int.class,
-			com.liferay.portal.kernel.search.Sort.class
-		};
+	private static final Class<?>[] _searchParameterTypes6 = new Class[] {
+		long.class, String.class, int.class, int.class,
+		com.liferay.portal.kernel.search.Sort.class
+	};
 	private static final Class<?>[]
 		_searchCommerceAccountsGroupCountParameterTypes7 = new Class[] {
 			long.class, String.class

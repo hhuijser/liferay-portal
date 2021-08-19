@@ -464,14 +464,13 @@ public class CommerceInventoryWarehouseLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	public static List<CommerceInventoryWarehouse>
-			searchCommerceInventoryWarehouses(
-				long companyId, Boolean active, String commerceCountryCode,
-				String keywords, int start, int end,
-				com.liferay.portal.kernel.search.Sort sort)
+	public static List<CommerceInventoryWarehouse> search(
+			long companyId, Boolean active, String commerceCountryCode,
+			String keywords, int start, int end,
+			com.liferay.portal.kernel.search.Sort sort)
 		throws PortalException {
 
-		return getService().searchCommerceInventoryWarehouses(
+		return getService().search(
 			companyId, active, commerceCountryCode, keywords, start, end, sort);
 	}
 

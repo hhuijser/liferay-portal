@@ -247,16 +247,14 @@ public class CommerceChannelLocalServiceImpl
 	}
 
 	@Override
-	public List<CommerceChannel> searchCommerceChannels(long companyId)
-		throws PortalException {
-
-		return searchCommerceChannels(
+	public List<CommerceChannel> search(long companyId) throws PortalException {
+		return search(
 			companyId, StringPool.BLANK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
 	@Override
-	public List<CommerceChannel> searchCommerceChannels(
+	public List<CommerceChannel> search(
 			long companyId, String keywords, int start, int end, Sort sort)
 		throws PortalException {
 
@@ -265,7 +263,7 @@ public class CommerceChannelLocalServiceImpl
 
 		searchContext.setKeywords(keywords);
 
-		return searchCommerceChannels(searchContext);
+		return search(searchContext);
 	}
 
 	@Override
@@ -395,8 +393,7 @@ public class CommerceChannelLocalServiceImpl
 		return commerceChannels;
 	}
 
-	protected List<CommerceChannel> searchCommerceChannels(
-			SearchContext searchContext)
+	protected List<CommerceChannel> search(SearchContext searchContext)
 		throws PortalException {
 
 		Indexer<CommerceChannel> indexer =

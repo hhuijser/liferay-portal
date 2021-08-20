@@ -46,21 +46,14 @@ public class IconDeactivateTag extends IconTag {
 				"submitForm(document.hrefFm, '", HtmlUtil.escapeJS(url), "');");
 		}
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("javascript:if (confirm('");
-
-		sb.append(
-			UnicodeLanguageUtil.get(
-				TagResourceBundleUtil.getResourceBundle(pageContext),
-				"are-you-sure-you-want-to-deactivate-this"));
-
-		sb.append("')) { ");
-		sb.append(url);
-		sb.append(" } else { self.focus(); }");
-
 		setMessage("deactivate");
-		setUrl(sb.toString());
+		setUrl(
+			StringBundler.concat(
+				"javascript:if (confirm('",
+				UnicodeLanguageUtil.get(
+					TagResourceBundleUtil.getResourceBundle(pageContext),
+					"are-you-sure-you-want-to-deactivate-this"),
+				"')) { ", url, " } else { self.focus(); }"));
 
 		return super.getPage();
 	}

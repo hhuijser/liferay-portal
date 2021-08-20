@@ -42,15 +42,10 @@ public class ButtonSearchEntry extends TextSearchEntry {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<input type=\"button\" value=\"");
-		sb.append(getName());
-		sb.append("\" onClick=\"");
-		sb.append(getHref());
-		sb.append("\">");
-
-		writer.write(sb.toString());
+		writer.write(
+			StringBundler.concat(
+				"<input type=\"button\" value=\"", getName(), "\" onClick=\"",
+				getHref(), "\">"));
 	}
 
 }

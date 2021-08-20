@@ -64,15 +64,10 @@ public class MulticastDatagramHandler implements DatagramHandler {
 			bytes = temp;
 		}
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("[");
-		sb.append(packet.getSocketAddress());
-		sb.append("] ");
-		sb.append(new String(bytes));
-
 		if (_log.isInfoEnabled()) {
-			_log.info(sb.toString());
+			_log.info(
+				StringBundler.concat(
+					"[", packet.getSocketAddress(), "] ", new String(bytes)));
 		}
 	}
 

@@ -37,13 +37,11 @@ public class MulticastClientTool {
 		catch (Exception exception) {
 			exception.printStackTrace();
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("Usage: java -classpath util-java.jar ");
-			sb.append(MulticastClientTool.class.getName());
-			sb.append("[-g] [-s] -h [multicastAddress] -p [port]");
-
-			System.err.println(sb.toString());
+			System.err.println(
+				StringBundler.concat(
+					"Usage: java -classpath util-java.jar ",
+					MulticastClientTool.class.getName(),
+					"[-g] [-s] -h [multicastAddress] -p [port]"));
 
 			System.exit(1);
 		}

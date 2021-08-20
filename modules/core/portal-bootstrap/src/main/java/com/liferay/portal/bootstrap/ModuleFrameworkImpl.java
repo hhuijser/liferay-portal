@@ -1792,8 +1792,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 			_log.warn(
 				StringBundler.concat(
 					"The module.framework.base.dir path \"", baseDir,
-					"\" contains characters that Equinox cannot handle. ",
-					"The OSGi persistence data will be stored under \"",
+					"\" contains characters that Equinox cannot handle. The ",
+					"OSGi persistence data will be stored under \"",
 					equinoxBaseDir, "\""));
 		}
 	}

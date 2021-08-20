@@ -39,7 +39,7 @@ public class MySQLDataPartitioningExporter
 	public String getControlTableNamesSQL(ExportContext exportContext) {
 		return StringBundler.concat(
 			"select c1.", getTableNameFieldName(),
-			" from information_schema.columns c1 where c1.table_schema ", "= '",
+			" from information_schema.columns c1 where c1.table_schema = '",
 			exportContext.getSchemaName(), "' and c1.", getTableNameFieldName(),
 			" not in (", getPartitionedTableNamesSQL(exportContext),
 			") group by c1.", getTableNameFieldName(), " order by c1.",
@@ -55,7 +55,7 @@ public class MySQLDataPartitioningExporter
 	public String getPartitionedTableNamesSQL(ExportContext exportContext) {
 		return StringBundler.concat(
 			"select c2.", getTableNameFieldName(),
-			" from information_schema.columns c2 where c2.table_schema ", "= '",
+			" from information_schema.columns c2 where c2.table_schema = '",
 			exportContext.getSchemaName(),
 			"' and c2.column_name = 'companyId' group by c2.",
 			getTableNameFieldName(), " order by c2.", getTableNameFieldName());

@@ -676,17 +676,12 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 					if (overrideStaticFileNames.contains(fileName)) {
 						if (_log.isInfoEnabled()) {
-							StringBundler sb = new StringBundler(7);
-
-							sb.append(zipFile.getName());
-							sb.append(StringPool.COLON);
-							sb.append(zipEntry);
-							sb.append(" is overridden by ");
-							sb.append(PropsValues.MODULE_FRAMEWORK_BASE_DIR);
-							sb.append("/static/");
-							sb.append(fileName);
-
-							_log.info(sb.toString());
+							_log.info(
+								StringBundler.concat(
+									zipFile.getName(), StringPool.COLON,
+									zipEntry, " is overridden by ",
+									PropsValues.MODULE_FRAMEWORK_BASE_DIR,
+									"/static/", fileName));
 						}
 
 						continue;
@@ -1794,16 +1789,12 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		File equinoxBaseDir = new File(url.getFile());
 
 		if (!baseDir.equals(equinoxBaseDir) && _log.isWarnEnabled()) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append("The module.framework.base.dir path \"");
-			sb.append(baseDir);
-			sb.append("\" contains characters that Equinox cannot handle. ");
-			sb.append("The OSGi persistence data will be stored under \"");
-			sb.append(equinoxBaseDir);
-			sb.append("\"");
-
-			_log.warn(sb.toString());
+			_log.warn(
+				StringBundler.concat(
+					"The module.framework.base.dir path \"", baseDir,
+					"\" contains characters that Equinox cannot handle. ",
+					"The OSGi persistence data will be stored under \"",
+					equinoxBaseDir, "\""));
 		}
 	}
 

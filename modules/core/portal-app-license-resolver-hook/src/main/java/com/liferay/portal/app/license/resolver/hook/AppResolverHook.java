@@ -113,14 +113,11 @@ public class AppResolverHook implements ResolverHook {
 				if (_filteredBundleSymbolicNames.add(
 						bundleRevision.getSymbolicName())) {
 
-					StringBundler sb = new StringBundler(4);
-
-					sb.append("Unable to resolve ");
-					sb.append(bundleRevision.getSymbolicName());
-					sb.append(": ");
-					sb.append(exception.getMessage());
-
-					_log.error(sb.toString());
+					_log.error(
+						StringBundler.concat(
+							"Unable to resolve ",
+							bundleRevision.getSymbolicName(), ": ",
+							exception.getMessage()));
 				}
 
 				iterator.remove();

@@ -6047,27 +6047,13 @@ public class ServiceBuilder {
 
 			String content = _read(newFinderImplFile);
 
-			StringBundler sb = new StringBundler(13);
-
-			sb.append("package ");
-			sb.append(_packagePath);
-			sb.append(".service.persistence.impl;\n\n");
-
-			sb.append("import ");
-			sb.append(_apiPackagePath);
-			sb.append(".service.persistence.");
-			sb.append(entityName);
-			sb.append("Finder;\n");
-
-			sb.append("import ");
-			sb.append(_apiPackagePath);
-			sb.append(".service.persistence.");
-			sb.append(entityName);
-			sb.append("Util;");
-
 			content = StringUtil.replace(
 				content, "package " + _packagePath + ".service.persistence;",
-				sb.toString());
+				StringBundler.concat(
+					"package ", _packagePath, ".service.persistence.impl;\n\n",
+					"import ", _apiPackagePath, ".service.persistence.",
+					entityName, "Finder;\n", "import ", _apiPackagePath,
+					".service.persistence.", entityName, "Util;"));
 
 			ToolsUtil.writeFileRaw(
 				newFinderImplFile, content, _modifiedFileNames);

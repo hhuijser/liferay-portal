@@ -790,14 +790,9 @@ public class ResourceOpenAPIParser {
 	}
 
 	private static String _getPageClassName(String returnType) {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(Page.class.getName());
-		sb.append("<");
-		sb.append(OpenAPIParserUtil.getElementClassName(returnType));
-		sb.append(">");
-
-		return sb.toString();
+		return StringBundler.concat(
+			Page.class.getName(), "<",
+			OpenAPIParserUtil.getElementClassName(returnType), ">");
 	}
 
 	private static String _getParameterAnnotation(

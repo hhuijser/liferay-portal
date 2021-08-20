@@ -3131,15 +3131,11 @@ public class DataFactory {
 		ddlRecordSetModel.setDDMStructureId(ddmStructureModel.getStructureId());
 		ddlRecordSetModel.setRecordSetKey(String.valueOf(_counter.get()));
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><Name language-id=\"en_US\">");
-		sb.append("Test DDL Record Set ");
-		sb.append(currentIndex);
-		sb.append("</Name></root>");
-
-		ddlRecordSetModel.setName(sb.toString());
+		ddlRecordSetModel.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><Name language-id=\"en_US\">",
+				"Test DDL Record Set ", currentIndex, "</Name></root>"));
 
 		ddlRecordSetModel.setMinDisplayRows(
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT);
@@ -3415,14 +3411,11 @@ public class DataFactory {
 		ddmStructureVersionModel.setVersion(
 			DDMStructureConstants.VERSION_DEFAULT);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><name language-id=\"en_US\">");
-		sb.append(ddmStructureModel.getStructureKey());
-		sb.append("</name></root>");
-
-		ddmStructureVersionModel.setName(sb.toString());
+		ddmStructureVersionModel.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><name language-id=\"en_US\">",
+				ddmStructureModel.getStructureKey(), "</name></root>"));
 
 		ddmStructureVersionModel.setDefinition(
 			ddmStructureModel.getDefinition());
@@ -3550,14 +3543,11 @@ public class DataFactory {
 		ddmTemplateVersionModelImpl.setVersion(
 			DDMTemplateConstants.VERSION_DEFAULT);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><name language-id=\"en_US\">");
-		sb.append(_JOURNAL_STRUCTURE_KEY);
-		sb.append("</name></root>");
-
-		ddmTemplateVersionModelImpl.setName(sb.toString());
+		ddmTemplateVersionModelImpl.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><name language-id=\"en_US\">",
+				_JOURNAL_STRUCTURE_KEY, "</name></root>"));
 
 		ddmTemplateVersionModelImpl.setStatusByUserId(_defaultUserId);
 		ddmTemplateVersionModelImpl.setStatusDate(nextFutureDate());
@@ -3691,14 +3681,12 @@ public class DataFactory {
 			StringUtil.toUpperCase(
 				DLFileEntryTypeConstants.NAME_BASIC_DOCUMENT));
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><name language-id=\"en_US\">");
-		sb.append(DLFileEntryTypeConstants.NAME_BASIC_DOCUMENT);
-		sb.append("</name></root>");
-
-		defaultDLFileEntryTypeModel.setName(sb.toString());
+		defaultDLFileEntryTypeModel.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><name language-id=\"en_US\">",
+				DLFileEntryTypeConstants.NAME_BASIC_DOCUMENT,
+				"</name></root>"));
 
 		defaultDLFileEntryTypeModel.setLastPublishDate(nextFutureDate());
 
@@ -4178,14 +4166,10 @@ public class DataFactory {
 			journalArticleResourceModel.getArticleId());
 		journalArticleModel.setVersion(versionIndex);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("TestJournalArticle_");
-		sb.append(articleIndex);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(versionIndex);
-
-		journalArticleModel.setUrlTitle(sb.toString());
+		journalArticleModel.setUrlTitle(
+			StringBundler.concat(
+				"TestJournalArticle_", articleIndex, StringPool.UNDERLINE,
+				versionIndex));
 
 		journalArticleModel.setDDMStructureKey(_JOURNAL_STRUCTURE_KEY);
 		journalArticleModel.setDDMTemplateKey(_JOURNAL_STRUCTURE_KEY);
@@ -5304,15 +5288,11 @@ public class DataFactory {
 
 		segmentsEntry.setSegmentsEntryKey(_counter.getString());
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><Name language-id=\"en_US\">");
-		sb.append("SampleSegment");
-		sb.append(index);
-		sb.append("</Name></root>");
-
-		segmentsEntry.setName(sb.toString());
+		segmentsEntry.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><Name language-id=\"en_US\">",
+				"SampleSegment", index, "</Name></root>"));
 
 		segmentsEntry.setActive(true);
 
@@ -5395,15 +5375,9 @@ public class DataFactory {
 			classPK = mbMessageModel.getMessageId();
 		}
 		else {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append("{\"messageId\": \"");
-			sb.append(mbMessageModel.getMessageId());
-			sb.append("\", \"title\": ");
-			sb.append(mbMessageModel.getSubject());
-			sb.append("}");
-
-			extraData = sb.toString();
+			extraData = StringBundler.concat(
+				"{\"messageId\": \"", mbMessageModel.getMessageId(),
+				"\", \"title\": ", mbMessageModel.getSubject(), "}");
 
 			type = SocialActivityConstants.TYPE_ADD_COMMENT;
 		}
@@ -5565,19 +5539,9 @@ public class DataFactory {
 		String mappingTableName, long companyId, long leftPrimaryKey,
 		long rightPrimaryKey) {
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("insert into ");
-		sb.append(mappingTableName);
-		sb.append(" values (");
-		sb.append(companyId);
-		sb.append(", ");
-		sb.append(leftPrimaryKey);
-		sb.append(", ");
-		sb.append(rightPrimaryKey);
-		sb.append(", 0, null);");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"insert into ", mappingTableName, " values (", companyId, ", ",
+			leftPrimaryKey, ", ", rightPrimaryKey, ", 0, null);");
 	}
 
 	protected ObjectValuePair<String[], Integer>
@@ -5727,14 +5691,11 @@ public class DataFactory {
 			"/" + assetCategoryModel.getCategoryId() + "/");
 		assetCategoryModel.setName(name);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><Title language-id=\"en_US\">");
-		sb.append(name);
-		sb.append("</Title></root>");
-
-		assetCategoryModel.setTitle(sb.toString());
+		assetCategoryModel.setTitle(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><Title language-id=\"en_US\">", name,
+				"</Title></root>"));
 
 		assetCategoryModel.setVocabularyId(vocabularyId);
 		assetCategoryModel.setLastPublishDate(new Date());
@@ -5813,14 +5774,11 @@ public class DataFactory {
 
 		assetVocabularyModel.setName(name);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><Title language-id=\"en_US\">");
-		sb.append(name);
-		sb.append("</Title></root>");
-
-		assetVocabularyModel.setTitle(sb.toString());
+		assetVocabularyModel.setTitle(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><Title language-id=\"en_US\">", name,
+				"</Title></root>"));
 
 		assetVocabularyModel.setSettings(
 			"multiValued=true\\nselectedClassNameIds=0");
@@ -6120,14 +6078,11 @@ public class DataFactory {
 		ddmStructureModel.setStructureKey(structureKey);
 		ddmStructureModel.setVersion(DDMStructureConstants.VERSION_DEFAULT);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><name language-id=\"en_US\">");
-		sb.append(structureKey);
-		sb.append("</name></root>");
-
-		ddmStructureModel.setName(sb.toString());
+		ddmStructureModel.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><name language-id=\"en_US\">",
+				structureKey, "</name></root>"));
 
 		ddmStructureModel.setDefinition(definition);
 		ddmStructureModel.setStorageType(StorageType.DEFAULT.toString());
@@ -6183,14 +6138,11 @@ public class DataFactory {
 		ddmTemplateModel.setTemplateKey(templateKey);
 		ddmTemplateModel.setVersion(DDMTemplateConstants.VERSION_DEFAULT);
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("<?xml version=\"1.0\"?><root available-locales=\"en_US\" ");
-		sb.append("default-locale=\"en_US\"><name language-id=\"en_US\">");
-		sb.append(name);
-		sb.append("</name></root>");
-
-		ddmTemplateModel.setName(sb.toString());
+		ddmTemplateModel.setName(
+			StringBundler.concat(
+				"<?xml version=\"1.0\"?><root available-locales=\"en_US\" ",
+				"default-locale=\"en_US\"><name language-id=\"en_US\">", name,
+				"</name></root>"));
 
 		ddmTemplateModel.setType(DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY);
 		ddmTemplateModel.setMode(mode);
@@ -6802,14 +6754,8 @@ public class DataFactory {
 	protected String nextDDLCustomFieldName(
 		long groupId, int customFieldIndex) {
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("custom_field_text_");
-		sb.append(groupId);
-		sb.append("_");
-		sb.append(customFieldIndex);
-
-		return sb.toString();
+		return StringBundler.concat(
+			"custom_field_text_", groupId, "_", customFieldIndex);
 	}
 
 	protected Date nextFutureDate() {

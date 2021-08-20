@@ -737,18 +737,10 @@ public class LangBuilder {
 		String toText = null;
 
 		try {
-			StringBundler sb = new StringBundler(8);
-
-			sb.append("Translating ");
-			sb.append(fromLanguageId);
-			sb.append("_");
-			sb.append(toLanguageId);
-			sb.append(" ");
-			sb.append(key);
-			sb.append(" ");
-			sb.append(fromText);
-
-			System.out.println(sb.toString());
+			System.out.println(
+				StringBundler.concat(
+					"Translating ", fromLanguageId, "_", toLanguageId, " ", key,
+					" ", fromText));
 
 			toText = Translate.execute(fromText, fromLanguage, toLanguage);
 		}

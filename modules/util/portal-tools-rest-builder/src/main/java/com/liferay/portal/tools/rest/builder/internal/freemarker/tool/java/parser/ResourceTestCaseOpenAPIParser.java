@@ -112,13 +112,9 @@ public class ResourceTestCaseOpenAPIParser {
 				}
 			}
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(operationId.substring(0, index));
-			sb.append("FormData");
-			sb.append(operationId.substring(index));
-
-			return sb.toString();
+			return StringBundler.concat(
+				operationId.substring(0, index), "FormData",
+				operationId.substring(index));
 		}
 
 		String methodName = javaMethodSignature.getMethodName();

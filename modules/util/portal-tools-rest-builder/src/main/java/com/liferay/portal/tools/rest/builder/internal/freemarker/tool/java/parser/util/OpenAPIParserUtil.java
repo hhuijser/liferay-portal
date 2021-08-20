@@ -386,15 +386,11 @@ public class OpenAPIParserUtil {
 			OpenAPIUtil.getGlobalEnumSchemas(openAPIYAML);
 
 		for (String schemaName : globalEnumSchemas.keySet()) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(configYAML.getApiPackagePath());
-			sb.append(".constant.");
-			sb.append(OpenAPIUtil.escapeVersion(openAPIYAML));
-			sb.append('.');
-			sb.append(schemaName);
-
-			javaDataTypeMap.put(schemaName, sb.toString());
+			javaDataTypeMap.put(
+				schemaName,
+				StringBundler.concat(
+					configYAML.getApiPackagePath(), ".constant.",
+					OpenAPIUtil.escapeVersion(openAPIYAML), '.', schemaName));
 		}
 
 		return javaDataTypeMap;

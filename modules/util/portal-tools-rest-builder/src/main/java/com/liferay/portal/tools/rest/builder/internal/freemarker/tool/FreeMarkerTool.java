@@ -365,17 +365,13 @@ public class FreeMarkerTool {
 		List<JavaMethodSignature> javaMethodSignatures,
 		OpenAPIYAML openAPIYAML) {
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("Invoke this method with the command line:\n*\n* curl -H ");
-		sb.append("'Content-Type: text/plain; charset=utf-8' -X 'POST' ");
-		sb.append("'http://localhost:8080/o/graphql' -d $'");
-		sb.append(
+		return StringBundler.concat(
+			"Invoke this method with the command line:\n*\n* curl -H ",
+			"'Content-Type: text/plain; charset=utf-8' -X 'POST' ",
+			"'http://localhost:8080/o/graphql' -d $'",
 			_getGraphQLBody(
-				javaMethodSignature, javaMethodSignatures, openAPIYAML));
-		sb.append("' -u 'test@liferay.com:test'");
-
-		return sb.toString();
+				javaMethodSignature, javaMethodSignatures, openAPIYAML),
+			"' -u 'test@liferay.com:test'");
 	}
 
 	public String getGraphQLMutationName(String methodName) {

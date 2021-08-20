@@ -570,11 +570,15 @@ public class JSPUnusedTermsCheck extends BaseJSPTermsCheck {
 	}
 
 	private static final String[] _PORTLET_DEFINE_OBJECTS_PROPERTIES = {
-		"actionRequest", "actionResponse", "eventRequest", "eventResponse",
-		"liferayPortletRequest", "liferayPortletResponse", "portletConfig",
-		"portletName", "portletPreferences", "portletPreferencesValues",
-		"portletSession", "portletSessionScope", "renderResponse",
-		"renderRequest", "resourceRequest", "resourceResponse"
+		"actionParams", "actionRequest", "actionResponse", "clientDataRequest",
+		"contextPath", "cookies", "eventRequest", "eventResponse",
+		"liferayPortletRequest", "liferayPortletResponse", "locale", "locales",
+		"mutableRenderParams", "namespace", "portletConfig", "portletContext",
+		"portletMode", "portletName", "portletPreferences",
+		"portletPreferencesValues", "portletRequest", "portletResponse",
+		"portletSession", "portletSessionScope", "renderParams",
+		"renderResponse", "renderRequest", "resourceParams", "resourceRequest",
+		"resourceResponse", "stateAwareResponse", "windowId", "windowState"
 	};
 
 	private static final String _UNUSED_VARIABLES_EXCLUDES =

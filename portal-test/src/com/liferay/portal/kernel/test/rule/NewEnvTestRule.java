@@ -408,14 +408,9 @@ public class NewEnvTestRule implements TestRule {
 
 		@Override
 		public String toString() {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(_testClassName);
-			sb.append(StringPool.PERIOD);
-			sb.append(_testMethodKey.getMethodName());
-			sb.append("()");
-
-			return sb.toString();
+			return StringBundler.concat(
+				_testClassName, StringPool.PERIOD,
+				_testMethodKey.getMethodName(), "()");
 		}
 
 		private static final long serialVersionUID = 1L;

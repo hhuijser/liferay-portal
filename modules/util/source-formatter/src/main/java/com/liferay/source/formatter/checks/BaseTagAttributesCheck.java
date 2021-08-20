@@ -26,7 +26,6 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -186,9 +185,9 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 		Map<String, String> attributesMap = tag.getAttributesMap();
 
 		for (Map.Entry<String, String> entry : attributesMap.entrySet()) {
-			if (tagName.equals("svg") &&
-				Objects.equals(entry.getKey(), "viewBox")) {
+			String attributeName = entry.getKey();
 
+			if (tagName.equals("svg") && attributeName.equals("viewBox")) {
 				continue;
 			}
 
@@ -201,12 +200,10 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 				Collections.sort(htmlAttributes);
 
 				tag.putAttribute(
-					entry.getKey(),
+					attributeName,
 					StringUtil.merge(htmlAttributes, StringPool.SPACE));
 			}
 			else if (attributeValue.matches("([-a-z0-9]+,)+[-a-z0-9]+")) {
-				String attributeName = entry.getKey();
-
 				if (!tagName.equals("aui:script") ||
 					!attributeName.equals("use")) {
 
@@ -219,7 +216,7 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 				Collections.sort(htmlAttributes);
 
 				tag.putAttribute(
-					entry.getKey(),
+					attributeName,
 					StringUtil.merge(htmlAttributes, StringPool.COMMA));
 			}
 		}

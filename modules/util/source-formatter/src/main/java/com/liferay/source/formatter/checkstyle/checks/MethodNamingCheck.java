@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -43,42 +44,75 @@ public class MethodNamingCheck extends BaseCheck {
 
 		String methodName = _getMethodName(detailAST);
 
-		_checkDoMethodName(detailAST, methodName);
+		_checkMethodNamePrefix(detailAST, methodName);
 		_checkTypeName(detailAST, methodName);
 	}
 
-	private void _checkDoMethodName(DetailAST detailAST, String methodName) {
-		Matcher matcher = _doMethodNamePattern.matcher(methodName);
+	private void _checkMethodNamePrefix(
+		DetailAST detailAST, String methodName) {
 
-		if (!matcher.find()) {
-			return;
-		}
+		String typeName = getTypeName(
+			detailAST.findFirstToken(TokenTypes.TYPE), false);
+		Matcher matcher = null;
 
-		String noDoName =
-			"_" + StringUtil.toLowerCase(matcher.group(1)) + matcher.group(2);
-		String noUnderscoreName = methodName.substring(1);
-
-		DetailAST parentDetailAST = detailAST.getParent();
-
-		List<DetailAST> methodDefinitionDetailASTList = getAllChildTokens(
-			parentDetailAST, false, TokenTypes.METHOD_DEF);
-
-		for (DetailAST methodDefinitionDetailAST :
-				methodDefinitionDetailASTList) {
-
-			String curMethodName = _getMethodName(methodDefinitionDetailAST);
-
-			if (curMethodName.equals(noUnderscoreName) ||
-				(curMethodName.equals(noDoName) &&
-				 Objects.equals(
-					 getSignature(detailAST),
-					 getSignature(methodDefinitionDetailAST)))) {
-
-				return;
+		for (String[] array : _METHOD_NAME_PREFIXS) {
+			if (array[0].equals("get") && !typeName.equals("boolean")) {
+				continue;
 			}
-		}
 
-		log(detailAST, _MSG_RENAME_METHOD, methodName, noDoName);
+			Pattern pattern = Pattern.compile("^_" + array[0] + "([A-Z])(.*)$");
+
+			matcher = pattern.matcher(methodName);
+
+			if (!matcher.find()) {
+				continue;
+			}
+
+			String newMethodName = StringPool.UNDERLINE + array[1];
+
+			if (array[0].equals("get")) {
+				newMethodName = newMethodName + matcher.group(1);
+			}
+			else {
+				newMethodName =
+					newMethodName + StringUtil.toLowerCase(matcher.group(1));
+			}
+
+			newMethodName = newMethodName + matcher.group(2);
+
+			String noUnderscoreMethodName = StringPool.BLANK;
+
+			if (array[1].equals(StringPool.BLANK)) {
+				noUnderscoreMethodName = methodName.substring(1);
+			}
+			else {
+				noUnderscoreMethodName =
+					array[1] + matcher.group(1) + matcher.group(2);
+			}
+
+			DetailAST parentDetailAST = detailAST.getParent();
+
+			List<DetailAST> methodDefinitionDetailASTList = getAllChildTokens(
+				parentDetailAST, false, TokenTypes.METHOD_DEF);
+
+			for (DetailAST methodDefinitionDetailAST :
+					methodDefinitionDetailASTList) {
+
+				String curMethodName = _getMethodName(
+					methodDefinitionDetailAST);
+
+				if (curMethodName.equals(noUnderscoreMethodName) ||
+					(curMethodName.equals(newMethodName) &&
+					 Objects.equals(
+						 getSignature(detailAST),
+						 getSignature(methodDefinitionDetailAST)))) {
+
+					return;
+				}
+			}
+
+			log(detailAST, _MSG_RENAME_METHOD, methodName, newMethodName);
+		}
 	}
 
 	private void _checkTypeName(DetailAST detailAST, String methodName) {
@@ -120,12 +154,13 @@ public class MethodNamingCheck extends BaseCheck {
 
 	private static final String _ENFORCE_TYPE_NAMES_KEY = "enforceTypeNames";
 
+	private static final String[][] _METHOD_NAME_PREFIXS = {
+		{"do", StringPool.BLANK}, {"get", "is"}
+	};
+
 	private static final String _MSG_INCORRECT_ENDING_METHOD =
 		"method.incorrect.ending";
 
 	private static final String _MSG_RENAME_METHOD = "method.rename";
-
-	private static final Pattern _doMethodNamePattern = Pattern.compile(
-		"^_do([A-Z])(.*)$");
 
 }

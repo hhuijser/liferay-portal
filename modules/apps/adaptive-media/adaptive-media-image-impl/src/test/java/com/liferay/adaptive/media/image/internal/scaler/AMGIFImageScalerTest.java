@@ -37,8 +37,6 @@ public class AMGIFImageScalerTest {
 
 	@Test
 	public void testGetResizeFitArgumentWithBlankMaxHeight() {
-		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
 				"test", "desc", "12345",
@@ -51,13 +49,12 @@ public class AMGIFImageScalerTest {
 
 		Assert.assertEquals(
 			"100x_",
-			_getResizeFitValues(amGIFImageScaler, amImageConfigurationEntry));
+			_getResizeFitValues(
+				new AMGIFImageScaler(), amImageConfigurationEntry));
 	}
 
 	@Test
 	public void testGetResizeFitArgumentWithBlankMaxWidth() {
-		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
 				"test", "desc", "12345",
@@ -70,13 +67,12 @@ public class AMGIFImageScalerTest {
 
 		Assert.assertEquals(
 			"_x100",
-			_getResizeFitValues(amGIFImageScaler, amImageConfigurationEntry));
+			_getResizeFitValues(
+				new AMGIFImageScaler(), amImageConfigurationEntry));
 	}
 
 	@Test
 	public void testGetResizeFitArgumentWithMaxWidthAndMaxHeight() {
-		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
 				"test", "desc", "12345",
@@ -89,13 +85,12 @@ public class AMGIFImageScalerTest {
 
 		Assert.assertEquals(
 			"200x100",
-			_getResizeFitValues(amGIFImageScaler, amImageConfigurationEntry));
+			_getResizeFitValues(
+				new AMGIFImageScaler(), amImageConfigurationEntry));
 	}
 
 	@Test
 	public void testGetResizeFitArgumentWithOnlyMaxHeight() {
-		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
 				"test", "desc", "12345",
@@ -106,13 +101,12 @@ public class AMGIFImageScalerTest {
 
 		Assert.assertEquals(
 			"_x100",
-			_getResizeFitValues(amGIFImageScaler, amImageConfigurationEntry));
+			_getResizeFitValues(
+				new AMGIFImageScaler(), amImageConfigurationEntry));
 	}
 
 	@Test
 	public void testGetResizeFitArgumentWithZeroMaxHeight() {
-		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
 				"test", "desc", "12345",
@@ -125,13 +119,12 @@ public class AMGIFImageScalerTest {
 
 		Assert.assertEquals(
 			"100x_",
-			_getResizeFitValues(amGIFImageScaler, amImageConfigurationEntry));
+			_getResizeFitValues(
+				new AMGIFImageScaler(), amImageConfigurationEntry));
 	}
 
 	@Test
 	public void testGetResizeFitArgumentWithZeroMaxWidth() {
-		AMGIFImageScaler amGIFImageScaler = new AMGIFImageScaler();
-
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
 				"test", "desc", "12345",
@@ -144,7 +137,8 @@ public class AMGIFImageScalerTest {
 
 		Assert.assertEquals(
 			"_x100",
-			_getResizeFitValues(amGIFImageScaler, amImageConfigurationEntry));
+			_getResizeFitValues(
+				new AMGIFImageScaler(), amImageConfigurationEntry));
 	}
 
 	private String _getResizeFitValues(

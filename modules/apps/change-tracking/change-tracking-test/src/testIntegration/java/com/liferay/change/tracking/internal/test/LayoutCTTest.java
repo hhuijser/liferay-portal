@@ -725,8 +725,6 @@ public class LayoutCTTest {
 			layout = _layoutLocalService.updateLayout(layout);
 		}
 
-		modifiedDate = layout.getModifiedDate();
-
 		_ctProcessLocalService.addCTProcess(
 			_ctCollection.getUserId(), _ctCollection.getCtCollectionId());
 
@@ -735,7 +733,8 @@ public class LayoutCTTest {
 
 		Assert.assertNotNull(productionLayout);
 
-		Assert.assertEquals(modifiedDate, productionLayout.getModifiedDate());
+		Assert.assertEquals(
+			layout.getModifiedDate(), productionLayout.getModifiedDate());
 	}
 
 	@Test
@@ -769,8 +768,6 @@ public class LayoutCTTest {
 
 		layout = _layoutLocalService.updateLayout(layout);
 
-		modifiedDate = layout.getModifiedDate();
-
 		_ctProcessLocalService.addCTProcess(
 			_ctCollection.getUserId(), _ctCollection.getCtCollectionId());
 
@@ -779,7 +776,8 @@ public class LayoutCTTest {
 
 		Assert.assertNotNull(productionLayout);
 
-		Assert.assertEquals(modifiedDate, productionLayout.getModifiedDate());
+		Assert.assertEquals(
+			layout.getModifiedDate(), productionLayout.getModifiedDate());
 	}
 
 	@Test

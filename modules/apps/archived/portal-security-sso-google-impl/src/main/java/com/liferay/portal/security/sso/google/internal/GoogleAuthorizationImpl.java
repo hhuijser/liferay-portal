@@ -347,8 +347,6 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 		List<UserGroupRole> userGroupRoles = null;
 		long[] userGroupIds = null;
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		String googleUserId = userinfoplus.getId();
 
 		if (!StringUtil.equalsIgnoreCase(
@@ -378,7 +376,7 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 			birthdayYear, contact.getSmsSn(), contact.getFacebookSn(),
 			contact.getJabberSn(), contact.getSkypeSn(), contact.getTwitterSn(),
 			contact.getJobTitle(), groupIds, organizationIds, roleIds,
-			userGroupRoles, userGroupIds, serviceContext);
+			userGroupRoles, userGroupIds, new ServiceContext());
 	}
 
 	private void _checkAllowUserCreation(

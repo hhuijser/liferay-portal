@@ -42,39 +42,30 @@ public class OrgLaborContactInfoManager
 	protected OrgLabor construct(ActionRequest actionRequest) throws Exception {
 		long orgLaborId = ParamUtil.getLong(actionRequest, "primaryKey");
 
-		long typeId = ParamUtil.getLong(actionRequest, "orgLaborTypeId");
-		int sunOpen = ParamUtil.getInteger(actionRequest, "sunOpen", -1);
-		int sunClose = ParamUtil.getInteger(actionRequest, "sunClose", -1);
-		int monOpen = ParamUtil.getInteger(actionRequest, "monOpen", -1);
-		int monClose = ParamUtil.getInteger(actionRequest, "monClose", -1);
-		int tueOpen = ParamUtil.getInteger(actionRequest, "tueOpen", -1);
-		int tueClose = ParamUtil.getInteger(actionRequest, "tueClose", -1);
-		int wedOpen = ParamUtil.getInteger(actionRequest, "wedOpen", -1);
-		int wedClose = ParamUtil.getInteger(actionRequest, "wedClose", -1);
-		int thuOpen = ParamUtil.getInteger(actionRequest, "thuOpen", -1);
-		int thuClose = ParamUtil.getInteger(actionRequest, "thuClose", -1);
-		int friOpen = ParamUtil.getInteger(actionRequest, "friOpen", -1);
-		int friClose = ParamUtil.getInteger(actionRequest, "friClose", -1);
-		int satOpen = ParamUtil.getInteger(actionRequest, "satOpen", -1);
-		int satClose = ParamUtil.getInteger(actionRequest, "satClose", -1);
-
 		OrgLabor orgLabor = _orgLaborLocalService.createOrgLabor(orgLaborId);
 
-		orgLabor.setTypeId(typeId);
-		orgLabor.setSunOpen(sunOpen);
-		orgLabor.setSunClose(sunClose);
-		orgLabor.setMonOpen(monOpen);
-		orgLabor.setMonClose(monClose);
-		orgLabor.setTueOpen(tueOpen);
-		orgLabor.setTueClose(tueClose);
-		orgLabor.setWedOpen(wedOpen);
-		orgLabor.setWedClose(wedClose);
-		orgLabor.setThuOpen(thuOpen);
-		orgLabor.setThuClose(thuClose);
-		orgLabor.setFriOpen(friOpen);
-		orgLabor.setFriClose(friClose);
-		orgLabor.setSatOpen(satOpen);
-		orgLabor.setSatClose(satClose);
+		orgLabor.setTypeId(ParamUtil.getLong(actionRequest, "orgLaborTypeId"));
+		orgLabor.setSunOpen(ParamUtil.getInteger(actionRequest, "sunOpen", -1));
+		orgLabor.setSunClose(
+			ParamUtil.getInteger(actionRequest, "sunClose", -1));
+		orgLabor.setMonOpen(ParamUtil.getInteger(actionRequest, "monOpen", -1));
+		orgLabor.setMonClose(
+			ParamUtil.getInteger(actionRequest, "monClose", -1));
+		orgLabor.setTueOpen(ParamUtil.getInteger(actionRequest, "tueOpen", -1));
+		orgLabor.setTueClose(
+			ParamUtil.getInteger(actionRequest, "tueClose", -1));
+		orgLabor.setWedOpen(ParamUtil.getInteger(actionRequest, "wedOpen", -1));
+		orgLabor.setWedClose(
+			ParamUtil.getInteger(actionRequest, "wedClose", -1));
+		orgLabor.setThuOpen(ParamUtil.getInteger(actionRequest, "thuOpen", -1));
+		orgLabor.setThuClose(
+			ParamUtil.getInteger(actionRequest, "thuClose", -1));
+		orgLabor.setFriOpen(ParamUtil.getInteger(actionRequest, "friOpen", -1));
+		orgLabor.setFriClose(
+			ParamUtil.getInteger(actionRequest, "friClose", -1));
+		orgLabor.setSatOpen(ParamUtil.getInteger(actionRequest, "satOpen", -1));
+		orgLabor.setSatClose(
+			ParamUtil.getInteger(actionRequest, "satClose", -1));
 
 		return orgLabor;
 	}

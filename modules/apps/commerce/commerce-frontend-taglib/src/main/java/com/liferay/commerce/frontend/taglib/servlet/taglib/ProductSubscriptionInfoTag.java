@@ -69,14 +69,11 @@ public class ProductSubscriptionInfoTag extends IncludeTag {
 				_duration =
 					_length * cpSubscriptionInfo.getMaxSubscriptionCycles();
 
-				String subscriptionType =
-					cpSubscriptionInfo.getSubscriptionType();
-
 				String period = StringPool.BLANK;
 
 				CPSubscriptionType cpSubscriptionType =
 					cpSubscriptionTypeRegistry.getCPSubscriptionType(
-						subscriptionType);
+						cpSubscriptionInfo.getSubscriptionType());
 
 				if (cpSubscriptionType != null) {
 					period = cpSubscriptionType.getLabel(LocaleUtil.US);
@@ -97,14 +94,11 @@ public class ProductSubscriptionInfoTag extends IncludeTag {
 					_deliveryLength *
 						cpSubscriptionInfo.getDeliveryMaxSubscriptionCycles();
 
-				String deliverySubscriptionType =
-					cpSubscriptionInfo.getDeliverySubscriptionType();
-
 				String deliveryPeriod = StringPool.BLANK;
 
 				CPSubscriptionType cpDeliverySubscriptionType =
 					cpSubscriptionTypeRegistry.getCPSubscriptionType(
-						deliverySubscriptionType);
+						cpSubscriptionInfo.getDeliverySubscriptionType());
 
 				if (cpDeliverySubscriptionType != null) {
 					deliveryPeriod = cpDeliverySubscriptionType.getLabel(

@@ -206,9 +206,6 @@ public class OAuth2ControllerTest {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
-		MockHttpServletResponse mockHttpServletResponse =
-			new MockHttpServletResponse();
-
 		JSONObject jsonObject = JSONUtil.put("key", "value");
 
 		OAuth2Controller oAuth2Controller =
@@ -216,7 +213,7 @@ public class OAuth2ControllerTest {
 
 		oAuth2Controller.execute(
 			_getMockPortletRequest(mockHttpServletRequest),
-			_getMockPortletResponse(mockHttpServletResponse),
+			_getMockPortletResponse(new MockHttpServletResponse()),
 			portletRequest -> jsonObject);
 
 		Assert.assertEquals(
@@ -241,15 +238,12 @@ public class OAuth2ControllerTest {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
-		MockHttpServletResponse mockHttpServletResponse =
-			new MockHttpServletResponse();
-
 		OAuth2Controller oAuth2Controller =
 			_oAuth2ControllerFactory.getRedirectingOAuth2Controller();
 
 		oAuth2Controller.execute(
 			_getMockPortletRequest(mockHttpServletRequest),
-			_getMockPortletResponse(mockHttpServletResponse),
+			_getMockPortletResponse(new MockHttpServletResponse()),
 			portletRequest -> JSONFactoryUtil.createJSONObject());
 
 		Assert.assertEquals(

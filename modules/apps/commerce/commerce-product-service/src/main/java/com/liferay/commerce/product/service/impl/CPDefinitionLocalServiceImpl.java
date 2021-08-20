@@ -1568,8 +1568,6 @@ public class CPDefinitionLocalServiceImpl
 		CPDefinition cpDefinition = cpDefinitionPersistence.findByPrimaryKey(
 			cpDefinitionId);
 
-		long groupId = cpDefinition.getGroupId();
-
 		Date expirationDate = null;
 		Date date = new Date();
 
@@ -1586,8 +1584,8 @@ public class CPDefinitionLocalServiceImpl
 		}
 
 		validate(
-			groupId, ddmStructureKey, metaTitleMap, metaDescriptionMap,
-			metaKeywordsMap, displayDate, expirationDate,
+			cpDefinition.getGroupId(), ddmStructureKey, metaTitleMap,
+			metaDescriptionMap, metaKeywordsMap, displayDate, expirationDate,
 			cpDefinition.getProductTypeName());
 
 		if (cpDefinitionLocalService.isVersionable(cpDefinition)) {

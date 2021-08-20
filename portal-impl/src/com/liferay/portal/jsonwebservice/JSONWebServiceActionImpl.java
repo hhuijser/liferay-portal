@@ -494,8 +494,6 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 	}
 
 	private Object _invokeActionMethod() throws Exception {
-		Object actionObject = _jsonWebServiceActionConfig.getActionObject();
-
 		Method actionMethod = _jsonWebServiceActionConfig.getActionMethod();
 
 		Object[] parameters = _prepareParameters(
@@ -507,7 +505,8 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 			_log.warn("Invoking deprecated method " + actionMethod.getName());
 		}
 
-		return actionMethod.invoke(actionObject, parameters);
+		return actionMethod.invoke(
+			_jsonWebServiceActionConfig.getActionObject(), parameters);
 	}
 
 	private Object[] _prepareParameters(Class<?> actionClass) throws Exception {

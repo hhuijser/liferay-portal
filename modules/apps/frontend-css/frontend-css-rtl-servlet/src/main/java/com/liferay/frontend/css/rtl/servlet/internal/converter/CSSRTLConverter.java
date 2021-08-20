@@ -196,15 +196,14 @@ public class CSSRTLConverter {
 			CSSExpressionMemberTermSimple cssExpressionMemberTermSimple3 =
 				cssExpressionMemberTermSimples.get(2);
 
-			value = cssExpressionMemberTermSimple3.getValue();
-
 			CSSExpressionMemberTermSimple cssExpressionMemberTermSimple4 =
 				cssExpressionMemberTermSimples.get(3);
 
 			cssExpressionMemberTermSimple3.setValue(
 				cssExpressionMemberTermSimple4.getValue());
 
-			cssExpressionMemberTermSimple4.setValue(value);
+			cssExpressionMemberTermSimple4.setValue(
+				cssExpressionMemberTermSimple3.getValue());
 		}
 		else if (cssExpressionMemberTermSimples.size() == 3) {
 			CSSExpressionMemberTermSimple cssExpressionMemberTermSimple1 =
@@ -223,12 +222,11 @@ public class CSSRTLConverter {
 			CSSExpressionMemberTermSimple cssExpressionMemberTermSimple3 =
 				cssExpressionMemberTermSimples.get(2);
 
-			value = cssExpressionMemberTermSimple3.getValue();
-
 			cssExpressionMemberTermSimple3.setValue(
 				cssExpressionMemberTermSimple1.getValue());
 
-			cssExpression.addTermSimple(value);
+			cssExpression.addTermSimple(
+				cssExpressionMemberTermSimple3.getValue());
 		}
 	}
 

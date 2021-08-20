@@ -413,10 +413,6 @@ public class LocalizationImplTest {
 
 	@Test
 	public void testUpdateLocalization() {
-		Map<Locale, String> localizationMap = HashMapBuilder.put(
-			LocaleUtil.US, _ENGLISH_HELLO
-		).build();
-
 		StringBundler sb = new StringBundler(10);
 
 		sb.append("<?xml version='1.0' encoding='UTF-8'?>");
@@ -431,7 +427,10 @@ public class LocalizationImplTest {
 		sb.append("</root>");
 
 		String xml = LocalizationUtil.updateLocalization(
-			localizationMap, sb.toString(), "greeting",
+			HashMapBuilder.put(
+				LocaleUtil.US, _ENGLISH_HELLO
+			).build(),
+			sb.toString(), "greeting",
 			LocaleUtil.toLanguageId(LocaleUtil.getDefault()));
 
 		Assert.assertEquals(

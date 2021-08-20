@@ -47,15 +47,14 @@ public class Trackback {
 
 		long userId = _userLocalService.getDefaultUserId(
 			themeDisplay.getCompanyId());
-		long groupId = entry.getGroupId();
 		String className = BlogsEntry.class.getName();
 		long classPK = entry.getEntryId();
 
 		String body = buildBody(themeDisplay, excerpt, url);
 
 		long commentId = _commentManager.addComment(
-			userId, groupId, className, classPK, blogName, title, body,
-			serviceContextFunction);
+			userId, entry.getGroupId(), className, classPK, blogName, title,
+			body, serviceContextFunction);
 
 		String entryURL = buildEntryURL(entry, themeDisplay);
 

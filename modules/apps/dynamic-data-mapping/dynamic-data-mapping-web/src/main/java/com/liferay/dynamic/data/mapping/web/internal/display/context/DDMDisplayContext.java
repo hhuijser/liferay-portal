@@ -438,16 +438,13 @@ public class DDMDisplayContext {
 		StructureSearch structureSearch = new StructureSearch(
 			_renderRequest, getPortletURL());
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMStructure> orderByComparator =
 			DDMUtil.getStructureOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		structureSearch.setOrderByCol(orderByCol);
+		structureSearch.setOrderByCol(getOrderByCol());
 		structureSearch.setOrderByComparator(orderByComparator);
-		structureSearch.setOrderByType(orderByType);
+		structureSearch.setOrderByType(getOrderByType());
 
 		if (structureSearch.isSearch()) {
 			structureSearch.setEmptyResultsMessage(
@@ -593,16 +590,13 @@ public class DDMDisplayContext {
 		TemplateSearch templateSearch = new TemplateSearch(
 			_renderRequest, getPortletURL());
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMTemplate> orderByComparator =
 			DDMUtil.getTemplateOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		templateSearch.setOrderByCol(orderByCol);
+		templateSearch.setOrderByCol(getOrderByCol());
 		templateSearch.setOrderByComparator(orderByComparator);
-		templateSearch.setOrderByType(orderByType);
+		templateSearch.setOrderByType(getOrderByType());
 
 		if (templateSearch.isSearch()) {
 			templateSearch.setEmptyResultsMessage("no-templates-were-found");

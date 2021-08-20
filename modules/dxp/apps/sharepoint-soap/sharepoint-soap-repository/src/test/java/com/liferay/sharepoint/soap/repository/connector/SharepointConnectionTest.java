@@ -578,8 +578,6 @@ public class SharepointConnectionTest {
 		SharepointObject sharepointObject =
 			_sharepointConnection.getSharepointObject(_filePath1);
 
-		long sharepointObjectId = sharepointObject.getSharepointObjectId();
-
 		addFileVersion(
 			_filePath1, _CONTENT_HELLO_WORLD,
 			SharepointConnection.CheckInType.MAJOR);
@@ -611,7 +609,7 @@ public class SharepointConnectionTest {
 
 		Assert.assertNotNull(renamedFileSharepointObject);
 		Assert.assertEquals(
-			sharepointObjectId,
+			sharepointObject.getSharepointObjectId(),
 			renamedFileSharepointObject.getSharepointObjectId());
 		Assert.assertEquals(
 			renamedFilePath, renamedFileSharepointObject.getPath());

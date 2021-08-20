@@ -103,8 +103,6 @@ public class MoveThreadPortletConfigurationIcon
 	@Override
 	public boolean isShow(PortletRequest portletRequest) {
 		try {
-			MBCategory category = ActionUtil.getCategory(portletRequest);
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)portletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -112,7 +110,8 @@ public class MoveThreadPortletConfigurationIcon
 			if (ModelResourcePermissionUtil.contains(
 					_categoryModelResourcePermission,
 					themeDisplay.getPermissionChecker(),
-					themeDisplay.getScopeGroupId(), getCategoryId(category),
+					themeDisplay.getScopeGroupId(),
+					getCategoryId(ActionUtil.getCategory(portletRequest)),
 					ActionKeys.MOVE_THREAD)) {
 
 				return true;

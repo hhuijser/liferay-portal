@@ -539,16 +539,14 @@ public class PortletImportControllerImpl implements PortletImportController {
 			if (ownerType == PortletKeys.PREFS_OWNER_TYPE_ARCHIVED) {
 				String userUuid = element.attributeValue("archive-user-uuid");
 
-				long userId = portletDataContext.getUserId(userUuid);
-
 				String name = element.attributeValue("archive-name");
 
 				curPortletId = portletDataContext.getRootPortletId();
 
 				PortletItem portletItem =
 					_portletItemLocalService.updatePortletItem(
-						userId, groupId, name, curPortletId,
-						PortletPreferences.class.getName());
+						portletDataContext.getUserId(userUuid), groupId, name,
+						curPortletId, PortletPreferences.class.getName());
 
 				curPlid = LayoutConstants.DEFAULT_PLID;
 				ownerId = portletItem.getPortletItemId();

@@ -752,16 +752,15 @@ public class SpeedwellSiteInitializer implements SiteInitializer {
 
 		Group group = serviceContext.getScopeGroup();
 
-		JSONArray jsonArray = _getJSONArray("products.json");
-
 		long[] commerceInventoryWarehouseIds = ListUtil.toLongArray(
 			commerceInventoryWarehouses,
 			CommerceInventoryWarehouse.
 				COMMERCE_INVENTORY_WAREHOUSE_ID_ACCESSOR);
 
 		return _cpDefinitionsImporter.importCPDefinitions(
-			jsonArray, group.getName(serviceContext.getLocale()),
-			catalogGroupId, commerceChannelId, commerceInventoryWarehouseIds,
+			_getJSONArray("products.json"),
+			group.getName(serviceContext.getLocale()), catalogGroupId,
+			commerceChannelId, commerceInventoryWarehouseIds,
 			_speedwellDependencyResolver.getImageClassLoader(),
 			_speedwellDependencyResolver.getImageDependencyPath(),
 			serviceContext.getScopeGroupId(), serviceContext.getUserId());
@@ -888,13 +887,11 @@ public class SpeedwellSiteInitializer implements SiteInitializer {
 			_log.info("Importing portlet settings...");
 		}
 
-		JSONArray jsonArray = _getJSONArray("portlet-settings.json");
-
 		Company company = _companyLocalService.getCompany(
 			serviceContext.getCompanyId());
 
 		_portletSettingsImporter.importPortletSettings(
-			jsonArray,
+			_getJSONArray("portlet-settings.json"),
 			_speedwellDependencyResolver.getDisplayTemplatesClassLoader(),
 			_speedwellDependencyResolver.getDisplayTemplatesDependencyPath(),
 			serviceContext.getScopeGroupId(), company.getGroupId(),
@@ -954,13 +951,11 @@ public class SpeedwellSiteInitializer implements SiteInitializer {
 	private void _importThemePortletSettings(ServiceContext serviceContext)
 		throws Exception {
 
-		JSONArray jsonArray = _getJSONArray("theme-portlet-settings.json");
-
 		Company company = _companyLocalService.getCompany(
 			serviceContext.getCompanyId());
 
 		_portletSettingsImporter.importPortletSettings(
-			jsonArray,
+			_getJSONArray("theme-portlet-settings.json"),
 			_speedwellDependencyResolver.getDisplayTemplatesClassLoader(),
 			_speedwellDependencyResolver.getDisplayTemplatesDependencyPath(),
 			serviceContext.getScopeGroupId(), company.getGroupId(),

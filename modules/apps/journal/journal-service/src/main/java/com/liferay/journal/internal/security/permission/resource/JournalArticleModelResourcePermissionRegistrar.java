@@ -42,8 +42,6 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.kernel.workflow.permission.WorkflowPermission;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -59,11 +57,6 @@ public class JournalArticleModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", JournalArticle.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<JournalArticle>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -113,7 +106,9 @@ public class JournalArticleModelResourcePermissionRegistrar {
 							_journalFolderModelResourcePermission,
 							_getFetchParentFunction(), true));
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", JournalArticle.class.getName()
+			).build());
 	}
 
 	@Deactivate

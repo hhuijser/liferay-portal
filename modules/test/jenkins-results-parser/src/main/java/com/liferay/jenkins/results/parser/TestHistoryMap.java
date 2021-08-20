@@ -146,8 +146,6 @@ public class TestHistoryMap
 			for (TestrayCaseResult testrayCaseResult :
 					testrayBuild.getTestrayCaseResults()) {
 
-				String name = testrayCaseResult.getName();
-
 				String jobVariant = null;
 
 				List<TestrayAttachment> testrayAttachments =
@@ -174,7 +172,7 @@ public class TestHistoryMap
 				URL url = testrayCaseResult.getURL();
 
 				put(
-					name, jobVariant, url.toString(), 0,
+					testrayCaseResult.getName(), jobVariant, url.toString(), 0,
 					testrayCaseResult.getErrors(), status.getName());
 			}
 		}

@@ -295,8 +295,6 @@ public class DDMFormImporter {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		long userId = serviceContext.getUserId();
-
 		DDMFormLayoutDeserializerDeserializeRequest
 			ddmFormLayoutDeserializerDeserializeRequest =
 				DDMFormLayoutDeserializerDeserializeRequest.Builder.newBuilder(
@@ -312,8 +310,8 @@ public class DDMFormImporter {
 			ddmFormLayoutDeserializerDeserializeResponse.getDDMFormLayout();
 
 		_ddmStructureLocalService.updateStructure(
-			userId, structure.getStructureId(), ddmForm, formLayout,
-			serviceContext);
+			serviceContext.getUserId(), structure.getStructureId(), ddmForm,
+			formLayout, serviceContext);
 	}
 
 	@Reference

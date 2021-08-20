@@ -87,7 +87,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.osgi.service.component.annotations.Component;
@@ -131,7 +130,6 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "birthdayMonth");
 		int birthdayDay = ParamUtil.getInteger(actionRequest, "birthdayDay");
 		int birthdayYear = ParamUtil.getInteger(actionRequest, "birthdayYear");
-		String comments = ParamUtil.getString(actionRequest, "comments");
 		String jobTitle = ParamUtil.getString(actionRequest, "jobTitle");
 		long[] organizationIds = UsersAdminUtil.getOrganizationIds(
 			actionRequest);
@@ -150,7 +148,7 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			new ArrayList<Website>(), new ArrayList<AnnouncementsDelivery>(),
 			sendEmail, serviceContext);
 
-		user.setComments(comments);
+		user.setComments(ParamUtil.getString(actionRequest, "comments"));
 
 		return userLocalService.updateUser(user);
 	}
@@ -508,8 +506,6 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			HttpServletRequest httpServletRequest =
 				portal.getOriginalServletRequest(
 					portal.getHttpServletRequest(actionRequest));
-			HttpServletResponse httpServletResponse =
-				portal.getHttpServletResponse(actionResponse);
 
 			HttpSession session = httpServletRequest.getSession();
 
@@ -518,7 +514,8 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			Locale locale = LocaleUtil.fromLanguageId(languageId);
 
 			LanguageUtil.updateCookie(
-				httpServletRequest, httpServletResponse, locale);
+				httpServletRequest,
+				portal.getHttpServletResponse(actionResponse), locale);
 
 			// Clear cached portlet responses
 

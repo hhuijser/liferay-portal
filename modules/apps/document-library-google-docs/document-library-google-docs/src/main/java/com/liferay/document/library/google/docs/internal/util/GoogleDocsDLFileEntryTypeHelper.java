@@ -110,10 +110,6 @@ public class GoogleDocsDLFileEntryTypeHelper {
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			_company.getCompanyId());
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), GoogleDocsConstants.DL_FILE_ENTRY_TYPE_NAME
-		).build();
-
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -125,7 +121,12 @@ public class GoogleDocsDLFileEntryTypeHelper {
 
 		_dlFileEntryTypeLocalService.addFileEntryType(
 			defaultUserId, _company.getGroupId(), ddmStructureId,
-			GoogleDocsConstants.DL_FILE_ENTRY_TYPE_KEY, nameMap, descriptionMap,
+			GoogleDocsConstants.DL_FILE_ENTRY_TYPE_KEY,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(),
+				GoogleDocsConstants.DL_FILE_ENTRY_TYPE_NAME
+			).build(),
+			descriptionMap,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_SCOPE_SYSTEM,
 			serviceContext);
 	}

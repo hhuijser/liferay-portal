@@ -47,9 +47,6 @@ public class VirtualCPTypeTestUtil {
 			long termsOfUseJournalArticleResourcePrimKey)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId);
-
 		String url = null;
 
 		if (fileEntryId <= 0) {
@@ -73,7 +70,8 @@ public class VirtualCPTypeTestUtil {
 				className, classPK, fileEntryId, url, activationStatus,
 				duration, RandomTestUtil.randomInt(), true, sampleFileEntryId,
 				sampleUrl, true, termsOfUseContentMap,
-				termsOfUseJournalArticleResourcePrimKey, serviceContext);
+				termsOfUseJournalArticleResourcePrimKey,
+				ServiceContextTestUtil.getServiceContext(groupId));
 	}
 
 	public static JournalArticle addJournalArticle(long groupId)

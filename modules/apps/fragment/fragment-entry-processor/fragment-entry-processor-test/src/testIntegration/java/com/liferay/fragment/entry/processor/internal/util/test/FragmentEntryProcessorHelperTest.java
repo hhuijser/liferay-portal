@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.LocalRepository;
 import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -176,9 +175,6 @@ public class FragmentEntryProcessorHelperTest {
 	}
 
 	private FileEntry _addImageFileEntry() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		byte[] bytes = FileUtil.getBytes(
 			FragmentEntryProcessorHelperTest.class,
 			"/com/liferay/fragment/entry/processor/internal/util/test" +
@@ -194,7 +190,8 @@ public class FragmentEntryProcessorHelperTest {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString(), ContentTypes.IMAGE_JPEG,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
-			inputStream, bytes.length, null, null, serviceContext);
+			inputStream, bytes.length, null, null,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	private JournalArticle _addJournalArticle(

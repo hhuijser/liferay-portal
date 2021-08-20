@@ -66,13 +66,12 @@ public class CheckboxDDMFormFieldValueRequestParameterRetrieverTest {
 
 	@Test
 	public void testGetValueWithNullRequestParameter() {
-		MockHttpServletRequest request = new MockHttpServletRequest();
-
 		String defaultParameterValue = StringPool.TRUE;
 
 		String parameterValue =
 			_checkboxDDMFormFieldValueRequestParameterRetriever.get(
-				request, "ddmFormFieldCheckbox", defaultParameterValue);
+				new MockHttpServletRequest(), "ddmFormFieldCheckbox",
+				defaultParameterValue);
 
 		Assert.assertEquals(parameterValue, defaultParameterValue);
 	}

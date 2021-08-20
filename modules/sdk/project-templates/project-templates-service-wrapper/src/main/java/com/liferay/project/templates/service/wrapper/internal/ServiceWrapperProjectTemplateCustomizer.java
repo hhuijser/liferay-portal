@@ -19,8 +19,6 @@ import com.liferay.project.templates.extensions.ProjectTemplatesArgs;
 
 import java.io.File;
 
-import java.util.Properties;
-
 import org.apache.maven.archetype.ArchetypeGenerationRequest;
 import org.apache.maven.archetype.ArchetypeGenerationResult;
 
@@ -48,14 +46,12 @@ public class ServiceWrapperProjectTemplateCustomizer
 			ArchetypeGenerationRequest archetypeGenerationRequest)
 		throws Exception {
 
-		Properties properties = archetypeGenerationRequest.getProperties();
-
 		ServiceWrapperProjectTemplatesArgs serviceWrapperProjectTemplatesArgs =
 			(ServiceWrapperProjectTemplatesArgs)
 				projectTemplatesArgs.getProjectTemplatesArgsExt();
 
 		setProperty(
-			properties, "serviceWrapperClass",
+			archetypeGenerationRequest.getProperties(), "serviceWrapperClass",
 			serviceWrapperProjectTemplatesArgs.getService());
 	}
 

@@ -1574,15 +1574,14 @@ public class LayoutStagedModelDataHandler
 			Layout importedLayout)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(layout.getUserUuid());
-
 		long[] assetCategoryIds = portletDataContext.getAssetCategoryIds(
 			Layout.class, layout.getPlid());
 		String[] assetTagNames = portletDataContext.getAssetTagNames(
 			Layout.class, layout.getPlid());
 
 		_layoutLocalService.updateAsset(
-			userId, importedLayout, assetCategoryIds, assetTagNames);
+			portletDataContext.getUserId(layout.getUserUuid()), importedLayout,
+			assetCategoryIds, assetTagNames);
 	}
 
 	protected void importFragmentEntryLinks(

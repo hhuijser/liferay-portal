@@ -98,8 +98,6 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 
 	@Test
 	public void testCompanies() throws Exception {
-		Long companyId = CompanyThreadLocal.getCompanyId();
-
 		for (int i = 0; i < _COMPANIES_COUNT; i++) {
 			long newCompanyId = createCompany();
 
@@ -117,7 +115,7 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 			_COMPANIES_COUNT * _NOT_EXPIRED_TRASH_ENTRIES_COUNT,
 			TrashEntryLocalServiceUtil.getTrashEntriesCount());
 
-		CompanyThreadLocal.setCompanyId(companyId);
+		CompanyThreadLocal.setCompanyId(CompanyThreadLocal.getCompanyId());
 	}
 
 	@Test

@@ -20,7 +20,6 @@ import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestUtil;
 import com.liferay.dynamic.data.mapping.test.util.DDMTemplateTestUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -37,9 +36,6 @@ public class KaleoProcessTestUtil {
 
 	public static KaleoProcess addKaleoProcess(String className)
 		throws Exception {
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
 
 		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
 			className);
@@ -64,15 +60,13 @@ public class KaleoProcessTestUtil {
 			ddmStructure.getStructureId(),
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(), ddmTemplate.getTemplateId(),
-			"Single Approver", 1, kaleoTaskFormPairs, serviceContext);
+			"Single Approver", 1, kaleoTaskFormPairs,
+			ServiceContextTestUtil.getServiceContext());
 	}
 
 	public static KaleoProcess updateKaleoProcess(
 			KaleoProcess kaleoProcess, String className)
 		throws Exception {
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
 
 		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
 			className);
@@ -96,7 +90,8 @@ public class KaleoProcessTestUtil {
 			kaleoProcess.getKaleoProcessId(), ddmStructure.getStructureId(),
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(), ddmTemplate.getTemplateId(),
-			"Single Approver", 1, kaleoTaskFormPairs, serviceContext);
+			"Single Approver", 1, kaleoTaskFormPairs,
+			ServiceContextTestUtil.getServiceContext());
 	}
 
 	protected static void addKaleoTaskFormPair(

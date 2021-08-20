@@ -1608,12 +1608,12 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		if (calendarBooking.isMasterBooking()) {
-			Date createDate = calendarBooking.getCreateDate();
-
 			NotificationTemplateType notificationTemplateType =
 				NotificationTemplateType.INVITE;
 
-			if (!DateUtil.equals(createDate, oldModifiedDate)) {
+			if (!DateUtil.equals(
+					calendarBooking.getCreateDate(), oldModifiedDate)) {
+
 				notificationTemplateType = NotificationTemplateType.UPDATE;
 			}
 
@@ -2260,8 +2260,6 @@ public class CalendarBookingLocalServiceImpl
 		throws PortalException {
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
-			long calendarBookingId = calendarBooking.getCalendarBookingId();
-
 			if (unmodifiedAttributeNames.contains("calendarId")) {
 				calendarId = calendarBooking.getCalendarId();
 			}
@@ -2311,9 +2309,9 @@ public class CalendarBookingLocalServiceImpl
 			}
 
 			updateCalendarBooking(
-				userId, calendarBookingId, calendarId, childCalendarIds,
-				titleMap, descriptionMap, location, startTime, endTime, allDay,
-				calendarBooking.getRecurrence(), firstReminder,
+				userId, calendarBooking.getCalendarBookingId(), calendarId,
+				childCalendarIds, titleMap, descriptionMap, location, startTime,
+				endTime, allDay, calendarBooking.getRecurrence(), firstReminder,
 				firstReminderType, secondReminder, secondReminderType,
 				serviceContext);
 		}

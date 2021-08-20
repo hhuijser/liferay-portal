@@ -123,18 +123,17 @@ public class CalendarServiceTest {
 				PortalUtil.getClassNameId(Group.class), group.getGroupId());
 
 		if (calendarResource == null) {
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.getSiteDefault(), group.getDescriptiveName()
-			).build();
-
 			Map<Locale, String> descriptionMap = new HashMap<>();
 
 			calendarResource =
 				_calendarResourceLocalService.addCalendarResource(
 					group.getCreatorUserId(), group.getGroupId(),
 					PortalUtil.getClassNameId(Group.class), group.getGroupId(),
-					null, null, nameMap, descriptionMap, true,
-					new ServiceContext());
+					null, null,
+					HashMapBuilder.put(
+						LocaleUtil.getSiteDefault(), group.getDescriptiveName()
+					).build(),
+					descriptionMap, true, new ServiceContext());
 		}
 
 		return calendarResource.getDefaultCalendar();

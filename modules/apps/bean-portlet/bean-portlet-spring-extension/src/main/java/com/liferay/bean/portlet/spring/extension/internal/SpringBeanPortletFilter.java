@@ -38,7 +38,6 @@ import javax.portlet.filter.HeaderFilterChain;
 import javax.portlet.filter.RenderFilter;
 import javax.portlet.filter.ResourceFilter;
 
-import org.springframework.context.i18n.LocaleContext;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.i18n.SimpleLocaleContext;
 
@@ -118,14 +117,13 @@ public class SpringBeanPortletFilter
 			PortletRequest portletRequest)
 		throws IOException, PortletException {
 
-		LocaleContext localeContext = LocaleContextHolder.getLocaleContext();
-
 		LocaleContextHolder.setLocaleContext(
 			new SimpleLocaleContext(portletRequest.getLocale()), false);
 
 		filterChainRunnable.doFilter();
 
-		LocaleContextHolder.setLocaleContext(localeContext, false);
+		LocaleContextHolder.setLocaleContext(
+			LocaleContextHolder.getLocaleContext(), false);
 	}
 
 	@FunctionalInterface

@@ -50,8 +50,6 @@ public class DDMFieldSetDefinitionServletTest {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
-		MockHttpServletResponse mockHttpServletResponse =
-			new MockHttpServletResponse();
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.CURRENT_URL,
@@ -59,7 +57,7 @@ public class DDMFieldSetDefinitionServletTest {
 				"field-settings-form-context");
 
 		_ddmFieldSetDefinitionServlet.service(
-			mockHttpServletRequest, mockHttpServletResponse);
+			mockHttpServletRequest, new MockHttpServletResponse());
 
 		Assert.assertNotNull(
 			mockHttpServletRequest.getAttribute(WebKeys.THEME_DISPLAY));

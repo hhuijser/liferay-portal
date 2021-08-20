@@ -75,16 +75,14 @@ public class OrganizationTypeConfigurationTest {
 	}
 
 	private Configuration _addOrganizationTypeConfiguration() throws Exception {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"name", RandomTestUtil.randomString()
-			).build();
-
 		Configuration configuration =
 			_configurationAdmin.createFactoryConfiguration(
 				_ORGANIZATION_TYPE_CONFIGURATION_PID, StringPool.QUESTION);
 
-		configuration.update(properties);
+		configuration.update(
+			HashMapDictionaryBuilder.<String, Object>put(
+				"name", RandomTestUtil.randomString()
+			).build());
 
 		return configuration;
 	}

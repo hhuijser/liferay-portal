@@ -67,9 +67,6 @@ public class UpdateMembershipsMVCActionCommand extends BaseMVCActionCommand {
 
 			birthdayCal.setTime(user.getBirthday());
 
-			long[] groupIds = _usersAdmin.getGroupIds(actionRequest);
-			long[] userGroupIds = _usersAdmin.getUserGroupIds(actionRequest);
-
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				User.class.getName(), actionRequest);
 
@@ -87,8 +84,9 @@ public class UpdateMembershipsMVCActionCommand extends BaseMVCActionCommand {
 				birthdayCal.get(Calendar.YEAR), contact.getSmsSn(),
 				contact.getFacebookSn(), contact.getJabberSn(),
 				contact.getSkypeSn(), contact.getTwitterSn(),
-				user.getJobTitle(), groupIds, user.getOrganizationIds(), null,
-				null, userGroupIds, serviceContext);
+				user.getJobTitle(), _usersAdmin.getGroupIds(actionRequest),
+				user.getOrganizationIds(), null, null,
+				_usersAdmin.getUserGroupIds(actionRequest), serviceContext);
 		}
 		catch (Exception exception) {
 			if (exception instanceof NoSuchUserException ||

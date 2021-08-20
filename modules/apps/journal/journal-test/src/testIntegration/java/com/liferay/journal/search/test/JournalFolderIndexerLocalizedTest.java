@@ -82,12 +82,10 @@ public class JournalFolderIndexerLocalizedTest {
 
 	@Test
 	public void testJapaneseDescription() throws Exception {
-		ServiceContext serviceContext = _getServiceContext();
-
 		String description = "諸行無常";
 		String title = "平家物語";
 
-		_addFolder(serviceContext, title, description);
+		_addFolder(_getServiceContext(), title, description);
 
 		String searchTerm = "諸行";
 
@@ -123,12 +121,10 @@ public class JournalFolderIndexerLocalizedTest {
 
 	@Test
 	public void testJapaneseTitle() throws Exception {
-		ServiceContext serviceContext = _getServiceContext();
-
 		String description = "諸行無常";
 		String title = "平家物語";
 
-		_addFolder(serviceContext, title, description);
+		_addFolder(_getServiceContext(), title, description);
 
 		String searchTerm = "平家";
 

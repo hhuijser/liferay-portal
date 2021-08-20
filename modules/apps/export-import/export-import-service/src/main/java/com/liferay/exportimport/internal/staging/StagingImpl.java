@@ -292,7 +292,6 @@ public class StagingImpl implements Staging {
 
 		long sourceGroupId = stagingGroup.getLiveGroupId();
 
-		boolean privateLayout = getPrivateLayout(portletRequest);
 		long[] layoutIds = _exportImportHelper.getLayoutIds(
 			portletRequest, targetGroupId);
 
@@ -307,8 +306,8 @@ public class StagingImpl implements Staging {
 		Map<String, Serializable> publishLayoutLocalSettingsMap =
 			_exportImportConfigurationSettingsMapFactory.
 				buildPublishLayoutLocalSettingsMap(
-					user, sourceGroupId, targetGroupId, privateLayout,
-					layoutIds, parameterMap);
+					user, sourceGroupId, targetGroupId,
+					getPrivateLayout(portletRequest), layoutIds, parameterMap);
 
 		ExportImportConfiguration exportImportConfiguration = null;
 
@@ -2613,7 +2612,6 @@ public class StagingImpl implements Staging {
 			long sourceGroupId = sourceGroup.getGroupId();
 
 			long targetGroupId = targetGroup.getGroupId();
-			boolean privateLayout = getPrivateLayout(portletRequest);
 
 			long[] layoutIds = _exportImportHelper.getLayoutIds(
 				portletRequest, targetGroupId);
@@ -2629,8 +2627,9 @@ public class StagingImpl implements Staging {
 			publishLayoutLocalSettingsMap =
 				_exportImportConfigurationSettingsMapFactory.
 					buildPublishLayoutLocalSettingsMap(
-						user, sourceGroupId, targetGroupId, privateLayout,
-						layoutIds, parameterMap);
+						user, sourceGroupId, targetGroupId,
+						getPrivateLayout(portletRequest), layoutIds,
+						parameterMap);
 		}
 
 		ExportImportConfiguration exportImportConfiguration = null;

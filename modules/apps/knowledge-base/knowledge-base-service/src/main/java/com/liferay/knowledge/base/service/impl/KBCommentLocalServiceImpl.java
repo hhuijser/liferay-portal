@@ -76,7 +76,6 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		// KB comment
 
 		User user = userLocalService.getUser(userId);
-		long groupId = serviceContext.getScopeGroupId();
 		Date date = new Date();
 
 		validate(content);
@@ -86,7 +85,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 		KBComment kbComment = kbCommentPersistence.create(kbCommentId);
 
 		kbComment.setUuid(serviceContext.getUuid());
-		kbComment.setGroupId(groupId);
+		kbComment.setGroupId(serviceContext.getScopeGroupId());
 		kbComment.setCompanyId(user.getCompanyId());
 		kbComment.setUserId(user.getUserId());
 		kbComment.setUserName(user.getFullName());

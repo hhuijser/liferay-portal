@@ -67,12 +67,11 @@ public class UploadServletRequestWhenGettingTempDirTest {
 
 	@Test
 	public void testShouldReturnPreferencesValue() {
-		File tempDir = UploadServletRequestImpl.getTempDir();
-
 		File expectedTempDir = new File(
 			UploadServletRequestConfigurationHelperUtil.getTempDir());
 
-		Assert.assertEquals(expectedTempDir, tempDir);
+		Assert.assertEquals(
+			expectedTempDir, UploadServletRequestImpl.getTempDir());
 	}
 
 }

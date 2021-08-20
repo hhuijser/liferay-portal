@@ -270,17 +270,16 @@ public class CPMeasurementUnitLocalServiceImpl
 			double priority, int type, ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			serviceContext.getLocale(), name
-		).build();
-
 		CPMeasurementUnit cpMeasurementUnit =
 			cpMeasurementUnitPersistence.fetchByC_K_T(
 				serviceContext.getCompanyId(), key, type);
 
 		if (cpMeasurementUnit == null) {
 			cpMeasurementUnitLocalService.addCPMeasurementUnit(
-				nameMap, key, rate, primary, priority, type, serviceContext);
+				HashMapBuilder.put(
+					serviceContext.getLocale(), name
+				).build(),
+				key, rate, primary, priority, type, serviceContext);
 		}
 	}
 

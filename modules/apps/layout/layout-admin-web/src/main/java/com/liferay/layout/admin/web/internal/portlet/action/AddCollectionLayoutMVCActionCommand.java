@@ -52,8 +52,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.portlet.ActionRequest;
@@ -117,10 +115,6 @@ public class AddCollectionLayoutMVCActionCommand
 			actionRequest, "privateLayout");
 		long parentLayoutId = ParamUtil.getLong(
 			actionRequest, "parentLayoutId");
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(),
-			ParamUtil.getString(actionRequest, "name")
-		).build();
 
 		UnicodeProperties typeSettingsUnicodeProperties =
 			PropertiesParamUtil.getProperties(
@@ -144,8 +138,12 @@ public class AddCollectionLayoutMVCActionCommand
 			Layout.class.getName(), actionRequest);
 
 		Layout layout = _layoutService.addLayout(
-			groupId, privateLayout, parentLayoutId, nameMap, new HashMap<>(),
-			new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			groupId, privateLayout, parentLayoutId,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(),
+				ParamUtil.getString(actionRequest, "name")
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_COLLECTION,
 			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
 			masterLayoutPlid, serviceContext);
@@ -185,19 +183,19 @@ public class AddCollectionLayoutMVCActionCommand
 			return null;
 		}
 
-		Map<String, String> values = HashMapBuilder.put(
-			"CLASS_NAME", className
-		).put(
-			"CLASS_PK", classPK
-		).put(
-			"COLLECTION_NAME", HtmlUtil.escape(assetListEntry.getTitle())
-		).build();
-
 		String collectionPageElementJSON = StringUtil.read(
 			AddCollectionLayoutMVCActionCommand.class,
 			"collection-page-element.json");
 
-		return StringUtil.replace(collectionPageElementJSON, "${", "}", values);
+		return StringUtil.replace(
+			collectionPageElementJSON, "${", "}",
+			HashMapBuilder.put(
+				"CLASS_NAME", className
+			).put(
+				"CLASS_PK", classPK
+			).put(
+				"COLLECTION_NAME", HtmlUtil.escape(assetListEntry.getTitle())
+			).build());
 	}
 
 	private String _getCollectionProviderPageElementJSON(String className) {
@@ -209,19 +207,18 @@ public class AddCollectionLayoutMVCActionCommand
 			return null;
 		}
 
-		Map<String, String> values = HashMapBuilder.put(
-			"CLASS_NAME", className
-		).put(
-			"COLLECTION_PROVIDER_NAME",
-			infoCollectionProvider.getLabel(LocaleUtil.getDefault())
-		).build();
-
 		String collectionProviderPageElementJSON = StringUtil.read(
 			AddCollectionLayoutMVCActionCommand.class,
 			"collection-provider-page-element.json");
 
 		return StringUtil.replace(
-			collectionProviderPageElementJSON, "${", "}", values);
+			collectionProviderPageElementJSON, "${", "}",
+			HashMapBuilder.put(
+				"CLASS_NAME", className
+			).put(
+				"COLLECTION_PROVIDER_NAME",
+				infoCollectionProvider.getLabel(LocaleUtil.getDefault())
+			).build());
 	}
 
 	private void _updateLayoutPageTemplateData(

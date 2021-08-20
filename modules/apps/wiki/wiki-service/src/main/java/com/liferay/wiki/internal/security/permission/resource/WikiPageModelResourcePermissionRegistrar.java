@@ -35,8 +35,6 @@ import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.WikiNodeLocalService;
 import com.liferay.wiki.service.WikiPageLocalService;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -52,11 +50,6 @@ public class WikiPageModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", WikiPage.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<WikiPage>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -101,7 +94,9 @@ public class WikiPageModelResourcePermissionRegistrar {
 					consumer.accept(
 						new RedirectPageDynamicInheritanceModelResourcePermissionLogic());
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", WikiPage.class.getName()
+			).build());
 	}
 
 	@Deactivate

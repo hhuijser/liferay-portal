@@ -147,23 +147,20 @@ public class MiniumFullSiteInitializer implements SiteInitializer {
 	}
 
 	private void _importCommerceMLForecasts(long groupId) throws Exception {
-		JSONArray jsonArray = _getJSONArray("forecasts.json");
-
 		User user = _userLocalService.getUser(PrincipalThreadLocal.getUserId());
 
 		_commerceMLForecastImporter.importCommerceMLForecasts(
-			jsonArray, groupId, user.getUserId());
+			_getJSONArray("forecasts.json"), groupId, user.getUserId());
 	}
 
 	private void _importCommerceMLRecommendations(long groupId)
 		throws Exception {
 
-		JSONArray jsonArray = _getJSONArray("recommendations.json");
-
 		User user = _userLocalService.getUser(PrincipalThreadLocal.getUserId());
 
 		_commerceMLRecommendationImporter.importCommerceMLRecommendations(
-			jsonArray, "MIN", groupId, user.getUserId());
+			_getJSONArray("recommendations.json"), "MIN", groupId,
+			user.getUserId());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

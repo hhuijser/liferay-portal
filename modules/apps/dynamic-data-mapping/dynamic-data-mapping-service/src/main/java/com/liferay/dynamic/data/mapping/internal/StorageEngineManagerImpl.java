@@ -19,7 +19,6 @@ import com.liferay.dynamic.data.mapping.kernel.DDMFormValues;
 import com.liferay.dynamic.data.mapping.kernel.StorageEngineManager;
 import com.liferay.dynamic.data.mapping.kernel.StorageFieldRequiredException;
 import com.liferay.dynamic.data.mapping.model.DDMContent;
-import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStorageLink;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
@@ -110,14 +109,12 @@ public class StorageEngineManagerImpl implements StorageEngineManager {
 
 		DDMStructure ddmStructure = ddmStorageLink.getStructure();
 
-		DDMForm ddmForm = ddmStructure.getDDMForm();
-
 		DDMStorageAdapter ddmStorageAdapter = _getDDMStorageAdapter();
 
 		DDMStorageAdapterGetResponse ddmStorageAdapterGetResponse =
 			ddmStorageAdapter.get(
 				DDMStorageAdapterGetRequest.Builder.newBuilder(
-					classPK, ddmForm
+					classPK, ddmStructure.getDDMForm()
 				).build());
 
 		return _ddmBeanTranslator.translate(

@@ -90,13 +90,11 @@ public class NetvibesServlet extends HttpServlet {
 			return null;
 		}
 
-		long companyId = PortalUtil.getCompanyId(httpServletRequest);
-
 		String portletId = path.substring(
 			pos + Portal.FRIENDLY_URL_SEPARATOR.length());
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			companyId, portletId);
+			PortalUtil.getCompanyId(httpServletRequest), portletId);
 
 		String title = HtmlUtil.escape(portlet.getDisplayName());
 

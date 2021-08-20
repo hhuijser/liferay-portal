@@ -635,10 +635,6 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 
 		prepareIdentityProvider(IDP_ENTITY_ID);
 
-		mockHttpServletRequest = getMockHttpServletRequest(redirect);
-
-		mockHttpServletResponse = new MockHttpServletResponse();
-
 		when(
 			samlProviderConfiguration.authnRequestSignatureRequired()
 		).thenReturn(
@@ -646,7 +642,7 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		);
 
 		_webSsoProfileImpl.decodeAuthnRequest(
-			mockHttpServletRequest, mockHttpServletResponse);
+			getMockHttpServletRequest(redirect), new MockHttpServletResponse());
 	}
 
 	@Test

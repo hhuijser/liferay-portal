@@ -127,15 +127,13 @@ public class FileEntryInfoDisplayContributorTest {
 				fileEntry -> {
 					_addAssetDisplayPageEntry(fileEntry);
 
-					Locale locale = LocaleUtil.getDefault();
-
 					String expectedURL = StringBundler.concat(
 						"/web/", StringUtil.lowerCase(_group.getGroupKey()),
 						"/d/", fileEntry.getFileEntryId());
 
 					ThemeDisplay themeDisplay = new ThemeDisplay();
 
-					themeDisplay.setLocale(locale);
+					themeDisplay.setLocale(LocaleUtil.getDefault());
 					themeDisplay.setScopeGroupId(_group.getGroupId());
 					themeDisplay.setServerName("localhost");
 					themeDisplay.setSiteGroupId(_group.getGroupId());
@@ -204,15 +202,13 @@ public class FileEntryInfoDisplayContributorTest {
 				fileEntry -> {
 					_addAssetDisplayPageEntry(fileEntry);
 
-					Locale locale = LocaleUtil.getDefault();
-
 					String expectedURL = StringBundler.concat(
 						"/web/", StringUtil.lowerCase(_group.getGroupKey()),
 						"/d/", fileEntry.getFileEntryId());
 
 					ThemeDisplay themeDisplay = new ThemeDisplay();
 
-					themeDisplay.setLocale(locale);
+					themeDisplay.setLocale(LocaleUtil.getDefault());
 					themeDisplay.setScopeGroupId(_group.getGroupId());
 					themeDisplay.setServerName("localhost");
 					themeDisplay.setSiteGroupId(_group.getGroupId());

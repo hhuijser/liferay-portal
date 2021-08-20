@@ -124,11 +124,9 @@ public class AdvancedFileSystemStore extends FileSystemStore {
 
 		buildPath(sb, fileNameFragment);
 
-		File repositoryDir = getRepositoryDir(companyId, repositoryId);
-
 		StringBundler pathSB = new StringBundler(6);
 
-		pathSB.append(repositoryDir);
+		pathSB.append(getRepositoryDir(companyId, repositoryId));
 		pathSB.append(StringPool.SLASH);
 		pathSB.append(sb.toString());
 
@@ -185,11 +183,9 @@ public class AdvancedFileSystemStore extends FileSystemStore {
 
 			buildPath(sb, fileNameFragment);
 
-			File repositoryDir = getRepositoryDir(companyId, repositoryId);
-
 			StringBundler pathSB = new StringBundler(11);
 
-			pathSB.append(repositoryDir);
+			pathSB.append(getRepositoryDir(companyId, repositoryId));
 			pathSB.append(StringPool.SLASH);
 			pathSB.append(sb.toString());
 			pathSB.append(StringPool.SLASH);

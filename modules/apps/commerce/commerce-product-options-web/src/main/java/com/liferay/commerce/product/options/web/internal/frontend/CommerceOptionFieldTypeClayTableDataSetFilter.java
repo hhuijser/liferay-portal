@@ -77,9 +77,6 @@ public class CommerceOptionFieldTypeClayTableDataSetFilter
 	}
 
 	public List<DDMFormFieldType> getDDMFormFieldTypes() {
-		List<DDMFormFieldType> ddmFormFieldTypes =
-			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
-
 		CPOptionConfiguration cpOptionConfiguration = null;
 
 		try {
@@ -95,7 +92,8 @@ public class CommerceOptionFieldTypeClayTableDataSetFilter
 			cpOptionConfiguration.ddmFormFieldTypesAllowed();
 
 		return DDMFormFieldTypeUtil.getDDMFormFieldTypesAllowed(
-			ddmFormFieldTypes, ddmFormFieldTypesAllowed);
+			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes(),
+			ddmFormFieldTypesAllowed);
 	}
 
 	@Override

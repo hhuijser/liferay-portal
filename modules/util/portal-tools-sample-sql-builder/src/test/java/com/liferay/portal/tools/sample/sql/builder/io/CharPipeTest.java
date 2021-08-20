@@ -717,12 +717,10 @@ public class CharPipeTest {
 		thread.start();
 
 		for (int i = 0; i < 10; i++) {
-			Reader reader = charPipe.getReader();
-
 			char[] buffer = new char[8];
 
 			Assert.assertTrue(
-				_timestampedRead(reader, buffer) >=
+				_timestampedRead(charPipe.getReader(), buffer) >=
 					slowWriterJob.getTimestampBeforeWrite());
 		}
 
@@ -745,12 +743,10 @@ public class CharPipeTest {
 		thread.start();
 
 		for (int i = 0; i < 5; i++) {
-			Reader reader = charPipe.getReader();
-
 			char[] buffer = new char[8];
 
 			Assert.assertTrue(
-				_timestampedRead(reader, buffer) >=
+				_timestampedRead(charPipe.getReader(), buffer) >=
 					slowWriterJob.getTimestampBeforeWrite());
 		}
 

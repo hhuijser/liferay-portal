@@ -304,9 +304,6 @@ public class DLFileEntryServiceTest {
 	protected DLFileEntry addDLFileEntry(long folderId, boolean appendExtension)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		String sourceFileName = RandomTestUtil.randomString();
 
 		if (appendExtension) {
@@ -321,7 +318,7 @@ public class DLFileEntryServiceTest {
 			RandomTestUtil.randomString(), StringPool.BLANK,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT, null,
 			null, new ByteArrayInputStream(_CONTENT.getBytes()), 0, null, null,
-			serviceContext);
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	protected DLFileEntry updateDLFileEntry(

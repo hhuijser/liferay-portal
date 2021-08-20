@@ -310,8 +310,6 @@ public class ElasticsearchSearchEngineInformation
 			ConnectionInformation connectionInformation =
 				connectionInformationBuilder.build();
 
-			String clusterName = connectionInformation.getClusterName();
-
 			List<NodeInformation> nodeInformations =
 				connectionInformation.getNodeInformationList();
 
@@ -335,7 +333,7 @@ public class ElasticsearchSearchEngineInformation
 
 			StringBundler sb = new StringBundler(6);
 
-			sb.append(clusterName);
+			sb.append(connectionInformation.getClusterName());
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.SPACE);
 			sb.append(StringPool.OPEN_BRACKET);

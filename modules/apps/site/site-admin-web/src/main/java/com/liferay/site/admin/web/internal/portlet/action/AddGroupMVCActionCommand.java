@@ -206,7 +206,6 @@ public class AddGroupMVCActionCommand extends BaseMVCActionCommand {
 		boolean inheritContent = ParamUtil.getBoolean(
 			actionRequest, "inheritContent");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active", true);
-		long userId = _portal.getUserId(actionRequest);
 
 		if (Validator.isNotNull(name)) {
 			nameMap.put(LocaleUtil.getDefault(), name);
@@ -218,7 +217,8 @@ public class AddGroupMVCActionCommand extends BaseMVCActionCommand {
 			friendlyURL, true, inheritContent, active, serviceContext);
 
 		LiveUsers.joinGroup(
-			themeDisplay.getCompanyId(), liveGroup.getGroupId(), userId);
+			themeDisplay.getCompanyId(), liveGroup.getGroupId(),
+			_portal.getUserId(actionRequest));
 
 		boolean openGraphEnabled = ParamUtil.getBoolean(
 			actionRequest, "openGraphEnabled", true);

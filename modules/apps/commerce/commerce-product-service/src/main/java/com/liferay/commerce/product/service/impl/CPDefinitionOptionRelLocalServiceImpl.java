@@ -131,7 +131,6 @@ public class CPDefinitionOptionRelLocalServiceImpl
 		_validateCPDefinitionOptionKey(cpDefinitionId, cpOption.getKey());
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		long cpDefinitionOptionRelId = counterLocalService.increment();
 
@@ -154,7 +153,7 @@ public class CPDefinitionOptionRelLocalServiceImpl
 				"versionable#" + cpDefinitionId, Boolean.FALSE);
 		}
 
-		cpDefinitionOptionRel.setGroupId(groupId);
+		cpDefinitionOptionRel.setGroupId(serviceContext.getScopeGroupId());
 		cpDefinitionOptionRel.setCompanyId(user.getCompanyId());
 		cpDefinitionOptionRel.setUserId(user.getUserId());
 		cpDefinitionOptionRel.setUserName(user.getFullName());

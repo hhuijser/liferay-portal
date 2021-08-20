@@ -208,16 +208,13 @@ public class RulesEngineImpl implements RulesEngine {
 		proxyMessageListener.setManager(this);
 		proxyMessageListener.setMessageBus(_messageBus);
 
-		Dictionary<String, Object> proxyMessageListenerProperties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"destination.name", RulesEngineConstants.DESTINATION_NAME
-			).build();
-
 		BundleContext bundleContext = componentContext.getBundleContext();
 
 		_serviceRegistration = bundleContext.registerService(
 			ProxyMessageListener.class, proxyMessageListener,
-			proxyMessageListenerProperties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"destination.name", RulesEngineConstants.DESTINATION_NAME
+			).build());
 	}
 
 	protected ResourceType convertRulesLanguage(String rulesLanguage) {

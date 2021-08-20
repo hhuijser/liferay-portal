@@ -99,25 +99,21 @@ public class CommerceRecipientCommerceDefinitionTermContributor
 		}
 
 		if (term.equals(_ACCOUNT_ROLE_ADMINISTRATOR)) {
-			CommerceAccount commerceAccount =
-				commerceOrder.getCommerceAccount();
-
 			Role accountAdminRole = _roleLocalService.getRole(
 				commerceOrder.getCompanyId(),
 				CommerceAccountConstants.ROLE_NAME_ACCOUNT_ADMINISTRATOR);
 
-			return _getUserIds(commerceAccount, accountAdminRole);
+			return _getUserIds(
+				commerceOrder.getCommerceAccount(), accountAdminRole);
 		}
 
 		if (term.equals(_ACCOUNT_ROLE_ORDER_MANAGER)) {
-			CommerceAccount commerceAccount =
-				commerceOrder.getCommerceAccount();
-
 			Role orderManagerRole = _roleLocalService.getRole(
 				commerceOrder.getCompanyId(),
 				CommerceAccountConstants.ROLE_NAME_ACCOUNT_ORDER_MANAGER);
 
-			return _getUserIds(commerceAccount, orderManagerRole);
+			return _getUserIds(
+				commerceOrder.getCommerceAccount(), orderManagerRole);
 		}
 
 		if (term.equals(_ORDER_CREATOR)) {

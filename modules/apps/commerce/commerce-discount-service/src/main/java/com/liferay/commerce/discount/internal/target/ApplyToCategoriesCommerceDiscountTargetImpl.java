@@ -108,11 +108,10 @@ public class ApplyToCategoriesCommerceDiscountTargetImpl
 	public void postProcessContextBooleanFilter(
 		BooleanFilter contextBooleanFilter, CPDefinition cpDefinition) {
 
-		long[] assetCategoryIds = _getAssetCategoryIds(cpDefinition);
-
 		TermsFilter termsFilter = new TermsFilter("target_asset_category_ids");
 
-		termsFilter.addValues(ArrayUtil.toStringArray(assetCategoryIds));
+		termsFilter.addValues(
+			ArrayUtil.toStringArray(_getAssetCategoryIds(cpDefinition)));
 
 		Filter existFilter = new ExistsFilter("target_asset_category_ids");
 

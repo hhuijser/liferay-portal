@@ -97,13 +97,11 @@ public class PQLValueTest extends TestCase {
 	private void _validateGetPQLResult(String pql, Object expectedResult)
 		throws Exception {
 
-		Properties properties = new Properties();
-
 		Class<?> clazz = expectedResult.getClass();
 
 		PQLValue pqlValue = new PQLValue(pql);
 
-		Object actualResult = pqlValue.getPQLResult(properties);
+		Object actualResult = pqlValue.getPQLResult(new Properties());
 
 		if (!clazz.isInstance(actualResult)) {
 			throw new Exception(pql + " should be of type: " + clazz.getName());
@@ -158,11 +156,9 @@ public class PQLValueTest extends TestCase {
 	}
 
 	private void _validateGetPQLResultNull(String pql) throws Exception {
-		Properties properties = new Properties();
-
 		PQLValue pqlValue = new PQLValue(pql);
 
-		Object actualResult = pqlValue.getPQLResult(properties);
+		Object actualResult = pqlValue.getPQLResult(new Properties());
 
 		if (actualResult != null) {
 			Object expectedResult = null;

@@ -35,7 +35,6 @@ import java.text.DateFormat;
 
 import java.util.Date;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -123,8 +122,6 @@ public class RevertKaleoDefinitionVersionMVCActionCommand
 	 */
 	@Override
 	protected String getSuccessMessage(ActionRequest actionRequest) {
-		ResourceBundle resourceBundle = getResourceBundle(actionRequest);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -136,7 +133,7 @@ public class RevertKaleoDefinitionVersionMVCActionCommand
 			dateFormat);
 
 		return LanguageUtil.format(
-			resourceBundle, "restored-to-revision-from-x",
+			getResourceBundle(actionRequest), "restored-to-revision-from-x",
 			dateFormat.format(workflowDefinitionModifiedDate));
 	}
 

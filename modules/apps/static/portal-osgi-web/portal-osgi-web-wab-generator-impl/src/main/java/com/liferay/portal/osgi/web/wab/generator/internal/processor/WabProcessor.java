@@ -1171,11 +1171,9 @@ public class WabProcessor {
 			return;
 		}
 
-		Element rootElement = document.getRootElement();
-
 		XPath xPath = SAXReaderUtil.createXPath(xPathExpression, _xsds);
 
-		List<Node> nodes = xPath.selectNodes(rootElement);
+		List<Node> nodes = xPath.selectNodes(document.getRootElement());
 
 		for (Node node : nodes) {
 			String text = node.getText();

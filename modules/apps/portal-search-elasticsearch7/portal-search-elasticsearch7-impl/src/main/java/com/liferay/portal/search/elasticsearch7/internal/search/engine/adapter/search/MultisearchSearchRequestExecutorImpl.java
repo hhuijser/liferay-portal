@@ -85,9 +85,6 @@ public class MultisearchSearchRequestExecutorImpl
 		Iterator<MultiSearchResponse.Item> iterator =
 			multiSearchResponse.iterator();
 
-		MultisearchSearchResponse multisearchSearchResponse =
-			new MultisearchSearchResponse();
-
 		int counter = 0;
 
 		while (iterator.hasNext()) {
@@ -125,7 +122,7 @@ public class MultisearchSearchRequestExecutorImpl
 			counter++;
 		}
 
-		return multisearchSearchResponse;
+		return new MultisearchSearchResponse();
 	}
 
 	protected MultiSearchResponse getMultiSearchResponse(

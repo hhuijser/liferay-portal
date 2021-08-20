@@ -59,7 +59,6 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletContext;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletResponse;
@@ -224,16 +223,14 @@ public class AddCollectionItemProductNavigationControlMenuEntry
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			portlet, servletContext);
 
-		PortletContext portletContext = portletConfig.getPortletContext();
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
 		LiferayRenderRequest liferayRenderRequest = RenderRequestFactory.create(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			WindowState.NORMAL, PortletMode.VIEW, portletPreferences,
-			themeDisplay.getPlid());
+			httpServletRequest, portlet, invokerPortlet,
+			portletConfig.getPortletContext(), WindowState.NORMAL,
+			PortletMode.VIEW, portletPreferences, themeDisplay.getPlid());
 
 		liferayRenderRequest.setPortletRequestDispatcherRequest(
 			httpServletRequest);

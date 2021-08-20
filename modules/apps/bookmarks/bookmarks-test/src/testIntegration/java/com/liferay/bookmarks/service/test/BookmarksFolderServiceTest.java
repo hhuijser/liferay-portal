@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.AssertUtils;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
@@ -102,14 +101,12 @@ public class BookmarksFolderServiceTest {
 
 	@Test
 	public void testSearch() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		BookmarksFolder folder = BookmarksTestUtil.addFolder(
 			_group.getGroupId(), RandomTestUtil.randomString());
 
 		BookmarksEntry entry = BookmarksTestUtil.addEntry(
-			folder.getFolderId(), true, serviceContext);
+			folder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		SearchContext searchContext = BookmarksTestUtil.getSearchContext(
 			entry.getCompanyId(), entry.getGroupId(), entry.getFolderId(),
@@ -125,27 +122,21 @@ public class BookmarksFolderServiceTest {
 
 	@Test
 	public void testSearchAndDeleteFolderAndSearch() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		BookmarksFolder folder = BookmarksTestUtil.addFolder(
 			_group.getGroupId(), RandomTestUtil.randomString());
 
 		BookmarksEntry entry = BookmarksTestUtil.addEntry(
-			folder.getFolderId(), true, serviceContext);
-
-		long companyId = entry.getCompanyId();
+			folder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		BookmarksFolder entryFolder = entry.getFolder();
-
-		long groupId = entryFolder.getGroupId();
 
 		long folderId = entry.getFolderId();
 
 		String keywords = "test";
 
 		SearchContext searchContext = BookmarksTestUtil.getSearchContext(
-			companyId, groupId, folderId, keywords);
+			entry.getCompanyId(), entryFolder.getGroupId(), folderId, keywords);
 
 		Indexer<BookmarksEntry> indexer = IndexerRegistryUtil.getIndexer(
 			BookmarksEntry.class);
@@ -163,14 +154,12 @@ public class BookmarksFolderServiceTest {
 
 	@Test
 	public void testSearchAndVerifyDocs() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		BookmarksFolder folder = BookmarksTestUtil.addFolder(
 			_group.getGroupId(), RandomTestUtil.randomString());
 
 		BookmarksEntry entry = BookmarksTestUtil.addEntry(
-			folder.getFolderId(), true, serviceContext);
+			folder.getFolderId(), true,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		SearchContext searchContext = BookmarksTestUtil.getSearchContext(
 			entry.getCompanyId(), entry.getGroupId(), entry.getFolderId(),

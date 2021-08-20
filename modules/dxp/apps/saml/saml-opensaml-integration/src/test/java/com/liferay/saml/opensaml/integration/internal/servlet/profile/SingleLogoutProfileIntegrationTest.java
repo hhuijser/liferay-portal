@@ -201,8 +201,6 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 	public void testSendIdpLogoutRequestHttpRedirect() throws Exception {
 		prepareIdentityProvider(IDP_ENTITY_ID);
 
-		MockHttpServletRequest mockHttpServletRequest =
-			getMockHttpServletRequest(SLO_LOGOUT_URL + "?cmd=logout");
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
@@ -228,14 +226,12 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 				samlIdpSpSessionImpl.getSamlPeerBindingId()));
 
 		_singleLogoutProfileImpl.sendIdpLogoutRequest(
-			mockHttpServletRequest, mockHttpServletResponse, samlSloContext,
-			samlSloRequestInfo);
+			getMockHttpServletRequest(SLO_LOGOUT_URL + "?cmd=logout"),
+			mockHttpServletResponse, samlSloContext, samlSloRequestInfo);
 
 		String redirect = mockHttpServletResponse.getRedirectedUrl();
 
 		Assert.assertNotNull(redirect);
-
-		mockHttpServletRequest = getMockHttpServletRequest(redirect);
 
 		SamlBinding samlBinding = _singleLogoutProfileImpl.getSamlBinding(
 			SAMLConstants.SAML2_REDIRECT_BINDING_URI);
@@ -243,8 +239,8 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 		MessageContext<LogoutRequest> messageContext =
 			(MessageContext<LogoutRequest>)
 				_singleLogoutProfileImpl.decodeSamlMessage(
-					mockHttpServletRequest, mockHttpServletResponse,
-					samlBinding, true);
+					getMockHttpServletRequest(redirect),
+					mockHttpServletResponse, samlBinding, true);
 
 		InOutOperationContext<LogoutRequest, ?> inOutOperationContext =
 			messageContext.getSubcontext(InOutOperationContext.class);
@@ -296,27 +292,23 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 			samlSpSession
 		);
 
-		MockHttpServletRequest mockHttpServletRequest =
-			getMockHttpServletRequest(LOGOUT_URL);
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
 		_singleLogoutProfileImpl.sendSpLogoutRequest(
-			mockHttpServletRequest, mockHttpServletResponse);
+			getMockHttpServletRequest(LOGOUT_URL), mockHttpServletResponse);
 
 		String redirect = mockHttpServletResponse.getRedirectedUrl();
 
 		Assert.assertNotNull(redirect);
-
-		mockHttpServletRequest = getMockHttpServletRequest(redirect);
 
 		SamlBinding samlBinding = _singleLogoutProfileImpl.getSamlBinding(
 			SAMLConstants.SAML2_REDIRECT_BINDING_URI);
 
 		MessageContext<?> messageContext =
 			_singleLogoutProfileImpl.decodeSamlMessage(
-				mockHttpServletRequest, mockHttpServletResponse, samlBinding,
-				true);
+				getMockHttpServletRequest(redirect), mockHttpServletResponse,
+				samlBinding, true);
 
 		InOutOperationContext<?, ?> inOutOperationContext =
 			messageContext.getSubcontext(InOutOperationContext.class);

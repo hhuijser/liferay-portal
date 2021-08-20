@@ -29,7 +29,6 @@ import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -128,15 +127,12 @@ public class CPPublisherDisplayContext extends BaseCPPublisherDisplayContext {
 	}
 
 	public PortletURL getPortletURL() {
-		LiferayPortletResponse liferayPortletResponse =
-			cpContentRequestHelper.getLiferayPortletResponse();
-
 		String delta = ParamUtil.getString(
 			cpContentRequestHelper.getRequest(), "delta",
 			String.valueOf(getPaginationDelta()));
 
 		return PortletURLBuilder.createRenderURL(
-			liferayPortletResponse
+			cpContentRequestHelper.getLiferayPortletResponse()
 		).setParameter(
 			"delta", delta
 		).buildPortletURL();

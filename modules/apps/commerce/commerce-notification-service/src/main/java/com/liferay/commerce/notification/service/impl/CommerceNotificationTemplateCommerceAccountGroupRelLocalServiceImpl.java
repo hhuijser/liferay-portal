@@ -37,7 +37,6 @@ public class CommerceNotificationTemplateCommerceAccountGroupRelLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		long commerceNotificationTemplateCommerceAccountGroupRelId =
 			counterLocalService.increment();
@@ -48,7 +47,8 @@ public class CommerceNotificationTemplateCommerceAccountGroupRelLocalServiceImpl
 					create(
 						commerceNotificationTemplateCommerceAccountGroupRelId);
 
-		commerceNotificationTemplateCommerceAccountGroupRel.setGroupId(groupId);
+		commerceNotificationTemplateCommerceAccountGroupRel.setGroupId(
+			serviceContext.getScopeGroupId());
 		commerceNotificationTemplateCommerceAccountGroupRel.setCompanyId(
 			user.getCompanyId());
 		commerceNotificationTemplateCommerceAccountGroupRel.setUserId(

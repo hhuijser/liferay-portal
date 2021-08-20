@@ -120,8 +120,6 @@ public class EditRepositoryMVCActionCommand extends BaseMVCActionCommand {
 
 			String className = ParamUtil.getString(actionRequest, "className");
 
-			long classNameId = _portal.getClassNameId(className);
-
 			long folderId = ParamUtil.getLong(actionRequest, "folderId");
 
 			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
@@ -131,9 +129,10 @@ public class EditRepositoryMVCActionCommand extends BaseMVCActionCommand {
 				DLFolder.class.getName(), actionRequest);
 
 			_repositoryService.addRepository(
-				themeDisplay.getScopeGroupId(), classNameId, folderId, name,
-				description, portletDisplay.getId(),
-				typeSettingsUnicodeProperties, serviceContext);
+				themeDisplay.getScopeGroupId(),
+				_portal.getClassNameId(className), folderId, name, description,
+				portletDisplay.getId(), typeSettingsUnicodeProperties,
+				serviceContext);
 		}
 		else {
 

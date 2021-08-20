@@ -50,7 +50,6 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
@@ -126,14 +125,6 @@ public class DDMFieldLocalServiceTest {
 		ddmFormValues.setDefaultLocale(locale);
 		ddmFormValues.setAvailableLocales(Collections.singleton(locale));
 
-		Map<String, Object> map = LinkedHashMapBuilder.<String, Object>put(
-			"groupId", _group.getGroupId()
-		).put(
-			"layoutId", _LAYOUT_ID
-		).put(
-			"privateLayout", false
-		).build();
-
 		JSONSerializer jsonSerializer = _jsonFactory.createJSONSerializer();
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
@@ -143,7 +134,15 @@ public class DDMFieldLocalServiceTest {
 		ddmFormValues.setDDMFormFieldValues(
 			Arrays.asList(
 				_createDDMFormFieldValue(
-					locale, "Page", jsonSerializer.serialize(map)),
+					locale, "Page",
+					jsonSerializer.serialize(
+						LinkedHashMapBuilder.<String, Object>put(
+							"groupId", _group.getGroupId()
+						).put(
+							"layoutId", _LAYOUT_ID
+						).put(
+							"privateLayout", false
+						).build())),
 				_createDDMFormFieldValue(locale, "Number", "123"),
 				_createDDMFormFieldValue(
 					locale, "Select", jsonArray.toString())));

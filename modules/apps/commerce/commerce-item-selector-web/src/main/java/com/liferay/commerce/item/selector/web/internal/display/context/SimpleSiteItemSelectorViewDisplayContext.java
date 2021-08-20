@@ -116,14 +116,12 @@ public class SimpleSiteItemSelectorViewDisplayContext
 			cpRequestHelper.getRenderRequest(), getPortletURL(), null,
 			emptyResultsMessage);
 
-		String orderByCol = getOrderByCol();
-
 		String orderByType = getOrderByType();
 
 		OrderByComparator<Group> orderByComparator = new GroupNameComparator(
 			orderByType.equals("asc"));
 
-		searchContainer.setOrderByCol(orderByCol);
+		searchContainer.setOrderByCol(getOrderByCol());
 		searchContainer.setOrderByComparator(orderByComparator);
 		searchContainer.setOrderByType(orderByType);
 		searchContainer.setSearch(_search);

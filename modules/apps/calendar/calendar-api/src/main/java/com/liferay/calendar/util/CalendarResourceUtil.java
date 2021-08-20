@@ -88,10 +88,6 @@ public class CalendarResourceUtil {
 			userId = userIds[0];
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), group.getDescriptiveName()
-		).build();
-
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		if (serviceContext != null) {
@@ -104,8 +100,10 @@ public class CalendarResourceUtil {
 			userId, groupId, PortalUtil.getClassNameId(Group.class), groupId,
 			null, null,
 			LocalizationUtil.populateLocalizationMap(
-				nameMap, LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
-				groupId),
+				HashMapBuilder.put(
+					LocaleUtil.getSiteDefault(), group.getDescriptiveName()
+				).build(),
+				LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()), groupId),
 			descriptionMap, true, serviceContext);
 	}
 
@@ -138,10 +136,6 @@ public class CalendarResourceUtil {
 				serviceContext.getCompanyId(), userId);
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), userName
-		).build();
-
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		if (serviceContext != null) {
@@ -154,7 +148,10 @@ public class CalendarResourceUtil {
 			userId, userGroup.getGroupId(),
 			PortalUtil.getClassNameId(User.class), userId, null, null,
 			LocalizationUtil.populateLocalizationMap(
-				nameMap, LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
+				HashMapBuilder.put(
+					LocaleUtil.getSiteDefault(), userName
+				).build(),
+				LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 				userGroup.getGroupId()),
 			descriptionMap, true, serviceContext);
 	}

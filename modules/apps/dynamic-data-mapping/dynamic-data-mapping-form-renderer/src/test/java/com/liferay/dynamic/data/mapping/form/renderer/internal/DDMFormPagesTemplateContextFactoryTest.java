@@ -875,17 +875,6 @@ public class DDMFormPagesTemplateContextFactoryTest extends PowerMockito {
 			ddmFormEvaluator, _ddmFormFieldTypeServicesTracker
 		);
 
-		Map<String, DDMExpressionFunctionFactory>
-			ddmExpressionFunctionFactoryMap =
-				HashMapBuilder.<String, DDMExpressionFunctionFactory>put(
-					"hasGooglePlacesAPIKey",
-					() -> new HasGooglePlacesAPIKeyFunction()
-				).put(
-					"jumpPage", () -> new JumpPageFunction()
-				).put(
-					"setVisible", () -> new SetVisibleFunction()
-				).build();
-
 		DDMExpressionFunctionTracker ddmExpressionFunctionTracker = mock(
 			DDMExpressionFunctionTracker.class);
 
@@ -893,7 +882,14 @@ public class DDMFormPagesTemplateContextFactoryTest extends PowerMockito {
 			ddmExpressionFunctionTracker.getDDMExpressionFunctionFactories(
 				Matchers.any())
 		).thenReturn(
-			ddmExpressionFunctionFactoryMap
+			HashMapBuilder.<String, DDMExpressionFunctionFactory>put(
+				"hasGooglePlacesAPIKey",
+				() -> new HasGooglePlacesAPIKeyFunction()
+			).put(
+				"jumpPage", () -> new JumpPageFunction()
+			).put(
+				"setVisible", () -> new SetVisibleFunction()
+			).build()
 		);
 
 		field(

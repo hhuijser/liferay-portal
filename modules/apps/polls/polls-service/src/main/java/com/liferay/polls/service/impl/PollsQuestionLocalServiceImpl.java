@@ -77,7 +77,6 @@ public class PollsQuestionLocalServiceImpl
 		// Question
 
 		User user = userLocalService.getUser(userId);
-		long groupId = serviceContext.getScopeGroupId();
 
 		Date expirationDate = null;
 
@@ -95,7 +94,7 @@ public class PollsQuestionLocalServiceImpl
 		PollsQuestion question = pollsQuestionPersistence.create(questionId);
 
 		question.setUuid(serviceContext.getUuid());
-		question.setGroupId(groupId);
+		question.setGroupId(serviceContext.getScopeGroupId());
 		question.setCompanyId(user.getCompanyId());
 		question.setUserId(user.getUserId());
 		question.setUserName(user.getFullName());

@@ -314,24 +314,25 @@ public class WorkflowTaskManagerImplTest {
 
 		DLFileEntryType fileEntryType = _addFileEntryType();
 
-		Map<String, String> dlFileEntryTypeMap = HashMapBuilder.put(
-			String.valueOf(fileEntryType.getFileEntryTypeId()),
-			"Single Approver@1"
-		).put(
-			() -> {
-				DLFileEntryType basicFileEntryType = _getBasicFileEntryType();
-
-				return String.valueOf(basicFileEntryType.getFileEntryTypeId());
-			},
-			StringPool.BLANK
-		).build();
-
 		Folder folder = _addFolder();
 
 		folder = _updateFolder(
 			folder,
 			DLFolderConstants.RESTRICTION_TYPE_FILE_ENTRY_TYPES_AND_WORKFLOW,
-			fileEntryType.getFileEntryTypeId(), dlFileEntryTypeMap);
+			fileEntryType.getFileEntryTypeId(),
+			HashMapBuilder.put(
+				String.valueOf(fileEntryType.getFileEntryTypeId()),
+				"Single Approver@1"
+			).put(
+				() -> {
+					DLFileEntryType basicFileEntryType =
+						_getBasicFileEntryType();
+
+					return String.valueOf(
+						basicFileEntryType.getFileEntryTypeId());
+				},
+				StringPool.BLANK
+			).build());
 
 		FileVersion fileVersion1 = _addFileVersion(
 			folder.getFolderId(), fileEntryType.getFileEntryTypeId());
@@ -1329,19 +1330,17 @@ public class WorkflowTaskManagerImplTest {
 			_group.getGroupId(), ddmStructure.getStructureId(),
 			_portal.getClassNameId(JournalArticle.class));
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
 		String content = DDMStructureTestUtil.getSampleStructuredContent();
 
 		return _journalArticleLocalService.addArticle(
 			null, _adminUser.getUserId(), _group.getGroupId(), folderId,
-			titleMap, descriptionMap, content, ddmStructure.getStructureKey(),
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			content, ddmStructure.getStructureKey(),
 			ddmTemplate.getTemplateKey(), _serviceContext);
 	}
 

@@ -92,12 +92,10 @@ public class AtomUtil {
 			return null;
 		}
 
-		User user = getUser(atomRequestContext);
-
 		portletTitle = portletTitle.concat(StringPool.SPACE);
 
 		portletTitle = portletTitle.concat(
-			PortalUtil.getPortletTitle(portletId, user));
+			PortalUtil.getPortletTitle(portletId, getUser(atomRequestContext)));
 
 		portletTitle = portletTitle.trim();
 

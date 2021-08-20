@@ -347,8 +347,6 @@ public class EditFileEntryImageEditorMVCActionCommand
 		try (InputStream inputStream = uploadPortletRequest.getFileAsStream(
 				"imageBlob")) {
 
-			long size = uploadPortletRequest.getSize("imageBlob");
-
 			String contentType = ParamUtil.getString(
 				uploadPortletRequest, "contentType");
 
@@ -362,7 +360,8 @@ public class EditFileEntryImageEditorMVCActionCommand
 			fileEntry = _dlAppService.updateFileEntry(
 				fileEntryId, fileEntry.getFileName(), contentType,
 				fileEntry.getTitle(), fileEntry.getDescription(), changeLog,
-				DLVersionNumberIncrease.AUTOMATIC, inputStream, size,
+				DLVersionNumberIncrease.AUTOMATIC, inputStream,
+				uploadPortletRequest.getSize("imageBlob"),
 				fileEntry.getExpirationDate(), fileEntry.getReviewDate(),
 				serviceContext);
 

@@ -54,11 +54,10 @@ public class DeploymentHelper {
 
 	public static void main(String[] args) throws Exception {
 		try {
-			Options options = _getOptions();
-
 			CommandLineParser commandLineParser = new DefaultParser();
 
-			CommandLine commandLine = commandLineParser.parse(options, args);
+			CommandLine commandLine = commandLineParser.parse(
+				_getOptions(), args);
 
 			if (commandLine.hasOption("help")) {
 				_printOptions();

@@ -5752,7 +5752,6 @@ public class PortalImpl implements Portal {
 				httpServletRequest, "mvcRenderCommandName");
 			String path = GetterUtil.getString(
 				httpServletRequest.getPathInfo());
-			String strutsAction = getStrutsAction(httpServletRequest);
 
 			boolean alwaysAllowDoAsUser = false;
 
@@ -5761,7 +5760,8 @@ public class PortalImpl implements Portal {
 					"/document_library/edit_file_entry") ||
 				path.equals("/portal/session_click") ||
 				isAlwaysAllowDoAsUser(
-					actionName, mvcRenderCommandName, path, strutsAction)) {
+					actionName, mvcRenderCommandName, path,
+					getStrutsAction(httpServletRequest))) {
 
 				try {
 					alwaysAllowDoAsUser = isAlwaysAllowDoAsUser(
@@ -7692,8 +7692,6 @@ public class PortalImpl implements Portal {
 
 		User doAsUser = UserLocalServiceUtil.getUserById(doAsUserId);
 
-		long[] organizationIds = doAsUser.getOrganizationIds();
-
 		User realUser = UserLocalServiceUtil.getUserById(
 			realUserIdObj.longValue());
 
@@ -7702,7 +7700,7 @@ public class PortalImpl implements Portal {
 
 		if (doAsUser.isDefaultUser() ||
 			UserPermissionUtil.contains(
-				permissionChecker, doAsUserId, organizationIds,
+				permissionChecker, doAsUserId, doAsUser.getOrganizationIds(),
 				ActionKeys.IMPERSONATE)) {
 
 			httpServletRequest.setAttribute(

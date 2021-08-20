@@ -334,14 +334,13 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			_assetListEntryService.fetchAssetListEntry(assetListEntryId);
 
 		if (selectionStyle.equals("asset-list") && (assetListEntry != null)) {
-			long[] segmentsEntryIds = _getSegmentsEntryIds(portletRequest);
-
 			String acClientUserId = GetterUtil.getString(
 				portletRequest.getAttribute(
 					SegmentsWebKeys.SEGMENTS_ANONYMOUS_USER_ID));
 
 			return _assetListAssetEntryProvider.getAssetEntries(
-				assetListEntry, segmentsEntryIds, acClientUserId);
+				assetListEntry, _getSegmentsEntryIds(portletRequest),
+				acClientUserId);
 		}
 
 		List<AssetEntry> assetEntries = getAssetEntries(
@@ -1036,7 +1035,6 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 		List<AssetEntryResult> assetEntryResults = new ArrayList<>();
 
-		int end = searchContainer.getEnd();
 		int start = searchContainer.getStart();
 
 		assetEntryQuery.setClassNameIds(classNameIds);
@@ -1045,7 +1043,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			getAssetEntries(
 				assetEntryQuery, layout, portletPreferences, portletName,
 				locale, timeZone, companyId, scopeGroupId, userId, attributes,
-				start, end);
+				start, searchContainer.getEnd());
 
 		int total = baseModelSearchResult.getLength();
 

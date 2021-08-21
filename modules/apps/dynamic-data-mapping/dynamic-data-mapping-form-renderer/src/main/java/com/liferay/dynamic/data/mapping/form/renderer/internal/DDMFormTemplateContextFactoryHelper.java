@@ -114,9 +114,10 @@ public class DDMFormTemplateContextFactoryHelper {
 	}
 
 	protected boolean isDDMFormFieldEvaluable(DDMFormField ddmFormField) {
-		if (_getBooleanPropertyValue(ddmFormField, "inputMask") ||
-			_getBooleanPropertyValue(ddmFormField, "requireConfirmation") ||
-			_getBooleanPropertyValue(ddmFormField, "required")) {
+		if (GetterUtil.getBoolean(ddmFormField.getProperty("inputMask")) ||
+			GetterUtil.getBoolean(
+				ddmFormField.getProperty("requireConfirmation")) ||
+			GetterUtil.getBoolean(ddmFormField.getProperty("required"))) {
 
 			return true;
 		}
@@ -132,12 +133,6 @@ public class DDMFormTemplateContextFactoryHelper {
 		}
 
 		return false;
-	}
-
-	private boolean _getBooleanPropertyValue(
-		DDMFormField ddmFormField, String propertyName) {
-
-		return GetterUtil.getBoolean(ddmFormField.getProperty(propertyName));
 	}
 
 }

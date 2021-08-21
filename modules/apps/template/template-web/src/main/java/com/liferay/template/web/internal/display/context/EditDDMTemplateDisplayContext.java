@@ -140,7 +140,7 @@ public class EditDDMTemplateDisplayContext {
 		).put(
 			"script", _getScript()
 		).put(
-			"showLanguageChangeWarning", _getShowLanguageChangeWarning()
+			"showLanguageChangeWarning", _isShowLanguageChangeWarning()
 		).put(
 			"templateVariableGroups", _getTemplateVariableGroupJSONArray()
 		).build();
@@ -331,18 +331,6 @@ public class EditDDMTemplateDisplayContext {
 		return _script;
 	}
 
-	private boolean _getShowLanguageChangeWarning() {
-		DDMTemplate ddmTemplate = getDDMTemplate();
-
-		if ((ddmTemplate != null) && (getTemplateLanguageTypes().length > 1) &&
-			!Objects.equals(ddmTemplate.getLanguage(), getLanguageType())) {
-
-			return true;
-		}
-
-		return false;
-	}
-
 	private ResourceBundle _getTemplateHandlerResourceBundle() {
 		TemplateHandler templateHandler =
 			TemplateHandlerRegistryUtil.getTemplateHandler(getClassNameId());
@@ -409,6 +397,18 @@ public class EditDDMTemplateDisplayContext {
 		}
 
 		return templateVariableGroupJSONArray;
+	}
+
+	private boolean _isShowLanguageChangeWarning() {
+		DDMTemplate ddmTemplate = getDDMTemplate();
+
+		if ((ddmTemplate != null) && (getTemplateLanguageTypes().length > 1) &&
+			!Objects.equals(ddmTemplate.getLanguage(), getLanguageType())) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private Long _classNameId;

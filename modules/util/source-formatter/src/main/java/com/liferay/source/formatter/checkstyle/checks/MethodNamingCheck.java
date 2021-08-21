@@ -86,8 +86,7 @@ public class MethodNamingCheck extends BaseCheck {
 				noUnderscoreMethodName = methodName.substring(1);
 			}
 			else {
-				noUnderscoreMethodName =
-					array[1] + matcher.group(1) + matcher.group(2);
+				noUnderscoreMethodName = newMethodName.substring(1);
 			}
 
 			DetailAST parentDetailAST = detailAST.getParent();

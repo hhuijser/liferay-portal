@@ -195,7 +195,6 @@ public abstract class BaseAccountResourceImpl
 	 * curl -X 'GET' 'http://localhost:8080/o/headless-admin-user/v1.0/accounts/by-external-reference-code/{externalReferenceCode}'  -u 'test@liferay.com:test'
 	 */
 	@GET
-	@Operation(description = "")
 	@Override
 	@Parameters(
 		value = {
@@ -375,7 +374,6 @@ public abstract class BaseAccountResourceImpl
 	 * curl -X 'GET' 'http://localhost:8080/o/headless-admin-user/v1.0/accounts/{accountId}'  -u 'test@liferay.com:test'
 	 */
 	@GET
-	@Operation(description = "")
 	@Override
 	@Parameters(value = {@Parameter(in = ParameterIn.PATH, name = "accountId")})
 	@Path("/accounts/{accountId}")

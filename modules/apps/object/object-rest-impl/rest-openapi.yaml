@@ -90,8 +90,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/ObjectEntry"
                                 type: array
-                    description:
-                        ""
             tags: ["ObjectEntry"]
         post:
             operationId: postObjectEntry
@@ -112,8 +110,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectEntry"
-                    description:
-                        ""
             tags: ["ObjectEntry"]
     "/sites/{siteId}/object-entries/by-external-reference-code/{externalReferenceCode}":
         delete:
@@ -136,8 +132,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["ObjectEntry"]
         get:
             operationId: getSiteObjectEntryByExternalReferenceCode
@@ -163,8 +157,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectEntry"
-                    description:
-                        ""
             tags: ["ObjectEntry"]
         put:
             operationId: putSiteObjectEntryByExternalReferenceCode
@@ -198,8 +190,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectEntry"
-                    description:
-                        ""
             tags: ["ObjectEntry"]
     "/{objectEntryId}":
         delete:
@@ -216,8 +206,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["ObjectEntry"]
         get:
             operationId: getObjectEntry
@@ -237,8 +225,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectEntry"
-                    description:
-                        ""
             tags: ["ObjectEntry"]
         patch:
             operationId: patchObjectEntry
@@ -266,8 +252,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectEntry"
-                    description:
-                        ""
             tags: ["ObjectEntry"]
         put:
             operationId: putObjectEntry
@@ -295,6 +279,4 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ObjectEntry"
-                    description:
-                        ""
             tags: ["ObjectEntry"]

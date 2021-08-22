@@ -1231,8 +1231,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Cart"
-                    description:
-                        ""
             tags: ["Cart"]
     /carts/{cartId}/comments:
         get:

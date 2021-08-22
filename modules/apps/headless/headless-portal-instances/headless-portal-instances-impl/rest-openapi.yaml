@@ -107,8 +107,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             # @review
             tags: ["PortalInstance"]
         get:

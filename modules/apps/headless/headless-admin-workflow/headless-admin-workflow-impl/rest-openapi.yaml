@@ -656,8 +656,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowDefinition"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowDefinition"]
     "/workflow-definitions/by-name/{name}":
         get:
@@ -677,8 +675,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowDefinition"
-                    description:
-                        ""
             tags: ["WorkflowDefinition"]
     "/workflow-definitions/deploy":
         post:
@@ -700,8 +696,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowDefinition"
-                    description:
-                        ""
             tags: ["WorkflowDefinition"]
     "/workflow-definitions/save":
         post:
@@ -723,8 +717,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowDefinition"
-                    description:
-                        ""
             tags: ["WorkflowDefinition"]
     "/workflow-definitions/undeploy":
         delete:
@@ -745,8 +737,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["WorkflowDefinition"]
     "/workflow-definitions/update-active":
         post:
@@ -776,8 +766,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowDefinition"
-                    description:
-                        ""
             tags: ["WorkflowDefinition"]
     "/workflow-instances":
         get:
@@ -817,8 +805,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowInstance"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowInstance"]
     "/workflow-instances/submit":
         post:
@@ -840,8 +826,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowInstance"
-                    description:
-                        ""
             tags: ["WorkflowInstance"]
     "/workflow-instances/{workflowInstanceId}":
         delete:
@@ -858,8 +842,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["WorkflowInstance"]
         get:
             operationId: getWorkflowInstance
@@ -879,8 +861,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowInstance"
-                    description:
-                        ""
             tags: ["WorkflowInstance"]
     "/workflow-instances/{workflowInstanceId}/change-transition":
         post:
@@ -909,8 +889,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowInstance"
-                    description:
-                        ""
             tags: ["WorkflowInstance"]
     "/workflow-instances/{workflowInstanceId}/next-transitions":
         get:
@@ -943,8 +921,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Transition"
                                 type: array
-                    description:
-                        ""
             tags: ["Transition"]
     "/workflow-instances/{workflowInstanceId}/workflow-logs":
         get:
@@ -984,8 +960,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowLog"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowLog"]
     "/workflow-instances/{workflowInstanceId}/workflow-tasks":
         get:
@@ -1022,8 +996,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-instances/{workflowInstanceId}/workflow-tasks/assigned-to-me":
         get:
@@ -1060,8 +1032,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-instances/{workflowInstanceId}/workflow-tasks/assigned-to-user":
         get:
@@ -1103,8 +1073,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-logs/{workflowLogId}":
         get:
@@ -1125,8 +1093,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowLog"
-                    description:
-                        ""
             tags: ["WorkflowLog"]
     "/workflow-tasks":
         post:
@@ -1165,8 +1131,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/assign-to-user":
         patch:
@@ -1188,8 +1152,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/assignable-users":
         post:
@@ -1211,8 +1173,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTaskAssignableUsers"
-                    description:
-                        ""
             tags: ["WorkflowTaskAssignableUsers"]
     "/workflow-tasks/assigned-to-me":
         get:
@@ -1239,8 +1199,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/assigned-to-my-roles":
         get:
@@ -1267,8 +1225,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/assigned-to-role":
         get:
@@ -1301,8 +1257,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/assigned-to-user":
         get:
@@ -1334,8 +1288,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/assigned-to-user-roles":
         get:
@@ -1367,8 +1319,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/change-transition":
         patch:
@@ -1390,8 +1340,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/next-transitions":
         post:
@@ -1413,8 +1361,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTaskTransitions"
-                    description:
-                        ""
             tags: ["WorkflowTaskTransitions"]
     "/workflow-tasks/submitting-user":
         get:
@@ -1446,8 +1392,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowTask"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/update-due-date":
         patch:
@@ -1469,8 +1413,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}":
         get:
@@ -1491,8 +1433,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTask"
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/assign-to-me":
         post:
@@ -1521,8 +1461,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTask"
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/assign-to-role":
         post:
@@ -1551,8 +1489,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTask"
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/assign-to-user":
         post:
@@ -1581,8 +1517,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTask"
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/assignable-users":
         get:
@@ -1615,8 +1549,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Assignee"
                                 type: array
-                    description:
-                        ""
             tags: ["Assignee"]
     "/workflow-tasks/{workflowTaskId}/change-transition":
         post:
@@ -1645,8 +1577,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTask"
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/has-assignable-users":
         get:
@@ -1664,8 +1594,6 @@ paths:
                         text/plain:
                             schema:
                                 type: boolean
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/next-transitions":
         get:
@@ -1698,8 +1626,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Transition"
                                 type: array
-                    description:
-                        ""
             tags: ["Transition"]
     "/workflow-tasks/{workflowTaskId}/update-due-date":
         post:
@@ -1728,8 +1654,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WorkflowTask"
-                    description:
-                        ""
             tags: ["WorkflowTask"]
     "/workflow-tasks/{workflowTaskId}/workflow-logs":
         get:
@@ -1769,6 +1693,4 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WorkflowLog"
                                 type: array
-                    description:
-                        ""
             tags: ["WorkflowLog"]

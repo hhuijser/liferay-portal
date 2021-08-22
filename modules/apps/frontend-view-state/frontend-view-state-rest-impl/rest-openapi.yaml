@@ -35,8 +35,6 @@ paths:
                         application/xml:
                             schema:
                                 type: object
-                    description:
-                        ""
             tags: ["ActiveView"]
         put:
             parameters:
@@ -71,6 +69,4 @@ paths:
                         application/xml:
                             schema:
                                 type: object
-                    description:
-                        ""
             tags: ["ActiveView"]

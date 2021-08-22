@@ -1386,8 +1386,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -1491,8 +1489,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -1596,8 +1592,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -1701,8 +1695,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -1806,8 +1798,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -1911,8 +1901,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -2016,8 +2004,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -2197,8 +2183,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -2450,8 +2434,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -3920,8 +3902,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -5495,8 +5475,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -5838,8 +5816,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -6315,8 +6291,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -6420,8 +6394,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -6525,8 +6497,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -6630,8 +6600,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -6818,8 +6786,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -7963,8 +7929,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -9179,8 +9143,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -9284,8 +9246,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -9389,8 +9349,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -9493,8 +9451,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -10160,8 +10116,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -10858,8 +10812,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -11033,8 +10985,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:

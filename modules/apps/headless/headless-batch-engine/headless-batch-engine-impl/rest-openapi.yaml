@@ -95,8 +95,6 @@ components:
                     type: string
             type: object
 info:
-    description:
-        ""
     license:
         name: "Apache 2.0"
         url: "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -167,8 +165,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ExportTask"
-                    description:
-                        ""
             tags: ["ExportTask"]
     /export-task/{exportTaskId}/content:
         # @review
@@ -190,8 +186,6 @@ paths:
                             schema:
                                 format: binary
                                 type: string
-                    description:
-                        ""
             tags: ["ExportTask"]
     /import-task/{className}:
         # @review
@@ -374,6 +368,4 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/ImportTask"
-                    description:
-                        ""
             tags: ["ImportTask"]

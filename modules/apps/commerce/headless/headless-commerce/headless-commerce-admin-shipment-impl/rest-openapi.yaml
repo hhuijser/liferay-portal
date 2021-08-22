@@ -306,8 +306,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -646,8 +644,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
                 401:
                     content:
                         application/json:
@@ -1140,8 +1136,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Shipment"
-                    description:
-                        ""
             tags:
                 - Shipment
     /shipments/{shipmentId}/status-finish-processing:
@@ -1169,8 +1163,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Shipment"
-                    description:
-                        ""
             tags:
                 - Shipment
     /shipments/{shipmentId}/status-shipped:
@@ -1198,8 +1190,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Shipment"
-                    description:
-                        ""
             tags:
                 - Shipment
 servers:

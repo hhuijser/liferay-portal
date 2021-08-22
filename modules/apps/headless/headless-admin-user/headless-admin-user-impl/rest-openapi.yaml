@@ -1013,8 +1013,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Account"
                                 type: array
-                    description:
-                        ""
             tags: ["Account"]
         post:
             description:
@@ -1069,8 +1067,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["AccountRole"]
         post:
             # @review
@@ -1099,8 +1095,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/by-external-reference-code/{accountExternalReferenceCode}/user-accounts/by-external-reference-code/{userAccountExternalReferenceCode}":
         delete:
@@ -1124,8 +1118,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -1148,8 +1140,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/accounts/by-external-reference-code/{accountExternalReferenceCode}/user-accounts/by-external-reference-code/{userAccountExternalReferenceCode}/account-roles":
         get:
@@ -1181,8 +1171,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/AccountRole"
                                 type: array
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/by-external-reference-code/{externalReferenceCode}":
         delete:
@@ -1201,12 +1189,8 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
         get:
-            description:
-                ""
             operationId: getAccountByExternalReferenceCode
             parameters:
                 - in: path
@@ -1223,8 +1207,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Account"
-                    description:
-                        ""
             tags: ["Account"]
         patch:
             # @review
@@ -1333,8 +1315,6 @@ paths:
                                     $ref: "#/components/schemas/AccountRole"
                                 type: array
                     # @review
-                    description:
-                        ""
             tags: ["AccountRole"]
         post:
             # @review
@@ -1365,8 +1345,6 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/AccountRole"
                     # @review
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/by-external-reference-code/{externalReferenceCode}/account-roles/{accountRoleId}/user-accounts/by-email-address/{emailAddress}":
         delete:
@@ -1396,8 +1374,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["AccountRole"]
         post:
             # @review
@@ -1426,8 +1402,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts":
         get:
@@ -1474,8 +1448,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -1505,8 +1477,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address":
         delete:
@@ -1543,8 +1513,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -1580,8 +1548,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}":
         delete:
@@ -1605,8 +1571,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -1629,8 +1593,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/accounts/by-external-reference-code/{externalReferenceCode}/user-accounts/by-email-address/{emailAddress}/account-roles":
         get:
@@ -1662,8 +1624,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/AccountRole"
                                 type: array
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/{accountId}":
         delete:
@@ -1683,12 +1643,8 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
         get:
-            description:
-                ""
             operationId: getAccount
             parameters:
                 - in: path
@@ -1706,8 +1662,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Account"
-                    description:
-                        ""
             tags: ["Account"]
         patch:
             # @review
@@ -1819,8 +1773,6 @@ paths:
                                     $ref: "#/components/schemas/AccountRole"
                                 type: array
                     # @review
-                    description:
-                        ""
             tags: ["AccountRole"]
         post:
             # @review
@@ -1852,8 +1804,6 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/AccountRole"
                     # @review
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/{accountId}/account-roles/{accountRoleId}/user-accounts/{userAccountId}":
         delete:
@@ -1885,8 +1835,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["AccountRole"]
         post:
             # @review
@@ -1917,8 +1865,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["AccountRole"]
     "/accounts/{accountId}/user-accounts":
         get:
@@ -1966,8 +1912,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -1998,8 +1942,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/accounts/{accountId}/user-accounts/by-email-address":
         delete:
@@ -2037,8 +1979,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -2088,8 +2028,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/accounts/{accountId}/user-accounts/by-email-address/{emailAddress}":
         delete:
@@ -2114,8 +2052,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             # @review
@@ -2143,8 +2079,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/email-addresses/{emailAddressId}":
         get:
@@ -2167,8 +2101,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/EmailAddress"
-                    description:
-                        ""
             tags: ["EmailAddress"]
     "/my-user-account":
         get:
@@ -2184,8 +2116,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/my-user-account/sites":
         get:
@@ -2212,8 +2142,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Site"
                                 type: array
-                    description:
-                        ""
     "/my-user-account/subscriptions":
         get:
             operationId: getMyUserAccountSubscriptionsPage
@@ -2243,8 +2171,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Subscription"
                                 type: array
-                    description:
-                        ""
             tags: ["Subscription"]
     "/my-user-account/subscriptions/{subscriptionId}":
         delete:
@@ -2261,8 +2187,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Subscription"]
         get:
             operationId: getMyUserAccountSubscription
@@ -2282,8 +2206,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Subscription"
-                    description:
-                        ""
             tags: ["Subscription"]
     "/organizations":
         get:
@@ -2328,8 +2250,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Organization"
                                 type: array
-                    description:
-                        ""
             tags: ["Organization"]
         post:
             description:
@@ -2393,8 +2313,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
     "/organizations/move-accounts/{sourceOrganizationId}/{targetOrganizationId}/by-external-reference-code":
         patch:
@@ -2433,8 +2351,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
     "/organizations/{organizationId}":
         delete:
@@ -2453,8 +2369,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Organization"]
         get:
             description:
@@ -2475,8 +2389,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Organization"
-                    description:
-                        ""
             tags: ["Organization"]
         patch:
             # @review
@@ -2575,8 +2487,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
         get:
             description:
@@ -2622,8 +2532,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Account"
                                 type: array
-                    description:
-                        ""
             tags: ["Account"]
         post:
             operationId: postOrganizationAccounts
@@ -2656,8 +2564,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
     "/organizations/{organizationId}/accounts/by-external-reference-code":
         delete:
@@ -2689,8 +2595,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
         post:
             operationId: postOrganizationAccountsByExternalReferenceCode
@@ -2721,8 +2625,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Account"]
     "/organizations/{organizationId}/child-organizations":
         get:
@@ -2773,8 +2675,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Organization"
                                 type: array
-                    description:
-                        ""
             tags: ["Organization"]
     "/organizations/{organizationId}/email-addresses":
         get:
@@ -2800,8 +2700,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/EmailAddress"
                                 type: array
-                    description:
-                        ""
             tags: ["EmailAddress"]
     "/organizations/{organizationId}/phones":
         get:
@@ -2827,8 +2725,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Phone"
                                 type: array
-                    description:
-                        ""
             tags: ["Phone"]
     "/organizations/{organizationId}/postal-addresses":
         get:
@@ -2854,8 +2750,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/PostalAddress"
                                 type: array
-                    description:
-                        ""
             tags: ["PostalAddress"]
     "/organizations/{organizationId}/user-accounts":
         get:
@@ -2901,8 +2795,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/organizations/{organizationId}/user-accounts/by-email-address":
         delete:
@@ -2939,8 +2831,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Organization"]
         post:
             # @review
@@ -2989,8 +2879,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["Organization"]
     "/organizations/{organizationId}/user-accounts/by-email-address/{emailAddress}":
         delete:
@@ -3014,8 +2902,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Organization"]
         post:
             # @review
@@ -3042,8 +2928,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["Organization"]
     "/organizations/{organizationId}/web-urls":
         get:
@@ -3069,8 +2953,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WebUrl"
                                 type: array
-                    description:
-                        ""
             tags: ["WebUrl"]
     "/organizations/{parentOrganizationId}/organizations":
         get:
@@ -3121,8 +3003,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Organization"
                                 type: array
-                    description:
-                        ""
             tags: ["Organization"]
     "/phones/{phoneId}":
         get:
@@ -3145,8 +3025,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Phone"
-                    description:
-                        ""
             tags: ["Phone"]
     "/postal-addresses/{postalAddressId}":
         get:
@@ -3169,8 +3047,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/PostalAddress"
-                    description:
-                        ""
             tags: ["PostalAddress"]
     "/roles":
         get:
@@ -3205,8 +3081,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Role"
                                 type: array
-                    description:
-                        ""
             tags: ["Role"]
     "/roles/{roleId}":
         get:
@@ -3229,8 +3103,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Role"
-                    description:
-                        ""
             tags: ["Role"]
     "/roles/{roleId}/association/user-account/{userAccountId}":
         delete:
@@ -3256,8 +3128,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Role"]
         post:
             # @review
@@ -3282,8 +3152,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Role"]
     "/roles/{roleId}/association/user-account/{userAccountId}/organization/{organizationId}":
         delete:
@@ -3315,8 +3183,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Role"]
         post:
             # @review
@@ -3347,8 +3213,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Role"]
     "/roles/{roleId}/association/user-account/{userAccountId}/site/{siteId}":
         delete:
@@ -3380,8 +3244,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Role"]
         post:
             # @review
@@ -3412,8 +3274,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["Role"]
     "/segments/{segmentId}/user-accounts":
         get:
@@ -3448,8 +3308,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/SegmentUser"
                                 type: array
-                    description:
-                        ""
             tags: ["SegmentUser"]
     "/sites/by-friendly-url-path/{friendlyUrlPath}":
         get:
@@ -3469,8 +3327,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Site"
-                    description:
-                        ""
     "/sites/{siteId}":
         get:
             operationId: getSite
@@ -3490,8 +3346,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/Site"
-                    description:
-                        ""
     "/sites/{siteId}/segments":
         get:
             description:
@@ -3525,8 +3379,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Segment"
                                 type: array
-                    description:
-                        ""
             tags: ["Segment"]
     "/sites/{siteId}/user-accounts":
         get:
@@ -3573,8 +3425,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["UserAccount"]
     "/sites/{siteId}/user-accounts/{userAccountId}/segments":
         get:
@@ -3612,8 +3462,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Segment"
                                 type: array
-                    description:
-                        ""
             tags: ["Segment"]
     "/user-accounts":
         get:
@@ -3654,8 +3502,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/UserAccount"
                                 type: array
-                    description:
-                        ""
             tags: ["UserAccount"]
         post:
             description:
@@ -3678,8 +3524,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
     "/user-accounts/by-external-reference-code/{externalReferenceCode}":
         delete:
             operationId: deleteUserAccountByExternalReferenceCode
@@ -3694,8 +3538,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         get:
             operationId: getUserAccountByExternalReferenceCode
@@ -3714,8 +3556,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["UserAccount"]
         put:
             operationId: putUserAccountByExternalReferenceCode
@@ -3742,8 +3582,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
     "/user-accounts/{userAccountId}":
         delete:
             # @review
@@ -3762,8 +3600,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             tags: ["UserAccount"]
         get:
             description:
@@ -3785,8 +3621,6 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/UserAccount"
-                    description:
-                        ""
             tags: ["UserAccount"]
         patch:
             # @review
@@ -3877,8 +3711,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/EmailAddress"
                                 type: array
-                    description:
-                        ""
             tags: ["EmailAddress"]
     "/user-accounts/{userAccountId}/phones":
         get:
@@ -3905,8 +3737,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Phone"
                                 type: array
-                    description:
-                        ""
             tags: ["Phone"]
     "/user-accounts/{userAccountId}/postal-addresses":
         get:
@@ -3933,8 +3763,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/PostalAddress"
                                 type: array
-                    description:
-                        ""
             tags: ["PostalAddress"]
     "/user-accounts/{userAccountId}/web-urls":
         get:
@@ -3961,8 +3789,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/WebUrl"
                                 type: array
-                    description:
-                        ""
             tags: ["WebUrl"]
     "/web-urls/{webUrlId}":
         get:
@@ -3985,6 +3811,4 @@ paths:
                         application/xml:
                             schema:
                                 $ref: "#/components/schemas/WebUrl"
-                    description:
-                        ""
             tags: ["WebUrl"]

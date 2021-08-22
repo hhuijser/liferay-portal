@@ -278,8 +278,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             security:
                 - BasicAuth: []
                 - BearerAuth: []
@@ -385,8 +383,6 @@ paths:
                     content:
                         application/json: {}
                         application/xml: {}
-                    description:
-                        ""
             security:
                 - BasicAuth: []
                 - BearerAuth: []

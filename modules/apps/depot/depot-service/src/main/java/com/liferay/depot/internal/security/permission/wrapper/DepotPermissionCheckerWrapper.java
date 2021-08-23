@@ -321,10 +321,10 @@ public class DepotPermissionCheckerWrapper extends PermissionCheckerWrapper {
 		Role role = _roleLocalService.getRole(
 			group.getCompanyId(), DepotRolesConstants.ASSET_LIBRARY_MEMBER);
 
-		if (Arrays.binarySearch(
-				getRoleIds(getUserId(), group.getGroupId()),
-				role.getRoleId()) >= 0) {
+		int count = Arrays.binarySearch(
+			getRoleIds(getUserId(), group.getGroupId()), role.getRoleId());
 
+		if (count >= 0) {
 			return true;
 		}
 

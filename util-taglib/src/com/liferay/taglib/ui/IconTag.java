@@ -553,7 +553,6 @@ public class IconTag extends IncludeTag {
 		}
 
 		SpriteImage spriteImage = null;
-		String spriteFileName = null;
 		String spriteFileURL = null;
 
 		String imageFileName = StringUtil.removeSubstring(_src, "common/../");

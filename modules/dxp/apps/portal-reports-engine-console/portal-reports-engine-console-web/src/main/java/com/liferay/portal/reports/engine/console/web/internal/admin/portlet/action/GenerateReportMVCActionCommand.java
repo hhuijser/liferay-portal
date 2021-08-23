@@ -74,7 +74,6 @@ public class GenerateReportMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "emailNotifications");
 		String emailDelivery = ParamUtil.getString(
 			actionRequest, "emailDelivery");
-		String portletId = _portal.getPortletId(actionRequest);
 		String generatedReportsURL = ParamUtil.getString(
 			actionRequest, "generatedReportsURL");
 		String reportName = ParamUtil.getString(actionRequest, "reportName");
@@ -124,9 +123,10 @@ public class GenerateReportMVCActionCommand extends BaseMVCActionCommand {
 
 		_entryService.addEntry(
 			themeDisplay.getScopeGroupId(), definitionId, format, false, null,
-			null, false, null, emailNotifications, emailDelivery, portletId,
-			generatedReportsURL, reportName,
-			entryReportParametersJSONArray.toString(), serviceContext);
+			null, false, null, emailNotifications, emailDelivery,
+			_portal.getPortletId(actionRequest), generatedReportsURL,
+			reportName, entryReportParametersJSONArray.toString(),
+			serviceContext);
 	}
 
 	@Reference

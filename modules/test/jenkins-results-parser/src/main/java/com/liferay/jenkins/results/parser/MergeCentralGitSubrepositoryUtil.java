@@ -156,9 +156,6 @@ public class MergeCentralGitSubrepositoryUtil {
 			CentralGitSubrepository centralGitSubrepository, File gitrepoFile)
 		throws IOException {
 
-		String gitSubrepositoryUpstreamCommit =
-			centralGitSubrepository.getGitSubrepositoryUpstreamCommit();
-
 		String ciMergeFilePath = _getCiMergeFilePath(
 			centralGitWorkingDirectory, gitrepoFile);
 
@@ -166,7 +163,7 @@ public class MergeCentralGitSubrepositoryUtil {
 			new File(
 				centralGitWorkingDirectory.getWorkingDirectory(),
 				ciMergeFilePath),
-			gitSubrepositoryUpstreamCommit);
+			centralGitSubrepository.getGitSubrepositoryUpstreamCommit());
 
 		centralGitWorkingDirectory.stageFileInCurrentLocalGitBranch(
 			ciMergeFilePath);

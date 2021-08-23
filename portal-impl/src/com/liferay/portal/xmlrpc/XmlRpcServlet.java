@@ -65,8 +65,6 @@ public class XmlRpcServlet extends HttpServlet {
 		try {
 			long companyId = PortalInstances.getCompanyId(httpServletRequest);
 
-			String token = getToken(httpServletRequest);
-
 			String xml = StringUtil.read(httpServletRequest.getInputStream());
 
 			Tuple methodTuple = XmlRpcParser.parseMethod(xml);
@@ -74,7 +72,8 @@ public class XmlRpcServlet extends HttpServlet {
 			String methodName = (String)methodTuple.getObject(0);
 			Object[] args = (Object[])methodTuple.getObject(1);
 
-			xmlRpcResponse = invokeMethod(companyId, token, methodName, args);
+			xmlRpcResponse = invokeMethod(
+				companyId, getToken(httpServletRequest), methodName, args);
 		}
 		catch (IOException ioException) {
 			xmlRpcResponse = XmlRpcUtil.createFault(

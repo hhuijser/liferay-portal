@@ -20,8 +20,6 @@ import com.liferay.project.templates.extensions.util.Validator;
 
 import java.io.File;
 
-import java.util.Properties;
-
 import org.apache.maven.archetype.ArchetypeGenerationRequest;
 import org.apache.maven.archetype.ArchetypeGenerationResult;
 
@@ -49,8 +47,6 @@ public class ThemeContributorProjectTemplateCustomizer
 			ArchetypeGenerationRequest archetypeGenerationRequest)
 		throws Exception {
 
-		Properties properties = archetypeGenerationRequest.getProperties();
-
 		ThemeContributorProjectTemplatesArgs
 			themeContributorProjectTemplatesArgs =
 				(ThemeContributorProjectTemplatesArgs)
@@ -64,7 +60,7 @@ public class ThemeContributorProjectTemplateCustomizer
 		}
 
 		setProperty(
-			properties, "contributorType",
+			archetypeGenerationRequest.getProperties(), "contributorType",
 			themeContributorProjectTemplatesArgs.getContributorType());
 	}
 

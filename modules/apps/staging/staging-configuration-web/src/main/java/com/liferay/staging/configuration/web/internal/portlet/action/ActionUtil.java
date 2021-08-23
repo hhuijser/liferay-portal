@@ -86,14 +86,12 @@ public class ActionUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		HttpServletRequest httpServletRequest =
-			PortalUtil.getHttpServletRequest(renderRequest);
-
 		PortletPreferences portletSetup = getLayoutPortletSetup(
 			renderRequest, portlet);
 
 		portletSetup = getPortletSetup(
-			httpServletRequest, renderRequest.getPreferences(), portletSetup);
+			PortalUtil.getHttpServletRequest(renderRequest),
+			renderRequest.getPreferences(), portletSetup);
 
 		String title = PortletConfigurationUtil.getPortletTitle(
 			portletSetup, themeDisplay.getLanguageId());

@@ -1334,8 +1334,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 			return;
 		}
 
-		long userId = getUserId(lock.getUserUuid());
-
 		long expirationTime = 0;
 
 		if (lock.getExpirationDate() != null) {
@@ -1345,8 +1343,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		_lockManager.lock(
-			userId, clazz.getName(), newKey, lock.getOwner(),
-			lock.isInheritable(), expirationTime);
+			getUserId(lock.getUserUuid()), clazz.getName(), newKey,
+			lock.getOwner(), lock.isInheritable(), expirationTime);
 	}
 
 	@Override

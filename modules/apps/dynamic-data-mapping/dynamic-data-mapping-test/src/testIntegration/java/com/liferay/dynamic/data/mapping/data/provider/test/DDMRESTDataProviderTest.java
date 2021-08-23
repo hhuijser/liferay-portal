@@ -51,8 +51,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Optional;
 
 import org.junit.After;
@@ -478,10 +476,6 @@ public class DDMRESTDataProviderTest {
 			boolean addGuestViewPermission)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test"
-		).build();
-
 		long userId = TestPropsValues.getUserId();
 
 		if (guest) {
@@ -491,8 +485,11 @@ public class DDMRESTDataProviderTest {
 
 		DDMDataProviderInstance ddmDataProviderInstance =
 			_ddmDataProviderInstanceLocalService.addDataProviderInstance(
-				userId, TestPropsValues.getGroupId(), nameMap, null,
-				ddmFormValues, "rest", new ServiceContext());
+				userId, TestPropsValues.getGroupId(),
+				HashMapBuilder.put(
+					LocaleUtil.US, "Test"
+				).build(),
+				null, ddmFormValues, "rest", new ServiceContext());
 
 		long dataProviderInstanceId =
 			ddmDataProviderInstance.getDataProviderInstanceId();

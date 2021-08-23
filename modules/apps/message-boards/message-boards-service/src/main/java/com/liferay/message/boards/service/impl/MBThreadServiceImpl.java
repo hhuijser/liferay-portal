@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.lock.LockManager;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.InlineSQLHelper;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -492,8 +491,6 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 			long messageId, String subject, ServiceContext serviceContext)
 		throws PortalException {
 
-		PermissionChecker permissionChecker = getPermissionChecker();
-
 		MBMessage message = _mbMessageLocalService.getMessage(messageId);
 
 		ModelResourcePermissionUtil.check(
@@ -502,7 +499,7 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 			ActionKeys.MOVE_THREAD);
 
 		_messageModelResourcePermission.check(
-			permissionChecker, messageId, ActionKeys.VIEW);
+			getPermissionChecker(), messageId, ActionKeys.VIEW);
 
 		return mbThreadLocalService.splitThread(
 			getUserId(), messageId, subject, serviceContext);

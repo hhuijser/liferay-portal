@@ -416,12 +416,10 @@ public class DLStoreImpl implements DLStore {
 			ByteArrayFileInputStream byteArrayFileInputStream =
 				(ByteArrayFileInputStream)inputStream1;
 
-			File file = byteArrayFileInputStream.getFile();
-
 			DLValidatorUtil.validateVersionLabel(versionLabel);
 
 			if (PropsValues.DL_STORE_ANTIVIRUS_ENABLED) {
-				AntivirusScannerUtil.scan(file);
+				AntivirusScannerUtil.scan(byteArrayFileInputStream.getFile());
 			}
 
 			Store store = _storeFactory.getStore();

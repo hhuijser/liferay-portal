@@ -53,11 +53,9 @@ public class JoinFunctionTest {
 
 	@Test
 	public void testEmptyArray() {
-		JSONArray jsonArray = new JSONArrayImpl();
-
 		JoinFunction joinFunction = new JoinFunction();
 
-		String actual = joinFunction.apply(jsonArray);
+		String actual = joinFunction.apply(new JSONArrayImpl());
 
 		Assert.assertEquals(StringPool.BLANK, actual);
 	}

@@ -38,7 +38,6 @@ import com.liferay.portlet.asset.util.AssetVocabularySettingsHelper;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Máté Thurzó
@@ -85,14 +84,6 @@ public class AssetTestUtil {
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			locale, RandomTestUtil.randomString()
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			locale, RandomTestUtil.randomString()
-		).build();
-
 		String[] categoryProperties = null;
 
 		ServiceContext serviceContext =
@@ -100,8 +91,14 @@ public class AssetTestUtil {
 				groupId, TestPropsValues.getUserId());
 
 		return AssetCategoryLocalServiceUtil.addCategory(
-			TestPropsValues.getUserId(), groupId, parentCategoryId, titleMap,
-			descriptionMap, vocabularyId, categoryProperties, serviceContext);
+			TestPropsValues.getUserId(), groupId, parentCategoryId,
+			HashMapBuilder.put(
+				locale, RandomTestUtil.randomString()
+			).build(),
+			HashMapBuilder.put(
+				locale, RandomTestUtil.randomString()
+			).build(),
+			vocabularyId, categoryProperties, serviceContext);
 	}
 
 	public static AssetTag addTag(long groupId) throws Exception {
@@ -132,14 +129,6 @@ public class AssetTestUtil {
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			locale, RandomTestUtil.randomString()
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			locale, RandomTestUtil.randomString()
-		).build();
-
 		AssetVocabularySettingsHelper vocabularySettingsHelper =
 			new AssetVocabularySettingsHelper();
 
@@ -153,7 +142,13 @@ public class AssetTestUtil {
 				groupId, TestPropsValues.getUserId());
 
 		return AssetVocabularyServiceUtil.addVocabulary(
-			groupId, RandomTestUtil.randomString(), titleMap, descriptionMap,
+			groupId, RandomTestUtil.randomString(),
+			HashMapBuilder.put(
+				locale, RandomTestUtil.randomString()
+			).build(),
+			HashMapBuilder.put(
+				locale, RandomTestUtil.randomString()
+			).build(),
 			vocabularySettingsHelper.toString(), serviceContext);
 	}
 

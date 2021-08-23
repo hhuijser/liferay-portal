@@ -179,13 +179,11 @@ public class JSONFactoryTest {
 
 	@Test
 	public void testHasProperty() {
-		Three three = new Three();
-
 		JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 
 		jsonSerializer.exclude("class");
 
-		String jsonString = jsonSerializer.serialize(three);
+		String jsonString = jsonSerializer.serialize(new Three());
 
 		Assert.assertEquals("{\"flag\":true}", jsonString);
 	}

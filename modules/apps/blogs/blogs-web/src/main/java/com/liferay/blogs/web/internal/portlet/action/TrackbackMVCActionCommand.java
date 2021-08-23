@@ -43,7 +43,6 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletPreferences;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -186,14 +185,12 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			actionRequest);
-		HttpServletResponse httpServletResponse =
-			_portal.getHttpServletResponse(actionResponse);
 
 		String s = sb.toString();
 
 		ServletResponseUtil.sendFile(
-			httpServletRequest, httpServletResponse, null,
-			s.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
+			httpServletRequest, _portal.getHttpServletResponse(actionResponse),
+			null, s.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
 	}
 
 	protected void sendSuccess(

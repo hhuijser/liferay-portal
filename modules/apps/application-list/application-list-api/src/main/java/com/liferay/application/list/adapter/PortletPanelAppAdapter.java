@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletConfig;
 
@@ -45,15 +44,14 @@ public class PortletPanelAppAdapter extends BasePanelApp {
 		PortletConfig portletConfig = PortletConfigFactoryUtil.get(
 			getPortletId());
 
-		ResourceBundle resourceBundle = portletConfig.getResourceBundle(locale);
-
 		Portlet portlet = getPortlet();
 
 		String key =
 			JavaConstants.JAVAX_PORTLET_TITLE + StringPool.PERIOD +
 				portlet.getPortletName();
 
-		String value = LanguageUtil.get(resourceBundle, key);
+		String value = LanguageUtil.get(
+			portletConfig.getResourceBundle(locale), key);
 
 		if (!key.equals(value)) {
 			return value;

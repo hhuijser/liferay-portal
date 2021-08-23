@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -83,13 +82,10 @@ public class PortletConfigurationCSSPortlet extends MVCPortlet {
 
 		Layout layout = themeDisplay.getLayout();
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		String portletId = ParamUtil.getString(actionRequest, "portletId");
 
 		if (!PortletPermissionUtil.contains(
-				permissionChecker, layout, portletId,
+				themeDisplay.getPermissionChecker(), layout, portletId,
 				ActionKeys.CONFIGURATION)) {
 
 			return;

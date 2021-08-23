@@ -107,10 +107,6 @@ public class DDMStructureTestUtil {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			defaultLocale, "Test Structure"
-		).build();
-
 		DDMFormLayout ddmFormLayout = DDMUtil.getDefaultDDMFormLayout(ddmForm);
 
 		serviceContext.setAddGroupPermissions(true);
@@ -118,8 +114,11 @@ public class DDMStructureTestUtil {
 
 		return DDMStructureLocalServiceUtil.addStructure(
 			TestPropsValues.getUserId(), groupId, parentStructureId,
-			PortalUtil.getClassNameId(className), null, nameMap, null, ddmForm,
-			ddmFormLayout, StorageType.DEFAULT.toString(),
+			PortalUtil.getClassNameId(className), null,
+			HashMapBuilder.put(
+				defaultLocale, "Test Structure"
+			).build(),
+			null, ddmForm, ddmFormLayout, StorageType.DEFAULT.toString(),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 	}
 

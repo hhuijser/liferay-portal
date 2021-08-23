@@ -67,16 +67,11 @@ public class CentralizedThreadLocalTest {
 
 		centralizedThreadLocal.set(object);
 
-		Map<CentralizedThreadLocal<?>, Object> longLivedThreadLocals =
-			CentralizedThreadLocal.getLongLivedThreadLocals();
-
-		Map<CentralizedThreadLocal<?>, Object> shortLivedThreadLocals =
-			CentralizedThreadLocal.getShortLivedThreadLocals();
-
 		centralizedThreadLocal.remove();
 
 		CentralizedThreadLocal.setThreadLocals(
-			longLivedThreadLocals, shortLivedThreadLocals);
+			CentralizedThreadLocal.getLongLivedThreadLocals(),
+			CentralizedThreadLocal.getShortLivedThreadLocals());
 
 		Assert.assertNull(centralizedThreadLocal.get());
 
@@ -89,16 +84,11 @@ public class CentralizedThreadLocalTest {
 
 		centralizedThreadLocal.set(object);
 
-		longLivedThreadLocals =
-			CentralizedThreadLocal.getLongLivedThreadLocals();
-
-		shortLivedThreadLocals =
-			CentralizedThreadLocal.getShortLivedThreadLocals();
-
 		centralizedThreadLocal.remove();
 
 		CentralizedThreadLocal.setThreadLocals(
-			longLivedThreadLocals, shortLivedThreadLocals);
+			CentralizedThreadLocal.getLongLivedThreadLocals(),
+			CentralizedThreadLocal.getShortLivedThreadLocals());
 
 		Assert.assertSame(object, centralizedThreadLocal.get());
 
@@ -112,16 +102,11 @@ public class CentralizedThreadLocalTest {
 
 		centralizedThreadLocal.set(testString);
 
-		longLivedThreadLocals =
-			CentralizedThreadLocal.getLongLivedThreadLocals();
-
-		shortLivedThreadLocals =
-			CentralizedThreadLocal.getShortLivedThreadLocals();
-
 		centralizedThreadLocal.remove();
 
 		CentralizedThreadLocal.setThreadLocals(
-			longLivedThreadLocals, shortLivedThreadLocals);
+			CentralizedThreadLocal.getLongLivedThreadLocals(),
+			CentralizedThreadLocal.getShortLivedThreadLocals());
 
 		Assert.assertSame(testString, centralizedThreadLocal.get());
 
@@ -133,16 +118,11 @@ public class CentralizedThreadLocalTest {
 
 		centralizedThreadLocal.set(null);
 
-		longLivedThreadLocals =
-			CentralizedThreadLocal.getLongLivedThreadLocals();
-
-		shortLivedThreadLocals =
-			CentralizedThreadLocal.getShortLivedThreadLocals();
-
 		centralizedThreadLocal.remove();
 
 		CentralizedThreadLocal.setThreadLocals(
-			longLivedThreadLocals, shortLivedThreadLocals);
+			CentralizedThreadLocal.getLongLivedThreadLocals(),
+			CentralizedThreadLocal.getShortLivedThreadLocals());
 
 		Assert.assertNull(centralizedThreadLocal.get());
 

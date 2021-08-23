@@ -267,14 +267,13 @@ public class LayoutRemoteStagingBackgroundTaskExecutor
 			}
 		}
 
-		long[] layoutIds = ExportImportHelperUtil.getLayoutIds(layouts);
-
 		Map<String, Serializable> settingsMap =
 			exportImportConfiguration.getSettingsMap();
 
 		settingsMap.remove("layoutIdMap");
 
-		settingsMap.put("layoutIds", layoutIds);
+		settingsMap.put(
+			"layoutIds", ExportImportHelperUtil.getLayoutIds(layouts));
 
 		return ExportImportLocalServiceUtil.exportLayoutsAsFile(
 			exportImportConfiguration);

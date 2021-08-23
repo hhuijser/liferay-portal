@@ -108,7 +108,6 @@ public class SaveFormInstanceMVCCommandHelper {
 		String name = ParamUtil.getString(portletRequest, "name");
 		String description = ParamUtil.getString(portletRequest, "description");
 		DDMForm ddmForm = getDDMForm(portletRequest, serviceContext);
-		DDMFormLayout ddmFormLayout = getDDMFormLayout(portletRequest);
 
 		Map<Locale, String> nameMap = getNameMap(
 			ddmForm, name, "untitled-form");
@@ -134,8 +133,9 @@ public class SaveFormInstanceMVCCommandHelper {
 			_portal.getHttpServletRequest(portletRequest));
 
 		return formInstanceService.addFormInstance(
-			groupId, nameMap, descriptionMap, ddmForm, ddmFormLayout,
-			settingsDDMFormValues, serviceContext);
+			groupId, nameMap, descriptionMap, ddmForm,
+			getDDMFormLayout(portletRequest), settingsDDMFormValues,
+			serviceContext);
 	}
 
 	protected DDMForm getDDMForm(
@@ -242,7 +242,6 @@ public class SaveFormInstanceMVCCommandHelper {
 		String name = ParamUtil.getString(portletRequest, "name");
 		String description = ParamUtil.getString(portletRequest, "description");
 		DDMForm ddmForm = getDDMForm(portletRequest, serviceContext);
-		DDMFormLayout ddmFormLayout = getDDMFormLayout(portletRequest);
 
 		Map<Locale, String> nameMap = getNameMap(
 			ddmForm, name, "untitled-form");
@@ -268,8 +267,9 @@ public class SaveFormInstanceMVCCommandHelper {
 			_portal.getHttpServletRequest(portletRequest));
 
 		return formInstanceService.updateFormInstance(
-			formInstanceId, nameMap, descriptionMap, ddmForm, ddmFormLayout,
-			settingsDDMFormValues, serviceContext);
+			formInstanceId, nameMap, descriptionMap, ddmForm,
+			getDDMFormLayout(portletRequest), settingsDDMFormValues,
+			serviceContext);
 	}
 
 	protected void validateRedirectURL(

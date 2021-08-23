@@ -117,16 +117,13 @@ public class JournalDDMTemplateDisplayContext {
 			ddmTemplateSearch.setEmptyResultsMessage("no-templates-were-found");
 		}
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMTemplate> orderByComparator =
 			DDMUtil.getTemplateOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		ddmTemplateSearch.setOrderByCol(orderByCol);
+		ddmTemplateSearch.setOrderByCol(getOrderByCol());
 		ddmTemplateSearch.setOrderByComparator(orderByComparator);
-		ddmTemplateSearch.setOrderByType(orderByType);
+		ddmTemplateSearch.setOrderByType(getOrderByType());
 		ddmTemplateSearch.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 

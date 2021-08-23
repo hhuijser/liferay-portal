@@ -51,7 +51,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -192,18 +191,16 @@ public class WebDAVUtil {
 
 		Set<Group> groups = new HashSet<>();
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"usersGroups", user.getUserId()
-			).build();
-
 		OrderByComparator<Group> orderByComparator =
 			new GroupFriendlyURLComparator(true);
 
 		groups.addAll(
 			GroupLocalServiceUtil.search(
-				user.getCompanyId(), null, null, params, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, orderByComparator));
+				user.getCompanyId(), null, null,
+				LinkedHashMapBuilder.<String, Object>put(
+					"usersGroups", user.getUserId()
+				).build(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator));
 
 		// Organizations
 

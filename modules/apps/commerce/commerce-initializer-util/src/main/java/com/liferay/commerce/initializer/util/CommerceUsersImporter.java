@@ -160,8 +160,6 @@ public class CommerceUsersImporter {
 				serviceContext.getCompanyId(), emailAddress);
 		}
 
-		long companyId = serviceContext.getCompanyId();
-
 		long creatorUserId = serviceContext.getUserId();
 
 		boolean autoScreenName = Validator.isNull(screenName);
@@ -170,11 +168,12 @@ public class CommerceUsersImporter {
 			boolean autoPassword = Validator.isNull(password);
 
 			user = _userLocalService.addUser(
-				creatorUserId, companyId, autoPassword, password, password,
-				autoScreenName, screenName, emailAddress, locale, firstName,
-				middleName, lastName, prefixId, suffixId, male, birthdayMonth,
-				birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
-				roleIds, userGroupIds, false, serviceContext);
+				creatorUserId, serviceContext.getCompanyId(), autoPassword,
+				password, password, autoScreenName, screenName, emailAddress,
+				locale, firstName, middleName, lastName, prefixId, suffixId,
+				male, birthdayMonth, birthdayDay, birthdayYear, jobTitle,
+				groupIds, organizationIds, roleIds, userGroupIds, false,
+				serviceContext);
 		}
 		else {
 			groupIds = ArrayUtil.append(user.getGroupIds(), groupIds);

@@ -202,13 +202,12 @@ public class FacebookConnectImpl implements FacebookConnect {
 			return null;
 		}
 
-		long companyId = _portal.getCompanyId(httpServletRequest);
-
 		String token = (String)session.getAttribute(
 			FacebookConnectWebKeys.FACEBOOK_ACCESS_TOKEN);
 
 		JSONObject jsonObject = getGraphResources(
-			companyId, "/me", token, "id,picture");
+			_portal.getCompanyId(httpServletRequest), "/me", token,
+			"id,picture");
 
 		return jsonObject.getString("picture");
 	}

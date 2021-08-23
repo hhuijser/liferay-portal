@@ -57,7 +57,6 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 		super(
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse);
 
-		long companyId = PortalUtil.getCompanyId(liferayPortletRequest);
 		long groupId = (long)pageContext.getAttribute("groupId");
 
 		_stagingGroupId = (long)pageContext.getAttribute("stagingGroupId");
@@ -65,7 +64,8 @@ public class StagingProcessesWebPublishTemplatesToolbarDisplayContext
 		Group stagingGroup = GroupLocalServiceUtil.fetchGroup(_stagingGroupId);
 
 		_searchContainer = _createSearchContainer(
-			companyId, groupId, iteratorURL, stagingGroup.isStagedRemotely());
+			PortalUtil.getCompanyId(liferayPortletRequest), groupId,
+			iteratorURL, stagingGroup.isStagedRemotely());
 	}
 
 	@Override

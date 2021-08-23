@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
@@ -88,12 +87,11 @@ public class TemplateSelectorTag extends BaseTemplateSelectorTag {
 	}
 
 	protected ResourceBundle getResourceBundle() {
-		Locale locale = PortalUtil.getLocale(getRequest());
-
 		Class<?> clazz = getClass();
 
 		return ResourceBundleUtil.getBundle(
-			"content.Language", locale, clazz.getClassLoader());
+			"content.Language", PortalUtil.getLocale(getRequest()),
+			clazz.getClassLoader());
 	}
 
 	@Override

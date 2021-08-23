@@ -69,7 +69,6 @@ public class CommerceVirtualOrderItemLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		CommerceOrderItem commerceOrderItem =
 			_commerceOrderItemLocalService.getCommerceOrderItem(
@@ -92,7 +91,7 @@ public class CommerceVirtualOrderItemLocalServiceImpl
 			commerceVirtualOrderItemPersistence.create(
 				commerceVirtualOrderItemId);
 
-		commerceVirtualOrderItem.setGroupId(groupId);
+		commerceVirtualOrderItem.setGroupId(serviceContext.getScopeGroupId());
 		commerceVirtualOrderItem.setCompanyId(user.getCompanyId());
 		commerceVirtualOrderItem.setUserId(user.getUserId());
 		commerceVirtualOrderItem.setUserName(user.getFullName());

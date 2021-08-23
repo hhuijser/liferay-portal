@@ -31,7 +31,6 @@ import java.time.format.FormatStyle;
 
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
@@ -62,29 +61,29 @@ public abstract class BaseDDMFormMVCResourceCommand
 			DDMFormInstance formInstance)
 		throws Exception {
 
-		Map<String, Object> response = HashMapBuilder.<String, Object>put(
-			"ddmStructureId", formInstance.getStructureId()
-		).put(
-			"formInstanceId", formInstance.getFormInstanceId()
-		).put(
-			"modifiedDate",
-			() -> {
-				ThemeDisplay themeDisplay =
-					(ThemeDisplay)resourceRequest.getAttribute(
-						WebKeys.THEME_DISPLAY);
-
-				User user = themeDisplay.getUser();
-
-				return formatDate(
-					formInstance.getModifiedDate(), user.getLocale(),
-					user.getTimeZoneId());
-			}
-		).build();
-
 		JSONSerializer jsonSerializer = jsonFactory.createJSONSerializer();
 
 		PortletResponseUtil.write(
-			resourceResponse, jsonSerializer.serializeDeep(response));
+			resourceResponse,
+			jsonSerializer.serializeDeep(
+				HashMapBuilder.<String, Object>put(
+					"ddmStructureId", formInstance.getStructureId()
+				).put(
+					"formInstanceId", formInstance.getFormInstanceId()
+				).put(
+					"modifiedDate",
+					() -> {
+						ThemeDisplay themeDisplay =
+							(ThemeDisplay)resourceRequest.getAttribute(
+								WebKeys.THEME_DISPLAY);
+
+						User user = themeDisplay.getUser();
+
+						return formatDate(
+							formInstance.getModifiedDate(), user.getLocale(),
+							user.getTimeZoneId());
+					}
+				).build()));
 	}
 
 	@Reference

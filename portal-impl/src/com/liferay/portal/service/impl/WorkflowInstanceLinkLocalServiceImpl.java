@@ -51,7 +51,6 @@ public class WorkflowInstanceLinkLocalServiceImpl
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
-		long classNameId = classNameLocalService.getClassNameId(className);
 
 		long workflowInstanceLinkId = counterLocalService.increment();
 
@@ -62,7 +61,8 @@ public class WorkflowInstanceLinkLocalServiceImpl
 		workflowInstanceLink.setCompanyId(companyId);
 		workflowInstanceLink.setUserId(userId);
 		workflowInstanceLink.setUserName(user.getFullName());
-		workflowInstanceLink.setClassNameId(classNameId);
+		workflowInstanceLink.setClassNameId(
+			classNameLocalService.getClassNameId(className));
 		workflowInstanceLink.setClassPK(classPK);
 		workflowInstanceLink.setWorkflowInstanceId(workflowInstanceId);
 
@@ -258,11 +258,6 @@ public class WorkflowInstanceLinkLocalServiceImpl
 			workflowHandler.getWorkflowDefinitionLink(
 				companyId, groupId, classPK);
 
-		String workflowDefinitionName =
-			workflowDefinitionLink.getWorkflowDefinitionName();
-		int workflowDefinitionVersion =
-			workflowDefinitionLink.getWorkflowDefinitionVersion();
-
 		if (workflowContext != null) {
 			workflowContext = new HashMap<>(workflowContext);
 		}
@@ -284,9 +279,10 @@ public class WorkflowInstanceLinkLocalServiceImpl
 
 		WorkflowInstance workflowInstance =
 			WorkflowInstanceManagerUtil.startWorkflowInstance(
-				companyId, groupId, userId, workflowDefinitionName,
-				workflowDefinitionVersion, null, workflowContext,
-				waitForCompletion);
+				companyId, groupId, userId,
+				workflowDefinitionLink.getWorkflowDefinitionName(),
+				workflowDefinitionLink.getWorkflowDefinitionVersion(), null,
+				workflowContext, waitForCompletion);
 
 		addWorkflowInstanceLink(
 			userId, companyId, groupId, className, classPK,

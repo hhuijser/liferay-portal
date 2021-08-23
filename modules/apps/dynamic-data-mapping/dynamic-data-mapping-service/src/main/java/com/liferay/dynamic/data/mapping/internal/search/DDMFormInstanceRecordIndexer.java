@@ -178,13 +178,11 @@ public class DDMFormInstanceRecordIndexer
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
 
-		Locale locale = searchContext.getLocale();
-
 		StringBundler sb = new StringBundler(3);
 
 		sb.append("ddmContent");
 		sb.append(StringPool.UNDERLINE);
-		sb.append(LocaleUtil.toLanguageId(locale));
+		sb.append(LocaleUtil.toLanguageId(searchContext.getLocale()));
 
 		addSearchTerm(searchQuery, searchContext, sb.toString(), false);
 	}
@@ -250,13 +248,11 @@ public class DDMFormInstanceRecordIndexer
 		long formInstanceId = GetterUtil.getLong(
 			document.get("formInstanceId"));
 
-		String title = getTitle(formInstanceId, locale);
-
 		Summary summary = createSummary(
 			document, Field.TITLE, Field.DESCRIPTION);
 
 		summary.setMaxContentLength(200);
-		summary.setTitle(title);
+		summary.setTitle(getTitle(formInstanceId, locale));
 
 		return summary;
 	}

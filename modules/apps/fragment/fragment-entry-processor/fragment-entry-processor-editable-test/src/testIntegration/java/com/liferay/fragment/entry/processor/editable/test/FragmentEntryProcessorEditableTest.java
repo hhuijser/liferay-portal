@@ -580,9 +580,6 @@ public class FragmentEntryProcessorEditableTest {
 	}
 
 	private FileEntry _addImageFileEntry() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		byte[] bytes = FileUtil.getBytes(
 			FragmentEntryProcessorEditableTest.class,
 			"/com/liferay/fragment/entry/processor/editable/test/dependencies" +
@@ -598,7 +595,8 @@ public class FragmentEntryProcessorEditableTest {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString(), ContentTypes.IMAGE_JPEG,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
-			inputStream, bytes.length, null, null, serviceContext);
+			inputStream, bytes.length, null, null,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	private JournalArticle _addJournalArticle(

@@ -111,15 +111,12 @@ public class DepotBreadcrumbEntryContributorTest {
 
 		_group = GroupTestUtil.addGroup();
 
-		MockHttpServletRequest mockHttpServletRequest =
-			_getMockHttpServletRequest(_group);
-
 		ArrayList<BreadcrumbEntry> originalBreadcrumbEntries =
 			new ArrayList<>();
 
 		List<BreadcrumbEntry> breadcrumbEntries =
 			BreadcrumbEntryContributorUtil.contribute(
-				originalBreadcrumbEntries, mockHttpServletRequest);
+				originalBreadcrumbEntries, _getMockHttpServletRequest(_group));
 
 		Assert.assertEquals(
 			breadcrumbEntries.toString(), originalBreadcrumbEntries,

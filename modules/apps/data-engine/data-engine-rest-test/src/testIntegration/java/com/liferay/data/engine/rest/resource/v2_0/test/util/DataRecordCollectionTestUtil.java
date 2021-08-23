@@ -30,9 +30,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
-import java.util.Locale;
-import java.util.Map;
-
 /**
  * @author Marcela Cunha
  */
@@ -65,17 +62,16 @@ public class DataRecordCollectionTestUtil {
 			ResourceLocalService resourceLocalService, int scope)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
 		DDLRecordSet ddlRecordSet = DDLRecordSetLocalServiceUtil.addRecordSet(
 			TestPropsValues.getUserId(), group.getGroupId(), dataDefinitionId,
-			dataDefinitionKey, nameMap, null,
-			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, scope,
+			dataDefinitionKey,
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
+			null, DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, scope,
 			serviceContext);
 
 		resourceLocalService.addModelResources(

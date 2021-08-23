@@ -489,12 +489,10 @@ public abstract class ConcurrentMapperHashMap<K, IK, V, IV>
 
 		@Override
 		public V setValue(V value) {
-			K key = getKey();
-
 			V v = unmapValueForQuery(
 				_innerEntry.setValue(mapValueForQuery(value)));
 
-			ConcurrentMapperHashMap.this.put(key, value);
+			ConcurrentMapperHashMap.this.put(getKey(), value);
 
 			return v;
 		}

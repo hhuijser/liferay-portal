@@ -125,13 +125,12 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		String portalURL = PortalUtil.getPortalURL(httpServletRequest);
-
 		String url = PortalUtil.getLayoutURL(
 			LayoutLocalServiceUtil.getLayout(getPlid()), themeDisplay);
 
 		if (!CookieKeys.hasSessionId(httpServletRequest) &&
-			(url.startsWith(portalURL) || url.startsWith(StringPool.SLASH))) {
+			(url.startsWith(PortalUtil.getPortalURL(httpServletRequest)) ||
+			 url.startsWith(StringPool.SLASH))) {
 
 			HttpSession session = httpServletRequest.getSession();
 

@@ -148,8 +148,6 @@ public class RatingsImporter {
 			return;
 		}
 
-		long userId = userIdMapper.getUserId();
-
 		double rating = jsonObject.getDouble("rating");
 
 		long timestamp = jsonObject.getLong("timestamp");
@@ -167,7 +165,7 @@ public class RatingsImporter {
 			_ratingsEntryLocalService.createRatingsEntry(ratingEntryId);
 
 		ratingsEntry.setCompanyId(serviceContext.getCompanyId());
-		ratingsEntry.setUserId(userId);
+		ratingsEntry.setUserId(userIdMapper.getUserId());
 		ratingsEntry.setUserName("");
 		ratingsEntry.setClassNameId(classNameId);
 		ratingsEntry.setClassPK(cpDefinition.getCPDefinitionId());

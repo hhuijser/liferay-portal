@@ -97,18 +97,18 @@ public class AssetVocabularyMultiLanguageSearchTest {
 
 		_addAssetVocabularyMultiLanguage();
 
-		Map<String, String> descriptionMap = HashMapBuilder.put(
-			"description", _ENGLISH_DESCRIPTION
-		).put(
-			"description_en_US", _ENGLISH_DESCRIPTION
-		).put(
-			"description_ja_JP", _JAPANESE_DESCRIPTION
-		).build();
-
 		String keyword = "description";
 
 		assertFieldValues(
-			"description", LocaleUtil.US, descriptionMap, keyword);
+			"description", LocaleUtil.US,
+			HashMapBuilder.put(
+				"description", _ENGLISH_DESCRIPTION
+			).put(
+				"description_en_US", _ENGLISH_DESCRIPTION
+			).put(
+				"description_ja_JP", _JAPANESE_DESCRIPTION
+			).build(),
+			keyword);
 	}
 
 	@Test

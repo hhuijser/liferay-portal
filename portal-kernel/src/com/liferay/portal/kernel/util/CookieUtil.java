@@ -47,8 +47,6 @@ public class CookieUtil {
 			value = null;
 		}
 
-		int version = deserializer.readInt();
-
 		Cookie cookie = new Cookie(name, value);
 
 		if (!comment.isEmpty()) {
@@ -67,7 +65,7 @@ public class CookieUtil {
 		}
 
 		cookie.setSecure(secure);
-		cookie.setVersion(version);
+		cookie.setVersion(deserializer.readInt());
 
 		return cookie;
 	}

@@ -123,10 +123,6 @@ public class JournalArticleExpirationTest {
 			LocaleUtil.getDefault(), RandomTestUtil.randomString()
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
 		String content = DDMStructureTestUtil.getSampleStructuredContent();
 
 		DDMStructure ddmStructure = DDMStructureTestUtil.addStructure(
@@ -158,7 +154,10 @@ public class JournalArticleExpirationTest {
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0, StringPool.BLANK,
 			true, JournalArticleConstants.VERSION_DEFAULT, titleMap,
-			descriptionMap, titleMap, content, ddmStructure.getStructureKey(),
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			titleMap, content, ddmStructure.getStructureKey(),
 			ddmTemplate.getTemplateKey(), null,
 			displayDateCalendar.get(Calendar.MONTH),
 			displayDateCalendar.get(Calendar.DAY_OF_MONTH),

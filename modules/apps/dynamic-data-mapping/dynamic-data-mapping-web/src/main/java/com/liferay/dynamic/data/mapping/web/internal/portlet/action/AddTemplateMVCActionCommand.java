@@ -81,8 +81,6 @@ public class AddTemplateMVCActionCommand extends BaseDDMMVCActionCommand {
 		String language = ParamUtil.getString(
 			uploadPortletRequest, "language", TemplateConstants.LANG_TYPE_VM);
 
-		String script = getScript(uploadPortletRequest);
-
 		boolean cacheable = ParamUtil.getBoolean(
 			uploadPortletRequest, "cacheable");
 		boolean smallImage = ParamUtil.getBoolean(
@@ -96,8 +94,9 @@ public class AddTemplateMVCActionCommand extends BaseDDMMVCActionCommand {
 
 		return ddmTemplateService.addTemplate(
 			groupId, classNameId, classPK, resourceClassNameId, templateKey,
-			nameMap, descriptionMap, type, mode, language, script, cacheable,
-			smallImage, smallImageURL, smallImageFile, serviceContext);
+			nameMap, descriptionMap, type, mode, language,
+			getScript(uploadPortletRequest), cacheable, smallImage,
+			smallImageURL, smallImageFile, serviceContext);
 	}
 
 	@Override

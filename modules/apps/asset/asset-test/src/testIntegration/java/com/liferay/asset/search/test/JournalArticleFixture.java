@@ -28,8 +28,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author André de Oliveira
@@ -43,20 +41,17 @@ public class JournalArticleFixture {
 	public JournalArticle addJournalArticle(ServiceContext serviceContext)
 		throws Exception {
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		String ddmStructureKey = "BASIC-WEB-CONTENT";
 		String ddmTemplateKey = "BASIC-WEB-CONTENT";
 
 		JournalArticle journalArticle = _journalArticleLocalService.addArticle(
-			null, TestPropsValues.getUserId(), _group.getGroupId(), 0, titleMap,
-			descriptionMap,
+			null, TestPropsValues.getUserId(), _group.getGroupId(), 0,
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
+			HashMapBuilder.put(
+				LocaleUtil.US, RandomTestUtil.randomString()
+			).build(),
 			DDMStructureTestUtil.getSampleStructuredContent("content", "title"),
 			ddmStructureKey, ddmTemplateKey, serviceContext);
 

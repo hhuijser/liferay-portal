@@ -170,7 +170,6 @@ public class SegmentsEntryProviderRegistryTest {
 	public void testGetSegmentsEntryIds() throws PortalException {
 		String className = RandomTestUtil.randomString();
 		long classPK = RandomTestUtil.randomLong();
-		Context context = new Context();
 		long groupId = RandomTestUtil.randomLong();
 
 		long[] segmentsEntryIds1 = {
@@ -200,7 +199,7 @@ public class SegmentsEntryProviderRegistryTest {
 
 		long[] actualSegmentsEntryIds =
 			_segmentsEntryProviderRegistry.getSegmentsEntryIds(
-				groupId, className, classPK, context);
+				groupId, className, classPK, new Context());
 
 		Arrays.sort(actualSegmentsEntryIds);
 

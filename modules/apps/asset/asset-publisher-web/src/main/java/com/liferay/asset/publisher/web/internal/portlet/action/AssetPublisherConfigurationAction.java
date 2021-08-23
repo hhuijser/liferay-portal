@@ -693,15 +693,12 @@ public class AssetPublisherConfigurationAction
 		}
 
 		if (LayoutStagingUtil.isBranchingLayout(layout)) {
-			HttpServletRequest httpServletRequest =
-				portal.getHttpServletRequest(actionRequest);
-
 			LayoutSetBranch layoutSetBranch =
 				LayoutStagingUtil.getLayoutSetBranch(layout.getLayoutSet());
 
 			long layoutRevisionId = staging.getRecentLayoutRevisionId(
-				httpServletRequest, layoutSetBranch.getLayoutSetBranchId(),
-				layout.getPlid());
+				portal.getHttpServletRequest(actionRequest),
+				layoutSetBranch.getLayoutSetBranchId(), layout.getPlid());
 
 			LayoutRevision layoutRevision =
 				layoutRevisionLocalService.getLayoutRevision(layoutRevisionId);

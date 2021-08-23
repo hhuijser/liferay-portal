@@ -26,7 +26,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -79,22 +78,21 @@ public class PageEntityExtensionWriterInterceptor implements WriterInterceptor {
 
 		Stream<?> stream = items.stream();
 
-		List<ExtendedEntity> extendedEntities = stream.map(
-			entity -> ExtendedEntity.extend(
-				entity, extensionContext.getExtendedProperties(entity),
-				extensionContext.getFilteredPropertyKeys(entity))
-		).collect(
-			Collectors.toList()
-		);
-
 		Pagination pagination = Pagination.of(
 			GetterUtil.getInteger(page.getPage()),
 			GetterUtil.getInteger(page.getPageSize()));
 
 		writerInterceptorContext.setEntity(
 			Page.of(
-				page.getActions(), extendedEntities, pagination,
-				page.getTotalCount()));
+				page.getActions(),
+				stream.map(
+					entity -> ExtendedEntity.extend(
+						entity, extensionContext.getExtendedProperties(entity),
+						extensionContext.getFilteredPropertyKeys(entity))
+				).collect(
+					Collectors.toList()
+				),
+				pagination, page.getTotalCount()));
 
 		writerInterceptorContext.setGenericType(
 			new GenericType<Page<ExtendedEntity>>() {

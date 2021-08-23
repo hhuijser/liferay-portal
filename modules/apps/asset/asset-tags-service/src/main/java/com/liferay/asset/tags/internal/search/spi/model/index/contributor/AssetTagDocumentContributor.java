@@ -49,12 +49,10 @@ public class AssetTagDocumentContributor
 	public void contribute(Document document, BaseModel<AssetTag> baseModel) {
 		String className = document.get(Field.ENTRY_CLASS_NAME);
 
-		long classNameId = portal.getClassNameId(className);
-
 		long classPK = GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK));
 
 		List<AssetTag> assetTags = assetTagLocalService.getTags(
-			classNameId, classPK);
+			portal.getClassNameId(className), classPK);
 
 		if (ListUtil.isEmpty(assetTags)) {
 			return;

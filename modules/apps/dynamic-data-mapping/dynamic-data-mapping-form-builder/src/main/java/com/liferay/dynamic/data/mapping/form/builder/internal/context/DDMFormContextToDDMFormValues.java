@@ -175,15 +175,13 @@ public class DDMFormContextToDDMFormValues
 			return;
 		}
 
-		String type = ddmFormField.getType();
-
 		if (ddmFormField.isLocalizable()) {
 			Value value = getLocalizedValue(
 				fieldJSONObject.getJSONObject("localizedValue"));
 
 			ddmFormFieldValue.setValue(value);
 		}
-		else if (Objects.equals(type, "checkbox")) {
+		else if (Objects.equals(ddmFormField.getType(), "checkbox")) {
 			ddmFormFieldValue.setValue(
 				new UnlocalizedValue(
 					String.valueOf(fieldJSONObject.getBoolean("value"))));

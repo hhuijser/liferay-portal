@@ -54,22 +54,21 @@ public class MapUtilWhenFilteringByPredicateTest {
 
 	@Test
 	public void testShouldAllowFilterBySuperTypeAndOutputToSupertype() {
-		Map<String, Integer> inputMap = HashMapBuilder.put(
-			"1", 1
-		).put(
-			"2", 2
-		).put(
-			"3", 3
-		).put(
-			"4", 4
-		).put(
-			"5", 5
-		).build();
-
 		HashMap<String, Number> outputMap = new HashMap<>();
 
 		MapUtil.filter(
-			inputMap, outputMap,
+			HashMapBuilder.put(
+				"1", 1
+			).put(
+				"2", 2
+			).put(
+				"3", 3
+			).put(
+				"4", 4
+			).put(
+				"5", 5
+			).build(),
+			outputMap,
 			entry -> {
 				Integer i = (Integer)entry.getValue();
 

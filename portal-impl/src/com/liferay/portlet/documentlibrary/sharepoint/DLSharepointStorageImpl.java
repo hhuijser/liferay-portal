@@ -373,8 +373,6 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 			try {
 				FileEntry fileEntry = getFileEntry(sharepointRequest);
 
-				long fileEntryId = fileEntry.getFileEntryId();
-
 				description = fileEntry.getDescription();
 
 				String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
@@ -384,10 +382,11 @@ public class DLSharepointStorageImpl extends BaseSharepointStorageImpl {
 				serviceContext.setAssetTagNames(assetTagNames);
 
 				DLAppServiceUtil.updateFileEntry(
-					fileEntryId, title, contentType, title, description,
-					changeLog, DLVersionNumberIncrease.fromMajorVersion(false),
-					file, fileEntry.getExpirationDate(),
-					fileEntry.getReviewDate(), serviceContext);
+					fileEntry.getFileEntryId(), title, contentType, title,
+					description, changeLog,
+					DLVersionNumberIncrease.fromMajorVersion(false), file,
+					fileEntry.getExpirationDate(), fileEntry.getReviewDate(),
+					serviceContext);
 			}
 			catch (NoSuchFileEntryException noSuchFileEntryException) {
 				if (_log.isDebugEnabled()) {

@@ -318,15 +318,13 @@ public class GroupServiceTest {
 	public void testDeleteSite() throws Exception {
 		Group group = GroupTestUtil.addGroup();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 		int initialTagsCount = _assetTagLocalService.getGroupTagsCount(
 			group.getGroupId());
 
 		_assetTagLocalService.addTag(
 			TestPropsValues.getUserId(), group.getGroupId(),
-			RandomTestUtil.randomString(), serviceContext);
+			RandomTestUtil.randomString(),
+			ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		Assert.assertEquals(
 			initialTagsCount + 1,

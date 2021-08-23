@@ -1807,14 +1807,12 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			}
 
 			if (parseProps) {
-				String displayName = getDisplayName(file);
-
 				String propertiesString = StringUtil.read(inputStream);
 
 				Properties properties = PropertiesUtil.load(propertiesString);
 
 				return PluginPackageUtil.readPluginPackageProperties(
-					displayName, properties);
+					getDisplayName(file), properties);
 			}
 
 			String xml = StringUtil.read(inputStream);

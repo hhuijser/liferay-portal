@@ -61,15 +61,12 @@ public class RadioDDMFormFieldTemplateContextContributorTest
 	public void testGetInline() {
 		DDMFormField ddmFormField = createDDMFormField();
 
-		DDMFormFieldRenderingContext ddmFormFieldRenderingContext =
-			new DDMFormFieldRenderingContext();
-
 		ddmFormField.setProperty("inline", true);
 		ddmFormField.setProperty("dataSourceType", "data-provider");
 
 		Map<String, Object> parameters =
 			_radioDDMFormFieldTemplateContextContributor.getParameters(
-				ddmFormField, ddmFormFieldRenderingContext);
+				ddmFormField, new DDMFormFieldRenderingContext());
 
 		Assert.assertEquals(true, parameters.get("inline"));
 	}

@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -87,13 +86,11 @@ public class EditMessageAttachmentsMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadPortletRequest =
-			_portal.getUploadPortletRequest(actionRequest);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long categoryId = ParamUtil.getLong(uploadPortletRequest, "categoryId");
+		long categoryId = ParamUtil.getLong(
+			_portal.getUploadPortletRequest(actionRequest), "categoryId");
 		String fileName = ParamUtil.getString(actionRequest, "fileName");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();

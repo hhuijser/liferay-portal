@@ -629,11 +629,9 @@ public class WatchTask extends DefaultTask {
 
 		Long id = Long.parseLong(fields[0].trim());
 
-		int state = _getState(fields[1].trim());
-
 		String symbolicName = fields[3];
 
-		return _newBundleDTO(id, state, symbolicName);
+		return _newBundleDTO(id, _getState(fields[1].trim()), symbolicName);
 	}
 
 	private void _refreshBundle(long bundleId, GogoShellClient gogoShellClient)

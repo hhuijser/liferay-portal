@@ -246,12 +246,11 @@ public class DefaultWorkflowEngineImpl
 			KaleoInstance kaleoInstance =
 				kaleoInstanceLocalService.getKaleoInstance(workflowInstanceId);
 
-			KaleoInstanceToken rootKaleoInstanceToken =
-				kaleoInstance.getRootKaleoInstanceToken(null, serviceContext);
-
 			List<String> transitionNames = new ArrayList<>();
 
-			getNextTransitionNames(rootKaleoInstanceToken, transitionNames);
+			getNextTransitionNames(
+				kaleoInstance.getRootKaleoInstanceToken(null, serviceContext),
+				transitionNames);
 
 			return transitionNames;
 		}

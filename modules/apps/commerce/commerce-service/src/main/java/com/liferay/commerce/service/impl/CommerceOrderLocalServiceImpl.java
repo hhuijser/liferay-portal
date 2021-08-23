@@ -1703,7 +1703,6 @@ public class CommerceOrderLocalServiceImpl
 		}
 
 		User user = userLocalService.getUser(userId);
-		Date date = new Date();
 
 		CommerceOrder commerceOrder = commerceOrderPersistence.findByPrimaryKey(
 			commerceOrderId);
@@ -1711,7 +1710,7 @@ public class CommerceOrderLocalServiceImpl
 		commerceOrder.setStatus(status);
 		commerceOrder.setStatusByUserId(user.getUserId());
 		commerceOrder.setStatusByUserName(user.getFullName());
-		commerceOrder.setStatusDate(serviceContext.getModifiedDate(date));
+		commerceOrder.setStatusDate(serviceContext.getModifiedDate(new Date()));
 
 		return commerceOrderPersistence.update(commerceOrder);
 	}

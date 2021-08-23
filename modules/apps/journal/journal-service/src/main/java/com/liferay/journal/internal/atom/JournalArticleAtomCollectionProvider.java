@@ -233,13 +233,11 @@ public class JournalArticleAtomCollectionProvider
 			reviewDateMinute, neverReview, indexable, false, null, null, null,
 			articleURL, serviceContext);
 
-		double version = journalArticle.getVersion();
-
 		int status = WorkflowConstants.STATUS_APPROVED;
 
 		return _journalArticleService.updateStatus(
-			groupId, journalArticle.getArticleId(), version, status, articleURL,
-			serviceContext);
+			groupId, journalArticle.getArticleId(), journalArticle.getVersion(),
+			status, articleURL, serviceContext);
 	}
 
 	@Override

@@ -229,8 +229,6 @@ public class UserGroupCascadeReindexUsersTest {
 
 		User user = users.get(0);
 
-		long companyId = user.getCompanyId();
-
 		ActionableDynamicQuery actionableDynamicQuery =
 			_userLocalService.getActionableDynamicQuery();
 
@@ -240,7 +238,7 @@ public class UserGroupCascadeReindexUsersTest {
 
 				dynamicQuery.add(userId.in(userIds));
 			});
-		actionableDynamicQuery.setCompanyId(companyId);
+		actionableDynamicQuery.setCompanyId(user.getCompanyId());
 		actionableDynamicQuery.setPerformActionMethod(performActionMethod);
 
 		actionableDynamicQuery.performActions();

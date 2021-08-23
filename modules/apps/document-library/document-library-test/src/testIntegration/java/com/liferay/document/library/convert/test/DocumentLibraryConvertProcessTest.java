@@ -257,16 +257,14 @@ public class DocumentLibraryConvertProcessTest {
 			MBTestUtil.getInputStreamOVPs(
 				"OSX_Test.docx", getClass(), StringPool.BLANK);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		User user = TestPropsValues.getUser();
 
 		return _mbMessageLocalService.addMessage(
 			user.getUserId(), user.getFullName(), _group.getGroupId(),
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID, "Subject", "Body",
 			MBMessageConstants.DEFAULT_FORMAT, objectValuePairs, false, 0,
-			false, serviceContext);
+			false,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}
 
 	protected DLFileEntry getDLFileEntry(Object object) throws Exception {

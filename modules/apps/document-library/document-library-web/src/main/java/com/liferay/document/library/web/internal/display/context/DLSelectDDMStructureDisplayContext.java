@@ -80,16 +80,13 @@ public class DLSelectDDMStructureDisplayContext {
 			ddmStructureSearch.setEmptyResultsMessage("no-results-were-found");
 		}
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMStructure> orderByComparator =
 			DDMUtil.getStructureOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		ddmStructureSearch.setOrderByCol(orderByCol);
+		ddmStructureSearch.setOrderByCol(getOrderByCol());
 		ddmStructureSearch.setOrderByComparator(orderByComparator);
-		ddmStructureSearch.setOrderByType(orderByType);
+		ddmStructureSearch.setOrderByType(getOrderByType());
 
 		long[] groupIds = PortalUtil.getCurrentAndAncestorSiteGroupIds(
 			themeDisplay.getScopeGroupId());

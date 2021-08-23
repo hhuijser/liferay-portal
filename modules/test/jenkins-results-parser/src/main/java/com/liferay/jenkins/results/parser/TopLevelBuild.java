@@ -1047,8 +1047,6 @@ public abstract class TopLevelBuild extends BaseBuild {
 	}
 
 	protected Element getFailedJobSummaryElement() {
-		Element jobSummaryListElement = getJobSummaryListElement(false, null);
-
 		int failCount =
 			getDownstreamBuildCount(null) -
 				getDownstreamBuildCountByResult("SUCCESS") + 1;
@@ -1057,7 +1055,7 @@ public abstract class TopLevelBuild extends BaseBuild {
 			"div", null,
 			Dom4JUtil.getNewElement(
 				"h4", null, String.valueOf(failCount), " Failed Jobs:"),
-			jobSummaryListElement);
+			getJobSummaryListElement(false, null));
 	}
 
 	@Override
@@ -1583,8 +1581,6 @@ public abstract class TopLevelBuild extends BaseBuild {
 	}
 
 	protected Element getSuccessfulJobSummaryElement() {
-		Element jobSummaryListElement = getJobSummaryListElement(true, null);
-
 		int successCount = getDownstreamBuildCountByResult("SUCCESS");
 
 		String result = getResult();
@@ -1600,7 +1596,7 @@ public abstract class TopLevelBuild extends BaseBuild {
 				Dom4JUtil.getNewElement(
 					"strong", null, String.valueOf(successCount),
 					" Successful Jobs:")),
-			jobSummaryListElement);
+			getJobSummaryListElement(true, null));
 	}
 
 	@Override

@@ -72,14 +72,13 @@ public class ServletContextIncludeFilter extends BasePortalFilter {
 
 			FilterConfig filterConfig = getFilterConfig();
 
-			ServletContext servletContext = filterConfig.getServletContext();
-
-			String portletId = ThemeUtil.getPortletId(httpServletRequest);
-
 			String uri = (String)httpServletRequest.getAttribute(
 				WebKeys.INVOKER_FILTER_URI);
 
-			if (theme.resourceExists(servletContext, portletId, uri)) {
+			if (theme.resourceExists(
+					filterConfig.getServletContext(),
+					ThemeUtil.getPortletId(httpServletRequest), uri)) {
+
 				httpServletRequest.setAttribute(
 					WebKeys.SERVLET_CONTEXT_INCLUDE_FILTER_PATH, uri);
 				httpServletRequest.setAttribute(

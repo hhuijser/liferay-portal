@@ -210,8 +210,6 @@ public class SharepointRepositoryAuthorizationCapability
 		sharepointRepositoryRequestState.validate(
 			ParamUtil.getString(httpServletRequest, "state"));
 
-		long userId = PortalUtil.getUserId(httpServletRequest);
-
 		String code = ParamUtil.getString(httpServletRequest, "code");
 
 		Token accessToken =
@@ -219,8 +217,8 @@ public class SharepointRepositoryAuthorizationCapability
 				code, _getRedirectURI(httpServletRequest));
 
 		_tokenStore.save(
-			_sharepointRepositoryOAuth2Configuration.name(), userId,
-			accessToken);
+			_sharepointRepositoryOAuth2Configuration.name(),
+			PortalUtil.getUserId(httpServletRequest), accessToken);
 
 		sharepointRepositoryRequestState.restore(
 			httpServletRequest, httpServletResponse);

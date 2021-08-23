@@ -77,11 +77,6 @@ public class AnnotationsAndHttpApplicationClientTest
 
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
-			Dictionary<String, Object> annotatedApplicationProperties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"oauth2.scope.checker.type", "annotations"
-				).build();
-
 			Dictionary<String, Object> properties =
 				HashMapDictionaryBuilder.<String, Object>put(
 					"osgi.jaxrs.name", TestApplication.class.getName()
@@ -89,7 +84,9 @@ public class AnnotationsAndHttpApplicationClientTest
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated",
-				annotatedApplicationProperties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"oauth2.scope.checker.type", "annotations"
+				).build());
 
 			registerJaxRsApplication(
 				new TestApplication(), "methods", properties);

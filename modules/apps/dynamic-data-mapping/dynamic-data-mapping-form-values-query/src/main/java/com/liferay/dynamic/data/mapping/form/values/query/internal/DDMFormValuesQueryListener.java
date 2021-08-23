@@ -118,14 +118,11 @@ public class DDMFormValuesQueryListener extends DDMFormValuesQueryBaseListener {
 	public void exitFieldSelectorExpression(
 		FieldSelectorExpressionContext fieldSelectorExpressionContext) {
 
-		DDMFormFieldValueMatcher ddmFormFieldValueMatcher =
-			ddmFormFieldValueMatchers.pop();
-
 		DDMFormValuesFilter lastDDMFormValuesFilter = ddmFormValuesFilters.get(
 			ddmFormValuesFilters.size() - 1);
 
 		lastDDMFormValuesFilter.setDDMFormFieldValueMatcher(
-			ddmFormFieldValueMatcher);
+			ddmFormFieldValueMatchers.pop());
 	}
 
 	@Override

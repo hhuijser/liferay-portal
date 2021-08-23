@@ -77,7 +77,6 @@ public class AddDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 				uploadPortletRequest, "description");
 		String language = ParamUtil.getString(
 			uploadPortletRequest, "language", TemplateConstants.LANG_TYPE_VM);
-		String script = ActionUtil.getScript(uploadPortletRequest);
 		boolean cacheable = ParamUtil.getBoolean(
 			uploadPortletRequest, "cacheable");
 
@@ -107,7 +106,8 @@ public class AddDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 			groupId, _portal.getClassNameId(DDMStructure.class), classPK,
 			_portal.getClassNameId(JournalArticle.class), templateKey, nameMap,
 			descriptionMap, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-			StringPool.BLANK, language, script, cacheable, smallImage,
+			StringPool.BLANK, language,
+			ActionUtil.getScript(uploadPortletRequest), cacheable, smallImage,
 			smallImageURL, smallImageFile, serviceContext);
 
 		boolean saveAndContinue = ParamUtil.getBoolean(

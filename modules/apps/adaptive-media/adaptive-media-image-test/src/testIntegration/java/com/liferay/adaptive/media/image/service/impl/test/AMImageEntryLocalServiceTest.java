@@ -104,12 +104,11 @@ public class AMImageEntryLocalServiceTest {
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			_addAMImageConfigurationEntry("uuid", 100, 200);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry = _addFileEntry(bytes, serviceContext);
+		FileEntry fileEntry = _addFileEntry(
+			bytes,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
@@ -135,12 +134,11 @@ public class AMImageEntryLocalServiceTest {
 
 	@Test(expected = DuplicateAMImageEntryException.class)
 	public void testAddDuplicateAMImageEntry() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry = _addFileEntry(bytes, serviceContext);
+		FileEntry fileEntry = _addFileEntry(
+			bytes,
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			_addAMImageConfigurationEntry("uuid", 100, 200);
@@ -482,13 +480,11 @@ public class AMImageEntryLocalServiceTest {
 			amImageCounterServiceRegistration = _registerAMImageCounter(
 				"test", 4);
 
-			ServiceContext serviceContext =
-				ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
 			byte[] bytes = _getImageBytes();
 
 			FileEntry fileEntry = _addFileEntry(
-				user.getUserId(), group.getGroupId(), bytes, serviceContext);
+				user.getUserId(), group.getGroupId(), bytes,
+				ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry, fileEntry.getFileVersion(), 100, 200,

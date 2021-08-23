@@ -91,15 +91,14 @@ public class CProductAssetDisplayPageFriendlyURLResolver
 
 		Group companyGroup = _groupLocalService.getCompanyGroup(companyId);
 
-		long classNameId = _portal.getClassNameId(CProduct.class);
-
 		String urlTitle = friendlyURL.substring(
 			_assetDisplayPageFriendlyURLResolverHelper.getURLSeparatorLength(
 				getURLSeparator()));
 
 		FriendlyURLEntry friendlyURLEntry =
 			_friendlyURLEntryLocalService.fetchFriendlyURLEntry(
-				companyGroup.getGroupId(), classNameId, urlTitle);
+				companyGroup.getGroupId(),
+				_portal.getClassNameId(CProduct.class), urlTitle);
 
 		if (friendlyURLEntry == null) {
 			return null;

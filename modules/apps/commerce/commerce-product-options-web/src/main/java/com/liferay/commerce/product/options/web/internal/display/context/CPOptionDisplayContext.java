@@ -136,9 +136,6 @@ public class CPOptionDisplayContext {
 	public List<DDMFormFieldType> getDDMFormFieldTypes()
 		throws PortalException {
 
-		List<DDMFormFieldType> ddmFormFieldTypes =
-			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
-
 		CPOptionConfiguration cpOptionConfiguration =
 			_configurationProvider.getConfiguration(
 				CPOptionConfiguration.class,
@@ -148,7 +145,8 @@ public class CPOptionDisplayContext {
 			cpOptionConfiguration.ddmFormFieldTypesAllowed();
 
 		return DDMFormFieldTypeUtil.getDDMFormFieldTypesAllowed(
-			ddmFormFieldTypes, ddmFormFieldTypesAllowed);
+			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes(),
+			ddmFormFieldTypesAllowed);
 	}
 
 	public List<HeaderActionModel> getHeaderActionModels() {

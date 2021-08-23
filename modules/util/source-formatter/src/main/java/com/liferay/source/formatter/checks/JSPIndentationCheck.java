@@ -228,14 +228,12 @@ public class JSPIndentationCheck extends BaseFileCheck {
 				continue;
 			}
 
-			String line = jspLine.getLine();
-
 			if (!jspLine.isOpenTag()) {
 				if (!jspLine.isJavaSource()) {
 					int actualTabCount = jspLine.getLeadingTabCount();
 					int expectedTabCount = jspLine.getTabLevel();
 
-					String trimmedLine = StringUtil.trim(line);
+					String trimmedLine = StringUtil.trim(jspLine.getLine());
 
 					if (trimmedLine.equals(StringPool.GREATER_THAN)) {
 						expectedTabCount -= 1;

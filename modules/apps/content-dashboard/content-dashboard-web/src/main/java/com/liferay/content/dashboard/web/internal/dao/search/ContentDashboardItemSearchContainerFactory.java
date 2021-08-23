@@ -139,12 +139,10 @@ public class ContentDashboardItemSearchContainerFactory {
 	}
 
 	private String _getOrderByType() {
-		String orderByCol = _getOrderByCol();
-
 		String orderByType = ParamUtil.getString(
 			_renderRequest, SearchContainer.DEFAULT_ORDER_BY_TYPE_PARAM);
 
-		if (Objects.equals(orderByCol, "title")) {
+		if (Objects.equals(_getOrderByCol(), "title")) {
 			if (Objects.equals("desc", orderByType)) {
 				return "desc";
 			}

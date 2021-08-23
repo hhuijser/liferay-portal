@@ -129,12 +129,6 @@ public class JournalArticleIndexerLocalizedContentTest {
 			"title_hu_HU", translatedTitle
 		).build();
 
-		Map<String, String> contentStrings = HashMapBuilder.put(
-			"content_en_US", originalContent
-		).put(
-			"content_hu_HU", translatedContent
-		).build();
-
 		Map<String, String> localizedTitleStrings = _withSortableValues(
 			new HashMap<String, String>() {
 				{
@@ -164,7 +158,12 @@ public class JournalArticleIndexerLocalizedContentTest {
 			titleStrings, "title", document, searchTerm);
 
 		FieldValuesAssert.assertFieldValues(
-			contentStrings, "content", document, searchTerm);
+			HashMapBuilder.put(
+				"content_en_US", originalContent
+			).put(
+				"content_hu_HU", translatedContent
+			).build(),
+			"content", document, searchTerm);
 
 		FieldValuesAssert.assertFieldValues(
 			localizedTitleStrings, "localized_title", document, searchTerm);
@@ -221,8 +220,6 @@ public class JournalArticleIndexerLocalizedContentTest {
 				}
 			});
 
-		String articleId = journalArticle.getArticleId();
-
 		Map<String, String> titleStrings = HashMapBuilder.put(
 			"title_en_US", originalTitle
 		).put(
@@ -253,7 +250,7 @@ public class JournalArticleIndexerLocalizedContentTest {
 
 		Map<String, String> ddmContentStrings = Collections.emptyMap();
 
-		String searchTerm = articleId;
+		String searchTerm = journalArticle.getArticleId();
 
 		Document document = _indexerFixture.searchOnlyOne(
 			searchTerm, LocaleUtil.BRAZIL);

@@ -452,13 +452,11 @@ public class SetupWizardUtil {
 		company.setWebId(companyDefaultWebId);
 		company.setMx(companyDefaultWebId);
 
-		company = CompanyLocalServiceUtil.updateCompany(company);
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		themeDisplay.setCompany(company);
+		themeDisplay.setCompany(CompanyLocalServiceUtil.updateCompany(company));
 	}
 
 	private static boolean _writePropertiesFile(

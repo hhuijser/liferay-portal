@@ -73,8 +73,6 @@ public class CalendarResourceServiceTest {
 
 		User user = UserTestUtil.addGroupUser(group, RoleConstants.SITE_MEMBER);
 
-		long classNameId = PortalUtil.getClassNameId(CalendarResource.class);
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				group.getGroupId(), user.getUserId());
@@ -86,7 +84,8 @@ public class CalendarResourceServiceTest {
 
 		CalendarResource calendarResource =
 			_calendarResourceLocalService.addCalendarResource(
-				user.getUserId(), user.getGroupId(), classNameId, 0,
+				user.getUserId(), user.getGroupId(),
+				PortalUtil.getClassNameId(CalendarResource.class), 0,
 				PortalUUIDUtil.generate(), RandomTestUtil.randomString(8),
 				RandomTestUtil.randomLocaleStringMap(),
 				RandomTestUtil.randomLocaleStringMap(), true, serviceContext);

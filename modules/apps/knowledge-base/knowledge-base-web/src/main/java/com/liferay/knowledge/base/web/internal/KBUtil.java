@@ -370,16 +370,14 @@ public class KBUtil {
 			PortletRequest portletRequest, long groupId, long kbFolderId)
 		throws PortalException {
 
-		PortalPreferences portalPreferences =
-			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
-
 		PortletPreferences portletPreferences = portletRequest.getPreferences();
 
 		String contentRootPrefix = GetterUtil.getString(
 			portletPreferences.getValue("contentRootPrefix", null));
 
 		String kbFolderURLTitle = getPreferredKBFolderURLTitle(
-			portalPreferences, contentRootPrefix);
+			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest),
+			contentRootPrefix);
 
 		long childKbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 

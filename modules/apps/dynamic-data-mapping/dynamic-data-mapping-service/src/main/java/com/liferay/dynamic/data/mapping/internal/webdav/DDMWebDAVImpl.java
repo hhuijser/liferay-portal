@@ -42,9 +42,6 @@ import com.liferay.portal.kernel.webdav.Resource;
 import com.liferay.portal.kernel.webdav.WebDAVException;
 import com.liferay.portal.kernel.webdav.WebDAVRequest;
 
-import java.util.Locale;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -80,10 +77,6 @@ public class DDMWebDAVImpl implements DDMWebDAV {
 
 			DDMFormLayout ddmFormLayout = _ddm.getDefaultDDMFormLayout(ddmForm);
 
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				ddmForm.getDefaultLocale(), pathArray[3]
-			).build();
-
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAddGroupPermissions(true);
@@ -91,8 +84,12 @@ public class DDMWebDAVImpl implements DDMWebDAV {
 
 			_ddmStructureLocalService.addStructure(
 				webDAVRequest.getUserId(), webDAVRequest.getGroupId(),
-				classNameId, nameMap, null, ddmForm, ddmFormLayout,
-				StorageType.DEFAULT.toString(), serviceContext);
+				classNameId,
+				HashMapBuilder.put(
+					ddmForm.getDefaultLocale(), pathArray[3]
+				).build(),
+				null, ddmForm, ddmFormLayout, StorageType.DEFAULT.toString(),
+				serviceContext);
 
 			return HttpServletResponse.SC_CREATED;
 		}

@@ -27,8 +27,6 @@ import com.liferay.user.associated.data.web.internal.export.background.task.UADE
 
 import java.io.Serializable;
 
-import java.util.Map;
-
 /**
  * @author Pei-Jung Lan
  */
@@ -37,11 +35,6 @@ public class UADExporter {
 	public static long exportApplicationDataInBackground(
 			String applicationKey, long userId, long groupId)
 		throws PortalException {
-
-		Map<String, Serializable> taskContextMap =
-			HashMapBuilder.<String, Serializable>put(
-				"applicationKey", applicationKey
-			).build();
 
 		PortletFileRepositoryUtil.addPortletRepository(
 			groupId, PortletKeys.BACKGROUND_TASK, new ServiceContext());
@@ -52,7 +45,10 @@ public class UADExporter {
 		BackgroundTask backgroundTask =
 			BackgroundTaskManagerUtil.addBackgroundTask(
 				defaultUserId, groupId, String.valueOf(userId),
-				UADExportBackgroundTaskExecutor.class.getName(), taskContextMap,
+				UADExportBackgroundTaskExecutor.class.getName(),
+				HashMapBuilder.<String, Serializable>put(
+					"applicationKey", applicationKey
+				).build(),
 				new ServiceContext());
 
 		return backgroundTask.getBackgroundTaskId();

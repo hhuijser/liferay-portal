@@ -271,11 +271,10 @@ public class CommerceCheckoutTest {
 
 			User user2 = UserTestUtil.addUser(_company);
 
-			permissionChecker = PermissionCheckerFactoryUtil.create(user2);
-
 			PrincipalThreadLocal.setName(user2.getUserId());
 
-			PermissionThreadLocal.setPermissionChecker(permissionChecker);
+			PermissionThreadLocal.setPermissionChecker(
+				PermissionCheckerFactoryUtil.create(user2));
 
 			_commerceOrderEngine.checkoutCommerceOrder(
 				commerceOrder, user2.getUserId());

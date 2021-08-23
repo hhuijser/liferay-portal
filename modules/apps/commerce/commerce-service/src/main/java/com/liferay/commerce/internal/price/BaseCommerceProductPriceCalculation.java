@@ -352,8 +352,6 @@ public abstract class BaseCommerceProductPriceCalculation
 			commerceMoneyFactory.create(
 				commerceContext.getCommerceCurrency(), unitPriceWithTaxAmount));
 
-		int quantity = commerceProductPriceImpl.getQuantity();
-
 		if (activePrice == null) {
 			activePrice = BigDecimal.ZERO;
 		}
@@ -362,7 +360,8 @@ public abstract class BaseCommerceProductPriceCalculation
 			CommerceCurrency commerceCurrency =
 				commerceContext.getCommerceCurrency();
 
-			activePrice = activePrice.multiply(BigDecimal.valueOf(quantity));
+			activePrice = activePrice.multiply(
+				BigDecimal.valueOf(commerceProductPriceImpl.getQuantity()));
 
 			commerceProductPriceImpl.setCommerceDiscountValueWithTaxAmount(
 				CommercePriceConverterUtil.getConvertedCommerceDiscountValue(

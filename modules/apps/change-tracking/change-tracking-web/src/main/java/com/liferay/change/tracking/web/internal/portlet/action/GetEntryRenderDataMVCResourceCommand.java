@@ -423,8 +423,6 @@ public class GetEntryRenderDataMVCResourceCommand
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			resourceRequest);
-		HttpServletResponse httpServletResponse =
-			_portal.getHttpServletResponse(resourceResponse);
 
 		JSONObject jsonObject = JSONUtil.put(
 			"changeType", "production"
@@ -437,7 +435,8 @@ public class GetEntryRenderDataMVCResourceCommand
 		jsonObject.put(
 			"leftRender",
 			_getRender(
-				httpServletRequest, httpServletResponse,
+				httpServletRequest,
+				_portal.getHttpServletResponse(resourceResponse),
 				CTConstants.CT_COLLECTION_ID_PRODUCTION,
 				_ctDisplayRendererRegistry.getCTDisplayRenderer(
 					modelClassNameId),

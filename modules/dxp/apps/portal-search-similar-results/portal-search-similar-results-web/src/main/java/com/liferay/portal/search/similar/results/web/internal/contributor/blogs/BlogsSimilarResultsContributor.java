@@ -55,12 +55,10 @@ public class BlogsSimilarResultsContributor
 	public void resolveCriteria(
 		CriteriaBuilder criteriaBuilder, CriteriaHelper criteriaHelper) {
 
-		long groupId = criteriaHelper.getGroupId();
-
 		String urlTitle = (String)criteriaHelper.getRouteParameter("urlTitle");
 
 		BlogsEntry blogsEntry = _blogsEntryLocalService.fetchEntry(
-			groupId, urlTitle);
+			criteriaHelper.getGroupId(), urlTitle);
 
 		if (blogsEntry == null) {
 			return;

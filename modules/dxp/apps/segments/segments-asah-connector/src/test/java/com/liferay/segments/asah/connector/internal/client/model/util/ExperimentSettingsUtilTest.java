@@ -48,10 +48,6 @@ public class ExperimentSettingsUtilTest {
 	public void testToExperimentSettings() {
 		double confidenceLevel = RandomTestUtil.randomDouble();
 
-		Map<String, Double> segmentsExperienceKeySplitMap = HashMapBuilder.put(
-			RandomTestUtil.randomString(), RandomTestUtil.randomDouble()
-		).build();
-
 		SegmentsExperiment segmentsExperiment = Mockito.mock(
 			SegmentsExperiment.class);
 
@@ -63,7 +59,10 @@ public class ExperimentSettingsUtilTest {
 
 		ExperimentSettings experimentSettings =
 			ExperimentSettingsUtil.toExperimentSettings(
-				confidenceLevel, segmentsExperienceKeySplitMap,
+				confidenceLevel,
+				HashMapBuilder.put(
+					RandomTestUtil.randomString(), RandomTestUtil.randomDouble()
+				).build(),
 				segmentsExperiment);
 
 		Assert.assertEquals(

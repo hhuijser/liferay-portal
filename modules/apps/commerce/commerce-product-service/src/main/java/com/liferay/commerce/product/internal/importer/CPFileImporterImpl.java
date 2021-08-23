@@ -333,10 +333,6 @@ public class CPFileImporterImpl implements CPFileImporter {
 			locale, jsonObject.getString("title")
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			locale, jsonObject.getString("description")
-		).build();
-
 		String content = StringUtil.read(
 			classLoader, dependenciesFilePath + articleId + ".xml");
 
@@ -360,11 +356,15 @@ public class CPFileImporterImpl implements CPFileImporter {
 		journalArticle = _journalArticleLocalService.addArticle(
 			null, serviceContext.getUserId(), serviceContext.getScopeGroupId(),
 			0L, JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0L, articleId,
-			false, 1, titleMap, descriptionMap, titleMap, content,
-			ddmStructureKey, ddmTemplateKey, StringPool.BLANK, displayDateMonth,
-			displayDateDay, displayDateYear, displayDateHour, displayDateMinute,
-			0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true, true, false,
-			StringPool.BLANK, null, null, StringPool.BLANK, serviceContext);
+			false, 1, titleMap,
+			HashMapBuilder.put(
+				locale, jsonObject.getString("description")
+			).build(),
+			titleMap, content, ddmStructureKey, ddmTemplateKey,
+			StringPool.BLANK, displayDateMonth, displayDateDay, displayDateYear,
+			displayDateHour, displayDateMinute, 0, 0, 0, 0, 0, true, 0, 0, 0, 0,
+			0, true, true, false, StringPool.BLANK, null, null,
+			StringPool.BLANK, serviceContext);
 
 		JSONArray permissionsJSONArray = jsonObject.getJSONArray("permissions");
 

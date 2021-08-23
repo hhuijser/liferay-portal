@@ -80,15 +80,13 @@ public class UploadPortletRequestWhenGettingContentTypeTest {
 		for (Map.Entry<String, FileItem[]> entry :
 				multipartParameterMap.entrySet()) {
 
-			String key = entry.getKey();
-
 			FileItem[] fileItems = entry.getValue();
 
 			FileItem firstFileItem = fileItems[0];
 
 			Assert.assertEquals(
 				firstFileItem.getContentType(),
-				uploadPortletRequest.getContentType(key));
+				uploadPortletRequest.getContentType(entry.getKey()));
 		}
 	}
 

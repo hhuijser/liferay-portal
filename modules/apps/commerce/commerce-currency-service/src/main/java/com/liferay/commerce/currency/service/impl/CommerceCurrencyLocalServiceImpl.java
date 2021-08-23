@@ -232,10 +232,6 @@ public class CommerceCurrencyLocalServiceImpl
 						new SystemSettingsLocator(
 							RoundingTypeConstants.SERVICE_NAME));
 
-				Map<Locale, String> nameMap = HashMapBuilder.put(
-					serviceContext.getLocale(), jsonObject.getString("name")
-				).build();
-
 				Map<Locale, String> formatPatternMap = HashMapBuilder.put(
 					serviceContext.getLocale(),
 					StringBundler.concat(
@@ -247,8 +243,11 @@ public class CommerceCurrencyLocalServiceImpl
 					roundingTypeConfiguration.roundingMode();
 
 				commerceCurrencyLocalService.addCommerceCurrency(
-					serviceContext.getUserId(), code, nameMap, symbol,
-					BigDecimal.ONE, formatPatternMap,
+					serviceContext.getUserId(), code,
+					HashMapBuilder.put(
+						serviceContext.getLocale(), jsonObject.getString("name")
+					).build(),
+					symbol, BigDecimal.ONE, formatPatternMap,
 					roundingTypeConfiguration.maximumFractionDigits(),
 					roundingTypeConfiguration.minimumFractionDigits(),
 					roundingMode.name(), primary, priority, true);

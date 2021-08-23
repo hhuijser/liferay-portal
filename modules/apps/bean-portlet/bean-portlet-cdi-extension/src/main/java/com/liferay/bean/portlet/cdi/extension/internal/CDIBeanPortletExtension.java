@@ -541,12 +541,11 @@ public class CDIBeanPortletExtension implements Extension {
 				ResourceRequest resourceRequest =
 					(ResourceRequest)portletRequest;
 
-				String resourceID = resourceRequest.getResourceID();
-
 				String beanMethodResourceID = beanPortletMethod.getResourceID();
 
 				if (Validator.isNull(beanMethodResourceID) ||
-					beanMethodResourceID.equals(resourceID)) {
+					beanMethodResourceID.equals(
+						resourceRequest.getResourceID())) {
 
 					ResourceResponse resourceResponse =
 						(ResourceResponse)portletResponse;

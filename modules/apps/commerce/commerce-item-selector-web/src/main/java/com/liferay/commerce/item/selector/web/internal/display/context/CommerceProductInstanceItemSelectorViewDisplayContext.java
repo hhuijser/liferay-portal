@@ -112,9 +112,6 @@ public class CommerceProductInstanceItemSelectorViewDisplayContext
 
 		searchContainer.setEmptyResultsMessage("no-skus-were-found");
 
-		OrderByComparator<CPInstance> orderByComparator =
-			getCPInstanceOrderByComparator(getOrderByCol(), getOrderByType());
-
 		RowChecker rowChecker = new CommerceProductInstanceItemSelectorChecker(
 			cpRequestHelper.getRenderResponse(),
 			_commercePriceListService.fetchCommercePriceList(
@@ -122,7 +119,8 @@ public class CommerceProductInstanceItemSelectorViewDisplayContext
 			_commercePriceEntryLocalService);
 
 		searchContainer.setOrderByCol(getOrderByCol());
-		searchContainer.setOrderByComparator(orderByComparator);
+		searchContainer.setOrderByComparator(
+			getCPInstanceOrderByComparator(getOrderByCol(), getOrderByType()));
 		searchContainer.setOrderByType(getOrderByType());
 		searchContainer.setRowChecker(rowChecker);
 

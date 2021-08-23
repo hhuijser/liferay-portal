@@ -54,14 +54,11 @@ public class FormatSourceTask extends Task {
 
 			sourceFormatter.format();
 
-			List<String> modifiedFileNames =
-				sourceFormatter.getModifiedFileNames();
-
 			Project project = getProject();
 
 			project.addIdReference(
 				SourceFormatterArgs.OUTPUT_KEY_MODIFIED_FILES,
-				modifiedFileNames);
+				sourceFormatter.getModifiedFileNames());
 		}
 		catch (Exception exception) {
 			throw new BuildException(exception);

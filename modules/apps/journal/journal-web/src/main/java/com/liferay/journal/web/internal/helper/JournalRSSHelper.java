@@ -95,8 +95,6 @@ import org.osgi.service.component.annotations.Reference;
 public class JournalRSSHelper {
 
 	public List<JournalArticle> getArticles(JournalFeed feed) {
-		long companyId = feed.getCompanyId();
-		long groupId = feed.getGroupId();
 		List<Long> folderIds = Collections.emptyList();
 		String articleId = null;
 		Double version = null;
@@ -117,7 +115,6 @@ public class JournalRSSHelper {
 		}
 
 		Date displayDateGT = null;
-		Date displayDateLT = new Date();
 		Date reviewDate = null;
 		int status = WorkflowConstants.STATUS_APPROVED;
 		boolean andOperator = true;
@@ -138,11 +135,11 @@ public class JournalRSSHelper {
 		}
 
 		return _journalArticleLocalService.search(
-			companyId, groupId, folderIds,
+			feed.getCompanyId(), feed.getGroupId(), folderIds,
 			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, articleId, version,
 			title, description, content, ddmStructureKey, ddmTemplateKey,
-			displayDateGT, displayDateLT, reviewDate, status, andOperator,
-			start, end, orderByComparator);
+			displayDateGT, new Date(), reviewDate, status, andOperator, start,
+			end, orderByComparator);
 	}
 
 	public List<SyndEnclosure> getDLEnclosures(String portalURL, String url) {
@@ -379,8 +376,6 @@ public class JournalRSSHelper {
 			feed = _journalFeedLocalService.getFeed(groupId, feedId);
 		}
 
-		String languageId = LanguageUtil.getLanguageId(resourceRequest);
-
 		long plid = _portal.getPlidFromFriendlyURL(
 			themeDisplay.getCompanyId(), feed.getTargetLayoutFriendlyUrl());
 
@@ -395,8 +390,8 @@ public class JournalRSSHelper {
 		}
 
 		String rss = exportToRSS(
-			resourceRequest, resourceResponse, feed, languageId, layout,
-			themeDisplay);
+			resourceRequest, resourceResponse, feed,
+			LanguageUtil.getLanguageId(resourceRequest), layout, themeDisplay);
 
 		return rss.getBytes(StringPool.UTF8);
 	}

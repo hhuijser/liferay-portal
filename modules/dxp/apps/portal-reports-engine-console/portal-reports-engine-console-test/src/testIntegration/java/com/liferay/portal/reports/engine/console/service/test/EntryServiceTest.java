@@ -55,8 +55,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -190,18 +188,17 @@ public class EntryServiceTest {
 				EntryServiceTest.class.getResourceAsStream(
 					"dependencies/" + _TEMPLATE_NAME + ".jrxml")) {
 
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.US, RandomTestUtil.randomString()
-			).build();
-
 			String content = StringUtil.replace(
 				StringUtil.read(inputStream),
 				"http://www.liferay.com/image/company_logo",
 				_file.getAbsolutePath());
 
 			_definition = DefinitionLocalServiceUtil.addDefinition(
-				TestPropsValues.getUserId(), _group.getGroupId(), nameMap, null,
-				0, null, _TEMPLATE_NAME,
+				TestPropsValues.getUserId(), _group.getGroupId(),
+				HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build(),
+				null, 0, null, _TEMPLATE_NAME,
 				new UnsyncByteArrayInputStream(
 					content.getBytes(StringPool.DEFAULT_CHARSET_NAME)),
 				ServiceContextTestUtil.getServiceContext());

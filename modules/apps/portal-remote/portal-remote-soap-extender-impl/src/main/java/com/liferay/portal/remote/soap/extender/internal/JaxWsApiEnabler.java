@@ -71,8 +71,6 @@ public class JaxWsApiEnabler {
 		if (_bus != null) {
 			BusFactory.setDefaultBus(_bus);
 
-			ProviderImpl providerImpl = new ProviderImpl();
-
 			Dictionary<String, Object> providerProperties = new Hashtable<>();
 
 			providerProperties.put(
@@ -80,7 +78,7 @@ public class JaxWsApiEnabler {
 				contextPath);
 
 			_serviceRegistration = bundleContext.registerService(
-				Provider.class, providerImpl, providerProperties);
+				Provider.class, new ProviderImpl(), providerProperties);
 		}
 	}
 

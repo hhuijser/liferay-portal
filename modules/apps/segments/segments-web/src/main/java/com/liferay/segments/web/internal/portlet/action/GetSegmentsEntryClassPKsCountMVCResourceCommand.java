@@ -121,8 +121,6 @@ public class GetSegmentsEntryClassPKsCountMVCResourceCommand
 			_portal.getOriginalServletRequest(
 				_portal.getHttpServletRequest(resourceRequest));
 
-		long companyId = _portal.getCompanyId(httpServletRequest);
-
 		String type = ParamUtil.getString(resourceRequest, "type");
 
 		Criteria criteria = ActionUtil.getCriteria(
@@ -133,7 +131,8 @@ public class GetSegmentsEntryClassPKsCountMVCResourceCommand
 		saveCriteriaInSession(resourceRequest, criteria);
 
 		int count = getSegmentsEntryClassPKsCount(
-			companyId, criteria, type, _portal.getLocale(resourceRequest));
+			_portal.getCompanyId(httpServletRequest), criteria, type,
+			_portal.getLocale(resourceRequest));
 
 		return String.valueOf(count);
 	}

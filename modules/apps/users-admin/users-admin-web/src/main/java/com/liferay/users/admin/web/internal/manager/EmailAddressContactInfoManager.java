@@ -51,7 +51,6 @@ public class EmailAddressContactInfoManager
 
 		String address = ParamUtil.getString(
 			actionRequest, "emailAddressAddress");
-		long typeId = ParamUtil.getLong(actionRequest, "emailAddressTypeId");
 		boolean primary = ParamUtil.getBoolean(
 			actionRequest, "emailAddressPrimary");
 
@@ -59,7 +58,8 @@ public class EmailAddressContactInfoManager
 			_emailAddressLocalService.createEmailAddress(emailAddressId);
 
 		emailAddress.setAddress(address);
-		emailAddress.setTypeId(typeId);
+		emailAddress.setTypeId(
+			ParamUtil.getLong(actionRequest, "emailAddressTypeId"));
 		emailAddress.setPrimary(primary);
 
 		return emailAddress;

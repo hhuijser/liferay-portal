@@ -82,24 +82,23 @@ public class EditFragmentEntryMVCActionCommand
 			}
 		}
 
-		String name = ParamUtil.getString(actionRequest, "name");
-		String css = ParamUtil.getString(actionRequest, "cssContent");
-		String html = ParamUtil.getString(actionRequest, "htmlContent");
-		String js = ParamUtil.getString(actionRequest, "jsContent");
-		boolean cacheable = ParamUtil.getBoolean(actionRequest, "cacheable");
 		String configuration = ParamUtil.getString(
 			actionRequest, "configurationContent");
-		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		draftFragmentEntry.setName(name);
-		draftFragmentEntry.setCss(css);
-		draftFragmentEntry.setHtml(html);
-		draftFragmentEntry.setJs(js);
-		draftFragmentEntry.setCacheable(cacheable);
+		draftFragmentEntry.setName(ParamUtil.getString(actionRequest, "name"));
+		draftFragmentEntry.setCss(
+			ParamUtil.getString(actionRequest, "cssContent"));
+		draftFragmentEntry.setHtml(
+			ParamUtil.getString(actionRequest, "htmlContent"));
+		draftFragmentEntry.setJs(
+			ParamUtil.getString(actionRequest, "jsContent"));
+		draftFragmentEntry.setCacheable(
+			ParamUtil.getBoolean(actionRequest, "cacheable"));
 		draftFragmentEntry.setConfiguration(configuration);
-		draftFragmentEntry.setStatus(status);
+		draftFragmentEntry.setStatus(
+			ParamUtil.getInteger(actionRequest, "status"));
 
 		try {
 			_fragmentEntryService.updateDraft(draftFragmentEntry);

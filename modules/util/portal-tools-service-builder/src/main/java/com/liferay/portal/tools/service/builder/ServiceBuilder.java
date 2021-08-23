@@ -2854,14 +2854,13 @@ public class ServiceBuilder {
 			ToolsUtil.writeFileRaw(finderImplFile, content, _modifiedFileNames);
 		}
 
-		JavaClass javaClass = _getJavaClass(finderImplFile.getPath());
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
 		context.put("persistence", Boolean.FALSE);
 
-		context = _putDeprecatedKeys(context, javaClass);
+		context = _putDeprecatedKeys(
+			context, _getJavaClass(finderImplFile.getPath()));
 
 		String content = _processTemplate(_tplFinderBaseImpl, context);
 
@@ -3589,12 +3588,10 @@ public class ServiceBuilder {
 				(sessionType != _SESSION_TYPE_REMOTE) ? "Local" : "",
 				"ServiceImpl.java"));
 
-		List<JavaMethod> methods = _getMethods(javaClass);
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
-		context.put("methods", methods);
+		context.put("methods", _getMethods(javaClass));
 		context.put("referenceEntities", _mergeReferenceEntities(entity));
 		context.put("sessionTypeName", _getSessionTypeName(sessionType));
 
@@ -4793,7 +4790,10 @@ public class ServiceBuilder {
 	}
 
 	private Map<String, Object> _getContext() throws Exception {
-		Map<String, Object> context = HashMapBuilder.<String, Object>put(
+
+		//context.put("system", staticModels.get("java.lang.System"));
+
+		return HashMapBuilder.<String, Object>put(
 			"apiPackagePath", _apiPackagePath
 		).put(
 			"author", _author
@@ -4829,10 +4829,6 @@ public class ServiceBuilder {
 		).put(
 			"validator", Validator_IW.getInstance()
 		).build();
-
-		//context.put("system", staticModels.get("java.lang.System"));
-
-		return context;
 	}
 
 	private void _getCreateMappingTableIndex(

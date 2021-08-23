@@ -1203,11 +1203,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 	public List<WikiPage> getOutgoingLinks(long nodeId, String title)
 		throws PortalException {
 
-		WikiPage page = getPage(nodeId, title);
-
 		Map<String, WikiPage> pages = new LinkedHashMap<>();
 
-		Map<String, Boolean> links = _getOutgoingLinks(page);
+		Map<String, Boolean> links = _getOutgoingLinks(getPage(nodeId, title));
 
 		for (Map.Entry<String, Boolean> entry : links.entrySet()) {
 			String curTitle = entry.getKey();
@@ -3325,8 +3323,6 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			_wikiPageResourceLocalService.getPageResourcePrimKey(
 				oldPage.getGroupId(), oldPage.getNodeId(), oldPage.getTitle());
 
-		Date date = new Date();
-
 		WikiPage page = oldPage;
 
 		double newVersion = oldPage.getVersion();
@@ -3380,7 +3376,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		// Node
 
 		wikiPageLocalService.updateLastPostDate(
-			nodeId, serviceContext.getModifiedDate(date));
+			nodeId, serviceContext.getModifiedDate(new Date()));
 
 		// Asset
 

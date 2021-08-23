@@ -100,10 +100,6 @@ public class GroupTestUtil {
 			LocaleUtil.getDefault(), name
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
 		int type = GroupConstants.TYPE_SITE_OPEN;
 		String friendlyURL =
 			StringPool.SLASH + FriendlyURLNormalizerUtil.normalize(name);
@@ -115,9 +111,12 @@ public class GroupTestUtil {
 
 		return GroupLocalServiceUtil.addGroup(
 			userId, parentGroupId, null, 0,
-			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, descriptionMap, type,
-			manualMembership, membershipRestriction, friendlyURL, site, active,
-			ServiceContextTestUtil.getServiceContext());
+			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			type, manualMembership, membershipRestriction, friendlyURL, site,
+			active, ServiceContextTestUtil.getServiceContext());
 	}
 
 	public static Group addGroup(
@@ -146,10 +145,6 @@ public class GroupTestUtil {
 			LocaleUtil.getDefault(), name
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
 		int type = GroupConstants.TYPE_SITE_OPEN;
 		String friendlyURL =
 			StringPool.SLASH + FriendlyURLNormalizerUtil.normalize(name);
@@ -165,8 +160,11 @@ public class GroupTestUtil {
 
 		return GroupServiceUtil.addGroup(
 			parentGroupId, GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap,
-			descriptionMap, type, manualMembership, membershipRestriction,
-			friendlyURL, site, active, serviceContext);
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build(),
+			type, manualMembership, membershipRestriction, friendlyURL, site,
+			active, serviceContext);
 	}
 
 	public static void addLayoutSetVirtualHost(

@@ -264,9 +264,6 @@ public class JournalArticleAnalyticsReportsInfoItemTest {
 			_group.getGroupId(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
@@ -275,7 +272,8 @@ public class JournalArticleAnalyticsReportsInfoItemTest {
 				_portal.getClassNameId(JournalArticle.class.getName()),
 				ddmStructure.getStructureId(), RandomTestUtil.randomString(),
 				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE, 0, true,
-				0, 0, 0, 0, serviceContext);
+				0, 0, 0, 0,
+				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			_assetDisplayPageEntryLocalService.addAssetDisplayPageEntry(

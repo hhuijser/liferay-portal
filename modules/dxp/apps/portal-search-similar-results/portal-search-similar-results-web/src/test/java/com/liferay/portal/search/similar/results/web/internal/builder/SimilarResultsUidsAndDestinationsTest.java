@@ -222,8 +222,6 @@ public class SimilarResultsUidsAndDestinationsTest {
 			"?_com_liferay_blogs_web_portlet_BlogsPortlet",
 			"_redirect=/web/guest/assetpublisher");
 
-		AssetEntry assetEntry = getAssetEntry(className, classPK);
-
 		AssetRenderer<?> assetRenderer = Mockito.mock(AssetRenderer.class);
 
 		Mockito.doReturn(
@@ -246,7 +244,8 @@ public class SimilarResultsUidsAndDestinationsTest {
 			blogsEntry
 		).getUuid();
 
-		setUpAssetEntryLocalServiceFetchGroupIdUUID(assetEntry, groupId, uuid);
+		setUpAssetEntryLocalServiceFetchGroupIdUUID(
+			getAssetEntry(className, classPK), groupId, uuid);
 		setUpBlogsEntryLocalService(blogsEntry);
 		setUpInputGroupId(groupId);
 		setUpDestinationAssetRenderer(assetRenderer);

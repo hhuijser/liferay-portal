@@ -142,14 +142,13 @@ public class ImageJournalUploadFileEntryHandler
 
 		_validateFile(fileName, uploadPortletRequest.getSize(parameterName));
 
-		String contentType = uploadPortletRequest.getContentType(parameterName);
-
 		String uniqueFileName = _uniqueFileNameProvider.provide(
 			fileName, curFileName -> _exists(themeDisplay, curFileName));
 
 		return TempFileEntryUtil.addTempFileEntry(
 			themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
-			_TEMP_FOLDER_NAME, uniqueFileName, inputStream, contentType);
+			_TEMP_FOLDER_NAME, uniqueFileName, inputStream,
+			uploadPortletRequest.getContentType(parameterName));
 	}
 
 	private FileEntry _editImageFileEntry(

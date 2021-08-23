@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -42,11 +40,6 @@ public class DDLRecordSetModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", DDLRecordSet.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<DDLRecordSet>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -68,7 +61,9 @@ public class DDLRecordSetModelResourcePermissionRegistrar {
 							recordSet.getRecordSetId(),
 							DDLPortletKeys.DYNAMIC_DATA_LISTS, actionId);
 					})),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", DDLRecordSet.class.getName()
+			).build());
 	}
 
 	@Deactivate

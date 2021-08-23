@@ -37,7 +37,6 @@ public class CommerceNotificationAttachmentLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
@@ -47,7 +46,8 @@ public class CommerceNotificationAttachmentLocalServiceImpl
 			commerceNotificationAttachmentPersistence.create(
 				commerceNotificationAttachmentId);
 
-		commerceNotificationAttachment.setGroupId(groupId);
+		commerceNotificationAttachment.setGroupId(
+			serviceContext.getScopeGroupId());
 		commerceNotificationAttachment.setCompanyId(user.getCompanyId());
 		commerceNotificationAttachment.setUserId(user.getUserId());
 		commerceNotificationAttachment.setUserName(user.getFullName());

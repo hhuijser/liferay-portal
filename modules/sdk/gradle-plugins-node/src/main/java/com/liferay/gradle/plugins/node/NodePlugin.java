@@ -294,14 +294,12 @@ public class NodePlugin implements Plugin<Project> {
 	private PackageRunTask _addTaskPackageRun(
 		String scriptName, NpmInstallTask npmInstallTask) {
 
-		Project project = npmInstallTask.getProject();
-
 		String suffix = StringUtil.camelCase(scriptName, true);
 
 		String taskName = _PACKAGE_RUN_TASK_NAME_PREFIX + suffix;
 
 		PackageRunTask packageRunTask = GradleUtil.addTask(
-			project, taskName, PackageRunTask.class);
+			npmInstallTask.getProject(), taskName, PackageRunTask.class);
 
 		packageRunTask.dependsOn(npmInstallTask);
 		packageRunTask.setDescription(

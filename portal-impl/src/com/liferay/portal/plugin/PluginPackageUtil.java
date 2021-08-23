@@ -867,8 +867,6 @@ public class PluginPackageUtil {
 			properties.getProperty("recommended-deployment-context"),
 			moduleArtifactId);
 
-		String author = GetterUtil.getString(properties.getProperty("author"));
-
 		List<String> types = new ArrayList<>();
 
 		types.add(pluginType);
@@ -927,7 +925,8 @@ public class PluginPackageUtil {
 		pluginPackage.setName(pluginName);
 		pluginPackage.setRecommendedDeploymentContext(deploymentContext);
 		//pluginPackage.setModifiedDate(null);
-		pluginPackage.setAuthor(author);
+		pluginPackage.setAuthor(
+			GetterUtil.getString(properties.getProperty("author")));
 		pluginPackage.setTypes(types);
 		pluginPackage.setLicenses(licenses);
 		pluginPackage.setLiferayVersions(liferayVersions);

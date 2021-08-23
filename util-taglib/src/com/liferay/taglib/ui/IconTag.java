@@ -593,11 +593,10 @@ public class IconTag extends IncludeTag {
 			spriteImage = theme.getSpriteImage(imageFileName);
 
 			if (spriteImage != null) {
-				spriteFileName = spriteImage.getSpriteFileName();
-
 				String cdnBaseURL = themeDisplay.getCDNBaseURL();
 
-				spriteFileURL = cdnBaseURL.concat(spriteFileName);
+				spriteFileURL = cdnBaseURL.concat(
+					spriteImage.getSpriteFileName());
 			}
 		}
 
@@ -616,11 +615,10 @@ public class IconTag extends IncludeTag {
 				spriteImage = portletApp.getSpriteImage(imageFileName);
 
 				if (spriteImage != null) {
-					spriteFileName = spriteImage.getSpriteFileName();
-
 					String cdnBaseURL = themeDisplay.getCDNBaseURL();
 
-					spriteFileURL = cdnBaseURL.concat(spriteFileName);
+					spriteFileURL = cdnBaseURL.concat(
+						spriteImage.getSpriteFileName());
 				}
 			}
 		}

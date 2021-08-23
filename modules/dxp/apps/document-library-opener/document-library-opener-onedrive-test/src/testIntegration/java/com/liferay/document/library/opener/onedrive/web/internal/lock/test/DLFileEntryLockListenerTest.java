@@ -48,7 +48,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -170,14 +169,12 @@ public class DLFileEntryLockListenerTest {
 		Bundle bundle = FrameworkUtil.getBundle(
 			ConfigurationTemporarySwapper.class);
 
-		BundleContext bundleContext = bundle.getBundleContext();
-
 		String pid =
 			"com.liferay.document.library.opener.onedrive.web.internal." +
 				"configuration.DLOneDriveCompanyConfiguration";
 
 		Configuration configuration = OSGiServiceUtil.callService(
-			bundleContext, ConfigurationAdmin.class,
+			bundle.getBundleContext(), ConfigurationAdmin.class,
 			configurationAdmin -> configurationAdmin.getConfiguration(
 				pid, StringPool.QUESTION));
 

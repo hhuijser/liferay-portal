@@ -286,16 +286,15 @@ public class JournalTestUtilTest {
 		JournalArticle article = JournalTestUtil.addArticle(
 			_group.getGroupId(), "Test Article", "This is a test article.");
 
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.US, "This is an updated test article."
-		).build();
-
 		String defaultLanguageId = LanguageUtil.getLanguageId(
 			LocaleUtil.getSiteDefault());
 
 		String localizedContent =
 			DDMStructureTestUtil.getSampleStructuredContent(
-				contents, defaultLanguageId);
+				HashMapBuilder.put(
+					LocaleUtil.US, "This is an updated test article."
+				).build(),
+				defaultLanguageId);
 
 		Assert.assertNotNull(
 			JournalTestUtil.updateArticle(

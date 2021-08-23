@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.security.permission.resource.StagedModelPermiss
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 
-import java.util.Dictionary;
 import java.util.Objects;
 
 import org.osgi.framework.BundleContext;
@@ -46,11 +45,6 @@ public class DDMFormInstanceModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", DDMFormInstance.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<DDMFormInstance>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -82,7 +76,9 @@ public class DDMFormInstanceModelResourcePermissionRegistrar {
 						}
 
 					})),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", DDMFormInstance.class.getName()
+			).build());
 	}
 
 	@Deactivate

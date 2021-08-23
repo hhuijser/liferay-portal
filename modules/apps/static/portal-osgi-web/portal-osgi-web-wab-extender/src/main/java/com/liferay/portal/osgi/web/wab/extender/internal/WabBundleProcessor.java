@@ -34,9 +34,7 @@ import com.liferay.portal.osgi.web.wab.extender.internal.adapter.ModifiableServl
 import com.liferay.portal.osgi.web.wab.extender.internal.adapter.ModifiableServletContextAdapter;
 import com.liferay.portal.osgi.web.wab.extender.internal.adapter.ServletContextListenerExceptionAdapter;
 import com.liferay.portal.osgi.web.wab.extender.internal.adapter.ServletExceptionAdapter;
-import com.liferay.portal.osgi.web.wab.extender.internal.registration.FilterRegistrationImpl;
 import com.liferay.portal.osgi.web.wab.extender.internal.registration.ListenerServiceRegistrationComparator;
-import com.liferay.portal.osgi.web.wab.extender.internal.registration.ServletRegistrationImpl;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -196,13 +194,6 @@ public class WabBundleProcessor {
 						servletContext.getAttribute(attributeName));
 				}
 
-				List<ListenerDefinition> listenerDefinitions =
-					modifiableServletContext.getListenerDefinitions();
-				Map<String, FilterRegistrationImpl> filterRegistrationImpls =
-					modifiableServletContext.getFilterRegistrationImpls();
-				Map<String, ServletRegistrationImpl> servletRegistrationImpls =
-					modifiableServletContext.getServletRegistrationImpls();
-
 				servletContextHelperRegistration.setProperties(
 					unregisteredInitParameters);
 
@@ -211,8 +202,10 @@ public class WabBundleProcessor {
 
 				servletContext = ModifiableServletContextAdapter.createInstance(
 					_bundle.getBundleContext(), newServletContext,
-					_jspServletFactory, webXMLDefinition, listenerDefinitions,
-					filterRegistrationImpls, servletRegistrationImpls,
+					_jspServletFactory, webXMLDefinition,
+					modifiableServletContext.getListenerDefinitions(),
+					modifiableServletContext.getFilterRegistrationImpls(),
+					modifiableServletContext.getServletRegistrationImpls(),
 					attributes);
 
 				modifiableServletContext =
@@ -846,12 +839,11 @@ public class WabBundleProcessor {
 				Class<? extends EventListener> eventListenerClass =
 					clazz.asSubclass(EventListener.class);
 
-				EventListener eventListener = eventListenerClass.newInstance();
-
 				ListenerDefinition listenerDefinition =
 					new ListenerDefinition();
 
-				listenerDefinition.setEventListener(eventListener);
+				listenerDefinition.setEventListener(
+					eventListenerClass.newInstance());
 
 				webXMLDefinition.addListenerDefinition(listenerDefinition);
 			}

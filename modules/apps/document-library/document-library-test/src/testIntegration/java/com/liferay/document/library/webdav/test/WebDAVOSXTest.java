@@ -849,10 +849,6 @@ public class WebDAVOSXTest extends BaseWebDAVTestCase {
 
 		ddmForm.addDDMFormField(ddmFormField);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			ddmForm.getDefaultLocale(), "Test Structure"
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
@@ -862,8 +858,11 @@ public class WebDAVOSXTest extends BaseWebDAVTestCase {
 		return DDMStructureManagerUtil.addStructure(
 			TestPropsValues.getUserId(), group.getGroupId(), null,
 			PortalUtil.getClassNameId(DLFileEntryMetadata.class.getName()),
-			null, nameMap, null, ddmForm,
-			StorageEngineManager.STORAGE_TYPE_DEFAULT,
+			null,
+			HashMapBuilder.put(
+				ddmForm.getDefaultLocale(), "Test Structure"
+			).build(),
+			null, ddmForm, StorageEngineManager.STORAGE_TYPE_DEFAULT,
 			DDMStructureManager.STRUCTURE_TYPE_DEFAULT, serviceContext);
 	}
 
@@ -885,11 +884,9 @@ public class WebDAVOSXTest extends BaseWebDAVTestCase {
 	protected DDMFormValues getDDMFormValues() {
 		DDMForm ddmForm = createDDMForm();
 
-		DDMFormFieldOptions ddmFormFieldOptions = new DDMFormFieldOptions();
-
 		DDMFormField ddmFormField = createLocalizableTextDDMFormField("Text");
 
-		ddmFormField.setDDMFormFieldOptions(ddmFormFieldOptions);
+		ddmFormField.setDDMFormFieldOptions(new DDMFormFieldOptions());
 
 		ddmForm.addDDMFormField(ddmFormField);
 

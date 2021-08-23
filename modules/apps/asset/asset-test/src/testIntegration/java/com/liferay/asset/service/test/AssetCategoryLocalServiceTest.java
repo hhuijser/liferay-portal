@@ -42,9 +42,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Locale;
-import java.util.Map;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -81,10 +78,6 @@ public class AssetCategoryLocalServiceTest {
 
 	@Test(expected = DuplicateCategoryException.class)
 	public void testCannotAddCategoryWithDuplicateName() throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
@@ -92,8 +85,11 @@ public class AssetCategoryLocalServiceTest {
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
-				RandomTestUtil.randomString(), titleMap, null, null,
-				serviceContext);
+				RandomTestUtil.randomString(),
+				HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build(),
+				null, null, serviceContext);
 
 		String assetCategoryName = RandomTestUtil.randomString();
 
@@ -108,10 +104,6 @@ public class AssetCategoryLocalServiceTest {
 
 	@Test(expected = AssetCategoryNameException.class)
 	public void testCannotAddCategoryWithEmptyName() throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
@@ -119,8 +111,11 @@ public class AssetCategoryLocalServiceTest {
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
-				RandomTestUtil.randomString(), titleMap, null, null,
-				serviceContext);
+				RandomTestUtil.randomString(),
+				HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build(),
+				null, null, serviceContext);
 
 		_assetCategoryLocalService.addCategory(
 			TestPropsValues.getUserId(), _group.getGroupId(), StringPool.BLANK,
@@ -129,10 +124,6 @@ public class AssetCategoryLocalServiceTest {
 
 	@Test(expected = DuplicateCategoryException.class)
 	public void testCannotAddDuplicatedCategoryWithLongName() throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
@@ -140,8 +131,11 @@ public class AssetCategoryLocalServiceTest {
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
-				RandomTestUtil.randomString(), titleMap, null, null,
-				serviceContext);
+				RandomTestUtil.randomString(),
+				HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build(),
+				null, null, serviceContext);
 
 		int nameMaxLength = ModelHintsUtil.getMaxLength(
 			AssetCategory.class.getName(), "name");
@@ -161,10 +155,6 @@ public class AssetCategoryLocalServiceTest {
 
 	@Test
 	public void testCategoryWithLongNameIsTrimmed() throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
@@ -172,8 +162,11 @@ public class AssetCategoryLocalServiceTest {
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
-				RandomTestUtil.randomString(), titleMap, null, null,
-				serviceContext);
+				RandomTestUtil.randomString(),
+				HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build(),
+				null, null, serviceContext);
 
 		int nameMaxLength = ModelHintsUtil.getMaxLength(
 			AssetCategory.class.getName(), "name");
@@ -190,10 +183,6 @@ public class AssetCategoryLocalServiceTest {
 
 	@Test
 	public void testDeleteCategory() throws Exception {
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
@@ -201,8 +190,11 @@ public class AssetCategoryLocalServiceTest {
 		AssetVocabulary assetVocabulary =
 			_assetVocabularyLocalService.addVocabulary(
 				TestPropsValues.getUserId(), _group.getGroupId(),
-				RandomTestUtil.randomString(), titleMap, null, null,
-				serviceContext);
+				RandomTestUtil.randomString(),
+				HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build(),
+				null, null, serviceContext);
 
 		AssetCategory assetCategory = _assetCategoryLocalService.addCategory(
 			TestPropsValues.getUserId(), _group.getGroupId(),

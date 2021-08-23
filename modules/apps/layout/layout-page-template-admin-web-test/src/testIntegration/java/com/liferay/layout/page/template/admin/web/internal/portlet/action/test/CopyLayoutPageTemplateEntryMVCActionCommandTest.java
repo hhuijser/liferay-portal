@@ -104,7 +104,6 @@ public class CopyLayoutPageTemplateEntryMVCActionCommandTest {
 		throws Exception {
 
 		ActionRequest actionRequest = _getMockLiferayPortletActionRequest();
-		ActionResponse actionResponse = new MockLiferayPortletActionResponse();
 
 		LayoutPageTemplateEntry targetLayoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.fetchLayoutPageTemplateEntry(
@@ -113,7 +112,8 @@ public class CopyLayoutPageTemplateEntryMVCActionCommandTest {
 
 		Assert.assertNull(targetLayoutPageTemplateEntry);
 
-		_mvcActionCommand.processAction(actionRequest, actionResponse);
+		_mvcActionCommand.processAction(
+			actionRequest, new MockLiferayPortletActionResponse());
 
 		targetLayoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.fetchLayoutPageTemplateEntry(
@@ -128,14 +128,14 @@ public class CopyLayoutPageTemplateEntryMVCActionCommandTest {
 		throws Exception {
 
 		ActionRequest actionRequest = _getMockLiferayPortletActionRequest();
-		ActionResponse actionResponse = new MockLiferayPortletActionResponse();
 
 		_layoutLocalService.deleteLayout(_layoutPageTemplateEntry.getPlid());
 
 		long originalLayoutsCount = _layoutLocalService.getLayoutsCount(
 			_group.getGroupId());
 
-		_mvcActionCommand.processAction(actionRequest, actionResponse);
+		_mvcActionCommand.processAction(
+			actionRequest, new MockLiferayPortletActionResponse());
 
 		LayoutPageTemplateEntry targetLayoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.fetchLayoutPageTemplateEntry(

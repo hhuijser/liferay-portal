@@ -1588,18 +1588,12 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		String sourceFileName = dlFileVersion.getFileName();
-		String extension = dlFileVersion.getExtension();
-		String mimeType = dlFileVersion.getMimeType();
-		String title = dlFileVersion.getTitle();
-		String description = dlFileVersion.getDescription();
 		String changeLog = LanguageUtil.format(
 			serviceContext.getLocale(), "reverted-to-x", version, false);
 		DLVersionNumberIncrease dlVersionNumberIncrease =
 			DLVersionNumberIncrease.MAJOR;
-		String extraSettings = dlFileVersion.getExtraSettings();
 		Map<String, DDMFormValues> ddmFormValuesMap = null;
 		InputStream inputStream = getFileAsStream(fileEntryId, version, false);
-		long size = dlFileVersion.getSize();
 
 		serviceContext.setCommand(Constants.REVERT);
 
@@ -1610,9 +1604,11 @@ public class DLFileEntryLocalServiceImpl
 			dlFileVersion.getFileEntryTypeId(), dlFileEntry);
 
 		updateFileEntry(
-			userId, fileEntryId, sourceFileName, extension, mimeType, title,
-			description, changeLog, dlVersionNumberIncrease, extraSettings,
-			fileEntryTypeId, ddmFormValuesMap, null, inputStream, size,
+			userId, fileEntryId, sourceFileName, dlFileVersion.getExtension(),
+			dlFileVersion.getMimeType(), dlFileVersion.getTitle(),
+			dlFileVersion.getDescription(), changeLog, dlVersionNumberIncrease,
+			dlFileVersion.getExtraSettings(), fileEntryTypeId, ddmFormValuesMap,
+			null, inputStream, dlFileVersion.getSize(),
 			dlFileVersion.getExpirationDate(), dlFileVersion.getReviewDate(),
 			serviceContext);
 

@@ -652,13 +652,12 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 			// Categories and threads
 
-			User user = userLocalService.getUser(userId);
-
 			List<Object> categoriesAndThreads = getCategoriesAndThreads(
 				category.getGroupId(), categoryId,
 				WorkflowConstants.STATUS_IN_TRASH);
 
-			restoreDependentsFromTrash(user, categoriesAndThreads);
+			restoreDependentsFromTrash(
+				userLocalService.getUser(userId), categoriesAndThreads);
 		}
 
 		return moveCategory(categoryId, newCategoryId, false);
@@ -689,13 +688,12 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 		// Categories and threads
 
-		User user = userLocalService.getUser(userId);
-
 		List<Object> categoriesAndThreads = getCategoriesAndThreads(
 			category.getGroupId(), categoryId);
 
 		moveDependentsToTrash(
-			user, categoriesAndThreads, trashEntry.getEntryId());
+			userLocalService.getUser(userId), categoriesAndThreads,
+			trashEntry.getEntryId());
 
 		_reindex(MBCategory.class, category);
 
@@ -724,13 +722,12 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 		// Categories and threads
 
-		User user = userLocalService.getUser(userId);
-
 		List<Object> categoriesAndThreads = getCategoriesAndThreads(
 			category.getGroupId(), categoryId,
 			WorkflowConstants.STATUS_IN_TRASH);
 
-		restoreDependentsFromTrash(user, categoriesAndThreads);
+		restoreDependentsFromTrash(
+			userLocalService.getUser(userId), categoriesAndThreads);
 
 		// Trash
 

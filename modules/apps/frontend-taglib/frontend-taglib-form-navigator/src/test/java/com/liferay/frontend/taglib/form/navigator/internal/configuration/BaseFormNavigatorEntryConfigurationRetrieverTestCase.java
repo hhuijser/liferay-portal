@@ -54,17 +54,16 @@ public abstract class BaseFormNavigatorEntryConfigurationRetrieverTestCase {
 	protected void createConfiguration(
 		String formNavigatorId, String[] formNavigatorEntryKeys) {
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"formNavigatorEntryKeys", formNavigatorEntryKeys
-		).put(
-			"formNavigatorId", formNavigatorId
-		).build();
-
 		FormNavigatorEntryConfigurationParser
 			formNavigatorEntryConfigurationParser =
 				new FormNavigatorEntryConfigurationParser();
 
-		formNavigatorEntryConfigurationParser.activate(properties);
+		formNavigatorEntryConfigurationParser.activate(
+			HashMapBuilder.<String, Object>put(
+				"formNavigatorEntryKeys", formNavigatorEntryKeys
+			).put(
+				"formNavigatorId", formNavigatorId
+			).build());
 
 		_serviceTrackerMap.register(
 			formNavigatorId, formNavigatorEntryConfigurationParser);

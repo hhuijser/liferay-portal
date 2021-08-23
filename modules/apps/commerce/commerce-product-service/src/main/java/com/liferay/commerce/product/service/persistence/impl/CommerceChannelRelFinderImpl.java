@@ -240,11 +240,9 @@ public class CommerceChannelRelFinderImpl
 	}
 
 	private boolean _isValidClassName(String className) {
-		long classNameId = PortalUtil.getClassNameId(className);
-
 		List<Long> validClassNameIds = _findClassNameIds();
 
-		return validClassNameIds.contains(classNameId);
+		return validClassNameIds.contains(PortalUtil.getClassNameId(className));
 	}
 
 	private static final String _FIND_CLASS_NAME_IDS =

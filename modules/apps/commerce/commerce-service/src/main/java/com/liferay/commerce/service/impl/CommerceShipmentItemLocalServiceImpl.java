@@ -62,7 +62,6 @@ public class CommerceShipmentItemLocalServiceImpl
 		// Commerce shipment item
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		CommerceOrderItem commerceOrderItem =
 			commerceOrderItemLocalService.getCommerceOrderItem(
@@ -79,7 +78,7 @@ public class CommerceShipmentItemLocalServiceImpl
 		CommerceShipmentItem commerceShipmentItem =
 			commerceShipmentItemPersistence.create(commerceShipmentItemId);
 
-		commerceShipmentItem.setGroupId(groupId);
+		commerceShipmentItem.setGroupId(serviceContext.getScopeGroupId());
 		commerceShipmentItem.setCompanyId(user.getCompanyId());
 		commerceShipmentItem.setUserId(user.getUserId());
 		commerceShipmentItem.setUserName(user.getFullName());

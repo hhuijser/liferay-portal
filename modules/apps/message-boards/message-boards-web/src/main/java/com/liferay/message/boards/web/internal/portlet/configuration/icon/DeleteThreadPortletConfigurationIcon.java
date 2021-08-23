@@ -98,13 +98,12 @@ public class DeleteThreadPortletConfigurationIcon
 		).buildPortletURL();
 
 		try {
-			MBCategory category = ActionUtil.getCategory(portletRequest);
-
 			PortletURL parentCategoryURL = PortletURLFactoryUtil.create(
 				portletRequest, MBPortletKeys.MESSAGE_BOARDS_ADMIN,
 				PortletRequest.RENDER_PHASE);
 
-			long categoryId = getCategoryId(category);
+			long categoryId = getCategoryId(
+				ActionUtil.getCategory(portletRequest));
 
 			if (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
 				parentCategoryURL.setParameter(

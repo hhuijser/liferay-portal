@@ -304,8 +304,6 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			kaleoTimer.getDuration(),
 			DurationScale.parse(kaleoTimer.getScale()));
 
-		Date dueDate = _dueDateCalculator.getDueDate(new Date(), delayDuration);
-
 		int interval = 0;
 		TimeUnit timeUnit = TimeUnit.SECOND;
 
@@ -324,7 +322,9 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		}
 
 		Trigger trigger = TriggerFactoryUtil.createTrigger(
-			groupName, groupName, dueDate, interval, timeUnit);
+			groupName, groupName,
+			_dueDateCalculator.getDueDate(new Date(), delayDuration), interval,
+			timeUnit);
 
 		Message message = new Message();
 

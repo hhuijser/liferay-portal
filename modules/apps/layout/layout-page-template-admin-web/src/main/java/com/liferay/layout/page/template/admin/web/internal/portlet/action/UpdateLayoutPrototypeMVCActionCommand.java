@@ -34,8 +34,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -66,17 +64,16 @@ public class UpdateLayoutPrototypeMVCActionCommand
 			long layoutPrototypeId = ParamUtil.getLong(
 				actionRequest, "layoutPrototypeId");
 
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				actionRequest.getLocale(),
-				ParamUtil.getString(actionRequest, "name")
-			).build();
-
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				LayoutPrototype.class.getName(), actionRequest);
 
 			_layoutPrototypeService.updateLayoutPrototype(
-				layoutPrototypeId, nameMap, new HashMap<>(), true,
-				serviceContext);
+				layoutPrototypeId,
+				HashMapBuilder.put(
+					actionRequest.getLocale(),
+					ParamUtil.getString(actionRequest, "name")
+				).build(),
+				new HashMap<>(), true, serviceContext);
 
 			String redirect = ParamUtil.getString(actionRequest, "redirect");
 

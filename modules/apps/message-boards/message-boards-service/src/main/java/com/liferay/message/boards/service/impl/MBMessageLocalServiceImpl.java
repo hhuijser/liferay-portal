@@ -1093,12 +1093,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			int status, Comparator<MBMessage> comparator)
 		throws PortalException {
 
-		long classNameId = classNameLocalService.getClassNameId(className);
-
 		MBMessage message = null;
 
 		MBDiscussion discussion = _mbDiscussionLocalService.fetchDiscussion(
-			classNameId, classPK);
+			classNameLocalService.getClassNameId(className), classPK);
 
 		if (discussion != null) {
 			MBThread mbThread = mbThreadPersistence.findByPrimaryKey(

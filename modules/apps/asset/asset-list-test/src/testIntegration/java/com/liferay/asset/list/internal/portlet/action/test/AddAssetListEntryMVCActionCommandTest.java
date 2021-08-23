@@ -107,11 +107,9 @@ public class AddAssetListEntryMVCActionCommandTest {
 
 		Assert.assertEquals(title, assetListEntry.getTitle());
 
-		String typeSettings = assetListEntry.getTypeSettings(0);
-
 		UnicodeProperties unicodeProperties = new UnicodeProperties(true);
 
-		unicodeProperties.fastLoad(typeSettings);
+		unicodeProperties.fastLoad(assetListEntry.getTypeSettings(0));
 
 		Assert.assertEquals(
 			String.valueOf(_group.getGroupId()),

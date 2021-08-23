@@ -146,15 +146,13 @@ public class SearchLayoutFactoryImpl implements SearchLayoutFactory {
 			Map<Locale, String> descriptionMap)
 		throws Exception {
 
-		String layoutTemplateId = getLayoutTemplateId();
-
 		List<LayoutPrototype> layoutPrototypes =
 			layoutPrototypeLocalService.search(
 				companyId, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Layout layout = LayoutPrototypeHelperUtil.addLayoutPrototype(
 			layoutPrototypeLocalService, companyId, defaultUserId, nameMap,
-			descriptionMap, layoutTemplateId, layoutPrototypes);
+			descriptionMap, getLayoutTemplateId(), layoutPrototypes);
 
 		if (layout == null) {
 			return;

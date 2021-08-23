@@ -133,8 +133,6 @@ public class PortalClassLoaderFilter
 
 	@Override
 	protected void doPortalInit() throws Exception {
-		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
-
 		String filterClass = _filterConfig.getInitParameter("filter-class");
 
 		if (filterClass.startsWith("com.liferay.filters.")) {
@@ -143,7 +141,8 @@ public class PortalClassLoaderFilter
 				"com.liferay.portal.servlet.filters.");
 		}
 
-		_filter = (Filter)InstanceFactory.newInstance(classLoader, filterClass);
+		_filter = (Filter)InstanceFactory.newInstance(
+			PortalClassLoaderUtil.getClassLoader(), filterClass);
 
 		_filter.init(_filterConfig);
 

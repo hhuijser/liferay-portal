@@ -290,16 +290,14 @@ public class ElasticsearchSearchEngineInformation
 			ConnectionInformation connectionInformation =
 				connectionInformationBuilder.build();
 
-			String clusterName = connectionInformation.getClusterName();
-
 			List<NodeInformation> nodeInformations =
 				connectionInformation.getNodeInformationList();
 
 			Stream<NodeInformation> stream = nodeInformations.stream();
 
 			return StringBundler.concat(
-				clusterName, StringPool.COLON, StringPool.SPACE,
-				StringPool.OPEN_BRACKET,
+				connectionInformation.getClusterName(), StringPool.COLON,
+				StringPool.SPACE, StringPool.OPEN_BRACKET,
 				stream.map(
 					nodeInfo -> StringBundler.concat(
 						nodeInfo.getName(), StringPool.SPACE,

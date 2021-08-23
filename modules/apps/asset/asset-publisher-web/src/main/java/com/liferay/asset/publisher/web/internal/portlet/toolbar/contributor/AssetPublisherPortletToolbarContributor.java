@@ -50,7 +50,6 @@ import java.util.Set;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -213,19 +212,18 @@ public class AssetPublisherPortletToolbarContributor
 			curGroupId = group.getLiveGroupId();
 		}
 
-		PortletURL portletURL = PortletURLBuilder.create(
-			assetPublisherAddItemHolder.getPortletURL()
-		).setPortletResource(
-			AssetPublisherPortletKeys.ASSET_PUBLISHER
-		).buildPortletURL();
-
 		boolean addDisplayPageParameter =
 			_assetPublisherWebHelper.isDefaultAssetPublisher(
 				themeDisplay.getLayout(), portletDisplay.getId(),
 				assetPublisherDisplayContext.getPortletResource());
 
 		String url = _assetHelper.getAddURLPopUp(
-			curGroupId, themeDisplay.getPlid(), portletURL,
+			curGroupId, themeDisplay.getPlid(),
+			PortletURLBuilder.create(
+				assetPublisherAddItemHolder.getPortletURL()
+			).setPortletResource(
+				AssetPublisherPortletKeys.ASSET_PUBLISHER
+			).buildPortletURL(),
 			addDisplayPageParameter, themeDisplay.getLayout());
 
 		urlMenuItem.setURL(url);

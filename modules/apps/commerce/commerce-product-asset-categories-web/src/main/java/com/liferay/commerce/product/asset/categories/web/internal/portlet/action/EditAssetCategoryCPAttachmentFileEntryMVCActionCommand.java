@@ -161,15 +161,14 @@ public class EditAssetCategoryCPAttachmentFileEntryMVCActionCommand
 				type, serviceContext);
 		}
 		else {
-			long classNameId = _portal.getClassNameId(AssetCategory.class);
-
 			long categoryId = ParamUtil.getLong(actionRequest, "categoryId");
 
 			AssetCategory assetCategory =
 				_assetCategoryLocalService.getAssetCategory(categoryId);
 
 			_cpAttachmentFileEntryService.addCPAttachmentFileEntry(
-				assetCategory.getGroupId(), classNameId, categoryId,
+				assetCategory.getGroupId(),
+				_portal.getClassNameId(AssetCategory.class), categoryId,
 				fileEntryId, cdnEnabled, cdnURL, displayDateMonth,
 				displayDateDay, displayDateYear, displayDateHour,
 				displayDateMinute, expirationDateMonth, expirationDateDay,

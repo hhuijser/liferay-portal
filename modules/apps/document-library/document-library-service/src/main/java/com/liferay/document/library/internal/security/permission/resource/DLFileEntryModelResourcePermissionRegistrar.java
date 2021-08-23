@@ -43,8 +43,6 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.documentlibrary.constants.DLConstants;
 import com.liferay.sharing.security.permission.resource.SharingModelResourcePermissionConfigurator;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -62,11 +60,6 @@ public class DLFileEntryModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", DLFileEntry.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<DLFileEntry>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -132,7 +125,9 @@ public class DLFileEntryModelResourcePermissionRegistrar {
 								_getFetchParentFunction(), true));
 					}
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", DLFileEntry.class.getName()
+			).build());
 	}
 
 	@Deactivate

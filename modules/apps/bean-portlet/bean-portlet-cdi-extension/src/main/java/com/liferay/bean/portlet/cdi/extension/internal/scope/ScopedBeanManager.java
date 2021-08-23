@@ -257,13 +257,11 @@ public class ScopedBeanManager {
 			PortletSerializable portletSerializable =
 				(PortletSerializable)scopedBean.getContainerCreatedInstance();
 
-			String parameterName = _getParameterName(portletSerializable);
-
 			RenderParameters renderParameters =
 				_portletRequest.getRenderParameters();
 
 			String[] parameterValues = renderParameters.getValues(
-				parameterName);
+				_getParameterName(portletSerializable));
 
 			if (parameterValues == null) {
 				parameterValues = new String[0];

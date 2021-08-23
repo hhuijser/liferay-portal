@@ -72,15 +72,13 @@ public class UploadServletRequestWhenIsFormFieldTest {
 		Assert.assertEquals(map.toString(), 1, map.size());
 
 		for (Map.Entry<String, FileItem[]> entry : map.entrySet()) {
-			String key = entry.getKey();
-
 			FileItem[] fileItems = entry.getValue();
 
 			FileItem firstFileItem = fileItems[0];
 
 			Assert.assertEquals(
 				firstFileItem.isFormField(),
-				uploadServletRequestImpl.isFormField(key));
+				uploadServletRequestImpl.isFormField(entry.getKey()));
 		}
 	}
 

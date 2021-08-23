@@ -96,7 +96,6 @@ public class AddSchedulerMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "emailNotifications");
 		String emailDelivery = ParamUtil.getString(
 			actionRequest, "emailDelivery");
-		String portletId = _portal.getPortletId(actionRequest);
 		String generatedReportsURL = ParamUtil.getString(
 			actionRequest, "generatedReportsURL");
 		String reportName = ParamUtil.getString(actionRequest, "reportName");
@@ -178,7 +177,8 @@ public class AddSchedulerMVCActionCommand extends BaseMVCActionCommand {
 			themeDisplay.getScopeGroupId(), definitionId, format, true,
 			startCalendar.getTime(), schedulerEndDate,
 			recurrenceType != Recurrence.NO_RECURRENCE, cronText,
-			emailNotifications, emailDelivery, portletId, generatedReportsURL,
+			emailNotifications, emailDelivery,
+			_portal.getPortletId(actionRequest), generatedReportsURL,
 			reportName, entryReportParametersJSONArray.toString(),
 			serviceContext);
 	}

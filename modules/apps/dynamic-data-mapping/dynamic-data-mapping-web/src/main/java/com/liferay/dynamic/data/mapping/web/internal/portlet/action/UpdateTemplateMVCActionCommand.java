@@ -83,8 +83,6 @@ public class UpdateTemplateMVCActionCommand
 		String language = ParamUtil.getString(
 			uploadPortletRequest, "language", TemplateConstants.LANG_TYPE_VM);
 
-		String script = getScript(uploadPortletRequest);
-
 		boolean cacheable = ParamUtil.getBoolean(
 			uploadPortletRequest, "cacheable");
 		boolean smallImage = ParamUtil.getBoolean(
@@ -98,8 +96,8 @@ public class UpdateTemplateMVCActionCommand
 
 		return ddmTemplateService.updateTemplate(
 			templateId, classPK, nameMap, descriptionMap, type, mode, language,
-			script, cacheable, smallImage, smallImageURL, smallImageFile,
-			serviceContext);
+			getScript(uploadPortletRequest), cacheable, smallImage,
+			smallImageURL, smallImageFile, serviceContext);
 	}
 
 }

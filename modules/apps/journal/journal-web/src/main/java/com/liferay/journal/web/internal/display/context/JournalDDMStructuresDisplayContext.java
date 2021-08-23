@@ -75,16 +75,13 @@ public class JournalDDMStructuresDisplayContext {
 				"no-structures-were-found");
 		}
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMStructure> orderByComparator =
 			DDMUtil.getStructureOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		ddmStructureSearch.setOrderByCol(orderByCol);
+		ddmStructureSearch.setOrderByCol(getOrderByCol());
 		ddmStructureSearch.setOrderByComparator(orderByComparator);
-		ddmStructureSearch.setOrderByType(orderByType);
+		ddmStructureSearch.setOrderByType(getOrderByType());
 		ddmStructureSearch.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 

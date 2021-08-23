@@ -176,12 +176,11 @@ public class RolesAdminPortletDataHandler extends BasePortletDataHandler {
 				portletDataContext.addDateRangeCriteria(
 					dynamicQuery, "modifiedDate");
 
-				long classNameId = _portal.getClassNameId(Team.class);
-
 				Property classNameIdProperty = PropertyFactoryUtil.forName(
 					"classNameId");
 
-				dynamicQuery.add(classNameIdProperty.ne(classNameId));
+				dynamicQuery.add(
+					classNameIdProperty.ne(_portal.getClassNameId(Team.class)));
 
 				if (!portletDataContext.getBooleanParameter(
 						NAMESPACE, "system-roles")) {

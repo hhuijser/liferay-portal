@@ -65,15 +65,14 @@ public class ProcessWorkflowMetricsIndexerTest
 	@Test
 	public void testDeleteProcess() throws Exception {
 		long companyId = workflowDefinition.getCompanyId();
-		long workflowDefinitionId =
-			workflowDefinition.getWorkflowDefinitionId();
 
 		undeployWorkflowDefinition();
 
 		assertCount(
 			_processWorkflowMetricsIndexNameBuilder.getIndexName(companyId),
 			"WorkflowMetricsProcessType", "companyId", companyId, "deleted",
-			true, "processId", workflowDefinitionId, "version", "1.0");
+			true, "processId", workflowDefinition.getWorkflowDefinitionId(),
+			"version", "1.0");
 	}
 
 	@Test

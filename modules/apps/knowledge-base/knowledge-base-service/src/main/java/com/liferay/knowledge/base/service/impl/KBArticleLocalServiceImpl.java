@@ -1298,7 +1298,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		User user = userLocalService.getUser(userId);
 		boolean main = false;
-		Date date = new Date();
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			main = true;
@@ -1315,7 +1314,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setStatus(status);
 		kbArticle.setStatusByUserId(user.getUserId());
 		kbArticle.setStatusByUserName(user.getFullName());
-		kbArticle.setStatusDate(serviceContext.getModifiedDate(date));
+		kbArticle.setStatusDate(serviceContext.getModifiedDate(new Date()));
 
 		kbArticle = kbArticlePersistence.update(kbArticle);
 

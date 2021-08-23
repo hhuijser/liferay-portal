@@ -105,13 +105,11 @@ public class DLFileEntryTypeFinderTest {
 	public void testFilterCountByKeywordsAsPowerUser() throws Exception {
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(user);
-
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		PermissionThreadLocal.setPermissionChecker(permissionChecker);
+		PermissionThreadLocal.setPermissionChecker(
+			PermissionCheckerFactoryUtil.create(user));
 
 		try {
 			int initialFileEntryTypesCount =
@@ -143,13 +141,11 @@ public class DLFileEntryTypeFinderTest {
 
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(user);
-
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		PermissionThreadLocal.setPermissionChecker(permissionChecker);
+		PermissionThreadLocal.setPermissionChecker(
+			PermissionCheckerFactoryUtil.create(user));
 
 		try {
 			int initialFileEntryTypesCount =
@@ -244,13 +240,11 @@ public class DLFileEntryTypeFinderTest {
 	public void testFilterFindByKeywordsAsPowerUser() throws Exception {
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(user);
-
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		PermissionThreadLocal.setPermissionChecker(permissionChecker);
+		PermissionThreadLocal.setPermissionChecker(
+			PermissionCheckerFactoryUtil.create(user));
 
 		try {
 			ServiceContext serviceContext =
@@ -283,13 +277,11 @@ public class DLFileEntryTypeFinderTest {
 
 		User user = UserTestUtil.addGroupUser(_group, RoleConstants.POWER_USER);
 
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(user);
-
 		PermissionChecker originalPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		PermissionThreadLocal.setPermissionChecker(permissionChecker);
+		PermissionThreadLocal.setPermissionChecker(
+			PermissionCheckerFactoryUtil.create(user));
 
 		try {
 			ServiceContext serviceContext =

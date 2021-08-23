@@ -115,8 +115,6 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 		PoshiRunnerResourcesExtension poshiRunnerResourcesExtension) {
 
 		String appendix = poshiRunnerResourcesExtension.getArtifactAppendix();
-		String baseName = poshiRunnerResourcesExtension.getBaseName();
-		String rootDirName = poshiRunnerResourcesExtension.getRootDirName();
 		String version = poshiRunnerResourcesExtension.getArtifactVersion();
 
 		Set<File> dirs = new HashSet<>();
@@ -126,7 +124,8 @@ public class PoshiRunnerResourcesPlugin implements Plugin<Project> {
 		}
 
 		_addArtifactPoshiRunnerResources(
-			project, dirs, baseName, appendix, rootDirName, version);
+			project, dirs, poshiRunnerResourcesExtension.getBaseName(),
+			appendix, poshiRunnerResourcesExtension.getRootDirName(), version);
 	}
 
 	private Configuration _addConfigurationPoshiRunnerResources(

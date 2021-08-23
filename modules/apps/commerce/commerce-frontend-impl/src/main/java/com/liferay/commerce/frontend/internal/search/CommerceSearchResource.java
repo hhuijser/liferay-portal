@@ -129,13 +129,12 @@ public class CommerceSearchResource {
 			String url = _commerceSearchUtil.getSearchFriendlyURL(themeDisplay);
 
 			if (Validator.isNotNull(url)) {
-				url = _http.addParameter(url, "q", queryString);
-
 				SearchItemModel searchItemModel = new SearchItemModel(
 					"category",
 					LanguageUtil.get(themeDisplay.getLocale(), "all-content"));
 
-				searchItemModel.setUrl(url);
+				searchItemModel.setUrl(
+					_http.addParameter(url, "q", queryString));
 
 				searchItemModels.add(searchItemModel);
 			}
@@ -197,13 +196,11 @@ public class CommerceSearchResource {
 			themeDisplay);
 
 		if (Validator.isNotNull(url)) {
-			url = _http.addParameter(url, "q", queryString);
-
 			SearchItemModel searchItemModel = new SearchItemModel(
 				"category",
 				LanguageUtil.get(themeDisplay.getLocale(), "accounts"));
 
-			searchItemModel.setUrl(url);
+			searchItemModel.setUrl(_http.addParameter(url, "q", queryString));
 
 			searchItemModels.add(searchItemModel);
 		}
@@ -251,13 +248,11 @@ public class CommerceSearchResource {
 		String url = _commerceSearchUtil.getOrdersFriendlyURL(themeDisplay);
 
 		if (Validator.isNotNull(url)) {
-			url = _http.addParameter(url, "q", queryString);
-
 			SearchItemModel searchItemModel = new SearchItemModel(
 				"category",
 				LanguageUtil.get(themeDisplay.getLocale(), "orders"));
 
-			searchItemModel.setUrl(url);
+			searchItemModel.setUrl(_http.addParameter(url, "q", queryString));
 
 			searchItemModels.add(searchItemModel);
 		}
@@ -338,12 +333,10 @@ public class CommerceSearchResource {
 		String url = _commerceSearchUtil.getCatalogFriendlyURL(themeDisplay);
 
 		if (Validator.isNotNull(url)) {
-			url = _http.addParameter(url, "q", queryString);
-
 			SearchItemModel searchItemModel = new SearchItemModel(
 				"category", LanguageUtil.get(resourceBundle, "catalog"));
 
-			searchItemModel.setUrl(url);
+			searchItemModel.setUrl(_http.addParameter(url, "q", queryString));
 
 			searchItemModels.add(searchItemModel);
 		}

@@ -63,7 +63,6 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		if (Validator.isNotNull(url)) {
 			fileEntryId = 0;
@@ -138,7 +137,7 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 			}
 		}
 
-		cpDefinitionVirtualSetting.setGroupId(groupId);
+		cpDefinitionVirtualSetting.setGroupId(serviceContext.getScopeGroupId());
 		cpDefinitionVirtualSetting.setCompanyId(user.getCompanyId());
 		cpDefinitionVirtualSetting.setUserId(user.getUserId());
 		cpDefinitionVirtualSetting.setUserName(user.getFullName());

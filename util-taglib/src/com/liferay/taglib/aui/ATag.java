@@ -27,7 +27,6 @@ import com.liferay.taglib.util.InlineUtil;
 import com.liferay.taglib.util.TagResourceBundleUtil;
 
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletResponse;
 
@@ -54,9 +53,6 @@ public class ATag extends BaseATag {
 					(ThemeDisplay)httpServletRequest.getAttribute(
 						WebKeys.THEME_DISPLAY);
 
-				ResourceBundle resourceBundle =
-					TagResourceBundleUtil.getResourceBundle(pageContext);
-
 				jspWriter.write(StringPool.SPACE);
 				jspWriter.write("<svg class=\"lexicon-icon ");
 				jspWriter.write("lexicon-icon-shortcut\" focusable=\"false\" ");
@@ -66,7 +62,8 @@ public class ATag extends BaseATag {
 				jspWriter.write("class=\"sr-only\">");
 
 				String opensNewWindowLabel = LanguageUtil.get(
-					resourceBundle, "opens-new-window");
+					TagResourceBundleUtil.getResourceBundle(pageContext),
+					"opens-new-window");
 
 				jspWriter.write(opensNewWindowLabel);
 

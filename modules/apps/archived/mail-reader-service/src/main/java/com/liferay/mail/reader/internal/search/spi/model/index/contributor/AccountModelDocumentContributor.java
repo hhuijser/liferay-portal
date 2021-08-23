@@ -14,7 +14,6 @@
 
 package com.liferay.mail.reader.internal.search.spi.model.index.contributor;
 
-import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeIndexerUtil;
 import com.liferay.mail.reader.model.Account;
 import com.liferay.portal.kernel.search.Document;
@@ -38,12 +37,11 @@ public class AccountModelDocumentContributor
 
 	@Override
 	public void contribute(Document document, Account account) {
-		ExpandoBridge expandoBridge = account.getExpandoBridge();
-
 		document.addKeyword("accountId", account.getAccountId());
 		document.addText(Field.NAME, account.getAddress());
 
-		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
+		ExpandoBridgeIndexerUtil.addAttributes(
+			document, account.getExpandoBridge());
 	}
 
 }

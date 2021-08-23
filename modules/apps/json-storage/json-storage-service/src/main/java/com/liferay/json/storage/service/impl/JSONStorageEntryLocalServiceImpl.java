@@ -576,7 +576,6 @@ public class JSONStorageEntryLocalServiceImpl
 
 		for (Map.Entry<String, Object> entry : objects.entrySet()) {
 			String key = entry.getKey();
-			Object value = entry.getValue();
 
 			JSONStorageEntry jsonStorageEntry = null;
 
@@ -594,7 +593,7 @@ public class JSONStorageEntryLocalServiceImpl
 
 			_updateJSONStorageEntry(
 				companyId, classNameId, classPK, parentJSONStorageEntryId,
-				JSONStorageEntryConstants.INDEX_DEFAULT, key, value,
+				JSONStorageEntryConstants.INDEX_DEFAULT, key, entry.getValue(),
 				jsonStorageEntriesMap, jsonStorageEntry);
 		}
 

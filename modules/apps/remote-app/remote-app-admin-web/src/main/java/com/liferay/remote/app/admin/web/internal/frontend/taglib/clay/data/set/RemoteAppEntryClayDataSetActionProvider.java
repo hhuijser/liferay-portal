@@ -110,12 +110,11 @@ public class RemoteAppEntryClayDataSetActionProvider
 	}
 
 	private PortletURL _getActionURL(HttpServletRequest httpServletRequest) {
-		String portletId = _getPortletId(httpServletRequest);
-
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
 			RequestBackedPortletURLFactoryUtil.create(httpServletRequest);
 
-		return requestBackedPortletURLFactory.createActionURL(portletId);
+		return requestBackedPortletURLFactory.createActionURL(
+			_getPortletId(httpServletRequest));
 	}
 
 	private String _getMessage(

@@ -118,10 +118,6 @@ public class DLVideoExternalShortcutDLFileEntryTypeHelper {
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			_company.getCompanyId());
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), DLVideoConstants.DL_FILE_ENTRY_TYPE_NAME
-		).build();
-
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -133,7 +129,12 @@ public class DLVideoExternalShortcutDLFileEntryTypeHelper {
 
 		_dlFileEntryTypeLocalService.addFileEntryType(
 			defaultUserId, _company.getGroupId(), ddmStructureId,
-			DLVideoConstants.DL_FILE_ENTRY_TYPE_KEY, nameMap, descriptionMap,
+			DLVideoConstants.DL_FILE_ENTRY_TYPE_KEY,
+			HashMapBuilder.put(
+				LocaleUtil.getDefault(),
+				DLVideoConstants.DL_FILE_ENTRY_TYPE_NAME
+			).build(),
+			descriptionMap,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_SCOPE_SYSTEM,
 			serviceContext);
 	}

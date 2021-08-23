@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.lists.web.internal.portlet.action;
 import com.liferay.dynamic.data.lists.constants.DDLPortletKeys;
 import com.liferay.dynamic.data.lists.constants.DDLRecordConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
-import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -51,7 +50,6 @@ public class UpdateRecordMVCActionCommand extends AddRecordMVCActionCommand {
 
 		long recordId = ParamUtil.getLong(actionRequest, "recordId");
 
-		DDMFormValues ddmFormValues = getDDMFormValues(actionRequest);
 		boolean majorVersion = ParamUtil.getBoolean(
 			actionRequest, "majorVersion");
 
@@ -60,7 +58,7 @@ public class UpdateRecordMVCActionCommand extends AddRecordMVCActionCommand {
 
 		ddlRecordService.updateRecord(
 			recordId, majorVersion, DDLRecordConstants.DISPLAY_INDEX_DEFAULT,
-			ddmFormValues, serviceContext);
+			getDDMFormValues(actionRequest), serviceContext);
 
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");

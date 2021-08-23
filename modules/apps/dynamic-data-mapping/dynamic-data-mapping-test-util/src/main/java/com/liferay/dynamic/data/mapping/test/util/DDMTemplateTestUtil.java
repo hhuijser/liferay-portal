@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Eudaldo Alonso
@@ -124,10 +123,6 @@ public class DDMTemplateTestUtil {
 			String script, Locale defaultLocale)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			defaultLocale, "Test Template"
-		).build();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(true);
@@ -135,9 +130,12 @@ public class DDMTemplateTestUtil {
 
 		return DDMTemplateLocalServiceUtil.addTemplate(
 			TestPropsValues.getUserId(), groupId, classNameId, classPK,
-			resourceClassNameId, templateKey, nameMap, null,
-			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null, language, script,
-			false, false, null, null, serviceContext);
+			resourceClassNameId, templateKey,
+			HashMapBuilder.put(
+				defaultLocale, "Test Template"
+			).build(),
+			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null, language,
+			script, false, false, null, null, serviceContext);
 	}
 
 	public static DDMTemplate addTemplate(

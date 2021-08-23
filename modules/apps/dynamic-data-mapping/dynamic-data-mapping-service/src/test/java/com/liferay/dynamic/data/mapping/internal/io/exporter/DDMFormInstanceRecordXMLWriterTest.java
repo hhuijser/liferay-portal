@@ -174,16 +174,6 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 		DDMFormInstanceRecordXMLWriter ddmFormInstanceRecordXMLWriter = mock(
 			DDMFormInstanceRecordXMLWriter.class);
 
-		Map<String, String> ddmFormFieldsLabel = LinkedHashMapBuilder.put(
-			"field1", "Field 1"
-		).put(
-			"field2", "Field 2"
-		).put(
-			"field3", "Field 3"
-		).put(
-			"field4", "Field 4"
-		).build();
-
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {
 				{
@@ -213,7 +203,16 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(
-				ddmFormFieldsLabel, ddmFormFieldValues);
+				LinkedHashMapBuilder.put(
+					"field1", "Field 1"
+				).put(
+					"field2", "Field 2"
+				).put(
+					"field3", "Field 3"
+				).put(
+					"field4", "Field 4"
+				).build(),
+				ddmFormFieldValues);
 
 		Document document = mock(Document.class);
 

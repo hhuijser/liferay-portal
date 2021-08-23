@@ -595,8 +595,6 @@ public class PortletContainerImpl implements PortletContainer {
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			portlet, servletContext);
 
-		PortletContext portletContext = portletConfig.getPortletContext();
-
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
@@ -666,8 +664,9 @@ public class PortletContainerImpl implements PortletContainer {
 				scopeGroupId, layout, portlet.getPortletId(), null);
 
 		LiferayEventRequest liferayEventRequest = EventRequestFactory.create(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			windowState, portletMode, portletPreferences, layout.getPlid());
+			httpServletRequest, portlet, invokerPortlet,
+			portletConfig.getPortletContext(), windowState, portletMode,
+			portletPreferences, layout.getPlid());
 
 		liferayEventRequest.setEvent(
 			serializeEvent(event, invokerPortlet.getPortletClassLoader()));

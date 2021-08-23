@@ -2938,7 +2938,6 @@ definition {
 	@description = "LPS-131187 Given the Content Dashboard table
 	When a web content is added
 	Then its type will be shown in the Type column"
-
 	@priority = "3"
 	test TypeColumnForWebContent {
 		task ("Create WC via JSON") {

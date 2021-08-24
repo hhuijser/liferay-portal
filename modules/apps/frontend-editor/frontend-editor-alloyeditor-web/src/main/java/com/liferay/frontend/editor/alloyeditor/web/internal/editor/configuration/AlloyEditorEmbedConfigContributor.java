@@ -80,17 +80,7 @@ public class AlloyEditorEmbedConfigContributor
 		String editorEmbedProviderType,
 		EditorEmbedProvider editorEmbedProvider) {
 
-		JSONObject jsonObject = JSONUtil.put(
-			"id", editorEmbedProvider.getId()
-		).put(
-			"tpl", editorEmbedProvider.getTpl()
-		).put(
-			"type", editorEmbedProviderType
-		);
-
 		JSONArray urlSchemesJSONArray = JSONFactoryUtil.createJSONArray();
-
-		jsonObject.put("urlSchemes", urlSchemesJSONArray);
 
 		String[] urlSchemes = editorEmbedProvider.getURLSchemes();
 
@@ -98,7 +88,15 @@ public class AlloyEditorEmbedConfigContributor
 			urlSchemesJSONArray.put(urlScheme);
 		}
 
-		return jsonObject;
+		return JSONUtil.put(
+			"id", editorEmbedProvider.getId()
+		).put(
+			"tpl", editorEmbedProvider.getTpl()
+		).put(
+			"type", editorEmbedProviderType
+		).put(
+			"urlSchemes", urlSchemesJSONArray
+		);
 	}
 
 	protected JSONArray getEditorEmbedProvidersJSONArray() {

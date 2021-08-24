@@ -1482,10 +1482,9 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected JSONObject getDefaultPortletJSONObject(String journalArticleId) {
-		JSONObject portletJSONObject = JSONUtil.put(
-			"portletId", _JOURNAL_CONTENT_PORTLET_ID);
-
-		portletJSONObject.put(
+		return JSONUtil.put(
+			"portletId", _JOURNAL_CONTENT_PORTLET_ID
+		).put(
 			"portletPreferences",
 			JSONUtil.put(
 				"articleId", journalArticleId
@@ -1493,9 +1492,8 @@ public class FileSystemImporter extends BaseImporter {
 				"groupId", groupId
 			).put(
 				"portletSetupPortletDecoratorId", "borderless"
-			));
-
-		return portletJSONObject;
+			)
+		);
 	}
 
 	protected InputStream getInputStream(File file) throws Exception {

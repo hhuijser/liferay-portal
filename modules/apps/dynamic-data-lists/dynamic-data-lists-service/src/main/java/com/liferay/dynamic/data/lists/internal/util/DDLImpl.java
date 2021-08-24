@@ -181,30 +181,24 @@ public class DDLImpl implements DDL {
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			String name = ddmFormField.getName();
-
-			JSONObject jsonObject = JSONUtil.put(
-				"dataType", ddmFormField.getDataType());
-
-			boolean readOnly = ddmFormField.isReadOnly();
-
-			jsonObject.put("editable", !readOnly);
-
 			LocalizedValue label = ddmFormField.getLabel();
 
-			jsonObject.put(
-				"label", label.getString(locale)
-			).put(
-				"name", name
-			).put(
-				"required", ddmFormField.isRequired()
-			).put(
-				"sortable", true
-			).put(
-				"type", ddmFormField.getType()
-			);
-
-			jsonArray.put(jsonObject);
+			jsonArray.put(
+				JSONUtil.put(
+					"dataType", ddmFormField.getDataType()
+				).put(
+					"editable", !ddmFormField.isReadOnly()
+				).put(
+					"label", label.getString(locale)
+				).put(
+					"name", ddmFormField.getName()
+				).put(
+					"required", ddmFormField.isRequired()
+				).put(
+					"sortable", true
+				).put(
+					"type", ddmFormField.getType()
+				));
 		}
 
 		return jsonArray;

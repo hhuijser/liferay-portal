@@ -116,17 +116,16 @@ public class AlloyEditorCreoleConfigContributor
 	protected JSONObject getStyleFormatJSONObject(
 		String styleFormatName, String element, int type) {
 
-		JSONObject jsonObject = JSONUtil.put("name", styleFormatName);
-
-		jsonObject.put(
+		return JSONUtil.put(
+			"name", styleFormatName
+		).put(
 			"style",
 			JSONUtil.put(
 				"element", element
 			).put(
 				"type", type
-			));
-
-		return jsonObject;
+			)
+		);
 	}
 
 	protected JSONArray getStyleFormatsJSONArray(Locale locale) {

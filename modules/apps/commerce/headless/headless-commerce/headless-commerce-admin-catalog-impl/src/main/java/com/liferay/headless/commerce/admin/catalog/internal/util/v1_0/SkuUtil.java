@@ -24,7 +24,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -99,13 +98,14 @@ public class SkuUtil {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (Map.Entry<String, String> entry : options.entrySet()) {
-			JSONObject jsonObject = JSONUtil.put("key", entry.getKey());
-
 			JSONArray valueJSONArray = JSONFactoryUtil.createJSONArray();
 
-			jsonObject.put("value", valueJSONArray.put(entry.getValue()));
-
-			jsonArray.put(jsonObject);
+			jsonArray.put(
+				JSONUtil.put(
+					"key", entry.getKey()
+				).put(
+					"value", valueJSONArray.put(entry.getValue())
+				));
 		}
 
 		return jsonArray.toString();

@@ -274,14 +274,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		long userId = ParamUtil.getLong(resourceRequest, "userId");
 
-		JSONObject jsonObject = JSONUtil.put("success", Boolean.TRUE);
-
-		JSONObject userJSONObject = getUserJSONObject(
-			resourceResponse, themeDisplay, userId);
-
-		jsonObject.put("user", userJSONObject);
-
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
+		writeJSON(
+			resourceRequest, resourceResponse,
+			JSONUtil.put(
+				"success", Boolean.TRUE
+			).put(
+				"user",
+				getUserJSONObject(resourceResponse, themeDisplay, userId)
+			));
 	}
 
 	public void getContacts(
@@ -768,9 +768,6 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		JSONObject contactListJSONObject = getContactsJSONObject(
 			actionRequest, actionResponse);
 
-		JSONObject jsonObject = JSONUtil.put(
-			"contactList", contactListJSONObject);
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (long userId : userIds) {
@@ -783,13 +780,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 				));
 		}
 
-		jsonObject.put("contacts", jsonArray);
-
-		String message = getRelationMessage(actionRequest);
-
-		jsonObject.put("message", translate(actionRequest, message));
-
-		return jsonObject;
+		return JSONUtil.put(
+			"contactList", contactListJSONObject
+		).put(
+			"contacts", jsonArray
+		).put(
+			"message",
+			translate(actionRequest, getRelationMessage(actionRequest))
+		);
 	}
 
 	protected JSONObject getContactsJSONObject(

@@ -1252,26 +1252,23 @@ public class StagingImpl implements Staging {
 				layoutPrototypeException.getMissingLayoutPrototypes();
 
 			for (Tuple missingLayoutPrototype : missingLayoutPrototypes) {
+				String layoutPrototypeClassName =
+					(String)missingLayoutPrototype.getObject(0);
+				String layoutPrototypeName =
+					(String)missingLayoutPrototype.getObject(2);
 				String layoutPrototypeUuid =
 					(String)missingLayoutPrototype.getObject(1);
 
-				JSONObject errorMessageJSONObject = JSONUtil.put(
-					"info", layoutPrototypeUuid);
-
-				String layoutPrototypeName =
-					(String)missingLayoutPrototype.getObject(2);
-
-				errorMessageJSONObject.put("name", layoutPrototypeName);
-
-				String layoutPrototypeClassName =
-					(String)missingLayoutPrototype.getObject(0);
-
-				errorMessageJSONObject.put(
-					"type",
-					ResourceActionsUtil.getModelResource(
-						locale, layoutPrototypeClassName));
-
-				errorMessagesJSONArray.put(errorMessageJSONObject);
+				errorMessagesJSONArray.put(
+					JSONUtil.put(
+						"info", layoutPrototypeUuid
+					).put(
+						"name", layoutPrototypeName
+					).put(
+						"type",
+						ResourceActionsUtil.getModelResource(
+							locale, layoutPrototypeClassName)
+					));
 			}
 
 			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;

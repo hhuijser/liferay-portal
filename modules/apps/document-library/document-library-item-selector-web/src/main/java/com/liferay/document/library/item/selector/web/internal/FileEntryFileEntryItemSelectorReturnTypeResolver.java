@@ -18,7 +18,6 @@ import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolver;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -54,18 +53,6 @@ public class FileEntryFileEntryItemSelectorReturnTypeResolver
 	public String getValue(FileEntry fileEntry, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		JSONObject fileEntryJSONObject = JSONUtil.put(
-			"extension", fileEntry.getExtension()
-		).put(
-			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
-		).put(
-			"groupId", String.valueOf(fileEntry.getGroupId())
-		).put(
-			"title", fileEntry.getTitle()
-		).put(
-			"type", "document"
-		);
-
 		String previewURL = null;
 
 		if (fileEntry.getGroupId() == fileEntry.getRepositoryId()) {
@@ -78,13 +65,21 @@ public class FileEntryFileEntryItemSelectorReturnTypeResolver
 				themeDisplay, fileEntry, "&imagePreview=1", false);
 		}
 
-		fileEntryJSONObject.put(
+		return JSONUtil.put(
+			"extension", fileEntry.getExtension()
+		).put(
+			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
+		).put(
+			"groupId", String.valueOf(fileEntry.getGroupId())
+		).put(
+			"title", fileEntry.getTitle()
+		).put(
+			"type", "document"
+		).put(
 			"url", previewURL
 		).put(
 			"uuid", fileEntry.getUuid()
-		);
-
-		return fileEntryJSONObject.toString();
+		).toString();
 	}
 
 	@Reference

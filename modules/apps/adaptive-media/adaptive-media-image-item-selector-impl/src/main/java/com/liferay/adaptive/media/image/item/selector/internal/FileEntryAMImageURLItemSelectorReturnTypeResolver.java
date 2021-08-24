@@ -74,12 +74,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 				themeDisplay, fileEntry, "&imagePreview=1", false);
 		}
 
-		JSONObject fileEntryJSONObject = JSONUtil.put(
-			"defaultSource", previewURL
-		).put(
-			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
-		);
-
 		JSONArray sourcesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
@@ -93,7 +87,13 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 			sourcesJSONArray::put
 		);
 
-		fileEntryJSONObject.put("sources", sourcesJSONArray);
+		JSONObject fileEntryJSONObject = JSONUtil.put(
+			"defaultSource", previewURL
+		).put(
+			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
+		).put(
+			"sources", sourcesJSONArray
+		);
 
 		return fileEntryJSONObject.toString();
 	}

@@ -57,15 +57,16 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testDeserialize() throws Exception {
-		JSONObject jsonObject = JSONUtil.put("uri", "http://localhost");
-
-		jsonObject.put(
+		JSONObject jsonObject = JSONUtil.put(
 			"attributes",
 			JSONUtil.put(
 				AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200"
 			).put(
 				AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300"
-			));
+			)
+		).put(
+			"uri", "http://localhost"
+		);
 
 		AMImageSerializer amImageSerializer = new AMImageSerializerImpl();
 
@@ -102,11 +103,13 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testDeserializeWithEmptyAttributes() throws Exception {
-		JSONObject jsonObject = JSONUtil.put("uri", "http://localhost");
-
 		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("attributes", attributesJSONObject);
+		JSONObject jsonObject = JSONUtil.put(
+			"attributes", attributesJSONObject
+		).put(
+			"uri", "http://localhost"
+		);
 
 		AMImageSerializer amImageSerializer = new AMImageSerializerImpl();
 

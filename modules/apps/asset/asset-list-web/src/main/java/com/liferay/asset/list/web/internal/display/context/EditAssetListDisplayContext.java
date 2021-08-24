@@ -245,14 +245,15 @@ public class EditAssetListDisplayContext {
 				_unicodeProperties, _httpServletRequest,
 				"queryAndOperator" + queryLogicIndex);
 
-			JSONObject ruleJSONObject = JSONUtil.put(
-				"queryAndOperator", queryAndOperator);
-
 			boolean queryContains = PropertiesParamUtil.getBoolean(
 				_unicodeProperties, _httpServletRequest,
 				"queryContains" + queryLogicIndex, true);
 
-			ruleJSONObject.put("queryContains", queryContains);
+			JSONObject ruleJSONObject = JSONUtil.put(
+				"queryAndOperator", queryAndOperator
+			).put(
+				"queryContains", queryContains
+			);
 
 			String queryValues = _unicodeProperties.getProperty(
 				"queryValues" + queryLogicIndex, StringPool.BLANK);

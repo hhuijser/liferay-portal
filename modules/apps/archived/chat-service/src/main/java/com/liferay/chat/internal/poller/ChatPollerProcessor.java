@@ -137,8 +137,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 			boolean awake = buddyStatus.isAwake();
 
-			JSONObject curUserJSONObject = JSONUtil.put("awake", awake);
-
 			String displayURL = StringPool.BLANK;
 
 			try {
@@ -162,37 +160,30 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				}
 			}
 
-			curUserJSONObject.put("displayURL", displayURL);
-
-			String fullName = ContactConstants.getFullName(
-				firstName, middleName, lastName);
-
-			curUserJSONObject.put(
-				"fullName", fullName
-			).put(
-				"groupId", groupId
-			).put(
-				"portraitId", portraitId
-			);
-
-			String portraitURL = UserConstants.getPortraitURL(
-				StringPool.BLANK, male, portraitId, userUuid);
-
-			curUserJSONObject.put(
-				"portraitURL", portraitURL
-			).put(
-				"screenName", screenName
-			);
-
-			String statusMessage = buddyStatus.getMessage();
-
-			curUserJSONObject.put(
-				"statusMessage", statusMessage
-			).put(
-				"userId", userId
-			);
-
-			buddiesJSONArray.put(curUserJSONObject);
+			buddiesJSONArray.put(
+				JSONUtil.put(
+					"awake", awake
+				).put(
+					"displayURL", displayURL
+				).put(
+					"fullName",
+					ContactConstants.getFullName(
+						firstName, middleName, lastName)
+				).put(
+					"groupId", groupId
+				).put(
+					"portraitId", portraitId
+				).put(
+					"portraitURL",
+					UserConstants.getPortraitURL(
+						StringPool.BLANK, male, portraitId, userUuid)
+				).put(
+					"screenName", screenName
+				).put(
+					"statusMessage", buddyStatus.getMessage()
+				).put(
+					"userId", userId
+				));
 		}
 
 		pollerResponse.setParameter("buddies", buddiesJSONArray);

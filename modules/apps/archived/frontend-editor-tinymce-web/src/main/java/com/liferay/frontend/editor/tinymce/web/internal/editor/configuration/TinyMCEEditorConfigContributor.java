@@ -173,11 +173,6 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getToolbarsEmailJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.put(
-			"fontselect fontsizeselect | forecolor backcolor | bold italic " +
-				"underline strikethrough | alignleft aligncenter alignright " +
-					"alignjustify");
-
 		String buttons =
 			"cut copy paste bullist numlist | blockquote | undo redo | link " +
 				"unlink image ";
@@ -188,9 +183,11 @@ public class TinyMCEEditorConfigContributor
 
 		buttons += "| hr removeformat | preview print fullscreen";
 
-		jsonArray.put(buttons);
-
-		return jsonArray;
+		return JSONUtil.putAll(
+			"fontselect fontsizeselect | forecolor backcolor | bold italic " +
+				"underline strikethrough | alignleft aligncenter alignright " +
+					"alignjustify",
+			buttons);
 	}
 
 	protected JSONObject getToolbarsJSONObject(
@@ -251,20 +248,16 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getToolbarsTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.put(
-			"styleselect fontselect fontsizeselect | bold italic underline " +
-				"strikethrough | alignleft aligncenter alignright " +
-					"alignjustify");
-
 		String buttons = "bullist numlist | link unlink image";
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			buttons += " code";
 		}
 
-		jsonArray.put(buttons);
-
-		return jsonArray;
+		return JSONUtil.putAll(
+			"styleselect fontselect fontsizeselect | bold italic underline " +
+				"strikethrough | alignleft aligncenter alignright alignjustify",
+			buttons);
 	}
 
 	@Reference

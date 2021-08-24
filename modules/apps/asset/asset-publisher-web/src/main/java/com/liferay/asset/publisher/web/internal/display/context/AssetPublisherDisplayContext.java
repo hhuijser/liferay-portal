@@ -590,13 +590,13 @@ public class AssetPublisherDisplayContext {
 				"queryAndOperator" + queryLogicIndex);
 
 			JSONObject ruleJSONObject = JSONUtil.put(
-				"queryAndOperator", queryAndOperator);
-
-			boolean queryContains = PrefsParamUtil.getBoolean(
-				_portletPreferences, _httpServletRequest,
-				"queryContains" + queryLogicIndex, true);
-
-			ruleJSONObject.put("queryContains", queryContains);
+				"queryAndOperator", queryAndOperator
+			).put(
+				"queryContains",
+				PrefsParamUtil.getBoolean(
+					_portletPreferences, _httpServletRequest,
+					"queryContains" + queryLogicIndex, true)
+			);
 
 			String queryValues = StringUtil.merge(
 				_portletPreferences.getValues(

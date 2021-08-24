@@ -54,9 +54,6 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 	public String getValue(FileEntry fileEntry, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		JSONObject fileEntryJSONObject = JSONUtil.put(
-			"fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
-
 		String previewURL = null;
 
 		if (fileEntry.getGroupId() == fileEntry.getRepositoryId()) {
@@ -69,7 +66,11 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 				themeDisplay, fileEntry, StringPool.BLANK, false);
 		}
 
-		fileEntryJSONObject.put("url", previewURL);
+		JSONObject fileEntryJSONObject = JSONUtil.put(
+			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
+		).put(
+			"url", previewURL
+		);
 
 		return fileEntryJSONObject.toString();
 	}

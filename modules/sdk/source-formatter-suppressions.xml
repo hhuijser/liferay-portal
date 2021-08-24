@@ -5,6 +5,8 @@
 		<suppress checks="CamelCaseNameCheck" files="ant-mirrors-get/src/main/java/com/liferay/ant/mirrors/get/MirrorsGetTask\.java" />
 		<suppress checks="CamelCaseNameCheck" files="gradle-util/src/main/java/com/liferay/gradle/util/FileUtil\.java" />
 		<suppress checks="JSONNamingCheck" files="gradle-plugins/src/main/java/com/liferay/gradle/plugins/LiferayThemePlugin\.java" />
+		<suppress checks="MethodNamingCheck" files="gradle-plugins-defaults/src/main/java/com/liferay/gradle/plugins/defaults/LiferayThemeDefaultsPlugin\.java" />
+		<suppress checks="MethodNamingCheck" files="gradle-plugins-workspace/src/main/java/com/liferay/gradle/plugins/workspace/WorkspaceExtension\.java" />
 		<suppress checks="MissingEmptyLineCheck" files="gradle-plugins-defaults/src/main/java/com/liferay/gradle/plugins/defaults/internal/LiferayRelengPlugin\.java" />
 		<suppress checks="MissingEmptyLineCheck" files="gradle-plugins-workspace/src/main/java/com/liferay/gradle/plugins/workspace/LiferayExtPlugin\.java" />
 		<suppress checks="MissingEmptyLineCheck" files="gradle-plugins-workspace/src/main/java/com/liferay/gradle/plugins/workspace/LiferayOSGiExtPlugin\.java" />

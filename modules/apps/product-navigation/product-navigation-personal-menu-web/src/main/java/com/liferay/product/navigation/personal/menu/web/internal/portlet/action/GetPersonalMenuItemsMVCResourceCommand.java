@@ -243,22 +243,22 @@ public class GetPersonalMenuItemsMVCResourceCommand
 			WebKeys.THEME_DISPLAY);
 
 		if (themeDisplay.isImpersonated()) {
-			JSONObject impersonationJSONObject = JSONUtil.put(
-				"items",
-				_getImpersonationItemsJSONArray(portletRequest, themeDisplay));
-
 			User user = themeDisplay.getUser();
 
-			impersonationJSONObject.put(
-				"label",
-				StringUtil.appendParentheticalSuffix(
-					user.getFullName(),
-					LanguageUtil.get(themeDisplay.getLocale(), "impersonated"))
-			).put(
-				"type", "group"
-			);
-
-			jsonArray.put(impersonationJSONObject);
+			jsonArray.put(
+				JSONUtil.put(
+					"items",
+					_getImpersonationItemsJSONArray(
+						portletRequest, themeDisplay)
+				).put(
+					"label",
+					StringUtil.appendParentheticalSuffix(
+						user.getFullName(),
+						LanguageUtil.get(
+							themeDisplay.getLocale(), "impersonated"))
+				).put(
+					"type", "group"
+				));
 		}
 
 		JSONObject dividerJSONObject = JSONUtil.put("type", "divider");

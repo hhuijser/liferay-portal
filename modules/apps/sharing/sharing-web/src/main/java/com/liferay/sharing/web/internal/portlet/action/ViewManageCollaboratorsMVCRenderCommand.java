@@ -19,7 +19,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
@@ -138,14 +137,6 @@ public class ViewManageCollaboratorsMVCRenderCommand
 						themeDisplay);
 				}
 
-				JSONObject collaboratorJSONObject = JSONUtil.put(
-					"fullName", sharingEntryToUser.getFullName()
-				).put(
-					"portraitURL", portraitURL
-				).put(
-					"sharingEntryId", sharingEntry.getSharingEntryId()
-				);
-
 				String expirationDateAsText = null;
 				String expirationDateTooltip = null;
 
@@ -169,32 +160,36 @@ public class ViewManageCollaboratorsMVCRenderCommand
 						expirationDateTooltipDateFormat.format(expirationDate));
 				}
 
-				collaboratorJSONObject.put(
-					"sharingEntryExpirationDate", expirationDateAsText
-				).put(
-					"sharingEntryExpirationDateTooltip", expirationDateTooltip
-				);
-
 				SharingEntryPermissionDisplayAction
 					userSharingEntryPermissionDisplayActionKey =
 						_sharingHelper.
 							getSharingEntryPermissionDisplayActionKey(
 								sharingEntry);
 
-				collaboratorJSONObject.put(
-					"sharingEntryPermissionActionId",
-					userSharingEntryPermissionDisplayActionKey.getActionId()
-				).put(
-					"sharingEntryPermissionDisplaySelectOptions",
-					_getSharingEntryPermissionDisplaySelectOptionsJSONArray(
-						renderRequest)
-				).put(
-					"sharingEntryShareable", sharingEntry.isShareable()
-				).put(
-					"userId", Long.valueOf(sharingEntryToUser.getUserId())
-				);
-
-				collaboratorsJSONArray.put(collaboratorJSONObject);
+				collaboratorsJSONArray.put(
+					JSONUtil.put(
+						"fullName", sharingEntryToUser.getFullName()
+					).put(
+						"portraitURL", portraitURL
+					).put(
+						"sharingEntryExpirationDate", expirationDateAsText
+					).put(
+						"sharingEntryExpirationDateTooltip",
+						expirationDateTooltip
+					).put(
+						"sharingEntryId", sharingEntry.getSharingEntryId()
+					).put(
+						"sharingEntryPermissionActionId",
+						userSharingEntryPermissionDisplayActionKey.getActionId()
+					).put(
+						"sharingEntryPermissionDisplaySelectOptions",
+						_getSharingEntryPermissionDisplaySelectOptionsJSONArray(
+							renderRequest)
+					).put(
+						"sharingEntryShareable", sharingEntry.isShareable()
+					).put(
+						"userId", Long.valueOf(sharingEntryToUser.getUserId())
+					));
 			}
 
 			return collaboratorsJSONArray;

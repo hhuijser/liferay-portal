@@ -325,16 +325,15 @@ public class ScreensAssetEntryServiceImpl
 				journalArticleResource.getArticleId());
 		}
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+			JSONFactoryUtil.looseSerialize(journalArticle));
+
 		JSONObject journalArticleJSONObject = JSONUtil.put(
 			"DDMStructure",
 			JSONFactoryUtil.createJSONObject(
 				JSONFactoryUtil.looseSerialize(
-					journalArticle.getDDMStructure())));
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerialize(journalArticle));
-
-		journalArticleJSONObject.put(
+					journalArticle.getDDMStructure()))
+		).put(
 			"modelAttributes", jsonObject
 		).put(
 			"modelValues", jsonObject.getString("content")

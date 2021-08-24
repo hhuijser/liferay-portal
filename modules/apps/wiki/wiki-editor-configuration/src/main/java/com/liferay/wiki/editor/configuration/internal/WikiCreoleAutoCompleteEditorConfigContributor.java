@@ -54,15 +54,6 @@ public class WikiCreoleAutoCompleteEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		JSONObject autoCompleteConfigJSONObject = JSONUtil.put(
-			"requestTemplate", "query={query}");
-
-		JSONObject triggerJSONObject = JSONUtil.put(
-			"resultFilters", "function(query, results) {return results;}"
-		).put(
-			"resultTextLocator", "title"
-		);
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		ResourceURL autoCompletePageTitleURL =
@@ -82,20 +73,29 @@ public class WikiCreoleAutoCompleteEditorConfigContributor
 			autoCompletePageTitleURL.toString() + "&" +
 				_portal.getPortletNamespace(portletDisplay.getId());
 
-		triggerJSONObject.put(
-			"source", source
-		).put(
-			"term", "["
-		).put(
-			"tplReplace", "<a href=\"{title}\">{title}</a>"
-		).put(
-			"tplResults", "<span class=\"h5 text-truncate\">{title}</span>"
-		);
-
-		autoCompleteConfigJSONObject.put(
-			"trigger", JSONUtil.put(triggerJSONObject));
-
-		jsonObject.put("autocomplete", autoCompleteConfigJSONObject);
+		jsonObject.put(
+			"autocomplete",
+			JSONUtil.put(
+				"requestTemplate", "query={query}"
+			).put(
+				"trigger",
+				JSONUtil.put(
+					JSONUtil.put(
+						"resultFilters",
+						"function(query, results) {return results;}"
+					).put(
+						"resultTextLocator", "title"
+					).put(
+						"source", source
+					).put(
+						"term", "["
+					).put(
+						"tplReplace", "<a href=\"{title}\">{title}</a>"
+					).put(
+						"tplResults",
+						"<span class=\"h5 text-truncate\">{title}</span>"
+					))
+			));
 
 		String extraPlugins = jsonObject.getString("extraPlugins");
 

@@ -135,16 +135,11 @@ public class PluginExecutor extends BaseExecutor {
 			installed = false;
 		}
 
-		JSONObject pluginPackageJSONObject = JSONUtil.put(
-			"installed", installed);
-
 		boolean started = true;
 
 		if (pluginPackage == null) {
 			started = false;
 		}
-
-		pluginPackageJSONObject.put("started", started);
 
 		List<String> types = new ArrayList<>();
 
@@ -158,9 +153,15 @@ public class PluginExecutor extends BaseExecutor {
 			typesJSONArray.put(type);
 		}
 
-		pluginPackageJSONObject.put("types", typesJSONArray);
-
-		responseJSONObject.put(JSONKeys.OUTPUT, pluginPackageJSONObject);
+		responseJSONObject.put(
+			JSONKeys.OUTPUT,
+			JSONUtil.put(
+				"installed", installed
+			).put(
+				"started", started
+			).put(
+				"types", typesJSONArray
+			));
 	}
 
 	@Override

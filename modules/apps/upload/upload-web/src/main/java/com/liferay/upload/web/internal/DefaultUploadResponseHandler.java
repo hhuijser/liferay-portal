@@ -117,26 +117,6 @@ public class DefaultUploadResponseHandler implements UploadResponseHandler {
 			UploadPortletRequest uploadPortletRequest, FileEntry fileEntry)
 		throws PortalException {
 
-		JSONObject imageJSONObject = JSONUtil.put(
-			"attributeDataImageId", EditorConstants.ATTRIBUTE_DATA_IMAGE_ID
-		).put(
-			"fileEntryId", fileEntry.getFileEntryId()
-		).put(
-			"groupId", fileEntry.getGroupId()
-		).put(
-			"mimeType", fileEntry.getMimeType()
-		);
-
-		String randomId = ParamUtil.getString(uploadPortletRequest, "randomId");
-
-		imageJSONObject.put(
-			"randomId", randomId
-		).put(
-			"title", fileEntry.getTitle()
-		).put(
-			"type", "document"
-		);
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)uploadPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -144,14 +124,28 @@ public class DefaultUploadResponseHandler implements UploadResponseHandler {
 		String url = PortletFileRepositoryUtil.getPortletFileEntryURL(
 			themeDisplay, fileEntry, StringPool.BLANK);
 
-		imageJSONObject.put(
-			"url", url
-		).put(
-			"uuid", fileEntry.getUuid()
-		);
-
 		return JSONUtil.put(
-			"file", imageJSONObject
+			"file",
+			JSONUtil.put(
+				"attributeDataImageId", EditorConstants.ATTRIBUTE_DATA_IMAGE_ID
+			).put(
+				"fileEntryId", fileEntry.getFileEntryId()
+			).put(
+				"groupId", fileEntry.getGroupId()
+			).put(
+				"mimeType", fileEntry.getMimeType()
+			).put(
+				"randomId",
+				ParamUtil.getString(uploadPortletRequest, "randomId")
+			).put(
+				"title", fileEntry.getTitle()
+			).put(
+				"type", "document"
+			).put(
+				"url", url
+			).put(
+				"uuid", fileEntry.getUuid()
+			)
 		).put(
 			"success", Boolean.TRUE
 		);

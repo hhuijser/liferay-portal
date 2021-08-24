@@ -127,12 +127,6 @@ public class ScreensDDLRecordServiceImpl
 			DDLRecord ddlRecord, Locale locale)
 		throws PortalException {
 
-		JSONObject ddlRecordJSONObject = JSONUtil.put(
-			"modelAttributes",
-			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(
-					ddlRecord.getModelAttributes())));
-
 		Map<String, Object> ddlRecordMap = new HashMap<>();
 
 		DDMFormValues ddmFormValues = ddlRecord.getDDMFormValues();
@@ -166,12 +160,15 @@ public class ScreensDDLRecordServiceImpl
 			}
 		}
 
-		ddlRecordJSONObject.put(
+		return JSONUtil.put(
+			"modelAttributes",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(ddlRecord.getModelAttributes()))
+		).put(
 			"modelValues",
 			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(ddlRecordMap)));
-
-		return ddlRecordJSONObject;
+				JSONFactoryUtil.looseSerialize(ddlRecordMap))
+		);
 	}
 
 	protected JSONArray getDDLRecordsJSONArray(

@@ -48,16 +48,14 @@ public class ScreensDDMStructureVersionServiceImpl
 			JSONFactoryUtil.looseSerializeDeep(
 				ddmStructureVersion.getDDMFormLayout()));
 
-		JSONObject ddmStructureVersionJSONObject = JSONUtil.put(
-			"ddmFormLayout", ddmFormLayoutJSONObject);
-
 		JSONObject ddmStructureJSONObject = JSONFactoryUtil.createJSONObject(
 			JSONFactoryUtil.looseSerialize(ddmStructureVersion.getStructure()));
 
-		ddmStructureVersionJSONObject.put(
-			"ddmStructure", ddmStructureJSONObject);
-
-		return ddmStructureVersionJSONObject;
+		return JSONUtil.put(
+			"ddmFormLayout", ddmFormLayoutJSONObject
+		).put(
+			"ddmStructure", ddmStructureJSONObject
+		);
 	}
 
 }

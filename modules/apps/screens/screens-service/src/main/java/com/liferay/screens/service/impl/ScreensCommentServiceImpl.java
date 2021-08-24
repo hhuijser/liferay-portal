@@ -215,24 +215,19 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 			Comment comment, DiscussionPermission discussionPermission)
 		throws PortalException {
 
-		JSONObject jsonObject = JSONUtil.put(
+		Date createDate = comment.getCreateDate();
+		Date modifiedDate = comment.getModifiedDate();
+
+		return JSONUtil.put(
 			"body", comment.getBody()
 		).put(
 			"commentId", Long.valueOf(comment.getCommentId())
-		);
-
-		Date createDate = comment.getCreateDate();
-
-		jsonObject.put(
+		).put(
 			"createDate", Long.valueOf(createDate.getTime())
 		).put(
 			"deletePermission",
 			discussionPermission.hasDeletePermission(comment.getCommentId())
-		);
-
-		Date modifiedDate = comment.getModifiedDate();
-
-		jsonObject.put(
+		).put(
 			"modifiedDate", Long.valueOf(modifiedDate.getTime())
 		).put(
 			"updatePermission",
@@ -242,8 +237,6 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		).put(
 			"userName", comment.getUserName()
 		);
-
-		return jsonObject;
 	}
 
 	@Reference

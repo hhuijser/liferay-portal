@@ -474,17 +474,6 @@ public class MicroblogsEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		final JSONObject notificationEventJSONObject = JSONUtil.put(
-			"className", MicroblogsEntry.class.getName()
-		).put(
-			"classPK", microblogsEntry.getMicroblogsEntryId()
-		).put(
-			"entryTitle",
-			MicroblogsUtil.getProcessedContent(
-				StringUtil.shorten(microblogsEntry.getContent(), 50),
-				serviceContext)
-		);
-
 		AssetRendererFactory<MicroblogsEntry> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
 				MicroblogsEntry.class);
@@ -506,7 +495,16 @@ public class MicroblogsEntryLocalServiceImpl
 			}
 		}
 
-		notificationEventJSONObject.put(
+		final JSONObject notificationEventJSONObject = JSONUtil.put(
+			"className", MicroblogsEntry.class.getName()
+		).put(
+			"classPK", microblogsEntry.getMicroblogsEntryId()
+		).put(
+			"entryTitle",
+			MicroblogsUtil.getProcessedContent(
+				StringUtil.shorten(microblogsEntry.getContent(), 50),
+				serviceContext)
+		).put(
 			"entryURL", entryURL
 		).put(
 			"userId", microblogsEntry.getUserId()

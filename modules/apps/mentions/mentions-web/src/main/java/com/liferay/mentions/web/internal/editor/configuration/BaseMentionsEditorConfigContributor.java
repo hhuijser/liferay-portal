@@ -41,33 +41,12 @@ public class BaseMentionsEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		JSONObject autoCompleteConfigJSONObject = JSONUtil.put(
-			"requestTemplate", "query={query}");
-
-		JSONObject triggerJSONObject = JSONUtil.put(
-			"regExp",
-			"(?:\\strigger|^trigger)(" +
-				MentionsMatcherUtil.getScreenNameRegularExpression() + ")"
-		).put(
-			"resultFilters", "function(query, results) {return results;}"
-		).put(
-			"resultTextLocator", "screenName"
-		);
-
 		PortletURL portletURL = getPortletURL(
 			themeDisplay, requestBackedPortletURLFactory);
 
 		String source =
 			portletURL.toString() + "&" +
 				PortalUtil.getPortletNamespace(MentionsPortletKeys.MENTIONS);
-
-		triggerJSONObject.put(
-			"source", source
-		).put(
-			"term", "@"
-		).put(
-			"tplReplace", "{mention}"
-		);
 
 		String tplResults = StringBundler.concat(
 			"<div class=\"p-1 autofit-row autofit-row-center\">",
@@ -78,12 +57,35 @@ public class BaseMentionsEditorConfigContributor
 			"<small class=\"text-truncate\">@{screenName}</small></div></div>",
 			"</div>");
 
-		triggerJSONObject.put("tplResults", tplResults);
-
-		autoCompleteConfigJSONObject.put(
-			"trigger", JSONUtil.put(triggerJSONObject));
-
-		jsonObject.put("autocomplete", autoCompleteConfigJSONObject);
+		jsonObject.put(
+			"autocomplete",
+			JSONUtil.put(
+				"requestTemplate", "query={query}"
+			).put(
+				"trigger",
+				JSONUtil.put(
+					JSONUtil.put(
+						"regExp",
+						StringBundler.concat(
+							"(?:\\strigger|^trigger)(",
+							MentionsMatcherUtil.
+								getScreenNameRegularExpression(),
+							")")
+					).put(
+						"resultFilters",
+						"function(query, results) {return results;}"
+					).put(
+						"resultTextLocator", "screenName"
+					).put(
+						"source", source
+					).put(
+						"term", "@"
+					).put(
+						"tplReplace", "{mention}"
+					).put(
+						"tplResults", tplResults
+					))
+			));
 
 		String extraPlugins = jsonObject.getString("extraPlugins");
 

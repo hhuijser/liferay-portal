@@ -250,6 +250,15 @@ public class MillerColumnsDisplayContext {
 				}
 			}
 
+			LayoutTypeController layoutTypeController =
+				LayoutTypeControllerTracker.getLayoutTypeController(
+					layout.getType());
+
+			ResourceBundle layoutTypeResourceBundle =
+				ResourceBundleUtil.getBundle(
+					"content.Language", _themeDisplay.getLocale(),
+					layoutTypeController.getClass());
+
 			JSONObject layoutJSONObject = JSONUtil.put(
 				"actions",
 				_layoutActionDropdownItemsProvider.getActionDropdownItems(
@@ -260,18 +269,7 @@ public class MillerColumnsDisplayContext {
 				"bulkActions",
 				StringUtil.merge(
 					_layoutsAdminDisplayContext.getAvailableActions(layout))
-			);
-
-			LayoutTypeController layoutTypeController =
-				LayoutTypeControllerTracker.getLayoutTypeController(
-					layout.getType());
-
-			ResourceBundle layoutTypeResourceBundle =
-				ResourceBundleUtil.getBundle(
-					"content.Language", _themeDisplay.getLocale(),
-					layoutTypeController.getClass());
-
-			layoutJSONObject.put(
+			).put(
 				"description",
 				LanguageUtil.get(
 					_httpServletRequest, layoutTypeResourceBundle,
@@ -484,7 +482,7 @@ public class MillerColumnsDisplayContext {
 			key = "private-pages";
 		}
 
-		JSONObject pagesJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			"active", active
 		).put(
 			"hasChild", true
@@ -497,9 +495,7 @@ public class MillerColumnsDisplayContext {
 			_getFirstLayoutColumnQuickActionsJSONArray(privatePages)
 		).put(
 			"title", _layoutsAdminDisplayContext.getTitle(privatePages)
-		);
-
-		pagesJSONObject.put(
+		).put(
 			"url",
 			PortletURLBuilder.create(
 				_layoutsAdminDisplayContext.getPortletURL()
@@ -507,9 +503,8 @@ public class MillerColumnsDisplayContext {
 				"privateLayout", privatePages
 			).setParameter(
 				"selPlid", LayoutConstants.DEFAULT_PLID
-			).buildString());
-
-		return pagesJSONObject;
+			).buildString()
+		);
 	}
 
 	private JSONArray _getFirstLayoutColumnQuickActionsJSONArray(
@@ -556,34 +551,35 @@ public class MillerColumnsDisplayContext {
 				_layoutsAdminDisplayContext.isPrivateLayout());
 
 		for (LayoutSetBranch layoutSetBranch : layoutSetBranches) {
-			JSONObject jsonObject = JSONUtil.put(
-				"active",
-				layoutSetBranch.getLayoutSetBranchId() ==
-					_layoutsAdminDisplayContext.getActiveLayoutSetBranchId()
-			).put(
-				"hasChild", true
-			).put(
-				"id", LayoutConstants.DEFAULT_PLID
-			).put(
-				"key", String.valueOf(layoutSetBranch.getLayoutSetBranchId())
-			).put(
-				"plid", LayoutConstants.DEFAULT_PLID
-			).put(
-				"title",
-				LanguageUtil.get(_httpServletRequest, layoutSetBranch.getName())
-			);
-
-			jsonObject.put(
-				"url",
-				PortletURLBuilder.create(
-					_layoutsAdminDisplayContext.getPortletURL()
-				).setParameter(
-					"layoutSetBranchId", layoutSetBranch.getLayoutSetBranchId()
-				).setParameter(
-					"privateLayout", layoutSetBranch.isPrivateLayout()
-				).buildString());
-
-			jsonArray.put(jsonObject);
+			jsonArray.put(
+				JSONUtil.put(
+					"active",
+					layoutSetBranch.getLayoutSetBranchId() ==
+						_layoutsAdminDisplayContext.getActiveLayoutSetBranchId()
+				).put(
+					"hasChild", true
+				).put(
+					"id", LayoutConstants.DEFAULT_PLID
+				).put(
+					"key",
+					String.valueOf(layoutSetBranch.getLayoutSetBranchId())
+				).put(
+					"plid", LayoutConstants.DEFAULT_PLID
+				).put(
+					"title",
+					LanguageUtil.get(
+						_httpServletRequest, layoutSetBranch.getName())
+				).put(
+					"url",
+					PortletURLBuilder.create(
+						_layoutsAdminDisplayContext.getPortletURL()
+					).setParameter(
+						"layoutSetBranchId",
+						layoutSetBranch.getLayoutSetBranchId()
+					).setParameter(
+						"privateLayout", layoutSetBranch.isPrivateLayout()
+					).buildString()
+				));
 		}
 
 		return jsonArray;

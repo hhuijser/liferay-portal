@@ -186,9 +186,6 @@ public class SAPPortlet extends MVCPortlet {
 			for (Map.Entry<String, Set<JSONWebServiceActionMapping>> entry :
 					jsonWebServiceActionMappingsMap.entrySet()) {
 
-				JSONObject jsonObject = JSONUtil.put(
-					"serviceClassName", entry.getKey());
-
 				Set<JSONWebServiceActionMapping>
 					jsonWebServiceActionMappingsSet = entry.getValue();
 
@@ -198,11 +195,13 @@ public class SAPPortlet extends MVCPortlet {
 				JSONWebServiceActionMapping firstJSONWebServiceActionMapping =
 					iterator.next();
 
-				jsonObject.put(
-					"contextName",
-					firstJSONWebServiceActionMapping.getContextName());
-
-				jsonArray.put(jsonObject);
+				jsonArray.put(
+					JSONUtil.put(
+						"contextName",
+						firstJSONWebServiceActionMapping.getContextName()
+					).put(
+						"serviceClassName", entry.getKey()
+					));
 			}
 		}
 

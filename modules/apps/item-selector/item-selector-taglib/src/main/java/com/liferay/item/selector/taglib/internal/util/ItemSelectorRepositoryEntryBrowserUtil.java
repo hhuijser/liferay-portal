@@ -162,14 +162,12 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 						HtmlUtil.escape(fileEntry.getUserName())
 					})));
 
-		JSONArray groupsJSONArray = JSONUtil.put(
+		JSONArray groupsJSONArray = JSONUtil.putAll(
 			JSONUtil.put(
 				"data", firstTabDataJSONArray
 			).put(
 				"title", LanguageUtil.get(locale, "file-info")
-			));
-
-		groupsJSONArray.put(
+			),
 			JSONUtil.put(
 				"data",
 				JSONUtil.putAll(

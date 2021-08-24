@@ -124,17 +124,18 @@ public class AssetEntriesSearchFacet extends BaseJSPSearchFacet {
 
 		facetConfiguration.setClassName(getFacetClassName());
 
-		JSONObject jsonObject = JSONUtil.put("frequencyThreshold", 1);
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (String assetType : getAssetTypes(companyId)) {
 			jsonArray.put(assetType);
 		}
 
-		jsonObject.put("values", jsonArray);
-
-		facetConfiguration.setDataJSONObject(jsonObject);
+		facetConfiguration.setDataJSONObject(
+			JSONUtil.put(
+				"frequencyThreshold", 1
+			).put(
+				"values", jsonArray
+			));
 
 		facetConfiguration.setFieldName(getFieldName());
 		facetConfiguration.setLabel(getLabel());
@@ -167,9 +168,6 @@ public class AssetEntriesSearchFacet extends BaseJSPSearchFacet {
 		int frequencyThreshold = ParamUtil.getInteger(
 			actionRequest, getClassName() + "frequencyThreshold", 1);
 
-		JSONObject jsonObject = JSONUtil.put(
-			"frequencyThreshold", frequencyThreshold);
-
 		String[] assetTypes = StringUtil.split(
 			ParamUtil.getString(actionRequest, getClassName() + "assetTypes"));
 
@@ -186,9 +184,11 @@ public class AssetEntriesSearchFacet extends BaseJSPSearchFacet {
 			jsonArray.put(assetType);
 		}
 
-		jsonObject.put("values", jsonArray);
-
-		return jsonObject;
+		return JSONUtil.put(
+			"frequencyThreshold", frequencyThreshold
+		).put(
+			"values", jsonArray
+		);
 	}
 
 	@Override

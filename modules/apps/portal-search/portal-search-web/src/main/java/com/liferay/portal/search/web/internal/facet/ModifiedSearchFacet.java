@@ -59,8 +59,6 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 
 		facetConfiguration.setClassName(getFacetClassName());
 
-		JSONObject jsonObject = JSONUtil.put("frequencyThreshold", 0);
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (int i = 0; i < _LABELS.length; i++) {
@@ -72,9 +70,12 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 				));
 		}
 
-		jsonObject.put("ranges", jsonArray);
-
-		facetConfiguration.setDataJSONObject(jsonObject);
+		facetConfiguration.setDataJSONObject(
+			JSONUtil.put(
+				"frequencyThreshold", 0
+			).put(
+				"ranges", jsonArray
+			));
 		facetConfiguration.setFieldName(getFieldName());
 		facetConfiguration.setLabel(getLabel());
 		facetConfiguration.setOrder(getOrder());
@@ -119,9 +120,6 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 		int frequencyThreshold = ParamUtil.getInteger(
 			actionRequest, getClassName() + "frequencyThreshold", 1);
 
-		JSONObject jsonObject = JSONUtil.put(
-			"frequencyThreshold", frequencyThreshold);
-
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		String[] rangesIndexes = StringUtil.split(
@@ -142,9 +140,11 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 				));
 		}
 
-		jsonObject.put("ranges", jsonArray);
-
-		return jsonObject;
+		return JSONUtil.put(
+			"frequencyThreshold", frequencyThreshold
+		).put(
+			"ranges", jsonArray
+		);
 	}
 
 	@Override

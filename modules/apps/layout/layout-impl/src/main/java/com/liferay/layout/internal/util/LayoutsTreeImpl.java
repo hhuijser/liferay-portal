@@ -497,12 +497,11 @@ public class LayoutsTreeImpl implements LayoutsTree {
 				httpServletRequest, groupId,
 				layoutTreeNode.getChildLayoutTreeNodes(), layoutSetBranch);
 
-			JSONObject jsonObject = JSONUtil.put(
-				"children", childrenJSONObject);
-
 			Layout layout = layoutTreeNode.getLayout();
 
-			jsonObject.put(
+			JSONObject jsonObject = JSONUtil.put(
+				"children", childrenJSONObject
+			).put(
 				"contentDisplayPage", layout.isContentDisplayPage()
 			).put(
 				"deleteable",

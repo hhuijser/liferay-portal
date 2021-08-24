@@ -134,9 +134,6 @@ public class MentionsPortlet extends MVCPortlet {
 				continue;
 			}
 
-			JSONObject jsonObject = JSONUtil.put(
-				"fullName", user.getFullName());
-
 			String mention = "@" + user.getScreenName();
 
 			String profileURL = user.getDisplayURL(themeDisplay);
@@ -147,17 +144,18 @@ public class MentionsPortlet extends MVCPortlet {
 					"</a>");
 			}
 
-			jsonObject.put(
-				"mention", mention
-			).put(
-				"portraitHTML",
-				UserPortraitTag.getUserPortraitHTML(
-					StringPool.BLANK, user, themeDisplay)
-			).put(
-				"screenName", user.getScreenName()
-			);
-
-			jsonArray.put(jsonObject);
+			jsonArray.put(
+				JSONUtil.put(
+					"fullName", user.getFullName()
+				).put(
+					"mention", mention
+				).put(
+					"portraitHTML",
+					UserPortraitTag.getUserPortraitHTML(
+						StringPool.BLANK, user, themeDisplay)
+				).put(
+					"screenName", user.getScreenName()
+				));
 		}
 
 		return jsonArray;

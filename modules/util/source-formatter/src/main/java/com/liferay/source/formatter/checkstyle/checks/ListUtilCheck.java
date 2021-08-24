@@ -47,6 +47,10 @@ public class ListUtilCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if (isExcludedPath(RUN_OUTSIDE_PORTAL_EXCLUDES)) {
+			return;
+		}
+
 		if (detailAST.getType() == TokenTypes.METHOD_CALL) {
 			_checkFromArrayCall(detailAST);
 			_checkListIsEmptyCall(detailAST);

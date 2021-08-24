@@ -116,14 +116,14 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 					"DDMStructureVersion on DDMStructureVersion.structureId = ",
 					"DDMStructureLink.structureId inner join DDMField on ",
 					"DDMStructureVersion.structureVersionId = ",
-					"DDMField.structureVersionId and DDMField.fieldType like ? "))) {
+					"DDMField.structureVersionId and DDMField.fieldType like ",
+					"? "))) {
 
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
 				StringBundler.concat(
-					"select fieldAttributeId, languageId, ",
-					"smallAttributeValue from DDMFieldAttribute where ",
-					"storageId = ? and fieldId = ? and (attributeName is ",
-					"null or attributeName = '') "));
+					"select fieldAttributeId, languageId, smallAttributeValue ",
+					"from DDMFieldAttribute where storageId = ? and fieldId = ",
+					"? and (attributeName is null or attributeName = '') "));
 
 			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.autoBatch(

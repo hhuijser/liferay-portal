@@ -620,9 +620,9 @@ public class ContentTargetingUpgradeProcessTest {
 				"create table CT_RuleInstance (uuid_ VARCHAR (75) null, ",
 				"ruleInstanceId LONG not null primary key, groupId LONG, ",
 				"companyId LONG, userId LONG, userName VARCHAR(75) null, ",
-				"createDate DATE null, modifiedDate DATE null, ",
-				"userSegmentId LONG, ruleKey VARCHAR(75) null, ",
-				"displayOrder INTEGER, typeSettings TEXT null)"));
+				"createDate DATE null, modifiedDate DATE null, userSegmentId ",
+				"LONG, ruleKey VARCHAR(75) null, displayOrder INTEGER, ",
+				"typeSettings TEXT null)"));
 
 		_db.runSQL(
 			StringBundler.concat(

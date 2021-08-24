@@ -309,7 +309,7 @@ public class LayoutsTreeImpl implements LayoutsTree {
 
 		String key = StringBundler.concat(
 			treeId, StringPool.COLON, groupId, StringPool.COLON, privateLayout,
-			StringPool.COLON, "Pagination");
+			":Pagination");
 
 		String paginationJSON = SessionClicks.get(
 			session, key, JSONFactoryUtil.getNullJSON());

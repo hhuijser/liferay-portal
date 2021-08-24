@@ -270,8 +270,7 @@ public class DDLExporterTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					CharPool.COMMA, "text1", CharPool.COMMA, "text2",
-					CharPool.COMMA, "Approved", CharPool.COMMA,
+					",text1,text2,Approved,",
 					formatDate(recordVersion1.getStatusDate()), CharPool.COMMA,
 					recordVersion1.getUserName()),
 				row2);
@@ -280,8 +279,7 @@ public class DDLExporterTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"text0", CharPool.COMMA, CharPool.COMMA, CharPool.COMMA,
-					"Approved", CharPool.COMMA,
+					"text0,,,Approved,",
 					formatDate(recordVersion0.getStatusDate()), CharPool.COMMA,
 					recordVersion0.getUserName()),
 				row1);

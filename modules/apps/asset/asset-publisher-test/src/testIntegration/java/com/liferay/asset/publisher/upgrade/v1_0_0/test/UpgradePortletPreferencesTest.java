@@ -320,24 +320,22 @@ public class UpgradePortletPreferencesTest {
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField("Text");
 
-		Map<String, String> portletPreferencesMap = HashMapBuilder.put(
-			"orderByColumn1",
-			StringBundler.concat(
-				"ddm", StringPool.FORWARD_SLASH, ddmStructure.getStructureId(),
-				StringPool.FORWARD_SLASH, ddmFormField.getName())
-		).put(
-			"subtypeFieldsFilterEnabled", Boolean.TRUE.toString()
-		).build();
-
-		portletPreferencesMap.put(
-			"orderByColumn2",
-			StringBundler.concat(
-				"ddm", StringPool.FORWARD_SLASH, ddmFormField.getIndexType(),
-				StringPool.FORWARD_SLASH, ddmStructure.getStructureId(),
-				StringPool.FORWARD_SLASH, ddmFormField.getName()));
-
 		PortletPreferences portletPreferences = updatePortletPreferences(
-			getPortletId(), portletPreferencesMap);
+			getPortletId(),
+			HashMapBuilder.put(
+				"orderByColumn1",
+				StringBundler.concat(
+					"ddm/", ddmStructure.getStructureId(),
+					StringPool.FORWARD_SLASH, ddmFormField.getName())
+			).put(
+				"orderByColumn2",
+				StringBundler.concat(
+					"ddm/", ddmFormField.getIndexType(),
+					StringPool.FORWARD_SLASH, ddmStructure.getStructureId(),
+					StringPool.FORWARD_SLASH, ddmFormField.getName())
+			).put(
+				"subtypeFieldsFilterEnabled", Boolean.TRUE.toString()
+			).build());
 
 		portletPreferences = ReflectionTestUtil.invoke(
 			_upgradePortletPreferences, "upgradePreferences",

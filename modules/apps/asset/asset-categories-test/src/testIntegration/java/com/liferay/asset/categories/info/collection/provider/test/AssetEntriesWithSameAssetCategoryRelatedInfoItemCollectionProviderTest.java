@@ -112,9 +112,10 @@ public class
 					_infoItemServiceTracker.getInfoItemService(
 						RelatedInfoItemCollectionProvider.class,
 						StringBundler.concat(
-							"com.liferay.asset.categories.admin.web.internal.info.",
-							"collection.provider.AssetEntriesWithSameAssetCategory",
-							"RelatedInfoItemCollectionProvider"));
+							"com.liferay.asset.categories.admin.web.internal.",
+							"info.collection.provider.",
+							"AssetEntriesWithSameAssetCategoryRelatedInfoItem",
+							"CollectionProvider"));
 
 			Assert.assertNotNull(relatedInfoItemCollectionProvider);
 

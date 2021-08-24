@@ -31,17 +31,17 @@ public class UpgradeUser extends UpgradeProcess {
 				"update Group_ set active_ = [$FALSE$] where groupId in ",
 				"(select Group_.groupId from Group_ inner join User_ on ",
 				"Group_.companyId = User_.companyId and Group_.classPK = ",
-				"User_.userId where Group_.classNameId = (select ",
-				"classNameId from ClassName_ where value = ",
-				"'com.liferay.portal.kernel.model.User') and User_.status ",
-				"= 5)"));
+				"User_.userId where Group_.classNameId = (select classNameId ",
+				"from ClassName_ where value = ",
+				"'com.liferay.portal.kernel.model.User') and User_.status = ",
+				"5)"));
 
 		String sql = StringBundler.concat(
 			"update Group_ inner join User_ on Group_.companyId = ",
-			"User_.companyId and Group_.classPK = User_.userId set ",
-			"active_ = [$FALSE$] where Group_.classNameId = (select ",
-			"classNameId from ClassName_ where value = '",
-			"com.liferay.portal.kernel.model.User') and User_.status = ", "5");
+			"User_.companyId and Group_.classPK = User_.userId set active_ = ",
+			"[$FALSE$] where Group_.classNameId = (select classNameId from ",
+			"ClassName_ where value = '",
+			"com.liferay.portal.kernel.model.User') and User_.status = 5");
 
 		dbTypeToSQLMap.add(DBType.MARIADB, sql);
 		dbTypeToSQLMap.add(DBType.MYSQL, sql);

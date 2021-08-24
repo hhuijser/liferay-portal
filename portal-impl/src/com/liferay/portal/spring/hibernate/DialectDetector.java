@@ -83,12 +83,12 @@ public class DialectDetector {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Liferay is configured to use Hypersonic as ",
-							"its database. Do NOT use Hypersonic in ",
-							"production. Hypersonic is an embedded ",
-							"database useful for development and ",
-							"demonstration purposes. The database settings ",
-							"can be changed in portal-ext.properties."));
+							"Liferay is configured to use Hypersonic as its ",
+							"database. Do NOT use Hypersonic in production. ",
+							"Hypersonic is an embedded database useful for ",
+							"development and demonstration purposes. The ",
+							"database settings can be changed in ",
+							"portal-ext.properties."));
 				}
 			}
 			else if (dbName.equals("Adaptive Server Enterprise") &&

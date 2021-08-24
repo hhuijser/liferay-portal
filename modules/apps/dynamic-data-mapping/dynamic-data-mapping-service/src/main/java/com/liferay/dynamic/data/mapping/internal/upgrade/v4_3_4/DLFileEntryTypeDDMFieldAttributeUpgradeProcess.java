@@ -107,29 +107,23 @@ public class DLFileEntryTypeDDMFieldAttributeUpgradeProcess
 	}
 
 	private void _updateNumericFieldType() throws Exception {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("select DDMField.storageId, DDMField.fieldId from ");
-		sb.append("DLFileEntryType inner join DDMStructureLink on ");
-		sb.append("DDMStructureLink.classPK = ");
-		sb.append("DLFileEntryType.fileEntryTypeId inner join ");
-		sb.append("DDMStructureVersion on DDMStructureVersion.structureId = ");
-		sb.append("DDMStructureLink.structureId inner join DDMField on ");
-		sb.append("DDMStructureVersion.structureVersionId = ");
-		sb.append("DDMField.structureVersionId and DDMField.fieldType like ? ");
-
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
-				sb.toString())) {
-
-			sb = new StringBundler(4);
-
-			sb.append("select fieldAttributeId, languageId, ");
-			sb.append("smallAttributeValue from DDMFieldAttribute where ");
-			sb.append("storageId = ? and fieldId = ? and (attributeName is ");
-			sb.append("null or attributeName = '') ");
+				StringBundler.concat(
+					"select DDMField.storageId, DDMField.fieldId from ",
+					"DLFileEntryType inner join DDMStructureLink on ",
+					"DDMStructureLink.classPK = ",
+					"DLFileEntryType.fileEntryTypeId inner join ",
+					"DDMStructureVersion on DDMStructureVersion.structureId = ",
+					"DDMStructureLink.structureId inner join DDMField on ",
+					"DDMStructureVersion.structureVersionId = ",
+					"DDMField.structureVersionId and DDMField.fieldType like ? "))) {
 
 			PreparedStatement preparedStatement2 = connection.prepareStatement(
-				sb.toString());
+				StringBundler.concat(
+					"select fieldAttributeId, languageId, ",
+					"smallAttributeValue from DDMFieldAttribute where ",
+					"storageId = ? and fieldId = ? and (attributeName is ",
+					"null or attributeName = '') "));
 
 			PreparedStatement preparedStatement3 =
 				AutoBatchPreparedStatementUtil.autoBatch(

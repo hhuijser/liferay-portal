@@ -58,13 +58,9 @@ public class AddDefaultSharedFormLayoutPortalInstanceLifecycleListener
 	extends BasePortalInstanceLifecycleListener {
 
 	public String getFormLayoutURL(ThemeDisplay themeDisplay) {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(themeDisplay.getPortalURL());
-		sb.append(themeDisplay.getPathFriendlyURLPublic());
-		sb.append("/forms/shared/-/form/");
-
-		return sb.toString();
+		return StringBundler.concat(
+			themeDisplay.getPortalURL(),
+			themeDisplay.getPathFriendlyURLPublic(), "/forms/shared/-/form/");
 	}
 
 	public boolean isSharedLayout(ThemeDisplay themeDisplay) {

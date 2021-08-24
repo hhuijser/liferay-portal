@@ -107,16 +107,14 @@ public class
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				serviceContext);
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append("com.liferay.asset.categories.admin.web.internal.info.");
-			sb.append("collection.provider.AssetEntriesWithSameAssetCategory");
-			sb.append("RelatedInfoItemCollectionProvider");
-
 			RelatedInfoItemCollectionProvider<AssetCategory, AssetEntry>
 				relatedInfoItemCollectionProvider =
 					_infoItemServiceTracker.getInfoItemService(
-						RelatedInfoItemCollectionProvider.class, sb.toString());
+						RelatedInfoItemCollectionProvider.class,
+						StringBundler.concat(
+							"com.liferay.asset.categories.admin.web.internal.info.",
+							"collection.provider.AssetEntriesWithSameAssetCategory",
+							"RelatedInfoItemCollectionProvider"));
 
 			Assert.assertNotNull(relatedInfoItemCollectionProvider);
 

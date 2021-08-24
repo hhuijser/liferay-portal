@@ -346,17 +346,15 @@ public class AlloyControllerInvokerManager {
 				methodVisitor.visitInsn(Opcodes.AASTORE);
 			}
 
-			sb = new StringBundler(5);
-
-			sb.append(StringPool.OPEN_PARENTHESIS);
-			sb.append(Type.getDescriptor(String.class));
-			sb.append(Type.getDescriptor(Object[].class));
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-			sb.append(Type.getDescriptor(JSONSerializable.class));
-
 			methodVisitor.visitMethodInsn(
 				Opcodes.INVOKEVIRTUAL, alloyControllerInvokerClassBinaryName,
-				"invokeAlloyController", sb.toString());
+				"invokeAlloyController",
+				StringBundler.concat(
+					StringPool.OPEN_PARENTHESIS,
+					Type.getDescriptor(String.class),
+					Type.getDescriptor(Object[].class),
+					StringPool.CLOSE_PARENTHESIS,
+					Type.getDescriptor(JSONSerializable.class)));
 
 			methodVisitor.visitInsn(Opcodes.ARETURN);
 

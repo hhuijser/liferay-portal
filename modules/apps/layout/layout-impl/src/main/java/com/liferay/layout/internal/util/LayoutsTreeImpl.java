@@ -307,17 +307,9 @@ public class LayoutsTreeImpl implements LayoutsTree {
 			long layoutId, String treeId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append(treeId);
-		sb.append(StringPool.COLON);
-		sb.append(groupId);
-		sb.append(StringPool.COLON);
-		sb.append(privateLayout);
-		sb.append(StringPool.COLON);
-		sb.append("Pagination");
-
-		String key = sb.toString();
+		String key = StringBundler.concat(
+			treeId, StringPool.COLON, groupId, StringPool.COLON, privateLayout,
+			StringPool.COLON, "Pagination");
 
 		String paginationJSON = SessionClicks.get(
 			session, key, JSONFactoryUtil.getNullJSON());
@@ -326,19 +318,12 @@ public class LayoutsTreeImpl implements LayoutsTree {
 			paginationJSON);
 
 		if (_log.isDebugEnabled()) {
-			sb = new StringBundler(9);
-
-			sb.append("_getLoadedLayoutsCount(key=");
-			sb.append(key);
-			sb.append(", layoutId=");
-			sb.append(layoutId);
-			sb.append(", paginationJSON=");
-			sb.append(paginationJSON);
-			sb.append(", paginationJSONObject");
-			sb.append(paginationJSONObject);
-			sb.append(StringPool.CLOSE_PARENTHESIS);
-
-			_log.debug(sb.toString());
+			_log.debug(
+				StringBundler.concat(
+					"_getLoadedLayoutsCount(key=", key, ", layoutId=", layoutId,
+					", paginationJSON=", paginationJSON,
+					", paginationJSONObject", paginationJSONObject,
+					StringPool.CLOSE_PARENTHESIS));
 		}
 
 		return paginationJSONObject.getInt(String.valueOf(layoutId), 0);

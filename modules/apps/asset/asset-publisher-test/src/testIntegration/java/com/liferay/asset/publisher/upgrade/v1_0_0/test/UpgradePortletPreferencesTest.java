@@ -320,31 +320,21 @@ public class UpgradePortletPreferencesTest {
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField("Text");
 
-		StringBundler sb = new StringBundler(5);
-
-		sb.append("ddm");
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(ddmStructure.getStructureId());
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(ddmFormField.getName());
-
 		Map<String, String> portletPreferencesMap = HashMapBuilder.put(
-			"orderByColumn1", sb.toString()
+			"orderByColumn1",
+			StringBundler.concat(
+				"ddm", StringPool.FORWARD_SLASH, ddmStructure.getStructureId(),
+				StringPool.FORWARD_SLASH, ddmFormField.getName())
 		).put(
 			"subtypeFieldsFilterEnabled", Boolean.TRUE.toString()
 		).build();
 
-		sb = new StringBundler(7);
-
-		sb.append("ddm");
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(ddmFormField.getIndexType());
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(ddmStructure.getStructureId());
-		sb.append(StringPool.FORWARD_SLASH);
-		sb.append(ddmFormField.getName());
-
-		portletPreferencesMap.put("orderByColumn2", sb.toString());
+		portletPreferencesMap.put(
+			"orderByColumn2",
+			StringBundler.concat(
+				"ddm", StringPool.FORWARD_SLASH, ddmFormField.getIndexType(),
+				StringPool.FORWARD_SLASH, ddmStructure.getStructureId(),
+				StringPool.FORWARD_SLASH, ddmFormField.getName()));
 
 		PortletPreferences portletPreferences = updatePortletPreferences(
 			getPortletId(), portletPreferencesMap);

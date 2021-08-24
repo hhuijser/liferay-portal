@@ -89,27 +89,21 @@ public class LayoutPageTemplateEntryUpgradeProcess extends UpgradeProcess {
 			}
 		}
 
-		StringBundler sb = new StringBundler(6);
+		runSQL(
+			StringBundler.concat(
+				"update LayoutPageTemplateEntry set groupId = ",
+				company.getGroupId(),
+				", layoutPageTemplateCollectionId = 0, name = '", newName,
+				"' where layoutPageTemplateEntryId = ",
+				layoutPageTemplateEntryId));
 
-		sb.append("update LayoutPageTemplateEntry set groupId = ");
-		sb.append(company.getGroupId());
-		sb.append(", layoutPageTemplateCollectionId = 0, name = '");
-		sb.append(newName);
-		sb.append("' where layoutPageTemplateEntryId = ");
-		sb.append(layoutPageTemplateEntryId);
-
-		runSQL(sb.toString());
-
-		sb = new StringBundler(6);
-
-		sb.append("delete from LayoutPageTemplateEntry where groupId <> ");
-		sb.append(company.getGroupId());
-		sb.append(" and layoutPageTemplateCollectionId <> 0 and type_ = ");
-		sb.append(LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE);
-		sb.append(" and layoutPrototypeId = ");
-		sb.append(layoutPrototypeId);
-
-		runSQL(sb.toString());
+		runSQL(
+			StringBundler.concat(
+				"delete from LayoutPageTemplateEntry where groupId <> ",
+				company.getGroupId(),
+				" and layoutPageTemplateCollectionId <> 0 and type_ = ",
+				LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE,
+				" and layoutPrototypeId = ", layoutPrototypeId));
 	}
 
 	private final CompanyLocalService _companyLocalService;

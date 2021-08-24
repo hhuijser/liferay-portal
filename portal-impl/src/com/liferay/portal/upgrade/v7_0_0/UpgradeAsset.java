@@ -45,26 +45,21 @@ public class UpgradeAsset extends UpgradeProcess {
 			long classNameId = PortalUtil.getClassNameId(
 				DLFileEntryConstants.getClassName());
 
-			StringBundler sb = new StringBundler(5);
+			DBTypeToSQLMap dbTypeToSQLMap = new DBTypeToSQLMap(
+				StringBundler.concat(
+					"delete from AssetEntry where classNameId = ", classNameId,
+					" and classPK not in (select fileVersionId from ",
+					"DLFileVersion) and classPK not in (select fileEntryId ",
+					"from DLFileEntry)"));
 
-			sb.append("delete from AssetEntry where classNameId = ");
-			sb.append(classNameId);
-			sb.append(" and classPK not in (select fileVersionId from ");
-			sb.append("DLFileVersion) and classPK not in (select fileEntryId ");
-			sb.append("from DLFileEntry)");
-
-			DBTypeToSQLMap dbTypeToSQLMap = new DBTypeToSQLMap(sb.toString());
-
-			sb = new StringBundler(6);
-
-			sb.append("delete from AssetEntry where classNameId = ");
-			sb.append(classNameId);
-			sb.append(" and not exists (select null from DLFileVersion where ");
-			sb.append("fileVersionId = AssetEntry.classPK) and not exists ");
-			sb.append("(select null from DLFileEntry where fileEntryId = ");
-			sb.append("AssetEntry.classPK)");
-
-			dbTypeToSQLMap.add(DBType.POSTGRESQL, sb.toString());
+			dbTypeToSQLMap.add(
+				DBType.POSTGRESQL,
+				StringBundler.concat(
+					"delete from AssetEntry where classNameId = ", classNameId,
+					" and not exists (select null from DLFileVersion where ",
+					"fileVersionId = AssetEntry.classPK) and not exists ",
+					"(select null from DLFileEntry where fileEntryId = ",
+					"AssetEntry.classPK)"));
 
 			runSQL(dbTypeToSQLMap);
 		}

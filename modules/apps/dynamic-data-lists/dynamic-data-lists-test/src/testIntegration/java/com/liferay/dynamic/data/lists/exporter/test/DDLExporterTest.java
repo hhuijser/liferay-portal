@@ -268,45 +268,23 @@ public class DDLExporterTest {
 
 			String row2 = bufferedReader.readLine();
 
-			StringBundler sb = new StringBundler(10);
-
-			sb.append(CharPool.COMMA);
-
-			sb.append("text1");
-			sb.append(CharPool.COMMA);
-
-			sb.append("text2");
-			sb.append(CharPool.COMMA);
-
-			sb.append("Approved");
-			sb.append(CharPool.COMMA);
-
-			sb.append(formatDate(recordVersion1.getStatusDate()));
-			sb.append(CharPool.COMMA);
-
-			sb.append(recordVersion1.getUserName());
-
-			Assert.assertEquals(sb.toString(), row2);
+			Assert.assertEquals(
+				StringBundler.concat(
+					CharPool.COMMA, "text1", CharPool.COMMA, "text2",
+					CharPool.COMMA, "Approved", CharPool.COMMA,
+					formatDate(recordVersion1.getStatusDate()), CharPool.COMMA,
+					recordVersion1.getUserName()),
+				row2);
 
 			String row1 = bufferedReader.readLine();
 
-			sb = new StringBundler(9);
-
-			sb.append("text0");
-			sb.append(CharPool.COMMA);
-
-			sb.append(CharPool.COMMA);
-			sb.append(CharPool.COMMA);
-
-			sb.append("Approved");
-			sb.append(CharPool.COMMA);
-
-			sb.append(formatDate(recordVersion0.getStatusDate()));
-			sb.append(CharPool.COMMA);
-
-			sb.append(recordVersion0.getUserName());
-
-			Assert.assertEquals(sb.toString(), row1);
+			Assert.assertEquals(
+				StringBundler.concat(
+					"text0", CharPool.COMMA, CharPool.COMMA, CharPool.COMMA,
+					"Approved", CharPool.COMMA,
+					formatDate(recordVersion0.getStatusDate()), CharPool.COMMA,
+					recordVersion0.getUserName()),
+				row1);
 		}
 	}
 

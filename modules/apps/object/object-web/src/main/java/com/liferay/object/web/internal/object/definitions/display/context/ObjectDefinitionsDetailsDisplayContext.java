@@ -69,18 +69,15 @@ public class ObjectDefinitionsDetailsDisplayContext {
 					panelCategoryKey);
 
 			for (PanelCategory childPanelCategory : childPanelCategories) {
-				StringBundler sb = new StringBundler(3);
-
-				sb.append(
-					panelCategory.getLabel(_objectRequestHelper.getLocale()));
-				sb.append(" >> ");
-				sb.append(
-					childPanelCategory.getLabel(
-						_objectRequestHelper.getLocale()));
-
 				keyValuePairs.add(
 					new KeyValuePair(
-						childPanelCategory.getKey(), sb.toString()));
+						childPanelCategory.getKey(),
+						StringBundler.concat(
+							panelCategory.getLabel(
+								_objectRequestHelper.getLocale()),
+							" >> ",
+							childPanelCategory.getLabel(
+								_objectRequestHelper.getLocale()))));
 			}
 		}
 

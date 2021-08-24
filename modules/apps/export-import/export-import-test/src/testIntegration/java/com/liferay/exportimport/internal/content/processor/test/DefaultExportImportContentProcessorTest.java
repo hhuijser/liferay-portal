@@ -288,20 +288,13 @@ public class DefaultExportImportContentProcessorTest {
 	public void testExportDLReferencesInvalidReference() throws Exception {
 		_portletDataContextExport.setZipWriter(new TestReaderWriter());
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("{{/documents/}}");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("[[/documents/]]");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("<a href=/documents/>Link</a>");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("<a href=\"/documents/\">Link</a>");
-		sb.append(StringPool.NEW_LINE);
-		sb.append("<a href='/documents/'>Link</a>");
-
 		_exportImportContentProcessor.replaceExportContentReferences(
-			_portletDataContextExport, _referrerStagedModel, sb.toString(),
+			_portletDataContextExport, _referrerStagedModel,
+			StringBundler.concat(
+				"{{/documents/}}", StringPool.NEW_LINE, "[[/documents/]]",
+				StringPool.NEW_LINE, "<a href=/documents/>Link</a>",
+				StringPool.NEW_LINE, "<a href=\"/documents/\">Link</a>",
+				StringPool.NEW_LINE, "<a href='/documents/'>Link</a>"),
 			true, true);
 	}
 

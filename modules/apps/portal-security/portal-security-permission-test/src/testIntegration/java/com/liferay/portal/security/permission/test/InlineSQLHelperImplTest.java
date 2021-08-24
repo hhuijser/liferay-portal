@@ -477,30 +477,24 @@ public class InlineSQLHelperImplTest {
 	private void _checkSQLComposition(String sql) throws Exception {
 		_assertWhereClause(sql, _CLASS_PK_FIELD);
 
-		StringBundler sb = new StringBundler(4);
+		Assert.assertTrue(
+			sql,
+			sql.contains(
+				StringBundler.concat(
+					_RESOURCE_PERMISSION, ".name = '", _CLASS_NAME, "'")));
 
-		sb.append(_RESOURCE_PERMISSION);
-		sb.append(".name = '");
-		sb.append(_CLASS_NAME);
-		sb.append("'");
+		Assert.assertTrue(
+			sql,
+			sql.contains(
+				StringBundler.concat(
+					_RESOURCE_PERMISSION, ".companyId = ",
+					CompanyThreadLocal.getCompanyId())));
 
-		Assert.assertTrue(sql, sql.contains(sb.toString()));
-
-		sb = new StringBundler(3);
-
-		sb.append(_RESOURCE_PERMISSION);
-		sb.append(".companyId = ");
-		sb.append(CompanyThreadLocal.getCompanyId());
-
-		Assert.assertTrue(sql, sql.contains(sb.toString()));
-
-		sb = new StringBundler(3);
-
-		sb.append(_USER_ID_FIELD);
-		sb.append(" = ");
-		sb.append(_user.getUserId());
-
-		Assert.assertTrue(sql, sql.contains(sb.toString()));
+		Assert.assertTrue(
+			sql,
+			sql.contains(
+				StringBundler.concat(
+					_USER_ID_FIELD, " = ", _user.getUserId())));
 
 		_assertValidSql(sql);
 	}

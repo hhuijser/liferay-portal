@@ -143,32 +143,29 @@ public class VerifyGroupedModel extends VerifyProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer(
 				verifiableGroupedModel.getTableName())) {
 
-			StringBundler sb = new StringBundler(7);
-
-			sb.append("select ");
-			sb.append(verifiableGroupedModel.getPrimaryKeyColumnName());
-			sb.append(StringPool.COMMA_AND_SPACE);
-			sb.append(verifiableGroupedModel.getRelatedPrimaryKeyColumnName());
-			sb.append(" from ");
-			sb.append(verifiableGroupedModel.getTableName());
-			sb.append(" where groupId is null");
-
 			try (Connection connection = DataAccess.getConnection();
 				PreparedStatement preparedStatement1 =
-					connection.prepareStatement(sb.toString());
+					connection.prepareStatement(
+						StringBundler.concat(
+							"select ",
+							verifiableGroupedModel.getPrimaryKeyColumnName(),
+							StringPool.COMMA_AND_SPACE,
+							verifiableGroupedModel.
+								getRelatedPrimaryKeyColumnName(),
+							" from ", verifiableGroupedModel.getTableName(),
+							" where groupId is null"));
 				ResultSet resultSet = preparedStatement1.executeQuery()) {
-
-				sb = new StringBundler(5);
-
-				sb.append("update ");
-				sb.append(verifiableGroupedModel.getTableName());
-				sb.append(" set groupId = ? where ");
-				sb.append(verifiableGroupedModel.getPrimaryKeyColumnName());
-				sb.append(" = ?");
 
 				try (PreparedStatement preparedStatement2 =
 						AutoBatchPreparedStatementUtil.autoBatch(
-							connection.prepareStatement(sb.toString()))) {
+							connection.prepareStatement(
+								StringBundler.concat(
+									"update ",
+									verifiableGroupedModel.getTableName(),
+									" set groupId = ? where ",
+									verifiableGroupedModel.
+										getPrimaryKeyColumnName(),
+									" = ?")))) {
 
 					while (resultSet.next()) {
 						long relatedPrimKey = resultSet.getLong(

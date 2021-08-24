@@ -102,31 +102,19 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 		long classNameId = PortalUtil.getClassNameId(
 			"com.liferay.message.boards.kernel.model.MBDiscussion");
 
-		StringBundler sb = new StringBundler(7);
+		DBTypeToSQLMap dbTypeToSQLMap = new DBTypeToSQLMap(
+			StringBundler.concat(
+				"delete from AssetEntry where classPK in (",
+				"select MBMessage.messageId from MBMessage inner join ",
+				tempTableName, " on MBMessage.threadId = ", tempTableName,
+				".threadId) and classNameId = ", classNameId));
 
-		sb.append("delete from AssetEntry where classPK in (");
-		sb.append("select MBMessage.messageId from MBMessage inner join ");
-		sb.append(tempTableName);
-		sb.append(" on MBMessage.threadId = ");
-		sb.append(tempTableName);
-		sb.append(".threadId) and classNameId = ");
-		sb.append(classNameId);
-
-		DBTypeToSQLMap dbTypeToSQLMap = new DBTypeToSQLMap(sb.toString());
-
-		sb = new StringBundler(9);
-
-		sb.append("delete AssetEntry from AssetEntry inner join MBMessage on ");
-		sb.append("AssetEntry.classPK = MBMessage.messageId and ");
-		sb.append("AssetEntry.classNameId = ");
-		sb.append(classNameId);
-		sb.append(" inner join ");
-		sb.append(tempTableName);
-		sb.append(" on MBMessage.threadId = ");
-		sb.append(tempTableName);
-		sb.append(".threadId");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"delete AssetEntry from AssetEntry inner join MBMessage on ",
+			"AssetEntry.classPK = MBMessage.messageId and ",
+			"AssetEntry.classNameId = ", classNameId, " inner join ",
+			tempTableName, " on MBMessage.threadId = ", tempTableName,
+			".threadId");
 
 		dbTypeToSQLMap.add(DBType.MARIADB, sql);
 		dbTypeToSQLMap.add(DBType.MYSQL, sql);
@@ -137,31 +125,16 @@ public class UpgradeMessageBoards extends UpgradeProcess {
 	private void _deleteTable(String tableName, String tempTableName)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(5);
+		DBTypeToSQLMap dbTypeToSQLMap = new DBTypeToSQLMap(
+			StringBundler.concat(
+				"delete from ", tableName,
+				" where threadId in (select threadId from ", tempTableName,
+				StringPool.CLOSE_PARENTHESIS));
 
-		sb.append("delete from ");
-		sb.append(tableName);
-		sb.append(" where threadId in (select threadId from ");
-		sb.append(tempTableName);
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		DBTypeToSQLMap dbTypeToSQLMap = new DBTypeToSQLMap(sb.toString());
-
-		sb = new StringBundler(11);
-
-		sb.append("delete ");
-		sb.append(tableName);
-		sb.append(" from ");
-		sb.append(tableName);
-		sb.append(" inner join ");
-		sb.append(tempTableName);
-		sb.append(" on ");
-		sb.append(tableName);
-		sb.append(".threadId = ");
-		sb.append(tempTableName);
-		sb.append(".threadId");
-
-		String sql = sb.toString();
+		String sql = StringBundler.concat(
+			"delete ", tableName, " from ", tableName, " inner join ",
+			tempTableName, " on ", tableName, ".threadId = ", tempTableName,
+			".threadId");
 
 		dbTypeToSQLMap.add(DBType.MARIADB, sql);
 		dbTypeToSQLMap.add(DBType.MYSQL, sql);

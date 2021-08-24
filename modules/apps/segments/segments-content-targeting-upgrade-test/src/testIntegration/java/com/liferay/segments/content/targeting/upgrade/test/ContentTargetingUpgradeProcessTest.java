@@ -615,27 +615,23 @@ public class ContentTargetingUpgradeProcessTest {
 	protected void createContentTargetingTables()
 		throws IOException, SQLException {
 
-		StringBundler sb = new StringBundler(6);
+		_db.runSQL(
+			StringBundler.concat(
+				"create table CT_RuleInstance (uuid_ VARCHAR (75) null, ",
+				"ruleInstanceId LONG not null primary key, groupId LONG, ",
+				"companyId LONG, userId LONG, userName VARCHAR(75) null, ",
+				"createDate DATE null, modifiedDate DATE null, ",
+				"userSegmentId LONG, ruleKey VARCHAR(75) null, ",
+				"displayOrder INTEGER, typeSettings TEXT null)"));
 
-		sb.append("create table CT_RuleInstance (uuid_ VARCHAR (75) null, ");
-		sb.append("ruleInstanceId LONG not null primary key, groupId LONG, ");
-		sb.append("companyId LONG, userId LONG, userName VARCHAR(75) null, ");
-		sb.append("createDate DATE null, modifiedDate DATE null, ");
-		sb.append("userSegmentId LONG, ruleKey VARCHAR(75) null, ");
-		sb.append("displayOrder INTEGER, typeSettings TEXT null)");
-
-		_db.runSQL(sb.toString());
-
-		sb = new StringBundler(6);
-
-		sb.append("create table CT_UserSegment (uuid_ VARCHAR (75) null, ");
-		sb.append("userSegmentId LONG not null primary key, groupId LONG, ");
-		sb.append("companyId LONG, userId LONG, userName VARCHAR(75) null, ");
-		sb.append("createDate DATE null, modifiedDate DATE null, ");
-		sb.append("lastPublishDate DATE null, name STRING null, description ");
-		sb.append("STRING null)");
-
-		_db.runSQL(sb.toString());
+		_db.runSQL(
+			StringBundler.concat(
+				"create table CT_UserSegment (uuid_ VARCHAR (75) null, ",
+				"userSegmentId LONG not null primary key, groupId LONG, ",
+				"companyId LONG, userId LONG, userName VARCHAR(75) null, ",
+				"createDate DATE null, modifiedDate DATE null, ",
+				"lastPublishDate DATE null, name STRING null, description ",
+				"STRING null)"));
 	}
 
 	protected void dropContentTargetingTables() throws Exception {

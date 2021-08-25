@@ -232,7 +232,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			return;
 		}
 
-		if (bundleSymbolicName.endsWith(".service") &&
+		if (isAttributeValue(_CHECK_SERVICE_PATH_KEY, absolutePath) &&
+			bundleSymbolicName.endsWith(".service") &&
 			packageName.contains(bundleSymbolicName + ".internal")) {
 
 			int x = absolutePath.lastIndexOf("-service/");
@@ -383,6 +384,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 
 	private static final String _ALLOWED_INTERNAL_PACKAGE_DIR_NAMES_KEY =
 		"allowedInternalPackageDirNames";
+
+	private static final String _CHECK_SERVICE_PATH_KEY = "checkServicePath";
 
 	private static final String _EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY =
 		"expectedInternalImplementsData";

@@ -492,6 +492,7 @@
 		<check name="JavaPackagePathCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that the package name matches the file location." />
+			<property name="checkServicePath" value="false" />
 		</check>
 		<check name="JavaParameterAnnotationsCheck">
 			<category name="Bug Prevention" />

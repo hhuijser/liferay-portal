@@ -87,7 +87,7 @@ public class JavaFinalVariableCheck extends BaseJavaTermCheck {
 
 	@Override
 	protected String[] getCheckableJavaTermNames() {
-		return new String[] {JAVA_METHOD};
+		return new String[] {JAVA_CONSTRUCTOR, JAVA_METHOD};
 	}
 
 	private int _getMatchingCloseCharPos(

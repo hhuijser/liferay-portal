@@ -138,7 +138,7 @@ public class JavaFinalVariableCheck extends BaseJavaTermCheck {
 	}
 
 	private static final Pattern _anonymouseClassPattern = Pattern.compile(
-		"\\Wnew\\s[\\w\\s\\.<>,]+\\(");
+		"\\Wnew\\s[\\w\\s\\.<>,\\?]+\\(");
 	private static final Pattern _finalVariablePattern = Pattern.compile(
 		"[\t,]final [\\w\\s<>,]+?([\\w]+)\\s*[;=]");
 

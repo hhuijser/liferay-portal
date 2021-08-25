@@ -40,7 +40,9 @@ public class MethodNamingCheck extends BaseCheck {
 	protected void doVisitToken(DetailAST detailAST) {
 		String methodName = _getMethodName(detailAST);
 
-		if (methodName.startsWith("search")) {
+		if (isAttributeValue(_CHECK_SEARCH_METHOD_NAMES) &&
+			methodName.startsWith("search")) {
+
 			_checkSearchMethodName(detailAST, methodName);
 		}
 
@@ -192,6 +194,9 @@ public class MethodNamingCheck extends BaseCheck {
 
 		return nameDetailAST.getText();
 	}
+
+	private static final String _CHECK_SEARCH_METHOD_NAMES =
+		"checkSearchMethodNames";
 
 	private static final String _ENFORCE_TYPE_NAMES_KEY = "enforceTypeNames";
 

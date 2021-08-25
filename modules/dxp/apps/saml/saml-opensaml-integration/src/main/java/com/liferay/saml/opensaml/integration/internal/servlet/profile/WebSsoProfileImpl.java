@@ -375,12 +375,11 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 					authnRequest.getID());
 			}
 
-			String relayState = samlSsoRequestContext.getRelayState();
-
 			SAMLBindingContext samlBindingContext =
 				messageContext.getSubcontext(SAMLBindingContext.class, true);
 
-			samlBindingContext.setRelayState(relayState);
+			samlBindingContext.setRelayState(
+				samlSsoRequestContext.getRelayState());
 
 			String samlSsoSessionId = getSamlSsoSessionId(httpServletRequest);
 
@@ -1090,8 +1089,6 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			return assertion;
 		}
 
-		User user = samlSsoRequestContext.getUser();
-
 		AttributeResolver attributeResolver =
 			_attributeResolverRegistry.getAttributeResolver(
 				samlPeerEntityContext.getEntityId());
@@ -1100,7 +1097,8 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			new AttributePublisherImpl();
 
 		attributeResolver.resolve(
-			user, new AttributeResolverSAMLContextImpl(messageContext),
+			samlSsoRequestContext.getUser(),
+			new AttributeResolverSAMLContextImpl(messageContext),
 			attributePublisherImpl);
 
 		List<Attribute> attributes = attributePublisherImpl.getAttributes();
@@ -2114,13 +2112,12 @@ public class WebSsoProfileImpl extends BaseProfile implements WebSsoProfile {
 			verifyDestination(
 				messageContext, subjectConfirmationData.getRecipient());
 
-			NameID nameID = subject.getNameID();
-
 			SAMLSubjectNameIdentifierContext samlSubjectNameIdentifierContext =
 				messageContext.getSubcontext(
 					SAMLSubjectNameIdentifierContext.class);
 
-			samlSubjectNameIdentifierContext.setSubjectNameIdentifier(nameID);
+			samlSubjectNameIdentifierContext.setSubjectNameIdentifier(
+				subject.getNameID());
 
 			return;
 		}

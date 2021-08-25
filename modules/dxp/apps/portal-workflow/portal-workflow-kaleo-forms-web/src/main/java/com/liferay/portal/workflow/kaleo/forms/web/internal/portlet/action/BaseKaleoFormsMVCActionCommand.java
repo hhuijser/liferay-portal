@@ -35,7 +35,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -85,14 +84,11 @@ public abstract class BaseKaleoFormsMVCActionCommand
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		long kaleoProcessId = ParamUtil.getLong(
 			httpServletRequest, "kaleoProcessId");
 
 		KaleoProcessPermission.check(
-			permissionChecker, kaleoProcessId, actionId);
+			themeDisplay.getPermissionChecker(), kaleoProcessId, actionId);
 	}
 
 	protected DDMFormFieldValue getNameAndInstanceIdDDMFormFieldValue(

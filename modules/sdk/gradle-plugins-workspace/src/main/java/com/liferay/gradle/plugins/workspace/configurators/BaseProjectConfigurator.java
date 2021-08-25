@@ -151,8 +151,6 @@ public abstract class BaseProjectConfigurator implements ProjectConfigurator {
 		if ((version == null) && dir.exists()) {
 			for (String fileName : dir.list()) {
 				if (fileName.startsWith("tomcat-")) {
-					version = fileName.substring(fileName.indexOf("-") + 1);
-
 					NamedDomainObjectCollection<AppServer>
 						namedDomainObjectCollection =
 							liferayExtension.getAppServers();
@@ -161,7 +159,8 @@ public abstract class BaseProjectConfigurator implements ProjectConfigurator {
 						(TomcatAppServer)namedDomainObjectCollection.getByName(
 							"tomcat");
 
-					tomcatAppServer.setVersion(version);
+					tomcatAppServer.setVersion(
+						fileName.substring(fileName.indexOf("-") + 1));
 				}
 			}
 		}

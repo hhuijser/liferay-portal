@@ -34,8 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.json.JsonObject;
-
 import javax.ws.rs.core.UriBuilder;
 
 import org.apache.avro.Schema;
@@ -516,7 +514,6 @@ public class LiferayResourceProperties extends ComponentPropertiesImpl {
 
 	private void _updateSchemas(OASSource oasSource) {
 		String openAPIEntityOperationPath = _getOpenAPIEntityOperationsPath();
-		JsonObject oasJsonObject = oasSource.getOASJsonObject(getOpenAPIUrl());
 
 		SchemaBuilder schemaBuilder = new SchemaBuilder();
 
@@ -524,7 +521,7 @@ public class LiferayResourceProperties extends ComponentPropertiesImpl {
 
 		Schema endpointSchema = schemaBuilder.inferSchema(
 			openAPIEntityOperationPath, operation.getHttpMethod(),
-			oasJsonObject);
+			oasSource.getOASJsonObject(getOpenAPIUrl()));
 
 		outboundSchemaProperties.schema.setValue(endpointSchema);
 

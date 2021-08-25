@@ -400,9 +400,6 @@ public class DefaultAttributeResolver implements AttributeResolver {
 		boolean namespaceEnabled) {
 
 		try {
-			List<Role> roles = user.getRoles();
-
-			List<Group> groups = user.getGroups();
 			List<Organization> organizations = user.getOrganizations();
 
 			List<UserGroup> userGroups = user.getUserGroups();
@@ -426,7 +423,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 
 			List<Group> allGroups = new ArrayList<>();
 
-			allGroups.addAll(groups);
+			allGroups.addAll(user.getGroups());
 			allGroups.addAll(inheritedSiteGroups);
 			allGroups.addAll(organizationsRelatedGroups);
 			allGroups.addAll(
@@ -436,7 +433,7 @@ public class DefaultAttributeResolver implements AttributeResolver {
 
 			Set<Role> uniqueRoles = new HashSet<>();
 
-			uniqueRoles.addAll(roles);
+			uniqueRoles.addAll(user.getRoles());
 
 			for (Group group : allGroups) {
 				if (_roleLocalService.hasGroupRoles(group.getGroupId())) {
@@ -553,12 +550,11 @@ public class DefaultAttributeResolver implements AttributeResolver {
 
 			for (UserGroupGroupRole userGroupGroupRole : inheritedSiteRoles) {
 				Group group = userGroupGroupRole.getGroup();
-				Role role = userGroupGroupRole.getRole();
 
 				Set<Role> roles = groupRoles.computeIfAbsent(
 					group.getName(), k -> new HashSet<>());
 
-				roles.add(role);
+				roles.add(userGroupGroupRole.getRole());
 			}
 
 			for (Map.Entry<String, Set<Role>> entry : groupRoles.entrySet()) {

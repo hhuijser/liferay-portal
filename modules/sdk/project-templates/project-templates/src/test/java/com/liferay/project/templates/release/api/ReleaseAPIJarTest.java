@@ -87,15 +87,12 @@ public class ReleaseAPIJarTest implements BaseReleaseAPIJarTestCase {
 
 		File releaseApiJarFile = new File(RELEASE_API_JAR_FILE);
 
-		Path classesDirPath = getClassesDirPath(temporaryFolder);
-
-		Path sourcesDirPath = getSourcesDirPath();
-
-		Set<String> classFileStrings = getPaths(classesDirPath, ".class");
+		Set<String> classFileStrings = getPaths(
+			getClassesDirPath(temporaryFolder), ".class");
 
 		Assert.assertFalse(classFileStrings.isEmpty());
 
-		Set<String> sourceFileStrings = getPaths(sourcesDirPath, ".java");
+		Set<String> sourceFileStrings = getPaths(getSourcesDirPath(), ".java");
 
 		Assert.assertFalse(sourceFileStrings.isEmpty());
 

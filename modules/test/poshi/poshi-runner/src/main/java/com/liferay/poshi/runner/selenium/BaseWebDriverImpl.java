@@ -2199,8 +2199,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	public void ocularAssertElementImage(String locator) throws Exception {
 		ocularConfig();
 
-		WebElement webElement = getWebElement(locator);
-
 		SnapshotBuilder snapshotBuilder = Ocular.snapshot();
 
 		snapshotBuilder = snapshotBuilder.from(_webDriver);
@@ -2209,7 +2207,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 
 		sampleBuilder = sampleBuilder.using(_webDriver);
 
-		sampleBuilder.element(webElement);
+		sampleBuilder.element(getWebElement(locator));
 
 		OcularResult ocularResult = sampleBuilder.compare();
 

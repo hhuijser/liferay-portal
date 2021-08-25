@@ -51,13 +51,13 @@ public final class PoshiStackTraceUtil {
 	public static String getCurrentNamespace(
 		String namespacedClassCommandName) {
 
-		String defaultNamespace = PoshiContext.getDefaultNamespace();
-
 		String namespace =
 			PoshiGetterUtil.getNamespaceFromNamespacedClassCommandName(
 				namespacedClassCommandName);
 
-		if (Validator.isNull(namespace) || namespace.equals(defaultNamespace)) {
+		if (Validator.isNull(namespace) ||
+			namespace.equals(PoshiContext.getDefaultNamespace())) {
+
 			namespace = getCurrentNamespace();
 		}
 

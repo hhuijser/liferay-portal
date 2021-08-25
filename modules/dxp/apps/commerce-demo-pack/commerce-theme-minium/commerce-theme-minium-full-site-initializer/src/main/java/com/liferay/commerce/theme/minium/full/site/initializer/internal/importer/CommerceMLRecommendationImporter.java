@@ -287,12 +287,11 @@ public class CommerceMLRecommendationImporter {
 			CPDefinition.class.getName(),
 			recommendedCPDefinition.getCPDefinitionId());
 
-		long[] categoryIds = assetEntry.getCategoryIds();
-
 		UserCommerceMLRecommendation userCommerceMLRecommendation =
 			_userCommerceMLRecommendationManager.create();
 
-		userCommerceMLRecommendation.setAssetCategoryIds(categoryIds);
+		userCommerceMLRecommendation.setAssetCategoryIds(
+			assetEntry.getCategoryIds());
 		userCommerceMLRecommendation.setCompanyId(
 			serviceContext.getCompanyId());
 		userCommerceMLRecommendation.setCreateDate(new Date());

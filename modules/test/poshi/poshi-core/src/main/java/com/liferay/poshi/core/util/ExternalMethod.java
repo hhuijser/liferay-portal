@@ -80,11 +80,9 @@ public class ExternalMethod {
 
 		Method method = getMethod(clazz, methodName, parameters);
 
-		int modifiers = method.getModifiers();
-
 		Object object = null;
 
-		if (!Modifier.isStatic(modifiers)) {
+		if (!Modifier.isStatic(method.getModifiers())) {
 			object = clazz.newInstance();
 		}
 

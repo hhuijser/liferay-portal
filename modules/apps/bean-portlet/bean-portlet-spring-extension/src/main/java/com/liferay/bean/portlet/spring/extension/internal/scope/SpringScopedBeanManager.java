@@ -221,8 +221,6 @@ public class SpringScopedBeanManager {
 		PortletSerializable portletSerializable =
 			(PortletSerializable)springScopedBean.getContainerCreatedInstance();
 
-		String parameterName = _getParameterName(portletSerializable);
-
 		SpringScopedBeanManager springScopedBeanManager =
 			SpringScopedBeanManagerThreadLocal.getCurrentScopedBeanManager();
 
@@ -232,7 +230,8 @@ public class SpringScopedBeanManager {
 		RenderParameters renderParameters =
 			portletRequest.getRenderParameters();
 
-		String[] parameterValues = renderParameters.getValues(parameterName);
+		String[] parameterValues = renderParameters.getValues(
+			_getParameterName(portletSerializable));
 
 		if (parameterValues == null) {
 			parameterValues = new String[0];

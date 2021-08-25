@@ -68,13 +68,12 @@ public class BlogImagesDisplayContext {
 			BlogsEntryLocalServiceUtil.addAttachmentsFolder(
 				themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
 
-		int total = 0;
 		List<FileEntry> results = null;
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 
 		if (Validator.isNull(keywords)) {
-			total = PortletFileRepositoryUtil.getPortletFileEntriesCount(
+			int total = PortletFileRepositoryUtil.getPortletFileEntriesCount(
 				themeDisplay.getScopeGroupId(),
 				attachmentsFolder.getFolderId());
 
@@ -113,8 +112,6 @@ public class BlogImagesDisplayContext {
 			Hits hits = PortletFileRepositoryUtil.searchPortletFileEntries(
 				folder.getRepositoryId(), searchContext);
 
-			total = hits.getLength();
-
 			Document[] docs = hits.getDocs();
 
 			results = new ArrayList<>();
@@ -138,7 +135,7 @@ public class BlogImagesDisplayContext {
 				}
 			}
 
-			searchContainer.setTotal(total);
+			searchContainer.setTotal(hits.getLength());
 			searchContainer.setResults(results);
 		}
 	}

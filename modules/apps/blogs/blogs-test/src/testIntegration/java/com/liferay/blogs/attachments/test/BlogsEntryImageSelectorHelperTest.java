@@ -215,8 +215,6 @@ public class BlogsEntryImageSelectorHelperTest {
 	@Test
 	public void testGetImageSelectorWithTempImageFileEntry() throws Exception {
 		try (InputStream inputStream = getInputStream()) {
-			byte[] bytes = FileUtil.getBytes(inputStream);
-
 			FileEntry tempFileEntry = TempFileEntryUtil.addTempFileEntry(
 				_group.getGroupId(), TestPropsValues.getUserId(),
 				_TEMP_FOLDER_NAME, _IMAGE_TITLE, getInputStream(),
@@ -231,7 +229,8 @@ public class BlogsEntryImageSelectorHelperTest {
 				(ImageSelector)_getImageSelectorMethod.invoke(
 					blogsEntryImageSelectorHelper);
 
-			Assert.assertArrayEquals(bytes, imageSelector.getImageBytes());
+			Assert.assertArrayEquals(
+				FileUtil.getBytes(inputStream), imageSelector.getImageBytes());
 			Assert.assertEquals(_IMAGE_TITLE, imageSelector.getImageTitle());
 			Assert.assertEquals(
 				MimeTypesUtil.getContentType(_IMAGE_TITLE),

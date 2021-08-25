@@ -518,8 +518,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 
-		Calendar calendar = _calendarService.getCalendar(calendarId);
-
 		long[] childCalendarIds = ParamUtil.getLongValues(
 			actionRequest, "childCalendarIds");
 		long[] reinvitableCalendarIds = ParamUtil.getLongValues(
@@ -534,9 +532,6 @@ public class CalendarPortlet extends MVCPortlet {
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			actionRequest, "endTime");
 		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
-		Recurrence recurrence = getRecurrence(actionRequest);
-		long[] reminders = getReminders(actionRequest);
-		String[] remindersType = getRemindersType(actionRequest);
 		int instanceIndex = ParamUtil.getInteger(
 			actionRequest, "instanceIndex");
 		boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
@@ -548,12 +543,13 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarBooking.class.getName(), actionRequest);
 
 		CalendarBooking calendarBooking = updateCalendarBooking(
-			calendarBookingId, calendar, childCalendarIds,
-			reinvitableCalendarIds, titleMap, descriptionMap, location,
-			startTimeJCalendar.getTimeInMillis(),
-			endTimeJCalendar.getTimeInMillis(), allDay, recurrence, reminders,
-			remindersType, instanceIndex, updateCalendarBookingInstance,
-			allFollowing, serviceContext);
+			calendarBookingId, _calendarService.getCalendar(calendarId),
+			childCalendarIds, reinvitableCalendarIds, titleMap, descriptionMap,
+			location, startTimeJCalendar.getTimeInMillis(),
+			endTimeJCalendar.getTimeInMillis(), allDay,
+			getRecurrence(actionRequest), getReminders(actionRequest),
+			getRemindersType(actionRequest), instanceIndex,
+			updateCalendarBookingInstance, allFollowing, serviceContext);
 
 		String redirect = getRedirect(actionRequest, actionResponse);
 
@@ -1626,8 +1622,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
 
-		Calendar calendar = _calendarService.getCalendar(calendarId);
-
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			resourceRequest, "endTime");
 
@@ -1636,7 +1630,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 		boolean result =
 			_calendarBookingLocalService.hasExclusiveCalendarBooking(
-				calendar, startTimeJCalendar.getTimeInMillis(),
+				_calendarService.getCalendar(calendarId),
+				startTimeJCalendar.getTimeInMillis(),
 				endTimeJCalendar.getTimeInMillis());
 
 		JSONObject jsonObject = JSONUtil.put(

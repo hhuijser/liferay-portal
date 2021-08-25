@@ -54,7 +54,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -111,19 +110,18 @@ public class CommerceNotificationTemplateClayTable
 
 		return DropdownItemListBuilder.add(
 			dropdownItem -> {
-				PortletURL portletURL = PortletURLBuilder.create(
-					PortletProviderUtil.getPortletURL(
-						httpServletRequest, CommerceChannel.class.getName(),
-						PortletProvider.Action.MANAGE)
-				).setWindowState(
-					LiferayWindowState.POP_UP
-				).buildPortletURL();
-
 				long commerceChannelId = ParamUtil.getLong(
 					httpServletRequest, "commerceChannelId");
 
 				dropdownItem.setHref(
-					portletURL, "mvcRenderCommandName",
+					PortletURLBuilder.create(
+						PortletProviderUtil.getPortletURL(
+							httpServletRequest, CommerceChannel.class.getName(),
+							PortletProvider.Action.MANAGE)
+					).setWindowState(
+						LiferayWindowState.POP_UP
+					).buildPortletURL(),
+					"mvcRenderCommandName",
 					"/commerce_channels/edit_commerce_notification_template",
 					"commerceChannelId", String.valueOf(commerceChannelId),
 					"commerceNotificationTemplateId",

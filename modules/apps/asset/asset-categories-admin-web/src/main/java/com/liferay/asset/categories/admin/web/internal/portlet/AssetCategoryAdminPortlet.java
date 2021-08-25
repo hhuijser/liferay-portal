@@ -242,15 +242,13 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		AssetCategory category = _assetCategoryService.fetchCategory(
 			categoryId);
 
-		String[] categoryProperties = getCategoryProperties(actionRequest);
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			AssetCategory.class.getName(), actionRequest);
 
 		_assetCategoryService.updateCategory(
 			categoryId, category.getParentCategoryId(), category.getTitleMap(),
 			category.getDescriptionMap(), category.getVocabularyId(),
-			categoryProperties, serviceContext);
+			getCategoryProperties(actionRequest), serviceContext);
 	}
 
 	public void editVocabulary(

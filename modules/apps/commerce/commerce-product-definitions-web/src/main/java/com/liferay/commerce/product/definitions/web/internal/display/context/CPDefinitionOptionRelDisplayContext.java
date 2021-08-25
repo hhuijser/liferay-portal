@@ -166,9 +166,6 @@ public class CPDefinitionOptionRelDisplayContext
 	public List<DDMFormFieldType> getDDMFormFieldTypes()
 		throws PortalException {
 
-		List<DDMFormFieldType> ddmFormFieldTypes =
-			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
-
 		CPOptionConfiguration cpOptionConfiguration =
 			_configurationProvider.getConfiguration(
 				CPOptionConfiguration.class,
@@ -178,7 +175,8 @@ public class CPDefinitionOptionRelDisplayContext
 			cpOptionConfiguration.ddmFormFieldTypesAllowed();
 
 		return DDMFormFieldTypeUtil.getDDMFormFieldTypesAllowed(
-			ddmFormFieldTypes, ddmFormFieldTypesAllowed);
+			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes(),
+			ddmFormFieldTypesAllowed);
 	}
 
 	public String getItemSelectorUrl() {

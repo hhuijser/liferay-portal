@@ -55,18 +55,16 @@ public class AMImageAddConfigurationTest
 	public void testAddConfigurationEntryWithAlphanumericCharactersUuid()
 		throws Exception {
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "100"
-		).build();
-
 		String uuid = "one-2-three_four";
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			_amImageConfigurationHelper.addAMImageConfigurationEntry(
 				TestPropsValues.getCompanyId(), "one", "onedesc", uuid,
-				properties);
+				HashMapBuilder.put(
+					"max-height", "100"
+				).put(
+					"max-width", "100"
+				).build());
 
 		Assert.assertEquals(uuid, amImageConfigurationEntry.getUUID());
 	}

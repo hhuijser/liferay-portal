@@ -423,8 +423,6 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 		Date createDate, Date modifiedDate, String className, long classPK,
 		double score) {
 
-		long classNameId = _classNameLocalService.getClassNameId(className);
-
 		RatingsEntry ratingsEntry =
 			_ratingsEntryLocalService.createRatingsEntry(entryId);
 
@@ -433,7 +431,8 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 		ratingsEntry.setUserName(userName);
 		ratingsEntry.setCreateDate(createDate);
 		ratingsEntry.setModifiedDate(modifiedDate);
-		ratingsEntry.setClassNameId(classNameId);
+		ratingsEntry.setClassNameId(
+			_classNameLocalService.getClassNameId(className));
 		ratingsEntry.setClassPK(classPK);
 		ratingsEntry.setScore(score);
 
@@ -719,10 +718,6 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 					serviceContext.getCompanyId(), userId);
 			}
 
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.getSiteDefault(), userName
-			).build();
-
 			Map<Locale, String> descriptionMap = new HashMap<>();
 
 			return _calendarResourceLocalService.addCalendarResource(
@@ -730,7 +725,9 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 				_classNameLocalService.getClassNameId(User.class), userId, null,
 				null,
 				LocalizationUtil.populateLocalizationMap(
-					nameMap,
+					HashMapBuilder.put(
+						LocaleUtil.getSiteDefault(), userName
+					).build(),
 					LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 					groupId),
 				descriptionMap, true, serviceContext);
@@ -757,18 +754,16 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			userId = userIds[0];
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), group.getDescriptiveName()
-		).build();
-
 		Map<Locale, String> descriptionMap = new HashMap<>();
 
 		return _calendarResourceLocalService.addCalendarResource(
 			userId, groupId, _classNameLocalService.getClassNameId(Group.class),
 			groupId, null, null,
 			LocalizationUtil.populateLocalizationMap(
-				nameMap, LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
-				groupId),
+				HashMapBuilder.put(
+					LocaleUtil.getSiteDefault(), group.getDescriptiveName()
+				).build(),
+				LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()), groupId),
 			descriptionMap, true, serviceContext);
 	}
 

@@ -49,7 +49,6 @@ import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.io.Serializable;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -446,15 +445,6 @@ public class CommerceAccountLocalServiceImpl
 			int type, Boolean active, int start, int end, Sort sort)
 		throws PortalException {
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"parentAccountEntryId", parentCommerceAccountId
-			).put(
-				"status", () -> CommerceAccountImpl.toAccountEntryStatus(active)
-			).put(
-				"type", CommerceAccountImpl.toAccountEntryType(type)
-			).build();
-
 		String fieldName = null;
 		boolean reverse = false;
 
@@ -465,8 +455,16 @@ public class CommerceAccountLocalServiceImpl
 
 		BaseModelSearchResult<AccountEntry> baseModelSearchResult =
 			accountEntryLocalService.searchAccountEntries(
-				companyId, keywords, params, start, end - start, fieldName,
-				reverse);
+				companyId, keywords,
+				LinkedHashMapBuilder.<String, Object>put(
+					"parentAccountEntryId", parentCommerceAccountId
+				).put(
+					"status",
+					() -> CommerceAccountImpl.toAccountEntryStatus(active)
+				).put(
+					"type", CommerceAccountImpl.toAccountEntryType(type)
+				).build(),
+				start, end - start, fieldName, reverse);
 
 		return TransformUtil.transform(
 			baseModelSearchResult.getBaseModels(),

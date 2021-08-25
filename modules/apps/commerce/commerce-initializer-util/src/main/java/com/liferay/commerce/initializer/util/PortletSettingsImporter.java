@@ -122,8 +122,6 @@ public class PortletSettingsImporter {
 
 		String portletClassName = jsonObject.getString("portletClassName");
 
-		long classNameId = _portal.getClassNameId(portletClassName);
-
 		long resourceClassNameId = _portal.getClassNameId(
 			PortletDisplayTemplate.class);
 
@@ -137,7 +135,8 @@ public class PortletSettingsImporter {
 		}
 
 		DDMTemplate ddmTemplate = _cpFileImporter.getDDMTemplate(
-			file, classNameId, 0L, resourceClassNameId, name,
+			file, _portal.getClassNameId(portletClassName), 0L,
+			resourceClassNameId, name,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 			TemplateConstants.LANG_TYPE_FTL, serviceContext);
 

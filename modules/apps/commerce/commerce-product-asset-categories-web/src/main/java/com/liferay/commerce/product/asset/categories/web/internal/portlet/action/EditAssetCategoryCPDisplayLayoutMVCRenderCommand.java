@@ -38,7 +38,6 @@ import javax.portlet.RenderResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -69,8 +68,6 @@ public class EditAssetCategoryCPDisplayLayoutMVCRenderCommand
 		try {
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(renderRequest);
-			HttpServletResponse httpServletResponse =
-				_portal.getHttpServletResponse(renderResponse);
 
 			CategoryCPDisplayLayoutDisplayContext
 				categoryCPDisplayLayoutDisplayContext =
@@ -84,7 +81,9 @@ public class EditAssetCategoryCPDisplayLayoutMVCRenderCommand
 				WebKeys.PORTLET_DISPLAY_CONTEXT,
 				categoryCPDisplayLayoutDisplayContext);
 
-			requestDispatcher.include(httpServletRequest, httpServletResponse);
+			requestDispatcher.include(
+				httpServletRequest,
+				_portal.getHttpServletResponse(renderResponse));
 		}
 		catch (Exception exception) {
 			if (exception instanceof NoSuchCPDisplayLayoutException ||

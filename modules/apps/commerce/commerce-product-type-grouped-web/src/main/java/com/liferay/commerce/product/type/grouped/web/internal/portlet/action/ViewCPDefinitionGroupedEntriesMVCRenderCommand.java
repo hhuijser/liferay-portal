@@ -31,7 +31,6 @@ import javax.portlet.RenderResponse;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -62,8 +61,6 @@ public class ViewCPDefinitionGroupedEntriesMVCRenderCommand
 		try {
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(renderRequest);
-			HttpServletResponse httpServletResponse =
-				_portal.getHttpServletResponse(renderResponse);
 
 			CPDefinitionGroupedEntriesDisplayContext
 				cpDefinitionGroupedEntriesDisplayContext =
@@ -78,7 +75,9 @@ public class ViewCPDefinitionGroupedEntriesMVCRenderCommand
 			renderRequest.setAttribute(
 				"cpDefinitionServletContext", _cpDefinitionServletContext);
 
-			requestDispatcher.include(httpServletRequest, httpServletResponse);
+			requestDispatcher.include(
+				httpServletRequest,
+				_portal.getHttpServletResponse(renderResponse));
 		}
 		catch (Exception exception) {
 			throw new PortletException(

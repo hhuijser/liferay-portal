@@ -46,14 +46,13 @@ public class RecurrenceSplitterTest {
 
 	@Test
 	public void testSplitRecurrence() {
-		Recurrence recurrence = getRecurrence("RRULE:FREQ=DAILY;INTERVAL=1");
-
 		Calendar startTimeJCalendar = getJCalendar(1);
 
 		Calendar splitTimeJCalendar = getJCalendar(10);
 
 		RecurrenceSplit recurrenceSplit = _recurrenceSplitter.split(
-			recurrence, startTimeJCalendar, splitTimeJCalendar);
+			getRecurrence("RRULE:FREQ=DAILY;INTERVAL=1"), startTimeJCalendar,
+			splitTimeJCalendar);
 
 		assertSplit(recurrenceSplit);
 
@@ -169,14 +168,13 @@ public class RecurrenceSplitterTest {
 
 	@Test
 	public void testSplitRecurrenceWithSplitDateBeforeStartDate() {
-		Recurrence recurrence = getRecurrence("RRULE:FREQ=DAILY;INTERVAL=1");
-
 		Calendar startTimeJCalendar = getJCalendar(4);
 
 		Calendar splitTimeJCalendar = getJCalendar(1);
 
 		RecurrenceSplit recurrenceSplit = _recurrenceSplitter.split(
-			recurrence, startTimeJCalendar, splitTimeJCalendar);
+			getRecurrence("RRULE:FREQ=DAILY;INTERVAL=1"), startTimeJCalendar,
+			splitTimeJCalendar);
 
 		assertNotSplit(recurrenceSplit);
 

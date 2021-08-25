@@ -513,15 +513,13 @@ public class CPDefinitionsImporter {
 
 				double priceDouble = jsonObject.getDouble("price", 0);
 
-				BigDecimal price = BigDecimal.valueOf(priceDouble);
-
 				BigDecimal cost = BigDecimal.valueOf(
 					jsonObject.getDouble("cost", 0));
 
 				BigDecimal promoPrice = BigDecimal.valueOf(
 					jsonObject.getDouble("promoPrice", 0));
 
-				cpInstance.setPrice(price);
+				cpInstance.setPrice(BigDecimal.valueOf(priceDouble));
 				cpInstance.setPromoPrice(promoPrice);
 				cpInstance.setCost(cost);
 

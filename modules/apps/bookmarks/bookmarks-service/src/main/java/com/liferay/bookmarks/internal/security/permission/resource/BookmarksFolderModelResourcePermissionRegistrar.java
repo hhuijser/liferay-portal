@@ -31,8 +31,6 @@ import com.liferay.portal.kernel.security.permission.resource.StagedModelPermiss
 import com.liferay.portal.kernel.util.HashMapDictionaryBuilder;
 import com.liferay.portal.util.PropsValues;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -48,11 +46,6 @@ public class BookmarksFolderModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", BookmarksFolder.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<BookmarksFolder>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -80,7 +73,9 @@ public class BookmarksFolderModelResourcePermissionRegistrar {
 
 					return actionId;
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", BookmarksFolder.class.getName()
+			).build());
 	}
 
 	@Deactivate

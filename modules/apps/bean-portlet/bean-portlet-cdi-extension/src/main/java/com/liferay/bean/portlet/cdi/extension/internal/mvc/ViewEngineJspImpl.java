@@ -44,8 +44,6 @@ public class ViewEngineJspImpl implements ViewEngine {
 	public void processView(ViewEngineContext viewEngineContext)
 		throws ViewEngineException {
 
-		String view = viewEngineContext.getView();
-
 		String viewFolder = (String)_configuration.getProperty(
 			ViewEngine.VIEW_FOLDER);
 
@@ -53,7 +51,7 @@ public class ViewEngineJspImpl implements ViewEngine {
 			viewFolder = ViewEngine.DEFAULT_VIEW_FOLDER;
 		}
 
-		String viewPath = viewFolder.concat(view);
+		String viewPath = viewFolder.concat(viewEngineContext.getView());
 
 		PortletRequestDispatcher requestDispatcher =
 			_portletContext.getRequestDispatcher(viewPath);

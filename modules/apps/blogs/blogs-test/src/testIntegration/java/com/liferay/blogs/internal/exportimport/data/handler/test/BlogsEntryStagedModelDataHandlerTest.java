@@ -117,8 +117,6 @@ public class BlogsEntryStagedModelDataHandlerTest
 		BlogsEntry importedEntry = (BlogsEntry)getStagedModel(
 			entry.getUuid(), liveGroup);
 
-		long coverImageFileEntryId = importedEntry.getCoverImageFileEntryId();
-
 		initExport();
 
 		BlogsEntry updatedEntry = _updateBlogsEntry(entry);
@@ -138,7 +136,7 @@ public class BlogsEntryStagedModelDataHandlerTest
 			updatedEntry.getUuid(), liveGroup);
 
 		Assert.assertEquals(
-			coverImageFileEntryId,
+			importedEntry.getCoverImageFileEntryId(),
 			importedUpdatedEntry.getCoverImageFileEntryId());
 	}
 
@@ -193,8 +191,6 @@ public class BlogsEntryStagedModelDataHandlerTest
 		BlogsEntry importedEntry = (BlogsEntry)getStagedModel(
 			entry.getUuid(), liveGroup);
 
-		long smallImageFileEntryId = importedEntry.getSmallImageFileEntryId();
-
 		initExport();
 
 		BlogsEntry updatedEntry = _updateBlogsEntry(entry);
@@ -214,7 +210,7 @@ public class BlogsEntryStagedModelDataHandlerTest
 			updatedEntry.getUuid(), liveGroup);
 
 		Assert.assertEquals(
-			smallImageFileEntryId,
+			importedEntry.getSmallImageFileEntryId(),
 			importedUpdatedEntry.getSmallImageFileEntryId());
 	}
 

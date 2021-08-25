@@ -26,7 +26,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Dictionary;
 
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
@@ -115,11 +114,6 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
-			Dictionary<String, Object> applicationProperties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"oauth2.scope.checker.type", "annotations"
-				).build();
-
 			createFactoryConfiguration(
 				"com.liferay.oauth2.provider.scope.internal.configuration." +
 					"ConfigurableScopeMapperConfiguration",
@@ -129,7 +123,9 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated",
-				applicationProperties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"oauth2.scope.checker.type", "annotations"
+				).build());
 
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplication",

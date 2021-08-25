@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.util.PropsImpl;
 
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,19 +40,18 @@ public class DefaultBearerTokenProviderTest extends PowerMockito {
 	public void setUp() throws Exception {
 		PropsUtil.setProps(new PropsImpl());
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"access.token.expires.in", _ACCESS_TOKEN_EXPIRES_IN
-		).put(
-			"access.token.key.byte.size", _ACCESS_TOKEN_KEY_BYTE_SIZE
-		).put(
-			"refresh.token.expires.in", _REFRESH_TOKEN_EXPIRES_IN
-		).put(
-			"refresh.token.key.byte.size", _REFRESH_TOKEN_KEY_BYTE_SIZE
-		).build();
-
 		_defaultBearerTokenProvider = new DefaultBearerTokenProvider();
 
-		_defaultBearerTokenProvider.activate(properties);
+		_defaultBearerTokenProvider.activate(
+			HashMapBuilder.<String, Object>put(
+				"access.token.expires.in", _ACCESS_TOKEN_EXPIRES_IN
+			).put(
+				"access.token.key.byte.size", _ACCESS_TOKEN_KEY_BYTE_SIZE
+			).put(
+				"refresh.token.expires.in", _REFRESH_TOKEN_EXPIRES_IN
+			).put(
+				"refresh.token.key.byte.size", _REFRESH_TOKEN_KEY_BYTE_SIZE
+			).build());
 
 		mockStatic(SecureRandomUtil.class);
 

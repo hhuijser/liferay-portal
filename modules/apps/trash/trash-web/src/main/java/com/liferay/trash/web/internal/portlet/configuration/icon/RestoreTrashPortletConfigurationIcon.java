@@ -31,7 +31,6 @@ import com.liferay.trash.web.internal.display.context.TrashDisplayContext;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -67,36 +66,35 @@ public class RestoreTrashPortletConfigurationIcon
 
 			long classPK = trashDisplayContext.getClassPK();
 
-			PortletURL moveURL = PortletURLBuilder.create(
-				_portal.getControlPanelPortletURL(
-					portletRequest, TrashPortletKeys.TRASH,
-					PortletRequest.RENDER_PHASE)
-			).setMVCPath(
-				"/view_container_model.jsp"
-			).setRedirect(
-				trashDisplayContext.getViewContentRedirectURL()
-			).setParameter(
-				"classNameId", trashDisplayContext.getClassNameId()
-			).setParameter(
-				"classPK", classPK
-			).setParameter(
-				"containerModelClassNameId",
-				() -> {
-					TrashHandler trashHandler =
-						trashDisplayContext.getTrashHandler();
-
-					return _portal.getClassNameId(
-						trashHandler.getContainerModelClassName(classPK));
-				}
-			).setWindowState(
-				LiferayWindowState.POP_UP
-			).buildPortletURL();
-
 			StringBundler sb = new StringBundler(4);
 
 			sb.append(portletResponse.getNamespace());
 			sb.append("restoreDialog('");
-			sb.append(moveURL);
+			sb.append(
+				PortletURLBuilder.create(
+					_portal.getControlPanelPortletURL(
+						portletRequest, TrashPortletKeys.TRASH,
+						PortletRequest.RENDER_PHASE)
+				).setMVCPath(
+					"/view_container_model.jsp"
+				).setRedirect(
+					trashDisplayContext.getViewContentRedirectURL()
+				).setParameter(
+					"classNameId", trashDisplayContext.getClassNameId()
+				).setParameter(
+					"classPK", classPK
+				).setParameter(
+					"containerModelClassNameId",
+					() -> {
+						TrashHandler trashHandler =
+							trashDisplayContext.getTrashHandler();
+
+						return _portal.getClassNameId(
+							trashHandler.getContainerModelClassName(classPK));
+					}
+				).setWindowState(
+					LiferayWindowState.POP_UP
+				).buildPortletURL());
 			sb.append("')");
 
 			return sb.toString();

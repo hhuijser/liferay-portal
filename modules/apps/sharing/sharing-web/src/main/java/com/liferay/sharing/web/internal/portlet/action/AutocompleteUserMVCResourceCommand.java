@@ -80,15 +80,14 @@ public class AutocompleteUserMVCResourceCommand extends BaseMVCResourceCommand {
 				themeDisplay.getUserId());
 		}
 
-		JSONArray usersJSONArray = _getUsersJSONArray(httpServletRequest);
-
 		HttpServletResponse httpServletResponse =
 			_portal.getHttpServletResponse(resourceResponse);
 
 		httpServletResponse.setContentType(ContentTypes.APPLICATION_JSON);
 
 		JSONPortletResponseUtil.writeJSON(
-			resourceRequest, resourceResponse, usersJSONArray);
+			resourceRequest, resourceResponse,
+			_getUsersJSONArray(httpServletRequest));
 	}
 
 	private List<User> _getUsers(

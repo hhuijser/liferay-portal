@@ -130,8 +130,6 @@ public class UserSetDigestTest {
 
 		_company = CompanyTestUtil.addCompany();
 
-		long companyId = _company.getCompanyId();
-
 		String randomString = RandomTestUtil.randomString();
 
 		boolean autoPassword = false;
@@ -157,11 +155,12 @@ public class UserSetDigestTest {
 		boolean sendEmail = false;
 
 		_userLocalService.addUserWithWorkflow(
-			creatorUserId, companyId, autoPassword, password1, password2,
-			autoScreenName, screenName, emailAddress, locale, firstName,
-			middleName, lastName, prefixId, suffixId, male, birthdayMonth,
-			birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
-			roleIds, userGroupIds, sendEmail, new ServiceContext());
+			creatorUserId, _company.getCompanyId(), autoPassword, password1,
+			password2, autoScreenName, screenName, emailAddress, locale,
+			firstName, middleName, lastName, prefixId, suffixId, male,
+			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
+			organizationIds, roleIds, userGroupIds, sendEmail,
+			new ServiceContext());
 	}
 
 	@Inject

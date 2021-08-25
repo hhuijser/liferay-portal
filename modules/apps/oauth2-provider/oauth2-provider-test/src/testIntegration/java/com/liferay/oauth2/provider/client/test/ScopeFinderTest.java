@@ -98,13 +98,6 @@ public class ScopeFinderTest extends BaseClientTestCase {
 		protected void prepareTest() throws Exception {
 			ScopeFinder scopeFinder = Collections::emptyList;
 
-			Dictionary<String, Object> properties1 =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"oauth2.scope.checker.type", "annotations"
-				).put(
-					"osgi.jaxrs.name", "Test.Application"
-				).build();
-
 			Dictionary<String, Object> properties2 =
 				HashMapDictionaryBuilder.<String, Object>put(
 					"osgi.jaxrs.name", "Test.Application"
@@ -115,7 +108,12 @@ public class ScopeFinderTest extends BaseClientTestCase {
 			registerJaxRsApplication(
 				new TestRunnablePostHandlingApplication(
 					() -> registerScopeFinder(scopeFinder, properties2)),
-				"annotated", properties1);
+				"annotated",
+				HashMapDictionaryBuilder.<String, Object>put(
+					"oauth2.scope.checker.type", "annotations"
+				).put(
+					"osgi.jaxrs.name", "Test.Application"
+				).build());
 
 			long defaultCompanyId = PortalUtil.getDefaultCompanyId();
 

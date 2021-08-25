@@ -92,8 +92,6 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 				ContainerRequestFilter.class, Priorities.AUTHORIZATION - 8
 			).build());
 
-		Configuration configuration = context.getConfiguration();
-
 		Stream<CheckPattern> stream = _checkPatterns.stream();
 
 		_serviceRegistration = _bundleContext.registerService(
@@ -106,7 +104,7 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 				).collect(
 					Collectors.toSet()
 				)),
-			buildProperties(configuration));
+			buildProperties(context.getConfiguration()));
 
 		return true;
 	}

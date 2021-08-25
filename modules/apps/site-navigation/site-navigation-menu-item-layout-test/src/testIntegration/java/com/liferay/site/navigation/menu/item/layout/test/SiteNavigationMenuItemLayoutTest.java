@@ -37,8 +37,6 @@ import com.liferay.site.navigation.service.SiteNavigationMenuItemLocalServiceUti
 import com.liferay.site.navigation.service.SiteNavigationMenuLocalServiceUtil;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -75,10 +73,6 @@ public class SiteNavigationMenuItemLayoutTest {
 			TestPropsValues.getUserId(), _group.getGroupId(), "Auto Menu",
 			SiteNavigationConstants.TYPE_DEFAULT, true, serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
-
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
 
@@ -86,8 +80,11 @@ public class SiteNavigationMenuItemLayoutTest {
 			"addToAutoMenus", Boolean.FALSE.toString());
 
 		LayoutServiceUtil.addLayout(
-			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
-			new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			_group.getGroupId(), false, 0,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "welcome"
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
 			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
 			serviceContext);
@@ -108,10 +105,6 @@ public class SiteNavigationMenuItemLayoutTest {
 			TestPropsValues.getUserId(), _group.getGroupId(), "Primary Menu",
 			SiteNavigationConstants.TYPE_PRIMARY, true, serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
-
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
 
@@ -119,8 +112,11 @@ public class SiteNavigationMenuItemLayoutTest {
 			"addToAutoMenus", Boolean.FALSE.toString());
 
 		LayoutServiceUtil.addLayout(
-			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
-			new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			_group.getGroupId(), false, 0,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "welcome"
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
 			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
 			serviceContext);
@@ -148,10 +144,6 @@ public class SiteNavigationMenuItemLayoutTest {
 				"Primary Menu", SiteNavigationConstants.TYPE_PRIMARY, true,
 				serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
-
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
 
@@ -164,8 +156,11 @@ public class SiteNavigationMenuItemLayoutTest {
 				}));
 
 		LayoutServiceUtil.addLayout(
-			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
-			new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			_group.getGroupId(), false, 0,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "welcome"
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
 			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
 			serviceContext);
@@ -188,10 +183,6 @@ public class SiteNavigationMenuItemLayoutTest {
 				"Primary Menu", SiteNavigationConstants.TYPE_PRIMARY, true,
 				serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
-
 		UnicodeProperties typeSettingsUnicodeProperties =
 			new UnicodeProperties();
 
@@ -201,8 +192,11 @@ public class SiteNavigationMenuItemLayoutTest {
 				new long[] {siteNavigationMenu.getSiteNavigationMenuId()}));
 
 		LayoutServiceUtil.addLayout(
-			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
-			new HashMap<>(), new HashMap<>(), new HashMap<>(),
+			_group.getGroupId(), false, 0,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "welcome"
+			).build(),
+			new HashMap<>(), new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
 			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
 			serviceContext);

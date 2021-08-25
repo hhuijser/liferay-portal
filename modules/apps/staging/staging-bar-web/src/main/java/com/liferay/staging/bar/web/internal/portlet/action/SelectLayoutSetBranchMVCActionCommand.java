@@ -29,8 +29,6 @@ import com.liferay.staging.bar.web.internal.portlet.constants.StagingBarPortletK
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -54,9 +52,6 @@ public class SelectLayoutSetBranchMVCActionCommand
 		throws Exception {
 
 		try {
-			HttpServletRequest httpServletRequest =
-				_portal.getHttpServletRequest(actionRequest);
-
 			long groupId = ParamUtil.getLong(actionRequest, "groupId");
 			boolean privateLayout = ParamUtil.getBoolean(
 				actionRequest, "privateLayout");
@@ -72,7 +67,8 @@ public class SelectLayoutSetBranchMVCActionCommand
 					layoutSetBranchId);
 
 			_staging.setRecentLayoutSetBranchId(
-				httpServletRequest, layoutSet.getLayoutSetId(),
+				_portal.getHttpServletRequest(actionRequest),
+				layoutSet.getLayoutSetId(),
 				layoutSetBranch.getLayoutSetBranchId());
 
 			ActionUtil.addLayoutBranchSessionMessages(

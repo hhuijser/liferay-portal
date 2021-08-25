@@ -185,13 +185,10 @@ public class BaseHttpHandlerImpl implements HttpHandler {
 	protected List<NameValuePair> getParameters(HttpExchange httpExchange)
 		throws IOException {
 
-		String body = getBody(httpExchange);
-		String query = getQuery(httpExchange);
-
 		List<NameValuePair> parameters = new ArrayList<NameValuePair>();
 
-		parameters.addAll(_parseParameters(body));
-		parameters.addAll(_parseParameters(query));
+		parameters.addAll(_parseParameters(getBody(httpExchange)));
+		parameters.addAll(_parseParameters(getQuery(httpExchange)));
 
 		return parameters;
 	}

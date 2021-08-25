@@ -61,8 +61,6 @@ public class ObjectEntriesDetailsDisplayContext {
 	public String renderDDMForm(PageContext pageContext)
 		throws PortalException {
 
-		DDMForm ddmForm = _getDDMForm();
-
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
@@ -82,7 +80,7 @@ public class ObjectEntriesDetailsDisplayContext {
 
 		ddmFormRenderingContext.setShowRequiredFieldsWarning(true);
 
-		return _ddmFormRenderer.render(ddmForm, ddmFormRenderingContext);
+		return _ddmFormRenderer.render(_getDDMForm(), ddmFormRenderingContext);
 	}
 
 	private DDMForm _getDDMForm() {

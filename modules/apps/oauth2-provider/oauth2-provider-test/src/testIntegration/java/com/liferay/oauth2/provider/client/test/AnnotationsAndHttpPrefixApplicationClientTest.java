@@ -28,7 +28,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Dictionary;
 
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
@@ -104,28 +103,16 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 
 			User user = UserTestUtil.getAdminUser(defaultCompanyId);
 
-			Dictionary<String, Object> testApplicationProperties =
+			createFactoryConfiguration(
+				"com.liferay.oauth2.provider.scope.internal.configuration." +
+					"ConfigurableScopeMapperConfiguration",
 				HashMapDictionaryBuilder.<String, Object>put(
 					"osgi.jaxrs.name", TestApplication.class.getName()
-				).put(
-					"prefix", "methods"
-				).build();
+				).build());
 
-			Dictionary<String, Object> annotatedApplicationProperties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"oauth2.scope.checker.type", "annotations"
-				).put(
-					"osgi.jaxrs.name", TestAnnotatedApplication.class.getName()
-				).put(
-					"prefix", "annotations"
-				).build();
-
-			Dictionary<String, Object> scopeMapperProperties =
-				HashMapDictionaryBuilder.<String, Object>put(
-					"osgi.jaxrs.name", TestApplication.class.getName()
-				).build();
-
-			Dictionary<String, Object> bundlePrefixProperties =
+			createFactoryConfiguration(
+				"com.liferay.oauth2.provider.scope.internal.configuration." +
+					"BundlePrefixHandlerFactoryConfiguration",
 				HashMapDictionaryBuilder.<String, Object>put(
 					"include.bundle.symbolic.name", false
 				).put(
@@ -138,24 +125,25 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 					}
 				).put(
 					"service.properties", new String[] {"prefix"}
-				).build();
-
-			createFactoryConfiguration(
-				"com.liferay.oauth2.provider.scope.internal.configuration." +
-					"ConfigurableScopeMapperConfiguration",
-				scopeMapperProperties);
-
-			createFactoryConfiguration(
-				"com.liferay.oauth2.provider.scope.internal.configuration." +
-					"BundlePrefixHandlerFactoryConfiguration",
-				bundlePrefixProperties);
+				).build());
 
 			registerJaxRsApplication(
-				new TestApplication(), "methods", testApplicationProperties);
+				new TestApplication(), "methods",
+				HashMapDictionaryBuilder.<String, Object>put(
+					"osgi.jaxrs.name", TestApplication.class.getName()
+				).put(
+					"prefix", "methods"
+				).build());
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated",
-				annotatedApplicationProperties);
+				HashMapDictionaryBuilder.<String, Object>put(
+					"oauth2.scope.checker.type", "annotations"
+				).put(
+					"osgi.jaxrs.name", TestAnnotatedApplication.class.getName()
+				).put(
+					"prefix", "annotations"
+				).build());
 
 			createOAuth2Application(
 				defaultCompanyId, user, "oauthTestApplication",

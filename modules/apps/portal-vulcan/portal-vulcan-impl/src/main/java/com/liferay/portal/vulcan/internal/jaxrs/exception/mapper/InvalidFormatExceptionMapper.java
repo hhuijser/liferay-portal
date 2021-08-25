@@ -51,18 +51,17 @@ public class InvalidFormatExceptionMapper
 
 		Stream<JsonMappingException.Reference> stream = references.stream();
 
-		String path = stream.map(
-			JsonMappingException.Reference::getFieldName
-		).collect(
-			Collectors.joining(".")
-		);
-
 		Class<?> clazz = invalidFormatException.getTargetType();
 
 		String message = StringBundler.concat(
-			"Unable to map JSON path \"", path, "\" with value \"",
-			invalidFormatException.getValue(), "\" to class \"",
-			clazz.getSimpleName(), "\"");
+			"Unable to map JSON path \"",
+			stream.map(
+				JsonMappingException.Reference::getFieldName
+			).collect(
+				Collectors.joining(".")
+			),
+			"\" with value \"", invalidFormatException.getValue(),
+			"\" to class \"", clazz.getSimpleName(), "\"");
 
 		return new Problem(
 			invalidFormatException.getLocalizedMessage(),

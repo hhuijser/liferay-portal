@@ -50,7 +50,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.LiferayFileItemException;
 import com.liferay.portal.kernel.upload.UploadException;
-import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.upload.UploadRequestSizeException;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -148,13 +147,11 @@ public class EditPageAttachmentMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadPortletRequest uploadPortletRequest =
-			_portal.getUploadPortletRequest(actionRequest);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long nodeId = ParamUtil.getLong(uploadPortletRequest, "nodeId");
+		long nodeId = ParamUtil.getLong(
+			_portal.getUploadPortletRequest(actionRequest), "nodeId");
 		String fileName = ParamUtil.getString(actionRequest, "fileName");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();

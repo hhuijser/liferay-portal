@@ -442,6 +442,7 @@
 		<check name="JavaFinalVariableCheck">
 			<category name="Styling" />
 			<description name="Finds cases of unneeded `final` modifiers for variables and parameters." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaForLoopCheck">
 			<category name="Styling" />

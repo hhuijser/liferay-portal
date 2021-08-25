@@ -1297,6 +1297,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// KB article
 
 		User user = userLocalService.getUser(userId);
+
 		boolean main = false;
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {

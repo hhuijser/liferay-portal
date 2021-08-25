@@ -39,6 +39,10 @@ public class MethodNamingCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if (AnnotationUtil.containsAnnotation(detailAST, "Deprecated")) {
+			return;
+		}
+
 		String methodName = _getMethodName(detailAST);
 
 		if (isAttributeValue(_CHECK_SEARCH_METHOD_NAMES) &&

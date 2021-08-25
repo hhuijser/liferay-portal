@@ -141,9 +141,6 @@ public class RenderCollectionLayoutStructureItemDisplayContext {
 				currentPage = 1;
 			}
 
-			int numberOfItems =
-				_collectionStyledLayoutStructureItem.getNumberOfItems();
-
 			int numberOfItemsPerPage =
 				_collectionStyledLayoutStructureItem.getNumberOfItemsPerPage();
 
@@ -155,7 +152,9 @@ public class RenderCollectionLayoutStructureItemDisplayContext {
 			}
 
 			end = Math.min(
-				Math.min(currentPage * numberOfItemsPerPage, numberOfItems),
+				Math.min(
+					currentPage * numberOfItemsPerPage,
+					_collectionStyledLayoutStructureItem.getNumberOfItems()),
 				getCollectionCount());
 
 			start = (currentPage - 1) * numberOfItemsPerPage;

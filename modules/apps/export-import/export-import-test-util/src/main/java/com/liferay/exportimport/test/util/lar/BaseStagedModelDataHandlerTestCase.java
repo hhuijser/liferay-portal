@@ -517,14 +517,14 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 		User user = TestPropsValues.getUser();
 		String className = ExportImportClassedModelUtil.getClassName(
 			stagedModel);
-		long classPK = ExportImportClassedModelUtil.getClassPK(stagedModel);
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				stagingGroup.getGroupId(), user.getUserId());
 
 		CommentManagerUtil.addComment(
-			user.getUserId(), stagingGroup.getGroupId(), className, classPK,
+			user.getUserId(), stagingGroup.getGroupId(), className,
+			ExportImportClassedModelUtil.getClassPK(stagedModel),
 			user.getFullName(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(50),
 			new IdentityServiceContextFunction(serviceContext));

@@ -48,15 +48,13 @@ public class ControlPanelLayoutTypeAccessPolicy
 			Portlet portlet)
 		throws PortalException {
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
 		if (PortletPermissionUtil.hasControlPanelAccessPermission(
-				permissionChecker, themeDisplay.getScopeGroupId(), portlet) ||
+				PermissionThreadLocal.getPermissionChecker(),
+				themeDisplay.getScopeGroupId(), portlet) ||
 			isAccessGrantedByRuntimePortlet(httpServletRequest) ||
 			isAccessGrantedByPortletAuthenticationToken(
 				httpServletRequest, layout, portlet)) {

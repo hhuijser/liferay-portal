@@ -273,13 +273,11 @@ public class MentionsPortletTest {
 			String query)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = _getThemeDisplay();
-
 		MockLiferayResourceRequest mockLiferayResourceRequest =
 			new MockLiferayResourceRequest();
 
 		mockLiferayResourceRequest.setAttribute(
-			WebKeys.THEME_DISPLAY, themeDisplay);
+			WebKeys.THEME_DISPLAY, _getThemeDisplay());
 
 		if (query != null) {
 			mockLiferayResourceRequest.setParameter("query", query);

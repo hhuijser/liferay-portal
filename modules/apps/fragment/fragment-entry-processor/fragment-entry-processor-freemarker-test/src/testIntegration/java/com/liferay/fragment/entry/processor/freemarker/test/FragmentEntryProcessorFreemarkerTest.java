@@ -70,7 +70,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 import org.hamcrest.CoreMatchers;
@@ -213,23 +212,21 @@ public class FragmentEntryProcessorFreemarkerTest {
 	public void testProcessFragmentEntryLinkHTMLWithConfigurationCollectionSelector()
 		throws Exception {
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, "t1"
-		).build();
-
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.US, "c1"
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(), 0,
-			PortalUtil.getClassNameId(JournalArticle.class), titleMap, null,
-			contentMap, LocaleUtil.getSiteDefault(), false, true,
-			serviceContext);
+			PortalUtil.getClassNameId(JournalArticle.class),
+			HashMapBuilder.put(
+				LocaleUtil.US, "t1"
+			).build(),
+			null,
+			HashMapBuilder.put(
+				LocaleUtil.US, "c1"
+			).build(),
+			LocaleUtil.getSiteDefault(), false, true, serviceContext);
 
 		AssetListEntry assetListEntry =
 			_assetListEntryLocalService.addDynamicAssetListEntry(
@@ -238,20 +235,6 @@ public class FragmentEntryProcessorFreemarkerTest {
 				_getTypeSettings(
 					_group.getGroupId(), journalArticle.getClassNameId()),
 				serviceContext);
-
-		Map<String, String> editableValuesValues = HashMapBuilder.put(
-			"classNameId",
-			String.valueOf(
-				_portal.getClassNameId(AssetListEntry.class.getName()))
-		).put(
-			"classPK", String.valueOf(assetListEntry.getAssetListEntryId())
-		).put(
-			"itemType", assetListEntry.getAssetEntryType()
-		).put(
-			"title", assetListEntry.getTitle()
-		).put(
-			"type", InfoListItemSelectorReturnType.class.getName()
-		).build();
 
 		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry_with_configuration_collectionselector_dynamic_" +
@@ -267,7 +250,20 @@ public class FragmentEntryProcessorFreemarkerTest {
 			_readJSONFileToString(
 				"fragment_entry_link_editable_values_with_configuration_" +
 					"collectionselector_dynamic_collection.json",
-				editableValuesValues));
+				HashMapBuilder.put(
+					"classNameId",
+					String.valueOf(
+						_portal.getClassNameId(AssetListEntry.class.getName()))
+				).put(
+					"classPK",
+					String.valueOf(assetListEntry.getAssetListEntryId())
+				).put(
+					"itemType", assetListEntry.getAssetEntryType()
+				).put(
+					"title", assetListEntry.getTitle()
+				).put(
+					"type", InfoListItemSelectorReturnType.class.getName()
+				).build()));
 
 		DefaultFragmentEntryProcessorContext
 			defaultFragmentEntryProcessorContext =
@@ -363,27 +359,25 @@ public class FragmentEntryProcessorFreemarkerTest {
 	public void testProcessFragmentEntryLinkHTMLWithConfigurationItemSelectorJournalArticle()
 		throws Exception {
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.SPAIN, "t1-es"
-		).put(
-			LocaleUtil.US, "t1"
-		).build();
-
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.SPAIN, "c1-es"
-		).put(
-			LocaleUtil.US, "c1"
-		).build();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(), 0,
-			PortalUtil.getClassNameId(JournalArticle.class), titleMap, null,
-			contentMap, LocaleUtil.getSiteDefault(), false, true,
-			serviceContext);
+			PortalUtil.getClassNameId(JournalArticle.class),
+			HashMapBuilder.put(
+				LocaleUtil.SPAIN, "t1-es"
+			).put(
+				LocaleUtil.US, "t1"
+			).build(),
+			null,
+			HashMapBuilder.put(
+				LocaleUtil.SPAIN, "c1-es"
+			).put(
+				LocaleUtil.US, "c1"
+			).build(),
+			LocaleUtil.getSiteDefault(), false, true, serviceContext);
 
 		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry_with_configuration_itemselector_journal_article." +

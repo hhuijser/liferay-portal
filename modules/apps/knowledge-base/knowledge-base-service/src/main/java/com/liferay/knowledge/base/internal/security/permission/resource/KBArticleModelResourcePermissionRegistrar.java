@@ -31,8 +31,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PropsValues;
 
-import java.util.Dictionary;
-
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
@@ -48,11 +46,6 @@ public class KBArticleModelResourcePermissionRegistrar {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		Dictionary<String, Object> properties =
-			HashMapDictionaryBuilder.<String, Object>put(
-				"model.class.name", KBArticle.class.getName()
-			).build();
-
 		_serviceRegistration = bundleContext.registerService(
 			(Class<ModelResourcePermission<KBArticle>>)
 				(Class<?>)ModelResourcePermission.class,
@@ -78,7 +71,9 @@ public class KBArticleModelResourcePermissionRegistrar {
 								modelResourcePermission));
 					}
 				}),
-			properties);
+			HashMapDictionaryBuilder.<String, Object>put(
+				"model.class.name", KBArticle.class.getName()
+			).build());
 	}
 
 	@Deactivate

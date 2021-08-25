@@ -138,16 +138,13 @@ public class JournalSelectDDMTemplateDisplayContext {
 			templateSearch.setEmptyResultsMessage("no-templates-were-found");
 		}
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMTemplate> orderByComparator =
 			DDMUtil.getTemplateOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		templateSearch.setOrderByCol(orderByCol);
+		templateSearch.setOrderByCol(getOrderByCol());
 		templateSearch.setOrderByComparator(orderByComparator);
-		templateSearch.setOrderByType(orderByType);
+		templateSearch.setOrderByType(getOrderByType());
 
 		long[] groupIds =
 			SiteConnectedGroupGroupProviderUtil.

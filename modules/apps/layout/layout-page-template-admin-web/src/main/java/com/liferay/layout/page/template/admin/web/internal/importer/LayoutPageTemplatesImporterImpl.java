@@ -1074,11 +1074,9 @@ public class LayoutPageTemplatesImporterImpl
 				}
 			}
 
-			Settings settings = pageDefinition.getSettings();
-
 			layout = _layoutLocalService.fetchLayout(layout.getPlid());
 
-			_updateLayoutSettings(layout, settings);
+			_updateLayoutSettings(layout, pageDefinition.getSettings());
 		}
 
 		_updateLayoutPageTemplateStructure(layout, layoutStructure);

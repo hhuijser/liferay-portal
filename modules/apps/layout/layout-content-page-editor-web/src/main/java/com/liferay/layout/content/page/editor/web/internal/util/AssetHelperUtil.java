@@ -25,7 +25,6 @@ import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortlet
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.PortletPreferencesIds;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
-import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayRenderRequest;
 import com.liferay.portal.kernel.portlet.PortletConfigFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletInstanceFactoryUtil;
@@ -96,15 +95,13 @@ public class AssetHelperUtil {
 			(PortletResponse)liferayPortletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
 
-		LiferayPortletResponse liferayPortletResponse =
-			_portal.getLiferayPortletResponse(portletResponse);
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
 		return _assetHelper.getAssetPublisherAddItemHolders(
-			liferayPortletRequest, liferayPortletResponse,
+			liferayPortletRequest,
+			_portal.getLiferayPortletResponse(portletResponse),
 			assetListEntry.getGroupId(), assetEntryQuery.getClassNameIds(),
 			assetEntryQuery.getClassTypeIds(),
 			assetEntryQuery.getAllCategoryIds(), allTagNames,

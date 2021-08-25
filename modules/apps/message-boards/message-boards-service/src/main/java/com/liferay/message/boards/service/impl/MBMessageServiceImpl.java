@@ -527,7 +527,6 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 
 		Company company = companyLocalService.getCompany(companyId);
 
-		String name = company.getName();
 		String description = company.getName();
 
 		List<MBMessage> messages = new ArrayList<>();
@@ -560,8 +559,8 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 		}
 
 		return exportToRSS(
-			name, description, type, version, displayStyle, feedURL, entryURL,
-			messages, themeDisplay);
+			company.getName(), description, type, version, displayStyle,
+			feedURL, entryURL, messages, themeDisplay);
 	}
 
 	@Override

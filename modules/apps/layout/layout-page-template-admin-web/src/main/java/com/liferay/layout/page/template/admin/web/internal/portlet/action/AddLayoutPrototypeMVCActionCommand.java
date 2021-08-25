@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 import java.util.concurrent.Callable;
 
 import javax.portlet.ActionRequest;
@@ -79,25 +78,26 @@ public class AddLayoutPrototypeMVCActionCommand extends BaseMVCActionCommand {
 
 		Locale defaultLocale = LocaleUtil.getDefault();
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			themeDisplay.getSiteDefaultLocale(), name
-		).put(
-			defaultLocale,
-			() -> {
-				if (themeDisplay.getSiteDefaultLocale() != defaultLocale) {
-					return name;
-				}
-
-				return null;
-			}
-		).build();
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			LayoutPrototype.class.getName(), actionRequest);
 
 		LayoutPrototype layoutPrototype =
 			_layoutPrototypeService.addLayoutPrototype(
-				nameMap, new HashMap<>(), true, serviceContext);
+				HashMapBuilder.put(
+					themeDisplay.getSiteDefaultLocale(), name
+				).put(
+					defaultLocale,
+					() -> {
+						if (themeDisplay.getSiteDefaultLocale() !=
+								defaultLocale) {
+
+							return name;
+						}
+
+						return null;
+					}
+				).build(),
+				new HashMap<>(), true, serviceContext);
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.

@@ -414,14 +414,12 @@ public class DisplayPortlet extends BaseKBPortlet {
 			RenderRequest renderRequest, PortletPreferences portletPreferences)
 		throws PortalException {
 
-		PortalPreferences portalPreferences =
-			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest);
-
 		String contentRootPrefix = GetterUtil.getString(
 			portletPreferences.getValue("contentRootPrefix", null));
 
 		return KBUtil.getPreferredKBFolderURLTitle(
-			portalPreferences, contentRootPrefix);
+			PortletPreferencesFactoryUtil.getPortalPreferences(renderRequest),
+			contentRootPrefix);
 	}
 
 	@Reference(

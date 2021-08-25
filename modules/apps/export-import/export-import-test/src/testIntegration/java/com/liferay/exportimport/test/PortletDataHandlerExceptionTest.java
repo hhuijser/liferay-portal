@@ -743,7 +743,6 @@ public class PortletDataHandlerExceptionTest {
 		PortletDataException portletDataException =
 			(PortletDataException)exception;
 
-		String portletId = portletDataException.getPortletId();
 		int type = portletDataException.getType();
 
 		// At this point, the portlet ID is mandatory
@@ -751,7 +750,7 @@ public class PortletDataHandlerExceptionTest {
 		Assert.assertFalse(
 			"Exceptions coming from a PortletDataHandler has to have a " +
 				"portletId attribute",
-			Validator.isNull(portletId));
+			Validator.isNull(portletDataException.getPortletId()));
 
 		// It should also have a type by now
 

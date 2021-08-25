@@ -308,13 +308,12 @@ public class JournalUpgradeProcess extends UpgradeProcess {
 			String languageId = GetterUtil.getString(
 				staticContentElement.attributeValue("language-id"),
 				defaultLanguageId);
-			String text = staticContentElement.getText();
 
 			Element dynamicContentElement = SAXReaderUtil.createElement(
 				"dynamic-content");
 
 			dynamicContentElement.addAttribute("language-id", languageId);
-			dynamicContentElement.addCDATA(text);
+			dynamicContentElement.addCDATA(staticContentElement.getText());
 
 			dynamicElementElement.add(dynamicContentElement);
 		}

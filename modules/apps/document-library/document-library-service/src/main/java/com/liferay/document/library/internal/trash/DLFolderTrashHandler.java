@@ -274,8 +274,6 @@ public class DLFolderTrashHandler extends BaseDLTrashHandler {
 		TrashCapability trashCapability = documentRepository.getCapability(
 			TrashCapability.class);
 
-		Folder folder = documentRepository.getFolder(classPK);
-
 		Folder destinationFolder = null;
 
 		if (containerModelId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
@@ -283,7 +281,8 @@ public class DLFolderTrashHandler extends BaseDLTrashHandler {
 		}
 
 		trashCapability.moveFolderFromTrash(
-			userId, folder, destinationFolder, serviceContext);
+			userId, documentRepository.getFolder(classPK), destinationFolder,
+			serviceContext);
 	}
 
 	@Override

@@ -77,14 +77,13 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
-		DDMFormValues ddmFormValues = getDDMFormValues(actionRequest);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDLRecord.class.getName(), actionRequest);
 
 		ddlRecordService.addRecord(
 			groupId, recordSetId, DDLRecordConstants.DISPLAY_INDEX_DEFAULT,
-			ddmFormValues, serviceContext);
+			getDDMFormValues(actionRequest), serviceContext);
 	}
 
 	protected DDMForm getDDMForm(ActionRequest actionRequest)
@@ -126,12 +125,10 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 	protected DDMFormValues getDDMFormValues(ActionRequest actionRequest)
 		throws PortalException {
 
-		DDMForm ddmForm = getDDMForm(actionRequest);
-
 		String serializedDDMFormValues = ParamUtil.getString(
 			actionRequest, "ddmFormValues");
 
-		return deserialize(serializedDDMFormValues, ddmForm);
+		return deserialize(serializedDDMFormValues, getDDMForm(actionRequest));
 	}
 
 	@Reference(unbind = "-")

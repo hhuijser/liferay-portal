@@ -865,12 +865,11 @@ public class DDMFormEvaluatorHelper {
 		String propertyName) {
 
 		String fieldName = ddmFormEvaluatorFieldContextKey.getName();
-		String instanceId = ddmFormEvaluatorFieldContextKey.getInstanceId();
 
 		GetFieldPropertyRequest.Builder builder =
 			GetFieldPropertyRequest.Builder.newBuilder(fieldName, propertyName);
 
-		builder.withInstanceId(instanceId);
+		builder.withInstanceId(ddmFormEvaluatorFieldContextKey.getInstanceId());
 
 		GetFieldPropertyResponse getFieldPropertyResponse =
 			ddmFormEvaluatorDDMExpressionFieldAccessor.getFieldProperty(

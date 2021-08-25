@@ -43,7 +43,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -113,14 +112,6 @@ public class DDMTemplateStagedModelDataHandlerTest
 
 		DDMTemplateLocalServiceUtil.updateDDMTemplate(template);
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
-
 		String content = DDMStructureTestUtil.getSampleStructuredContent();
 
 		ServiceContext serviceContext =
@@ -131,9 +122,15 @@ public class DDMTemplateStagedModelDataHandlerTest
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
 				null, TestPropsValues.getUserId(), childGroup.getGroupId(),
-				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, titleMap,
-				descriptionMap, content, structure.getStructureKey(),
-				template.getTemplateKey(), serviceContext);
+				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				HashMapBuilder.put(
+					LocaleUtil.getDefault(), RandomTestUtil.randomString()
+				).build(),
+				HashMapBuilder.put(
+					LocaleUtil.getDefault(), RandomTestUtil.randomString()
+				).build(),
+				content, structure.getStructureKey(), template.getTemplateKey(),
+				serviceContext);
 
 		exportTemplateAndStructure(parentGroup, template, structure);
 

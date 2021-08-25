@@ -54,8 +54,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -157,10 +155,6 @@ public class DDMTemplateSearchTest {
 		_ddmStructure = DDMStructureTestUtil.addStructure(
 			JournalArticle.class.getName());
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "Test Template"
-		).build();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(false);
@@ -170,7 +164,10 @@ public class DDMTemplateSearchTest {
 			TestPropsValues.getUserId(), TestPropsValues.getGroupId(),
 			PortalUtil.getClassNameId(DDMStructure.class),
 			_ddmStructure.getStructureId(),
-			PortalUtil.getClassNameId(JournalArticle.class), null, nameMap,
+			PortalUtil.getClassNameId(JournalArticle.class), null,
+			HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "Test Template"
+			).build(),
 			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 			TemplateConstants.LANG_TYPE_VM,
 			DDMTemplateTestUtil.getSampleTemplateXSL(), false, false, null,

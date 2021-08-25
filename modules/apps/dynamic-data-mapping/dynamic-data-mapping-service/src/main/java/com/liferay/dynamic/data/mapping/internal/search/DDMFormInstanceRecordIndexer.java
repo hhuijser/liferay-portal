@@ -239,13 +239,11 @@ public class DDMFormInstanceRecordIndexer
 		long formInstanceId = GetterUtil.getLong(
 			document.get("formInstanceId"));
 
-		String title = getTitle(formInstanceId, locale);
-
 		Summary summary = createSummary(
 			document, Field.TITLE, Field.DESCRIPTION);
 
 		summary.setMaxContentLength(200);
-		summary.setTitle(title);
+		summary.setTitle(getTitle(formInstanceId, locale));
 
 		return summary;
 	}

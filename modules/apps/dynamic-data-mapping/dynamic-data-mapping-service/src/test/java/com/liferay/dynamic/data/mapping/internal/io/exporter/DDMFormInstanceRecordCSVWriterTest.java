@@ -42,16 +42,6 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 	@Test
 	public void testWrite() throws Exception {
-		Map<String, String> ddmFormFieldsLabel = LinkedHashMapBuilder.put(
-			"field1", "Field 1"
-		).put(
-			"field2", "Field 2"
-		).put(
-			"field3", "Field 3"
-		).put(
-			"field4", "Field 4"
-		).build();
-
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {
 				{
@@ -81,7 +71,16 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(
-				ddmFormFieldsLabel, ddmFormFieldValues);
+				LinkedHashMapBuilder.put(
+					"field1", "Field 1"
+				).put(
+					"field2", "Field 2"
+				).put(
+					"field3", "Field 3"
+				).put(
+					"field4", "Field 4"
+				).build(),
+				ddmFormFieldValues);
 
 		DDMFormInstanceRecordCSVWriter ddmFormInstanceRecordCSVWriter =
 			new DDMFormInstanceRecordCSVWriter();
@@ -101,14 +100,6 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 	@Test
 	public void testWriteAfterChangeFieldName() throws Exception {
-		Map<String, String> ddmFormFieldsLabel = LinkedHashMapBuilder.put(
-			"field1", "Field 1"
-		).put(
-			"field1AfterChangeName", "Field 1"
-		).put(
-			"field2", "Field 2"
-		).build();
-
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {
 				{
@@ -134,7 +125,14 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(
-				ddmFormFieldsLabel, ddmFormFieldValues);
+				LinkedHashMapBuilder.put(
+					"field1", "Field 1"
+				).put(
+					"field1AfterChangeName", "Field 1"
+				).put(
+					"field2", "Field 2"
+				).build(),
+				ddmFormFieldValues);
 
 		DDMFormInstanceRecordCSVWriter ddmFormInstanceRecordCSVWriter =
 			new DDMFormInstanceRecordCSVWriter();

@@ -50,8 +50,6 @@ public class RolesServletTest {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
-		MockHttpServletResponse mockHttpServletResponse =
-			new MockHttpServletResponse();
 
 		mockHttpServletRequest.setAttribute(
 			WebKeys.CURRENT_URL,
@@ -59,7 +57,7 @@ public class RolesServletTest {
 				"roles");
 
 		_ddmRolesServlet.service(
-			mockHttpServletRequest, mockHttpServletResponse);
+			mockHttpServletRequest, new MockHttpServletResponse());
 
 		Assert.assertNotNull(
 			mockHttpServletRequest.getAttribute(WebKeys.THEME_DISPLAY));

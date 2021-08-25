@@ -93,9 +93,6 @@ public class DDMFormValuesFactoryTest extends PowerMockito {
 
 	@Test
 	public void testCreateDefaultWithEmptyRequest() throws Exception {
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
 		DDMForm ddmForm = DDMFormTestUtil.createDDMForm();
 
 		DDMFormField nameDDMFormField = DDMFormTestUtil.createTextDDMFormField(
@@ -130,7 +127,7 @@ public class DDMFormValuesFactoryTest extends PowerMockito {
 		expectedDDMFormValues.addDDMFormFieldValue(nameDDMFormFieldValue);
 
 		DDMFormValues actualDDMFormValues = _ddmFormValuesFactory.create(
-			mockHttpServletRequest, ddmForm);
+			new MockHttpServletRequest(), ddmForm);
 
 		List<DDMFormFieldValue> actualDDMFormFieldValues =
 			actualDDMFormValues.getDDMFormFieldValues();

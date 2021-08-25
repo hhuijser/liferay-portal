@@ -27,7 +27,6 @@ import com.liferay.dynamic.data.mapping.kernel.Value;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -119,12 +118,10 @@ public class DDMStructureManagerTest {
 	public void testExtractAttributes() throws Exception {
 		DDMStructure structure = addStructure();
 
-		Document document = new DocumentImpl();
-
 		DDMFormValues ddmFormValues = createDDMFormValues();
 
 		_ddmStructureManager.addAttributes(
-			structure.getStructureId(), document, ddmFormValues);
+			structure.getStructureId(), new DocumentImpl(), ddmFormValues);
 
 		String attributes = _ddmStructureManager.extractAttributes(
 			structure.getStructureId(), ddmFormValues, LocaleUtil.US);

@@ -30,7 +30,6 @@ import com.liferay.taglib.servlet.PageContextFactoryUtil;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.PageContext;
 
@@ -77,15 +76,13 @@ public class CaptchaDDMFormFieldTemplateContextContributor
 		captchaTag.setUrl(
 			GetterUtil.getString(ddmFormField.getProperty("url")));
 
-		HttpServletRequest httpServletRequest =
-			ddmFormFieldRenderingContext.getHttpServletRequest();
 		HttpServletResponse httpServletResponse =
 			ddmFormFieldRenderingContext.getHttpServletResponse();
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
 		PageContext pageContext = PageContextFactoryUtil.create(
-			httpServletRequest,
+			ddmFormFieldRenderingContext.getHttpServletRequest(),
 			new PipingServletResponse(httpServletResponse, unsyncStringWriter));
 
 		captchaTag.setPageContext(pageContext);

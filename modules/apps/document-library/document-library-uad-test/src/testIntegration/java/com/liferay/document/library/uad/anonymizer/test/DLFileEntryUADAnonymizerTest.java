@@ -247,8 +247,6 @@ public class DLFileEntryUADAnonymizerTest
 		DLFileEntry dlFileEntry = _dlFileEntryLocalService.getDLFileEntry(
 			dlFileEntryId);
 
-		long userId = dlFileEntry.getUserId();
-
 		long fileEntryId = dlFileEntryId;
 		String sourceFileName = RandomTestUtil.randomString();
 		String contentType = ContentTypes.TEXT;
@@ -259,8 +257,8 @@ public class DLFileEntryUADAnonymizerTest
 		InputStream inputStream = dlFileEntry.getContentStream();
 
 		_dlAppLocalService.updateFileEntry(
-			userId, fileEntryId, sourceFileName, contentType, title,
-			description, changeLog,
+			dlFileEntry.getUserId(), fileEntryId, sourceFileName, contentType,
+			title, description, changeLog,
 			DLVersionNumberIncrease.fromMajorVersion(majorVersion), inputStream,
 			dlFileEntry.getSize(), null, null,
 			ServiceContextTestUtil.getServiceContext());

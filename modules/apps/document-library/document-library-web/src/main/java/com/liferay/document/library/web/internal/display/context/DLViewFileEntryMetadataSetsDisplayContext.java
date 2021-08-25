@@ -162,16 +162,13 @@ public class DLViewFileEntryMetadataSetsDisplayContext {
 		StructureSearch structureSearch = new StructureSearch(
 			_liferayPortletRequest, getPortletURL());
 
-		String orderByCol = getOrderByCol();
-		String orderByType = getOrderByType();
-
 		OrderByComparator<DDMStructure> orderByComparator =
 			DDMUtil.getStructureOrderByComparator(
 				getOrderByCol(), getOrderByType());
 
-		structureSearch.setOrderByCol(orderByCol);
+		structureSearch.setOrderByCol(getOrderByCol());
 		structureSearch.setOrderByComparator(orderByComparator);
-		structureSearch.setOrderByType(orderByType);
+		structureSearch.setOrderByType(getOrderByType());
 
 		if (structureSearch.isSearch()) {
 			structureSearch.setEmptyResultsMessage("no-results-were-found");

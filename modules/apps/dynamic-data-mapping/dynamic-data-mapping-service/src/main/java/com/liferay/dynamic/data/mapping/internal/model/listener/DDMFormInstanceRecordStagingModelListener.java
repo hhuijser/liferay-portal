@@ -78,14 +78,11 @@ public class DDMFormInstanceRecordStagingModelListener
 									ddmFormInstanceRecord));
 
 			if (stagedModelDataHandler != null) {
-				int[] exportableStatuses =
-					stagedModelDataHandler.getExportableStatuses();
-
 				DDMFormInstanceRecordVersion formInstanceRecordVersion =
 					ddmFormInstanceRecord.getFormInstanceRecordVersion();
 
 				if (ArrayUtil.contains(
-						exportableStatuses,
+						stagedModelDataHandler.getExportableStatuses(),
 						formInstanceRecordVersion.getStatus())) {
 
 					return false;

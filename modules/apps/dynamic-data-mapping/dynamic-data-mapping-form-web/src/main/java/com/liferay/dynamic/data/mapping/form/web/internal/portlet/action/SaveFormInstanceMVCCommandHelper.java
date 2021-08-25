@@ -105,6 +105,7 @@ public class SaveFormInstanceMVCCommandHelper {
 			DDMFormInstance.class.getName(), portletRequest);
 
 		long groupId = ParamUtil.getLong(portletRequest, "groupId");
+
 		String name = ParamUtil.getString(portletRequest, "name");
 		String description = ParamUtil.getString(portletRequest, "description");
 		DDMForm ddmForm = getDDMForm(portletRequest, serviceContext);

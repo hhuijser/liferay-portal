@@ -1445,14 +1445,12 @@ public class TableMapperTest {
 	public void testReverseTableMapper() {
 		Class<?> clazz = TableMapper.class;
 
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		RecordInvocationHandler recordInvocationHandler =
 			new RecordInvocationHandler();
 
 		TableMapper<Left, Right> tableMapper =
 			(TableMapper<Left, Right>)ProxyUtil.newProxyInstance(
-				classLoader, new Class<?>[] {TableMapper.class},
+				clazz.getClassLoader(), new Class<?>[] {TableMapper.class},
 				recordInvocationHandler);
 
 		ReverseTableMapper<Right, Left> reverseTableMapper =

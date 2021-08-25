@@ -77,7 +77,6 @@ public class LayoutRevisionLocalServiceImpl
 			layoutSetBranchPersistence.findByPrimaryKey(layoutSetBranchId);
 		parentLayoutRevisionId = getParentLayoutRevisionId(
 			layoutSetBranchId, parentLayoutRevisionId, plid);
-		Date date = new Date();
 
 		long layoutRevisionId = counterLocalService.increment();
 
@@ -105,7 +104,8 @@ public class LayoutRevisionLocalServiceImpl
 		layoutRevision.setColorSchemeId(colorSchemeId);
 		layoutRevision.setCss(css);
 		layoutRevision.setStatus(WorkflowConstants.STATUS_DRAFT);
-		layoutRevision.setStatusDate(serviceContext.getModifiedDate(date));
+		layoutRevision.setStatusDate(
+			serviceContext.getModifiedDate(new Date()));
 
 		layoutRevision = layoutRevisionPersistence.update(layoutRevision);
 

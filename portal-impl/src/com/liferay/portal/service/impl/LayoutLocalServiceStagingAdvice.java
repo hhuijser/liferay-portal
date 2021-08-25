@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.LayoutStagingHandler;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.SystemEventConstants;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiService;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.kernel.service.BaseLocalService;
@@ -573,12 +572,11 @@ public class LayoutLocalServiceStagingAdvice implements BeanFactoryAware {
 				userId = GetterUtil.getLong(PrincipalThreadLocal.getName());
 
 				if (userId > 0) {
-					User user = UserLocalServiceUtil.getUser(userId);
-
 					LayoutSet layoutSet = firstLayout.getLayoutSet();
 
 					layoutSetBranchId = StagingUtil.getRecentLayoutSetBranchId(
-						user, layoutSet.getLayoutSetId());
+						UserLocalServiceUtil.getUser(userId),
+						layoutSet.getLayoutSetId());
 				}
 			}
 			catch (Exception exception) {

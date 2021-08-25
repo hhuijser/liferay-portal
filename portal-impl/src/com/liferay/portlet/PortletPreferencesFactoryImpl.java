@@ -410,8 +410,6 @@ public class PortletPreferencesFactoryImpl
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		long siteGroupId = themeDisplay.getSiteGroupId();
-
 		LayoutTypePortlet layoutTypePortlet =
 			themeDisplay.getLayoutTypePortlet();
 
@@ -428,8 +426,9 @@ public class PortletPreferencesFactoryImpl
 		}
 
 		return _getPortletPreferencesIds(
-			themeDisplay, siteGroupId, PortalUtil.getUserId(httpServletRequest),
-			layout, portletId, modeEditGuest);
+			themeDisplay, themeDisplay.getSiteGroupId(),
+			PortalUtil.getUserId(httpServletRequest), layout, portletId,
+			modeEditGuest);
 	}
 
 	@Override

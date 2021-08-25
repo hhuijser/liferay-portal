@@ -76,12 +76,10 @@ public class SessionAuthToken implements AuthToken {
 			return;
 		}
 
-		long companyId = PortalUtil.getCompanyId(httpServletRequest);
-
 		String portletId = liferayPortletURL.getPortletId();
 
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			companyId, portletId);
+			PortalUtil.getCompanyId(httpServletRequest), portletId);
 
 		if ((portlet == null) || !portlet.isAddDefaultResource() ||
 			AuthTokenWhitelistUtil.isPortletURLPortletInvocationWhitelisted(

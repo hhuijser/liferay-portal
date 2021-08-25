@@ -40,7 +40,6 @@ public class PortletItemLocalServiceImpl
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
-		long classNameId = classNameLocalService.getClassNameId(className);
 
 		validate(name);
 
@@ -54,7 +53,8 @@ public class PortletItemLocalServiceImpl
 		portletItem.setUserName(user.getFullName());
 		portletItem.setName(name);
 		portletItem.setPortletId(portletId);
-		portletItem.setClassNameId(classNameId);
+		portletItem.setClassNameId(
+			classNameLocalService.getClassNameId(className));
 
 		return portletItemPersistence.update(portletItem);
 	}

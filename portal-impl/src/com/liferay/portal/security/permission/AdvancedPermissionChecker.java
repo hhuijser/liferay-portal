@@ -933,12 +933,13 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		long[] roleIds = getRoleIds(getUserId(), group.getGroupId());
-
 		Role role = RoleLocalServiceUtil.getRole(
 			group.getCompanyId(), RoleConstants.SITE_MEMBER);
 
-		if (Arrays.binarySearch(roleIds, role.getRoleId()) >= 0) {
+		if (Arrays.binarySearch(
+				getRoleIds(getUserId(), group.getGroupId()),
+				role.getRoleId()) >= 0) {
+
 			return true;
 		}
 

@@ -2370,6 +2370,39 @@ public class UserLocalServiceUtil {
 			emailAddress, status, params, andSearch, start, end, sorts);
 	}
 
+	public static List<User> searchBySocial(
+			long userId, int[] socialRelationTypes, String keywords, int start,
+			int end)
+		throws PortalException {
+
+		return getService().searchBySocial(
+			userId, socialRelationTypes, keywords, start, end);
+	}
+
+	public static List<User> searchBySocial(
+		long companyId, long[] groupIds, String keywords, int start, int end) {
+
+		return getService().searchBySocial(
+			companyId, groupIds, keywords, start, end);
+	}
+
+	public static List<User> searchBySocial(
+		long companyId, long[] groupIds, String keywords, int start, int end,
+		OrderByComparator<User> orderByComparator) {
+
+		return getService().searchBySocial(
+			companyId, groupIds, keywords, start, end, orderByComparator);
+	}
+
+	public static List<User> searchBySocial(
+			long[] groupIds, long userId, int[] socialRelationTypes,
+			String keywords, int start, int end)
+		throws PortalException {
+
+		return getService().searchBySocial(
+			groupIds, userId, socialRelationTypes, keywords, start, end);
+	}
+
 	/**
 	 * Returns the number of users who match the keywords and status.
 	 *
@@ -2427,6 +2460,11 @@ public class UserLocalServiceUtil {
 		return getService().searchCounts(companyId, status, groupIds);
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 #searchBySocial(long, int[], String, int, int)}
+	 */
+	@Deprecated
 	public static List<User> searchSocial(
 			long userId, int[] socialRelationTypes, String keywords, int start,
 			int end)
@@ -2436,6 +2474,11 @@ public class UserLocalServiceUtil {
 			userId, socialRelationTypes, keywords, start, end);
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 #searchBySocial(long, long[], String, int, int)}
+	 */
+	@Deprecated
 	public static List<User> searchSocial(
 		long companyId, long[] groupIds, String keywords, int start, int end) {
 
@@ -2443,6 +2486,12 @@ public class UserLocalServiceUtil {
 			companyId, groupIds, keywords, start, end);
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 #searchBySocial(long, long[], String, int, int,
+	 OrderByComparator)}
+	 */
+	@Deprecated
 	public static List<User> searchSocial(
 		long companyId, long[] groupIds, String keywords, int start, int end,
 		OrderByComparator<User> orderByComparator) {
@@ -2451,6 +2500,11 @@ public class UserLocalServiceUtil {
 			companyId, groupIds, keywords, start, end, orderByComparator);
 	}
 
+	/**
+	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
+	 #searchBySocial(long[], long, int[], String, int, int)}
+	 */
+	@Deprecated
 	public static List<User> searchSocial(
 			long[] groupIds, long userId, int[] socialRelationTypes,
 			String keywords, int start, int end)

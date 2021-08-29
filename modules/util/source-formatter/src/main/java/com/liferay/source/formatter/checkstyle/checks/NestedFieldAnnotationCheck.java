@@ -21,7 +21,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Alan Huang
@@ -70,37 +69,13 @@ public class NestedFieldAnnotationCheck extends BaseCheck {
 		}
 	}
 
-	private DetailAST _getAnnotationMemberValuePairDetailAST(
-		DetailAST annotationDetailAST, String key) {
-
-		List<DetailAST> annotationMemberValuePairDetailASTList =
-			getAllChildTokens(
-				annotationDetailAST, false,
-				TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
-
-		for (DetailAST annotationMemberValuePairDetailAST :
-				annotationMemberValuePairDetailASTList) {
-
-			DetailAST firstChildDetailAST =
-				annotationMemberValuePairDetailAST.getFirstChild();
-
-			if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
-				Objects.equals(firstChildDetailAST.getText(), key)) {
-
-				return annotationMemberValuePairDetailAST;
-			}
-		}
-
-		return null;
-	}
-
 	private List<String> _getServiceNamesList(DetailAST annotationDetailAST) {
 		if (annotationDetailAST == null) {
 			return Collections.emptyList();
 		}
 
 		DetailAST annotationMemberValuePairDetailAST =
-			_getAnnotationMemberValuePairDetailAST(
+			getAnnotationMemberValuePairDetailAST(
 				annotationDetailAST, "service");
 
 		if (annotationMemberValuePairDetailAST == null) {

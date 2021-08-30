@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.json;
 
 import com.liferay.petra.function.UnsafeFunction;
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
@@ -253,6 +254,44 @@ public class JSONUtil {
 		JSONObject jsonObject = _createJSONObject();
 
 		return jsonObject.put(key, value);
+	}
+
+	public static JSONObject put(
+		String key, UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+		JSONObject jsonObject = _createJSONObject();
+
+		try {
+			Object value = valueUnsafeSupplier.get();
+
+			if (value != null) {
+				jsonObject.put(key, value);
+			}
+		}
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
+		}
+
+		return jsonObject;
+	}
+
+	public static JSONArray put(
+		UnsafeSupplier<Object, Exception> valueUnsafeSupplier) {
+
+		JSONArray jsonArray = _createJSONArray();
+
+		try {
+			Object value = valueUnsafeSupplier.get();
+
+			if (value != null) {
+				jsonArray.put(value);
+			}
+		}
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
+		}
+
+		return jsonArray;
 	}
 
 	public static JSONArray putAll(Object... values) {

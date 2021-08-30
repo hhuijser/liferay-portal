@@ -9,6 +9,7 @@ dependencies {
 	compileOnly project(":apps:petra:petra-portlet-url-builder")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:wiki:wiki-api")
+	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")
 
 	testCompile group: "org.skyscreamer", name: "jsonassert", version: "1.2.3"

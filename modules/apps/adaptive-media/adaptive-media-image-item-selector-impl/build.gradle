@@ -5,5 +5,6 @@ dependencies {
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-item-selector-api");
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:item-selector:item-selector-api")
+	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")
 }

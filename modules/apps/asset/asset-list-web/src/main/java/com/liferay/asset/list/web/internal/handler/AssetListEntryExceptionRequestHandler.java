@@ -48,9 +48,6 @@ public class AssetListEntryExceptionRequestHandler {
 			_log.debug(portalException, portalException);
 		}
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String errorMessage = "an-unexpected-error-occurred";
 
 		if (portalException instanceof AssetListEntryTitleException) {
@@ -66,7 +63,15 @@ public class AssetListEntryExceptionRequestHandler {
 		}
 
 		JSONObject jsonObject = JSONUtil.put(
-			"error", LanguageUtil.get(themeDisplay.getRequest(), errorMessage));
+			"error",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)actionRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return LanguageUtil.get(
+					themeDisplay.getRequest(), errorMessage);
+			});
 
 		JSONPortletResponseUtil.writeJSON(
 			actionRequest, actionResponse, jsonObject);

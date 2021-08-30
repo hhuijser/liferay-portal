@@ -65,10 +65,14 @@ public class UpdateAssetListEntryMVCActionCommand extends BaseMVCActionCommand {
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(actionResponse);
 
-			PortletURL portletURL = liferayPortletResponse.createRenderURL();
-
 			JSONObject jsonObject = JSONUtil.put(
-				"redirectURL", portletURL.toString());
+				"redirectURL",
+				() -> {
+					PortletURL portletURL =
+						liferayPortletResponse.createRenderURL();
+
+					return portletURL.toString();
+				});
 
 			if (SessionErrors.contains(
 					actionRequest, "assetListEntryNameInvalid")) {

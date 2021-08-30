@@ -174,8 +174,6 @@ public class EditChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 			return Collections.emptyList();
 		}
 
-		Stream<String> stream = Arrays.stream(selectedGroupIds);
-
 		HttpResponse httpResponse = AnalyticsSettingsUtil.doPatch(
 			JSONUtil.put(
 				"dataSourceId",
@@ -183,17 +181,21 @@ public class EditChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 					themeDisplay.getCompanyId())
 			).put(
 				"groups",
-				JSONUtil.toJSONArray(
-					stream.map(
-						Long::valueOf
-					).map(
-						groupLocalService::fetchGroup
-					).filter(
-						Objects::nonNull
-					).collect(
-						Collectors.toList()
-					),
-					group -> _buildGroupJSONObject(group, themeDisplay))
+				() -> {
+					Stream<String> stream = Arrays.stream(selectedGroupIds);
+
+					return JSONUtil.toJSONArray(
+						stream.map(
+							Long::valueOf
+						).map(
+							groupLocalService::fetchGroup
+						).filter(
+							Objects::nonNull
+						).collect(
+							Collectors.toList()
+						),
+						group -> _buildGroupJSONObject(group, themeDisplay));
+				}
 			),
 			themeDisplay.getCompanyId(), "api/1.0/channels/" + channelId);
 

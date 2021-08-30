@@ -55,10 +55,6 @@ public class BatchEngineImportTaskStatusMVCResourceCommand
 			_batchEngineImportTaskLocalService.getBatchEngineImportTask(
 				batchEngineImportTaskId);
 
-		BatchEngineTaskExecuteStatus batchEngineTaskExecuteStatus =
-			BatchEngineTaskExecuteStatus.valueOf(
-				batchEngineImportTask.getExecuteStatus());
-
 		int percentage = 0;
 
 		if (batchEngineImportTask.getTotalItemsCount() != 0) {
@@ -70,7 +66,14 @@ public class BatchEngineImportTaskStatusMVCResourceCommand
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse,
 			JSONUtil.put(
-				"executeStatus", batchEngineTaskExecuteStatus.toString()
+				"executeStatus",
+				() -> {
+					BatchEngineTaskExecuteStatus batchEngineTaskExecuteStatus =
+						BatchEngineTaskExecuteStatus.valueOf(
+							batchEngineImportTask.getExecuteStatus());
+
+					return batchEngineTaskExecuteStatus.toString();
+				}
 			).put(
 				"percentage", percentage
 			));

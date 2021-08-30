@@ -129,9 +129,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			boolean male = (Boolean)buddy[4];
 			String middleName = (String)buddy[5];
 			long portraitId = (Long)buddy[6];
-			String screenName = (String)buddy[7];
 			long userId = (Long)buddy[8];
-			String userUuid = (String)buddy[9];
 
 			Status buddyStatus = StatusLocalServiceUtil.getUserStatus(userId);
 
@@ -176,9 +174,9 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				).put(
 					"portraitURL",
 					UserConstants.getPortraitURL(
-						StringPool.BLANK, male, portraitId, userUuid)
+						StringPool.BLANK, male, portraitId, (String)buddy[9])
 				).put(
-					"screenName", screenName
+					"screenName", (String)buddy[7]
 				).put(
 					"statusMessage", buddyStatus.getMessage()
 				).put(

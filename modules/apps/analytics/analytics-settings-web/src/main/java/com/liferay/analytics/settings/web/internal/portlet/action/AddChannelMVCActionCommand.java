@@ -152,8 +152,6 @@ public class AddChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 			return;
 		}
 
-		Stream<String> stream = Arrays.stream(selectedGroupIds);
-
 		HttpResponse httpResponse = AnalyticsSettingsUtil.doPost(
 			JSONUtil.put(
 				"channelType", channelType
@@ -163,17 +161,21 @@ public class AddChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 					themeDisplay.getCompanyId())
 			).put(
 				"groups",
-				JSONUtil.toJSONArray(
-					stream.map(
-						Long::valueOf
-					).map(
-						groupLocalService::fetchGroup
-					).filter(
-						Objects::nonNull
-					).collect(
-						Collectors.toList()
-					),
-					group -> _buildGroupJSONObject(group, themeDisplay))
+				() -> {
+					Stream<String> stream = Arrays.stream(selectedGroupIds);
+
+					return JSONUtil.toJSONArray(
+						stream.map(
+							Long::valueOf
+						).map(
+							groupLocalService::fetchGroup
+						).filter(
+							Objects::nonNull
+						).collect(
+							Collectors.toList()
+						),
+						group -> _buildGroupJSONObject(group, themeDisplay));
+				}
 			),
 			themeDisplay.getCompanyId(), "api/1.0/channels");
 

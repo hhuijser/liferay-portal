@@ -24,5 +24,6 @@ dependencies {
 	compileOnly project(":apps:knowledge-base:knowledge-base-api")
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly project(":apps:site:site-api")
+	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")
 }

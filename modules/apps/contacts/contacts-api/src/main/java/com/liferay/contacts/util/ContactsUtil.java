@@ -110,11 +110,11 @@ public class ContactsUtil {
 	public static JSONObject getUserJSONObject(long userId, User user)
 		throws PortalException {
 
-		boolean block = SocialRelationLocalServiceUtil.hasRelation(
-			userId, user.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
-
 		JSONObject jsonObject = JSONUtil.put(
-			"block", block
+			"block",
+			SocialRelationLocalServiceUtil.hasRelation(
+				userId, user.getUserId(),
+				SocialRelationConstants.TYPE_UNI_ENEMY)
 		).put(
 			"contactId", String.valueOf(user.getContactId())
 		).put(

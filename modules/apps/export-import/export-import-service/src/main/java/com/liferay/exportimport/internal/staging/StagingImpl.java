@@ -1252,22 +1252,15 @@ public class StagingImpl implements Staging {
 				layoutPrototypeException.getMissingLayoutPrototypes();
 
 			for (Tuple missingLayoutPrototype : missingLayoutPrototypes) {
-				String layoutPrototypeClassName =
-					(String)missingLayoutPrototype.getObject(0);
-				String layoutPrototypeName =
-					(String)missingLayoutPrototype.getObject(2);
-				String layoutPrototypeUuid =
-					(String)missingLayoutPrototype.getObject(1);
-
 				errorMessagesJSONArray.put(
 					JSONUtil.put(
-						"info", layoutPrototypeUuid
+						"info", (String)missingLayoutPrototype.getObject(1)
 					).put(
-						"name", layoutPrototypeName
+						"name", (String)missingLayoutPrototype.getObject(2)
 					).put(
 						"type",
 						ResourceActionsUtil.getModelResource(
-							locale, layoutPrototypeClassName)
+							locale, (String)missingLayoutPrototype.getObject(0))
 					));
 			}
 

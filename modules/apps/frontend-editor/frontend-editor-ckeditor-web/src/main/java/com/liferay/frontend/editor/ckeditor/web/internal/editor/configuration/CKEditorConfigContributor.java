@@ -191,28 +191,35 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Undo', 'Redo']"),
 			toJSONArray("['Styles', 'Bold', 'Italic', 'Underline']"),
 			toJSONArray("['NumberedList', 'BulletedList']"),
 			toJSONArray("['Link', Unlink]"),
-			toJSONArray("['Table', 'ImageSelector', 'VideoSelector']"));
+			toJSONArray("['Table', 'ImageSelector', 'VideoSelector']")
+		).put(
+			() -> {
+				if (AudioProcessorUtil.isEnabled() || XugglerUtil.isEnabled()) {
+					return toJSONArray("['AudioSelector']");
+				}
 
-		if (AudioProcessorUtil.isEnabled() || XugglerUtil.isEnabled()) {
-			jsonArray.put(toJSONArray("['AudioSelector']"));
-		}
+				return null;
+			}
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source', 'Expand']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source', 'Expand']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 	protected JSONArray getToolbarTextAdvancedJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Undo', 'Redo']"), toJSONArray("['Styles']"),
 			toJSONArray("['FontColor', 'BGColor']"),
 			toJSONArray("['Bold', 'Italic', 'Underline', 'Strikethrough']"),
@@ -220,29 +227,35 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 			toJSONArray("['NumberedList', 'BulletedList']"),
 			toJSONArray("['IncreaseIndent', 'DecreaseIndent']"),
 			toJSONArray("['IncreaseIndent', 'DecreaseIndent']"),
-			toJSONArray("['Link', Unlink]"));
+			toJSONArray("['Link', Unlink]")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source', 'Expand']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source', 'Expand']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 	protected JSONArray getToolbarTextSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Undo', 'Redo']"),
 			toJSONArray("['Styles', 'Bold', 'Italic', 'Underline']"),
 			toJSONArray("['NumberedList', 'BulletedList']"),
-			toJSONArray("['Link', Unlink]"));
+			toJSONArray("['Link', Unlink]")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source', 'Expand']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source', 'Expand']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 }

@@ -14,7 +14,6 @@
 
 package com.liferay.document.library.asset.auto.tagger.google.cloud.vision.internal.util;
 
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -29,9 +28,7 @@ public class GCloudVisionUtil {
 	public static String getAnnotateImagePayload(FileEntry fileEntry)
 		throws Exception {
 
-		FileVersion fileVersion = fileEntry.getFileVersion();
-
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"requests",
 			JSONUtil.put(
 				JSONUtil.put(
@@ -41,12 +38,16 @@ public class GCloudVisionUtil {
 					"image",
 					JSONUtil.put(
 						"content",
-						Base64.encode(
-							FileUtil.getBytes(
-								fileVersion.getContentStream(false))))
-				)));
+						() -> {
+							FileVersion fileVersion =
+								fileEntry.getFileVersion();
 
-		return jsonObject.toString();
+							return Base64.encode(
+								FileUtil.getBytes(
+									fileVersion.getContentStream(false)));
+						})
+				))
+		).toString();
 	}
 
 }

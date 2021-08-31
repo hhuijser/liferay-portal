@@ -269,18 +269,17 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long userId = ParamUtil.getLong(resourceRequest, "userId");
-
 		writeJSON(
 			resourceRequest, resourceResponse,
 			JSONUtil.put(
 				"success", Boolean.TRUE
 			).put(
 				"user",
-				getUserJSONObject(resourceResponse, themeDisplay, userId)
+				getUserJSONObject(
+					resourceResponse,
+					(ThemeDisplay)resourceRequest.getAttribute(
+						WebKeys.THEME_DISPLAY),
+					ParamUtil.getLong(resourceRequest, "userId"))
 			));
 	}
 

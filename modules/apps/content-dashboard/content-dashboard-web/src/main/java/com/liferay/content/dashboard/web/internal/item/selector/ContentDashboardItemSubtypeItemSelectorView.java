@@ -243,9 +243,6 @@ public class ContentDashboardItemSubtypeItemSelectorView
 
 		JSONArray itemSubtypesJSONArray = JSONFactoryUtil.createJSONArray();
 
-		InfoLocalizedValue<String> infoItemClassDetailsLabelInfoLocalizedValue =
-			infoItemClassDetails.getLabelInfoLocalizedValue();
-
 		for (InfoItemFormVariation infoItemFormVariation :
 				infoItemFormVariations) {
 
@@ -285,8 +282,14 @@ public class ContentDashboardItemSubtypeItemSelectorView
 				"itemSubtypes", itemSubtypesJSONArray
 			).put(
 				"label",
-				infoItemClassDetailsLabelInfoLocalizedValue.getValue(
-					themeDisplay.getLocale())
+				() -> {
+					InfoLocalizedValue<String>
+						infoItemClassDetailsLabelInfoLocalizedValue =
+							infoItemClassDetails.getLabelInfoLocalizedValue();
+
+					return infoItemClassDetailsLabelInfoLocalizedValue.getValue(
+						themeDisplay.getLocale());
+				}
 			));
 	}
 

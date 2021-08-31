@@ -724,15 +724,13 @@ public class GetEntryRenderDataMVCResourceCommand
 		HttpServletResponse httpServletResponse =
 			_portal.getHttpServletResponse(resourceResponse);
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"changeType", "production"
 		).put(
 			"leftTitle",
 			_language.get(
 				_portal.getHttpServletRequest(resourceRequest), "production")
-		);
-
-		jsonObject.put(
+		).put(
 			"leftRender",
 			_getRender(
 				httpServletRequest, httpServletResponse,
@@ -740,9 +738,8 @@ public class GetEntryRenderDataMVCResourceCommand
 				_ctDisplayRendererRegistry.getCTDisplayRenderer(
 					modelClassNameId),
 				0, CTSQLModeThreadLocal.CTSQLMode.DEFAULT,
-				themeDisplay.getLocale(), model, CTConstants.TYPE_BEFORE));
-
-		return jsonObject;
+				themeDisplay.getLocale(), model, CTConstants.TYPE_BEFORE)
+		);
 	}
 
 	private <T extends BaseModel<T>> String _getRender(

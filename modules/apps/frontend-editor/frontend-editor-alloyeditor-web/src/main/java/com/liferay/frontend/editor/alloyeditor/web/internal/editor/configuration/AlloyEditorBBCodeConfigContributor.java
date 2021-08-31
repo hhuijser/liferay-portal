@@ -130,11 +130,8 @@ public class AlloyEditorBBCodeConfigContributor
 	}
 
 	protected JSONObject getStyleFormatsJSONObject(Locale locale) {
-		JSONObject stylesJSONObject = JSONUtil.put(
-			"styles", getStyleFormatsJSONArray(locale));
-
 		return JSONUtil.put(
-			"cfg", stylesJSONObject
+			"cfg", JSONUtil.put("styles", getStyleFormatsJSONArray(locale))
 		).put(
 			"name", "styles"
 		);

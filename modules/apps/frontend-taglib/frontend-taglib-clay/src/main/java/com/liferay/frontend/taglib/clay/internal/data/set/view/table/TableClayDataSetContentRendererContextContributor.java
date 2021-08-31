@@ -97,27 +97,30 @@ public class TableClayDataSetContentRendererContextContributor
 				"label", label
 			).put(
 				"sortable", clayTableSchemaField.isSortable()
+			).put(
+				"fieldName",
+				() -> {
+					String fieldName = clayTableSchemaField.getFieldName();
+
+					if (fieldName.contains(StringPool.PERIOD)) {
+						return StringUtil.split(fieldName, StringPool.PERIOD);
+					}
+
+					return fieldName;
+				}
+			).put(
+				"sortingOrder",
+				() -> {
+					ClayTableSchemaField.SortingOrder sortingOrder =
+						clayTableSchemaField.getSortingOrder();
+
+					if (sortingOrder != null) {
+						return StringUtil.toLowerCase(sortingOrder.toString());
+					}
+
+					return null;
+				}
 			);
-
-			String fieldName = clayTableSchemaField.getFieldName();
-
-			if (fieldName.contains(StringPool.PERIOD)) {
-				jsonObject.put(
-					"fieldName",
-					StringUtil.split(fieldName, StringPool.PERIOD));
-			}
-			else {
-				jsonObject.put("fieldName", fieldName);
-			}
-
-			ClayTableSchemaField.SortingOrder sortingOrder =
-				clayTableSchemaField.getSortingOrder();
-
-			if (sortingOrder != null) {
-				jsonObject.put(
-					"sortingOrder",
-					StringUtil.toLowerCase(sortingOrder.toString()));
-			}
 
 			fieldsJSONArray.put(jsonObject);
 		}

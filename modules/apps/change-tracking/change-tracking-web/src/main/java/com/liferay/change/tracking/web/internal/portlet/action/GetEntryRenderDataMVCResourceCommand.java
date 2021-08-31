@@ -721,15 +721,13 @@ public class GetEntryRenderDataMVCResourceCommand
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		HttpServletResponse httpServletResponse =
-			_portal.getHttpServletResponse(resourceResponse);
-
 		return JSONUtil.put(
 			"changeType", "production"
 		).put(
 			"leftRender",
 			_getRender(
-				httpServletRequest, httpServletResponse,
+				httpServletRequest,
+				_portal.getHttpServletResponse(resourceResponse),
 				CTConstants.CT_COLLECTION_ID_PRODUCTION,
 				_ctDisplayRendererRegistry.getCTDisplayRenderer(
 					modelClassNameId),

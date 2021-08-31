@@ -63,10 +63,6 @@ public class DiffVersionComparatorTag extends IncludeTag {
 
 		HttpServletRequest httpServletRequest = getRequest();
 
-		String timeDescription = LanguageUtil.getTimeDescription(
-			httpServletRequest,
-			System.currentTimeMillis() - modifiedDate.getTime(), true);
-
 		String diffVersionString = String.valueOf(diffVersion.getVersion());
 
 		sourceURL.setParameter("sourceVersion", diffVersionString);
@@ -81,8 +77,14 @@ public class DiffVersionComparatorTag extends IncludeTag {
 
 		return JSONUtil.put(
 			"displayDate",
-			LanguageUtil.format(
-				httpServletRequest, "x-ago", timeDescription, false)
+			() -> {
+				String timeDescription = LanguageUtil.getTimeDescription(
+					httpServletRequest,
+					System.currentTimeMillis() - modifiedDate.getTime(), true);
+
+				return LanguageUtil.format(
+					httpServletRequest, "x-ago", timeDescription, false);
+			}
 		).put(
 			"inRange",
 			(diffVersion.getVersion() > _sourceVersion) &&

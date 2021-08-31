@@ -91,15 +91,14 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 					namespacedHttpServletRequest, "ajax", true);
 
 				if (ajax) {
-					String randomNamespace = ParamUtil.getString(
-						namespacedHttpServletRequest, "randomNamespace");
-
 					writeJSON(
 						namespacedHttpServletRequest, httpServletResponse,
 						JSONUtil.put(
 							"commentId", commentId
 						).put(
-							"randomNamespace", randomNamespace
+							"randomNamespace",
+							ParamUtil.getString(
+								namespacedHttpServletRequest, "randomNamespace")
 						));
 
 					return null;

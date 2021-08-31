@@ -165,8 +165,6 @@ public class CProductItemSelectorView
 				(ThemeDisplay)_httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
-			CPDefinition cpDefinition = _getCpDefinition();
-
 			return JSONUtil.put(
 				"className", CProduct.class.getName()
 			).put(
@@ -174,7 +172,12 @@ public class CProductItemSelectorView
 			).put(
 				"classPK", _cProduct.getCProductId()
 			).put(
-				"title", cpDefinition.getName(themeDisplay.getLanguageId())
+				"title",
+				() -> {
+					CPDefinition cpDefinition = _getCpDefinition();
+
+					return cpDefinition.getName(themeDisplay.getLanguageId());
+				}
 			).put(
 				"type",
 				ResourceActionsUtil.getModelResource(

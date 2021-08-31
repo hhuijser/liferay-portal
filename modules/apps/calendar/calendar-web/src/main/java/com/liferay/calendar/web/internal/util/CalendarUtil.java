@@ -134,10 +134,8 @@ public class CalendarUtil {
 			jsonObject.put(String.valueOf(year), monthJSONObject);
 
 			for (Integer month : months) {
-				List<Integer> days = monthsMap.get(month);
-
 				JSONObject dayJSONObject = JSONUtil.put(
-					StringUtil.merge(days), ruleName);
+					StringUtil.merge(monthsMap.get(month)), ruleName);
 
 				monthJSONObject.put(String.valueOf(month), dayJSONObject);
 			}

@@ -181,15 +181,18 @@ public class DDLImpl implements DDL {
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			LocalizedValue label = ddmFormField.getLabel();
-
 			jsonArray.put(
 				JSONUtil.put(
 					"dataType", ddmFormField.getDataType()
 				).put(
 					"editable", !ddmFormField.isReadOnly()
 				).put(
-					"label", label.getString(locale)
+					"label",
+					() -> {
+						LocalizedValue label = ddmFormField.getLabel();
+
+						return label.getString(locale);
+					}
 				).put(
 					"name", ddmFormField.getName()
 				).put(

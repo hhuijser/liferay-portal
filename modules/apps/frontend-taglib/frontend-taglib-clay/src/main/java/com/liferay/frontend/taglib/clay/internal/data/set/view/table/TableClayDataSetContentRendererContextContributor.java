@@ -94,10 +94,6 @@ public class TableClayDataSetContentRendererContextContributor
 			).put(
 				"expand", clayTableSchemaField.isExpand()
 			).put(
-				"label", label
-			).put(
-				"sortable", clayTableSchemaField.isSortable()
-			).put(
 				"fieldName",
 				() -> {
 					String fieldName = clayTableSchemaField.getFieldName();
@@ -108,6 +104,10 @@ public class TableClayDataSetContentRendererContextContributor
 
 					return fieldName;
 				}
+			).put(
+				"label", label
+			).put(
+				"sortable", clayTableSchemaField.isSortable()
 			).put(
 				"sortingOrder",
 				() -> {

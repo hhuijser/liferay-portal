@@ -727,10 +727,6 @@ public class GetEntryRenderDataMVCResourceCommand
 		return JSONUtil.put(
 			"changeType", "production"
 		).put(
-			"leftTitle",
-			_language.get(
-				_portal.getHttpServletRequest(resourceRequest), "production")
-		).put(
 			"leftRender",
 			_getRender(
 				httpServletRequest, httpServletResponse,
@@ -739,6 +735,10 @@ public class GetEntryRenderDataMVCResourceCommand
 					modelClassNameId),
 				0, CTSQLModeThreadLocal.CTSQLMode.DEFAULT,
 				themeDisplay.getLocale(), model, CTConstants.TYPE_BEFORE)
+		).put(
+			"leftTitle",
+			_language.get(
+				_portal.getHttpServletRequest(resourceRequest), "production")
 		);
 	}
 

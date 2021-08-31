@@ -102,53 +102,60 @@ public class CKEditorCreoleConfigContributor
 	protected JSONArray getToolbarsCreoleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Bold', 'Italic', 'Underline', '-' ,'RemoveFormat']"),
 			toJSONArray("['NumberedList', 'BulletedList', '-']"),
 			toJSONArray("['Format']"), toJSONArray("['Link', 'Unlink']"),
-			toJSONArray(
-				"['Table', '-','ImageSelector', '-', 'HorizontalRule']"));
+			toJSONArray("['Table', '-','ImageSelector', '-', 'HorizontalRule']")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source']"));
-		}
-
-		jsonArray.put(toJSONArray("['A11YBtn']"));
-
-		return jsonArray;
+				return null;
+			}
+		).put(
+			toJSONArray("['A11YBtn']")
+		);
 	}
 
 	protected JSONArray getToolbarsPhoneJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Bold', 'Italic']"),
 			toJSONArray("['NumberedList', 'BulletedList']"),
-			toJSONArray("['Link', 'Unlink']"),
-			toJSONArray("['ImageSelector']"));
+			toJSONArray("['Link', 'Unlink']"), toJSONArray("['ImageSelector']")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 	protected JSONArray getToolbarsTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Bold', 'Italic']"),
 			toJSONArray(
 				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"),
 			toJSONArray("['Format']"), toJSONArray("['Link', 'Unlink']"),
-			toJSONArray("['ImageSelector']"));
+			toJSONArray("['ImageSelector']")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 }

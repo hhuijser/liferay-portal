@@ -244,7 +244,6 @@ public class ListUtilCheck extends BaseCheck {
 			return;
 		}
 
-		//
 		DetailAST parentDetailAST = detailAST.getParent();
 
 		if (parentDetailAST.getType() != TokenTypes.LOR) {

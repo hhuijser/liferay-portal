@@ -35,12 +35,14 @@ import javax.servlet.http.HttpSession;
  */
 public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 
-	public PortletSessionAttributeMap(HttpSession session) {
-		this(session, null);
+	public PortletSessionAttributeMap(HttpSession httpSession) {
+		this(httpSession, null);
 	}
 
-	public PortletSessionAttributeMap(HttpSession session, String scopePrefix) {
-		this.session = session;
+	public PortletSessionAttributeMap(
+		HttpSession httpSession, String scopePrefix) {
+
+		this.session = httpSession;
 		this.scopePrefix = scopePrefix;
 	}
 

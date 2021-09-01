@@ -25,8 +25,8 @@ import javax.servlet.http.HttpSessionContext;
  */
 public class HttpSessionWrapper implements HttpSession {
 
-	public HttpSessionWrapper(HttpSession session) {
-		_session = session;
+	public HttpSessionWrapper(HttpSession httpSession) {
+		_session = httpSession;
 	}
 
 	@Override

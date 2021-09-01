@@ -128,7 +128,7 @@ public class AuthenticatedSessionManagerImpl
 
 		CookieKeys.validateSupportCookie(httpServletRequest);
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
 		Company company = PortalUtil.getCompany(httpServletRequest);
 
@@ -140,7 +140,7 @@ public class AuthenticatedSessionManagerImpl
 		}
 
 		if (PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) {
-			session = renewSession(httpServletRequest, session);
+			httpSession = renewSession(httpServletRequest, httpSession);
 		}
 
 		// Set cookies
@@ -153,19 +153,19 @@ public class AuthenticatedSessionManagerImpl
 
 		String userIdString = String.valueOf(user.getUserId());
 
-		session.setAttribute("j_username", userIdString);
+		httpSession.setAttribute("j_username", userIdString);
 
 		if (PropsValues.PORTAL_JAAS_PLAIN_PASSWORD) {
-			session.setAttribute("j_password", password);
+			httpSession.setAttribute("j_password", password);
 		}
 		else {
-			session.setAttribute("j_password", user.getPassword());
+			httpSession.setAttribute("j_password", user.getPassword());
 		}
 
-		session.setAttribute("j_remoteuser", userIdString);
+		httpSession.setAttribute("j_remoteuser", userIdString);
 
 		if (PropsValues.SESSION_STORE_PASSWORD) {
-			session.setAttribute(WebKeys.USER_PASSWORD, password);
+			httpSession.setAttribute(WebKeys.USER_PASSWORD, password);
 		}
 
 		Cookie companyIdCookie = new Cookie(
@@ -211,7 +211,7 @@ public class AuthenticatedSessionManagerImpl
 			!StringUtil.equalsIgnoreCase(
 				Http.HTTPS, PropsValues.WEB_SERVER_PROTOCOL)) {
 
-			Boolean httpsInitial = (Boolean)session.getAttribute(
+			Boolean httpsInitial = (Boolean)httpSession.getAttribute(
 				WebKeys.HTTPS_INITIAL);
 
 			if ((httpsInitial == null) || !httpsInitial.booleanValue()) {
@@ -295,7 +295,7 @@ public class AuthenticatedSessionManagerImpl
 
 		userUUIDCookie.setPath(StringPool.SLASH);
 
-		session.setAttribute(CookieKeys.USER_UUID, userUUID);
+		httpSession.setAttribute(CookieKeys.USER_UUID, userUUID);
 
 		if (rememberMe) {
 			userUUIDCookie.setMaxAge(loginMaxAge);
@@ -316,7 +316,7 @@ public class AuthenticatedSessionManagerImpl
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
 		EventsProcessorUtil.process(
 			PropsKeys.LOGOUT_EVENTS_PRE, PropsValues.LOGOUT_EVENTS_PRE,
@@ -344,7 +344,7 @@ public class AuthenticatedSessionManagerImpl
 		}
 
 		try {
-			session.invalidate();
+			httpSession.invalidate();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

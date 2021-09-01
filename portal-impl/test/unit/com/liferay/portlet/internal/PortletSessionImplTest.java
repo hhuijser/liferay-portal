@@ -140,11 +140,11 @@ public class PortletSessionImplTest {
 		Assert.assertEquals(
 			Integer.MAX_VALUE, _mockHttpSession.getMaxInactiveInterval());
 
-		HttpSession session = new MockHttpSession();
+		HttpSession httpSession = new MockHttpSession();
 
-		portletSessionImpl.setHttpSession(session);
+		portletSessionImpl.setHttpSession(httpSession);
 
-		Assert.assertSame(session, portletSessionImpl.session);
+		Assert.assertSame(httpSession, portletSessionImpl.httpSession);
 	}
 
 	@Test

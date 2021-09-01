@@ -39,13 +39,13 @@ public class CompoundSessionIdServletRequest
 
 	@Override
 	public HttpSession getSession(boolean create) {
-		HttpSession session = super.getSession(create);
+		HttpSession httpSession = super.getSession(create);
 
-		if (session == null) {
-			return session;
+		if (httpSession == null) {
+			return httpSession;
 		}
 
-		return _getCompoundSessionIdHttpSession(session);
+		return _getCompoundSessionIdHttpSession(httpSession);
 	}
 
 	private CompoundSessionIdHttpSession _getCompoundSessionIdHttpSession(

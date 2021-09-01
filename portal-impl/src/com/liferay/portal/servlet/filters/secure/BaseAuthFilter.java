@@ -344,14 +344,14 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 	}
 
 	protected HttpServletRequest setCredentials(
-			HttpServletRequest httpServletRequest, HttpSession session,
+			HttpServletRequest httpServletRequest, HttpSession httpSession,
 			User user, String authType)
 		throws Exception {
 
 		httpServletRequest = new ProtectedServletRequest(
 			httpServletRequest, String.valueOf(user.getUserId()), authType);
 
-		session.setAttribute(WebKeys.USER, user);
+		httpSession.setAttribute(WebKeys.USER, user);
 
 		PrincipalThreadLocal.setPassword(
 			PortalUtil.getUserPassword(httpServletRequest));

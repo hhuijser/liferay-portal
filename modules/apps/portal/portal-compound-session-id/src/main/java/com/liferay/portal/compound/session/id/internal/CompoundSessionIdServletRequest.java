@@ -49,16 +49,17 @@ public class CompoundSessionIdServletRequest
 	}
 
 	private CompoundSessionIdHttpSession _getCompoundSessionIdHttpSession(
-		HttpSession session) {
+		HttpSession httpSession) {
 
 		if ((_compoundSessionIdHttpSession != null) &&
-			(session == _compoundSessionIdHttpSession.getWrappedSession())) {
+			(httpSession ==
+				_compoundSessionIdHttpSession.getWrappedSession())) {
 
 			return _compoundSessionIdHttpSession;
 		}
 
 		_compoundSessionIdHttpSession = new CompoundSessionIdHttpSession(
-			session);
+			httpSession);
 
 		return _compoundSessionIdHttpSession;
 	}

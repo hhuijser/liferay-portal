@@ -303,7 +303,7 @@ public class LayoutsTreeImpl implements LayoutsTree {
 	}
 
 	private int _getLoadedLayoutsCount(
-			HttpSession session, long groupId, boolean privateLayout,
+			HttpSession httpSession, long groupId, boolean privateLayout,
 			long layoutId, String treeId)
 		throws Exception {
 
@@ -312,7 +312,7 @@ public class LayoutsTreeImpl implements LayoutsTree {
 			":Pagination");
 
 		String paginationJSON = SessionClicks.get(
-			session, key, JSONFactoryUtil.getNullJSON());
+			httpSession, key, JSONFactoryUtil.getNullJSON());
 
 		JSONObject paginationJSONObject = JSONFactoryUtil.createJSONObject(
 			paginationJSON);

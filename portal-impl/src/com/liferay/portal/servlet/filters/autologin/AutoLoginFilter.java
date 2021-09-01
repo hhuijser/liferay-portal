@@ -181,9 +181,9 @@ public class AutoLoginFilter extends BasePortalFilter {
 
 		String remoteUser = httpServletRequest.getRemoteUser();
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
-		String jUserName = (String)session.getAttribute("j_username");
+		String jUserName = (String)httpSession.getAttribute("j_username");
 
 		if (!PropsValues.AUTH_LOGIN_DISABLED && (remoteUser == null) &&
 			(jUserName == null)) {
@@ -203,7 +203,7 @@ public class AutoLoginFilter extends BasePortalFilter {
 					}
 
 					String loginRemoteUser = getLoginRemoteUser(
-						httpServletRequest, httpServletResponse, session,
+						httpServletRequest, httpServletResponse, httpSession,
 						credentials);
 
 					if (loginRemoteUser != null) {

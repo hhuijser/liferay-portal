@@ -36,20 +36,20 @@ import javax.servlet.http.HttpSessionContext;
 public class SharedSessionWrapper implements HttpSession {
 
 	public SharedSessionWrapper(
-		HttpSession portalSession, HttpSession portletSession) {
+		HttpSession portalHttpSession, HttpSession portletHttpSession) {
 
-		if (portalSession == null) {
-			_portalSession = new NullSession();
+		if (portalHttpSession == null) {
+			_portalHttpSession = new NullSession();
 
 			if (_log.isWarnEnabled()) {
 				_log.warn("Wrapped portal session is null");
 			}
 		}
 		else {
-			_portalSession = portalSession;
+			_portalHttpSession = portalHttpSession;
 		}
 
-		_portletSession = portletSession;
+		_portletHttpSession = portletHttpSession;
 	}
 
 	@Override
@@ -65,14 +65,14 @@ public class SharedSessionWrapper implements HttpSession {
 
 		Enumeration<String> namesEnumeration = httpSession.getAttributeNames();
 
-		if (httpSession == _portletSession) {
+		if (httpSession == _portletHttpSession) {
 			List<String> namesList = Collections.list(namesEnumeration);
 
-			Enumeration<String> portalSessionNamesEnumeration =
-				_portalSession.getAttributeNames();
+			Enumeration<String> portalHttpSessionNamesEnumeration =
+				_portalHttpSession.getAttributeNames();
 
-			while (portalSessionNamesEnumeration.hasMoreElements()) {
-				String name = portalSessionNamesEnumeration.nextElement();
+			while (portalHttpSessionNamesEnumeration.hasMoreElements()) {
+				String name = portalHttpSessionNamesEnumeration.nextElement();
 
 				if (containsSharedAttribute(name)) {
 					namesList.add(name);
@@ -215,26 +215,26 @@ public class SharedSessionWrapper implements HttpSession {
 	}
 
 	protected HttpSession getSessionDelegate() {
-		if (_portletSession != null) {
-			return _portletSession;
+		if (_portletHttpSession != null) {
+			return _portletHttpSession;
 		}
 
-		return _portalSession;
+		return _portalHttpSession;
 	}
 
 	protected HttpSession getSessionDelegate(String name) {
-		if (_portletSession == null) {
-			return _portalSession;
+		if (_portletHttpSession == null) {
+			return _portalHttpSession;
 		}
 
 		if (_sharedSessionAttributesExcludes.containsKey(name)) {
-			return _portletSession;
+			return _portletHttpSession;
 		}
 		else if (containsSharedAttribute(name)) {
-			return _portalSession;
+			return _portalHttpSession;
 		}
 
-		return _portletSession;
+		return _portletHttpSession;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
@@ -251,7 +251,7 @@ public class SharedSessionWrapper implements HttpSession {
 			}
 		};
 
-	private final HttpSession _portalSession;
-	private HttpSession _portletSession;
+	private final HttpSession _portalHttpSession;
+	private HttpSession _portletHttpSession;
 
 }

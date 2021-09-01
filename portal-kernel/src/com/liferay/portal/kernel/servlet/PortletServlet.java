@@ -106,7 +106,7 @@ public class PortletServlet extends HttpServlet {
 
 		// LPS-66826
 
-		HttpSession httpSession = _getSharedSession(
+		HttpSession httpSession = _getSharedHttpSession(
 			httpServletRequest, portletRequest);
 
 		portletSession.setHttpSession(httpSession);
@@ -122,7 +122,7 @@ public class PortletServlet extends HttpServlet {
 		}
 	}
 
-	private HttpSession _getSharedSession(
+	private HttpSession _getSharedHttpSession(
 		HttpServletRequest httpServletRequest, PortletRequest portletRequest) {
 
 		LiferayPortletRequest liferayPortletRequest =

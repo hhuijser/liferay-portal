@@ -49,7 +49,7 @@ public class LifecycleEvent {
 		_ids = ids;
 		_httpServletRequest = httpServletRequest;
 		_httpServletResponse = httpServletResponse;
-		_session = httpSession;
+		_httpSession = httpSession;
 	}
 
 	public String[] getIds() {
@@ -65,12 +65,12 @@ public class LifecycleEvent {
 	}
 
 	public HttpSession getSession() {
-		return _session;
+		return _httpSession;
 	}
 
 	private final HttpServletRequest _httpServletRequest;
 	private final HttpServletResponse _httpServletResponse;
+	private final HttpSession _httpSession;
 	private final String[] _ids;
-	private final HttpSession _session;
 
 }

@@ -52,10 +52,10 @@ import javax.servlet.http.HttpSession;
 public class PortletSessionImpl implements LiferayPortletSession {
 
 	public PortletSessionImpl(
-		HttpSession session, PortletContext portletContext, String portletName,
-		long plid) {
+		HttpSession httpSession, PortletContext portletContext,
+		String portletName, long plid) {
 
-		this.session = _wrapHttpSession(session);
+		this.session = _wrapHttpSession(httpSession);
 		this.portletContext = portletContext;
 
 		scopePrefix = StringBundler.concat(
@@ -213,8 +213,8 @@ public class PortletSessionImpl implements LiferayPortletSession {
 	}
 
 	@Override
-	public void setHttpSession(HttpSession session) {
-		this.session = _wrapHttpSession(session);
+	public void setHttpSession(HttpSession httpSession) {
+		this.session = _wrapHttpSession(httpSession);
 	}
 
 	@Override
@@ -226,14 +226,14 @@ public class PortletSessionImpl implements LiferayPortletSession {
 	protected final String scopePrefix;
 	protected HttpSession session;
 
-	private HttpSession _wrapHttpSession(HttpSession session) {
+	private HttpSession _wrapHttpSession(HttpSession httpSession) {
 		if (PropsValues.PORTLET_SESSION_REPLICATE_ENABLED &&
-			!(session instanceof SerializableHttpSessionWrapper)) {
+			!(httpSession instanceof SerializableHttpSessionWrapper)) {
 
-			return new SerializableHttpSessionWrapper(session);
+			return new SerializableHttpSessionWrapper(httpSession);
 		}
 
-		return session;
+		return httpSession;
 	}
 
 	private boolean _invalidated;
@@ -380,8 +380,8 @@ public class PortletSessionImpl implements LiferayPortletSession {
 			super.setAttribute(name, value);
 		}
 
-		private SerializableHttpSessionWrapper(HttpSession session) {
-			super(session);
+		private SerializableHttpSessionWrapper(HttpSession httpSession) {
+			super(httpSession);
 		}
 
 	}

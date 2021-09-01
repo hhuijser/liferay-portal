@@ -131,9 +131,9 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 				themeDisplay.getCompanyId(), FacebookConnect.class.getName());
 		}
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
-		String nonce = (String)session.getAttribute(WebKeys.FACEBOOK_NONCE);
+		String nonce = (String)httpSession.getAttribute(WebKeys.FACEBOOK_NONCE);
 
 		String state = ParamUtil.getString(httpServletRequest, "state");
 
@@ -174,7 +174,7 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 
 			try {
 				User user = setFacebookCredentials(
-					session, themeDisplay.getCompanyId(), token,
+					httpSession, themeDisplay.getCompanyId(), token,
 					serviceContext);
 
 				if ((user != null) &&

@@ -64,9 +64,9 @@ public class PasswordModifiedFilter extends BasePortalFilter {
 	}
 
 	private boolean _isPasswordModified(HttpServletRequest httpServletRequest) {
-		HttpSession session = httpServletRequest.getSession(false);
+		HttpSession httpSession = httpServletRequest.getSession(false);
 
-		if ((session == null) ||
+		if ((httpSession == null) ||
 			!httpServletRequest.isRequestedSessionIdValid()) {
 
 			return false;
@@ -76,7 +76,7 @@ public class PasswordModifiedFilter extends BasePortalFilter {
 			User user = PortalUtil.getUser(httpServletRequest);
 
 			if ((user == null) || user.isDefaultUser() ||
-				!_isValidRealUserId(session, user)) {
+				!_isValidRealUserId(httpSession, user)) {
 
 				return false;
 			}
@@ -88,7 +88,8 @@ public class PasswordModifiedFilter extends BasePortalFilter {
 			}
 
 			if (!httpServletRequest.isRequestedSessionIdValid() ||
-				(session.getCreationTime() < passwordModifiedDate.getTime())) {
+				(httpSession.getCreationTime() <
+					passwordModifiedDate.getTime())) {
 
 				return true;
 			}

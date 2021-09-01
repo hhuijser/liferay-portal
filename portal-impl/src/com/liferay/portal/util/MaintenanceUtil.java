@@ -43,10 +43,10 @@ public class MaintenanceUtil {
 	}
 
 	public static void cancel() {
-		HttpSession session = PortalSessionContext.get(_sessionId);
+		HttpSession httpSession = PortalSessionContext.get(_sessionId);
 
-		if (session != null) {
-			session.invalidate();
+		if (httpSession != null) {
+			httpSession.invalidate();
 		}
 		else {
 			if (_log.isWarnEnabled()) {

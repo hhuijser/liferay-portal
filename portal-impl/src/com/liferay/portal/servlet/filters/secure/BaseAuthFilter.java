@@ -101,9 +101,9 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
-		User user = (User)session.getAttribute(WebKeys.USER);
+		User user = (User)httpSession.getAttribute(WebKeys.USER);
 
 		if (user == null) {
 			long userId = 0;
@@ -117,7 +117,7 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 
 			if (userId > 0) {
 				httpServletRequest = setCredentials(
-					httpServletRequest, session,
+					httpServletRequest, httpSession,
 					UserLocalServiceUtil.getUser(userId),
 					HttpServletRequest.BASIC_AUTH);
 			}
@@ -150,9 +150,9 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		HttpSession session = httpServletRequest.getSession();
+		HttpSession httpSession = httpServletRequest.getSession();
 
-		User user = (User)session.getAttribute(WebKeys.USER);
+		User user = (User)httpSession.getAttribute(WebKeys.USER);
 
 		if (user == null) {
 			long userId = 0;
@@ -167,7 +167,7 @@ public abstract class BaseAuthFilter extends BasePortalFilter {
 
 			if (userId > 0) {
 				httpServletRequest = setCredentials(
-					httpServletRequest, session,
+					httpServletRequest, httpSession,
 					UserLocalServiceUtil.getUser(userId),
 					HttpServletRequest.DIGEST_AUTH);
 			}

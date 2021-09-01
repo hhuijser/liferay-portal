@@ -66,12 +66,12 @@ public class PortletServlet extends HttpServlet {
 		if (httpServletRequest.getAttribute(WebKeys.EXTEND_SESSION) != null) {
 			httpServletRequest.removeAttribute(WebKeys.EXTEND_SESSION);
 
-			HttpSession session = httpServletRequest.getSession(false);
+			HttpSession httpSession = httpServletRequest.getSession(false);
 
-			if (session != null) {
-				session.setAttribute(WebKeys.EXTEND_SESSION, Boolean.TRUE);
+			if (httpSession != null) {
+				httpSession.setAttribute(WebKeys.EXTEND_SESSION, Boolean.TRUE);
 
-				session.removeAttribute(WebKeys.EXTEND_SESSION);
+				httpSession.removeAttribute(WebKeys.EXTEND_SESSION);
 			}
 
 			return;
@@ -106,10 +106,10 @@ public class PortletServlet extends HttpServlet {
 
 		// LPS-66826
 
-		HttpSession session = _getSharedSession(
+		HttpSession httpSession = _getSharedSession(
 			httpServletRequest, portletRequest);
 
-		portletSession.setHttpSession(session);
+		portletSession.setHttpSession(httpSession);
 
 		try {
 			PortletFilterUtil.doFilter(

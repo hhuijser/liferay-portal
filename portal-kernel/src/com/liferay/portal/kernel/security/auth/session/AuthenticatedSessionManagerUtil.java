@@ -62,11 +62,11 @@ public class AuthenticatedSessionManagerUtil {
 	}
 
 	public static HttpSession renewSession(
-			HttpServletRequest httpServletRequest, HttpSession session)
+			HttpServletRequest httpServletRequest, HttpSession httpSession)
 		throws Exception {
 
 		return getAuthenticatedSessionManager().renewSession(
-			httpServletRequest, session);
+			httpServletRequest, httpSession);
 	}
 
 	public static void signOutSimultaneousLogins(long userId) throws Exception {

@@ -359,7 +359,7 @@ public class AuthenticatedSessionManagerImpl
 
 	@Override
 	public HttpSession renewSession(
-			HttpServletRequest httpServletRequest, HttpSession session)
+			HttpServletRequest httpServletRequest, HttpSession httpSession)
 		throws Exception {
 
 		// Invalidate the previous session to prevent session fixation attacks
@@ -370,7 +370,7 @@ public class AuthenticatedSessionManagerImpl
 		Map<String, Object> protectedAttributes = new HashMap<>();
 
 		for (String protectedAttributeName : protectedAttributeNames) {
-			Object protectedAttributeValue = session.getAttribute(
+			Object protectedAttributeValue = httpSession.getAttribute(
 				protectedAttributeName);
 
 			if (protectedAttributeValue == null) {
@@ -381,9 +381,9 @@ public class AuthenticatedSessionManagerImpl
 				protectedAttributeName, protectedAttributeValue);
 		}
 
-		session.invalidate();
+		httpSession.invalidate();
 
-		session = httpServletRequest.getSession(true);
+		httpSession = httpServletRequest.getSession(true);
 
 		for (String protectedAttributeName : protectedAttributeNames) {
 			Object protectedAttributeValue = protectedAttributes.get(
@@ -393,11 +393,11 @@ public class AuthenticatedSessionManagerImpl
 				continue;
 			}
 
-			session.setAttribute(
+			httpSession.setAttribute(
 				protectedAttributeName, protectedAttributeValue);
 		}
 
-		return session;
+		return httpSession;
 	}
 
 	@Override

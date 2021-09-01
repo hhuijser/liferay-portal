@@ -63,16 +63,18 @@ public class SessionErrors {
 		add(_getPortalSession(httpServletRequest), key, value);
 	}
 
-	public static void add(HttpSession session, Class<?> clazz) {
-		add(session, clazz.getName());
+	public static void add(HttpSession httpSession, Class<?> clazz) {
+		add(httpSession, clazz.getName());
 	}
 
-	public static void add(HttpSession session, Class<?> clazz, Object value) {
-		add(session, clazz.getName(), value);
+	public static void add(
+		HttpSession httpSession, Class<?> clazz, Object value) {
+
+		add(httpSession, clazz.getName(), value);
 	}
 
-	public static void add(HttpSession session, String key) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, true);
+	public static void add(HttpSession httpSession, String key) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, true);
 
 		if (map == null) {
 			return;
@@ -85,8 +87,8 @@ public class SessionErrors {
 		map.put(key, key);
 	}
 
-	public static void add(HttpSession session, String key, Object value) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, true);
+	public static void add(HttpSession httpSession, String key, Object value) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, true);
 
 		if (map == null) {
 			return;
@@ -164,8 +166,8 @@ public class SessionErrors {
 		clear(_getPortalSession(httpServletRequest));
 	}
 
-	public static void clear(HttpSession session) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static void clear(HttpSession httpSession) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map != null) {
 			map.clear();
@@ -198,13 +200,15 @@ public class SessionErrors {
 		return contains(_getPortalSession(httpServletRequest), key);
 	}
 
-	public static boolean contains(HttpSession session, Class<?> clazz) {
-		return contains(session, clazz.getName());
+	public static boolean contains(HttpSession httpSession, Class<?> clazz) {
+		return contains(httpSession, clazz.getName());
 	}
 
-	public static boolean contains(HttpSession session, Class<?>[] classes) {
+	public static boolean contains(
+		HttpSession httpSession, Class<?>[] classes) {
+
 		for (Class<?> clazz : classes) {
-			if (contains(session, clazz.getName())) {
+			if (contains(httpSession, clazz.getName())) {
 				return true;
 			}
 		}
@@ -212,8 +216,8 @@ public class SessionErrors {
 		return false;
 	}
 
-	public static boolean contains(HttpSession session, String key) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static boolean contains(HttpSession httpSession, String key) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map == null) {
 			return false;
@@ -262,12 +266,12 @@ public class SessionErrors {
 		return get(_getPortalSession(httpServletRequest), key);
 	}
 
-	public static Object get(HttpSession session, Class<?> clazz) {
-		return get(session, clazz.getName());
+	public static Object get(HttpSession httpSession, Class<?> clazz) {
+		return get(httpSession, clazz.getName());
 	}
 
-	public static Object get(HttpSession session, String key) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static Object get(HttpSession httpSession, String key) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map == null) {
 			return null;
@@ -294,8 +298,8 @@ public class SessionErrors {
 		return isEmpty(_getPortalSession(httpServletRequest));
 	}
 
-	public static boolean isEmpty(HttpSession session) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static boolean isEmpty(HttpSession httpSession) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map == null) {
 			return true;
@@ -320,8 +324,8 @@ public class SessionErrors {
 		return iterator(_getPortalSession(httpServletRequest));
 	}
 
-	public static Iterator<String> iterator(HttpSession session) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static Iterator<String> iterator(HttpSession httpSession) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map == null) {
 			List<String> list = Collections.<String>emptyList();
@@ -352,8 +356,8 @@ public class SessionErrors {
 		return keySet(_getPortalSession(httpServletRequest));
 	}
 
-	public static Set<String> keySet(HttpSession session) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static Set<String> keySet(HttpSession httpSession) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map == null) {
 			return Collections.emptySet();
@@ -376,8 +380,8 @@ public class SessionErrors {
 		print(_getPortalSession(httpServletRequest));
 	}
 
-	public static void print(HttpSession session) {
-		Iterator<String> iterator = iterator(session);
+	public static void print(HttpSession httpSession) {
+		Iterator<String> iterator = iterator(httpSession);
 
 		while (iterator.hasNext()) {
 			System.out.println(iterator.next());
@@ -409,8 +413,8 @@ public class SessionErrors {
 		return size(_getPortalSession(httpServletRequest));
 	}
 
-	public static int size(HttpSession session) {
-		Map<String, Object> map = _getMap(session, _CLASS_NAME, false);
+	public static int size(HttpSession httpSession) {
+		Map<String, Object> map = _getMap(httpSession, _CLASS_NAME, false);
 
 		if (map == null) {
 			return 0;
@@ -446,20 +450,20 @@ public class SessionErrors {
 	}
 
 	private static Map<String, Object> _getMap(
-		HttpSession session, String key, boolean createIfAbsent) {
+		HttpSession httpSession, String key, boolean createIfAbsent) {
 
-		if (session == null) {
+		if (httpSession == null) {
 			return null;
 		}
 
 		try {
-			Map<String, Object> map = (Map<String, Object>)session.getAttribute(
-				key);
+			Map<String, Object> map =
+				(Map<String, Object>)httpSession.getAttribute(key);
 
 			if ((map == null) && createIfAbsent) {
 				map = new HashMap<>();
 
-				session.setAttribute(key, map);
+				httpSession.setAttribute(key, map);
 			}
 
 			return map;

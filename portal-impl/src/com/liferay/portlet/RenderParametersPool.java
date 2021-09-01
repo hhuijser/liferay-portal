@@ -131,11 +131,11 @@ public class RenderParametersPool {
 
 		HttpSession httpSession = httpServletRequest.getSession();
 
-		HttpSession portalSession = PortalSessionContext.get(
+		HttpSession portalHttpSession = PortalSessionContext.get(
 			httpSession.getId());
 
-		if (portalSession != null) {
-			httpSession = portalSession;
+		if (portalHttpSession != null) {
+			httpSession = portalHttpSession;
 		}
 
 		Map<Long, Map<String, Map<String, String[]>>> renderParametersPool =

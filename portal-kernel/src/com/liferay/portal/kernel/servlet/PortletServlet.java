@@ -133,14 +133,14 @@ public class PortletServlet extends HttpServlet {
 		HttpServletRequest originalHttpServletRequest =
 			liferayPortletRequest.getOriginalHttpServletRequest();
 
-		HttpSession portalSession = originalHttpServletRequest.getSession();
+		HttpSession portalHttpSession = originalHttpServletRequest.getSession();
 
 		if (!portlet.isPrivateSessionAttributes()) {
-			return portalSession;
+			return portalHttpSession;
 		}
 
 		return SharedSessionUtil.getSharedSessionWrapper(
-			portalSession, httpServletRequest);
+			portalHttpSession, httpServletRequest);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(PortletServlet.class);

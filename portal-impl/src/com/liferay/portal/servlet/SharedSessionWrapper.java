@@ -54,18 +54,18 @@ public class SharedSessionWrapper implements HttpSession {
 
 	@Override
 	public Object getAttribute(String name) {
-		HttpSession session = getSessionDelegate(name);
+		HttpSession httpSession = getSessionDelegate(name);
 
-		return session.getAttribute(name);
+		return httpSession.getAttribute(name);
 	}
 
 	@Override
 	public Enumeration<String> getAttributeNames() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		Enumeration<String> namesEnumeration = session.getAttributeNames();
+		Enumeration<String> namesEnumeration = httpSession.getAttributeNames();
 
-		if (session == _portletSession) {
+		if (httpSession == _portletSession) {
 			List<String> namesList = Collections.list(namesEnumeration);
 
 			Enumeration<String> portalSessionNamesEnumeration =
@@ -87,37 +87,37 @@ public class SharedSessionWrapper implements HttpSession {
 
 	@Override
 	public long getCreationTime() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.getCreationTime();
+		return httpSession.getCreationTime();
 	}
 
 	@Override
 	public String getId() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.getId();
+		return httpSession.getId();
 	}
 
 	@Override
 	public long getLastAccessedTime() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.getLastAccessedTime();
+		return httpSession.getLastAccessedTime();
 	}
 
 	@Override
 	public int getMaxInactiveInterval() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.getMaxInactiveInterval();
+		return httpSession.getMaxInactiveInterval();
 	}
 
 	@Override
 	public ServletContext getServletContext() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.getServletContext();
+		return httpSession.getServletContext();
 	}
 
 	/**
@@ -126,9 +126,9 @@ public class SharedSessionWrapper implements HttpSession {
 	@Deprecated
 	@Override
 	public HttpSessionContext getSessionContext() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.getSessionContext();
+		return httpSession.getSessionContext();
 	}
 
 	/**
@@ -153,16 +153,16 @@ public class SharedSessionWrapper implements HttpSession {
 
 	@Override
 	public void invalidate() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		session.invalidate();
+		httpSession.invalidate();
 	}
 
 	@Override
 	public boolean isNew() {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		return session.isNew();
+		return httpSession.isNew();
 	}
 
 	/**
@@ -176,9 +176,9 @@ public class SharedSessionWrapper implements HttpSession {
 
 	@Override
 	public void removeAttribute(String name) {
-		HttpSession session = getSessionDelegate(name);
+		HttpSession httpSession = getSessionDelegate(name);
 
-		session.removeAttribute(name);
+		httpSession.removeAttribute(name);
 	}
 
 	/**
@@ -192,16 +192,16 @@ public class SharedSessionWrapper implements HttpSession {
 
 	@Override
 	public void setAttribute(String name, Object value) {
-		HttpSession session = getSessionDelegate(name);
+		HttpSession httpSession = getSessionDelegate(name);
 
-		session.setAttribute(name, value);
+		httpSession.setAttribute(name, value);
 	}
 
 	@Override
 	public void setMaxInactiveInterval(int maxInactiveInterval) {
-		HttpSession session = getSessionDelegate();
+		HttpSession httpSession = getSessionDelegate();
 
-		session.setMaxInactiveInterval(maxInactiveInterval);
+		httpSession.setMaxInactiveInterval(maxInactiveInterval);
 	}
 
 	protected boolean containsSharedAttribute(String name) {

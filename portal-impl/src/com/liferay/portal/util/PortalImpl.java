@@ -1112,9 +1112,9 @@ public class PortalImpl implements Portal {
 		if (!CookieKeys.hasSessionId(httpServletRequest) &&
 			url.startsWith(portalURL)) {
 
-			HttpSession session = httpServletRequest.getSession();
+			HttpSession httpSession = httpServletRequest.getSession();
 
-			url = getURLWithSessionId(url, session.getId());
+			url = getURLWithSessionId(url, httpSession.getId());
 		}
 
 		return url;
@@ -3413,10 +3413,10 @@ public class PortalImpl implements Portal {
 			}
 		}
 
-		HttpSession session = httpServletRequest.getSession(false);
+		HttpSession httpSession = httpServletRequest.getSession(false);
 
-		if (session != null) {
-			locale = (Locale)session.getAttribute(WebKeys.LOCALE);
+		if (httpSession != null) {
+			locale = (Locale)httpSession.getAttribute(WebKeys.LOCALE);
 
 			if (LanguageUtil.isAvailableLocale(groupId, locale)) {
 				return locale;

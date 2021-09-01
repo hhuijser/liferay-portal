@@ -112,12 +112,13 @@ public class AnalyticsClientImpl implements AnalyticsClient {
 	protected String getUserId(String dataSourceId) throws Exception {
 		HttpSession httpSession = PortalSessionThreadLocal.getHttpSession();
 
-		if ((httpSession != null) &&
-			(httpSession.getAttribute(
-				_REQUEST_ATTRIBUTE_NAME_ANALYTICS_USER_ID) != null)) {
-
-			return (String)httpSession.getAttribute(
+		if (httpSession != null) {
+			Object userIdObject = httpSession.getAttribute(
 				_REQUEST_ATTRIBUTE_NAME_ANALYTICS_USER_ID);
+
+			if (userIdObject != null) {
+				return (String)userIdObject;
+			}
 		}
 
 		IdentityContextMessage.Builder identityContextMessageBuilder =

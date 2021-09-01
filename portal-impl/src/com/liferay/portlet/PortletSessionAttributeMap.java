@@ -42,7 +42,7 @@ public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 	public PortletSessionAttributeMap(
 		HttpSession httpSession, String scopePrefix) {
 
-		this.session = httpSession;
+		this.httpSession = httpSession;
 		this.scopePrefix = scopePrefix;
 	}
 
@@ -77,7 +77,7 @@ public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 		Enumeration<String> enumeration = getAttributeNames(false);
 
 		while (enumeration.hasMoreElements()) {
-			Object attributeValue = session.getAttribute(
+			Object attributeValue = httpSession.getAttribute(
 				enumeration.nextElement());
 
 			if (attributeValue.equals(value)) {
@@ -109,7 +109,7 @@ public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 			return null;
 		}
 
-		return session.getAttribute(encodeKey(String.valueOf(key)));
+		return httpSession.getAttribute(encodeKey(String.valueOf(key)));
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 
 		while (enumeration.hasMoreElements()) {
 			attributeValues.add(
-				session.getAttribute(enumeration.nextElement()));
+				httpSession.getAttribute(enumeration.nextElement()));
 		}
 
 		return attributeValues;
@@ -178,7 +178,7 @@ public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 	}
 
 	protected Enumeration<String> getAttributeNames(boolean removePrefix) {
-		Enumeration<String> enumeration = session.getAttributeNames();
+		Enumeration<String> enumeration = httpSession.getAttributeNames();
 
 		if (scopePrefix == null) {
 			return enumeration;
@@ -188,8 +188,8 @@ public class PortletSessionAttributeMap extends AbstractMap<String, Object> {
 			enumeration, new AttributeNameMapper(scopePrefix, removePrefix));
 	}
 
+	protected final HttpSession httpSession;
 	protected final String scopePrefix;
-	protected final HttpSession session;
 
 	protected static class AttributeNameMapper
 		implements MappingEnumeration.Mapper<String, String> {

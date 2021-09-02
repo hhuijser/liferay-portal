@@ -252,11 +252,7 @@ public class ListUtilCheck extends BaseCheck {
 
 		DetailAST firstChildDetailAST = parentDetailAST.getFirstChild();
 
-		if (equals(firstChildDetailAST, detailAST)) {
-			_checkListEqualsNullAssertion(
-				detailAST.getNextSibling(), variableName);
-		}
-		else {
+		if (!equals(firstChildDetailAST, detailAST)) {
 			_checkListEqualsNullAssertion(firstChildDetailAST, variableName);
 		}
 	}

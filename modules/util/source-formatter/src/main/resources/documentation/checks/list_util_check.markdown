@@ -65,29 +65,3 @@ if ((bundleCapabilities == null) || bundleCapabilities.isEmpty()) {
 
 }
 ```
-
----
-
-```java
-List<BundleCapability> bundleCapabilities =
-	bundleWiring.getCapabilities("liferay.resource.bundle");
-
-if (ListUtil.isEmpty(bundleCapabilities)) {
-
-...
-
-}
-```
-
-Instead of
-
-```java
-List<BundleCapability> bundleCapabilities =
-	bundleWiring.getCapabilities("liferay.resource.bundle");
-
-if (bundleCapabilities.isEmpty() || (bundleCapabilities == null)) {
-
-...
-
-}
-```

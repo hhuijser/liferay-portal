@@ -57,13 +57,13 @@ public class PortletSessionAttributeMapTest {
 		PortletSessionAttributeMap portletSessionAttributeMap =
 			new PortletSessionAttributeMap(_httpSession);
 
-		Assert.assertSame(_httpSession, portletSessionAttributeMap.session);
+		Assert.assertSame(_httpSession, portletSessionAttributeMap.httpSession);
 		Assert.assertNull(portletSessionAttributeMap.scopePrefix);
 
 		portletSessionAttributeMap = new PortletSessionAttributeMap(
 			_httpSession, null);
 
-		Assert.assertSame(_httpSession, portletSessionAttributeMap.session);
+		Assert.assertSame(_httpSession, portletSessionAttributeMap.httpSession);
 		Assert.assertNull(portletSessionAttributeMap.scopePrefix);
 
 		String scopePrefix = "scopePrefix";
@@ -71,7 +71,7 @@ public class PortletSessionAttributeMapTest {
 		portletSessionAttributeMap = new PortletSessionAttributeMap(
 			_httpSession, scopePrefix);
 
-		Assert.assertSame(_httpSession, portletSessionAttributeMap.session);
+		Assert.assertSame(_httpSession, portletSessionAttributeMap.httpSession);
 		Assert.assertSame(scopePrefix, portletSessionAttributeMap.scopePrefix);
 	}
 

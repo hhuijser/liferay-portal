@@ -23,117 +23,131 @@ import javax.portlet.PortletURL;
  */
 public class DropdownItemBuilder {
 
-	public static DropdownItemWrapper putData(String key, String value) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterPutDataStep putData(String key, String value) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.putData(key, value);
+		return dropdownItemStep.putData(key, value);
 	}
 
-	public static DropdownItemWrapper setActive(boolean active) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterActiveStep setActive(boolean active) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setActive(active);
+		return dropdownItemStep.setActive(active);
 	}
 
-	public static DropdownItemWrapper setData(Map<String, Object> data) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterSetDataStep setData(Map<String, Object> data) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setData(data);
+		return dropdownItemStep.setData(data);
 	}
 
-	public static DropdownItemWrapper setDisabled(boolean disabled) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterDisabledStep setDisabled(boolean disabled) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setDisabled(disabled);
+		return dropdownItemStep.setDisabled(disabled);
 	}
 
-	public static DropdownItemWrapper setHref(Object href) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterHrefStep setHref(Object href) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setHref(href);
+		return dropdownItemStep.setHref(href);
 	}
 
-	public static DropdownItemWrapper setHref(
+	public static AfterHrefStep setHref(
 		PortletURL portletURL, Object... parameters) {
 
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setHref(portletURL, parameters);
+		return dropdownItemStep.setHref(parameters);
 	}
 
-	public static DropdownItemWrapper setIcon(String icon) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterIconStep setIcon(String icon) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setIcon(icon);
+		return dropdownItemStep.setIcon(icon);
 	}
 
-	public static DropdownItemWrapper setLabel(String label) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterLabelStep setLabel(String label) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setLabel(label);
+		return dropdownItemStep.setLabel(label);
 	}
 
-	public static DropdownItemWrapper setQuickAction(boolean quickAction) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterQuickActionStep setQuickAction(boolean quickAction) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setQuickAction(quickAction);
+		return dropdownItemStep.setQuickAction(quickAction);
 	}
 
-	public static DropdownItemWrapper setSeparator(boolean separator) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterSeparatorStep setSeparator(boolean separator) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setSeparator(separator);
+		return dropdownItemStep.setSeparator(separator);
 	}
 
-	public static DropdownItemWrapper setTarget(String target) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterTargetStep setTarget(String target) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setTarget(target);
+		return dropdownItemStep.setTarget(target);
 	}
 
-	public static DropdownItemWrapper setType(String type) {
-		DropdownItemWrapper dropdownItemWrapper = new DropdownItemWrapper();
+	public static AfterTypeStep setType(String type) {
+		DropdownItemStep dropdownItemStep = new DropdownItemStep();
 
-		return dropdownItemWrapper.setType(type);
+		return dropdownItemStep.setType(type);
 	}
 
-	public static final class DropdownItemWrapper {
+	public static class DropdownItemStep
+		implements ActiveStep, AfterActiveStep, AfterDisabledStep,
+				   AfterHrefStep, AfterIconStep, AfterLabelStep,
+				   AfterPutDataStep, AfterQuickActionStep, AfterSeparatorStep,
+				   AfterSetDataStep, AfterTargetStep, AfterTypeStep, BuildStep,
+				   DisabledStep, HrefStep, IconStep, LabelStep, PutDataStep,
+				   QuickActionStep, SeparatorStep, SetDataStep, TargetStep,
+				   TypeStep {
 
+		@Override
 		public DropdownItem build() {
 			return _dropdownItem;
 		}
 
-		public DropdownItemWrapper putData(String key, String value) {
+		@Override
+		public AfterPutDataStep putData(String key, String value) {
 			_dropdownItem.putData(key, value);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setActive(boolean active) {
+		@Override
+		public AfterActiveStep setActive(boolean active) {
 			_dropdownItem.setActive(active);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setData(Map<String, Object> data) {
+		@Override
+		public AfterSetDataStep setData(Map<String, Object> data) {
 			_dropdownItem.setData(data);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setDisabled(boolean disabled) {
+		@Override
+		public AfterDisabledStep setDisabled(boolean disabled) {
 			_dropdownItem.setDisabled(disabled);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setHref(Object href) {
+		@Override
+		public AfterHrefStep setHref(Object href) {
 			_dropdownItem.setHref(href);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setHref(
+		@Override
+		public AfterHrefStep setHref(
 			PortletURL portletURL, Object... parameters) {
 
 			_dropdownItem.setHref(portletURL, parameters);
@@ -141,43 +155,175 @@ public class DropdownItemBuilder {
 			return this;
 		}
 
-		public DropdownItemWrapper setIcon(String icon) {
+		@Override
+		public AfterIconStep setIcon(String icon) {
 			_dropdownItem.setIcon(icon);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setLabel(String label) {
+		@Override
+		public AfterLabelStep setLabel(String label) {
 			_dropdownItem.setLabel(label);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setQuickAction(boolean quickAction) {
+		@Override
+		public AfterQuickActionStep setQuickAction(boolean quickAction) {
 			_dropdownItem.setQuickAction(quickAction);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setSeparator(boolean separator) {
+		@Override
+		public AfterSeparatorStep setSeparator(boolean separator) {
 			_dropdownItem.setSeparator(separator);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setTarget(String target) {
+		@Override
+		public AfterTargetStep setTarget(String target) {
 			_dropdownItem.setTarget(target);
 
 			return this;
 		}
 
-		public DropdownItemWrapper setType(String type) {
+		@Override
+		public AfterTypeStep setType(String type) {
 			_dropdownItem.setType(type);
 
 			return this;
 		}
 
 		private final DropdownItem _dropdownItem = new DropdownItem();
+
+	}
+
+	public interface ActiveStep {
+
+		public AfterActiveStep setActive(boolean active);
+
+	}
+
+	public interface AfterActiveStep
+		extends BuildStep, DisabledStep, HrefStep, IconStep, LabelStep,
+				QuickActionStep, SeparatorStep, SetDataStep, TargetStep,
+				TypeStep {
+	}
+
+	public interface AfterDisabledStep
+		extends BuildStep, HrefStep, IconStep, LabelStep, QuickActionStep,
+				SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterHrefStep
+		extends BuildStep, IconStep, LabelStep, QuickActionStep, SeparatorStep,
+				TargetStep, TypeStep {
+	}
+
+	public interface AfterIconStep
+		extends BuildStep, LabelStep, QuickActionStep, SeparatorStep,
+				TargetStep, TypeStep {
+	}
+
+	public interface AfterLabelStep
+		extends BuildStep, QuickActionStep, SeparatorStep, TargetStep,
+				TypeStep {
+	}
+
+	public interface AfterPutDataStep
+		extends ActiveStep, BuildStep, DisabledStep, HrefStep, IconStep,
+				LabelStep, PutDataStep, QuickActionStep, SeparatorStep,
+				SetDataStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterQuickActionStep
+		extends BuildStep, SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterSeparatorStep
+		extends BuildStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterSetDataStep
+		extends BuildStep, DisabledStep, HrefStep, IconStep, LabelStep,
+				QuickActionStep, SeparatorStep, TargetStep, TypeStep {
+	}
+
+	public interface AfterTargetStep extends BuildStep, TypeStep {
+	}
+
+	public interface AfterTypeStep extends BuildStep {
+	}
+
+	public interface BuildStep {
+
+		public DropdownItem build();
+
+	}
+
+	public interface DisabledStep {
+
+		public AfterDisabledStep setDisabled(boolean disabled);
+
+	}
+
+	public interface HrefStep {
+
+		public AfterHrefStep setHref(Object href);
+
+		public AfterHrefStep setHref(
+			PortletURL portletURL, Object... parameters);
+
+	}
+
+	public interface IconStep {
+
+		public AfterIconStep setIcon(String icon);
+
+	}
+
+	public interface LabelStep {
+
+		public AfterLabelStep setLabel(String label);
+
+	}
+
+	public interface PutDataStep {
+
+		public AfterPutDataStep putData(String key, String value);
+
+	}
+
+	public interface QuickActionStep {
+
+		public AfterQuickActionStep setQuickAction(boolean quickAction);
+
+	}
+
+	public interface SeparatorStep {
+
+		public AfterSeparatorStep setSeparator(boolean separator);
+
+	}
+
+	public interface SetDataStep {
+
+		public AfterSetDataStep setData(Map<String, Object> data);
+
+	}
+
+	public interface TargetStep {
+
+		public AfterTargetStep setTarget(String target);
+
+	}
+
+	public interface TypeStep {
+
+		public AfterTypeStep setType(String type);
 
 	}
 

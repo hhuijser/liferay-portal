@@ -712,7 +712,6 @@ dateFormatDateTime.setTimeZone(timeZone);
 		<c:choose>
 			<c:when test="<%= orderProducts != null %>">
 				<input class="btn btn-secondary" type="submit" value="<liferay-ui:message key="register" />" />
-
 				<input onClick="location.href='<%= HtmlUtil.escapeJS(themeDisplay.getURLCurrent()) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
 			</c:when>
 			<c:otherwise>

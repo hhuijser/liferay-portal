@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -47,9 +48,7 @@ public class KBAdminNavigationDisplayContext {
 	}
 
 	public List<NavigationItem> getInfoPanelNavigationItems() {
-		List<NavigationItem> navigationItems = new ArrayList<>();
-
-		navigationItems.add(
+		return ListUtil.fromArray(
 			NavigationItemBuilder.setActive(
 				true
 			).setHref(
@@ -63,8 +62,6 @@ public class KBAdminNavigationDisplayContext {
 			).setLabel(
 				LanguageUtil.get(_httpServletRequest, "details")
 			).build());
-
-		return navigationItems;
 	}
 
 	public List<NavigationItem> getNavigationItems() throws PortalException {

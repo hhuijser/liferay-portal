@@ -24,10 +24,10 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.PasswordPolicyPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.PortletException;
@@ -138,9 +138,7 @@ public class PasswordPolicyDisplayContext {
 	}
 
 	public List<NavigationItem> getSelectMembersNavigationItems() {
-		List<NavigationItem> navigationItems = new ArrayList<>();
-
-		navigationItems.add(
+		return ListUtil.fromArray(
 			NavigationItemBuilder.setActive(
 				true
 			).setLabel(
@@ -148,8 +146,6 @@ public class PasswordPolicyDisplayContext {
 					_httpServletRequest,
 					ParamUtil.getString(_httpServletRequest, "tabs2", "users"))
 			).build());
-
-		return navigationItems;
 	}
 
 	public boolean hasPermission(String actionId, long passwordPolicyId) {

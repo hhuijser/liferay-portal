@@ -15,6 +15,7 @@
 package com.liferay.password.policies.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -142,13 +143,12 @@ public class PasswordPolicyDisplayContext {
 
 		List<NavigationItem> navigationItems = new ArrayList<>();
 
-		NavigationItem entriesNavigationItem = new NavigationItem();
-
-		entriesNavigationItem.setActive(true);
-		entriesNavigationItem.setLabel(
-			LanguageUtil.get(_httpServletRequest, tabs2));
-
-		navigationItems.add(entriesNavigationItem);
+		navigationItems.add(
+			NavigationItemBuilder.setActive(
+				true
+			).setLabel(
+				LanguageUtil.get(_httpServletRequest, tabs2)
+			).build());
 
 		return navigationItems;
 	}

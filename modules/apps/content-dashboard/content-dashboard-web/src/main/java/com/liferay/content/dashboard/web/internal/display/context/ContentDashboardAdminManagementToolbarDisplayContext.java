@@ -644,40 +644,40 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 
 				return dropdownItem;
 			},
-			() -> {
-				DropdownItem dropdownItem = DropdownItemBuilder.putData(
-					"action", "selectAuthor"
-				).putData(
-					"dialogTitle",
-					LanguageUtil.get(httpServletRequest, "select-author")
-				).putData(
-					"redirectURL",
-					PortletURLBuilder.create(
-						getPortletURL()
-					).setParameter(
-						"authorIds", (String)null
-					).buildString()
-				).putData(
-					"selectAuthorURL",
-					String.valueOf(
-						_contentDashboardAdminDisplayContext.
-							getAuthorItemSelectorURL())
-				).build();
+			() -> DropdownItemBuilder.putData(
+				"action", "selectAuthor"
+			).putData(
+				"dialogTitle",
+				LanguageUtil.get(httpServletRequest, "select-author")
+			).putData(
+				"redirectURL",
+				PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"authorIds", (String)null
+				).buildString()
+			).putData(
+				"selectAuthorURL",
+				String.valueOf(
+					_contentDashboardAdminDisplayContext.
+						getAuthorItemSelectorURL())
+			).setActive(
+				() -> {
+					if (((authorIds.size() == 1) &&
+						 !authorIds.contains(
+							 _contentDashboardAdminDisplayContext.
+								 getUserId())) ||
+						(authorIds.size() > 1)) {
 
-				if (((authorIds.size() == 1) &&
-					 !authorIds.contains(
-						 _contentDashboardAdminDisplayContext.getUserId())) ||
-					(authorIds.size() > 1)) {
+						return true;
+					}
 
-					dropdownItem.setActive(true);
+					return null;
 				}
-
-				dropdownItem.setLabel(
-					LanguageUtil.get(httpServletRequest, "author") +
-						StringPool.TRIPLE_PERIOD);
-
-				return dropdownItem;
-			});
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "author") +
+					StringPool.TRIPLE_PERIOD
+			).build());
 	}
 
 	private List<DropdownItem> _getFilterDropdownItems() {

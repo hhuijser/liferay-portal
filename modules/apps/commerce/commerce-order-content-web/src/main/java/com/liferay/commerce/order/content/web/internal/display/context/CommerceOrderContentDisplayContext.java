@@ -455,10 +455,10 @@ public class CommerceOrderContentDisplayContext {
 			).build(),
 			DropdownItemBuilder.setActive(
 				true
-			).setIcon(
-				"blogs"
 			).setHref(
 				"/second-link"
+			).setIcon(
+				"blogs"
 			).setLabel(
 				"Second link"
 			).build());

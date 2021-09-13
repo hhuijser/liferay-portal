@@ -5,6 +5,7 @@ dependencies {
 	testIntegrationCompile project(":apps:depot:depot-api")
 	testIntegrationCompile project(":apps:list-type:list-type-api")
 	testIntegrationCompile project(":apps:object:object-api")
+	testIntegrationCompile project(":core:petra:petra-function")
 	testIntegrationCompile project(":core:petra:petra-string")
 	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
 }

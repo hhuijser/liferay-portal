@@ -707,8 +707,6 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 			() -> {
 				String label = LanguageUtil.get(
 					httpServletRequest, "site-or-asset-library");
-				long scopeId =
-					_contentDashboardAdminDisplayContext.getScopeId();
 
 				return DropdownItemBuilder.putData(
 					"action", "selectScope"
@@ -729,41 +727,36 @@ public class ContentDashboardAdminManagementToolbarDisplayContext
 						_contentDashboardAdminDisplayContext.
 							getScopeIdItemSelectorURL())
 				).setActive(
-					scopeId > 0
+					_contentDashboardAdminDisplayContext.getScopeId() > 0
 				).setLabel(
 					label + StringPool.TRIPLE_PERIOD
 				).build();
 			},
-			() -> {
-				List<? extends ContentDashboardItemSubtype>
-					contentDashboardItemSubtypes =
-						_contentDashboardAdminDisplayContext.
-							getContentDashboardItemSubtypes();
-
-				return DropdownItemBuilder.putData(
-					"action", "selectContentDashboardItemSubtype"
-				).putData(
-					"dialogTitle",
-					LanguageUtil.get(httpServletRequest, "filter-by-type")
-				).putData(
-					"redirectURL",
-					PortletURLBuilder.create(
-						getPortletURL()
-					).setParameter(
-						"contentDashboardItemSubtypePayload", (String)null
-					).buildString()
-				).putData(
-					"selectContentDashboardItemSubtypeURL",
-					String.valueOf(
-						_contentDashboardAdminDisplayContext.
-							getContentDashboardItemSubtypeItemSelectorURL())
-				).setActive(
-					!ListUtil.isEmpty(contentDashboardItemSubtypes)
-				).setLabel(
-					LanguageUtil.get(httpServletRequest, "type") +
-						StringPool.TRIPLE_PERIOD
-				).build();
-			},
+			() -> DropdownItemBuilder.putData(
+				"action", "selectContentDashboardItemSubtype"
+			).putData(
+				"dialogTitle",
+				LanguageUtil.get(httpServletRequest, "filter-by-type")
+			).putData(
+				"redirectURL",
+				PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"contentDashboardItemSubtypePayload", (String)null
+				).buildString()
+			).putData(
+				"selectContentDashboardItemSubtypeURL",
+				String.valueOf(
+					_contentDashboardAdminDisplayContext.
+						getContentDashboardItemSubtypeItemSelectorURL())
+			).setActive(
+				!ListUtil.isEmpty(
+					_contentDashboardAdminDisplayContext.
+						getContentDashboardItemSubtypes())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "type") +
+					StringPool.TRIPLE_PERIOD
+			).build(),
 			() -> DropdownItemBuilder.putData(
 				"action", "selectFileExtension"
 			).putData(

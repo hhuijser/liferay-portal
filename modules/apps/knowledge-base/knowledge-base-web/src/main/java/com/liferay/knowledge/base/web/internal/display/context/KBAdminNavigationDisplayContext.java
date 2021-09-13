@@ -47,17 +47,19 @@ public class KBAdminNavigationDisplayContext {
 	}
 
 	public List<NavigationItem> getInfoPanelNavigationItems() {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		List<NavigationItem> navigationItems = new ArrayList<>();
 
 		navigationItems.add(
 			NavigationItemBuilder.setActive(
 				true
 			).setHref(
-				themeDisplay.getURLCurrent()
+				() -> {
+					ThemeDisplay themeDisplay =
+						(ThemeDisplay)_httpServletRequest.getAttribute(
+							WebKeys.THEME_DISPLAY);
+
+					return themeDisplay.getURLCurrent();
+				}
 			).setLabel(
 				LanguageUtil.get(_httpServletRequest, "details")
 			).build());

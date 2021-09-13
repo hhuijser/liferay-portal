@@ -138,16 +138,15 @@ public class PasswordPolicyDisplayContext {
 	}
 
 	public List<NavigationItem> getSelectMembersNavigationItems() {
-		String tabs2 = ParamUtil.getString(
-			_httpServletRequest, "tabs2", "users");
-
 		List<NavigationItem> navigationItems = new ArrayList<>();
 
 		navigationItems.add(
 			NavigationItemBuilder.setActive(
 				true
 			).setLabel(
-				LanguageUtil.get(_httpServletRequest, tabs2)
+				LanguageUtil.get(
+					_httpServletRequest,
+					ParamUtil.getString(_httpServletRequest, "tabs2", "users"))
 			).build());
 
 		return navigationItems;

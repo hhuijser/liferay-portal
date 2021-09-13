@@ -19,6 +19,7 @@ dependencies {
 	testCompile project(":apps:view-count:view-count-api")
 	testCompile project(":core:osgi-service-tracker-collections")
 	testCompile project(":core:petra:petra-concurrent")
+	testCompile project(":core:petra:petra-function")
 	testCompile project(":core:petra:petra-lang")
 	testCompile project(":core:petra:petra-memory")
 	testCompile project(":core:petra:petra-reflect")

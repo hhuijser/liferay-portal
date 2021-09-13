@@ -14,6 +14,8 @@
 
 package com.liferay.frontend.taglib.clay.servlet.taglib.util;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Map;
 
 import javax.portlet.PortletURL;
@@ -29,10 +31,26 @@ public class NavigationItemBuilder {
 		return navigationItemStep.putData(key, value);
 	}
 
+	public static AfterPutDataStep putData(
+		String key, UnsafeSupplier<String, Exception> valueUnsafeSupplier) {
+
+		NavigationItemStep navigationItemStep = new NavigationItemStep();
+
+		return navigationItemStep.putData(key, valueUnsafeSupplier);
+	}
+
 	public static AfterActiveStep setActive(boolean active) {
 		NavigationItemStep navigationItemStep = new NavigationItemStep();
 
 		return navigationItemStep.setActive(active);
+	}
+
+	public static AfterActiveStep setActive(
+		UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier) {
+
+		NavigationItemStep navigationItemStep = new NavigationItemStep();
+
+		return navigationItemStep.setActive(activeUnsafeSupplier);
 	}
 
 	public static AfterSetDataStep setData(Map<String, Object> data) {
@@ -45,6 +63,14 @@ public class NavigationItemBuilder {
 		NavigationItemStep navigationItemStep = new NavigationItemStep();
 
 		return navigationItemStep.setDisabled(disabled);
+	}
+
+	public static AfterDisabledStep setDisabled(
+		UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier) {
+
+		NavigationItemStep navigationItemStep = new NavigationItemStep();
+
+		return navigationItemStep.setDisabled(disabledUnsafeSupplier);
 	}
 
 	public static AfterHrefStep setHref(Object href) {
@@ -61,10 +87,26 @@ public class NavigationItemBuilder {
 		return navigationItemStep.setHref(parameters);
 	}
 
+	public static AfterHrefStep setHref(
+		UnsafeSupplier<Object, Exception> hrefUnsafeSupplier) {
+
+		NavigationItemStep navigationItemStep = new NavigationItemStep();
+
+		return navigationItemStep.setHref(hrefUnsafeSupplier);
+	}
+
 	public static AfterLabelStep setLabel(String label) {
 		NavigationItemStep navigationItemStep = new NavigationItemStep();
 
 		return navigationItemStep.setLabel(label);
+	}
+
+	public static AfterLabelStep setLabel(
+		UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
+
+		NavigationItemStep navigationItemStep = new NavigationItemStep();
+
+		return navigationItemStep.setLabel(labelUnsafeSupplier);
 	}
 
 	public static class NavigationItemStep
@@ -86,10 +128,46 @@ public class NavigationItemBuilder {
 		}
 
 		@Override
+		public AfterPutDataStep putData(
+			String key, UnsafeSupplier<String, Exception> valueUnsafeSupplier) {
+
+			try {
+				String value = valueUnsafeSupplier.get();
+
+				if (value != null) {
+					_navigationItem.putData(key, value);
+				}
+
+				return this;
+			}
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
+			}
+		}
+
+		@Override
 		public AfterActiveStep setActive(boolean active) {
 			_navigationItem.setActive(active);
 
 			return this;
+		}
+
+		@Override
+		public AfterActiveStep setActive(
+			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier) {
+
+			try {
+				Boolean active = activeUnsafeSupplier.get();
+
+				if (active != null) {
+					_navigationItem.setActive(active.booleanValue());
+				}
+
+				return this;
+			}
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
+			}
 		}
 
 		@Override
@@ -104,6 +182,24 @@ public class NavigationItemBuilder {
 			_navigationItem.setDisabled(disabled);
 
 			return this;
+		}
+
+		@Override
+		public AfterDisabledStep setDisabled(
+			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier) {
+
+			try {
+				Boolean disabled = disabledUnsafeSupplier.get();
+
+				if (disabled != null) {
+					_navigationItem.setDisabled(disabled.booleanValue());
+				}
+
+				return this;
+			}
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
+			}
 		}
 
 		@Override
@@ -123,10 +219,46 @@ public class NavigationItemBuilder {
 		}
 
 		@Override
+		public AfterHrefStep setHref(
+			UnsafeSupplier<Object, Exception> hrefUnsafeSupplier) {
+
+			try {
+				Object href = hrefUnsafeSupplier.get();
+
+				if (href != null) {
+					_navigationItem.setHref(href);
+				}
+
+				return this;
+			}
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
+			}
+		}
+
+		@Override
 		public AfterLabelStep setLabel(String label) {
 			_navigationItem.setLabel(label);
 
 			return this;
+		}
+
+		@Override
+		public AfterLabelStep setLabel(
+			UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
+
+			try {
+				String label = labelUnsafeSupplier.get();
+
+				if (label != null) {
+					_navigationItem.setLabel(label);
+				}
+
+				return this;
+			}
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
+			}
 		}
 
 		private final NavigationItem _navigationItem = new NavigationItem();
@@ -136,6 +268,9 @@ public class NavigationItemBuilder {
 	public interface ActiveStep {
 
 		public AfterActiveStep setActive(boolean active);
+
+		public AfterActiveStep setActive(
+			UnsafeSupplier<Boolean, Exception> activeUnsafeSupplier);
 
 	}
 
@@ -171,6 +306,9 @@ public class NavigationItemBuilder {
 
 		public AfterDisabledStep setDisabled(boolean disabled);
 
+		public AfterDisabledStep setDisabled(
+			UnsafeSupplier<Boolean, Exception> disabledUnsafeSupplier);
+
 	}
 
 	public interface HrefStep {
@@ -180,17 +318,26 @@ public class NavigationItemBuilder {
 		public AfterHrefStep setHref(
 			PortletURL portletURL, Object... parameters);
 
+		public AfterHrefStep setHref(
+			UnsafeSupplier<Object, Exception> hrefUnsafeSupplier);
+
 	}
 
 	public interface LabelStep {
 
 		public AfterLabelStep setLabel(String label);
 
+		public AfterLabelStep setLabel(
+			UnsafeSupplier<String, Exception> labelUnsafeSupplier);
+
 	}
 
 	public interface PutDataStep {
 
 		public AfterPutDataStep putData(String key, String value);
+
+		public AfterPutDataStep putData(
+			String key, UnsafeSupplier<String, Exception> valueUnsafeSupplier);
 
 	}
 

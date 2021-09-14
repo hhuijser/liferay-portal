@@ -658,7 +658,7 @@ public abstract class BaseEmptyLinesCheck extends BaseFileCheck {
 	private static final Pattern _emptyLineBetweenTagsPattern2 =
 		Pattern.compile("(\\S</(\\w+)>| />)\n(\t+)<([-\\w:]+)[> \n]");
 	private static final Pattern _emptyLineBetweenTagsPattern3 =
-		Pattern.compile("((\n\t*<\\w+ ).+?/>)(\n+)(?=\\2.+?/>)");
+		Pattern.compile("((\n\t*<(?!input)\\w+ ).+?/>)(\n+)(?=\\2.+?/>)");
 	private static final Pattern _emptyLineInMultiLineTagsPattern1 =
 		Pattern.compile("\n\t*<[-\\w:#]+\n\n\t*\\w");
 	private static final Pattern _emptyLineInMultiLineTagsPattern2 =

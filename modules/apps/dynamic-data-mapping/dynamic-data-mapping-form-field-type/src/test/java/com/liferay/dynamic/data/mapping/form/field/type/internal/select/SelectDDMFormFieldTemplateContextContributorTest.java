@@ -88,8 +88,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 
 		ddmFormFieldRenderingContext.setProperty("changedProperties", null);
 
-		Assert.assertEquals(
-			true,
+		Assert.assertTrue(
 			_selectDDMFormFieldTemplateContextContributor.getMultiple(
 				ddmFormField, ddmFormFieldRenderingContext));
 	}
@@ -108,8 +107,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		ddmFormFieldRenderingContext.setProperty(
 			"changedProperties", changedProperties);
 
-		Assert.assertEquals(
-			true,
+		Assert.assertTrue(
 			_selectDDMFormFieldTemplateContextContributor.getMultiple(
 				ddmFormField, ddmFormFieldRenderingContext));
 	}
@@ -129,8 +127,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 				"multiple", true
 			).build());
 
-		Assert.assertEquals(
-			true,
+		Assert.assertTrue(
 			_selectDDMFormFieldTemplateContextContributor.getMultiple(
 				ddmFormField, ddmFormFieldRenderingContext));
 	}
@@ -223,7 +220,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		Assert.assertEquals("data-provider", parameters.get("dataSourceType"));
 
 		Assert.assertTrue(parameters.containsKey("multiple"));
-		Assert.assertEquals(false, parameters.get("multiple"));
+		Assert.assertFalse(parameters.get("multiple"));
 
 		Assert.assertTrue(parameters.containsKey("options"));
 
@@ -246,7 +243,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		Assert.assertEquals("Label 3", optionMap.get("label"));
 		Assert.assertEquals("value 3", optionMap.get("value"));
 
-		Assert.assertEquals(true, parameters.get("showEmptyOption"));
+		Assert.assertTrue(parameters.get("showEmptyOption"));
 
 		List<String> value = (List<String>)parameters.get("value");
 
@@ -288,7 +285,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		Assert.assertEquals("manual", parameters.get("dataSourceType"));
 
 		Assert.assertTrue(parameters.containsKey("multiple"));
-		Assert.assertEquals(true, parameters.get("multiple"));
+		Assert.assertTrue(parameters.get("multiple"));
 
 		Assert.assertTrue(parameters.containsKey("options"));
 
@@ -324,7 +321,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 			predefinedValueParameter.toString(),
 			predefinedValueParameter.contains("value 3"));
 
-		Assert.assertEquals(false, parameters.get("showEmptyOption"));
+		Assert.assertFalse(parameters.get("showEmptyOption"));
 	}
 
 	@Test

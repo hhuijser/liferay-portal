@@ -913,10 +913,9 @@ public class ObjectDefinitionLocalServiceTest {
 
 		// Database table
 
-		Assert.assertEquals(
-			false, _hasTable(objectDefinition.getDBTableName()));
-		Assert.assertEquals(
-			false, _hasTable(objectDefinition.getExtensionDBTableName()));
+		Assert.assertFalse(_hasTable(objectDefinition.getDBTableName()));
+		Assert.assertFalse(
+			_hasTable(objectDefinition.getExtensionDBTableName()));
 
 		// Messaging
 

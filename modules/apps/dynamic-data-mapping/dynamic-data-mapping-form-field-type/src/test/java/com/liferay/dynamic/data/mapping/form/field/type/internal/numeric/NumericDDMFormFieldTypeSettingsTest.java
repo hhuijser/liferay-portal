@@ -146,7 +146,7 @@ public class NumericDDMFormFieldTypeSettingsTest
 			ddmFormFieldValidationExpression.getValue());
 
 		Assert.assertEquals("text", inputMaskFormatDDMFormField.getType());
-		Assert.assertEquals(true, inputMaskFormatDDMFormField.isRequired());
+		Assert.assertTrue(inputMaskFormatDDMFormField.isRequired());
 		Assert.assertNotNull(inputMaskFormatDDMFormField.getLabel());
 		Assert.assertNotNull(
 			inputMaskFormatDDMFormField.getProperty("placeholder"));

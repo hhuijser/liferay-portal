@@ -78,7 +78,7 @@ public class SetInvalidFunctionTest extends PowerMockito {
 			updateFieldPropertyRequest.getPropertyOptional(
 				"errorMessage"
 			).get());
-		Assert.assertEquals(false, properties.get("valid"));
+		Assert.assertFalse(properties.get("valid"));
 
 		Assert.assertTrue(result);
 	}

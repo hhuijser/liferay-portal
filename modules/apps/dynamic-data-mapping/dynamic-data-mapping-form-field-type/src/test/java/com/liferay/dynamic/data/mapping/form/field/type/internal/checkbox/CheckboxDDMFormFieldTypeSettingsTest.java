@@ -79,7 +79,7 @@ public class CheckboxDDMFormFieldTypeSettingsTest
 			"false",
 			predefinedValueDDMFormField.getProperty("showEmptyOption"));
 		Assert.assertEquals("select", predefinedValueDDMFormField.getType());
-		Assert.assertEquals(true, predefinedValueDDMFormField.isLocalizable());
+		Assert.assertTrue(predefinedValueDDMFormField.isLocalizable());
 
 		DDMFormField requiredErrorMessage = ddmFormFieldsMap.get(
 			"requiredErrorMessage");

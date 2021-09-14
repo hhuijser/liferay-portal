@@ -71,7 +71,7 @@ public class CheckboxDDMFormFieldTemplateContextContributorTest
 
 		boolean predefinedValue = (boolean)parameters.get("predefinedValue");
 
-		Assert.assertEquals(false, predefinedValue);
+		Assert.assertFalse(predefinedValue);
 	}
 
 	@Test
@@ -145,7 +145,7 @@ public class CheckboxDDMFormFieldTemplateContextContributorTest
 		boolean actualPredefinedValue = (boolean)parameters.get(
 			"predefinedValue");
 
-		Assert.assertEquals(false, actualPredefinedValue);
+		Assert.assertFalse(actualPredefinedValue);
 	}
 
 	@Test
@@ -165,7 +165,7 @@ public class CheckboxDDMFormFieldTemplateContextContributorTest
 		boolean actualPredefinedValue = (boolean)parameters.get(
 			"predefinedValue");
 
-		Assert.assertEquals(true, actualPredefinedValue);
+		Assert.assertTrue(actualPredefinedValue);
 	}
 
 	protected DDMFormFieldRenderingContext

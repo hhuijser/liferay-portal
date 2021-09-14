@@ -583,7 +583,7 @@ public class CommercePriceListLocalServiceTest {
 
 		_assertPriceListAttributes(currency, name, commercePriceList);
 
-		Assert.assertEquals(false, commercePriceList.isNetPrice());
+		Assert.assertFalse(commercePriceList.isNetPrice());
 	}
 
 	@Test

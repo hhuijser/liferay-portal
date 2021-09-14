@@ -84,7 +84,7 @@ public class DateDDMFormFieldTypeSettingsTest
 		Assert.assertEquals(
 			"string", predefinedValueDDMFormField.getDataType());
 		Assert.assertEquals("date", predefinedValueDDMFormField.getType());
-		Assert.assertEquals(true, predefinedValueDDMFormField.isLocalizable());
+		Assert.assertTrue(predefinedValueDDMFormField.isLocalizable());
 
 		DDMFormField validationDDMFormField = ddmFormFieldsMap.get(
 			"validation");

@@ -501,8 +501,7 @@ public class CommercePriceListFinderTest {
 
 		Assert.assertEquals(
 			_commerceCatalog.getGroupId(), baseCommercePriceList.getGroupId());
-		Assert.assertEquals(
-			true, baseCommercePriceList.isCatalogBasePriceList());
+		Assert.assertTrue(baseCommercePriceList.isCatalogBasePriceList());
 
 		CommercePriceList commercePriceList =
 			CommercePriceListTestUtil.addCommercePriceList(
@@ -516,7 +515,7 @@ public class CommercePriceListFinderTest {
 			commercePriceList.getCommercePriceListId(),
 			retrievedPriceList.getCommercePriceListId());
 
-		Assert.assertEquals(false, retrievedPriceList.isCatalogBasePriceList());
+		Assert.assertFalse(retrievedPriceList.isCatalogBasePriceList());
 
 		CommercePriceListAccountRel commercePriceListAccountRel =
 			_commercePriceListAccountRelLocalService.

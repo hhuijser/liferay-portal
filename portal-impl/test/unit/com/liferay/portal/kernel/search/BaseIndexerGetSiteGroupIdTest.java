@@ -89,7 +89,7 @@ public class BaseIndexerGetSiteGroupIdTest {
 
 		_setUpGroup(groupId, 0, true);
 
-		Assert.assertEquals(true, _indexer.isStagingGroup(groupId));
+		Assert.assertTrue(_indexer.isStagingGroup(groupId));
 	}
 
 	@Test
@@ -99,7 +99,7 @@ public class BaseIndexerGetSiteGroupIdTest {
 
 		_setUpGroup(groupId, parentGroupId, true);
 
-		Assert.assertEquals(true, _indexer.isStagingGroup(groupId));
+		Assert.assertTrue(_indexer.isStagingGroup(groupId));
 	}
 
 	@Test
@@ -108,7 +108,7 @@ public class BaseIndexerGetSiteGroupIdTest {
 
 		_setUpGroup(0, 0, false);
 
-		Assert.assertEquals(false, _indexer.isStagingGroup(groupId));
+		Assert.assertFalse(_indexer.isStagingGroup(groupId));
 	}
 
 	private Group _getGroup(

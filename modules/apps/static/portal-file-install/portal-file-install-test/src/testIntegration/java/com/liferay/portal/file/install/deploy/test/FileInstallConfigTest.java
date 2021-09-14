@@ -231,7 +231,7 @@ public class FileInstallConfigTest {
 
 		Dictionary<String, Object> properties = _configuration.getProperties();
 
-		Assert.assertTrue(properties.get("configBoolean"));
+		Assert.assertTrue((boolean)properties.get("configBoolean"));
 		Assert.assertEquals((byte)1, properties.get("configByte"));
 		Assert.assertEquals('A', properties.get("configCharacter"));
 		Assert.assertEquals(12.2D, properties.get("configDouble"));

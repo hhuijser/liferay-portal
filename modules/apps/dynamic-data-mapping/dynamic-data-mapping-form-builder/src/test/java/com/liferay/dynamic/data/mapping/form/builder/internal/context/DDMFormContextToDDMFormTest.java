@@ -165,7 +165,7 @@ public class DDMFormContextToDDMFormTest {
 		Object result = _ddmFormContextToDDMForm.getValueFromValueAccessor(
 			"checkbox", "false", LocaleUtil.US);
 
-		Assert.assertFalse(result);
+		Assert.assertFalse((boolean)result);
 	}
 
 	@Test

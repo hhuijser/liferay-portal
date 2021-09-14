@@ -169,7 +169,7 @@ public class DDMFormTemplateContextFactoryTest {
 				true
 			).build();
 
-		Assert.assertTrue(ddmFormTemplateContext.get("readOnly"));
+		Assert.assertTrue((boolean)ddmFormTemplateContext.get("readOnly"));
 	}
 
 	@Test
@@ -188,7 +188,7 @@ public class DDMFormTemplateContextFactoryTest {
 			).build();
 
 		Assert.assertFalse(
-			ddmFormTemplateContext.get("showRequiredFieldsWarning"));
+			(boolean)ddmFormTemplateContext.get("showRequiredFieldsWarning"));
 	}
 
 	@Test
@@ -206,7 +206,8 @@ public class DDMFormTemplateContextFactoryTest {
 				true
 			).build();
 
-		Assert.assertTrue(ddmFormTemplateContext.get("showSubmitButton"));
+		Assert.assertTrue(
+			(boolean)ddmFormTemplateContext.get("showSubmitButton"));
 	}
 
 	@Test
@@ -226,7 +227,8 @@ public class DDMFormTemplateContextFactoryTest {
 				true
 			).build();
 
-		Assert.assertFalse(ddmFormTemplateContext.get("showSubmitButton"));
+		Assert.assertFalse(
+			(boolean)ddmFormTemplateContext.get("showSubmitButton"));
 	}
 
 	@Test
@@ -417,7 +419,7 @@ public class DDMFormTemplateContextFactoryTest {
 				true
 			).build();
 
-		Assert.assertTrue(ddmFormTemplateContext.get("viewMode"));
+		Assert.assertTrue((boolean)ddmFormTemplateContext.get("viewMode"));
 	}
 
 	protected void setUpThemeDisplay() throws Exception {

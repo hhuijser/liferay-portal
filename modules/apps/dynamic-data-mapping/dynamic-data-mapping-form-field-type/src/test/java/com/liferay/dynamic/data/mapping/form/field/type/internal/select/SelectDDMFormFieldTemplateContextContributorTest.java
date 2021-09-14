@@ -220,7 +220,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		Assert.assertEquals("data-provider", parameters.get("dataSourceType"));
 
 		Assert.assertTrue(parameters.containsKey("multiple"));
-		Assert.assertFalse(parameters.get("multiple"));
+		Assert.assertFalse((boolean)parameters.get("multiple"));
 
 		Assert.assertTrue(parameters.containsKey("options"));
 
@@ -285,7 +285,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		Assert.assertEquals("manual", parameters.get("dataSourceType"));
 
 		Assert.assertTrue(parameters.containsKey("multiple"));
-		Assert.assertTrue(parameters.get("multiple"));
+		Assert.assertTrue((boolean)parameters.get("multiple"));
 
 		Assert.assertTrue(parameters.containsKey("options"));
 

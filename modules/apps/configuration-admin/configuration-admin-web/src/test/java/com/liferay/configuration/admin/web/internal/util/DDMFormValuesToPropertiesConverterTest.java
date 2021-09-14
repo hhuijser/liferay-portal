@@ -169,7 +169,7 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 		Dictionary<String, Object> properties =
 			ddmFormValuesToPropertiesConverter.getProperties();
 
-		Assert.assertTrue(properties.get("Boolean"));
+		Assert.assertTrue((boolean)properties.get("Boolean"));
 	}
 
 	@Test

@@ -162,7 +162,8 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 			ddmFormField.getProperty("ddmStructureLayoutId"));
 		Assert.assertEquals(
 			rowsJSONArray.toString(), ddmFormField.getProperty("rows"));
-		Assert.assertTrue(ddmFormField.getProperty("upgradedStructure"));
+		Assert.assertTrue(
+			(boolean)ddmFormField.getProperty("upgradedStructure"));
 		Assert.assertEquals("fieldset", ddmFormField.getType());
 	}
 
@@ -254,8 +255,8 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 
 		Assert.assertEquals(
 			"MultipleSelection12345678", ddmFormField.getName());
-		Assert.assertTrue(ddmFormField.getProperty("inline"));
-		Assert.assertFalse(ddmFormField.getProperty("showAsSwitcher"));
+		Assert.assertTrue((boolean)ddmFormField.getProperty("inline"));
+		Assert.assertFalse((boolean)ddmFormField.getProperty("showAsSwitcher"));
 		Assert.assertEquals("checkbox_multiple", ddmFormField.getType());
 	}
 
@@ -379,7 +380,7 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 			DDMFormValuesTestUtil.createLocalizedValue(
 				"Tooltip", _defaultLocale),
 			ddmFormField.getProperty("tooltip"));
-		Assert.assertFalse(ddmFormField.getProperty("valid"));
+		Assert.assertFalse((boolean)ddmFormField.getProperty("valid"));
 		Assert.assertEquals(
 			DDMFormValuesTestUtil.createLocalizedValue(
 				"Custom required error message.", _defaultLocale),
@@ -417,15 +418,15 @@ public class DDMFormTemplateContextProcessorTest extends PowerMockito {
 				));
 
 		Assert.assertEquals("Upload12345678", ddmFormField.getName());
-		Assert.assertTrue(ddmFormField.getProperty("allowGuestUsers"));
+		Assert.assertTrue((boolean)ddmFormField.getProperty("allowGuestUsers"));
 		Assert.assertEquals(
 			folderId, GetterUtil.getLong(ddmFormField.getProperty("folderId")));
 		Assert.assertEquals(
 			guestUploadURL, ddmFormField.getProperty("guestUploadURL"));
 		Assert.assertEquals(7, ddmFormField.getProperty("maximumRepetitions"));
 		Assert.assertFalse(
-			ddmFormField.getProperty("maximumSubmissionLimitReached"));
-		Assert.assertTrue(ddmFormField.getProperty("valid"));
+			(boolean)ddmFormField.getProperty("maximumSubmissionLimitReached"));
+		Assert.assertTrue((boolean)ddmFormField.getProperty("valid"));
 		Assert.assertEquals("document_library", ddmFormField.getType());
 		Assert.assertFalse(ddmFormField.isLocalizable());
 		Assert.assertFalse(ddmFormField.isReadOnly());

@@ -117,7 +117,7 @@ public class DDMFormValuesToFieldsConverterTest extends BaseDDMTestCase {
 
 		Assert.assertTrue(clazz.isAssignableFrom(Boolean.class));
 
-		Assert.assertTrue(value);
+		Assert.assertTrue((boolean)value);
 
 		Field fieldsDisplayField = fields.get(DDMImpl.FIELDS_DISPLAY_NAME);
 

@@ -14,6 +14,8 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -45,9 +47,22 @@ public class AssertEqualsCheck extends BaseCheck {
 				continue;
 			}
 
+			DetailAST firstExprDetailAST = exprDetailASTList.get(0);
+
+			DetailAST firstChildDetailAST = firstExprDetailAST.getFirstChild();
+
+			if ((firstChildDetailAST.getType() == TokenTypes.LITERAL_FALSE) ||
+				(firstChildDetailAST.getType() == TokenTypes.LITERAL_TRUE)) {
+
+				log(
+					methodCallDetailAST, _MSG_ASSERT_USE_BOOLEAN,
+					StringUtil.upperCaseFirstLetter(
+						firstChildDetailAST.getText()));
+			}
+
 			DetailAST secondExprDetailAST = exprDetailASTList.get(1);
 
-			DetailAST firstChildDetailAST = secondExprDetailAST.getFirstChild();
+			firstChildDetailAST = secondExprDetailAST.getFirstChild();
 
 			String variableName = _getVariableNameForMethodCall(
 				firstChildDetailAST, "getLength");
@@ -148,5 +163,7 @@ public class AssertEqualsCheck extends BaseCheck {
 
 	private static final String _MSG_ASSERT_ADD_INFORMATION =
 		"assert.add.information";
+
+	private static final String _MSG_ASSERT_USE_BOOLEAN = "assert.use.boolean";
 
 }

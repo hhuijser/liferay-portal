@@ -157,7 +157,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributorTest
 			documentLibraryDDMFormFieldTemplateContextContributor.getParameters(
 				ddmFormField, _createDDMFormFieldRenderingContext());
 
-		Assert.assertTrue(parameters.get("allowGuestUsers"));
+		Assert.assertTrue((boolean)parameters.get("allowGuestUsers"));
 		Assert.assertEquals(_FORMS_FOLDER_ID, parameters.get("folderId"));
 
 		String guestUploadURL = String.valueOf(

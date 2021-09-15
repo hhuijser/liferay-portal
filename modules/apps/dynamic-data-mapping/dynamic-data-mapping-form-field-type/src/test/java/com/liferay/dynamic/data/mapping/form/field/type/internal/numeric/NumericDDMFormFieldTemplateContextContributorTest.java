@@ -82,7 +82,7 @@ public class NumericDDMFormFieldTemplateContextContributorTest
 			parameters.get("confirmationErrorMessage"));
 		Assert.assertEquals(
 			"Confirm Field", parameters.get("confirmationLabel"));
-		Assert.assertTrue(parameters.get("requireConfirmation"));
+		Assert.assertTrue((boolean)parameters.get("requireConfirmation"));
 	}
 
 	@Test

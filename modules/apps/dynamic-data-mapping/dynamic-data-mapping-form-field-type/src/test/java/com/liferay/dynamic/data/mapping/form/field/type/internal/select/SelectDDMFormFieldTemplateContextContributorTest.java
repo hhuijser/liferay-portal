@@ -243,7 +243,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		Assert.assertEquals("Label 3", optionMap.get("label"));
 		Assert.assertEquals("value 3", optionMap.get("value"));
 
-		Assert.assertTrue(parameters.get("showEmptyOption"));
+		Assert.assertTrue((boolean)parameters.get("showEmptyOption"));
 
 		List<String> value = (List<String>)parameters.get("value");
 
@@ -321,7 +321,7 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 			predefinedValueParameter.toString(),
 			predefinedValueParameter.contains("value 3"));
 
-		Assert.assertFalse(parameters.get("showEmptyOption"));
+		Assert.assertFalse((boolean)parameters.get("showEmptyOption"));
 	}
 
 	@Test

@@ -108,6 +108,22 @@ public interface SiteFriendlyURLModel
 	public void setSiteFriendlyURLId(long siteFriendlyURLId);
 
 	/**
+	 * Returns the group ID of this site friendly url.
+	 *
+	 * @return the group ID of this site friendly url
+	 */
+	@Override
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this site friendly url.
+	 *
+	 * @param groupId the group ID of this site friendly url
+	 */
+	@Override
+	public void setGroupId(long groupId);
+
+	/**
 	 * Returns the company ID of this site friendly url.
 	 *
 	 * @return the company ID of this site friendly url
@@ -203,22 +219,6 @@ public interface SiteFriendlyURLModel
 	 */
 	@Override
 	public void setModifiedDate(Date modifiedDate);
-
-	/**
-	 * Returns the group ID of this site friendly url.
-	 *
-	 * @return the group ID of this site friendly url
-	 */
-	@Override
-	public long getGroupId();
-
-	/**
-	 * Sets the group ID of this site friendly url.
-	 *
-	 * @param groupId the group ID of this site friendly url
-	 */
-	@Override
-	public void setGroupId(long groupId);
 
 	/**
 	 * Returns the friendly url of this site friendly url.

@@ -190,6 +190,10 @@
 		<finder name="ObjectDefinitionId" return-type="Collection">
 			<finder-column name="objectDefinitionId" />
 		</finder>
+		<finder name="ODI_DOL" return-type="Collection">
+			<finder-column name="objectDefinitionId" />
+			<finder-column name="defaultObjectLayout" />
+		</finder>
 	</entity>
 	<entity local-service="false" name="ObjectLayoutBox" remote-service="false" uuid="true">
 
@@ -343,6 +347,7 @@
 		</finder>
 	</entity>
 	<exceptions>
+		<exception>DefaultObjectLayout</exception>
 		<exception>DuplicateObjectDefinition</exception>
 		<exception>DuplicateObjectField</exception>
 		<exception>DuplicateObjectRelationship</exception>

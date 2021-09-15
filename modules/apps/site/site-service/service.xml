@@ -9,6 +9,10 @@
 
 		<column name="siteFriendlyURLId" primary="true" type="long" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
@@ -16,10 +20,6 @@
 		<column name="userName" type="String" />
 		<column name="createDate" type="Date" />
 		<column name="modifiedDate" type="Date" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
 
 		<!-- Other fields -->
 

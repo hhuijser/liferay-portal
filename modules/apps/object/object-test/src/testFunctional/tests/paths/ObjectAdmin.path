@@ -71,6 +71,11 @@
 		<td></td>
 	</tr>
 	<tr>
+		<td>SEARCHABLE_SECTION_TITLE</td>
+		<td>//h2[contains (text(), 'Searchable')]</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>OBJECT_FIELDS_TAB</td>
 		<td>//a[contains(text(),'Fields')]</td>
 		<td></td>
@@ -103,6 +108,11 @@
 	<tr>
 		<td>SELECT_OBJECT_FIELD</td>
 		<td>//a[contains(text(),'${key_fieldName}')]</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>SELECT_OBJECT_SCOPE</td>
+		<td>//select[@id = '_com_liferay_object_web_internal_object_definitions_portlet_ObjectDefinitionsPortlet_scope']</td>
 		<td></td>
 	</tr>
 	<tr>

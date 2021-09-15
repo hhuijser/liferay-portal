@@ -699,8 +699,9 @@ public class DDMFormAdminDisplayContext {
 					LanguageUtil.get(httpServletRequest, "rules"));
 			}
 		).add(
-			() -> !((ddmFormInstance != null) &&
-			  Objects.equals(ddmFormInstance.getStorageType(), "object")),
+			() ->
+				!((ddmFormInstance != null) &&
+				  Objects.equals(ddmFormInstance.getStorageType(), "object")),
 			navigationItem -> {
 				navigationItem.putData("action", "showReport");
 

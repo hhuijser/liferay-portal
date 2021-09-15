@@ -250,13 +250,29 @@ public abstract class BaseJavaTerm implements JavaTerm {
 			JavaOperatorExpression javaOperatorExpression =
 				(JavaOperatorExpression)javaExpression;
 
-			JavaOperator javaOperator =
-				javaOperatorExpression.getJavaOperator();
+			while (true) {
+				JavaOperator javaOperator =
+					javaOperatorExpression.getJavaOperator();
 
-			if (!javaOperator.equals(
-					JavaOperator.LOGICAL_COMPLEMENT_OPERATOR)) {
+				if (!javaOperator.equals(
+						JavaOperator.LOGICAL_COMPLEMENT_OPERATOR)) {
 
-				newLine = true;
+					newLine = true;
+
+					break;
+				}
+
+				JavaExpression rightHandJavaExpression =
+					javaOperatorExpression.getRightHandJavaExpression();
+
+				if (!(rightHandJavaExpression instanceof
+						JavaOperatorExpression)) {
+
+					break;
+				}
+
+				javaOperatorExpression =
+					(JavaOperatorExpression)rightHandJavaExpression;
 			}
 		}
 		else if (javaExpression instanceof JavaTypeCast) {

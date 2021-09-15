@@ -98,8 +98,8 @@ public class SiteFriendlyURLLocalServiceImpl
 			long companyId, long groupId, String languageId)
 		throws PortalException {
 
-		return siteFriendlyURLPersistence.removeByC_G_L(
-			companyId, groupId, languageId);
+		return siteFriendlyURLPersistence.removeByG_C_L(
+			groupId, companyId, languageId);
 	}
 
 	@Override
@@ -111,15 +111,15 @@ public class SiteFriendlyURLLocalServiceImpl
 
 	@Override
 	public void deleteSiteFriendlyURLs(long companyId, long groupId) {
-		siteFriendlyURLPersistence.removeByC_G(companyId, groupId);
+		siteFriendlyURLPersistence.removeByG_C(groupId, companyId);
 	}
 
 	@Override
 	public SiteFriendlyURL fetchSiteFriendlyURL(
 		long companyId, long groupId, String languageId) {
 
-		return siteFriendlyURLPersistence.fetchByC_G_L(
-			companyId, groupId, languageId);
+		return siteFriendlyURLPersistence.fetchByG_C_L(
+			groupId, companyId, languageId);
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class SiteFriendlyURLLocalServiceImpl
 	public List<SiteFriendlyURL> getSiteFriendlyURLs(
 		long companyId, long groupId) {
 
-		return siteFriendlyURLPersistence.findByC_G(companyId, groupId);
+		return siteFriendlyURLPersistence.findByG_C(groupId, companyId);
 	}
 
 	@Override
@@ -143,8 +143,8 @@ public class SiteFriendlyURLLocalServiceImpl
 		throws PortalException {
 
 		SiteFriendlyURL siteFriendlyURL =
-			siteFriendlyURLPersistence.fetchByC_G_L(
-				companyId, groupId, languageId);
+			siteFriendlyURLPersistence.fetchByG_C_L(
+				groupId, companyId, languageId);
 
 		if (siteFriendlyURL == null) {
 			siteFriendlyURL = addSiteFriendlyURL(
@@ -171,8 +171,8 @@ public class SiteFriendlyURLLocalServiceImpl
 			String languageId = LocaleUtil.toLanguageId(locale);
 
 			SiteFriendlyURL siteFriendlyURL =
-				siteFriendlyURLPersistence.fetchByC_G_L(
-					companyId, groupId, languageId);
+				siteFriendlyURLPersistence.fetchByG_C_L(
+					groupId, companyId, languageId);
 
 			if (Validator.isNull(friendlyURL) && (siteFriendlyURL != null)) {
 				deleteSiteFriendlyURL(companyId, groupId, languageId);

@@ -30,7 +30,7 @@
 			<order-column name="createDate" />
 		</order>
 
-		<!-- Finders -->
+		<!-- Finder methods -->
 
 		<finder name="UserId" return-type="Collection">
 			<finder-column name="userId" />

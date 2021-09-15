@@ -43,7 +43,7 @@
 			<order-column name="name" />
 		</order>
 
-		<!-- Finders -->
+		<!-- Finder methods -->
 
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
@@ -86,7 +86,7 @@
 			<order-column name="name" />
 		</order>
 
-		<!-- Finders -->
+		<!-- Finder methods -->
 
 		<finder name="CommerceAccountGroupId" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="commerceAccountGroupId" />
@@ -123,7 +123,7 @@
 		<column name="commerceAccountGroupId" type="long" />
 		<column name="commerceAccountId" type="long" />
 
-		<!-- Finders -->
+		<!-- Finder methods -->
 
 		<finder name="CommerceAccountGroupId" return-type="Collection">
 			<finder-column name="commerceAccountGroupId" />
@@ -206,7 +206,7 @@
 			<order-column name="userId" />
 		</order>
 
-		<!-- Finders -->
+		<!-- Finder methods -->
 
 		<finder name="CommerceAccountId" return-type="Collection">
 			<finder-column name="commerceAccountId" />
@@ -240,7 +240,7 @@
 			<order-column name="userId" />
 		</order>
 
-		<!-- Finders -->
+		<!-- Finder methods -->
 
 		<finder name="CommerceAccountId" return-type="Collection">
 			<finder-column name="commerceAccountId" />

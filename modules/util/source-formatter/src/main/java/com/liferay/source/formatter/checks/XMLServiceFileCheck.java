@@ -50,6 +50,52 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private void _checkCategoryOrder(
+		String fileName, Element entityElement, String entityName) {
+
+		Iterator<Node> iterator = entityElement.nodeIterator();
+
+		int previousCategoryIndex = -1;
+		String previousCategory = null;
+
+		while (iterator.hasNext()) {
+			Node node = (Node)iterator.next();
+
+			if (node instanceof DefaultComment) {
+				DefaultComment defaultComment = (DefaultComment)node;
+
+				String comment = defaultComment.asXML();
+
+				if (!comment.matches("<!--.*-->")) {
+					continue;
+				}
+
+				String category = StringUtil.trim(
+					comment.substring(4, comment.length() - 3));
+
+				int categoryIndex = _getCategoryIndex(category);
+
+				if (categoryIndex == -1) {
+					addMessage(fileName, "UNKNOWN: " + category);
+
+					continue;
+				}
+
+				if (previousCategoryIndex > categoryIndex) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Incorrect order '", entityName, "': Category '",
+							previousCategory, "' should come after '", category,
+							"'"));
+				}
+
+				previousCategoryIndex = categoryIndex;
+				previousCategory = category;
+			}
+		}
+	}
+
 	private void _checkColumnsThatShouldComeLast(
 		String fileName, String absolutePath, Element entityElement,
 		String entityName) {
@@ -171,6 +217,8 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 			String entityName = entityElement.attributeValue("name");
 
+			_checkCategoryOrder(fileName, entityElement, entityName);
+
 			_checkColumnsThatShouldComeLast(
 				fileName, absolutePath, entityElement, entityName);
 
@@ -231,6 +279,50 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		checkElementOrder(
 			fileName, rootElement.element("exceptions"), "exception", null,
 			new ServiceExceptionElementComparator());
+	}
+
+	private int _getCategoryIndex(String category) {
+		if (StringUtil.equalsIgnoreCase(category, "PK fields")) {
+			return 1;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Resource")) {
+			return 2;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Group instance")) {
+			return 3;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Audit fields")) {
+			return 4;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Other fields")) {
+			return 5;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Localized entity")) {
+			return 6;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Relationships")) {
+			return 7;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Order")) {
+			return 8;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "Finder methods")) {
+			return 9;
+		}
+
+		if (StringUtil.equalsIgnoreCase(category, "References")) {
+			return 10;
+		}
+
+		return -1;
 	}
 
 	private boolean _isStatusColumnName(String columnName) {

@@ -35,6 +35,12 @@
 		<column name="version" type="int" />
 		<column name="status" type="int" />
 
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
 		<!-- Finder methods -->
 
 		<finder name="CompanyId" return-type="Collection">
@@ -56,12 +62,6 @@
 			<finder-column name="active" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="name" />
-		</order>
 
 		<!-- References -->
 
@@ -95,6 +95,12 @@
 		<column name="statusByUserName" type="String" />
 		<column name="statusDate" type="Date" />
 
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="objectEntryId" />
+		</order>
+
 		<!-- Finder methods -->
 
 		<finder name="ObjectDefinitionId" return-type="Collection">
@@ -109,12 +115,6 @@
 			<finder-column name="companyId" />
 			<finder-column name="externalReferenceCode" />
 		</finder>
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="objectEntryId" />
-		</order>
 	</entity>
 	<entity local-service="true" name="ObjectField" remote-service="true" uuid="true">
 
@@ -145,6 +145,12 @@
 		<column name="required" type="boolean" />
 		<column name="type" type="String" />
 
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
 		<!-- Finder methods -->
 
 		<finder name="ObjectDefinitionId" return-type="Collection">
@@ -158,12 +164,6 @@
 			<finder-column name="objectDefinitionId" />
 			<finder-column name="name" />
 		</finder>
-
-		<!-- Order -->
-
-		<order by="asc">
-			<order-column name="name" />
-		</order>
 	</entity>
 	<entity local-service="true" name="ObjectLayout" remote-service="true" uuid="true">
 

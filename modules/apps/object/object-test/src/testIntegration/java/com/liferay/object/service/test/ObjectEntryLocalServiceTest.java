@@ -554,7 +554,7 @@ public class ObjectEntryLocalServiceTest {
 			objectEntry.getObjectEntryId());
 
 		Assert.assertEquals(0L, values.get("ageOfDeath"));
-		Assert.assertFalse(values.get("authorOfGospel"));
+		Assert.assertFalse((boolean)values.get("authorOfGospel"));
 		Assert.assertEquals(null, values.get("birthday"));
 		Assert.assertEquals("john@liferay.com", values.get("emailAddress"));
 		Assert.assertEquals("John", values.get("firstName"));
@@ -951,7 +951,7 @@ public class ObjectEntryLocalServiceTest {
 		Assert.assertEquals(_getValuesFromDatabase(objectEntry), values);
 
 		Assert.assertEquals(0L, values.get("ageOfDeath"));
-		Assert.assertFalse(values.get("authorOfGospel"));
+		Assert.assertFalse((boolean)values.get("authorOfGospel"));
 		Assert.assertEquals(null, values.get("birthday"));
 		Assert.assertEquals("john@liferay.com", values.get("emailAddress"));
 		Assert.assertEquals("João", values.get("firstName"));
@@ -1002,7 +1002,7 @@ public class ObjectEntryLocalServiceTest {
 			objectEntry.getObjectEntryId());
 
 		Assert.assertEquals(94L, values.get("ageOfDeath"));
-		Assert.assertTrue(values.get("authorOfGospel"));
+		Assert.assertTrue((boolean)values.get("authorOfGospel"));
 		Assert.assertEquals(birthdayDate, values.get("birthday"));
 		Assert.assertEquals("john@liferay.com", values.get("emailAddress"));
 		Assert.assertEquals("João", values.get("firstName"));
@@ -1032,7 +1032,7 @@ public class ObjectEntryLocalServiceTest {
 			objectEntry.getObjectEntryId());
 
 		Assert.assertEquals(94L, values.get("ageOfDeath"));
-		Assert.assertTrue(values.get("authorOfGospel"));
+		Assert.assertTrue((boolean)values.get("authorOfGospel"));
 		Assert.assertEquals(birthdayDate, values.get("birthday"));
 		Assert.assertEquals("john@liferay.com", values.get("emailAddress"));
 		Assert.assertEquals("João", values.get("firstName"));

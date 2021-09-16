@@ -33,7 +33,7 @@ public class NodeUtil {
 
 		node.setLabel(language.get(resourceBundle, name));
 		node.setName(name);
-		node.setType(Node.Type.valueOf(type.name()));
+		node.setType(Node.Type.create(type.name()));
 
 		return node;
 	}

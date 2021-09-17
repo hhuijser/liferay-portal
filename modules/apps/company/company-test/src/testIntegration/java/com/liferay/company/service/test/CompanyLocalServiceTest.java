@@ -81,6 +81,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.portal.test.rule.SybaseDump;
@@ -796,12 +797,11 @@ public class CompanyLocalServiceTest {
 			CompanyLocalServiceUtil.updateDisplay(
 				company.getCompanyId(), languageId, timeZone.getID());
 
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
-
-			unicodeProperties.put(PropsKeys.LOCALES, languageId);
-
 			CompanyLocalServiceUtil.updatePreferences(
-				company.getCompanyId(), unicodeProperties);
+				company.getCompanyId(),
+				UnicodePropertiesBuilder.put(
+					PropsKeys.LOCALES, languageId
+				).build());
 
 			Assert.assertEquals(
 				Collections.singleton(LocaleUtil.fromLanguageId(languageId)),
@@ -838,14 +838,13 @@ public class CompanyLocalServiceTest {
 			StringUtil.merge(companyLanguageIds),
 			groupTypeSettingsUnicodeProperties.getProperty(PropsKeys.LOCALES));
 
-		UnicodeProperties unicodeProperties = new UnicodeProperties();
-
 		String languageIds = "ca_ES,en_US";
 
-		unicodeProperties.put(PropsKeys.LOCALES, languageIds);
-
 		CompanyLocalServiceUtil.updatePreferences(
-			company.getCompanyId(), unicodeProperties);
+			company.getCompanyId(),
+			UnicodePropertiesBuilder.put(
+				PropsKeys.LOCALES, languageIds
+			).build());
 
 		Assert.assertEquals(
 			languageIds,

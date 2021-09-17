@@ -22,6 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Alan Huang
@@ -56,13 +57,10 @@ public class DTOEnumCreationCheck extends BaseCheck {
 
 		List<String> dtoEnumNames = getAttributeValues(_DTO_ENUM_NAMES);
 
-		if (!dtoEnumNames.contains(fullyQualifiedTypeName.substring(0, x))) {
-			return;
-		}
+		if (!dtoEnumNames.contains(fullyQualifiedTypeName.substring(0, x)) ||
+			!Objects.equals(
+				fullyQualifiedTypeName.substring(x + 1), "valueOf")) {
 
-		String methodName = fullyQualifiedTypeName.substring(x + 1);
-
-		if (!methodName.equals("valueOf")) {
 			return;
 		}
 

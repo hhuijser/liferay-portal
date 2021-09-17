@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.site.navigation.constants.SiteNavigationWebKeys;
@@ -68,10 +69,9 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				_siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		_classNameId = GetterUtil.getLong(
 			typeSettingsUnicodeProperties.get("classNameId"));
@@ -85,10 +85,9 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				_siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		_classPK = GetterUtil.getLong(
 			typeSettingsUnicodeProperties.get("classPK"));
@@ -102,10 +101,9 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				_siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		LayoutDisplayPageObjectProvider<?> layoutDisplayPageObjectProvider =
 			_getLayoutDisplayPageObjectProvider(typeSettingsUnicodeProperties);
@@ -131,14 +129,11 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
-
 		LayoutDisplayPageObjectProvider<?> layoutDisplayPageObjectProvider =
-			_getLayoutDisplayPageObjectProvider(typeSettingsUnicodeProperties);
+			_getLayoutDisplayPageObjectProvider(
+				UnicodePropertiesBuilder.fastLoad(
+					_siteNavigationMenuItem.getTypeSettings()
+				).build());
 
 		if (layoutDisplayPageObjectProvider == null) {
 			return StringPool.BLANK;
@@ -194,10 +189,9 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				_siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		LayoutDisplayPageObjectProvider<?> layoutDisplayPageObjectProvider =
 			_getLayoutDisplayPageObjectProvider(typeSettingsUnicodeProperties);
@@ -219,10 +213,9 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				_siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		_title = typeSettingsUnicodeProperties.get("title");
 
@@ -235,10 +228,9 @@ public class DisplayPageSiteNavigationMenuTypeDisplayContext {
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			_siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				_siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		_type = typeSettingsUnicodeProperties.get("type");
 

@@ -44,7 +44,7 @@ import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.subscription.service.SubscriptionLocalService;
@@ -456,15 +456,12 @@ public class WikiNodeLocalServiceImpl extends WikiNodeLocalServiceBaseImpl {
 
 		// Trash
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put("title", node.getName());
-
 		TrashEntry trashEntry = _trashEntryLocalService.addTrashEntry(
 			userId, node.getGroupId(), WikiNode.class.getName(),
 			node.getNodeId(), node.getUuid(), null, oldStatus, null,
-			typeSettingsUnicodeProperties);
+			UnicodePropertiesBuilder.put(
+				"title", node.getName()
+			).build());
 
 		node.setName(_trashHelper.getTrashTitle(trashEntry.getEntryId()));
 

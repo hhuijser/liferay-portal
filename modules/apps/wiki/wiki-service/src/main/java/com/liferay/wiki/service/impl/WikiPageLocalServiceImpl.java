@@ -89,7 +89,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SubscriptionSender;
 import com.liferay.portal.kernel.util.TempFileEntryUtil;
 import com.liferay.portal.kernel.util.URLCodec;
-import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -1695,15 +1695,13 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			_wikiPageResourcePersistence.fetchByPrimaryKey(
 				page.getResourcePrimKey());
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put("title", page.getTitle());
-
 		TrashEntry trashEntry = _trashEntryLocalService.addTrashEntry(
 			userId, page.getGroupId(), WikiPage.class.getName(),
 			page.getResourcePrimKey(), page.getUuid(), null, oldStatus,
-			pageVersionStatusOVPs, typeSettingsUnicodeProperties);
+			pageVersionStatusOVPs,
+			UnicodePropertiesBuilder.put(
+				"title", page.getTitle()
+			).build());
 
 		String trashTitle = _trashHelper.getTrashTitle(trashEntry.getEntryId());
 
@@ -2734,15 +2732,13 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		String trashTitle = oldTitle;
 
 		if (createTrashVersion) {
-			UnicodeProperties typeSettingsUnicodeProperties =
-				new UnicodeProperties();
-
-			typeSettingsUnicodeProperties.put("title", oldTitle);
-
 			TrashVersion trashVersion =
 				_trashVersionLocalService.addTrashVersion(
 					trashEntryId, WikiPage.class.getName(), page.getPageId(),
-					page.getStatus(), typeSettingsUnicodeProperties);
+					page.getStatus(),
+					UnicodePropertiesBuilder.put(
+						"title", oldTitle
+					).build());
 
 			trashTitle = _trashHelper.getTrashTitle(
 				trashVersion.getVersionId());

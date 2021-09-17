@@ -30,7 +30,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PersistenceTestRule;
@@ -545,17 +545,14 @@ public class SiteNavigationMenuItemLocalServiceTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put(
-			"name", StringUtil.randomString(1000));
-
 		_siteNavigationMenuItemLocalService.addSiteNavigationMenuItem(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			_siteNavigationMenu.getSiteNavigationMenuId(), 0,
 			SiteNavigationMenuItemTypeConstants.LAYOUT,
-			typeSettingsUnicodeProperties.toString(), serviceContext);
+			UnicodePropertiesBuilder.put(
+				"name", StringUtil.randomString(1000)
+			).buildString(),
+			serviceContext);
 	}
 
 	@Test(expected = InvalidSiteNavigationMenuItemTypeException.class)

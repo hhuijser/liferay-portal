@@ -15,7 +15,9 @@
 package com.liferay.portlet.social.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portlet.social.service.base.SocialRequestLocalServiceBaseImpl;
 import com.liferay.social.kernel.exception.RequestUserIdException;
@@ -119,6 +121,7 @@ public class SocialRequestLocalServiceImpl
 	 * @param requestId the primary key of the social request
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteRequest(long requestId) throws PortalException {
 		SocialRequest request = socialRequestPersistence.findByPrimaryKey(
 			requestId);
@@ -132,6 +135,7 @@ public class SocialRequestLocalServiceImpl
 	 * @param request the social request to be removed
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteRequest(SocialRequest request) {
 		socialRequestPersistence.remove(request);
 	}

@@ -26,7 +26,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.messaging.async.Async;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portlet.social.service.base.SocialActivityLocalServiceBaseImpl;
 import com.liferay.portlet.social.util.SocialActivityHierarchyEntry;
@@ -378,6 +380,7 @@ public class SocialActivityLocalServiceImpl
 	 * @param activityId the primary key of the stored activity
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteActivity(long activityId) throws PortalException {
 		SocialActivity activity = socialActivityPersistence.findByPrimaryKey(
 			activityId);
@@ -391,6 +394,7 @@ public class SocialActivityLocalServiceImpl
 	 * @param activity the activity to be removed
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteActivity(SocialActivity activity) throws PortalException {
 		socialActivitySetLocalService.decrementActivityCount(
 			activity.getActivitySetId());

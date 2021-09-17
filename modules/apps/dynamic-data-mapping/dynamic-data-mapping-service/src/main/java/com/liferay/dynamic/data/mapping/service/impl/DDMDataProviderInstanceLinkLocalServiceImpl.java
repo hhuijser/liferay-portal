@@ -18,6 +18,8 @@ import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink;
 import com.liferay.dynamic.data.mapping.service.base.DDMDataProviderInstanceLinkLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 
 import java.util.List;
 
@@ -52,6 +54,7 @@ public class DDMDataProviderInstanceLinkLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteDataProviderInstanceLink(
 		DDMDataProviderInstanceLink dataProviderInstanceLink) {
 
@@ -59,6 +62,7 @@ public class DDMDataProviderInstanceLinkLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteDataProviderInstanceLink(long dataProviderInstanceLinkId)
 		throws PortalException {
 

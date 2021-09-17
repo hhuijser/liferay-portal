@@ -85,6 +85,7 @@ public class SXPElementLocalServiceImpl extends SXPElementLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public SXPElement deleteSXPElement(long sxpElementId)
 		throws PortalException {
 

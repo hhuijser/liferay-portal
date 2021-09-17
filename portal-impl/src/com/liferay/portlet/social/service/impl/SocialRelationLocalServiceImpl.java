@@ -15,7 +15,9 @@
 package com.liferay.portlet.social.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portlet.social.service.base.SocialRelationLocalServiceBaseImpl;
 import com.liferay.social.kernel.exception.RelationUserIdException;
 import com.liferay.social.kernel.model.SocialRelation;
@@ -126,6 +128,7 @@ public class SocialRelationLocalServiceImpl
 	 * @param relationId the primary key of the relation
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteRelation(long relationId) throws PortalException {
 		SocialRelation relation = socialRelationPersistence.findByPrimaryKey(
 			relationId);
@@ -158,6 +161,7 @@ public class SocialRelationLocalServiceImpl
 	 * @param relation the relation to be removed
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteRelation(SocialRelation relation) throws PortalException {
 		socialRelationPersistence.remove(relation);
 

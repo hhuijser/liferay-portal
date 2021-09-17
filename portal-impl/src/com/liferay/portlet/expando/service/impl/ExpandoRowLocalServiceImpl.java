@@ -18,6 +18,8 @@ import com.liferay.expando.kernel.model.ExpandoRow;
 import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.expando.kernel.model.ExpandoTableConstants;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portlet.expando.service.base.ExpandoRowLocalServiceBaseImpl;
 
 import java.util.Collections;
@@ -47,6 +49,7 @@ public class ExpandoRowLocalServiceImpl extends ExpandoRowLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteRow(ExpandoRow row) {
 
 		// Row
@@ -59,6 +62,7 @@ public class ExpandoRowLocalServiceImpl extends ExpandoRowLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteRow(long rowId) throws PortalException {
 		ExpandoRow row = expandoRowPersistence.findByPrimaryKey(rowId);
 

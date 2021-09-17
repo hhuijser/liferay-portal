@@ -29,6 +29,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -109,6 +111,7 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public CTProcess deleteCTProcess(CTProcess ctProcess) {
 		BackgroundTask backgroundTask =
 			_backgroundTaskLocalService.fetchBackgroundTask(

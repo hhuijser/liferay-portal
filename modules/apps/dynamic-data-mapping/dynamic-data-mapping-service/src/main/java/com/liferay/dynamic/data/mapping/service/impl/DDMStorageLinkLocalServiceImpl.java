@@ -20,7 +20,9 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService;
 import com.liferay.dynamic.data.mapping.service.base.DDMStorageLinkLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.List;
@@ -73,11 +75,13 @@ public class DDMStorageLinkLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteStorageLink(DDMStorageLink storageLink) {
 		ddmStorageLinkPersistence.remove(storageLink);
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteStorageLink(long storageLinkId) {
 		DDMStorageLink storageLink =
 			ddmStorageLinkPersistence.fetchByPrimaryKey(storageLinkId);

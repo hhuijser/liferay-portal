@@ -298,6 +298,7 @@ public class AssetListEntryLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public AssetListEntry deleteAssetListEntry(long assetListEntryId)
 		throws PortalException {
 

@@ -16,6 +16,8 @@ package com.liferay.portlet.announcements.service.impl;
 
 import com.liferay.announcements.kernel.model.AnnouncementsFlag;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portlet.announcements.service.base.AnnouncementsFlagLocalServiceBaseImpl;
 
 import java.util.Date;
@@ -43,11 +45,13 @@ public class AnnouncementsFlagLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteFlag(AnnouncementsFlag flag) {
 		announcementsFlagPersistence.remove(flag);
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteFlag(long flagId) throws PortalException {
 		AnnouncementsFlag flag = announcementsFlagPersistence.findByPrimaryKey(
 			flagId);

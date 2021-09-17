@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 
 import java.util.List;
 
@@ -53,6 +55,7 @@ public class DDMTemplateLinkLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public DDMTemplateLink deleteTemplateLink(DDMTemplateLink templateLink) {
 		return ddmTemplateLinkPersistence.remove(templateLink);
 	}

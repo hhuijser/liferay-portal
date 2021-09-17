@@ -15,8 +15,10 @@
 package com.liferay.portal.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.UserTracker;
 import com.liferay.portal.kernel.model.UserTrackerPath;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.service.base.UserTrackerLocalServiceBaseImpl;
 import com.liferay.portal.util.PropsValues;
 
@@ -70,6 +72,7 @@ public class UserTrackerLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public UserTracker deleteUserTracker(long userTrackerId)
 		throws PortalException {
 
@@ -80,6 +83,7 @@ public class UserTrackerLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public UserTracker deleteUserTracker(UserTracker userTracker) {
 
 		// Paths

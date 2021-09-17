@@ -19,6 +19,8 @@ import com.liferay.change.tracking.model.CTComment;
 import com.liferay.change.tracking.service.base.CTCommentLocalServiceBaseImpl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,6 +59,7 @@ public class CTCommentLocalServiceImpl extends CTCommentLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public CTComment deleteCTComment(long ctCommentId) {
 		CTComment ctComment = ctCommentPersistence.fetchByPrimaryKey(
 			ctCommentId);

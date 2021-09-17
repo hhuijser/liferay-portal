@@ -90,6 +90,7 @@ public class ExpandoColumnLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteColumn(ExpandoColumn column) {
 		addDeletionSystemEvent(column);
 
@@ -103,6 +104,7 @@ public class ExpandoColumnLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteColumn(long columnId) throws PortalException {
 		ExpandoColumn column = expandoColumnPersistence.findByPrimaryKey(
 			columnId);

@@ -118,6 +118,7 @@ public class DispatchTriggerLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public DispatchTrigger deleteDispatchTrigger(long dispatchTriggerId)
 		throws PortalException {
 

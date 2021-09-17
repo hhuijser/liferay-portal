@@ -19,6 +19,8 @@ import com.liferay.expando.kernel.exception.TableNameException;
 import com.liferay.expando.kernel.model.ExpandoTable;
 import com.liferay.expando.kernel.model.ExpandoTableConstants;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.expando.service.base.ExpandoTableLocalServiceBaseImpl;
 
@@ -87,6 +89,7 @@ public class ExpandoTableLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteTable(ExpandoTable table) {
 
 		// Table
@@ -107,6 +110,7 @@ public class ExpandoTableLocalServiceImpl
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteTable(long tableId) throws PortalException {
 		ExpandoTable table = expandoTablePersistence.findByPrimaryKey(tableId);
 

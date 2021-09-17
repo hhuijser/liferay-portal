@@ -107,6 +107,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public AssetLink deleteAssetLink(AssetLink assetLink) {
 		AssetLink deletedAssetLink = super.deleteAssetLink(assetLink);
 
@@ -116,6 +117,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public AssetLink deleteAssetLink(long linkId) throws PortalException {
 		AssetLink assetLink = super.deleteAssetLink(linkId);
 
@@ -140,6 +142,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 	 * @param link the asset link
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteLink(AssetLink link) {
 		if (AssetLinkConstants.isTypeBi(link.getType())) {
 			try {
@@ -167,6 +170,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 	 * @param linkId the primary key of the asset link
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteLink(long linkId) throws PortalException {
 		AssetLink link = assetLinkPersistence.findByPrimaryKey(linkId);
 

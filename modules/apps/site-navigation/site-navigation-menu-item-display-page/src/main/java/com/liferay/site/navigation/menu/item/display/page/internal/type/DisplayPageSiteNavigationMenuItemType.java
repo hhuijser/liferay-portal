@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.xml.Element;
@@ -85,10 +86,9 @@ public class DisplayPageSiteNavigationMenuItemType
 		SiteNavigationMenuItem siteNavigationMenuItem) {
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		long classNameId = GetterUtil.getLong(
 			typeSettingsUnicodeProperties.get("classNameId"));
@@ -195,10 +195,9 @@ public class DisplayPageSiteNavigationMenuItemType
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		String friendlyURL =
 			_assetDisplayPageFriendlyURLProvider.getFriendlyURL(
@@ -226,10 +225,9 @@ public class DisplayPageSiteNavigationMenuItemType
 	@Override
 	public String getTarget(SiteNavigationMenuItem siteNavigationMenuItem) {
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		boolean useNewTab = GetterUtil.getBoolean(
 			typeSettingsUnicodeProperties.getProperty(
@@ -247,10 +245,9 @@ public class DisplayPageSiteNavigationMenuItemType
 		SiteNavigationMenuItem siteNavigationMenuItem, Locale locale) {
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		LayoutDisplayPageObjectProvider<?> layoutDisplayPageObjectProvider =
 			_getLayoutDisplayPageObjectProvider(typeSettingsUnicodeProperties);
@@ -287,22 +284,16 @@ public class DisplayPageSiteNavigationMenuItemType
 		Map<Long, Long> newClassPKsMap =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(className);
 
-		long existingClassPK = MapUtil.getLong(
-			newClassPKsMap, classPK, classPK);
-
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
-
-		typeSettingsUnicodeProperties.put(
-			"classNameId", String.valueOf(_portal.getClassNameId(className)));
-		typeSettingsUnicodeProperties.put(
-			"classPK", String.valueOf(existingClassPK));
-
 		importedSiteNavigationMenuItem.setTypeSettings(
-			typeSettingsUnicodeProperties.toString());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).put(
+				"classNameId", String.valueOf(_portal.getClassNameId(className))
+			).put(
+				"classPK",
+				String.valueOf(
+					MapUtil.getLong(newClassPKsMap, classPK, classPK))
+			).buildString());
 
 		return true;
 	}

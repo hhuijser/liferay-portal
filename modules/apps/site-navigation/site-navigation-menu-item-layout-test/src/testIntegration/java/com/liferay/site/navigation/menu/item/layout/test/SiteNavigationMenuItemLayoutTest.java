@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.site.navigation.constants.SiteNavigationConstants;
@@ -79,18 +79,14 @@ public class SiteNavigationMenuItemLayoutTest {
 			LocaleUtil.getSiteDefault(), "welcome"
 		).build();
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put(
-			"addToAutoMenus", Boolean.FALSE.toString());
-
 		LayoutServiceUtil.addLayout(
 			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
 			new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
-			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
-			serviceContext);
+			UnicodePropertiesBuilder.put(
+				"addToAutoMenus", Boolean.FALSE.toString()
+			).buildString(),
+			false, new HashMap<>(), serviceContext);
 
 		Assert.assertEquals(
 			0,
@@ -112,18 +108,14 @@ public class SiteNavigationMenuItemLayoutTest {
 			LocaleUtil.getSiteDefault(), "welcome"
 		).build();
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put(
-			"addToAutoMenus", Boolean.FALSE.toString());
-
 		LayoutServiceUtil.addLayout(
 			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
 			new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
-			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
-			serviceContext);
+			UnicodePropertiesBuilder.put(
+				"addToAutoMenus", Boolean.FALSE.toString()
+			).buildString(),
+			false, new HashMap<>(), serviceContext);
 
 		Assert.assertEquals(
 			0,
@@ -152,23 +144,19 @@ public class SiteNavigationMenuItemLayoutTest {
 			LocaleUtil.getSiteDefault(), "welcome"
 		).build();
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put(
-			"siteNavigationMenuId",
-			StringUtil.merge(
-				new long[] {
-					autoSiteNavigationMenu.getSiteNavigationMenuId(),
-					primarySiteNavigationMenu.getSiteNavigationMenuId()
-				}));
-
 		LayoutServiceUtil.addLayout(
 			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
 			new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
-			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
-			serviceContext);
+			UnicodePropertiesBuilder.put(
+				"siteNavigationMenuId",
+				StringUtil.merge(
+					new long[] {
+						autoSiteNavigationMenu.getSiteNavigationMenuId(),
+						primarySiteNavigationMenu.getSiteNavigationMenuId()
+					})
+			).buildString(),
+			false, new HashMap<>(), serviceContext);
 
 		Assert.assertEquals(
 			2,
@@ -192,20 +180,16 @@ public class SiteNavigationMenuItemLayoutTest {
 			LocaleUtil.getSiteDefault(), "welcome"
 		).build();
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put(
-			"siteNavigationMenuId",
-			StringUtil.merge(
-				new long[] {siteNavigationMenu.getSiteNavigationMenuId()}));
-
 		LayoutServiceUtil.addLayout(
 			_group.getGroupId(), false, 0, nameMap, new HashMap<>(),
 			new HashMap<>(), new HashMap<>(), new HashMap<>(),
 			LayoutConstants.TYPE_PORTLET,
-			typeSettingsUnicodeProperties.toString(), false, new HashMap<>(),
-			serviceContext);
+			UnicodePropertiesBuilder.put(
+				"siteNavigationMenuId",
+				StringUtil.merge(
+					new long[] {siteNavigationMenu.getSiteNavigationMenuId()})
+			).buildString(),
+			false, new HashMap<>(), serviceContext);
 
 		Assert.assertEquals(
 			1,

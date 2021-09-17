@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.segments.constants.SegmentsEntryConstants;
 
@@ -505,9 +506,9 @@ public class AssetListEntryLocalServiceImpl
 		}
 
 		try {
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
-
-			unicodeProperties.load(typeSettings);
+			UnicodeProperties unicodeProperties = UnicodePropertiesBuilder.load(
+				typeSettings
+			).build();
 
 			String anyAssetClassTypeString = unicodeProperties.getProperty(
 				"anyClassType" + _getAssetRendererFactoryName(assetEntryType));
@@ -543,9 +544,9 @@ public class AssetListEntryLocalServiceImpl
 		}
 
 		try {
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
-
-			unicodeProperties.load(typeSettings);
+			UnicodeProperties unicodeProperties = UnicodePropertiesBuilder.load(
+				typeSettings
+			).build();
 
 			String anyAssetTypeString = unicodeProperties.getProperty(
 				"anyAssetType");

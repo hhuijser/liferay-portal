@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.sql.PreparedStatement;
@@ -54,9 +55,9 @@ public class LayoutUpgradeProcess extends UpgradeProcess {
 					String typeSettings = resultSet.getString("typeSettings");
 
 					UnicodeProperties unicodeProperties =
-						new UnicodeProperties();
-
-					unicodeProperties.load(typeSettings);
+						UnicodePropertiesBuilder.load(
+							typeSettings
+						).build();
 
 					boolean published = GetterUtil.getBoolean(
 						unicodeProperties.getProperty("published"));

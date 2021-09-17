@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,18 +60,15 @@ public class LayoutFixture {
 			}
 		};
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put("published", "true");
-
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			TestPropsValues.getUserId(), _group.getGroupId(), false,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, nameMap.getValues(),
 			titleMap.getValues(), null, null, null,
 			LayoutConstants.TYPE_CONTENT,
-			typeSettingsUnicodeProperties.toString(), false,
-			friendlyUrlMap.getValues(),
+			UnicodePropertiesBuilder.put(
+				"published", "true"
+			).buildString(),
+			false, friendlyUrlMap.getValues(),
 			ServiceContextTestUtil.getServiceContext());
 
 		_layouts.add(layout);

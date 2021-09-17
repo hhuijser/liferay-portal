@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.LayoutSetLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,9 +69,9 @@ public class LayoutSetTypeSettingsUpgradeProcess extends UpgradeProcess {
 					String typeSettings = resultSet.getString("typeSettings");
 
 					UnicodeProperties typeSettingsUnicodeProperties =
-						new UnicodeProperties();
-
-					typeSettingsUnicodeProperties.load(typeSettings);
+						UnicodePropertiesBuilder.load(
+							typeSettings
+						).build();
 
 					String privateRobots =
 						typeSettingsUnicodeProperties.getProperty(

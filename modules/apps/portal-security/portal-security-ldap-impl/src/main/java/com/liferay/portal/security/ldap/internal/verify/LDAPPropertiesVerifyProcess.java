@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PrefsProps;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.security.ldap.authenticator.configuration.LDAPAuthConfiguration;
 import com.liferay.portal.security.ldap.configuration.ConfigurationProvider;
 import com.liferay.portal.security.ldap.configuration.LDAPServerConfiguration;
@@ -320,11 +320,6 @@ public class LDAPPropertiesVerifyProcess extends VerifyProcess {
 					_companyLocalService.removePreferences(
 						companyId, keys.toArray(new String[0]));
 
-					UnicodeProperties unicodeProperties =
-						new UnicodeProperties();
-
-					unicodeProperties.put("ldap.server.ids", StringPool.BLANK);
-
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
@@ -334,7 +329,10 @@ public class LDAPPropertiesVerifyProcess extends VerifyProcess {
 					}
 
 					_companyLocalService.updatePreferences(
-						companyId, unicodeProperties);
+						companyId,
+						UnicodePropertiesBuilder.put(
+							"ldap.server.ids", StringPool.BLANK
+						).build());
 				});
 		}
 	}

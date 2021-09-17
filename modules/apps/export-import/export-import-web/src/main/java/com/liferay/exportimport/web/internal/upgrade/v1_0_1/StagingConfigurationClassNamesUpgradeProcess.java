@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -119,9 +120,9 @@ public class StagingConfigurationClassNamesUpgradeProcess
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.load(typeSettings);
+			UnicodePropertiesBuilder.load(
+				typeSettings
+			).build();
 
 		boolean staged = GetterUtil.getBoolean(
 			typeSettingsUnicodeProperties.getProperty("staged"));

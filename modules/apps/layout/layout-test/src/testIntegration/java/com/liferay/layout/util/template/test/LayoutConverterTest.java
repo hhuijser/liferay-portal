@@ -51,6 +51,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TreeMapBuilder;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -683,15 +684,12 @@ public class LayoutConverterTest {
 	public void testIsConvertibleTrueWidgetPageWithNestedApplicationsWidget()
 		throws Exception {
 
-		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.put(
-			LayoutTypePortletConstants.NESTED_COLUMN_IDS,
-			StringUtil.randomString());
-
 		Layout layout = LayoutTestUtil.addLayout(
-			_group.getGroupId(), typeSettingsUnicodeProperties.toString());
+			_group.getGroupId(),
+			UnicodePropertiesBuilder.put(
+				LayoutTypePortletConstants.NESTED_COLUMN_IDS,
+				StringUtil.randomString()
+			).buildString());
 
 		LayoutConverter layoutConverter =
 			_layoutConverterRegistry.getLayoutConverter(

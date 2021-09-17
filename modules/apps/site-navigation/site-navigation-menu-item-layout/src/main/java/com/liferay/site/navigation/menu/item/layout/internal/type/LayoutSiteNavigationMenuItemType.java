@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.webserver.WebServerServletTokenUtil;
@@ -214,10 +215,9 @@ public class LayoutSiteNavigationMenuItemType
 		}
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		String defaultLanguageId = typeSettingsUnicodeProperties.getProperty(
 			Field.DEFAULT_LANGUAGE_ID,
@@ -332,22 +332,17 @@ public class LayoutSiteNavigationMenuItemType
 		Layout importedLayout = _layoutLocalService.fetchLayout(plid);
 
 		if (importedLayout != null) {
-			UnicodeProperties typeSettingsUnicodeProperties =
-				new UnicodeProperties();
-
-			typeSettingsUnicodeProperties.fastLoad(
-				siteNavigationMenuItem.getTypeSettings());
-
-			typeSettingsUnicodeProperties.put(
-				"layoutUuid", importedLayout.getUuid());
-			typeSettingsUnicodeProperties.put(
-				"groupId", String.valueOf(importedLayout.getGroupId()));
-			typeSettingsUnicodeProperties.put(
-				"privateLayout",
-				String.valueOf(importedLayout.isPrivateLayout()));
-
 			importedSiteNavigationMenuItem.setTypeSettings(
-				typeSettingsUnicodeProperties.toString());
+				UnicodePropertiesBuilder.fastLoad(
+					siteNavigationMenuItem.getTypeSettings()
+				).put(
+					"layoutUuid", importedLayout.getUuid()
+				).put(
+					"groupId", String.valueOf(importedLayout.getGroupId())
+				).put(
+					"privateLayout",
+					String.valueOf(importedLayout.isPrivateLayout())
+				).buildString());
 		}
 
 		return true;
@@ -482,10 +477,9 @@ public class LayoutSiteNavigationMenuItemType
 
 	private Layout _fetchLayout(SiteNavigationMenuItem siteNavigationMenuItem) {
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		String layoutUuid = typeSettingsUnicodeProperties.get("layoutUuid");
 
@@ -501,10 +495,9 @@ public class LayoutSiteNavigationMenuItemType
 		SiteNavigationMenuItem siteNavigationMenuItem) {
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		String layoutUuid = typeSettingsUnicodeProperties.get("layoutUuid");
 
@@ -565,10 +558,9 @@ public class LayoutSiteNavigationMenuItemType
 		SiteNavigationMenuItem siteNavigationMenuItem) {
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(
-			siteNavigationMenuItem.getTypeSettings());
+			UnicodePropertiesBuilder.fastLoad(
+				siteNavigationMenuItem.getTypeSettings()
+			).build();
 
 		return GetterUtil.getBoolean(
 			typeSettingsUnicodeProperties.get("useCustomName"),

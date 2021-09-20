@@ -21,8 +21,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 /**
  * @author Alan Huang
@@ -55,10 +55,9 @@ public class DTOEnumCreationCheck extends BaseCheck {
 
 		int x = fullyQualifiedTypeName.lastIndexOf(CharPool.PERIOD);
 
-		List<String> dtoEnumNames = getAttributeValues(_DTO_ENUM_NAMES);
-
-		if ((dtoEnumNames == null) ||
-			!dtoEnumNames.contains(fullyQualifiedTypeName.substring(0, x)) ||
+		if (!Pattern.matches(
+				"com\\.liferay(\\.\\w+)+\\.v\\d+_\\d+(\\.\\w+){2}",
+				fullyQualifiedTypeName.substring(0, x)) ||
 			!Objects.equals(
 				fullyQualifiedTypeName.substring(x + 1), "valueOf")) {
 
@@ -67,8 +66,6 @@ public class DTOEnumCreationCheck extends BaseCheck {
 
 		log(detailAST, _MSG_USE_CREATE);
 	}
-
-	private static final String _DTO_ENUM_NAMES = "dtoEnumNames";
 
 	private static final String _MSG_USE_CREATE = "create.use";
 

@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -310,9 +311,10 @@ public class LayoutCopyHelperTest {
 		Layout targetLayout = LayoutTestUtil.addLayout(
 			_group.getGroupId(), StringPool.BLANK);
 
-		UnicodeProperties targetUnicodeProperties = new UnicodeProperties();
-
-		targetUnicodeProperties.fastLoad(targetLayout.getTypeSettings());
+		UnicodeProperties targetUnicodeProperties =
+			UnicodePropertiesBuilder.fastLoad(
+				targetLayout.getTypeSettings()
+			).build();
 
 		Assert.assertNull(
 			targetUnicodeProperties.getProperty(

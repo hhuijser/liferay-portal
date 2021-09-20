@@ -21,7 +21,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 /**
@@ -53,13 +52,9 @@ public class DTOEnumCreationCheck extends BaseCheck {
 		String fullyQualifiedTypeName = getFullyQualifiedTypeName(
 			fullyQualifiedName, firstChildDetailAST, true);
 
-		int x = fullyQualifiedTypeName.lastIndexOf(CharPool.PERIOD);
-
 		if (Pattern.matches(
-				"com\\.liferay(\\.\\w+)+\\.v\\d+_\\d+(\\.\\w+){2}",
-				fullyQualifiedTypeName.substring(0, x)) &&
-			Objects.equals(
-				fullyQualifiedTypeName.substring(x + 1), "valueOf")) {
+				"com\\.liferay(\\.\\w+)+\\.v\\d+_\\d+(\\.\\w+){2}\\.valueOf",
+				fullyQualifiedTypeName)) {
 
 			log(detailAST, _MSG_USE_CREATE);
 		}

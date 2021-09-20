@@ -23,6 +23,10 @@ import java.util.Map;
  */
 public class HashMapDictionaryBuilder<K, V> extends BaseMapBuilder {
 
+	public static <K, V> HashMapDictionaryWrapper<K, V> create(Map<K, V> map) {
+		return new HashMapDictionaryWrapper<>(map);
+	}
+
 	public static <K, V> HashMapDictionaryWrapper<K, V> put(
 		Collection<? extends K> inputCollection,
 		UnsafeFunction<K, V, Exception> unsafeFunction) {
@@ -88,6 +92,14 @@ public class HashMapDictionaryBuilder<K, V> extends BaseMapBuilder {
 	}
 
 	public static final class HashMapDictionaryWrapper<K, V> {
+
+		public HashMapDictionaryWrapper() {
+			_hashMapDictionary = new HashMapDictionary<>();
+		}
+
+		public HashMapDictionaryWrapper(Map<K, V> map) {
+			_hashMapDictionary = new HashMapDictionary<>(map);
+		}
 
 		public HashMapDictionary<K, V> build() {
 			return _hashMapDictionary;
@@ -213,8 +225,7 @@ public class HashMapDictionaryBuilder<K, V> extends BaseMapBuilder {
 			return _hashMapDictionary;
 		}
 
-		private final HashMapDictionary<K, V> _hashMapDictionary =
-			new HashMapDictionary<>();
+		private final HashMapDictionary<K, V> _hashMapDictionary;
 
 	}
 

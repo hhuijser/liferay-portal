@@ -25,6 +25,22 @@ import java.util.Map;
  */
 public class HashMapBuilder<K, V> extends BaseMapBuilder {
 
+	public static <K, V> HashMapWrapper<K, V> create(int initialCapacity) {
+		return new HashMapWrapper<>(initialCapacity);
+	}
+
+	public static <K, V> HashMapWrapper<K, V> create(
+		int initialCapacity, float loadFactor) {
+
+		return new HashMapWrapper<>(initialCapacity, loadFactor);
+	}
+
+	public static <K, V> HashMapWrapper<K, V> create(
+		Map<? extends K, ? extends V> map) {
+
+		return new HashMapWrapper<>(map);
+	}
+
 	public static <K, V> HashMapWrapper<K, V> put(
 		Collection<? extends K> inputCollection,
 		UnsafeFunction<K, V, Exception> unsafeFunction) {
@@ -83,6 +99,22 @@ public class HashMapBuilder<K, V> extends BaseMapBuilder {
 
 	public static final class HashMapWrapper<K, V>
 		extends BaseMapWrapper<K, V> {
+
+		public HashMapWrapper() {
+			_hashMap = new HashMap<>();
+		}
+
+		public HashMapWrapper(int initialCapacity) {
+			_hashMap = new HashMap<>(initialCapacity);
+		}
+
+		public HashMapWrapper(int initialCapacity, float loadFactor) {
+			_hashMap = new HashMap<>(initialCapacity, loadFactor);
+		}
+
+		public HashMapWrapper(Map<? extends K, ? extends V> map) {
+			_hashMap = new HashMap<>(map);
+		}
 
 		public HashMap<K, V> build() {
 			return _hashMap;
@@ -159,7 +191,7 @@ public class HashMapBuilder<K, V> extends BaseMapBuilder {
 			return _hashMap;
 		}
 
-		private final HashMap<K, V> _hashMap = new HashMap<>();
+		private final HashMap<K, V> _hashMap;
 
 	}
 

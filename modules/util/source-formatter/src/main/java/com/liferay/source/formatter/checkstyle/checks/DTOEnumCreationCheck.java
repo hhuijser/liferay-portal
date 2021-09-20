@@ -57,7 +57,8 @@ public class DTOEnumCreationCheck extends BaseCheck {
 
 		List<String> dtoEnumNames = getAttributeValues(_DTO_ENUM_NAMES);
 
-		if (!dtoEnumNames.contains(fullyQualifiedTypeName.substring(0, x)) ||
+		if ((dtoEnumNames == null) ||
+			!dtoEnumNames.contains(fullyQualifiedTypeName.substring(0, x)) ||
 			!Objects.equals(
 				fullyQualifiedTypeName.substring(x + 1), "valueOf")) {
 

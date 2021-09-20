@@ -36,8 +36,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
@@ -51,10 +49,9 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.segments.constants.SegmentsEntryConstants;
-
-import java.io.IOException;
 
 import java.util.Date;
 import java.util.List;
@@ -508,37 +505,28 @@ public class AssetListEntryLocalServiceImpl
 			return StringPool.BLANK;
 		}
 
-		try {
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
+		UnicodeProperties unicodeProperties = UnicodePropertiesBuilder.load(
+			typeSettings
+		).build();
 
-			unicodeProperties.load(typeSettings);
+		String anyAssetClassTypeString = unicodeProperties.getProperty(
+			"anyClassType" + _getAssetRendererFactoryName(assetEntryType));
 
-			String anyAssetClassTypeString = unicodeProperties.getProperty(
-				"anyClassType" + _getAssetRendererFactoryName(assetEntryType));
+		boolean anyAssetClassType = GetterUtil.getBoolean(
+			anyAssetClassTypeString);
 
-			boolean anyAssetClassType = GetterUtil.getBoolean(
-				anyAssetClassTypeString);
-
-			if (anyAssetClassType) {
-				return StringPool.BLANK;
-			}
-
-			long defaultAssetClassTypeId = GetterUtil.getLong(
-				anyAssetClassTypeString, -1);
-
-			if (defaultAssetClassTypeId < 0) {
-				return StringPool.BLANK;
-			}
-
-			return String.valueOf(defaultAssetClassTypeId);
-		}
-		catch (IOException ioException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ioException, ioException);
-			}
+		if (anyAssetClassType) {
+			return StringPool.BLANK;
 		}
 
-		return StringPool.BLANK;
+		long defaultAssetClassTypeId = GetterUtil.getLong(
+			anyAssetClassTypeString, -1);
+
+		if (defaultAssetClassTypeId < 0) {
+			return StringPool.BLANK;
+		}
+
+		return String.valueOf(defaultAssetClassTypeId);
 	}
 
 	private String _getAssetEntryType(String typeSettings) {
@@ -546,35 +534,26 @@ public class AssetListEntryLocalServiceImpl
 			return AssetEntry.class.getName();
 		}
 
-		try {
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
+		UnicodeProperties unicodeProperties = UnicodePropertiesBuilder.load(
+			typeSettings
+		).build();
 
-			unicodeProperties.load(typeSettings);
+		String anyAssetTypeString = unicodeProperties.getProperty(
+			"anyAssetType");
 
-			String anyAssetTypeString = unicodeProperties.getProperty(
-				"anyAssetType");
+		boolean anyAssetType = GetterUtil.getBoolean(anyAssetTypeString);
 
-			boolean anyAssetType = GetterUtil.getBoolean(anyAssetTypeString);
-
-			if (anyAssetType) {
-				return AssetEntry.class.getName();
-			}
-
-			long defaultAssetType = GetterUtil.getLong(anyAssetTypeString);
-
-			if (defaultAssetType <= 0) {
-				return AssetEntry.class.getName();
-			}
-
-			return _portal.getClassName(defaultAssetType);
-		}
-		catch (IOException ioException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(ioException, ioException);
-			}
+		if (anyAssetType) {
+			return AssetEntry.class.getName();
 		}
 
-		return AssetEntry.class.getName();
+		long defaultAssetType = GetterUtil.getLong(anyAssetTypeString);
+
+		if (defaultAssetType <= 0) {
+			return AssetEntry.class.getName();
+		}
+
+		return _portal.getClassName(defaultAssetType);
 	}
 
 	private String _getAssetRendererFactoryName(String assetEntryType) {
@@ -766,9 +745,6 @@ public class AssetListEntryLocalServiceImpl
 			throw new DuplicateAssetListEntryTitleException();
 		}
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		AssetListEntryLocalServiceImpl.class);
 
 	@Reference
 	private AssetEntryLocalService _assetEntryLocalService;

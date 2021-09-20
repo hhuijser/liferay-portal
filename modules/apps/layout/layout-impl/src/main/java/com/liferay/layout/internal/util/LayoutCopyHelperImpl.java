@@ -63,6 +63,7 @@ import com.liferay.portal.kernel.util.CopyLayoutThreadLocal;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.exportimport.staging.StagingAdvicesThreadLocal;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
@@ -760,9 +761,9 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 				_targetLayout.getLayoutId(),
 				_sourceLayout.getStyleBookEntryId());
 
-			UnicodeProperties unicodeProperties = new UnicodeProperties();
-
-			unicodeProperties.load(_sourceLayout.getTypeSettings());
+			UnicodeProperties unicodeProperties = UnicodePropertiesBuilder.load(
+				_sourceLayout.getTypeSettings()
+			).build();
 
 			if (_sourceLayout.isDraftLayout()) {
 				unicodeProperties.put("published", Boolean.TRUE.toString());

@@ -36,6 +36,7 @@ import com.liferay.item.selector.ItemSelector;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 
 import java.io.IOException;
 
@@ -143,13 +144,10 @@ public class AssetListPortlet extends MVCPortlet {
 			return new UnicodeProperties();
 		}
 
-		UnicodeProperties unicodeProperties = new UnicodeProperties();
-
-		unicodeProperties.load(
+		return UnicodePropertiesBuilder.load(
 			assetListEntry.getTypeSettings(
-				assetListDisplayContext.getSegmentsEntryId()));
-
-		return unicodeProperties;
+				assetListDisplayContext.getSegmentsEntryId())
+		).build();
 	}
 
 	@Reference

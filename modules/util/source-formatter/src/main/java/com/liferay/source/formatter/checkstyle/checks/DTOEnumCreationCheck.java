@@ -55,16 +55,14 @@ public class DTOEnumCreationCheck extends BaseCheck {
 
 		int x = fullyQualifiedTypeName.lastIndexOf(CharPool.PERIOD);
 
-		if (!Pattern.matches(
+		if (Pattern.matches(
 				"com\\.liferay(\\.\\w+)+\\.v\\d+_\\d+(\\.\\w+){2}",
-				fullyQualifiedTypeName.substring(0, x)) ||
-			!Objects.equals(
+				fullyQualifiedTypeName.substring(0, x)) &&
+			Objects.equals(
 				fullyQualifiedTypeName.substring(x + 1), "valueOf")) {
 
-			return;
+			log(detailAST, _MSG_USE_CREATE);
 		}
-
-		log(detailAST, _MSG_USE_CREATE);
 	}
 
 	private static final String _MSG_USE_CREATE = "create.use";

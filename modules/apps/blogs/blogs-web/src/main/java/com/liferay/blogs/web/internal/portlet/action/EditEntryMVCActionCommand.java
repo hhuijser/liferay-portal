@@ -81,7 +81,6 @@ import com.liferay.upload.AttachmentContentUpdater;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -310,16 +309,14 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	private Map<String, String[]> _getParameterMap(ActionRequest actionRequest)
 		throws Exception {
 
-		Map<String, String[]> parameterMap = new HashMap<>(
-			actionRequest.getParameterMap());
-
-		parameterMap.put(
+		return HashMapBuilder.create(
+			actionRequest.getParameterMap()
+		).put(
 			"groupId",
 			new String[] {
 				String.valueOf(_portal.getScopeGroupId(actionRequest))
-			});
-
-		return parameterMap;
+			}
+		).build();
 	}
 
 	private String _getSaveAndContinueRedirect(

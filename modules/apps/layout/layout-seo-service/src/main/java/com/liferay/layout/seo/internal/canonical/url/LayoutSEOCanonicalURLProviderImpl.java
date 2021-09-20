@@ -28,12 +28,12 @@ import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
@@ -91,11 +91,11 @@ public class LayoutSEOCanonicalURLProviderImpl
 			return alternateURLs;
 		}
 
-		Map<Locale, String> canonicalURLMap = new HashMap<>(alternateURLs);
-
-		canonicalURLMap.putAll(layoutSEOEntry.getCanonicalURLMap());
-
-		return canonicalURLMap;
+		return HashMapBuilder.create(
+			alternateURLs
+		).putAll(
+			layoutSEOEntry.getCanonicalURLMap()
+		).build();
 	}
 
 	@Override

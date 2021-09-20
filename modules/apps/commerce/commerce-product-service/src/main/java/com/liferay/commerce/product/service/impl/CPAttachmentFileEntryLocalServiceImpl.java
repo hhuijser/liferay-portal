@@ -830,11 +830,11 @@ public class CPAttachmentFileEntryLocalServiceImpl
 			return titleMap;
 		}
 
-		Map<Locale, String> validTitleMap = new HashMap<>(titleMap);
-
-		validTitleMap.put(defaultLocale, defaultTitle);
-
-		return validTitleMap;
+		return HashMapBuilder.create(
+			titleMap
+		).put(
+			defaultLocale, defaultTitle
+		).build();
 	}
 
 	private void _validate(

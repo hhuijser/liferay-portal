@@ -28,13 +28,13 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalServiceUtil;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -134,26 +134,27 @@ public class WorkflowHandlerRegistryUtil {
 			status = WorkflowConstants.STATUS_APPROVED;
 		}
 
-		workflowContext = new HashMap<>(workflowContext);
-
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_COMPANY_ID, String.valueOf(companyId));
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME, className);
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_ENTRY_CLASS_PK, String.valueOf(classPK));
-		workflowContext.put(
+		workflowContext = HashMapBuilder.create(
+			workflowContext
+		).put(
+			WorkflowConstants.CONTEXT_COMPANY_ID, String.valueOf(companyId)
+		).put(
+			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME, className
+		).put(
+			WorkflowConstants.CONTEXT_ENTRY_CLASS_PK, String.valueOf(classPK)
+		).put(
 			WorkflowConstants.CONTEXT_ENTRY_TYPE,
-			workflowHandler.getType(LocaleUtil.getDefault()));
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_GROUP_ID, String.valueOf(groupId));
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_SERVICE_CONTEXT, serviceContext);
-		workflowContext.put(
+			workflowHandler.getType(LocaleUtil.getDefault())
+		).put(
+			WorkflowConstants.CONTEXT_GROUP_ID, String.valueOf(groupId)
+		).put(
+			WorkflowConstants.CONTEXT_SERVICE_CONTEXT, serviceContext
+		).put(
 			WorkflowConstants.CONTEXT_TASK_COMMENTS,
-			GetterUtil.getString(serviceContext.getAttribute("comments")));
-		workflowContext.put(
-			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId));
+			GetterUtil.getString(serviceContext.getAttribute("comments"))
+		).put(
+			WorkflowConstants.CONTEXT_USER_ID, String.valueOf(userId)
+		).build();
 
 		T updatedModel = workflowHandler.updateStatus(status, workflowContext);
 

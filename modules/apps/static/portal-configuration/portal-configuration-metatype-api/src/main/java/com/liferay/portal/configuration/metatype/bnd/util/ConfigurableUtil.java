@@ -19,6 +19,7 @@ import aQute.bnd.annotation.metatype.Configurable;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.configuration.persistence.ConfigurationOverridePropertiesUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -29,7 +30,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -257,11 +257,11 @@ public class ConfigurableUtil {
 			return properties;
 		}
 
-		Map<Object, Object> overrideMap = new HashMap<>(properties);
-
-		overrideMap.putAll(overrideProperties);
-
-		return overrideMap;
+		return HashMapBuilder.create(
+			properties
+		).putAll(
+			overrideProperties
+		).build();
 	}
 
 	private static final Method _defineClassMethod;

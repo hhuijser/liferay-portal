@@ -374,16 +374,15 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 			if (Objects.equals(ddmFormField.getType(), "select") ||
 				Objects.equals(ddmFormField.getType(), "radio")) {
 
-				Map<String, Object> optionFreeMarkerContext = new HashMap<>(
-					freeMarkerContext);
-
-				optionFreeMarkerContext.put(
-					"parentFieldStructure", fieldStructure);
-
 				childrenHTMLSB.append(
 					getDDMFormFieldOptionHTML(
 						httpServletRequest, httpServletResponse, ddmFormField,
-						mode, readOnly, locale, optionFreeMarkerContext));
+						mode, readOnly, locale,
+						HashMapBuilder.create(
+							freeMarkerContext
+						).put(
+							"parentFieldStructure", fieldStructure
+						).build()));
 			}
 
 			fieldStructure.put("children", childrenHTMLSB.toString());

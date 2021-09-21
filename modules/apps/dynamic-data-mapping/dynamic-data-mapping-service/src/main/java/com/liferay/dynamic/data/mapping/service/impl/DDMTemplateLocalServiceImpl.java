@@ -36,6 +36,8 @@ import com.liferay.dynamic.data.mapping.model.DDMTemplateVersion;
 import com.liferay.dynamic.data.mapping.security.permission.DDMPermissionSupport;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateVersionLocalService;
 import com.liferay.dynamic.data.mapping.service.base.DDMTemplateLocalServiceBaseImpl;
+import com.liferay.dynamic.data.mapping.service.persistence.DDMTemplateLinkPersistence;
+import com.liferay.dynamic.data.mapping.service.persistence.DDMTemplateVersionPersistence;
 import com.liferay.dynamic.data.mapping.util.DDMXML;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -56,7 +58,10 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.ImageLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.settings.GroupServiceSettingsLocator;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
@@ -207,7 +212,7 @@ public class DDMTemplateLocalServiceImpl
 			throw new TemplateCreationDisabledException();
 		}
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		if (Validator.isNull(templateKey)) {
 			templateKey = String.valueOf(counterLocalService.increment());
@@ -292,7 +297,7 @@ public class DDMTemplateLocalServiceImpl
 			_ddmPermissionSupport.getTemplateModelResourceName(
 				template.getResourceClassName());
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			template.getCompanyId(), template.getGroupId(),
 			template.getUserId(), resourceName, template.getTemplateId(), false,
 			addGroupPermissions, addGuestPermissions);
@@ -314,7 +319,7 @@ public class DDMTemplateLocalServiceImpl
 			_ddmPermissionSupport.getTemplateModelResourceName(
 				template.getResourceClassName());
 
-		resourceLocalService.addModelResources(
+		_resourceLocalService.addModelResources(
 			template.getCompanyId(), template.getGroupId(),
 			template.getUserId(), resourceName, template.getTemplateId(),
 			modelPermissions);
@@ -421,7 +426,7 @@ public class DDMTemplateLocalServiceImpl
 		// Template
 
 		if (!CompanyThreadLocal.isDeleteInProcess()) {
-			int count = ddmTemplateLinkPersistence.countByTemplateId(
+			int count = _ddmTemplateLinkPersistence.countByTemplateId(
 				template.getTemplateId());
 
 			if (count > 0) {
@@ -439,7 +444,7 @@ public class DDMTemplateLocalServiceImpl
 			_ddmPermissionSupport.getTemplateModelResourceName(
 				template.getResourceClassName());
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			template.getCompanyId(), resourceName,
 			ResourceConstants.SCOPE_INDIVIDUAL, template.getTemplateId());
 
@@ -1443,7 +1448,7 @@ public class DDMTemplateLocalServiceImpl
 			File smallImageFile, ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		script = formatScript(type, language, script);
 
@@ -1622,7 +1627,7 @@ public class DDMTemplateLocalServiceImpl
 		long templateVersionId = counterLocalService.increment();
 
 		DDMTemplateVersion templateVersion =
-			ddmTemplateVersionPersistence.create(templateVersionId);
+			_ddmTemplateVersionPersistence.create(templateVersionId);
 
 		templateVersion.setGroupId(template.getGroupId());
 		templateVersion.setCompanyId(template.getCompanyId());
@@ -1648,7 +1653,7 @@ public class DDMTemplateLocalServiceImpl
 		templateVersion.setStatusByUserName(user.getFullName());
 		templateVersion.setStatusDate(template.getModifiedDate());
 
-		return ddmTemplateVersionPersistence.update(templateVersion);
+		return _ddmTemplateVersionPersistence.update(templateVersion);
 	}
 
 	protected DDMTemplate copyTemplate(
@@ -1663,7 +1668,7 @@ public class DDMTemplateLocalServiceImpl
 			throw new TemplateCreationDisabledException();
 		}
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 		String templateKey = String.valueOf(counterLocalService.increment());
 
 		boolean smallImage = template.isSmallImage();
@@ -1709,7 +1714,7 @@ public class DDMTemplateLocalServiceImpl
 			_ddmPermissionSupport.getTemplateModelResourceName(
 				template.getResourceClassName());
 
-		resourceLocalService.copyModelResources(
+		_resourceLocalService.copyModelResources(
 			template.getCompanyId(), resourceName, template.getPrimaryKey(),
 			newTemplate.getPrimaryKey());
 
@@ -1775,7 +1780,7 @@ public class DDMTemplateLocalServiceImpl
 		if (template.isSmallImage() &&
 			Validator.isNull(template.getSmallImageURL())) {
 
-			Image smallImage = imageLocalService.fetchImage(
+			Image smallImage = _imageLocalService.fetchImage(
 				template.getSmallImageId());
 
 			if (smallImage != null) {
@@ -1801,7 +1806,7 @@ public class DDMTemplateLocalServiceImpl
 		if (smallImage) {
 			if ((smallImageFile != null) && (smallImageBytes != null)) {
 				try {
-					imageLocalService.updateImage(
+					_imageLocalService.updateImage(
 						companyId, smallImageId, smallImageBytes);
 				}
 				catch (Exception exception) {
@@ -1810,7 +1815,7 @@ public class DDMTemplateLocalServiceImpl
 			}
 		}
 		else {
-			imageLocalService.deleteImage(smallImageId);
+			_imageLocalService.deleteImage(smallImageId);
 		}
 	}
 
@@ -1966,5 +1971,20 @@ public class DDMTemplateLocalServiceImpl
 		policyOption = ReferencePolicyOption.GREEDY
 	)
 	private SiteConnectedGroupGroupProvider _siteConnectedGroupGroupProvider;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private DDMTemplateLinkPersistence _ddmTemplateLinkPersistence;
+
+	@Reference
+	private DDMTemplateVersionPersistence _ddmTemplateVersionPersistence;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private ImageLocalService _imageLocalService;
 
 }

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -49,6 +50,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Andrea Di Giorgi
@@ -114,7 +117,7 @@ public class CommerceAddressLocalServiceImpl
 		User user = userLocalService.getUser(serviceContext.getUserId());
 
 		return CommerceAddressImpl.fromAddress(
-			addressLocalService.addAddress(
+			_addressLocalService.addAddress(
 				externalReferenceCode, user.getUserId(), className, classPK,
 				name, description, street1, street2, street3, city, zip,
 				regionId, countryId, CommerceAddressImpl.toAddressTypeId(type),
@@ -138,14 +141,14 @@ public class CommerceAddressLocalServiceImpl
 				commerceAddress.getRegionId(), commerceAddress.getCountryId(),
 				commerceAddress.getPhoneNumber(), false, false, serviceContext);
 
-		Address copiedAddress = addressLocalService.getAddress(
+		Address copiedAddress = _addressLocalService.getAddress(
 			copiedCommerceAddress.getCommerceAddressId());
 
 		if (Validator.isNotNull(commerceAddress.getExternalReferenceCode())) {
 			copiedAddress.setExternalReferenceCode(
 				commerceAddress.getExternalReferenceCode());
 
-			copiedAddress = addressLocalService.updateAddress(copiedAddress);
+			copiedAddress = _addressLocalService.updateAddress(copiedAddress);
 		}
 
 		return CommerceAddressImpl.fromAddress(copiedAddress);
@@ -170,7 +173,7 @@ public class CommerceAddressLocalServiceImpl
 
 		// Commerce address
 
-		addressLocalService.deleteAddress(
+		_addressLocalService.deleteAddress(
 			commerceAddress.getCommerceAddressId());
 
 		// Commerce orders
@@ -197,14 +200,14 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAddressImpl.fromAddress(
-			addressLocalService.deleteAddress(commerceAddressId));
+			_addressLocalService.deleteAddress(commerceAddressId));
 	}
 
 	@Override
 	public void deleteCommerceAddresses(String className, long classPK)
 		throws PortalException {
 
-		addressLocalService.deleteAddresses(
+		_addressLocalService.deleteAddresses(
 			CompanyThreadLocal.getCompanyId(), className, classPK);
 	}
 
@@ -212,14 +215,14 @@ public class CommerceAddressLocalServiceImpl
 	public void deleteCountryCommerceAddresses(long countryId)
 		throws PortalException {
 
-		addressLocalService.deleteCountryAddresses(countryId);
+		_addressLocalService.deleteCountryAddresses(countryId);
 	}
 
 	@Override
 	public void deleteRegionCommerceAddresses(long regionId)
 		throws PortalException {
 
-		addressLocalService.deleteRegionAddresses(regionId);
+		_addressLocalService.deleteRegionAddresses(regionId);
 	}
 
 	@Override
@@ -227,14 +230,14 @@ public class CommerceAddressLocalServiceImpl
 		String externalReferenceCode, long companyId) {
 
 		return CommerceAddressImpl.fromAddress(
-			addressLocalService.fetchAddressByExternalReferenceCode(
+			_addressLocalService.fetchAddressByExternalReferenceCode(
 				companyId, externalReferenceCode));
 	}
 
 	@Override
 	public CommerceAddress fetchCommerceAddress(long commerceAddressId) {
 		return CommerceAddressImpl.fromAddress(
-			addressLocalService.fetchAddress(commerceAddressId));
+			_addressLocalService.fetchAddress(commerceAddressId));
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
@@ -242,7 +245,7 @@ public class CommerceAddressLocalServiceImpl
 	public CommerceAddress geolocateCommerceAddress(long commerceAddressId)
 		throws PortalException {
 
-		Address address = addressLocalService.getAddress(commerceAddressId);
+		Address address = _addressLocalService.getAddress(commerceAddressId);
 
 		double[] coordinates = _commerceGeocoder.getCoordinates(
 			address.getStreet1(), address.getCity(), address.getZip(),
@@ -252,7 +255,7 @@ public class CommerceAddressLocalServiceImpl
 		address.setLongitude(coordinates[1]);
 
 		return CommerceAddressImpl.fromAddress(
-			addressLocalService.updateAddress(address));
+			_addressLocalService.updateAddress(address));
 	}
 
 	@Override
@@ -260,7 +263,7 @@ public class CommerceAddressLocalServiceImpl
 		long companyId, String className, long classPK) {
 
 		return TransformUtil.transform(
-			addressLocalService.getAddressesByTypeIds(
+			_addressLocalService.getAddressesByTypeIds(
 				companyId, className, classPK,
 				new long[] {
 					CommerceAddressImpl.toAddressTypeId(
@@ -286,7 +289,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<Address> addressBaseModelSearchResult =
-			addressLocalService.searchAddresses(
+			_addressLocalService.searchAddresses(
 				companyId, className, classPK, keywords,
 				LinkedHashMapBuilder.<String, Object>put(
 					"typeIds",
@@ -311,7 +314,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<Address> addressBaseModelSearchResult =
-			addressLocalService.searchAddresses(
+			_addressLocalService.searchAddresses(
 				companyId, className, classPK, keywords,
 				LinkedHashMapBuilder.<String, Object>put(
 					"typeIds",
@@ -333,7 +336,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAddressImpl.fromAddress(
-			addressLocalService.getAddress(commerceAddressId));
+			_addressLocalService.getAddress(commerceAddressId));
 	}
 
 	/**
@@ -389,7 +392,7 @@ public class CommerceAddressLocalServiceImpl
 		long companyId, String className, long classPK) {
 
 		return TransformUtil.transform(
-			addressLocalService.getAddresses(companyId, className, classPK),
+			_addressLocalService.getAddresses(companyId, className, classPK),
 			CommerceAddressImpl::fromAddress);
 	}
 
@@ -399,7 +402,7 @@ public class CommerceAddressLocalServiceImpl
 		OrderByComparator<CommerceAddress> orderByComparator) {
 
 		return TransformUtil.transform(
-			addressLocalService.getAddresses(
+			_addressLocalService.getAddresses(
 				companyId, className, classPK, start, end,
 				_getAddressOrderByComparator(orderByComparator)),
 			CommerceAddressImpl::fromAddress);
@@ -433,7 +436,7 @@ public class CommerceAddressLocalServiceImpl
 	public int getCommerceAddressesCountByCompanyId(
 		long companyId, String className, long classPK) {
 
-		return addressLocalService.getAddressesCount(
+		return _addressLocalService.getAddressesCount(
 			companyId, className, classPK);
 	}
 
@@ -453,7 +456,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<Address> addressBaseModelSearchResult =
-			addressLocalService.searchAddresses(
+			_addressLocalService.searchAddresses(
 				companyId, className, classPK, keywords,
 				LinkedHashMapBuilder.<String, Object>put(
 					"typeIds",
@@ -478,7 +481,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<Address> addressBaseModelSearchResult =
-			addressLocalService.searchAddresses(
+			_addressLocalService.searchAddresses(
 				companyId, className, classPK, keywords,
 				LinkedHashMapBuilder.<String, Object>put(
 					"typeIds",
@@ -506,7 +509,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<Address> addressBaseModelSearchResult =
-			addressLocalService.searchAddresses(
+			_addressLocalService.searchAddresses(
 				companyId, className, classPK, keywords, new LinkedHashMap<>(),
 				start, end, sort);
 
@@ -524,7 +527,7 @@ public class CommerceAddressLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<Address> addressBaseModelSearchResult =
-			addressLocalService.searchAddresses(
+			_addressLocalService.searchAddresses(
 				companyId, className, classPK, keywords, new LinkedHashMap<>(),
 				start, end, sort);
 
@@ -573,11 +576,11 @@ public class CommerceAddressLocalServiceImpl
 
 		// Commerce address
 
-		Address address = addressLocalService.getAddress(commerceAddressId);
+		Address address = _addressLocalService.getAddress(commerceAddressId);
 
 		validate(name, street1, city, zip, countryId, type);
 
-		address = addressLocalService.updateAddress(
+		address = _addressLocalService.updateAddress(
 			commerceAddressId, name, description, street1, street2, street3,
 			city, zip, regionId, countryId,
 			CommerceAddressImpl.toAddressTypeId(type), address.isMailing(),
@@ -687,5 +690,8 @@ public class CommerceAddressLocalServiceImpl
 
 	@ServiceReference(type = GroupLocalService.class)
 	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private AddressLocalService _addressLocalService;
 
 }

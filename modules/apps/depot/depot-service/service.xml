@@ -59,7 +59,6 @@
 
 		<!-- References -->
 
-		<reference entity="Resource" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DepotEntryGroupRel" remote-service="true" uuid="true">
 

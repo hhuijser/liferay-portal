@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionFactory;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionFactory;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -40,6 +41,8 @@ import java.math.BigDecimal;
 
 import java.util.List;
 import java.util.Locale;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Andrea Di Giorgi
@@ -367,7 +370,7 @@ public class CommerceOrderServiceImpl extends CommerceOrderServiceBaseImpl {
 			groupId, commerceAccountId,
 			CommerceOrderActionKeys.VIEW_OPEN_COMMERCE_ORDERS);
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		return commerceOrderLocalService.getCommerceOrders(
 			group.getCompanyId(), groupId, new long[] {commerceAccountId},
@@ -395,7 +398,7 @@ public class CommerceOrderServiceImpl extends CommerceOrderServiceBaseImpl {
 			groupId, commerceAccountId,
 			CommerceOrderActionKeys.VIEW_OPEN_COMMERCE_ORDERS);
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		return (int)commerceOrderLocalService.getCommerceOrdersCount(
 			group.getCompanyId(), groupId, new long[] {commerceAccountId},
@@ -426,7 +429,7 @@ public class CommerceOrderServiceImpl extends CommerceOrderServiceBaseImpl {
 			groupId, commerceAccountId,
 			CommerceOrderActionKeys.VIEW_COMMERCE_ORDERS);
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		return commerceOrderLocalService.getCommerceOrders(
 			group.getCompanyId(), groupId, new long[] {commerceAccountId},
@@ -454,7 +457,7 @@ public class CommerceOrderServiceImpl extends CommerceOrderServiceBaseImpl {
 			groupId, commerceAccountId,
 			CommerceOrderActionKeys.VIEW_COMMERCE_ORDERS);
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		return (int)commerceOrderLocalService.getCommerceOrdersCount(
 			group.getCompanyId(), groupId, new long[] {commerceAccountId},
@@ -1009,5 +1012,8 @@ public class CommerceOrderServiceImpl extends CommerceOrderServiceBaseImpl {
 
 	@ServiceReference(type = CommerceAccountLocalService.class)
 	private CommerceAccountLocalService _commerceAccountLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 }

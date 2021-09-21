@@ -49,7 +49,6 @@
 
 		<!-- References -->
 
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<exceptions>
 		<exception>CommerceVirtualOrderItem</exception>

@@ -593,7 +593,6 @@
 
 		<!-- References -->
 
-		<reference entity="Role" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="KaleoTask" remote-service="false">
 
@@ -697,7 +696,6 @@
 
 		<!-- References -->
 
-		<reference entity="Role" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="KaleoTaskAssignmentInstance" remote-service="false">
 

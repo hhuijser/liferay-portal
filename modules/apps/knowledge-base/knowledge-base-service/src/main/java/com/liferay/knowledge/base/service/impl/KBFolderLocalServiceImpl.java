@@ -14,6 +14,7 @@
 
 package com.liferay.knowledge.base.service.impl;
 
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.knowledge.base.constants.KBFolderConstants;
 import com.liferay.knowledge.base.exception.DuplicateKBFolderExternalReferenceCodeException;
 import com.liferay.knowledge.base.exception.DuplicateKBFolderNameException;
@@ -32,6 +33,7 @@ import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -131,7 +133,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(kbFolder.getKbFolderId());
+		_expandoRowLocalService.deleteRows(kbFolder.getKbFolderId());
 
 		return kbFolderPersistence.remove(kbFolder);
 	}
@@ -384,7 +386,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 			long parentResourceClassNameId, long parentResourcePrimKey)
 		throws PortalException {
 
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+		long kbFolderClassNameId = _classNameLocalService.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		KBFolder parentKBFolder = null;
@@ -425,5 +427,11 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 
 	@Reference
 	private KBArticleLocalService _kbArticleLocalService;
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

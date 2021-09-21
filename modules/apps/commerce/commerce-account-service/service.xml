@@ -55,10 +55,6 @@
 
 		<!-- References -->
 
-		<reference entity="AccountEntry" package-path="com.liferay.account" />
-		<reference entity="Role" package-path="com.liferay.portal" />
-		<reference entity="UserGroupRole" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceAccountGroup" persistence="false" remote-service="true">
 
@@ -101,8 +97,6 @@
 
 		<!-- References -->
 
-		<reference entity="AccountGroup" package-path="com.liferay.account" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceAccountGroupCommerceAccountRel" persistence="false" remote-service="true" table="CAccountGroupCAccountRel">
 
@@ -138,7 +132,6 @@
 
 		<!-- References -->
 
-		<reference entity="AccountGroupRel" package-path="com.liferay.account" />
 	</entity>
 	<entity local-service="true" name="CommerceAccountGroupRel" persistence="false" remote-service="true">
 
@@ -183,7 +176,6 @@
 
 		<!-- References -->
 
-		<reference entity="AccountGroupRel" package-path="com.liferay.account" />
 	</entity>
 	<entity local-service="true" name="CommerceAccountOrganizationRel" persistence="false" remote-service="true">
 
@@ -217,7 +209,6 @@
 
 		<!-- References -->
 
-		<reference entity="AccountEntryOrganizationRel" package-path="com.liferay.account" />
 	</entity>
 	<entity local-service="true" name="CommerceAccountUserRel" persistence="false" remote-service="true">
 
@@ -251,9 +242,6 @@
 
 		<!-- References -->
 
-		<reference entity="AccountEntryUserRel" package-path="com.liferay.account" />
-		<reference entity="Role" package-path="com.liferay.portal" />
-		<reference entity="UserGroupRole" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>CommerceAccountGroupName</exception>

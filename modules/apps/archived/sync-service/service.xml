@@ -70,8 +70,6 @@
 
 		<!-- References -->
 
-		<reference entity="Company" package-path="com.liferay.portal" />
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<entity local-service="true" name="SyncDLObject" remote-service="true">
 
@@ -165,15 +163,6 @@
 
 		<!-- References -->
 
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="Organization" package-path="com.liferay.portal" />
-		<reference entity="Repository" package-path="com.liferay.portal" />
-		<reference entity="ResourcePermission" package-path="com.liferay.portal" />
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
-		<reference entity="DLFileEntry" package-path="com.liferay.portlet.documentlibrary" />
-		<reference entity="DLFileVersion" package-path="com.liferay.portlet.documentlibrary" />
-		<reference entity="DLFolder" package-path="com.liferay.portlet.documentlibrary" />
-		<reference entity="DLTrash" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<exceptions>
 		<exception>SyncDeviceActive</exception>

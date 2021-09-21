@@ -14,11 +14,9 @@
 
 package com.liferay.commerce.account.service.base;
 
-import com.liferay.account.service.persistence.AccountGroupPersistence;
 import com.liferay.commerce.account.model.CommerceAccountGroup;
 import com.liferay.commerce.account.service.CommerceAccountGroupService;
 import com.liferay.commerce.account.service.CommerceAccountGroupServiceUtil;
-import com.liferay.expando.kernel.service.persistence.ExpandoRowPersistence;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiService;
 import com.liferay.portal.kernel.service.BaseServiceImpl;
@@ -341,71 +339,6 @@ public abstract class CommerceAccountGroupServiceBaseImpl
 	}
 
 	/**
-	 * Returns the account group local service.
-	 *
-	 * @return the account group local service
-	 */
-	public com.liferay.account.service.AccountGroupLocalService
-		getAccountGroupLocalService() {
-
-		return accountGroupLocalService;
-	}
-
-	/**
-	 * Sets the account group local service.
-	 *
-	 * @param accountGroupLocalService the account group local service
-	 */
-	public void setAccountGroupLocalService(
-		com.liferay.account.service.AccountGroupLocalService
-			accountGroupLocalService) {
-
-		this.accountGroupLocalService = accountGroupLocalService;
-	}
-
-	/**
-	 * Returns the account group remote service.
-	 *
-	 * @return the account group remote service
-	 */
-	public com.liferay.account.service.AccountGroupService
-		getAccountGroupService() {
-
-		return accountGroupService;
-	}
-
-	/**
-	 * Sets the account group remote service.
-	 *
-	 * @param accountGroupService the account group remote service
-	 */
-	public void setAccountGroupService(
-		com.liferay.account.service.AccountGroupService accountGroupService) {
-
-		this.accountGroupService = accountGroupService;
-	}
-
-	/**
-	 * Returns the account group persistence.
-	 *
-	 * @return the account group persistence
-	 */
-	public AccountGroupPersistence getAccountGroupPersistence() {
-		return accountGroupPersistence;
-	}
-
-	/**
-	 * Sets the account group persistence.
-	 *
-	 * @param accountGroupPersistence the account group persistence
-	 */
-	public void setAccountGroupPersistence(
-		AccountGroupPersistence accountGroupPersistence) {
-
-		this.accountGroupPersistence = accountGroupPersistence;
-	}
-
-	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -576,49 +509,6 @@ public abstract class CommerceAccountGroupServiceBaseImpl
 		this.userPersistence = userPersistence;
 	}
 
-	/**
-	 * Returns the expando row local service.
-	 *
-	 * @return the expando row local service
-	 */
-	public com.liferay.expando.kernel.service.ExpandoRowLocalService
-		getExpandoRowLocalService() {
-
-		return expandoRowLocalService;
-	}
-
-	/**
-	 * Sets the expando row local service.
-	 *
-	 * @param expandoRowLocalService the expando row local service
-	 */
-	public void setExpandoRowLocalService(
-		com.liferay.expando.kernel.service.ExpandoRowLocalService
-			expandoRowLocalService) {
-
-		this.expandoRowLocalService = expandoRowLocalService;
-	}
-
-	/**
-	 * Returns the expando row persistence.
-	 *
-	 * @return the expando row persistence
-	 */
-	public ExpandoRowPersistence getExpandoRowPersistence() {
-		return expandoRowPersistence;
-	}
-
-	/**
-	 * Sets the expando row persistence.
-	 *
-	 * @param expandoRowPersistence the expando row persistence
-	 */
-	public void setExpandoRowPersistence(
-		ExpandoRowPersistence expandoRowPersistence) {
-
-		this.expandoRowPersistence = expandoRowPersistence;
-	}
-
 	public void afterPropertiesSet() {
 		_setServiceUtilService(commerceAccountGroupService);
 	}
@@ -741,21 +631,6 @@ public abstract class CommerceAccountGroupServiceBaseImpl
 		commerceAccountUserRelService;
 
 	@ServiceReference(
-		type = com.liferay.account.service.AccountGroupLocalService.class
-	)
-	protected com.liferay.account.service.AccountGroupLocalService
-		accountGroupLocalService;
-
-	@ServiceReference(
-		type = com.liferay.account.service.AccountGroupService.class
-	)
-	protected com.liferay.account.service.AccountGroupService
-		accountGroupService;
-
-	@ServiceReference(type = AccountGroupPersistence.class)
-	protected AccountGroupPersistence accountGroupPersistence;
-
-	@ServiceReference(
 		type = com.liferay.counter.kernel.service.CounterLocalService.class
 	)
 	protected com.liferay.counter.kernel.service.CounterLocalService
@@ -795,14 +670,5 @@ public abstract class CommerceAccountGroupServiceBaseImpl
 
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-
-	@ServiceReference(
-		type = com.liferay.expando.kernel.service.ExpandoRowLocalService.class
-	)
-	protected com.liferay.expando.kernel.service.ExpandoRowLocalService
-		expandoRowLocalService;
-
-	@ServiceReference(type = ExpandoRowPersistence.class)
-	protected ExpandoRowPersistence expandoRowPersistence;
 
 }

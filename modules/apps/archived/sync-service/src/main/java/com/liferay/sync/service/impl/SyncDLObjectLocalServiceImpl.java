@@ -17,6 +17,9 @@ package com.liferay.sync.service.impl;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
+import com.liferay.documentlibrary.kernel.service.DLAppLocalService;
+import com.liferay.documentlibrary.kernel.service.DLFileEntryLocalService;
+import com.liferay.documentlibrary.kernel.service.DLFolderLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
@@ -112,7 +115,7 @@ public class SyncDLObjectLocalServiceImpl
 
 			if (pwcSyncDLObject != null) {
 				DLFileEntry dlFileEntry =
-					dlFileEntryLocalService.fetchDLFileEntry(typePK);
+					_dlFileEntryLocalService.fetchDLFileEntry(typePK);
 
 				if ((dlFileEntry == null) || !dlFileEntry.isCheckedOut()) {
 					syncDLObjectPersistence.remove(pwcSyncDLObject);
@@ -322,7 +325,7 @@ public class SyncDLObjectLocalServiceImpl
 				String type = syncDLObject.getType();
 
 				if (type.equals(SyncDLObjectConstants.TYPE_FOLDER)) {
-					DLFolder dlFolder = dlFolderLocalService.getFolder(
+					DLFolder dlFolder = _dlFolderLocalService.getFolder(
 						syncDLObject.getTypePK());
 
 					if (dlFolder.isInTrash()) {
@@ -331,7 +334,7 @@ public class SyncDLObjectLocalServiceImpl
 				}
 				else {
 					DLFileEntry dlFileEntry =
-						dlFileEntryLocalService.getDLFileEntry(
+						_dlFileEntryLocalService.getDLFileEntry(
 							syncDLObject.getTypePK());
 
 					if (dlFileEntry.isInTrash()) {
@@ -396,7 +399,7 @@ public class SyncDLObjectLocalServiceImpl
 			return true;
 		}
 
-		Folder folder = dlAppLocalService.getFolder(folderId);
+		Folder folder = _dlAppLocalService.getFolder(folderId);
 
 		return folder.isDefaultRepository();
 	}
@@ -410,5 +413,14 @@ public class SyncDLObjectLocalServiceImpl
 
 	@Reference
 	private SyncHelper _syncHelper;
+
+	@Reference
+	private DLFileEntryLocalService _dlFileEntryLocalService;
+
+	@Reference
+	private DLAppLocalService _dlAppLocalService;
+
+	@Reference
+	private DLFolderLocalService _dlFolderLocalService;
 
 }

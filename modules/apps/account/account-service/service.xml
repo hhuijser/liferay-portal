@@ -51,15 +51,6 @@
 			<finder-column name="userId" />
 			<finder-column name="type" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="Organization" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="AccountEntryOrganizationRel">
 
@@ -87,13 +78,7 @@
 		<finder name="A_O" return-type="AccountEntryOrganizationRel">
 			<finder-column name="accountEntryId" />
 			<finder-column name="organizationId" />
-		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountEntry" package-path="com.liferay.account" />
-		<reference entity="Organization" package-path="com.liferay.portal" />
-	</entity>
+		</finder>	</entity>
 	<entity local-service="true" name="AccountEntryUserRel">
 
 		<!-- PK fields -->
@@ -120,13 +105,7 @@
 		<finder name="AEI_AUI" return-type="AccountEntryUserRel">
 			<finder-column name="accountEntryId" />
 			<finder-column name="accountUserId" />
-		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountEntry" package-path="com.liferay.account" />
-		<reference entity="User" package-path="com.liferay.portal" />
-	</entity>
+		</finder>	</entity>
 	<entity external-reference-code="true" local-service="true" name="AccountGroup" remote-service="true">
 
 		<!-- PK fields -->
@@ -163,13 +142,7 @@
 		<finder name="C_T" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="type" />
-		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountGroupRel" package-path="com.liferay.account" />
-		<reference entity="User" package-path="com.liferay.portal" />
-	</entity>
+		</finder>	</entity>
 	<entity local-service="true" name="AccountGroupRel">
 
 		<!-- PK fields -->
@@ -230,15 +203,7 @@
 		</finder>
 		<finder name="RoleId" return-type="AccountRole">
 			<finder-column name="roleId" />
-		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountEntry" package-path="com.liferay.account" />
-		<reference entity="Company" package-path="com.liferay.portal" />
-		<reference entity="Role" package-path="com.liferay.portal" />
-		<reference entity="UserGroupRole" package-path="com.liferay.portal" />
-	</entity>
+		</finder>	</entity>
 	<exceptions>
 		<exception>AccountEntryDomains</exception>
 		<exception>AccountEntryEmailAddress</exception>

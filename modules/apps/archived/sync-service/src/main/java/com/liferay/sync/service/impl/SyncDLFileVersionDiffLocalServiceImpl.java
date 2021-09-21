@@ -15,6 +15,7 @@
 package com.liferay.sync.service.impl;
 
 import com.liferay.document.library.kernel.model.DLFolderConstants;
+import com.liferay.documentlibrary.kernel.service.DLAppLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
@@ -24,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.sync.internal.configuration.SyncServiceConfigurationValues;
 import com.liferay.sync.model.SyncDLFileVersionDiff;
@@ -62,9 +64,9 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		syncDLFileVersionDiff.setSourceFileVersionId(sourceFileVersionId);
 		syncDLFileVersionDiff.setTargetFileVersionId(targetFileVersionId);
 
-		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+		FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
-		Company company = companyLocalService.getCompanyById(
+		Company company = _companyLocalService.getCompanyById(
 			fileEntry.getCompanyId());
 
 		String dataFileName = getDataFileName(
@@ -185,5 +187,11 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 	@Reference
 	private PortletFileRepository _portletFileRepository;
+
+	@Reference
+	private CompanyLocalService _companyLocalService;
+
+	@Reference
+	private DLAppLocalService _dlAppLocalService;
 
 }

@@ -31,7 +31,9 @@ import com.liferay.commerce.product.type.virtual.exception.CPDefinitionVirtualSe
 import com.liferay.commerce.product.type.virtual.model.CPDefinitionVirtualSetting;
 import com.liferay.commerce.product.type.virtual.service.base.CPDefinitionVirtualSettingLocalServiceBaseImpl;
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
+import com.liferay.documentlibrary.kernel.service.DLAppLocalService;
 import com.liferay.journal.model.JournalArticle;
+import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -43,6 +45,8 @@ import com.liferay.portal.spring.extender.service.ServiceReference;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -422,7 +426,7 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 
 		if (fileEntryId > 0) {
 			try {
-				dlAppLocalService.getFileEntry(fileEntryId);
+				_dlAppLocalService.getFileEntry(fileEntryId);
 			}
 			catch (NoSuchFileEntryException noSuchFileEntryException) {
 				throw new CPDefinitionVirtualSettingFileEntryIdException(
@@ -439,7 +443,7 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 		if (useSample) {
 			if (sampleFileEntryId > 0) {
 				try {
-					dlAppLocalService.getFileEntry(sampleFileEntryId);
+					_dlAppLocalService.getFileEntry(sampleFileEntryId);
 				}
 				catch (NoSuchFileEntryException noSuchFileEntryException) {
 					throw new CPDefinitionVirtualSettingSampleFileEntryIdException(
@@ -457,7 +461,7 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 		if (termsOfUseRequired) {
 			if (termsOfUseJournalArticleResourcePrimKey > 0) {
 				JournalArticle journalArticle =
-					journalArticleLocalService.fetchLatestArticle(
+					_journalArticleLocalService.fetchLatestArticle(
 						termsOfUseJournalArticleResourcePrimKey);
 
 				if (journalArticle == null) {
@@ -495,5 +499,11 @@ public class CPDefinitionVirtualSettingLocalServiceImpl
 
 	@ServiceReference(type = CProductLocalService.class)
 	private CProductLocalService _cProductLocalService;
+
+	@Reference
+	private DLAppLocalService _dlAppLocalService;
+
+	@Reference
+	private JournalArticleLocalService _journalArticleLocalService;
 
 }

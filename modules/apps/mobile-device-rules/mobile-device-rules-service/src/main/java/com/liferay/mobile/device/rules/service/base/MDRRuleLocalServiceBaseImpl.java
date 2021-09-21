@@ -22,8 +22,6 @@ import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.mobile.device.rules.model.MDRRule;
 import com.liferay.mobile.device.rules.service.MDRRuleLocalService;
 import com.liferay.mobile.device.rules.service.MDRRuleLocalServiceUtil;
-import com.liferay.mobile.device.rules.service.persistence.MDRRuleGroupFinder;
-import com.liferay.mobile.device.rules.service.persistence.MDRRuleGroupPersistence;
 import com.liferay.mobile.device.rules.service.persistence.MDRRulePersistence;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.aop.AopService;
@@ -595,15 +593,5 @@ public abstract class MDRRuleLocalServiceBaseImpl
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.UserLocalService
-		userLocalService;
-
-	@Reference
-	protected MDRRuleGroupPersistence mdrRuleGroupPersistence;
-
-	@Reference
-	protected MDRRuleGroupFinder mdrRuleGroupFinder;
 
 }

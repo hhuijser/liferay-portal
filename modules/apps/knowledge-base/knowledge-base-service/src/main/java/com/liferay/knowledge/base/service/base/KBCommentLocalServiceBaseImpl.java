@@ -657,12 +657,4 @@ public abstract class KBCommentLocalServiceBaseImpl
 	protected com.liferay.portal.kernel.service.UserLocalService
 		userLocalService;
 
-	@Reference
-	protected com.liferay.ratings.kernel.service.RatingsEntryLocalService
-		ratingsEntryLocalService;
-
-	@Reference
-	protected com.liferay.social.kernel.service.SocialActivityLocalService
-		socialActivityLocalService;
-
 }

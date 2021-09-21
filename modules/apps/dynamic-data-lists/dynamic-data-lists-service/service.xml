@@ -57,12 +57,6 @@
 
 		<!-- References -->
 
-		<reference entity="DDLRecordSet" package-path="com.liferay.dynamic.data.lists" />
-		<reference entity="DDLRecordVersion" package-path="com.liferay.dynamic.data.lists" />
-		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="RatingsStats" package-path="com.liferay.portlet.ratings" />
 	</entity>
 	<entity local-service="true" name="DDLRecordSet" remote-service="true" uuid="true">
 
@@ -111,11 +105,6 @@
 
 		<!-- References -->
 
-		<reference entity="DDLRecordSetVersion" package-path="com.liferay.dynamic.data.lists" />
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="WorkflowDefinitionLink" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DDLRecordSetVersion" remote-service="true">
 
@@ -217,7 +206,6 @@
 
 		<!-- References -->
 
-		<reference entity="DDLRecord" package-path="com.liferay.dynamic.data.lists" />
 	</entity>
 	<exceptions>
 		<exception>RecordGroupId</exception>

@@ -173,7 +173,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" mvcc-enabled="true" name="CommerceInventoryWarehouseItem" remote-service="true" table="CIWarehouseItem">
 

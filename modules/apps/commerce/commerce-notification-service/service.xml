@@ -42,7 +42,6 @@
 
 		<!-- References -->
 
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<entity local-service="true" name="CommerceNotificationQueueEntry" remote-service="true" uuid="false">
 
@@ -162,7 +161,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommerceNotificationTemplateCommerceAccountGroupRel" remote-service="true" table="CNTemplateCAccountGroupRel">
 

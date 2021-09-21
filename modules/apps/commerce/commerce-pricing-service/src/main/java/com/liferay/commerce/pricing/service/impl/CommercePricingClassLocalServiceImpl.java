@@ -19,6 +19,7 @@ import com.liferay.commerce.pricing.exception.NoSuchPricingClassException;
 import com.liferay.commerce.pricing.model.CommercePricingClass;
 import com.liferay.commerce.pricing.model.CommercePricingClassCPDefinitionRel;
 import com.liferay.commerce.pricing.service.base.CommercePricingClassLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -54,6 +55,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Riccardo Alberti
@@ -178,7 +181,7 @@ public class CommercePricingClassLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(commercePricingClassId);
+		_expandoRowLocalService.deleteRows(commercePricingClassId);
 
 		return commercePricingClass;
 	}
@@ -451,5 +454,8 @@ public class CommercePricingClassLocalServiceImpl
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CommercePricingClassLocalServiceImpl.class);
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

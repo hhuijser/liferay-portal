@@ -19,6 +19,7 @@ import com.liferay.commerce.discount.model.CommerceDiscountOrderTypeRel;
 import com.liferay.commerce.discount.model.CommerceDiscountOrderTypeRelTable;
 import com.liferay.commerce.discount.service.base.CommerceDiscountOrderTypeRelLocalServiceBaseImpl;
 import com.liferay.commerce.model.CommerceOrderTypeTable;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.sql.dsl.DSLFunctionFactoryUtil;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.sql.dsl.expression.Predicate;
@@ -36,6 +37,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.util.List;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -81,7 +84,7 @@ public class CommerceDiscountOrderTypeRelLocalServiceImpl
 		commerceDiscountOrderTypeRelPersistence.remove(
 			commerceDiscountOrderTypeRel);
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commerceDiscountOrderTypeRel.getCommerceDiscountOrderTypeRelId());
 
 		reindexCommerceDiscount(
@@ -207,5 +210,8 @@ public class CommerceDiscountOrderTypeRelLocalServiceImpl
 
 	@ServiceReference(type = CustomSQL.class)
 	private CustomSQL _customSQL;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

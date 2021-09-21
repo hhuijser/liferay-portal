@@ -25,6 +25,9 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.model.DLVersionNumberIncrease;
 import com.liferay.document.library.sync.model.DLSyncEvent;
 import com.liferay.document.library.sync.service.DLSyncEventLocalService;
+import com.liferay.documentlibrary.kernel.service.DLAppLocalService;
+import com.liferay.documentlibrary.kernel.service.DLFileEntryLocalService;
+import com.liferay.documentlibrary.kernel.service.DLFileVersionLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -52,6 +55,9 @@ import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.OrganizationLocalService;
+import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
@@ -136,7 +142,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Group group = groupLocalService.getGroup(repositoryId);
+			Group group = _groupLocalService.getGroup(repositoryId);
 
 			_syncHelper.checkSyncEnabled(group.getGroupId());
 
@@ -194,7 +200,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Group group = groupLocalService.getGroup(repositoryId);
+			Group group = _groupLocalService.getGroup(repositoryId);
 
 			_syncHelper.checkSyncEnabled(group.getGroupId());
 
@@ -242,7 +248,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -251,7 +257,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			dlAppService.cancelCheckOut(fileEntryId);
 
 			return toSyncDLObject(
-				dlAppLocalService.getFileEntry(fileEntryId),
+				_dlAppLocalService.getFileEntry(fileEntryId),
 				SyncDLObjectConstants.EVENT_CANCEL_CHECK_OUT);
 		}
 		catch (PortalException portalException) {
@@ -268,7 +274,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -280,7 +286,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				changeLog, serviceContext);
 
 			return toSyncDLObject(
-				dlAppLocalService.getFileEntry(fileEntryId),
+				_dlAppLocalService.getFileEntry(fileEntryId),
 				SyncDLObjectConstants.EVENT_CHECK_IN);
 		}
 		catch (PortalException portalException) {
@@ -296,7 +302,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -305,7 +311,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			dlAppService.checkOutFileEntry(fileEntryId, serviceContext);
 
 			return toSyncDLObject(
-				dlAppLocalService.getFileEntry(fileEntryId),
+				_dlAppLocalService.getFileEntry(fileEntryId),
 				SyncDLObjectConstants.EVENT_CHECK_OUT);
 		}
 		catch (PortalException portalException) {
@@ -322,7 +328,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -348,13 +354,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Group group = groupLocalService.getGroup(repositoryId);
+			Group group = _groupLocalService.getGroup(repositoryId);
 
 			_syncHelper.checkSyncEnabled(group.getGroupId());
 
 			checkFolder(folderId);
 
-			FileEntry sourceFileEntry = dlAppLocalService.getFileEntry(
+			FileEntry sourceFileEntry = _dlAppLocalService.getFileEntry(
 				sourceFileEntryId);
 
 			SyncDLObject sourceSyncDLObject =
@@ -476,7 +482,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Folder folder = dlAppLocalService.getFolder(folderId);
+			Folder folder = _dlAppLocalService.getFolder(folderId);
 
 			_syncHelper.checkSyncEnabled(folder.getGroupId());
 
@@ -790,7 +796,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			List<Group> groups = new ArrayList<>();
 
-			List<Group> userSiteGroups = groupLocalService.search(
+			List<Group> userSiteGroups = _groupLocalService.search(
 				user.getCompanyId(), null,
 				LinkedHashMapBuilder.<String, Object>put(
 					"active", true
@@ -808,7 +814,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			}
 
 			List<Organization> organizations =
-				organizationLocalService.getOrganizations(
+				_organizationLocalService.getOrganizations(
 					user.getUserId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 					null);
 
@@ -858,7 +864,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				groups.add(userGroup);
 			}
 
-			Group companyGroup = groupLocalService.getCompanyGroup(
+			Group companyGroup = _groupLocalService.getCompanyGroup(
 				user.getCompanyId());
 
 			if (_syncHelper.isSyncEnabled(companyGroup)) {
@@ -884,7 +890,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -907,7 +913,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -930,7 +936,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Folder folder = dlAppLocalService.getFolder(folderId);
+			Folder folder = _dlAppLocalService.getFolder(folderId);
 
 			_syncHelper.checkSyncEnabled(folder.getGroupId());
 
@@ -953,7 +959,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Folder folder = dlAppLocalService.getFolder(folderId);
+			Folder folder = _dlAppLocalService.getFolder(folderId);
 
 			_syncHelper.checkSyncEnabled(folder.getGroupId());
 
@@ -983,17 +989,17 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		File patchedFile = null;
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
 			checkFileEntry(fileEntry);
 
 			DLFileVersion dlFileVersion =
-				dlFileVersionLocalService.getDLFileVersion(sourceVersionId);
+				_dlFileVersionLocalService.getDLFileVersion(sourceVersionId);
 
 			sourceFile = FileUtil.createTempFile(
-				dlFileEntryLocalService.getFileAsStream(
+				_dlFileEntryLocalService.getFileAsStream(
 					fileEntryId, dlFileVersion.getVersion(), false));
 
 			patchedFile = FileUtil.createTempFile();
@@ -1008,7 +1014,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				(sourceVersionId != syncDLObject.getVersionId())) {
 
 				DLFileVersion targetDLFileVersion =
-					dlFileVersionLocalService.getFileVersion(
+					_dlFileVersionLocalService.getFileVersion(
 						syncDLObject.getVersionId());
 
 				_syncDLFileVersionDiffLocalService.addSyncDLFileVersionDiff(
@@ -1034,14 +1040,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
 			dlTrashService.restoreFileEntryFromTrash(fileEntryId);
 
 			return toSyncDLObject(
-				dlAppLocalService.getFileEntry(fileEntryId),
+				_dlAppLocalService.getFileEntry(fileEntryId),
 				SyncDLObjectConstants.EVENT_RESTORE);
 		}
 		catch (PortalException portalException) {
@@ -1056,14 +1062,14 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Folder folder = dlAppLocalService.getFolder(folderId);
+			Folder folder = _dlAppLocalService.getFolder(folderId);
 
 			_syncHelper.checkSyncEnabled(folder.getGroupId());
 
 			dlTrashService.restoreFolderFromTrash(folderId);
 
 			return toSyncDLObject(
-				dlAppLocalService.getFolder(folderId),
+				_dlAppLocalService.getFolder(folderId),
 				SyncDLObjectConstants.EVENT_RESTORE);
 		}
 		catch (PortalException portalException) {
@@ -1154,7 +1160,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			_syncHelper.checkSyncEnabled(fileEntry.getGroupId());
 
@@ -1188,7 +1194,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		throws PortalException {
 
 		try {
-			Folder folder = dlAppLocalService.getFolder(folderId);
+			Folder folder = _dlAppLocalService.getFolder(folderId);
 
 			_syncHelper.checkSyncEnabled(folder.getGroupId());
 
@@ -1464,17 +1470,17 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return false;
 		}
 
-		if (resourcePermissionLocalService.hasResourcePermission(
+		if (_resourcePermissionLocalService.hasResourcePermission(
 				permissionChecker.getCompanyId(), name,
 				ResourceConstants.SCOPE_COMPANY,
 				String.valueOf(permissionChecker.getCompanyId()), roleIds,
 				ActionKeys.VIEW) ||
-			resourcePermissionLocalService.hasResourcePermission(
+			_resourcePermissionLocalService.hasResourcePermission(
 				permissionChecker.getCompanyId(), name,
 				ResourceConstants.SCOPE_GROUP_TEMPLATE,
 				String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID), roleIds,
 				ActionKeys.VIEW) ||
-			resourcePermissionLocalService.hasResourcePermission(
+			_resourcePermissionLocalService.hasResourcePermission(
 				permissionChecker.getCompanyId(), name,
 				ResourceConstants.SCOPE_GROUP, String.valueOf(groupId), roleIds,
 				ActionKeys.VIEW)) {
@@ -1838,5 +1844,23 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 	@Reference
 	private ZipReaderFactory _zipReaderFactory;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private DLFileVersionLocalService _dlFileVersionLocalService;
+
+	@Reference
+	private OrganizationLocalService _organizationLocalService;
+
+	@Reference
+	private DLFileEntryLocalService _dlFileEntryLocalService;
+
+	@Reference
+	private DLAppLocalService _dlAppLocalService;
+
+	@Reference
+	private ResourcePermissionLocalService _resourcePermissionLocalService;
 
 }

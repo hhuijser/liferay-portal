@@ -21,6 +21,7 @@ import com.liferay.commerce.model.CommerceOrderType;
 import com.liferay.commerce.model.CommerceOrderTypeRelTable;
 import com.liferay.commerce.model.CommerceOrderTypeTable;
 import com.liferay.commerce.service.base.CommerceOrderTypeLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.sql.dsl.expression.Predicate;
 import com.liferay.petra.sql.dsl.query.FromStep;
@@ -37,6 +38,7 @@ import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.security.permission.InlineSQLHelper;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -52,6 +54,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alessio Antonio Rendina
@@ -159,10 +163,10 @@ public class CommerceOrderTypeLocalServiceImpl
 		commerceOrderTypeRelLocalService.deleteCommerceOrderTypeRels(
 			commerceOrderType.getCommerceOrderTypeId());
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commerceOrderType.getCommerceOrderTypeId());
 
-		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+		_workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 			commerceOrderType.getCompanyId(), 0L,
 			CommerceOrderType.class.getName(),
 			commerceOrderType.getCommerceOrderTypeId());
@@ -482,5 +486,11 @@ public class CommerceOrderTypeLocalServiceImpl
 
 	@ServiceReference(type = InlineSQLHelper.class)
 	private InlineSQLHelper _inlineSQLHelper;
+
+	@Reference
+	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

@@ -39,6 +39,8 @@ import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -48,6 +50,8 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alec Sloan
@@ -87,7 +91,7 @@ public class CommerceCatalogLocalServiceImpl
 
 		// Group
 
-		groupLocalService.addGroup(
+		_groupLocalService.addGroup(
 			user.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			CommerceCatalog.class.getName(), commerceCatalogId,
 			GroupConstants.DEFAULT_LIVE_GROUP_ID, getLocalizationMap(name),
@@ -120,7 +124,7 @@ public class CommerceCatalogLocalServiceImpl
 	public CommerceCatalog addDefaultCommerceCatalog(long companyId)
 		throws PortalException {
 
-		Company company = companyLocalService.getCompany(companyId);
+		Company company = _companyLocalService.getCompany(companyId);
 
 		User defaultUser = company.getDefaultUser();
 
@@ -153,7 +157,7 @@ public class CommerceCatalogLocalServiceImpl
 
 		// Group
 
-		groupLocalService.deleteGroup(groupId);
+		_groupLocalService.deleteGroup(groupId);
 
 		// Resources
 
@@ -199,7 +203,7 @@ public class CommerceCatalogLocalServiceImpl
 
 	@Override
 	public CommerceCatalog fetchCommerceCatalogByGroupId(long groupId) {
-		Group group = groupLocalService.fetchGroup(groupId);
+		Group group = _groupLocalService.fetchGroup(groupId);
 
 		if ((group != null) &&
 			(group.getClassNameId() == classNameLocalService.getClassNameId(
@@ -229,14 +233,14 @@ public class CommerceCatalogLocalServiceImpl
 
 		// Group
 
-		Group group = groupLocalService.fetchGroup(
+		Group group = _groupLocalService.fetchGroup(
 			commerceCatalog.getCompanyId(),
 			classNameLocalService.getClassNameId(
 				CommerceCatalog.class.getName()),
 			commerceCatalog.getCommerceCatalogId());
 
 		if (group != null) {
-			groupLocalService.deleteGroup(group);
+			_groupLocalService.deleteGroup(group);
 		}
 
 		return commerceCatalog;
@@ -252,7 +256,7 @@ public class CommerceCatalogLocalServiceImpl
 		long classNameId = classNameLocalService.getClassNameId(
 			CommerceCatalog.class.getName());
 
-		Group group = groupLocalService.fetchGroup(
+		Group group = _groupLocalService.fetchGroup(
 			commerceCatalog.getCompanyId(), classNameId, commerceCatalogId);
 
 		if (group != null) {
@@ -435,5 +439,11 @@ public class CommerceCatalogLocalServiceImpl
 	private static final String[] _SELECTED_FIELD_NAMES = {
 		Field.ENTRY_CLASS_PK, Field.COMPANY_ID
 	};
+
+	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private CompanyLocalService _companyLocalService;
 
 }

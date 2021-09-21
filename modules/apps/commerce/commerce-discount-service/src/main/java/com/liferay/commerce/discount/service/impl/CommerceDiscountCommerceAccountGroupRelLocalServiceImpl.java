@@ -17,6 +17,7 @@ package com.liferay.commerce.discount.service.impl;
 import com.liferay.commerce.discount.model.CommerceDiscount;
 import com.liferay.commerce.discount.model.CommerceDiscountCommerceAccountGroupRel;
 import com.liferay.commerce.discount.service.base.CommerceDiscountCommerceAccountGroupRelLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
@@ -25,6 +26,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.util.List;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -77,7 +80,7 @@ public class CommerceDiscountCommerceAccountGroupRelLocalServiceImpl
 		commerceDiscountCommerceAccountGroupRelPersistence.remove(
 			commerceDiscountCommerceAccountGroupRel);
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commerceDiscountCommerceAccountGroupRel.
 				getCommerceDiscountCommerceAccountGroupRelId());
 
@@ -191,5 +194,8 @@ public class CommerceDiscountCommerceAccountGroupRelLocalServiceImpl
 
 		indexer.reindex(CommerceDiscount.class.getName(), commerceDiscountId);
 	}
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

@@ -24,7 +24,10 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
@@ -49,9 +52,9 @@ public class MBDiscussionLocalServiceImpl
 			long threadId, ServiceContext serviceContext)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
-		User user = userLocalService.fetchUser(
+		User user = _userLocalService.fetchUser(
 			_portal.getValidUserId(group.getCompanyId(), userId));
 
 		long discussionId = counterLocalService.increment();
@@ -83,7 +86,7 @@ public class MBDiscussionLocalServiceImpl
 	@Override
 	public MBDiscussion fetchDiscussion(String className, long classPK) {
 		return mbDiscussionPersistence.fetchByC_C(
-			classNameLocalService.getClassNameId(className), classPK);
+			_classNameLocalService.getClassNameId(className), classPK);
 	}
 
 	@Override
@@ -103,7 +106,7 @@ public class MBDiscussionLocalServiceImpl
 		throws PortalException {
 
 		return mbDiscussionPersistence.findByC_C(
-			classNameLocalService.getClassNameId(className), classPK);
+			_classNameLocalService.getClassNameId(className), classPK);
 	}
 
 	/**
@@ -119,7 +122,7 @@ public class MBDiscussionLocalServiceImpl
 
 		dynamicQuery.add(
 			classNameIdProperty.eq(
-				classNameLocalService.getClassNameId(className)));
+				_classNameLocalService.getClassNameId(className)));
 
 		return dynamicQuery(dynamicQuery);
 	}
@@ -155,5 +158,14 @@ public class MBDiscussionLocalServiceImpl
 
 	@Reference
 	private SubscriptionLocalService _subscriptionLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
 
 }

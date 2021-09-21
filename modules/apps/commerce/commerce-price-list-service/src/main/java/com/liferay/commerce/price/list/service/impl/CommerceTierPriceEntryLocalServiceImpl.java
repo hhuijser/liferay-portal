@@ -27,6 +27,7 @@ import com.liferay.commerce.price.list.model.CommerceTierPriceEntry;
 import com.liferay.commerce.price.list.service.base.CommerceTierPriceEntryLocalServiceBaseImpl;
 import com.liferay.commerce.price.list.service.persistence.CommercePriceEntryPersistence;
 import com.liferay.commerce.price.list.util.comparator.CommerceTierPriceEntryMinQuantityComparator;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -72,6 +73,8 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alessio Antonio Rendina
@@ -475,7 +478,7 @@ public class CommerceTierPriceEntryLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commerceTierPriceEntry.getCommerceTierPriceEntryId());
 
 		return commerceTierPriceEntry;
@@ -1044,5 +1047,8 @@ public class CommerceTierPriceEntryLocalServiceImpl
 
 	@BeanReference(type = CommercePriceEntryPersistence.class)
 	private CommercePriceEntryPersistence _commercePriceEntryPersistence;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

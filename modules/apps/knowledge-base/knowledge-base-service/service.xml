@@ -201,14 +201,6 @@
 
 		<!-- References -->
 
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="AssetLink" package-path="com.liferay.portlet.asset" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
-		<reference entity="RatingsStats" package-path="com.liferay.portlet.ratings" />
-		<reference entity="SocialActivity" package-path="com.liferay.portlet.social" />
 	</entity>
 	<entity local-service="true" name="KBComment" remote-service="true" uuid="true">
 
@@ -273,9 +265,6 @@
 
 		<!-- References -->
 
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="RatingsEntry" package-path="com.liferay.portlet.ratings" />
-		<reference entity="SocialActivity" package-path="com.liferay.portlet.social" />
 	</entity>
 	<entity external-reference-code="group" local-service="true" name="KBFolder" remote-service="true" uuid="true">
 
@@ -325,8 +314,6 @@
 
 		<!-- References -->
 
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="KBTemplate" remote-service="true" uuid="true">
 
@@ -366,7 +353,6 @@
 
 		<!-- References -->
 
-		<reference entity="SocialActivity" package-path="com.liferay.portlet.social" />
 	</entity>
 	<exceptions>
 		<exception>DuplicateKBArticleExternalReferenceCode</exception>

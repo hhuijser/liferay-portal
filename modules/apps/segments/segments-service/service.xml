@@ -152,7 +152,6 @@
 
 		<!-- References -->
 
-		<reference entity="Role" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="SegmentsExperience" remote-service="true" uuid="true">
 
@@ -247,7 +246,6 @@
 
 		<!-- References -->
 
-		<reference entity="Layout" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="SegmentsExperiment" remote-service="true" uuid="true">
 
@@ -316,7 +314,6 @@
 
 		<!-- References -->
 
-		<reference entity="UserNotificationEvent" package-path="com.liferay.portal.kernel" />
 	</entity>
 	<entity local-service="true" name="SegmentsExperimentRel" remote-service="true">
 

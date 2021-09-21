@@ -53,7 +53,6 @@
 
 		<!-- References -->
 
-		<reference entity="Image" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>CommercePaymentMethodGroupRelEngineKey</exception>

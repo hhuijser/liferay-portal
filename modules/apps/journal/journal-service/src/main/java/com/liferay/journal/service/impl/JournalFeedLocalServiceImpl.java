@@ -21,6 +21,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLink;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
+import com.liferay.expando.kernel.service.ExpandoValueLocalService;
 import com.liferay.journal.constants.JournalFeedConstants;
 import com.liferay.journal.exception.DuplicateFeedIdException;
 import com.liferay.journal.exception.FeedContentFieldException;
@@ -38,7 +39,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -76,7 +80,7 @@ public class JournalFeedLocalServiceImpl
 
 		// Feed
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 		feedId = StringUtil.toUpperCase(StringUtil.trim(feedId));
 
 		validate(
@@ -125,11 +129,12 @@ public class JournalFeedLocalServiceImpl
 		// DDM Structure Link
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			groupId,
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			ddmStructureKey, true);
 
 		_ddmStructureLinkLocalService.addStructureLink(
-			classNameLocalService.getClassNameId(JournalFeed.class),
+			_classNameLocalService.getClassNameId(JournalFeed.class),
 			feed.getPrimaryKey(), ddmStructure.getStructureId());
 
 		// Resources
@@ -154,7 +159,7 @@ public class JournalFeedLocalServiceImpl
 			boolean addGuestPermissions)
 		throws PortalException {
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			feed.getCompanyId(), feed.getGroupId(), feed.getUserId(),
 			JournalFeed.class.getName(), feed.getId(), false,
 			addGroupPermissions, addGuestPermissions);
@@ -165,7 +170,7 @@ public class JournalFeedLocalServiceImpl
 			JournalFeed feed, ModelPermissions modelPermissions)
 		throws PortalException {
 
-		resourceLocalService.addModelResources(
+		_resourceLocalService.addModelResources(
 			feed.getCompanyId(), feed.getGroupId(), feed.getUserId(),
 			JournalFeed.class.getName(), feed.getId(), modelPermissions);
 	}
@@ -193,22 +198,22 @@ public class JournalFeedLocalServiceImpl
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			feed.getGroupId(),
-			classNameLocalService.getClassNameId(JournalArticle.class),
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			feed.getDDMStructureKey(), true);
 
 		_ddmStructureLinkLocalService.deleteStructureLink(
-			classNameLocalService.getClassNameId(JournalFeed.class),
+			_classNameLocalService.getClassNameId(JournalFeed.class),
 			feed.getPrimaryKey(), ddmStructure.getStructureId());
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			feed.getCompanyId(), JournalFeed.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, feed.getId());
 
 		// Expando
 
-		expandoValueLocalService.deleteValues(
+		_expandoValueLocalService.deleteValues(
 			JournalFeed.class.getName(), feed.getId());
 	}
 
@@ -342,7 +347,7 @@ public class JournalFeedLocalServiceImpl
 
 		//DDM Structure Link
 
-		long classNameId = classNameLocalService.getClassNameId(
+		long classNameId = _classNameLocalService.getClassNameId(
 			JournalFeed.class);
 
 		DDMStructureLink ddmStructureLink =
@@ -350,7 +355,8 @@ public class JournalFeedLocalServiceImpl
 				classNameId, feed.getPrimaryKey());
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			groupId,
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			ddmStructureKey, true);
 
 		_ddmStructureLinkLocalService.updateStructureLink(
@@ -443,7 +449,8 @@ public class JournalFeedLocalServiceImpl
 		}
 
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			groupId,
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			ddmStructureKey, true);
 
 		DDMForm ddmForm = ddmStructure.getDDMForm();
@@ -469,5 +476,17 @@ public class JournalFeedLocalServiceImpl
 
 	@Reference
 	private Portal _portal;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private ExpandoValueLocalService _expandoValueLocalService;
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
 
 }

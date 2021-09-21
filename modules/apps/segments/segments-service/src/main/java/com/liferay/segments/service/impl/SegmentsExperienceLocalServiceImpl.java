@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GroupThreadLocal;
@@ -47,6 +48,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author David Arques
@@ -582,7 +584,7 @@ public class SegmentsExperienceLocalServiceImpl
 	}
 
 	private long _getPublishedLayoutClassPK(long classPK) {
-		Layout layout = layoutLocalService.fetchLayout(classPK);
+		Layout layout = _layoutLocalService.fetchLayout(classPK);
 
 		if ((layout != null) && layout.isDraftLayout()) {
 			return layout.getClassPK();
@@ -768,5 +770,8 @@ public class SegmentsExperienceLocalServiceImpl
 					" already exists");
 		}
 	}
+
+	@Reference
+	private LayoutLocalService _layoutLocalService;
 
 }

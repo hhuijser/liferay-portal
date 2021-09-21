@@ -55,6 +55,5 @@
 
 		<!-- References -->
 
-		<reference entity="DLFolder" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 </service-builder>

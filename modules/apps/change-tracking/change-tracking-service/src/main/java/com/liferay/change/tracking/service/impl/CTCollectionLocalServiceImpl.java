@@ -43,6 +43,11 @@ import com.liferay.change.tracking.service.CTProcessLocalService;
 import com.liferay.change.tracking.service.CTSchemaVersionLocalService;
 import com.liferay.change.tracking.service.base.CTCollectionLocalServiceBaseImpl;
 import com.liferay.change.tracking.service.persistence.CTAutoResolutionInfoPersistence;
+import com.liferay.change.tracking.service.persistence.CTCommentPersistence;
+import com.liferay.change.tracking.service.persistence.CTEntryPersistence;
+import com.liferay.change.tracking.service.persistence.CTMessagePersistence;
+import com.liferay.change.tracking.service.persistence.CTPreferencesPersistence;
+import com.liferay.change.tracking.service.persistence.CTProcessPersistence;
 import com.liferay.change.tracking.spi.display.CTDisplayRenderer;
 import com.liferay.change.tracking.spi.resolver.ConstraintResolver;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
@@ -149,7 +154,7 @@ public class CTCollectionLocalServiceImpl
 
 		Map<Long, List<ConflictInfo>> conflictInfoMap = new HashMap<>();
 
-		List<CTEntry> ctEntries = ctEntryPersistence.findByCtCollectionId(
+		List<CTEntry> ctEntries = _ctEntryPersistence.findByCtCollectionId(
 			ctCollection.getCtCollectionId());
 
 		Map<Long, CTConflictChecker<?>> ctConflictCheckers = new HashMap<>();
@@ -354,7 +359,7 @@ public class CTCollectionLocalServiceImpl
 			throw new SystemException(exception);
 		}
 
-		List<CTEntry> ctEntries = ctEntryPersistence.findByCtCollectionId(
+		List<CTEntry> ctEntries = _ctEntryPersistence.findByCtCollectionId(
 			ctCollection.getCtCollectionId());
 
 		Set<Long> modelClassNameIds = new HashSet<>();
@@ -401,21 +406,22 @@ public class CTCollectionLocalServiceImpl
 		_ctAutoResolutionInfoPersistence.removeByCtCollectionId(
 			ctCollection.getCtCollectionId());
 
-		ctCommentPersistence.removeByCtCollectionId(
+		_ctCommentPersistence.removeByCtCollectionId(
 			ctCollection.getCtCollectionId());
 
 		for (CTEntry ctEntry : ctEntries) {
-			ctEntryPersistence.remove(ctEntry);
+			_ctEntryPersistence.remove(ctEntry);
 		}
 
-		ctMessagePersistence.removeByCtCollectionId(
+		_ctMessagePersistence.removeByCtCollectionId(
 			ctCollection.getCtCollectionId());
 
 		_ctPreferencesLocalService.resetCTPreferences(
 			ctCollection.getCtCollectionId());
 
-		List<CTProcess> ctProcesses = ctProcessPersistence.findByCtCollectionId(
-			ctCollection.getCtCollectionId());
+		List<CTProcess> ctProcesses =
+			_ctProcessPersistence.findByCtCollectionId(
+				ctCollection.getCtCollectionId());
 
 		for (CTProcess ctProcess : ctProcesses) {
 			_ctProcessLocalService.deleteCTProcess(ctProcess);
@@ -477,7 +483,7 @@ public class CTCollectionLocalServiceImpl
 
 		Set<Node> nodes = new HashSet<>();
 
-		int rootCount = ctEntryPersistence.countByC_MCNI_MCPK(
+		int rootCount = _ctEntryPersistence.countByC_MCNI_MCPK(
 			ctCollectionId, modelClassNameId, modelClassPK);
 
 		if (rootCount == 0) {
@@ -493,7 +499,7 @@ public class CTCollectionLocalServiceImpl
 				long classNameId = entry.getKey();
 
 				for (long classPK : entry.getValue()) {
-					int count = ctEntryPersistence.countByC_MCNI_MCPK(
+					int count = _ctEntryPersistence.countByC_MCNI_MCPK(
 						ctCollectionId, classNameId, classPK);
 
 					if (count == 0) {
@@ -545,7 +551,7 @@ public class CTCollectionLocalServiceImpl
 						break;
 					}
 
-					CTEntry ctEntry = ctEntryPersistence.fetchByC_MCNI_MCPK(
+					CTEntry ctEntry = _ctEntryPersistence.fetchByC_MCNI_MCPK(
 						ctCollectionId, backtraceClassNameId, backtraceClassPK);
 
 					if ((ctEntry == null) ||
@@ -588,7 +594,7 @@ public class CTCollectionLocalServiceImpl
 				discardEnclosureMap.entrySet()) {
 
 			for (long classPK : entry.getValue()) {
-				CTEntry ctEntry = ctEntryPersistence.fetchByC_MCNI_MCPK(
+				CTEntry ctEntry = _ctEntryPersistence.fetchByC_MCNI_MCPK(
 					ctCollectionId, entry.getKey(), classPK);
 
 				if (ctEntry != null) {
@@ -613,7 +619,7 @@ public class CTCollectionLocalServiceImpl
 				CTEnclosureUtil.getEnclosureParentEntries(
 					ctClosure, enclosureMap)) {
 
-			int count = ctEntryPersistence.countByC_MCNI_MCPK(
+			int count = _ctEntryPersistence.countByC_MCNI_MCPK(
 				ctCollectionId, parentEntry.getKey(), parentEntry.getValue());
 
 			if (count > 0) {
@@ -664,10 +670,10 @@ public class CTCollectionLocalServiceImpl
 		ctPreferences.setPreviousCtCollectionId(
 			CTConstants.CT_COLLECTION_ID_PRODUCTION);
 
-		ctPreferencesPersistence.update(ctPreferences);
+		_ctPreferencesPersistence.update(ctPreferences);
 
 		List<CTEntry> publishedCTEntries =
-			ctEntryPersistence.findByCtCollectionId(
+			_ctEntryPersistence.findByCtCollectionId(
 				undoCTCollection.getCtCollectionId());
 
 		Map<Long, CTServiceCopier<?>> ctServiceCopiers = new HashMap<>();
@@ -702,7 +708,7 @@ public class CTCollectionLocalServiceImpl
 						newCTCollection.getCtCollectionId()));
 			}
 
-			CTEntry ctEntry = ctEntryPersistence.create(++batchCounter);
+			CTEntry ctEntry = _ctEntryPersistence.create(++batchCounter);
 
 			ctEntry.setCompanyId(newCTCollection.getCompanyId());
 			ctEntry.setUserId(newCTCollection.getUserId());
@@ -722,7 +728,7 @@ public class CTCollectionLocalServiceImpl
 
 			ctEntry.setChangeType(changeType);
 
-			ctEntryPersistence.update(ctEntry);
+			_ctEntryPersistence.update(ctEntry);
 		}
 
 		try {
@@ -880,5 +886,20 @@ public class CTCollectionLocalServiceImpl
 
 	@Reference
 	private TableReferenceDefinitionManager _tableReferenceDefinitionManager;
+
+	@Reference
+	private CTCommentPersistence _ctCommentPersistence;
+
+	@Reference
+	private CTEntryPersistence _ctEntryPersistence;
+
+	@Reference
+	private CTMessagePersistence _ctMessagePersistence;
+
+	@Reference
+	private CTPreferencesPersistence _ctPreferencesPersistence;
+
+	@Reference
+	private CTProcessPersistence _ctProcessPersistence;
 
 }

@@ -77,7 +77,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommercePriceList" remote-service="true" uuid="true">
 
@@ -163,9 +162,6 @@
 
 		<!-- References -->
 
-		<reference entity="Company" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListAccountRel" remote-service="true" uuid="true">
 
@@ -206,7 +202,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListChannelRel" remote-service="true" uuid="true">
 
@@ -247,7 +242,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListCommerceAccountGroupRel" remote-service="true" table="CPLCommerceGroupAccountRel" uuid="true">
 
@@ -288,7 +282,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListDiscountRel" remote-service="true" uuid="true">
 
@@ -329,7 +322,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListOrderTypeRel" remote-service="true" uuid="true">
 
@@ -370,7 +362,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceTierPriceEntry" remote-service="true" uuid="true">
 
@@ -443,7 +434,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<exceptions>
 		<exception>CommerceBasePriceListCannotDelete</exception>

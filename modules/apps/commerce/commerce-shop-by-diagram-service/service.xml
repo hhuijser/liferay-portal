@@ -46,7 +46,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CSDiagramPin" remote-service="true">
 

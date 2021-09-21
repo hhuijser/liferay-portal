@@ -26,6 +26,8 @@ import com.liferay.account.model.AccountEntryTable;
 import com.liferay.account.model.AccountEntryUserRelTable;
 import com.liferay.account.model.impl.AccountEntryImpl;
 import com.liferay.account.service.base.AccountEntryLocalServiceBaseImpl;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.sql.dsl.DSLFunctionFactoryUtil;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.sql.dsl.expression.Predicate;
@@ -56,7 +58,11 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.OrganizationLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -188,7 +194,7 @@ public class AccountEntryLocalServiceImpl
 		AccountEntry accountEntry = accountEntryPersistence.create(
 			accountEntryId);
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		accountEntry.setCompanyId(user.getCompanyId());
 		accountEntry.setUserId(user.getUserId());
@@ -233,7 +239,7 @@ public class AccountEntryLocalServiceImpl
 
 		// Group
 
-		groupLocalService.addGroup(
+		_groupLocalService.addGroup(
 			userId, GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			AccountEntry.class.getName(), accountEntryId,
 			GroupConstants.DEFAULT_LIVE_GROUP_ID, getLocalizationMap(name),
@@ -243,7 +249,7 @@ public class AccountEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			user.getCompanyId(), 0, user.getUserId(),
 			AccountEntry.class.getName(), accountEntryId, false, false, false);
 
@@ -270,7 +276,7 @@ public class AccountEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		AccountEntry accountEntry = fetchAccountEntryByReferenceCode(
 			user.getCompanyId(), externalReferenceCode);
@@ -343,23 +349,23 @@ public class AccountEntryLocalServiceImpl
 
 		// Group
 
-		groupLocalService.deleteGroup(accountEntry.getAccountEntryGroup());
+		_groupLocalService.deleteGroup(accountEntry.getAccountEntryGroup());
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			accountEntry.getCompanyId(), AccountEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			accountEntry.getAccountEntryId());
 
 		// Asset
 
-		assetEntryLocalService.deleteEntry(
+		_assetEntryLocalService.deleteEntry(
 			AccountEntry.class.getName(), accountEntry.getAccountEntryId());
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(accountEntry.getAccountEntryId());
+		_expandoRowLocalService.deleteRows(accountEntry.getAccountEntryId());
 
 		return accountEntry;
 	}
@@ -454,7 +460,7 @@ public class AccountEntryLocalServiceImpl
 	public AccountEntry getGuestAccountEntry(long companyId)
 		throws PortalException {
 
-		User defaultUser = userLocalService.getDefaultUser(companyId);
+		User defaultUser = _userLocalService.getDefaultUser(companyId);
 
 		AccountEntryImpl accountEntryImpl = new AccountEntryImpl();
 
@@ -825,7 +831,7 @@ public class AccountEntryLocalServiceImpl
 
 	private Long[] _getOrganizationIds(long userId) {
 		List<Organization> organizations =
-			organizationLocalService.getUserOrganizations(userId);
+			_organizationLocalService.getUserOrganizations(userId);
 
 		ListIterator<Organization> listIterator = organizations.listIterator();
 
@@ -833,7 +839,7 @@ public class AccountEntryLocalServiceImpl
 			Organization organization = listIterator.next();
 
 			for (Organization curOrganization :
-					organizationLocalService.getOrganizations(
+					_organizationLocalService.getOrganizations(
 						organization.getCompanyId(),
 						organization.getTreePath() + "%")) {
 
@@ -976,7 +982,7 @@ public class AccountEntryLocalServiceImpl
 		Company company = _companyLocalService.getCompany(
 			serviceContext.getCompanyId());
 
-		assetEntryLocalService.updateEntry(
+		_assetEntryLocalService.updateEntry(
 			serviceContext.getUserId(), company.getGroupId(),
 			accountEntry.getCreateDate(), accountEntry.getModifiedDate(),
 			AccountEntry.class.getName(), accountEntry.getAccountEntryId(),
@@ -1071,5 +1077,23 @@ public class AccountEntryLocalServiceImpl
 
 	@Reference
 	private UserFileUploadsSettings _userFileUploadsSettings;
+
+	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private OrganizationLocalService _organizationLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

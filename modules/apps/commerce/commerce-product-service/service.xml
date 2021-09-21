@@ -43,8 +43,6 @@
 
 		<!-- References -->
 
-		<reference entity="Company" package-path="com.liferay.portal" />
-		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceChannel" remote-service="true">
 
@@ -87,7 +85,6 @@
 
 		<!-- References -->
 
-		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="CommerceChannelRel" remote-service="true">
 
@@ -214,9 +211,6 @@
 
 		<!-- References -->
 
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
-		<reference entity="DLFileEntry" package-path="com.liferay.portlet.documentlibrary" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPDefinition" remote-service="true" uuid="true">
 
@@ -328,11 +322,6 @@
 
 		<!-- References -->
 
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="AssetLink" package-path="com.liferay.portlet.asset" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPDefinitionLink" remote-service="true" uuid="true">
 
@@ -389,7 +378,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPDefinitionOptionRel" remote-service="true" uuid="true">
 
@@ -459,7 +447,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPDefinitionOptionValueRel" remote-service="true" uuid="true">
 
@@ -525,7 +512,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPDefinitionSpecificationOptionValue" remote-service="true" table="CPDSpecificationOptionValue" uuid="true">
 
@@ -589,7 +575,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPDisplayLayout" remote-service="true" uuid="true">
 
@@ -640,7 +625,6 @@
 
 		<!-- References -->
 
-		<reference entity="Layout" package-path="com.liferay.portal" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CPInstance" remote-service="true" uuid="true">
 
@@ -745,8 +729,6 @@
 
 		<!-- References -->
 
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPInstanceOptionValueRel" remote-service="true" uuid="true">
 
@@ -891,7 +873,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CPOptionCategory" remote-service="true" uuid="true">
 
@@ -976,7 +957,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CProduct" remote-service="false" uuid="true">
 
@@ -1057,7 +1037,6 @@
 
 		<!-- References -->
 
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CPTaxCategory" remote-service="true">
 

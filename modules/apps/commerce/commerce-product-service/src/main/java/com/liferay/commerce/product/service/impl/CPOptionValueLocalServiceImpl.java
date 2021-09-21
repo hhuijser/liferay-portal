@@ -18,6 +18,7 @@ import com.liferay.commerce.product.exception.CPOptionValueKeyException;
 import com.liferay.commerce.product.model.CPOption;
 import com.liferay.commerce.product.model.CPOptionValue;
 import com.liferay.commerce.product.service.base.CPOptionValueLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -51,6 +52,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -150,7 +153,7 @@ public class CPOptionValueLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(cpOptionValue.getCPOptionValueId());
+		_expandoRowLocalService.deleteRows(cpOptionValue.getCPOptionValueId());
 
 		reindexCPOption(cpOptionValue.getCPOptionId());
 
@@ -444,5 +447,8 @@ public class CPOptionValueLocalServiceImpl
 	private static final String[] _SELECTED_FIELD_NAMES = {
 		Field.ENTRY_CLASS_PK, Field.COMPANY_ID, Field.GROUP_ID, Field.UID
 	};
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

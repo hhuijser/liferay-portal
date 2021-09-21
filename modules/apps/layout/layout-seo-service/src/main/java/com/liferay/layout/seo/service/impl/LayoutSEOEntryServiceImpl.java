@@ -20,6 +20,7 @@ import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
+import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
 
@@ -27,6 +28,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Adolfo Pérez
@@ -46,7 +48,7 @@ public class LayoutSEOEntryServiceImpl extends LayoutSEOEntryServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Layout layout = layoutLocalService.getLayout(
+		Layout layout = _layoutLocalService.getLayout(
 			groupId, privateLayout, layoutId);
 
 		LayoutPermissionUtil.check(
@@ -68,7 +70,7 @@ public class LayoutSEOEntryServiceImpl extends LayoutSEOEntryServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Layout layout = layoutLocalService.getLayout(
+		Layout layout = _layoutLocalService.getLayout(
 			groupId, privateLayout, layoutId);
 
 		LayoutPermissionUtil.check(
@@ -89,7 +91,7 @@ public class LayoutSEOEntryServiceImpl extends LayoutSEOEntryServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Layout layout = layoutLocalService.getLayout(
+		Layout layout = _layoutLocalService.getLayout(
 			groupId, privateLayout, layoutId);
 
 		LayoutPermissionUtil.check(
@@ -99,5 +101,8 @@ public class LayoutSEOEntryServiceImpl extends LayoutSEOEntryServiceBaseImpl {
 			getUserId(), groupId, privateLayout, layoutId,
 			enabledCanonicalURLMap, canonicalURLMap, serviceContext);
 	}
+
+	@Reference
+	private LayoutLocalService _layoutLocalService;
 
 }

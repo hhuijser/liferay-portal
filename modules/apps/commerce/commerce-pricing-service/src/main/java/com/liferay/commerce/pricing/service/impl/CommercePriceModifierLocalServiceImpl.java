@@ -32,6 +32,7 @@ import com.liferay.commerce.pricing.service.base.CommercePriceModifierLocalServi
 import com.liferay.commerce.pricing.type.CommercePriceModifierType;
 import com.liferay.commerce.pricing.type.CommercePriceModifierTypeRegistry;
 import com.liferay.commerce.product.model.CPDefinition;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -39,6 +40,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -60,6 +62,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Riccardo Alberti
@@ -280,12 +284,12 @@ public class CommercePriceModifierLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commercePriceModifier.getCommercePriceModifierId());
 
 		// Workflow
 
-		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+		_workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 			commercePriceModifier.getCompanyId(), 0L,
 			CommercePriceModifier.class.getName(),
 			commercePriceModifier.getCommercePriceModifierId());
@@ -681,5 +685,11 @@ public class CommercePriceModifierLocalServiceImpl
 
 	@BeanReference(type = CommercePricingClassLocalService.class)
 	private CommercePricingClassLocalService _commercePricingClassLocalService;
+
+	@Reference
+	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

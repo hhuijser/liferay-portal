@@ -17,6 +17,7 @@ package com.liferay.commerce.price.list.service.impl;
 import com.liferay.commerce.price.list.model.CommercePriceList;
 import com.liferay.commerce.price.list.model.CommercePriceListAccountRel;
 import com.liferay.commerce.price.list.service.base.CommercePriceListAccountRelLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexer;
@@ -25,6 +26,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.util.List;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Ethan Bustad
@@ -73,7 +76,7 @@ public class CommercePriceListAccountRelLocalServiceImpl
 		commercePriceListAccountRelPersistence.remove(
 			commercePriceListAccountRel);
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commercePriceListAccountRel.getCommercePriceListAccountRelId());
 
 		reindexCommercePriceList(
@@ -186,5 +189,8 @@ public class CommercePriceListAccountRelLocalServiceImpl
 
 		indexer.reindex(CommercePriceList.class.getName(), commercePriceListId);
 	}
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

@@ -27,6 +27,7 @@ import com.liferay.commerce.product.model.CPInstanceOptionValueRel;
 import com.liferay.commerce.product.model.CPOption;
 import com.liferay.commerce.product.service.base.CPDefinitionOptionRelLocalServiceBaseImpl;
 import com.liferay.commerce.product.util.JsonHelper;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -75,6 +76,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -239,7 +242,7 @@ public class CPDefinitionOptionRelLocalServiceImpl
 			cpDefinitionOptionValueRelPersistence.remove(
 				cpDefinitionOptionValueRel);
 
-			expandoRowLocalService.deleteRows(
+			_expandoRowLocalService.deleteRows(
 				cpDefinitionOptionValueRel.getCPDefinitionOptionValueRelId());
 		}
 
@@ -249,7 +252,7 @@ public class CPDefinitionOptionRelLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			cpDefinitionOptionRel.getCPDefinitionOptionRelId());
 
 		// Commerce product instances
@@ -986,5 +989,8 @@ public class CPDefinitionOptionRelLocalServiceImpl
 
 	@ServiceReference(type = JsonHelper.class)
 	private JsonHelper _jsonHelper;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

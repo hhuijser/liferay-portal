@@ -199,7 +199,7 @@ public class LayoutSEOEntryLocalServiceImpl
 		layoutSEOEntry.setUuid(serviceContext.getUuid());
 		layoutSEOEntry.setGroupId(groupId);
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		layoutSEOEntry.setCompanyId(group.getCompanyId());
 
@@ -344,5 +344,8 @@ public class LayoutSEOEntryLocalServiceImpl
 
 	@Reference
 	private StorageEngine _storageEngine;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 }

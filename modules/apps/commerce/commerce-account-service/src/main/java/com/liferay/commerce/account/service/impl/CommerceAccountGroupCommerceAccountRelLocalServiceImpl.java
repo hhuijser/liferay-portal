@@ -16,6 +16,7 @@ package com.liferay.commerce.account.service.impl;
 
 import com.liferay.account.exception.DuplicateAccountGroupRelException;
 import com.liferay.account.model.AccountEntry;
+import com.liferay.account.service.AccountGroupRelLocalService;
 import com.liferay.commerce.account.exception.DuplicateCommerceAccountGroupCommerceAccountRelException;
 import com.liferay.commerce.account.exception.NoSuchAccountGroupCommerceAccountRelException;
 import com.liferay.commerce.account.model.CommerceAccountGroupCommerceAccountRel;
@@ -26,6 +27,8 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -44,7 +47,7 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 		try {
 			return CommerceAccountGroupCommerceAccountRelImpl.
 				fromAccountGroupRel(
-					accountGroupRelLocalService.addAccountGroupRel(
+					_accountGroupRelLocalService.addAccountGroupRel(
 						commerceAccountGroupId, AccountEntry.class.getName(),
 						commerceAccountId));
 		}
@@ -79,7 +82,7 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountGroupCommerceAccountRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.deleteAccountGroupRel(
+			_accountGroupRelLocalService.deleteAccountGroupRel(
 				commerceAccountGroupCommerceAccountRel.
 					getCommerceAccountGroupCommerceAccountRelId()));
 	}
@@ -101,7 +104,7 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 			long commerceAccountGroupId, long commerceAccountId) {
 
 		return CommerceAccountGroupCommerceAccountRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.fetchAccountGroupRel(
+			_accountGroupRelLocalService.fetchAccountGroupRel(
 				commerceAccountGroupId, AccountEntry.class.getName(),
 				commerceAccountId));
 	}
@@ -113,7 +116,7 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountGroupCommerceAccountRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.getAccountGroupRel(
+			_accountGroupRelLocalService.getAccountGroupRel(
 				commerceAccountGroupCommerceAccountRelId));
 	}
 
@@ -140,7 +143,7 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 		getCommerceAccountGroupCommerceAccountRels(long commerceAccountId) {
 
 		return TransformUtil.transform(
-			accountGroupRelLocalService.getAccountGroupRels(
+			_accountGroupRelLocalService.getAccountGroupRels(
 				AccountEntry.class.getName(), commerceAccountId),
 			CommerceAccountGroupCommerceAccountRelImpl::fromAccountGroupRel);
 	}
@@ -151,7 +154,7 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 			long commerceAccountGroupId, int start, int end) {
 
 		return TransformUtil.transform(
-			accountGroupRelLocalService.getAccountGroupRelsByAccountGroupId(
+			_accountGroupRelLocalService.getAccountGroupRelsByAccountGroupId(
 				commerceAccountGroupId, start, end, null),
 			CommerceAccountGroupCommerceAccountRelImpl::fromAccountGroupRel);
 	}
@@ -161,9 +164,12 @@ public class CommerceAccountGroupCommerceAccountRelLocalServiceImpl
 		long commerceAccountGroupId) {
 
 		return (int)
-			accountGroupRelLocalService.
+			_accountGroupRelLocalService.
 				getAccountGroupRelsCountByAccountGroupId(
 					commerceAccountGroupId);
 	}
+
+	@Reference
+	private AccountGroupRelLocalService _accountGroupRelLocalService;
 
 }

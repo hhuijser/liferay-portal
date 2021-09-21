@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.auth.GuestOrUserUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -88,12 +89,12 @@ public class AccountEntryUserRelLocalServiceImpl
 		}
 
 		if (accountEntryId != AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT) {
-			accountEntryLocalService.getAccountEntry(accountEntryId);
+			_accountEntryLocalService.getAccountEntry(accountEntryId);
 		}
 
 		long creatorUserId = 0;
 
-		User accountUser = userLocalService.getUser(accountUserId);
+		User accountUser = _userLocalService.getUser(accountUserId);
 
 		try {
 			creatorUserId = GuestOrUserUtil.getGuestOrUserId();
@@ -103,7 +104,7 @@ public class AccountEntryUserRelLocalServiceImpl
 				_log.debug(principalException, principalException);
 			}
 
-			creatorUserId = userLocalService.getDefaultUserId(
+			creatorUserId = _userLocalService.getDefaultUserId(
 				accountUser.getCompanyId());
 		}
 
@@ -130,7 +131,7 @@ public class AccountEntryUserRelLocalServiceImpl
 
 		if (accountEntryId != AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT) {
 			AccountEntry accountEntry =
-				accountEntryLocalService.getAccountEntry(accountEntryId);
+				_accountEntryLocalService.getAccountEntry(accountEntryId);
 
 			companyId = accountEntry.getCompanyId();
 		}
@@ -154,7 +155,7 @@ public class AccountEntryUserRelLocalServiceImpl
 
 		ServiceContext serviceContext = null;
 
-		User user = userLocalService.addUser(
+		User user = _userLocalService.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
 			autoScreenName, screenName, emailAddress, locale, firstName,
 			middleName, lastName, prefixId, suffixId, male, birthdayMonth,
@@ -174,7 +175,7 @@ public class AccountEntryUserRelLocalServiceImpl
 		User user = null;
 
 		if (Validator.isNotNull(userExternalReferenceCode)) {
-			user = userLocalService.fetchUserByReferenceCode(
+			user = _userLocalService.fetchUserByReferenceCode(
 				serviceContext.getCompanyId(), userExternalReferenceCode);
 		}
 
@@ -183,13 +184,13 @@ public class AccountEntryUserRelLocalServiceImpl
 				throw new AccountEntryUserRelEmailAddressException();
 			}
 
-			user = userLocalService.fetchUserByEmailAddress(
+			user = _userLocalService.fetchUserByEmailAddress(
 				serviceContext.getCompanyId(), emailAddress);
 		}
 
 		if (user == null) {
 			AccountEntry accountEntry =
-				accountEntryLocalService.getAccountEntry(accountEntryId);
+				_accountEntryLocalService.getAccountEntry(accountEntryId);
 
 			Group group = accountEntry.getAccountEntryGroup();
 
@@ -200,7 +201,7 @@ public class AccountEntryUserRelLocalServiceImpl
 					groupIds, serviceContext.getScopeGroupId());
 			}
 
-			user = userLocalService.addUserWithWorkflow(
+			user = _userLocalService.addUserWithWorkflow(
 				serviceContext.getUserId(), serviceContext.getCompanyId(), true,
 				StringPool.BLANK, StringPool.BLANK, true, StringPool.BLANK,
 				emailAddress, 0, StringPool.BLANK, serviceContext.getLocale(),
@@ -210,7 +211,7 @@ public class AccountEntryUserRelLocalServiceImpl
 
 			user.setExternalReferenceCode(userExternalReferenceCode);
 
-			user = userLocalService.updateUser(user);
+			user = _userLocalService.updateUser(user);
 		}
 
 		AccountEntryUserRel accountEntryUserRel =
@@ -239,7 +240,7 @@ public class AccountEntryUserRelLocalServiceImpl
 			String middleName, String lastName, long prefixId, long suffixId)
 		throws PortalException {
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			accountEntryId);
 
 		if (!Objects.equals(
@@ -261,10 +262,10 @@ public class AccountEntryUserRelLocalServiceImpl
 			long accountEntryId, String emailAddress)
 		throws PortalException {
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			accountEntryId);
 
-		User user = userLocalService.getUserByEmailAddress(
+		User user = _userLocalService.getUserByEmailAddress(
 			accountEntry.getCompanyId(), emailAddress);
 
 		accountEntryUserRelPersistence.removeByAEI_AUI(
@@ -368,7 +369,7 @@ public class AccountEntryUserRelLocalServiceImpl
 	public void setPersonTypeAccountEntryUser(long accountEntryId, long userId)
 		throws PortalException {
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			accountEntryId);
 
 		if (!Objects.equals(
@@ -449,14 +450,11 @@ public class AccountEntryUserRelLocalServiceImpl
 			accountEntryId, accountRoleIds, userId);
 	}
 
-	@Reference
-	protected AccountEntryLocalService accountEntryLocalService;
-
 	private void _validateEmailAddress(
 			long userId, long accountEntryId, String emailAddress)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		List<AccountEntryUserRel> accountEntryUserRels =
 			accountEntryUserRelLocalService.
@@ -498,7 +496,7 @@ public class AccountEntryUserRelLocalServiceImpl
 			return;
 		}
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			accountEntryId);
 
 		String[] domains = StringUtil.split(accountEntry.getDomains());
@@ -517,5 +515,11 @@ public class AccountEntryUserRelLocalServiceImpl
 
 	@Reference
 	private ConfigurationProvider _configurationProvider;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private AccountEntryLocalService _accountEntryLocalService;
 
 }

@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -48,6 +49,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alec Sloan
@@ -96,7 +99,7 @@ public class CommerceChannelLocalServiceImpl
 		Map<Locale, String> nameMap = Collections.singletonMap(
 			serviceContext.getLocale(), name);
 
-		groupLocalService.addGroup(
+		_groupLocalService.addGroup(
 			user.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			CommerceChannel.class.getName(), commerceChannelId,
 			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, null,
@@ -138,7 +141,7 @@ public class CommerceChannelLocalServiceImpl
 		commerceChannel = commerceChannelPersistence.remove(commerceChannel);
 
 		if (group != null) {
-			groupLocalService.deleteGroup(group);
+			_groupLocalService.deleteGroup(group);
 		}
 
 		return commerceChannel;
@@ -192,7 +195,7 @@ public class CommerceChannelLocalServiceImpl
 		long classNameId = classNameLocalService.getClassNameId(
 			CommerceChannel.class.getName());
 
-		return groupLocalService.fetchGroup(
+		return _groupLocalService.fetchGroup(
 			commerceChannel.getCompanyId(), classNameId, commerceChannelId);
 	}
 
@@ -200,7 +203,7 @@ public class CommerceChannelLocalServiceImpl
 	public CommerceChannel getCommerceChannelByGroupId(long groupId)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		return commerceChannelLocalService.getCommerceChannel(
 			group.getClassPK());
@@ -431,5 +434,8 @@ public class CommerceChannelLocalServiceImpl
 	private static final String[] _SELECTED_FIELD_NAMES = {
 		Field.ENTRY_CLASS_PK, Field.COMPANY_ID
 	};
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 }

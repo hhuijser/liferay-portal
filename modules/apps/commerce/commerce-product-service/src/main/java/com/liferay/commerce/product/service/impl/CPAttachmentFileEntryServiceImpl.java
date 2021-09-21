@@ -24,6 +24,7 @@ import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.service.base.CPAttachmentFileEntryServiceBaseImpl;
 import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.documentlibrary.kernel.service.DLFileEntryLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -42,6 +43,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Marco Leo
@@ -212,7 +215,7 @@ public class CPAttachmentFileEntryServiceImpl
 		for (CPAttachmentFileEntry cpAttachmentFileEntry :
 				cpAttachmentFileEntries) {
 
-			DLFileEntry dlFileEntry = dlFileEntryLocalService.fetchDLFileEntry(
+			DLFileEntry dlFileEntry = _dlFileEntryLocalService.fetchDLFileEntry(
 				cpAttachmentFileEntry.getFileEntryId());
 
 			if ((dlFileEntry != null) &&
@@ -249,7 +252,7 @@ public class CPAttachmentFileEntryServiceImpl
 		for (CPAttachmentFileEntry cpAttachmentFileEntry :
 				cpAttachmentFileEntries) {
 
-			DLFileEntry dlFileEntry = dlFileEntryLocalService.fetchDLFileEntry(
+			DLFileEntry dlFileEntry = _dlFileEntryLocalService.fetchDLFileEntry(
 				cpAttachmentFileEntry.getFileEntryId());
 
 			if ((dlFileEntry != null) &&
@@ -433,5 +436,8 @@ public class CPAttachmentFileEntryServiceImpl
 
 	@ServiceReference(type = Portal.class)
 	private Portal _portal;
+
+	@Reference
+	private DLFileEntryLocalService _dlFileEntryLocalService;
 
 }

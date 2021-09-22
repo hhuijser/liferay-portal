@@ -16,6 +16,7 @@ package com.liferay.screens.service.impl;
 
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
+import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
 import com.liferay.dynamic.data.mapping.model.Value;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
@@ -58,7 +59,7 @@ public class ScreensDDLRecordServiceImpl
 	public JSONObject getDDLRecord(long ddlRecordId, Locale locale)
 		throws PortalException {
 
-		DDLRecord ddlRecord = ddlRecordLocalService.getRecord(ddlRecordId);
+		DDLRecord ddlRecord = _ddlRecordLocalService.getRecord(ddlRecordId);
 
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecord.getRecordSetId(),
@@ -84,7 +85,7 @@ public class ScreensDDLRecordServiceImpl
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
-		List<DDLRecord> ddlRecords = ddlRecordLocalService.getRecords(
+		List<DDLRecord> ddlRecords = _ddlRecordLocalService.getRecords(
 			ddlRecordSetId, start, end, orderByComparator);
 
 		return getDDLRecordsJSONArray(ddlRecords, locale);
@@ -99,7 +100,7 @@ public class ScreensDDLRecordServiceImpl
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
-		List<DDLRecord> ddlRecords = ddlRecordLocalService.getRecords(
+		List<DDLRecord> ddlRecords = _ddlRecordLocalService.getRecords(
 			ddlRecordSetId, userId, start, end, orderByComparator);
 
 		return getDDLRecordsJSONArray(ddlRecords, locale);
@@ -110,7 +111,7 @@ public class ScreensDDLRecordServiceImpl
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
-		return ddlRecordLocalService.getRecordsCount(ddlRecordSetId);
+		return _ddlRecordLocalService.getRecordsCount(ddlRecordSetId);
 	}
 
 	@Override
@@ -120,7 +121,7 @@ public class ScreensDDLRecordServiceImpl
 		_ddlRecordSetModelResourcePermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
-		return ddlRecordLocalService.getRecordsCount(ddlRecordSetId, userId);
+		return _ddlRecordLocalService.getRecordsCount(ddlRecordSetId, userId);
 	}
 
 	protected JSONObject getDDLRecordJSONObject(
@@ -250,5 +251,8 @@ public class ScreensDDLRecordServiceImpl
 	)
 	private ModelResourcePermission<DDLRecordSet>
 		_ddlRecordSetModelResourcePermission;
+
+	@Reference
+	private DDLRecordLocalService _ddlRecordLocalService;
 
 }

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.trash.TrashHandler;
@@ -46,6 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * The trash entry remote service is responsible for returning trash entries.
@@ -239,7 +241,7 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 		throws PrincipalException {
 
 		List<TrashEntry> entries = trashEntryPersistence.findByG_C(
-			groupId, classNameLocalService.getClassNameId(className));
+			groupId, _classNameLocalService.getClassNameId(className));
 
 		return filterEntries(entries);
 	}
@@ -279,7 +281,7 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 
 		if (Validator.isNotNull(className)) {
 			entries = trashEntryPersistence.findByG_C(
-				groupId, classNameLocalService.getClassNameId(className), 0,
+				groupId, _classNameLocalService.getClassNameId(className), 0,
 				end + PropsValues.TRASH_SEARCH_LIMIT, orderByComparator);
 		}
 		else {
@@ -512,7 +514,7 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 		throws PortalException {
 
 		TrashEntry trashEntry = trashEntryPersistence.fetchByC_C(
-			classNameLocalService.getClassNameId(className), classPK);
+			_classNameLocalService.getClassNameId(className), classPK);
 
 		if (trashEntry != null) {
 			return restoreEntry(trashEntry.getEntryId(), overrideClassPK, name);
@@ -567,5 +569,8 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		TrashEntryServiceImpl.class);
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
 
 }

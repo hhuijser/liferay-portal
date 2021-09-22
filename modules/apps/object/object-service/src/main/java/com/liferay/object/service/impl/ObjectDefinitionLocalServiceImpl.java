@@ -56,6 +56,7 @@ import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
 import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistry;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -261,7 +262,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 		objectDefinitionPersistence.remove(objectDefinition);
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			objectDefinition.getCompanyId(), ObjectDefinition.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			objectDefinition.getObjectDefinitionId());
@@ -613,7 +614,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 		objectDefinition = objectDefinitionPersistence.update(objectDefinition);
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			objectDefinition.getCompanyId(), 0, objectDefinition.getUserId(),
 			ObjectDefinition.class.getName(),
 			objectDefinition.getObjectDefinitionId(), false, true, true);
@@ -996,5 +997,8 @@ public class ObjectDefinitionLocalServiceImpl
 
 	@Reference(target = "(model.pre.filter.contributor.id=WorkflowStatus)")
 	private ModelPreFilterContributor _workflowStatusModelPreFilterContributor;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
 
 }

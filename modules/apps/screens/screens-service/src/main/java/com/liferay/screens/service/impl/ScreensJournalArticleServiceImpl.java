@@ -18,6 +18,8 @@ import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleResource;
+import com.liferay.journal.service.JournalArticleLocalService;
+import com.liferay.journal.service.JournalArticleResourceLocalService;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
@@ -50,13 +52,13 @@ public class ScreensJournalArticleServiceImpl
 		throws PortalException {
 
 		JournalArticleResource journalArticleResource =
-			journalArticleResourceLocalService.getArticleResource(classPK);
+			_journalArticleResourceLocalService.getArticleResource(classPK);
 
 		_checkPermission(
 			journalArticleResource.getGroupId(),
 			journalArticleResource.getArticleId());
 
-		return journalArticleLocalService.getArticleContent(
+		return _journalArticleLocalService.getArticleContent(
 			journalArticleResource.getGroupId(),
 			journalArticleResource.getArticleId(), null, null,
 			getLanguageId(locale), null, null);
@@ -68,13 +70,13 @@ public class ScreensJournalArticleServiceImpl
 		throws PortalException {
 
 		JournalArticleResource journalArticleResource =
-			journalArticleResourceLocalService.getArticleResource(classPK);
+			_journalArticleResourceLocalService.getArticleResource(classPK);
 
 		_checkPermission(
 			journalArticleResource.getGroupId(),
 			journalArticleResource.getArticleId());
 
-		return journalArticleLocalService.getArticleContent(
+		return _journalArticleLocalService.getArticleContent(
 			journalArticleResource.getGroupId(),
 			journalArticleResource.getArticleId(), null,
 			getDDMTemplateKey(ddmTemplateId), getLanguageId(locale), null,
@@ -88,7 +90,7 @@ public class ScreensJournalArticleServiceImpl
 
 		_checkPermission(groupId, articleId);
 
-		return journalArticleLocalService.getArticleContent(
+		return _journalArticleLocalService.getArticleContent(
 			groupId, articleId, null, getDDMTemplateKey(ddmTemplateId),
 			getLanguageId(locale), null, null);
 	}
@@ -113,7 +115,7 @@ public class ScreensJournalArticleServiceImpl
 	private void _checkPermission(long groupId, String articleId)
 		throws PortalException {
 
-		JournalArticle article = journalArticleLocalService.getArticle(
+		JournalArticle article = _journalArticleLocalService.getArticle(
 			groupId, articleId);
 
 		PermissionChecker permissionChecker = getPermissionChecker();
@@ -135,5 +137,12 @@ public class ScreensJournalArticleServiceImpl
 	)
 	private ModelResourcePermission<JournalArticle>
 		_journalArticleModelResourcePermission;
+
+	@Reference
+	private JournalArticleResourceLocalService
+		_journalArticleResourceLocalService;
+
+	@Reference
+	private JournalArticleLocalService _journalArticleLocalService;
 
 }

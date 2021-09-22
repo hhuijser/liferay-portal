@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -216,7 +217,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		long liveGroupId = calendar.getGroupId();
 
 		try {
-			Group stagingGroup = groupLocalService.getStagingGroup(liveGroupId);
+			Group stagingGroup = _groupLocalService.getStagingGroup(
+				liveGroupId);
 
 			Calendar stagedCalendar =
 				calendarLocalService.fetchCalendarByUuidAndGroupId(
@@ -255,7 +257,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 	@Override
 	public boolean isStagingCalendar(Calendar calendar) {
-		return CalendarUtil.isStagingCalendar(calendar, groupLocalService);
+		return CalendarUtil.isStagingCalendar(calendar, _groupLocalService);
 	}
 
 	@Override
@@ -419,5 +421,8 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	@Reference
 	private CalendarNotificationTemplateLocalService
 		_calendarNotificationTemplateLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 }

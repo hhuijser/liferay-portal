@@ -27,6 +27,8 @@ import com.liferay.asset.list.model.AssetListEntrySegmentsEntryRel;
 import com.liferay.asset.list.service.AssetListEntryAssetEntryRelLocalService;
 import com.liferay.asset.list.service.AssetListEntrySegmentsEntryRelLocalService;
 import com.liferay.asset.list.service.base.AssetListEntryLocalServiceBaseImpl;
+import com.liferay.asset.list.service.persistence.AssetListEntryAssetEntryRelPersistence;
+import com.liferay.asset.list.service.persistence.AssetListEntrySegmentsEntryRelPersistence;
 import com.liferay.asset.util.AssetRendererFactoryWrapper;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.petra.string.CharPool;
@@ -40,7 +42,9 @@ import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -155,7 +159,7 @@ public class AssetListEntryLocalServiceImpl
 
 		_validateTitle(groupId, title);
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		long assetListEntryId = counterLocalService.increment();
 
@@ -187,7 +191,7 @@ public class AssetListEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			assetListEntry.getCompanyId(), assetListEntry.getGroupId(),
 			assetListEntry.getUserId(), AssetListEntry.class.getName(),
 			assetListEntry.getPrimaryKey(), false, true, true);
@@ -281,17 +285,17 @@ public class AssetListEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			assetListEntry, ResourceConstants.SCOPE_INDIVIDUAL);
 
 		// Asset list entry rels
 
-		assetListEntryAssetEntryRelPersistence.removeByAssetListEntryId(
+		_assetListEntryAssetEntryRelPersistence.removeByAssetListEntryId(
 			assetListEntry.getAssetListEntryId());
 
 		// Asset list segments entry rels
 
-		assetListEntrySegmentsEntryRelPersistence.removeByAssetListEntryId(
+		_assetListEntrySegmentsEntryRelPersistence.removeByAssetListEntryId(
 			assetListEntry.getAssetListEntryId());
 
 		return assetListEntry;
@@ -779,5 +783,19 @@ public class AssetListEntryLocalServiceImpl
 
 	@Reference
 	private Portal _portal;
+
+	@Reference
+	private AssetListEntryAssetEntryRelPersistence
+		_assetListEntryAssetEntryRelPersistence;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private AssetListEntrySegmentsEntryRelPersistence
+		_assetListEntrySegmentsEntryRelPersistence;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
 
 }

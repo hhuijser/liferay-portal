@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupLocalService;
@@ -94,9 +95,9 @@ public class MBStatsUserLocalServiceImpl
 
 	@Override
 	public long getMessageCountByGroupId(long groupId) throws PortalException {
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
-		long defaultUserId = userLocalService.getDefaultUserId(
+		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
 		return _mbMessagePersistence.dslQuery(
@@ -142,9 +143,9 @@ public class MBStatsUserLocalServiceImpl
 			long groupId, int start, int end)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
-		long defaultUserId = userLocalService.getDefaultUserId(
+		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
 		Expression<Long> countExpression = DSLFunctionFactoryUtil.count(
@@ -202,9 +203,9 @@ public class MBStatsUserLocalServiceImpl
 	public int getStatsUsersByGroupIdCount(long groupId)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
-		long defaultUserId = userLocalService.getDefaultUserId(
+		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
 		return _mbMessagePersistence.dslQueryCount(
@@ -356,6 +357,12 @@ public class MBStatsUserLocalServiceImpl
 
 	@Reference
 	private UserGroupRoleLocalService _userGroupRoleLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 	@Reference
 	private UserLocalService _userLocalService;

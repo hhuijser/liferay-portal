@@ -17,6 +17,7 @@ package com.liferay.template.service.impl;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.template.model.TemplateEntry;
 import com.liferay.template.service.base.TemplateEntryLocalServiceBaseImpl;
@@ -24,6 +25,7 @@ import com.liferay.template.service.base.TemplateEntryLocalServiceBaseImpl;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Eudaldo Alonso
@@ -46,7 +48,7 @@ public class TemplateEntryLocalServiceImpl
 
 		templateEntry.setGroupId(groupId);
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		templateEntry.setCompanyId(user.getCompanyId());
 		templateEntry.setUserId(user.getUserId());
@@ -94,5 +96,8 @@ public class TemplateEntryLocalServiceImpl
 
 		return templateEntryPersistence.update(templateEntry);
 	}
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

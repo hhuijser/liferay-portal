@@ -28,6 +28,8 @@ import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.FragmentEntryProcessorRegistry;
 import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.fragment.service.base.FragmentEntryLocalServiceBaseImpl;
+import com.liferay.fragment.service.persistence.FragmentCollectionPersistence;
+import com.liferay.fragment.service.persistence.FragmentEntryLinkPersistence;
 import com.liferay.fragment.validator.FragmentEntryValidator;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
@@ -50,8 +52,10 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -105,7 +109,7 @@ public class FragmentEntryLocalServiceImpl
 
 		// Fragment entry
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		long companyId = user.getCompanyId();
 
@@ -301,7 +305,7 @@ public class FragmentEntryLocalServiceImpl
 		// Fragment entry
 
 		long fragmentEntryLinkCount =
-			fragmentEntryLinkPersistence.countByFragmentEntryId(
+			_fragmentEntryLinkPersistence.countByFragmentEntryId(
 				fragmentEntry.getFragmentEntryId());
 
 		if (fragmentEntryLinkCount > 0) {
@@ -310,7 +314,7 @@ public class FragmentEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			fragmentEntry.getCompanyId(), FragmentEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			fragmentEntry.getFragmentEntryId());
@@ -623,7 +627,7 @@ public class FragmentEntryLocalServiceImpl
 			validateContent(html, configuration);
 		}
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		fragmentEntry.setModifiedDate(new Date());
 		fragmentEntry.setFragmentCollectionId(fragmentCollectionId);
@@ -830,7 +834,7 @@ public class FragmentEntryLocalServiceImpl
 		}
 
 		FragmentCollection targetFragmentCollection =
-			fragmentCollectionPersistence.fetchByPrimaryKey(
+			_fragmentCollectionPersistence.fetchByPrimaryKey(
 				targetFragmentCollectionId);
 
 		try {
@@ -868,7 +872,7 @@ public class FragmentEntryLocalServiceImpl
 		Set<FileEntry> fileEntries = new HashSet<>();
 
 		FragmentCollection fragmentCollection =
-			fragmentCollectionPersistence.fetchByPrimaryKey(
+			_fragmentCollectionPersistence.fetchByPrimaryKey(
 				fragmentCollectionId);
 
 		Matcher matcher = _pattern.matcher(fragmentEntry.getHtml());
@@ -942,5 +946,17 @@ public class FragmentEntryLocalServiceImpl
 
 	@Reference
 	private FragmentEntryValidator _fragmentEntryValidator;
+
+	@Reference
+	private FragmentEntryLinkPersistence _fragmentEntryLinkPersistence;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private FragmentCollectionPersistence _fragmentCollectionPersistence;
 
 }

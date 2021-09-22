@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionUtil;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -389,7 +390,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		throws PortalException {
 
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			groupId,
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			ddmStructureKey, true);
 
 		_ddmStructureModelResourcePermission.contains(
@@ -497,7 +499,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		throws PortalException {
 
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			groupId,
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			ddmStructureKey, true);
 
 		_ddmStructureModelResourcePermission.contains(
@@ -2795,7 +2798,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		throws PortalException {
 
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			groupId,
+			_classNameLocalService.getClassNameId(JournalArticle.class),
 			ddmStructureKey, true);
 
 		_ddmStructureModelResourcePermission.contains(
@@ -2905,5 +2909,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		target = "(resource.name=" + JournalConstants.RESOURCE_NAME + ")"
 	)
 	private PortletResourcePermission _portletResourcePermission;
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
 
 }

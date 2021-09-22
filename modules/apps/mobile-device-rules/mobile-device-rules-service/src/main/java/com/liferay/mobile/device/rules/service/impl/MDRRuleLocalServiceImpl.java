@@ -17,11 +17,13 @@ package com.liferay.mobile.device.rules.service.impl;
 import com.liferay.mobile.device.rules.model.MDRRule;
 import com.liferay.mobile.device.rules.model.MDRRuleGroup;
 import com.liferay.mobile.device.rules.service.base.MDRRuleLocalServiceBaseImpl;
+import com.liferay.mobile.device.rules.service.persistence.MDRRuleGroupPersistence;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -32,6 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Edward C. Han
@@ -49,8 +52,8 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 			String typeSettings, ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
-		MDRRuleGroup ruleGroup = mdrRuleGroupPersistence.findByPrimaryKey(
+		User user = _userLocalService.getUser(serviceContext.getUserId());
+		MDRRuleGroup ruleGroup = _mdrRuleGroupPersistence.findByPrimaryKey(
 			ruleGroupId);
 
 		long ruleId = counterLocalService.increment();
@@ -72,7 +75,7 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 
 		ruleGroup.setModifiedDate(new Date());
 
-		mdrRuleGroupPersistence.update(ruleGroup);
+		_mdrRuleGroupPersistence.update(ruleGroup);
 
 		return rule;
 	}
@@ -105,7 +108,7 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 			MDRRule rule, long ruleGroupId, ServiceContext serviceContext)
 		throws PortalException {
 
-		MDRRuleGroup ruleGroup = mdrRuleGroupPersistence.findByPrimaryKey(
+		MDRRuleGroup ruleGroup = _mdrRuleGroupPersistence.findByPrimaryKey(
 			ruleGroupId);
 
 		return addRule(
@@ -128,13 +131,13 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 	public void deleteRule(MDRRule rule) {
 		mdrRulePersistence.remove(rule);
 
-		MDRRuleGroup ruleGroup = mdrRuleGroupPersistence.fetchByPrimaryKey(
+		MDRRuleGroup ruleGroup = _mdrRuleGroupPersistence.fetchByPrimaryKey(
 			rule.getRuleGroupId());
 
 		if (ruleGroup != null) {
 			ruleGroup.setModifiedDate(new Date());
 
-			mdrRuleGroupPersistence.update(ruleGroup);
+			_mdrRuleGroupPersistence.update(ruleGroup);
 		}
 	}
 
@@ -197,12 +200,12 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 
 		rule = mdrRulePersistence.update(rule);
 
-		MDRRuleGroup ruleGroup = mdrRuleGroupPersistence.findByPrimaryKey(
+		MDRRuleGroup ruleGroup = _mdrRuleGroupPersistence.findByPrimaryKey(
 			rule.getRuleGroupId());
 
 		ruleGroup.setModifiedDate(serviceContext.getModifiedDate(null));
 
-		mdrRuleGroupPersistence.update(ruleGroup);
+		_mdrRuleGroupPersistence.update(ruleGroup);
 
 		return rule;
 	}
@@ -219,5 +222,11 @@ public class MDRRuleLocalServiceImpl extends MDRRuleLocalServiceBaseImpl {
 			ruleId, nameMap, descriptionMap, type,
 			typeSettingsUnicodeProperties.toString(), serviceContext);
 	}
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private MDRRuleGroupPersistence _mdrRuleGroupPersistence;
 
 }

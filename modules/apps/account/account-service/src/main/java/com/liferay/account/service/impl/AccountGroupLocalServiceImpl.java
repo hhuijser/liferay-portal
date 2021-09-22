@@ -18,6 +18,7 @@ import com.liferay.account.constants.AccountConstants;
 import com.liferay.account.model.AccountGroup;
 import com.liferay.account.model.AccountGroupRel;
 import com.liferay.account.service.base.AccountGroupLocalServiceBaseImpl;
+import com.liferay.account.service.persistence.AccountGroupRelPersistence;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -33,6 +34,7 @@ import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -41,6 +43,7 @@ import com.liferay.portal.vulcan.util.TransformUtil;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Brian Wing Shun Chan
@@ -63,7 +66,7 @@ public class AccountGroupLocalServiceImpl
 		AccountGroup accountGroup = accountGroupPersistence.create(
 			accountGroupId);
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		accountGroup.setCompanyId(user.getCompanyId());
 		accountGroup.setUserId(user.getUserId());
@@ -91,7 +94,7 @@ public class AccountGroupLocalServiceImpl
 
 		accountGroup.setCompanyId(companyId);
 
-		User user = userLocalService.getDefaultUser(companyId);
+		User user = _userLocalService.getDefaultUser(companyId);
 
 		accountGroup.setUserId(user.getUserId());
 		accountGroup.setUserName(user.getFullName());
@@ -110,11 +113,11 @@ public class AccountGroupLocalServiceImpl
 		accountGroupPersistence.remove(accountGroup);
 
 		List<AccountGroupRel> accountGroupRels =
-			accountGroupRelPersistence.findByAccountGroupId(
+			_accountGroupRelPersistence.findByAccountGroupId(
 				accountGroup.getAccountGroupId());
 
 		for (AccountGroupRel accountGroupRel : accountGroupRels) {
-			accountGroupRelPersistence.remove(accountGroupRel);
+			_accountGroupRelPersistence.remove(accountGroupRel);
 		}
 
 		return accountGroup;
@@ -272,5 +275,11 @@ public class AccountGroupLocalServiceImpl
 	private static final String[] _SELECTED_FIELD_NAMES = {
 		Field.ENTRY_CLASS_PK, Field.COMPANY_ID
 	};
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private AccountGroupRelPersistence _accountGroupRelPersistence;
 
 }

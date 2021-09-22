@@ -51,11 +51,16 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.LayoutPrototypeLocalService;
+import com.liferay.portal.kernel.service.LayoutSetLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.ThemeLocalService;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -160,7 +165,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		// Dynamic data mapping structure link
 
 		_ddmStructureLinkLocalService.addStructureLink(
-			classNameLocalService.getClassNameId(LayoutPageTemplateEntry.class),
+			_classNameLocalService.getClassNameId(
+				LayoutPageTemplateEntry.class),
 			layoutPageTemplateEntry.getLayoutPageTemplateEntryId(),
 			classTypeId);
 
@@ -178,7 +184,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		// Layout page template entry
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		validate(groupId, name, type);
 
@@ -255,7 +261,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			layoutPageTemplateEntry.getCompanyId(),
 			layoutPageTemplateEntry.getGroupId(),
 			layoutPageTemplateEntry.getUserId(),
@@ -286,7 +292,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		// Dynamic data mapping structure link
 
 		_ddmStructureLinkLocalService.addStructureLink(
-			classNameLocalService.getClassNameId(LayoutPageTemplateEntry.class),
+			_classNameLocalService.getClassNameId(
+				LayoutPageTemplateEntry.class),
 			layoutPageTemplateEntry.getLayoutPageTemplateEntryId(),
 			classTypeId);
 
@@ -361,7 +368,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			layoutPageTemplateEntry.getCompanyId(),
 			LayoutPageTemplateEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
@@ -369,14 +376,14 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		// Layout
 
-		Layout layout = layoutLocalService.fetchLayout(
+		Layout layout = _layoutLocalService.fetchLayout(
 			layoutPageTemplateEntry.getPlid());
 
-		LayoutSet layoutSet = layoutSetLocalService.fetchLayoutSet(
+		LayoutSet layoutSet = _layoutSetLocalService.fetchLayoutSet(
 			layoutPageTemplateEntry.getGroupId(), false);
 
 		if ((layout != null) && (layoutSet != null)) {
-			layoutLocalService.deleteLayout(layout);
+			_layoutLocalService.deleteLayout(layout);
 		}
 
 		// Layout prototype
@@ -414,7 +421,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			(layoutPageTemplateEntry.getClassTypeId() > 0)) {
 
 			_ddmStructureLinkLocalService.deleteStructureLinks(
-				classNameLocalService.getClassNameId(
+				_classNameLocalService.getClassNameId(
 					LayoutPageTemplateEntry.class),
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 		}
@@ -674,7 +681,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			int status)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			layoutPageTemplateEntryPersistence.findByPrimaryKey(
@@ -724,7 +731,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		Map<Locale, String> titleMap = Collections.singletonMap(
 			LocaleUtil.getSiteDefault(), name);
 
-		Layout draftLayout = layoutLocalService.fetchDraftLayout(
+		Layout draftLayout = _layoutLocalService.fetchDraftLayout(
 			layoutPageTemplateEntry.getPlid());
 
 		ServiceContext serviceContext =
@@ -737,7 +744,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);
 
-		layoutLocalService.updateLayout(
+		_layoutLocalService.updateLayout(
 			draftLayout.getGroupId(), draftLayout.isPrivateLayout(),
 			draftLayout.getLayoutId(), draftLayout.getParentLayoutId(),
 			titleMap, titleMap, draftLayout.getDescriptionMap(),
@@ -747,10 +754,10 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			draftLayout.getMasterLayoutPlid(),
 			draftLayout.getStyleBookEntryId(), serviceContext);
 
-		Layout layout = layoutLocalService.getLayout(
+		Layout layout = _layoutLocalService.getLayout(
 			layoutPageTemplateEntry.getPlid());
 
-		layoutLocalService.updateLayout(
+		_layoutLocalService.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getParentLayoutId(), titleMap, titleMap,
 			layout.getDescriptionMap(), layout.getKeywordsMap(),
@@ -802,7 +809,7 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			long userId, long layoutPageTemplateEntryId, int status)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			layoutPageTemplateEntryPersistence.findByPrimaryKey(
@@ -972,16 +979,16 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);
 
-		Layout layout = layoutLocalService.addLayout(
+		Layout layout = _layoutLocalService.addLayout(
 			userId, groupId, privateLayout, 0, 0, 0, titleMap, titleMap, null,
 			null, null, layoutType, typeSettings, true, true, new HashMap<>(),
 			masterLayoutPlid, serviceContext);
 
 		serviceContext.setModifiedDate(layout.getModifiedDate());
 
-		Layout draftLayout = layoutLocalService.addLayout(
+		Layout draftLayout = _layoutLocalService.addLayout(
 			userId, groupId, privateLayout, layout.getParentLayoutId(),
-			classNameLocalService.getClassNameId(Layout.class),
+			_classNameLocalService.getClassNameId(Layout.class),
 			layout.getPlid(), layout.getNameMap(), titleMap,
 			layout.getDescriptionMap(), layout.getKeywordsMap(),
 			layout.getRobotsMap(), layoutType, layout.getTypeSettings(), true,
@@ -997,20 +1004,20 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			String colorSchemeId = _getColorSchemeId(
 				layout.getCompanyId(), defaultRegularThemeId, StringPool.BLANK);
 
-			draftLayout = layoutLocalService.updateLookAndFeel(
+			draftLayout = _layoutLocalService.updateLookAndFeel(
 				groupId, privateLayout, draftLayout.getLayoutId(),
 				defaultRegularThemeId, colorSchemeId, StringPool.BLANK);
 
-			layout = layoutLocalService.updateLookAndFeel(
+			layout = _layoutLocalService.updateLookAndFeel(
 				groupId, privateLayout, layout.getLayoutId(),
 				defaultRegularThemeId, colorSchemeId, StringPool.BLANK);
 		}
 
 		if (status == WorkflowConstants.STATUS_DRAFT) {
-			layoutLocalService.updateStatus(
+			_layoutLocalService.updateStatus(
 				userId, draftLayout.getPlid(), status, serviceContext);
 
-			layout = layoutLocalService.updateStatus(
+			layout = _layoutLocalService.updateStatus(
 				userId, layout.getPlid(), status, serviceContext);
 		}
 
@@ -1140,5 +1147,20 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 	@Reference
 	private ThemeLocalService _themeLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
+
+	@Reference
+	private LayoutLocalService _layoutLocalService;
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private LayoutSetLocalService _layoutSetLocalService;
 
 }

@@ -18,7 +18,6 @@ import com.liferay.configuration.admin.display.ConfigurationScreen;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.segments.context.vocabulary.internal.configuration.SegmentsContextVocabularyConfiguration;
 import com.liferay.segments.context.vocabulary.internal.constants.SegmentsContextVocabularyWebKeys;
 
@@ -59,8 +58,7 @@ public class SegmentsContextVocabularyConfigurationScreen
 
 	@Override
 	public String getName(Locale locale) {
-		return LanguageUtil.get(
-			ResourceBundleUtil.getBundle(locale, getClass()), getKey());
+		return LanguageUtil.get(locale, getKey());
 	}
 
 	@Override

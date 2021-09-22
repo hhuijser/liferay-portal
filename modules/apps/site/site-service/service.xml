@@ -47,9 +47,5 @@
 			<finder-column name="friendlyURL" />
 			<finder-column name="languageId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 </service-builder>

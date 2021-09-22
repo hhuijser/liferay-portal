@@ -590,10 +590,6 @@
 		<finder name="KaleoNotificationId" return-type="Collection">
 			<finder-column name="kaleoNotificationId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Role" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="KaleoTask" remote-service="false">
 
@@ -694,10 +690,6 @@
 			<finder-column name="kaleoClassPK" />
 			<finder-column name="assigneeClassName" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Role" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="KaleoTaskAssignmentInstance" remote-service="false">
 

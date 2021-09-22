@@ -34,9 +34,6 @@
 			<finder-column name="plid" />
 			<finder-column name="portletId" />
 		</finder>
-
-		<!-- References -->
-
 	</entity>
 	<entity local-service="true" name="FVSCustomEntry" remote-service="false" trash-enabled="false" uuid="true">
 

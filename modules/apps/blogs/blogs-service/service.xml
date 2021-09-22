@@ -163,20 +163,6 @@
 			<finder-column comparator="&lt;" name="displayDate" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Company" package-path="com.liferay.portal" />
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="Image" package-path="com.liferay.portal" />
-		<reference entity="Organization" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
-		<reference entity="AssetLink" package-path="com.liferay.portlet.asset" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
-		<reference entity="RatingsStats" package-path="com.liferay.portlet.ratings" />
 	</entity>
 	<entity local-service="true" name="BlogsStatsUser" remote-service="false">
 
@@ -231,11 +217,6 @@
 			<finder-column name="userId" />
 			<finder-column name="lastPostDate" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="BlogsEntry" package-path="com.liferay.blogs" />
-		<reference entity="Group" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>DuplicateEntryExternalReferenceCode</exception>

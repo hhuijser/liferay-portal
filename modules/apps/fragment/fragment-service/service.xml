@@ -47,13 +47,6 @@
 			<finder-column arrayable-operator="OR" name="groupId" />
 			<finder-column comparator="LIKE" name="name" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="FragmentComposition" package-path="com.liferay.fragment" />
-		<reference entity="FragmentEntry" package-path="com.liferay.fragment" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="FragmentComposition" remote-service="true" uuid="true">
 
@@ -125,11 +118,6 @@
 			<finder-column comparator="LIKE" name="name" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="FragmentEntry" remote-service="true" uuid="true" versioned="true">
 
@@ -217,13 +205,6 @@
 			<finder-column name="type" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="FragmentCollection" package-path="com.liferay.fragment" />
-		<reference entity="FragmentEntryLink" package-path="com.liferay.fragment" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="FragmentEntryLink" remote-service="true" uuid="true">
 
@@ -327,12 +308,6 @@
 			<finder-column name="plid" />
 			<finder-column name="rendererKey" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="FragmentCollection" package-path="com.liferay.fragment" />
-		<reference entity="FragmentEntry" package-path="com.liferay.fragment" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>DuplicateFragmentCollection</exception>

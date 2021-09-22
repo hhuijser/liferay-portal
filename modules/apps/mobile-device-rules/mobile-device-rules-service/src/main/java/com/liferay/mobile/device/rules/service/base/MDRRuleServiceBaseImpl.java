@@ -17,8 +17,6 @@ package com.liferay.mobile.device.rules.service.base;
 import com.liferay.mobile.device.rules.model.MDRRule;
 import com.liferay.mobile.device.rules.service.MDRRuleService;
 import com.liferay.mobile.device.rules.service.MDRRuleServiceUtil;
-import com.liferay.mobile.device.rules.service.persistence.MDRRuleGroupFinder;
-import com.liferay.mobile.device.rules.service.persistence.MDRRuleGroupPersistence;
 import com.liferay.mobile.device.rules.service.persistence.MDRRulePersistence;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -143,18 +141,5 @@ public abstract class MDRRuleServiceBaseImpl
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.UserLocalService
-		userLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.UserService userService;
-
-	@Reference
-	protected MDRRuleGroupPersistence mdrRuleGroupPersistence;
-
-	@Reference
-	protected MDRRuleGroupFinder mdrRuleGroupFinder;
 
 }

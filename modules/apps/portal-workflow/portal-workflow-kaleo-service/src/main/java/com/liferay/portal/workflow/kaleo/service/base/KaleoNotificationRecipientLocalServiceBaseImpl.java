@@ -592,10 +592,6 @@ public abstract class KaleoNotificationRecipientLocalServiceBaseImpl
 		resourceLocalService;
 
 	@Reference
-	protected com.liferay.portal.kernel.service.RoleLocalService
-		roleLocalService;
-
-	@Reference
 	protected com.liferay.portal.kernel.service.UserLocalService
 		userLocalService;
 

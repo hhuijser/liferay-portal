@@ -548,10 +548,6 @@ public abstract class AnalyticsMessageLocalServiceBaseImpl
 		counterLocalService;
 
 	@Reference
-	protected com.liferay.portal.kernel.service.UserLocalService
-		userLocalService;
-
-	@Reference
 	protected File _file;
 
 	private static final InputStream _EMPTY_INPUT_STREAM =

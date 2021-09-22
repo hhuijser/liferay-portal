@@ -668,8 +668,4 @@ public abstract class KBFolderLocalServiceBaseImpl
 	protected com.liferay.portal.kernel.service.UserLocalService
 		userLocalService;
 
-	@Reference
-	protected com.liferay.expando.kernel.service.ExpandoRowLocalService
-		expandoRowLocalService;
-
 }

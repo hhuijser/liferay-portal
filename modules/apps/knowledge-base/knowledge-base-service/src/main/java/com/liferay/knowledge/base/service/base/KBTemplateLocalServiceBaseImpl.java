@@ -635,8 +635,4 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	protected com.liferay.portal.kernel.service.UserLocalService
 		userLocalService;
 
-	@Reference
-	protected com.liferay.social.kernel.service.SocialActivityLocalService
-		socialActivityLocalService;
-
 }

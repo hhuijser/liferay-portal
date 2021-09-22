@@ -14,8 +14,6 @@
 
 package com.liferay.blogs.uad.anonymizer;
 
-import com.liferay.asset.kernel.model.AssetEntry;
-import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryLocalService;
 import com.liferay.blogs.uad.constants.BlogsUADConstants;
@@ -49,8 +47,6 @@ public abstract class BaseBlogsEntryUADAnonymizer
 		if (blogsEntry.getUserId() == userId) {
 			blogsEntry.setUserId(anonymousUser.getUserId());
 			blogsEntry.setUserName(anonymousUser.getFullName());
-
-			autoAnonymizeAssetEntry(blogsEntry, anonymousUser);
 		}
 
 		if (blogsEntry.getStatusByUserId() == userId) {
@@ -71,19 +67,6 @@ public abstract class BaseBlogsEntryUADAnonymizer
 		return BlogsEntry.class;
 	}
 
-	protected void autoAnonymizeAssetEntry(
-		BlogsEntry blogsEntry, User anonymousUser) {
-
-		AssetEntry assetEntry = fetchAssetEntry(blogsEntry);
-
-		if (assetEntry != null) {
-			assetEntry.setUserId(anonymousUser.getUserId());
-			assetEntry.setUserName(anonymousUser.getFullName());
-
-			assetEntryLocalService.updateAssetEntry(assetEntry);
-		}
-	}
-
 	@Override
 	protected ActionableDynamicQuery doGetActionableDynamicQuery() {
 		return blogsEntryLocalService.getActionableDynamicQuery();
@@ -93,14 +76,6 @@ public abstract class BaseBlogsEntryUADAnonymizer
 	protected String[] doGetUserIdFieldNames() {
 		return BlogsUADConstants.USER_ID_FIELD_NAMES_BLOGS_ENTRY;
 	}
-
-	protected AssetEntry fetchAssetEntry(BlogsEntry blogsEntry) {
-		return assetEntryLocalService.fetchEntry(
-			BlogsEntry.class.getName(), blogsEntry.getEntryId());
-	}
-
-	@Reference
-	protected AssetEntryLocalService assetEntryLocalService;
 
 	@Reference
 	protected BlogsEntryLocalService blogsEntryLocalService;

@@ -15,6 +15,7 @@
 package com.liferay.screens.service.impl;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
+import com.liferay.dynamic.data.mapping.service.DDMStructureVersionService;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -23,6 +24,7 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.screens.service.base.ScreensDDMStructureVersionServiceBaseImpl;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Javier Gamarra
@@ -42,7 +44,7 @@ public class ScreensDDMStructureVersionServiceImpl
 		throws PortalException {
 
 		DDMStructureVersion ddmStructureVersion =
-			ddmStructureVersionService.getLatestStructureVersion(structureId);
+			_ddmStructureVersionService.getLatestStructureVersion(structureId);
 
 		JSONObject ddmFormLayoutJSONObject = JSONFactoryUtil.createJSONObject(
 			JSONFactoryUtil.looseSerializeDeep(
@@ -57,5 +59,8 @@ public class ScreensDDMStructureVersionServiceImpl
 			"ddmStructure", ddmStructureJSONObject
 		);
 	}
+
+	@Reference
+	private DDMStructureVersionService _ddmStructureVersionService;
 
 }

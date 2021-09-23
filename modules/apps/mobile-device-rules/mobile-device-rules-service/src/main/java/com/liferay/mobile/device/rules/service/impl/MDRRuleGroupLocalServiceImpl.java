@@ -19,6 +19,7 @@ import com.liferay.mobile.device.rules.model.MDRRuleGroup;
 import com.liferay.mobile.device.rules.service.MDRRuleGroupInstanceLocalService;
 import com.liferay.mobile.device.rules.service.MDRRuleLocalService;
 import com.liferay.mobile.device.rules.service.base.MDRRuleGroupLocalServiceBaseImpl;
+import com.liferay.mobile.device.rules.service.persistence.MDRRulePersistence;
 import com.liferay.mobile.device.rules.util.comparator.RuleGroupCreateDateComparator;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -28,7 +29,10 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -62,7 +66,7 @@ public class MDRRuleGroupLocalServiceImpl
 
 		// Rule group
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
+		User user = _userLocalService.getUser(serviceContext.getUserId());
 
 		long ruleGroupId = counterLocalService.increment();
 
@@ -78,7 +82,7 @@ public class MDRRuleGroupLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addModelResources(ruleGroup, serviceContext);
+		_resourceLocalService.addModelResources(ruleGroup, serviceContext);
 
 		return updateMDRRuleGroup(ruleGroup);
 	}
@@ -99,7 +103,7 @@ public class MDRRuleGroupLocalServiceImpl
 			MDRRuleGroup ruleGroup, long groupId, ServiceContext serviceContext)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		Map<Locale, String> nameMap = ruleGroup.getNameMap();
 
@@ -124,7 +128,7 @@ public class MDRRuleGroupLocalServiceImpl
 			group.getGroupId(), nameMap, ruleGroup.getDescriptionMap(),
 			serviceContext);
 
-		List<MDRRule> rules = mdrRulePersistence.findByRuleGroupId(
+		List<MDRRule> rules = _mdrRulePersistence.findByRuleGroupId(
 			ruleGroup.getRuleGroupId());
 
 		for (MDRRule rule : rules) {
@@ -277,9 +281,21 @@ public class MDRRuleGroupLocalServiceImpl
 	}
 
 	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
 	private MDRRuleGroupInstanceLocalService _mdrRuleGroupInstanceLocalService;
 
 	@Reference
 	private MDRRuleLocalService _mdrRuleLocalService;
+
+	@Reference
+	private MDRRulePersistence _mdrRulePersistence;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

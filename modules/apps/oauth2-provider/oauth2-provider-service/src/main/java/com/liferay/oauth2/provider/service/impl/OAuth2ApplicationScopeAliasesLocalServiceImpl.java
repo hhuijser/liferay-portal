@@ -21,6 +21,7 @@ import com.liferay.oauth2.provider.scope.liferay.LiferayOAuth2Scope;
 import com.liferay.oauth2.provider.scope.liferay.ScopeLocator;
 import com.liferay.oauth2.provider.service.OAuth2ScopeGrantLocalService;
 import com.liferay.oauth2.provider.service.base.OAuth2ApplicationScopeAliasesLocalServiceBaseImpl;
+import com.liferay.oauth2.provider.service.persistence.OAuth2ApplicationPersistence;
 import com.liferay.oauth2.provider.util.builder.OAuth2ScopeBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.aop.AopService;
@@ -166,7 +167,8 @@ public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 		long oAuth2ApplicationId, List<String> scopeAliasesList) {
 
 		OAuth2Application oAuth2Application =
-			oAuth2ApplicationPersistence.fetchByPrimaryKey(oAuth2ApplicationId);
+			_oAuth2ApplicationPersistence.fetchByPrimaryKey(
+				oAuth2ApplicationId);
 
 		if (oAuth2Application == null) {
 			return null;
@@ -483,6 +485,9 @@ public class OAuth2ApplicationScopeAliasesLocalServiceImpl
 
 		return true;
 	}
+
+	@Reference
+	private OAuth2ApplicationPersistence _oAuth2ApplicationPersistence;
 
 	@Reference
 	private OAuth2ScopeGrantLocalService _oAuth2ScopeGrantLocalService;

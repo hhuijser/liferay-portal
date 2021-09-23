@@ -16,6 +16,8 @@ package com.liferay.bookmarks.service.impl;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.bookmarks.constants.BookmarksFolderConstants;
 import com.liferay.bookmarks.exception.FolderNameException;
 import com.liferay.bookmarks.model.BookmarksEntry;
@@ -23,6 +25,7 @@ import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.bookmarks.service.base.BookmarksFolderLocalServiceBaseImpl;
 import com.liferay.bookmarks.util.comparator.FolderIdComparator;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
@@ -45,7 +48,9 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 import com.liferay.social.kernel.model.SocialActivityConstants;
+import com.liferay.social.kernel.service.SocialActivityLocalService;
 import com.liferay.subscription.service.SubscriptionLocalService;
 import com.liferay.trash.exception.RestoreEntryException;
 import com.liferay.trash.exception.TrashEntryException;
@@ -169,12 +174,12 @@ public class BookmarksFolderLocalServiceImpl
 
 		// Asset
 
-		assetEntryLocalService.deleteEntry(
+		_assetEntryLocalService.deleteEntry(
 			BookmarksFolder.class.getName(), folder.getFolderId());
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			folder.getCompanyId(),
 			classNameLocalService.getClassNameId(
 				BookmarksFolder.class.getName()),
@@ -182,7 +187,7 @@ public class BookmarksFolderLocalServiceImpl
 
 		// Ratings
 
-		ratingsStatsLocalService.deleteStats(
+		_ratingsStatsLocalService.deleteStats(
 			BookmarksFolder.class.getName(), folder.getFolderId());
 
 		// Subscriptions
@@ -486,7 +491,7 @@ public class BookmarksFolderLocalServiceImpl
 		JSONObject extraDataJSONObject = JSONUtil.put(
 			"title", folder.getName());
 
-		socialActivityLocalService.addActivity(
+		_socialActivityLocalService.addActivity(
 			userId, folder.getGroupId(), BookmarksFolder.class.getName(),
 			folder.getFolderId(), SocialActivityConstants.TYPE_MOVE_TO_TRASH,
 			extraDataJSONObject.toString(), 0);
@@ -572,7 +577,7 @@ public class BookmarksFolderLocalServiceImpl
 		JSONObject extraDataJSONObject = JSONUtil.put(
 			"title", folder.getName());
 
-		socialActivityLocalService.addActivity(
+		_socialActivityLocalService.addActivity(
 			userId, folder.getGroupId(), BookmarksFolder.class.getName(),
 			folder.getFolderId(),
 			SocialActivityConstants.TYPE_RESTORE_FROM_TRASH,
@@ -611,7 +616,7 @@ public class BookmarksFolderLocalServiceImpl
 			String[] assetTagNames, long[] assetLinkEntryIds, Double priority)
 		throws PortalException {
 
-		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.updateEntry(
 			userId, folder.getGroupId(), folder.getCreateDate(),
 			folder.getModifiedDate(), BookmarksFolder.class.getName(),
 			folder.getFolderId(), folder.getUuid(), 0, assetCategoryIds,
@@ -619,7 +624,7 @@ public class BookmarksFolderLocalServiceImpl
 			ContentTypes.TEXT_PLAIN, folder.getName(), folder.getDescription(),
 			null, null, null, 0, 0, priority);
 
-		assetLinkLocalService.updateLinks(
+		_assetLinkLocalService.updateLinks(
 			userId, assetEntry.getEntryId(), assetLinkEntryIds,
 			AssetLinkConstants.TYPE_RELATED);
 	}
@@ -686,11 +691,11 @@ public class BookmarksFolderLocalServiceImpl
 		// Asset
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
-			assetEntryLocalService.updateVisible(
+			_assetEntryLocalService.updateVisible(
 				BookmarksFolder.class.getName(), folder.getFolderId(), true);
 		}
 		else if (status == WorkflowConstants.STATUS_IN_TRASH) {
-			assetEntryLocalService.updateVisible(
+			_assetEntryLocalService.updateVisible(
 				BookmarksFolder.class.getName(), folder.getFolderId(), false);
 		}
 
@@ -821,7 +826,7 @@ public class BookmarksFolderLocalServiceImpl
 
 				// Asset
 
-				assetEntryLocalService.updateVisible(
+				_assetEntryLocalService.updateVisible(
 					BookmarksEntry.class.getName(), entry.getEntryId(), false);
 
 				// Indexer
@@ -865,7 +870,7 @@ public class BookmarksFolderLocalServiceImpl
 
 				// Asset
 
-				assetEntryLocalService.updateVisible(
+				_assetEntryLocalService.updateVisible(
 					BookmarksFolder.class.getName(), folder.getFolderId(),
 					false);
 
@@ -917,7 +922,7 @@ public class BookmarksFolderLocalServiceImpl
 				// Asset
 
 				if (oldStatus == WorkflowConstants.STATUS_APPROVED) {
-					assetEntryLocalService.updateVisible(
+					_assetEntryLocalService.updateVisible(
 						BookmarksEntry.class.getName(), entry.getEntryId(),
 						true);
 				}
@@ -970,7 +975,7 @@ public class BookmarksFolderLocalServiceImpl
 
 				// Asset
 
-				assetEntryLocalService.updateVisible(
+				_assetEntryLocalService.updateVisible(
 					BookmarksFolder.class.getName(), folder.getFolderId(),
 					true);
 
@@ -994,7 +999,22 @@ public class BookmarksFolderLocalServiceImpl
 	}
 
 	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
+	private AssetLinkLocalService _assetLinkLocalService;
+
+	@Reference
 	private BookmarksEntryLocalService _bookmarksEntryLocalService;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
+
+	@Reference
+	private RatingsStatsLocalService _ratingsStatsLocalService;
+
+	@Reference
+	private SocialActivityLocalService _socialActivityLocalService;
 
 	@Reference
 	private SubscriptionLocalService _subscriptionLocalService;

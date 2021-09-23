@@ -23,6 +23,7 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalServ
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -163,7 +164,7 @@ public class AssetEntryUsageLocalServiceImpl
 			return AssetEntryUsageConstants.TYPE_DEFAULT;
 		}
 
-		Layout layout = layoutLocalService.fetchLayout(plid);
+		Layout layout = _layoutLocalService.fetchLayout(plid);
 
 		if (layout == null) {
 			return AssetEntryUsageConstants.TYPE_DEFAULT;
@@ -189,6 +190,9 @@ public class AssetEntryUsageLocalServiceImpl
 
 		return AssetEntryUsageConstants.TYPE_PAGE_TEMPLATE;
 	}
+
+	@Reference
+	private LayoutLocalService _layoutLocalService;
 
 	@Reference
 	private LayoutPageTemplateEntryLocalService

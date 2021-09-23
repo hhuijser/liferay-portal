@@ -26,7 +26,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -56,7 +58,7 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 
 		// Layout page template collection
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		validate(groupId, name);
 
@@ -86,7 +88,7 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addModelResources(
+		_resourceLocalService.addModelResources(
 			layoutPageTemplateCollection, serviceContext);
 
 		return layoutPageTemplateCollection;
@@ -104,7 +106,7 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			layoutPageTemplateCollection.getCompanyId(),
 			LayoutPageTemplateCollection.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
@@ -258,5 +260,11 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 	@Reference
 	private LayoutPageTemplateEntryLocalService
 		_layoutPageTemplateEntryLocalService;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

@@ -15,6 +15,7 @@
 package com.liferay.screens.service.impl;
 
 import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.comment.Comment;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.screens.service.base.ScreensCommentServiceBaseImpl;
@@ -59,10 +61,10 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		DiscussionPermission discussionPermission =
 			commentManager.getDiscussionPermission(getPermissionChecker());
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			className, classPK);
 
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = _groupLocalService.getGroup(assetEntry.getGroupId());
 
 		discussionPermission.checkAddPermission(
 			group.getCompanyId(), assetEntry.getGroupId(), className, classPK);
@@ -84,10 +86,10 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 		Comment comment = commentManager.fetchComment(commentId);
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			comment.getClassName(), comment.getClassPK());
 
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = _groupLocalService.getGroup(assetEntry.getGroupId());
 
 		discussionPermission.checkViewPermission(
 			group.getCompanyId(), assetEntry.getGroupId(),
@@ -104,10 +106,10 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		DiscussionPermission discussionPermission =
 			commentManager.getDiscussionPermission(getPermissionChecker());
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			className, classPK);
 
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = _groupLocalService.getGroup(assetEntry.getGroupId());
 
 		discussionPermission.checkViewPermission(
 			group.getCompanyId(), assetEntry.getGroupId(), className, classPK);
@@ -163,10 +165,10 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 		DiscussionPermission discussionPermission =
 			commentManager.getDiscussionPermission(getPermissionChecker());
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			className, classPK);
 
-		Group group = groupLocalService.getGroup(assetEntry.getGroupId());
+		Group group = _groupLocalService.getGroup(assetEntry.getGroupId());
 
 		discussionPermission.checkViewPermission(
 			group.getCompanyId(), assetEntry.getGroupId(), className, classPK);
@@ -241,5 +243,11 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 
 	@Reference
 	protected CommentManager commentManager;
+
+	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 }

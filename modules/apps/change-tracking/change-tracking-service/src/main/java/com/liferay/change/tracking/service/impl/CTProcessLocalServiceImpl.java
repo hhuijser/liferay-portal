@@ -20,6 +20,7 @@ import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.model.CTProcess;
 import com.liferay.change.tracking.service.CTPreferencesLocalService;
 import com.liferay.change.tracking.service.base.CTProcessLocalServiceBaseImpl;
+import com.liferay.change.tracking.service.persistence.CTCollectionPersistence;
 import com.liferay.petra.lang.SafeCloseable;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.background.task.model.BackgroundTask;
@@ -29,6 +30,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -55,7 +57,7 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 	public CTProcess addCTProcess(long userId, long ctCollectionId)
 		throws PortalException {
 
-		CTCollection ctCollection = ctCollectionPersistence.findByPrimaryKey(
+		CTCollection ctCollection = _ctCollectionPersistence.findByPrimaryKey(
 			ctCollectionId);
 
 		if (ctCollection.getStatus() == WorkflowConstants.STATUS_APPROVED) {
@@ -66,7 +68,7 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 
 		ctCollection.setStatus(WorkflowConstants.STATUS_PENDING);
 
-		ctCollection = ctCollectionPersistence.update(ctCollection);
+		ctCollection = _ctCollectionPersistence.update(ctCollection);
 
 		_ctPreferencesLocalService.resetCTPreferences(
 			ctCollection.getCtCollectionId());
@@ -81,7 +83,7 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 		ctProcess.setCreateDate(new Date());
 		ctProcess.setCtCollectionId(ctCollectionId);
 
-		Company company = companyLocalService.getCompany(
+		Company company = _companyLocalService.getCompany(
 			ctCollection.getCompanyId());
 
 		Map<String, Serializable> taskContextMap =
@@ -142,6 +144,12 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 
 	@Reference
 	private BackgroundTaskLocalService _backgroundTaskLocalService;
+
+	@Reference
+	private CompanyLocalService _companyLocalService;
+
+	@Reference
+	private CTCollectionPersistence _ctCollectionPersistence;
 
 	@Reference
 	private CTPreferencesLocalService _ctPreferencesLocalService;

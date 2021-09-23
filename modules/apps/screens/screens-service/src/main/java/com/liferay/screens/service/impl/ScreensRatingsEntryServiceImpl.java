@@ -15,6 +15,7 @@
 package com.liferay.screens.service.impl;
 
 import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -25,11 +26,13 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portlet.asset.service.permission.AssetEntryPermission;
 import com.liferay.ratings.kernel.model.RatingsEntry;
+import com.liferay.ratings.kernel.service.RatingsEntryLocalService;
 import com.liferay.screens.service.base.ScreensRatingsEntryServiceBaseImpl;
 
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alejandro Hernández
@@ -55,7 +58,7 @@ public class ScreensRatingsEntryServiceImpl
 			throw new PrincipalException();
 		}
 
-		ratingsEntryLocalService.deleteEntry(getUserId(), className, classPK);
+		_ratingsEntryLocalService.deleteEntry(getUserId(), className, classPK);
 
 		return getRatingsEntries(classPK, className, ratingsLength);
 	}
@@ -64,7 +67,8 @@ public class ScreensRatingsEntryServiceImpl
 	public JSONObject getRatingsEntries(long assetEntryId, int ratingsLength)
 		throws PortalException {
 
-		AssetEntry assetEntry = assetEntryLocalService.fetchEntry(assetEntryId);
+		AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
+			assetEntryId);
 
 		AssetEntryPermission.check(
 			getPermissionChecker(), assetEntry, ActionKeys.VIEW);
@@ -80,8 +84,8 @@ public class ScreensRatingsEntryServiceImpl
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		List<RatingsEntry> ratingsEntries = ratingsEntryLocalService.getEntries(
-			className, classPK);
+		List<RatingsEntry> ratingsEntries =
+			_ratingsEntryLocalService.getEntries(className, classPK);
 
 		int[] ratings = new int[ratingsLength];
 		double totalScore = 0;
@@ -137,10 +141,16 @@ public class ScreensRatingsEntryServiceImpl
 			throw new PrincipalException();
 		}
 
-		ratingsEntryLocalService.updateEntry(
+		_ratingsEntryLocalService.updateEntry(
 			getUserId(), className, classPK, score, new ServiceContext());
 
 		return getRatingsEntries(classPK, className, ratingsLength);
 	}
+
+	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
+	private RatingsEntryLocalService _ratingsEntryLocalService;
 
 }

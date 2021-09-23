@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.LayoutFriendlyURLException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -62,7 +63,7 @@ public class RedirectEntryLocalServiceImpl
 			boolean addGuestPermissions)
 		throws PortalException {
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			entry.getCompanyId(), entry.getGroupId(), entry.getUserId(),
 			RedirectEntry.class.getName(), entry.getRedirectEntryId(), false,
 			addGroupPermissions, addGuestPermissions);
@@ -73,7 +74,7 @@ public class RedirectEntryLocalServiceImpl
 			RedirectEntry entry, ModelPermissions modelPermissions)
 		throws PortalException {
 
-		resourceLocalService.addModelResources(
+		_resourceLocalService.addModelResources(
 			entry.getCompanyId(), entry.getGroupId(), entry.getUserId(),
 			RedirectEntry.class.getName(), entry.getRedirectEntryId(),
 			modelPermissions);
@@ -427,5 +428,8 @@ public class RedirectEntryLocalServiceImpl
 	@Reference
 	private RedirectNotFoundEntryLocalService
 		_redirectNotFoundEntryLocalService;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
 
 }

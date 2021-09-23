@@ -26,7 +26,10 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -53,9 +56,9 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 
 		// Rule group instance
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
+		User user = _userLocalService.getUser(serviceContext.getUserId());
 
-		long classNameId = classNameLocalService.getClassNameId(className);
+		long classNameId = _classNameLocalService.getClassNameId(className);
 
 		validate(classNameId, classPK, ruleGroupId);
 
@@ -77,7 +80,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addModelResources(
+		_resourceLocalService.addModelResources(
 			ruleGroupInstance, serviceContext);
 
 		return updateMDRRuleGroupInstance(ruleGroupInstance);
@@ -189,7 +192,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 		String className, long classPK, long ruleGroupId) {
 
 		return mdrRuleGroupInstancePersistence.fetchByC_C_R(
-			classNameLocalService.getClassNameId(className), classPK,
+			_classNameLocalService.getClassNameId(className), classPK,
 			ruleGroupId);
 	}
 
@@ -207,7 +210,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 		throws PortalException {
 
 		return mdrRuleGroupInstancePersistence.findByC_C_R(
-			classNameLocalService.getClassNameId(className), classPK,
+			_classNameLocalService.getClassNameId(className), classPK,
 			ruleGroupId);
 	}
 
@@ -229,7 +232,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 		String className, long classPK) {
 
 		return mdrRuleGroupInstancePersistence.findByC_C(
-			classNameLocalService.getClassNameId(className), classPK);
+			_classNameLocalService.getClassNameId(className), classPK);
 	}
 
 	@Override
@@ -238,7 +241,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
 
 		return mdrRuleGroupInstancePersistence.findByC_C(
-			classNameLocalService.getClassNameId(className), classPK, start,
+			_classNameLocalService.getClassNameId(className), classPK, start,
 			end, orderByComparator);
 	}
 
@@ -250,7 +253,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 	@Override
 	public int getRuleGroupInstancesCount(String className, long classPK) {
 		return mdrRuleGroupInstancePersistence.countByC_C(
-			classNameLocalService.getClassNameId(className), classPK);
+			_classNameLocalService.getClassNameId(className), classPK);
 	}
 
 	@Override
@@ -285,9 +288,18 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 	}
 
 	@Reference
+	private ClassNameLocalService _classNameLocalService;
+
+	@Reference
 	private MDRActionLocalService _mdrActionLocalService;
 
 	@Reference
 	private MDRRuleGroupPersistence _mdrRuleGroupPersistence;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

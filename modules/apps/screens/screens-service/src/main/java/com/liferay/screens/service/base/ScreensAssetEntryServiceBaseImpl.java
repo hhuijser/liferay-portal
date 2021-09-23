@@ -130,43 +130,12 @@ public abstract class ScreensAssetEntryServiceBaseImpl
 		counterLocalService;
 
 	@Reference
-	protected com.liferay.journal.service.JournalArticleLocalService
-		journalArticleLocalService;
-
-	@Reference
-	protected com.liferay.journal.service.JournalArticleService
-		journalArticleService;
-
-	@Reference
-	protected com.liferay.journal.service.JournalArticleResourceLocalService
-		journalArticleResourceLocalService;
-
-	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
 
 	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameService
 		classNameService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.LayoutLocalService
-		layoutLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.LayoutService layoutService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.PortletItemLocalService
-		portletItemLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.PortletPreferencesLocalService
-		portletPreferencesLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.PortletPreferencesService
-		portletPreferencesService;
 
 	@Reference
 	protected com.liferay.portal.kernel.service.ResourceLocalService
@@ -178,21 +147,5 @@ public abstract class ScreensAssetEntryServiceBaseImpl
 
 	@Reference
 	protected com.liferay.portal.kernel.service.UserService userService;
-
-	@Reference
-	protected com.liferay.asset.kernel.service.AssetEntryLocalService
-		assetEntryLocalService;
-
-	@Reference
-	protected com.liferay.asset.kernel.service.AssetEntryService
-		assetEntryService;
-
-	@Reference
-	protected com.liferay.document.library.kernel.service.DLAppLocalService
-		dlAppLocalService;
-
-	@Reference
-	protected com.liferay.document.library.kernel.service.DLAppService
-		dlAppService;
 
 }

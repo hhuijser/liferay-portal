@@ -17,8 +17,6 @@ package com.liferay.blogs.service.base;
 import com.liferay.blogs.model.BlogsStatsUser;
 import com.liferay.blogs.service.BlogsStatsUserLocalService;
 import com.liferay.blogs.service.BlogsStatsUserLocalServiceUtil;
-import com.liferay.blogs.service.persistence.BlogsEntryFinder;
-import com.liferay.blogs.service.persistence.BlogsEntryPersistence;
 import com.liferay.blogs.service.persistence.BlogsStatsUserFinder;
 import com.liferay.blogs.service.persistence.BlogsStatsUserPersistence;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
@@ -469,17 +467,7 @@ public abstract class BlogsStatsUserLocalServiceBaseImpl
 	protected BlogsStatsUserFinder blogsStatsUserFinder;
 
 	@Reference
-	protected BlogsEntryPersistence blogsEntryPersistence;
-
-	@Reference
-	protected BlogsEntryFinder blogsEntryFinder;
-
-	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.GroupLocalService
-		groupLocalService;
 
 }

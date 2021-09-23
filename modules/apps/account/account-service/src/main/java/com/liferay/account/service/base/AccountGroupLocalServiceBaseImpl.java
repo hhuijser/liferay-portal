@@ -18,7 +18,6 @@ import com.liferay.account.model.AccountGroup;
 import com.liferay.account.service.AccountGroupLocalService;
 import com.liferay.account.service.AccountGroupLocalServiceUtil;
 import com.liferay.account.service.persistence.AccountGroupPersistence;
-import com.liferay.account.service.persistence.AccountGroupRelPersistence;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -510,12 +509,5 @@ public abstract class AccountGroupLocalServiceBaseImpl
 	@Reference
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
-
-	@Reference
-	protected com.liferay.portal.kernel.service.UserLocalService
-		userLocalService;
-
-	@Reference
-	protected AccountGroupRelPersistence accountGroupRelPersistence;
 
 }

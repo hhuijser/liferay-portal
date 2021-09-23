@@ -130,14 +130,6 @@ public abstract class ScreensDDLRecordServiceBaseImpl
 		counterLocalService;
 
 	@Reference
-	protected com.liferay.dynamic.data.lists.service.DDLRecordLocalService
-		ddlRecordLocalService;
-
-	@Reference
-	protected com.liferay.dynamic.data.lists.service.DDLRecordService
-		ddlRecordService;
-
-	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
 

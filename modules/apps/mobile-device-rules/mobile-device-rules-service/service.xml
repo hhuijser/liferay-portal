@@ -38,11 +38,6 @@
 		<finder name="RuleGroupInstanceId" return-type="Collection">
 			<finder-column name="ruleGroupInstanceId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="MDRRuleGroupInstance" package-path="com.liferay.mobile.device.rules" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="MDRRule" remote-service="true" uuid="true">
 
@@ -82,11 +77,6 @@
 		<finder name="RuleGroupId" return-type="Collection">
 			<finder-column name="ruleGroupId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="MDRRuleGroup" package-path="com.liferay.mobile.device.rules" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="MDRRuleGroup" remote-service="true" uuid="true">
 
@@ -123,13 +113,6 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="MDRRule" package-path="com.liferay.mobile.device.rules" />
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="MDRRuleGroupInstance" remote-service="true" uuid="true">
 
@@ -179,14 +162,6 @@
 			<finder-column name="classPK" />
 			<finder-column name="ruleGroupId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="Layout" package-path="com.liferay.portal" />
-		<reference entity="LayoutSet" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>ActionType</exception>

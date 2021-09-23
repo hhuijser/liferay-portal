@@ -49,10 +49,6 @@
 			<finder-column name="userId" />
 			<finder-column case-sensitive="false" comparator="LIKE" name="name" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Image" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="OAuthUser" remote-service="true">
 

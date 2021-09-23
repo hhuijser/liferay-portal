@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.LayoutService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -36,6 +37,7 @@ import com.liferay.site.navigation.model.SiteNavigationMenu;
 import com.liferay.site.navigation.model.SiteNavigationMenuItem;
 import com.liferay.site.navigation.model.SiteNavigationMenuItemTable;
 import com.liferay.site.navigation.service.base.SiteNavigationMenuItemLocalServiceBaseImpl;
+import com.liferay.site.navigation.service.persistence.SiteNavigationMenuPersistence;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemType;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemTypeRegistry;
 import com.liferay.site.navigation.util.comparator.SiteNavigationMenuItemOrderComparator;
@@ -75,7 +77,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 
 		validateName(name);
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		long siteNavigationMenuItemId = counterLocalService.increment();
 
@@ -185,7 +187,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 	@Override
 	public void deleteSiteNavigationMenuItemsByGroupId(long groupId) {
 		List<SiteNavigationMenu> siteNavigationMenus =
-			siteNavigationMenuPersistence.findByGroupId(groupId);
+			_siteNavigationMenuPersistence.findByGroupId(groupId);
 
 		for (SiteNavigationMenu siteNavigationMenu : siteNavigationMenus) {
 			siteNavigationMenuItemPersistence.removeBySiteNavigationMenuId(
@@ -352,7 +354,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 				siteNavigationMenuItem.getType());
 		}
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		String name = siteNavigationMenuItemType.getName(typeSettings);
 
@@ -438,5 +440,11 @@ public class SiteNavigationMenuItemLocalServiceImpl
 	@Reference
 	private SiteNavigationMenuItemTypeRegistry
 		_siteNavigationMenuItemTypeRegistry;
+
+	@Reference
+	private SiteNavigationMenuPersistence _siteNavigationMenuPersistence;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

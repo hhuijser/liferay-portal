@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 import java.io.InputStream;
@@ -382,7 +383,7 @@ public class OAuth2ApplicationServiceImpl
 				_userModelResourcePermission, getPermissionChecker(), 0,
 				clientCredentialUserId, ActionKeys.IMPERSONATE)) {
 
-			User clientCredentialUser = userLocalService.fetchUser(
+			User clientCredentialUser = _userLocalService.fetchUser(
 				clientCredentialUserId);
 
 			String clientCredentialUserScreenName = null;
@@ -403,6 +404,9 @@ public class OAuth2ApplicationServiceImpl
 	)
 	private ModelResourcePermission<OAuth2Application>
 		_oAuth2ApplicationModelResourcePermission;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 	@Reference(
 		target = "(model.class.name=com.liferay.portal.kernel.model.User)"

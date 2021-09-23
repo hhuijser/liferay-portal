@@ -29,7 +29,9 @@ import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -62,7 +64,7 @@ public class FragmentCompositionLocalServiceImpl
 
 		// Fragment composition
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		if (Validator.isNull(fragmentCompositionKey)) {
 			fragmentCompositionKey = generateFragmentCompositionKey(
@@ -115,7 +117,7 @@ public class FragmentCompositionLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			fragmentComposition.getCompanyId(),
 			FragmentComposition.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
@@ -292,7 +294,7 @@ public class FragmentCompositionLocalServiceImpl
 
 		validate(name);
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		fragmentComposition.setModifiedDate(new Date());
 		fragmentComposition.setFragmentCollectionId(fragmentCollectionId);
@@ -395,5 +397,11 @@ public class FragmentCompositionLocalServiceImpl
 
 	@Reference
 	private CustomSQL _customSQL;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

@@ -17,8 +17,11 @@ package com.liferay.knowledge.base.service.impl;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.expando.kernel.model.ExpandoBridge;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.knowledge.base.configuration.KBGroupServiceConfiguration;
 import com.liferay.knowledge.base.constants.AdminActivityKeys;
 import com.liferay.knowledge.base.constants.KBArticleConstants;
@@ -79,7 +82,10 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.IndexWriterHelper;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistry;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.settings.GroupServiceSettingsLocator;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
@@ -101,6 +107,8 @@ import com.liferay.portal.kernel.view.count.ViewCountManager;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
+import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
+import com.liferay.social.kernel.service.SocialActivityLocalService;
 import com.liferay.subscription.model.Subscription;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
@@ -327,7 +335,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Subscriptions
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		List<Subscription> subscriptions =
 			_subscriptionLocalService.getSubscriptions(
@@ -365,7 +373,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		// KB comments
 
 		KBCommentUtil.deleteKBComments(
-			KBArticle.class.getName(), classNameLocalService,
+			KBArticle.class.getName(), _classNameLocalService,
 			kbArticle.getResourcePrimKey(), kbCommentPersistence);
 
 		// Asset
@@ -374,16 +382,16 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(kbArticle.getKbArticleId());
+		_expandoRowLocalService.deleteRows(kbArticle.getKbArticleId());
 
 		// Ratings
 
-		ratingsStatsLocalService.deleteStats(
+		_ratingsStatsLocalService.deleteStats(
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 
 		// Social
 
-		socialActivityLocalService.deleteActivities(
+		_socialActivityLocalService.deleteActivities(
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 
 		// Indexer
@@ -406,12 +414,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		_viewCountManager.deleteViewCount(
 			kbArticle.getCompanyId(),
-			classNameLocalService.getClassNameId(KBArticle.class),
+			_classNameLocalService.getClassNameId(KBArticle.class),
 			kbArticle.getPrimaryKey());
 
 		// Workflow
 
-		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+		_workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 			kbArticle.getCompanyId(), kbArticle.getGroupId(),
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 
@@ -930,7 +938,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		KBArticle kbArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-		long classNameId = classNameLocalService.getClassNameId(
+		long classNameId = _classNameLocalService.getClassNameId(
 			KBArticle.class);
 
 		_viewCountManager.incrementViewCount(
@@ -973,7 +981,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		updatePermissionFields(
 			resourcePrimKey, parentResourceClassNameId, parentResourcePrimKey);
 
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+		long kbFolderClassNameId = _classNameLocalService.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		long kbFolderId = KBFolderConstants.DEFAULT_PARENT_FOLDER_ID;
@@ -1033,7 +1041,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			"title", latestKBArticle.getTitle());
 
 		if (latestKBArticle.isApproved() || !latestKBArticle.isFirstVersion()) {
-			socialActivityLocalService.addActivity(
+			_socialActivityLocalService.addActivity(
 				userId, latestKBArticle.getGroupId(), KBArticle.class.getName(),
 				resourcePrimKey, AdminActivityKeys.MOVE_KB_ARTICLE,
 				extraDataJSONObject.toString(), 0);
@@ -1156,7 +1164,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			_viewCountManager.incrementViewCount(
 				kbArticle.getCompanyId(),
-				classNameLocalService.getClassNameId(KBArticle.class),
+				_classNameLocalService.getClassNameId(KBArticle.class),
 				kbArticle.getPrimaryKey(), (int)oldKBArticle.getViewCount());
 		}
 		else {
@@ -1227,7 +1235,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		String summary = HtmlUtil.extractText(
 			StringUtil.shorten(kbArticle.getContent(), 500));
 
-		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.updateEntry(
 			userId, kbArticle.getGroupId(), kbArticle.getCreateDate(),
 			kbArticle.getModifiedDate(), KBArticle.class.getName(),
 			kbArticle.getClassPK(), kbArticle.getUuid(), 0, assetCategoryIds,
@@ -1235,7 +1243,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			ContentTypes.TEXT_HTML, kbArticle.getTitle(),
 			kbArticle.getDescription(), summary, null, null, 0, 0, null);
 
-		assetLinkLocalService.updateLinks(
+		_assetLinkLocalService.updateLinks(
 			userId, assetEntry.getEntryId(), assetLinkEntryIds,
 			AssetLinkConstants.TYPE_RELATED);
 	}
@@ -1335,10 +1343,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Asset
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			KBArticle.class.getName(), kbArticle.getKbArticleId());
 
-		List<AssetLink> assetLinks = assetLinkLocalService.getDirectLinks(
+		List<AssetLink> assetLinks = _assetLinkLocalService.getDirectLinks(
 			assetEntry.getEntryId(), AssetLinkConstants.TYPE_RELATED);
 
 		long[] assetLinkEntryIds = StringUtil.split(
@@ -1351,14 +1359,14 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		SystemEventHierarchyEntryThreadLocal.push(KBArticle.class);
 
 		try {
-			assetEntryLocalService.deleteEntry(
+			_assetEntryLocalService.deleteEntry(
 				KBArticle.class.getName(), kbArticle.getKbArticleId());
 		}
 		finally {
 			SystemEventHierarchyEntryThreadLocal.pop(KBArticle.class);
 		}
 
-		assetEntryLocalService.updateVisible(
+		_assetEntryLocalService.updateVisible(
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey(), true);
 
 		// Social
@@ -1367,13 +1375,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			"title", kbArticle.getTitle());
 
 		if (!kbArticle.isFirstVersion()) {
-			socialActivityLocalService.addActivity(
+			_socialActivityLocalService.addActivity(
 				userId, kbArticle.getGroupId(), KBArticle.class.getName(),
 				resourcePrimKey, AdminActivityKeys.UPDATE_KB_ARTICLE,
 				extraDataJSONObject.toString(), 0);
 		}
 		else {
-			socialActivityLocalService.addActivity(
+			_socialActivityLocalService.addActivity(
 				userId, kbArticle.getGroupId(), KBArticle.class.getName(),
 				resourcePrimKey, AdminActivityKeys.ADD_KB_ARTICLE,
 				extraDataJSONObject.toString(), 0);
@@ -1517,11 +1525,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	protected void deleteAssets(KBArticle kbArticle) throws PortalException {
-		assetEntryLocalService.deleteEntry(
+		_assetEntryLocalService.deleteEntry(
 			KBArticle.class.getName(), kbArticle.getClassPK());
 
 		if (!kbArticle.isApproved() && !kbArticle.isFirstVersion()) {
-			assetEntryLocalService.deleteEntry(
+			_assetEntryLocalService.deleteEntry(
 				KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 		}
 	}
@@ -1659,7 +1667,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return resourcePrimKey;
 		}
 
-		long classNameId = classNameLocalService.getClassNameId(
+		long classNameId = _classNameLocalService.getClassNameId(
 			KBArticleConstants.getClassName());
 
 		if (parentResourceClassNameId == classNameId) {
@@ -1944,7 +1952,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		validateParent(parentResourceClassNameId, parentResourcePrimKey);
 
-		long kbArticleClassNameId = classNameLocalService.getClassNameId(
+		long kbArticleClassNameId = _classNameLocalService.getClassNameId(
 			KBArticleConstants.getClassName());
 
 		if (parentResourceClassNameId == kbArticleClassNameId) {
@@ -1971,9 +1979,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			long resourceClassNameId, long resourcePrimKey)
 		throws PortalException {
 
-		long kbArticleClassNameId = classNameLocalService.getClassNameId(
+		long kbArticleClassNameId = _classNameLocalService.getClassNameId(
 			KBArticleConstants.getClassName());
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+		long kbFolderClassNameId = _classNameLocalService.getClassNameId(
 			KBFolderConstants.getClassName());
 
 		if ((resourceClassNameId != kbArticleClassNameId) &&
@@ -1992,7 +2000,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			int status)
 		throws PortalException {
 
-		long kbFolderClassNameId = classNameLocalService.getClassNameId(
+		long kbFolderClassNameId = _classNameLocalService.getClassNameId(
 			KBFolder.class);
 
 		if (parentResourceClassNameId == kbFolderClassNameId) {
@@ -2071,10 +2079,25 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticleLocalServiceImpl.class);
 
 	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
+	private AssetLinkLocalService _assetLinkLocalService;
+
+	@Reference
+	private ClassNameLocalService _classNameLocalService;
+
+	@Reference
 	private ConfigurationProvider _configurationProvider;
 
 	@Reference
 	private DLURLHelper _dlURLHelper;
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
 
 	@Reference
 	private IndexerRegistry _indexerRegistry;
@@ -2092,9 +2115,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	private PortletFileRepository _portletFileRepository;
 
 	@Reference
+	private RatingsStatsLocalService _ratingsStatsLocalService;
+
+	@Reference
+	private SocialActivityLocalService _socialActivityLocalService;
+
+	@Reference
 	private SubscriptionLocalService _subscriptionLocalService;
 
 	@Reference
 	private ViewCountManager _viewCountManager;
+
+	@Reference
+	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
 
 }

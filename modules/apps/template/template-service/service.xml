@@ -44,9 +44,5 @@
 			<finder-column name="infoItemClassName" />
 			<finder-column name="infoItemFormVariationKey" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 </service-builder>

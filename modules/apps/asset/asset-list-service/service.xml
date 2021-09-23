@@ -71,13 +71,6 @@
 			<finder-column name="assetEntrySubtype" />
 			<finder-column name="assetEntryType" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AssetListEntryAssetEntryRel" package-path="com.liferay.asset.list" />
-		<reference entity="AssetListEntrySegmentsEntryRel" package-path="com.liferay.asset.list" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="AssetListEntryAssetEntryRel" remote-service="false" uuid="true">
 
@@ -130,10 +123,6 @@
 			<finder-column name="segmentsEntryId" />
 			<finder-column comparator="&gt;" name="position" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="AssetListEntrySegmentsEntryRel" remote-service="false" uuid="true">
 
@@ -172,10 +161,6 @@
 			<finder-column name="assetListEntryId" />
 			<finder-column name="segmentsEntryId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="AssetListEntryUsage" remote-service="false" uuid="true">
 
@@ -244,10 +229,6 @@
 			<finder-column name="key" />
 			<finder-column name="plid" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>AssetListEntryAssetEntryRelPostion</exception>

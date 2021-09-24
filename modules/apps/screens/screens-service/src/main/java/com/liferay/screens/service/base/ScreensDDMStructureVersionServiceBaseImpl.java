@@ -135,16 +135,6 @@ public abstract class ScreensDDMStructureVersionServiceBaseImpl
 		counterLocalService;
 
 	@Reference
-	protected
-		com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService
-			ddmStructureVersionLocalService;
-
-	@Reference
-	protected
-		com.liferay.dynamic.data.mapping.service.DDMStructureVersionService
-			ddmStructureVersionService;
-
-	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
 

@@ -132,18 +132,6 @@ public abstract class ScreensJournalArticleServiceBaseImpl
 		counterLocalService;
 
 	@Reference
-	protected com.liferay.journal.service.JournalArticleLocalService
-		journalArticleLocalService;
-
-	@Reference
-	protected com.liferay.journal.service.JournalArticleService
-		journalArticleService;
-
-	@Reference
-	protected com.liferay.journal.service.JournalArticleResourceLocalService
-		journalArticleResourceLocalService;
-
-	@Reference
 	protected com.liferay.portal.kernel.service.ClassNameLocalService
 		classNameLocalService;
 

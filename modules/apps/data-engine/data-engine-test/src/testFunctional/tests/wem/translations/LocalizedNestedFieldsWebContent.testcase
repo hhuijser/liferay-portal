@@ -375,7 +375,7 @@ definition {
 			locator1 = "FormFields#FIELD_REMOVE");
 	}
 
-	@description = "This test ensures that the language selector is succesfully displayed and functional on the Web Content."
+	@description = "This test ensures that the language selector is successfully displayed and functional on the Web Content."
 	@priority = "4"
 	test CheckLanguageSelector {
 		NavItem.gotoStructures();

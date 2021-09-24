@@ -60,7 +60,7 @@ const UnmappedRequiredObjectFields = ({fields}) => {
 				'unmapped-object-required-fields'
 			)}
 			title={Liferay.Language.get(
-				'to-save-this-form-all-required-field-of-the-selected-object-need-to-be-mapped'
+				'to-save-this-form-all-required-fields-of-the-selected-object-need-to-be-mapped'
 			)}
 		>
 			{requiredObjectFieldsGroupedByType.map(({fields, type}) => {

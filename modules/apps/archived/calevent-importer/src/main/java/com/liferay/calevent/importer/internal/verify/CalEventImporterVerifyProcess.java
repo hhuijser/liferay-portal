@@ -181,7 +181,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							"CalendarBooking: " + calendarBooking +
-								" imported sucessfully.");
+								" imported successfully.");
 					}
 				}
 			}

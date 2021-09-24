@@ -409,7 +409,7 @@ AUI.add(
 					'</a>';
 
 				var successMessage =
-					Liferay.Language.get('definition-imported-sucessfully') +
+					Liferay.Language.get('definition-imported-successfully') +
 					'&nbsp;';
 
 				successMessage += undoLink;

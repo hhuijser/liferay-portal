@@ -1005,7 +1005,7 @@ following conditions are met:
 ## 1.0.21 - 2016-08-15
 
 ### Commits
-- [LPS-66906] Stop retrying if Node.js completed succesfully (490ff7c860)
+- [LPS-66906] Stop retrying if Node.js completed successfully (490ff7c860)
 
 ## 1.0.20 - 2016-08-11
 

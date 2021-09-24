@@ -157,7 +157,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 						<aui:fieldset>
 							<div class="lfr-ddl-content">
 								<clay:sheet>
-									<aui:select helpMessage="select-the-display-template-used-to-diplay-the-list-records" label="display-template" name="preferences--displayDDMTemplateId--">
+									<aui:select helpMessage="select-the-display-template-used-to-display-the-list-records" label="display-template" name="preferences--displayDDMTemplateId--">
 										<aui:option label="default" value="<%= 0 %>" />
 
 										<%

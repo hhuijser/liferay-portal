@@ -74,7 +74,7 @@ alter(
 	new AlterColumnType("version", "DOUBLE"));
 ```
 
-#### String type is `null` or `not null`
+#### String type does not have `null` or `not null`
 
 Incorrect:
 

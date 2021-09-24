@@ -17,14 +17,18 @@ package com.liferay.screens.service.impl;
 import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.asset.kernel.service.persistence.AssetEntryQuery;
 import com.liferay.asset.publisher.util.AssetPublisherHelper;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleResource;
+import com.liferay.journal.service.JournalArticleLocalService;
+import com.liferay.journal.service.JournalArticleResourceLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
@@ -49,6 +53,9 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionFactory;
+import com.liferay.portal.kernel.service.LayoutLocalService;
+import com.liferay.portal.kernel.service.PortletItemLocalService;
+import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -85,7 +92,7 @@ public class ScreensAssetEntryServiceImpl
 			AssetEntryQuery assetEntryQuery, Locale locale)
 		throws PortalException {
 
-		List<AssetEntry> assetEntries = assetEntryLocalService.getEntries(
+		List<AssetEntry> assetEntries = _assetEntryLocalService.getEntries(
 			assetEntryQuery);
 
 		assetEntries = filterAssetEntries(assetEntries);
@@ -108,7 +115,7 @@ public class ScreensAssetEntryServiceImpl
 
 		dynamicQuery.setLimit(0, 1);
 
-		List<PortletItem> portletItems = portletItemLocalService.dynamicQuery(
+		List<PortletItem> portletItems = _portletItemLocalService.dynamicQuery(
 			dynamicQuery);
 
 		if (portletItems.isEmpty()) {
@@ -120,7 +127,7 @@ public class ScreensAssetEntryServiceImpl
 		PortletItem portletItem = portletItems.get(0);
 
 		PortletPreferences portletPreferences =
-			portletPreferencesLocalService.getPreferences(
+			_portletPreferencesLocalService.getPreferences(
 				portletItem.getCompanyId(), portletItem.getPortletItemId(),
 				PortletKeys.PREFS_OWNER_TYPE_ARCHIVED, 0,
 				portletItem.getPortletId());
@@ -133,7 +140,7 @@ public class ScreensAssetEntryServiceImpl
 				max = 500;
 			}
 
-			List<Layout> layouts = layoutLocalService.getLayouts(companyId);
+			List<Layout> layouts = _layoutLocalService.getLayouts(companyId);
 
 			if (!layouts.isEmpty()) {
 				AssetEntryQuery assetEntryQuery =
@@ -145,7 +152,7 @@ public class ScreensAssetEntryServiceImpl
 				assetEntryQuery.setStart(0);
 
 				List<AssetEntry> assetEntries =
-					assetEntryLocalService.getEntries(assetEntryQuery);
+					_assetEntryLocalService.getEntries(assetEntryQuery);
 
 				assetEntries = filterAssetEntries(assetEntries);
 
@@ -180,7 +187,7 @@ public class ScreensAssetEntryServiceImpl
 	public JSONObject getAssetEntry(long entryId, Locale locale)
 		throws PortalException {
 
-		AssetEntry entry = assetEntryLocalService.getEntry(entryId);
+		AssetEntry entry = _assetEntryLocalService.getEntry(entryId);
 
 		AssetEntryPermission.check(
 			getPermissionChecker(), entry, ActionKeys.VIEW);
@@ -197,7 +204,7 @@ public class ScreensAssetEntryServiceImpl
 			getPermissionChecker(), className, classPK, ActionKeys.VIEW);
 
 		return toJSONObject(
-			assetEntryLocalService.getEntry(className, classPK), locale);
+			_assetEntryLocalService.getEntry(className, classPK), locale);
 	}
 
 	protected List<AssetEntry> filterAssetEntries(
@@ -271,7 +278,7 @@ public class ScreensAssetEntryServiceImpl
 	protected JSONObject getFileEntryJSONObject(AssetEntry assetEntry)
 		throws PortalException {
 
-		FileEntry fileEntry = dlAppService.getFileEntry(
+		FileEntry fileEntry = _dlAppService.getFileEntry(
 			assetEntry.getClassPK());
 
 		return JSONUtil.put(
@@ -301,7 +308,7 @@ public class ScreensAssetEntryServiceImpl
 			getPermissionChecker(), assetEntry.getClassPK(), ActionKeys.VIEW);
 
 		try {
-			journalArticle = journalArticleLocalService.getArticle(
+			journalArticle = _journalArticleLocalService.getArticle(
 				assetEntry.getClassPK());
 		}
 		catch (Exception exception) {
@@ -310,10 +317,10 @@ public class ScreensAssetEntryServiceImpl
 			}
 
 			JournalArticleResource journalArticleResource =
-				journalArticleResourceLocalService.getArticleResource(
+				_journalArticleResourceLocalService.getArticleResource(
 					assetEntry.getClassPK());
 
-			journalArticle = journalArticleLocalService.getLatestArticle(
+			journalArticle = _journalArticleLocalService.getLatestArticle(
 				journalArticleResource.getGroupId(),
 				journalArticleResource.getArticleId());
 		}
@@ -396,13 +403,35 @@ public class ScreensAssetEntryServiceImpl
 				"_journalArticleModelResourcePermission", JournalArticle.class);
 
 	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
 	private AssetPublisherHelper _assetPublisherHelper;
 
 	@Reference
 	private BlogsEntryService _blogsEntryService;
 
 	@Reference
+	private DLAppService _dlAppService;
+
+	@Reference
+	private JournalArticleLocalService _journalArticleLocalService;
+
+	@Reference
+	private JournalArticleResourceLocalService
+		_journalArticleResourceLocalService;
+
+	@Reference
+	private LayoutLocalService _layoutLocalService;
+
+	@Reference
 	private Portal _portal;
+
+	@Reference
+	private PortletItemLocalService _portletItemLocalService;
+
+	@Reference
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 	@Reference
 	private ScreensDDLRecordService _screensDDLRecordService;

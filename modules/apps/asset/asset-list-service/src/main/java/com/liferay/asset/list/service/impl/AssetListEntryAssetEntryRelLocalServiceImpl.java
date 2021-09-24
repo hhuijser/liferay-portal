@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -70,7 +71,7 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 			throw new AssetListEntryAssetEntryRelPostionException();
 		}
 
-		User user = userLocalService.getUser(serviceContext.getUserId());
+		User user = _userLocalService.getUser(serviceContext.getUserId());
 
 		long assetListEntryAssetEntryRelId = counterLocalService.increment();
 
@@ -464,5 +465,8 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 
 	@Reference
 	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

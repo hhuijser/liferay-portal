@@ -57,6 +57,7 @@ import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
 import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistry;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
@@ -267,7 +268,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 		objectDefinitionPersistence.remove(objectDefinition);
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			objectDefinition.getCompanyId(), ObjectDefinition.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			objectDefinition.getObjectDefinitionId());
@@ -619,7 +620,7 @@ public class ObjectDefinitionLocalServiceImpl
 
 		objectDefinition = objectDefinitionPersistence.update(objectDefinition);
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			objectDefinition.getCompanyId(), 0, objectDefinition.getUserId(),
 			ObjectDefinition.class.getName(),
 			objectDefinition.getObjectDefinitionId(), false, true, true);
@@ -1028,6 +1029,9 @@ public class ObjectDefinitionLocalServiceImpl
 
 	@Reference
 	private ResourceActions _resourceActions;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
 
 	private final Map
 		<ObjectDefinitionDeployer, Map<Long, List<ServiceRegistration<?>>>>

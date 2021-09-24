@@ -31,6 +31,9 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
+import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -189,7 +192,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 			String entryURL, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Company company = companyLocalService.getCompany(companyId);
+		Company company = _companyLocalService.getCompany(companyId);
 
 		String name = company.getName();
 
@@ -352,7 +355,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 			String entryURL, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
 		String name = group.getDescriptiveName();
 
@@ -499,7 +502,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 			String entryURL, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Organization organization = organizationLocalService.getOrganization(
+		Organization organization = _organizationLocalService.getOrganization(
 			organizationId);
 
 		String name = organization.getName();
@@ -688,6 +691,15 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 	)
 	private volatile ModelResourcePermission<BlogsEntry>
 		_blogsEntryModelResourcePermission;
+
+	@Reference
+	private CompanyLocalService _companyLocalService;
+
+	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
+	private OrganizationLocalService _organizationLocalService;
 
 	@Reference
 	private Portal _portal;

@@ -23,6 +23,8 @@ import com.liferay.fragment.processor.DefaultFragmentEntryProcessorContext;
 import com.liferay.fragment.processor.FragmentEntryProcessorContext;
 import com.liferay.fragment.processor.FragmentEntryProcessorRegistry;
 import com.liferay.fragment.service.base.FragmentEntryLinkLocalServiceBaseImpl;
+import com.liferay.fragment.service.persistence.FragmentCollectionPersistence;
+import com.liferay.fragment.service.persistence.FragmentEntryPersistence;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -41,6 +43,7 @@ import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -108,7 +111,7 @@ public class FragmentEntryLinkLocalServiceImpl
 			String rendererKey, ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		long fragmentEntryLinkId = counterLocalService.increment();
 
@@ -577,7 +580,7 @@ public class FragmentEntryLinkLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		FragmentEntryLink fragmentEntryLink = fetchFragmentEntryLink(
 			fragmentEntryLinkId);
@@ -670,7 +673,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		for (long fragmentId : fragmentEntryIds) {
 			FragmentEntry fragmentEntry =
-				fragmentEntryPersistence.fetchByPrimaryKey(fragmentId);
+				_fragmentEntryPersistence.fetchByPrimaryKey(fragmentId);
 
 			addFragmentEntryLink(
 				userId, groupId, 0, fragmentEntry.getFragmentEntryId(),
@@ -712,8 +715,9 @@ public class FragmentEntryLinkLocalServiceImpl
 		FragmentEntryLink fragmentEntryLink =
 			fragmentEntryLinkPersistence.findByPrimaryKey(fragmentEntryLinkId);
 
-		FragmentEntry fragmentEntry = fragmentEntryPersistence.findByPrimaryKey(
-			fragmentEntryLink.getFragmentEntryId());
+		FragmentEntry fragmentEntry =
+			_fragmentEntryPersistence.findByPrimaryKey(
+				fragmentEntryLink.getFragmentEntryId());
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -831,14 +835,14 @@ public class FragmentEntryLinkLocalServiceImpl
 		throws PortalException {
 
 		FragmentEntry fragmentEntry =
-			fragmentEntryPersistence.fetchByPrimaryKey(fragmentEntryId);
+			_fragmentEntryPersistence.fetchByPrimaryKey(fragmentEntryId);
 
 		if (fragmentEntry == null) {
 			return html;
 		}
 
 		FragmentCollection fragmentCollection =
-			fragmentCollectionPersistence.fetchByPrimaryKey(
+			_fragmentCollectionPersistence.fetchByPrimaryKey(
 				fragmentEntry.getFragmentCollectionId());
 
 		Matcher matcher = _pattern.matcher(html);
@@ -897,6 +901,12 @@ public class FragmentEntryLinkLocalServiceImpl
 	private DLURLHelper _dlURLHelper;
 
 	@Reference
+	private FragmentCollectionPersistence _fragmentCollectionPersistence;
+
+	@Reference
+	private FragmentEntryPersistence _fragmentEntryPersistence;
+
+	@Reference
 	private FragmentEntryProcessorRegistry _fragmentEntryProcessorRegistry;
 
 	@Reference
@@ -907,5 +917,8 @@ public class FragmentEntryLinkLocalServiceImpl
 
 	@Reference
 	private Portal _portal;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

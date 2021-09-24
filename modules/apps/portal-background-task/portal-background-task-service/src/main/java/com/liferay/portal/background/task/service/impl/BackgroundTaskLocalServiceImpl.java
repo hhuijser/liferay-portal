@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.model.UserConstants;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -698,7 +699,7 @@ public class BackgroundTaskLocalServiceImpl
 		User user = null;
 
 		if (userId != UserConstants.USER_ID_DEFAULT) {
-			user = userLocalService.fetchUser(userId);
+			user = _userLocalService.fetchUser(userId);
 		}
 
 		final long backgroundTaskId = counterLocalService.increment();
@@ -770,5 +771,8 @@ public class BackgroundTaskLocalServiceImpl
 
 	@Reference
 	private MessageBus _messageBus;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

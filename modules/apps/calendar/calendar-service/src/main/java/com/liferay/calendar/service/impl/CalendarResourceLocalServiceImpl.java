@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.service.impl;
 
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.calendar.configuration.CalendarServiceConfigurationValues;
 import com.liferay.calendar.exception.CalendarResourceCodeException;
 import com.liferay.calendar.exception.CalendarResourceNameException;
@@ -275,7 +276,7 @@ public class CalendarResourceLocalServiceImpl
 			long[] assetCategoryIds, String[] assetTagNames, Double priority)
 		throws PortalException {
 
-		assetEntryLocalService.updateEntry(
+		_assetEntryLocalService.updateEntry(
 			userId, calendarResource.getGroupId(),
 			calendarResource.getCreateDate(),
 			calendarResource.getModifiedDate(),
@@ -365,6 +366,9 @@ public class CalendarResourceLocalServiceImpl
 			throw new CalendarResourceNameException();
 		}
 	}
+
+	@Reference
+	private AssetEntryLocalService _assetEntryLocalService;
 
 	@Reference
 	private CalendarLocalService _calendarLocalService;

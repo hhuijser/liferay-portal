@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.permission.OrganizationPermission;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -144,7 +145,7 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 
 		if (!permissionChecker.isCompanyAdmin()) {
 			try {
-				User user = userLocalService.getUser(
+				User user = _userLocalService.getUser(
 					permissionChecker.getUserId());
 
 				BaseModelSearchResult<Organization> baseModelSearchResult =
@@ -237,5 +238,8 @@ public class AccountEntryServiceImpl extends AccountEntryServiceBaseImpl {
 		target = "(resource.name=" + AccountConstants.RESOURCE_NAME + ")"
 	)
 	private volatile PortletResourcePermission _portletResourcePermission;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

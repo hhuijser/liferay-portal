@@ -55,6 +55,8 @@ import com.liferay.portal.kernel.repository.RepositoryFactory;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Http;
@@ -174,7 +176,7 @@ public class OAuth2ApplicationLocalServiceImpl
 					getOAuth2ApplicationScopeAliasesId());
 		}
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			oAuth2Application.getCompanyId(), 0, oAuth2Application.getUserId(),
 			OAuth2Application.class.getName(),
 			oAuth2Application.getOAuth2ApplicationId(), false, false, false);
@@ -263,7 +265,7 @@ public class OAuth2ApplicationLocalServiceImpl
 					getOAuth2ApplicationScopeAliasesId());
 		}
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			oAuth2Application.getCompanyId(), 0, oAuth2Application.getUserId(),
 			OAuth2Application.class.getName(),
 			oAuth2Application.getOAuth2ApplicationId(), false, false, false);
@@ -430,7 +432,7 @@ public class OAuth2ApplicationLocalServiceImpl
 			return oAuth2Application;
 		}
 
-		Group group = groupLocalService.getCompanyGroup(
+		Group group = _groupLocalService.getCompanyGroup(
 			oAuth2Application.getCompanyId());
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -442,7 +444,8 @@ public class OAuth2ApplicationLocalServiceImpl
 			serviceContext);
 
 		Folder folder = _portletFileRepository.addPortletFolder(
-			userLocalService.getDefaultUserId(oAuth2Application.getCompanyId()),
+			_userLocalService.getDefaultUserId(
+				oAuth2Application.getCompanyId()),
 			repository.getRepositoryId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "icons",
 			serviceContext);
@@ -853,6 +856,9 @@ public class OAuth2ApplicationLocalServiceImpl
 		});
 
 	@Reference
+	private GroupLocalService _groupLocalService;
+
+	@Reference
 	private Http _http;
 
 	@Reference(
@@ -874,6 +880,9 @@ public class OAuth2ApplicationLocalServiceImpl
 		target = "(class.name=com.liferay.portal.repository.portletrepository.PortletRepository)"
 	)
 	private RepositoryFactory _repositoryFactory;
+
+	@Reference
+	private ResourceLocalService _resourceLocalService;
 
 	@Reference
 	private UserLocalService _userLocalService;

@@ -52,6 +52,7 @@ import com.liferay.wiki.exception.NoSuchPageException;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.base.WikiPageServiceBaseImpl;
+import com.liferay.wiki.service.persistence.WikiNodePersistence;
 import com.liferay.wiki.util.comparator.PageCreateDateComparator;
 
 import java.io.File;
@@ -184,7 +185,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			InputStream inputStream, String mimeType)
 		throws PortalException {
 
-		WikiNode node = wikiNodePersistence.findByPrimaryKey(nodeId);
+		WikiNode node = _wikiNodePersistence.findByPrimaryKey(nodeId);
 
 		_wikiNodeModelResourcePermission.check(
 			getPermissionChecker(), node, ActionKeys.ADD_ATTACHMENT);
@@ -279,7 +280,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			long nodeId, String folderName, String fileName)
 		throws PortalException {
 
-		WikiNode node = wikiNodePersistence.findByPrimaryKey(nodeId);
+		WikiNode node = _wikiNodePersistence.findByPrimaryKey(nodeId);
 
 		_wikiNodeModelResourcePermission.check(
 			getPermissionChecker(), node, ActionKeys.ADD_ATTACHMENT);
@@ -444,7 +445,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		_wikiNodeModelResourcePermission.check(
 			getPermissionChecker(), nodeId, ActionKeys.VIEW);
 
-		WikiNode node = wikiNodePersistence.findByPrimaryKey(nodeId);
+		WikiNode node = _wikiNodePersistence.findByPrimaryKey(nodeId);
 
 		List<WikiPage> pages = getNodePages(nodeId, max);
 
@@ -687,7 +688,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 	public String[] getTempFileNames(long nodeId, String folderName)
 		throws PortalException {
 
-		WikiNode node = wikiNodePersistence.findByPrimaryKey(nodeId);
+		WikiNode node = _wikiNodePersistence.findByPrimaryKey(nodeId);
 
 		_wikiNodeModelResourcePermission.check(
 			getPermissionChecker(), node, ActionKeys.ADD_ATTACHMENT);
@@ -1014,6 +1015,9 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiNode)")
 	private ModelResourcePermission<WikiNode> _wikiNodeModelResourcePermission;
+
+	@Reference
+	private WikiNodePersistence _wikiNodePersistence;
 
 	@Reference(target = "(model.class.name=com.liferay.wiki.model.WikiPage)")
 	private ModelResourcePermission<WikiPage> _wikiPageModelResourcePermission;

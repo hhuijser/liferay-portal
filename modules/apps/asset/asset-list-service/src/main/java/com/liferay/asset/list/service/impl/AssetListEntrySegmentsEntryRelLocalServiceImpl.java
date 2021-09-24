@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 
 import java.util.Date;
@@ -47,7 +48,7 @@ public class AssetListEntrySegmentsEntryRelLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		long assetListEntrySegmentsEntryRelId = counterLocalService.increment();
 
@@ -184,5 +185,8 @@ public class AssetListEntrySegmentsEntryRelLocalServiceImpl
 	@Reference
 	private AssetListEntryAssetEntryRelPersistence
 		_assetListEntryAssetEntryRelPersistence;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

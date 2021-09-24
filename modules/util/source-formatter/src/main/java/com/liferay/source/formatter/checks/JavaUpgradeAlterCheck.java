@@ -235,7 +235,7 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 	};
 
 	private static final Pattern _alterColumnTypePattern = Pattern.compile(
-		"AlterColumnType\\(\\s*\"(\\w+)\",\\s*\"((\\w+).+)\"\\)");
+		"AlterColumnType\\(\\s*\"(\\w+)\",\\s*\"((\\w+).*)\"\\)");
 	private static final Pattern _alterObjectPattern = Pattern.compile(
 		"new (Alter\\w+)\\(");
 	private static final Pattern _alterPattern = Pattern.compile(

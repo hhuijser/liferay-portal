@@ -63,10 +63,6 @@
 			<finder-column name="system" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Resource" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="ObjectEntry" remote-service="true" uuid="true">
 

@@ -74,12 +74,6 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DDMDataProviderInstanceLink" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DDMDataProviderInstanceLink" remote-service="false">
 
@@ -225,14 +219,6 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="groupId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DDMFormInstanceVersion" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="WorkflowDefinitionLink" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DDMFormInstanceRecord" remote-service="true" uuid="true">
 
@@ -279,14 +265,6 @@
 			<finder-column name="formInstanceId" />
 			<finder-column name="formInstanceVersion" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DDMFormInstance" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="DDMFormInstanceRecordVersion" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="User" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 	</entity>
 	<entity local-service="true" name="DDMFormInstanceRecordVersion" remote-service="true">
 
@@ -440,9 +418,6 @@
 		<finder name="StructureVersionId" return-type="Collection">
 			<finder-column arrayable-operator="OR" name="structureVersionId" />
 		</finder>
-
-		<!-- References -->
-
 	</entity>
 	<entity local-service="true" name="DDMStructure" remote-service="true" uuid="true">
 
@@ -516,17 +491,6 @@
 			<finder-column name="name" />
 			<finder-column name="description" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DDMDataProviderInstanceLink" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="DDMStructureLayout" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="DDMStructureLink" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="DDMStructureVersion" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="DDMTemplate" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="ClassName" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DDMStructureLayout" remote-service="true" uuid="true">
 
@@ -580,10 +544,6 @@
 			<finder-column name="classNameId" />
 			<finder-column name="structureVersionId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DDMStructureLink" remote-service="false">
 
@@ -757,14 +717,6 @@
 			<finder-column name="type" />
 			<finder-column name="mode" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DDMTemplateLink" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="DDMTemplateVersion" package-path="com.liferay.dynamic.data.mapping" />
-		<reference entity="Image" package-path="com.liferay.portal" />
-		<reference entity="Resource" package-path="com.liferay.portal" />
-		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="DDMTemplateLink" remote-service="false">
 

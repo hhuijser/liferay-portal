@@ -14,15 +14,24 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaClassParser;
+import com.liferay.source.formatter.parser.JavaTerm;
+import com.liferay.source.formatter.parser.JavaVariable;
+import com.liferay.source.formatter.util.FileUtil;
+
+import java.io.File;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,36 +62,49 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 			List<String> parameterList = JavaSourceUtil.getParameterList(
 				_getMethodCall(content, matcher1.start()));
 
-			ListIterator<String> iterator = parameterList.listIterator(1);
+			String tableName = null;
 
-			while (iterator.hasNext()) {
-				String alterObject = iterator.next();
+			Matcher matcher2 = _alterTableClassPattern.matcher(
+				parameterList.get(0));
 
-				Matcher matcher3 = _alterObjectPattern.matcher(alterObject);
-
-				while (matcher3.find()) {
-					String alterType = matcher3.group(1);
-
-					int pos = content.indexOf(alterObject, matcher1.start());
-
-					if (Objects.equals(alterType, "AlterColumnType")) {
-						_checkAlterColumnType(
-							pos, fileName, content, alterObject);
-					}
-				}
+			if (matcher2.find()) {
+				tableName = matcher2.group(1);
 			}
+
+			_checkAlterObjects(
+				tableName, fileName, content,
+				parameterList.subList(1, parameterList.size()));
 		}
 
 		return content;
 	}
 
 	private void _checkAlterColumnType(
-		int pos, String fileName, String fileContent, String content) {
+			int start, String tableName, String fileName, String content,
+			String alterObject)
+		throws Exception {
 
-		Matcher matcher = _alterColumnTypePattern.matcher(content);
+		Matcher matcher = _alterColumnTypePattern.matcher(alterObject);
 
 		if (!matcher.find()) {
 			return;
+		}
+
+		String columnName = matcher.group(1);
+
+		if (tableName != null) {
+			Set<String> columnNames = _readColumnNamesFromTableClass(
+				tableName, fileName);
+
+			if ((columnNames != null) && !columnNames.contains(columnName)) {
+				String message = String.format(
+					"The column \"%s\" does not exist in table \"%s\"",
+					columnName, tableName);
+
+				addMessage(
+					fileName, message,
+					getLineNumber(content, start + matcher.start(1)));
+			}
 		}
 
 		String dataType = matcher.group(3);
@@ -94,7 +116,7 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 
 			addMessage(
 				fileName, message,
-				getLineNumber(fileContent, pos + matcher.start(3)));
+				getLineNumber(content, start + matcher.start(3)));
 
 			return;
 		}
@@ -108,11 +130,32 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 		if (!(newType.contains("null") || newType.contains("not null"))) {
 			String message = String.format(
 				"Specify whether the new type for \"%s\" is nullable",
-				matcher.group(1));
+				columnName);
 
 			addMessage(
 				fileName, message,
-				getLineNumber(fileContent, pos + matcher.start(2)));
+				getLineNumber(content, start + matcher.start(2)));
+		}
+	}
+
+	private void _checkAlterObjects(
+			String tableName, String fileName, String content,
+			List<String> alterObjects)
+		throws Exception {
+
+		for (String alterObject : alterObjects) {
+			Matcher matcher = _alterObjectPattern.matcher(alterObject);
+
+			while (matcher.find()) {
+				String alterType = matcher.group(1);
+
+				int pos = content.indexOf(alterObject, matcher.start());
+
+				if (Objects.equals(alterType, "AlterColumnType")) {
+					_checkAlterColumnType(
+						pos, tableName, fileName, content, alterObject);
+				}
+			}
 		}
 	}
 
@@ -134,6 +177,56 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 		}
 	}
 
+	private Set<String> _readColumnNamesFromTableClass(
+			String tableName, String absolutePath)
+		throws Exception {
+
+		int x = absolutePath.lastIndexOf("/");
+
+		if (x == -1) {
+			return null;
+		}
+
+		String fileName = StringBundler.concat(
+			absolutePath.substring(0, x), "/util/", tableName, "Table.java");
+
+		if (!FileUtil.exists(fileName)) {
+			return null;
+		}
+
+		String fileContent = FileUtil.read(new File(fileName));
+
+		if (!fileContent.contains("@generated")) {
+			return null;
+		}
+
+		JavaClass javaClass = JavaClassParser.parseJavaClass(
+			fileName, fileContent);
+
+		for (JavaTerm javaTerm : javaClass.getChildJavaTerms()) {
+			if (!javaTerm.isJavaVariable()) {
+				continue;
+			}
+
+			JavaVariable javaVariable = (JavaVariable)javaTerm;
+
+			if (Objects.equals(javaVariable.getName(), "TABLE_COLUMNS")) {
+				Set<String> columnNames = new HashSet<>();
+
+				Matcher matcher = _stringPattern.matcher(
+					javaVariable.getContent());
+
+				while (matcher.find()) {
+					columnNames.add(matcher.group(1));
+				}
+
+				return columnNames;
+			}
+		}
+
+		return null;
+	}
+
 	private static final String[] _STRING_TYPES = {"STRING", "TEXT", "VARCHAR"};
 
 	private static final String[] _VALID_TYPES = {
@@ -147,5 +240,8 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 		"new (Alter\\w+)\\(");
 	private static final Pattern _alterPattern = Pattern.compile(
 		"alter\\(\\s*");
+	private static final Pattern _alterTableClassPattern = Pattern.compile(
+		"(\\w+)Table\\.class");
+	private static final Pattern _stringPattern = Pattern.compile("\"(\\w+)\"");
 
 }

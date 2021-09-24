@@ -196,7 +196,7 @@ DiagramHeader.propTypes = {
 			selectedColor: PropTypes.string,
 			useNative: PropTypes.bool,
 		}),
-		defautlRadius: PropTypes.number,
+		defaultRadius: PropTypes.number,
 	}),
 	radiusChoice: PropTypes.arrayOf(
 		PropTypes.shape({

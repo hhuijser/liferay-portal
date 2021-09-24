@@ -142,7 +142,7 @@ AssetRenderer<JournalArticle> assetRenderer = assetRendererFactory.getAssetRende
 					Liferay.Util.openToast({
 						container: form,
 						message:
-							'<%= HtmlUtil.escapeJS(LanguageUtil.get(resourceBundle, "changing-the-template-will-not-affect-the-original-web-content-defautl-template.-the-change-only-applies-to-this-web-content-display")) %>',
+							'<%= HtmlUtil.escapeJS(LanguageUtil.get(resourceBundle, "changing-the-template-will-not-affect-the-original-web-content-default-template.-the-change-only-applies-to-this-web-content-display")) %>',
 						type: 'info',
 					});
 				},

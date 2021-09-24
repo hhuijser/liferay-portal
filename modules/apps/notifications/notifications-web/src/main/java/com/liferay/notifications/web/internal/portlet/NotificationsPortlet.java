@@ -309,7 +309,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 
 		_addSuccessMessage(
-			actionRequest, "your-configuration-was-saved-sucessfully");
+			actionRequest, "your-configuration-was-saved-successfully");
 
 		_sendRedirect(actionRequest, actionResponse);
 	}

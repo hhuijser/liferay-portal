@@ -381,7 +381,7 @@ public class ExpandoValueLocalServiceImpl
 	public ExpandoValue addValue(
 			long companyId, String className, String tableName,
 			String columnName, long classPK, Map<Locale, ?> dataMap,
-			Locale defautlLocale)
+			Locale defaultLocale)
 		throws PortalException {
 
 		ExpandoTable table = expandoTableLocalService.getTable(
@@ -399,10 +399,10 @@ public class ExpandoValueLocalServiceImpl
 
 		if (type == ExpandoColumnConstants.STRING_ARRAY_LOCALIZED) {
 			value.setStringArrayMap(
-				(Map<Locale, String[]>)dataMap, defautlLocale);
+				(Map<Locale, String[]>)dataMap, defaultLocale);
 		}
 		else {
-			value.setStringMap((Map<Locale, String>)dataMap, defautlLocale);
+			value.setStringMap((Map<Locale, String>)dataMap, defaultLocale);
 		}
 
 		return expandoValueLocalService.addValue(

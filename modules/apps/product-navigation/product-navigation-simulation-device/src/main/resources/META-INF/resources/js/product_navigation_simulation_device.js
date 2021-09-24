@@ -368,7 +368,7 @@ AUI.add(
 								id: instance._dialogId,
 								iframeId: 'simulationDeviceIframe',
 								title: Liferay.Language.get(
-									'simulation-peview'
+									'simulation-preview'
 								),
 								uri: Liferay.Util.addParams(
 									'p_l_mode=preview',

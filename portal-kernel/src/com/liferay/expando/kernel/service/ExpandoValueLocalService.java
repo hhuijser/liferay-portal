@@ -160,7 +160,7 @@ public interface ExpandoValueLocalService
 	public ExpandoValue addValue(
 			long companyId, String className, String tableName,
 			String columnName, long classPK, Map<Locale, ?> dataMap,
-			Locale defautlLocale)
+			Locale defaultLocale)
 		throws PortalException;
 
 	public ExpandoValue addValue(

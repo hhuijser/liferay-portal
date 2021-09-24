@@ -415,7 +415,7 @@
 									</svg>
 								</span>
 
-								<strong class="lead"><liferay-ui:message key="success-colon" /></strong><liferay-ui:message key="your-configuration-was-saved-sucessfully" />
+								<strong class="lead"><liferay-ui:message key="success-colon" /></strong><liferay-ui:message key="your-configuration-was-saved-successfully" />
 							</div>
 
 							<p class="lfr-setup-notice">

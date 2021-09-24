@@ -27,7 +27,7 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 	navigationItems="<%= layoutPageTemplatesAdminDisplayContext.getNavigationItems() %>"
 />
 
-<liferay-ui:success key="layoutPageTemplatePublished" message="the-page-template-was-published-succesfully" />
+<liferay-ui:success key="layoutPageTemplatePublished" message="the-page-template-was-published-successfully" />
 
 <clay:container-fluid
 	cssClass="container-view"

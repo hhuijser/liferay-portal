@@ -148,7 +148,7 @@ renderResponse.setTitle(HtmlUtil.escape(selLayout.getName(locale)));
 				</clay:sheet-header>
 
 				<clay:sheet-section>
-					<liferay-ui:success key="layoutAdded" message="the-page-was-created-succesfully" />
+					<liferay-ui:success key="layoutAdded" message="the-page-was-created-successfully" />
 
 					<liferay-ui:error exception="<%= LayoutTypeException.class %>">
 

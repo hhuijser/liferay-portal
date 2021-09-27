@@ -56,7 +56,6 @@ import com.liferay.portal.kernel.search.generic.TermQueryImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
@@ -68,7 +67,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * @author Jorge Ferrer
@@ -327,20 +325,21 @@ public class ObjectEntrySingleFormVariationInfoCollectionProvider
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			serviceContext.getLocale(), getClass());
-
 		options.add(
 			new SelectInfoFieldType.Option(
-				LanguageUtil.get(resourceBundle, "choose-an-option"), ""));
+				LanguageUtil.get(
+					serviceContext.getLocale(), "choose-an-option"),
+				""));
 
 		if (Objects.equals(objectField.getType(), "Boolean")) {
 			options.add(
 				new SelectInfoFieldType.Option(
-					LanguageUtil.get(resourceBundle, "true"), "true"));
+					LanguageUtil.get(serviceContext.getLocale(), "true"),
+					"true"));
 			options.add(
 				new SelectInfoFieldType.Option(
-					LanguageUtil.get(resourceBundle, "false"), "false"));
+					LanguageUtil.get(serviceContext.getLocale(), "false"),
+					"false"));
 		}
 		else if (objectField.getListTypeDefinitionId() != 0) {
 			options.addAll(

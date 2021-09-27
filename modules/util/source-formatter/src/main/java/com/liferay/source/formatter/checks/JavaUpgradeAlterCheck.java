@@ -28,8 +28,10 @@ import com.liferay.source.formatter.util.FileUtil;
 import java.io.File;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -56,6 +58,8 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 			return content;
 		}
 
+		_columnNamesByTables.clear();
+
 		Matcher matcher1 = _alterPattern.matcher(content);
 
 		while (matcher1.find()) {
@@ -69,6 +73,10 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 
 			if (matcher2.find()) {
 				tableName = matcher2.group(1);
+
+				if (!_columnNamesByTables.containsKey(tableName)) {
+					_readColumnNamesFromTableClass(tableName, absolutePath);
+				}
 			}
 
 			_checkAlterObjects(
@@ -80,9 +88,8 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 	}
 
 	private void _checkAlterColumnType(
-			int start, String tableName, String fileName, String content,
-			String alterObject)
-		throws Exception {
+		int start, String tableName, String fileName, String content,
+		String alterObject) {
 
 		Matcher matcher = _alterColumnTypePattern.matcher(alterObject);
 
@@ -92,11 +99,12 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 
 		String columnName = matcher.group(1);
 
-		if (tableName != null) {
-			Set<String> columnNames = _readColumnNamesFromTableClass(
-				tableName, fileName);
+		if ((tableName != null) &&
+			_columnNamesByTables.containsKey(tableName)) {
 
-			if ((columnNames != null) && !columnNames.contains(columnName)) {
+			Set<String> columnNames = _columnNamesByTables.get(tableName);
+
+			if (!columnNames.contains(columnName)) {
 				String message = String.format(
 					"The column \"%s\" does not exist in table \"%s\"",
 					columnName, tableName);
@@ -139,9 +147,8 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 	}
 
 	private void _checkAlterObjects(
-			String tableName, String fileName, String content,
-			List<String> alterObjects)
-		throws Exception {
+		String tableName, String fileName, String content,
+		List<String> alterObjects) {
 
 		for (String alterObject : alterObjects) {
 			Matcher matcher = _alterObjectPattern.matcher(alterObject);
@@ -177,27 +184,27 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 		}
 	}
 
-	private Set<String> _readColumnNamesFromTableClass(
+	private void _readColumnNamesFromTableClass(
 			String tableName, String absolutePath)
 		throws Exception {
 
 		int x = absolutePath.lastIndexOf("/");
 
 		if (x == -1) {
-			return null;
+			return;
 		}
 
 		String fileName = StringBundler.concat(
 			absolutePath.substring(0, x), "/util/", tableName, "Table.java");
 
 		if (!FileUtil.exists(fileName)) {
-			return null;
+			return;
 		}
 
 		String fileContent = FileUtil.read(new File(fileName));
 
 		if (!fileContent.contains("@generated")) {
-			return null;
+			return;
 		}
 
 		JavaClass javaClass = JavaClassParser.parseJavaClass(
@@ -220,11 +227,11 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 					columnNames.add(matcher.group(1));
 				}
 
-				return columnNames;
+				_columnNamesByTables.put(tableName, columnNames);
+
+				break;
 			}
 		}
-
-		return null;
 	}
 
 	private static final String[] _STRING_TYPES = {"STRING", "TEXT", "VARCHAR"};
@@ -243,5 +250,8 @@ public class JavaUpgradeAlterCheck extends BaseFileCheck {
 	private static final Pattern _alterTableClassPattern = Pattern.compile(
 		"(\\w+)Table\\.class");
 	private static final Pattern _stringPattern = Pattern.compile("\"(\\w+)\"");
+
+	private final Map<String, Set<String>> _columnNamesByTables =
+		new HashMap<>();
 
 }

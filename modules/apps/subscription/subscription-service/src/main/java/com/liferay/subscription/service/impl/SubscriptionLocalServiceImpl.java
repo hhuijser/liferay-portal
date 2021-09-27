@@ -24,10 +24,12 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.ClassName;
+import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.social.SocialActivityManagerUtil;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.social.kernel.model.SocialActivityConstants;
 import com.liferay.subscription.constants.SubscriptionConstants;
@@ -210,6 +212,7 @@ public class SubscriptionLocalServiceImpl
 	 * @return the subscription that was removed
 	 */
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public Subscription deleteSubscription(Subscription subscription)
 		throws PortalException {
 

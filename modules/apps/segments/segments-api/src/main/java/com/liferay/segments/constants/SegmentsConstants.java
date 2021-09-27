@@ -15,10 +15,8 @@
 package com.liferay.segments.constants;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
  * @author Eduardo García
@@ -71,10 +69,7 @@ public class SegmentsConstants {
 	 */
 	@Deprecated
 	public static String getDefaultSegmentsEntryName(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, SegmentsConstants.class);
-
-		return LanguageUtil.get(resourceBundle, "default-segment-name");
+		return LanguageUtil.get(locale, "default-segment-name");
 	}
 
 	/**
@@ -82,10 +77,7 @@ public class SegmentsConstants {
 	 */
 	@Deprecated
 	public static String getDefaultSegmentsExperienceName(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, SegmentsConstants.class);
-
-		return LanguageUtil.get(resourceBundle, "default-experience-name");
+		return LanguageUtil.get(locale, "default-experience-name");
 	}
 
 }

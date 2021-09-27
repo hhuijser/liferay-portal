@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.settings.SystemSettingsLocator;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -64,10 +62,7 @@ public class CommerceOptionFieldTypeClayTableDataSetFilter
 
 		try {
 			if (Validator.isNotNull(label)) {
-				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-					"content.Language", locale, ddmFormFieldType.getClass());
-
-				return LanguageUtil.get(resourceBundle, label);
+				return LanguageUtil.get(locale, label);
 			}
 		}
 		catch (MissingResourceException missingResourceException) {

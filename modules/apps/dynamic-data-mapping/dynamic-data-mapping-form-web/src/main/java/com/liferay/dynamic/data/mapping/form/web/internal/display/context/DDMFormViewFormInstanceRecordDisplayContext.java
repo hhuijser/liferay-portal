@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -43,7 +42,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import javax.portlet.RenderRequest;
@@ -234,13 +232,9 @@ public class DDMFormViewFormInstanceRecordDisplayContext {
 
 		String labelString = label.getString(locale);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		label.addString(
 			locale,
-			LanguageUtil.format(
-				resourceBundle, "x-removed", labelString, false));
+			LanguageUtil.format(locale, "x-removed", labelString, false));
 	}
 
 	protected void updateDDMFormField(

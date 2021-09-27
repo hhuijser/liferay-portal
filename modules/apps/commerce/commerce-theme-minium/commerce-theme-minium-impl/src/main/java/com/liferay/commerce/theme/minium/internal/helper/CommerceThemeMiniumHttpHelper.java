@@ -25,10 +25,8 @@ import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletURL;
 
@@ -55,10 +53,7 @@ public class CommerceThemeMiniumHttpHelper {
 	}
 
 	public String getMyListsLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "my-lists");
+		return LanguageUtil.get(locale, "my-lists");
 	}
 
 	public int getNotificationsCount(ThemeDisplay themeDisplay) {

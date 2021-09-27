@@ -26,13 +26,11 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -182,9 +180,6 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 	private Map<String, Object> _getSidebarPanels() {
 		HttpServletRequest httpServletRequest = getRequest();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", httpServletRequest.getLocale(), getClass());
-
 		Map<String, Object> sidebarPanels =
 			LinkedHashMapBuilder.<String, Object>put(
 				"fields",
@@ -193,7 +188,8 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 				).put(
 					"isLink", false
 				).put(
-					"label", LanguageUtil.get(resourceBundle, "builder")
+					"label",
+					LanguageUtil.get(httpServletRequest.getLocale(), "builder")
 				).put(
 					"pluginEntryPoint", _getPluginEntryPoint("fields-sidebar")
 				).put(
@@ -212,7 +208,9 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 						).put(
 							"isLink", false
 						).put(
-							"label", LanguageUtil.get(resourceBundle, "rules")
+							"label",
+							LanguageUtil.get(
+								httpServletRequest.getLocale(), "rules")
 						).put(
 							"pluginEntryPoint",
 							_getPluginEntryPoint("rules-sidebar")

@@ -151,7 +151,8 @@ public class ManageLayoutProductNavigationControlMenuEntry
 			successTag.setKey("layoutUpdated");
 			successTag.setMessage(
 				_language.get(
-					resourceBundle, "the-page-was-updated-succesfully"));
+					themeDisplay.getLocale(),
+					"the-page-was-updated-succesfully"));
 			successTag.setTargetNode("#controlMenuAlertsContainer");
 
 			values.put(

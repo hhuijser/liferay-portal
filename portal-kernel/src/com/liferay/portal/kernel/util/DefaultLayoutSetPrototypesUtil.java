@@ -40,8 +40,9 @@ public class DefaultLayoutSetPrototypesUtil {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", LocaleUtil.getDefault(), classLoader);
 
-		String name = LanguageUtil.get(resourceBundle, nameKey);
-		String description = LanguageUtil.get(resourceBundle, descriptionKey);
+		String name = LanguageUtil.get(LocaleUtil.getDefault(), nameKey);
+		String description = LanguageUtil.get(
+			LocaleUtil.getDefault(), descriptionKey);
 
 		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
 			String curName = layoutSetPrototype.getName(
@@ -61,9 +62,11 @@ public class DefaultLayoutSetPrototypesUtil {
 			resourceBundle = ResourceBundleUtil.getBundle(
 				"content.Language", locale, classLoader);
 
-			nameMap.put(locale, LanguageUtil.get(resourceBundle, nameKey));
+			nameMap.put(
+				locale, LanguageUtil.get(LocaleUtil.getDefault(), nameKey));
 			descriptionMap.put(
-				locale, LanguageUtil.get(resourceBundle, descriptionKey));
+				locale,
+				LanguageUtil.get(LocaleUtil.getDefault(), descriptionKey));
 		}
 
 		ServiceContext serviceContext = new ServiceContext();

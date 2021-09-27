@@ -30,14 +30,12 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -131,18 +129,13 @@ public class DDMFormFieldTypesJSONSerializer
 		Locale locale = LocaleThreadLocal.getThemeDisplayLocale();
 
 		try {
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", locale, ddmFormFieldType.getClass());
-
 			if (Validator.isNotNull(description)) {
 				jsonObject.put(
-					"description",
-					LanguageUtil.get(resourceBundle, description));
+					"description", LanguageUtil.get(locale, description));
 			}
 
 			if (Validator.isNotNull(label)) {
-				jsonObject.put(
-					"label", LanguageUtil.get(resourceBundle, label));
+				jsonObject.put("label", LanguageUtil.get(locale, label));
 			}
 		}
 		catch (MissingResourceException missingResourceException) {

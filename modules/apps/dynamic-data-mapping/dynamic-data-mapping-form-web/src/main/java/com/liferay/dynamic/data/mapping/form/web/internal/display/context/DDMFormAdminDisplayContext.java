@@ -111,7 +111,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -124,7 +123,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -1684,12 +1682,9 @@ public class DDMFormAdminDisplayContext {
 				"showBackIcon", false
 			).buildString());
 
-		ResourceBundle moduleResourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", ddmFormAdminRequestHelper.getLocale(),
-			getClass());
-
 		navigationItem.setLabel(
-			LanguageUtil.get(moduleResourceBundle, "data-providers"));
+			LanguageUtil.get(
+				ddmFormAdminRequestHelper.getLocale(), "data-providers"));
 	}
 
 	private List<DDMFormFieldType> _removeDDMFormFieldTypesOutOfScope(

@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactoryUtil;
 import com.liferay.portal.kernel.settings.SystemSettingsLocator;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -53,7 +52,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletURL;
 
@@ -138,10 +136,7 @@ public class CPDefinitionOptionRelDisplayContext
 
 		try {
 			if (Validator.isNotNull(label)) {
-				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-					"content.Language", locale, ddmFormFieldType.getClass());
-
-				return LanguageUtil.get(resourceBundle, label);
+				return LanguageUtil.get(locale, label);
 			}
 		}
 		catch (MissingResourceException missingResourceException) {

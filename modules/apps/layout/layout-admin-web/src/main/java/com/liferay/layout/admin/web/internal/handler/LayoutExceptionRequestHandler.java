@@ -34,12 +34,9 @@ import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.util.LayoutTypeControllerTracker;
-
-import java.util.ResourceBundle;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -89,12 +86,8 @@ public class LayoutExceptionRequestHandler {
 		LayoutTypeController layoutTypeController =
 			LayoutTypeControllerTracker.getLayoutTypeController(type);
 
-		ResourceBundle layoutTypeResourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(),
-			layoutTypeController.getClass());
-
 		String layoutTypeName = LanguageUtil.get(
-			layoutTypeResourceBundle, "layout.types." + type);
+			themeDisplay.getLocale(), "layout.types." + type);
 
 		return LanguageUtil.format(
 			themeDisplay.getRequest(), errorMessage, layoutTypeName);

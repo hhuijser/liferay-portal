@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -42,7 +41,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -162,10 +160,7 @@ public class CommerceProductOptionDataSetDataProvider
 
 		try {
 			if (Validator.isNotNull(label)) {
-				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-					"content.Language", locale, ddmFormFieldType.getClass());
-
-				return LanguageUtil.get(resourceBundle, label);
+				return LanguageUtil.get(locale, label);
 			}
 		}
 		catch (MissingResourceException missingResourceException) {

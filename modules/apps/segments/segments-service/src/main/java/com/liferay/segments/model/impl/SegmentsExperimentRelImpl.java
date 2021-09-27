@@ -16,7 +16,6 @@ package com.liferay.segments.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
 import com.liferay.segments.model.SegmentsExperience;
 import com.liferay.segments.model.SegmentsExperiment;
@@ -24,7 +23,6 @@ import com.liferay.segments.service.SegmentsExperienceLocalServiceUtil;
 import com.liferay.segments.service.SegmentsExperimentLocalServiceUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 /**
  * The extended model implementation for the SegmentsExperimentRel service.
@@ -45,10 +43,7 @@ public class SegmentsExperimentRelImpl extends SegmentsExperimentRelBaseImpl {
 	@Override
 	public String getName(Locale locale) throws PortalException {
 		if (isControl()) {
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", locale, SegmentsExperienceConstants.class);
-
-			return LanguageUtil.get(resourceBundle, "variant-control");
+			return LanguageUtil.get(locale, "variant-control");
 		}
 
 		SegmentsExperience segmentsExperience =

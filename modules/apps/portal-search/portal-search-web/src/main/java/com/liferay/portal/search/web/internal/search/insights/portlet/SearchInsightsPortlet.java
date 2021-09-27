@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortletPermission;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.search.searcher.SearchResponse;
 import com.liferay.portal.search.web.internal.search.insights.constants.SearchInsightsPortletKeys;
@@ -34,7 +33,6 @@ import com.liferay.portal.search.web.portlet.shared.search.PortletSharedSearchRe
 import java.io.IOException;
 
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
@@ -149,10 +147,7 @@ public class SearchInsightsPortlet extends MVCPortlet {
 	}
 
 	protected String getHelpMessage(RenderRequest renderRequest) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", renderRequest.getLocale(), getClass());
-
-		return language.get(resourceBundle, "search-insights-help");
+		return language.get(renderRequest.getLocale(), "search-insights-help");
 	}
 
 	protected boolean isCompanyAdmin() {

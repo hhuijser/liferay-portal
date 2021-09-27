@@ -17,10 +17,8 @@ package com.liferay.commerce.product.content.search.web.internal.frontend.taglib
 import com.liferay.commerce.product.content.search.web.internal.constants.CPSearchResultsConstants;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -45,10 +43,7 @@ public class PaginationFormNavigatorCategory implements FormNavigatorCategory {
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "pagination");
+		return LanguageUtil.get(locale, "pagination");
 	}
 
 }

@@ -142,11 +142,8 @@ public class SegmentsContextVocabularyConfigurationDisplayContext {
 	}
 
 	public String getDescription() {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			_locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle, _extendedObjectClassDefinition.getDescription());
+			_locale, _extendedObjectClassDefinition.getDescription());
 	}
 
 	public String getEntityField() throws IOException {

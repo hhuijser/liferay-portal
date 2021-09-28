@@ -89,12 +89,8 @@ public class SegmentsContextVocabularyConfigurationFactoryDisplayContext {
 	}
 
 	public String getEmptyResultMessage() {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			_themeDisplay.getLocale(),
-			SegmentsContextVocabularyConfigurationFactoryDisplayContext.class);
-
 		return LanguageUtil.format(
-			resourceBundle, "no-entries-for-x-have-been-added-yet",
+			_themeDisplay.getLocale(), "no-entries-for-x-have-been-added-yet",
 			"segments-context-vocabulary-configuration-name");
 	}
 

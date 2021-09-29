@@ -46,10 +46,6 @@
 		<finder name="CommerceOrderItemId" return-type="CommerceVirtualOrderItem" unique="true">
 			<finder-column name="commerceOrderItemId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<exceptions>
 		<exception>CommerceVirtualOrderItem</exception>

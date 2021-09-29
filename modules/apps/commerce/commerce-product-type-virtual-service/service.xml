@@ -46,11 +46,6 @@
 			<finder-column name="classNameId" />
 			<finder-column name="classPK" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="JournalArticle" package-path="com.liferay.journal" />
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<exceptions>
 		<exception>CPDefinitionVirtualSetting</exception>

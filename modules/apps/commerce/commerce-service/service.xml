@@ -88,7 +88,6 @@
 			<finder-column name="classPK" />
 			<finder-column name="type" />
 		</finder>
-		<reference entity="Address" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="CommerceAddressRestriction" remote-service="true">
 
@@ -299,13 +298,6 @@
 			<finder-column name="commerceAccountId" />
 			<finder-column name="orderStatus" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Group" package-path="com.liferay.portal" />
-		<reference entity="WorkflowDefinitionLink" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceOrderItem" remote-service="true">
 
@@ -408,11 +400,6 @@
 			<finder-column name="commerceOrderId" />
 			<finder-column name="subscription" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="WorkflowDefinitionLink" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceOrderNote" remote-service="true">
 
@@ -538,11 +525,6 @@
 			<finder-column comparator="&lt;" name="expirationDate" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceOrderTypeRel" remote-service="true">
 
@@ -733,10 +715,6 @@
 			<finder-column name="groupId" />
 			<finder-column name="active" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Image" package-path="com.liferay.portal" />
 	</entity>
 	<entity local-service="true" name="CommerceSubscriptionEntry" remote-service="true" uuid="true">
 

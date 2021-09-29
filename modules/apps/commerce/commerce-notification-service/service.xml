@@ -39,10 +39,6 @@
 		<finder name="CommerceNotificationQueueEntryId" return-type="Collection">
 			<finder-column name="commerceNotificationQueueEntryId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="DLApp" package-path="com.liferay.portlet.documentlibrary" />
 	</entity>
 	<entity local-service="true" name="CommerceNotificationQueueEntry" remote-service="true" uuid="false">
 
@@ -159,10 +155,6 @@
 			<finder-column name="type" />
 			<finder-column name="enabled" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommerceNotificationTemplateCommerceAccountGroupRel" remote-service="true" table="CNTemplateCAccountGroupRel">
 

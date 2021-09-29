@@ -52,13 +52,6 @@
 			<finder-column name="userId" />
 			<finder-column name="type" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountEntry" package-path="com.liferay.account" />
-		<reference entity="Role" package-path="com.liferay.portal" />
-		<reference entity="UserGroupRole" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceAccountGroup" persistence="false" remote-service="true">
 
@@ -98,11 +91,6 @@
 			<finder-column name="companyId" />
 			<finder-column name="type" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountGroup" package-path="com.liferay.account" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceAccountGroupCommerceAccountRel" persistence="false" remote-service="true" table="CAccountGroupCAccountRel">
 
@@ -135,10 +123,6 @@
 			<finder-column name="commerceAccountGroupId" />
 			<finder-column name="commerceAccountId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountGroupRel" package-path="com.liferay.account" />
 	</entity>
 	<entity local-service="true" name="CommerceAccountGroupRel" persistence="false" remote-service="true">
 
@@ -180,10 +164,6 @@
 			<finder-column name="classPK" />
 			<finder-column name="commerceAccountGroupId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountGroupRel" package-path="com.liferay.account" />
 	</entity>
 	<entity local-service="true" name="CommerceAccountOrganizationRel" persistence="false" remote-service="true">
 
@@ -214,10 +194,6 @@
 		<finder name="OrganizationId" return-type="Collection">
 			<finder-column name="organizationId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountEntryOrganizationRel" package-path="com.liferay.account" />
 	</entity>
 	<entity local-service="true" name="CommerceAccountUserRel" persistence="false" remote-service="true">
 
@@ -248,12 +224,6 @@
 		<finder name="CommerceAccountUserId" return-type="Collection">
 			<finder-column name="commerceAccountUserId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AccountEntryUserRel" package-path="com.liferay.account" />
-		<reference entity="Role" package-path="com.liferay.portal" />
-		<reference entity="UserGroupRole" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>CommerceAccountGroupName</exception>

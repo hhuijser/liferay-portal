@@ -74,10 +74,6 @@
 			<finder-column name="CPInstanceUuid" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommercePriceList" remote-service="true" uuid="true">
 
@@ -160,12 +156,6 @@
 			<finder-column name="catalogBasePriceList" />
 			<finder-column name="type" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Company" package-path="com.liferay.portal" />
-		<reference entity="WorkflowInstanceLink" package-path="com.liferay.portal" />
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListAccountRel" remote-service="true" uuid="true">
 
@@ -203,10 +193,6 @@
 			<finder-column name="commerceAccountId" />
 			<finder-column name="commercePriceListId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListChannelRel" remote-service="true" uuid="true">
 
@@ -244,10 +230,6 @@
 			<finder-column name="commerceChannelId" />
 			<finder-column name="commercePriceListId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListCommerceAccountGroupRel" remote-service="true" table="CPLCommerceGroupAccountRel" uuid="true">
 
@@ -285,10 +267,6 @@
 			<finder-column name="commercePriceListId" />
 			<finder-column name="commerceAccountGroupId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListDiscountRel" remote-service="true" uuid="true">
 
@@ -326,10 +304,6 @@
 			<finder-column name="commerceDiscountId" />
 			<finder-column name="commercePriceListId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity local-service="true" name="CommercePriceListOrderTypeRel" remote-service="true" uuid="true">
 
@@ -367,10 +341,6 @@
 			<finder-column name="commercePriceListId" />
 			<finder-column name="commerceOrderTypeId" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<entity external-reference-code="true" local-service="true" name="CommerceTierPriceEntry" remote-service="true" uuid="true">
 
@@ -440,10 +410,6 @@
 			<finder-column comparator="&lt;=" name="minQuantity" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="ExpandoRow" package-path="com.liferay.portlet.expando" />
 	</entity>
 	<exceptions>
 		<exception>CommerceBasePriceListCannotDelete</exception>

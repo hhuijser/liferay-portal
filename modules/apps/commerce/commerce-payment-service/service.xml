@@ -50,10 +50,6 @@
 			<finder-column name="groupId" />
 			<finder-column name="active" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="Image" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
 		<exception>CommercePaymentMethodGroupRelEngineKey</exception>

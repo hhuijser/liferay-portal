@@ -27,13 +27,13 @@ public class CommercePricingClassUpgradeProcess extends UpgradeProcess {
 		if (hasColumn(CommercePricingClassTable.TABLE_NAME, "title")) {
 			alter(
 				CommercePricingClassTable.class,
-				new AlterColumnType("title", "TEXT"));
+				new AlterColumnType("title", "TEXT null"));
 		}
 
 		if (hasColumn(CommercePricingClassTable.TABLE_NAME, "description")) {
 			alter(
 				CommercePricingClassTable.class,
-				new AlterColumnType("description", "TEXT"));
+				new AlterColumnType("description", "TEXT null"));
 		}
 	}
 

@@ -51,10 +51,11 @@ public class TypeFacetPortletPreferencesImpl
 
 	@Override
 	public Optional<String[]> getAssetTypesArray() {
-		Optional<String> assetTypes = _portletPreferencesHelper.getString(
-			TypeFacetPortletPreferences.PREFERENCE_KEY_ASSET_TYPES);
+		Optional<String> assetTypesOptional =
+			_portletPreferencesHelper.getString(
+				TypeFacetPortletPreferences.PREFERENCE_KEY_ASSET_TYPES);
 
-		return assetTypes.map(StringUtil::split);
+		return assetTypesOptional.map(StringUtil::split);
 	}
 
 	@Override

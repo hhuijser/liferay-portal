@@ -142,10 +142,10 @@ public class SearchInsightsPortlet extends MVCPortlet {
 	}
 
 	protected String buildResponseString(SearchResponse searchResponse) {
-		Optional<String> responseString = SearchStringUtil.maybe(
+		Optional<String> responseStringOptional = SearchStringUtil.maybe(
 			searchResponse.getResponseString());
 
-		return responseString.orElse(StringPool.BLANK);
+		return responseStringOptional.orElse(StringPool.BLANK);
 	}
 
 	protected String getHelpMessage(RenderRequest renderRequest) {
@@ -163,17 +163,17 @@ public class SearchInsightsPortlet extends MVCPortlet {
 	}
 
 	protected boolean isRequestStringPresent(SearchResponse searchResponse) {
-		Optional<String> requestString = SearchStringUtil.maybe(
+		Optional<String> requestStringOptional = SearchStringUtil.maybe(
 			searchResponse.getRequestString());
 
-		return requestString.isPresent();
+		return requestStringOptional.isPresent();
 	}
 
 	protected boolean isResponseStringPresent(SearchResponse searchResponse) {
-		Optional<String> responseString = SearchStringUtil.maybe(
+		Optional<String> responseStringOptional = SearchStringUtil.maybe(
 			searchResponse.getResponseString());
 
-		return responseString.isPresent();
+		return responseStringOptional.isPresent();
 	}
 
 	@Reference

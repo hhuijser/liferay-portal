@@ -35,10 +35,10 @@ public class ModifiedFacetPortletPreferencesImpl
 	implements ModifiedFacetPortletPreferences {
 
 	public ModifiedFacetPortletPreferencesImpl(
-		Optional<PortletPreferences> portletPreferences) {
+		Optional<PortletPreferences> portletPreferencesOptional) {
 
 		_portletPreferencesHelper = new PortletPreferencesHelper(
-			portletPreferences);
+			portletPreferencesOptional);
 	}
 
 	@Override

@@ -96,11 +96,11 @@ public class RetrieverWhenThereAreConfigurationsFormSeveralFormsTest
 	public void testDoesContainValuesForEntry2IfItIsDeleted() {
 		deleteConfiguration("form2");
 
-		Optional<List<String>> formNavigatorEntryKeys =
+		Optional<List<String>> formNavigatorEntryKeysOptional =
 			formNavigatorEntryConfigurationRetriever.getFormNavigatorEntryKeys(
 				"form2", "general", "update");
 
-		Assert.assertFalse(formNavigatorEntryKeys.isPresent());
+		Assert.assertFalse(formNavigatorEntryKeysOptional.isPresent());
 	}
 
 }

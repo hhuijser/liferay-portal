@@ -59,11 +59,11 @@ public class FormNavigatorEntryProviderImpl
 
 		String context = _getContext(formNavigatorId, formModelBean);
 
-		Optional<List<String>> optionalFormNavigatorEntryKeys =
+		Optional<List<String>> formNavigatorEntryKeysOptional =
 			_formNavigatorEntryConfigurationRetriever.getFormNavigatorEntryKeys(
 				formNavigatorId, categoryKey, context);
 
-		return optionalFormNavigatorEntryKeys.map(
+		return formNavigatorEntryKeysOptional.map(
 			formNavigatorEntryKeys -> _getFormNavigatorEntries(
 				formNavigatorId, formNavigatorEntryKeys));
 	}

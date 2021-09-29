@@ -192,15 +192,15 @@ public class UserSegmentsCriteriaContributorTest {
 
 		Stream<Field> fieldsStream = fields.stream();
 
-		Optional<Field> optionalField = fieldsStream.filter(
+		Optional<Field> fieldOptional = fieldsStream.filter(
 			field -> StringUtil.endsWith(
 				field.getName(),
 				Normalizer.normalizeIdentifier(expandoColumn.getName()))
 		).findFirst();
 
-		Assert.assertTrue(optionalField.isPresent());
+		Assert.assertTrue(fieldOptional.isPresent());
 
-		Field field = optionalField.get();
+		Field field = fieldOptional.get();
 
 		List<Field.Option> options = field.getOptions();
 
@@ -225,13 +225,13 @@ public class UserSegmentsCriteriaContributorTest {
 
 		Stream<Field> fieldsStream = fields.stream();
 
-		Optional<Field> optionalField = fieldsStream.filter(
+		Optional<Field> fieldOptional = fieldsStream.filter(
 			field -> Objects.equals(field.getName(), "groupIds")
 		).findFirst();
 
-		Assert.assertTrue(optionalField.isPresent());
+		Assert.assertTrue(fieldOptional.isPresent());
 
-		Field field = optionalField.get();
+		Field field = fieldOptional.get();
 
 		Assert.assertEquals("id", field.getType());
 

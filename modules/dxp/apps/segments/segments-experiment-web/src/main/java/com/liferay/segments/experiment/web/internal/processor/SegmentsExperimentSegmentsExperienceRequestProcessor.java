@@ -253,14 +253,14 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 	private long _getCurrentSegmentsExperienceId(
 		HttpServletRequest httpServletRequest, long groupId) {
 
-		Optional<Cookie> optionalCookie = _getCookieOptional(
+		Optional<Cookie> cookieOptional = _getCookieOptional(
 			httpServletRequest);
 
-		if (!optionalCookie.isPresent()) {
+		if (!cookieOptional.isPresent()) {
 			return -1;
 		}
 
-		Cookie cookie = optionalCookie.get();
+		Cookie cookie = cookieOptional.get();
 
 		return _getSegmentsExperienceId(groupId, cookie.getValue());
 	}

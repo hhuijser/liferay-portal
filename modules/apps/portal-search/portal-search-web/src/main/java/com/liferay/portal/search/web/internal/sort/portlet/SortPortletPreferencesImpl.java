@@ -34,10 +34,10 @@ import javax.portlet.PortletPreferences;
 public class SortPortletPreferencesImpl implements SortPortletPreferences {
 
 	public SortPortletPreferencesImpl(
-		Optional<PortletPreferences> portletPreferences) {
+		Optional<PortletPreferences> portletPreferencesOptional) {
 
 		_portletPreferencesHelper = new PortletPreferencesHelper(
-			portletPreferences);
+			portletPreferencesOptional);
 	}
 
 	@Override

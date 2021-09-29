@@ -180,14 +180,14 @@ public class ProjectTemplatesServiceBuilderTest
 			packageName + ".service,\\", packageName + ".service.persistence");
 
 		if (isBuildProjects()) {
-			Optional<String> stdOutput = executeGradle(
+			Optional<String> stdOutputOptional = executeGradle(
 				gradleWorkspaceDir, false, true, _gradleDistribution,
 				":modules:" + name + ":" + name + "-service" +
 					GRADLE_TASK_PATH_BUILD);
 
-			Assert.assertTrue(stdOutput.isPresent());
+			Assert.assertTrue(stdOutputOptional.isPresent());
 
-			String gradleOutput = stdOutput.get();
+			String gradleOutput = stdOutputOptional.get();
 
 			Assert.assertTrue(
 				"Expected gradle output to include build error. " +
@@ -351,14 +351,14 @@ public class ProjectTemplatesServiceBuilderTest
 			gradleWorkspaceModulesDir, template, name, "--package-name",
 			packageName, "--liferay-version", liferayVersion);
 
-		Optional<String> gradleResult = executeGradle(
+		Optional<String> gradleResultOptional = executeGradle(
 			gradleWorkspaceDir, true, _gradleDistribution,
 			":modules:" + name + ":" + serviceProjectName + ":dependencies");
 
 		String gradleServiceBuilderVersion = null;
 
 		Matcher matcher = _serviceBuilderVersionPattern.matcher(
-			gradleResult.get());
+			gradleResultOptional.get());
 
 		if (matcher.matches()) {
 			gradleServiceBuilderVersion = matcher.group(1);

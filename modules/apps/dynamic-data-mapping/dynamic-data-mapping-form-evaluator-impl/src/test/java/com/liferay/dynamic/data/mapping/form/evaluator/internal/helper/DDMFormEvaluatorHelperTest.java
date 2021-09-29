@@ -1109,7 +1109,7 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		Stream<DDMFormFieldValue> evaluatedDDMFormFieldValuesStream =
 			evaluatedDDMFormFieldValues.stream();
 
-		Optional<DDMFormFieldValue> actualDDMFormFieldValue =
+		Optional<DDMFormFieldValue> actualDDMFormFieldValueOptional =
 			evaluatedDDMFormFieldValuesStream.filter(
 				ddmFormFieldValue -> ddmFormFieldValue.getName(
 				).equals(
@@ -1117,7 +1117,7 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 				)
 			).findFirst();
 
-		Value actualValue = actualDDMFormFieldValue.get(
+		Value actualValue = actualDDMFormFieldValueOptional.get(
 		).getValue();
 
 		Assert.assertEquals("10", actualValue.getString(LocaleUtil.US));

@@ -94,29 +94,29 @@ public class RetrieverWhenThereAreSeveralConfigurationsTest
 
 	@Test
 	public void testReturnsEmptyOptionalForAnUnknownCategory() {
-		Optional<List<String>> formNavigatorEntryKeys =
+		Optional<List<String>> formNavigatorEntryKeysOptional =
 			formNavigatorEntryConfigurationRetriever.getFormNavigatorEntryKeys(
 				"form1", "unknownCategory", "add");
 
-		Assert.assertFalse(formNavigatorEntryKeys.isPresent());
+		Assert.assertFalse(formNavigatorEntryKeysOptional.isPresent());
 	}
 
 	@Test
 	public void testReturnsEmptyOptionalForAnUnknownContext() {
-		Optional<List<String>> formNavigatorEntryKeys =
+		Optional<List<String>> formNavigatorEntryKeysOptional =
 			formNavigatorEntryConfigurationRetriever.getFormNavigatorEntryKeys(
 				"form1", "general", "unknownContext");
 
-		Assert.assertFalse(formNavigatorEntryKeys.isPresent());
+		Assert.assertFalse(formNavigatorEntryKeysOptional.isPresent());
 	}
 
 	@Test
 	public void testReturnsEmptyOptionalForAnUnknownFormId() {
-		Optional<List<String>> formNavigatorEntryKeys =
+		Optional<List<String>> formNavigatorEntryKeysOptional =
 			formNavigatorEntryConfigurationRetriever.getFormNavigatorEntryKeys(
 				"unknownForm", "general", "add");
 
-		Assert.assertFalse(formNavigatorEntryKeys.isPresent());
+		Assert.assertFalse(formNavigatorEntryKeysOptional.isPresent());
 	}
 
 }

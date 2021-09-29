@@ -246,12 +246,12 @@ public class InfoListProviderTrackerImpl implements InfoListProviderTracker {
 			InfoListProviderContext infoListProviderContext =
 				_getInfoListProviderContext();
 
-			Optional<Sort> optionalSort = collectionQuery.getSortOptional();
+			Optional<Sort> sortOptional = collectionQuery.getSortOptional();
 
 			return InfoPage.of(
 				_infoListProvider.getInfoList(
 					infoListProviderContext, collectionQuery.getPagination(),
-					optionalSort.orElse(null)),
+					sortOptional.orElse(null)),
 				collectionQuery.getPagination(),
 				_infoListProvider.getInfoListCount(infoListProviderContext));
 		}

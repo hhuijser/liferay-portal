@@ -283,10 +283,11 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 	}
 
 	private Integer _getWidth(AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
-		Optional<Integer> attributeValue = adaptiveMedia.getValueOptional(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH);
+		Optional<Integer> attributeValueOptional =
+			adaptiveMedia.getValueOptional(
+				AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH);
 
-		return attributeValue.orElse(0);
+		return attributeValueOptional.orElse(0);
 	}
 
 	private Optional<Integer> _getWidth(

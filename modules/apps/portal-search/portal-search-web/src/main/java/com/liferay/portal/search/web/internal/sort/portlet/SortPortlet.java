@@ -101,7 +101,7 @@ public class SortPortlet extends MVCPortlet {
 
 		String parameterName = sortPortletPreferences.getParameterName();
 
-		Optional<String[]> parameterValues =
+		Optional<String[]> parameterValuesOptional =
 			portletSharedSearchResponse.getParameterValues(
 				parameterName, renderRequest);
 
@@ -110,7 +110,7 @@ public class SortPortlet extends MVCPortlet {
 		).parameterName(
 			parameterName
 		).parameterValues(
-			parameterValues.orElse(null)
+			parameterValuesOptional.orElse(null)
 		).renderNothing(
 			isRenderNothing(portletSharedSearchResponse)
 		).build();

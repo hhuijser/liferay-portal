@@ -19,6 +19,7 @@ import com.liferay.commerce.price.list.model.CommercePriceList;
 import com.liferay.commerce.price.list.model.CommercePriceListOrderTypeRel;
 import com.liferay.commerce.price.list.model.CommercePriceListOrderTypeRelTable;
 import com.liferay.commerce.price.list.service.base.CommercePriceListOrderTypeRelLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.sql.dsl.DSLFunctionFactoryUtil;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.sql.dsl.expression.Predicate;
@@ -86,7 +87,7 @@ public class CommercePriceListOrderTypeRelLocalServiceImpl
 		commercePriceListOrderTypeRelPersistence.remove(
 			commercePriceListOrderTypeRel);
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commercePriceListOrderTypeRel.getCommercePriceListOrderTypeRelId());
 
 		reindexCommercePriceList(
@@ -217,5 +218,8 @@ public class CommercePriceListOrderTypeRelLocalServiceImpl
 
 	@ServiceReference(type = CustomSQL.class)
 	private CustomSQL _customSQL;
+
+	@ServiceReference(type = ExpandoRowLocalService.class)
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

@@ -24,6 +24,7 @@ import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.model.CommerceCatalog;
 import com.liferay.commerce.product.service.base.CPAttachmentFileEntryServiceBaseImpl;
 import com.liferay.document.library.kernel.model.DLFileEntry;
+import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -212,7 +213,7 @@ public class CPAttachmentFileEntryServiceImpl
 		for (CPAttachmentFileEntry cpAttachmentFileEntry :
 				cpAttachmentFileEntries) {
 
-			DLFileEntry dlFileEntry = dlFileEntryLocalService.fetchDLFileEntry(
+			DLFileEntry dlFileEntry = _dlFileEntryLocalService.fetchDLFileEntry(
 				cpAttachmentFileEntry.getFileEntryId());
 
 			if ((dlFileEntry != null) &&
@@ -249,7 +250,7 @@ public class CPAttachmentFileEntryServiceImpl
 		for (CPAttachmentFileEntry cpAttachmentFileEntry :
 				cpAttachmentFileEntries) {
 
-			DLFileEntry dlFileEntry = dlFileEntryLocalService.fetchDLFileEntry(
+			DLFileEntry dlFileEntry = _dlFileEntryLocalService.fetchDLFileEntry(
 				cpAttachmentFileEntry.getFileEntryId());
 
 			if ((dlFileEntry != null) &&
@@ -430,6 +431,9 @@ public class CPAttachmentFileEntryServiceImpl
 				CPAttachmentFileEntryServiceImpl.class,
 				"_portletResourcePermission",
 				CPConstants.RESOURCE_NAME_PRODUCT);
+
+	@ServiceReference(type = DLFileEntryLocalService.class)
+	private DLFileEntryLocalService _dlFileEntryLocalService;
 
 	@ServiceReference(type = Portal.class)
 	private Portal _portal;

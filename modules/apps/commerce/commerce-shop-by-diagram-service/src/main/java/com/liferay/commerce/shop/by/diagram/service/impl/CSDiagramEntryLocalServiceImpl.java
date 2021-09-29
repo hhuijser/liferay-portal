@@ -17,6 +17,7 @@ package com.liferay.commerce.shop.by.diagram.service.impl;
 import com.liferay.commerce.shop.by.diagram.exception.DuplicateCSDiagramEntryException;
 import com.liferay.commerce.shop.by.diagram.model.CSDiagramEntry;
 import com.liferay.commerce.shop.by.diagram.service.base.CSDiagramEntryLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.SystemEventConstants;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.Objects;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Alessio Antonio Rendina
@@ -90,7 +92,8 @@ public class CSDiagramEntryLocalServiceImpl
 	public CSDiagramEntry deleteCSDiagramEntry(CSDiagramEntry csDiagramEntry) {
 		csDiagramEntry = csDiagramEntryPersistence.remove(csDiagramEntry);
 
-		expandoRowLocalService.deleteRows(csDiagramEntry.getCSDiagramEntryId());
+		_expandoRowLocalService.deleteRows(
+			csDiagramEntry.getCSDiagramEntryId());
 
 		return csDiagramEntry;
 	}
@@ -160,5 +163,8 @@ public class CSDiagramEntryLocalServiceImpl
 			throw new DuplicateCSDiagramEntryException();
 		}
 	}
+
+	@Reference
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

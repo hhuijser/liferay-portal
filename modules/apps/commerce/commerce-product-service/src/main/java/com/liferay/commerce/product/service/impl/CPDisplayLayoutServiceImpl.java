@@ -27,8 +27,10 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionFactory;
+import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.portlet.asset.service.permission.AssetCategoryPermission;
 
 /**
@@ -146,7 +148,7 @@ public class CPDisplayLayoutServiceImpl extends CPDisplayLayoutServiceBaseImpl {
 	}
 
 	private Layout _getLayout(CPDisplayLayout cpDisplayLayout) {
-		Layout layout = layoutLocalService.fetchLayout(
+		Layout layout = _layoutLocalService.fetchLayout(
 			cpDisplayLayout.getLayoutUuid(), cpDisplayLayout.getGroupId(),
 			false);
 
@@ -154,7 +156,7 @@ public class CPDisplayLayoutServiceImpl extends CPDisplayLayoutServiceBaseImpl {
 			return layout;
 		}
 
-		return layoutLocalService.fetchLayout(
+		return _layoutLocalService.fetchLayout(
 			cpDisplayLayout.getLayoutUuid(), cpDisplayLayout.getGroupId(),
 			true);
 	}
@@ -165,5 +167,8 @@ public class CPDisplayLayoutServiceImpl extends CPDisplayLayoutServiceBaseImpl {
 				CPDisplayLayoutServiceImpl.class,
 				"_commerceCatalogModelResourcePermission",
 				CommerceCatalog.class);
+
+	@ServiceReference(type = LayoutLocalService.class)
+	private LayoutLocalService _layoutLocalService;
 
 }

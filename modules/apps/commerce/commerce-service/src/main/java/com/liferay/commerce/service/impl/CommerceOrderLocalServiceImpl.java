@@ -56,6 +56,7 @@ import com.liferay.commerce.search.facet.NegatableMultiValueFacet;
 import com.liferay.commerce.service.base.CommerceOrderLocalServiceBaseImpl;
 import com.liferay.commerce.util.CommerceShippingEngineRegistry;
 import com.liferay.commerce.util.CommerceShippingHelper;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -82,8 +83,11 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
+import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.settings.GroupServiceSettingsLocator;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -171,7 +175,7 @@ public class CommerceOrderLocalServiceImpl
 		// Check guest user
 
 		if (userId == 0) {
-			Group group = groupLocalService.getGroup(groupId);
+			Group group = _groupLocalService.getGroup(groupId);
 
 			User defaultUser = _userLocalService.getDefaultUser(
 				group.getCompanyId());
@@ -460,11 +464,11 @@ public class CommerceOrderLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(commerceOrder.getCommerceOrderId());
+		_expandoRowLocalService.deleteRows(commerceOrder.getCommerceOrderId());
 
 		// Workflow
 
-		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+		_workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 			commerceOrder.getCompanyId(), commerceOrder.getScopeGroupId(),
 			CommerceOrder.class.getName(), commerceOrder.getCommerceOrderId());
 
@@ -702,7 +706,7 @@ public class CommerceOrderLocalServiceImpl
 		boolean excludeOrderStatus, String keywords, int start, int end) {
 
 		try {
-			Group group = groupLocalService.getGroup(groupId);
+			Group group = _groupLocalService.getGroup(groupId);
 
 			return commerceOrderLocalService.getCommerceOrders(
 				group.getCompanyId(), groupId, new long[] {commerceAccountId},
@@ -726,7 +730,7 @@ public class CommerceOrderLocalServiceImpl
 		boolean excludeOrderStatus, String keywords) {
 
 		try {
-			Group group = groupLocalService.getGroup(groupId);
+			Group group = _groupLocalService.getGroup(groupId);
 
 			return (int)commerceOrderLocalService.getCommerceOrdersCount(
 				group.getCompanyId(), groupId, new long[] {commerceAccountId},
@@ -1883,13 +1887,13 @@ public class CommerceOrderLocalServiceImpl
 	protected boolean hasWorkflowDefinition(long groupId, long typePK)
 		throws PortalException {
 
-		Group group = groupLocalService.fetchGroup(groupId);
+		Group group = _groupLocalService.fetchGroup(groupId);
 
 		if (group == null) {
 			return false;
 		}
 
-		return workflowDefinitionLinkLocalService.hasWorkflowDefinitionLink(
+		return _workflowDefinitionLinkLocalService.hasWorkflowDefinitionLink(
 			group.getCompanyId(), group.getGroupId(),
 			CommerceOrder.class.getName(), 0, typePK);
 	}
@@ -1962,7 +1966,7 @@ public class CommerceOrderLocalServiceImpl
 			long commerceChannelGroupId, long commerceAccountId)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(commerceChannelGroupId);
+		Group group = _groupLocalService.getGroup(commerceChannelGroupId);
 
 		int pendingCommerceOrdersCount =
 			(int)commerceOrderLocalService.getCommerceOrdersCount(
@@ -2329,11 +2333,24 @@ public class CommerceOrderLocalServiceImpl
 	@ServiceReference(type = ConfigurationProvider.class)
 	private ConfigurationProvider _configurationProvider;
 
+	@ServiceReference(type = ExpandoRowLocalService.class)
+	private ExpandoRowLocalService _expandoRowLocalService;
+
+	@ServiceReference(type = GroupLocalService.class)
+	private GroupLocalService _groupLocalService;
+
 	@ServiceReference(type = JsonHelper.class)
 	private JsonHelper _jsonHelper;
 
 	@ServiceReference(type = UserLocalService.class)
 	private UserLocalService _userLocalService;
+
+	@ServiceReference(type = WorkflowDefinitionLinkLocalService.class)
+	private WorkflowDefinitionLinkLocalService
+		_workflowDefinitionLinkLocalService;
+
+	@ServiceReference(type = WorkflowInstanceLinkLocalService.class)
+	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
 
 	@ServiceReference(type = WorkflowTaskManager.class)
 	private WorkflowTaskManager _workflowTaskManager;

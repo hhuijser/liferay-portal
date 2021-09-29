@@ -15,12 +15,14 @@
 package com.liferay.commerce.account.service.impl;
 
 import com.liferay.account.model.AccountEntryOrganizationRel;
+import com.liferay.account.service.AccountEntryOrganizationRelLocalService;
 import com.liferay.commerce.account.model.CommerceAccountOrganizationRel;
 import com.liferay.commerce.account.model.impl.CommerceAccountOrganizationRelImpl;
 import com.liferay.commerce.account.service.base.CommerceAccountOrganizationRelLocalServiceBaseImpl;
 import com.liferay.commerce.account.service.persistence.CommerceAccountOrganizationRelPK;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -46,7 +48,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 		throws PortalException {
 
 		AccountEntryOrganizationRel accountEntryOrganizationRel =
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				addAccountEntryOrganizationRel(
 					commerceAccountId, organizationId);
 
@@ -60,8 +62,8 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		accountEntryOrganizationRelLocalService.addAccountEntryOrganizationRels(
-			commerceAccountId, organizationIds);
+		_accountEntryOrganizationRelLocalService.
+			addAccountEntryOrganizationRels(commerceAccountId, organizationIds);
 	}
 
 	@Override
@@ -69,7 +71,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 		CommerceAccountOrganizationRelPK commerceAccountOrganizationRelPK) {
 
 		AccountEntryOrganizationRel accountEntryOrganizationRel =
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				createAccountEntryOrganizationRel(
 					counterLocalService.increment());
 
@@ -87,12 +89,12 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 		CommerceAccountOrganizationRel commerceAccountOrganizationRel) {
 
 		AccountEntryOrganizationRel accountEntryOrganizationRel =
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				fetchAccountEntryOrganizationRel(
 					commerceAccountOrganizationRel.getCommerceAccountId(),
 					commerceAccountOrganizationRel.getOrganizationId());
 
-		accountEntryOrganizationRelLocalService.
+		_accountEntryOrganizationRelLocalService.
 			deleteAccountEntryOrganizationRel(accountEntryOrganizationRel);
 
 		return CommerceAccountOrganizationRelImpl.
@@ -105,12 +107,12 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 		throws PortalException {
 
 		AccountEntryOrganizationRel accountEntryOrganizationRel =
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				getAccountEntryOrganizationRel(
 					commerceAccountOrganizationRelPK.getCommerceAccountId(),
 					commerceAccountOrganizationRelPK.getOrganizationId());
 
-		accountEntryOrganizationRelLocalService.
+		_accountEntryOrganizationRelLocalService.
 			deleteAccountEntryOrganizationRel(accountEntryOrganizationRel);
 
 		return CommerceAccountOrganizationRelImpl.
@@ -122,7 +124,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 			long commerceAccountId, long[] organizationIds)
 		throws PortalException {
 
-		accountEntryOrganizationRelLocalService.
+		_accountEntryOrganizationRelLocalService.
 			deleteAccountEntryOrganizationRels(
 				commerceAccountId, organizationIds);
 	}
@@ -131,7 +133,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 	public void deleteCommerceAccountOrganizationRelsByCommerceAccountId(
 		long commerceAccountId) {
 
-		accountEntryOrganizationRelLocalService.
+		_accountEntryOrganizationRelLocalService.
 			deleteAccountEntryOrganizationRelsByAccountEntryId(
 				commerceAccountId);
 	}
@@ -140,7 +142,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 	public void deleteCommerceAccountOrganizationRelsByOrganizationId(
 		long organizationId) {
 
-		accountEntryOrganizationRelLocalService.
+		_accountEntryOrganizationRelLocalService.
 			deleteAccountEntryOrganizationRelsByOrganizationId(organizationId);
 	}
 
@@ -150,7 +152,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 
 		return CommerceAccountOrganizationRelImpl.
 			fromAccountEntryOrganizationRel(
-				accountEntryOrganizationRelLocalService.
+				_accountEntryOrganizationRelLocalService.
 					fetchAccountEntryOrganizationRel(
 						commerceAccountOrganizationRelPK.getCommerceAccountId(),
 						commerceAccountOrganizationRelPK.getOrganizationId()));
@@ -163,7 +165,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 
 		return CommerceAccountOrganizationRelImpl.
 			fromAccountEntryOrganizationRel(
-				accountEntryOrganizationRelLocalService.
+				_accountEntryOrganizationRelLocalService.
 					getAccountEntryOrganizationRel(
 						commerceAccountOrganizationRelPK.getCommerceAccountId(),
 						commerceAccountOrganizationRelPK.getOrganizationId()));
@@ -174,7 +176,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 		getCommerceAccountOrganizationRels(int start, int end) {
 
 		List<AccountEntryOrganizationRel> accountEntryOrganizationRels =
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				getAccountEntryOrganizationRels(start, end);
 
 		return TransformUtil.transform(
@@ -188,7 +190,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 		getCommerceAccountOrganizationRels(long commerceAccountId) {
 
 		return TransformUtil.transform(
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				getAccountEntryOrganizationRels(commerceAccountId),
 			CommerceAccountOrganizationRelImpl::
 				fromAccountEntryOrganizationRel);
@@ -200,7 +202,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 			long commerceAccountId, int start, int end) {
 
 		return TransformUtil.transform(
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				getAccountEntryOrganizationRels(commerceAccountId, start, end),
 			CommerceAccountOrganizationRelImpl::
 				fromAccountEntryOrganizationRel);
@@ -212,7 +214,7 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 			long organizationId, int start, int end) {
 
 		return TransformUtil.transform(
-			accountEntryOrganizationRelLocalService.
+			_accountEntryOrganizationRelLocalService.
 				getAccountEntryOrganizationRelsByOrganizationId(
 					organizationId, start, end),
 			CommerceAccountOrganizationRelImpl::
@@ -223,20 +225,20 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 	public int getCommerceAccountOrganizationRelsByOrganizationIdCount(
 		long organizationId) {
 
-		return accountEntryOrganizationRelLocalService.
+		return _accountEntryOrganizationRelLocalService.
 			getAccountEntryOrganizationRelsByOrganizationIdCount(
 				organizationId);
 	}
 
 	@Override
 	public int getCommerceAccountOrganizationRelsCount() {
-		return accountEntryOrganizationRelLocalService.
+		return _accountEntryOrganizationRelLocalService.
 			getAccountEntryOrganizationRelsCount();
 	}
 
 	@Override
 	public int getCommerceAccountOrganizationRelsCount(long commerceAccountId) {
-		return accountEntryOrganizationRelLocalService.
+		return _accountEntryOrganizationRelLocalService.
 			getAccountEntryOrganizationRelsCount(commerceAccountId);
 	}
 
@@ -246,5 +248,9 @@ public class CommerceAccountOrganizationRelLocalServiceImpl
 
 		throw new UnsupportedOperationException();
 	}
+
+	@ServiceReference(type = AccountEntryOrganizationRelLocalService.class)
+	private AccountEntryOrganizationRelLocalService
+		_accountEntryOrganizationRelLocalService;
 
 }

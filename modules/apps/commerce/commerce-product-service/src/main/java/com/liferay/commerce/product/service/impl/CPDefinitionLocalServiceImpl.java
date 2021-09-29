@@ -16,6 +16,8 @@ package com.liferay.commerce.product.service.impl;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetLinkConstants;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
+import com.liferay.asset.kernel.service.AssetLinkLocalService;
 import com.liferay.commerce.product.configuration.CProductVersionConfiguration;
 import com.liferay.commerce.product.constants.CPAttachmentFileEntryConstants;
 import com.liferay.commerce.product.constants.CPField;
@@ -46,6 +48,7 @@ import com.liferay.commerce.product.util.CPVersionContributorRegistryUtil;
 import com.liferay.dynamic.data.mapping.exception.NoSuchStructureException;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.friendly.url.model.FriendlyURLEntry;
 import com.liferay.friendly.url.model.FriendlyURLEntryLocalization;
 import com.liferay.friendly.url.service.FriendlyURLEntryLocalService;
@@ -77,6 +80,7 @@ import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.MultiValueFacet;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.settings.SystemSettingsLocator;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
@@ -534,7 +538,7 @@ public class CPDefinitionLocalServiceImpl
 		long cpDefinitionClassNameId = classNameLocalService.getClassNameId(
 			CPDefinition.class);
 
-		AssetEntry assetEntry = assetEntryLocalService.fetchEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
 			cpDefinitionClassNameId, cpDefinitionId);
 
 		if (assetEntry != null) {
@@ -544,7 +548,7 @@ public class CPDefinitionLocalServiceImpl
 
 			newAssetEntry.setClassPK(newCPDefinitionId);
 
-			assetEntryLocalService.addAssetEntry(newAssetEntry);
+			_assetEntryLocalService.addAssetEntry(newAssetEntry);
 		}
 
 		// CPDefinitionLocalization
@@ -772,7 +776,7 @@ public class CPDefinitionLocalServiceImpl
 			long cpDefinitionId, long categoryId, ServiceContext serviceContext)
 		throws PortalException {
 
-		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			CPDefinition.class.getName(), cpDefinitionId);
 
 		long[] categoryIds = ArrayUtil.remove(
@@ -869,16 +873,16 @@ public class CPDefinitionLocalServiceImpl
 
 		// Asset
 
-		assetEntryLocalService.deleteEntry(
+		_assetEntryLocalService.deleteEntry(
 			CPDefinition.class.getName(), cpDefinition.getCPDefinitionId());
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(cpDefinition.getCPDefinitionId());
+		_expandoRowLocalService.deleteRows(cpDefinition.getCPDefinitionId());
 
 		// Workflow
 
-		workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+		_workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 			cpDefinition.getCompanyId(), cpDefinition.getGroupId(),
 			CPDefinition.class.getName(), cpDefinition.getCPDefinitionId());
 
@@ -1518,10 +1522,10 @@ public class CPDefinitionLocalServiceImpl
 			String[] assetTagNames, long[] assetLinkEntryIds, Double priority)
 		throws PortalException {
 
-		Group companyGroup = groupLocalService.getCompanyGroup(
+		Group companyGroup = _groupLocalService.getCompanyGroup(
 			cpDefinition.getCompanyId());
 
-		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
+		AssetEntry assetEntry = _assetEntryLocalService.updateEntry(
 			userId, companyGroup.getGroupId(), cpDefinition.getCreateDate(),
 			cpDefinition.getModifiedDate(), CPDefinition.class.getName(),
 			cpDefinition.getCPDefinitionId(), cpDefinition.getUuid(), 0,
@@ -1531,7 +1535,7 @@ public class CPDefinitionLocalServiceImpl
 			cpDefinition.getDescriptionMapAsXML(), null, null, null, 0, 0,
 			priority);
 
-		assetLinkLocalService.updateLinks(
+		_assetLinkLocalService.updateLinks(
 			userId, assetEntry.getEntryId(), assetLinkEntryIds,
 			AssetLinkConstants.TYPE_RELATED);
 	}
@@ -1761,10 +1765,10 @@ public class CPDefinitionLocalServiceImpl
 
 		// Asset
 
-		Group companyGroup = groupLocalService.getCompanyGroup(
+		Group companyGroup = _groupLocalService.getCompanyGroup(
 			serviceContext.getCompanyId());
 
-		assetEntryLocalService.updateEntry(
+		_assetEntryLocalService.updateEntry(
 			serviceContext.getUserId(), companyGroup.getGroupId(),
 			CPDefinition.class.getName(), cpDefinition.getCPDefinitionId(),
 			serviceContext.getAssetCategoryIds(),
@@ -1910,7 +1914,7 @@ public class CPDefinitionLocalServiceImpl
 
 			// Asset
 
-			assetEntryLocalService.updateEntry(
+			_assetEntryLocalService.updateEntry(
 				CPDefinition.class.getName(), cpDefinition.getCPDefinitionId(),
 				cpDefinition.getDisplayDate(), cpDefinition.getExpirationDate(),
 				true, true);
@@ -1924,7 +1928,7 @@ public class CPDefinitionLocalServiceImpl
 
 			// Asset
 
-			assetEntryLocalService.updateVisible(
+			_assetEntryLocalService.updateVisible(
 				CPDefinition.class.getName(), cpDefinitionId, false);
 		}
 
@@ -2529,16 +2533,28 @@ public class CPDefinitionLocalServiceImpl
 	private static final Log _log = LogFactoryUtil.getLog(
 		CPDefinitionLocalServiceImpl.class);
 
+	@ServiceReference(type = AssetEntryLocalService.class)
+	private AssetEntryLocalService _assetEntryLocalService;
+
+	@ServiceReference(type = AssetLinkLocalService.class)
+	private AssetLinkLocalService _assetLinkLocalService;
+
 	@ServiceReference(type = CPTypeServicesTracker.class)
 	private CPTypeServicesTracker _cpTypeServicesTracker;
 
 	@ServiceReference(type = DDMStructureLocalService.class)
 	private DDMStructureLocalService _ddmStructureLocalService;
 
+	@ServiceReference(type = ExpandoRowLocalService.class)
+	private ExpandoRowLocalService _expandoRowLocalService;
+
 	@ServiceReference(type = FriendlyURLEntryLocalService.class)
 	private FriendlyURLEntryLocalService _friendlyURLEntryLocalService;
 
 	@ServiceReference(type = GroupLocalService.class)
 	private GroupLocalService _groupLocalService;
+
+	@ServiceReference(type = WorkflowInstanceLinkLocalService.class)
+	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
 
 }

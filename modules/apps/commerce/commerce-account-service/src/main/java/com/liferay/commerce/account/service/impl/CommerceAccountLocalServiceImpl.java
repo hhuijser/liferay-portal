@@ -15,6 +15,7 @@
 package com.liferay.commerce.account.service.impl;
 
 import com.liferay.account.model.AccountEntry;
+import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.commerce.account.constants.CommerceAccountConstants;
 import com.liferay.commerce.account.exception.CommerceAccountNameException;
 import com.liferay.commerce.account.exception.CommerceAccountOrdersException;
@@ -23,6 +24,7 @@ import com.liferay.commerce.account.model.CommerceAccount;
 import com.liferay.commerce.account.model.impl.CommerceAccountImpl;
 import com.liferay.commerce.account.service.base.CommerceAccountLocalServiceBaseImpl;
 import com.liferay.commerce.account.util.CommerceAccountRoleHelper;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -38,7 +40,9 @@ import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
@@ -84,7 +88,7 @@ public class CommerceAccountLocalServiceImpl
 
 		_commerceAccountRoleHelper.checkCommerceAccountRoles(serviceContext);
 
-		Role role = roleLocalService.getRole(
+		Role role = _roleLocalService.getRole(
 			serviceContext.getCompanyId(),
 			CommerceAccountConstants.ROLE_NAME_ACCOUNT_ADMINISTRATOR);
 
@@ -123,7 +127,7 @@ public class CommerceAccountLocalServiceImpl
 
 		validate(serviceContext.getCompanyId(), 0, name, externalReferenceCode);
 
-		AccountEntry accountEntry = accountEntryLocalService.addAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.addAccountEntry(
 			user.getUserId(), parentCommerceAccountId, name, null, null, email,
 			null, taxId, CommerceAccountImpl.toAccountEntryType(type),
 			CommerceAccountImpl.toAccountEntryStatus(active), serviceContext);
@@ -131,7 +135,7 @@ public class CommerceAccountLocalServiceImpl
 		if (externalReferenceCode != null) {
 			accountEntry.setExternalReferenceCode(externalReferenceCode);
 
-			accountEntry = accountEntryLocalService.updateAccountEntry(
+			accountEntry = _accountEntryLocalService.updateAccountEntry(
 				accountEntry);
 		}
 
@@ -159,7 +163,7 @@ public class CommerceAccountLocalServiceImpl
 		else {
 			CommerceAccount commerceAccount =
 				CommerceAccountImpl.fromAccountEntry(
-					accountEntryLocalService.fetchAccountEntryByReferenceCode(
+					_accountEntryLocalService.fetchAccountEntryByReferenceCode(
 						serviceContext.getCompanyId(), externalReferenceCode));
 
 			if (commerceAccount != null) {
@@ -205,7 +209,7 @@ public class CommerceAccountLocalServiceImpl
 	@Override
 	public CommerceAccount createCommerceAccount(long commerceAccountId) {
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.createAccountEntry(commerceAccountId));
+			_accountEntryLocalService.createAccountEntry(commerceAccountId));
 	}
 
 	@Indexable(type = IndexableType.DELETE)
@@ -234,13 +238,13 @@ public class CommerceAccountLocalServiceImpl
 
 		// Commerce account user roles
 
-		userGroupRoleLocalService.deleteUserGroupRolesByGroupId(
+		_userGroupRoleLocalService.deleteUserGroupRolesByGroupId(
 			commerceAccountGroup.getGroupId());
 
 		// Commerce account
 
 		try {
-			accountEntryLocalService.deleteAccountEntry(commerceAccountId);
+			_accountEntryLocalService.deleteAccountEntry(commerceAccountId);
 		}
 		catch (ModelListenerException modelListenerException) {
 			throw new CommerceAccountOrdersException(modelListenerException);
@@ -255,7 +259,7 @@ public class CommerceAccountLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(commerceAccountId);
+		_expandoRowLocalService.deleteRows(commerceAccountId);
 
 		return commerceAccount;
 	}
@@ -265,17 +269,17 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.deleteAccountEntry(commerceAccountId));
+			_accountEntryLocalService.deleteAccountEntry(commerceAccountId));
 	}
 
 	@Override
 	public void deleteCommerceAccounts(long companyId) throws PortalException {
-		accountEntryLocalService.deleteAccountEntriesByCompanyId(companyId);
+		_accountEntryLocalService.deleteAccountEntriesByCompanyId(companyId);
 	}
 
 	@Override
 	public void deleteLogo(long commerceAccountId) throws PortalException {
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			commerceAccountId);
 
 		_portal.updateImageId(accountEntry, false, null, "logoId", 0, 0, 0);
@@ -295,14 +299,14 @@ public class CommerceAccountLocalServiceImpl
 		}
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.fetchAccountEntryByExternalReferenceCode(
+			_accountEntryLocalService.fetchAccountEntryByExternalReferenceCode(
 				companyId, externalReferenceCode));
 	}
 
 	@Override
 	public CommerceAccount fetchCommerceAccount(long commerceAccountId) {
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.fetchAccountEntry(commerceAccountId));
+			_accountEntryLocalService.fetchAccountEntry(commerceAccountId));
 	}
 
 	@Override
@@ -310,7 +314,7 @@ public class CommerceAccountLocalServiceImpl
 		long companyId, String externalReferenceCode) {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.fetchAccountEntryByExternalReferenceCode(
+			_accountEntryLocalService.fetchAccountEntryByExternalReferenceCode(
 				companyId, externalReferenceCode));
 	}
 
@@ -319,7 +323,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.getAccountEntry(commerceAccountId));
+			_accountEntryLocalService.getAccountEntry(commerceAccountId));
 	}
 
 	@Override
@@ -328,7 +332,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.fetchUserAccountEntry(
+			_accountEntryLocalService.fetchUserAccountEntry(
 				userId, commerceAccountId));
 	}
 
@@ -336,7 +340,7 @@ public class CommerceAccountLocalServiceImpl
 	public Group getCommerceAccountGroup(long commerceAccountId)
 		throws PortalException {
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			commerceAccountId);
 
 		Group group = accountEntry.getAccountEntryGroup();
@@ -351,13 +355,13 @@ public class CommerceAccountLocalServiceImpl
 	@Override
 	public List<CommerceAccount> getCommerceAccounts(int start, int end) {
 		return TransformUtil.transform(
-			accountEntryLocalService.getAccountEntries(start, end),
+			_accountEntryLocalService.getAccountEntries(start, end),
 			CommerceAccountImpl::fromAccountEntry);
 	}
 
 	@Override
 	public int getCommerceAccountsCount() {
-		return accountEntryLocalService.getAccountEntriesCount();
+		return _accountEntryLocalService.getAccountEntriesCount();
 	}
 
 	@Override
@@ -365,7 +369,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.getGuestAccountEntry(companyId));
+			_accountEntryLocalService.getGuestAccountEntry(companyId));
 	}
 
 	@Override
@@ -373,7 +377,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		CommerceAccount commerceAccount = CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.fetchPersonAccountEntry(userId));
+			_accountEntryLocalService.fetchPersonAccountEntry(userId));
 
 		if (commerceAccount != null) {
 			return commerceAccount;
@@ -397,7 +401,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return TransformUtil.transform(
-			accountEntryLocalService.getUserAccountEntries(
+			_accountEntryLocalService.getUserAccountEntries(
 				userId, parentCommerceAccountId, keywords,
 				CommerceAccountImpl.toAccountEntryTypes(commerceSiteType),
 				CommerceAccountImpl.toAccountEntryStatus(active), start, end),
@@ -411,7 +415,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return TransformUtil.transform(
-			accountEntryLocalService.getUserAccountEntries(
+			_accountEntryLocalService.getUserAccountEntries(
 				userId, parentCommerceAccountId, keywords,
 				CommerceAccountImpl.toAccountEntryTypes(commerceSiteType),
 				WorkflowConstants.STATUS_ANY, start, end),
@@ -434,7 +438,7 @@ public class CommerceAccountLocalServiceImpl
 			String keywords, Boolean active)
 		throws PortalException {
 
-		return accountEntryLocalService.getUserAccountEntriesCount(
+		return _accountEntryLocalService.getUserAccountEntriesCount(
 			userId, parentCommerceAccountId, keywords,
 			CommerceAccountImpl.toAccountEntryTypes(commerceSiteType),
 			CommerceAccountImpl.toAccountEntryStatus(active));
@@ -465,7 +469,7 @@ public class CommerceAccountLocalServiceImpl
 		}
 
 		BaseModelSearchResult<AccountEntry> baseModelSearchResult =
-			accountEntryLocalService.searchAccountEntries(
+			_accountEntryLocalService.searchAccountEntries(
 				companyId, keywords, params, start, end - start, fieldName,
 				reverse);
 
@@ -481,7 +485,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<AccountEntry> baseModelSearchResult =
-			accountEntryLocalService.searchAccountEntries(
+			_accountEntryLocalService.searchAccountEntries(
 				companyId, keywords,
 				LinkedHashMapBuilder.<String, Object>put(
 					"status",
@@ -500,14 +504,14 @@ public class CommerceAccountLocalServiceImpl
 	public CommerceAccount setActive(long commerceAccountId, boolean active)
 		throws PortalException {
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			commerceAccountId);
 
 		accountEntry.setStatus(
 			CommerceAccountImpl.toAccountEntryStatus(active));
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.updateAccountEntry(accountEntry));
+			_accountEntryLocalService.updateAccountEntry(accountEntry));
 	}
 
 	@Override
@@ -540,7 +544,7 @@ public class CommerceAccountLocalServiceImpl
 			String externalReferenceCode, ServiceContext serviceContext)
 		throws PortalException {
 
-		AccountEntry accountEntry = accountEntryLocalService.getAccountEntry(
+		AccountEntry accountEntry = _accountEntryLocalService.getAccountEntry(
 			commerceAccountId);
 
 		if (defaultBillingAddressId == -1) {
@@ -563,7 +567,7 @@ public class CommerceAccountLocalServiceImpl
 			serviceContext.getCompanyId(), accountEntry.getAccountEntryId(),
 			name, externalReferenceCode);
 
-		accountEntry = accountEntryLocalService.updateAccountEntry(
+		accountEntry = _accountEntryLocalService.updateAccountEntry(
 			accountEntry.getAccountEntryId(),
 			accountEntry.getParentAccountEntryId(), name,
 			accountEntry.getDescription(), !logo,
@@ -577,7 +581,7 @@ public class CommerceAccountLocalServiceImpl
 			accountEntry.setExternalReferenceCode(externalReferenceCode);
 		}
 
-		accountEntry = accountEntryLocalService.updateAccountEntry(
+		accountEntry = _accountEntryLocalService.updateAccountEntry(
 			accountEntry);
 
 		return CommerceAccountImpl.fromAccountEntry(accountEntry);
@@ -606,7 +610,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.updateDefaultBillingAddressId(
+			_accountEntryLocalService.updateDefaultBillingAddressId(
 				commerceAccountId, commerceAddressId));
 	}
 
@@ -617,7 +621,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.updateDefaultShippingAddressId(
+			_accountEntryLocalService.updateDefaultShippingAddressId(
 				commerceAccountId, commerceAddressId));
 	}
 
@@ -635,7 +639,7 @@ public class CommerceAccountLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.updateStatus(commerceAccountId, status));
+			_accountEntryLocalService.updateStatus(commerceAccountId, status));
 	}
 
 	protected long getParentCommerceAccountId(
@@ -649,7 +653,7 @@ public class CommerceAccountLocalServiceImpl
 
 			CommerceAccount parentCommerceAccount =
 				CommerceAccountImpl.fromAccountEntry(
-					accountEntryLocalService.fetchAccountEntry(
+					_accountEntryLocalService.fetchAccountEntry(
 						parentCommerceAccountId));
 
 			if ((parentCommerceAccount == null) ||
@@ -677,7 +681,7 @@ public class CommerceAccountLocalServiceImpl
 		}
 
 		CommerceAccount commerceAccount = CommerceAccountImpl.fromAccountEntry(
-			accountEntryLocalService.fetchAccountEntryByReferenceCode(
+			_accountEntryLocalService.fetchAccountEntryByReferenceCode(
 				companyId, externalReferenceCode));
 
 		if ((commerceAccount != null) &&
@@ -689,10 +693,22 @@ public class CommerceAccountLocalServiceImpl
 		}
 	}
 
+	@ServiceReference(type = AccountEntryLocalService.class)
+	private AccountEntryLocalService _accountEntryLocalService;
+
 	@ServiceReference(type = CommerceAccountRoleHelper.class)
 	private CommerceAccountRoleHelper _commerceAccountRoleHelper;
 
+	@ServiceReference(type = ExpandoRowLocalService.class)
+	private ExpandoRowLocalService _expandoRowLocalService;
+
 	@ServiceReference(type = Portal.class)
 	private Portal _portal;
+
+	@ServiceReference(type = RoleLocalService.class)
+	private RoleLocalService _roleLocalService;
+
+	@ServiceReference(type = UserGroupRoleLocalService.class)
+	private UserGroupRoleLocalService _userGroupRoleLocalService;
 
 }

@@ -17,6 +17,7 @@ package com.liferay.commerce.account.service.impl;
 import com.liferay.account.model.AccountEntryUserRelTable;
 import com.liferay.account.model.AccountGroup;
 import com.liferay.account.model.AccountGroupTable;
+import com.liferay.account.service.AccountGroupLocalService;
 import com.liferay.commerce.account.constants.CommerceAccountConstants;
 import com.liferay.commerce.account.exception.CommerceAccountGroupNameException;
 import com.liferay.commerce.account.exception.DuplicateCommerceAccountException;
@@ -26,6 +27,7 @@ import com.liferay.commerce.account.model.CommerceAccountGroupCommerceAccountRel
 import com.liferay.commerce.account.model.CommerceAccountGroupCommerceAccountRelTable;
 import com.liferay.commerce.account.model.impl.CommerceAccountGroupImpl;
 import com.liferay.commerce.account.service.base.CommerceAccountGroupLocalServiceBaseImpl;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.sql.dsl.DSLQueryFactoryUtil;
 import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.petra.string.StringPool;
@@ -47,6 +49,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.ArrayList;
@@ -75,7 +78,7 @@ public class CommerceAccountGroupLocalServiceImpl
 
 		validate(companyId, 0, name, externalReferenceCode);
 
-		AccountGroup accountGroup = accountGroupLocalService.addAccountGroup(
+		AccountGroup accountGroup = _accountGroupLocalService.addAccountGroup(
 			serviceContext.getUserId(), null, name);
 
 		accountGroup.setDefaultAccountGroup(system);
@@ -85,7 +88,7 @@ public class CommerceAccountGroupLocalServiceImpl
 
 		CommerceAccountGroup commerceAccountGroup =
 			CommerceAccountGroupImpl.fromAccountGroup(
-				accountGroupLocalService.updateAccountGroup(accountGroup));
+				_accountGroupLocalService.updateAccountGroup(accountGroup));
 
 		// Resources
 
@@ -102,13 +105,13 @@ public class CommerceAccountGroupLocalServiceImpl
 	public void checkGuestCommerceAccountGroup(long companyId)
 		throws PortalException {
 
-		if (accountGroupLocalService.hasDefaultAccountGroup(companyId)) {
+		if (_accountGroupLocalService.hasDefaultAccountGroup(companyId)) {
 			return;
 		}
 
 		CommerceAccountGroup commerceAccountGroup =
 			CommerceAccountGroupImpl.fromAccountGroup(
-				accountGroupLocalService.checkGuestAccountGroup(companyId));
+				_accountGroupLocalService.checkGuestAccountGroup(companyId));
 
 		User user = userLocalService.getDefaultUser(companyId);
 
@@ -141,7 +144,7 @@ public class CommerceAccountGroupLocalServiceImpl
 
 		// Commerce account group
 
-		accountGroupLocalService.deleteAccountGroup(
+		_accountGroupLocalService.deleteAccountGroup(
 			commerceAccountGroup.getCommerceAccountGroupId());
 
 		// Resources
@@ -151,7 +154,7 @@ public class CommerceAccountGroupLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			commerceAccountGroup.getCommerceAccountGroupId());
 
 		return commerceAccountGroup;
@@ -163,7 +166,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountGroupImpl.fromAccountGroup(
-			accountGroupLocalService.deleteAccountGroup(
+			_accountGroupLocalService.deleteAccountGroup(
 				commerceAccountGroupId));
 	}
 
@@ -172,7 +175,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		long companyId, String externalReferenceCode) {
 
 		return CommerceAccountGroupImpl.fromAccountGroup(
-			accountGroupLocalService.fetchAccountGroupByReferenceCode(
+			_accountGroupLocalService.fetchAccountGroupByReferenceCode(
 				companyId, externalReferenceCode));
 	}
 
@@ -181,7 +184,8 @@ public class CommerceAccountGroupLocalServiceImpl
 		long commerceAccountGroupId) {
 
 		return CommerceAccountGroupImpl.fromAccountGroup(
-			accountGroupLocalService.fetchAccountGroup(commerceAccountGroupId));
+			_accountGroupLocalService.fetchAccountGroup(
+				commerceAccountGroupId));
 	}
 
 	@Override
@@ -190,7 +194,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountGroupImpl.fromAccountGroup(
-			accountGroupLocalService.getAccountGroup(commerceAccountGroupId));
+			_accountGroupLocalService.getAccountGroup(commerceAccountGroupId));
 	}
 
 	@Override
@@ -199,7 +203,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		OrderByComparator<CommerceAccountGroup> orderByComparator) {
 
 		return TransformUtil.transform(
-			accountGroupLocalService.getAccountGroups(
+			_accountGroupLocalService.getAccountGroups(
 				companyId, start, end,
 				new OrderByComparator<AccountGroup>() {
 
@@ -241,14 +245,14 @@ public class CommerceAccountGroupLocalServiceImpl
 		).toArray();
 
 		return TransformUtil.transform(
-			accountGroupLocalService.getAccountGroupsByAccountGroupId(
+			_accountGroupLocalService.getAccountGroupsByAccountGroupId(
 				commerceAccountGroupIds),
 			CommerceAccountGroupImpl::fromAccountGroup);
 	}
 
 	@Override
 	public int getCommerceAccountGroupsCount(long companyId) {
-		return accountGroupLocalService.getAccountGroupsCount(companyId);
+		return _accountGroupLocalService.getAccountGroupsCount(companyId);
 	}
 
 	@Override
@@ -272,7 +276,7 @@ public class CommerceAccountGroupLocalServiceImpl
 			start, end
 		);
 
-		return accountGroupLocalService.dslQuery(dslQuery);
+		return _accountGroupLocalService.dslQuery(dslQuery);
 	}
 
 	@Override
@@ -297,7 +301,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		}
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
-			accountGroupLocalService.searchAccountGroups(
+			_accountGroupLocalService.searchAccountGroups(
 				companyId, keywords, start, end, orderByComparator);
 
 		return TransformUtil.transform(
@@ -310,7 +314,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		throws PortalException {
 
 		BaseModelSearchResult<AccountGroup> baseModelSearchResult =
-			accountGroupLocalService.searchAccountGroups(
+			_accountGroupLocalService.searchAccountGroups(
 				companyId, keywords, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				null);
 
@@ -324,7 +328,7 @@ public class CommerceAccountGroupLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		AccountGroup accountGroup = accountGroupLocalService.getAccountGroup(
+		AccountGroup accountGroup = _accountGroupLocalService.getAccountGroup(
 			commerceAccountGroupId);
 
 		if (accountGroup.isDefaultAccountGroup()) {
@@ -339,7 +343,7 @@ public class CommerceAccountGroupLocalServiceImpl
 		accountGroup.setExpandoBridgeAttributes(serviceContext);
 
 		return CommerceAccountGroupImpl.fromAccountGroup(
-			accountGroupLocalService.updateAccountGroup(accountGroup));
+			_accountGroupLocalService.updateAccountGroup(accountGroup));
 	}
 
 	protected void validate(
@@ -357,7 +361,7 @@ public class CommerceAccountGroupLocalServiceImpl
 
 		CommerceAccountGroup commerceAccountGroup =
 			CommerceAccountGroupImpl.fromAccountGroup(
-				accountGroupLocalService.fetchAccountGroupByReferenceCode(
+				_accountGroupLocalService.fetchAccountGroupByReferenceCode(
 					companyId, externalReferenceCode));
 
 		if ((commerceAccountGroup != null) &&
@@ -369,5 +373,11 @@ public class CommerceAccountGroupLocalServiceImpl
 					"reference code " + externalReferenceCode);
 		}
 	}
+
+	@ServiceReference(type = AccountGroupLocalService.class)
+	private AccountGroupLocalService _accountGroupLocalService;
+
+	@ServiceReference(type = ExpandoRowLocalService.class)
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 }

@@ -25,6 +25,8 @@ import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.service.base.CPAttachmentFileEntryLocalServiceBaseImpl;
 import com.liferay.commerce.product.util.JsonHelper;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
+import com.liferay.document.library.kernel.service.DLAppLocalService;
+import com.liferay.expando.kernel.service.ExpandoRowLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -105,7 +107,7 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		FileEntry fileEntry = null;
 
 		if (!cdnEnabled) {
-			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			fileEntryId = _getFileEntryId(
 				fileEntry, userId, groupId, _portal.getClassName(classNameId),
@@ -346,7 +348,7 @@ public class CPAttachmentFileEntryLocalServiceImpl
 
 		// Expando
 
-		expandoRowLocalService.deleteRows(
+		_expandoRowLocalService.deleteRows(
 			cpAttachmentFileEntry.getCPAttachmentFileEntryId());
 
 		reindex(
@@ -595,7 +597,7 @@ public class CPAttachmentFileEntryLocalServiceImpl
 		FileEntry fileEntry = null;
 
 		if (!cdnEnabled) {
-			fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
+			fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
 
 			fileEntryId = _getFileEntryId(
 				fileEntry, user.getUserId(), cpAttachmentFileEntry.getGroupId(),
@@ -882,6 +884,12 @@ public class CPAttachmentFileEntryLocalServiceImpl
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CPAttachmentFileEntryLocalServiceImpl.class);
+
+	@ServiceReference(type = DLAppLocalService.class)
+	private DLAppLocalService _dlAppLocalService;
+
+	@ServiceReference(type = ExpandoRowLocalService.class)
+	private ExpandoRowLocalService _expandoRowLocalService;
 
 	@ServiceReference(type = JSONFactory.class)
 	private JSONFactory _jsonFactory;

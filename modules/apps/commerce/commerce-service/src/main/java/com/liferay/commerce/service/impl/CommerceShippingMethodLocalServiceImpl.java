@@ -21,10 +21,12 @@ import com.liferay.commerce.model.CommerceShippingMethod;
 import com.liferay.commerce.service.base.CommerceShippingMethodLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ImageLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.File;
 
@@ -110,7 +112,7 @@ public class CommerceShippingMethodLocalServiceImpl
 		// Image
 
 		if (imageFile != null) {
-			imageLocalService.updateImage(
+			_imageLocalService.updateImage(
 				commerceShippingMethod.getCompanyId(),
 				commerceShippingMethod.getImageId(), imageFile);
 		}
@@ -139,7 +141,7 @@ public class CommerceShippingMethodLocalServiceImpl
 		// Image
 
 		if (commerceShippingMethod.getImageId() > 0) {
-			imageLocalService.deleteImage(commerceShippingMethod.getImageId());
+			_imageLocalService.deleteImage(commerceShippingMethod.getImageId());
 		}
 
 		// Commerce address restrictions
@@ -302,7 +304,7 @@ public class CommerceShippingMethodLocalServiceImpl
 		// Image
 
 		if (imageFile != null) {
-			imageLocalService.updateImage(
+			_imageLocalService.updateImage(
 				commerceShippingMethod.getImageId(), imageFile);
 		}
 
@@ -324,5 +326,8 @@ public class CommerceShippingMethodLocalServiceImpl
 			throw new CommerceShippingMethodEngineKeyException();
 		}
 	}
+
+	@ServiceReference(type = ImageLocalService.class)
+	private ImageLocalService _imageLocalService;
 
 }

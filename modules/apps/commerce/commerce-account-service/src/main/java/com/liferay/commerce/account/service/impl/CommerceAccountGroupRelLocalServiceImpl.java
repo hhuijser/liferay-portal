@@ -16,6 +16,7 @@ package com.liferay.commerce.account.service.impl;
 
 import com.liferay.account.exception.DuplicateAccountGroupRelException;
 import com.liferay.account.model.AccountGroupRel;
+import com.liferay.account.service.AccountGroupRelLocalService;
 import com.liferay.commerce.account.exception.DuplicateCommerceAccountGroupRelException;
 import com.liferay.commerce.account.model.CommerceAccountGroupRel;
 import com.liferay.commerce.account.model.impl.CommerceAccountGroupRelImpl;
@@ -23,6 +24,7 @@ import com.liferay.commerce.account.service.base.CommerceAccountGroupRelLocalSer
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -48,7 +50,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 
 		try {
 			return CommerceAccountGroupRelImpl.fromAccountGroupRel(
-				accountGroupRelLocalService.addAccountGroupRel(
+				_accountGroupRelLocalService.addAccountGroupRel(
 					commerceAccountGroupId, className, classPK));
 		}
 		catch (DuplicateAccountGroupRelException
@@ -64,8 +66,8 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		CommerceAccountGroupRel commerceAccountGroupRel) {
 
 		return CommerceAccountGroupRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.deleteAccountGroupRel(
-				accountGroupRelLocalService.fetchAccountGroupRel(
+			_accountGroupRelLocalService.deleteAccountGroupRel(
+				_accountGroupRelLocalService.fetchAccountGroupRel(
 					commerceAccountGroupRel.getCommerceAccountGroupRelId())));
 	}
 
@@ -75,19 +77,19 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountGroupRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.deleteAccountGroupRel(
+			_accountGroupRelLocalService.deleteAccountGroupRel(
 				commerceAccountGroupRelId));
 	}
 
 	@Override
 	public void deleteCommerceAccountGroupRels(long commerceAccountGroupId) {
-		accountGroupRelLocalService.deleteAccountGroupRelsByAccountGroupId(
+		_accountGroupRelLocalService.deleteAccountGroupRelsByAccountGroupId(
 			commerceAccountGroupId);
 	}
 
 	@Override
 	public void deleteCommerceAccountGroupRels(String className, long classPK) {
-		accountGroupRelLocalService.deleteAccountGroupRels(
+		_accountGroupRelLocalService.deleteAccountGroupRels(
 			className, new long[] {classPK});
 	}
 
@@ -96,7 +98,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		long commerceAccountGroupRelId) {
 
 		return CommerceAccountGroupRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.fetchAccountGroupRel(
+			_accountGroupRelLocalService.fetchAccountGroupRel(
 				commerceAccountGroupRelId));
 	}
 
@@ -106,7 +108,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		throws PortalException {
 
 		return CommerceAccountGroupRelImpl.fromAccountGroupRel(
-			accountGroupRelLocalService.getAccountGroupRel(
+			_accountGroupRelLocalService.getAccountGroupRel(
 				commerceAccountGroupRelId));
 	}
 
@@ -115,7 +117,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		int start, int end) {
 
 		return TransformUtil.transform(
-			accountGroupRelLocalService.getAccountGroupRels(start, end),
+			_accountGroupRelLocalService.getAccountGroupRels(start, end),
 			CommerceAccountGroupRelImpl::fromAccountGroupRel);
 	}
 
@@ -125,7 +127,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		OrderByComparator<CommerceAccountGroupRel> orderByComparator) {
 
 		return TransformUtil.transform(
-			accountGroupRelLocalService.getAccountGroupRelsByAccountGroupId(
+			_accountGroupRelLocalService.getAccountGroupRelsByAccountGroupId(
 				commerceAccountGroupId, start, end,
 				_getAccountGroupRelOrderByComparator(orderByComparator)),
 			CommerceAccountGroupRelImpl::fromAccountGroupRel);
@@ -137,7 +139,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 		OrderByComparator<CommerceAccountGroupRel> orderByComparator) {
 
 		return TransformUtil.transform(
-			accountGroupRelLocalService.getAccountGroupRels(
+			_accountGroupRelLocalService.getAccountGroupRels(
 				className, classPK, start, end,
 				_getAccountGroupRelOrderByComparator(orderByComparator)),
 			CommerceAccountGroupRelImpl::fromAccountGroupRel);
@@ -145,13 +147,13 @@ public class CommerceAccountGroupRelLocalServiceImpl
 
 	@Override
 	public int getCommerceAccountGroupRelsCount() {
-		return accountGroupRelLocalService.getAccountGroupRelsCount();
+		return _accountGroupRelLocalService.getAccountGroupRelsCount();
 	}
 
 	@Override
 	public int getCommerceAccountGroupRelsCount(long commerceAccountGroupId) {
 		long accountGroupRelsCountByAccountGroupId =
-			accountGroupRelLocalService.
+			_accountGroupRelLocalService.
 				getAccountGroupRelsCountByAccountGroupId(
 					commerceAccountGroupId);
 
@@ -162,7 +164,7 @@ public class CommerceAccountGroupRelLocalServiceImpl
 	public int getCommerceAccountGroupRelsCount(
 		String className, long classPK) {
 
-		return accountGroupRelLocalService.getAccountGroupRelsCount(
+		return _accountGroupRelLocalService.getAccountGroupRelsCount(
 			className, classPK);
 	}
 
@@ -190,5 +192,8 @@ public class CommerceAccountGroupRelLocalServiceImpl
 
 		};
 	}
+
+	@ServiceReference(type = AccountGroupRelLocalService.class)
+	private AccountGroupRelLocalService _accountGroupRelLocalService;
 
 }

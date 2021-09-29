@@ -840,6 +840,7 @@ public class AggregationWrapperConverter {
 					GetterUtil.getDouble(coordinates[1])));
 
 		_addRange(geoDistanceAggregation::addRange, jsonObject);
+
 		geoDistanceAggregation.setDistanceUnit(
 			DistanceUnit.create(jsonObject.getString("unit")));
 
@@ -1046,6 +1047,7 @@ public class AggregationWrapperConverter {
 
 		_setBoolean(percentilesAggregation::setKeyed, jsonObject, "keyed");
 		_setString(percentilesAggregation::setMissing, jsonObject, "missing");
+
 		percentilesAggregation.setPercents(
 			_toDoubleArray(jsonObject.getJSONArray("percents")));
 
@@ -1083,6 +1085,7 @@ public class AggregationWrapperConverter {
 			"format");
 		_setGapPolicy(
 			percentilesBucketPipelineAggregation::setGapPolicy, jsonObject);
+
 		percentilesBucketPipelineAggregation.setPercents(
 			_toDoubleArray(jsonObject.getJSONArray("percents")));
 
@@ -1138,6 +1141,7 @@ public class AggregationWrapperConverter {
 		_setScript(
 			scriptedMetricAggregation::setInitScript, jsonObject,
 			"init_script");
+
 		scriptedMetricAggregation.setMapScript(script);
 
 		JSONObject paramsJSONObject = jsonObject.getJSONObject("params");
@@ -1320,6 +1324,7 @@ public class AggregationWrapperConverter {
 		}
 
 		_setInteger(topHitsAggregation::setFrom, jsonObject, "from");
+
 		topHitsAggregation.setHighlight(
 			_highlightConverter.toHighlight(
 				jsonObject.getJSONObject("highlight")));
@@ -1390,12 +1395,14 @@ public class AggregationWrapperConverter {
 		_setObject(
 			weightedAvgAggregation::setValueMissing, valueJSONObject,
 			"missing");
+
 		weightedAvgAggregation.setValueScript(
 			_scriptConverter.toScript(valueJSONObject.get("script")));
 
 		_setObject(
 			weightedAvgAggregation::setWeightMissing, weightJSONObject,
 			"missing");
+
 		weightedAvgAggregation.setWeightScript(
 			_scriptConverter.toScript(weightJSONObject.get("script")));
 

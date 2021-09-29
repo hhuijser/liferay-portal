@@ -14,7 +14,6 @@
 
 package com.liferay.commerce.account.service.base;
 
-import com.liferay.account.service.persistence.AccountEntryOrganizationRelPersistence;
 import com.liferay.commerce.account.model.CommerceAccountOrganizationRel;
 import com.liferay.commerce.account.service.CommerceAccountOrganizationRelLocalService;
 import com.liferay.commerce.account.service.CommerceAccountOrganizationRelLocalServiceUtil;
@@ -194,54 +193,6 @@ public abstract class CommerceAccountOrganizationRelLocalServiceBaseImpl
 
 		this.commerceAccountUserRelLocalService =
 			commerceAccountUserRelLocalService;
-	}
-
-	/**
-	 * Returns the account entry organization rel local service.
-	 *
-	 * @return the account entry organization rel local service
-	 */
-	public com.liferay.account.service.AccountEntryOrganizationRelLocalService
-		getAccountEntryOrganizationRelLocalService() {
-
-		return accountEntryOrganizationRelLocalService;
-	}
-
-	/**
-	 * Sets the account entry organization rel local service.
-	 *
-	 * @param accountEntryOrganizationRelLocalService the account entry organization rel local service
-	 */
-	public void setAccountEntryOrganizationRelLocalService(
-		com.liferay.account.service.AccountEntryOrganizationRelLocalService
-			accountEntryOrganizationRelLocalService) {
-
-		this.accountEntryOrganizationRelLocalService =
-			accountEntryOrganizationRelLocalService;
-	}
-
-	/**
-	 * Returns the account entry organization rel persistence.
-	 *
-	 * @return the account entry organization rel persistence
-	 */
-	public AccountEntryOrganizationRelPersistence
-		getAccountEntryOrganizationRelPersistence() {
-
-		return accountEntryOrganizationRelPersistence;
-	}
-
-	/**
-	 * Sets the account entry organization rel persistence.
-	 *
-	 * @param accountEntryOrganizationRelPersistence the account entry organization rel persistence
-	 */
-	public void setAccountEntryOrganizationRelPersistence(
-		AccountEntryOrganizationRelPersistence
-			accountEntryOrganizationRelPersistence) {
-
-		this.accountEntryOrganizationRelPersistence =
-			accountEntryOrganizationRelPersistence;
 	}
 
 	/**
@@ -454,17 +405,6 @@ public abstract class CommerceAccountOrganizationRelLocalServiceBaseImpl
 	protected
 		com.liferay.commerce.account.service.CommerceAccountUserRelLocalService
 			commerceAccountUserRelLocalService;
-
-	@ServiceReference(
-		type = com.liferay.account.service.AccountEntryOrganizationRelLocalService.class
-	)
-	protected
-		com.liferay.account.service.AccountEntryOrganizationRelLocalService
-			accountEntryOrganizationRelLocalService;
-
-	@ServiceReference(type = AccountEntryOrganizationRelPersistence.class)
-	protected AccountEntryOrganizationRelPersistence
-		accountEntryOrganizationRelPersistence;
 
 	@ServiceReference(
 		type = com.liferay.counter.kernel.service.CounterLocalService.class

@@ -14,7 +14,6 @@
 
 package com.liferay.commerce.account.service.base;
 
-import com.liferay.account.service.persistence.AccountEntryUserRelPersistence;
 import com.liferay.commerce.account.model.CommerceAccountUserRel;
 import com.liferay.commerce.account.service.CommerceAccountUserRelLocalService;
 import com.liferay.commerce.account.service.CommerceAccountUserRelLocalServiceUtil;
@@ -22,8 +21,6 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiService;
 import com.liferay.portal.kernel.service.BaseLocalServiceImpl;
 import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
-import com.liferay.portal.kernel.service.persistence.RolePersistence;
-import com.liferay.portal.kernel.service.persistence.UserGroupRolePersistence;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
@@ -198,49 +195,6 @@ public abstract class CommerceAccountUserRelLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the account entry user rel local service.
-	 *
-	 * @return the account entry user rel local service
-	 */
-	public com.liferay.account.service.AccountEntryUserRelLocalService
-		getAccountEntryUserRelLocalService() {
-
-		return accountEntryUserRelLocalService;
-	}
-
-	/**
-	 * Sets the account entry user rel local service.
-	 *
-	 * @param accountEntryUserRelLocalService the account entry user rel local service
-	 */
-	public void setAccountEntryUserRelLocalService(
-		com.liferay.account.service.AccountEntryUserRelLocalService
-			accountEntryUserRelLocalService) {
-
-		this.accountEntryUserRelLocalService = accountEntryUserRelLocalService;
-	}
-
-	/**
-	 * Returns the account entry user rel persistence.
-	 *
-	 * @return the account entry user rel persistence
-	 */
-	public AccountEntryUserRelPersistence getAccountEntryUserRelPersistence() {
-		return accountEntryUserRelPersistence;
-	}
-
-	/**
-	 * Sets the account entry user rel persistence.
-	 *
-	 * @param accountEntryUserRelPersistence the account entry user rel persistence
-	 */
-	public void setAccountEntryUserRelPersistence(
-		AccountEntryUserRelPersistence accountEntryUserRelPersistence) {
-
-		this.accountEntryUserRelPersistence = accountEntryUserRelPersistence;
-	}
-
-	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -330,46 +284,6 @@ public abstract class CommerceAccountUserRelLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the role local service.
-	 *
-	 * @return the role local service
-	 */
-	public com.liferay.portal.kernel.service.RoleLocalService
-		getRoleLocalService() {
-
-		return roleLocalService;
-	}
-
-	/**
-	 * Sets the role local service.
-	 *
-	 * @param roleLocalService the role local service
-	 */
-	public void setRoleLocalService(
-		com.liferay.portal.kernel.service.RoleLocalService roleLocalService) {
-
-		this.roleLocalService = roleLocalService;
-	}
-
-	/**
-	 * Returns the role persistence.
-	 *
-	 * @return the role persistence
-	 */
-	public RolePersistence getRolePersistence() {
-		return rolePersistence;
-	}
-
-	/**
-	 * Sets the role persistence.
-	 *
-	 * @param rolePersistence the role persistence
-	 */
-	public void setRolePersistence(RolePersistence rolePersistence) {
-		this.rolePersistence = rolePersistence;
-	}
-
-	/**
 	 * Returns the user local service.
 	 *
 	 * @return the user local service
@@ -407,49 +321,6 @@ public abstract class CommerceAccountUserRelLocalServiceBaseImpl
 	 */
 	public void setUserPersistence(UserPersistence userPersistence) {
 		this.userPersistence = userPersistence;
-	}
-
-	/**
-	 * Returns the user group role local service.
-	 *
-	 * @return the user group role local service
-	 */
-	public com.liferay.portal.kernel.service.UserGroupRoleLocalService
-		getUserGroupRoleLocalService() {
-
-		return userGroupRoleLocalService;
-	}
-
-	/**
-	 * Sets the user group role local service.
-	 *
-	 * @param userGroupRoleLocalService the user group role local service
-	 */
-	public void setUserGroupRoleLocalService(
-		com.liferay.portal.kernel.service.UserGroupRoleLocalService
-			userGroupRoleLocalService) {
-
-		this.userGroupRoleLocalService = userGroupRoleLocalService;
-	}
-
-	/**
-	 * Returns the user group role persistence.
-	 *
-	 * @return the user group role persistence
-	 */
-	public UserGroupRolePersistence getUserGroupRolePersistence() {
-		return userGroupRolePersistence;
-	}
-
-	/**
-	 * Sets the user group role persistence.
-	 *
-	 * @param userGroupRolePersistence the user group role persistence
-	 */
-	public void setUserGroupRolePersistence(
-		UserGroupRolePersistence userGroupRolePersistence) {
-
-		this.userGroupRolePersistence = userGroupRolePersistence;
 	}
 
 	public void afterPropertiesSet() {
@@ -534,15 +405,6 @@ public abstract class CommerceAccountUserRelLocalServiceBaseImpl
 		commerceAccountUserRelLocalService;
 
 	@ServiceReference(
-		type = com.liferay.account.service.AccountEntryUserRelLocalService.class
-	)
-	protected com.liferay.account.service.AccountEntryUserRelLocalService
-		accountEntryUserRelLocalService;
-
-	@ServiceReference(type = AccountEntryUserRelPersistence.class)
-	protected AccountEntryUserRelPersistence accountEntryUserRelPersistence;
-
-	@ServiceReference(
 		type = com.liferay.counter.kernel.service.CounterLocalService.class
 	)
 	protected com.liferay.counter.kernel.service.CounterLocalService
@@ -564,15 +426,6 @@ public abstract class CommerceAccountUserRelLocalServiceBaseImpl
 		resourceLocalService;
 
 	@ServiceReference(
-		type = com.liferay.portal.kernel.service.RoleLocalService.class
-	)
-	protected com.liferay.portal.kernel.service.RoleLocalService
-		roleLocalService;
-
-	@ServiceReference(type = RolePersistence.class)
-	protected RolePersistence rolePersistence;
-
-	@ServiceReference(
 		type = com.liferay.portal.kernel.service.UserLocalService.class
 	)
 	protected com.liferay.portal.kernel.service.UserLocalService
@@ -580,14 +433,5 @@ public abstract class CommerceAccountUserRelLocalServiceBaseImpl
 
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-
-	@ServiceReference(
-		type = com.liferay.portal.kernel.service.UserGroupRoleLocalService.class
-	)
-	protected com.liferay.portal.kernel.service.UserGroupRoleLocalService
-		userGroupRoleLocalService;
-
-	@ServiceReference(type = UserGroupRolePersistence.class)
-	protected UserGroupRolePersistence userGroupRolePersistence;
 
 }

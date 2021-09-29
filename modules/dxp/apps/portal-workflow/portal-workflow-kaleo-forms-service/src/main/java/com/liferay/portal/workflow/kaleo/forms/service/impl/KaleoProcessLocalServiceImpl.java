@@ -17,11 +17,15 @@ package com.liferay.portal.workflow.kaleo.forms.service.impl;
 import com.liferay.dynamic.data.lists.constants.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
+import com.liferay.dynamic.data.lists.service.DDLRecordLocalService;
+import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLinkLocalService;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
+import com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -166,7 +170,7 @@ public class KaleoProcessLocalServiceImpl
 
 		// Dynamic data lists record set
 
-		ddlRecordSetLocalService.deleteRecordSet(
+		_ddlRecordSetLocalService.deleteRecordSet(
 			kaleoProcess.getDDLRecordSetId());
 
 		return kaleoProcess;
@@ -367,7 +371,7 @@ public class KaleoProcessLocalServiceImpl
 
 		int scope = GetterUtil.getInteger(serviceContext.getAttribute("scope"));
 
-		return ddlRecordSetLocalService.addRecordSet(
+		return _ddlRecordSetLocalService.addRecordSet(
 			userId, groupId, ddmStructureId, null, nameMap, descriptionMap,
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, scope,
 			serviceContext);
@@ -382,19 +386,19 @@ public class KaleoProcessLocalServiceImpl
 	protected void deleteKaleoProcessData(KaleoProcess kaleoProcess)
 		throws PortalException {
 
-		workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
+		_workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
 			kaleoProcess.getCompanyId(), kaleoProcess.getGroupId(),
 			KaleoProcess.class.getName(), kaleoProcess.getKaleoProcessId(), 0);
 
-		List<DDLRecord> ddlRecords = ddlRecordLocalService.getRecords(
+		List<DDLRecord> ddlRecords = _ddlRecordLocalService.getRecords(
 			kaleoProcess.getDDLRecordSetId());
 
 		for (DDLRecord ddlRecord : ddlRecords) {
-			workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
+			_workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 				kaleoProcess.getCompanyId(), kaleoProcess.getGroupId(),
 				KaleoProcess.class.getName(), ddlRecord.getRecordId());
 
-			ddlRecordLocalService.deleteRecord(ddlRecord.getRecordId());
+			_ddlRecordLocalService.deleteRecord(ddlRecord.getRecordId());
 		}
 	}
 
@@ -446,7 +450,7 @@ public class KaleoProcessLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		ddlRecordSetLocalService.updateRecordSet(
+		_ddlRecordSetLocalService.updateRecordSet(
 			ddlRecordSetId, ddmStructureId, nameMap, descriptionMap,
 			DDLRecordSetConstants.MIN_DISPLAY_ROWS_DEFAULT, serviceContext);
 	}
@@ -485,9 +489,22 @@ public class KaleoProcessLocalServiceImpl
 	}
 
 	@Reference
+	private DDLRecordLocalService _ddlRecordLocalService;
+
+	@Reference
+	private DDLRecordSetLocalService _ddlRecordSetLocalService;
+
+	@Reference
 	private DDMTemplateLinkLocalService _ddmTemplateLinkLocalService;
 
 	@Reference
 	private KaleoProcessLinkLocalService _kaleoProcessLinkLocalService;
+
+	@Reference
+	private WorkflowDefinitionLinkLocalService
+		_workflowDefinitionLinkLocalService;
+
+	@Reference
+	private WorkflowInstanceLinkLocalService _workflowInstanceLinkLocalService;
 
 }

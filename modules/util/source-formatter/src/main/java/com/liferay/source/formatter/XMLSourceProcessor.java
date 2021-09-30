@@ -32,11 +32,11 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return getFileNames(
 			new String[] {
 				"**/.bnd/**", "**/.idea/**", "**/.ivy/**", "**/bin/**",
-				"**/javadocs-*.xml", "**/logs/**", "**/portal-impl/**/*.action",
-				"**/portal-impl/**/*.function", "**/portal-impl/**/*.macro",
-				"**/portal-impl/**/*.testcase", "**/src/test/**",
-				"**/test-classes/unit/**", "**/test-results/**",
-				"**/test/unit/**", "**/tools/node**"
+				"**/javadocs-*.xml", "**/logs/**", "**/modules/**/.project",
+				"**/portal-impl/**/*.action", "**/portal-impl/**/*.function",
+				"**/portal-impl/**/*.macro", "**/portal-impl/**/*.testcase",
+				"**/src/test/**", "**/test-classes/unit/**",
+				"**/test-results/**", "**/test/unit/**", "**/tools/node**"
 			},
 			getIncludes());
 	}

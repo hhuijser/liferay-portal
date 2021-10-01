@@ -273,7 +273,6 @@ import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.version.Version;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.impl.AddressModelImpl;
 import com.liferay.portal.model.impl.ClassNameModelImpl;
@@ -4826,15 +4825,13 @@ public class DataFactory {
 	public List<ReleaseModel> newReleaseModels() throws IOException {
 		List<ReleaseModel> releases = new ArrayList<>();
 
-		Version latestSchemaVersion =
-			PortalUpgradeProcess.getLatestSchemaVersion();
-
 		releases.add(
 			newReleaseModel(
 				ReleaseConstants.DEFAULT_ID,
 				ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME,
-				latestSchemaVersion.toString(), ReleaseInfo.getBuildNumber(),
-				false, ReleaseConstants.TEST_STRING));
+				String.valueOf(PortalUpgradeProcess.getLatestSchemaVersion()),
+				ReleaseInfo.getBuildNumber(), false,
+				ReleaseConstants.TEST_STRING));
 
 		try (InputStream inputStream = DataFactory.class.getResourceAsStream(
 				"dependencies/releases.txt");

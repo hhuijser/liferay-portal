@@ -122,9 +122,9 @@ public class UpgradePortletDisplayTemplatePreferences
 			displayStyleGroupId, displayStyle);
 
 		if (objectValuePair != null) {
-			Long key = objectValuePair.getKey();
-
-			portletPreferences.setValue("displayStyleGroupId", key.toString());
+			portletPreferences.setValue(
+				"displayStyleGroupId",
+				String.valueOf(objectValuePair.getKey()));
 
 			portletPreferences.setValue(
 				"displayStyle",

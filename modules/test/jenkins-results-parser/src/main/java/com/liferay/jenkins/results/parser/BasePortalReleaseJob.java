@@ -128,13 +128,11 @@ public abstract class BasePortalReleaseJob
 					jobProperties, "test.batch.names", false, _portalBranchName,
 					getTestSuiteName())));
 
-		BuildProfile buildProfile = getBuildProfile();
-
 		batchNames.addAll(
 			getSetFromString(
 				JenkinsResultsParserUtil.getProperty(
 					jobProperties, "test.batch.names", false, _portalBranchName,
-					buildProfile.toString(), getTestSuiteName())));
+					String.valueOf(getBuildProfile()), getTestSuiteName())));
 
 		return batchNames;
 	}
@@ -148,13 +146,11 @@ public abstract class BasePortalReleaseJob
 					getJobProperties(), "test.batch.names.smoke", false,
 					_portalBranchName, getTestSuiteName())));
 
-		BuildProfile buildProfile = getBuildProfile();
-
 		dependentBatchNames.addAll(
 			getSetFromString(
 				JenkinsResultsParserUtil.getProperty(
 					getJobProperties(), "test.batch.names.smoke", false,
-					_portalBranchName, buildProfile.toString(),
+					_portalBranchName, String.valueOf(getBuildProfile()),
 					getTestSuiteName())));
 
 		return dependentBatchNames;

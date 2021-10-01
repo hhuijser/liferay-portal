@@ -213,9 +213,8 @@ public class KBArticleImporter {
 				Object value = entry.getValue();
 
 				if (value != null) {
-					Object key = entry.getKey();
-
-					metadata.put(key.toString(), value.toString());
+					metadata.put(
+						key.toString(), String.valueOf(entry.getKey()));
 				}
 			}
 

@@ -52,19 +52,13 @@ public final class SummaryLogger {
 			summaryHTMLContent, "<div id=\"summaryContentContainer\" />",
 			_summaryContentContainerLoggerElement.toString());
 
-		LoggerElement summaryTestDescriptionLoggerElement =
-			_getSummaryTestDescriptionLoggerElement();
-
 		summaryHTMLContent = StringUtil.replace(
 			summaryHTMLContent, "<p id=\"summaryTestDescription\" />",
-			summaryTestDescriptionLoggerElement.toString());
-
-		LoggerElement summaryTestNameLoggerElement =
-			_getSummaryTestNameLoggerElement();
+			String.valueOf(_getSummaryTestDescriptionLoggerElement()));
 
 		summaryHTMLContent = StringUtil.replace(
 			summaryHTMLContent, "<h3 id=\"summaryTestName\" />",
-			summaryTestNameLoggerElement.toString());
+			String.valueOf(_getSummaryTestNameLoggerElement()));
 
 		summaryHTMLContent = StringUtil.replace(
 			summaryHTMLContent, "<ul id=\"summaryTitleContainer\" />",

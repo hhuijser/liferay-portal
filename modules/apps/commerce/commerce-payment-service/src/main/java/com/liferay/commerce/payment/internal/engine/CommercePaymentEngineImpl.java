@@ -90,12 +90,10 @@ public class CommercePaymentEngineImpl implements CommercePaymentEngine {
 		CommercePaymentResult commercePaymentResult =
 			commercePaymentMethod.cancelPayment(commercePaymentRequest);
 
-		List<String> resultMessages = commercePaymentResult.getResultMessages();
-
 		updateOrderPaymentStatus(
 			commerceOrderId, commercePaymentResult.getNewPaymentStatus(),
 			commercePaymentResult.getAuthTransactionId(),
-			resultMessages.toString());
+			String.valueOf(commercePaymentResult.getResultMessages()));
 
 		return commercePaymentResult;
 	}
@@ -129,12 +127,10 @@ public class CommercePaymentEngineImpl implements CommercePaymentEngine {
 		CommercePaymentResult commercePaymentResult =
 			commercePaymentMethod.capturePayment(commercePaymentRequest);
 
-		List<String> resultMessages = commercePaymentResult.getResultMessages();
-
 		updateOrderPaymentStatus(
 			commerceOrderId, commercePaymentResult.getNewPaymentStatus(),
 			commercePaymentResult.getAuthTransactionId(),
-			resultMessages.toString());
+			String.valueOf(commercePaymentResult.getResultMessages()));
 
 		return commercePaymentResult;
 	}
@@ -182,12 +178,10 @@ public class CommercePaymentEngineImpl implements CommercePaymentEngine {
 		CommercePaymentResult commercePaymentResult =
 			commercePaymentMethod.completePayment(commercePaymentRequest);
 
-		List<String> resultMessages = commercePaymentResult.getResultMessages();
-
 		updateOrderPaymentStatus(
 			commerceOrderId, commercePaymentResult.getNewPaymentStatus(),
 			commercePaymentResult.getAuthTransactionId(),
-			resultMessages.toString());
+			String.valueOf(commercePaymentResult.getResultMessages()));
 
 		return commercePaymentResult;
 	}
@@ -376,12 +370,10 @@ public class CommercePaymentEngineImpl implements CommercePaymentEngine {
 		CommercePaymentResult commercePaymentResult =
 			commercePaymentMethod.processPayment(commercePaymentRequest);
 
-		List<String> resultMessages = commercePaymentResult.getResultMessages();
-
 		updateOrderPaymentStatus(
 			commerceOrderId, commercePaymentResult.getNewPaymentStatus(),
 			commercePaymentResult.getAuthTransactionId(),
-			resultMessages.toString());
+			String.valueOf(commercePaymentResult.getResultMessages()));
 
 		return commercePaymentResult;
 	}

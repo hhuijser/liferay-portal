@@ -215,9 +215,7 @@ public class RankingPortletDisplayBuilder {
 	}
 
 	protected String getSearchActionURL() {
-		PortletURL portletURL = _getPortletURL(getKeywords());
-
-		return portletURL.toString();
+		return String.valueOf(_getPortletURL(getKeywords()));
 	}
 
 	protected SearchContainer<RankingEntryDisplayContext> getSearchContainer(

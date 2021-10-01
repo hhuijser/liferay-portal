@@ -140,9 +140,7 @@ public class SelectSegmentsEntryDisplayContext {
 	}
 
 	public String getSearchActionURL() {
-		PortletURL portletURL = _getPortletURL();
-
-		return portletURL.toString();
+		return String.valueOf(_getPortletURL());
 	}
 
 	public SearchContainer<SegmentsEntry> getSearchContainer()

@@ -74,9 +74,8 @@ public class AMImageImgTag extends AttributesTagSupport implements BodyTag {
 			sb.append(entry.getKey());
 			sb.append("=\"");
 
-			Object value = entry.getValue();
-
-			sb.append(HtmlUtil.escapeAttribute(value.toString()));
+			sb.append(
+				HtmlUtil.escapeAttribute(String.valueOf(entry.getValue())));
 
 			sb.append("\" ");
 		}

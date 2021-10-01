@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.version.Version;
 import com.liferay.portal.spring.hibernate.DialectDetector;
 import com.liferay.portal.upgrade.PortalUpgradeProcess;
 import com.liferay.portal.util.PropsUtil;
@@ -96,10 +95,9 @@ public class DBInitUtil {
 			preparedStatement.setString(
 				3, ReleaseConstants.DEFAULT_SERVLET_CONTEXT_NAME);
 
-			Version latestSchemaVersion =
-				PortalUpgradeProcess.getLatestSchemaVersion();
-
-			preparedStatement.setString(4, latestSchemaVersion.toString());
+			preparedStatement.setString(
+				4,
+				String.valueOf(PortalUpgradeProcess.getLatestSchemaVersion()));
 
 			preparedStatement.setInt(5, ReleaseInfo.getBuildNumber());
 			preparedStatement.setBoolean(6, false);

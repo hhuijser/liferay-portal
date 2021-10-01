@@ -27,9 +27,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.htmlparser.jericho.Renderer;
 import net.htmlparser.jericho.Source;
-import net.htmlparser.jericho.TextExtractor;
 
 /**
  * Provides the implementation of the HTML utility interface for escaping,
@@ -605,9 +603,7 @@ public class HtmlImpl implements Html {
 
 		Source source = new Source(html);
 
-		TextExtractor textExtractor = source.getTextExtractor();
-
-		return textExtractor.toString();
+		return String.valueOf(source.getTextExtractor());
 	}
 
 	@Override
@@ -691,9 +687,7 @@ public class HtmlImpl implements Html {
 
 		Source source = new Source(html);
 
-		Renderer renderer = source.getRenderer();
-
-		return renderer.toString();
+		return String.valueOf(source.getRenderer());
 	}
 
 	/**

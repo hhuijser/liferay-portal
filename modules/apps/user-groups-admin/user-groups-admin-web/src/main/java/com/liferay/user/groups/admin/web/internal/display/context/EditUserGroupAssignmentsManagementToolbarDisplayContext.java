@@ -98,12 +98,7 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 				"editUserGroupAssignments"
 			).buildString()
 		).put(
-			"portletURL",
-			() -> {
-				PortletURL portletURL = getPortletURL();
-
-				return portletURL.toString();
-			}
+			"portletURL", String.valueOf(getPortletURL())
 		).put(
 			"selectUsersURL",
 			PortletURLBuilder.createActionURL(

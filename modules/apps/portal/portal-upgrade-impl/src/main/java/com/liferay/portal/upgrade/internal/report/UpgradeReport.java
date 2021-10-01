@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.version.Version;
 import com.liferay.portal.upgrade.PortalUpgradeProcess;
 import com.liferay.portal.upgrade.internal.release.osgi.commands.ReleaseManagerOSGiCommands;
 import com.liferay.portal.util.PropsValues;
@@ -348,9 +347,6 @@ public class UpgradeReport {
 	}
 
 	private String _getPortalVersionsInfo() {
-		Version latestSchemaVersion =
-			PortalUpgradeProcess.getLatestSchemaVersion();
-
 		return StringBundler.concat(
 			_getReleaseInfo(
 				_initialBuildNumber, _initialSchemaVersion, "initial"),
@@ -358,7 +354,8 @@ public class UpgradeReport {
 			_getReleaseInfo(_getBuildNumber(), _getSchemaVersion(), "final"),
 			StringPool.NEW_LINE,
 			_getReleaseInfo(
-				ReleaseInfo.getBuildNumber(), latestSchemaVersion.toString(),
+				ReleaseInfo.getBuildNumber(),
+				String.valueOf(PortalUpgradeProcess.getLatestSchemaVersion()),
 				"expected"));
 	}
 

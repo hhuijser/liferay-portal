@@ -18,8 +18,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
-import java.net.URL;
-
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -75,13 +73,11 @@ public class SharepointConnectionInfoTest {
 		SharepointConnectionInfo sharepointConnectionInfo =
 			_buildSharepointConnectionInfoWithSitePath(sitePath);
 
-		URL serviceURL = sharepointConnectionInfo.getServiceURL();
-
 		Assert.assertEquals(
 			StringBundler.concat(
 				_SERVER_PROTOCOL, "://", _SERVER_ADDRESS, StringPool.COLON,
 				_SERVER_PORT, sitePath, StringPool.SLASH),
-			serviceURL.toString());
+			String.valueOf(sharepointConnectionInfo.getServiceURL()));
 	}
 
 	private SharepointConnectionInfo _buildSharepointConnectionInfoWithSitePath(

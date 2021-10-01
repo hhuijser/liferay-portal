@@ -286,12 +286,7 @@ public class AssetTagsSelectorTag extends IncludeTag {
 		).put(
 			"inputName", _getInputName()
 		).put(
-			"portletURL",
-			() -> {
-				PortletURL portletURL = getPortletURL();
-
-				return portletURL.toString();
-			}
+			"portletURL", String.valueOf(getPortletURL())
 		).put(
 			"removeCallback",
 			() -> {

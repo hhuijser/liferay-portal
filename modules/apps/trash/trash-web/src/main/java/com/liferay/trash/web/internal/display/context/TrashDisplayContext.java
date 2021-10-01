@@ -388,9 +388,7 @@ public class TrashDisplayContext {
 		breadcrumbEntry.setTitle(
 			LanguageUtil.get(_httpServletRequest, "recycle-bin"));
 
-		PortletURL portletURL = getPortletURL();
-
-		breadcrumbEntry.setURL(portletURL.toString());
+		breadcrumbEntry.setURL(String.valueOf(getPortletURL()));
 
 		breadcrumbEntries.add(breadcrumbEntry);
 

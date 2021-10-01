@@ -921,10 +921,8 @@ public class LayoutConverterTest {
 
 		LayoutData layoutData = layoutConverter.convert(layout);
 
-		JSONObject layoutDataJSONObject = layoutData.getLayoutDataJSONObject();
-
 		LayoutStructure actualLayoutStructure = LayoutStructure.of(
-			layoutDataJSONObject.toString());
+			String.valueOf(layoutData.getLayoutDataJSONObject()));
 
 		actualLayoutStructure = _convertToReadableItemIds(
 			actualLayoutStructure);
@@ -1020,10 +1018,8 @@ public class LayoutConverterTest {
 
 		LayoutData layoutData = layoutConverter.convert(layout);
 
-		JSONObject layoutDataJSONObject = layoutData.getLayoutDataJSONObject();
-
 		LayoutStructure actualLayoutStructure = LayoutStructure.of(
-			layoutDataJSONObject.toString());
+			String.valueOf(layoutData.getLayoutDataJSONObject()));
 
 		actualLayoutStructure = _convertToReadableItemIds(
 			actualLayoutStructure);

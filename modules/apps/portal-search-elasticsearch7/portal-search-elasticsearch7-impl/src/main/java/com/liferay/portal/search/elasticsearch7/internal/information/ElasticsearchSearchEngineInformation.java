@@ -38,7 +38,6 @@ import com.liferay.portal.search.engine.NodeInformationBuilder;
 import com.liferay.portal.search.engine.NodeInformationBuilderFactory;
 import com.liferay.portal.search.engine.SearchEngineInformation;
 import com.liferay.portal.search.engine.adapter.SearchEngineAdapter;
-import com.liferay.portal.search.engine.adapter.cluster.ClusterHealthStatus;
 import com.liferay.portal.search.engine.adapter.cluster.HealthClusterRequest;
 import com.liferay.portal.search.engine.adapter.cluster.HealthClusterResponse;
 
@@ -405,10 +404,8 @@ public class ElasticsearchSearchEngineInformation
 		HealthClusterResponse healthClusterResponse =
 			searchEngineAdapter.execute(healthClusterRequest);
 
-		ClusterHealthStatus clusterHealthStatus =
-			healthClusterResponse.getClusterHealthStatus();
-
-		connectionInformationBuilder.health(clusterHealthStatus.toString());
+		connectionInformationBuilder.health(
+			String.valueOf(healthClusterResponse.getClusterHealthStatus()));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

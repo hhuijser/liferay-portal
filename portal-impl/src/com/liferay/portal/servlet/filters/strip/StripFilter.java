@@ -664,12 +664,9 @@ public class StripFilter extends BasePortalFilter {
 					continue;
 				}
 				else if (hasMarker(charBuffer, _MARKER_SCRIPT_OPEN)) {
-					StringBuffer requestURL =
-						httpServletRequest.getRequestURL();
-
 					processJavaScript(
-						requestURL.toString(), charBuffer, writer,
-						_MARKER_SCRIPT_OPEN);
+						String.valueOf(httpServletRequest.getRequestURL()),
+						charBuffer, writer, _MARKER_SCRIPT_OPEN);
 
 					continue;
 				}

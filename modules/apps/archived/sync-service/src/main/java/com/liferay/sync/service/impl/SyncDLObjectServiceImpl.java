@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.jsonwebservice.NoSuchJSONWebServiceException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -1102,12 +1101,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			JSONArray jsonArray = JSONFactoryUtil.createJSONArray(manifest);
 
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-
 				JSONWebServiceActionParametersMap
 					jsonWebServiceActionParametersMap =
 						JSONFactoryUtil.looseDeserialize(
-							jsonObject.toString(),
+							String.valueOf(jsonArray.getJSONObject(i)),
 							JSONWebServiceActionParametersMap.class);
 
 				String zipFileId = MapUtil.getString(

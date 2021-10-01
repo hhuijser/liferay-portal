@@ -39,7 +39,6 @@ import com.liferay.redirect.web.internal.security.permission.resource.RedirectPe
 import java.util.List;
 import java.util.Map;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -134,10 +133,8 @@ public class RedirectManagementToolbarDisplayContext
 						"mvcRenderCommandName",
 						"/redirect/edit_redirect_entry");
 
-					PortletURL portletURL = getPortletURL();
-
 					editRedirectEntryURL.setParameter(
-						"redirect", portletURL.toString());
+						"redirect", String.valueOf(getPortletURL()));
 
 					dropdownItem.setHref(editRedirectEntryURL);
 

@@ -251,11 +251,11 @@ public class MercanetCommercePaymentMethod implements CommercePaymentMethod {
 				resultMessage, false);
 		}
 
-		URL redirectionURL = initializationResponse.getRedirectionUrl();
-
 		String url = StringBundler.concat(
 			_getServletUrl(mercanetCommercePaymentRequest), "?redirectURL=",
-			URLCodec.encodeURL(redirectionURL.toString()), "&redirectionData=",
+			URLCodec.encodeURL(
+				String.valueOf(initializationResponse.getRedirectionUrl())),
+			"&redirectionData=",
 			URLEncoder.encode(
 				initializationResponse.getRedirectionData(), StringPool.UTF8),
 			"&seal=",

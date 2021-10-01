@@ -587,11 +587,10 @@ public class PayPalCommercePaymentMethod implements CommercePaymentMethod {
 
 		capturesRefundRequest.prefer("return=representation");
 
-		BigDecimal amount = commercePaymentRequest.getAmount();
-
 		capturesRefundRequest.requestBody(
 			_buildRefundRequestBody(
-				amount.toString(), commerceCurrency.getCode()));
+				String.valueOf(commercePaymentRequest.getAmount()),
+				commerceCurrency.getCode()));
 
 		PayPalHttpClient payPalHttpClient = _getPayPalHttpClient(commerceOrder);
 

@@ -348,9 +348,7 @@ public class UserAttributes {
 			return _user.getFullName();
 		}
 		else if (name.equals(USER_BDATE)) {
-			Date birthday = _user.getBirthday();
-
-			return birthday.toString();
+			return String.valueOf(_user.getBirthday());
 		}
 		else if (name.equals(USER_BDATE_DAY)) {
 			Date birthday = _user.getBirthday();

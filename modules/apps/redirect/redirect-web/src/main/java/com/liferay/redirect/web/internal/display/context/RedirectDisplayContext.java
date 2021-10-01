@@ -112,10 +112,8 @@ public class RedirectDisplayContext {
 				editRedirectEntryURL.setParameter(
 					"mvcRenderCommandName", "/redirect/edit_redirect_entry");
 
-				PortletURL portletURL = _getPortletURL();
-
 				editRedirectEntryURL.setParameter(
-					"redirect", portletURL.toString());
+					"redirect", String.valueOf(_getPortletURL()));
 
 				editRedirectEntryURL.setParameter(
 					"redirectEntryId",

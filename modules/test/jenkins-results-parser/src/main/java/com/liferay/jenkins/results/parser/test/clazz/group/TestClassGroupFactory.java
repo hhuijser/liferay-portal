@@ -68,10 +68,9 @@ public class TestClassGroupFactory {
 	public static BatchTestClassGroup newBatchTestClassGroup(
 		String batchName, Job job) {
 
-		Job.BuildProfile buildProfile = job.getBuildProfile();
-
 		String key = JenkinsResultsParserUtil.combine(
-			batchName, "_", buildProfile.toString(), "_", job.getJobName());
+			batchName, "_", String.valueOf(job.getBuildProfile()), "_",
+			job.getJobName());
 
 		if (_batchTestClassGroups.containsKey(key)) {
 			return _batchTestClassGroups.get(key);

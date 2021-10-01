@@ -113,9 +113,7 @@ public class ServletContextUtil {
 	public static String getRootPath(ServletContext servletContext)
 		throws MalformedURLException {
 
-		URI rootURI = getRootURI(servletContext);
-
-		return rootURI.toString();
+		return String.valueOf(getRootURI(servletContext));
 	}
 
 	public static URI getRootURI(ServletContext servletContext)

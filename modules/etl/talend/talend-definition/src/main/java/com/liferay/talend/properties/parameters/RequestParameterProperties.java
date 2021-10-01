@@ -65,9 +65,9 @@ public class RequestParameterProperties extends ComponentPropertiesImpl {
 
 			parameterNames.add(name);
 
-			OASParameter.Location location = oasParameter.getLocation();
-
-			parameterLocations.add(StringUtil.toLowerCase(location.toString()));
+			parameterLocations.add(
+				StringUtil.toLowerCase(
+					String.valueOf(oasParameter.getLocation())));
 
 			parameterValues.add("");
 		}

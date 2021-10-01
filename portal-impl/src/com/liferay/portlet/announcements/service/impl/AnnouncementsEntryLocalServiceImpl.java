@@ -20,6 +20,10 @@ import com.liferay.announcements.kernel.exception.EntryTitleException;
 import com.liferay.announcements.kernel.exception.EntryURLException;
 import com.liferay.announcements.kernel.model.AnnouncementsDelivery;
 import com.liferay.announcements.kernel.model.AnnouncementsEntry;
+import com.liferay.announcements.kernel.service.AnnouncementsDeliveryLocalService;
+import com.liferay.announcements.kernel.service.AnnouncementsFlagLocalService;
+import com.liferay.announcements.kernel.service.persistence.AnnouncementsDeliveryPersistence;
+import com.liferay.announcements.kernel.service.persistence.AnnouncementsFlagPersistence;
 import com.liferay.mail.kernel.model.MailMessage;
 import com.liferay.mail.kernel.service.MailService;
 import com.liferay.mail.kernel.template.MailTemplate;
@@ -45,6 +49,16 @@ import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.model.role.RoleConstants;
+import com.liferay.portal.kernel.service.CompanyLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
+import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.service.persistence.CompanyPersistence;
+import com.liferay.portal.kernel.service.persistence.GroupPersistence;
+import com.liferay.portal.kernel.service.persistence.OrganizationPersistence;
+import com.liferay.portal.kernel.service.persistence.RolePersistence;
+import com.liferay.portal.kernel.service.persistence.UserGroupPersistence;
+import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.EscapableLocalizableFunction;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -90,7 +104,7 @@ public class AnnouncementsEntryLocalServiceImpl
 
 		// Entry
 
-		User user = userPersistence.findByPrimaryKey(userId);
+		User user = _userPersistence.findByPrimaryKey(userId);
 
 		validate(title, content, url, displayDate, expirationDate);
 
@@ -117,7 +131,7 @@ public class AnnouncementsEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			user.getCompanyId(), 0, user.getUserId(),
 			AnnouncementsEntry.class.getName(), entry.getEntryId(), false,
 			false, false);
@@ -153,9 +167,9 @@ public class AnnouncementsEntryLocalServiceImpl
 
 	@Override
 	public void deleteEntries(long companyId) {
-		announcementsDeliveryPersistence.removeByCompanyId(companyId);
+		_announcementsDeliveryPersistence.removeByCompanyId(companyId);
 
-		announcementsFlagPersistence.removeByCompanyId(companyId);
+		_announcementsFlagPersistence.removeByCompanyId(companyId);
 
 		announcementsEntryPersistence.removeByCompanyId(companyId);
 	}
@@ -195,13 +209,13 @@ public class AnnouncementsEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			entry.getCompanyId(), AnnouncementsEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, entry.getEntryId());
 
 		// Flags
 
-		announcementsFlagLocalService.deleteFlags(entry.getEntryId());
+		_announcementsFlagLocalService.deleteFlags(entry.getEntryId());
 	}
 
 	@Override
@@ -231,7 +245,7 @@ public class AnnouncementsEntryLocalServiceImpl
 		int expirationDateMinute, boolean alert, int flagValue, int start,
 		int end) {
 
-		User user = userLocalService.fetchUser(userId);
+		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
 			return Collections.emptyList();
@@ -263,7 +277,7 @@ public class AnnouncementsEntryLocalServiceImpl
 		int expirationDateMinute, boolean alert, int flagValue, int start,
 		int end) {
 
-		User user = userLocalService.fetchUser(userId);
+		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
 			return Collections.emptyList();
@@ -294,7 +308,7 @@ public class AnnouncementsEntryLocalServiceImpl
 		int expirationDateYear, int expirationDateHour,
 		int expirationDateMinute, boolean alert, int flagValue) {
 
-		User user = userLocalService.fetchUser(userId);
+		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
 			return 0;
@@ -333,7 +347,7 @@ public class AnnouncementsEntryLocalServiceImpl
 		int expirationDateYear, int expirationDateHour,
 		int expirationDateMinute, boolean alert, int flagValue) {
 
-		User user = userLocalService.fetchUser(userId);
+		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
 			return 0;
@@ -387,7 +401,7 @@ public class AnnouncementsEntryLocalServiceImpl
 
 		// Flags
 
-		announcementsFlagLocalService.deleteFlags(entry.getEntryId());
+		_announcementsFlagLocalService.deleteFlags(entry.getEntryId());
 
 		return entry;
 	}
@@ -395,7 +409,7 @@ public class AnnouncementsEntryLocalServiceImpl
 	protected void notifyUsers(AnnouncementsEntry entry)
 		throws PortalException {
 
-		Company company = companyPersistence.findByPrimaryKey(
+		Company company = _companyPersistence.findByPrimaryKey(
 			entry.getCompanyId());
 
 		String className = entry.getClassName();
@@ -412,7 +426,7 @@ public class AnnouncementsEntryLocalServiceImpl
 
 		if (classPK > 0) {
 			if (className.equals(Group.class.getName())) {
-				Group group = groupPersistence.findByPrimaryKey(classPK);
+				Group group = _groupPersistence.findByPrimaryKey(classPK);
 
 				toName = group.getDescriptiveName();
 
@@ -421,14 +435,14 @@ public class AnnouncementsEntryLocalServiceImpl
 			}
 			else if (className.equals(Organization.class.getName())) {
 				Organization organization =
-					organizationPersistence.findByPrimaryKey(classPK);
+					_organizationPersistence.findByPrimaryKey(classPK);
 
 				toName = organization.getName();
 
 				params.put("usersOrgsTree", ListUtil.fromArray(organization));
 			}
 			else if (className.equals(Role.class.getName())) {
-				Role role = rolePersistence.findByPrimaryKey(classPK);
+				Role role = _rolePersistence.findByPrimaryKey(classPK);
 
 				toName = role.getName();
 
@@ -444,7 +458,7 @@ public class AnnouncementsEntryLocalServiceImpl
 				}
 			}
 			else if (className.equals(UserGroup.class.getName())) {
-				UserGroup userGroup = userGroupPersistence.findByPrimaryKey(
+				UserGroup userGroup = _userGroupPersistence.findByPrimaryKey(
 					classPK);
 
 				toName = userGroup.getName();
@@ -454,7 +468,7 @@ public class AnnouncementsEntryLocalServiceImpl
 		}
 
 		if (className.equals(User.class.getName())) {
-			User user = userPersistence.findByPrimaryKey(classPK);
+			User user = _userPersistence.findByPrimaryKey(classPK);
 
 			if (Validator.isNull(user.getEmailAddress())) {
 				return;
@@ -480,10 +494,10 @@ public class AnnouncementsEntryLocalServiceImpl
 		int total = 0;
 
 		if (teamId > 0) {
-			total = userLocalService.getTeamUsersCount(teamId);
+			total = _userLocalService.getTeamUsersCount(teamId);
 		}
 		else {
-			total = userLocalService.searchCount(
+			total = _userLocalService.searchCount(
 				company.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
 				params);
 		}
@@ -496,10 +510,10 @@ public class AnnouncementsEntryLocalServiceImpl
 				List<User> users = null;
 
 				if (teamId > 0) {
-					users = userLocalService.getTeamUsers(teamId, start, end);
+					users = _userLocalService.getTeamUsers(teamId, start, end);
 				}
 				else {
-					users = userLocalService.search(
+					users = _userLocalService.search(
 						company.getCompanyId(), null,
 						WorkflowConstants.STATUS_APPROVED, params, start, end,
 						(OrderByComparator<User>)null);
@@ -529,7 +543,7 @@ public class AnnouncementsEntryLocalServiceImpl
 
 		for (User user : users) {
 			AnnouncementsDelivery announcementsDelivery =
-				announcementsDeliveryLocalService.getUserDelivery(
+				_announcementsDeliveryLocalService.getUserDelivery(
 					user.getUserId(), entry.getType());
 
 			if (announcementsDelivery.isEmail()) {
@@ -563,7 +577,7 @@ public class AnnouncementsEntryLocalServiceImpl
 		String subject = ContentUtil.get(
 			clazz.getClassLoader(), PropsValues.ANNOUNCEMENTS_EMAIL_SUBJECT);
 
-		Company company = companyLocalService.getCompany(entry.getCompanyId());
+		Company company = _companyLocalService.getCompany(entry.getCompanyId());
 
 		_sendNotificationEmail(
 			fromAddress, fromName, toAddress, toName, subject, body, company,
@@ -651,7 +665,7 @@ public class AnnouncementsEntryLocalServiceImpl
 					locale, entry.isAlert() ? "alert" : "announcement")));
 
 		if (entry.getGroupId() > 0) {
-			Group group = groupLocalService.getGroup(entry.getGroupId());
+			Group group = _groupLocalService.getGroup(entry.getGroupId());
 
 			mailTemplateContextBuilder.put(
 				"[$SITE_NAME$]", HtmlUtil.escape(group.getDescriptiveName()));
@@ -670,7 +684,7 @@ public class AnnouncementsEntryLocalServiceImpl
 			MailTemplate bodyTemplate =
 				MailTemplateFactoryUtil.createMailTemplate(body, true);
 
-			User user = userLocalService.fetchUserByEmailAddress(
+			User user = _userLocalService.fetchUserByEmailAddress(
 				entry.getCompanyId(), toAddress);
 
 			Locale locale = LocaleUtil.getSiteDefault();
@@ -702,5 +716,48 @@ public class AnnouncementsEntryLocalServiceImpl
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AnnouncementsEntryLocalServiceImpl.class);
+
+	@BeanReference(type = AnnouncementsDeliveryLocalService.class)
+	private AnnouncementsDeliveryLocalService
+		_announcementsDeliveryLocalService;
+
+	@BeanReference(type = AnnouncementsDeliveryPersistence.class)
+	private AnnouncementsDeliveryPersistence _announcementsDeliveryPersistence;
+
+	@BeanReference(type = AnnouncementsFlagLocalService.class)
+	private AnnouncementsFlagLocalService _announcementsFlagLocalService;
+
+	@BeanReference(type = AnnouncementsFlagPersistence.class)
+	private AnnouncementsFlagPersistence _announcementsFlagPersistence;
+
+	@BeanReference(type = CompanyLocalService.class)
+	private CompanyLocalService _companyLocalService;
+
+	@BeanReference(type = CompanyPersistence.class)
+	private CompanyPersistence _companyPersistence;
+
+	@BeanReference(type = GroupLocalService.class)
+	private GroupLocalService _groupLocalService;
+
+	@BeanReference(type = GroupPersistence.class)
+	private GroupPersistence _groupPersistence;
+
+	@BeanReference(type = OrganizationPersistence.class)
+	private OrganizationPersistence _organizationPersistence;
+
+	@BeanReference(type = ResourceLocalService.class)
+	private ResourceLocalService _resourceLocalService;
+
+	@BeanReference(type = RolePersistence.class)
+	private RolePersistence _rolePersistence;
+
+	@BeanReference(type = UserGroupPersistence.class)
+	private UserGroupPersistence _userGroupPersistence;
+
+	@BeanReference(type = UserLocalService.class)
+	private UserLocalService _userLocalService;
+
+	@BeanReference(type = UserPersistence.class)
+	private UserPersistence _userPersistence;
 
 }

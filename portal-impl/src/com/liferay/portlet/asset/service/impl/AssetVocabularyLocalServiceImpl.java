@@ -20,9 +20,11 @@ import com.liferay.asset.kernel.exception.VocabularyNameException;
 import com.liferay.asset.kernel.model.AssetCategoryConstants;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.model.AssetVocabularyConstants;
+import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -41,7 +43,11 @@ import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -77,9 +83,9 @@ public class AssetVocabularyLocalServiceImpl
 	public AssetVocabulary addDefaultVocabulary(long groupId)
 		throws PortalException {
 
-		Group group = groupLocalService.getGroup(groupId);
+		Group group = _groupLocalService.getGroup(groupId);
 
-		long defaultUserId = userLocalService.getDefaultUserId(
+		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
 		Map<Locale, String> titleMap = new HashMap<>();
@@ -185,7 +191,7 @@ public class AssetVocabularyLocalServiceImpl
 
 		// Vocabulary
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		if (Validator.isNull(name)) {
 			name = _generateVocabularyName(
@@ -251,7 +257,7 @@ public class AssetVocabularyLocalServiceImpl
 			boolean addGuestPermissions)
 		throws PortalException {
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			vocabulary.getCompanyId(), vocabulary.getGroupId(),
 			vocabulary.getUserId(), AssetVocabulary.class.getName(),
 			vocabulary.getVocabularyId(), false, addGroupPermissions,
@@ -263,7 +269,7 @@ public class AssetVocabularyLocalServiceImpl
 			AssetVocabulary vocabulary, ModelPermissions modelPermissions)
 		throws PortalException {
 
-		resourceLocalService.addModelResources(
+		_resourceLocalService.addModelResources(
 			vocabulary.getCompanyId(), vocabulary.getGroupId(),
 			vocabulary.getUserId(), AssetVocabulary.class.getName(),
 			vocabulary.getVocabularyId(), modelPermissions);
@@ -294,13 +300,13 @@ public class AssetVocabularyLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			vocabulary.getCompanyId(), AssetVocabulary.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, vocabulary.getVocabularyId());
 
 		// Categories
 
-		assetCategoryLocalService.deleteVocabularyCategories(
+		_assetCategoryLocalService.deleteVocabularyCategories(
 			vocabulary.getVocabularyId());
 
 		return vocabulary;
@@ -348,7 +354,7 @@ public class AssetVocabularyLocalServiceImpl
 			return vocabularies;
 		}
 
-		long classNameId = classNameLocalService.getClassNameId(className);
+		long classNameId = _classNameLocalService.getClassNameId(className);
 
 		return ListUtil.filter(
 			vocabularies,
@@ -678,5 +684,20 @@ public class AssetVocabularyLocalServiceImpl
 					externalReferenceCode, " in group ", groupId));
 		}
 	}
+
+	@BeanReference(type = AssetCategoryLocalService.class)
+	private AssetCategoryLocalService _assetCategoryLocalService;
+
+	@BeanReference(type = ClassNameLocalService.class)
+	private ClassNameLocalService _classNameLocalService;
+
+	@BeanReference(type = GroupLocalService.class)
+	private GroupLocalService _groupLocalService;
+
+	@BeanReference(type = ResourceLocalService.class)
+	private ResourceLocalService _resourceLocalService;
+
+	@BeanReference(type = UserLocalService.class)
+	private UserLocalService _userLocalService;
 
 }

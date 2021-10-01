@@ -16,6 +16,7 @@ package com.liferay.portal.service.impl;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.DuplicateTeamException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -26,7 +27,11 @@ import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.Team;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.role.RoleConstants;
+import com.liferay.portal.kernel.service.GroupLocalService;
+import com.liferay.portal.kernel.service.ResourceLocalService;
+import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.persistence.GroupPersistence;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -72,13 +77,13 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 
 		// Resources
 
-		resourceLocalService.addResources(
+		_resourceLocalService.addResources(
 			user.getCompanyId(), groupId, userId, Team.class.getName(),
 			team.getTeamId(), false, true, true);
 
 		// Role
 
-		roleLocalService.addRole(
+		_roleLocalService.addRole(
 			userId, Team.class.getName(), teamId, String.valueOf(teamId), null,
 			null, RoleConstants.TYPE_PROVIDER, null, null);
 
@@ -102,13 +107,13 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 
 		// Resources
 
-		resourceLocalService.deleteResource(
+		_resourceLocalService.deleteResource(
 			team.getCompanyId(), Team.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, team.getTeamId());
 
 		// Group
 
-		List<Group> groups = groupPersistence.findByC_S(
+		List<Group> groups = _groupPersistence.findByC_S(
 			team.getCompanyId(), true);
 
 		for (Group group : groups) {
@@ -128,7 +133,7 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 					"defaultTeamIds",
 					ListUtil.toString(defaultTeamIds, StringPool.BLANK));
 
-				groupLocalService.updateGroup(
+				_groupLocalService.updateGroup(
 					group.getGroupId(),
 					typeSettingsUnicodeUnicodeProperties.toString());
 			}
@@ -136,7 +141,7 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 
 		// Role
 
-		roleLocalService.deleteRole(team.getRole());
+		_roleLocalService.deleteRole(team.getRole());
 
 		return team;
 	}
@@ -234,5 +239,17 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 			throw new DuplicateTeamException("{teamId=" + teamId + "}");
 		}
 	}
+
+	@BeanReference(type = GroupLocalService.class)
+	private GroupLocalService _groupLocalService;
+
+	@BeanReference(type = GroupPersistence.class)
+	private GroupPersistence _groupPersistence;
+
+	@BeanReference(type = ResourceLocalService.class)
+	private ResourceLocalService _resourceLocalService;
+
+	@BeanReference(type = RoleLocalService.class)
+	private RoleLocalService _roleLocalService;
 
 }

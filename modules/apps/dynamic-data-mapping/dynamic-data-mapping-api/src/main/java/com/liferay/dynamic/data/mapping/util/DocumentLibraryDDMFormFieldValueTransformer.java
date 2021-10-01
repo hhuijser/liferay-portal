@@ -96,15 +96,13 @@ public class DocumentLibraryDDMFormFieldValueTransformer
 	}
 
 	protected String toJSON(FileEntry fileEntry) {
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"groupId", fileEntry.getGroupId()
 		).put(
 			"title", fileEntry.getTitle()
 		).put(
 			"uuid", fileEntry.getUuid()
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 }

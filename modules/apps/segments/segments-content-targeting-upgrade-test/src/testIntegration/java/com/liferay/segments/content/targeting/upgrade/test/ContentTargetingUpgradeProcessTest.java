@@ -760,13 +760,11 @@ public class ContentTargetingUpgradeProcessTest {
 	private String _getCustomFieldRuleTypeSettings(
 		ExpandoColumn expandoColumn, String expandoValue) {
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"attributeName", expandoColumn.getName()
 		).put(
 			"value", expandoValue
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	private String _getDateRangeTypeSettings(

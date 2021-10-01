@@ -85,20 +85,18 @@ public class RankingJSONStorageHelper {
 		String rankingDocumentId =
 			Ranking.class.getName() + "_PORTLET_" + classPK;
 
-		JSONObject jsonObject = JSONUtil.put(
-			"indexName", indexName
-		).put(
-			"name", name
-		).put(
-			"queryString", queryString
-		).put(
-			"rankingDocumentId", rankingDocumentId
-		);
-
 		jsonStorageEntryLocalService.addJSONStorageEntries(
 			CompanyThreadLocal.getCompanyId(),
 			classNameLocalService.getClassNameId(Ranking.class), classPK,
-			jsonObject.toString());
+			JSONUtil.put(
+				"indexName", indexName
+			).put(
+				"name", name
+			).put(
+				"queryString", queryString
+			).put(
+				"rankingDocumentId", rankingDocumentId
+			).toString());
 
 		return rankingDocumentId;
 	}

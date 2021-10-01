@@ -391,7 +391,7 @@ public class SocialActivitySettingLocalServiceImpl
 	protected String toJSON(
 		SocialActivityCounterDefinition activityCounterDefinition) {
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"enabled", activityCounterDefinition.isEnabled()
 		).put(
 			"limitEnabled", activityCounterDefinition.isLimitEnabled()
@@ -403,9 +403,7 @@ public class SocialActivitySettingLocalServiceImpl
 			"ownerType", activityCounterDefinition.getOwnerType()
 		).put(
 			"value", activityCounterDefinition.getIncrement()
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	private static final String _PREFIX_CLASS_PK = "_LFR_CLASS_PK_";

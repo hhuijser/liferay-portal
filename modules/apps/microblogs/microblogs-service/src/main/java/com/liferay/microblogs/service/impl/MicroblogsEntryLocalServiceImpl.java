@@ -182,15 +182,14 @@ public class MicroblogsEntryLocalServiceImpl
 			activityKey = MicroblogsActivityKeys.REPOST_ENTRY;
 		}
 
-		JSONObject extraDataJSONObject = JSONUtil.put(
-			"content", microblogsEntry.getContent()
-		).put(
-			"parentMicroblogsEntryId", parentMicroblogsEntryId
-		);
-
 		_socialActivityLocalService.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
-			activityKey, extraDataJSONObject.toString(),
+			activityKey,
+			JSONUtil.put(
+				"content", microblogsEntry.getContent()
+			).put(
+				"parentMicroblogsEntryId", parentMicroblogsEntryId
+			).toString(),
 			microblogsEntry.getParentMicroblogsEntryUserId());
 
 		// Notification

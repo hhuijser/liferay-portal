@@ -2586,13 +2586,11 @@ public class DynamicDataMappingUpgradeProcess extends UpgradeProcess {
 		}
 
 		protected String toJSON(long groupId, String fileEntryUuid) {
-			JSONObject jsonObject = JSONUtil.put(
+			return JSONUtil.put(
 				"groupId", groupId
 			).put(
 				"uuid", fileEntryUuid
-			);
-
-			return jsonObject.toString();
+			).toString();
 		}
 
 		protected String upgradeFileUploadReference(

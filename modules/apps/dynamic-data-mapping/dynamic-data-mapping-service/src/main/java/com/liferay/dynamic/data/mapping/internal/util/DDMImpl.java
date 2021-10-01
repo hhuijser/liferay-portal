@@ -1133,13 +1133,11 @@ public class DDMImpl implements DDM {
 			byte[] bytes = getImageBytes(uploadRequest, fieldNameValue);
 
 			if (ArrayUtil.isNotEmpty(bytes)) {
-				JSONObject jsonObject = JSONUtil.put(
+				return JSONUtil.put(
 					"alt", uploadRequest.getParameter(fieldNameValue + "Alt")
 				).put(
 					"data", UnicodeFormatter.bytesToHex(bytes)
-				);
-
-				return jsonObject.toString();
+				).toString();
 			}
 		}
 		catch (Exception exception) {

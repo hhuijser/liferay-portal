@@ -1399,17 +1399,15 @@ public class JournalArticleLocalServiceImpl
 		// System event
 
 		if (articleResource != null) {
-			JSONObject extraDataJSONObject = JSONUtil.put(
-				"uuid", article.getUuid()
-			).put(
-				"version", article.getVersion()
-			);
-
 			_systemEventLocalService.addSystemEvent(
 				0, article.getGroupId(), article.getModelClassName(),
 				article.getPrimaryKey(), articleResource.getUuid(), null,
 				SystemEventConstants.TYPE_DELETE,
-				extraDataJSONObject.toString());
+				JSONUtil.put(
+					"uuid", article.getUuid()
+				).put(
+					"version", article.getVersion()
+				).toString());
 		}
 
 		return article;

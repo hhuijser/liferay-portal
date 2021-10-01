@@ -33,7 +33,6 @@ import com.liferay.journal.service.JournalArticleServiceUtil;
 import com.liferay.journal.service.JournalFolderServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.ClassedModel;
@@ -290,21 +289,20 @@ public class JournalArticleTrashHandlerTest
 		Element dynamicContent = (Element)document.selectSingleNode(
 			"//dynamic-content");
 
-		JSONObject jsonObject = JSONUtil.put(
-			"groupId", group.getGroupId()
-		).put(
-			"name", "liferay.png"
-		).put(
-			"tempFile", Boolean.TRUE.toString()
-		).put(
-			"title", "liferay.png"
-		).put(
-			"type", "journal"
-		).put(
-			"uuid", tempFileEntry.getUuid()
-		);
-
-		dynamicContent.setText(jsonObject.toString());
+		dynamicContent.setText(
+			JSONUtil.put(
+				"groupId", group.getGroupId()
+			).put(
+				"name", "liferay.png"
+			).put(
+				"tempFile", Boolean.TRUE.toString()
+			).put(
+				"title", "liferay.png"
+			).put(
+				"type", "journal"
+			).put(
+				"uuid", tempFileEntry.getUuid()
+			).toString());
 
 		baseModel = JournalTestUtil.addArticleWithXMLContent(
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, document.asXML(),

@@ -25,7 +25,6 @@ import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolver;
 import com.liferay.item.selector.criteria.InfoItemItemSelectorReturnType;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
@@ -65,7 +64,7 @@ public class FileEntryInfoItemItemSelectorReturnTypeResolver
 		ClassType classType = _getClassType(
 			fileEntry, themeDisplay.getLocale());
 
-		JSONObject fileEntryJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			"className", FileEntry.class.getName()
 		).put(
 			"classNameId",
@@ -83,9 +82,7 @@ public class FileEntryInfoItemItemSelectorReturnTypeResolver
 			"type",
 			ResourceActionsUtil.getModelResource(
 				themeDisplay.getLocale(), DLFileEntry.class.getName())
-		);
-
-		return fileEntryJSONObject.toString();
+		).toString();
 	}
 
 	private ClassType _getClassType(FileEntry fileEntry, Locale locale) {

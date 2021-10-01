@@ -18,7 +18,6 @@ import com.liferay.adaptive.media.image.item.selector.AMImageFileEntryItemSelect
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolver;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -66,13 +65,11 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 				themeDisplay, fileEntry, StringPool.BLANK, false);
 		}
 
-		JSONObject fileEntryJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
 		).put(
 			"url", previewURL
-		);
-
-		return fileEntryJSONObject.toString();
+		).toString();
 	}
 
 	@Reference

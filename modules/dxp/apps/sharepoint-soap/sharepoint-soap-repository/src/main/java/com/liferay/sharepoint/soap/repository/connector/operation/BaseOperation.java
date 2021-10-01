@@ -71,7 +71,7 @@ public abstract class BaseOperation implements Operation {
 
 		return URLUtil.toURL(
 			StringBundler.concat(
-				String.valueOf(sharepointConnectionInfo.getServiceURL()),
+				sharepointConnectionInfo.getServiceURL(),
 				sharepointConnectionInfo.getLibraryPath(), path));
 	}
 

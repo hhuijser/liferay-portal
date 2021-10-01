@@ -204,18 +204,17 @@ public class LayoutCrawlerTest {
 			_group.getGroupId(), "test journal article",
 			"test journal article");
 
-		JSONObject widgetValueJSONObject = JSONUtil.put(
-			"instanceid", StringUtil.randomString()
-		).put(
-			"portletId", AssetPublisherPortletKeys.ASSET_PUBLISHER
-		);
-
 		FragmentEntryLink widgetFragmentEntryLink =
 			_fragmentEntryLinkService.addFragmentEntryLink(
 				_group.getGroupId(), 0, 0,
 				SegmentsExperienceConstants.ID_DEFAULT, _layout.getPlid(),
 				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
-				StringPool.BLANK, widgetValueJSONObject.toString(),
+				StringPool.BLANK,
+				JSONUtil.put(
+					"instanceid", StringUtil.randomString()
+				).put(
+					"portletId", AssetPublisherPortletKeys.ASSET_PUBLISHER
+				).toString(),
 				StringPool.BLANK, 0, StringPool.BLANK, serviceContext);
 
 		layoutStructure.addFragmentStyledLayoutStructureItem(

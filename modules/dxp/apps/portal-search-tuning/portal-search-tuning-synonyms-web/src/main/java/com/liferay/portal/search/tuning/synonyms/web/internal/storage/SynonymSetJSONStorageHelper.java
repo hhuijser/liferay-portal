@@ -39,17 +39,16 @@ public class SynonymSetJSONStorageHelper {
 		String synonymSetDocumentId =
 			SynonymSet.class.getName() + "_PORTLET_" + classPK;
 
-		JSONObject jsonObject = JSONUtil.put(
-			"indexName", indexName
-		).put(
-			"synonyms", synonyms
-		).put(
-			"synonymSetDocumentId", synonymSetDocumentId
-		);
-
 		jsonStorageEntryLocalService.addJSONStorageEntries(
 			companyId, classNameLocalService.getClassNameId(SynonymSet.class),
-			classPK, jsonObject.toString());
+			classPK,
+			JSONUtil.put(
+				"indexName", indexName
+			).put(
+				"synonyms", synonyms
+			).put(
+				"synonymSetDocumentId", synonymSetDocumentId
+			).toString());
 
 		return synonymSetDocumentId;
 	}

@@ -87,15 +87,13 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 			sourcesJSONArray::put
 		);
 
-		JSONObject fileEntryJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			"defaultSource", previewURL
 		).put(
 			"fileEntryId", String.valueOf(fileEntry.getFileEntryId())
 		).put(
 			"sources", sourcesJSONArray
-		);
-
-		return fileEntryJSONObject.toString();
+		).toString();
 	}
 
 	private JSONObject _getSourceJSONObject(MediaQuery mediaQuery) {

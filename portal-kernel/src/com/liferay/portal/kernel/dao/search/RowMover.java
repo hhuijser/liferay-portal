@@ -65,13 +65,11 @@ public class RowMover {
 			rowMoverDropTargetsJSONArray.put(rowMoverDropTargetJSONObject);
 		}
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"dropTargets", rowMoverDropTargetsJSONArray
 		).put(
 			"rowSelector", _rowSelector
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	private List<RowMoverDropTarget> _rowMoverDropTargets = new ArrayList<>();

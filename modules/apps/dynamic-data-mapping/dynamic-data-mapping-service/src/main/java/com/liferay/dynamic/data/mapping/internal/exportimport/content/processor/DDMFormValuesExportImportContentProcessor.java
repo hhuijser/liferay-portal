@@ -361,7 +361,7 @@ public class DDMFormValuesExportImportContentProcessor
 		}
 
 		protected String toJSON(FileEntry fileEntry, String type) {
-			JSONObject jsonObject = JSONUtil.put(
+			return JSONUtil.put(
 				"classPK", fileEntry.getFileEntryId()
 			).put(
 				"groupId", fileEntry.getGroupId()
@@ -371,9 +371,7 @@ public class DDMFormValuesExportImportContentProcessor
 				"type", type
 			).put(
 				"uuid", fileEntry.getUuid()
-			);
-
-			return jsonObject.toString();
+			).toString();
 		}
 
 		private final PortletDataContext _portletDataContext;
@@ -735,7 +733,7 @@ public class DDMFormValuesExportImportContentProcessor
 		protected String toJSON(Layout layout, Locale locale)
 			throws PortalException {
 
-			JSONObject jsonObject = JSONUtil.put(
+			return JSONUtil.put(
 				"groupId", layout.getGroupId()
 			).put(
 				"id", layout.getUuid()
@@ -747,9 +745,7 @@ public class DDMFormValuesExportImportContentProcessor
 				"privateLayout", layout.isPrivateLayout()
 			).put(
 				"value", layout.getFriendlyURL(locale)
-			);
-
-			return jsonObject.toString();
+			).toString();
 		}
 
 		private String _getLayoutBreadcrumb(Layout layout, Locale locale)

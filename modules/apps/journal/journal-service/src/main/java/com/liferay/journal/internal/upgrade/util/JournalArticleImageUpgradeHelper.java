@@ -22,7 +22,6 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -56,7 +55,7 @@ public class JournalArticleImageUpgradeHelper {
 				return StringPool.BLANK;
 			}
 
-			JSONObject jsonObject = JSONUtil.put(
+			return JSONUtil.put(
 				"groupId", fileEntry.getGroupId()
 			).put(
 				"title", fileEntry.getTitle()
@@ -64,9 +63,7 @@ public class JournalArticleImageUpgradeHelper {
 				"type", "document"
 			).put(
 				"uuid", fileEntry.getUuid()
-			);
-
-			return jsonObject.toString();
+			).toString();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {

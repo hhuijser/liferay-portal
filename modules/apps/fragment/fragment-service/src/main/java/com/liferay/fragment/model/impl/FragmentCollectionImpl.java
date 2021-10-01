@@ -25,7 +25,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -154,16 +153,14 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 
 		path = path + StringPool.SLASH + getFragmentCollectionKey();
 
-		JSONObject jsonObject = JSONUtil.put(
-			"description", getDescription()
-		).put(
-			"name", getName()
-		);
-
 		zipWriter.addEntry(
 			path + StringPool.SLASH +
 				FragmentExportImportConstants.FILE_NAME_COLLECTION,
-			jsonObject.toString());
+			JSONUtil.put(
+				"description", getDescription()
+			).put(
+				"name", getName()
+			).toString());
 
 		List<FragmentComposition> fragmentCompositions =
 			FragmentCompositionLocalServiceUtil.getFragmentCompositions(

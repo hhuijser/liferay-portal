@@ -26,7 +26,6 @@ import com.liferay.petra.io.delta.DeltaUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.lock.Lock;
 import com.liferay.portal.kernel.log.Log;
@@ -180,13 +179,12 @@ public class SyncHelperImpl implements SyncHelper {
 		sb.append(StringPool.COMMA_AND_SPACE);
 		sb.append("\"error\": ");
 
-		JSONObject errorJSONObject = JSONUtil.put(
-			"message", throwableMessage
-		).put(
-			"type", ClassUtil.getClassName(throwable)
-		);
-
-		sb.append(errorJSONObject.toString());
+		sb.append(
+			JSONUtil.put(
+				"message", throwableMessage
+			).put(
+				"type", ClassUtil.getClassName(throwable)
+			).toString());
 
 		sb.append(StringPool.COMMA_AND_SPACE);
 		sb.append("\"throwable\": \"");

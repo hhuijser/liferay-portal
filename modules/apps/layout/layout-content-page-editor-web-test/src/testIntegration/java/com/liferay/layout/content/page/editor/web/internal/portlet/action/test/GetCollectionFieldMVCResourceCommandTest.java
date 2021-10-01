@@ -132,14 +132,6 @@ public class GetCollectionFieldMVCResourceCommandTest {
 
 		BlogsEntry blogsEntry = _addBlogsEntry();
 
-		JSONObject layoutObjectReferenceJSONObject = JSONUtil.put(
-			"itemType", BlogsEntry.class.getName()
-		).put(
-			"key", TestInfoCollectionProvider.class.getName()
-		).put(
-			"type", InfoListProviderItemSelectorReturnType.class.getName()
-		);
-
 		JSONObject jsonObject = ReflectionTestUtil.invoke(
 			_mvcResourceCommand, "_getCollectionFieldsJSONObject",
 			new Class<?>[] {
@@ -149,9 +141,15 @@ public class GetCollectionFieldMVCResourceCommandTest {
 			},
 			new MockHttpServletRequest(), new MockHttpServletResponse(), 0,
 			LocaleUtil.toLanguageId(LocaleUtil.US),
-			layoutObjectReferenceJSONObject.toString(), StringPool.BLANK,
-			StringPool.BLANK, StringPool.BLANK, 1, 20, "regular",
-			StringPool.BLANK);
+			JSONUtil.put(
+				"itemType", BlogsEntry.class.getName()
+			).put(
+				"key", TestInfoCollectionProvider.class.getName()
+			).put(
+				"type", InfoListProviderItemSelectorReturnType.class.getName()
+			).toString(),
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 1, 20,
+			"regular", StringPool.BLANK);
 
 		Assert.assertEquals(1, jsonObject.getInt("length"));
 
@@ -176,18 +174,6 @@ public class GetCollectionFieldMVCResourceCommandTest {
 				TestPropsValues.getUserId(), _group.getGroupId(),
 				"Collection Title", _getTypeSettings(), _serviceContext);
 
-		JSONObject layoutObjectReferenceJSONObject = JSONUtil.put(
-			"classNameId",
-			String.valueOf(
-				_portal.getClassNameId(AssetListEntry.class.getName()))
-		).put(
-			"classPK", String.valueOf(assetListEntry.getAssetListEntryId())
-		).put(
-			"itemType", BlogsEntry.class.getName()
-		).put(
-			"type", InfoListItemSelectorReturnType.class.getName()
-		);
-
 		JSONObject jsonObject = ReflectionTestUtil.invoke(
 			_mvcResourceCommand, "_getCollectionFieldsJSONObject",
 			new Class<?>[] {
@@ -197,9 +183,19 @@ public class GetCollectionFieldMVCResourceCommandTest {
 			},
 			new MockHttpServletRequest(), new MockHttpServletResponse(), 0,
 			LocaleUtil.toLanguageId(LocaleUtil.US),
-			layoutObjectReferenceJSONObject.toString(), StringPool.BLANK,
-			StringPool.BLANK, StringPool.BLANK, 2, 20, "regular",
-			StringPool.BLANK);
+			JSONUtil.put(
+				"classNameId",
+				String.valueOf(
+					_portal.getClassNameId(AssetListEntry.class.getName()))
+			).put(
+				"classPK", String.valueOf(assetListEntry.getAssetListEntryId())
+			).put(
+				"itemType", BlogsEntry.class.getName()
+			).put(
+				"type", InfoListItemSelectorReturnType.class.getName()
+			).toString(),
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 2, 20,
+			"regular", StringPool.BLANK);
 
 		Assert.assertEquals(2, jsonObject.getInt("length"));
 
@@ -231,18 +227,6 @@ public class GetCollectionFieldMVCResourceCommandTest {
 				TestPropsValues.getUserId(), _group.getGroupId(),
 				"Collection Title", _getTypeSettings(), _serviceContext);
 
-		JSONObject layoutObjectReferenceJSONObject = JSONUtil.put(
-			"classNameId",
-			String.valueOf(
-				_portal.getClassNameId(AssetListEntry.class.getName()))
-		).put(
-			"classPK", String.valueOf(assetListEntry.getAssetListEntryId())
-		).put(
-			"itemType", BlogsEntry.class.getName()
-		).put(
-			"type", InfoListItemSelectorReturnType.class.getName()
-		);
-
 		JSONObject jsonObject = ReflectionTestUtil.invoke(
 			_mvcResourceCommand, "_getCollectionFieldsJSONObject",
 			new Class<?>[] {
@@ -252,9 +236,19 @@ public class GetCollectionFieldMVCResourceCommandTest {
 			},
 			new MockHttpServletRequest(), new MockHttpServletResponse(), 0,
 			LocaleUtil.toLanguageId(LocaleUtil.US),
-			layoutObjectReferenceJSONObject.toString(), StringPool.BLANK,
-			StringPool.BLANK, StringPool.BLANK, 1, 20, "regular",
-			StringPool.BLANK);
+			JSONUtil.put(
+				"classNameId",
+				String.valueOf(
+					_portal.getClassNameId(AssetListEntry.class.getName()))
+			).put(
+				"classPK", String.valueOf(assetListEntry.getAssetListEntryId())
+			).put(
+				"itemType", BlogsEntry.class.getName()
+			).put(
+				"type", InfoListItemSelectorReturnType.class.getName()
+			).toString(),
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK, 1, 20,
+			"regular", StringPool.BLANK);
 
 		Assert.assertEquals(2, jsonObject.getInt("length"));
 

@@ -39,7 +39,6 @@ import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -587,7 +586,7 @@ public class DDLExporterTest {
 			ContentTypes.TEXT_PLAIN, TestDataConstants.TEST_BYTE_ARRAY, null,
 			null, serviceContext);
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"groupId", fileEntry.getGroupId()
 		).put(
 			"name", fileEntry.getTitle()
@@ -597,34 +596,28 @@ public class DDLExporterTest {
 			"title", fileEntry.getTitle()
 		).put(
 			"uuid", fileEntry.getUuid()
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	protected String createGeolocationDDMFormFieldValue() throws Exception {
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"latitude", "-8.035"
 		).put(
 			"longitude", "-34.918"
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	protected String createLinkToPageDDMFormFieldValue() throws Exception {
 		Layout layout = LayoutTestUtil.addLayout(
 			_group.getGroupId(), "Link to Page content", false);
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"groupId", layout.getGroupId()
 		).put(
 			"layoutId", layout.getLayoutId()
 		).put(
 			"privateLayout", layout.isPrivateLayout()
-		);
-
-		return jsonObject.toString();
+		).toString();
 	}
 
 	protected String createListDDMFormFieldValue() throws Exception {

@@ -134,13 +134,11 @@ public class FragmentConfigurationField {
 	}
 
 	private String _getColorPaletteDefaultValue() {
-		JSONObject defaultValueJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			"cssClass", StringPool.BLANK
 		).put(
 			"rgbValue", StringPool.BLANK
-		);
-
-		return defaultValueJSONObject.toString();
+		).toString();
 	}
 
 	private String _getItemSelectorDefaultValue() {

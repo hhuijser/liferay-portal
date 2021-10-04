@@ -38,12 +38,20 @@ public class CommerceOrderRuleEntryServiceWrapper
 			addCommerceOrderRuleEntry(
 				String externalReferenceCode, boolean active,
 				String description, String name, int priority, String type,
-				String typeSettings)
+				String typeSettings, int displayDateMonth, int displayDateDay,
+				int displayDateYear, int displayDateHour, int displayDateMinute,
+				int expirationDateMonth, int expirationDateDay,
+				int expirationDateYear, int expirationDateHour,
+				int expirationDateMinute, boolean neverExpire,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _commerceOrderRuleEntryService.addCommerceOrderRuleEntry(
 			externalReferenceCode, active, description, name, priority, type,
-			typeSettings);
+			typeSettings, displayDateMonth, displayDateDay, displayDateYear,
+			displayDateHour, displayDateMinute, expirationDateMonth,
+			expirationDateDay, expirationDateYear, expirationDateHour,
+			expirationDateMinute, neverExpire, serviceContext);
 	}
 
 	@Override
@@ -102,14 +110,23 @@ public class CommerceOrderRuleEntryServiceWrapper
 	@Override
 	public com.liferay.commerce.order.rule.model.CommerceOrderRuleEntry
 			updateCommerceOrderRuleEntry(
-				long commerceOrderRuleEntryId, boolean active,
+				long userId, long commerceOrderRuleEntryId, boolean active,
 				String description, String name, int priority,
-				String typeSettings)
+				String typeSettings, int displayDateMonth, int displayDateDay,
+				int displayDateYear, int displayDateHour, int displayDateMinute,
+				int expirationDateMonth, int expirationDateDay,
+				int expirationDateYear, int expirationDateHour,
+				int expirationDateMinute, boolean neverExpire,
+				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _commerceOrderRuleEntryService.updateCommerceOrderRuleEntry(
-			commerceOrderRuleEntryId, active, description, name, priority,
-			typeSettings);
+			userId, commerceOrderRuleEntryId, active, description, name,
+			priority, typeSettings, displayDateMonth, displayDateDay,
+			displayDateYear, displayDateHour, displayDateMinute,
+			expirationDateMonth, expirationDateDay, expirationDateYear,
+			expirationDateHour, expirationDateMinute, neverExpire,
+			serviceContext);
 	}
 
 	@Override

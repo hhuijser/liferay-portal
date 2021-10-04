@@ -214,7 +214,7 @@ public class KBArticleImporter {
 
 				if (value != null) {
 					metadata.put(
-						key.toString(), String.valueOf(entry.getKey()));
+						String.valueOf(entry.getKey()), value.toString());
 				}
 			}
 

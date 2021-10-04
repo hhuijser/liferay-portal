@@ -14,8 +14,6 @@
 
 package com.liferay.document.library.uad.anonymizer;
 
-import com.liferay.asset.kernel.model.AssetEntry;
-import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.document.library.kernel.model.DLFileShortcut;
 import com.liferay.document.library.kernel.service.DLFileShortcutLocalService;
 import com.liferay.document.library.uad.constants.DLUADConstants;
@@ -49,8 +47,6 @@ public abstract class BaseDLFileShortcutUADAnonymizer
 		if (dlFileShortcut.getUserId() == userId) {
 			dlFileShortcut.setUserId(anonymousUser.getUserId());
 			dlFileShortcut.setUserName(anonymousUser.getFullName());
-
-			autoAnonymizeAssetEntry(dlFileShortcut, anonymousUser);
 		}
 
 		if (dlFileShortcut.getStatusByUserId() == userId) {
@@ -71,19 +67,6 @@ public abstract class BaseDLFileShortcutUADAnonymizer
 		return DLFileShortcut.class;
 	}
 
-	protected void autoAnonymizeAssetEntry(
-		DLFileShortcut dlFileShortcut, User anonymousUser) {
-
-		AssetEntry assetEntry = fetchAssetEntry(dlFileShortcut);
-
-		if (assetEntry != null) {
-			assetEntry.setUserId(anonymousUser.getUserId());
-			assetEntry.setUserName(anonymousUser.getFullName());
-
-			assetEntryLocalService.updateAssetEntry(assetEntry);
-		}
-	}
-
 	@Override
 	protected ActionableDynamicQuery doGetActionableDynamicQuery() {
 		return dlFileShortcutLocalService.getActionableDynamicQuery();
@@ -93,14 +76,6 @@ public abstract class BaseDLFileShortcutUADAnonymizer
 	protected String[] doGetUserIdFieldNames() {
 		return DLUADConstants.USER_ID_FIELD_NAMES_DL_FILE_SHORTCUT;
 	}
-
-	protected AssetEntry fetchAssetEntry(DLFileShortcut dlFileShortcut) {
-		return assetEntryLocalService.fetchEntry(
-			DLFileShortcut.class.getName(), dlFileShortcut.getFileShortcutId());
-	}
-
-	@Reference
-	protected AssetEntryLocalService assetEntryLocalService;
 
 	@Reference
 	protected DLFileShortcutLocalService dlFileShortcutLocalService;

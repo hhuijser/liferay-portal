@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.commerce.order.rule.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
@@ -18,7 +19,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Luca Pellizzon
  */
-public class CommerceOrderRuleEntryDisplayDateException extends PortalException {
+public class CommerceOrderRuleEntryDisplayDateException
+	extends PortalException {
 
 	public CommerceOrderRuleEntryDisplayDateException() {
 	}
@@ -27,7 +29,9 @@ public class CommerceOrderRuleEntryDisplayDateException extends PortalException 
 		super(msg);
 	}
 
-	public CommerceOrderRuleEntryDisplayDateException(String msg, Throwable throwable) {
+	public CommerceOrderRuleEntryDisplayDateException(
+		String msg, Throwable throwable) {
+
 		super(msg, throwable);
 	}
 

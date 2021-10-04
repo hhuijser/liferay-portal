@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.documentlibrary.service.impl;
 
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.document.library.kernel.exception.DuplicateFileEntryException;
 import com.liferay.document.library.kernel.exception.DuplicateFolderNameException;
 import com.liferay.document.library.kernel.exception.FolderNameException;
@@ -1070,11 +1071,11 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		// Asset
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
-			assetEntryLocalService.updateVisible(
+			_assetEntryLocalService.updateVisible(
 				DLFolder.class.getName(), dlFolder.getFolderId(), true);
 		}
 		else if (status == WorkflowConstants.STATUS_IN_TRASH) {
-			assetEntryLocalService.updateVisible(
+			_assetEntryLocalService.updateVisible(
 				DLFolder.class.getName(), dlFolder.getFolderId(), false);
 		}
 
@@ -1412,6 +1413,9 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 					" is invalid because it contains a /"));
 		}
 	}
+
+	@BeanReference(type = AssetEntryLocalService.class)
+	private AssetEntryLocalService _assetEntryLocalService;
 
 	@BeanReference(type = ClassNameLocalService.class)
 	private ClassNameLocalService _classNameLocalService;

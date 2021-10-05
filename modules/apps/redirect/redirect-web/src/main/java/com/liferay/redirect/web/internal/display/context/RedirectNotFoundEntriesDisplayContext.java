@@ -56,8 +56,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionURL;
 import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -88,26 +86,19 @@ public class RedirectNotFoundEntriesDisplayContext {
 
 		return DropdownItemListBuilder.add(
 			dropdownItem -> {
-				ActionURL editRedirectNotFoundEntryURL =
-					_liferayPortletResponse.createActionURL();
-
-				editRedirectNotFoundEntryURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/redirect/edit_redirect_not_found_entry");
-
-				editRedirectNotFoundEntryURL.setParameter(
-					"ignored",
-					String.valueOf(!redirectNotFoundEntry.isIgnored()));
-
-				editRedirectNotFoundEntryURL.setParameter(
-					"redirect", _themeDisplay.getURLCurrent());
-
-				editRedirectNotFoundEntryURL.setParameter(
-					"redirectNotFoundEntryId",
-					String.valueOf(
-						redirectNotFoundEntry.getRedirectNotFoundEntryId()));
-
-				dropdownItem.setHref(editRedirectNotFoundEntryURL);
+				dropdownItem.setHref(
+					PortletURLBuilder.createActionURL(
+						_liferayPortletResponse
+					).setActionName(
+						"/redirect/edit_redirect_not_found_entry"
+					).setRedirect(
+						_themeDisplay.getURLCurrent()
+					).setParameter(
+						"ignored", !redirectNotFoundEntry.isIgnored()
+					).setParameter(
+						"redirectNotFoundEntryId",
+						redirectNotFoundEntry.getRedirectNotFoundEntryId()
+					).buildActionURL());
 
 				String label = "ignore";
 

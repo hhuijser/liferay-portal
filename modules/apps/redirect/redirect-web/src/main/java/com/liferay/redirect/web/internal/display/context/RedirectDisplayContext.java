@@ -59,8 +59,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionURL;
 import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
 
@@ -125,18 +123,14 @@ public class RedirectDisplayContext {
 				_themeDisplay.getPermissionChecker(), redirectEntry,
 				ActionKeys.DELETE),
 			dropdownItem -> {
-				ActionURL deleteRedirectEntryURL =
-					_liferayPortletResponse.createActionURL();
-
-				deleteRedirectEntryURL.setParameter(
-					ActionRequest.ACTION_NAME,
-					"/redirect/delete_redirect_entry");
-
-				deleteRedirectEntryURL.setParameter(
-					"redirectEntryId",
-					String.valueOf(redirectEntry.getRedirectEntryId()));
-
-				dropdownItem.setHref(deleteRedirectEntryURL);
+				dropdownItem.setHref(
+					PortletURLBuilder.createActionURL(
+						_liferayPortletResponse
+					).setActionName(
+						"/redirect/delete_redirect_entry"
+					).setParameter(
+						"redirectEntryId", redirectEntry.getRedirectEntryId()
+					).buildActionURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "delete"));

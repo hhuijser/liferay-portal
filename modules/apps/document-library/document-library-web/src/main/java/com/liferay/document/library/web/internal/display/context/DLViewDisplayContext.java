@@ -49,8 +49,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionURL;
 import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
@@ -133,12 +131,11 @@ public class DLViewDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		ActionURL actionURL = _renderResponse.createActionURL();
-
-		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/document_library/edit_entry");
-
-		return actionURL.toString();
+		return PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/document_library/edit_entry"
+		).buildString();
 	}
 
 	public String getEditFileEntryURL() {
@@ -162,13 +159,13 @@ public class DLViewDisplayContext {
 	}
 
 	public String getRestoreTrashEntriesURL() {
-		ActionURL actionURL = _renderResponse.createActionURL();
-
-		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/document_library/edit_entry");
-		actionURL.setParameter(Constants.CMD, Constants.RESTORE);
-
-		return actionURL.toString();
+		return PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/document_library/edit_entry"
+		).setCMD(
+			Constants.RESTORE
+		).buildString();
 	}
 
 	public String getSelectCategoriesURL()
@@ -233,17 +230,17 @@ public class DLViewDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		ActionURL actionURL = _renderResponse.createActionURL();
-
-		actionURL.setParameter(
-			ActionRequest.ACTION_NAME, "/document_library/edit_file_entry");
-		actionURL.setParameter(Constants.CMD, Constants.ADD_DYNAMIC);
-		actionURL.setParameter("folderId", "{folderId}");
-		actionURL.setParameter(
-			"repositoryId",
-			String.valueOf(_dlAdminDisplayContext.getRepositoryId()));
-
-		return actionURL.toString();
+		return PortletURLBuilder.createActionURL(
+			_renderResponse
+		).setActionName(
+			"/document_library/edit_file_entry"
+		).setCMD(
+			Constants.ADD_DYNAMIC
+		).setParameter(
+			"folderId", "{folderId}"
+		).setParameter(
+			"repositoryId", _dlAdminDisplayContext.getRepositoryId()
+		).buildString();
 	}
 
 	public String getViewFileEntryTypeURL() throws PortletException {

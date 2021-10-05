@@ -40,8 +40,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionURL;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -189,18 +187,19 @@ public class SynonymsDisplayBuilder {
 		).add(
 			dropdownItem -> {
 				dropdownItem.putData("action", "delete");
-
-				ActionURL deleteURL = _renderResponse.createActionURL();
-
-				deleteURL.setParameter(
-					ActionRequest.ACTION_NAME, "/synonyms/delete_synonym_sets");
-				deleteURL.setParameter(Constants.CMD, Constants.DELETE);
-				deleteURL.setParameter(
-					"rowIds", synonymSet.getSynonymSetDocumentId());
-				deleteURL.setParameter(
-					"redirect", _portal.getCurrentURL(_httpServletRequest));
-
-				dropdownItem.putData("deleteURL", deleteURL.toString());
+				dropdownItem.putData(
+					"deleteURL",
+					PortletURLBuilder.createActionURL(
+						_renderResponse
+					).setActionName(
+						"/synonyms/delete_synonym_sets"
+					).setCMD(
+						Constants.DELETE
+					).setRedirect(
+						_portal.getCurrentURL(_httpServletRequest)
+					).setParameter(
+						"rowIds", synonymSet.getSynonymSetDocumentId()
+					).buildString());
 
 				dropdownItem.setIcon("times");
 				dropdownItem.setLabel(

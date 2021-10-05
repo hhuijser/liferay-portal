@@ -132,7 +132,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "export"));
 						</div>
 
 						<div class="input-group-append input-group-item">
-							<input aria-label="Text input with checkbox" class="form-control" id="<%= liferayPortletResponse.getNamespace() + "internalFieldName_ID_TEMPLATE" %>" name="<%= liferayPortletResponse.getNamespace() + "internalFieldName_ID_TEMPLATE" %>" placeholder="Liferay object field name" type="text" value="VALUE_TEMPLATE" />
+							<input aria-label="Text input with checkbox" class="form-control" id="<portlet:namespace />internalFieldName_ID_TEMPLATE" name="<portlet:namespace />internalFieldName_ID_TEMPLATE" placeholder="Liferay object field name" type="text" value="VALUE_TEMPLATE" />
 						</div>
 					</div>
 				</clay:row>

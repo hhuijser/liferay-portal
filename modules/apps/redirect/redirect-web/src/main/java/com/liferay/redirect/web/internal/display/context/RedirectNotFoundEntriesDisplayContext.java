@@ -16,6 +16,7 @@ package com.liferay.redirect.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
+import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -58,7 +59,6 @@ import java.util.stream.Stream;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionURL;
 import javax.portlet.PortletURL;
-import javax.portlet.RenderURL;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -132,19 +132,16 @@ public class RedirectNotFoundEntriesDisplayContext {
 							 redirectNotFoundEntry.getGroupId()));
 			},
 			dropdownItem -> {
-				RenderURL editRedirectEntryURL =
-					_liferayPortletResponse.createRenderURL();
-
-				editRedirectEntryURL.setParameter(
-					"mvcRenderCommandName", "/redirect/edit_redirect_entry");
-
-				editRedirectEntryURL.setParameter(
-					"redirect", _themeDisplay.getURLCurrent());
-
-				editRedirectEntryURL.setParameter(
-					"sourceURL", redirectNotFoundEntry.getUrl());
-
-				dropdownItem.setHref(editRedirectEntryURL);
+				dropdownItem.setHref(
+					PortletURLBuilder.createRenderURL(
+						_liferayPortletResponse
+					).setMVCRenderCommandName(
+						"/redirect/edit_redirect_entry"
+					).setRedirect(
+						_themeDisplay.getURLCurrent()
+					).setParameter(
+						"sourceURL", redirectNotFoundEntry.getUrl()
+					).buildRenderURL());
 
 				dropdownItem.setLabel(
 					LanguageUtil.get(_httpServletRequest, "create-redirect"));

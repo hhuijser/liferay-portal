@@ -100,16 +100,15 @@ public class SynonymsDisplayBuilder {
 	}
 
 	protected RenderURL buildEditRenderURL(SynonymSet synonymSet) {
-		RenderURL editRenderURL = _renderResponse.createRenderURL();
-
-		editRenderURL.setParameter(
-			"mvcRenderCommandName", "/synonyms/edit_synonym_sets");
-		editRenderURL.setParameter(
-			"redirect", _portal.getCurrentURL(_httpServletRequest));
-		editRenderURL.setParameter(
-			"synonymSetId", synonymSet.getSynonymSetDocumentId());
-
-		return editRenderURL;
+		return PortletURLBuilder.createRenderURL(
+			_renderResponse
+		).setMVCRenderCommandName(
+			"/synonyms/edit_synonym_sets"
+		).setRedirect(
+			_portal.getCurrentURL(_httpServletRequest)
+		).setParameter(
+			"synonymSetId", synonymSet.getSynonymSetDocumentId()
+		).buildRenderURL();
 	}
 
 	protected SearchContainer<SynonymSetDisplayContext> buildSearchContainer() {

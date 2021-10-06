@@ -85,9 +85,18 @@ public class XMLServiceReferenceCheck extends BaseFileCheck {
 					continue;
 				}
 
-				if (!_isRequiredReference(
-						entityName, referenceEntityName, localService,
-						remoteService, dirName, packageName)) {
+				if (isAttributeValue(_AVOID_REFERENCES_KEY, absolutePath)) {
+					addMessage(
+						fileName,
+						StringBundler.concat(
+							"Avoid using reference '", referenceEntityName,
+							"' for Entity '", entityName,
+							"', use private variables in *ServiceImpl ",
+							"instead"));
+				}
+				else if (!_isRequiredReference(
+							entityName, referenceEntityName, localService,
+							remoteService, dirName, packageName)) {
 
 					addMessage(
 						fileName,
@@ -204,5 +213,7 @@ public class XMLServiceReferenceCheck extends BaseFileCheck {
 
 		return false;
 	}
+
+	private static final String _AVOID_REFERENCES_KEY = "avoidReferences";
 
 }

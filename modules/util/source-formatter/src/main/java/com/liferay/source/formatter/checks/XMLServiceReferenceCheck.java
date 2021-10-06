@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -77,6 +78,12 @@ public class XMLServiceReferenceCheck extends BaseFileCheck {
 
 				String referenceEntityName = referenceElement.attributeValue(
 					"entity");
+
+				if (referenceEntityName.equals("AssetEntry") &&
+					_isUADEnabled(entityElement)) {
+
+					continue;
+				}
 
 				if (!_isRequiredReference(
 						entityName, referenceEntityName, localService,
@@ -177,6 +184,22 @@ public class XMLServiceReferenceCheck extends BaseFileCheck {
 			_containsReference(content, referenceVarName, "Service")) {
 
 			return true;
+		}
+
+		return false;
+	}
+
+	private boolean _isUADEnabled(Element entityElement) {
+		for (Element columnElement :
+				(List<Element>)entityElement.elements("column")) {
+
+			if (Validator.isNotNull(
+					columnElement.attributeValue("uad-anonymize-field-name")) ||
+				GetterUtil.getBoolean(
+					columnElement.attributeValue("uad-nonanonymizable"))) {
+
+				return true;
+			}
 		}
 
 		return false;

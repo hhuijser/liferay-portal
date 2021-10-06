@@ -144,9 +144,7 @@ public class CPDefinitionsDisplayContext
 	}
 
 	public List<DropdownItem> getBulkActionDropdownItems() {
-		List<DropdownItem> bulkActions = new ArrayList<>();
-
-		bulkActions.add(
+		return ListUtil.fromArray(
 			new ClayDataSetActionDropdownItem(
 				PortletURLBuilder.createActionURL(
 					cpRequestHelper.getRenderResponse()
@@ -158,8 +156,6 @@ public class CPDefinitionsDisplayContext
 				"trash", "delete", "delete",
 				LanguageUtil.get(httpServletRequest, "delete"), "delete",
 				null));
-
-		return bulkActions;
 	}
 
 	public String getChannelItemSelectorUrl() throws PortalException {

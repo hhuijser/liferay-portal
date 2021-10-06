@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalService;
 
 import java.io.File;
 
@@ -51,7 +52,7 @@ public class HtmlPreviewEntryLocalServiceImpl
 			String content, String mimeType, ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		long htmlPreviewEntryId = counterLocalService.increment();
 
@@ -174,5 +175,8 @@ public class HtmlPreviewEntryLocalServiceImpl
 
 	@Reference
 	private HtmlPreviewProcessorTracker _htmlPreviewProcessorTracker;
+
+	@Reference
+	private UserLocalService _userLocalService;
 
 }

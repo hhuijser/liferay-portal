@@ -50,7 +50,11 @@ public class XMLServiceReferenceCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws DocumentException, IOException {
 
-		if (!fileName.endsWith("/service.xml")) {
+		if (!fileName.endsWith("/service.xml") ||
+			absolutePath.contains("/gradleTest/") ||
+			absolutePath.contains("/samples/") ||
+			absolutePath.contains("-test-service")) {
+
 			return content;
 		}
 
@@ -66,6 +70,12 @@ public class XMLServiceReferenceCheck extends BaseFileCheck {
 
 		for (Element entityElement :
 				(List<Element>)rootElement.elements("entity")) {
+
+			if (GetterUtil.getBoolean(
+					entityElement.attributeValue("deprecated"))) {
+
+				continue;
+			}
 
 			String entityName = entityElement.attributeValue("name");
 			boolean localService = GetterUtil.getBoolean(

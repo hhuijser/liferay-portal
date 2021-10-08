@@ -17,10 +17,6 @@ package com.liferay.object.action.executor;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
-import java.io.Serializable;
-
-import java.util.Map;
-
 /**
  * @author Marco Leo
  * @author Brian Wing Shun Chan

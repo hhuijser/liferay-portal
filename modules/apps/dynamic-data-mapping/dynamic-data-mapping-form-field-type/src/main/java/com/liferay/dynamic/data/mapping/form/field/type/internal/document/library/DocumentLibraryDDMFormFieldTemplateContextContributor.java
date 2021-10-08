@@ -607,7 +607,8 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 		}
 
 		long ddmFormFolderId = _getDDMFormFolderId(
-			themeDisplay.getCompanyId(), repository.getRepositoryId(), httpServletRequest);
+			themeDisplay.getCompanyId(), repository.getRepositoryId(),
+			httpServletRequest);
 
 		if (!themeDisplay.isSignedIn()) {
 			return HashMapBuilder.<String, Object>put(

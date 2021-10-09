@@ -619,13 +619,13 @@ public class COREntryLocalServiceImpl extends COREntryLocalServiceBaseImpl {
 	}
 
 	private Predicate _getPredicate(
-		String className, Column<COREntryRelTable, Long> classNameId,
-		Column<COREntryRelTable, Long> corEntryId) {
+		String className, Column<COREntryRelTable, Long> classNameIdColumn,
+		Column<COREntryRelTable, Long> corEntryIdColumn) {
 
-		return classNameId.eq(
+		return classNameIdColumn.eq(
 			classNameLocalService.getClassNameId(className)
 		).and(
-			corEntryId.eq(COREntryTable.INSTANCE.COREntryId)
+			corEntryIdColumn.eq(COREntryTable.INSTANCE.COREntryId)
 		);
 	}
 

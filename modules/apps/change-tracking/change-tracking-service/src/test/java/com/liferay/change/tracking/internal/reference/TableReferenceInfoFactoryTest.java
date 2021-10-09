@@ -106,8 +106,8 @@ public class TableReferenceInfoFactoryTest {
 				ReferenceExampleTable.INSTANCE
 			).innerJoinON(
 				MainExampleTable.INSTANCE,
-				MainExampleTable.INSTANCE.mainExampleId.eq(
-					ReferenceExampleTable.INSTANCE.mainExampleId)
+				MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+					ReferenceExampleTable.INSTANCE.mainExampleIdColumn)
 			);
 
 		TableReferenceDefinition<MainExampleTable> tableReferenceDefinition =
@@ -134,7 +134,7 @@ public class TableReferenceInfoFactoryTest {
 		TableReferenceInfo<MainExampleTable> tableReferenceInfo =
 			TableReferenceInfoFactory.create(
 				MainExampleTable.CLASS_NAME_ID,
-				MainExampleTable.INSTANCE.mainExampleId,
+				MainExampleTable.INSTANCE.mainExampleIdColumn,
 				tableReferenceDefinition);
 
 		Assert.assertNotNull(tableReferenceInfo);
@@ -184,7 +184,7 @@ public class TableReferenceInfoFactoryTest {
 		TableReferenceInfo<ReferenceExampleTable> tableReferenceInfo =
 			TableReferenceInfoFactory.create(
 				ReferenceExampleTable.CLASS_NAME_ID,
-				ReferenceExampleTable.INSTANCE.mainExampleId,
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
 				new MissingRequirementsTableReferenceDefinition());
 
 		Map<Table<?>, List<TableJoinHolder>> parentTableJoinHoldersMap =
@@ -199,7 +199,7 @@ public class TableReferenceInfoFactoryTest {
 		_assertMissingRequirementsSQL(
 			parentTableJoinHoldersMap.get(MainExampleTable.INSTANCE),
 			DSLQueryFactoryUtil.select(
-				ReferenceExampleTable.INSTANCE.mainExampleId,
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
 				new Scalar<>(MainExampleTable.INSTANCE.getTableName())
 			).from(
 				ReferenceExampleTable.INSTANCE
@@ -210,26 +210,26 @@ public class TableReferenceInfoFactoryTest {
 			).leftJoinOn(
 				MainExampleTable.INSTANCE,
 				ClassNameTable.INSTANCE.classNameId.eq(
-					MainExampleTable.INSTANCE.classNameId
+					MainExampleTable.INSTANCE.classNameIdColumn
 				).and(
-					MainExampleTable.INSTANCE.flag.eq(0)
+					MainExampleTable.INSTANCE.flagColumn.eq(0)
 				).and(
-					ReferenceExampleTable.INSTANCE.referenceExampleId.eq(
-						MainExampleTable.INSTANCE.classPK)
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn.eq(
+						MainExampleTable.INSTANCE.classPKColumn)
 				).and(
-					key.eq(MainExampleTable.INSTANCE.name)
+					key.eq(MainExampleTable.INSTANCE.nameColumn)
 				)
 			).where(
 				() -> {
 					Predicate predicate =
-						MainExampleTable.INSTANCE.mainExampleId.isNull();
+						MainExampleTable.INSTANCE.mainExampleIdColumn.isNull();
 
 					return predicate.and(
-						ReferenceExampleTable.INSTANCE.referenceExampleId.
+						ReferenceExampleTable.INSTANCE.referenceExampleIdColumn.
 							isNotNull()
 					).and(
-						ReferenceExampleTable.INSTANCE.referenceExampleId.neq(
-							0L)
+						ReferenceExampleTable.INSTANCE.referenceExampleIdColumn.
+							neq(0L)
 					);
 				}
 			));
@@ -240,25 +240,26 @@ public class TableReferenceInfoFactoryTest {
 		_assertMissingRequirementsSQL(
 			parentTableJoinHoldersMap.get(ReferenceExampleTable.INSTANCE),
 			DSLQueryFactoryUtil.select(
-				ReferenceExampleTable.INSTANCE.mainExampleId,
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
 				new Scalar<>(ReferenceExampleTable.INSTANCE.getTableName())
 			).from(
 				ReferenceExampleTable.INSTANCE
 			).leftJoinOn(
 				aliasReferenceExampleTable,
-				ReferenceExampleTable.INSTANCE.parentReferenceExampleId.eq(
-					aliasReferenceExampleTable.referenceExampleId)
+				ReferenceExampleTable.INSTANCE.parentReferenceExampleIdColumn.
+					eq(aliasReferenceExampleTable.referenceExampleIdColumn)
 			).where(
 				() -> {
 					Predicate predicate =
-						aliasReferenceExampleTable.referenceExampleId.isNull();
+						aliasReferenceExampleTable.referenceExampleIdColumn.
+							isNull();
 
 					return predicate.and(
-						ReferenceExampleTable.INSTANCE.parentReferenceExampleId.
-							isNotNull()
+						ReferenceExampleTable.INSTANCE.
+							parentReferenceExampleIdColumn.isNotNull()
 					).and(
-						ReferenceExampleTable.INSTANCE.parentReferenceExampleId.
-							neq(0L)
+						ReferenceExampleTable.INSTANCE.
+							parentReferenceExampleIdColumn.neq(0L)
 					);
 				}
 			));
@@ -266,29 +267,31 @@ public class TableReferenceInfoFactoryTest {
 		_assertMissingRequirementsSQL(
 			parentTableJoinHoldersMap.get(StringIntExampleTable.INSTANCE),
 			DSLQueryFactoryUtil.select(
-				ReferenceExampleTable.INSTANCE.mainExampleId,
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
 				new Scalar<>(StringIntExampleTable.INSTANCE.getTableName())
 			).from(
 				ReferenceExampleTable.INSTANCE
 			).leftJoinOn(
 				StringIntExampleTable.INSTANCE,
-				ReferenceExampleTable.INSTANCE.stringKey.eq(
-					StringIntExampleTable.INSTANCE.stringKey
+				ReferenceExampleTable.INSTANCE.stringKeyColumn.eq(
+					StringIntExampleTable.INSTANCE.stringKeyColumn
 				).and(
-					ReferenceExampleTable.INSTANCE.integerKey.eq(
-						StringIntExampleTable.INSTANCE.integerKey)
+					ReferenceExampleTable.INSTANCE.integerKeyColumn.eq(
+						StringIntExampleTable.INSTANCE.integerKeyColumn)
 				)
 			).where(
 				() -> {
 					Predicate predicate =
-						StringIntExampleTable.INSTANCE.id.isNull();
+						StringIntExampleTable.INSTANCE.idColumn.isNull();
 
 					return predicate.and(
-						ReferenceExampleTable.INSTANCE.stringKey.isNotNull()
+						ReferenceExampleTable.INSTANCE.stringKeyColumn.
+							isNotNull()
 					).and(
-						ReferenceExampleTable.INSTANCE.stringKey.neq("")
+						ReferenceExampleTable.INSTANCE.stringKeyColumn.neq("")
 					).and(
-						ReferenceExampleTable.INSTANCE.integerKey.isNotNull()
+						ReferenceExampleTable.INSTANCE.integerKeyColumn.
+							isNotNull()
 					);
 				}
 			));
@@ -296,30 +299,33 @@ public class TableReferenceInfoFactoryTest {
 		_assertMissingRequirementsSQL(
 			parentTableJoinHoldersMap.get(BridgeJoinExampleTable.INSTANCE),
 			DSLQueryFactoryUtil.select(
-				ReferenceExampleTable.INSTANCE.mainExampleId,
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
 				new Scalar<>(BridgeJoinExampleTable.INSTANCE.getTableName())
 			).from(
 				ReferenceExampleTable.INSTANCE
 			).leftJoinOn(
 				BridgeJoinExampleTable.INSTANCE,
 				DSLFunctionFactoryUtil.castText(
-					ReferenceExampleTable.INSTANCE.referenceExampleId
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn
 				).eq(
-					BridgeJoinExampleTable.INSTANCE.stringKey
+					BridgeJoinExampleTable.INSTANCE.stringKeyColumn
 				)
 			).leftJoinOn(
 				MainExampleTable.INSTANCE,
-				MainExampleTable.INSTANCE.mainExampleId.eq(
-					ReferenceExampleTable.INSTANCE.mainExampleId)
+				MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+					ReferenceExampleTable.INSTANCE.mainExampleIdColumn)
 			).where(
-				BridgeJoinExampleTable.INSTANCE.bridgeJoinExampleId.isNull(
-				).and(
-					ReferenceExampleTable.INSTANCE.integerKey.eq(0)
-				).and(
-					ReferenceExampleTable.INSTANCE.mainExampleId.isNotNull()
-				).and(
-					ReferenceExampleTable.INSTANCE.mainExampleId.neq(0L)
-				)
+				BridgeJoinExampleTable.INSTANCE.bridgeJoinExampleIdColumn.
+					isNull(
+					).and(
+						ReferenceExampleTable.INSTANCE.integerKeyColumn.eq(0)
+					).and(
+						ReferenceExampleTable.INSTANCE.mainExampleIdColumn.
+							isNotNull()
+					).and(
+						ReferenceExampleTable.INSTANCE.mainExampleIdColumn.neq(
+							0L)
+					)
 			));
 	}
 
@@ -330,8 +336,8 @@ public class TableReferenceInfoFactoryTest {
 				MainExampleTable.INSTANCE
 			).innerJoinON(
 				ReferenceExampleTable.INSTANCE,
-				MainExampleTable.INSTANCE.mainExampleId.eq(
-					ReferenceExampleTable.INSTANCE.mainExampleId)
+				MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+					ReferenceExampleTable.INSTANCE.mainExampleIdColumn)
 			);
 
 		ReferenceExampleTable aliasReferenceExampleTable =
@@ -342,8 +348,8 @@ public class TableReferenceInfoFactoryTest {
 				aliasReferenceExampleTable
 			).innerJoinON(
 				ReferenceExampleTable.INSTANCE,
-				ReferenceExampleTable.INSTANCE.referenceExampleId.eq(
-					aliasReferenceExampleTable.parentReferenceExampleId)
+				ReferenceExampleTable.INSTANCE.referenceExampleIdColumn.eq(
+					aliasReferenceExampleTable.parentReferenceExampleIdColumn)
 			);
 
 		Function<FromStep, JoinStep> selfJoinFunction2 =
@@ -351,8 +357,8 @@ public class TableReferenceInfoFactoryTest {
 				aliasReferenceExampleTable
 			).innerJoinON(
 				ReferenceExampleTable.INSTANCE,
-				ReferenceExampleTable.INSTANCE.parentReferenceExampleId.eq(
-					aliasReferenceExampleTable.referenceExampleId)
+				ReferenceExampleTable.INSTANCE.parentReferenceExampleIdColumn.
+					eq(aliasReferenceExampleTable.referenceExampleIdColumn)
 			);
 
 		TableReferenceDefinition<ReferenceExampleTable>
@@ -386,7 +392,7 @@ public class TableReferenceInfoFactoryTest {
 		TableReferenceInfo<ReferenceExampleTable> tableReferenceInfo =
 			TableReferenceInfoFactory.create(
 				ReferenceExampleTable.CLASS_NAME_ID,
-				ReferenceExampleTable.INSTANCE.referenceExampleId,
+				ReferenceExampleTable.INSTANCE.referenceExampleIdColumn,
 				tableReferenceDefinition);
 
 		Assert.assertNotNull(tableReferenceInfo);
@@ -413,11 +419,11 @@ public class TableReferenceInfoFactoryTest {
 		Assert.assertSame(selfJoinFunction1, childJoinHolder.getJoinFunction());
 
 		Assert.assertSame(
-			aliasReferenceExampleTable.referenceExampleId,
+			aliasReferenceExampleTable.referenceExampleIdColumn,
 			childJoinHolder.getParentPKColumn());
 
 		Assert.assertSame(
-			ReferenceExampleTable.INSTANCE.referenceExampleId,
+			ReferenceExampleTable.INSTANCE.referenceExampleIdColumn,
 			childJoinHolder.getChildPKColumn());
 
 		Map<Table<?>, List<TableJoinHolder>> parentTableJoinHoldersMap =
@@ -440,11 +446,11 @@ public class TableReferenceInfoFactoryTest {
 			parentJoinFunction, parentJoinHolder.getJoinFunction());
 
 		Assert.assertSame(
-			MainExampleTable.INSTANCE.mainExampleId,
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
 			parentJoinHolder.getParentPKColumn());
 
 		Assert.assertSame(
-			ReferenceExampleTable.INSTANCE.referenceExampleId,
+			ReferenceExampleTable.INSTANCE.referenceExampleIdColumn,
 			parentJoinHolder.getChildPKColumn());
 
 		parentTableJoinHolders = parentTableJoinHoldersMap.get(
@@ -459,11 +465,11 @@ public class TableReferenceInfoFactoryTest {
 		Assert.assertSame(selfJoinFunction2, childJoinHolder.getJoinFunction());
 
 		Assert.assertSame(
-			aliasReferenceExampleTable.referenceExampleId,
+			aliasReferenceExampleTable.referenceExampleIdColumn,
 			childJoinHolder.getParentPKColumn());
 
 		Assert.assertSame(
-			ReferenceExampleTable.INSTANCE.referenceExampleId,
+			ReferenceExampleTable.INSTANCE.referenceExampleIdColumn,
 			childJoinHolder.getChildPKColumn());
 
 		Assert.assertEquals(
@@ -504,8 +510,10 @@ public class TableReferenceInfoFactoryTest {
 								MainExampleTable.INSTANCE
 							).innerJoinON(
 								MainExampleTable.INSTANCE,
-								MainExampleTable.INSTANCE.mainExampleId.eq(
-									MainExampleTable.INSTANCE.mainExampleId)
+								MainExampleTable.INSTANCE.mainExampleIdColumn.
+									eq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 
 						Assert.fail();
@@ -527,9 +535,10 @@ public class TableReferenceInfoFactoryTest {
 								ReferenceExampleTable.INSTANCE
 							).innerJoinON(
 								ReferenceExampleTable.INSTANCE,
-								ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-									ReferenceExampleTable.INSTANCE.
-										mainExampleId)
+								ReferenceExampleTable.INSTANCE.
+									mainExampleIdColumn.eq(
+										ReferenceExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 
 						Assert.fail();
@@ -551,8 +560,10 @@ public class TableReferenceInfoFactoryTest {
 								MainExampleTable.INSTANCE
 							).innerJoinON(
 								MainExampleTable.INSTANCE,
-								MainExampleTable.INSTANCE.mainExampleId.eq(
-									MainExampleTable.INSTANCE.mainExampleId)
+								MainExampleTable.INSTANCE.mainExampleIdColumn.
+									eq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 
 						Assert.fail();
@@ -574,8 +585,10 @@ public class TableReferenceInfoFactoryTest {
 								MainExampleTable.INSTANCE
 							).innerJoinON(
 								ReferenceExampleTable.INSTANCE,
-								ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-									MainExampleTable.INSTANCE.mainExampleId)
+								ReferenceExampleTable.INSTANCE.
+									mainExampleIdColumn.eq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 
 						Assert.fail();
@@ -597,8 +610,10 @@ public class TableReferenceInfoFactoryTest {
 								ReferenceExampleTable.INSTANCE
 							).leftJoinOn(
 								MainExampleTable.INSTANCE,
-								ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-									MainExampleTable.INSTANCE.mainExampleId)
+								ReferenceExampleTable.INSTANCE.
+									mainExampleIdColumn.eq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 
 						Assert.fail();
@@ -620,14 +635,15 @@ public class TableReferenceInfoFactoryTest {
 								ReferenceExampleTable.INSTANCE
 							).innerJoinON(
 								MainExampleTable.INSTANCE,
-								ReferenceExampleTable.INSTANCE.mainExampleId.
-									neq(
-										MainExampleTable.INSTANCE.mainExampleId
+								ReferenceExampleTable.INSTANCE.
+									mainExampleIdColumn.neq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn
 									).and(
-										MainExampleTable.INSTANCE.mainExampleId.
-											gte(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn.gte(
 												ReferenceExampleTable.INSTANCE.
-													mainExampleId)
+													mainExampleIdColumn)
 									)
 							));
 
@@ -652,8 +668,10 @@ public class TableReferenceInfoFactoryTest {
 								MainExampleTable.INSTANCE.as("aliasMainExample")
 							).innerJoinON(
 								MainExampleTable.INSTANCE,
-								ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-									MainExampleTable.INSTANCE.mainExampleId)
+								ReferenceExampleTable.INSTANCE.
+									mainExampleIdColumn.eq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 
 						Assert.fail();
@@ -677,8 +695,10 @@ public class TableReferenceInfoFactoryTest {
 								InvalidTable.INSTANCE
 							).innerJoinON(
 								MainExampleTable.INSTANCE,
-								MainExampleTable.INSTANCE.mainExampleId.eq(
-									InvalidTable.INSTANCE.mainExampleId)
+								MainExampleTable.INSTANCE.mainExampleIdColumn.
+									eq(
+										InvalidTable.INSTANCE.
+											mainExampleIdColumn)
 							));
 					}
 					catch (IllegalArgumentException illegalArgumentException) {
@@ -752,19 +772,23 @@ public class TableReferenceInfoFactoryTest {
 								BridgeJoinExampleTable.INSTANCE
 							).innerJoinON(
 								MainExampleTable.INSTANCE,
-								MainExampleTable.INSTANCE.flag.eq(2)
+								MainExampleTable.INSTANCE.flagColumn.eq(2)
 							).innerJoinON(
 								ReferenceExampleTable.INSTANCE,
-								ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-									MainExampleTable.INSTANCE.mainExampleId)
+								ReferenceExampleTable.INSTANCE.
+									mainExampleIdColumn.eq(
+										MainExampleTable.INSTANCE.
+											mainExampleIdColumn)
 							).innerJoinON(
 								StringIntExampleTable.INSTANCE,
 								DSLFunctionFactoryUtil.concat(
-									BridgeJoinExampleTable.INSTANCE.stringKey,
+									BridgeJoinExampleTable.INSTANCE.
+										stringKeyColumn,
 									new Scalar<>("_"),
-									StringIntExampleTable.INSTANCE.stringKey
+									StringIntExampleTable.INSTANCE.
+										stringKeyColumn
 								).eq(
-									MainExampleTable.INSTANCE.name
+									MainExampleTable.INSTANCE.nameColumn
 								)
 							));
 
@@ -790,7 +814,7 @@ public class TableReferenceInfoFactoryTest {
 		TableReferenceInfo<MainExampleTable> tableReferenceInfo =
 			TableReferenceInfoFactory.create(
 				MainExampleTable.CLASS_NAME_ID,
-				MainExampleTable.INSTANCE.mainExampleId,
+				MainExampleTable.INSTANCE.mainExampleIdColumn,
 				tableReferenceDefinition);
 
 		Assert.assertNotNull(tableReferenceInfo);
@@ -855,14 +879,14 @@ public class TableReferenceInfoFactoryTest {
 		public static final BridgeJoinExampleTable INSTANCE =
 			new BridgeJoinExampleTable();
 
-		public final Column<BridgeJoinExampleTable, Long> bridgeJoinExampleId =
-			createColumn(
+		public final Column<BridgeJoinExampleTable, Long>
+			bridgeJoinExampleIdColumn = createColumn(
 				"bridgeJoinExampleId", Long.class, Types.BIGINT,
 				Column.FLAG_PRIMARY);
-		public final Column<BridgeJoinExampleTable, Long> mvccVersion =
+		public final Column<BridgeJoinExampleTable, Long> mvccVersionColumn =
 			createColumn(
 				"mvccVersion", Long.class, Types.BIGINT, Column.FLAG_NULLITY);
-		public final Column<BridgeJoinExampleTable, String> stringKey =
+		public final Column<BridgeJoinExampleTable, String> stringKeyColumn =
 			createColumn(
 				"stringKey", String.class, Types.BIGINT, Column.FLAG_DEFAULT);
 
@@ -876,8 +900,9 @@ public class TableReferenceInfoFactoryTest {
 
 		public static final InvalidTable INSTANCE = new InvalidTable();
 
-		public final Column<InvalidTable, Long> mainExampleId = createColumn(
-			"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+		public final Column<InvalidTable, Long> mainExampleIdColumn =
+			createColumn(
+				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 
 		private InvalidTable() {
 			super("InvalidTable", InvalidTable::new);
@@ -891,20 +916,25 @@ public class TableReferenceInfoFactoryTest {
 
 		public static final MainExampleTable INSTANCE = new MainExampleTable();
 
-		public final Column<MainExampleTable, Long> classNameId = createColumn(
-			"classNameId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
-		public final Column<MainExampleTable, Long> classPK = createColumn(
-			"classPK", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
-		public final Column<MainExampleTable, Clob> description = createColumn(
-			"description", Clob.class, Types.CLOB, Column.FLAG_DEFAULT);
-		public final Column<MainExampleTable, Integer> flag = createColumn(
-			"flag", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
-		public final Column<MainExampleTable, Long> mainExampleId =
+		public final Column<MainExampleTable, Long> classNameIdColumn =
+			createColumn(
+				"classNameId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+		public final Column<MainExampleTable, Long> classPKColumn =
+			createColumn(
+				"classPK", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
+		public final Column<MainExampleTable, Clob> descriptionColumn =
+			createColumn(
+				"description", Clob.class, Types.CLOB, Column.FLAG_DEFAULT);
+		public final Column<MainExampleTable, Integer> flagColumn =
+			createColumn(
+				"flag", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
+		public final Column<MainExampleTable, Long> mainExampleIdColumn =
 			createColumn(
 				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-		public final Column<MainExampleTable, Long> mvccVersion = createColumn(
-			"mvccVersion", Long.class, Types.BIGINT, Column.FLAG_NULLITY);
-		public final Column<MainExampleTable, String> name = createColumn(
+		public final Column<MainExampleTable, Long> mvccVersionColumn =
+			createColumn(
+				"mvccVersion", Long.class, Types.BIGINT, Column.FLAG_NULLITY);
+		public final Column<MainExampleTable, String> nameColumn = createColumn(
 			"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 
 		private MainExampleTable() {
@@ -928,18 +958,18 @@ public class TableReferenceInfoFactoryTest {
 				parentTableReferenceInfoBuilder) {
 
 			parentTableReferenceInfoBuilder.parentColumnReference(
-				ReferenceExampleTable.INSTANCE.referenceExampleId,
-				ReferenceExampleTable.INSTANCE.parentReferenceExampleId
+				ReferenceExampleTable.INSTANCE.referenceExampleIdColumn,
+				ReferenceExampleTable.INSTANCE.parentReferenceExampleIdColumn
 			).referenceInnerJoin(
 				fromStep -> fromStep.from(
 					StringIntExampleTable.INSTANCE
 				).innerJoinON(
 					ReferenceExampleTable.INSTANCE,
-					ReferenceExampleTable.INSTANCE.stringKey.eq(
-						StringIntExampleTable.INSTANCE.stringKey
+					ReferenceExampleTable.INSTANCE.stringKeyColumn.eq(
+						StringIntExampleTable.INSTANCE.stringKeyColumn
 					).and(
-						ReferenceExampleTable.INSTANCE.integerKey.eq(
-							StringIntExampleTable.INSTANCE.integerKey)
+						ReferenceExampleTable.INSTANCE.integerKeyColumn.eq(
+							StringIntExampleTable.INSTANCE.integerKeyColumn)
 					)
 				)
 			).referenceInnerJoin(
@@ -950,17 +980,18 @@ public class TableReferenceInfoFactoryTest {
 						MainExampleTable.INSTANCE
 					).innerJoinON(
 						ReferenceExampleTable.INSTANCE,
-						ReferenceExampleTable.INSTANCE.referenceExampleId.eq(
-							MainExampleTable.INSTANCE.classPK
-						).and(
-							key.eq(MainExampleTable.INSTANCE.name)
-						).and(
-							MainExampleTable.INSTANCE.flag.eq(0)
-						)
+						ReferenceExampleTable.INSTANCE.referenceExampleIdColumn.
+							eq(
+								MainExampleTable.INSTANCE.classPKColumn
+							).and(
+								key.eq(MainExampleTable.INSTANCE.nameColumn)
+							).and(
+								MainExampleTable.INSTANCE.flagColumn.eq(0)
+							)
 					).innerJoinON(
 						ClassNameTable.INSTANCE,
 						ClassNameTable.INSTANCE.classNameId.eq(
-							MainExampleTable.INSTANCE.classNameId
+							MainExampleTable.INSTANCE.classNameIdColumn
 						).and(
 							ClassNameTable.INSTANCE.value.eq(
 								TableReferenceInfoFactoryTest.class.getName())
@@ -972,16 +1003,16 @@ public class TableReferenceInfoFactoryTest {
 					BridgeJoinExampleTable.INSTANCE
 				).innerJoinON(
 					ReferenceExampleTable.INSTANCE,
-					ReferenceExampleTable.INSTANCE.integerKey.eq(0)
+					ReferenceExampleTable.INSTANCE.integerKeyColumn.eq(0)
 				).innerJoinON(
 					MainExampleTable.INSTANCE,
 					DSLFunctionFactoryUtil.castText(
-						ReferenceExampleTable.INSTANCE.referenceExampleId
+						ReferenceExampleTable.INSTANCE.referenceExampleIdColumn
 					).eq(
-						BridgeJoinExampleTable.INSTANCE.stringKey
+						BridgeJoinExampleTable.INSTANCE.stringKeyColumn
 					).and(
-						MainExampleTable.INSTANCE.mainExampleId.eq(
-							ReferenceExampleTable.INSTANCE.mainExampleId)
+						MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+							ReferenceExampleTable.INSTANCE.mainExampleIdColumn)
 					)
 				)
 			);
@@ -1001,24 +1032,24 @@ public class TableReferenceInfoFactoryTest {
 		public static final ReferenceExampleTable INSTANCE =
 			new ReferenceExampleTable();
 
-		public final Column<ReferenceExampleTable, Integer> integerKey =
+		public final Column<ReferenceExampleTable, Integer> integerKeyColumn =
 			createColumn(
 				"integerKey", Integer.class, Types.BIGINT, Column.FLAG_DEFAULT);
-		public final Column<ReferenceExampleTable, Long> mainExampleId =
+		public final Column<ReferenceExampleTable, Long> mainExampleIdColumn =
 			createColumn(
 				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
-		public final Column<ReferenceExampleTable, Long> mvccVersion =
+		public final Column<ReferenceExampleTable, Long> mvccVersionColumn =
 			createColumn(
 				"mvccVersion", Long.class, Types.BIGINT, Column.FLAG_NULLITY);
 		public final Column<ReferenceExampleTable, Long>
-			parentReferenceExampleId = createColumn(
+			parentReferenceExampleIdColumn = createColumn(
 				"parentReferenceExampleId", Long.class, Types.VARCHAR,
 				Column.FLAG_DEFAULT);
-		public final Column<ReferenceExampleTable, Long> referenceExampleId =
-			createColumn(
+		public final Column<ReferenceExampleTable, Long>
+			referenceExampleIdColumn = createColumn(
 				"referenceExampleId", Long.class, Types.BIGINT,
 				Column.FLAG_PRIMARY);
-		public final Column<ReferenceExampleTable, String> stringKey =
+		public final Column<ReferenceExampleTable, String> stringKeyColumn =
 			createColumn(
 				"stringKey", String.class, Types.BIGINT, Column.FLAG_DEFAULT);
 
@@ -1034,12 +1065,12 @@ public class TableReferenceInfoFactoryTest {
 		public static final StringIntExampleTable INSTANCE =
 			new StringIntExampleTable();
 
-		public final Column<StringIntExampleTable, Long> id = createColumn(
-			"id", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-		public final Column<StringIntExampleTable, Integer> integerKey =
+		public final Column<StringIntExampleTable, Long> idColumn =
+			createColumn("id", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
+		public final Column<StringIntExampleTable, Integer> integerKeyColumn =
 			createColumn(
 				"integerKey", Integer.class, Types.BIGINT, Column.FLAG_DEFAULT);
-		public final Column<StringIntExampleTable, String> stringKey =
+		public final Column<StringIntExampleTable, String> stringKeyColumn =
 			createColumn(
 				"stringKey", String.class, Types.BIGINT, Column.FLAG_DEFAULT);
 

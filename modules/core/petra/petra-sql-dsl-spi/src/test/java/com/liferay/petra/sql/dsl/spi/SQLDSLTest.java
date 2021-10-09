@@ -146,7 +146,7 @@ public class SQLDSLTest {
 	@Test
 	public void testAggregateExpression() {
 		Expression<Long> countExpression = DSLFunctionFactoryUtil.countDistinct(
-			ReferenceExampleTable.INSTANCE.name);
+			ReferenceExampleTable.INSTANCE.nameColumn);
 
 		AggregateExpression<Long> countAggregateExpression =
 			(AggregateExpression<Long>)countExpression;
@@ -155,7 +155,7 @@ public class SQLDSLTest {
 			countAggregateExpression.toString(),
 			countAggregateExpression.isDistinct());
 		Assert.assertSame(
-			ReferenceExampleTable.INSTANCE.name,
+			ReferenceExampleTable.INSTANCE.nameColumn,
 			countAggregateExpression.getExpression());
 		Assert.assertEquals("count", countAggregateExpression.getName());
 	}
@@ -164,7 +164,8 @@ public class SQLDSLTest {
 	public void testAlias() {
 		String name = "alias";
 
-		Alias<String> alias = ReferenceExampleTable.INSTANCE.name.as(name);
+		Alias<String> alias = ReferenceExampleTable.INSTANCE.nameColumn.as(
+			name);
 
 		Assert.assertSame(name, alias.getName());
 	}
@@ -203,7 +204,7 @@ public class SQLDSLTest {
 		OrderBy orderBy1 = new OrderBy(
 			from,
 			new OrderByExpression[] {
-				MainExampleTable.INSTANCE.mainExampleId.ascending()
+				MainExampleTable.INSTANCE.mainExampleIdColumn.ascending()
 			});
 
 		Assert.assertSame(from, orderBy1.getChild());
@@ -214,8 +215,8 @@ public class SQLDSLTest {
 
 		JoinStep joinStep = from.innerJoinON(
 			ReferenceExampleTable.INSTANCE,
-			ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-				MainExampleTable.INSTANCE.mainExampleId));
+			ReferenceExampleTable.INSTANCE.mainExampleIdColumn.eq(
+				MainExampleTable.INSTANCE.mainExampleIdColumn));
 
 		OrderBy orderBy2 = orderBy1.withNewChild(joinStep);
 
@@ -259,11 +260,12 @@ public class SQLDSLTest {
 	@Test
 	public void testCaseSelect() {
 		Alias<String> numberAlias = DSLFunctionFactoryUtil.caseWhenThen(
-			MainExampleTable.INSTANCE.mainExampleId.eq(1L), new Scalar<>("one")
+			MainExampleTable.INSTANCE.mainExampleIdColumn.eq(1L),
+			new Scalar<>("one")
 		).whenThen(
-			MainExampleTable.INSTANCE.mainExampleId.eq(2L), "two"
+			MainExampleTable.INSTANCE.mainExampleIdColumn.eq(2L), "two"
 		).whenThen(
-			MainExampleTable.INSTANCE.mainExampleId.eq(3L), "three"
+			MainExampleTable.INSTANCE.mainExampleIdColumn.eq(3L), "three"
 		).elseEnd(
 			"unknown"
 		).as(
@@ -297,7 +299,8 @@ public class SQLDSLTest {
 
 	@Test
 	public void testCaseWhenThen() {
-		Predicate predicate = MainExampleTable.INSTANCE.mainExampleId.eq(1L);
+		Predicate predicate = MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+			1L);
 
 		Scalar<String> scalar = new Scalar<>("one");
 
@@ -314,38 +317,41 @@ public class SQLDSLTest {
 			"alias");
 
 		Assert.assertEquals(
-			MainExampleTable.INSTANCE.mainExampleId,
-			MainExampleTable.INSTANCE.mainExampleId);
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			MainExampleTable.INSTANCE.mainExampleIdColumn);
 		Assert.assertEquals(
-			MainExampleTable.INSTANCE.mainExampleId,
-			aliasMainExampleTable.mainExampleId);
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			aliasMainExampleTable.mainExampleIdColumn);
 		Assert.assertEquals(
-			MainExampleTable.INSTANCE.mainExampleId.hashCode(),
-			aliasMainExampleTable.mainExampleId.hashCode());
+			MainExampleTable.INSTANCE.mainExampleIdColumn.hashCode(),
+			aliasMainExampleTable.mainExampleIdColumn.hashCode());
 		Assert.assertNotEquals(
-			MainExampleTable.INSTANCE.mainExampleId,
-			MainExampleTable.INSTANCE.name);
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			MainExampleTable.INSTANCE.nameColumn);
 		Assert.assertNotEquals(
-			MainExampleTable.INSTANCE.mainExampleId,
-			ReferenceExampleTable.INSTANCE.mainExampleId);
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			ReferenceExampleTable.INSTANCE.mainExampleIdColumn);
 		Assert.assertNotEquals(
-			MainExampleTable.INSTANCE.mainExampleId, MainExampleTable.INSTANCE);
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			MainExampleTable.INSTANCE);
 
 		Assert.assertSame(
 			aliasMainExampleTable,
-			aliasMainExampleTable.mainExampleId.getTable());
+			aliasMainExampleTable.mainExampleIdColumn.getTable());
 
 		Assert.assertFalse(
-			MainExampleTable.INSTANCE.mainExampleId.isNullAllowed());
-		Assert.assertFalse(aliasMainExampleTable.mainExampleId.isNullAllowed());
-		Assert.assertTrue(MainExampleTable.INSTANCE.name.isNullAllowed());
-		Assert.assertTrue(aliasMainExampleTable.name.isNullAllowed());
+			MainExampleTable.INSTANCE.mainExampleIdColumn.isNullAllowed());
+		Assert.assertFalse(
+			aliasMainExampleTable.mainExampleIdColumn.isNullAllowed());
+		Assert.assertTrue(MainExampleTable.INSTANCE.nameColumn.isNullAllowed());
+		Assert.assertTrue(aliasMainExampleTable.nameColumn.isNullAllowed());
 
 		Assert.assertTrue(
-			MainExampleTable.INSTANCE.mainExampleId.isPrimaryKey());
-		Assert.assertTrue(aliasMainExampleTable.mainExampleId.isPrimaryKey());
-		Assert.assertFalse(MainExampleTable.INSTANCE.name.isPrimaryKey());
-		Assert.assertFalse(aliasMainExampleTable.name.isPrimaryKey());
+			MainExampleTable.INSTANCE.mainExampleIdColumn.isPrimaryKey());
+		Assert.assertTrue(
+			aliasMainExampleTable.mainExampleIdColumn.isPrimaryKey());
+		Assert.assertFalse(MainExampleTable.INSTANCE.nameColumn.isPrimaryKey());
+		Assert.assertFalse(aliasMainExampleTable.nameColumn.isPrimaryKey());
 	}
 
 	@Test
@@ -364,26 +370,26 @@ public class SQLDSLTest {
 			MainExampleTable.INSTANCE
 		).leftJoinOn(
 			DSLQueryFactoryUtil.select(
-				ReferenceExampleTable.INSTANCE.mainExampleId,
-				ReferenceExampleTable.INSTANCE.name
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
+				ReferenceExampleTable.INSTANCE.nameColumn
 			).from(
 				ReferenceExampleTable.INSTANCE
 			).groupBy(
-				ReferenceExampleTable.INSTANCE.mainExampleId,
-				ReferenceExampleTable.INSTANCE.name
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn,
+				ReferenceExampleTable.INSTANCE.nameColumn
 			).having(
 				DSLFunctionFactoryUtil.count(
-					ReferenceExampleTable.INSTANCE.name
+					ReferenceExampleTable.INSTANCE.nameColumn
 				).gt(
 					3L
 				)
 			).as(
 				aliasReferenceExampleTable.getName()
 			),
-			aliasReferenceExampleTable.mainExampleId.eq(
-				MainExampleTable.INSTANCE.mainExampleId)
+			aliasReferenceExampleTable.mainExampleIdColumn.eq(
+				MainExampleTable.INSTANCE.mainExampleIdColumn)
 		).orderBy(
-			ReferenceExampleTable.INSTANCE.name.ascending()
+			ReferenceExampleTable.INSTANCE.nameColumn.ascending()
 		);
 
 		DefaultASTNodeListener defaultASTNodeListener =
@@ -407,8 +413,8 @@ public class SQLDSLTest {
 	@Test
 	public void testElseEnd() {
 		WhenThenStep<String> whenThenStep = DSLFunctionFactoryUtil.caseWhenThen(
-			MainExampleTable.INSTANCE.mainExampleId.eq(
-				ReferenceExampleTable.INSTANCE.mainExampleId),
+			MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+				ReferenceExampleTable.INSTANCE.mainExampleIdColumn),
 			"equals");
 
 		String scalarValue = "not equals";
@@ -432,8 +438,8 @@ public class SQLDSLTest {
 	@Test
 	public void testFunction() {
 		Expression<?>[] expressions = new Expression<?>[] {
-			MainExampleTable.INSTANCE.mainExampleId,
-			MainExampleTable.INSTANCE.flag
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			MainExampleTable.INSTANCE.flagColumn
 		};
 
 		DSLFunction<Long> dslFunction = new DSLFunction<>(
@@ -463,126 +469,129 @@ public class SQLDSLTest {
 			"MainExample.mainExampleId + ReferenceExample.referenceExampleId",
 			String.valueOf(
 				DSLFunctionFactoryUtil.add(
-					MainExampleTable.INSTANCE.mainExampleId,
-					ReferenceExampleTable.INSTANCE.referenceExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn,
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId + ?",
 			String.valueOf(
 				DSLFunctionFactoryUtil.add(
-					MainExampleTable.INSTANCE.mainExampleId, 2L)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn, 2L)));
 		Assert.assertEquals(
 			"avg(MainExample.mainExampleId)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.avg(
-					MainExampleTable.INSTANCE.mainExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn)));
 		Assert.assertEquals(
 			"BITAND(MainExample.mainExampleId, " +
 				"ReferenceExample.referenceExampleId)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.bitAnd(
-					MainExampleTable.INSTANCE.mainExampleId,
-					ReferenceExampleTable.INSTANCE.referenceExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn,
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn)));
 		Assert.assertEquals(
 			"BITAND(MainExample.mainExampleId, ?)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.bitAnd(
-					MainExampleTable.INSTANCE.mainExampleId, 2L)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn, 2L)));
 		Assert.assertEquals(
 			"CAST_CLOB_TEXT(MainExample.description)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.castClobText(
-					MainExampleTable.INSTANCE.description)));
+					MainExampleTable.INSTANCE.descriptionColumn)));
 		Assert.assertEquals(
 			"CAST_LONG(MainExample.name)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.castLong(
-					MainExampleTable.INSTANCE.name)));
+					MainExampleTable.INSTANCE.nameColumn)));
 		Assert.assertEquals(
 			"CAST_TEXT(MainExample.mainExampleId)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.castText(
-					MainExampleTable.INSTANCE.mainExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn)));
 		Assert.assertEquals(
 			"CONCAT(MainExample.name, ?, ReferenceExample.name)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.concat(
-					MainExampleTable.INSTANCE.name,
+					MainExampleTable.INSTANCE.nameColumn,
 					new Scalar<>("__delimiter__"),
-					ReferenceExampleTable.INSTANCE.name)));
+					ReferenceExampleTable.INSTANCE.nameColumn)));
 		Assert.assertEquals(
 			"count(MainExample.name)",
 			String.valueOf(
-				DSLFunctionFactoryUtil.count(MainExampleTable.INSTANCE.name)));
+				DSLFunctionFactoryUtil.count(
+					MainExampleTable.INSTANCE.nameColumn)));
 		Assert.assertEquals(
 			"LOWER(MainExample.name)",
 			String.valueOf(
-				DSLFunctionFactoryUtil.lower(MainExampleTable.INSTANCE.name)));
+				DSLFunctionFactoryUtil.lower(
+					MainExampleTable.INSTANCE.nameColumn)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId / ?",
 			String.valueOf(
 				DSLFunctionFactoryUtil.divide(
-					MainExampleTable.INSTANCE.mainExampleId, 2L)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn, 2L)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId / ReferenceExample.referenceExampleId",
 			String.valueOf(
 				DSLFunctionFactoryUtil.divide(
-					MainExampleTable.INSTANCE.mainExampleId,
-					ReferenceExampleTable.INSTANCE.referenceExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn,
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn)));
 		Assert.assertEquals(
 			"max(MainExample.mainExampleId)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.max(
-					MainExampleTable.INSTANCE.mainExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn)));
 		Assert.assertEquals(
 			"min(MainExample.mainExampleId)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.min(
-					MainExampleTable.INSTANCE.mainExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId * ?",
 			String.valueOf(
 				DSLFunctionFactoryUtil.multiply(
-					MainExampleTable.INSTANCE.mainExampleId, 2L)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn, 2L)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId * ReferenceExample.referenceExampleId",
 			String.valueOf(
 				DSLFunctionFactoryUtil.multiply(
-					MainExampleTable.INSTANCE.mainExampleId,
-					ReferenceExampleTable.INSTANCE.referenceExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn,
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId - ?",
 			String.valueOf(
 				DSLFunctionFactoryUtil.subtract(
-					MainExampleTable.INSTANCE.mainExampleId, 2L)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn, 2L)));
 		Assert.assertEquals(
 			"MainExample.mainExampleId - ReferenceExample.referenceExampleId",
 			String.valueOf(
 				DSLFunctionFactoryUtil.subtract(
-					MainExampleTable.INSTANCE.mainExampleId,
-					ReferenceExampleTable.INSTANCE.referenceExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn,
+					ReferenceExampleTable.INSTANCE.referenceExampleIdColumn)));
 		Assert.assertEquals(
 			"sum(MainExample.mainExampleId)",
 			String.valueOf(
 				DSLFunctionFactoryUtil.sum(
-					MainExampleTable.INSTANCE.mainExampleId)));
+					MainExampleTable.INSTANCE.mainExampleIdColumn)));
 	}
 
 	@Test
 	public void testGroupBy() {
 		From from = new From(
 			DSLQueryFactoryUtil.select(
-				MainExampleTable.INSTANCE.mainExampleId,
-				MainExampleTable.INSTANCE.name),
+				MainExampleTable.INSTANCE.mainExampleIdColumn,
+				MainExampleTable.INSTANCE.nameColumn),
 			MainExampleTable.INSTANCE);
 
-		GroupBy groupBy = new GroupBy(from, MainExampleTable.INSTANCE.name);
+		GroupBy groupBy = new GroupBy(
+			from, MainExampleTable.INSTANCE.nameColumn);
 
 		Expression<?>[] expressions = groupBy.getExpressions();
 
 		Assert.assertEquals(
 			Arrays.toString(expressions), 1, expressions.length);
 
-		Assert.assertSame(MainExampleTable.INSTANCE.name, expressions[0]);
+		Assert.assertSame(MainExampleTable.INSTANCE.nameColumn, expressions[0]);
 
 		DSLQuery dslQuery = groupBy.limit(0, 20);
 
@@ -607,11 +616,11 @@ public class SQLDSLTest {
 	@Test
 	public void testHaving() {
 		HavingStep havingStep = DSLQueryFactoryUtil.select(
-			MainExampleTable.INSTANCE.mainExampleId
+			MainExampleTable.INSTANCE.mainExampleIdColumn
 		).from(
 			MainExampleTable.INSTANCE
 		).groupBy(
-			MainExampleTable.INSTANCE.name
+			MainExampleTable.INSTANCE.nameColumn
 		);
 
 		OrderByStep orderByStep = havingStep.having(null);
@@ -622,7 +631,7 @@ public class SQLDSLTest {
 			orderByStep.toString());
 
 		Predicate predicate = DSLFunctionFactoryUtil.count(
-			MainExampleTable.INSTANCE.name
+			MainExampleTable.INSTANCE.nameColumn
 		).gt(
 			10L
 		);
@@ -642,12 +651,13 @@ public class SQLDSLTest {
 		Assert.assertEquals("inner", JoinType.INNER.toString());
 		Assert.assertEquals("left", JoinType.LEFT.toString());
 
-		Predicate onPredicate = ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-			MainExampleTable.INSTANCE.mainExampleId);
+		Predicate onPredicate =
+			ReferenceExampleTable.INSTANCE.mainExampleIdColumn.eq(
+				MainExampleTable.INSTANCE.mainExampleIdColumn);
 
 		Join join = new Join(
 			DSLQueryFactoryUtil.countDistinct(
-				MainExampleTable.INSTANCE.name
+				MainExampleTable.INSTANCE.nameColumn
 			).from(
 				MainExampleTable.INSTANCE
 			),
@@ -661,19 +671,19 @@ public class SQLDSLTest {
 	@Test
 	public void testJoinCount() {
 		DSLQuery dslQuery = DSLQueryFactoryUtil.countDistinct(
-			MainExampleTable.INSTANCE.name
+			MainExampleTable.INSTANCE.nameColumn
 		).from(
 			MainExampleTable.INSTANCE
 		).leftJoinOn(
 			MainExampleTable.INSTANCE, null
 		).innerJoinON(
 			ReferenceExampleTable.INSTANCE,
-			ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-				MainExampleTable.INSTANCE.mainExampleId)
+			ReferenceExampleTable.INSTANCE.mainExampleIdColumn.eq(
+				MainExampleTable.INSTANCE.mainExampleIdColumn)
 		).innerJoinON(
 			ReferenceExampleTable.INSTANCE, null
 		).where(
-			MainExampleTable.INSTANCE.name.neq("")
+			MainExampleTable.INSTANCE.nameColumn.neq("")
 		);
 
 		Assert.assertEquals(
@@ -695,11 +705,11 @@ public class SQLDSLTest {
 		).where(
 			() -> {
 				Predicate predicate =
-					MainExampleTable.INSTANCE.mainExampleId.eq(0L);
+					MainExampleTable.INSTANCE.mainExampleIdColumn.eq(0L);
 
 				for (long i = 1; i < count; i++) {
 					predicate = predicate.or(
-						MainExampleTable.INSTANCE.mainExampleId.eq(i));
+						MainExampleTable.INSTANCE.mainExampleIdColumn.eq(i));
 				}
 
 				return predicate;
@@ -723,18 +733,18 @@ public class SQLDSLTest {
 	@Test
 	public void testLeftJoin() {
 		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
-			MainExampleTable.INSTANCE.mainExampleId
+			MainExampleTable.INSTANCE.mainExampleIdColumn
 		).from(
 			MainExampleTable.INSTANCE
 		).leftJoinOn(
 			ReferenceExampleTable.INSTANCE,
-			ReferenceExampleTable.INSTANCE.mainExampleId.eq(
-				MainExampleTable.INSTANCE.mainExampleId)
+			ReferenceExampleTable.INSTANCE.mainExampleIdColumn.eq(
+				MainExampleTable.INSTANCE.mainExampleIdColumn)
 		).where(
-			ReferenceExampleTable.INSTANCE.mainExampleId.isNull()
+			ReferenceExampleTable.INSTANCE.mainExampleIdColumn.isNull()
 		).orderBy(
-			MainExampleTable.INSTANCE.flag.descending(),
-			MainExampleTable.INSTANCE.name.ascending()
+			MainExampleTable.INSTANCE.flagColumn.descending(),
+			MainExampleTable.INSTANCE.nameColumn.ascending()
 		);
 
 		Assert.assertEquals(
@@ -781,7 +791,7 @@ public class SQLDSLTest {
 	@Test
 	public void testOrderBy() {
 		JoinStep joinStep = DSLQueryFactoryUtil.select(
-			MainExampleTable.INSTANCE.name
+			MainExampleTable.INSTANCE.nameColumn
 		).from(
 			MainExampleTable.INSTANCE
 		);
@@ -806,7 +816,7 @@ public class SQLDSLTest {
 
 		limitStep = joinStep.orderBy(
 			orderByStep -> orderByStep.orderBy(
-				MainExampleTable.INSTANCE.name.ascending()));
+				MainExampleTable.INSTANCE.nameColumn.ascending()));
 
 		Assert.assertEquals(
 			"select MainExample.name from MainExample order by " +
@@ -827,7 +837,7 @@ public class SQLDSLTest {
 		}
 
 		OrderByExpression orderByExpression =
-			MainExampleTable.INSTANCE.name.ascending();
+			MainExampleTable.INSTANCE.nameColumn.ascending();
 
 		OrderByExpression[] orderByExpressions = {orderByExpression};
 
@@ -836,7 +846,8 @@ public class SQLDSLTest {
 		Assert.assertSame(orderByExpressions, orderBy.getOrderByExpressions());
 
 		Assert.assertEquals(
-			MainExampleTable.INSTANCE.name, orderByExpression.getExpression());
+			MainExampleTable.INSTANCE.nameColumn,
+			orderByExpression.getExpression());
 		Assert.assertTrue(
 			orderByExpression.toString(), orderByExpression.isAscending());
 
@@ -849,7 +860,7 @@ public class SQLDSLTest {
 	@Test
 	public void testOrderByOrderByInfo() {
 		OrderByStep orderByStep = DSLQueryFactoryUtil.select(
-			MainExampleTable.INSTANCE.name
+			MainExampleTable.INSTANCE.nameColumn
 		).from(
 			MainExampleTable.INSTANCE
 		);
@@ -861,7 +872,7 @@ public class SQLDSLTest {
 			"select MainExample.name from MainExample", dslQuery.toString());
 
 		OrderByInfo orderByInfo = new TestOrderByInfo(
-			MainExampleTable.INSTANCE.flag.getName());
+			MainExampleTable.INSTANCE.flagColumn.getName());
 
 		dslQuery = orderByStep.orderBy(MainExampleTable.INSTANCE, orderByInfo);
 
@@ -880,7 +891,7 @@ public class SQLDSLTest {
 	@Test
 	public void testOrderByOrderByInfoWithAlias() {
 		ColumnAlias<MainExampleTable, String> columnAlias =
-			MainExampleTable.INSTANCE.name.as("columnAlias");
+			MainExampleTable.INSTANCE.nameColumn.as("columnAlias");
 
 		OrderByStep orderByStep = DSLQueryFactoryUtil.select(
 			columnAlias
@@ -896,7 +907,7 @@ public class SQLDSLTest {
 
 		OrderByInfo orderByInfo = new TestOrderByInfo(
 			columnAlias.getName(),
-			ReferenceExampleTable.INSTANCE.referenceExampleId.getName());
+			ReferenceExampleTable.INSTANCE.referenceExampleIdColumn.getName());
 
 		dslQuery = orderByStep.orderBy(columnAlias.getTable(), orderByInfo);
 
@@ -908,7 +919,7 @@ public class SQLDSLTest {
 
 	@Test
 	public void testPredicate() {
-		Predicate predicate = MainExampleTable.INSTANCE.name.eq("test");
+		Predicate predicate = MainExampleTable.INSTANCE.nameColumn.eq("test");
 
 		Assert.assertNull(Predicate.and(null, null));
 		Assert.assertSame(predicate, Predicate.and(predicate, null));
@@ -932,13 +943,13 @@ public class SQLDSLTest {
 
 	@Test
 	public void testPredicateParentheses() {
-		Predicate leftPredicate = MainExampleTable.INSTANCE.mainExampleId.gte(
-			1L);
+		Predicate leftPredicate =
+			MainExampleTable.INSTANCE.mainExampleIdColumn.gte(1L);
 
-		Predicate rightPredicate = MainExampleTable.INSTANCE.name.eq(
+		Predicate rightPredicate = MainExampleTable.INSTANCE.nameColumn.eq(
 			"test"
 		).or(
-			MainExampleTable.INSTANCE.name.eq((String)null)
+			MainExampleTable.INSTANCE.nameColumn.eq((String)null)
 		).withParentheses();
 
 		DefaultPredicate defaultPredicate = new DefaultPredicate(
@@ -1022,8 +1033,8 @@ public class SQLDSLTest {
 	@Test
 	public void testSelect() {
 		List<Expression<?>> expressions = Arrays.asList(
-			MainExampleTable.INSTANCE.mainExampleId,
-			MainExampleTable.INSTANCE.flag);
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			MainExampleTable.INSTANCE.flagColumn);
 
 		Select select = new Select(true, expressions);
 
@@ -1044,13 +1055,13 @@ public class SQLDSLTest {
 			"mainTable");
 
 		JoinStep joinStep = DSLQueryFactoryUtil.selectDistinct(
-			aliasMainExampleTable.name
+			aliasMainExampleTable.nameColumn
 		).from(
 			aliasMainExampleTable
 		);
 
 		DSLQuery dslQuery = joinStep.where(
-			aliasMainExampleTable.flag.in(new Integer[] {1, 2}));
+			aliasMainExampleTable.flagColumn.in(new Integer[] {1, 2}));
 
 		Assert.assertEquals(
 			"select distinct mainTable.name from MainExample mainTable where " +
@@ -1058,9 +1069,10 @@ public class SQLDSLTest {
 			dslQuery.toString());
 
 		dslQuery = joinStep.where(
-			aliasMainExampleTable.mainExampleId.in(new Long[] {1L, 2L, null})
+			aliasMainExampleTable.mainExampleIdColumn.in(
+				new Long[] {1L, 2L, null})
 		).orderBy(
-			aliasMainExampleTable.name.ascending()
+			aliasMainExampleTable.nameColumn.ascending()
 		);
 
 		DefaultASTNodeListener defaultASTNodeListener =
@@ -1081,12 +1093,12 @@ public class SQLDSLTest {
 
 		dslQuery = joinStep.where(
 			DSLFunctionFactoryUtil.castText(
-				aliasMainExampleTable.mainExampleId
+				aliasMainExampleTable.mainExampleIdColumn
 			).in(
 				strings
 			)
 		).orderBy(
-			aliasMainExampleTable.name.ascending()
+			aliasMainExampleTable.nameColumn.ascending()
 		);
 
 		defaultASTNodeListener = new DefaultASTNodeListener();
@@ -1122,16 +1134,16 @@ public class SQLDSLTest {
 			"tempMainExample");
 
 		DSLQuery dslQuery = DSLQueryFactoryUtil.select(
-			MainExampleTable.INSTANCE.mainExampleId,
-			MainExampleTable.INSTANCE.name
+			MainExampleTable.INSTANCE.mainExampleIdColumn,
+			MainExampleTable.INSTANCE.nameColumn
 		).from(
 			MainExampleTable.INSTANCE
 		).leftJoinOn(
 			aliasMainExampleTable,
-			MainExampleTable.INSTANCE.mainExampleId.lt(
-				aliasMainExampleTable.mainExampleId)
+			MainExampleTable.INSTANCE.mainExampleIdColumn.lt(
+				aliasMainExampleTable.mainExampleIdColumn)
 		).where(
-			aliasMainExampleTable.mainExampleId.isNull()
+			aliasMainExampleTable.mainExampleIdColumn.isNull()
 		);
 
 		Assert.assertEquals(
@@ -1170,12 +1182,12 @@ public class SQLDSLTest {
 		Assert.assertEquals(
 			"select * from MainExample", groupByStep.toString());
 
-		Predicate predicate = MainExampleTable.INSTANCE.name.eq("test");
+		Predicate predicate = MainExampleTable.INSTANCE.nameColumn.eq("test");
 
 		Assert.assertEquals("MainExample.name = ?", predicate.toString());
 
 		predicate = predicate.and(
-			MainExampleTable.INSTANCE.mainExampleId.gt(0L));
+			MainExampleTable.INSTANCE.mainExampleIdColumn.gt(0L));
 
 		Assert.assertEquals(
 			"MainExample.name = ? and MainExample.mainExampleId > ?",
@@ -1203,7 +1215,7 @@ public class SQLDSLTest {
 			where.toString());
 
 		OrderByExpression orderByExpression =
-			MainExampleTable.INSTANCE.mainExampleId.descending();
+			MainExampleTable.INSTANCE.mainExampleIdColumn.descending();
 
 		Assert.assertEquals(
 			"MainExample.mainExampleId desc", orderByExpression.toString());
@@ -1267,13 +1279,13 @@ public class SQLDSLTest {
 		).from(
 			MainExampleTable.INSTANCE
 		).where(
-			MainExampleTable.INSTANCE.mainExampleId.in(
+			MainExampleTable.INSTANCE.mainExampleIdColumn.in(
 				DSLQueryFactoryUtil.select(
-					ReferenceExampleTable.INSTANCE.mainExampleId
+					ReferenceExampleTable.INSTANCE.mainExampleIdColumn
 				).from(
 					ReferenceExampleTable.INSTANCE
 				).where(
-					() -> ReferenceExampleTable.INSTANCE.name.eq("test")
+					() -> ReferenceExampleTable.INSTANCE.nameColumn.eq("test")
 				))
 		);
 
@@ -1300,7 +1312,7 @@ public class SQLDSLTest {
 			MainExampleTable.INSTANCE, MainExampleTable.INSTANCE);
 		Assert.assertEquals(MainExampleTable.INSTANCE, aliasMainExampleTable);
 		Assert.assertNotEquals(
-			MainExampleTable.INSTANCE, MainExampleTable.INSTANCE.name);
+			MainExampleTable.INSTANCE, MainExampleTable.INSTANCE.nameColumn);
 		Assert.assertNotEquals(
 			MainExampleTable.INSTANCE, ReferenceExampleTable.INSTANCE);
 
@@ -1309,22 +1321,23 @@ public class SQLDSLTest {
 			aliasMainExampleTable.hashCode());
 
 		Assert.assertSame(
-			MainExampleTable.INSTANCE.name,
+			MainExampleTable.INSTANCE.nameColumn,
 			MainExampleTable.INSTANCE.getColumn(
-				MainExampleTable.INSTANCE.name.getName(),
-				MainExampleTable.INSTANCE.name.getJavaType()));
+				MainExampleTable.INSTANCE.nameColumn.getName(),
+				MainExampleTable.INSTANCE.nameColumn.getJavaType()));
 		Assert.assertNull(
 			MainExampleTable.INSTANCE.getColumn(
-				MainExampleTable.INSTANCE.name.getName(), Long.class));
+				MainExampleTable.INSTANCE.nameColumn.getName(), Long.class));
 
 		ColumnAlias<MainExampleTable, String> nameColumnAlias =
-			aliasMainExampleTable.name.as("nameColumnAlias");
+			aliasMainExampleTable.nameColumn.as("nameColumnAlias");
 
 		Assert.assertEquals(
 			"MainExample alias", aliasMainExampleTable.toString());
 
 		Assert.assertNotSame(
-			MainExampleTable.INSTANCE.name, nameColumnAlias.getExpression());
+			MainExampleTable.INSTANCE.nameColumn,
+			nameColumnAlias.getExpression());
 
 		aliasMainExampleTable = nameColumnAlias.getTable();
 
@@ -1336,7 +1349,7 @@ public class SQLDSLTest {
 		Assert.assertSame(column.getTable(), nameColumnAlias.getTable());
 
 		Assert.assertEquals(
-			MainExampleTable.INSTANCE.name,
+			MainExampleTable.INSTANCE.nameColumn,
 			aliasMainExampleTable.getColumn(
 				nameColumnAlias.getName(), column.getJavaType()));
 
@@ -1352,14 +1365,16 @@ public class SQLDSLTest {
 		Assert.assertEquals(columns.toString(), 4, columns.size());
 
 		Assert.assertTrue(
-			columns.contains(MainExampleTable.INSTANCE.mainExampleId));
-		Assert.assertTrue(columns.contains(MainExampleTable.INSTANCE.name));
+			columns.contains(MainExampleTable.INSTANCE.mainExampleIdColumn));
 		Assert.assertTrue(
-			columns.contains(MainExampleTable.INSTANCE.description));
-		Assert.assertTrue(columns.contains(MainExampleTable.INSTANCE.flag));
+			columns.contains(MainExampleTable.INSTANCE.nameColumn));
+		Assert.assertTrue(
+			columns.contains(MainExampleTable.INSTANCE.descriptionColumn));
+		Assert.assertTrue(
+			columns.contains(MainExampleTable.INSTANCE.flagColumn));
 
 		try {
-			columns.remove(MainExampleTable.INSTANCE.mainExampleId);
+			columns.remove(MainExampleTable.INSTANCE.mainExampleIdColumn);
 
 			Assert.fail();
 		}
@@ -1385,13 +1400,13 @@ public class SQLDSLTest {
 		Assert.assertEquals("union all", SetOperationType.UNION_ALL.toString());
 
 		DSLQuery dslQuery1 = DSLQueryFactoryUtil.select(
-			MainExampleTable.INSTANCE.name.as("name")
+			MainExampleTable.INSTANCE.nameColumn.as("name")
 		).from(
 			MainExampleTable.INSTANCE
 		);
 
 		DSLQuery dslQuery2 = DSLQueryFactoryUtil.select(
-			ReferenceExampleTable.INSTANCE.name.as("name")
+			ReferenceExampleTable.INSTANCE.nameColumn.as("name")
 		).from(
 			ReferenceExampleTable.INSTANCE
 		);
@@ -1412,7 +1427,7 @@ public class SQLDSLTest {
 
 		setOperation = (SetOperation)dslQuery1.unionAll(
 			DSLQueryFactoryUtil.select(
-				ReferenceExampleTable.INSTANCE.name.as("name")
+				ReferenceExampleTable.INSTANCE.nameColumn.as("name")
 			).from(
 				ReferenceExampleTable.INSTANCE
 			));
@@ -1434,13 +1449,14 @@ public class SQLDSLTest {
 
 	@Test
 	public void testWhenThen() {
-		Predicate predicate = MainExampleTable.INSTANCE.mainExampleId.eq(2L);
+		Predicate predicate = MainExampleTable.INSTANCE.mainExampleIdColumn.eq(
+			2L);
 
 		Scalar<String> scalar = new Scalar<>("two");
 
 		WhenThen<String> whenThen = new WhenThen<>(
 			DSLFunctionFactoryUtil.caseWhenThen(
-				MainExampleTable.INSTANCE.mainExampleId.eq(1L), "one"),
+				MainExampleTable.INSTANCE.mainExampleIdColumn.eq(1L), "one"),
 			predicate, scalar);
 
 		Assert.assertSame(predicate, whenThen.getPredicate());
@@ -1452,14 +1468,16 @@ public class SQLDSLTest {
 
 		public static final MainExampleTable INSTANCE = new MainExampleTable();
 
-		public final Column<MainExampleTable, Clob> description = createColumn(
-			"description", Clob.class, Types.CLOB, Column.FLAG_DEFAULT);
-		public final Column<MainExampleTable, Integer> flag = createColumn(
-			"flag", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
-		public final Column<MainExampleTable, Long> mainExampleId =
+		public final Column<MainExampleTable, Clob> descriptionColumn =
+			createColumn(
+				"description", Clob.class, Types.CLOB, Column.FLAG_DEFAULT);
+		public final Column<MainExampleTable, Integer> flagColumn =
+			createColumn(
+				"flag", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
+		public final Column<MainExampleTable, Long> mainExampleIdColumn =
 			createColumn(
 				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-		public final Column<MainExampleTable, String> name = createColumn(
+		public final Column<MainExampleTable, String> nameColumn = createColumn(
 			"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 
 		private MainExampleTable() {
@@ -1474,13 +1492,14 @@ public class SQLDSLTest {
 		public static final ReferenceExampleTable INSTANCE =
 			new ReferenceExampleTable();
 
-		public final Column<ReferenceExampleTable, Long> mainExampleId =
+		public final Column<ReferenceExampleTable, Long> mainExampleIdColumn =
 			createColumn(
 				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-		public final Column<ReferenceExampleTable, String> name = createColumn(
-			"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
-		public final Column<ReferenceExampleTable, Long> referenceExampleId =
+		public final Column<ReferenceExampleTable, String> nameColumn =
 			createColumn(
+				"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
+		public final Column<ReferenceExampleTable, Long>
+			referenceExampleIdColumn = createColumn(
 				"referenceExampleId", Long.class, Types.BIGINT,
 				Column.FLAG_DEFAULT);
 

@@ -15,6 +15,7 @@
 package com.liferay.object.model.impl;
 
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 
 /**
  * @author Marco Leo
@@ -24,9 +25,11 @@ public class ObjectActionImpl extends ObjectActionBaseImpl {
 	@Override
 	public UnicodeProperties getParametersUnicodeProperties() {
 		if (_parametersUnicodeProperties == null) {
-			_parametersUnicodeProperties = new UnicodeProperties(true);
-
-			_parametersUnicodeProperties.fastLoad(getParameters());
+			_parametersUnicodeProperties = UnicodePropertiesBuilder.create(
+				true
+			).fastLoad(
+				getParameters()
+			).build();
 		}
 
 		return _parametersUnicodeProperties;

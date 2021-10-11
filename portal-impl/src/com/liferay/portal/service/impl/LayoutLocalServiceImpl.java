@@ -106,6 +106,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.comparator.LayoutComparator;
 import com.liferay.portal.kernel.util.comparator.LayoutPriorityComparator;
@@ -249,9 +250,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		String friendlyURL = friendlyURLMap.get(LocaleUtil.getSiteDefault());
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(typeSettings);
+			UnicodePropertiesBuilder.fastLoad(
+				typeSettings
+			).build();
 
 		int priority = Integer.MAX_VALUE;
 
@@ -2756,9 +2757,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		Date date = new Date();
 
 		UnicodeProperties typeSettingsUnicodeProperties =
-			new UnicodeProperties();
-
-		typeSettingsUnicodeProperties.fastLoad(typeSettings);
+			UnicodePropertiesBuilder.fastLoad(
+				typeSettings
+			).build();
 
 		Layout layout = layoutPersistence.findByG_P_L(
 			groupId, privateLayout, layoutId);

@@ -15,7 +15,6 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.regex.Matcher;
@@ -49,11 +48,10 @@ public class JSStylingCheck extends BaseFileCheck {
 
 			int pos = match.indexOf("var ");
 
-			StringBundler sb = new StringBundler(4);
+			StringBundler sb = new StringBundler(3);
 
 			sb.append(match.substring(0, match.length() - 2));
-			sb.append(StringPool.SEMICOLON);
-			sb.append("\n");
+			sb.append(";\n");
 			sb.append(match.substring(0, pos + 4));
 
 			content = StringUtil.replace(content, match, sb.toString());

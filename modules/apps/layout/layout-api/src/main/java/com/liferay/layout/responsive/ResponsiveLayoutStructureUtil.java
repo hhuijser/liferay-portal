@@ -74,8 +74,7 @@ public class ResponsiveLayoutStructureUtil {
 					viewportSize, columnViewportConfigurations, "size",
 					columnLayoutStructureItem.getSize()));
 
-			sb.append(StringPool.SPACE);
-			sb.append("col");
+			sb.append(" col");
 			sb.append(viewportSize.getCssClassPrefix());
 			sb.append(columnSize);
 		}
@@ -254,8 +253,7 @@ public class ResponsiveLayoutStructureUtil {
 					"verticalAlignment",
 					rowStyledLayoutStructureItem.getVerticalAlignment()));
 
-			sb.append(StringPool.SPACE);
-			sb.append("align-items");
+			sb.append(" align-items");
 			sb.append(viewportSize.getCssClassPrefix());
 			sb.append(_getVerticalAlignmentCssClass(verticalAlignment));
 		}
@@ -312,8 +310,7 @@ public class ResponsiveLayoutStructureUtil {
 		}
 
 		if (!rowStyledLayoutStructureItem.isGutters()) {
-			sb.append(StringPool.SPACE);
-			sb.append("no-gutters");
+			sb.append(" no-gutters");
 		}
 
 		return sb.toString();

@@ -163,14 +163,13 @@ public class CommercePaymentUtilsImpl implements CommercePaymentUtils {
 		throws Exception {
 
 		StringBundler sb = new StringBundler(
-			extraCapacity + (Validator.isNotNull(redirect) ? 13 : 11));
+			extraCapacity + (Validator.isNotNull(redirect) ? 12 : 10));
 
 		sb.append(_portal.getPortalURL(httpServletRequest));
 		sb.append(_portal.getPathModule());
 		sb.append(CharPool.SLASH);
 		sb.append(commercePaymentMethod.getServletPath());
-		sb.append(CharPool.QUESTION);
-		sb.append("groupId=");
+		sb.append("?groupId=");
 		sb.append(commerceOrder.getGroupId());
 		sb.append("&uuid=");
 		sb.append(URLCodec.encodeURL(commerceOrder.getUuid()));

@@ -266,8 +266,7 @@ public class LPKGBundleTrackerCustomizer
 							"liferay-portal-profile-names");
 
 					if (Validator.isNotNull(portalProfileNames)) {
-						sb.append(StringPool.QUESTION);
-						sb.append("liferay-portal-profile-names=");
+						sb.append("?liferay-portal-profile-names=");
 						sb.append(portalProfileNames);
 					}
 

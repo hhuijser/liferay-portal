@@ -225,7 +225,6 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		sb.append("# ");
 		sb.append(header);
 		sb.append("\n\n");
-
 		sb.append("Check | ");
 
 		if (displayCategory) {
@@ -237,7 +236,6 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		}
 
 		sb.append("Description\n");
-
 		sb.append("----- | ");
 
 		if (displayCategory) {
@@ -431,7 +429,6 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 		}
 
 		sb.append("\n");
-
 		sb.append("- ### By File Extensions:\n");
 
 		for (String sourceProcessorName :

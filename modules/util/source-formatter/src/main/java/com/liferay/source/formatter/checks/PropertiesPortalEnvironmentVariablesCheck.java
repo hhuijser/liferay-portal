@@ -68,8 +68,7 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 		}
 
 		for (String environmentVariable : environmentVariables) {
-			sb.append(StringPool.FOUR_SPACES);
-			sb.append("# Env: ");
+			sb.append("    # Env: ");
 			sb.append(environmentVariable);
 			sb.append(StringPool.NEW_LINE);
 		}

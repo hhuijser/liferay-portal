@@ -107,11 +107,10 @@ public class PythonClassesAndMethodsOrderCheck extends BaseFileCheck {
 				parentClassList.set(i, StringUtil.trim(parentClassList.get(i)));
 			}
 
-			StringBundler sb = new StringBundler(8);
+			StringBundler sb = new StringBundler(7);
 
 			sb.append(indent);
-			sb.append("class");
-			sb.append(StringPool.SPACE);
+			sb.append("class ");
 			sb.append(className);
 
 			if (ListUtil.isNotEmpty(parentClassList)) {

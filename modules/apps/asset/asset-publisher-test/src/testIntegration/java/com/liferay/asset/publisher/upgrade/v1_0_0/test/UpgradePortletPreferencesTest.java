@@ -278,10 +278,9 @@ public class UpgradePortletPreferencesTest {
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField("Text");
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(4);
 
-		sb.append("ddm");
-		sb.append(StringPool.DOUBLE_UNDERLINE);
+		sb.append("ddm__");
 		sb.append(ddmStructure.getStructureId());
 		sb.append(StringPool.DOUBLE_UNDERLINE);
 		sb.append(ddmFormField.getName());

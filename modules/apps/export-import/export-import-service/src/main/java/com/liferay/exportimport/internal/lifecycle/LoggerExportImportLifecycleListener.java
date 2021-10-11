@@ -38,10 +38,9 @@ public class LoggerExportImportLifecycleListener
 	implements EventAwareExportImportLifecycleListener {
 
 	public String getStagedModelLogFragment(StagedModel stagedModel) {
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(7);
 
-		sb.append(StringPool.OPEN_CURLY_BRACE);
-		sb.append("class: ");
+		sb.append("{class: ");
 		sb.append(ExportImportClassedModelUtil.getClassName(stagedModel));
 
 		if (stagedModel instanceof StagedGroupedModel) {

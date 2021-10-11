@@ -62,14 +62,13 @@ public class ExpandoBridgeIndexerImpl implements ExpandoBridgeIndexer {
 
 	@Override
 	public String encodeFieldName(String columnName, int indexType) {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(6);
 
 		sb.append(FIELD_NAMESPACE);
 		sb.append(StringPool.DOUBLE_UNDERLINE);
 
 		if (indexType == ExpandoColumnConstants.INDEX_TYPE_KEYWORD) {
-			sb.append("keyword");
-			sb.append(StringPool.DOUBLE_UNDERLINE);
+			sb.append("keyword__");
 		}
 
 		sb.append(

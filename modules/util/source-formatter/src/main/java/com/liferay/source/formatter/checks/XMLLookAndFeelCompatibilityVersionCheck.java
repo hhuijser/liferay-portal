@@ -15,7 +15,6 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
@@ -75,12 +74,11 @@ public class XMLLookAndFeelCompatibilityVersionCheck extends BaseFileCheck {
 
 		for (Element compatibilityElement : compatibilityElements) {
 			if (!_hasPortalVersions(compatibilityElement, portalVersion)) {
-				StringBundler sb = new StringBundler(4);
+				StringBundler sb = new StringBundler(3);
 
 				sb.append("Missing version: <version>");
 				sb.append(portalVersion);
-				sb.append(StringPool.PLUS);
-				sb.append("</version>");
+				sb.append("+</version>");
 
 				addMessage(fileName, sb.toString());
 			}

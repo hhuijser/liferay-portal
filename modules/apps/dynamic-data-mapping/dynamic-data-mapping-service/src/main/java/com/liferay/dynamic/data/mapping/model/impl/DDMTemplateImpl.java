@@ -128,7 +128,7 @@ public class DDMTemplateImpl extends DDMTemplateBaseImpl {
 	 */
 	@Override
 	public String getWebDavURL(ThemeDisplay themeDisplay, String webDAVToken) {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(8);
 
 		boolean secure = false;
 
@@ -144,8 +144,7 @@ public class DDMTemplateImpl extends DDMTemplateBaseImpl {
 		sb.append(portalURL);
 
 		sb.append(themeDisplay.getPathContext());
-		sb.append(StringPool.SLASH);
-		sb.append("webdav");
+		sb.append("/webdav");
 
 		Group group = themeDisplay.getScopeGroup();
 
@@ -153,9 +152,7 @@ public class DDMTemplateImpl extends DDMTemplateBaseImpl {
 
 		sb.append(StringPool.SLASH);
 		sb.append(webDAVToken);
-		sb.append(StringPool.SLASH);
-		sb.append("Templates");
-		sb.append(StringPool.SLASH);
+		sb.append("/Templates/");
 		sb.append(getTemplateId());
 
 		return sb.toString();

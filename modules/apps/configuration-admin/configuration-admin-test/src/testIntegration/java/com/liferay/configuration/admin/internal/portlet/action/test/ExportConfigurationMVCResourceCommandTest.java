@@ -73,7 +73,7 @@ public class ExportConfigurationMVCResourceCommandTest {
 	}
 
 	private String _getExpectedFileName(String pid, String subname) {
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(pid);
 
@@ -82,8 +82,7 @@ public class ExportConfigurationMVCResourceCommandTest {
 			sb.append(subname);
 		}
 
-		sb.append(StringPool.PERIOD);
-		sb.append("config");
+		sb.append(".config");
 
 		return sb.toString();
 	}

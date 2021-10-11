@@ -53,17 +53,15 @@ public class PaymentProcessCheckoutStepDisplayContext {
 	}
 
 	public String getPaymentServletUrl() throws Exception {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(14);
 
 		sb.append(_getPortalUrl());
 		sb.append(_getPathModule());
 		sb.append(CharPool.SLASH);
 		sb.append(_getPaymentServletPath());
-		sb.append(CharPool.QUESTION);
-		sb.append("groupId=");
+		sb.append("?groupId=");
 		sb.append(_commerceOrder.getGroupId());
-		sb.append(StringPool.AMPERSAND);
-		sb.append("uuid=");
+		sb.append("&uuid=");
 		sb.append(_commerceOrder.getUuid());
 		sb.append(StringPool.AMPERSAND);
 

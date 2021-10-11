@@ -42,15 +42,14 @@ public class BrowserTemplateContextContributor
 		Map<String, Object> contextObjects,
 		HttpServletRequest httpServletRequest) {
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(GetterUtil.getString(contextObjects.get("bodyCssClass")));
 		sb.append(StringPool.SPACE);
 		sb.append(BrowserSnifferUtil.getBrowserId(httpServletRequest));
 
 		if (BrowserSnifferUtil.isMobile(httpServletRequest)) {
-			sb.append(StringPool.SPACE);
-			sb.append("mobile");
+			sb.append(" mobile");
 		}
 
 		contextObjects.put("bodyCssClass", sb.toString());

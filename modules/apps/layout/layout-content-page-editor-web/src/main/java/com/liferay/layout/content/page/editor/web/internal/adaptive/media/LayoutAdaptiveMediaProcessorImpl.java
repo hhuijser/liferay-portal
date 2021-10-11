@@ -186,12 +186,9 @@ public class LayoutAdaptiveMediaProcessorImpl
 			sb.append(StringPool.OPEN_CURLY_BRACE);
 			sb.append(StringPool.POUND);
 			sb.append(elementId);
-			sb.append(StringPool.OPEN_CURLY_BRACE);
-			sb.append("background-image: url(");
+			sb.append("{background-image: url(");
 			sb.append(mediaQuery.getSrc());
-			sb.append(") !important;");
-			sb.append(StringPool.CLOSE_CURLY_BRACE);
-			sb.append(StringPool.CLOSE_CURLY_BRACE);
+			sb.append(") !important;}}");
 		}
 
 		return sb.toString();

@@ -284,7 +284,7 @@ public class PortalRequestProcessor {
 			portalURL = PortalUtil.getPortalURL(httpServletRequest);
 		}
 
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(5);
 
 		sb.append(portalURL);
 		sb.append(themeDisplay.getPathMain());
@@ -297,9 +297,7 @@ public class PortalRequestProcessor {
 				// forward to the user's default layout to prevent a lagging
 				// loop
 
-				sb.append(StringPool.QUESTION);
-				sb.append("p_l_id");
-				sb.append(StringPool.EQUAL);
+				sb.append("?p_l_id=");
 				sb.append(LayoutConstants.DEFAULT_PLID);
 			}
 

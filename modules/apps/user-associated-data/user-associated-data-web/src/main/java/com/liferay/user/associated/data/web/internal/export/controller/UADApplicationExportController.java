@@ -146,10 +146,9 @@ public class UADApplicationExportController {
 	private ZipWriter _getZipWriter(String applicationKey, long userId) {
 		User user = _userLocalService.fetchUser(userId);
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(7);
 
-		sb.append("UAD");
-		sb.append(StringPool.UNDERLINE);
+		sb.append("UAD_");
 
 		if (user != null) {
 			String userName = null;

@@ -384,7 +384,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	 */
 	@Override
 	public String getWebDavURL(ThemeDisplay themeDisplay, String webDAVToken) {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(8);
 
 		boolean secure = false;
 
@@ -400,8 +400,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 		sb.append(portalURL);
 
 		sb.append(themeDisplay.getPathContext());
-		sb.append(StringPool.SLASH);
-		sb.append("webdav");
+		sb.append("/webdav");
 
 		Group group = themeDisplay.getScopeGroup();
 
@@ -409,9 +408,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 		sb.append(StringPool.SLASH);
 		sb.append(webDAVToken);
-		sb.append(StringPool.SLASH);
-		sb.append("Structures");
-		sb.append(StringPool.SLASH);
+		sb.append("/Structures/");
 		sb.append(getStructureId());
 
 		return sb.toString();

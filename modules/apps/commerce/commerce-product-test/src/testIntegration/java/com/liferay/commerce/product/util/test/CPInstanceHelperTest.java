@@ -515,14 +515,9 @@ public class CPInstanceHelperTest {
 		while (iterator.hasNext()) {
 			String optionKey = iterator.next();
 
-			sb.append(StringPool.OPEN_CURLY_BRACE);
-			sb.append("\"key\":");
-			sb.append(StringPool.QUOTE);
+			sb.append("{\"key\":\"");
 			sb.append(optionKey);
-			sb.append(StringPool.QUOTE);
-			sb.append(StringPool.COMMA);
-			sb.append("\"value\":");
-			sb.append(StringPool.OPEN_BRACKET);
+			sb.append("\",\"value\":[");
 
 			List<String> optionValues =
 				cpDefinitionOptionRelKeysCPDefinitionOptionValueRelKeys.get(

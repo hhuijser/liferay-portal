@@ -149,11 +149,10 @@ public class ScriptTag extends BaseScriptTag {
 				String[] modulesAndVariables = StringUtil.split(load);
 
 				if (modulesAndVariables.length == 1) {
-					sb = new StringBundler(10);
+					sb = new StringBundler(9);
 
 					sb.append("(function() {window[Symbol.for('");
-					sb.append("__LIFERAY_WEBPACK_GET_MODULE__')](");
-					sb.append(StringPool.APOSTROPHE);
+					sb.append("__LIFERAY_WEBPACK_GET_MODULE__')]('");
 
 					String moduleAndVariable = modulesAndVariables[0];
 
@@ -162,8 +161,7 @@ public class ScriptTag extends BaseScriptTag {
 
 					sb.append(parts[0]);
 
-					sb.append(StringPool.APOSTROPHE);
-					sb.append(").then((");
+					sb.append("').then((");
 					sb.append(parts[1]);
 					sb.append(") => {");
 					sb.append(bodyContentSB);

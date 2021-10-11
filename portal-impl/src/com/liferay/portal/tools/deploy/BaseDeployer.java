@@ -1173,8 +1173,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 				sb.append(StringPool.SLASH);
 			}
 
-			sb.append(StringPool.STAR);
-			sb.append("</url-pattern>");
+			sb.append("*</url-pattern>");
 			sb.append("</servlet-mapping>");
 		}
 

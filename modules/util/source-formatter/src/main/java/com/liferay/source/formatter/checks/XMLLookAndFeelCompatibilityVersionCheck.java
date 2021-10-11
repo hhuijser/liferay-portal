@@ -74,13 +74,11 @@ public class XMLLookAndFeelCompatibilityVersionCheck extends BaseFileCheck {
 
 		for (Element compatibilityElement : compatibilityElements) {
 			if (!_hasPortalVersions(compatibilityElement, portalVersion)) {
-				StringBundler sb = new StringBundler(3);
-
-				sb.append("Missing version: <version>");
-				sb.append(portalVersion);
-				sb.append("+</version>");
-
-				addMessage(fileName, sb.toString());
+				addMessage(
+					fileName,
+					StringBundler.concat(
+						"Missing version: <version>", portalVersion,
+						"+</version>"));
 			}
 		}
 	}

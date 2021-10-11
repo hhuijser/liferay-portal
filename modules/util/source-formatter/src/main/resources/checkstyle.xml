@@ -722,6 +722,18 @@
 			<property name="populateTypeNames" value="false" />
 			<message key="try.with.resources.use" value="Use Try-With-Resources statement to declare ''{0}'' instead of closing the resource in the ''finally'' statement using ''{1}''" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.UnicodePropertiesBuilderCheck">
+			<property name="category" value="Miscellaneous" />
+			<property name="checkInline" value="true" />
+			<property name="description" value="Checks that `UnicodePropertiesBuilder` is used when possible." />
+			<property name="enforceBuilderNames" value="" />
+			<message key="builder.include" value="Include method call ''{0}'' ({1}) in ''{2}'' ({3})" />
+			<message key="builder.inline.1" value="Inline variable definition ''{0}'' ({1}) inside ''{2}'' ({3})" />
+			<message key="builder.inline.2" value="Inline variable definition ''{0}'' ({1}) and dependent statements ({2}) inside ''{3}'' ({4})" />
+			<message key="builder.use" value="Use ''{0}'' ({1}, {2})" />
+			<message key="builder.use.instead" value="Use ''{0}'' instead of new instance of ''{1}''" />
+			<message key="null.value.incorrect" value="Null values are not allowed in ''{0}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary assign statements (when it is either reassigned or returned right after)." />

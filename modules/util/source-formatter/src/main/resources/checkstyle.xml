@@ -207,6 +207,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.AppendCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Checks instances where literal Strings are appended." />
+			<property name="enabled" value="false" />
 			<message key="end.character.invalid" value="When appending multiple literal strings, only the last literal string can end with ''{0}''" />
 			<message key="line.break.incorrect" value="Avoid using line break when appending multiple literal strings" />
 			<message key="literal.string.combine" value="Combine the literal strings ''{0}'' and ''{1}''" />

@@ -27,7 +27,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "export"));
 <portlet:actionURL name="/batch_planner/edit_export_batch_planner_plan" var="exportBatchPlannerPlanURL" />
 
 <div class="container pt-4">
-	<form action="<%= exportBatchPlannerPlanURL %>" method="POST" name="<%= liferayPortletResponse.getNamespace() + "fm" %>">
+	<form action="<%= exportBatchPlannerPlanURL %>" method="POST" name="<portlet:namespace />fm">
 		<aui:input name="redirect" type="hidden" value="<%= backURL %>" />
 		<aui:input name="batchPlannerPlanId" type="hidden" value="<%= batchPlannerPlanId %>" />
 		<aui:input name="export" type="hidden" value="<%= true %>" />
@@ -135,7 +135,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "export"));
 					</div>
 
 					<div class="input-group-append input-group-item">
-						<input class="form-control" id="<%= liferayPortletResponse.getNamespace() + "internalFieldName_ID_TEMPLATE" %>" name="<%= liferayPortletResponse.getNamespace() + "internalFieldName_ID_TEMPLATE" %>" placeholder="Liferay object field name" type="text" value="VALUE_TEMPLATE" />
+						<input class="form-control" id="<portlet:namespace />internalFieldName_ID_TEMPLATE" name="<portlet:namespace />internalFieldName_ID_TEMPLATE" placeholder="Liferay object field name" type="text" value="VALUE_TEMPLATE" />
 					</div>
 				</div>
 			</div>

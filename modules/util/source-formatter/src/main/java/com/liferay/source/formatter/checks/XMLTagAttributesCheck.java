@@ -69,6 +69,10 @@ public class XMLTagAttributesCheck extends BaseTagAttributesCheck {
 
 	@Override
 	protected Tag sortHTMLTagAttributes(Tag tag) {
+		if (getSourceProcessor() instanceof HTMLSourceProcessor) {
+			return super.sortHTMLTagAttributes(tag);
+		}
+
 		return tag;
 	}
 

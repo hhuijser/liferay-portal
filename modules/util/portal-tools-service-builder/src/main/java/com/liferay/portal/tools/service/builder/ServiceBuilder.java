@@ -2318,16 +2318,6 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		boolean hasAssetEntry = false;
-
-		for (Entity referenceEntity : _mergeReferenceEntities(entity)) {
-			if (Objects.equals(referenceEntity.getName(), "AssetEntry")) {
-				hasAssetEntry = true;
-			}
-		}
-
-		context.put("hasAssetEntry", hasAssetEntry);
-
 		String content = _processTemplate(_TPL_BASE_UAD_ANONYMIZER, context);
 
 		File file = new File(

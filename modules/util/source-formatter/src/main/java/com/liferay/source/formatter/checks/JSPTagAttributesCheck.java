@@ -117,6 +117,12 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 
 			String tagName = tag.getName();
 
+			if (tagName.matches("\\w+")) {
+				tag.putAttribute(
+					attributeName,
+					_formatPortletNamespaceValue(attributeValue));
+			}
+
 			if (tagName.equals("aui:button") && attributeName.equals("type") &&
 				attributeValue.equals("button")) {
 
@@ -196,6 +202,22 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 		}
 
 		return tag;
+	}
+
+	private String _formatPortletNamespaceValue(String attributeValue) {
+		if (attributeValue.matches(
+				"<%= liferayPortletResponse\\.getNamespace\\(\\) \\+ " +
+					"\"\\w+\" %>")) {
+
+			return StringUtil.replace(
+				attributeValue,
+				new String[] {
+					"<%= liferayPortletResponse.getNamespace() + \"", "\" %>"
+				},
+				new String[] {"<portlet:namespace />", ""});
+		}
+
+		return attributeValue;
 	}
 
 	private String _formatMessageArgumentsValue(String attributeValue) {

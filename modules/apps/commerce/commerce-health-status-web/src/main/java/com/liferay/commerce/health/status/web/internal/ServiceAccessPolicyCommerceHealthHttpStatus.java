@@ -24,14 +24,12 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.security.service.access.policy.model.SAPEntry;
 import com.liferay.portal.security.service.access.policy.service.SAPEntryLocalService;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,11 +66,8 @@ public class ServiceAccessPolicyCommerceHealthHttpStatus
 
 	@Override
 	public String getDescription(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle,
+			locale,
 			CommerceHealthStatusConstants.
 				SAP_COMMERCE_HEALTH_STATUS_DESCRIPTION);
 	}
@@ -84,11 +79,8 @@ public class ServiceAccessPolicyCommerceHealthHttpStatus
 
 	@Override
 	public String getName(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle,
+			locale,
 			CommerceHealthStatusConstants.SAP_COMMERCE_HEALTH_STATUS_KEY);
 	}
 

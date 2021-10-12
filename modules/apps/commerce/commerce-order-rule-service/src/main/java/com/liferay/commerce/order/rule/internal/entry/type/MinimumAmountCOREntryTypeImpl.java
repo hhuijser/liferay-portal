@@ -24,7 +24,6 @@ import com.liferay.commerce.order.rule.model.COREntry;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.UnicodePropertiesBuilder;
 
@@ -32,7 +31,6 @@ import java.math.BigDecimal;
 
 import java.util.Locale;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -120,9 +118,6 @@ public class MinimumAmountCOREntryTypeImpl implements COREntryType {
 		BigDecimal orderCurrencyAmount = baseCurrencyAmount.divide(
 			orderCommerceCurrency.getRate());
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		String[] arguments = {
 			_commercePriceFormatter.format(
 				orderCommerceCurrency, orderCurrencyAmount, locale),
@@ -132,7 +127,7 @@ public class MinimumAmountCOREntryTypeImpl implements COREntryType {
 		};
 
 		return LanguageUtil.format(
-			resourceBundle,
+			locale,
 			"the-minimum-order-amount-is-x.-this-order-needs-an-additional-x-" +
 				"to-meet-the-requirement",
 			arguments);
@@ -145,10 +140,7 @@ public class MinimumAmountCOREntryTypeImpl implements COREntryType {
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "minimum-order-amount");
+		return LanguageUtil.get(locale, "minimum-order-amount");
 	}
 
 	@Reference

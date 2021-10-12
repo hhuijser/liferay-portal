@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.model.ListTypeConstants;
 import com.liferay.portal.kernel.model.Region;
 import com.liferay.portal.kernel.service.AddressLocalServiceUtil;
 import com.liferay.portal.kernel.service.ListTypeLocalServiceUtil;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
@@ -71,10 +69,7 @@ public class AddressDisplay {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
-		return LanguageUtil.get(
-			new AggregateResourceBundle(
-				resourceBundle, PortalUtil.getResourceBundle(locale)),
-			_type);
+		return LanguageUtil.get(resourceBundle, _type);
 	}
 
 	public long getTypeId() {

@@ -214,10 +214,6 @@
 			<finder-column name="classNameId" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 	</entity>
 	<entity local-service="false" name="JournalArticleLocalization" remote-service="false">
 
@@ -484,10 +480,6 @@
 			<finder-column name="parentFolderId" />
 			<finder-column comparator="!=" name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 	</entity>
 	<exceptions>
 		<exception>ArticleContent</exception>

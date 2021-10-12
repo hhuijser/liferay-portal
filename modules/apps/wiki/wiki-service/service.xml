@@ -270,10 +270,6 @@
 			<finder-column case-sensitive="false" name="parentTitle" />
 			<finder-column name="status" />
 		</finder>
-
-		<!-- References -->
-
-		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 	</entity>
 	<entity local-service="true" name="WikiPageResource" remote-service="false" uuid="true">
 

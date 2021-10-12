@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 		}
 
 		String assignExpressionType = null;
+		boolean chainStyle = false;
 
 		if (assignExpressionDetailAST.getType() == TokenTypes.METHOD_CALL) {
 			if (_hasChainStyle(
@@ -56,6 +58,8 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 				if (_isInsideStatementClause(identDetailAST)) {
 					return;
 				}
+
+				chainStyle = true;
 			}
 			else {
 				if ((getStartLineNumber(assignExpressionDetailAST) !=
@@ -129,7 +133,20 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 			parentDetailAST = parentDetailAST.getParent();
 		}
 
-		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+		boolean toString = false;
+
+		if (parentDetailAST.getType() == TokenTypes.DOT) {
+			FullIdent fullIdent = FullIdent.createFullIdent(parentDetailAST);
+
+			if (!Objects.equals(
+					fullIdent.getText(), variableName + ".toString")) {
+
+				return;
+			}
+
+			toString = true;
+		}
+		else if (parentDetailAST.getType() != TokenTypes.EXPR) {
 			return;
 		}
 
@@ -168,9 +185,28 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 			}
 		}
 
-		log(
-			assignDetailAST, _MSG_INLINE_VARIABLE, variableName,
-			assignExpressionType, identDetailAST.getLineNo());
+		if (!toString) {
+			log(
+				assignDetailAST, _MSG_INLINE_VARIABLE, variableName,
+				assignExpressionType, identDetailAST.getLineNo());
+		}
+		else if (chainStyle) {
+			String variableTypeName = getVariableTypeName(
+				identDetailAST, variableName, false);
+
+			if (variableTypeName.equals("JSONArray") ||
+				variableTypeName.equals("JSONObject")) {
+
+				log(
+					identDetailAST, _MSG_ADD_TO_STRING,
+					assignDetailAST.getLineNo());
+			}
+		}
+		else {
+			log(
+				identDetailAST, _MSG_USE_STRING_VALUE_OF,
+				assignDetailAST.getLineNo(), identDetailAST.getLineNo());
+		}
 	}
 
 	protected void checkMoveAfterBranchingStatement(
@@ -610,6 +646,8 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 		return false;
 	}
 
+	private static final String _MSG_ADD_TO_STRING = "to.string.add";
+
 	private static final String _MSG_INLINE_VARIABLE = "variable.inline";
 
 	private static final String _MSG_MOVE_VARIABLE_AFTER_BRANCHING_STATEMENT =
@@ -617,5 +655,8 @@ public abstract class BaseAsUsedCheck extends BaseCheck {
 
 	private static final String _MSG_MOVE_VARIABLE_INSIDE_IF_STATEMENT =
 		"variable.move.inside.if.statement";
+
+	private static final String _MSG_USE_STRING_VALUE_OF =
+		"string.value.of.use";
 
 }

@@ -153,12 +153,4 @@ public abstract class DDMFormInstanceRecordServiceBaseImpl
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
 
-	@Reference
-	protected com.liferay.asset.kernel.service.AssetEntryLocalService
-		assetEntryLocalService;
-
-	@Reference
-	protected com.liferay.asset.kernel.service.AssetEntryService
-		assetEntryService;
-
 }

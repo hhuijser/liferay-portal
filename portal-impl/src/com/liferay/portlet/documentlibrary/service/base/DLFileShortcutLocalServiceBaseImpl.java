@@ -14,8 +14,6 @@
 
 package com.liferay.portlet.documentlibrary.service.base;
 
-import com.liferay.asset.kernel.service.persistence.AssetEntryFinder;
-import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.document.library.kernel.model.DLFileShortcut;
 import com.liferay.document.library.kernel.service.DLFileShortcutLocalService;
 import com.liferay.document.library.kernel.service.DLFileShortcutLocalServiceUtil;
@@ -648,67 +646,6 @@ public abstract class DLFileShortcutLocalServiceBaseImpl
 		this.counterLocalService = counterLocalService;
 	}
 
-	/**
-	 * Returns the asset entry local service.
-	 *
-	 * @return the asset entry local service
-	 */
-	public com.liferay.asset.kernel.service.AssetEntryLocalService
-		getAssetEntryLocalService() {
-
-		return assetEntryLocalService;
-	}
-
-	/**
-	 * Sets the asset entry local service.
-	 *
-	 * @param assetEntryLocalService the asset entry local service
-	 */
-	public void setAssetEntryLocalService(
-		com.liferay.asset.kernel.service.AssetEntryLocalService
-			assetEntryLocalService) {
-
-		this.assetEntryLocalService = assetEntryLocalService;
-	}
-
-	/**
-	 * Returns the asset entry persistence.
-	 *
-	 * @return the asset entry persistence
-	 */
-	public AssetEntryPersistence getAssetEntryPersistence() {
-		return assetEntryPersistence;
-	}
-
-	/**
-	 * Sets the asset entry persistence.
-	 *
-	 * @param assetEntryPersistence the asset entry persistence
-	 */
-	public void setAssetEntryPersistence(
-		AssetEntryPersistence assetEntryPersistence) {
-
-		this.assetEntryPersistence = assetEntryPersistence;
-	}
-
-	/**
-	 * Returns the asset entry finder.
-	 *
-	 * @return the asset entry finder
-	 */
-	public AssetEntryFinder getAssetEntryFinder() {
-		return assetEntryFinder;
-	}
-
-	/**
-	 * Sets the asset entry finder.
-	 *
-	 * @param assetEntryFinder the asset entry finder
-	 */
-	public void setAssetEntryFinder(AssetEntryFinder assetEntryFinder) {
-		this.assetEntryFinder = assetEntryFinder;
-	}
-
 	public void afterPropertiesSet() {
 		persistedModelLocalServiceRegistry.register(
 			"com.liferay.document.library.kernel.model.DLFileShortcut",
@@ -808,18 +745,6 @@ public abstract class DLFileShortcutLocalServiceBaseImpl
 	)
 	protected com.liferay.counter.kernel.service.CounterLocalService
 		counterLocalService;
-
-	@BeanReference(
-		type = com.liferay.asset.kernel.service.AssetEntryLocalService.class
-	)
-	protected com.liferay.asset.kernel.service.AssetEntryLocalService
-		assetEntryLocalService;
-
-	@BeanReference(type = AssetEntryPersistence.class)
-	protected AssetEntryPersistence assetEntryPersistence;
-
-	@BeanReference(type = AssetEntryFinder.class)
-	protected AssetEntryFinder assetEntryFinder;
 
 	@BeanReference(type = PersistedModelLocalServiceRegistry.class)
 	protected PersistedModelLocalServiceRegistry

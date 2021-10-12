@@ -14,6 +14,8 @@
 
 package com.liferay.remote.app.uad.anonymizer;
 
+import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
@@ -47,6 +49,8 @@ public abstract class BaseRemoteAppEntryUADAnonymizer
 		if (remoteAppEntry.getUserId() == userId) {
 			remoteAppEntry.setUserId(anonymousUser.getUserId());
 			remoteAppEntry.setUserName(anonymousUser.getFullName());
+
+			autoAnonymizeAssetEntry(remoteAppEntry, anonymousUser);
 		}
 
 		remoteAppEntryLocalService.updateRemoteAppEntry(remoteAppEntry);
@@ -62,6 +66,19 @@ public abstract class BaseRemoteAppEntryUADAnonymizer
 		return RemoteAppEntry.class;
 	}
 
+	protected void autoAnonymizeAssetEntry(
+		RemoteAppEntry remoteAppEntry, User anonymousUser) {
+
+		AssetEntry assetEntry = fetchAssetEntry(remoteAppEntry);
+
+		if (assetEntry != null) {
+			assetEntry.setUserId(anonymousUser.getUserId());
+			assetEntry.setUserName(anonymousUser.getFullName());
+
+			assetEntryLocalService.updateAssetEntry(assetEntry);
+		}
+	}
+
 	@Override
 	protected ActionableDynamicQuery doGetActionableDynamicQuery() {
 		return remoteAppEntryLocalService.getActionableDynamicQuery();
@@ -71,6 +88,15 @@ public abstract class BaseRemoteAppEntryUADAnonymizer
 	protected String[] doGetUserIdFieldNames() {
 		return RemoteAppUADConstants.USER_ID_FIELD_NAMES_REMOTE_APP_ENTRY;
 	}
+
+	protected AssetEntry fetchAssetEntry(RemoteAppEntry remoteAppEntry) {
+		return assetEntryLocalService.fetchEntry(
+			RemoteAppEntry.class.getName(),
+			remoteAppEntry.getRemoteAppEntryId());
+	}
+
+	@Reference
+	protected AssetEntryLocalService assetEntryLocalService;
 
 	@Reference
 	protected RemoteAppEntryLocalService remoteAppEntryLocalService;

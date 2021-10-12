@@ -46,14 +46,12 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.settings.GroupServiceSettingsLocator;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import javax.portlet.PortletPreferences;
@@ -203,11 +201,8 @@ public class CommerceGuestCheckoutAuthenticationCommerceHealthStatus
 
 	@Override
 	public String getDescription(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle,
+			locale,
 			CommerceHealthStatusConstants.
 				COMMERCE_GUEST_CHECKOUT_AUTHENTICATION_COMMERCE_HEALTH_STATUS_DESCRIPTION);
 	}
@@ -220,11 +215,8 @@ public class CommerceGuestCheckoutAuthenticationCommerceHealthStatus
 
 	@Override
 	public String getName(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle,
+			locale,
 			CommerceHealthStatusConstants.
 				COMMERCE_GUEST_CHECKOUT_AUTHENTICATION_COMMERCE_HEALTH_STATUS_KEY);
 	}

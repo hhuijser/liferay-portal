@@ -17,7 +17,6 @@ package com.liferay.segments.context.vocabulary.internal.configuration.admin.def
 import com.liferay.configuration.admin.definition.ConfigurationFieldOptionsProvider;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 
@@ -28,7 +27,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -101,12 +99,8 @@ public class EntityFieldConfigurationFieldOptionsProvider
 
 			@Override
 			public String getLabel(Locale locale) {
-				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-					"content.Language", locale, getClass());
-
 				return _language.get(
-					resourceBundle,
-					"field." + CamelCaseUtil.fromCamelCase(value));
+					locale, "field." + CamelCaseUtil.fromCamelCase(value));
 			}
 
 			@Override

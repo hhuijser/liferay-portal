@@ -33,13 +33,11 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.service.CountryService;
 import com.liferay.portal.kernel.service.RegionService;
 import com.liferay.portal.kernel.util.JavaConstants;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.RenderRequest;
 
@@ -81,10 +79,7 @@ public class CommerceTaxMethodAddressRateRelsScreenNavigationCategory
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, ENTRY_KEY);
+		return LanguageUtil.get(locale, ENTRY_KEY);
 	}
 
 	@Override

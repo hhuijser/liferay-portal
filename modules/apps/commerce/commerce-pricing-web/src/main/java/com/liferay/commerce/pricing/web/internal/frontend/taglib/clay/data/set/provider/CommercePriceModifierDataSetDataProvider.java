@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.text.DateFormat;
@@ -36,7 +35,6 @@ import java.text.Format;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -66,9 +64,6 @@ public class CommercePriceModifierDataSetDataProvider
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(), getClass());
-
 		Format dateTimeFormat = FastDateFormatFactoryUtil.getDateTime(
 			DateFormat.MEDIUM, DateFormat.MEDIUM, themeDisplay.getLocale(),
 			themeDisplay.getTimeZone());
@@ -88,14 +83,15 @@ public class CommercePriceModifierDataSetDataProvider
 				new PriceModifier(
 					_getEndDate(commercePriceModifier, dateTimeFormat),
 					LanguageUtil.get(
-						resourceBundle,
+						themeDisplay.getLocale(),
 						commercePriceModifier.getModifierType()),
 					commercePriceModifier.getTitle(),
 					commercePriceModifier.getCommercePriceModifierId(),
 					dateTimeFormat.format(
 						commercePriceModifier.getDisplayDate()),
 					LanguageUtil.get(
-						resourceBundle, commercePriceModifier.getTarget())));
+						themeDisplay.getLocale(),
+						commercePriceModifier.getTarget())));
 		}
 
 		return priceModifiers;

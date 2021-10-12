@@ -30,12 +30,10 @@ import com.liferay.portal.kernel.service.GroupService;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.comparator.GroupNameComparator;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
@@ -104,12 +102,8 @@ public class SimpleSiteItemSelectorViewDisplayContext
 
 			Locale locale = cpRequestHelper.getLocale();
 
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", locale, getClass());
-
 			emptyResultsMessage = LanguageUtil.format(
-				resourceBundle, emptyResultsMessage, group.getName(locale),
-				false);
+				locale, emptyResultsMessage, group.getName(locale), false);
 		}
 
 		searchContainer = new SearchContainer<>(

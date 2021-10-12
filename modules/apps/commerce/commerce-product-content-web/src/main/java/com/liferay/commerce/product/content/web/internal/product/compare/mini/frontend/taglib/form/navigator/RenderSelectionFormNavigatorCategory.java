@@ -17,10 +17,8 @@ package com.liferay.commerce.product.content.web.internal.product.compare.mini.f
 import com.liferay.commerce.product.content.web.internal.constants.CPCompareContentMiniConstants;
 import com.liferay.frontend.taglib.form.navigator.FormNavigatorCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -46,10 +44,7 @@ public class RenderSelectionFormNavigatorCategory
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "render-selection");
+		return LanguageUtil.get(locale, "render-selection");
 	}
 
 }

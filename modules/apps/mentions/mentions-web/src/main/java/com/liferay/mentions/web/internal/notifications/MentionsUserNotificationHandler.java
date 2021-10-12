@@ -28,10 +28,7 @@ import com.liferay.portal.kernel.notifications.UserNotificationHandler;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -81,12 +78,10 @@ public class MentionsUserNotificationHandler
 		String typeName = assetRendererFactory.getTypeName(
 			serviceContext.getLocale());
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", serviceContext.getLocale(), getClass());
-
 		if ((mbMessage != null) && mbMessage.isDiscussion()) {
 			return LanguageUtil.format(
-				resourceBundle, "x-mentioned-you-in-a-comment-in-a-x",
+				serviceContext.getLocale(),
+				"x-mentioned-you-in-a-comment-in-a-x",
 				new String[] {
 					HtmlUtil.escape(
 						_portal.getUserName(
@@ -97,7 +92,7 @@ public class MentionsUserNotificationHandler
 		}
 
 		return LanguageUtil.format(
-			resourceBundle, "x-mentioned-you-in-a-x",
+			serviceContext.getLocale(), "x-mentioned-you-in-a-x",
 			new String[] {
 				HtmlUtil.escape(
 					_portal.getUserName(

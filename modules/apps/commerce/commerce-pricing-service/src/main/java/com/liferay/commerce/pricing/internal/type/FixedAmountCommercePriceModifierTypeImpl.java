@@ -19,12 +19,10 @@ import com.liferay.commerce.pricing.model.CommercePriceModifier;
 import com.liferay.commerce.pricing.type.CommercePriceModifierType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.math.BigDecimal;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -66,12 +64,8 @@ public class FixedAmountCommercePriceModifierTypeImpl
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle,
-			CommercePriceModifierConstants.MODIFIER_TYPE_FIXED_AMOUNT);
+			locale, CommercePriceModifierConstants.MODIFIER_TYPE_FIXED_AMOUNT);
 	}
 
 }

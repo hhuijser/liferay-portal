@@ -31,11 +31,9 @@ import com.liferay.portal.kernel.search.filter.ExistsFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermsFilter;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -86,10 +84,7 @@ public class ApplyToPricingClassCommerceDiscountTargetImpl
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "product-groups");
+		return LanguageUtil.get(locale, "product-groups");
 	}
 
 	@Override

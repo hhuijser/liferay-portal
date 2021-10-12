@@ -18,9 +18,6 @@ import com.liferay.marketplace.app.manager.web.internal.constants.MarketplaceApp
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.BaseJSPPortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
-
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -48,10 +45,7 @@ public class InstallFromURLPortletConfigurationIcon
 
 	@Override
 	public String getMessage(PortletRequest portletRequest) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", getLocale(portletRequest), getClass());
-
-		return LanguageUtil.get(resourceBundle, "install-from-url");
+		return LanguageUtil.get(getLocale(portletRequest), "install-from-url");
 	}
 
 	@Override

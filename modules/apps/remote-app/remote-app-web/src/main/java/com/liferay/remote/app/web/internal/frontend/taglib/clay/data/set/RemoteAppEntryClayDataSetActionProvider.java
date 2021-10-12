@@ -27,13 +27,11 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.remote.app.web.internal.constants.RemoteAppAdminConstants;
 import com.liferay.remote.app.web.internal.frontend.taglib.clay.data.set.model.RemoteAppClayDataSetEntry;
 
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletURL;
 
@@ -126,10 +124,7 @@ public class RemoteAppEntryClayDataSetActionProvider
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(), getClass());
-
-		return LanguageUtil.get(resourceBundle, key);
+		return LanguageUtil.get(themeDisplay.getLocale(), key);
 	}
 
 	private String _getPortletId(HttpServletRequest httpServletRequest) {

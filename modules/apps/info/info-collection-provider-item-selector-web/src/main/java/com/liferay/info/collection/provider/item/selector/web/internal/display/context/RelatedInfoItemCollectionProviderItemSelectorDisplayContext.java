@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -34,7 +33,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -143,14 +141,11 @@ public class RelatedInfoItemCollectionProviderItemSelectorDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(), getClass());
-
 		SearchContainer<RelatedInfoItemCollectionProvider<?, ?>>
 			searchContainer = new SearchContainer<>(
 				portletRequest, _portletURL, null,
 				_language.get(
-					resourceBundle,
+					themeDisplay.getLocale(),
 					"there-are-no-related-items-collection-providers"));
 
 		List<RelatedInfoItemCollectionProvider<?, ?>>

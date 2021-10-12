@@ -19,10 +19,8 @@ import com.liferay.application.list.PanelCategory;
 import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.digital.signature.web.internal.constants.DigitalSignaturePanelCategoryKeys;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -47,10 +45,7 @@ public class DigitalSignaturePanelCategory extends BasePanelCategory {
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "category.digital-signature");
+		return LanguageUtil.get(locale, "category.digital-signature");
 	}
 
 }

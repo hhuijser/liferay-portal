@@ -17,10 +17,8 @@ package com.liferay.commerce.order.web.internal.frontend.taglib.servlet.taglib;
 import com.liferay.commerce.order.web.internal.servlet.taglib.ui.constants.CommerceOrderScreenNavigationConstants;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -42,10 +40,7 @@ public class CommerceOrderScreenNavigationCategory
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, getCategoryKey());
+		return LanguageUtil.get(locale, getCategoryKey());
 	}
 
 	@Override

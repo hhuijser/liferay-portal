@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
@@ -58,7 +57,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -420,9 +418,6 @@ public class SegmentsExperimentDisplayContext {
 		JSONArray segmentsExperimentGoalsJSONArray =
 			JSONFactoryUtil.createJSONArray();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		String[] goalsEnabled = _segmentsExperimentConfiguration.goalsEnabled();
 
 		Stream<SegmentsExperimentConstants.Goal> stream = Arrays.stream(
@@ -433,7 +428,7 @@ public class SegmentsExperimentDisplayContext {
 		).forEach(
 			goal -> segmentsExperimentGoalsJSONArray.put(
 				JSONUtil.put(
-					"label", LanguageUtil.get(resourceBundle, goal.getLabel())
+					"label", LanguageUtil.get(locale, goal.getLabel())
 				).put(
 					"value", goal.getLabel()
 				))

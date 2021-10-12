@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletContext;
 import com.liferay.portal.kernel.resource.bundle.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoaderUtil;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -50,31 +49,22 @@ public class TagResourceBundleUtil {
 			return resourceBundleLoader.loadResourceBundle(locale);
 		}
 
-		ResourceBundle portletResourceBundle = getPortletResourceBundle(
-			httpServletRequest, locale);
-
-		ResourceBundle portalResourceBundle = PortalUtil.getResourceBundle(
-			locale);
-
-		return new AggregateResourceBundle(
-			portletResourceBundle, portalResourceBundle);
+		return getPortletResourceBundle(httpServletRequest, locale);
 	}
 
 	public static ResourceBundle getResourceBundle(PageContext pageContext) {
 		ResourceBundle resourceBundle =
 			(ResourceBundle)pageContext.getAttribute("resourceBundle");
 
+		if (resourceBundle != null) {
+			return resourceBundle;
+		}
+
 		HttpServletRequest httpServletRequest =
 			(HttpServletRequest)pageContext.getRequest();
 
-		Locale locale = PortalUtil.getLocale(httpServletRequest);
-
-		if (resourceBundle != null) {
-			return new AggregateResourceBundle(
-				resourceBundle, PortalUtil.getResourceBundle(locale));
-		}
-
-		return getResourceBundle(httpServletRequest, locale);
+		return getResourceBundle(
+			httpServletRequest, PortalUtil.getLocale(httpServletRequest));
 	}
 
 	protected static ResourceBundleLoader acquireResourceBundleLoader(

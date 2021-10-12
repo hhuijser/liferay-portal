@@ -17,8 +17,6 @@ package com.liferay.site.memberships.web.internal.util;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
@@ -45,11 +43,8 @@ public class GroupUtil {
 	}
 
 	private static ResourceBundle _getResourceBundle(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+		return ResourceBundleUtil.getBundle(
 			"content.Language", locale, GroupUtil.class);
-
-		return new AggregateResourceBundle(
-			resourceBundle, PortalUtil.getResourceBundle(locale));
 	}
 
 }

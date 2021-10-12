@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -82,11 +81,8 @@ public class OptimizeImagesPortletConfigurationIcon
 
 	@Override
 	public ResourceBundle getResourceBundle(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+		return ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
-
-		return new AggregateResourceBundle(
-			resourceBundle, super.getResourceBundle(locale));
 	}
 
 	@Override

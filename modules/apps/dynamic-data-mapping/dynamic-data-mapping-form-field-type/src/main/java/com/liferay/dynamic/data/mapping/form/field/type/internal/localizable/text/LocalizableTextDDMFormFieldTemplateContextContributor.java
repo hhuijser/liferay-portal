@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -200,10 +199,8 @@ public class LocalizableTextDDMFormFieldTemplateContextContributor
 	}
 
 	protected ResourceBundle getResourceBundle(Locale locale) {
-		return new AggregateResourceBundle(
-			ResourceBundleUtil.getBundle(
-				"content.Language", locale, getClass()),
-			portal.getResourceBundle(locale));
+		return ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
 	}
 
 	protected String getTooltip(

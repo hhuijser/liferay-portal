@@ -52,23 +52,24 @@ public class CertificateUploadResponseHandler implements UploadResponseHandler {
 		if (portalException instanceof PrincipalException) {
 			errorMessage = LanguageUtil.format(
 				themeDisplay.getLocale(),
-				"you-must-be-an-admin-to-complete-this-action", null);
+				"you-must-be-an-admin-to-complete-this-action", (Object[])null);
 		}
 		else if (portalException.getCause() instanceof CertificateException) {
 			errorMessage = LanguageUtil.format(
 				themeDisplay.getLocale(),
 				"there-was-a-problem-reading-one-or-more-certificates-in-the-" +
 					"keystore",
-				null);
+				(Object[])null);
 		}
 		else if (portalException.getCause() instanceof KeyStoreException) {
 			errorMessage = LanguageUtil.format(
 				themeDisplay.getLocale(),
-				"the-file-is-not-a-pkcs12-formatted-keystore", null);
+				"the-file-is-not-a-pkcs12-formatted-keystore", (Object[])null);
 		}
 		else {
 			errorMessage = LanguageUtil.format(
-				themeDisplay.getLocale(), "an-unexpected-error-occurred", null);
+				themeDisplay.getLocale(), "an-unexpected-error-occurred",
+				(Object[])null);
 		}
 
 		JSONObject exceptionMessagesJSONObject = JSONUtil.put(

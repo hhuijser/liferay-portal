@@ -25,9 +25,7 @@ import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.sharing.configuration.SharingConfigurationFactory;
 
@@ -105,11 +103,8 @@ public abstract class BaseDepotScreenNavigationEntry
 	}
 
 	protected ResourceBundle getResourceBundle(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+		return ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
-
-		return new AggregateResourceBundle(
-			resourceBundle, PortalUtil.getResourceBundle(locale));
 	}
 
 	protected boolean isShowControls() {

@@ -29,13 +29,11 @@ import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.service.CountryService;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
@@ -125,12 +123,8 @@ public class CommerceInventoryWarehouseItemSelectorViewDisplayContext
 
 			Locale locale = cpRequestHelper.getLocale();
 
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", locale, getClass());
-
 			emptyResultsMessage = LanguageUtil.format(
-				resourceBundle, emptyResultsMessage, country.getName(locale),
-				false);
+				locale, emptyResultsMessage, country.getName(locale), false);
 		}
 
 		searchContainer = new SearchContainer<>(

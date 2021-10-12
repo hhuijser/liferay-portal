@@ -24,12 +24,10 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -45,16 +43,13 @@ public class ClayDataSetFilterSerializerImpl
 	public JSONArray serialize(String clayDataSetDisplayName, Locale locale) {
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		List<ClayDataSetFilter> clayDataSetFilters =
 			_clayDataSetFilterRegistry.getClayDataSetFilters(
 				clayDataSetDisplayName);
 
 		for (ClayDataSetFilter clayDataSetFilter : clayDataSetFilters) {
 			String label = LanguageUtil.get(
-				resourceBundle, clayDataSetFilter.getLabel());
+				locale, clayDataSetFilter.getLabel());
 
 			JSONObject jsonObject = JSONUtil.put(
 				"id", clayDataSetFilter.getId()

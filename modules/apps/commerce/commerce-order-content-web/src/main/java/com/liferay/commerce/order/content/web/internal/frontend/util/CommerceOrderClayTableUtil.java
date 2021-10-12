@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -44,7 +43,6 @@ import java.text.Format;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
@@ -113,17 +111,13 @@ public class CommerceOrderClayTableUtil {
 				DateFormat.MEDIUM, themeDisplay.getLocale(),
 				themeDisplay.getTimeZone());
 
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", themeDisplay.getLocale(),
-				CommerceOrderClayTableUtil.class);
-
 			String commerceOrderStatusLabel = LanguageUtil.get(
-				resourceBundle,
+				themeDisplay.getLocale(),
 				CommerceOrderConstants.getOrderStatusLabel(
 					commerceOrder.getOrderStatus()));
 
 			String workflowStatusLabel = LanguageUtil.get(
-				resourceBundle,
+				themeDisplay.getLocale(),
 				WorkflowConstants.getStatusLabel(commerceOrder.getStatus()));
 
 			Date orderDate = commerceOrder.getCreateDate();

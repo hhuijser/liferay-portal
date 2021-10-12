@@ -20,10 +20,8 @@ import com.liferay.commerce.product.type.grouped.util.GroupedCPTypeHelper;
 import com.liferay.commerce.product.type.virtual.util.VirtualCPTypeHelper;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -57,10 +55,7 @@ public class DefaultCPContentRenderer implements CPContentRenderer {
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, KEY);
+		return LanguageUtil.get(locale, KEY);
 	}
 
 	@Override

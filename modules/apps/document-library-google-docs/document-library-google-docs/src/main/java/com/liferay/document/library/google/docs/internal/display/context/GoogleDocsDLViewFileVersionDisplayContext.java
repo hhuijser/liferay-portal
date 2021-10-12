@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.servlet.taglib.ui.Menu;
 import com.liferay.portal.kernel.servlet.taglib.ui.MenuItem;
 import com.liferay.portal.kernel.servlet.taglib.ui.ToolbarItem;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
@@ -34,7 +33,6 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -161,13 +159,10 @@ public class GoogleDocsDLViewFileVersionDisplayContext
 			}
 		}
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", httpServletRequest.getLocale(), getClass());
-
 		printWriter.write("<div class=\"alert alert-info\">");
 		printWriter.write(
 			LanguageUtil.get(
-				resourceBundle,
+				httpServletRequest.getLocale(),
 				"google-docs-does-not-provide-a-preview-for-this-document"));
 		printWriter.write("</div>");
 	}

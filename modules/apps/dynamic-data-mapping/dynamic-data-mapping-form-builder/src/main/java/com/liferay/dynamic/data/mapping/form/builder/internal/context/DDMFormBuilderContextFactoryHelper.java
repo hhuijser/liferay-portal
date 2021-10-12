@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -475,11 +474,7 @@ public class DDMFormBuilderContextFactoryHelper {
 			).put(
 				"isLink", false
 			).put(
-				"label",
-				LanguageUtil.get(
-					ResourceBundleUtil.getBundle(
-						"content.Language", _locale, getClass()),
-					"builder")
+				"label", LanguageUtil.get(_locale, "builder")
 			).put(
 				"pluginEntryPoint",
 				_npmResolver.resolveModuleName(

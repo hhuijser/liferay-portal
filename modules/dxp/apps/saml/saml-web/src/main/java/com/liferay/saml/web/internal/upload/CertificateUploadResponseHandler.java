@@ -23,14 +23,11 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.upload.UploadResponseHandler;
 
 import java.security.KeyStoreException;
 import java.security.cert.CertificateException;
-
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletRequest;
 
@@ -50,31 +47,28 @@ public class CertificateUploadResponseHandler implements UploadResponseHandler {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(), getClass());
-
 		String errorMessage = StringPool.BLANK;
 
 		if (portalException instanceof PrincipalException) {
 			errorMessage = LanguageUtil.format(
-				resourceBundle, "you-must-be-an-admin-to-complete-this-action",
-				null);
+				themeDisplay.getLocale(),
+				"you-must-be-an-admin-to-complete-this-action", null);
 		}
 		else if (portalException.getCause() instanceof CertificateException) {
 			errorMessage = LanguageUtil.format(
-				resourceBundle,
+				themeDisplay.getLocale(),
 				"there-was-a-problem-reading-one-or-more-certificates-in-the-" +
 					"keystore",
 				null);
 		}
 		else if (portalException.getCause() instanceof KeyStoreException) {
 			errorMessage = LanguageUtil.format(
-				resourceBundle, "the-file-is-not-a-pkcs12-formatted-keystore",
-				null);
+				themeDisplay.getLocale(),
+				"the-file-is-not-a-pkcs12-formatted-keystore", null);
 		}
 		else {
 			errorMessage = LanguageUtil.format(
-				resourceBundle, "an-unexpected-error-occurred", null);
+				themeDisplay.getLocale(), "an-unexpected-error-occurred", null);
 		}
 
 		JSONObject exceptionMessagesJSONObject = JSONUtil.put(

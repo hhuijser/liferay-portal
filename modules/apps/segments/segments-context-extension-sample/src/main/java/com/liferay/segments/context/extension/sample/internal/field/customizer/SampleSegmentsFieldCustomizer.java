@@ -16,12 +16,10 @@ package com.liferay.segments.context.extension.sample.internal.field.customizer;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.segments.field.customizer.SegmentsFieldCustomizer;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -53,10 +51,7 @@ public class SampleSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 
 	@Override
 	public String getLabel(String fieldName, Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "sample-field-label");
+		return LanguageUtil.get(locale, "sample-field-label");
 	}
 
 	private static final List<String> _fieldNames = ListUtil.fromArray(

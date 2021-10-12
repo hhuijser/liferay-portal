@@ -17,10 +17,8 @@ package com.liferay.commerce.discount.internal.target;
 import com.liferay.commerce.discount.constants.CommerceDiscountConstants;
 import com.liferay.commerce.discount.target.CommerceDiscountTarget;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -46,11 +44,7 @@ public class ApplyToTotalCommerceDiscountTargetImpl
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(
-			resourceBundle, CommerceDiscountConstants.TARGET_TOTAL);
+		return LanguageUtil.get(locale, CommerceDiscountConstants.TARGET_TOTAL);
 	}
 
 	@Override

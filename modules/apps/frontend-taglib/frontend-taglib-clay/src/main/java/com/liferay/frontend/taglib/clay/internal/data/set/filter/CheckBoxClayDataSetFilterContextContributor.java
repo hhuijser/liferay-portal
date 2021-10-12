@@ -23,13 +23,11 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -62,9 +60,6 @@ public class CheckBoxClayDataSetFilterContextContributor
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		List<CheckBoxClayDataSetFilterItem> checkBoxClayDataSetFilterItems =
 			baseCheckBoxClayDataSetFilter.getCheckBoxClayDataSetFilterItems(
 				locale);
@@ -76,8 +71,7 @@ public class CheckBoxClayDataSetFilterContextContributor
 				JSONUtil.put(
 					"label",
 					LanguageUtil.get(
-						resourceBundle,
-						checkBoxClayDataSetFilterItem.getLabel())
+						locale, checkBoxClayDataSetFilterItem.getLabel())
 				).put(
 					"value", checkBoxClayDataSetFilterItem.getValue()
 				));

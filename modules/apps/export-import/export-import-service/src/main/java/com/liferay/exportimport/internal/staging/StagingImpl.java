@@ -143,7 +143,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -179,7 +178,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import javax.portlet.PortletRequest;
@@ -604,9 +602,6 @@ public class StagingImpl implements Staging {
 		int errorType = 0;
 		JSONArray warningMessagesJSONArray = null;
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		Throwable throwable = exception.getCause();
 
 		if (exception.getCause() instanceof ConnectException) {
@@ -620,7 +615,7 @@ public class StagingImpl implements Staging {
 			String argument = remoteAddress + ":" + remotePort;
 
 			errorMessage = LanguageUtil.format(
-				resourceBundle,
+				locale,
 				"could-not-connect-to-address-x.-please-verify-that-the-" +
 					"specified-port-is-correct-and-that-the-remote-server-is-" +
 						"configured-to-accept-requests-from-this-server",
@@ -646,7 +641,7 @@ public class StagingImpl implements Staging {
 							getStagedModelClassName())) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-process-referenced-article-because-it-" +
 							"cannot-be-found-with-key-x",
 						String.valueOf(
@@ -655,7 +650,7 @@ public class StagingImpl implements Staging {
 				}
 				else {
 					errorMessage = LanguageUtil.get(
-						resourceBundle,
+						locale,
 						"unable-to-process-referenced-article-because-it-" +
 							"cannot-be-found");
 				}
@@ -675,13 +670,13 @@ public class StagingImpl implements Staging {
 					(throwable.getLocalizedMessage() != null)) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-journal-article-x",
 						throwable.getLocalizedMessage());
 				}
 				else {
 					errorMessage = LanguageUtil.get(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-journal-article");
 				}
 			}
@@ -694,7 +689,7 @@ public class StagingImpl implements Staging {
 							getStagedModelClassName())) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-file-entry-because-it-" +
 							"cannot-be-found-with-the-following-parameters-x-" +
 								"within-the-content-of-x-with-primary-key-x",
@@ -711,7 +706,7 @@ public class StagingImpl implements Staging {
 				}
 				else {
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-file-entry-because-it-" +
 							"cannot-be-found-with-the-following-parameters-x",
 						exportImportContentValidationException.
@@ -727,7 +722,7 @@ public class StagingImpl implements Staging {
 							getStagedModelClassName())) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						StringBundler.concat(
 							"unable-to-validate-referenced-page-with-url-x-",
 							"because-the-page-group-with-url-x-cannot-be-",
@@ -746,7 +741,7 @@ public class StagingImpl implements Staging {
 				}
 				else {
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-page-with-url-x-" +
 							"because-the-page-group-with-url-x-cannot-be-found",
 						new String[] {
@@ -766,7 +761,7 @@ public class StagingImpl implements Staging {
 							getStagedModelClassName())) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-page-because-it-" +
 							"cannot-be-found-with-the-following-parameters-x-" +
 								"within-the-content-of-x-with-primary-key-x",
@@ -783,7 +778,7 @@ public class StagingImpl implements Staging {
 				}
 				else {
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-page-because-it-" +
 							"cannot-be-found-with-the-following-parameters-x",
 						exportImportContentValidationException.
@@ -799,7 +794,7 @@ public class StagingImpl implements Staging {
 							getStagedModelClassName())) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-page-because-it-" +
 							"cannot-be-found-with-url-x-within-the-content-" +
 								"of-x-with-primary-key-x",
@@ -815,7 +810,7 @@ public class StagingImpl implements Staging {
 				}
 				else {
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-referenced-page-because-it-" +
 							"cannot-be-found-with-url-x",
 						exportImportContentValidationException.getLayoutURL());
@@ -827,7 +822,7 @@ public class StagingImpl implements Staging {
 							getStagedModelClassName())) {
 
 					errorMessage = LanguageUtil.format(
-						resourceBundle,
+						locale,
 						"unable-to-validate-content-of-x-with-primary-key-x-" +
 							"in-x",
 						new String[] {
@@ -842,7 +837,7 @@ public class StagingImpl implements Staging {
 				}
 				else {
 					errorMessage = LanguageUtil.format(
-						resourceBundle, "unable-to-validate-content-in-x",
+						locale, "unable-to-validate-content-in-x",
 						exportImportContentValidationException.getClassName());
 				}
 			}
@@ -857,7 +852,7 @@ public class StagingImpl implements Staging {
 					ExportImportDocumentException.PORTLET_DATA_IMPORT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-parse-xml-document-for-portlet-x-during-import",
 					exportImportDocumentException.getPortletId());
 			}
@@ -866,14 +861,14 @@ public class StagingImpl implements Staging {
 							PORTLET_PREFERENCES_IMPORT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-parse-xml-portlet-preferences-for-portlet-x-" +
 						"while-importing-portlet-preferences",
 					exportImportDocumentException.getPortletId());
 			}
 			else {
 				errorMessage = LanguageUtil.get(
-					resourceBundle, "unable-to-parse-xml-document");
+					locale, "unable-to-parse-xml-document");
 			}
 
 			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;
@@ -896,7 +891,7 @@ public class StagingImpl implements Staging {
 					ExportImportIOException.ADD_ZIP_ENTRY_BYTES) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-add-data-bytes-to-the-lar-file-with-path-x",
 					exportImportIOException.getFileName());
 			}
@@ -904,7 +899,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.ADD_ZIP_ENTRY_STREAM) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-add-data-stream-to-the-lar-file-with-path-x",
 					exportImportIOException.getFileName());
 			}
@@ -912,7 +907,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.ADD_ZIP_ENTRY_STRING) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-add-data-string-to-the-lar-file-with-path-x",
 					exportImportIOException.getFileName());
 			}
@@ -920,7 +915,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.LAYOUT_IMPORT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-for-layout-import-while-" +
 						"executing-x-due-to-a-file-system-error",
 					exportImportIOException.getClassName());
@@ -929,7 +924,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.LAYOUT_IMPORT_FILE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-x-for-layout-import-while-" +
 						"executing-x-due-to-a-file-system-error",
 					new String[] {
@@ -941,7 +936,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.LAYOUT_VALIDATE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-for-layout-import-validation-" +
 						"while-executing-x-due-to-a-file-system-error",
 					exportImportIOException.getClassName());
@@ -950,7 +945,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.LAYOUT_VALIDATE_FILE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-x-for-layout-import-" +
 						"validation-while-executing-x-due-to-a-file-system-" +
 							"error",
@@ -963,7 +958,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.PORTLET_EXPORT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-create-the-export-lar-manifest-file-for-" +
 						"portlet-x",
 					exportImportIOException.getPortletId());
@@ -972,7 +967,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.PORTLET_IMPORT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-for-portlet-import-while-" +
 						"executing-x-due-to-a-file-system-error",
 					exportImportIOException.getClassName());
@@ -981,7 +976,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.PORTLET_IMPORT_FILE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-x-for-portlet-import-while-" +
 						"executing-x-due-to-a-file-system-error",
 					new String[] {
@@ -993,7 +988,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.PORTLET_VALIDATE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-for-portlet-import-" +
 						"validation-while-executing-x-due-to-a-file-system-" +
 							"error",
@@ -1003,7 +998,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.PORTLET_VALIDATE_FILE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-x-for-portlet-import-" +
 						"validation-while-executing-x-due-to-a-file-system-" +
 							"error",
@@ -1016,7 +1011,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.PUBLISH_STAGING_REQUEST) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-complete-remote-staging-publication-request-x-" +
 						"due-to-a-file-system-error",
 					exportImportIOException.getStagingRequestId());
@@ -1025,7 +1020,7 @@ public class StagingImpl implements Staging {
 						ExportImportIOException.STAGING_REQUEST_CHECKSUM) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-process-lar-file-pieces-for-remote-staging-" +
 						"publication-because-lar-file-checksum-is-not-x",
 					exportImportIOException.getChecksum());
@@ -1035,14 +1030,14 @@ public class StagingImpl implements Staging {
 							STAGING_REQUEST_REASSEMBLE_FILE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-reassemble-lar-file-for-remote-staging-" +
 						"publication-request-x",
 					exportImportIOException.getStagingRequestId());
 			}
 			else {
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "x-failed-due-to-a-file-system-error",
+					locale, "x-failed-due-to-a-file-system-error",
 					exportImportIOException.getClassName());
 			}
 
@@ -1056,12 +1051,12 @@ public class StagingImpl implements Staging {
 
 			if (Validator.isNull(exportImportRuntimeException.getMessage())) {
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "an-unexpected-error-occurred-within-x",
+					locale, "an-unexpected-error-occurred-within-x",
 					exportImportRuntimeException.getClassName());
 			}
 			else {
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "the-following-error-occurred-within-x-x",
+					locale, "the-following-error-occurred-within-x-x",
 					new String[] {
 						exportImportRuntimeException.getClassName(),
 						exportImportRuntimeException.getMessage()
@@ -1124,32 +1119,31 @@ public class StagingImpl implements Staging {
 					LARTypeException.TYPE_COMPANY_GROUP) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "a-x-can-only-be-imported-to-a-x",
-					"global-site");
+					locale, "a-x-can-only-be-imported-to-a-x", "global-site");
 			}
 			else if (larTypeException.getType() ==
 						LARTypeException.TYPE_LAYOUT_PROTOTYPE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "a-x-can-only-be-imported-to-a-x",
+					locale, "a-x-can-only-be-imported-to-a-x",
 					LanguageUtil.get(locale, "page-template"));
 			}
 			else if (larTypeException.getType() ==
 						LARTypeException.TYPE_LAYOUT_SET) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "a-x-can-only-be-imported-to-a-x", "site");
+					locale, "a-x-can-only-be-imported-to-a-x", "site");
 			}
 			else if (larTypeException.getType() ==
 						LARTypeException.TYPE_LAYOUT_SET_PROTOTYPE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "a-x-can-only-be-imported-to-a-x",
+					locale, "a-x-can-only-be-imported-to-a-x",
 					LanguageUtil.get(locale, "site-template"));
 			}
 			else {
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "uploaded-lar-file-type-x-does-not-match-x",
+					locale, "uploaded-lar-file-type-x-does-not-match-x",
 					new Object[] {
 						larTypeException.getActualLARType(),
 						StringUtil.merge(
@@ -1167,14 +1161,13 @@ public class StagingImpl implements Staging {
 					LARFileException.TYPE_INVALID_MANIFEST) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle, "invalid-manifest.xml-x",
+					locale, "invalid-manifest.xml-x",
 					larFileException.getMessage());
 			}
 			else if (larFileException.getType() ==
 						LARFileException.TYPE_MISSING_MANIFEST) {
 
-				errorMessage = LanguageUtil.get(
-					resourceBundle, "missing-manifest.xml");
+				errorMessage = LanguageUtil.get(locale, "missing-manifest.xml");
 			}
 			else {
 				errorMessage = LanguageUtil.get(
@@ -1199,7 +1192,7 @@ public class StagingImpl implements Staging {
 					LayoutImportException.TYPE_WRONG_BUILD_NUMBER) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"lar-build-number-x-does-not-match-portal-build-number-x",
 					layoutImportException.getArguments());
 			}
@@ -1207,7 +1200,7 @@ public class StagingImpl implements Staging {
 						LayoutImportException.TYPE_WRONG_LAR_SCHEMA_VERSION) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"lar-schema-version-x-does-not-match-deployed-export-" +
 						"import-schema-version-x",
 					layoutImportException.getArguments());
@@ -1224,7 +1217,7 @@ public class StagingImpl implements Staging {
 				arguments[1] = portlet.getDisplayName();
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"applications's-schema-version-x-in-the-lar-is-not-valid-" +
 						"for-the-deployed-application-x-with-schema-version-x",
 					layoutImportException.getArguments());
@@ -1240,7 +1233,7 @@ public class StagingImpl implements Staging {
 				(LayoutPrototypeException)exception;
 
 			errorMessage = LanguageUtil.get(
-				resourceBundle,
+				locale,
 				StringBundler.concat(
 					"the-lar-file-could-not-be-imported-because-it-requires-",
 					"page-templates-or-site-templates-that-could-not-be-",
@@ -1349,7 +1342,7 @@ public class StagingImpl implements Staging {
 					PortletDataException.COMPANY_BEING_DELETED) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-create-a-portlet-data-context-for-company-x-" +
 						"because-it-is-being-deleted",
 					String.valueOf(portletDataException.getCompanyId()));
@@ -1387,7 +1380,7 @@ public class StagingImpl implements Staging {
 						PortletDataException.EXPORT_DATA_GROUP_ELEMENT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-return-the-export-data-group-element-for-" +
 						"group-x-because-the-root-data-element-is-not-" +
 							"initialized",
@@ -1426,7 +1419,7 @@ public class StagingImpl implements Staging {
 						PortletDataException.EXPORT_PORTLET_PERMISSIONS) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-export-portlet-permissions-for-x-while-" +
 						"processing-portlet-preferences-during-export",
 					portletDataException.getPortletId());
@@ -1435,7 +1428,7 @@ public class StagingImpl implements Staging {
 						PortletDataException.EXPORT_REFERENCED_TEMPLATE) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-export-referenced-article-template-for-x-" +
 						"while-processing-portlet-preferences-during-export",
 					portletDataException.getPortletId());
@@ -1455,13 +1448,12 @@ public class StagingImpl implements Staging {
 							portletDataException.getCause();
 
 					localizedMessage = LanguageUtil.format(
-						resourceBundle,
-						exportImportRuntimeException.getMessageKey(),
+						locale, exportImportRuntimeException.getMessageKey(),
 						exportImportRuntimeException.getData());
 				}
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"the-x-x-could-not-be-exported-because-of-the-following-" +
 						"error-x",
 					new String[] {
@@ -1473,7 +1465,7 @@ public class StagingImpl implements Staging {
 						PortletDataException.IMPORT_DATA_GROUP_ELEMENT) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-return-the-import-data-group-element-for-" +
 						"group-x-because-the-root-data-element-is-not-" +
 							"initialized",
@@ -1512,7 +1504,7 @@ public class StagingImpl implements Staging {
 						PortletDataException.IMPORT_PORTLET_PERMISSIONS) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-import-portlet-permissions-for-x-while-" +
 						"processing-portlet-preferences-during-import",
 					portletDataException.getPortletId());
@@ -1521,7 +1513,7 @@ public class StagingImpl implements Staging {
 						PortletDataException.IMPORT_STAGED_MODEL) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"the-x-x-could-not-be-imported-because-of-the-following-" +
 						"error-x",
 					new String[] {
@@ -1609,7 +1601,7 @@ public class StagingImpl implements Staging {
 							UPDATE_JOURNAL_CONTENT_SEARCH_DATA) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-update-journal-content-search-data-for-x-" +
 						"while-processing-portlet-preferences-during-import",
 					portletDataException.getPortletId());
@@ -1618,13 +1610,13 @@ public class StagingImpl implements Staging {
 						PortletDataException.UPDATE_PORTLET_PREFERENCES) {
 
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"unable-to-update-portlet-preferences-for-x-during-import",
 					portletDataException.getPortletId());
 			}
 			else if (Validator.isNotNull(referrerDisplayName)) {
 				errorMessage = LanguageUtil.format(
-					resourceBundle,
+					locale,
 					"the-following-error-occurred-while-processing-the-x-x-x",
 					new String[] {
 						modelResource, referrerDisplayName,
@@ -1645,14 +1637,14 @@ public class StagingImpl implements Staging {
 				portletIdException.getMessage());
 
 			errorMessage = LanguageUtil.format(
-				resourceBundle, "a-x-can-only-be-imported-to-a-x",
+				locale, "a-x-can-only-be-imported-to-a-x",
 				portlet.getDisplayName() + " Portlet");
 
 			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;
 		}
 		else if (exception instanceof UploadRequestSizeException) {
 			errorMessage = LanguageUtil.format(
-				resourceBundle,
+				locale,
 				"upload-request-reached-the-maximum-permitted-size-of-x-bytes",
 				String.valueOf(
 					UploadServletRequestConfigurationHelperUtil.getMaxSize()));

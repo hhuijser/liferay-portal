@@ -227,12 +227,9 @@ public class DDMFormEmailNotificationSender {
 
 		Locale locale = ddmForm.getDefaultLocale();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		String defaultEmailSubject = LanguageUtil.format(
-			resourceBundle, "new-x-form-submitted",
-			ddmFormInstance.getName(locale), false);
+			locale, "new-x-form-submitted", ddmFormInstance.getName(locale),
+			false);
 
 		return GetterUtil.getString(
 			formInstancetings.emailSubject(), defaultEmailSubject);

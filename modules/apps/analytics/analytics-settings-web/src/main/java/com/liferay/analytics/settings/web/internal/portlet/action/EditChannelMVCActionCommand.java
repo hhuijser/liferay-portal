@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.service.CompanyService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -41,7 +40,6 @@ import java.util.Collections;
 import java.util.Dictionary;
 import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -110,11 +108,8 @@ public class EditChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 		catch (PortalException portalException) {
 			_log.error(portalException, portalException);
 
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				"content.Language", themeDisplay.getLocale(), getClass());
-
 			return groupJSONObject.put(
-				"name", LanguageUtil.get(resourceBundle, "unknown"));
+				"name", LanguageUtil.get(themeDisplay.getLocale(), "unknown"));
 		}
 	}
 

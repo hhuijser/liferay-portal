@@ -20,10 +20,8 @@ import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.dispatch.constants.DispatchPortletKeys;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Portlet;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -48,10 +46,7 @@ public class DispatchPanelApp extends BasePanelApp {
 
 	@Override
 	public String getLabel(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, _KEY);
+		return LanguageUtil.get(locale, _KEY);
 	}
 
 	@Override

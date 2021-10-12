@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.service.TicketLocalService;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.subscription.exception.NoSuchSubscriptionException;
 import com.liferay.subscription.model.Subscription;
 import com.liferay.subscription.service.SubscriptionLocalService;
@@ -40,7 +39,6 @@ import com.liferay.subscription.web.internal.constants.SubscriptionConstants;
 import com.liferay.subscription.web.internal.constants.SubscriptionPortletKeys;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -151,11 +149,8 @@ public class UnsubscribeMVCActionCommand extends BaseMVCActionCommand {
 
 		Group group = _groupLocalService.fetchGroup(subscription.getClassPK());
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.format(
-			resourceBundle, "blog-at-x", group.getDescriptiveName(locale));
+			locale, "blog-at-x", group.getDescriptiveName(locale));
 	}
 
 	private Subscription _unsubscribe(String key, long userId)

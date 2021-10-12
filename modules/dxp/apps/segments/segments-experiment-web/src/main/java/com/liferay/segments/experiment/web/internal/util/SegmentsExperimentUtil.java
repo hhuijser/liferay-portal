@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.segments.constants.SegmentsExperimentConstants;
@@ -30,7 +29,6 @@ import com.liferay.segments.model.SegmentsExperimentRel;
 
 import java.util.Locale;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * @author David Arques
@@ -84,13 +82,10 @@ public class SegmentsExperimentUtil {
 	public static JSONObject toGoalJSONObject(
 		Locale locale, UnicodeProperties typeSettingsUnicodeProperties) {
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, SegmentsExperimentUtil.class);
-
 		String goal = typeSettingsUnicodeProperties.getProperty("goal");
 
 		return JSONUtil.put(
-			"label", LanguageUtil.get(resourceBundle, goal)
+			"label", LanguageUtil.get(locale, goal)
 		).put(
 			"target", typeSettingsUnicodeProperties.getProperty("goalTarget")
 		).put(
@@ -171,11 +166,8 @@ public class SegmentsExperimentUtil {
 		SegmentsExperimentConstants.Status statusObject =
 			statusObjectOptional.get();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, SegmentsExperimentUtil.class);
-
 		return JSONUtil.put(
-			"label", LanguageUtil.get(resourceBundle, statusObject.getLabel())
+			"label", LanguageUtil.get(locale, statusObject.getLabel())
 		).put(
 			"value", statusObject.getValue()
 		);

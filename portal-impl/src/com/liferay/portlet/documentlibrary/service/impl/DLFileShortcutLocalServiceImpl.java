@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.documentlibrary.service.impl;
 
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
 import com.liferay.document.library.kernel.model.DLFileShortcut;
@@ -189,7 +190,7 @@ public class DLFileShortcutLocalServiceImpl
 
 		// Asset
 
-		assetEntryLocalService.deleteEntry(
+		_assetEntryLocalService.deleteEntry(
 			DLFileShortcutConstants.getClassName(),
 			fileShortcut.getFileShortcutId());
 
@@ -366,7 +367,7 @@ public class DLFileShortcutLocalServiceImpl
 		FileEntry fileEntry = _dlAppLocalService.getFileEntry(
 			fileShortcut.getToFileEntryId());
 
-		assetEntryLocalService.updateEntry(
+		_assetEntryLocalService.updateEntry(
 			userId, fileShortcut.getGroupId(), fileShortcut.getCreateDate(),
 			fileShortcut.getModifiedDate(),
 			DLFileShortcutConstants.getClassName(),
@@ -502,6 +503,9 @@ public class DLFileShortcutLocalServiceImpl
 				"{fileEntryId=" + toFileEntryId + "}");
 		}
 	}
+
+	@BeanReference(type = AssetEntryLocalService.class)
+	private AssetEntryLocalService _assetEntryLocalService;
 
 	@BeanReference(type = AssetTagLocalService.class)
 	private AssetTagLocalService _assetTagLocalService;

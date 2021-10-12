@@ -1312,13 +1312,12 @@ public class BundleSiteInitializer implements SiteInitializer {
 				objectEntriesJSON);
 
 			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-
 				_objectEntryLocalService.addObjectEntry(
 					serviceContext.getUserId(),
 					serviceContext.getScopeGroupId(), objectDefinition.getId(),
 					ObjectMapperUtil.readValue(
-						Serializable.class, jsonObject.toString()),
+						Serializable.class,
+						String.valueOf(jsonArray.getJSONObject(i))),
 					serviceContext);
 			}
 		}

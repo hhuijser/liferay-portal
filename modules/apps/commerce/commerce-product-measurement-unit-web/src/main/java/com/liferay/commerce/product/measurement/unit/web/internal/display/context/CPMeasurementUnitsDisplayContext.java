@@ -103,7 +103,7 @@ public class CPMeasurementUnitsDisplayContext {
 		NavigationItem unitCPMeasurementUnitsNavigationItem = getNavigationItem(
 			toolbarItem.equals("view-all-unit-product-measurement-units"),
 			viewUnitProductMeasurementUnitsURL,
-			LanguageUtil.get(resourceBundle, "unit"));
+			LanguageUtil.get(themeDisplay.getLocale(), "unit"));
 
 		NavigationItem weightCPMeasurementUnitsNavigationItem =
 			getNavigationItem(

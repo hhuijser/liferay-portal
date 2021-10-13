@@ -790,28 +790,39 @@ public class AccountEntryLocalServiceImpl
 				AccountEntryUserRelTable.INSTANCE.accountEntryId
 			).or(
 				AccountEntryTable.INSTANCE.userId.eq(userId)
-			);
+			).or(
+				() -> {
+					if (ArrayUtil.isEmpty(organizationIds)) {
+						return null;
+					}
 
-		if (ArrayUtil.isNotEmpty(organizationIds)) {
-			accountEntryPredicate = accountEntryPredicate.or(
-				AccountEntryTable.INSTANCE.accountEntryId.eq(
-					AccountEntryOrganizationRelTable.INSTANCE.accountEntryId));
-		}
+					return AccountEntryTable.INSTANCE.accountEntryId.eq(
+						AccountEntryOrganizationRelTable.INSTANCE.
+							accountEntryId);
+				}
+			);
 
 		joinStep = joinStep.leftJoinOn(
 			AccountEntryTable.INSTANCE, accountEntryPredicate);
 
 		return joinStep.where(
-			() -> {
-				Predicate predicate = UserTable.INSTANCE.userId.eq(userId);
+			() -> UserTable.INSTANCE.userId.eq(
+				userId
+			).and(
+				() -> {
+					if (parentAccountId == null) {
+						return null;
+					}
 
-				if (parentAccountId != null) {
-					predicate = predicate.and(
-						AccountEntryTable.INSTANCE.parentAccountEntryId.eq(
-							parentAccountId));
+					return AccountEntryTable.INSTANCE.parentAccountEntryId.eq(
+						parentAccountId);
 				}
+			).and(
+				() -> {
+					if (Validator.isNull(keywords)) {
+						return null;
+					}
 
-				if (Validator.isNotNull(keywords)) {
 					Predicate keywordsPredicate =
 						_customSQL.getKeywordsPredicate(
 							DSLFunctionFactoryUtil.lower(
@@ -830,24 +841,27 @@ public class AccountEntryLocalServiceImpl
 							keywords),
 						keywordsPredicate);
 
-					predicate = predicate.and(
-						Predicate.withParentheses(keywordsPredicate));
+					return Predicate.withParentheses(keywordsPredicate);
 				}
+			).and(
+				() -> {
+					if (types != null) {
+						return AccountEntryTable.INSTANCE.type.in(types);
+					}
 
-				if (types != null) {
-					predicate = predicate.and(
-						AccountEntryTable.INSTANCE.type.in(types));
+					return null;
 				}
+			).and(
+				() -> {
+					if ((status != null) &&
+						(status != WorkflowConstants.STATUS_ANY)) {
 
-				if ((status != null) &&
-					(status != WorkflowConstants.STATUS_ANY)) {
+						return AccountEntryTable.INSTANCE.status.eq(status);
+					}
 
-					predicate = predicate.and(
-						AccountEntryTable.INSTANCE.status.eq(status));
+					return null;
 				}
-
-				return predicate;
-			});
+			));
 	}
 
 	private Long[] _getOrganizationIds(long userId) {

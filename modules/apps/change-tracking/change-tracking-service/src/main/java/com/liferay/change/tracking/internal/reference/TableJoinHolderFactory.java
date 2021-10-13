@@ -181,25 +181,30 @@ public class TableJoinHolderFactory {
 				primaryKeyColumn, fromPKColumn, bridgePredicates);
 
 			for (Column<?, ?> column : childColumns) {
-				missingRequirementWherePredicate =
-					missingRequirementWherePredicate.and(column.isNotNull());
-
 				Class<?> clazz = column.getJavaType();
 
-				if (clazz == String.class) {
-					Column<?, String> stringColumn = (Column<?, String>)column;
+				missingRequirementWherePredicate =
+					missingRequirementWherePredicate.and(
+						column.isNotNull()
+					).and(
+						() -> {
+							if (clazz == String.class) {
+								Column<?, String> stringColumn =
+									(Column<?, String>)column;
 
-					missingRequirementWherePredicate =
-						missingRequirementWherePredicate.and(
-							stringColumn.neq(StringPool.BLANK));
-				}
-				else if (clazz == Long.class) {
-					Column<?, Long> longColumn = (Column<?, Long>)column;
+								return stringColumn.neq(StringPool.BLANK);
+							}
 
-					missingRequirementWherePredicate =
-						missingRequirementWherePredicate.and(
-							longColumn.neq(0L));
-				}
+							if (clazz == Long.class) {
+								Column<?, Long> longColumn =
+									(Column<?, Long>)column;
+
+								return longColumn.neq(0L);
+							}
+
+							return null;
+						}
+					);
 			}
 		}
 

@@ -560,16 +560,20 @@ public class CTConflictChecker<T extends CTModel<T>> {
 
 			Table<?> table = join.getTable();
 
-			Column<?, Long> ctCollectionIdColumn = table.getColumn(
-				"ctCollectionId", Long.class);
+			predicate = predicate.and(
+				() -> {
+					Column<?, Long> ctCollectionIdColumn = table.getColumn(
+						"ctCollectionId", Long.class);
 
-			if (ctCollectionIdColumn != null) {
-				predicate = predicate.and(
-					ctCollectionIdColumn.in(
-						new Long[] {
-							_sourceCTCollectionId, _targetCTCollectionId
-						}));
-			}
+					if (ctCollectionIdColumn != null) {
+						return ctCollectionIdColumn.in(
+							new Long[] {
+								_sourceCTCollectionId, _targetCTCollectionId
+							});
+					}
+
+					return null;
+				});
 
 			joinStep = joinStep.leftJoinOn(table, predicate);
 		}

@@ -437,13 +437,17 @@ public class CTCollectionServiceImpl extends CTCollectionServiceBaseImpl {
 		long companyId, int[] statuses, String keywords) {
 
 		Predicate predicate = CTCollectionTable.INSTANCE.companyId.eq(
-			companyId);
+			companyId
+		).and(
+			() -> {
+				if (!ArrayUtil.isEmpty(statuses)) {
+					return CTCollectionTable.INSTANCE.status.in(
+						ArrayUtil.toArray(statuses));
+				}
 
-		if (!ArrayUtil.isEmpty(statuses)) {
-			predicate = predicate.and(
-				CTCollectionTable.INSTANCE.status.in(
-					ArrayUtil.toArray(statuses)));
-		}
+				return null;
+			}
+		);
 
 		String[] keywordsArray = _customSQL.keywords(
 			keywords, true, WildcardMode.SURROUND);

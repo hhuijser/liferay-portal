@@ -125,17 +125,25 @@ public class CTProcessServiceImpl extends CTProcessServiceBaseImpl {
 	private Predicate _getPredicate(
 		long companyId, String keywords, int status, long userId) {
 
-		Predicate predicate = CTProcessTable.INSTANCE.companyId.eq(companyId);
+		Predicate predicate = CTProcessTable.INSTANCE.companyId.eq(
+			companyId
+		).and(
+			() -> {
+				if (userId > 0) {
+					return CTProcessTable.INSTANCE.userId.eq(userId);
+				}
 
-		if (userId > 0) {
-			predicate = predicate.and(
-				CTProcessTable.INSTANCE.userId.eq(userId));
-		}
+				return null;
+			}
+		).and(
+			() -> {
+				if (status != WorkflowConstants.STATUS_ANY) {
+					return BackgroundTaskTable.INSTANCE.status.eq(status);
+				}
 
-		if (status != WorkflowConstants.STATUS_ANY) {
-			predicate = predicate.and(
-				BackgroundTaskTable.INSTANCE.status.eq(status));
-		}
+				return null;
+			}
+		);
 
 		Predicate keywordsPredicate = null;
 

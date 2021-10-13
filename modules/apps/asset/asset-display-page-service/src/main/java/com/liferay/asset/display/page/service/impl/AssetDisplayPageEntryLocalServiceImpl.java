@@ -344,45 +344,47 @@ public class AssetDisplayPageEntryLocalServiceImpl
 		long classNameId, long classTypeId, long layoutPageTemplateEntryId,
 		boolean defaultTemplate) {
 
-		Predicate predicate =
-			AssetDisplayPageEntryTable.INSTANCE.classNameId.eq(classNameId);
+		return AssetDisplayPageEntryTable.INSTANCE.classNameId.eq(
+			classNameId
+		).and(
+			() -> {
+				if (classNameId == _portal.getClassNameId(
+						FileEntry.class.getName())) {
 
-		if (classNameId == _portal.getClassNameId(FileEntry.class.getName())) {
-			predicate = predicate.and(
-				AssetEntryTable.INSTANCE.classNameId.eq(
-					_portal.getClassNameId(
-						"com.liferay.document.library.kernel.model." +
-							"DLFileEntry")));
-		}
-		else {
-			predicate = predicate.and(
-				AssetEntryTable.INSTANCE.classNameId.eq(classNameId));
-		}
+					return AssetEntryTable.INSTANCE.classNameId.eq(
+						_portal.getClassNameId(
+							"com.liferay.document.library.kernel.model." +
+								"DLFileEntry"));
+				}
 
-		Predicate layoutPageTemplateTypePredicate =
+				return AssetEntryTable.INSTANCE.classNameId.eq(classNameId);
+			}
+		).and(
 			AssetDisplayPageEntryTable.INSTANCE.layoutPageTemplateEntryId.eq(
 				layoutPageTemplateEntryId
 			).and(
 				AssetDisplayPageEntryTable.INSTANCE.type.eq(
 					AssetDisplayPageConstants.TYPE_SPECIFIC)
-			).withParentheses();
+			).withParentheses(
+			).or(
+				() -> {
+					if (defaultTemplate) {
+						return AssetDisplayPageEntryTable.INSTANCE.type.eq(
+							AssetDisplayPageConstants.TYPE_DEFAULT);
+					}
 
-		if (defaultTemplate) {
-			layoutPageTemplateTypePredicate =
-				layoutPageTemplateTypePredicate.or(
-					AssetDisplayPageEntryTable.INSTANCE.type.eq(
-						AssetDisplayPageConstants.TYPE_DEFAULT));
-		}
+					return null;
+				}
+			).withParentheses()
+		).and(
+			() -> {
+				if (classTypeId > 0) {
+					return AssetEntryTable.INSTANCE.classTypeId.eq(classTypeId);
+				}
 
-		predicate = predicate.and(
-			layoutPageTemplateTypePredicate.withParentheses());
-
-		if (classTypeId > 0) {
-			predicate = predicate.and(
-				AssetEntryTable.INSTANCE.classTypeId.eq(classTypeId));
-		}
-
-		return predicate;
+				return null;
+			}
+		);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

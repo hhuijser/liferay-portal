@@ -118,13 +118,16 @@ public class GetCTCommentsMVCResourceCommand extends BaseMVCResourceCommand {
 				));
 		}
 
-		JSONObject ctCommentsJSONObject = JSONUtil.put(
-			"comments", commentsJSONArray);
+		return JSONUtil.put(
+			"comments", commentsJSONArray
+		).put(
+			"userInfo",
+			() -> {
+				if (ctComments.isEmpty()) {
+					return null;
+				}
 
-		if (!ctComments.isEmpty()) {
-			ctCommentsJSONObject.put(
-				"userInfo",
-				DisplayContextUtil.getUserInfoJSONObject(
+				return DisplayContextUtil.getUserInfoJSONObject(
 					CTCommentTable.INSTANCE.userId.eq(
 						UserTable.INSTANCE.userId),
 					CTCommentTable.INSTANCE, themeDisplay, userLocalService,
@@ -132,10 +135,9 @@ public class GetCTCommentsMVCResourceCommand extends BaseMVCResourceCommand {
 						ctCollectionId
 					).and(
 						CTCommentTable.INSTANCE.ctEntryId.eq(ctEntryId)
-					)));
-		}
-
-		return ctCommentsJSONObject;
+					));
+			}
+		);
 	}
 
 	@Reference

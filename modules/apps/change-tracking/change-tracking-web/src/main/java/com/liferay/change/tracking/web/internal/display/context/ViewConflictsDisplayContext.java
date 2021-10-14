@@ -184,12 +184,14 @@ public class ViewConflictsDisplayContext {
 		).put(
 			"conflictResolution",
 			conflictInfo.getResolutionDescription(resourceBundle)
-		);
+		).put(
+			"dismissURL",
+			() -> {
+				if (!conflictInfo.isResolved()) {
+					return null;
+				}
 
-		if (conflictInfo.isResolved()) {
-			jsonObject.put(
-				"dismissURL",
-				PortletURLBuilder.createActionURL(
+				return PortletURLBuilder.createActionURL(
 					_renderResponse
 				).setActionName(
 					"/change_tracking/delete_ct_auto_resolution_info"
@@ -198,8 +200,9 @@ public class ViewConflictsDisplayContext {
 				).setParameter(
 					"ctAutoResolutionInfoId",
 					conflictInfo.getCTAutoResolutionInfoId()
-				).buildString());
-		}
+				).buildString();
+			}
+		);
 
 		ResourceURL dataURL = _renderResponse.createResourceURL();
 

@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONSerializable;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -472,30 +473,33 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		String responseContent = StringPool.BLANK;
 
 		if (isRespondingTo("json")) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+			responseContent = JSONUtil.put(
+				"data",
+				() -> {
+					if (data instanceof Exception) {
+						return getStackTrace((Exception)data);
+					}
 
-			if (data instanceof Exception) {
-				jsonObject.put("data", getStackTrace((Exception)data));
-			}
-			else if (data instanceof JSONArray) {
-				jsonObject.put("data", (JSONArray)data);
-			}
-			else if (data instanceof JSONObject) {
-				jsonObject.put("data", (JSONObject)data);
-			}
-			else if (data != null) {
-				jsonObject.put(
-					"data",
-					JSONFactoryUtil.createJSONObject(String.valueOf(data)));
-			}
+					if (data instanceof JSONArray) {
+						return (JSONArray)data;
+					}
 
-			jsonObject.put(
+					if (data instanceof JSONObject) {
+						return (JSONObject)data;
+					}
+
+					if (data != null) {
+						return JSONFactoryUtil.createJSONObject(
+							String.valueOf(data));
+					}
+
+					return null;
+				}
+			).put(
 				"message", message
 			).put(
 				"status", status
-			);
-
-			responseContent = jsonObject.toString();
+			).toString();
 		}
 
 		return responseContent;
@@ -1529,30 +1533,37 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		Map<String, Object> modelAttributes = baseModel.getModelAttributes();
 
 		for (Map.Entry<String, Object> entry : modelAttributes.entrySet()) {
-			String key = entry.getKey();
-			Object value = entry.getValue();
+			jsonObject.put(
+				String.valueOf(entry.getKey()),
+				() -> {
+					Object value = entry.getValue();
 
-			if (value instanceof Boolean) {
-				jsonObject.put(String.valueOf(key), (Boolean)value);
-			}
-			else if (value instanceof Date) {
-				jsonObject.put(String.valueOf(key), (Date)value);
-			}
-			else if (value instanceof Double) {
-				jsonObject.put(String.valueOf(key), (Double)value);
-			}
-			else if (value instanceof Integer) {
-				jsonObject.put(String.valueOf(key), (Integer)value);
-			}
-			else if (value instanceof Long) {
-				jsonObject.put(String.valueOf(key), (Long)value);
-			}
-			else if (value instanceof Short) {
-				jsonObject.put(String.valueOf(key), (Short)value);
-			}
-			else {
-				jsonObject.put(String.valueOf(key), String.valueOf(value));
-			}
+					if (value instanceof Boolean) {
+						return (Boolean)value;
+					}
+
+					if (value instanceof Date) {
+						return (Date)value;
+					}
+
+					if (value instanceof Double) {
+						return (Double)value;
+					}
+
+					if (value instanceof Integer) {
+						return (Integer)value;
+					}
+
+					if (value instanceof Long) {
+						return (Long)value;
+					}
+
+					if (value instanceof Short) {
+						return (Short)value;
+					}
+
+					return String.valueOf(value);
+				});
 		}
 
 		return jsonObject;

@@ -88,15 +88,21 @@ public class BlogsReadingTimeEditorConfigContributor
 			requestBackedPortletURLFactory);
 
 		JSONObject readingTimeJSONObject = jsonObject.getJSONObject(
-			"readingTime");
+			"readingTime"
+		).put(
+			"elementId",
+			() -> {
+				if (readingTimeJSONObject != null) {
+					String namespace = GetterUtil.getString(
+						inputEditorTaglibAttributes.get(
+							"liferay-ui:input-editor:namespace"));
 
-		if (readingTimeJSONObject != null) {
-			String namespace = GetterUtil.getString(
-				inputEditorTaglibAttributes.get(
-					"liferay-ui:input-editor:namespace"));
+					return namespace + "readingTime";
+				}
 
-			readingTimeJSONObject.put("elementId", namespace + "readingTime");
-		}
+				return null;
+			}
+		);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

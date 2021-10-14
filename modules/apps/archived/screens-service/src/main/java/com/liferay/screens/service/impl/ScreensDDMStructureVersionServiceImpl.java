@@ -46,17 +46,16 @@ public class ScreensDDMStructureVersionServiceImpl
 		DDMStructureVersion ddmStructureVersion =
 			_ddmStructureVersionService.getLatestStructureVersion(structureId);
 
-		JSONObject ddmFormLayoutJSONObject = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerializeDeep(
-				ddmStructureVersion.getDDMFormLayout()));
-
-		JSONObject ddmStructureJSONObject = JSONFactoryUtil.createJSONObject(
-			JSONFactoryUtil.looseSerialize(ddmStructureVersion.getStructure()));
-
 		return JSONUtil.put(
-			"ddmFormLayout", ddmFormLayoutJSONObject
+			"ddmFormLayout",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerializeDeep(
+					ddmStructureVersion.getDDMFormLayout()))
 		).put(
-			"ddmStructure", ddmStructureJSONObject
+			"ddmStructure",
+			JSONFactoryUtil.createJSONObject(
+				JSONFactoryUtil.looseSerialize(
+					ddmStructureVersion.getStructure()))
 		);
 	}
 

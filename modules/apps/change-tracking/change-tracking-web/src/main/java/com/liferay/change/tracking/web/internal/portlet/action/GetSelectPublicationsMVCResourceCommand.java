@@ -137,22 +137,26 @@ public class GetSelectPublicationsMVCResourceCommand
 			entriesJSONArray.put(entryJSONObject);
 		}
 
-		JSONObject responseJSONObject = JSONUtil.put(
-			"entries", entriesJSONArray);
-
-		if (!ctCollectionIds.isEmpty()) {
-			responseJSONObject.put(
-				"userInfo",
-				DisplayContextUtil.getUserInfoJSONObject(
-					CTCollectionTable.INSTANCE.userId.eq(
-						UserTable.INSTANCE.userId),
-					CTCollectionTable.INSTANCE, themeDisplay, _userLocalService,
-					CTCollectionTable.INSTANCE.ctCollectionId.in(
-						ctCollectionIds.toArray(new Long[0]))));
-		}
-
 		JSONPortletResponseUtil.writeJSON(
-			resourceRequest, resourceResponse, responseJSONObject);
+			resourceRequest, resourceResponse,
+			JSONUtil.put(
+				"entries", entriesJSONArray
+			).put(
+				"userInfo",
+				() -> {
+					if (ctCollectionIds.isEmpty()) {
+						return null;
+					}
+
+					return DisplayContextUtil.getUserInfoJSONObject(
+						CTCollectionTable.INSTANCE.userId.eq(
+							UserTable.INSTANCE.userId),
+						CTCollectionTable.INSTANCE, themeDisplay,
+						_userLocalService,
+						CTCollectionTable.INSTANCE.ctCollectionId.in(
+							ctCollectionIds.toArray(new Long[0])));
+				}
+			));
 	}
 
 	@Reference

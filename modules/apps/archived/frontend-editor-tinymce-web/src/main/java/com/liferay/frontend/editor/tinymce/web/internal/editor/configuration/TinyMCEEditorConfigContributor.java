@@ -72,20 +72,22 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getPluginsJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			"advlist autolink autosave link image lists charmap print " +
 				"preview hr anchor",
-			"searchreplace wordcount fullscreen media");
+			"searchreplace wordcount fullscreen media"
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return "code";
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put("code");
-		}
-
-		jsonArray.put(
+				return null;
+			}
+		).put(
 			"table contextmenu emoticons textcolor paste fullpage textcolor " +
-				"colorpicker textpattern");
-
-		return jsonArray;
+				"colorpicker textpattern"
+		);
 	}
 
 	protected JSONObject getStyleFormatJSONObject(

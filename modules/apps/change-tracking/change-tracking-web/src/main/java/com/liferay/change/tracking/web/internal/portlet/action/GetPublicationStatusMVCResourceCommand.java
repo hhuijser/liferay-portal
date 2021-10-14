@@ -90,14 +90,18 @@ public class GetPublicationStatusMVCResourceCommand
 		if (backgroundTask.getStatus() ==
 				BackgroundTaskConstants.STATUS_IN_PROGRESS) {
 
-			BackgroundTaskDisplay backgroundTaskDisplay =
-				_backgroundTaskDisplayFactory.getBackgroundTaskDisplay(
-					backgroundTask.getBackgroundTaskId());
-
 			JSONPortletResponseUtil.writeJSON(
 				resourceRequest, resourceResponse,
 				JSONUtil.put(
-					"percentage", backgroundTaskDisplay.getPercentage()));
+					"percentage",
+					() -> {
+						BackgroundTaskDisplay backgroundTaskDisplay =
+							_backgroundTaskDisplayFactory.
+								getBackgroundTaskDisplay(
+									backgroundTask.getBackgroundTaskId());
+
+						return backgroundTaskDisplay.getPercentage();
+					}));
 
 			return;
 		}

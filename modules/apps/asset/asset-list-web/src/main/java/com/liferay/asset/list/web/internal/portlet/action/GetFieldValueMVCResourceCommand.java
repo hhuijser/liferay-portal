@@ -106,33 +106,41 @@ public class GetFieldValueMVCResourceCommand extends BaseMVCResourceCommand {
 			}
 
 			jsonObject.put(
-				"displayValue", _getDisplayFieldValue(field, themeDisplay));
+				"displayValue", _getDisplayFieldValue(field, themeDisplay)
+			).put(
+				"value",
+				() -> {
+					if (fieldValue instanceof Boolean) {
+						return (Boolean)fieldValue;
+					}
 
-			if (fieldValue instanceof Boolean) {
-				jsonObject.put("value", (Boolean)fieldValue);
-			}
-			else if (fieldValue instanceof Date) {
-				DateFormat dateFormat =
-					DateFormatFactoryUtil.getSimpleDateFormat(
-						"yyyyMM ddHHmmss");
+					if (fieldValue instanceof Date) {
+						DateFormat dateFormat =
+							DateFormatFactoryUtil.getSimpleDateFormat(
+								"yyyyMM ddHHmmss");
 
-				jsonObject.put("value", dateFormat.format(fieldValue));
-			}
-			else if (fieldValue instanceof Double) {
-				jsonObject.put("value", (Double)fieldValue);
-			}
-			else if (fieldValue instanceof Float) {
-				jsonObject.put("value", (Float)fieldValue);
-			}
-			else if (fieldValue instanceof Integer) {
-				jsonObject.put("value", (Integer)fieldValue);
-			}
-			else if (fieldValue instanceof Number) {
-				jsonObject.put("value", String.valueOf(fieldValue));
-			}
-			else {
-				jsonObject.put("value", (String)fieldValue);
-			}
+						return dateFormat.format(fieldValue);
+					}
+
+					if (fieldValue instanceof Double) {
+						return (Double)fieldValue;
+					}
+
+					if (fieldValue instanceof Float) {
+						return (Float)fieldValue;
+					}
+
+					if (fieldValue instanceof Integer) {
+						return (Integer)fieldValue;
+					}
+
+					if (fieldValue instanceof Number) {
+						return String.valueOf(fieldValue);
+					}
+
+					return (String)fieldValue;
+				}
+			);
 
 			JSONPortletResponseUtil.writeJSON(
 				resourceRequest, resourceResponse, jsonObject);

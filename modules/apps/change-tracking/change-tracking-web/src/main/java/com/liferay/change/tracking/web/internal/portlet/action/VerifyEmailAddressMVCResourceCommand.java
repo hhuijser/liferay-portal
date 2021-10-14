@@ -118,9 +118,6 @@ public class VerifyEmailAddressMVCResourceCommand
 			return;
 		}
 
-		PermissionChecker permissionChecker =
-			PermissionCheckerFactoryUtil.create(user);
-
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse,
 			JSONUtil.put(
@@ -131,15 +128,21 @@ public class VerifyEmailAddressMVCResourceCommand
 					"fullName", user.getFullName()
 				).put(
 					"hasPublicationsAccess",
-					_portletPermission.contains(
-						permissionChecker, PortletKeys.PORTAL,
-						ActionKeys.VIEW_CONTROL_PANEL) &&
-					_portletPermission.contains(
-						permissionChecker, CTPortletKeys.PUBLICATIONS,
-						ActionKeys.ACCESS_IN_CONTROL_PANEL) &&
-					_portletPermission.contains(
-						permissionChecker, CTPortletKeys.PUBLICATIONS,
-						ActionKeys.VIEW)
+					() -> {
+						PermissionChecker permissionChecker =
+							PermissionCheckerFactoryUtil.create(user);
+
+						return _portletPermission.contains(
+							permissionChecker, PortletKeys.PORTAL,
+							ActionKeys.VIEW_CONTROL_PANEL) &&
+							   _portletPermission.contains(
+								   permissionChecker,
+								   CTPortletKeys.PUBLICATIONS,
+								   ActionKeys.ACCESS_IN_CONTROL_PANEL) &&
+							   _portletPermission.contains(
+								   permissionChecker,
+								   CTPortletKeys.PUBLICATIONS, ActionKeys.VIEW);
+					}
 				).put(
 					"userId", user.getUserId()
 				)));

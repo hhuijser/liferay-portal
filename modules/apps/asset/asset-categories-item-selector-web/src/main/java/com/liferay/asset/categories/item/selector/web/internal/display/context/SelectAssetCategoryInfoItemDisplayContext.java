@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -165,31 +164,34 @@ public class SelectAssetCategoryInfoItemDisplayContext {
 				null);
 
 		for (AssetCategory category : categories) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+			jsonArray.put(
+				JSONUtil.put(
+					"children",
+					() -> {
+						JSONArray childrenJSONArray = _getCategoriesJSONArray(
+							vocabularyId, category.getCategoryId());
 
-			JSONArray childrenJSONArray = _getCategoriesJSONArray(
-				vocabularyId, category.getCategoryId());
+						if (childrenJSONArray.length() > 0) {
+							return childrenJSONArray;
+						}
 
-			if (childrenJSONArray.length() > 0) {
-				jsonObject.put("children", childrenJSONArray);
-			}
-
-			jsonObject.put(
-				"className", AssetCategory.class.getName()
-			).put(
-				"classNameId",
-				PortalUtil.getClassNameId(AssetCategory.class.getName())
-			).put(
-				"icon", "categories"
-			).put(
-				"id", category.getCategoryId()
-			).put(
-				"name", category.getTitle(_themeDisplay.getLocale())
-			).put(
-				"nodePath", category.getPath(_themeDisplay.getLocale(), true)
-			);
-
-			jsonArray.put(jsonObject);
+						return null;
+					}
+				).put(
+					"className", AssetCategory.class.getName()
+				).put(
+					"classNameId",
+					PortalUtil.getClassNameId(AssetCategory.class.getName())
+				).put(
+					"icon", "categories"
+				).put(
+					"id", category.getCategoryId()
+				).put(
+					"name", category.getTitle(_themeDisplay.getLocale())
+				).put(
+					"nodePath",
+					category.getPath(_themeDisplay.getLocale(), true)
+				));
 		}
 
 		return jsonArray;

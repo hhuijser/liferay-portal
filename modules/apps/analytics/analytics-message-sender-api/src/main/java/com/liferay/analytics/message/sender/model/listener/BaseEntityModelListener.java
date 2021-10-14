@@ -456,29 +456,30 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 				continue;
 			}
 			else if (includeAttributeName.equals("expando")) {
-				if (StringUtil.equals(
-						baseModel.getModelClassName(), User.class.getName())) {
+				jsonObject.put(
+					"expando",
+					() -> {
+						if (StringUtil.equals(
+								baseModel.getModelClassName(),
+								User.class.getName())) {
 
-					ShardedModel shardedModel = (ShardedModel)baseModel;
+							ShardedModel shardedModel = (ShardedModel)baseModel;
 
-					AnalyticsConfiguration analyticsConfiguration =
-						analyticsConfigurationTracker.getAnalyticsConfiguration(
-							shardedModel.getCompanyId());
+							AnalyticsConfiguration analyticsConfiguration =
+								analyticsConfigurationTracker.
+									getAnalyticsConfiguration(
+										shardedModel.getCompanyId());
 
-					jsonObject.put(
-						"expando",
-						AnalyticsExpandoBridgeUtil.getAttributes(
-							baseModel.getExpandoBridge(),
-							ListUtil.fromArray(
-								analyticsConfiguration.
-									syncedUserFieldNames())));
-				}
-				else {
-					jsonObject.put(
-						"expando",
-						AnalyticsExpandoBridgeUtil.getAttributes(
-							baseModel.getExpandoBridge(), null));
-				}
+							return AnalyticsExpandoBridgeUtil.getAttributes(
+								baseModel.getExpandoBridge(),
+								ListUtil.fromArray(
+									analyticsConfiguration.
+										syncedUserFieldNames()));
+						}
+
+						return AnalyticsExpandoBridgeUtil.getAttributes(
+							baseModel.getExpandoBridge(), null);
+					});
 
 				continue;
 			}
@@ -492,13 +493,19 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 				String[] ids = StringUtil.split(
 					treePath.substring(1), StringPool.SLASH);
 
-				jsonObject.put("nameTreePath", _buildNameTreePath(ids));
+				jsonObject.put(
+					"nameTreePath", _buildNameTreePath(ids)
+				).put(
+					"parentName",
+					() -> {
+						if (ids.length > 1) {
+							return _getName(
+								GetterUtil.getLong(ids[ids.length - 2]));
+						}
 
-				if (ids.length > 1) {
-					jsonObject.put(
-						"parentName",
-						_getName(GetterUtil.getLong(ids[ids.length - 2])));
-				}
+						return null;
+					}
+				);
 
 				continue;
 			}
@@ -519,11 +526,15 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 			}
 		}
 
-		if (modelAttributes.containsKey(getPrimaryKeyName())) {
-			jsonObject.put(getPrimaryKeyName(), baseModel.getPrimaryKeyObj());
-		}
+		return jsonObject.put(
+			getPrimaryKeyName(),
+			() -> {
+				if (modelAttributes.containsKey(getPrimaryKeyName())) {
+					return baseModel.getPrimaryKeyObj();
+				}
 
-		return jsonObject;
+				return null;
+			});
 	}
 
 	protected void updateConfigurationProperties(

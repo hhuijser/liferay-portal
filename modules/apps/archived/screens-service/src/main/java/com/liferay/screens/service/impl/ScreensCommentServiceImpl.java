@@ -217,20 +217,27 @@ public class ScreensCommentServiceImpl extends ScreensCommentServiceBaseImpl {
 			Comment comment, DiscussionPermission discussionPermission)
 		throws PortalException {
 
-		Date createDate = comment.getCreateDate();
-		Date modifiedDate = comment.getModifiedDate();
-
 		return JSONUtil.put(
 			"body", comment.getBody()
 		).put(
 			"commentId", Long.valueOf(comment.getCommentId())
 		).put(
-			"createDate", Long.valueOf(createDate.getTime())
+			"createDate",
+			() -> {
+				Date createDate = comment.getCreateDate();
+
+				return Long.valueOf(createDate.getTime());
+			}
 		).put(
 			"deletePermission",
 			discussionPermission.hasDeletePermission(comment.getCommentId())
 		).put(
-			"modifiedDate", Long.valueOf(modifiedDate.getTime())
+			"modifiedDate",
+			() -> {
+				Date modifiedDate = comment.getModifiedDate();
+
+				return Long.valueOf(modifiedDate.getTime());
+			}
 		).put(
 			"updatePermission",
 			discussionPermission.hasUpdatePermission(comment.getCommentId())

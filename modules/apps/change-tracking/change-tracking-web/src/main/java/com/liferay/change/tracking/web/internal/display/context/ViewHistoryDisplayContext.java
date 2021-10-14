@@ -167,10 +167,6 @@ public class ViewHistoryDisplayContext extends BasePublicationsDisplayContext {
 
 			Date publishedDate = ctProcess.getCreateDate();
 
-			String timeDescription = _language.getTimeDescription(
-				_themeDisplay.getLocale(),
-				System.currentTimeMillis() - publishedDate.getTime(), true);
-
 			ResourceURL statusURL = _renderResponse.createResourceURL();
 
 			statusURL.setResourceID("/change_tracking/get_publication_status");
@@ -215,9 +211,17 @@ public class ViewHistoryDisplayContext extends BasePublicationsDisplayContext {
 					"statusURL", statusURL.toString()
 				).put(
 					"timeDescription",
-					_language.format(
-						_themeDisplay.getLocale(), "x-ago",
-						new String[] {timeDescription}, false)
+					() -> {
+						String timeDescription = _language.getTimeDescription(
+							_themeDisplay.getLocale(),
+							System.currentTimeMillis() -
+								publishedDate.getTime(),
+							true);
+
+						return _language.format(
+							_themeDisplay.getLocale(), "x-ago",
+							new String[] {timeDescription}, false);
+					}
 				).put(
 					"userId", ctProcess.getUserId()
 				).put(

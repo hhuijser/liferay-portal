@@ -1624,25 +1624,28 @@ public class CalendarPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		long calendarId = ParamUtil.getLong(resourceRequest, "calendarId");
+		writeJSON(
+			resourceRequest, resourceResponse,
+			JSONUtil.put(
+				"hasExclusiveCalendarBooking",
+				() -> {
+					long calendarId = ParamUtil.getLong(
+						resourceRequest, "calendarId");
 
-		Calendar calendar = _calendarService.getCalendar(calendarId);
+					Calendar calendar = _calendarService.getCalendar(
+						calendarId);
 
-		java.util.Calendar endTimeJCalendar = getJCalendar(
-			resourceRequest, "endTime");
+					java.util.Calendar endTimeJCalendar = getJCalendar(
+						resourceRequest, "endTime");
 
-		java.util.Calendar startTimeJCalendar = getJCalendar(
-			resourceRequest, "startTime");
+					java.util.Calendar startTimeJCalendar = getJCalendar(
+						resourceRequest, "startTime");
 
-		boolean result =
-			_calendarBookingLocalService.hasExclusiveCalendarBooking(
-				calendar, startTimeJCalendar.getTimeInMillis(),
-				endTimeJCalendar.getTimeInMillis());
-
-		JSONObject jsonObject = JSONUtil.put(
-			"hasExclusiveCalendarBooking", result);
-
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
+					return _calendarBookingLocalService.
+						hasExclusiveCalendarBooking(
+							calendar, startTimeJCalendar.getTimeInMillis(),
+							endTimeJCalendar.getTimeInMillis());
+				}));
 	}
 
 	protected void serveResourceCalendars(

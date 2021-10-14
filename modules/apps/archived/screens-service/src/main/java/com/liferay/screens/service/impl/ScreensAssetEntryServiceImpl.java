@@ -266,13 +266,11 @@ public class ScreensAssetEntryServiceImpl
 	protected JSONObject getBlogsEntryJSONObject(AssetEntry assetEntry)
 		throws PortalException {
 
-		BlogsEntry blogsEntry = _blogsEntryService.getEntry(
-			assetEntry.getClassPK());
-
 		return JSONUtil.put(
 			"blogsEntry",
 			JSONFactoryUtil.createJSONObject(
-				JSONFactoryUtil.looseSerialize(blogsEntry)));
+				JSONFactoryUtil.looseSerialize(
+					_blogsEntryService.getEntry(assetEntry.getClassPK()))));
 	}
 
 	protected JSONObject getFileEntryJSONObject(AssetEntry assetEntry)

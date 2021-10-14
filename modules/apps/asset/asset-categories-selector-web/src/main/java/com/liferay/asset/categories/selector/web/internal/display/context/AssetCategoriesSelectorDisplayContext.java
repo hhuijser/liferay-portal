@@ -318,32 +318,39 @@ public class AssetCategoriesSelectorDisplayContext {
 				null);
 
 		for (AssetCategory category : categories) {
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+			jsonArray.put(
+				JSONUtil.put(
+					"children",
+					() -> {
+						JSONArray childrenJSONArray = _getCategoriesJSONArray(
+							vocabularyId, category.getCategoryId());
 
-			JSONArray childrenJSONArray = _getCategoriesJSONArray(
-				vocabularyId, category.getCategoryId());
+						if (childrenJSONArray.length() > 0) {
+							return childrenJSONArray;
+						}
 
-			if (childrenJSONArray.length() > 0) {
-				jsonObject.put("children", childrenJSONArray);
-			}
+						return null;
+					}
+				).put(
+					"icon", "categories"
+				).put(
+					"id", category.getCategoryId()
+				).put(
+					"name", category.getTitle(themeDisplay.getLocale())
+				).put(
+					"nodePath", category.getPath(themeDisplay.getLocale(), true)
+				).put(
+					"selected",
+					() -> {
+						if (getSelectedCategoryIds().contains(
+								String.valueOf(category.getCategoryId()))) {
 
-			jsonObject.put(
-				"icon", "categories"
-			).put(
-				"id", category.getCategoryId()
-			).put(
-				"name", category.getTitle(themeDisplay.getLocale())
-			).put(
-				"nodePath", category.getPath(themeDisplay.getLocale(), true)
-			);
+							return true;
+						}
 
-			if (getSelectedCategoryIds().contains(
-					String.valueOf(category.getCategoryId()))) {
-
-				jsonObject.put("selected", true);
-			}
-
-			jsonArray.put(jsonObject);
+						return null;
+					}
+				));
 		}
 
 		return jsonArray;

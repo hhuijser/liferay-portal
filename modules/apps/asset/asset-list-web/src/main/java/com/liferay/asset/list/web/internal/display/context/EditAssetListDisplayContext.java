@@ -241,18 +241,16 @@ public class EditAssetListDisplayContext {
 		JSONArray rulesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (int queryLogicIndex : queryLogicIndexes) {
-			boolean queryAndOperator = PropertiesParamUtil.getBoolean(
-				_unicodeProperties, _httpServletRequest,
-				"queryAndOperator" + queryLogicIndex);
-
-			boolean queryContains = PropertiesParamUtil.getBoolean(
-				_unicodeProperties, _httpServletRequest,
-				"queryContains" + queryLogicIndex, true);
-
 			JSONObject ruleJSONObject = JSONUtil.put(
-				"queryAndOperator", queryAndOperator
+				"queryAndOperator",
+				PropertiesParamUtil.getBoolean(
+					_unicodeProperties, _httpServletRequest,
+					"queryAndOperator" + queryLogicIndex)
 			).put(
-				"queryContains", queryContains
+				"queryContains",
+				PropertiesParamUtil.getBoolean(
+					_unicodeProperties, _httpServletRequest,
+					"queryContains" + queryLogicIndex, true)
 			);
 
 			String queryValues = _unicodeProperties.getProperty(

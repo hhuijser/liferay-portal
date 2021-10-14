@@ -123,21 +123,15 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		JSONArray buddiesJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (Object[] buddy : buddies) {
-			String firstName = (String)buddy[1];
-			long groupId = (Long)buddy[2];
-			String lastName = (String)buddy[3];
-			boolean male = (Boolean)buddy[4];
-			String middleName = (String)buddy[5];
-			long portraitId = (Long)buddy[6];
-			String screenName = (String)buddy[7];
 			long userId = (Long)buddy[8];
-			String userUuid = (String)buddy[9];
 
 			Status buddyStatus = StatusLocalServiceUtil.getUserStatus(userId);
 
 			boolean awake = buddyStatus.isAwake();
 
 			String displayURL = StringPool.BLANK;
+
+			long groupId = (Long)buddy[2];
 
 			try {
 				LayoutSet layoutSet = _layoutSetLocalService.getLayoutSet(
@@ -160,6 +154,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 				}
 			}
 
+			long portraitId = (Long)buddy[6];
+
 			buddiesJSONArray.put(
 				JSONUtil.put(
 					"awake", awake
@@ -167,18 +163,29 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 					"displayURL", displayURL
 				).put(
 					"fullName",
-					ContactConstants.getFullName(
-						firstName, middleName, lastName)
+					() -> {
+						String firstName = (String)buddy[1];
+						String lastName = (String)buddy[3];
+						String middleName = (String)buddy[5];
+
+						return ContactConstants.getFullName(
+							firstName, middleName, lastName);
+					}
 				).put(
 					"groupId", groupId
 				).put(
 					"portraitId", portraitId
 				).put(
 					"portraitURL",
-					UserConstants.getPortraitURL(
-						StringPool.BLANK, male, portraitId, userUuid)
+					() -> {
+						boolean male = (Boolean)buddy[4];
+						String userUuid = (String)buddy[9];
+
+						return UserConstants.getPortraitURL(
+							StringPool.BLANK, male, portraitId, userUuid);
+					}
 				).put(
-					"screenName", screenName
+					"screenName", (String)buddy[7]
 				).put(
 					"statusMessage", buddyStatus.getMessage()
 				).put(

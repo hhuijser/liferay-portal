@@ -103,10 +103,8 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testDeserializeWithEmptyAttributes() throws Exception {
-		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
-
 		JSONObject jsonObject = JSONUtil.put(
-			"attributes", attributesJSONObject
+			"attributes", JSONFactoryUtil.createJSONObject()
 		).put(
 			"uri", "http://localhost"
 		);

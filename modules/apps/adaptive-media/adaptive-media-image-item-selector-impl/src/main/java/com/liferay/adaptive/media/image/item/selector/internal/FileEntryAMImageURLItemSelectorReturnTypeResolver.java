@@ -97,15 +97,19 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 	}
 
 	private JSONObject _getSourceJSONObject(MediaQuery mediaQuery) {
-		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
-
-		for (Condition condition : mediaQuery.getConditions()) {
-			attributesJSONObject.put(
-				condition.getAttribute(), condition.getValue());
-		}
-
 		return JSONUtil.put(
-			"attributes", attributesJSONObject
+			"attributes",
+			() -> {
+				JSONObject attributesJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				for (Condition condition : mediaQuery.getConditions()) {
+					attributesJSONObject.put(
+						condition.getAttribute(), condition.getValue());
+				}
+
+				return attributesJSONObject;
+			}
 		).put(
 			"src", mediaQuery.getSrc()
 		);

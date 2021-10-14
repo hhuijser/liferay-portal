@@ -300,25 +300,24 @@ public class COREntryRelLocalServiceImpl
 		);
 
 		return joinStep.where(
-			() -> {
-				Predicate predicate = COREntryRelTable.INSTANCE.COREntryId.eq(
-					corEntryId
-				).and(
-					COREntryRelTable.INSTANCE.classNameId.eq(
-						classNameLocalService.getClassNameId(className))
-				);
-
-				if (Validator.isNotNull(keywords)) {
-					predicate = predicate.and(
-						Predicate.withParentheses(
+			() -> COREntryRelTable.INSTANCE.COREntryId.eq(
+				corEntryId
+			).and(
+				COREntryRelTable.INSTANCE.classNameId.eq(
+					classNameLocalService.getClassNameId(className))
+			).and(
+				() -> {
+					if (Validator.isNotNull(keywords)) {
+						return Predicate.withParentheses(
 							_customSQL.getKeywordsPredicate(
 								DSLFunctionFactoryUtil.lower(
 									keywordsPredicateExpression),
-								_customSQL.keywords(keywords, true))));
-				}
+								_customSQL.keywords(keywords, true)));
+					}
 
-				return predicate;
-			});
+					return null;
+				}
+			));
 	}
 
 	@Reference

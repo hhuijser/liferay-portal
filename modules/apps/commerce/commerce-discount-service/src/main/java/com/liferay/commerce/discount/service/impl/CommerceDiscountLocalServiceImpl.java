@@ -1699,12 +1699,18 @@ public class CommerceDiscountLocalServiceImpl
 
 		JoinStep joinStep = fromStep.from(CommerceDiscountTable.INSTANCE);
 
-		Predicate predicate = CommerceDiscountTable.INSTANCE.active.eq(true);
+		Predicate predicate = CommerceDiscountTable.INSTANCE.active.eq(
+			true
+		).and(
+			() -> {
+				if (companyId != null) {
+					return CommerceDiscountTable.INSTANCE.companyId.eq(
+						companyId);
+				}
 
-		if (companyId != null) {
-			predicate = predicate.and(
-				CommerceDiscountTable.INSTANCE.companyId.eq(companyId));
-		}
+				return null;
+			}
+		);
 
 		if (commerceAccountId != null) {
 			joinStep = joinStep.innerJoinON(

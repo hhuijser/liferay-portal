@@ -567,16 +567,15 @@ public class COREntryLocalServiceImpl extends COREntryLocalServiceBaseImpl {
 			COREntryTable.INSTANCE.companyId.eq(companyId)
 		).and(
 			COREntryTable.INSTANCE.active.eq(true)
-		);
+		).and(
+			() -> {
+				if (accountEntryId != null) {
+					return accountEntryCOREntryRel.classPK.eq(accountEntryId);
+				}
 
-		if (accountEntryId != null) {
-			predicate = predicate.and(
-				accountEntryCOREntryRel.classPK.eq(accountEntryId));
-		}
-		else {
-			predicate = predicate.and(
-				accountEntryCOREntryRel.COREntryId.isNull());
-		}
+				return accountEntryCOREntryRel.COREntryId.isNull();
+			}
+		);
 
 		if (accountGroupIds != null) {
 			if (accountGroupIds.length == 0) {
@@ -597,25 +596,26 @@ public class COREntryLocalServiceImpl extends COREntryLocalServiceBaseImpl {
 				accountGroupCOREntryRel.COREntryId.isNull());
 		}
 
-		if (commerceChannelId != null) {
-			predicate = predicate.and(
-				commerceChannelCOREntryRel.classPK.eq(commerceChannelId));
-		}
-		else {
-			predicate = predicate.and(
-				commerceChannelCOREntryRel.COREntryId.isNull());
-		}
+		return joinStep.where(
+			predicate.and(
+				() -> {
+					if (commerceChannelId != null) {
+						return commerceChannelCOREntryRel.classPK.eq(
+							commerceChannelId);
+					}
 
-		if (commerceOrderTypeId != null) {
-			predicate = predicate.and(
-				commerceOrderTypeCOREntryRel.classPK.eq(commerceOrderTypeId));
-		}
-		else {
-			predicate = predicate.and(
-				commerceOrderTypeCOREntryRel.COREntryId.isNull());
-		}
+					return commerceChannelCOREntryRel.COREntryId.isNull();
+				}
+			).and(
+				() -> {
+					if (commerceOrderTypeId != null) {
+						return commerceOrderTypeCOREntryRel.classPK.eq(
+							commerceOrderTypeId);
+					}
 
-		return joinStep.where(predicate);
+					return commerceOrderTypeCOREntryRel.COREntryId.isNull();
+				}
+			));
 	}
 
 	private Predicate _getPredicate(

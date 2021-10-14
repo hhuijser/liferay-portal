@@ -470,10 +470,16 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 						permissionChecker, modelClassName, classPKColumn,
 						groupIds);
 
-				if (contributorPermissionPredicate != null) {
+				permissionPredicate =
 					permissionPredicate = permissionPredicate.or(
-						contributorPermissionPredicate.withParentheses());
-				}
+						() -> {
+							if (contributorPermissionPredicate != null) {
+								return contributorPermissionPredicate.
+									withParentheses();
+							}
+
+							return null;
+						});
 			}
 		}
 

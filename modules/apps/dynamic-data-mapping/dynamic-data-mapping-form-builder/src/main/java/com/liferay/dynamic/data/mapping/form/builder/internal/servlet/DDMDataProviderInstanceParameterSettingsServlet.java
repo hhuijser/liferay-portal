@@ -170,30 +170,36 @@ public class DDMDataProviderInstanceParameterSettingsServlet
 				continue;
 			}
 
-			String label =
-				ddmDataProviderInputParameterSetting.inputParameterLabel();
+			inputsJSONArray.put(
+				() -> {
+					JSONObject inputJSONObject =
+						_jsonFactory.createJSONObject();
 
-			JSONObject inputJSONObject = _jsonFactory.createJSONObject();
+					return inputJSONObject.put(
+						"id", name
+					).put(
+						"label",
+						() -> {
+							String label =
+								ddmDataProviderInputParameterSetting.
+									inputParameterLabel();
 
-			if (Validator.isNotNull(label)) {
-				inputJSONObject.put("label", label);
-			}
-			else {
-				inputJSONObject.put("label", name);
-			}
+							if (Validator.isNotNull(label)) {
+								return label;
+							}
 
-			inputJSONObject.put(
-				"id", name
-			).put(
-				"name", name
-			).put(
-				"required",
-				ddmDataProviderInputParameterSetting.inputParameterRequired()
-			).put(
-				"type", type
-			);
-
-			inputsJSONArray.put(inputJSONObject);
+							return name;
+						}
+					).put(
+						"name", name
+					).put(
+						"required",
+						ddmDataProviderInputParameterSetting.
+							inputParameterRequired()
+					).put(
+						"type", type
+					);
+				});
 		}
 
 		return inputsJSONArray;
@@ -219,25 +225,32 @@ public class DDMDataProviderInstanceParameterSettingsServlet
 				continue;
 			}
 
-			String name =
-				ddmDataProviderOutputParameterSetting.outputParameterName();
+			outputsJSONArray.put(
+				() -> {
+					JSONObject outputJSONObject =
+						_jsonFactory.createJSONObject();
 
-			JSONObject outputJSONObject = _jsonFactory.createJSONObject();
+					return outputJSONObject.put(
+						"id",
+						ddmDataProviderOutputParameterSetting.
+							outputParameterId()
+					).put(
+						"name",
+						() -> {
+							String name =
+								ddmDataProviderOutputParameterSetting.
+									outputParameterName();
 
-			if (Validator.isNotNull(name)) {
-				outputJSONObject.put("name", name);
-			}
-			else {
-				outputJSONObject.put("name", path);
-			}
+							if (Validator.isNotNull(name)) {
+								return name;
+							}
 
-			outputJSONObject.put(
-				"id", ddmDataProviderOutputParameterSetting.outputParameterId()
-			).put(
-				"type", type
-			);
-
-			outputsJSONArray.put(outputJSONObject);
+							return path;
+						}
+					).put(
+						"type", type
+					);
+				});
 		}
 
 		return outputsJSONArray;

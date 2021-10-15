@@ -68,16 +68,19 @@ public class PortalInstanceLifecycleListenerImpl
 					company.getCompanyId(), true);
 
 			if (commerceCatalogs.isEmpty()) {
-				CommerceCatalog commerceCatalog =
-					_commerceCatalogLocalService.addDefaultCommerceCatalog(
-						company.getCompanyId());
-
 				Message message = new Message();
 
 				message.setPayload(
 					JSONUtil.put(
 						"commerceCatalogId",
-						commerceCatalog.getCommerceCatalogId()));
+						() -> {
+							CommerceCatalog commerceCatalog =
+								_commerceCatalogLocalService.
+									addDefaultCommerceCatalog(
+										company.getCompanyId());
+
+							return commerceCatalog.getCommerceCatalogId();
+						}));
 
 				MessageBusUtil.sendMessage(
 					DestinationNames.COMMERCE_BASE_PRICE_LIST, message);

@@ -104,12 +104,16 @@ public class DDMFormInstanceReportUpgradeProcess extends UpgradeProcess {
 
 		JSONObject normalizedFieldJSONObject = _jsonFactory.createJSONObject();
 
-		if (fieldJSONObject.has("totalEntries")) {
-			normalizedFieldJSONObject.put(
-				"totalEntries", fieldJSONObject.getInt("totalEntries"));
-		}
-
 		return normalizedFieldJSONObject.put(
+			"totalEntries",
+			() -> {
+				if (fieldJSONObject.has("totalEntries")) {
+					return fieldJSONObject.getInt("totalEntries");
+				}
+
+				return null;
+			}
+		).put(
 			"type", type
 		).put(
 			"values",

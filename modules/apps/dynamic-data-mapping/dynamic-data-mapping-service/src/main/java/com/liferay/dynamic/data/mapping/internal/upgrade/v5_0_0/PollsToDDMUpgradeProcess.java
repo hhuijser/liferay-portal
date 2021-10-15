@@ -142,21 +142,27 @@ public class PollsToDDMUpgradeProcess extends UpgradeProcess {
 	}
 
 	protected JSONObject getDataJSONObject(DDMFormField ddmFormField) {
-		JSONObject valuesJSONObject = JSONFactoryUtil.createJSONObject();
-
-		DDMFormFieldOptions ddmFormFieldOptions =
-			ddmFormField.getDDMFormFieldOptions();
-
-		for (String optionValue : ddmFormFieldOptions.getOptionsValues()) {
-			valuesJSONObject.put(optionValue, 0);
-		}
-
 		return JSONUtil.put(
 			ddmFormField.getName(),
 			JSONUtil.put(
 				"type", DDMFormFieldTypeConstants.RADIO
 			).put(
-				"values", valuesJSONObject
+				"values",
+				() -> {
+					JSONObject valuesJSONObject =
+						JSONFactoryUtil.createJSONObject();
+
+					DDMFormFieldOptions ddmFormFieldOptions =
+						ddmFormField.getDDMFormFieldOptions();
+
+					for (String optionValue :
+							ddmFormFieldOptions.getOptionsValues()) {
+
+						valuesJSONObject.put(optionValue, 0);
+					}
+
+					return valuesJSONObject;
+				}
 			)
 		).put(
 			"totalItems", 0

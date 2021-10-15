@@ -59,7 +59,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -173,15 +172,13 @@ public class GetContentDashboardItemInfoMVCResourceCommand
 				_log.info(exception, exception);
 			}
 
-			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-				locale, getClass());
-
 			JSONPortletResponseUtil.writeJSON(
 				resourceRequest, resourceResponse,
 				JSONUtil.put(
 					"error",
 					ResourceBundleUtil.getString(
-						resourceBundle, "an-unexpected-error-occurred")));
+						ResourceBundleUtil.getBundle(locale, getClass()),
+						"an-unexpected-error-occurred")));
 		}
 	}
 

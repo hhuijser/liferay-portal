@@ -46,7 +46,6 @@ import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletURL;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -80,32 +79,38 @@ public class AddDepotEntryMVCActionCommand extends BaseMVCActionCommand {
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
 		try {
-			DepotEntry depotEntry = _depotEntryService.addDepotEntry(
-				nameMap, descriptionMap,
-				ServiceContextFactory.getInstance(
-					DepotEntry.class.getName(), actionRequest));
-
-			PortletURL editDepotURL =
-				DepotEntryURLUtil.getEditDepotEntryPortletURL(
-					depotEntry, ParamUtil.getString(actionRequest, "redirect"),
-					_portal.getLiferayPortletRequest(actionRequest));
-
 			MultiSessionMessages.add(
 				actionRequest,
 				DepotPortletKeys.DEPOT_ADMIN + "requestProcessed");
 
 			JSONPortletResponseUtil.writeJSON(
 				actionRequest, actionResponse,
-				JSONUtil.put("redirectURL", editDepotURL.toString()));
+				JSONUtil.put(
+					"redirectURL",
+					() -> {
+						DepotEntry depotEntry =
+							_depotEntryService.addDepotEntry(
+								nameMap, descriptionMap,
+								ServiceContextFactory.getInstance(
+									DepotEntry.class.getName(), actionRequest));
+
+						return String.valueOf(
+							DepotEntryURLUtil.getEditDepotEntryPortletURL(
+								depotEntry,
+								ParamUtil.getString(actionRequest, "redirect"),
+								_portal.getLiferayPortletRequest(
+									actionRequest)));
+					}));
 		}
 		catch (Exception exception) {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 			JSONPortletResponseUtil.writeJSON(
 				actionRequest, actionResponse,
 				JSONUtil.put(
-					"error", _getErrorMessage(exception, themeDisplay)));
+					"error",
+					_getErrorMessage(
+						exception,
+						(ThemeDisplay)actionRequest.getAttribute(
+							WebKeys.THEME_DISPLAY))));
 		}
 	}
 

@@ -122,11 +122,16 @@ public class DDMFormFieldTypesServlet extends HttpServlet {
 
 		JSONObject jsonObject = new JSONObjectImpl();
 
-		if (!configuration.isEmpty()) {
-			jsonObject.put("configuration", configuration);
-		}
-
 		return jsonObject.put(
+			"configuration",
+			() -> {
+				if (!configuration.isEmpty()) {
+					return configuration;
+				}
+
+				return null;
+			}
+		).put(
 			"javaScriptModule",
 			resolveModuleName(
 				_ddmFormFieldTypeServicesTracker.getDDMFormFieldType(

@@ -1363,6 +1363,16 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 					if (variableNames.contains(
 							dependentIdentDetailAST.getText())) {
 
+						List<int[]> nonfinalVariableRangeList =
+							_addNonfinalVariableRangeList(
+								null, expressionDetailAST);
+
+						for (int[] array : nonfinalVariableRangeList) {
+							if (expressionDetailAST.getLineNo() > array[0]) {
+								return null;
+							}
+						}
+
 						if (methodName != null) {
 							return null;
 						}

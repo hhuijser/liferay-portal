@@ -102,19 +102,24 @@ public class MoveLayoutMVCActionCommand extends BaseAddLayoutMVCActionCommand {
 					liferayPortletRequest, liferayPortletResponse,
 					_stagingGroupHelper);
 
-			MillerColumnsDisplayContext millerColumnsDisplayContext =
-				new MillerColumnsDisplayContext(
-					new LayoutActionDropdownItemsProvider(
-						_portal.getHttpServletRequest(liferayPortletRequest),
-						layoutsAdminDisplayContext, _translationPermission,
-						_translationURLProvider),
-					layoutsAdminDisplayContext, liferayPortletRequest,
-					liferayPortletResponse,
-					_translationInfoItemFieldValuesExporterTracker);
-
 			JSONObject jsonObject = JSONUtil.put(
 				"layoutColumns",
-				millerColumnsDisplayContext.getLayoutColumnsJSONArray());
+				() -> {
+					MillerColumnsDisplayContext millerColumnsDisplayContext =
+						new MillerColumnsDisplayContext(
+							new LayoutActionDropdownItemsProvider(
+								_portal.getHttpServletRequest(
+									liferayPortletRequest),
+								layoutsAdminDisplayContext,
+								_translationPermission,
+								_translationURLProvider),
+							layoutsAdminDisplayContext, liferayPortletRequest,
+							liferayPortletResponse,
+							_translationInfoItemFieldValuesExporterTracker);
+
+					return millerColumnsDisplayContext.
+						getLayoutColumnsJSONArray();
+				});
 
 			JSONPortletResponseUtil.writeJSON(
 				liferayPortletRequest, liferayPortletResponse, jsonObject);

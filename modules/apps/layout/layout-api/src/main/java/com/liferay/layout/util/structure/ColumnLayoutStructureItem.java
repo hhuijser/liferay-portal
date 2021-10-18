@@ -63,15 +63,18 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 				continue;
 			}
 
-			JSONObject viewportConfigurationJSONObject =
-				_viewportConfigurations.getOrDefault(
-					viewportSize.getViewportSizeId(),
-					JSONFactoryUtil.createJSONObject());
-
 			jsonObject.put(
 				viewportSize.getViewportSizeId(),
 				JSONUtil.put(
-					"size", viewportConfigurationJSONObject.get("size")));
+					"size",
+					() -> {
+						JSONObject viewportConfigurationJSONObject =
+							_viewportConfigurations.getOrDefault(
+								viewportSize.getViewportSizeId(),
+								JSONFactoryUtil.createJSONObject());
+
+						return viewportConfigurationJSONObject.get("size");
+					}));
 		}
 
 		return jsonObject;
@@ -111,17 +114,20 @@ public class ColumnLayoutStructureItem extends LayoutStructureItem {
 	public void setViewportConfiguration(
 		String viewportSizeId, JSONObject configurationJSONObject) {
 
-		JSONObject currentConfigurationJSONObject =
-			_viewportConfigurations.getOrDefault(
-				viewportSizeId, JSONFactoryUtil.createJSONObject());
-
-		if (configurationJSONObject.has("size")) {
-			currentConfigurationJSONObject.put(
-				"size", configurationJSONObject.getInt("size"));
-		}
-
 		_viewportConfigurations.put(
-			viewportSizeId, currentConfigurationJSONObject);
+			viewportSizeId,
+			_viewportConfigurations.getOrDefault(
+				viewportSizeId, JSONFactoryUtil.createJSONObject()
+			).put(
+				"size",
+				() -> {
+					if (configurationJSONObject.has("size")) {
+						return configurationJSONObject.getInt("size");
+					}
+
+					return null;
+				}
+			));
 	}
 
 	/**

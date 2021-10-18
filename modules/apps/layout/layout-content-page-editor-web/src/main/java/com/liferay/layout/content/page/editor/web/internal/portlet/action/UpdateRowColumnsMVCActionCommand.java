@@ -91,15 +91,18 @@ public class UpdateRowColumnsMVCActionCommand
 			deletedFragmentEntryLinkIds.add(fragmentEntryLinkId);
 		}
 
-		LayoutStructure layoutStructure =
-			LayoutStructureUtil.getLayoutStructure(
-				themeDisplay.getScopeGroupId(), themeDisplay.getPlid(),
-				segmentsExperienceId);
-
 		return JSONUtil.put(
 			"deletedFragmentEntryLinkIds", deletedFragmentEntryLinkIds.toArray()
 		).put(
-			"layoutData", layoutStructure.toJSONObject()
+			"layoutData",
+			() -> {
+				LayoutStructure layoutStructure =
+					LayoutStructureUtil.getLayoutStructure(
+						themeDisplay.getScopeGroupId(), themeDisplay.getPlid(),
+						segmentsExperienceId);
+
+				return layoutStructure.toJSONObject();
+			}
 		);
 	}
 

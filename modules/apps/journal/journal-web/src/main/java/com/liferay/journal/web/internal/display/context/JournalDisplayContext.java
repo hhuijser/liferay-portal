@@ -594,13 +594,12 @@ public class JournalDisplayContext {
 	}
 
 	public JSONArray getFoldersJSONArray() {
-		JSONArray jsonArray = _getFoldersJSONArray(
-			_themeDisplay.getScopeGroupId(),
-			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-
 		return JSONUtil.put(
 			JSONUtil.put(
-				"children", jsonArray
+				"children",
+				_getFoldersJSONArray(
+					_themeDisplay.getScopeGroupId(),
+					JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID)
 			).put(
 				"icon", "folder"
 			).put(

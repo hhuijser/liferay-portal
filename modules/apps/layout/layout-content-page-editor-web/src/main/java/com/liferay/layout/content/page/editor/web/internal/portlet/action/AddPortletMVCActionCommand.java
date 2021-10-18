@@ -122,13 +122,19 @@ public class AddPortletMVCActionCommand
 		throws Exception {
 
 		JSONObject jsonObject = processAddPortlet(
-			actionRequest, actionResponse);
+			actionRequest, actionResponse
+		).put(
+			"error",
+			() -> {
+				if (SessionErrors.contains(
+						actionRequest, "fragmentEntryContentInvalid")) {
 
-		if (SessionErrors.contains(
-				actionRequest, "fragmentEntryContentInvalid")) {
+					return true;
+				}
 
-			jsonObject.put("error", true);
-		}
+				return null;
+			}
+		);
 
 		SessionMessages.add(actionRequest, "fragmentEntryLinkAdded");
 

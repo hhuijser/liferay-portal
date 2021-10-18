@@ -177,14 +177,16 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 				throw new PortalException(throwable);
 			}
 			else if (cmd.equals(Constants.ADD_TEMP)) {
-				FileEntry tempImageFileEntry = addTempImageFileEntry(
-					actionRequest);
-
-				JSONObject jsonObject = JSONUtil.put(
-					"tempImageFileName", tempImageFileEntry.getTitle());
-
 				JSONPortletResponseUtil.writeJSON(
-					actionRequest, actionResponse, jsonObject);
+					actionRequest, actionResponse,
+					JSONUtil.put(
+						"tempImageFileName",
+						() -> {
+							FileEntry tempImageFileEntry =
+								addTempImageFileEntry(actionRequest);
+
+							return tempImageFileEntry.getTitle();
+						}));
 			}
 			else {
 				FileEntry fileEntry = null;

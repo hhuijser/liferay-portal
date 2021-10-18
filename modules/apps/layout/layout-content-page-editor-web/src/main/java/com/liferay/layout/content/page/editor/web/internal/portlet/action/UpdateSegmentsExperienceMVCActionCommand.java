@@ -49,18 +49,14 @@ public class UpdateSegmentsExperienceMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long segmentsExperienceId = ParamUtil.getLong(
-			actionRequest, "segmentsExperienceId");
-
-		long segmentsEntryId = ParamUtil.getLong(
-			actionRequest, "segmentsEntryId");
-		String name = ParamUtil.getString(actionRequest, "name");
-
 		return JSONUtil.put(
 			"segmentsExperience",
 			_segmentsExperienceService.updateSegmentsExperience(
-				segmentsExperienceId, segmentsEntryId,
-				Collections.singletonMap(LocaleUtil.getSiteDefault(), name),
+				ParamUtil.getLong(actionRequest, "segmentsExperienceId"),
+				ParamUtil.getLong(actionRequest, "segmentsEntryId"),
+				Collections.singletonMap(
+					LocaleUtil.getSiteDefault(),
+					ParamUtil.getString(actionRequest, "name")),
 				true));
 	}
 

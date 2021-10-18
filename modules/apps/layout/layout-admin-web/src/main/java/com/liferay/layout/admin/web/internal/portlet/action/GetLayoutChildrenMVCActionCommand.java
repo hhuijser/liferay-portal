@@ -20,7 +20,6 @@ import com.liferay.layout.admin.web.internal.display.context.MillerColumnsDispla
 import com.liferay.layout.admin.web.internal.servlet.taglib.util.LayoutActionDropdownItemsProvider;
 import com.liferay.layout.util.LayoutCopyHelper;
 import com.liferay.layout.util.template.LayoutConverterRegistry;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.JSONPortletResponseUtil;
@@ -58,10 +57,6 @@ public class GetLayoutChildrenMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long plid = ParamUtil.getLong(actionRequest, "plid");
-
-		Layout layout = _layoutLocalService.fetchLayout(plid);
-
 		LayoutsAdminDisplayContext layoutsAdminDisplayContext =
 			new LayoutsAdminDisplayContext(
 				_layoutConverterRegistry, _layoutCopyHelper,
@@ -80,11 +75,18 @@ public class GetLayoutChildrenMVCActionCommand extends BaseMVCActionCommand {
 				_portal.getLiferayPortletResponse(actionResponse),
 				_translationInfoItemFieldValuesExporterTracker);
 
-		JSONArray jsonArray = millerColumnsDisplayContext.getLayoutsJSONArray(
-			layout.getLayoutId(), layout.isPrivateLayout());
-
 		JSONPortletResponseUtil.writeJSON(
-			actionRequest, actionResponse, JSONUtil.put("children", jsonArray));
+			actionRequest, actionResponse,
+			JSONUtil.put(
+				"children",
+				() -> {
+					long plid = ParamUtil.getLong(actionRequest, "plid");
+
+					Layout layout = _layoutLocalService.fetchLayout(plid);
+
+					return millerColumnsDisplayContext.getLayoutsJSONArray(
+						layout.getLayoutId(), layout.isPrivateLayout());
+				}));
 	}
 
 	@Reference

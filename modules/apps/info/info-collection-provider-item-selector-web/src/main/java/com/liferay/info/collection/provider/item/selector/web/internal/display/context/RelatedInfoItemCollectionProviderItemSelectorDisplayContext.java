@@ -20,7 +20,6 @@ import com.liferay.info.collection.provider.SingleFormVariationInfoCollectionPro
 import com.liferay.info.list.provider.item.selector.criterion.InfoListProviderItemSelectorReturnType;
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -80,11 +79,24 @@ public class RelatedInfoItemCollectionProviderItemSelectorDisplayContext {
 		RelatedInfoItemCollectionProvider<?, ?>
 			relatedInfoItemCollectionProvider) {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		return JSONUtil.put(
+			"itemSubtype",
+			() -> {
+				if (relatedInfoItemCollectionProvider instanceof
+						SingleFormVariationInfoCollectionProvider) {
 
-		JSONObject jsonObject = JSONUtil.put(
+					SingleFormVariationInfoCollectionProvider<?>
+						singleFormVariationInfoCollectionProvider =
+							(SingleFormVariationInfoCollectionProvider<?>)
+								relatedInfoItemCollectionProvider;
+
+					return singleFormVariationInfoCollectionProvider.
+						getFormVariationKey();
+				}
+
+				return null;
+			}
+		).put(
 			"itemType",
 			relatedInfoItemCollectionProvider.getCollectionItemClassName()
 		).put(
@@ -94,24 +106,15 @@ public class RelatedInfoItemCollectionProviderItemSelectorDisplayContext {
 			relatedInfoItemCollectionProvider.getSourceItemClassName()
 		).put(
 			"title",
-			relatedInfoItemCollectionProvider.getLabel(themeDisplay.getLocale())
-		);
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)_httpServletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
 
-		if (relatedInfoItemCollectionProvider instanceof
-				SingleFormVariationInfoCollectionProvider) {
-
-			SingleFormVariationInfoCollectionProvider<?>
-				singleFormVariationInfoCollectionProvider =
-					(SingleFormVariationInfoCollectionProvider<?>)
-						relatedInfoItemCollectionProvider;
-
-			jsonObject.put(
-				"itemSubtype",
-				singleFormVariationInfoCollectionProvider.
-					getFormVariationKey());
-		}
-
-		return jsonObject.toString();
+				return relatedInfoItemCollectionProvider.getLabel(
+					themeDisplay.getLocale());
+			}
+		).toString();
 	}
 
 	public List<RelatedInfoItemCollectionProvider<?, ?>>

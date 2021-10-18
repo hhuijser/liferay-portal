@@ -244,19 +244,23 @@ public class FragmentLayoutStructureItemImporter
 			"com.liferay.fragment.entry.processor.background.image." +
 				"BackgroundImageFragmentEntryProcessor",
 			_toBackgroundImageFragmentEntryProcessorJSONObject(
-				(List<Object>)definitionMap.get("fragmentFields")));
+				(List<Object>)definitionMap.get("fragmentFields"))
+		).put(
+			"com.liferay.fragment.entry.processor.editable." +
+				"EditableFragmentEntryProcessor",
+			() -> {
+				JSONObject editableFragmentEntryProcessorJSONObject =
+					_toEditableFragmentEntryProcessorJSONObject(
+						editableTypes,
+						(List<Object>)definitionMap.get("fragmentFields"));
 
-		JSONObject editableFragmentEntryProcessorJSONObject =
-			_toEditableFragmentEntryProcessorJSONObject(
-				editableTypes,
-				(List<Object>)definitionMap.get("fragmentFields"));
+				if (editableFragmentEntryProcessorJSONObject.length() > 0) {
+					return editableFragmentEntryProcessorJSONObject;
+				}
 
-		if (editableFragmentEntryProcessorJSONObject.length() > 0) {
-			fragmentEntryProcessorValuesJSONObject.put(
-				"com.liferay.fragment.entry.processor.editable." +
-					"EditableFragmentEntryProcessor",
-				editableFragmentEntryProcessorJSONObject);
-		}
+				return null;
+			}
+		);
 
 		Map<String, String> configurationTypes = _getConfigurationTypes(
 			configuration);

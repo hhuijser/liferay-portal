@@ -1222,12 +1222,17 @@ public abstract class BaseCheck extends AbstractCheck {
 
 			String name = identDetailAST.getText();
 
+			if (name.matches("[A-Z].*")) {
+				continue;
+			}
+
 			for (Variable variable : variables) {
 				if (!name.equals(variable.getName())) {
 					continue;
 				}
 
-				if (_hasPossibleValueChangeOperation(identDetailAST, false) ||
+				if (_hasPossibleValueChangeOperation(
+						identDetailAST, includeGetters) ||
 					variable.hasPossibleValueChangeOperation()) {
 
 					dependentIdentDetailASTList.add(identDetailAST);
@@ -1247,27 +1252,35 @@ public abstract class BaseCheck extends AbstractCheck {
 						identDetailAST, TokenTypes.ELIST);
 
 					if (elistDetailAST == null) {
-						variables.addAll(_getVariables(detailAST, false));
+						variables.addAll(
+							_getVariables(detailAST, includeGetters));
 					}
 					else {
 						while (true) {
-							if (elistDetailAST == null) {
-								break;
-							}
-
 							DetailAST parentDetailAST =
 								elistDetailAST.getParent();
 
 							if (parentDetailAST.getLineNo() >= lineNumber) {
 								variables.addAll(
-									_getVariables(elistDetailAST, false));
+									_getVariables(
+										elistDetailAST, includeGetters));
 							}
 							else {
 								break;
 							}
 
-							elistDetailAST = getParentWithTokenType(
-								elistDetailAST, TokenTypes.ELIST);
+							DetailAST parentElistDetailAST =
+								getParentWithTokenType(
+									elistDetailAST, TokenTypes.ELIST);
+
+							if ((parentElistDetailAST == null) ||
+								(parentElistDetailAST.getLineNo() >
+									elistDetailAST.getLineNo())) {
+
+								break;
+							}
+
+							elistDetailAST = parentElistDetailAST;
 						}
 					}
 				}

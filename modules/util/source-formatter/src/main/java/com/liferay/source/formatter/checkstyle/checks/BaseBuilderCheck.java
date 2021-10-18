@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -204,6 +205,12 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			DetailAST parentDetailAST = variableDefinitionDetailAST.getParent();
 
 			if (parentDetailAST.getType() == TokenTypes.OBJBLOCK) {
+				if (AnnotationUtil.containsAnnotation(
+						variableDefinitionDetailAST, "Reference")) {
+
+					continue;
+				}
+
 				DetailAST modifiersDetailAST =
 					variableDefinitionDetailAST.findFirstToken(
 						TokenTypes.MODIFIERS);

@@ -133,8 +133,6 @@ public class AddFragmentEntryLinksMVCActionCommand
 		LayoutStructureItem layoutStructureItem =
 			layoutStructure.getLayoutStructureItem(parentItemId);
 
-		List<String> childrenItemIds = layoutStructureItem.getChildrenItemIds();
-
 		JSONObject fragmentEntryLinksJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
@@ -177,7 +175,13 @@ public class AddFragmentEntryLinksMVCActionCommand
 			segmentsExperienceId);
 
 		return JSONUtil.put(
-			"addedItemId", childrenItemIds.get(position)
+			"addedItemId",
+			() -> {
+				List<String> childrenItemIds =
+					layoutStructureItem.getChildrenItemIds();
+
+				return childrenItemIds.get(position);
+			}
 		).put(
 			"fragmentEntryLinks", fragmentEntryLinksJSONObject
 		).put(

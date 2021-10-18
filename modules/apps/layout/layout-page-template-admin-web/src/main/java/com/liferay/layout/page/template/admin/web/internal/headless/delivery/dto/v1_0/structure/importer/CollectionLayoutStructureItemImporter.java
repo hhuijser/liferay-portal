@@ -212,7 +212,24 @@ public class CollectionLayoutStructureItemImporter
 			return null;
 		}
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
+			"itemSubtype",
+			() -> {
+				if (infoCollectionProvider instanceof
+						SingleFormVariationInfoCollectionProvider) {
+
+					SingleFormVariationInfoCollectionProvider<?>
+						singleFormVariationInfoCollectionProvider =
+							(SingleFormVariationInfoCollectionProvider<?>)
+								infoCollectionProvider;
+
+					return singleFormVariationInfoCollectionProvider.
+						getFormVariationKey();
+				}
+
+				return null;
+			}
+		).put(
 			"itemType", infoCollectionProvider.getCollectionItemClassName()
 		).put(
 			"key", className
@@ -221,22 +238,6 @@ public class CollectionLayoutStructureItemImporter
 		).put(
 			"type", InfoListProviderItemSelectorReturnType.class.getName()
 		);
-
-		if (infoCollectionProvider instanceof
-				SingleFormVariationInfoCollectionProvider) {
-
-			SingleFormVariationInfoCollectionProvider<?>
-				singleFormVariationInfoCollectionProvider =
-					(SingleFormVariationInfoCollectionProvider<?>)
-						infoCollectionProvider;
-
-			jsonObject.put(
-				"itemSubtype",
-				singleFormVariationInfoCollectionProvider.
-					getFormVariationKey());
-		}
-
-		return jsonObject;
 	}
 
 	private Long _toClassPK(String classPKString) {

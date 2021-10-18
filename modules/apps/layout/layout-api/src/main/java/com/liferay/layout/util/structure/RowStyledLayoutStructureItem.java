@@ -199,30 +199,40 @@ public class RowStyledLayoutStructureItem extends StyledLayoutStructureItem {
 	public void setViewportConfiguration(
 		String viewportSizeId, JSONObject configurationJSONObject) {
 
-		JSONObject currentConfigurationJSONObject =
-			_viewportConfigurations.getOrDefault(
-				viewportSizeId, JSONFactoryUtil.createJSONObject());
-
-		if (configurationJSONObject.has("modulesPerRow")) {
-			currentConfigurationJSONObject.put(
-				"modulesPerRow",
-				configurationJSONObject.getInt("modulesPerRow"));
-		}
-
-		if (configurationJSONObject.has("reverseOrder")) {
-			currentConfigurationJSONObject.put(
-				"reverseOrder",
-				configurationJSONObject.getBoolean("reverseOrder"));
-		}
-
-		if (configurationJSONObject.has("verticalAlignment")) {
-			currentConfigurationJSONObject.put(
-				"verticalAlignment",
-				configurationJSONObject.getString("verticalAlignment"));
-		}
-
 		_viewportConfigurations.put(
-			viewportSizeId, currentConfigurationJSONObject);
+			viewportSizeId,
+			_viewportConfigurations.getOrDefault(
+				viewportSizeId, JSONFactoryUtil.createJSONObject()
+			).put(
+				"modulesPerRow",
+				() -> {
+					if (configurationJSONObject.has("modulesPerRow")) {
+						return configurationJSONObject.getInt("modulesPerRow");
+					}
+
+					return null;
+				}
+			).put(
+				"reverseOrder",
+				() -> {
+					if (configurationJSONObject.has("reverseOrder")) {
+						return configurationJSONObject.getBoolean(
+							"reverseOrder");
+					}
+
+					return null;
+				}
+			).put(
+				"verticalAlignment",
+				() -> {
+					if (configurationJSONObject.has("verticalAlignment")) {
+						return configurationJSONObject.getString(
+							"verticalAlignment");
+					}
+
+					return null;
+				}
+			));
 	}
 
 	/**

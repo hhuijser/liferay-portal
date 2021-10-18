@@ -19,7 +19,6 @@ import com.liferay.layout.util.constants.LayoutDataItemTypeConstants;
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.layout.util.structure.RowStyledLayoutStructureItem;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -141,31 +140,41 @@ public class RowLayoutStructureItemImporter
 		RowStyledLayoutStructureItem rowStyledLayoutStructureItem,
 		Map<String, Object> rowViewportDefinitionMap, String rowViewportId) {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		if (rowViewportDefinitionMap.containsKey("modulesPerRow")) {
-			jsonObject.put(
-				"modulesPerRow",
-				GetterUtil.getInteger(
-					rowViewportDefinitionMap.get("modulesPerRow")));
-		}
-
-		if (rowViewportDefinitionMap.containsKey("reverseOrder")) {
-			jsonObject.put(
-				"reverseOrder",
-				GetterUtil.getBoolean(
-					rowViewportDefinitionMap.get("reverseOrder")));
-		}
-
-		if (rowViewportDefinitionMap.containsKey("verticalAlignment")) {
-			jsonObject.put(
-				"verticalAlignment",
-				GetterUtil.getString(
-					rowViewportDefinitionMap.get("verticalAlignment")));
-		}
-
 		rowStyledLayoutStructureItem.setViewportConfiguration(
-			rowViewportId, jsonObject);
+			rowViewportId,
+			JSONUtil.put(
+				"modulesPerRow",
+				() -> {
+					if (rowViewportDefinitionMap.containsKey("modulesPerRow")) {
+						return GetterUtil.getInteger(
+							rowViewportDefinitionMap.get("modulesPerRow"));
+					}
+
+					return null;
+				}
+			).put(
+				"reverseOrder",
+				() -> {
+					if (rowViewportDefinitionMap.containsKey("reverseOrder")) {
+						return GetterUtil.getBoolean(
+							rowViewportDefinitionMap.get("reverseOrder"));
+					}
+
+					return null;
+				}
+			).put(
+				"verticalAlignment",
+				() -> {
+					if (rowViewportDefinitionMap.containsKey(
+							"verticalAlignment")) {
+
+						return GetterUtil.getString(
+							rowViewportDefinitionMap.get("verticalAlignment"));
+					}
+
+					return null;
+				}
+			));
 	}
 
 }

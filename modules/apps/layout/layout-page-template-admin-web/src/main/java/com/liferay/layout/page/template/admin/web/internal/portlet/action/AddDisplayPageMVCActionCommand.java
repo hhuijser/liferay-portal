@@ -160,11 +160,16 @@ public class AddDisplayPageMVCActionCommand extends BaseMVCActionCommand {
 						resourceBundle, "invalid-subtype"));
 			}
 			else {
-				JSONObject jsonObject =
-					_layoutPageTemplateEntryExceptionRequestHandler.
-						createErrorJSONObject(actionRequest, portalException);
+				errorJSONObject = JSONUtil.put(
+					"name",
+					() -> {
+						JSONObject jsonObject =
+							_layoutPageTemplateEntryExceptionRequestHandler.
+								createErrorJSONObject(
+									actionRequest, portalException);
 
-				errorJSONObject = JSONUtil.put("name", jsonObject.get("error"));
+						return jsonObject.get("error");
+					});
 			}
 		}
 

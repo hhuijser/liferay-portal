@@ -24,7 +24,6 @@ import com.liferay.info.list.provider.item.selector.criterion.InfoListProviderIt
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
@@ -88,33 +87,38 @@ public class InfoCollectionProviderItemSelectorDisplayContext {
 	}
 
 	public String getPayload(InfoCollectionProvider<?> infoCollectionProvider) {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		return JSONUtil.put(
+			"itemSubtype",
+			() -> {
+				if (infoCollectionProvider instanceof
+						SingleFormVariationInfoCollectionProvider) {
 
-		JSONObject jsonObject = JSONUtil.put(
+					SingleFormVariationInfoCollectionProvider<?>
+						singleFormVariationInfoCollectionProvider =
+							(SingleFormVariationInfoCollectionProvider<?>)
+								infoCollectionProvider;
+
+					return singleFormVariationInfoCollectionProvider.
+						getFormVariationKey();
+				}
+
+				return null;
+			}
+		).put(
 			"itemType", infoCollectionProvider.getCollectionItemClassName()
 		).put(
 			"key", infoCollectionProvider.getKey()
 		).put(
-			"title", infoCollectionProvider.getLabel(themeDisplay.getLocale())
-		);
+			"title",
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)_httpServletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
 
-		if (infoCollectionProvider instanceof
-				SingleFormVariationInfoCollectionProvider) {
-
-			SingleFormVariationInfoCollectionProvider<?>
-				singleFormVariationInfoCollectionProvider =
-					(SingleFormVariationInfoCollectionProvider<?>)
-						infoCollectionProvider;
-
-			jsonObject.put(
-				"itemSubtype",
-				singleFormVariationInfoCollectionProvider.
-					getFormVariationKey());
-		}
-
-		return jsonObject.toString();
+				return infoCollectionProvider.getLabel(
+					themeDisplay.getLocale());
+			}
+		).toString();
 	}
 
 	public String getReturnType() {

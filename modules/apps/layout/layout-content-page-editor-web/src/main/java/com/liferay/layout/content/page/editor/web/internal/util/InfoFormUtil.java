@@ -121,14 +121,17 @@ public class InfoFormUtil {
 				Collections.emptyList());
 
 			try {
-				Optional<Boolean> multipleOptional =
-					infoField.getAttributeOptional(
-						SelectInfoFieldType.MULTIPLE);
-
 				jsonObject.put(
 					"typeOptions",
 					JSONUtil.put(
-						"multiSelect", multipleOptional.orElse(false)
+						"multiSelect",
+						() -> {
+							Optional<Boolean> multipleOptional =
+								infoField.getAttributeOptional(
+									SelectInfoFieldType.MULTIPLE);
+
+							return multipleOptional.orElse(false);
+						}
 					).put(
 						"validValues",
 						JSONUtil.toJSONArray(

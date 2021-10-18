@@ -50,7 +50,6 @@ import com.liferay.translation.exporter.TranslationInfoItemFieldValuesExporterTr
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -178,11 +177,6 @@ public class MillerColumnsDisplayContext {
 				LayoutTypeControllerTracker.getLayoutTypeController(
 					layout.getType());
 
-			ResourceBundle layoutTypeResourceBundle =
-				ResourceBundleUtil.getBundle(
-					"content.Language", _themeDisplay.getLocale(),
-					layoutTypeController.getClass());
-
 			JSONObject layoutJSONObject = JSONUtil.put(
 				"actions",
 				_layoutActionDropdownItemsProvider.getActionDropdownItems(
@@ -196,7 +190,10 @@ public class MillerColumnsDisplayContext {
 			).put(
 				"description",
 				LanguageUtil.get(
-					_httpServletRequest, layoutTypeResourceBundle,
+					_httpServletRequest,
+					ResourceBundleUtil.getBundle(
+						"content.Language", _themeDisplay.getLocale(),
+						layoutTypeController.getClass()),
 					"layout.types." + layout.getType())
 			).put(
 				"draggable", true

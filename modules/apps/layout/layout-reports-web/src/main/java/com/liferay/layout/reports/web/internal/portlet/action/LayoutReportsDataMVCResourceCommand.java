@@ -94,13 +94,6 @@ public class LayoutReportsDataMVCResourceCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		LayoutReportsDataProvider layoutReportsDataProvider =
-			new LayoutReportsDataProvider(
-				_layoutReportsGooglePageSpeedConfigurationProvider.getApiKey(
-					themeDisplay.getScopeGroup()),
-				_layoutReportsGooglePageSpeedConfigurationProvider.getStrategy(
-					themeDisplay.getScopeGroup()));
-
 		JSONPortletResponseUtil.writeJSON(
 			resourceRequest, resourceResponse,
 			JSONUtil.put(
@@ -118,7 +111,17 @@ public class LayoutReportsDataMVCResourceCommand
 			).put(
 				"privateLayout", layout.isPrivateLayout()
 			).put(
-				"validConnection", layoutReportsDataProvider.isValidConnection()
+				"validConnection",
+				() -> {
+					LayoutReportsDataProvider layoutReportsDataProvider =
+						new LayoutReportsDataProvider(
+							_layoutReportsGooglePageSpeedConfigurationProvider.
+								getApiKey(themeDisplay.getScopeGroup()),
+							_layoutReportsGooglePageSpeedConfigurationProvider.
+								getStrategy(themeDisplay.getScopeGroup()));
+
+					return layoutReportsDataProvider.isValidConnection();
+				}
 			));
 	}
 

@@ -80,15 +80,19 @@ public class MappingContentUtil {
 			if (infoFieldSetEntry instanceof InfoField) {
 				InfoField infoField = (InfoField)infoFieldSetEntry;
 
-				InfoFieldType infoFieldType = infoField.getInfoFieldType();
-
 				defaultFieldSetFieldsJSONArray.put(
 					JSONUtil.put(
 						"key", infoField.getName()
 					).put(
 						"label", infoField.getLabel(locale)
 					).put(
-						"type", infoFieldType.getName()
+						"type",
+						() -> {
+							InfoFieldType infoFieldType =
+								infoField.getInfoFieldType();
+
+							return infoFieldType.getName();
+						}
 					));
 			}
 			else if (infoFieldSetEntry instanceof InfoFieldSet) {
@@ -98,15 +102,19 @@ public class MappingContentUtil {
 				InfoFieldSet infoFieldSet = (InfoFieldSet)infoFieldSetEntry;
 
 				for (InfoField infoField : infoFieldSet.getAllInfoFields()) {
-					InfoFieldType infoFieldType = infoField.getInfoFieldType();
-
 					fieldSetFieldsJSONArray.put(
 						JSONUtil.put(
 							"key", infoField.getName()
 						).put(
 							"label", infoField.getLabel(locale)
 						).put(
-							"type", infoFieldType.getName()
+							"type",
+							() -> {
+								InfoFieldType infoFieldType =
+									infoField.getInfoFieldType();
+
+								return infoFieldType.getName();
+							}
 						));
 				}
 

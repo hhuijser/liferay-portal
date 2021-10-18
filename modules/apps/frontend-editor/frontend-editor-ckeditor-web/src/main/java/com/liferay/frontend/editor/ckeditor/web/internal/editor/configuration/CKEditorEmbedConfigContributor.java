@@ -79,14 +79,6 @@ public class CKEditorEmbedConfigContributor
 		String editorEmbedProviderType,
 		EditorEmbedProvider editorEmbedProvider) {
 
-		JSONArray urlSchemesJSONArray = JSONFactoryUtil.createJSONArray();
-
-		String[] urlSchemes = editorEmbedProvider.getURLSchemes();
-
-		for (String urlScheme : urlSchemes) {
-			urlSchemesJSONArray.put(urlScheme);
-		}
-
 		return JSONUtil.put(
 			"id", editorEmbedProvider.getId()
 		).put(
@@ -94,7 +86,19 @@ public class CKEditorEmbedConfigContributor
 		).put(
 			"type", editorEmbedProviderType
 		).put(
-			"urlSchemes", urlSchemesJSONArray
+			"urlSchemes",
+			() -> {
+				JSONArray urlSchemesJSONArray =
+					JSONFactoryUtil.createJSONArray();
+
+				String[] urlSchemes = editorEmbedProvider.getURLSchemes();
+
+				for (String urlScheme : urlSchemes) {
+					urlSchemesJSONArray.put(urlScheme);
+				}
+
+				return urlSchemesJSONArray;
+			}
 		);
 	}
 

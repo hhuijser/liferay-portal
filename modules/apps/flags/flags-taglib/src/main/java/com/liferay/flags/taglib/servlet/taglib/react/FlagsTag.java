@@ -234,7 +234,7 @@ public class FlagsTag extends IncludeTag {
 			contentURL = FlagsTagUtil.getCurrentURL(getRequest());
 		}
 
-		JSONObject dataJSONObject = JSONUtil.put(
+		return JSONUtil.put(
 			namespace + "className", _className
 		).put(
 			namespace + "classPK", _classPK
@@ -244,16 +244,18 @@ public class FlagsTag extends IncludeTag {
 			namespace + "contentURL", contentURL
 		).put(
 			namespace + "reportedUserId", _reportedUserId
+		).put(
+			namespace + "reporterEmailAddress",
+			() -> {
+				if (themeDisplay.isSignedIn()) {
+					User user = themeDisplay.getUser();
+
+					return user.getEmailAddress();
+				}
+
+				return null;
+			}
 		);
-
-		if (themeDisplay.isSignedIn()) {
-			User user = themeDisplay.getUser();
-
-			dataJSONObject.put(
-				namespace + "reporterEmailAddress", user.getEmailAddress());
-		}
-
-		return dataJSONObject;
 	}
 
 	private String _getMessage() {

@@ -18,7 +18,6 @@ import com.liferay.document.library.kernel.util.AudioProcessorUtil;
 import com.liferay.frontend.editor.ckeditor.web.internal.constants.CKEditorConstants;
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -118,21 +117,20 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONObject getStyleFormatJSONObject(
 		String styleFormatName, String element, String cssClass) {
 
-		JSONObject styleJSONObject = JSONFactoryUtil.createJSONObject();
+		return JSONUtil.put(
+			"attributes",
+			() -> {
+				if (Validator.isNotNull(cssClass)) {
+					return JSONUtil.put("class", cssClass);
+				}
 
-		if (Validator.isNotNull(cssClass)) {
-			JSONObject attributesJSONObject = JSONUtil.put("class", cssClass);
-
-			styleJSONObject.put("attributes", attributesJSONObject);
-		}
-
-		styleJSONObject.put(
+				return null;
+			}
+		).put(
 			"element", element
 		).put(
 			"name", styleFormatName
 		);
-
-		return styleJSONObject;
 	}
 
 	protected JSONArray getStyleFormatsJSONArray(Locale locale) {
@@ -167,28 +165,35 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Undo', 'Redo']"),
 			toJSONArray("['Styles', 'Bold', 'Italic', 'Underline']"),
 			toJSONArray("['NumberedList', 'BulletedList']"),
 			toJSONArray("['Link', Unlink]"),
-			toJSONArray("['Table', 'ImageSelector', 'VideoSelector']"));
+			toJSONArray("['Table', 'ImageSelector', 'VideoSelector']")
+		).put(
+			() -> {
+				if (AudioProcessorUtil.isEnabled() || XugglerUtil.isEnabled()) {
+					return toJSONArray("['AudioSelector']");
+				}
 
-		if (AudioProcessorUtil.isEnabled() || XugglerUtil.isEnabled()) {
-			jsonArray.put(toJSONArray("['AudioSelector']"));
-		}
+				return null;
+			}
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source', 'Expand']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source', 'Expand']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 	protected JSONArray getToolbarTextAdvancedJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Undo', 'Redo']"), toJSONArray("['Styles']"),
 			toJSONArray("['FontColor', 'BGColor']"),
 			toJSONArray("['Bold', 'Italic', 'Underline', 'Strikethrough']"),
@@ -196,29 +201,35 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 			toJSONArray("['NumberedList', 'BulletedList']"),
 			toJSONArray("['IncreaseIndent', 'DecreaseIndent']"),
 			toJSONArray("['IncreaseIndent', 'DecreaseIndent']"),
-			toJSONArray("['Link', Unlink]"));
+			toJSONArray("['Link', Unlink]")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source', 'Expand']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source', 'Expand']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 	protected JSONArray getToolbarTextSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			toJSONArray("['Undo', 'Redo']"),
 			toJSONArray("['Styles', 'Bold', 'Italic', 'Underline']"),
 			toJSONArray("['NumberedList', 'BulletedList']"),
-			toJSONArray("['Link', Unlink]"));
+			toJSONArray("['Link', Unlink]")
+		).put(
+			() -> {
+				if (isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source', 'Expand']");
+				}
 
-		if (isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source', 'Expand']"));
-		}
-
-		return jsonArray;
+				return null;
+			}
+		);
 	}
 
 }

@@ -33,8 +33,7 @@ import com.liferay.exportimport.kernel.staging.Staging;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.exception.PortletIdException;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -350,19 +349,21 @@ public class ExportImportMVCActionCommand extends BaseMVCActionCommand {
 				return;
 			}
 
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-			if ((weakMissingReferences != null) &&
-				!weakMissingReferences.isEmpty()) {
-
-				jsonObject.put(
-					"warningMessages",
-					_staging.getWarningMessagesJSONArray(
-						themeDisplay.getLocale(), weakMissingReferences));
-			}
-
 			JSONPortletResponseUtil.writeJSON(
-				actionRequest, actionResponse, jsonObject);
+				actionRequest, actionResponse,
+				JSONUtil.put(
+					"warningMessages",
+					() -> {
+						if ((weakMissingReferences != null) &&
+							!weakMissingReferences.isEmpty()) {
+
+							return _staging.getWarningMessagesJSONArray(
+								themeDisplay.getLocale(),
+								weakMissingReferences);
+						}
+
+						return null;
+					}));
 		}
 	}
 

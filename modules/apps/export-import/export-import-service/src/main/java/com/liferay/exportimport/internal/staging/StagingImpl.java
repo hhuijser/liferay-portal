@@ -1252,22 +1252,15 @@ public class StagingImpl implements Staging {
 				layoutPrototypeException.getMissingLayoutPrototypes();
 
 			for (Tuple missingLayoutPrototype : missingLayoutPrototypes) {
-				String layoutPrototypeClassName =
-					(String)missingLayoutPrototype.getObject(0);
-				String layoutPrototypeName =
-					(String)missingLayoutPrototype.getObject(2);
-				String layoutPrototypeUuid =
-					(String)missingLayoutPrototype.getObject(1);
-
 				errorMessagesJSONArray.put(
 					JSONUtil.put(
-						"info", layoutPrototypeUuid
+						"info", (String)missingLayoutPrototype.getObject(1)
 					).put(
-						"name", layoutPrototypeName
+						"name", (String)missingLayoutPrototype.getObject(2)
 					).put(
 						"type",
 						ResourceActionsUtil.getModelResource(
-							locale, layoutPrototypeClassName)
+							locale, (String)missingLayoutPrototype.getObject(0))
 					));
 			}
 
@@ -1996,31 +1989,36 @@ public class StagingImpl implements Staging {
 
 			MissingReference missingReference = entry.getValue();
 
-			Map<String, String> referrers = missingReference.getReferrers();
-
-			JSONObject errorMessageJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			if (Validator.isNotNull(missingReference.getClassName())) {
-				errorMessageJSONObject.put(
+			warningMessagesJSONArray.put(
+				JSONUtil.put(
 					"info",
-					LanguageUtil.format(
-						locale,
-						"the-original-x-does-not-exist-in-the-current-" +
-							"environment",
-						ResourceActionsUtil.getModelResource(
-							locale, missingReference.getClassName()),
-						false));
-			}
+					() -> {
+						if (Validator.isNotNull(
+								missingReference.getClassName())) {
 
-			errorMessageJSONObject.put(
-				"size", referrers.size()
-			).put(
-				"type",
-				ResourceActionsUtil.getModelResource(locale, entry.getKey())
-			);
+							return LanguageUtil.format(
+								locale,
+								"the-original-x-does-not-exist-in-the-" +
+									"current-environment",
+								ResourceActionsUtil.getModelResource(
+									locale, missingReference.getClassName()),
+								false);
+						}
 
-			warningMessagesJSONArray.put(errorMessageJSONObject);
+						return null;
+					}
+				).put(
+					"size",
+					() -> {
+						Map<String, String> referrers =
+							missingReference.getReferrers();
+
+						return referrers.size();
+					}
+				).put(
+					"type",
+					ResourceActionsUtil.getModelResource(locale, entry.getKey())
+				));
 		}
 
 		return warningMessagesJSONArray;

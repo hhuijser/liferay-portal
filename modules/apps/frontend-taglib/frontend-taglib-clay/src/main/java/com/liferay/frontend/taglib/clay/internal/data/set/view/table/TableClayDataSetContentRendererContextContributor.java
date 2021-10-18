@@ -23,7 +23,6 @@ import com.liferay.frontend.taglib.clay.data.set.view.table.ClayTableSchemaField
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
-import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -84,42 +83,46 @@ public class TableClayDataSetContentRendererContextContributor
 				label = StringPool.BLANK;
 			}
 
-			JSONObject jsonObject = JSONUtil.put(
-				"actionId", clayTableSchemaField.getActionId()
-			).put(
-				"contentRenderer", clayTableSchemaField.getContentRenderer()
-			).put(
-				"contentRendererModuleURL",
-				clayTableSchemaField.getContentRendererModuleURL()
-			).put(
-				"expand", clayTableSchemaField.isExpand()
-			).put(
-				"label", label
-			).put(
-				"sortable", clayTableSchemaField.isSortable()
-			);
-
-			String fieldName = clayTableSchemaField.getFieldName();
-
-			if (fieldName.contains(StringPool.PERIOD)) {
-				jsonObject.put(
+			fieldsJSONArray.put(
+				JSONUtil.put(
+					"actionId", clayTableSchemaField.getActionId()
+				).put(
+					"contentRenderer", clayTableSchemaField.getContentRenderer()
+				).put(
+					"contentRendererModuleURL",
+					clayTableSchemaField.getContentRendererModuleURL()
+				).put(
+					"expand", clayTableSchemaField.isExpand()
+				).put(
 					"fieldName",
-					StringUtil.split(fieldName, StringPool.PERIOD));
-			}
-			else {
-				jsonObject.put("fieldName", fieldName);
-			}
+					() -> {
+						String fieldName = clayTableSchemaField.getFieldName();
 
-			ClayTableSchemaField.SortingOrder sortingOrder =
-				clayTableSchemaField.getSortingOrder();
+						if (fieldName.contains(StringPool.PERIOD)) {
+							return StringUtil.split(
+								fieldName, StringPool.PERIOD);
+						}
 
-			if (sortingOrder != null) {
-				jsonObject.put(
+						return fieldName;
+					}
+				).put(
+					"label", label
+				).put(
+					"sortable", clayTableSchemaField.isSortable()
+				).put(
 					"sortingOrder",
-					StringUtil.toLowerCase(sortingOrder.toString()));
-			}
+					() -> {
+						ClayTableSchemaField.SortingOrder sortingOrder =
+							clayTableSchemaField.getSortingOrder();
 
-			fieldsJSONArray.put(jsonObject);
+						if (sortingOrder != null) {
+							return StringUtil.toLowerCase(
+								sortingOrder.toString());
+						}
+
+						return null;
+					}
+				));
 		}
 
 		return HashMapBuilder.<String, Object>put(

@@ -59,13 +59,7 @@ public class DiffVersionComparatorTag extends IncludeTag {
 			DiffVersion diffVersion, PortletURL sourceURL, PortletURL targetURL)
 		throws PortalException {
 
-		Date modifiedDate = diffVersion.getModifiedDate();
-
 		HttpServletRequest httpServletRequest = getRequest();
-
-		String timeDescription = LanguageUtil.getTimeDescription(
-			httpServletRequest,
-			System.currentTimeMillis() - modifiedDate.getTime(), true);
 
 		String diffVersionString = String.valueOf(diffVersion.getVersion());
 
@@ -81,8 +75,16 @@ public class DiffVersionComparatorTag extends IncludeTag {
 
 		return JSONUtil.put(
 			"displayDate",
-			LanguageUtil.format(
-				httpServletRequest, "x-ago", timeDescription, false)
+			() -> {
+				Date modifiedDate = diffVersion.getModifiedDate();
+
+				String timeDescription = LanguageUtil.getTimeDescription(
+					httpServletRequest,
+					System.currentTimeMillis() - modifiedDate.getTime(), true);
+
+				return LanguageUtil.format(
+					httpServletRequest, "x-ago", timeDescription, false);
+			}
 		).put(
 			"inRange",
 			(diffVersion.getVersion() > _sourceVersion) &&

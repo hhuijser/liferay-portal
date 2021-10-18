@@ -151,26 +151,22 @@ public class AlloyEditorCreoleConfigContributor
 	}
 
 	protected JSONObject getStyleFormatsJSONObject(Locale locale) {
-		JSONObject stylesJSONObject = JSONUtil.put(
-			"styles", getStyleFormatsJSONArray(locale));
-
 		return JSONUtil.put(
-			"cfg", stylesJSONObject
+			"cfg", JSONUtil.put("styles", getStyleFormatsJSONArray(locale))
 		).put(
 			"name", "styles"
 		);
 	}
 
 	protected JSONObject getToolbarsAddJSONObject() {
-		JSONObject cfgJSONObject = JSONUtil.put(
-			"tableAttributes", JSONFactoryUtil.createJSONObject());
-
 		return JSONUtil.put(
 			"buttons",
 			JSONUtil.putAll(
 				"image",
 				JSONUtil.put(
-					"cfg", cfgJSONObject
+					"cfg",
+					JSONUtil.put(
+						"tableAttributes", JSONFactoryUtil.createJSONObject())
 				).put(
 					"name", "table"
 				),

@@ -1201,11 +1201,6 @@
 		</check>
 	</source-processor>
 	<source-processor name="PoshiSourceProcessor">
-		<check name="PoshiAnnotationsOrderCheck">
-			<category name="Styling" />
-			<description name="Checks the order of annotations." />
-			<property name="enabled" value="false" />
-		</check>
 		<check name="PoshiCommandsOrderCheck">
 			<category name="Styling" />
 			<description name="Checks the order of poshi commands." />

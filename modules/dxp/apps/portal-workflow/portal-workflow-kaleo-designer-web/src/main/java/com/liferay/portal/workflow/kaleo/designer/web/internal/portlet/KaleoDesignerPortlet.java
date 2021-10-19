@@ -392,11 +392,11 @@ public class KaleoDesignerPortlet extends MVCPortlet {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		for (Object supportedScriptLanguage : sortedSupportedScriptLanguages) {
-			String scriptLanguage = supportedScriptLanguage.toString();
-
 			jsonArray.put(
 				JSONUtil.put(
-					"scriptLanguage", StringUtil.toLowerCase(scriptLanguage)));
+					"scriptLanguage",
+					StringUtil.toLowerCase(
+						supportedScriptLanguage.toString())));
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonArray);

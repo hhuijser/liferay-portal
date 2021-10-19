@@ -119,18 +119,21 @@ public class OrganicTrafficChannelImpl implements TrafficChannel {
 	public JSONObject toJSONObject(
 		Locale locale, ResourceBundle resourceBundle) {
 
-		JSONObject jsonObject = TrafficChannelUtil.toJSONObject(
+		return TrafficChannelUtil.toJSONObject(
 			_error,
 			ResourceBundleUtil.getString(resourceBundle, getHelpMessageKey()),
 			getName(), ResourceBundleUtil.getString(resourceBundle, getName()),
-			_trafficAmount, _trafficShare);
+			_trafficAmount, _trafficShare
+		).put(
+			"countryKeywords",
+			() -> {
+				if (!ListUtil.isEmpty(_countrySearchKeywordsList)) {
+					return _getCountryKeywordsJSONArray(locale);
+				}
 
-		if (!ListUtil.isEmpty(_countrySearchKeywordsList)) {
-			jsonObject.put(
-				"countryKeywords", _getCountryKeywordsJSONArray(locale));
-		}
-
-		return jsonObject;
+				return null;
+			}
+		);
 	}
 
 	@Override

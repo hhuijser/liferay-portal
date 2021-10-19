@@ -125,21 +125,30 @@ public class ReferralTrafficChannelImpl implements TrafficChannel {
 	public JSONObject toJSONObject(
 		Locale locale, ResourceBundle resourceBundle) {
 
-		JSONObject jsonObject = TrafficChannelUtil.toJSONObject(
+		return TrafficChannelUtil.toJSONObject(
 			_error,
 			ResourceBundleUtil.getString(resourceBundle, getHelpMessageKey()),
 			getName(), ResourceBundleUtil.getString(resourceBundle, getName()),
-			_trafficAmount, _trafficShare);
+			_trafficAmount, _trafficShare
+		).put(
+			"referringDomains",
+			() -> {
+				if (ListUtil.isNotEmpty(_domainReferringURLs)) {
+					return _getReferringDomainsJSONArray();
+				}
 
-		if (ListUtil.isNotEmpty(_domainReferringURLs)) {
-			jsonObject.put("referringDomains", _getReferringDomainsJSONArray());
-		}
+				return null;
+			}
+		).put(
+			"referringPages",
+			() -> {
+				if (ListUtil.isNotEmpty(_pageReferringURLs)) {
+					return _getReferringPagesJSONArray();
+				}
 
-		if (ListUtil.isNotEmpty(_pageReferringURLs)) {
-			jsonObject.put("referringPages", _getReferringPagesJSONArray());
-		}
-
-		return jsonObject;
+				return null;
+			}
+		);
 	}
 
 	@Override

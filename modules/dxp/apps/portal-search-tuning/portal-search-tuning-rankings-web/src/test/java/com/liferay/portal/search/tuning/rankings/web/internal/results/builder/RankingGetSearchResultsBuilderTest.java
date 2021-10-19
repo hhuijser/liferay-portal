@@ -14,8 +14,6 @@
 
 package com.liferay.portal.search.tuning.rankings.web.internal.results.builder;
 
-import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
@@ -65,11 +63,9 @@ public class RankingGetSearchResultsBuilderTest
 	}
 
 	private String _getExpectedDocumentsString() {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
 		return JSONUtil.put(
 			"documents",
-			jsonArray.put(
+			JSONUtil.put(
 				JSONUtil.put(
 					"author", "theAuthor"
 				).put(

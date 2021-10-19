@@ -43,23 +43,31 @@ public final class TrafficChannelUtil {
 		boolean error, String helpMessage, String name, String title,
 		long trafficAmount, double trafficShare) {
 
-		JSONObject jsonObject = JSONUtil.put(
+		return JSONUtil.put(
 			"helpMessage", helpMessage
 		).put(
 			"name", name
+		).put(
+			"share",
+			() -> {
+				if (!error) {
+					return String.format("%.1f", trafficShare);
+				}
+
+				return null;
+			}
+		).put(
+			"title", title
+		).put(
+			"value",
+			() -> {
+				if (!error) {
+					return Math.toIntExact(trafficAmount);
+				}
+
+				return null;
+			}
 		);
-
-		if (!error) {
-			jsonObject.put("share", String.format("%.1f", trafficShare));
-		}
-
-		jsonObject.put("title", title);
-
-		if (!error) {
-			jsonObject.put("value", Math.toIntExact(trafficAmount));
-		}
-
-		return jsonObject;
 	}
 
 	public static TrafficChannel toTrafficChannel(

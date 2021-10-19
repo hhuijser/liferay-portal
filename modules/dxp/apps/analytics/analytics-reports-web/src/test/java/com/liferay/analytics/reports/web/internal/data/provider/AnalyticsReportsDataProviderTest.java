@@ -282,23 +282,23 @@ public class AnalyticsReportsDataProviderTest {
 						"/read-count", "12345"
 					).put(
 						"/read-counts",
-						() -> {
-							LocalDate localDate = LocalDate.now();
-
-							return JSONUtil.put(
-								"histogram",
+						JSONUtil.put(
+							"histogram",
+							JSONUtil.put(
 								JSONUtil.put(
-									JSONUtil.put(
-										"key",
-										localDate.format(
-											DateTimeFormatter.ISO_LOCAL_DATE)
-									).put(
-										"value", 5
-									))
-							).put(
-								"value", 5
-							).toJSONString();
-						}
+									"key",
+									() -> {
+										LocalDate localDate = LocalDate.now();
+
+										return localDate.format(
+											DateTimeFormatter.ISO_LOCAL_DATE);
+									}
+								).put(
+									"value", 5
+								))
+						).put(
+							"value", 5
+						).toJSONString()
 					).build()));
 
 		Long totalReads = analyticsReportsDataProvider.getTotalReads(
@@ -325,23 +325,23 @@ public class AnalyticsReportsDataProviderTest {
 						"/view-count", "12345"
 					).put(
 						"/view-counts",
-						() -> {
-							LocalDate localDate = LocalDate.now();
-
-							return JSONUtil.put(
-								"histogram",
+						JSONUtil.put(
+							"histogram",
+							JSONUtil.put(
 								JSONUtil.put(
-									JSONUtil.put(
-										"key",
-										localDate.format(
-											DateTimeFormatter.ISO_LOCAL_DATE)
-									).put(
-										"value", 5
-									))
-							).put(
-								"value", 5
-							).toJSONString();
-						}
+									"key",
+									() -> {
+										LocalDate localDate = LocalDate.now();
+
+										return localDate.format(
+											DateTimeFormatter.ISO_LOCAL_DATE);
+									}
+								).put(
+									"value", 5
+								))
+						).put(
+							"value", 5
+						).toJSONString()
 					).build()));
 
 		Long totalViews = analyticsReportsDataProvider.getTotalViews(

@@ -52,15 +52,20 @@ public abstract class BaseWorkflowMetricsIndex implements WorkflowMetricsIndex {
 				CreateIndexRequest createIndexRequest = new CreateIndexRequest(
 					getIndexName(companyId));
 
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					StringUtil.read(
-						getClass(), "/META-INF/search/mappings.json"));
-
 				createIndexRequest.setSource(
 					JSONUtil.put(
 						"mappings",
 						JSONUtil.put(
-							getIndexType(), jsonObject.get(getIndexType()))
+							getIndexType(),
+							() -> {
+								JSONObject jsonObject =
+									JSONFactoryUtil.createJSONObject(
+										StringUtil.read(
+											getClass(),
+											"/META-INF/search/mappings.json"));
+
+								return jsonObject.get(getIndexType());
+							})
 					).put(
 						"settings",
 						JSONFactoryUtil.createJSONObject(

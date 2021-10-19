@@ -267,8 +267,6 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 		Locale locale, Locale urlLocale, Object object,
 		ResourceResponse resourceResponse, TimeRange timeRange) {
 
-		AnalyticsReportsDataProvider analyticsReportsDataProvider =
-			new AnalyticsReportsDataProvider(_http);
 		String canonicalURL = analyticsReportsInfoItem.getCanonicalURL(
 			object, urlLocale);
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
@@ -313,7 +311,13 @@ public class GetDataMVCResourceCommand extends BaseMVCResourceCommand {
 			"title", analyticsReportsInfoItem.getTitle(object, urlLocale)
 		).put(
 			"validAnalyticsConnection",
-			analyticsReportsDataProvider.isValidAnalyticsConnection(companyId)
+			() -> {
+				AnalyticsReportsDataProvider analyticsReportsDataProvider =
+					new AnalyticsReportsDataProvider(_http);
+
+				return analyticsReportsDataProvider.isValidAnalyticsConnection(
+					companyId);
+			}
 		).put(
 			"viewURLs",
 			_getViewURLsJSONArray(

@@ -745,6 +745,21 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 			return;
 		}
 
+		DetailAST literalTryDetailAST = getParentWithTokenType(
+			variableDefinitionDetailAST, TokenTypes.LITERAL_TRY);
+
+		if (literalTryDetailAST != null) {
+			DetailAST literalCatchDetailAST = getParentWithTokenType(
+				variableDefinitionDetailAST, TokenTypes.LITERAL_CATCH);
+
+			if ((literalCatchDetailAST == null) ||
+				(literalCatchDetailAST.getLineNo() <
+					literalTryDetailAST.getLineNo())) {
+
+				return;
+			}
+		}
+
 		List<DetailAST> additionalDependentDetailASTList =
 			_getAdditionalDependentDetailASTList(
 				dependentIdentDetailASTList,

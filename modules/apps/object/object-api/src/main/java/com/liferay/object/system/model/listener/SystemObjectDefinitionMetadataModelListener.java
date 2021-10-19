@@ -148,25 +148,22 @@ public class SystemObjectDefinitionMetadataModelListener
 			BaseModel baseModel)
 		throws JSONException {
 
-		JSONObject payloadJSONObject = JSONUtil.put(
-			"objectActionTriggerKey", objectActionTriggerKey);
+		return JSONUtil.put(
+			"objectActionTriggerKey", objectActionTriggerKey
+		).put(
+			"model" + _modelClass.getSimpleName(),
+			_jsonFactory.createJSONObject(baseModel.toString())
+		).put(
+			"original" + _modelClass.getSimpleName(),
+			() -> {
+				if (originalBaseModel != null) {
+					return _jsonFactory.createJSONObject(
+						originalBaseModel.toString());
+				}
 
-		JSONObject modelJSONObject = _jsonFactory.createJSONObject(
-			baseModel.toString());
-
-		payloadJSONObject.put(
-			"model" + _modelClass.getSimpleName(), modelJSONObject);
-
-		if (originalBaseModel != null) {
-			JSONObject originalModelJSONObject = _jsonFactory.createJSONObject(
-				originalBaseModel.toString());
-
-			payloadJSONObject.put(
-				"original" + _modelClass.getSimpleName(),
-				originalModelJSONObject);
-		}
-
-		return payloadJSONObject;
+				return null;
+			}
+		);
 	}
 
 	private long _getUserId(BaseModel<?> baseModel) {

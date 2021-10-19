@@ -93,28 +93,29 @@ public class ObjectEntryModelListener extends BaseModelListener<ObjectEntry> {
 			ObjectEntry objectEntry)
 		throws JSONException {
 
-		JSONObject payloadJSONObject = JSONUtil.put(
-			"objectActionTriggerKey", objectActionTriggerKey);
+		return JSONUtil.put(
+			"objectActionTriggerKey", objectActionTriggerKey
+		).put(
+			"objectEntry",
+			_jsonFactory.createJSONObject(
+				objectEntry.toString()
+			).put(
+				"values", objectEntry.getValues()
+			)
+		).put(
+			"originalObjectEntry",
+			() -> {
+				if (originalObjectEntry != null) {
+					return _jsonFactory.createJSONObject(
+						originalObjectEntry.toString()
+					).put(
+						"values", originalObjectEntry.getValues()
+					);
+				}
 
-		JSONObject objectEntryJSONObject = _jsonFactory.createJSONObject(
-			objectEntry.toString());
-
-		objectEntryJSONObject.put("values", objectEntry.getValues());
-
-		payloadJSONObject.put("objectEntry", objectEntryJSONObject);
-
-		if (originalObjectEntry != null) {
-			JSONObject originalObjectEntryJSONObject =
-				_jsonFactory.createJSONObject(originalObjectEntry.toString());
-
-			originalObjectEntryJSONObject.put(
-				"values", originalObjectEntry.getValues());
-
-			payloadJSONObject.put(
-				"originalObjectEntry", originalObjectEntryJSONObject);
-		}
-
-		return payloadJSONObject;
+				return null;
+			}
+		);
 	}
 
 	@Reference

@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.exception.GroupFriendlyURLException;
 import com.liferay.portal.kernel.exception.UserEmailAddressException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -327,16 +328,15 @@ public class CreateAnonymousAccountMVCActionCommand
 			suffixId, male, birthdayMonth, birthdayDay, birthdayYear, jobTitle,
 			updateUserInformation, sendEmail, serviceContext);
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		return JSONUtil.put(
+			"userStatus",
+			() -> {
+				if (user.getStatus() == WorkflowConstants.STATUS_APPROVED) {
+					return "user_added";
+				}
 
-		if (user.getStatus() == WorkflowConstants.STATUS_APPROVED) {
-			jsonObject.put("userStatus", "user_added");
-		}
-		else {
-			jsonObject.put("userStatus", "user_pending");
-		}
-
-		return jsonObject;
+				return "user_pending";
+			});
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

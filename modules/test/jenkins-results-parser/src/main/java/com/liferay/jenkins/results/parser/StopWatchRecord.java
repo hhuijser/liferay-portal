@@ -135,16 +135,22 @@ public class StopWatchRecord implements Comparable<StopWatchRecord> {
 
 		JSONObject jsonObject = new JSONObject();
 
-		if (childStopWatchRecordJSONArray.length() > 0) {
-			jsonObject.put(
-				"childStopWatchRecords", childStopWatchRecordJSONArray);
-		}
+		return jsonObject.put(
+			"childStopWatchRecords",
+			() -> {
+				if (childStopWatchRecordJSONArray.length() > 0) {
+					return childStopWatchRecordJSONArray;
+				}
 
-		jsonObject.put("duration", getDuration());
-		jsonObject.put("name", getName());
-		jsonObject.put("startTimestamp", getStartTimestamp());
-
-		return jsonObject;
+				return null;
+			}
+		).put(
+			"duration", getDuration()
+		).put(
+			"name", getName()
+		).put(
+			"startTimestamp", getStartTimestamp()
+		);
 	}
 
 	public String getName() {

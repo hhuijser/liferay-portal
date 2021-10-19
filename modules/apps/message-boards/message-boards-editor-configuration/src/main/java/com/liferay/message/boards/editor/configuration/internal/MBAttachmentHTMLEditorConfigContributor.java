@@ -93,20 +93,23 @@ public class MBAttachmentHTMLEditorConfigContributor
 	protected JSONArray getToolbarMBJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			super.toJSONArray("['Bold', 'Italic', 'Underline']"),
 			super.toJSONArray("['NumberedList', 'BulletedList']"),
 			super.toJSONArray("['Styles']"),
 			super.toJSONArray("['Link', 'Unlink']"),
-			super.toJSONArray("['Blockquote', 'ImageSelector']"));
+			super.toJSONArray("['Blockquote', 'ImageSelector']")
+		).put(
+			() -> {
+				if (_isShowSource(inputEditorTaglibAttributes)) {
+					return toJSONArray("['Source']");
+				}
 
-		if (_isShowSource(inputEditorTaglibAttributes)) {
-			jsonArray.put(toJSONArray("['Source']"));
-		}
-
-		jsonArray.put(toJSONArray("['A11YBtn']"));
-
-		return jsonArray;
+				return null;
+			}
+		).put(
+			toJSONArray("['A11YBtn']")
+		);
 	}
 
 	protected ItemSelectorCriterion getURLItemSelectorCriterion() {

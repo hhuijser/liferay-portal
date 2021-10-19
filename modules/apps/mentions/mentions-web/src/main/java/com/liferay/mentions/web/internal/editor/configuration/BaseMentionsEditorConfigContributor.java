@@ -41,22 +41,6 @@ public class BaseMentionsEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		PortletURL portletURL = getPortletURL(
-			themeDisplay, requestBackedPortletURLFactory);
-
-		String source =
-			portletURL.toString() + "&" +
-				PortalUtil.getPortletNamespace(MentionsPortletKeys.MENTIONS);
-
-		String tplResults = StringBundler.concat(
-			"<div class=\"p-1 autofit-row autofit-row-center\">",
-			"<div class=\"autofit-col inline-item-before\">{portraitHTML}",
-			"</div><div class=\"autofit-col autofit-col-expand\">",
-			"<strong class=\"text-truncate\">{fullName}</strong>",
-			"<div class=\"autofit-col-expand\">",
-			"<small class=\"text-truncate\">@{screenName}</small></div></div>",
-			"</div>");
-
 		jsonObject.put(
 			"autocomplete",
 			JSONUtil.put(
@@ -77,13 +61,31 @@ public class BaseMentionsEditorConfigContributor
 					).put(
 						"resultTextLocator", "screenName"
 					).put(
-						"source", source
+						"source",
+						() -> {
+							PortletURL portletURL = getPortletURL(
+								themeDisplay, requestBackedPortletURLFactory);
+
+							return StringBundler.concat(
+								portletURL.toString(), "&",
+								PortalUtil.getPortletNamespace(
+									MentionsPortletKeys.MENTIONS));
+						}
 					).put(
 						"term", "@"
 					).put(
 						"tplReplace", "{mention}"
 					).put(
-						"tplResults", tplResults
+						"tplResults",
+						StringBundler.concat(
+							"<div class=\"p-1 autofit-row ",
+							"autofit-row-center\"><div class=\"autofit-col ",
+							"inline-item-before\">{portraitHTML}</div><div ",
+							"class=\"autofit-col autofit-col-expand\">",
+							"<strong class=\"text-truncate\">{fullName}",
+							"</strong><div class=\"autofit-col-expand\">",
+							"<small class=\"text-truncate\">@{screenName}",
+							"</small></div></div></div>")
 					))
 			));
 

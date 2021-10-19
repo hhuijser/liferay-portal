@@ -77,8 +77,6 @@ public class GetHistoricalViewsMVCResourceCommandTest {
 
 	@Test
 	public void testServeResponse() throws Exception {
-		LocalDate localDate = LocalDate.now();
-
 		ReflectionTestUtil.setFieldValue(
 			_mvcResourceCommand, "_http",
 			MockHttpUtil.geHttp(
@@ -89,8 +87,12 @@ public class GetHistoricalViewsMVCResourceCommandTest {
 						JSONUtil.put(
 							JSONUtil.put(
 								"key",
-								localDate.format(
-									DateTimeFormatter.ISO_LOCAL_DATE)
+								() -> {
+									LocalDate localDate = LocalDate.now();
+
+									return localDate.format(
+										DateTimeFormatter.ISO_LOCAL_DATE);
+								}
 							).put(
 								"value", 5
 							))

@@ -133,19 +133,21 @@ public class SocialTrafficChannelImpl implements TrafficChannel {
 	public JSONObject toJSONObject(
 		Locale locale, ResourceBundle resourceBundle) {
 
-		JSONObject jsonObject = TrafficChannelUtil.toJSONObject(
+		return TrafficChannelUtil.toJSONObject(
 			_error,
 			ResourceBundleUtil.getString(resourceBundle, getHelpMessageKey()),
 			getName(), ResourceBundleUtil.getString(resourceBundle, getName()),
-			_trafficAmount, _trafficShare);
+			_trafficAmount, _trafficShare
+		).put(
+			"referringSocialMedia",
+			() -> {
+				if (ListUtil.isNotEmpty(_referringSocialMediaList)) {
+					return _getReferringSocialMediaJSONArray(resourceBundle);
+				}
 
-		if (ListUtil.isNotEmpty(_referringSocialMediaList)) {
-			jsonObject.put(
-				"referringSocialMedia",
-				_getReferringSocialMediaJSONArray(resourceBundle));
-		}
-
-		return jsonObject;
+				return null;
+			}
+		);
 	}
 
 	@Override

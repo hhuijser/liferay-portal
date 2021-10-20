@@ -12,7 +12,7 @@
  *
  */
 
-package com.liferay.commerce.machine.learning.forecast.alert.web.internal.portlet.actions;
+package com.liferay.commerce.machine.learning.forecast.alert.web.internal.portlet.action;
 
 import com.liferay.commerce.machine.learning.forecast.alert.constants.CommerceMLForecastAlertActionKeys;
 import com.liferay.commerce.machine.learning.forecast.alert.constants.CommerceMLForecastAlertPortletKeys;

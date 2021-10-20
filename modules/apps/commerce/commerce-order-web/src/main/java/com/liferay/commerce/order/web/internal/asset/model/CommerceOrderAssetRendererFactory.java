@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.order.web.internal.asset;
+package com.liferay.commerce.order.web.internal.asset.model;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetRenderer;

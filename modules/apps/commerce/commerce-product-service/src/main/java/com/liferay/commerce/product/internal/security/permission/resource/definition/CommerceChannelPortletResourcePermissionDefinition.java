@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.internal.security.permission.resource;
+package com.liferay.commerce.product.internal.security.permission.resource.definition;
 
 import com.liferay.commerce.product.constants.CPConstants;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
@@ -21,13 +21,13 @@ import com.liferay.portal.kernel.security.permission.resource.definition.Portlet
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Riccardo Alberti
+ * @author Alessio Antonio Rendina
  */
 @Component(
 	enabled = false, immediate = true,
 	service = PortletResourcePermissionDefinition.class
 )
-public class CommerceTaxModelResourcePermissionDefinition
+public class CommerceChannelPortletResourcePermissionDefinition
 	implements PortletResourcePermissionDefinition {
 
 	@Override
@@ -41,7 +41,7 @@ public class CommerceTaxModelResourcePermissionDefinition
 
 	@Override
 	public String getResourceName() {
-		return CPConstants.RESOURCE_NAME_TAX;
+		return CPConstants.RESOURCE_NAME_CHANNEL;
 	}
 
 }

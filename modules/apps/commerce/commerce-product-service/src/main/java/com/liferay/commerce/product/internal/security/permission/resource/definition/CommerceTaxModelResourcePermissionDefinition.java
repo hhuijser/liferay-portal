@@ -12,26 +12,22 @@
  * details.
  */
 
-package com.liferay.commerce.notification.internal.security.permission.resource;
+package com.liferay.commerce.product.internal.security.permission.resource.definition;
 
 import com.liferay.commerce.product.constants.CPConstants;
-import com.liferay.commerce.product.constants.CPPortletKeys;
-import com.liferay.exportimport.kernel.staging.permission.StagingPermission;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
-import com.liferay.portal.kernel.security.permission.resource.StagedPortletPermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Alessio Antonio Rendina
+ * @author Riccardo Alberti
  */
 @Component(
 	enabled = false, immediate = true,
 	service = PortletResourcePermissionDefinition.class
 )
-public class CommerceNotificationPortletResourcePermissionDefinition
+public class CommerceTaxModelResourcePermissionDefinition
 	implements PortletResourcePermissionDefinition {
 
 	@Override
@@ -39,17 +35,13 @@ public class CommerceNotificationPortletResourcePermissionDefinition
 		getPortletResourcePermissionLogics() {
 
 		return new PortletResourcePermissionLogic[] {
-			new StagedPortletPermissionLogic(
-				_stagingPermission, CPPortletKeys.COMMERCE_CHANNELS)
+			new CommerceProductPortletResourcePermissionLogic()
 		};
 	}
 
 	@Override
 	public String getResourceName() {
-		return CPConstants.RESOURCE_NAME_CHANNEL;
+		return CPConstants.RESOURCE_NAME_TAX;
 	}
-
-	@Reference
-	private StagingPermission _stagingPermission;
 
 }

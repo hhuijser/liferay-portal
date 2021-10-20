@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.inventory.internal.security.permission.resource;
+package com.liferay.commerce.pricing.internal.security.permission.resource.definition;
 
-import com.liferay.commerce.inventory.constants.CommerceInventoryConstants;
+import com.liferay.commerce.price.list.constants.CommercePriceListConstants;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 
@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 	enabled = false, immediate = true,
 	service = PortletResourcePermissionDefinition.class
 )
-public class CommerceInventoryWarehousePortletResourcePermissionDefinition
+public class CommercePriceListPortletResourcePermissionDefinition
 	implements PortletResourcePermissionDefinition {
 
 	@Override
@@ -35,19 +35,13 @@ public class CommerceInventoryWarehousePortletResourcePermissionDefinition
 		getPortletResourcePermissionLogics() {
 
 		return new PortletResourcePermissionLogic[] {
-			(permissionChecker, name, group, actionId) -> {
-				if (permissionChecker.hasPermission(group, name, 0, actionId)) {
-					return true;
-				}
-
-				return false;
-			}
+			new PricingPortletResourcePermissionLogic()
 		};
 	}
 
 	@Override
 	public String getResourceName() {
-		return CommerceInventoryConstants.RESOURCE_NAME;
+		return CommercePriceListConstants.RESOURCE_NAME;
 	}
 
 }

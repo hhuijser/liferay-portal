@@ -12,22 +12,22 @@
  * details.
  */
 
-package com.liferay.commerce.product.internal.security.permission.resource;
+package com.liferay.commerce.pricing.internal.security.permission.resource.definition;
 
-import com.liferay.commerce.product.constants.CPConstants;
+import com.liferay.commerce.discount.constants.CommerceDiscountConstants;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Riccardo Alberti
+ * @author Alessio Antonio Rendina
  */
 @Component(
 	enabled = false, immediate = true,
 	service = PortletResourcePermissionDefinition.class
 )
-public class CommerceProductModelResourcePermissionDefinition
+public class CommerceDiscountPortletResourcePermissionDefinition
 	implements PortletResourcePermissionDefinition {
 
 	@Override
@@ -35,13 +35,13 @@ public class CommerceProductModelResourcePermissionDefinition
 		getPortletResourcePermissionLogics() {
 
 		return new PortletResourcePermissionLogic[] {
-			new CommerceProductPortletResourcePermissionLogic()
+			new PricingPortletResourcePermissionLogic()
 		};
 	}
 
 	@Override
 	public String getResourceName() {
-		return CPConstants.RESOURCE_NAME_PRODUCT;
+		return CommerceDiscountConstants.RESOURCE_NAME;
 	}
 
 }

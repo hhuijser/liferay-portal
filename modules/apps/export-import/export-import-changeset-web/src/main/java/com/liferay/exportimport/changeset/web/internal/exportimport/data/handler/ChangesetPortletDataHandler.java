@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.exportimport.changeset.web.internal.portlet.data.handler;
+package com.liferay.exportimport.changeset.web.internal.exportimport.data.handler;
 
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.model.adapter.StagedAssetLink;

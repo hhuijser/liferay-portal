@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.lar;
+package com.liferay.document.library.web.internal.exportimport.data.handler;
 
 import com.liferay.document.library.constants.DLPortletDataHandlerConstants;
 import com.liferay.document.library.constants.DLPortletKeys;

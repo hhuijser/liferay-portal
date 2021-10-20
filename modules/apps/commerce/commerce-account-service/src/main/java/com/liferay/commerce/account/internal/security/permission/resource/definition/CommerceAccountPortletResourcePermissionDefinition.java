@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.account.internal.security.permission.resource;
+package com.liferay.commerce.account.internal.security.permission.resource.definition;
 
 import com.liferay.commerce.account.constants.CommerceAccountConstants;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;

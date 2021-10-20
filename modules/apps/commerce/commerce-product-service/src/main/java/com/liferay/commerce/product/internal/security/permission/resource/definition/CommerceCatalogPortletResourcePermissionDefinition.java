@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.commerce.currency.internal.security.permission.resource;
+package com.liferay.commerce.product.internal.security.permission.resource.definition;
 
-import com.liferay.commerce.currency.model.CommerceCurrencyConstants;
+import com.liferay.commerce.product.constants.CPConstants;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 
@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 	enabled = false, immediate = true,
 	service = PortletResourcePermissionDefinition.class
 )
-public class CommerceCurrencyPortletResourcePermissionDefinition
+public class CommerceCatalogPortletResourcePermissionDefinition
 	implements PortletResourcePermissionDefinition {
 
 	@Override
@@ -35,19 +35,13 @@ public class CommerceCurrencyPortletResourcePermissionDefinition
 		getPortletResourcePermissionLogics() {
 
 		return new PortletResourcePermissionLogic[] {
-			(permissionChecker, name, group, actionId) -> {
-				if (permissionChecker.hasPermission(group, name, 0, actionId)) {
-					return true;
-				}
-
-				return false;
-			}
+			new CommerceProductPortletResourcePermissionLogic()
 		};
 	}
 
 	@Override
 	public String getResourceName() {
-		return CommerceCurrencyConstants.RESOURCE_NAME;
+		return CPConstants.RESOURCE_NAME_CATALOG;
 	}
 
 }

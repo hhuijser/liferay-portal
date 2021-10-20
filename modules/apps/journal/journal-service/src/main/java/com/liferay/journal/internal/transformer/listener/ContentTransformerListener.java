@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.internal.transformer;
+package com.liferay.journal.internal.transformer.listener;
 
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.constants.JournalPortletKeys;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.internal.transformer;
+package com.liferay.journal.internal.transformer.listener;
 
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.petra.string.StringBundler;

@@ -691,6 +691,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.SystemEventCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Finds missing or redundant usage of @SystemEvent for delete events." />
+			<property name="enabled" value="false" />
 			<message key="system.event.missing" value="Missing ''@SystemEvent(type = SystemEventConstants.TYPE_DELETE)'' for method ''{0}''" />
 			<message key="system.event.unneeded.1" value="@SystemEvent on method ''{0}'' is not needed, because the first parameter is not ''{1}''" />
 			<message key="system.event.unneeded.2" value="@SystemEvent on method ''{0}'' is not needed, because ''{1}'' does not implement ''ClassedModel''" />

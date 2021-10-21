@@ -31,7 +31,7 @@ import com.liferay.friendly.url.service.FriendlyURLEntryLocalServiceUtil;
 import com.liferay.journal.constants.JournalConstants;
 import com.liferay.journal.constants.JournalFolderConstants;
 import com.liferay.journal.internal.transformer.JournalTransformerListenerRegistryUtil;
-import com.liferay.journal.internal.transformer.LocaleTransformerListener;
+import com.liferay.journal.internal.transformer.listener.LocaleTransformerListener;
 import com.liferay.journal.internal.util.JournalHelperUtil;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleResource;

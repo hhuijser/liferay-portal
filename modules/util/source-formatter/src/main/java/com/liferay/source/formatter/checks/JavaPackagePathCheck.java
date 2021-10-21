@@ -135,6 +135,10 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		}
 
 		if (!implementedClassNames.contains(implementedClassName)) {
+			if (!implementedClassNames.isEmpty()) {
+				return;
+			}
+
 			List<String> extendedClassNames = javaClass.getExtendedClassNames();
 
 			if (!extendedClassNames.contains("Base" + implementedClassName)) {

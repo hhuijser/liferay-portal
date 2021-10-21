@@ -15,6 +15,7 @@
 package com.liferay.commerce.pricing.internal.security.permission.resource.definition;
 
 import com.liferay.commerce.pricing.constants.CommercePricingClassConstants;
+import com.liferay.commerce.pricing.internal.security.permission.resource.PricingPortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 

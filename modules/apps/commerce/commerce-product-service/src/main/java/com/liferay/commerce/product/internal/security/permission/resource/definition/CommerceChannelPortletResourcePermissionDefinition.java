@@ -15,6 +15,7 @@
 package com.liferay.commerce.product.internal.security.permission.resource.definition;
 
 import com.liferay.commerce.product.constants.CPConstants;
+import com.liferay.commerce.product.internal.security.permission.resource.CommerceProductPortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 

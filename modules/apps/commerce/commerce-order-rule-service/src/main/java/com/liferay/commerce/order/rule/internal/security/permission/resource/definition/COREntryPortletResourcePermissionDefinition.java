@@ -15,6 +15,7 @@
 package com.liferay.commerce.order.rule.internal.security.permission.resource.definition;
 
 import com.liferay.commerce.order.rule.constants.COREntryConstants;
+import com.liferay.commerce.order.rule.internal.security.permission.resource.CORServicePortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionLogic;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
 

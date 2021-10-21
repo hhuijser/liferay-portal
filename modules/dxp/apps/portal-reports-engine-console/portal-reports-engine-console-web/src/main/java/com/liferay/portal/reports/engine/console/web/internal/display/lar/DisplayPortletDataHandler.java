@@ -17,7 +17,7 @@ package com.liferay.portal.reports.engine.console.web.internal.display.lar;
 import com.liferay.exportimport.kernel.lar.DataLevel;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.portal.reports.engine.console.constants.ReportsEngineConsolePortletKeys;
-import com.liferay.portal.reports.engine.console.web.internal.admin.lar.AdminPortletDataHandler;
+import com.liferay.portal.reports.engine.console.web.internal.exportimport.data.handler.AdminPortletDataHandler;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;

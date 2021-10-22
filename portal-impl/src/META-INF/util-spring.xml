@@ -396,7 +396,7 @@
 	</bean>
 	<bean class="com.liferay.portal.language.LanguageImpl" id="com.liferay.portal.language.LanguageImpl" />
 	<bean class="com.liferay.portal.language.LanguageResources" id="com.liferay.portal.language.LanguageResources">
-		<property name="config" value="content.Language,content.Language-ext" />
+		<property name="config" value="" />
 	</bean>
 	<bean class="com.liferay.portal.model.adapter.builder.ServiceTrackerMapModelAdapterBuilderLocator" id="com.liferay.portal.model.adapter.builder.ServiceTrackerMapModelAdapterBuilderLocator" />
 	<bean class="com.liferay.portal.service.permission.GroupPermissionImpl" id="com.liferay.portal.service.permission.GroupPermissionImpl" />

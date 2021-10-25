@@ -1190,6 +1190,10 @@
 			<category name="Styling" />
 			<description name="Checks the order of poshi commands." />
 		</check>
+		<check name="PoshiDependenciesFileLocationCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks that dependencies files are located in the correct directory." />
+		</check>
 		<check name="PoshiEmptyLinesCheck">
 			<category name="Styling" />
 			<description name="Finds missing and unnecessary empty lines." />

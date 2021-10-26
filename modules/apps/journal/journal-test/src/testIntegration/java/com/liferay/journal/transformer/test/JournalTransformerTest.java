@@ -260,7 +260,7 @@ public class JournalTransformerTest {
 	protected void initRegexTransformerListener() {
 		TransformerListener transformerListener =
 			_journalTransformerListenerRegistry.getTransformerListener(
-				"com.liferay.journal.internal.transformer." +
+				"com.liferay.journal.internal.transformer.listener." +
 					"RegexTransformerListener");
 
 		CacheRegistryUtil.setActive(true);

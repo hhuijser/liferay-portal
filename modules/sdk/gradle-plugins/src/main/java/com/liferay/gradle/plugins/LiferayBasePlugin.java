@@ -28,8 +28,6 @@ import java.io.File;
 
 import java.net.URL;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -267,18 +265,12 @@ public class LiferayBasePlugin implements Plugin<Project> {
 					}
 					else if (dockerFilesDir != null) {
 						deployCopy.into(
-							new Callable<File>() {
+							() -> {
+								String relativePath = FileUtil.relativize(
+									liferayExtension.getDeployDir(),
+									liferayExtension.getLiferayHome());
 
-								@Override
-								public File call() throws Exception {
-									String relativePath = FileUtil.relativize(
-										liferayExtension.getDeployDir(),
-										liferayExtension.getLiferayHome());
-
-									return new File(
-										dockerFilesDir, relativePath);
-								}
-
+								return new File(dockerFilesDir, relativePath);
 							});
 					}
 				}
@@ -295,26 +287,21 @@ public class LiferayBasePlugin implements Plugin<Project> {
 					dockerCopyTask.setContainerId(dockerContainerId);
 
 					dockerCopyTask.setDeployDir(
-						new Callable<String>() {
+						() -> {
+							StringBuilder sb = new StringBuilder();
 
-							@Override
-							public String call() throws Exception {
-								StringBuilder sb = new StringBuilder();
+							sb.append(dockerCopyTask.getLiferayHome());
+							sb.append('/');
 
-								sb.append(dockerCopyTask.getLiferayHome());
-								sb.append('/');
+							String relativePath = FileUtil.relativize(
+								liferayExtension.getDeployDir(),
+								liferayExtension.getLiferayHome());
 
-								String relativePath = FileUtil.relativize(
-									liferayExtension.getDeployDir(),
-									liferayExtension.getLiferayHome());
+							sb.append(relativePath);
 
-								sb.append(relativePath);
+							String deployDir = sb.toString();
 
-								String deployDir = sb.toString();
-
-								return deployDir.replace('\\', '/');
-							}
-
+							return deployDir.replace('\\', '/');
 						});
 
 					dockerCopyTask.setDescription(
@@ -322,18 +309,13 @@ public class LiferayBasePlugin implements Plugin<Project> {
 					dockerCopyTask.setGroup(BasePlugin.BUILD_GROUP);
 
 					dockerCopyTask.setSourceFile(
-						new Callable<File>() {
+						() -> {
+							Copy deployCopy = deployTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								Copy deployCopy = deployTaskProvider.get();
+							FileCollection fileCollection =
+								deployCopy.getSource();
 
-								FileCollection fileCollection =
-									deployCopy.getSource();
-
-								return fileCollection.getSingleFile();
-							}
-
+							return fileCollection.getSingleFile();
 						});
 				}
 
@@ -367,15 +349,7 @@ public class LiferayBasePlugin implements Plugin<Project> {
 
 						});
 
-					deployCopy.into(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return liferayExtension.getDeployDir();
-							}
-
-						});
+					deployCopy.into(liferayExtension::getDeployDir);
 
 					deployCopy.setDescription(
 						"Assembles the project and deploys it to Liferay.");
@@ -386,48 +360,17 @@ public class LiferayBasePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskDirectDeploy(
-		DirectDeployTask directDeployTask,
-		final LiferayExtension liferayExtension) {
+		DirectDeployTask directDeployTask, LiferayExtension liferayExtension) {
 
-		directDeployTask.setAppServerDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return liferayExtension.getAppServerDir();
-				}
-
-			});
+		directDeployTask.setAppServerDir(liferayExtension::getAppServerDir);
 
 		directDeployTask.setAppServerLibGlobalDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return liferayExtension.getAppServerLibGlobalDir();
-				}
-
-			});
+			liferayExtension::getAppServerLibGlobalDir);
 
 		directDeployTask.setAppServerPortalDir(
-			new Callable<File>() {
+			liferayExtension::getAppServerPortalDir);
 
-				@Override
-				public File call() throws Exception {
-					return liferayExtension.getAppServerPortalDir();
-				}
-
-			});
-
-		directDeployTask.setAppServerType(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return liferayExtension.getAppServerType();
-				}
-
-			});
+		directDeployTask.setAppServerType(liferayExtension::getAppServerType);
 	}
 
 	private String _getScriptLiferayExtension(Project project) {

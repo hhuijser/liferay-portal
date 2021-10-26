@@ -30,7 +30,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.apache.tools.ant.filters.FixCrLfFilter;
 
@@ -117,8 +116,8 @@ public class AppDockerPlugin implements Plugin<Project> {
 	}
 
 	private DockerBuildImage _addTaskBuildAppDockerImage(
-		final Sync prepareAppDockerImageInputDirTask,
-		final AppDockerExtension appDockerExtension) {
+		Sync prepareAppDockerImageInputDirTask,
+		AppDockerExtension appDockerExtension) {
 
 		DockerBuildImage dockerBuildImage = GradleUtil.addTask(
 			prepareAppDockerImageInputDirTask.getProject(),
@@ -134,33 +133,16 @@ public class AppDockerPlugin implements Plugin<Project> {
 		ConventionMapping conventionMapping = dslObject.getConventionMapping();
 
 		conventionMapping.map(
-			"inputDir",
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return prepareAppDockerImageInputDirTask.
-						getDestinationDir();
-				}
-
-			});
+			"inputDir", prepareAppDockerImageInputDirTask::getDestinationDir);
 
 		conventionMapping.map(
-			"tag",
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getImageRepository(appDockerExtension);
-				}
-
-			});
+			"tag", () -> _getImageRepository(appDockerExtension));
 
 		return dockerBuildImage;
 	}
 
 	private Sync _addTaskPrepareAppDockerImageInputDir(
-		final Project project, final AppDockerExtension appDockerExtension) {
+		Project project, AppDockerExtension appDockerExtension) {
 
 		Sync sync = GradleUtil.addTask(
 			project, PREPARE_APP_DOCKER_IMAGE_INPUT_DIR_TASK_NAME, Sync.class);
@@ -176,25 +158,9 @@ public class AppDockerPlugin implements Plugin<Project> {
 
 			});
 
-		sync.from(
-			new Callable<File>() {
+		sync.from(appDockerExtension::getInputDir);
 
-				@Override
-				public File call() throws Exception {
-					return appDockerExtension.getInputDir();
-				}
-
-			});
-
-		sync.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(project.getBuildDir(), "docker");
-				}
-
-			});
+		sync.into(() -> new File(project.getBuildDir(), "docker"));
 
 		sync.setDescription(
 			"Copies all the subproject artifacts and other resources to a " +
@@ -206,7 +172,7 @@ public class AppDockerPlugin implements Plugin<Project> {
 
 	private DockerPushImage _addTaskPushAppDockerImage(
 		DockerBuildImage buildAppDockerImageTask,
-		final AppDockerExtension appDockerExtension) {
+		AppDockerExtension appDockerExtension) {
 
 		DockerPushImage dockerPushImage = GradleUtil.addTask(
 			buildAppDockerImageTask.getProject(),
@@ -223,15 +189,7 @@ public class AppDockerPlugin implements Plugin<Project> {
 		ConventionMapping conventionMapping = dslObject.getConventionMapping();
 
 		conventionMapping.map(
-			"imageName",
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getImageRepository(appDockerExtension);
-				}
-
-			});
+			"imageName", () -> _getImageRepository(appDockerExtension));
 
 		return dockerPushImage;
 	}

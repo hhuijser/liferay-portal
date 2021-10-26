@@ -113,7 +113,7 @@ public class AppJavadocBuilderPlugin implements Plugin<Project> {
 	}
 
 	private Javadoc _addTaskAppJavadoc(
-		Project project, final ReportingExtension reportingExtension) {
+		Project project, ReportingExtension reportingExtension) {
 
 		final Javadoc javadoc = GradleUtil.addTask(
 			project, APP_JAVADOC_TASK_NAME, Javadoc.class);
@@ -137,16 +137,7 @@ public class AppJavadocBuilderPlugin implements Plugin<Project> {
 
 			});
 
-		conventionMapping.map(
-			"title",
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return reportingExtension.getApiDocTitle();
-				}
-
-			});
+		conventionMapping.map("title", reportingExtension::getApiDocTitle);
 
 		StandardJavadocDocletOptions standardJavadocDocletOptions =
 			(StandardJavadocDocletOptions)javadoc.getOptions();

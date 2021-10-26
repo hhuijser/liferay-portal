@@ -20,8 +20,6 @@ import com.liferay.gradle.util.StringUtil;
 
 import java.io.File;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -211,29 +209,15 @@ public class XSDBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTaskBuildXSDForWarPlugin(
-		final BuildXSDTask buildXSDTask) {
+		BuildXSDTask buildXSDTask) {
 
 		buildXSDTask.setDestinationDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildXSDTask.getProject()), "WEB-INF/lib");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildXSDTask.getProject()), "WEB-INF/lib"));
 
 		buildXSDTask.setInputDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildXSDTask.getProject()), "WEB-INF/xsd");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildXSDTask.getProject()), "WEB-INF/xsd"));
 	}
 
 	protected void configureTasksBuildXSD(Project project) {

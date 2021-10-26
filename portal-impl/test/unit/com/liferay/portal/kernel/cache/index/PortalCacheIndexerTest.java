@@ -96,15 +96,10 @@ public class PortalCacheIndexerTest {
 		_mappedMethodCallableInvocationHandler.putBeforeCallable(
 			ConcurrentMap.class.getMethod(
 				"putIfAbsent", Object.class, Object.class),
-			new Callable<Void>() {
+			() -> {
+				_portalCache.put(_INDEX_1_KEY_1, _VALUE);
 
-				@Override
-				public Void call() {
-					_portalCache.put(_INDEX_1_KEY_1, _VALUE);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		_portalCache.put(_INDEX_1_KEY_2, _VALUE);
@@ -241,15 +236,10 @@ public class PortalCacheIndexerTest {
 
 		_mappedMethodCallableInvocationHandler.putBeforeCallable(
 			ConcurrentMap.class.getMethod("remove", Object.class, Object.class),
-			new Callable<Void>() {
+			() -> {
+				_portalCache.put(_INDEX_1_KEY_2, _VALUE);
 
-				@Override
-				public Void call() throws Exception {
-					_portalCache.put(_INDEX_1_KEY_2, _VALUE);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		_portalCache.remove(_INDEX_1_KEY_1);
@@ -265,15 +255,10 @@ public class PortalCacheIndexerTest {
 
 		_mappedMethodCallableInvocationHandler.putBeforeCallable(
 			ConcurrentMap.class.getMethod("remove", Object.class, Object.class),
-			new Callable<Void>() {
+			() -> {
+				_portalCacheIndexer.removeKeys(1L);
 
-				@Override
-				public Void call() throws Exception {
-					_portalCacheIndexer.removeKeys(1L);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		_portalCache.remove(_INDEX_1_KEY_1);

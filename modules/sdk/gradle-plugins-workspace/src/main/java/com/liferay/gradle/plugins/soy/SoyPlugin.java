@@ -24,7 +24,6 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -181,17 +180,10 @@ public class SoyPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBuildSoyForJavaPlugin(
-		final BuildSoyTask buildSoyTask) {
+		BuildSoyTask buildSoyTask) {
 
 		buildSoyTask.setSource(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return _getResourcesDir(buildSoyTask.getProject());
-				}
-
-			});
+			() -> _getResourcesDir(buildSoyTask.getProject()));
 	}
 
 	private void _configureTasksBuildSoy(
@@ -213,25 +205,20 @@ public class SoyPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskWrapSoyAlloyTemplateForJavaPlugin(
-		final WrapSoyAlloyTemplateTask wrapSoyAlloyTemplateTask) {
+		WrapSoyAlloyTemplateTask wrapSoyAlloyTemplateTask) {
 
 		wrapSoyAlloyTemplateTask.dependsOn(
 			JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
 
 		wrapSoyAlloyTemplateTask.setSource(
-			new Callable<File>() {
+			() -> {
+				SourceSet sourceSet = GradleUtil.getSourceSet(
+					wrapSoyAlloyTemplateTask.getProject(),
+					SourceSet.MAIN_SOURCE_SET_NAME);
 
-				@Override
-				public File call() throws Exception {
-					SourceSet sourceSet = GradleUtil.getSourceSet(
-						wrapSoyAlloyTemplateTask.getProject(),
-						SourceSet.MAIN_SOURCE_SET_NAME);
+				SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
-					SourceSetOutput sourceSetOutput = sourceSet.getOutput();
-
-					return sourceSetOutput.getResourcesDir();
-				}
-
+				return sourceSetOutput.getResourcesDir();
 			});
 
 		Task classesTask = GradleUtil.getTask(

@@ -22,7 +22,6 @@ import java.io.File;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -46,7 +45,7 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 	}
 
 	private BuildTaglibsTask _addTaskBuildTaglibs(Project project) {
-		final BuildTaglibsTask buildTaglibsTask = GradleUtil.addTask(
+		BuildTaglibsTask buildTaglibsTask = GradleUtil.addTask(
 			project, BUILD_TAGLIBS_TASK_NAME, BuildTaglibsTask.class);
 
 		buildTaglibsTask.setDescription(
@@ -54,58 +53,36 @@ public class AlloyTaglibPlugin implements Plugin<Project> {
 		buildTaglibsTask.setGroup(BasePlugin.BUILD_GROUP);
 
 		buildTaglibsTask.setJavaDir(
-			new Callable<File>() {
+			() -> {
+				String javaPackage = buildTaglibsTask.getJavaPackage();
 
-				@Override
-				public File call() throws Exception {
-					String javaPackage = buildTaglibsTask.getJavaPackage();
-
-					if (Validator.isNull(javaPackage)) {
-						return null;
-					}
-
-					return new File(
-						_getJavaDir(buildTaglibsTask.getProject()),
-						javaPackage.replace('.', '/'));
+				if (Validator.isNull(javaPackage)) {
+					return null;
 				}
 
+				return new File(
+					_getJavaDir(buildTaglibsTask.getProject()),
+					javaPackage.replace('.', '/'));
 			});
 
 		buildTaglibsTask.setJspParentDir(
-			new Callable<File>() {
+			() -> {
+				File resourcesDir = _getResourcesDir(
+					buildTaglibsTask.getProject());
 
-				@Override
-				public File call() throws Exception {
-					File resourcesDir = _getResourcesDir(
-						buildTaglibsTask.getProject());
-
-					return new File(resourcesDir, "META-INF/resources");
-				}
-
+				return new File(resourcesDir, "META-INF/resources");
 			});
 
 		buildTaglibsTask.setOsgiModuleSymbolicName(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return OSGiUtil.getBundleSymbolicName(
-						buildTaglibsTask.getProject());
-				}
-
-			});
+			() -> OSGiUtil.getBundleSymbolicName(
+				buildTaglibsTask.getProject()));
 
 		buildTaglibsTask.setTldDir(
-			new Callable<File>() {
+			() -> {
+				File resourcesDir = _getResourcesDir(
+					buildTaglibsTask.getProject());
 
-				@Override
-				public File call() throws Exception {
-					File resourcesDir = _getResourcesDir(
-						buildTaglibsTask.getProject());
-
-					return new File(resourcesDir, "META-INF/resources");
-				}
-
+				return new File(resourcesDir, "META-INF/resources");
 			});
 
 		return buildTaglibsTask;

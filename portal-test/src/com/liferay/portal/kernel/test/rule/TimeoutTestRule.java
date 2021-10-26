@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.OSDetector;
 import com.liferay.portal.kernel.util.ThreadUtil;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 import org.junit.rules.TestRule;
@@ -55,23 +54,18 @@ public class TimeoutTestRule implements TestRule {
 			@Override
 			public void evaluate() throws Throwable {
 				FutureTask<Void> futureTask = new FutureTask<>(
-					new Callable<Void>() {
+					() -> {
+						Thread.sleep(_timeout);
 
-						@Override
-						public Void call() throws InterruptedException {
-							Thread.sleep(_timeout);
+						System.out.println(
+							StringBundler.concat(
+								"Thread dump for ", description.toString(),
+								" timeout after waited ", _timeout, "ms:",
+								ThreadUtil.threadDump()));
 
-							System.out.println(
-								StringBundler.concat(
-									"Thread dump for ", description.toString(),
-									" timeout after waited ", _timeout, "ms:",
-									ThreadUtil.threadDump()));
+						System.exit(TIMEOUT_EXIT_CODE);
 
-							System.exit(TIMEOUT_EXIT_CODE);
-
-							return null;
-						}
-
+						return null;
 					});
 
 				Thread timeoutMonitoringThread = new Thread(

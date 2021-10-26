@@ -21,7 +21,6 @@ import com.liferay.gradle.util.GradleUtil;
 import java.io.File;
 
 import java.util.Collections;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -95,23 +94,18 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 			project, CONFIGURATION_NAME, "taglibrarydoc", "tlddoc", "1.3");
 	}
 
-	private Copy _addTaskCopyTLDDocResources(final Project project) {
+	private Copy _addTaskCopyTLDDocResources(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, COPY_TLDDOC_RESOURCES_TASK_NAME, Copy.class);
 
 		copy.from("src/main/tlddoc");
 
 		copy.into(
-			new Callable<File>() {
+			() -> {
+				TLDDocTask tldDocTask = (TLDDocTask)GradleUtil.getTask(
+					project, TLDDOC_TASK_NAME);
 
-				@Override
-				public File call() throws Exception {
-					TLDDocTask tldDocTask = (TLDDocTask)GradleUtil.getTask(
-						project, TLDDOC_TASK_NAME);
-
-					return tldDocTask.getDestinationDir();
-				}
-
+				return tldDocTask.getDestinationDir();
 			});
 
 		copy.setDescription("Copies tag library documentation resources.");
@@ -195,52 +189,30 @@ public class TLDDocBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskTLDDocForJavaPlugin(TLDDocTask tldDocTask) {
-		final Project project = tldDocTask.getProject();
+		Project project = tldDocTask.getProject();
 
 		tldDocTask.setDestinationDir(
-			new Callable<File>() {
+			() -> {
+				JavaPluginConvention javaPluginConvention =
+					GradleUtil.getConvention(
+						project, JavaPluginConvention.class);
 
-				@Override
-				public File call() throws Exception {
-					JavaPluginConvention javaPluginConvention =
-						GradleUtil.getConvention(
-							project, JavaPluginConvention.class);
-
-					return new File(
-						javaPluginConvention.getDocsDir(), "tlddoc");
-				}
-
+				return new File(javaPluginConvention.getDocsDir(), "tlddoc");
 			});
 
 		tldDocTask.setIncludes(Collections.singleton("**/*.tld"));
 
-		tldDocTask.setSource(
-			new Callable<Iterable<File>>() {
-
-				@Override
-				public Iterable<File> call() throws Exception {
-					return _getResourceDirs(project);
-				}
-
-			});
+		tldDocTask.setSource(() -> _getResourceDirs(project));
 	}
 
 	private void _configureTaskValidateSchemaForJavaPlugin(
 		ValidateSchemaTask validateSchemaTask) {
 
-		final Project project = validateSchemaTask.getProject();
+		Project project = validateSchemaTask.getProject();
 
 		validateSchemaTask.setIncludes(Collections.singleton("**/*.tld"));
 
-		validateSchemaTask.setSource(
-			new Callable<Iterable<File>>() {
-
-				@Override
-				public Iterable<File> call() throws Exception {
-					return _getResourceDirs(project);
-				}
-
-			});
+		validateSchemaTask.setSource(() -> _getResourceDirs(project));
 	}
 
 	private Iterable<File> _getResourceDirs(Project project) {

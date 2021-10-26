@@ -35,7 +35,6 @@ import groovy.lang.Closure;
 import java.io.File;
 
 import java.util.Properties;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.GradleException;
@@ -393,7 +392,7 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureDeployDir(Project project) {
-		final LiferayExtension liferayExtension = GradleUtil.getExtension(
+		LiferayExtension liferayExtension = GradleUtil.getExtension(
 			project, LiferayExtension.class);
 
 		boolean requiredForStartup = _getPluginPackageProperty(
@@ -401,27 +400,11 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 
 		if (requiredForStartup) {
 			liferayExtension.setDeployDir(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return new File(
-							liferayExtension.getLiferayHome(), "osgi/war");
-					}
-
-				});
+				() -> new File(liferayExtension.getLiferayHome(), "osgi/war"));
 		}
 		else {
 			liferayExtension.setDeployDir(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return new File(
-							liferayExtension.getLiferayHome(), "deploy");
-					}
-
-				});
+				() -> new File(liferayExtension.getLiferayHome(), "deploy"));
 		}
 	}
 

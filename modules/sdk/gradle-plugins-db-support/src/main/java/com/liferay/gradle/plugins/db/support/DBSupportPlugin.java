@@ -19,8 +19,6 @@ import com.liferay.gradle.plugins.db.support.tasks.BaseDBSupportTask;
 import com.liferay.gradle.plugins.db.support.tasks.CleanServiceBuilderTask;
 import com.liferay.gradle.util.OSGiUtil;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -98,7 +96,7 @@ public class DBSupportPlugin implements Plugin<Project> {
 	}
 
 	private CleanServiceBuilderTask _addTaskCleanServiceBuilder(
-		final Project project) {
+		Project project) {
 
 		CleanServiceBuilderTask cleanServiceBuilderTask = GradleUtil.addTask(
 			project, CLEAN_SERVICE_BUILDER_TASK_NAME,
@@ -110,19 +108,14 @@ public class DBSupportPlugin implements Plugin<Project> {
 		cleanServiceBuilderTask.setGroup(BasePlugin.BUILD_GROUP);
 
 		cleanServiceBuilderTask.setServletContextName(
-			new Callable<String>() {
+			() -> {
+				PluginContainer pluginContainer = project.getPlugins();
 
-				@Override
-				public String call() throws Exception {
-					PluginContainer pluginContainer = project.getPlugins();
-
-					if (pluginContainer.hasPlugin(BasePlugin.class)) {
-						return OSGiUtil.getBundleSymbolicName(project);
-					}
-
-					return null;
+				if (pluginContainer.hasPlugin(BasePlugin.class)) {
+					return OSGiUtil.getBundleSymbolicName(project);
 				}
 
+				return null;
 			});
 
 		cleanServiceBuilderTask.setServiceXmlFile("service.xml");

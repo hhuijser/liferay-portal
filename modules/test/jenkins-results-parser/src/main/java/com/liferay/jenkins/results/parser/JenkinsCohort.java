@@ -128,24 +128,19 @@ public class JenkinsCohort {
 		}
 
 		List<Callable<Void>> callables = new ArrayList<>();
-		final List<String> buildURLs = Collections.synchronizedList(
+		List<String> buildURLs = Collections.synchronizedList(
 			new ArrayList<String>());
-		final Map<String, JSONObject> queuedBuildURLs =
-			Collections.synchronizedMap(new HashMap<String, JSONObject>());
+		Map<String, JSONObject> queuedBuildURLs = Collections.synchronizedMap(
+			new HashMap<String, JSONObject>());
 
 		for (final JenkinsMaster jenkinsMaster : _jenkinsMastersMap.values()) {
-			Callable<Void> callable = new Callable<Void>() {
+			Callable<Void> callable = () -> {
+				jenkinsMaster.update(false);
 
-				@Override
-				public Void call() {
-					jenkinsMaster.update(false);
+				buildURLs.addAll(jenkinsMaster.getBuildURLs());
+				queuedBuildURLs.putAll(jenkinsMaster.getQueuedBuildURLs());
 
-					buildURLs.addAll(jenkinsMaster.getBuildURLs());
-					queuedBuildURLs.putAll(jenkinsMaster.getQueuedBuildURLs());
-
-					return null;
-				}
-
+				return null;
 			};
 
 			callables.add(callable);

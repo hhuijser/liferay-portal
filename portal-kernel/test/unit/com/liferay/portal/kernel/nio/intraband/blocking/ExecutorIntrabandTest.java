@@ -50,7 +50,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.SynchronousQueue;
@@ -148,17 +147,12 @@ public class ExecutorIntrabandTest {
 
 			SyncThrowableThread<Void> syncThrowableThread =
 				new SyncThrowableThread<>(
-					new Callable<Void>() {
+					() -> {
+						Thread.sleep(100);
 
-						@Override
-						public Void call() throws Exception {
-							Thread.sleep(100);
+						sourceChannel.close();
 
-							sourceChannel.close();
-
-							return null;
-						}
-
+						return null;
 					});
 
 			syncThrowableThread.start();

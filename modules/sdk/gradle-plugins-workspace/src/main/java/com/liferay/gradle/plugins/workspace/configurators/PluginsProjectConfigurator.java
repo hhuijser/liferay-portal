@@ -34,7 +34,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.AntBuilder;
@@ -45,7 +44,6 @@ import org.gradle.api.artifacts.DependencySet;
 import org.gradle.api.artifacts.dsl.DependencyHandler;
 import org.gradle.api.file.ConfigurableFileTree;
 import org.gradle.api.file.CopySpec;
-import org.gradle.api.file.FileTree;
 import org.gradle.api.initialization.Settings;
 import org.gradle.api.plugins.ExtensionAware;
 import org.gradle.api.plugins.WarPlugin;
@@ -228,21 +226,13 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 
 	@SuppressWarnings("serial")
 	private Copy _addRootTaskUpgradePluginsSDK(
-		final Project project, String taskName, File dir,
-		final Configuration pluginsSDKConfiguration) {
+		Project project, String taskName, File dir,
+		Configuration pluginsSDKConfiguration) {
 
 		Copy copy = GradleUtil.addTask(project, taskName, Copy.class);
 
 		copy.from(
-			new Callable<FileTree>() {
-
-				@Override
-				public FileTree call() throws Exception {
-					return project.zipTree(
-						pluginsSDKConfiguration.getSingleFile());
-				}
-
-			},
+			() -> project.zipTree(pluginsSDKConfiguration.getSingleFile()),
 			new Closure<Void>(project) {
 
 				@SuppressWarnings("unused")
@@ -273,22 +263,14 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	private UpdatePropertiesTask _addTaskUpdateProperties(
-		Project project, final WorkspaceExtension workspaceExtension) {
+		Project project, WorkspaceExtension workspaceExtension) {
 
 		UpdatePropertiesTask updatePropertiesTask = GradleUtil.addTask(
 			project, UPDATE_PROPERTIES_TASK_NAME, UpdatePropertiesTask.class);
 
 		updatePropertiesTask.property(
 			"app.server.parent.dir",
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return FileUtil.getAbsolutePath(
-						workspaceExtension.getHomeDir());
-				}
-
-			});
+			() -> FileUtil.getAbsolutePath(workspaceExtension.getHomeDir()));
 
 		updatePropertiesTask.setDescription(
 			"Updates the Plugins SDK build properties with the workspace " +
@@ -339,23 +321,18 @@ public class PluginsProjectConfigurator extends BaseProjectConfigurator {
 	}
 
 	private void _configureTaskWar(
-		Task warTask, final WorkspaceExtension workspaceExtension,
-		final Task initBundleTask) {
+		Task warTask, WorkspaceExtension workspaceExtension,
+		Task initBundleTask) {
 
 		warTask.dependsOn(
-			new Callable<Task>() {
+			() -> {
+				File homeDir = workspaceExtension.getHomeDir();
 
-				@Override
-				public Task call() throws Exception {
-					File homeDir = workspaceExtension.getHomeDir();
-
-					if (homeDir.exists()) {
-						return null;
-					}
-
-					return initBundleTask;
+				if (homeDir.exists()) {
+					return null;
 				}
 
+				return initBundleTask;
 			});
 	}
 

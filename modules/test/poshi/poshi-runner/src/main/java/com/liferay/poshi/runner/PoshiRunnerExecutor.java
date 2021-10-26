@@ -1185,49 +1185,33 @@ public class PoshiRunnerExecutor {
 
 		String methodName = method.getName();
 
-		Callable<Object> task = new Callable<Object>() {
+		Callable<Object> task = () -> {
+			try {
+				return method.invoke(liferaySelenium, args);
+			}
+			catch (InvocationTargetException invocationTargetException) {
+				Throwable throwable = invocationTargetException.getCause();
 
-			public Object call() throws Exception {
-				try {
-					return method.invoke(liferaySelenium, args);
-				}
-				catch (InvocationTargetException invocationTargetException) {
-					Throwable throwable = invocationTargetException.getCause();
+				if (throwable instanceof StaleElementReferenceException) {
+					StringBuilder sb = new StringBuilder();
 
-					if (throwable instanceof StaleElementReferenceException) {
-						StringBuilder sb = new StringBuilder();
+					sb.append("\nElement turned stale while running ");
+					sb.append(methodName);
+					sb.append(". Retrying in ");
+					sb.append(PropsValues.TEST_RETRY_COMMAND_WAIT_TIME);
+					sb.append("seconds.");
 
-						sb.append("\nElement turned stale while running ");
-						sb.append(methodName);
-						sb.append(". Retrying in ");
-						sb.append(PropsValues.TEST_RETRY_COMMAND_WAIT_TIME);
-						sb.append("seconds.");
+					System.out.println(sb.toString());
 
-						System.out.println(sb.toString());
-
-						try {
-							return method.invoke(liferaySelenium, args);
-						}
-						catch (Exception exception) {
-							throwable = exception.getCause();
-
-							if (PropsValues.DEBUG_STACKTRACE) {
-								throw new Exception(
-									throwable.getMessage(), exception);
-							}
-
-							if (throwable instanceof Error) {
-								throw (Error)throwable;
-							}
-
-							throw (Exception)throwable;
-						}
+					try {
+						return method.invoke(liferaySelenium, args);
 					}
-					else {
+					catch (Exception exception) {
+						throwable = exception.getCause();
+
 						if (PropsValues.DEBUG_STACKTRACE) {
 							throw new Exception(
-								throwable.getMessage(),
-								invocationTargetException);
+								throwable.getMessage(), exception);
 						}
 
 						if (throwable instanceof Error) {
@@ -1237,8 +1221,19 @@ public class PoshiRunnerExecutor {
 						throw (Exception)throwable;
 					}
 				}
-			}
+				else {
+					if (PropsValues.DEBUG_STACKTRACE) {
+						throw new Exception(
+							throwable.getMessage(), invocationTargetException);
+					}
 
+					if (throwable instanceof Error) {
+						throw (Error)throwable;
+					}
+
+					throw (Exception)throwable;
+				}
+			}
 		};
 
 		Long timeout = Long.valueOf(PropsValues.TIMEOUT_EXPLICIT_WAIT) + 60L;

@@ -20,7 +20,6 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -85,7 +84,7 @@ public class DeploymentHelperPlugin implements Plugin<Project> {
 	}
 
 	protected BuildDeploymentHelperTask addTaskBuildDeploymentHelper(
-		final Project project) {
+		Project project) {
 
 		BuildDeploymentHelperTask buildDeploymentHelperTask =
 			GradleUtil.addTask(
@@ -93,26 +92,21 @@ public class DeploymentHelperPlugin implements Plugin<Project> {
 				BuildDeploymentHelperTask.class);
 
 		buildDeploymentHelperTask.setDeploymentFiles(
-			new Callable<List<Jar>>() {
+			() -> {
+				List<Jar> jarTasks = new ArrayList<>();
 
-				@Override
-				public List<Jar> call() throws Exception {
-					List<Jar> jarTasks = new ArrayList<>();
+				for (Project curProject : project.getAllprojects()) {
+					TaskContainer taskContainer = curProject.getTasks();
 
-					for (Project curProject : project.getAllprojects()) {
-						TaskContainer taskContainer = curProject.getTasks();
+					Task task = taskContainer.findByName(
+						JavaPlugin.JAR_TASK_NAME);
 
-						Task task = taskContainer.findByName(
-							JavaPlugin.JAR_TASK_NAME);
-
-						if (task instanceof Jar) {
-							jarTasks.add((Jar)task);
-						}
+					if (task instanceof Jar) {
+						jarTasks.add((Jar)task);
 					}
-
-					return jarTasks;
 				}
 
+				return jarTasks;
 			});
 
 		buildDeploymentHelperTask.setDescription(
@@ -120,15 +114,7 @@ public class DeploymentHelperPlugin implements Plugin<Project> {
 		buildDeploymentHelperTask.setGroup(BasePlugin.BUILD_GROUP);
 
 		buildDeploymentHelperTask.setOutputFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						project.getBuildDir(), project.getName() + ".war");
-				}
-
-			});
+			() -> new File(project.getBuildDir(), project.getName() + ".war"));
 
 		return buildDeploymentHelperTask;
 	}

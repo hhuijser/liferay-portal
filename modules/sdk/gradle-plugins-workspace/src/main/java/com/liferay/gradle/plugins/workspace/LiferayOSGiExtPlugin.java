@@ -34,7 +34,6 @@ import java.io.IOException;
 
 import java.util.Collections;
 import java.util.Objects;
-import java.util.concurrent.Callable;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 
@@ -46,7 +45,6 @@ import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.ConfigurationContainer;
 import org.gradle.api.file.CopySpec;
 import org.gradle.api.file.DuplicatesStrategy;
-import org.gradle.api.file.FileTree;
 import org.gradle.api.java.archives.Manifest;
 import org.gradle.api.java.archives.ManifestMergeDetails;
 import org.gradle.api.java.archives.ManifestMergeSpec;
@@ -195,20 +193,11 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 			attributes.getValue(Constants.BUNDLE_SYMBOLICNAME));
 	}
 
-	private void _configureExtensionLiferay(
-		final LiferayExtension liferayExtension) {
-
+	private void _configureExtensionLiferay(LiferayExtension liferayExtension) {
 		liferayExtension.setDeployDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() {
-					return new File(
-						liferayExtension.getAppServerParentDir(),
-						"osgi/marketplace/override");
-				}
-
-			});
+			() -> new File(
+				liferayExtension.getAppServerParentDir(),
+				"osgi/marketplace/override"));
 	}
 
 	private void _configureProjectAfterEvaluate(
@@ -274,21 +263,12 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(Jar jar) {
-					final Sync unzipOriginalModuleSync =
+					Sync unzipOriginalModuleSync =
 						unzipOriginalModuleTaskProvider.get();
 
 					jar.dependsOn(unzipOriginalModuleSync);
 
-					jar.from(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return unzipOriginalModuleSync.
-									getDestinationDir();
-							}
-
-						});
+					jar.from(unzipOriginalModuleSync::getDestinationDir);
 
 					jar.setDuplicatesStrategy(DuplicatesStrategy.EXCLUDE);
 
@@ -307,16 +287,9 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 							}));
 
 					manifest.from(
-						new Callable<File>() {
-
-							@Override
-							public File call() {
-								return new File(
-									unzipOriginalModuleSync.getDestinationDir(),
-									"META-INF/MANIFEST.MF");
-							}
-
-						},
+						() -> new File(
+							unzipOriginalModuleSync.getDestinationDir(),
+							"META-INF/MANIFEST.MF"),
 						new Closure<Void>(jar) {
 
 							@SuppressWarnings("unused")
@@ -361,28 +334,16 @@ public class LiferayOSGiExtPlugin implements Plugin<Project> {
 				@Override
 				public void execute(Sync unzipOriginalModuleSync) {
 					unzipOriginalModuleSync.from(
-						new Callable<FileTree>() {
+						() -> {
+							File file =
+								originalModuleConfiguration.getSingleFile();
 
-							@Override
-							public FileTree call() {
-								File file =
-									originalModuleConfiguration.getSingleFile();
-
-								return project.zipTree(file);
-							}
-
+							return project.zipTree(file);
 						});
 
 					unzipOriginalModuleSync.into(
-						new Callable<File>() {
-
-							@Override
-							public File call() {
-								return new File(
-									project.getBuildDir(), "original-module");
-							}
-
-						});
+						() -> new File(
+							project.getBuildDir(), "original-module"));
 
 					unzipOriginalModuleSync.setDescription(
 						"Unzips the original module into a temporary " +

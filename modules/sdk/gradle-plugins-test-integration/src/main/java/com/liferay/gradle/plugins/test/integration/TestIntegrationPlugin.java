@@ -39,7 +39,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.gradle.StartParameter;
@@ -216,17 +215,9 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		copy.from(testModulesConfiguration);
 
 		copy.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						testIntegrationTomcatExtension.
-							getModuleFrameworkBaseDir(),
-						"test");
-				}
-
-			});
+			() -> new File(
+				testIntegrationTomcatExtension.getModuleFrameworkBaseDir(),
+				"test"));
 
 		copy.rename(renameDependencyClosure);
 
@@ -250,7 +241,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 	}
 
 	private SetUpArquillianTask _addTaskSetUpArquillian(
-		Project project, final SourceSet testIntegrationSourceSet,
+		Project project, SourceSet testIntegrationSourceSet,
 		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		SetUpArquillianTask setUpArquillianTask = GradleUtil.addTask(
@@ -261,14 +252,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 				"project.");
 
 		setUpArquillianTask.setOutputDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return _getSrcDir(testIntegrationSourceSet.getResources());
-				}
-
-			});
+			() -> _getSrcDir(testIntegrationSourceSet.getResources()));
 
 		_configureJmxRemotePortSpec(
 			setUpArquillianTask, testIntegrationTomcatExtension);
@@ -280,7 +264,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 
 	private SetUpTestableTomcatTask _addTaskSetUpTestableTomcat(
 		Project project, Copy copyTestModulesTask,
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		final SetUpTestableTomcatTask setUpTestableTomcatTask =
 			GradleUtil.addTask(
@@ -316,15 +300,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 			"Configures the local Liferay Tomcat bundle to run integration " +
 				"tests.");
 
-		setUpTestableTomcatTask.setDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return testIntegrationTomcatExtension.getDir();
-				}
-
-			});
+		setUpTestableTomcatTask.setDir(testIntegrationTomcatExtension::getDir);
 
 		_configureManagerSpec(
 			setUpTestableTomcatTask, testIntegrationTomcatExtension);
@@ -337,7 +313,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 	private StartTestableTomcatTask _addTaskStartTestableTomcat(
 		Project project, SetUpTestableTomcatTask setUpTestableTomcatTask,
 		StopTestableTomcatTask stopTestableTomcatTask,
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		StartTestableTomcatTask startTestableTomcatTask = GradleUtil.addTask(
 			project, START_TESTABLE_TOMCAT_TASK_NAME,
@@ -431,14 +407,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 		startTestableTomcatTask.setGroup(JavaBasePlugin.VERIFICATION_GROUP);
 
 		startTestableTomcatTask.setLiferayHome(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return testIntegrationTomcatExtension.getLiferayHome();
-				}
-
-			});
+			testIntegrationTomcatExtension::getLiferayHome);
 
 		_configureBaseAppServerTask(
 			startTestableTomcatTask, testIntegrationTomcatExtension);
@@ -566,104 +535,46 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 
 	private void _configureBaseAppServerTask(
 		BaseAppServerTask baseAppServerTask,
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		baseAppServerTask.setBinDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						testIntegrationTomcatExtension.getDir(), "bin");
-				}
-
-			});
+			() -> new File(testIntegrationTomcatExtension.getDir(), "bin"));
 
 		baseAppServerTask.setCheckPath(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return testIntegrationTomcatExtension.getCheckPath();
-				}
-
-			});
+			testIntegrationTomcatExtension::getCheckPath);
 
 		baseAppServerTask.setHostName(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return testIntegrationTomcatExtension.getHostName();
-				}
-
-			});
+			testIntegrationTomcatExtension::getHostName);
 
 		baseAppServerTask.setPortNumber(
-			new Callable<Integer>() {
-
-				@Override
-				public Integer call() throws Exception {
-					return testIntegrationTomcatExtension.getPortNumber();
-				}
-
-			});
+			testIntegrationTomcatExtension::getPortNumber);
 	}
 
 	private void _configureJmxRemotePortSpec(
 		JmxRemotePortSpec jmxRemotePortSpec,
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		jmxRemotePortSpec.setJmxRemotePort(
-			new Callable<Integer>() {
-
-				@Override
-				public Integer call() throws Exception {
-					return testIntegrationTomcatExtension.getJmxRemotePort();
-				}
-
-			});
+			testIntegrationTomcatExtension::getJmxRemotePort);
 	}
 
 	private void _configureManagerSpec(
 		ManagerSpec managerSpec,
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		managerSpec.setManagerPassword(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return testIntegrationTomcatExtension.getManagerPassword();
-				}
-
-			});
+			testIntegrationTomcatExtension::getManagerPassword);
 
 		managerSpec.setManagerUserName(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return testIntegrationTomcatExtension.getManagerUserName();
-				}
-
-			});
+			testIntegrationTomcatExtension::getManagerUserName);
 	}
 
 	private void _configureModuleFrameworkBaseDirSpec(
 		ModuleFrameworkBaseDirSpec moduleFrameworkBaseDirSpec,
-		final TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
+		TestIntegrationTomcatExtension testIntegrationTomcatExtension) {
 
 		moduleFrameworkBaseDirSpec.setModuleFrameworkBaseDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return testIntegrationTomcatExtension.
-						getModuleFrameworkBaseDir();
-				}
-
-			});
+			testIntegrationTomcatExtension::getModuleFrameworkBaseDir);
 	}
 
 	private void _configureTaskSystemProperty(

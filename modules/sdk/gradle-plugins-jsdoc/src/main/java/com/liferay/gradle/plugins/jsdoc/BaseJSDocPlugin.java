@@ -20,8 +20,6 @@ import com.liferay.gradle.util.GradleUtil;
 
 import java.io.File;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -57,20 +55,12 @@ public abstract class BaseJSDocPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskJSDoc(
-		JSDocTask jsDocTask, final DownloadNodeModuleTask downloadJSDocTask) {
+		JSDocTask jsDocTask, DownloadNodeModuleTask downloadJSDocTask) {
 
 		jsDocTask.dependsOn(downloadJSDocTask);
 
 		jsDocTask.setScriptFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						downloadJSDocTask.getModuleDir(), "jsdoc.js");
-				}
-
-			});
+			() -> new File(downloadJSDocTask.getModuleDir(), "jsdoc.js"));
 	}
 
 	private void _configureTasksJSDoc(

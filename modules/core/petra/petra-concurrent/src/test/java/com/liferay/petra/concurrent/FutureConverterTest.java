@@ -163,16 +163,11 @@ public class FutureConverterTest {
 
 	@Test
 	public void testExecutionException() throws Exception {
-		final Exception exception = new Exception();
+		Exception exception = new Exception();
 
 		FutureTask<Object> futureTask = new FutureTask<Object>(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					throw exception;
-				}
-
+			() -> {
+				throw exception;
 			});
 
 		futureTask.run();

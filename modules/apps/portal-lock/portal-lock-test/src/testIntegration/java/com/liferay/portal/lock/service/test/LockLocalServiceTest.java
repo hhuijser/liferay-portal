@@ -19,7 +19,6 @@ import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -146,7 +145,7 @@ public class LockLocalServiceTest {
 	)
 	@Test
 	public void testLock() throws Exception {
-		final long userId = TestPropsValues.getUserId();
+		long userId = TestPropsValues.getUserId();
 
 		// Lock is new
 
@@ -241,16 +240,8 @@ public class LockLocalServiceTest {
 				null);
 
 		FutureTask<Lock> futureTask = new FutureTask<>(
-			new Callable<Lock>() {
-
-				@Override
-				public Lock call() throws PortalException {
-					return LockLocalServiceUtil.lock(
-						userId, "className", "key", "owner", false, Time.DAY,
-						false);
-				}
-
-			});
+			() -> LockLocalServiceUtil.lock(
+				userId, "className", "key", "owner", false, Time.DAY, false));
 
 		Thread lockCreateThread = new Thread(futureTask, "Lock Create Thread");
 

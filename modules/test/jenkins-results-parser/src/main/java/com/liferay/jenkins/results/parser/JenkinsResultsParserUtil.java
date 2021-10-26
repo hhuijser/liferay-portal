@@ -1250,33 +1250,27 @@ public class JenkinsResultsParserUtil {
 	public static Map<String, JSONObject> getBuildResultJSONObjects(
 		List<String> buildResultJsonURLs) {
 
-		final Map<String, JSONObject> buildResultJSONObjects =
+		Map<String, JSONObject> buildResultJSONObjects =
 			Collections.synchronizedMap(new HashMap<String, JSONObject>());
 
 		List<Callable<Void>> callables = new ArrayList<>();
 
 		for (final String buildResultJsonURL : buildResultJsonURLs) {
-			Callable<Void> callable = new Callable<Void>() {
+			Callable<Void> callable = () -> {
+				JSONObject jsonObject = null;
 
-				@Override
-				public Void call() {
-					JSONObject jsonObject = null;
-
-					try {
-						jsonObject = toJSONObject(buildResultJsonURL);
-					}
-					catch (Exception exception) {
-						System.out.println(exception.toString());
-					}
-
-					if (jsonObject != null) {
-						buildResultJSONObjects.put(
-							buildResultJsonURL, jsonObject);
-					}
-
-					return null;
+				try {
+					jsonObject = toJSONObject(buildResultJsonURL);
+				}
+				catch (Exception exception) {
+					System.out.println(exception.toString());
 				}
 
+				if (jsonObject != null) {
+					buildResultJSONObjects.put(buildResultJsonURL, jsonObject);
+				}
+
+				return null;
 			};
 
 			callables.add(callable);
@@ -2619,17 +2613,11 @@ public class JenkinsResultsParserUtil {
 			jenkinsMasters.size());
 
 		for (final JenkinsMaster jenkinsMaster : jenkinsMasters) {
-			Callable<List<JenkinsSlave>> callable =
-				new Callable<List<JenkinsSlave>>() {
+			Callable<List<JenkinsSlave>> callable = () -> {
+				jenkinsMaster.update();
 
-					@Override
-					public List<JenkinsSlave> call() throws Exception {
-						jenkinsMaster.update();
-
-						return jenkinsMaster.getOnlineJenkinsSlaves();
-					}
-
-				};
+				return jenkinsMaster.getOnlineJenkinsSlaves();
+			};
 
 			callables.add(callable);
 		}

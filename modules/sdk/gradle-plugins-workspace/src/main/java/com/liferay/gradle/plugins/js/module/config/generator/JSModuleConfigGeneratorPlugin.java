@@ -21,7 +21,6 @@ import com.liferay.gradle.util.GradleUtil;
 import java.io.File;
 
 import java.util.Collections;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -80,20 +79,15 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 			});
 	}
 
-	private ConfigJSModulesTask _addTaskConfigJSModules(final Project project) {
+	private ConfigJSModulesTask _addTaskConfigJSModules(Project project) {
 		final ConfigJSModulesTask configJSModulesTask = GradleUtil.addTask(
 			project, CONFIG_JS_MODULES_TASK_NAME, ConfigJSModulesTask.class);
 
 		configJSModulesTask.mustRunAfter(
-			new Callable<Task>() {
+			() -> {
+				TaskContainer taskContainer = project.getTasks();
 
-				@Override
-				public Task call() throws Exception {
-					TaskContainer taskContainer = project.getTasks();
-
-					return taskContainer.findByName(_TRANSPILE_JS_TASK_NAME);
-				}
-
+				return taskContainer.findByName(_TRANSPILE_JS_TASK_NAME);
 			});
 
 		configJSModulesTask.setDescription(
@@ -121,8 +115,7 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 
 	private DownloadNodeModuleTask _addTaskDownloadLiferayModuleConfigGenerator(
 		Project project,
-		final JSModuleConfigGeneratorExtension
-			jsModuleConfigGeneratorExtension) {
+		JSModuleConfigGeneratorExtension jsModuleConfigGeneratorExtension) {
 
 		DownloadNodeModuleTask downloadLiferayModuleConfigGeneratorTask =
 			GradleUtil.addTask(
@@ -133,21 +126,14 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 			"liferay-module-config-generator");
 
 		downloadLiferayModuleConfigGeneratorTask.setModuleVersion(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return jsModuleConfigGeneratorExtension.getVersion();
-				}
-
-			});
+			jsModuleConfigGeneratorExtension::getVersion);
 
 		return downloadLiferayModuleConfigGeneratorTask;
 	}
 
 	private void _configureTaskConfigJSModules(
 		ConfigJSModulesTask configJSModulesTask,
-		final DownloadNodeModuleTask downloadLiferayModuleConfigGeneratorTask,
+		DownloadNodeModuleTask downloadLiferayModuleConfigGeneratorTask,
 		Task npmInstallTask) {
 
 		File file = configJSModulesTask.getModuleConfigFile();
@@ -165,16 +151,9 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 			downloadLiferayModuleConfigGeneratorTask, npmInstallTask);
 
 		configJSModulesTask.setScriptFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						downloadLiferayModuleConfigGeneratorTask.getModuleDir(),
-						"bin/index.js");
-				}
-
-			});
+			() -> new File(
+				downloadLiferayModuleConfigGeneratorTask.getModuleDir(),
+				"bin/index.js"));
 	}
 
 	private void _configureTaskConfigJSModulesForJavaPlugin(
@@ -188,31 +167,15 @@ public class JSModuleConfigGeneratorPlugin implements Plugin<Project> {
 		SourceSet sourceSet = GradleUtil.getSourceSet(
 			project, SourceSet.MAIN_SOURCE_SET_NAME);
 
-		final SourceSetOutput sourceSetOutput = sourceSet.getOutput();
+		SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
 		configJSModulesTask.setOutputFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						sourceSetOutput.getResourcesDir(),
-						"META-INF/config.json");
-				}
-
-			});
+			() -> new File(
+				sourceSetOutput.getResourcesDir(), "META-INF/config.json"));
 
 		configJSModulesTask.setSourceDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						sourceSetOutput.getResourcesDir(),
-						"META-INF/resources");
-				}
-
-			});
+			() -> new File(
+				sourceSetOutput.getResourcesDir(), "META-INF/resources"));
 
 		Task classesTask = GradleUtil.getTask(
 			project, JavaPlugin.CLASSES_TASK_NAME);

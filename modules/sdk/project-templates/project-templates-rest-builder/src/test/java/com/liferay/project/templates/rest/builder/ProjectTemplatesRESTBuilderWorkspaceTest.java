@@ -209,8 +209,8 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private void _testBuildTemplateRESTBuilder(
-			File gradleProjectDir, File mavenProjectDir, final File rootProject,
-			String name, String packageName, final String projectPath)
+			File gradleProjectDir, File mavenProjectDir, File rootProject,
+			String name, String packageName, String projectPath)
 		throws Exception {
 
 		String apiProjectName = name + "-api";
@@ -223,18 +223,13 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 
 		_testChangeOpenAPIYAML(
 			gradleProjectDir, implProjectName,
-			new Callable<Void>() {
+			() -> {
+				executeGradle(
+					rootProject, _gradleDistribution,
+					projectPath + ":" + implProjectName +
+						_GRADLE_TASK_PATH_BUILD_REST);
 
-				@Override
-				public Void call() throws Exception {
-					executeGradle(
-						rootProject, _gradleDistribution,
-						projectPath + ":" + implProjectName +
-							_GRADLE_TASK_PATH_BUILD_REST);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		executeGradle(
@@ -252,17 +247,12 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 		if (!name.contains("sample")) {
 			_testChangeOpenAPIYAML(
 				mavenProjectDir, implProjectName,
-				new Callable<Void>() {
+				() -> {
+					executeMaven(
+						new File(mavenProjectDir, implProjectName),
+						mavenExecutor, MAVEN_GOAL_BUILD_REST);
 
-					@Override
-					public Void call() throws Exception {
-						executeMaven(
-							new File(mavenProjectDir, implProjectName),
-							mavenExecutor, MAVEN_GOAL_BUILD_REST);
-
-						return null;
-					}
-
+					return null;
 				});
 
 			executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);

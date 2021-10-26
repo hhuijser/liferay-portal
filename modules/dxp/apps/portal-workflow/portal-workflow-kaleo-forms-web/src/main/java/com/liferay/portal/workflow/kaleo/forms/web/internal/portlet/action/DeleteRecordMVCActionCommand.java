@@ -82,28 +82,23 @@ public class DeleteRecordMVCActionCommand
 
 		checkKaleoProcessPermission(serviceContext, ActionKeys.DELETE);
 
-		final ThemeDisplay themeDisplay =
-			(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		long[] ddlRecordIds = getDDLRecordIds(actionRequest);
 
 		for (final long ddlRecordId : ddlRecordIds) {
 			try {
-				Callable<Void> callable = new Callable<Void>() {
+				Callable<Void> callable = () -> {
+					ddlRecordLocalService.deleteRecord(ddlRecordId);
 
-					@Override
-					public Void call() throws Exception {
-						ddlRecordLocalService.deleteRecord(ddlRecordId);
+					_workflowInstanceLinkLocalService.
+						deleteWorkflowInstanceLinks(
+							themeDisplay.getCompanyId(),
+							themeDisplay.getScopeGroupId(),
+							KaleoProcess.class.getName(), ddlRecordId);
 
-						_workflowInstanceLinkLocalService.
-							deleteWorkflowInstanceLinks(
-								themeDisplay.getCompanyId(),
-								themeDisplay.getScopeGroupId(),
-								KaleoProcess.class.getName(), ddlRecordId);
-
-						return null;
-					}
-
+					return null;
 				};
 
 				TransactionInvokerUtil.invoke(_transactionConfig, callable);

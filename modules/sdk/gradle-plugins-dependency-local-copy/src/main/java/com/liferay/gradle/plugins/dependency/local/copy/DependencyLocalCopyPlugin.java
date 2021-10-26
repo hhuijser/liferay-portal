@@ -20,7 +20,6 @@ import java.io.File;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -70,9 +69,9 @@ public class DependencyLocalCopyPlugin implements Plugin<Project> {
 	}
 
 	private Sync _addTaskSyncLocalCopy(
-		final Project project, Project dependencyProject, boolean transitive) {
+		Project project, Project dependencyProject, boolean transitive) {
 
-		final String dependencyProjectPath = dependencyProject.getPath();
+		String dependencyProjectPath = dependencyProject.getPath();
 
 		Sync sync = GradleUtil.addTask(
 			project,
@@ -92,15 +91,7 @@ public class DependencyLocalCopyPlugin implements Plugin<Project> {
 
 		sync.from(configuration);
 
-		sync.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return _getLocalCopyDir(project, dependencyProjectPath);
-				}
-
-			});
+		sync.into(() -> _getLocalCopyDir(project, dependencyProjectPath));
 
 		sync.setDescription(
 			"Creates a local copy of " + dependencyProject + ".");

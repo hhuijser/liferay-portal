@@ -28,8 +28,6 @@ import com.liferay.gradle.util.Validator;
 
 import java.io.File;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -129,7 +127,7 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 	private void _configureTaskPublishNodeModule(
 		PublishNodeModuleTask publishNodeModuleTask) {
 
-		final Project project = publishNodeModuleTask.getProject();
+		Project project = publishNodeModuleTask.getProject();
 
 		publishNodeModuleTask.doFirst(
 			MavenDefaultsPlugin.failReleaseOnWrongBranchAction);
@@ -147,28 +145,22 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 		publishNodeModuleTask.setModuleRepository("liferay/liferay-portal");
 
 		publishNodeModuleTask.setModuleVersion(
-			new Callable<String>() {
+			() -> {
+				String version = String.valueOf(project.getVersion());
 
-				@Override
-				public String call() throws Exception {
-					String version = String.valueOf(project.getVersion());
+				if (version.endsWith(
+						GradlePluginsDefaultsUtil.SNAPSHOT_VERSION_SUFFIX)) {
 
-					if (version.endsWith(
-							GradlePluginsDefaultsUtil.
-								SNAPSHOT_VERSION_SUFFIX)) {
+					int length =
+						GradlePluginsDefaultsUtil.SNAPSHOT_VERSION_SUFFIX.
+							length();
 
-						version = version.substring(
-							0,
-							version.length() -
-								GradlePluginsDefaultsUtil.
-									SNAPSHOT_VERSION_SUFFIX.length());
+					version = version.substring(0, version.length() - length);
 
-						version += "-alpha." + System.currentTimeMillis();
-					}
-
-					return version;
+					version += "-alpha." + System.currentTimeMillis();
 				}
 
+				return version;
 			});
 
 		publishNodeModuleTask.setOverriddenPackageJsonKeys("version");

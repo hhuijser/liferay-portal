@@ -214,21 +214,15 @@ public class JspCPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskGenerateJSPJavaForWarPlugin(
-		final CompileJSPTask compileJSPTask) {
+		CompileJSPTask compileJSPTask) {
 
 		compileJSPTask.setWebAppDir(
-			new Callable<File>() {
+			() -> {
+				WarPluginConvention warPluginConvention =
+					GradleUtil.getConvention(
+						compileJSPTask.getProject(), WarPluginConvention.class);
 
-				@Override
-				public File call() throws Exception {
-					WarPluginConvention warPluginConvention =
-						GradleUtil.getConvention(
-							compileJSPTask.getProject(),
-							WarPluginConvention.class);
-
-					return warPluginConvention.getWebAppDir();
-				}
-
+				return warPluginConvention.getWebAppDir();
 			});
 	}
 

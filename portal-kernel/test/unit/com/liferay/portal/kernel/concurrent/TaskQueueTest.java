@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
@@ -289,7 +288,7 @@ public class TaskQueueTest {
 
 	@Test
 	public void testTake() throws InterruptedException {
-		final TaskQueue<Object> taskQueue = new TaskQueue<>();
+		TaskQueue<Object> taskQueue = new TaskQueue<>();
 		Object object = new Object();
 
 		Assert.assertTrue(taskQueue.offer(object, new boolean[1]));
@@ -297,25 +296,20 @@ public class TaskQueueTest {
 
 		SyncThrowableThread<Void> syncThrowableThread =
 			new SyncThrowableThread<>(
-				new Callable<Void>() {
-
-					@Override
-					public Void call() throws Exception {
-						for (int i = 0; i < 10; i++) {
-							Assert.assertEquals(i, taskQueue.take());
-						}
-
-						try {
-							taskQueue.take();
-
-							Assert.fail();
-						}
-						catch (InterruptedException interruptedException) {
-						}
-
-						return null;
+				() -> {
+					for (int i = 0; i < 10; i++) {
+						Assert.assertEquals(i, taskQueue.take());
 					}
 
+					try {
+						taskQueue.take();
+
+						Assert.fail();
+					}
+					catch (InterruptedException interruptedException) {
+					}
+
+					return null;
 				});
 
 		syncThrowableThread.start();

@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -177,19 +176,11 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBuildLangForJavaPlugin(
-		final BuildLangTask buildLangTask) {
+		BuildLangTask buildLangTask) {
 
 		buildLangTask.setLangDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						_getResourcesDir(buildLangTask.getProject()),
-						"content");
-				}
-
-			});
+			() -> new File(
+				_getResourcesDir(buildLangTask.getProject()), "content"));
 
 		_configureTaskProcessResources(buildLangTask.getProject());
 	}
@@ -198,8 +189,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	private void _configureTaskProcessResources(Project project) {
 		File appDir = GradleUtil.getRootDir(project, "app.bnd");
 
-		final File appBndLocalizationDir = new File(
-			appDir, "app.bnd-localization");
+		File appBndLocalizationDir = new File(appDir, "app.bnd-localization");
 
 		if (!appBndLocalizationDir.exists()) {
 			return;
@@ -253,14 +243,7 @@ public class LangBuilderPlugin implements Plugin<Project> {
 		};
 
 		copy.from(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return appBndLocalizationDir;
-				}
-
-			},
+			() -> appBndLocalizationDir,
 			new Closure<Void>(project) {
 
 				@SuppressWarnings("unused")

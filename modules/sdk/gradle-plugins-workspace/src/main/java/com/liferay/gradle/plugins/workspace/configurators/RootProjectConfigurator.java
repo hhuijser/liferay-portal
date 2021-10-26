@@ -407,35 +407,19 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	@SuppressWarnings("serial")
 	private Copy _addTaskCopyBundle(
 		Project project, String taskName, Download downloadBundleTask,
-		final WorkspaceExtension workspaceExtension,
+		WorkspaceExtension workspaceExtension,
 		Configuration providedModulesConfiguration) {
 
 		Copy copy = GradleUtil.addTask(project, taskName, Copy.class);
 
 		_configureTaskCopyBundleFromConfig(
 			copy,
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						workspaceExtension.getConfigsDir(),
-						workspaceExtension.getEnvironment());
-				}
-
-			});
+			() -> new File(
+				workspaceExtension.getConfigsDir(),
+				workspaceExtension.getEnvironment()));
 
 		_configureTaskCopyBundleFromConfig(
-			copy,
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						workspaceExtension.getConfigsDir(), "common");
-				}
-
-			});
+			copy, () -> new File(workspaceExtension.getConfigsDir(), "common"));
 
 		copy.from(
 			providedModulesConfiguration,
@@ -525,15 +509,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		portBindings.add("8080:8080");
 		portBindings.add("11311:11311");
 
-		dockerCreateContainer.targetImageId(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getDockerImageId(project);
-				}
-
-			});
+		dockerCreateContainer.targetImageId(() -> _getDockerImageId(project));
 
 		dockerCreateContainer.withEnvVar("JPDA_ADDRESS", "0.0.0.0:8000");
 		dockerCreateContainer.withEnvVar("LIFERAY_JPDA_ENABLED", "true");
@@ -660,7 +636,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	}
 
 	private Copy _addTaskDistBundle(
-		final Project project, Download downloadBundleTask,
+		Project project, Download downloadBundleTask,
 		WorkspaceExtension workspaceExtension,
 		Configuration providedModulesConfiguration) {
 
@@ -670,15 +646,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 		_configureTaskDisableUpToDate(copy);
 
-		copy.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(project.getBuildDir(), "dist");
-				}
-
-			});
+		copy.into(() -> new File(project.getBuildDir(), "dist"));
 
 		copy.setDescription("Assembles the Liferay bundle.");
 
@@ -688,28 +656,22 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	@SuppressWarnings("serial")
 	private <T extends AbstractArchiveTask> T _addTaskDistBundle(
 		Project project, String taskName, Class<T> clazz,
-		final Copy distBundleTask,
-		final WorkspaceExtension workspaceExtension) {
+		final Copy distBundleTask, WorkspaceExtension workspaceExtension) {
 
 		T task = GradleUtil.addTask(project, taskName, clazz);
 
 		_configureTaskDisableUpToDate(task);
 
 		task.into(
-			new Callable<String>() {
+			() -> {
+				String bundleDistRootDirName =
+					workspaceExtension.getBundleDistRootDirName();
 
-				@Override
-				public String call() throws Exception {
-					String bundleDistRootDirName =
-						workspaceExtension.getBundleDistRootDirName();
-
-					if (Validator.isNull(bundleDistRootDirName)) {
-						bundleDistRootDirName = "";
-					}
-
-					return bundleDistRootDirName;
+				if (Validator.isNull(bundleDistRootDirName)) {
+					bundleDistRootDirName = "";
 				}
 
+				return bundleDistRootDirName;
 			},
 			new Closure<Void>(task) {
 
@@ -789,15 +751,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 			for (String commonConfigDirName : commonConfigDirNames) {
 				for (File configDir : configDirs) {
 					copy.from(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									configsDir, commonConfigDirName);
-							}
-
-						},
+						() -> new File(configsDir, commonConfigDirName),
 						new Closure<Void>(project) {
 
 							@SuppressWarnings("unused")
@@ -812,14 +766,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 			}
 
 			copy.from(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return configsDir;
-					}
-
-				},
+				() -> configsDir,
 				new Closure<Void>(project) {
 
 					@SuppressWarnings("unused")
@@ -944,7 +891,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 	private InitBundleTask _addTaskInitBundle(
 		Project project, Download downloadBundleTask, Verify verifyBundleTask,
-		final WorkspaceExtension workspaceExtension,
+		WorkspaceExtension workspaceExtension,
 		Configuration configurationBundleSupport,
 		Configuration configurationOsgiModules) {
 
@@ -954,43 +901,11 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		initBundleTask.dependsOn(downloadBundleTask, verifyBundleTask);
 
 		initBundleTask.setClasspath(configurationBundleSupport);
-		initBundleTask.setConfigEnvironment(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return workspaceExtension.getEnvironment();
-				}
-
-			});
-		initBundleTask.setConfigsDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return workspaceExtension.getConfigsDir();
-				}
-
-			});
+		initBundleTask.setConfigEnvironment(workspaceExtension::getEnvironment);
+		initBundleTask.setConfigsDir(workspaceExtension::getConfigsDir);
 		initBundleTask.setDescription("Downloads and unzips the bundle.");
-		initBundleTask.setDestinationDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return workspaceExtension.getHomeDir();
-				}
-
-			});
-		initBundleTask.setFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return _getDownloadFile(downloadBundleTask);
-				}
-
-			});
+		initBundleTask.setDestinationDir(workspaceExtension::getHomeDir);
+		initBundleTask.setFile(() -> _getDownloadFile(downloadBundleTask));
 		initBundleTask.setGroup(BUNDLE_GROUP);
 		initBundleTask.setProvidedModules(configurationOsgiModules);
 
@@ -1013,14 +928,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		tailAllProperty.set(true);
 
 		dockerLogsContainer.targetContainerId(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getDockerContainerId(project);
-				}
-
-			});
+			() -> _getDockerContainerId(project));
 
 		return dockerLogsContainer;
 	}
@@ -1060,14 +968,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		removeVolumesProperty.set(true);
 
 		dockerRemoveContainer.targetContainerId(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getDockerContainerId(project);
-				}
-
-			});
+			() -> _getDockerContainerId(project));
 
 		dockerRemoveContainer.dependsOn(stopDockerContainer);
 
@@ -1102,14 +1003,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		dockerStartContainer.setDescription("Starts the Docker container.");
 
 		dockerStartContainer.targetContainerId(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getDockerContainerId(project);
-				}
-
-			});
+			() -> _getDockerContainerId(project));
 
 		return dockerStartContainer;
 	}
@@ -1123,14 +1017,7 @@ public class RootProjectConfigurator implements Plugin<Project> {
 		dockerStopContainer.setDescription("Stops the Docker container.");
 
 		dockerStopContainer.targetContainerId(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getDockerContainerId(project);
-				}
-
-			});
+			() -> _getDockerContainerId(project));
 
 		dockerStopContainer.onError(
 			new Action<Throwable>() {
@@ -1259,9 +1146,9 @@ public class RootProjectConfigurator implements Plugin<Project> {
 
 	@SuppressWarnings("serial")
 	private void _configureTaskCopyBundleFromDownload(
-		Copy copy, final Download download) {
+		Copy copy, Download download) {
 
-		final Project project = copy.getProject();
+		Project project = copy.getProject();
 
 		final Set<String> rootDirNames = new HashSet<>();
 
@@ -1286,21 +1173,16 @@ public class RootProjectConfigurator implements Plugin<Project> {
 			});
 
 		copy.from(
-			new Callable<FileCollection>() {
+			() -> {
+				File file = _getDownloadFile(download);
 
-				@Override
-				public FileCollection call() throws Exception {
-					File file = _getDownloadFile(download);
+				String fileName = file.getName();
 
-					String fileName = file.getName();
-
-					if (fileName.endsWith(".tar.gz")) {
-						return project.tarTree(file);
-					}
-
-					return project.zipTree(file);
+				if (fileName.endsWith(".tar.gz")) {
+					return project.tarTree(file);
 				}
 
+				return project.zipTree(file);
 			},
 			new Closure<Void>(project) {
 

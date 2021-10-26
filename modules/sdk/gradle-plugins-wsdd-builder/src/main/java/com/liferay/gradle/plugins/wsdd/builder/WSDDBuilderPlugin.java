@@ -143,14 +143,7 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 		buildWSDDTask.setInputFile("service.xml");
 
 		buildWSDDTask.setOutputDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return getResourcesDir(buildWSDDTask.getProject());
-				}
-
-			});
+			() -> getResourcesDir(buildWSDDTask.getProject()));
 
 		PluginContainer pluginContainer = project.getPlugins();
 
@@ -175,31 +168,17 @@ public class WSDDBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTaskBuildWSDDForWarPlugin(
-		final BuildWSDDTask buildWSDDTask) {
+		BuildWSDDTask buildWSDDTask) {
 
 		buildWSDDTask.setInputFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildWSDDTask.getProject()),
-						"WEB-INF/service.xml");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildWSDDTask.getProject()),
+				"WEB-INF/service.xml"));
 
 		buildWSDDTask.setServerConfigFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildWSDDTask.getProject()),
-						"WEB-INF/server-config.wsdd");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildWSDDTask.getProject()),
+				"WEB-INF/server-config.wsdd"));
 	}
 
 	protected void configureTasksBuildWSDD(

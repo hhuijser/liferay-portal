@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import java.io.File;
 import java.io.IOException;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -110,38 +109,24 @@ public class FIFOWelderTest {
 
 	@Test
 	public void testWeld() throws Exception {
-		final FIFOWelder serverFIFOWelder = new FIFOWelder();
+		FIFOWelder serverFIFOWelder = new FIFOWelder();
 
-		final FIFOWelder clientFIFOWelder = WelderTestUtil.transform(
+		FIFOWelder clientFIFOWelder = WelderTestUtil.transform(
 			serverFIFOWelder);
 
 		FutureTask<MockRegistrationReference> serverWeldingTask =
-			new FutureTask<MockRegistrationReference>(
-				new Callable<MockRegistrationReference>() {
-
-					@Override
-					public MockRegistrationReference call() throws Exception {
-						return (MockRegistrationReference)serverFIFOWelder.weld(
-							new MockIntraband());
-					}
-
-				});
+			new FutureTask<>(
+				() -> (MockRegistrationReference)serverFIFOWelder.weld(
+					new MockIntraband()));
 
 		Thread serverWeldingThread = new Thread(serverWeldingTask);
 
 		serverWeldingThread.start();
 
 		FutureTask<MockRegistrationReference> clientWeldingTask =
-			new FutureTask<MockRegistrationReference>(
-				new Callable<MockRegistrationReference>() {
-
-					@Override
-					public MockRegistrationReference call() throws Exception {
-						return (MockRegistrationReference)clientFIFOWelder.weld(
-							new MockIntraband());
-					}
-
-				});
+			new FutureTask<>(
+				() -> (MockRegistrationReference)clientFIFOWelder.weld(
+					new MockIntraband()));
 
 		Thread clientWeldingThread = new Thread(clientWeldingTask);
 

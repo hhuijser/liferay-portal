@@ -38,7 +38,6 @@ import java.lang.reflect.InvocationHandler;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
@@ -333,51 +332,44 @@ public class ServiceProxyFactoryTest {
 			ServiceProxyFactory.class.getName() + ".timeout",
 			String.valueOf(Long.MAX_VALUE));
 
-		final TestService testService =
-			ServiceProxyFactory.newServiceTrackedInstance(
-				TestService.class, TestServiceUtil.class, "testService", true);
+		TestService testService = ServiceProxyFactory.newServiceTrackedInstance(
+			TestService.class, TestServiceUtil.class, "testService", true);
 
 		Assert.assertTrue(ProxyUtil.isProxyClass(testService.getClass()));
 		Assert.assertNotSame(TestServiceImpl.class, testService.getClass());
 
 		FutureTask<Void> futureTask = new FutureTask<>(
-			new Callable<Void>() {
+			() -> {
+				Assert.assertEquals(
+					_TEST_SERVICE_NAME, testService.getTestServiceName());
+				Assert.assertEquals(
+					_TEST_SERVICE_ID, testService.getTestServiceId());
 
-				@Override
-				public Void call() {
-					Assert.assertEquals(
-						_TEST_SERVICE_NAME, testService.getTestServiceName());
-					Assert.assertEquals(
-						_TEST_SERVICE_ID, testService.getTestServiceId());
+				try {
+					testService.throwException();
 
-					try {
-						testService.throwException();
-
-						Assert.fail();
-					}
-					catch (Exception exception) {
-						Assert.assertSame(
-							TestServiceImpl._exception, exception);
-					}
-
-					TestService newTestService = TestServiceUtil.testService;
-
-					if (proxyService) {
-						Assert.assertTrue(
-							ProxyUtil.isProxyClass(newTestService.getClass()));
-						Assert.assertNotSame(
-							TestServiceImpl.class, newTestService.getClass());
-					}
-					else {
-						Assert.assertFalse(
-							ProxyUtil.isProxyClass(newTestService.getClass()));
-						Assert.assertSame(
-							TestServiceImpl.class, newTestService.getClass());
-					}
-
-					return null;
+					Assert.fail();
+				}
+				catch (Exception exception) {
+					Assert.assertSame(TestServiceImpl._exception, exception);
 				}
 
+				TestService newTestService = TestServiceUtil.testService;
+
+				if (proxyService) {
+					Assert.assertTrue(
+						ProxyUtil.isProxyClass(newTestService.getClass()));
+					Assert.assertNotSame(
+						TestServiceImpl.class, newTestService.getClass());
+				}
+				else {
+					Assert.assertFalse(
+						ProxyUtil.isProxyClass(newTestService.getClass()));
+					Assert.assertSame(
+						TestServiceImpl.class, newTestService.getClass());
+				}
+
+				return null;
 			});
 
 		Thread thread = new Thread(futureTask);

@@ -27,7 +27,6 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -200,8 +199,8 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 
 	private void _configureTaskTranspileJS(
 		TranspileJSTask transpileJSTask,
-		final DownloadNodeModuleTask downloadMetalCliTask,
-		final NpmInstallTask npmInstallTask) {
+		DownloadNodeModuleTask downloadMetalCliTask,
+		NpmInstallTask npmInstallTask) {
 
 		FileCollection fileCollection = transpileJSTask.getSourceFiles();
 
@@ -217,35 +216,15 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 		transpileJSTask.dependsOn(downloadMetalCliTask, npmInstallTask);
 
 		transpileJSTask.setScriptFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						downloadMetalCliTask.getModuleDir(), "index.js");
-				}
-
-			});
+			() -> new File(downloadMetalCliTask.getModuleDir(), "index.js"));
 
 		transpileJSTask.soyDependency(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return npmInstallTask.getWorkingDir() +
-						"/node_modules/clay*/src/**/*.soy";
-				}
-
-			},
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return npmInstallTask.getWorkingDir() +
-						"/node_modules/metal*/src/**/*.soy";
-				}
-
-			});
+			() ->
+				npmInstallTask.getWorkingDir() +
+					"/node_modules/clay*/src/**/*.soy",
+			() ->
+				npmInstallTask.getWorkingDir() +
+					"/node_modules/metal*/src/**/*.soy");
 	}
 
 	private void _configureTaskTranspileJSForJavaPlugin(
@@ -255,33 +234,22 @@ public class JSTranspilerPlugin implements Plugin<Project> {
 
 		Project project = transpileJSTask.getProject();
 
-		final SourceSet sourceSet = GradleUtil.getSourceSet(
+		SourceSet sourceSet = GradleUtil.getSourceSet(
 			project, SourceSet.MAIN_SOURCE_SET_NAME);
 
 		transpileJSTask.setSourceDir(
-			new Callable<File>() {
+			() -> {
+				File resourcesDir = _getSrcDir(sourceSet.getResources());
 
-				@Override
-				public File call() throws Exception {
-					File resourcesDir = _getSrcDir(sourceSet.getResources());
-
-					return new File(resourcesDir, "META-INF/resources");
-				}
-
+				return new File(resourcesDir, "META-INF/resources");
 			});
 
 		transpileJSTask.setWorkingDir(
-			new Callable<File>() {
+			() -> {
+				SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
-				@Override
-				public File call() throws Exception {
-					SourceSetOutput sourceSetOutput = sourceSet.getOutput();
-
-					return new File(
-						sourceSetOutput.getResourcesDir(),
-						"META-INF/resources");
-				}
-
+				return new File(
+					sourceSetOutput.getResourcesDir(), "META-INF/resources");
 			});
 
 		Task classesTask = GradleUtil.getTask(

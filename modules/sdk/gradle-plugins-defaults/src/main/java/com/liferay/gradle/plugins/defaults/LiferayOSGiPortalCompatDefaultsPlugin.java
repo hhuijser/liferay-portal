@@ -27,7 +27,6 @@ import groovy.lang.Closure;
 import java.io.File;
 
 import java.util.Properties;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,7 +40,6 @@ import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.artifacts.DependencySet;
 import org.gradle.api.artifacts.dsl.DependencyHandler;
 import org.gradle.api.file.CopySpec;
-import org.gradle.api.file.FileTree;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.tasks.Copy;
 import org.gradle.api.tasks.JavaExec;
@@ -121,7 +119,7 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 	}
 
 	@SuppressWarnings("serial")
-	private Copy _addTaskImportFiles(final Project project) {
+	private Copy _addTaskImportFiles(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, IMPORT_FILES_TASK_NAME, Copy.class);
 
@@ -139,20 +137,13 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 			Dependency dependency = dependencyHandler.create(
 				dependencyNotation);
 
-			final Configuration configuration =
+			Configuration configuration =
 				configurationContainer.detachedConfiguration(dependency);
 
 			configuration.setTransitive(false);
 
 			copy.from(
-				new Callable<FileTree>() {
-
-					@Override
-					public FileTree call() throws Exception {
-						return project.zipTree(configuration.getSingleFile());
-					}
-
-				},
+				() -> project.zipTree(configuration.getSingleFile()),
 				new Closure<Void>(copy) {
 
 					@SuppressWarnings("unused")
@@ -164,16 +155,11 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 		}
 
 		copy.into(
-			new Callable<File>() {
+			() -> {
+				JavaCompile javaCompile = (JavaCompile)GradleUtil.getTask(
+					project, JavaPlugin.COMPILE_JAVA_TASK_NAME);
 
-				@Override
-				public File call() throws Exception {
-					JavaCompile javaCompile = (JavaCompile)GradleUtil.getTask(
-						project, JavaPlugin.COMPILE_JAVA_TASK_NAME);
-
-					return javaCompile.getDestinationDir();
-				}
-
+				return javaCompile.getDestinationDir();
 			});
 
 		return copy;

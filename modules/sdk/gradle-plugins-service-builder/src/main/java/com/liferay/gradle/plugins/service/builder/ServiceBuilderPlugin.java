@@ -111,87 +111,48 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 		buildServiceTask.setGroup(BasePlugin.BUILD_GROUP);
 
 		buildServiceTask.setHbmFile(
-			new Callable<File>() {
+			() -> {
+				File resourcesDir = getResourcesDir(project);
 
-				@Override
-				public File call() throws Exception {
-					File resourcesDir = getResourcesDir(project);
+				String fileName = "META-INF/portlet-hbm.xml";
 
-					String fileName = "META-INF/portlet-hbm.xml";
-
-					if (buildServiceTask.isOsgiModule()) {
-						fileName = "META-INF/module-hbm.xml";
-					}
-
-					return new File(resourcesDir, fileName);
+				if (buildServiceTask.isOsgiModule()) {
+					fileName = "META-INF/module-hbm.xml";
 				}
 
+				return new File(resourcesDir, fileName);
 			});
 
-		buildServiceTask.setImplDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return getJavaDir(project);
-				}
-
-			});
+		buildServiceTask.setImplDir(() -> getJavaDir(project));
 
 		buildServiceTask.setInputFile("service.xml");
 
 		buildServiceTask.setModelHintsFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getResourcesDir(project),
-						"META-INF/portlet-model-hints.xml");
-				}
-
-			});
+			() -> new File(
+				getResourcesDir(project), "META-INF/portlet-model-hints.xml"));
 
 		buildServiceTask.setPluginName(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					if (buildServiceTask.isOsgiModule()) {
-						return "";
-					}
-
-					return project.getName();
+			() -> {
+				if (buildServiceTask.isOsgiModule()) {
+					return "";
 				}
 
+				return project.getName();
 			});
 
 		buildServiceTask.setPropsUtil(
-			new Callable<String>() {
+			() -> {
+				if (buildServiceTask.isOsgiModule()) {
+					String bundleSymbolicName = OSGiUtil.getBundleSymbolicName(
+						project);
 
-				@Override
-				public String call() throws Exception {
-					if (buildServiceTask.isOsgiModule()) {
-						String bundleSymbolicName =
-							OSGiUtil.getBundleSymbolicName(project);
-
-						return bundleSymbolicName + ".util.ServiceProps";
-					}
-
-					return "com.liferay.util.service.ServiceProps";
+					return bundleSymbolicName + ".util.ServiceProps";
 				}
 
+				return "com.liferay.util.service.ServiceProps";
 			});
 
-		buildServiceTask.setResourcesDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return getResourcesDir(project);
-				}
-
-			});
+		buildServiceTask.setResourcesDir(() -> getResourcesDir(project));
 
 		buildServiceTask.setSpringFile(
 			new Callable<File>() {
@@ -212,14 +173,7 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 			});
 
 		buildServiceTask.setSqlDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(getResourcesDir(project), "META-INF/sql");
-				}
-
-			});
+			() -> new File(getResourcesDir(project), "META-INF/sql"));
 
 		PluginContainer pluginContainer = project.getPlugins();
 
@@ -325,43 +279,21 @@ public class ServiceBuilderPlugin implements Plugin<Project> {
 	}
 
 	protected void configureTaskBuildServiceForWarPlugin(
-		final BuildServiceTask buildServiceTask) {
+		BuildServiceTask buildServiceTask) {
 
 		buildServiceTask.setApiDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildServiceTask.getProject()),
-						"WEB-INF/service");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildServiceTask.getProject()),
+				"WEB-INF/service"));
 
 		buildServiceTask.setInputFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildServiceTask.getProject()),
-						"WEB-INF/service.xml");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildServiceTask.getProject()),
+				"WEB-INF/service.xml"));
 
 		buildServiceTask.setSqlDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						getWebAppDir(buildServiceTask.getProject()),
-						"WEB-INF/sql");
-				}
-
-			});
+			() -> new File(
+				getWebAppDir(buildServiceTask.getProject()), "WEB-INF/sql"));
 	}
 
 	protected void configureTasksBuildService(

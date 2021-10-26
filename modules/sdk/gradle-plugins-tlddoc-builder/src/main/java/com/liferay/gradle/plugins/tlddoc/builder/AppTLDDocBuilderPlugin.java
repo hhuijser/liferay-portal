@@ -22,7 +22,6 @@ import groovy.lang.Closure;
 import java.io.File;
 
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -97,7 +96,7 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 	private TLDDocTask _addTaskAppTLDDoc(
 		Copy copyAppTLDDocResourcesTask, FileCollection classpath) {
 
-		final Project project = copyAppTLDDocResourcesTask.getProject();
+		Project project = copyAppTLDDocResourcesTask.getProject();
 
 		TLDDocTask tldDocTask = GradleUtil.addTask(
 			project, APP_TLDDOC_TASK_NAME, TLDDocTask.class);
@@ -108,35 +107,23 @@ public class AppTLDDocBuilderPlugin implements Plugin<Project> {
 			"Generates tag library documentation for the app.");
 
 		tldDocTask.setDestinationDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(project.getBuildDir(), "docs/tlddoc");
-				}
-
-			});
+			() -> new File(project.getBuildDir(), "docs/tlddoc"));
 
 		tldDocTask.setGroup(JavaBasePlugin.DOCUMENTATION_GROUP);
 
 		return tldDocTask;
 	}
 
-	private Copy _addTaskCopyAppTLDDocResources(final Project project) {
+	private Copy _addTaskCopyAppTLDDocResources(Project project) {
 		Copy copy = GradleUtil.addTask(
 			project, COPY_APP_TLDDOC_RESOURCES_TASK_NAME, Copy.class);
 
 		copy.into(
-			new Callable<File>() {
+			() -> {
+				TLDDocTask appTLDDocTask = (TLDDocTask)GradleUtil.getTask(
+					project, APP_TLDDOC_TASK_NAME);
 
-				@Override
-				public File call() throws Exception {
-					TLDDocTask appTLDDocTask = (TLDDocTask)GradleUtil.getTask(
-						project, APP_TLDDOC_TASK_NAME);
-
-					return appTLDDocTask.getDestinationDir();
-				}
-
+				return appTLDDocTask.getDestinationDir();
 			});
 
 		copy.setDescription("Copies tag library documentation resources.");

@@ -43,7 +43,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
@@ -117,7 +116,7 @@ public class BaseIntrabandTest {
 
 		// Second register
 
-		final DatagramReceiveHandler datagramReceiveHandler2 =
+		DatagramReceiveHandler datagramReceiveHandler2 =
 			new RecordDatagramReceiveHandler();
 
 		Assert.assertSame(
@@ -154,18 +153,13 @@ public class BaseIntrabandTest {
 				AtomicReference.class, "valueOffset", valueOffset + 1);
 
 			FutureTask<Void> registerFutureTask = new FutureTask<>(
-				new Callable<Void>() {
+				() -> {
+					_mockIntraband.registerDatagramReceiveHandler(
+						_TYPE, datagramReceiveHandler2);
 
-					@Override
-					public Void call() {
-						_mockIntraband.registerDatagramReceiveHandler(
-							_TYPE, datagramReceiveHandler2);
-
-						throw new AssertionError(
-							"Registering a datagram receive handle should " +
-								"fail with a NullPointerException");
-					}
-
+					throw new AssertionError(
+						"Registering a datagram receive handle should fail " +
+							"with a NullPointerException");
 				});
 
 			Thread registerThread = new Thread(
@@ -174,19 +168,14 @@ public class BaseIntrabandTest {
 			registerThread.start();
 
 			FutureTask<Void> monitorFutureTask = new FutureTask<>(
-				new Callable<Void>() {
-
-					@Override
-					public Void call() throws InterruptedException {
-						for (int i = 0; i < 10; i++) {
-							GCUtil.gc(false, false);
-						}
-
-						atomicReference.set(null);
-
-						return null;
+				() -> {
+					for (int i = 0; i < 10; i++) {
+						GCUtil.gc(false, false);
 					}
 
+					atomicReference.set(null);
+
+					return null;
 				});
 
 			Thread monitorThread = new Thread(
@@ -355,8 +344,7 @@ public class BaseIntrabandTest {
 
 				requestDatagram.writeTo(sinkChannel);
 
-				final ByteBuffer byteBuffer = ByteBuffer.allocate(
-					_DATA.length + 14);
+				ByteBuffer byteBuffer = ByteBuffer.allocate(_DATA.length + 14);
 
 				while (byteBuffer.hasRemaining()) {
 					sourceChannel.read(byteBuffer);
@@ -367,20 +355,15 @@ public class BaseIntrabandTest {
 
 				SyncThrowableThread<Void> syncThrowableThread =
 					new SyncThrowableThread<>(
-						new Callable<Void>() {
+						() -> {
+							for (byte b : byteBuffer.array()) {
+								sinkChannel.write(
+									ByteBuffer.wrap(new byte[] {b}));
 
-							@Override
-							public Void call() throws Exception {
-								for (byte b : byteBuffer.array()) {
-									sinkChannel.write(
-										ByteBuffer.wrap(new byte[] {b}));
-
-									Thread.sleep(1);
-								}
-
-								return null;
+								Thread.sleep(1);
 							}
 
+							return null;
 						});
 
 				syncThrowableThread.start();

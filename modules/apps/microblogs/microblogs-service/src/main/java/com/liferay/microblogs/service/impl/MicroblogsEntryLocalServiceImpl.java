@@ -476,8 +476,7 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	protected void sendNotificationEvent(
-			final MicroblogsEntry microblogsEntry,
-			ServiceContext serviceContext)
+			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
 		throws PortalException {
 
 		AssetRendererFactory<MicroblogsEntry> assetRendererFactory =
@@ -501,7 +500,7 @@ public class MicroblogsEntryLocalServiceImpl
 			}
 		}
 
-		final JSONObject notificationEventJSONObject = JSONUtil.put(
+		JSONObject notificationEventJSONObject = JSONUtil.put(
 			"className", MicroblogsEntry.class.getName()
 		).put(
 			"classPK", microblogsEntry.getMicroblogsEntryId()
@@ -516,26 +515,20 @@ public class MicroblogsEntryLocalServiceImpl
 			"userId", microblogsEntry.getUserId()
 		);
 
-		final List<Long> receiverUserIds = MicroblogsUtil.getSubscriberUserIds(
+		List<Long> receiverUserIds = MicroblogsUtil.getSubscriberUserIds(
 			microblogsEntry);
 
-		Callable<Void> callable = new Callable<Void>() {
+		Callable<Void> callable = () -> {
+			Message message = new Message();
 
-			@Override
-			public Void call() throws Exception {
-				Message message = new Message();
+			message.setPayload(
+				new NotificationProcessCallable(
+					receiverUserIds, microblogsEntry,
+					notificationEventJSONObject));
 
-				message.setPayload(
-					new NotificationProcessCallable(
-						receiverUserIds, microblogsEntry,
-						notificationEventJSONObject));
+			_messageBus.sendMessage(DestinationNames.ASYNC_SERVICE, message);
 
-				_messageBus.sendMessage(
-					DestinationNames.ASYNC_SERVICE, message);
-
-				return null;
-			}
-
+			return null;
 		};
 
 		TransactionCommitCallbackUtil.registerCallback(callable);

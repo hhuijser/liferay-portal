@@ -102,14 +102,7 @@ public class CommerceOrderEngineImpl implements CommerceOrderEngine {
 		throws PortalException {
 
 		return _executeInTransaction(
-			new Callable<CommerceOrder>() {
-
-				@Override
-				public CommerceOrder call() throws Exception {
-					return _checkCommerceOrderShipmentStatus(commerceOrder);
-				}
-
-			});
+			() -> _checkCommerceOrderShipmentStatus(commerceOrder));
 	}
 
 	@Override
@@ -118,14 +111,7 @@ public class CommerceOrderEngineImpl implements CommerceOrderEngine {
 		throws PortalException {
 
 		return _executeInTransaction(
-			new Callable<CommerceOrder>() {
-
-				@Override
-				public CommerceOrder call() throws Exception {
-					return _checkoutCommerceOrder(commerceOrder, userId);
-				}
-
-			});
+			() -> _checkoutCommerceOrder(commerceOrder, userId));
 	}
 
 	@Override
@@ -212,15 +198,7 @@ public class CommerceOrderEngineImpl implements CommerceOrderEngine {
 		throws PortalException {
 
 		return _executeInTransaction(
-			new Callable<CommerceOrder>() {
-
-				@Override
-				public CommerceOrder call() throws Exception {
-					return _transitionCommerceOrder(
-						commerceOrder, orderStatus, userId);
-				}
-
-			});
+			() -> _transitionCommerceOrder(commerceOrder, orderStatus, userId));
 	}
 
 	private void _bookQuantities(long commerceOrderId) throws Exception {
@@ -348,15 +326,10 @@ public class CommerceOrderEngineImpl implements CommerceOrderEngine {
 			commerceOrderId, commerceOrder.getCommerceAccountId());
 
 		TransactionCommitCallbackUtil.registerCallback(
-			new Callable<Void>() {
+			() -> {
+				_bookQuantities(commerceOrderId);
 
-				@Override
-				public Void call() throws Exception {
-					_bookQuantities(commerceOrderId);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		commerceOrder = _commerceOrderLocalService.recalculatePrice(

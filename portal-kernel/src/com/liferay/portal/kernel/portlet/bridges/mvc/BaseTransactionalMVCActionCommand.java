@@ -33,20 +33,14 @@ public abstract class BaseTransactionalMVCActionCommand
 
 	@Override
 	public boolean processAction(
-			final ActionRequest actionRequest,
-			final ActionResponse actionResponse)
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
 		try {
-			Callable<Boolean> callable = new Callable<Boolean>() {
+			Callable<Boolean> callable = () -> {
+				doTransactionalCommand(actionRequest, actionResponse);
 
-				@Override
-				public Boolean call() throws Exception {
-					doTransactionalCommand(actionRequest, actionResponse);
-
-					return SessionErrors.isEmpty(actionRequest);
-				}
-
+				return SessionErrors.isEmpty(actionRequest);
 			};
 
 			return TransactionInvokerUtil.invoke(_transactionConfig, callable);

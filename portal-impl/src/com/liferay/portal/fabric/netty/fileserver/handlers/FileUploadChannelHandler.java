@@ -35,8 +35,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.FileTime;
 
-import java.util.concurrent.Callable;
-
 /**
  * @author Shuyang Zhou
  */
@@ -96,20 +94,15 @@ public class FileUploadChannelHandler extends ChannelInboundHandlerAdapter {
 		}
 		else {
 			eventExecutor.submit(
-				new Callable<Void>() {
-
-					@Override
-					public Void call() throws IOException {
-						try {
-							finish();
-						}
-						catch (IOException ioException) {
-							exceptionCaught(null, ioException);
-						}
-
-						return null;
+				() -> {
+					try {
+						finish();
+					}
+					catch (IOException ioException) {
+						exceptionCaught(null, ioException);
 					}
 
+					return null;
 				});
 		}
 

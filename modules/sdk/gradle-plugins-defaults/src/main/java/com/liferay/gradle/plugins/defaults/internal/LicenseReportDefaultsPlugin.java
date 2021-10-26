@@ -194,15 +194,9 @@ public class LicenseReportDefaultsPlugin implements Plugin<Project> {
 			licenseReportExtension.renderers = new ReportRenderer[] {
 				new ThirdPartyVersionsXmlReportRenderer(
 					fileName, overrideProperties, licenseReportExtension,
-					new Callable<String>() {
-
-						@Override
-						public String call() throws Exception {
-							return GradleUtil.getArchivesBaseName(project) +
-								"." + getArchiveExtension();
-						}
-
-					})
+					() ->
+						GradleUtil.getArchivesBaseName(project) + "." +
+							getArchiveExtension())
 			};
 
 			if (_overridePropertiesFile != null) {

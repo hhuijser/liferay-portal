@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.GradleException;
@@ -125,7 +124,7 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 	}
 
 	private Test _addTaskTestIntegration(
-		Project project, final SourceSet testIntegrationSourceSet) {
+		Project project, SourceSet testIntegrationSourceSet) {
 
 		final Test test = GradleUtil.addTask(
 			project, TEST_INTEGRATION_TASK_NAME, Test.class);
@@ -139,20 +138,11 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 		ConventionMapping conventionMapping = test.getConventionMapping();
 
 		conventionMapping.map(
-			"classpath",
-			new Callable<FileCollection>() {
+			"classpath", testIntegrationSourceSet::getRuntimeClasspath);
 
-				@Override
-				public FileCollection call() throws Exception {
-					return testIntegrationSourceSet.getRuntimeClasspath();
-				}
+		SourceSetOutput sourceSetOutput = testIntegrationSourceSet.getOutput();
 
-			});
-
-		final SourceSetOutput sourceSetOutput =
-			testIntegrationSourceSet.getOutput();
-
-		final Method getClassesDirsMethod = ReflectionUtil.getMethod(
+		Method getClassesDirsMethod = ReflectionUtil.getMethod(
 			sourceSetOutput, "getClassesDirs");
 
 		if (getClassesDirsMethod != null) {
@@ -187,28 +177,13 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 
 			conventionMapping.map(
 				"testClassesDirs",
-				new Callable<FileCollection>() {
-
-					@Override
-					public FileCollection call() throws Exception {
-						return (FileCollection)getClassesDirsMethod.invoke(
-							sourceSetOutput);
-					}
-
-				});
+				() -> (FileCollection)getClassesDirsMethod.invoke(
+					sourceSetOutput));
 		}
 		else {
 			conventionMapping.map(
 				"testClassesDir",
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return FileUtil.getJavaClassesDir(
-							testIntegrationSourceSet);
-					}
-
-				});
+				() -> FileUtil.getJavaClassesDir(testIntegrationSourceSet));
 		}
 
 		project.afterEvaluate(

@@ -25,7 +25,6 @@ import java.io.File;
 import java.nio.file.Path;
 
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -475,10 +474,10 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 					SourceSet mainSourceSet = _getSourceSet(
 						javaPluginConvention, SourceSet.MAIN_SOURCE_SET_NAME);
 
-					final SourceDirectorySet javaSourceDirectorySet =
+					SourceDirectorySet javaSourceDirectorySet =
 						mainSourceSet.getJava();
 
-					final JavaCompile compileJSPJavaCompile =
+					JavaCompile compileJSPJavaCompile =
 						compileJSPTaskProivder.get();
 
 					writeFindBugsProjectTask.setAuxClasspath(
@@ -487,23 +486,8 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 							compileJSPJavaCompile.getClasspath()));
 
 					FileCollection classpath = project.files(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return compileJSPJavaCompile.
-									getDestinationDir();
-							}
-
-						},
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return javaSourceDirectorySet.getOutputDir();
-							}
-
-						});
+						compileJSPJavaCompile::getDestinationDir,
+						javaSourceDirectorySet::getOutputDir);
 
 					writeFindBugsProjectTask.setClasspath(classpath);
 
@@ -511,15 +495,7 @@ public class FindSecurityBugsPlugin implements Plugin<Project> {
 						"Writes the FindBugs project file.");
 
 					writeFindBugsProjectTask.setOutputFile(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									project.getBuildDir(), "findbugs.xml");
-							}
-
-						});
+						() -> new File(project.getBuildDir(), "findbugs.xml"));
 
 					writeFindBugsProjectTask.setProjectName(project.getName());
 

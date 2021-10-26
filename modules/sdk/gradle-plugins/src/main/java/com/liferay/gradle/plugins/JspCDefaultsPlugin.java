@@ -25,7 +25,6 @@ import java.io.File;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -166,18 +165,13 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 						processResourcesTaskProvider);
 
 					generateJSPJavaCompileJSPTask.setWebAppDir(
-						new Callable<File>() {
+						() -> {
+							SourceSetOutput sourceSetOutput =
+								javaMainSourceSet.getOutput();
 
-							@Override
-							public File call() throws Exception {
-								SourceSetOutput sourceSetOutput =
-									javaMainSourceSet.getOutput();
-
-								return new File(
-									sourceSetOutput.getResourcesDir(),
-									"META-INF/resources");
-							}
-
+							return new File(
+								sourceSetOutput.getResourcesDir(),
+								"META-INF/resources");
 						});
 				}
 

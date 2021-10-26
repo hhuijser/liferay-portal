@@ -81,20 +81,15 @@ public class ChangeLogBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBuildChangeLogForJavaPlugin(
-		final BuildChangeLogTask buildChangeLogTask) {
+		BuildChangeLogTask buildChangeLogTask) {
 
 		buildChangeLogTask.setChangeLogFile(
-			new Callable<File>() {
+			() -> {
+				File resourcesDir = _getResourcesDir(
+					buildChangeLogTask.getProject());
 
-				@Override
-				public File call() throws Exception {
-					File resourcesDir = _getResourcesDir(
-						buildChangeLogTask.getProject());
-
-					return new File(
-						resourcesDir, "META-INF/" + _CHANGE_LOG_FILE_NAME);
-				}
-
+				return new File(
+					resourcesDir, "META-INF/" + _CHANGE_LOG_FILE_NAME);
 			});
 	}
 

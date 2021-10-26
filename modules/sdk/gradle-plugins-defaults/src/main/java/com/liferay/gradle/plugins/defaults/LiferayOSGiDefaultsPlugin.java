@@ -124,7 +124,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
@@ -753,22 +752,15 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private CheckOSGiBundleStateTask _addTaskCheckOSGiBundleState(
-		Project project, final BundleExtension bundleExtension) {
+		Project project, BundleExtension bundleExtension) {
 
 		CheckOSGiBundleStateTask checkOSGiBundleStateTask = GradleUtil.addTask(
 			project, CHECK_OSGI_BUNDLE_STATE_TASK_NAME,
 			CheckOSGiBundleStateTask.class);
 
 		checkOSGiBundleStateTask.setBundleSymbolicName(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return bundleExtension.getInstruction(
-						Constants.BUNDLE_SYMBOLICNAME);
-				}
-
-			});
+			() -> bundleExtension.getInstruction(
+				Constants.BUNDLE_SYMBOLICNAME));
 
 		checkOSGiBundleStateTask.setDescription(
 			"Checks the state of the deployed OSGi bundle.");
@@ -926,7 +918,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private Copy _addTaskDeployConfigs(
-		Project project, final LiferayExtension liferayExtension) {
+		Project project, LiferayExtension liferayExtension) {
 
 		Copy copy = GradleUtil.addTask(
 			project, DEPLOY_CONFIGS_TASK_NAME, Copy.class);
@@ -936,15 +928,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 		copy.from("configs");
 		copy.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						liferayExtension.getLiferayHome(), "osgi/configs");
-				}
-
-			});
+			() -> new File(liferayExtension.getLiferayHome(), "osgi/configs"));
 
 		copy.setDescription("Deploys additional configuration files.");
 
@@ -964,17 +948,17 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private Copy _addTaskDownloadCompiledJSP(
-		final JavaCompile compileJSPTask, final Jar jarJSPsTask,
+		JavaCompile compileJSPTask, Jar jarJSPsTask,
 		Properties artifactProperties, LiferayExtension liferayExtension) {
 
-		final String artifactJspcURL = artifactProperties.getProperty(
+		String artifactJspcURL = artifactProperties.getProperty(
 			"artifact.jspc.url");
 
 		if (Validator.isNull(artifactJspcURL)) {
 			return null;
 		}
 
-		final Project project = compileJSPTask.getProject();
+		Project project = compileJSPTask.getProject();
 
 		Copy copy = GradleUtil.addTask(
 			project, DOWNLOAD_COMPILED_JSP_TASK_NAME, Copy.class);
@@ -982,89 +966,70 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		copy.exclude("META-INF/MANIFEST.MF");
 
 		copy.from(
-			new Callable<FileTree>() {
+			() -> {
+				File file;
 
-				@Override
-				public FileTree call() throws Exception {
-					File file;
+				try {
+					file = FileUtil.get(project, artifactJspcURL);
+				}
+				catch (Exception exception) {
+					String message = exception.getMessage();
 
-					try {
-						file = FileUtil.get(project, artifactJspcURL);
-					}
-					catch (Exception exception) {
-						String message = exception.getMessage();
-
-						if (!message.equals("HTTP Authorization failure")) {
-							throw exception;
-						}
-
-						int start = artifactJspcURL.lastIndexOf('/');
-
-						start = artifactJspcURL.indexOf('-', start) + 1;
-
-						String classifier = jarJSPsTask.getClassifier();
-						String extension = jarJSPsTask.getExtension();
-
-						int end =
-							artifactJspcURL.length() - classifier.length() -
-								extension.length() - 2;
-
-						String version = artifactJspcURL.substring(start, end);
-
-						DependencyHandler dependencyHandler =
-							project.getDependencies();
-
-						Map<String, Object> args = new HashMap<>();
-
-						args.put("classifier", classifier);
-						args.put("ext", extension);
-						args.put("group", project.getGroup());
-						args.put(
-							"name", GradleUtil.getArchivesBaseName(project));
-						args.put("version", version);
-
-						Dependency dependency = dependencyHandler.create(args);
-
-						ConfigurationContainer configurationContainer =
-							project.getConfigurations();
-
-						Configuration configuration =
-							configurationContainer.detachedConfiguration(
-								dependency);
-
-						file = configuration.getSingleFile();
+					if (!message.equals("HTTP Authorization failure")) {
+						throw exception;
 					}
 
-					return project.zipTree(file);
+					int start = artifactJspcURL.lastIndexOf('/');
+
+					start = artifactJspcURL.indexOf('-', start) + 1;
+
+					String classifier = jarJSPsTask.getClassifier();
+					String extension = jarJSPsTask.getExtension();
+
+					int end =
+						artifactJspcURL.length() - classifier.length() -
+							extension.length() - 2;
+
+					String version = artifactJspcURL.substring(start, end);
+
+					DependencyHandler dependencyHandler =
+						project.getDependencies();
+
+					Map<String, Object> args = new HashMap<>();
+
+					args.put("classifier", classifier);
+					args.put("ext", extension);
+					args.put("group", project.getGroup());
+					args.put("name", GradleUtil.getArchivesBaseName(project));
+					args.put("version", version);
+
+					Dependency dependency = dependencyHandler.create(args);
+
+					ConfigurationContainer configurationContainer =
+						project.getConfigurations();
+
+					Configuration configuration =
+						configurationContainer.detachedConfiguration(
+							dependency);
+
+					file = configuration.getSingleFile();
 				}
 
+				return project.zipTree(file);
 			});
 
-		copy.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return compileJSPTask.getDestinationDir();
-				}
-
-			});
+		copy.into(compileJSPTask::getDestinationDir);
 
 		copy.into(
-			new Callable<File>() {
+			() -> {
+				File liferayHomeDir = liferayExtension.getLiferayHome();
 
-				@Override
-				public File call() throws Exception {
-					File liferayHomeDir = liferayExtension.getLiferayHome();
+				int index = artifactJspcURL.lastIndexOf('/');
 
-					int index = artifactJspcURL.lastIndexOf('/');
+				String dirName = artifactJspcURL.substring(
+					index + 1, artifactJspcURL.length() - 9);
 
-					String dirName = artifactJspcURL.substring(
-						index + 1, artifactJspcURL.length() - 9);
-
-					return new File(liferayHomeDir, "work/" + dirName);
-				}
-
+				return new File(liferayHomeDir, "work/" + dirName);
 			});
 
 		copy.setDescription(
@@ -1184,35 +1149,12 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 			});
 
-		installCacheTask.setArtifactGroup(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					return project.getGroup();
-				}
-
-			});
+		installCacheTask.setArtifactGroup(project::getGroup);
 
 		installCacheTask.setArtifactName(
-			new Callable<String>() {
+			() -> GradleUtil.getArchivesBaseName(project));
 
-				@Override
-				public String call() throws Exception {
-					return GradleUtil.getArchivesBaseName(project);
-				}
-
-			});
-
-		installCacheTask.setArtifactVersion(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					return project.getVersion();
-				}
-
-			});
+		installCacheTask.setArtifactVersion(project::getVersion);
 
 		if (portalRootDir != null) {
 			installCacheTask.setCacheFormat(InstallCacheTask.CacheFormat.MAVEN);
@@ -1433,7 +1375,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		return jar;
 	}
 
-	private ReplaceRegexTask _addTaskSyncVersions(final Project project) {
+	private ReplaceRegexTask _addTaskSyncVersions(Project project) {
 		ReplaceRegexTask replaceRegexTask = GradleUtil.addTask(
 			project, SYNC_VERSIONS_TASK_NAME, ReplaceRegexTask.class);
 
@@ -1448,24 +1390,19 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		}
 
 		replaceRegexTask.setReplacement(
-			new Callable<String>() {
+			() -> {
+				File bndFile = project.file("bnd.bnd");
 
-				@Override
-				public String call() throws Exception {
-					File bndFile = project.file("bnd.bnd");
+				Properties properties = GUtil.loadProperties(bndFile);
 
-					Properties properties = GUtil.loadProperties(bndFile);
-
-					return properties.getProperty(Constants.BUNDLE_VERSION);
-				}
-
+				return properties.getProperty(Constants.BUNDLE_VERSION);
 			});
 
 		return replaceRegexTask;
 	}
 
 	private ReplaceRegexTask _addTaskUpdateFileSnapshotVersions(
-		final Project project) {
+		Project project) {
 
 		ReplaceRegexTask replaceRegexTask = GradleUtil.addTask(
 			project, UPDATE_FILE_SNAPSHOT_VERSIONS_TASK_NAME,
@@ -1490,14 +1427,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				regex, (FileCollection)project.fileTree(args)));
 
 		replaceRegexTask.setReplacement(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return _getNexusLatestSnapshotVersion(project);
-				}
-
-			});
+			() -> _getNexusLatestSnapshotVersion(project));
 
 		return replaceRegexTask;
 	}
@@ -1613,15 +1543,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		replaceRegexTask.setDescription(
 			"Updates the project version in external files.");
 
-		replaceRegexTask.setReplacement(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					return project.getVersion();
-				}
-
-			});
+		replaceRegexTask.setReplacement(project::getVersion);
 
 		return replaceRegexTask;
 	}
@@ -2744,43 +2666,38 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private void _configureDeployDir(
-		final Project project, final LiferayExtension liferayExtension,
-		final boolean deployToAppServerLibs, final boolean deployToTools) {
+		Project project, LiferayExtension liferayExtension,
+		boolean deployToAppServerLibs, boolean deployToTools) {
 
 		liferayExtension.setDeployDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					if (deployToAppServerLibs) {
-						return new File(
-							liferayExtension.getAppServerPortalDir(),
-							"WEB-INF/lib");
-					}
-
-					if (deployToTools) {
-						return new File(
-							liferayExtension.getLiferayHome(),
-							"tools/" + project.getName());
-					}
-
-					if (FileUtil.exists(project, ".lfrbuild-static")) {
-						return new File(
-							liferayExtension.getLiferayHome(), "osgi/static");
-					}
-
-					String archivesBaseName = GradleUtil.getArchivesBaseName(
-						project);
-
-					if (archivesBaseName.startsWith("com.liferay.portal.")) {
-						return new File(
-							liferayExtension.getLiferayHome(), "osgi/portal");
-					}
-
+			() -> {
+				if (deployToAppServerLibs) {
 					return new File(
-						liferayExtension.getLiferayHome(), "osgi/modules");
+						liferayExtension.getAppServerPortalDir(),
+						"WEB-INF/lib");
 				}
 
+				if (deployToTools) {
+					return new File(
+						liferayExtension.getLiferayHome(),
+						"tools/" + project.getName());
+				}
+
+				if (FileUtil.exists(project, ".lfrbuild-static")) {
+					return new File(
+						liferayExtension.getLiferayHome(), "osgi/static");
+				}
+
+				String archivesBaseName = GradleUtil.getArchivesBaseName(
+					project);
+
+				if (archivesBaseName.startsWith("com.liferay.portal.")) {
+					return new File(
+						liferayExtension.getLiferayHome(), "osgi/portal");
+				}
+
+				return new File(
+					liferayExtension.getLiferayHome(), "osgi/modules");
 			});
 	}
 
@@ -3241,33 +3158,27 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		}
 	}
 
-	private void _configureTaskBuildREST(final Project project) {
+	private void _configureTaskBuildREST(Project project) {
 		BuildRESTTask buildRESTTask = (BuildRESTTask)GradleUtil.getTask(
 			project, RESTBuilderPlugin.BUILD_REST_TASK_NAME);
 
 		buildRESTTask.setCopyrightFile(
-			new Callable<File>() {
+			() -> {
+				File copyrightDir = new File(
+					project.getBuildDir(), "/copyright");
 
-				@Override
-				public File call() throws Exception {
-					File copyrightDir = new File(
-						project.getBuildDir(), "/copyright");
+				Files.createDirectories(copyrightDir.toPath());
 
-					Files.createDirectories(copyrightDir.toPath());
+				File copyrightFile = new File(copyrightDir, "copyright.txt");
 
-					File copyrightFile = new File(
-						copyrightDir, "copyright.txt");
+				String copyright = CopyrightUtil.getCopyright(
+					project.getProjectDir());
 
-					String copyright = CopyrightUtil.getCopyright(
-						project.getProjectDir());
+				Files.write(
+					copyrightFile.toPath(),
+					copyright.getBytes(StandardCharsets.UTF_8));
 
-					Files.write(
-						copyrightFile.toPath(),
-						copyright.getBytes(StandardCharsets.UTF_8));
-
-					return copyrightFile;
-				}
-
+				return copyrightFile;
 			});
 	}
 
@@ -3279,35 +3190,23 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		buildServiceTask.setBuildNumberIncrement(false);
 	}
 
-	private void _configureTaskBuildWSDD(final Project project) {
+	private void _configureTaskBuildWSDD(Project project) {
 		BuildWSDDTask buildWSDDTask = (BuildWSDDTask)GradleUtil.getTask(
 			project, WSDDBuilderPlugin.BUILD_WSDD_TASK_NAME);
 
 		buildWSDDTask.setOutputDir(
-			new Callable<File>() {
+			() -> {
+				File dir = new File(project.getBuildDir(), "wsdd/output");
 
-				@Override
-				public File call() throws Exception {
-					File dir = new File(project.getBuildDir(), "wsdd/output");
+				dir.mkdirs();
 
-					dir.mkdirs();
-
-					return dir;
-				}
-
+				return dir;
 			});
 
 		buildWSDDTask.setServerConfigFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						project.getBuildDir(),
-						"wsdd/" + WSDDBuilderArgs.SERVER_CONFIG_FILE_NAME);
-				}
-
-			});
+			() -> new File(
+				project.getBuildDir(),
+				"wsdd/" + WSDDBuilderArgs.SERVER_CONFIG_FILE_NAME));
 
 		boolean remoteServices = false;
 
@@ -3327,17 +3226,9 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 	private void _configureTaskCheckOSGiBundleState(
 		CheckOSGiBundleStateTask checkOSGiBundleState,
-		final LiferayExtension liferayExtension) {
+		LiferayExtension liferayExtension) {
 
-		checkOSGiBundleState.setJmxPort(
-			new Callable<Integer>() {
-
-				@Override
-				public Integer call() throws Exception {
-					return liferayExtension.getJmxRemotePort();
-				}
-
-			});
+		checkOSGiBundleState.setJmxPort(liferayExtension::getJmxRemotePort);
 	}
 
 	private void _configureTaskCompileJSP(
@@ -3575,15 +3466,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				@SuppressWarnings("serial")
 				public void execute(final PatchTask patchTask) {
 					jarSourcesTask.from(
-						new Callable<FileCollection>() {
-
-							@Override
-							public FileCollection call() throws Exception {
-								return project.zipTree(
-									patchTask.getOriginalLibSrcFile());
-							}
-
-						},
+						() -> project.zipTree(
+							patchTask.getOriginalLibSrcFile()),
 						new Closure<Void>(project) {
 
 							@SuppressWarnings("unused")
@@ -3612,14 +3496,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 						});
 
 					jarSourcesTask.from(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return patchTask.getPatchesDir();
-							}
-
-						},
+						patchTask::getPatchesDir,
 						new Closure<Void>(project) {
 
 							@SuppressWarnings("unused")

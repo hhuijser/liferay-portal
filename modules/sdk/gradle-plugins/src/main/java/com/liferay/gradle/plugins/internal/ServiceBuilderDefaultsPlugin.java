@@ -30,8 +30,6 @@ import groovy.lang.Closure;
 
 import java.io.File;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
@@ -203,16 +201,11 @@ public class ServiceBuilderDefaultsPlugin
 					buildDBTask.setGroup(BasePlugin.BUILD_GROUP);
 
 					buildDBTask.setSqlDir(
-						new Callable<File>() {
+						() -> {
+							BuildServiceTask buildServiceTask =
+								buildServiceTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								BuildServiceTask buildServiceTask =
-									buildServiceTaskProvider.get();
-
-								return buildServiceTask.getSqlDir();
-							}
-
+							return buildServiceTask.getSqlDir();
 						});
 				}
 
@@ -248,16 +241,11 @@ public class ServiceBuilderDefaultsPlugin
 					CleanServiceBuilderTask cleanServiceBuilderTask) {
 
 					cleanServiceBuilderTask.setServiceXmlFile(
-						new Callable<File>() {
+						() -> {
+							BuildServiceTask buildServiceTask =
+								buildServiceTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								BuildServiceTask buildServiceTask =
-									buildServiceTaskProvider.get();
-
-								return buildServiceTask.getInputFile();
-							}
-
+							return buildServiceTask.getInputFile();
 						});
 				}
 

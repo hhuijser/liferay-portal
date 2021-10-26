@@ -25,7 +25,6 @@ import java.nio.CharBuffer;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -151,25 +150,20 @@ public class CharPipeTest {
 
 	@Test
 	public void testClosePeacefullyBlocking() throws Exception {
-		final CharPipe charPipe = new CharPipe();
+		CharPipe charPipe = new CharPipe();
 
 		Reader reader = charPipe.getReader();
 
-		final AtomicLong timestampBeforeClose = new AtomicLong();
+		AtomicLong timestampBeforeClose = new AtomicLong();
 
 		SyncThrowableThread<Void> syncThrowableThread =
 			new SyncThrowableThread<>(
-				new Callable<Void>() {
+				() -> {
+					timestampBeforeClose.set(System.currentTimeMillis());
 
-					@Override
-					public Void call() throws Exception {
-						timestampBeforeClose.set(System.currentTimeMillis());
+					charPipe.close();
 
-						charPipe.close();
-
-						return null;
-					}
-
+					return null;
 				});
 
 		syncThrowableThread.start();

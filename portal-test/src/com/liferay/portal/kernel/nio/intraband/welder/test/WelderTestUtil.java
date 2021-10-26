@@ -38,7 +38,7 @@ public class WelderTestUtil {
 
 	public static void assertConnectted(
 			ScatteringByteChannel scatteringByteChannel,
-			final GatheringByteChannel gatheringByteChannel)
+			GatheringByteChannel gatheringByteChannel)
 		throws Exception {
 
 		Random random = new Random();
@@ -48,19 +48,14 @@ public class WelderTestUtil {
 		random.nextBytes(data);
 
 		FutureTask<Void> writeFutureTask = new FutureTask<Void>(
-			new Callable<Void>() {
+			() -> {
+				ByteBuffer byteBuffer = ByteBuffer.wrap(data);
 
-				@Override
-				public Void call() throws Exception {
-					ByteBuffer byteBuffer = ByteBuffer.wrap(data);
-
-					while (byteBuffer.hasRemaining()) {
-						gatheringByteChannel.write(byteBuffer);
-					}
-
-					return null;
+				while (byteBuffer.hasRemaining()) {
+					gatheringByteChannel.write(byteBuffer);
 				}
 
+				return null;
 			});
 
 		Thread writeThread = new Thread(writeFutureTask);

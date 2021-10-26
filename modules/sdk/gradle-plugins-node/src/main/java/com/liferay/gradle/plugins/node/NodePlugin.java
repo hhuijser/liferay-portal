@@ -195,45 +195,13 @@ public class NodePlugin implements Plugin<Project> {
 		DownloadNodeTask downloadNodeTask = GradleUtil.addTask(
 			project, taskName, DownloadNodeTask.class);
 
-		downloadNodeTask.setNodeDir(
-			new Callable<File>() {
+		downloadNodeTask.setNodeDir(nodeExtension::getNodeDir);
 
-				@Override
-				public File call() throws Exception {
-					return nodeExtension.getNodeDir();
-				}
+		downloadNodeTask.setNodeUrl(nodeExtension::getNodeUrl);
 
-			});
+		downloadNodeTask.setNpmUrl(nodeExtension::getNpmUrl);
 
-		downloadNodeTask.setNodeUrl(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return nodeExtension.getNodeUrl();
-				}
-
-			});
-
-		downloadNodeTask.setNpmUrl(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return nodeExtension.getNpmUrl();
-				}
-
-			});
-
-		downloadNodeTask.setYarnUrl(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return nodeExtension.getYarnUrl();
-				}
-
-			});
+		downloadNodeTask.setYarnUrl(nodeExtension::getYarnUrl);
 
 		downloadNodeTask.onlyIf(
 			new Spec<Task>() {
@@ -545,109 +513,72 @@ public class NodePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskExecuteNode(
-		ExecuteNodeTask executeNodeTask, final NodeExtension nodeExtension,
+		ExecuteNodeTask executeNodeTask, NodeExtension nodeExtension,
 		boolean useGradleExec) {
 
 		executeNodeTask.setNodeDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					if (nodeExtension.isDownload()) {
-						return nodeExtension.getNodeDir();
-					}
-
-					return null;
+			() -> {
+				if (nodeExtension.isDownload()) {
+					return nodeExtension.getNodeDir();
 				}
 
+				return null;
 			});
 
 		executeNodeTask.setUseGradleExec(useGradleExec);
 	}
 
 	private void _configureTaskExecutePackageManager(
-		final ExecutePackageManagerTask executePackageManagerTask,
-		final NodeExtension nodeExtension) {
+		ExecutePackageManagerTask executePackageManagerTask,
+		NodeExtension nodeExtension) {
 
-		final Callable<Boolean> useGlobalConcurrentCacheCallable =
-			new Callable<Boolean>() {
+		Callable<Boolean> useGlobalConcurrentCacheCallable = () -> {
+			int value1 = _node8VersionNumber.compareTo(
+				VersionNumber.parse(nodeExtension.getNodeVersion()));
+			int value2 = _npm5VersionNumber.compareTo(
+				VersionNumber.parse(nodeExtension.getNpmVersion()));
 
-				@Override
-				public Boolean call() throws Exception {
-					int value1 = _node8VersionNumber.compareTo(
-						VersionNumber.parse(nodeExtension.getNodeVersion()));
-					int value2 = _npm5VersionNumber.compareTo(
-						VersionNumber.parse(nodeExtension.getNpmVersion()));
+			if ((value1 <= 0) || (value2 <= 0)) {
+				return true;
+			}
 
-					if ((value1 <= 0) || (value2 <= 0)) {
-						return true;
-					}
-
-					return false;
-				}
-
-			};
+			return false;
+		};
 
 		executePackageManagerTask.setCacheConcurrent(
 			useGlobalConcurrentCacheCallable);
 
 		executePackageManagerTask.setCacheDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					if (useGlobalConcurrentCacheCallable.call()) {
-						return null;
-					}
-
-					File nodeDir = executePackageManagerTask.getNodeDir();
-
-					if (nodeDir == null) {
-						return null;
-					}
-
-					return new File(nodeDir, ".cache");
+			() -> {
+				if (useGlobalConcurrentCacheCallable.call()) {
+					return null;
 				}
 
+				File nodeDir = executePackageManagerTask.getNodeDir();
+
+				if (nodeDir == null) {
+					return null;
+				}
+
+				return new File(nodeDir, ".cache");
 			});
 
-		final Project project = executePackageManagerTask.getProject();
+		Project project = executePackageManagerTask.getProject();
 
 		executePackageManagerTask.setNodeModulesDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					if (nodeExtension.isUseNpm()) {
-						return project.file("node_modules");
-					}
-
-					Project rootProject = project.getRootProject();
-
-					return rootProject.file("node_modules");
+			() -> {
+				if (nodeExtension.isUseNpm()) {
+					return project.file("node_modules");
 				}
 
+				Project rootProject = project.getRootProject();
+
+				return rootProject.file("node_modules");
 			});
 
-		executePackageManagerTask.setScriptFile(
-			new Callable<File>() {
+		executePackageManagerTask.setScriptFile(nodeExtension::getScriptFile);
 
-				@Override
-				public File call() throws Exception {
-					return nodeExtension.getScriptFile();
-				}
-
-			});
-
-		executePackageManagerTask.setUseNpm(
-			new Callable<Boolean>() {
-
-				@Override
-				public Boolean call() throws Exception {
-					return nodeExtension.isUseNpm();
-				}
-
-			});
+		executePackageManagerTask.setUseNpm(nodeExtension::isUseNpm);
 	}
 
 	private void _configureTaskExecutePackageManagerArgs(
@@ -683,7 +614,7 @@ public class NodePlugin implements Plugin<Project> {
 
 	@SuppressWarnings("serial")
 	private void _configureTaskPackageRunBuildForJavaPlugin(
-		final PackageRunBuildTask packageRunBuildTask) {
+		PackageRunBuildTask packageRunBuildTask) {
 
 		final Project project = packageRunBuildTask.getProject();
 
@@ -711,31 +642,18 @@ public class NodePlugin implements Plugin<Project> {
 			final File destinationDir = new File(
 				project.getBuildDir(), "node/packageRunBuild/resources");
 
-			packageRunBuildTask.setDestinationDir(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return destinationDir;
-					}
-
-				});
+			packageRunBuildTask.setDestinationDir(() -> destinationDir);
 
 			final File sourceDir = project.file(
 				"src/main/resources/META-INF/resources");
 
 			packageRunBuildTask.setSourceDir(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						if (!sourceDir.exists()) {
-							return null;
-						}
-
-						return sourceDir;
+				() -> {
+					if (!sourceDir.exists()) {
+						return null;
 					}
 
+					return sourceDir;
 				});
 
 			packageRunBuildTask.doFirst(
@@ -772,14 +690,7 @@ public class NodePlugin implements Plugin<Project> {
 			processResourcesCopy.dependsOn(packageRunBuildTask);
 
 			processResourcesCopy.from(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return packageRunBuildTask.getDestinationDir();
-					}
-
-				},
+				packageRunBuildTask::getDestinationDir,
 				new Closure<Void>(project) {
 
 					@SuppressWarnings("unused")
@@ -815,47 +726,26 @@ public class NodePlugin implements Plugin<Project> {
 	private void _configureTaskPublishNodeModule(
 		PublishNodeModuleTask publishNodeModuleTask) {
 
-		final Project project = publishNodeModuleTask.getProject();
+		Project project = publishNodeModuleTask.getProject();
 
-		publishNodeModuleTask.setModuleDescription(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return project.getDescription();
-				}
-
-			});
+		publishNodeModuleTask.setModuleDescription(project::getDescription);
 
 		publishNodeModuleTask.setModuleName(
-			new Callable<String>() {
+			() -> {
+				String moduleName = OSGiUtil.getBundleSymbolicName(project);
 
-				@Override
-				public String call() throws Exception {
-					String moduleName = OSGiUtil.getBundleSymbolicName(project);
+				int pos = moduleName.indexOf('.');
 
-					int pos = moduleName.indexOf('.');
+				if (pos != -1) {
+					moduleName = moduleName.substring(pos + 1);
 
-					if (pos != -1) {
-						moduleName = moduleName.substring(pos + 1);
-
-						moduleName = moduleName.replace('.', '-');
-					}
-
-					return moduleName;
+					moduleName = moduleName.replace('.', '-');
 				}
 
+				return moduleName;
 			});
 
-		publishNodeModuleTask.setModuleVersion(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					return project.getVersion();
-				}
-
-			});
+		publishNodeModuleTask.setModuleVersion(project::getVersion);
 	}
 
 	private void _configureTasksDownloadNodeModule(

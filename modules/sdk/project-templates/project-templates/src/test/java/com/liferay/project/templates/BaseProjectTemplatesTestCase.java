@@ -1364,13 +1364,13 @@ public interface BaseProjectTemplatesTestCase {
 	}
 
 	public default void testBuildTemplateServiceBuilder(
-			File gradleProjectDir, File mavenProjectDir, final File rootProject,
-			String name, String packageName, final String projectPath,
+			File gradleProjectDir, File mavenProjectDir, File rootProject,
+			String name, String packageName, String projectPath,
 			URI gradleDistribution, MavenExecutor mavenExecutor)
 		throws Exception {
 
 		String apiProjectName = name + "-api";
-		final String serviceProjectName = name + "-service";
+		String serviceProjectName = name + "-service";
 
 		testContains(
 			gradleProjectDir, apiProjectName + "/bnd.bnd", "Export-Package:\\",
@@ -1386,18 +1386,13 @@ public interface BaseProjectTemplatesTestCase {
 
 		testChangePortletModelHintsXml(
 			gradleProjectDir, serviceProjectName,
-			new Callable<Void>() {
+			() -> {
+				executeGradle(
+					rootProject, gradleDistribution,
+					projectPath + ":" + serviceProjectName +
+						GRADLE_TASK_PATH_BUILD_SERVICE);
 
-				@Override
-				public Void call() throws Exception {
-					executeGradle(
-						rootProject, gradleDistribution,
-						projectPath + ":" + serviceProjectName +
-							GRADLE_TASK_PATH_BUILD_SERVICE);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		executeGradle(
@@ -1415,17 +1410,12 @@ public interface BaseProjectTemplatesTestCase {
 		if (!name.contains("sample")) {
 			testChangePortletModelHintsXml(
 				mavenProjectDir, serviceProjectName,
-				new Callable<Void>() {
+				() -> {
+					executeMaven(
+						new File(mavenProjectDir, serviceProjectName),
+						mavenExecutor, MAVEN_GOAL_BUILD_SERVICE);
 
-					@Override
-					public Void call() throws Exception {
-						executeMaven(
-							new File(mavenProjectDir, serviceProjectName),
-							mavenExecutor, MAVEN_GOAL_BUILD_SERVICE);
-
-						return null;
-					}
-
+					return null;
 				});
 
 			File gradleServicePropertiesFile = new File(

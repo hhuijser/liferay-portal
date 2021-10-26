@@ -280,15 +280,10 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 			company = _checkCompany(company, mx);
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
+				() -> {
+					safeCloseable.close();
 
-					@Override
-					public Void call() throws Exception {
-						safeCloseable.close();
-
-						return null;
-					}
-
+					return null;
 				});
 
 			return company;
@@ -1268,20 +1263,15 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		// Company
 
-		final Company company = companyPersistence.findByPrimaryKey(companyId);
+		Company company = companyPersistence.findByPrimaryKey(companyId);
 
 		if (DBPartitionUtil.removeDBPartition(companyId)) {
 			_clearCompanyCache(companyId);
 
-			Callable<Void> callable = new Callable<Void>() {
+			Callable<Void> callable = () -> {
+				PortalInstances.removeCompany(company.getCompanyId());
 
-				@Override
-				public Void call() throws Exception {
-					PortalInstances.removeCompany(company.getCompanyId());
-
-					return null;
-				}
-
+				return null;
 			};
 
 			TransactionCommitCallbackUtil.registerCallback(callable);
@@ -2022,18 +2012,13 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 			_portletLocalService.checkPortlets(company.getCompanyId());
 
-			final Company finalCompany = company;
+			Company finalCompany = company;
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
+				() -> {
+					registerCompany(finalCompany);
 
-					@Override
-					public Void call() throws Exception {
-						registerCompany(finalCompany);
-
-						return null;
-					}
-
+					return null;
 				});
 		}
 		finally {
@@ -2046,20 +2031,15 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	}
 
 	private void _clearCompanyCache(long companyId) {
-		final Company company = companyPersistence.fetchByPrimaryKey(companyId);
+		Company company = companyPersistence.fetchByPrimaryKey(companyId);
 
 		if (company != null) {
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
+				() -> {
+					EntityCacheUtil.removeResult(
+						company.getClass(), company.getPrimaryKeyObj());
 
-					@Override
-					public Void call() throws Exception {
-						EntityCacheUtil.removeResult(
-							company.getClass(), company.getPrimaryKeyObj());
-
-						return null;
-					}
-
+					return null;
 				});
 
 			companyPersistence.clearCache(company);
@@ -2089,17 +2069,12 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		// Portal instance
 
-		Callable<Void> callable = new Callable<Void>() {
+		Callable<Void> callable = () -> {
+			PortalInstances.removeCompany(company.getCompanyId());
 
-			@Override
-			public Void call() throws Exception {
-				PortalInstances.removeCompany(company.getCompanyId());
+			unregisterCompany(company);
 
-				unregisterCompany(company);
-
-				return null;
-			}
-
+			return null;
 		};
 
 		TransactionCommitCallbackUtil.registerCallback(callable);

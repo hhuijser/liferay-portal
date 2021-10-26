@@ -84,32 +84,19 @@ public class JSDocPlugin extends BaseJSDocPlugin {
 	}
 
 	private void _configureTaskJSDocForJavaPlugin(JSDocTask jsDocTask) {
-		final Project project = jsDocTask.getProject();
+		Project project = jsDocTask.getProject();
 
 		jsDocTask.setDestinationDir(
-			new Callable<File>() {
+			() -> {
+				JavaPluginConvention javaPluginConvention =
+					GradleUtil.getConvention(
+						project, JavaPluginConvention.class);
 
-				@Override
-				public File call() throws Exception {
-					JavaPluginConvention javaPluginConvention =
-						GradleUtil.getConvention(
-							project, JavaPluginConvention.class);
-
-					return new File(javaPluginConvention.getDocsDir(), "jsdoc");
-				}
-
+				return new File(javaPluginConvention.getDocsDir(), "jsdoc");
 			});
 
 		jsDocTask.setSourceDirs(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						_getResourcesDir(project), "META-INF/resources");
-				}
-
-			});
+			() -> new File(_getResourcesDir(project), "META-INF/resources"));
 	}
 
 	private File _getResourcesDir(Project project) {

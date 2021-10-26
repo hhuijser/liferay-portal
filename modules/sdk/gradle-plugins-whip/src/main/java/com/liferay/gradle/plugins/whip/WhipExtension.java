@@ -18,8 +18,6 @@ import com.liferay.gradle.util.GradleUtil;
 
 import java.io.File;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
@@ -43,24 +41,19 @@ public class WhipExtension {
 
 		whipTaskExtension.setDataFile(_project.file("test-coverage/whip.dat"));
 		whipTaskExtension.setWhipJarFile(
-			new Callable<File>() {
+			() -> {
+				Configuration configuration = GradleUtil.getConfiguration(
+					_project, WhipPlugin.CONFIGURATION_NAME);
 
-				@Override
-				public File call() throws Exception {
-					Configuration configuration = GradleUtil.getConfiguration(
-						_project, WhipPlugin.CONFIGURATION_NAME);
+				for (File file : configuration.getFiles()) {
+					String fileName = file.getName();
 
-					for (File file : configuration.getFiles()) {
-						String fileName = file.getName();
-
-						if (fileName.startsWith("com.liferay.whip-")) {
-							return file;
-						}
+					if (fileName.startsWith("com.liferay.whip-")) {
+						return file;
 					}
-
-					return null;
 				}
 
+				return null;
 			});
 
 		task.doFirst(

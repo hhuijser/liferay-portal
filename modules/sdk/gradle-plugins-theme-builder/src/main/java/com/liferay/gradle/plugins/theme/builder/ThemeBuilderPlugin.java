@@ -141,23 +141,15 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 	}
 
 	private BuildThemeTask _addTaskBuildTheme(
-		Project project, final Iterable<File> parentThemeFiles,
-		final WarPluginConvention warPluginConvention) {
+		Project project, Iterable<File> parentThemeFiles,
+		WarPluginConvention warPluginConvention) {
 
 		final BuildThemeTask buildThemeTask = GradleUtil.addTask(
 			project, BUILD_THEME_TASK_NAME, BuildThemeTask.class);
 
 		buildThemeTask.setDescription("Builds the theme files.");
 
-		buildThemeTask.setDiffsDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return warPluginConvention.getWebAppDir();
-				}
-
-			});
+		buildThemeTask.setDiffsDir(warPluginConvention::getWebAppDir);
 
 		buildThemeTask.setGroup(BasePlugin.BUILD_GROUP);
 
@@ -175,19 +167,14 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 			});
 
 		buildThemeTask.setParentFile(
-			new Callable<File>() {
+			() -> {
+				String parentName = buildThemeTask.getParentName();
 
-				@Override
-				public File call() throws Exception {
-					String parentName = buildThemeTask.getParentName();
-
-					if (Validator.isNull(parentName)) {
-						return null;
-					}
-
-					return _getThemeFile(parentThemeFiles, parentName);
+				if (Validator.isNull(parentName)) {
+					return null;
 				}
 
+				return _getThemeFile(parentThemeFiles, parentName);
 			});
 
 		buildThemeTask.setParentName("_styled");
@@ -195,32 +182,17 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 		buildThemeTask.setThemeName(project.getName());
 
 		buildThemeTask.setUnstyledFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return _getThemeFile(parentThemeFiles, "_unstyled");
-				}
-
-			});
+			() -> _getThemeFile(parentThemeFiles, "_unstyled"));
 
 		return buildThemeTask;
 	}
 
 	private void _configureTaskBuildCSS(
-		BuildCSSTask buildCSSTask, final BuildThemeTask buildThemeTask) {
+		BuildCSSTask buildCSSTask, BuildThemeTask buildThemeTask) {
 
 		buildCSSTask.dependsOn(buildThemeTask);
 
-		buildCSSTask.setBaseDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return buildThemeTask.getOutputDir();
-				}
-
-			});
+		buildCSSTask.setBaseDir(buildThemeTask::getOutputDir);
 	}
 
 	private void _configureTasksBuildTheme(
@@ -290,15 +262,7 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 
 		war.exclude("**/*.scss");
 
-		war.from(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return buildThemeTask.getOutputDir();
-				}
-
-			});
+		war.from(buildThemeTask::getOutputDir);
 
 		war.setIncludeEmptyDirs(false);
 	}

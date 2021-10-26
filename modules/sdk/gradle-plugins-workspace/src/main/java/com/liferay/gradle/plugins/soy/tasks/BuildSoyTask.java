@@ -50,7 +50,7 @@ public class BuildSoyTask extends SourceTask {
 
 	@TaskAction
 	public void buildSoy() throws Exception {
-		final List<Path> paths = new ArrayList<>();
+		List<Path> paths = new ArrayList<>();
 
 		for (File file : getSource()) {
 			paths.add(file.toPath());
@@ -58,28 +58,22 @@ public class BuildSoyTask extends SourceTask {
 
 		_withClasspath(
 			getClasspath(),
-			new Callable<Void>() {
+			() -> {
+				Thread currentThread = Thread.currentThread();
 
-				@Override
-				public Void call() throws Exception {
-					Thread currentThread = Thread.currentThread();
+				ClassLoader contextClassLoader =
+					currentThread.getContextClassLoader();
 
-					ClassLoader contextClassLoader =
-						currentThread.getContextClassLoader();
+				Class<?> clazz = contextClassLoader.loadClass(
+					BuildSoyCommand.class.getName());
 
-					Class<?> clazz = contextClassLoader.loadClass(
-						BuildSoyCommand.class.getName());
+				Method executeMethod = clazz.getMethod("execute", List.class);
 
-					Method executeMethod = clazz.getMethod(
-						"execute", List.class);
+				Object buildSoyCommand = clazz.newInstance();
 
-					Object buildSoyCommand = clazz.newInstance();
+				executeMethod.invoke(buildSoyCommand, paths);
 
-					executeMethod.invoke(buildSoyCommand, paths);
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 

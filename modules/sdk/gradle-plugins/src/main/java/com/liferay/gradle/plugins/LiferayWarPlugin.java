@@ -19,12 +19,9 @@ import com.liferay.gradle.plugins.tasks.WatchTask;
 
 import java.io.File;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
-import org.gradle.api.file.FileTree;
 import org.gradle.api.plugins.BasePlugin;
 import org.gradle.api.plugins.WarPlugin;
 import org.gradle.api.tasks.Sync;
@@ -75,28 +72,15 @@ public class LiferayWarPlugin implements Plugin<Project> {
 					buildWarDirSync.dependsOn(warTaskProvider);
 
 					buildWarDirSync.from(
-						new Callable<FileTree>() {
+						() -> {
+							War war = warTaskProvider.get();
 
-							@Override
-							public FileTree call() throws Exception {
-								War war = warTaskProvider.get();
-
-								return project.zipTree(war.getArchivePath());
-							}
-
+							return project.zipTree(war.getArchivePath());
 						});
 
 					buildWarDirSync.into(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									project.getBuildDir(),
-									BUILD_WAR_DIR_TASK_NAME);
-							}
-
-						});
+						() -> new File(
+							project.getBuildDir(), BUILD_WAR_DIR_TASK_NAME));
 
 					buildWarDirSync.setDescription(
 						"Unzips the project's WAR file into a temporary " +
@@ -119,28 +103,18 @@ public class LiferayWarPlugin implements Plugin<Project> {
 					watchTask.dependsOn(buildWarDirTaskProvider);
 
 					watchTask.setBundleDir(
-						new Callable<File>() {
+						() -> {
+							Sync buildWarDirSync =
+								buildWarDirTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								Sync buildWarDirSync =
-									buildWarDirTaskProvider.get();
-
-								return buildWarDirSync.getDestinationDir();
-							}
-
+							return buildWarDirSync.getDestinationDir();
 						});
 
 					watchTask.setBundleSymbolicName(
-						new Callable<String>() {
+						() -> {
+							War war = warTaskProvider.get();
 
-							@Override
-							public String call() throws Exception {
-								War war = warTaskProvider.get();
-
-								return war.getBaseName();
-							}
-
+							return war.getBaseName();
 						});
 
 					watchTask.setDescription(

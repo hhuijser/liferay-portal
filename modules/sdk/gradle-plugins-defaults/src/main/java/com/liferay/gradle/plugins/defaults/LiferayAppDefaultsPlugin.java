@@ -46,7 +46,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.Callable;
 
 import org.gradle.StartParameter;
 import org.gradle.api.Action;
@@ -163,7 +162,7 @@ public class LiferayAppDefaultsPlugin implements Plugin<Project> {
 	}
 
 	private Task _addTaskWriteAppPackageJsonFile(
-		final Project project, String appTitle, String appDescription,
+		Project project, String appTitle, String appDescription,
 		String appVersion) {
 
 		Task task = project.task(WRITE_APP_PACKAGE_JSON_FILE_TASK_NAME);
@@ -209,14 +208,7 @@ public class LiferayAppDefaultsPlugin implements Plugin<Project> {
 		TaskOutputs taskOutputs = task.getOutputs();
 
 		taskOutputs.file(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(project.getBuildDir(), "app-package.json");
-				}
-
-			});
+			() -> new File(project.getBuildDir(), "app-package.json"));
 
 		return task;
 	}
@@ -338,9 +330,7 @@ public class LiferayAppDefaultsPlugin implements Plugin<Project> {
 		}
 	}
 
-	private void _configureTaskAppJSDoc(
-		final Task writeAppPackageJsonFileTask) {
-
+	private void _configureTaskAppJSDoc(Task writeAppPackageJsonFileTask) {
 		Project project = writeAppPackageJsonFileTask.getProject();
 
 		JSDocTask jsDocTask = (JSDocTask)GradleUtil.getTask(
@@ -357,15 +347,7 @@ public class LiferayAppDefaultsPlugin implements Plugin<Project> {
 			jsDocTask.dependsOn(writeAppPackageJsonFileTask);
 
 			jsDocTask.setPackageJsonFile(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return GradleUtil.getOutputFile(
-							writeAppPackageJsonFileTask);
-					}
-
-				});
+				() -> GradleUtil.getOutputFile(writeAppPackageJsonFileTask));
 		}
 	}
 

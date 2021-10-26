@@ -14,8 +14,6 @@
 
 package com.liferay.gradle.plugins.test.integration.tasks;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.tasks.CacheableTask;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.TaskAction;
@@ -47,15 +45,7 @@ public class StopAppServerTask extends BaseAppServerTask {
 
 		processExecutor.executeNoTimeout();
 
-		waitFor(
-			new Callable<Boolean>() {
-
-				@Override
-				public Boolean call() throws Exception {
-					return !isReachable();
-				}
-
-			});
+		waitFor(() -> !isReachable());
 
 		long additionalWaitTime = getAdditionalWaitTime();
 

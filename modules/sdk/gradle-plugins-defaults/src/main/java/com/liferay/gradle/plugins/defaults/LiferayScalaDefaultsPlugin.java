@@ -25,7 +25,6 @@ import java.io.File;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.JavaVersion;
 import org.gradle.api.Plugin;
@@ -33,7 +32,6 @@ import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.ConfigurationContainer;
 import org.gradle.api.file.FileCollection;
-import org.gradle.api.file.FileTree;
 import org.gradle.api.plugins.JavaPlugin;
 import org.gradle.api.plugins.scala.ScalaPlugin;
 import org.gradle.api.tasks.testing.Test;
@@ -91,7 +89,7 @@ public class LiferayScalaDefaultsPlugin implements Plugin<Project> {
 		}
 	}
 
-	private void _configureTaskJar(final Project project) {
+	private void _configureTaskJar(Project project) {
 		Jar jarTask = (Jar)GradleUtil.fetchTask(
 			project, JavaPlugin.JAR_TASK_NAME);
 
@@ -100,31 +98,26 @@ public class LiferayScalaDefaultsPlugin implements Plugin<Project> {
 				"META-INF/*.DSA", "META-INF/*.RSA", "META-INF/*.SF");
 
 			jarTask.from(
-				new Callable<FileTree>() {
+				() -> {
+					FileCollection files = project.files();
 
-					@Override
-					public FileTree call() throws Exception {
-						FileCollection files = project.files();
+					ConfigurationContainer configurationContainer =
+						project.getConfigurations();
 
-						ConfigurationContainer configurationContainer =
-							project.getConfigurations();
+					Configuration compileConfiguration =
+						configurationContainer.getByName(
+							JavaPlugin.COMPILE_CONFIGURATION_NAME);
 
-						Configuration compileConfiguration =
-							configurationContainer.getByName(
-								JavaPlugin.COMPILE_CONFIGURATION_NAME);
-
-						for (File file : compileConfiguration) {
-							if (file.isDirectory()) {
-								files = files.plus(project.files(file));
-							}
-							else {
-								files = files.plus(project.zipTree(file));
-							}
+					for (File file : compileConfiguration) {
+						if (file.isDirectory()) {
+							files = files.plus(project.files(file));
 						}
-
-						return files.getAsFileTree();
+						else {
+							files = files.plus(project.zipTree(file));
+						}
 					}
 
+					return files.getAsFileTree();
 				});
 		}
 	}

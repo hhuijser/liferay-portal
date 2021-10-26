@@ -62,7 +62,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public void addDownstreamBuilds(String... urls) {
-		final Build thisBuild = this;
+		Build thisBuild = this;
 
 		List<Callable<Build>> callables = new ArrayList<>(urls.length);
 
@@ -77,25 +77,20 @@ public abstract class BaseBuild implements Build {
 			}
 
 			if (!hasBuildURL(url)) {
-				final String buildURL = url;
+				String buildURL = url;
 
-				Callable<Build> callable = new Callable<Build>() {
-
-					@Override
-					public Build call() {
-						try {
-							return BuildFactory.newBuild(buildURL, thisBuild);
-						}
-						catch (RuntimeException runtimeException) {
-							NotificationUtil.sendSlackNotification(
-								runtimeException.getMessage() +
-									"\nBuild URL: " + buildURL,
-								"ci-notifications", "Build Object Failure");
-
-							return null;
-						}
+				Callable<Build> callable = () -> {
+					try {
+						return BuildFactory.newBuild(buildURL, thisBuild);
 					}
+					catch (RuntimeException runtimeException) {
+						NotificationUtil.sendSlackNotification(
+							runtimeException.getMessage() + "\nBuild URL: " +
+								buildURL,
+							"ci-notifications", "Build Object Failure");
 
+						return null;
+					}
 				};
 
 				callables.add(callable);
@@ -111,7 +106,7 @@ public abstract class BaseBuild implements Build {
 	public abstract void addTimelineData(BaseBuild.TimelineData timelineData);
 
 	@Override
-	public void archive(final String archiveName) {
+	public void archive(String archiveName) {
 		if (!_status.equals("completed")) {
 			throw new RuntimeException("Invalid build status: " + _status);
 		}
@@ -129,15 +124,10 @@ public abstract class BaseBuild implements Build {
 				downstreamBuilds.size());
 
 			for (final Build downstreamBuild : downstreamBuilds) {
-				Callable<Object> callable = new Callable<Object>() {
+				Callable<Object> callable = () -> {
+					downstreamBuild.archive(archiveName);
 
-					@Override
-					public Object call() {
-						downstreamBuild.archive(archiveName);
-
-						return null;
-					}
-
+					return null;
 				};
 
 				callables.add(callable);
@@ -1904,15 +1894,10 @@ public abstract class BaseBuild implements Build {
 					List<Callable<Object>> callables = new ArrayList<>();
 
 					for (final Build downstreamBuild : downstreamBuilds) {
-						Callable<Object> callable = new Callable<Object>() {
+						Callable<Object> callable = () -> {
+							downstreamBuild.update();
 
-							@Override
-							public Object call() {
-								downstreamBuild.update();
-
-								return null;
-							}
-
+							return null;
 						};
 
 						callables.add(callable);
@@ -2550,13 +2535,8 @@ public abstract class BaseBuild implements Build {
 		List<Callable<Element>> callables = new ArrayList<>();
 
 		for (final Build downstreamBuild : downstreamBuilds) {
-			Callable<Element> callable = new Callable<Element>() {
-
-				public Element call() {
-					return downstreamBuild.getGitHubMessageElement();
-				}
-
-			};
+			Callable<Element> callable =
+				() -> downstreamBuild.getGitHubMessageElement();
 
 			callables.add(callable);
 		}

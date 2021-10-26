@@ -61,7 +61,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
@@ -113,15 +112,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		for (final String fileName : fileNames) {
 			Future<Void> future = executorService.submit(
-				new Callable<Void>() {
+				() -> {
+					_performTask(fileName);
 
-					@Override
-					public Void call() {
-						_performTask(fileName);
-
-						return null;
-					}
-
+					return null;
 				});
 
 			futures.add(future);

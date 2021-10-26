@@ -128,30 +128,26 @@ public class GitHubDevSyncUtil {
 	}
 
 	public static List<GitRemote> getGitRemotesWithBranch(
-		final String branchName, List<GitRemote> gitRemotes,
-		final GitWorkingDirectory gitWorkingDirectory) {
+		String branchName, List<GitRemote> gitRemotes,
+		GitWorkingDirectory gitWorkingDirectory) {
 
 		List<Callable<GitRemote>> callables = new ArrayList<>(
 			gitRemotes.size());
 
 		for (final GitRemote gitRemote : gitRemotes) {
-			Callable<GitRemote> callable = new Callable<GitRemote>() {
+			Callable<GitRemote> callable = () -> {
+				try {
+					if (gitWorkingDirectory.remoteGitBranchExists(
+							branchName, gitRemote.getRemoteURL())) {
 
-				public GitRemote call() {
-					try {
-						if (gitWorkingDirectory.remoteGitBranchExists(
-								branchName, gitRemote.getRemoteURL())) {
-
-							return gitRemote;
-						}
+						return gitRemote;
 					}
-					catch (Exception exception) {
-						return null;
-					}
-
+				}
+				catch (Exception exception) {
 					return null;
 				}
 
+				return null;
 			};
 
 			callables.add(callable);

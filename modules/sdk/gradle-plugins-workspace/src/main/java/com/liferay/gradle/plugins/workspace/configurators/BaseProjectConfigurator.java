@@ -29,7 +29,6 @@ import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.GradleException;
 import org.gradle.api.NamedDomainObjectCollection;
@@ -103,17 +102,9 @@ public abstract class BaseProjectConfigurator implements ProjectConfigurator {
 
 		copy.from(sourcePath);
 
-		final File dockerDir = workspaceExtension.getDockerDir();
+		File dockerDir = workspaceExtension.getDockerDir();
 
-		copy.into(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(dockerDir, "deploy");
-				}
-
-			});
+		copy.into(() -> new File(dockerDir, "deploy"));
 
 		copy.setDescription(
 			"Assembles the project and deploys it to the Liferay Docker " +

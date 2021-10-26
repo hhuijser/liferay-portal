@@ -501,29 +501,14 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 	private void _configureExtensionBundleAfterEvaluate(
 		BundleExtension bundleExtension,
-		final LiferayOSGiExtension liferayOSGiExtension,
-		final Configuration compileIncludeConfiguration) {
+		LiferayOSGiExtension liferayOSGiExtension,
+		Configuration compileIncludeConfiguration) {
 
 		IncludeResourceCompileIncludeInstruction
 			includeResourceCompileIncludeInstruction =
 				new IncludeResourceCompileIncludeInstruction(
-					new Callable<Iterable<File>>() {
-
-						@Override
-						public Iterable<File> call() throws Exception {
-							return compileIncludeConfiguration;
-						}
-
-					},
-					new Callable<Boolean>() {
-
-						@Override
-						public Boolean call() throws Exception {
-							return liferayOSGiExtension.
-								isExpandCompileInclude();
-						}
-
-					});
+					() -> compileIncludeConfiguration,
+					liferayOSGiExtension::isExpandCompileInclude);
 
 		bundleExtension.instruction(
 			Constants.INCLUDERESOURCE + "." +
@@ -545,21 +530,14 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 	}
 
 	private void _configureExtensionLiferay(
-		final Project project, final LiferayExtension liferayExtension) {
+		Project project, LiferayExtension liferayExtension) {
 
 		liferayExtension.setDeployDir(
-			new Callable<File>() {
+			() -> {
+				File dir = new File(
+					liferayExtension.getAppServerParentDir(), "osgi/modules");
 
-				@Override
-				public File call() throws Exception {
-					File dir = new File(
-						liferayExtension.getAppServerParentDir(),
-						"osgi/modules");
-
-					return GradleUtil.getProperty(
-						project, "auto.deploy.dir", dir);
-				}
-
+				return GradleUtil.getProperty(project, "auto.deploy.dir", dir);
 			});
 	}
 
@@ -635,15 +613,8 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 					final Jar jar = jarTaskProvider.get();
 
 					directDeployTask.setWebAppFile(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return FileUtil.replaceExtension(
-									jar.getArchivePath(), War.WAR_EXTENSION);
-							}
-
-						});
+						() -> FileUtil.replaceExtension(
+							jar.getArchivePath(), War.WAR_EXTENSION));
 
 					directDeployTask.setWebAppType("portlet");
 
@@ -992,30 +963,24 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 				@Override
 				public void execute(Delete cleanDelete) {
 					cleanDelete.delete(
-						new Callable<File>() {
+						() -> {
+							boolean cleanDeployed = GradleUtil.getProperty(
+								cleanDelete, CLEAN_DEPLOYED_PROPERTY_NAME,
+								true);
 
-							@Override
-							public File call() throws Exception {
-								boolean cleanDeployed = GradleUtil.getProperty(
-									cleanDelete, CLEAN_DEPLOYED_PROPERTY_NAME,
-									true);
-
-								if (!cleanDeployed) {
-									return null;
-								}
-
-								Copy deployCopy = deployTaskProvider.get();
-								Jar jar = jarTaskProvider.get();
-
-								Closure<String> deployedFileNameClosure =
-									liferayExtension.
-										getDeployedFileNameClosure();
-
-								return new File(
-									deployCopy.getDestinationDir(),
-									deployedFileNameClosure.call(jar));
+							if (!cleanDeployed) {
+								return null;
 							}
 
+							Copy deployCopy = deployTaskProvider.get();
+							Jar jar = jarTaskProvider.get();
+
+							Closure<String> deployedFileNameClosure =
+								liferayExtension.getDeployedFileNameClosure();
+
+							return new File(
+								deployCopy.getDestinationDir(),
+								deployedFileNameClosure.call(jar));
 						});
 				}
 
@@ -1359,14 +1324,7 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 					Object sourcePath = jar;
 
 					if (lazy) {
-						sourcePath = new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return jar.getArchivePath();
-							}
-
-						};
+						sourcePath = () -> jar.getArchivePath();
 					}
 
 					Closure<Void> copySpecClosure = new Closure<Void>(project) {

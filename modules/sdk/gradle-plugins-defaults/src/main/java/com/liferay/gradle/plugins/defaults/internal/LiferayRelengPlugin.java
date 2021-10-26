@@ -45,7 +45,6 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -564,16 +563,11 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 				@Override
 				public void execute(Copy processResourcesCopy) {
 					processResourcesCopy.from(
-						new Callable<File>() {
+						() -> {
+							BuildChangeLogTask buildChangeLogTask =
+								buildChangeLogTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								BuildChangeLogTask buildChangeLogTask =
-									buildChangeLogTaskProvider.get();
-
-								return buildChangeLogTask.getChangeLogFile();
-							}
-
+							return buildChangeLogTask.getChangeLogFile();
 						},
 						new Closure<Void>(project) {
 
@@ -602,15 +596,8 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 
 					recordArtifactWritePropertiesTask.property(
 						"artifact.git.id",
-						new Callable<String>() {
-
-							@Override
-							public String call() throws Exception {
-								return GitUtil.getGitResult(
-									project, "rev-parse", "HEAD");
-							}
-
-						});
+						() -> GitUtil.getGitResult(
+							project, "rev-parse", "HEAD"));
 
 					recordArtifactWritePropertiesTask.setDescription(
 						"Records the commit ID and the artifact URLs.");
@@ -622,52 +609,40 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskRecordArtifactProvider(
-		final Project project,
+		Project project,
 		TaskProvider<WritePropertiesTask> recordArtifactTaskProvider,
-		final PublishArtifact publishArtifact) {
+		PublishArtifact publishArtifact) {
 
 		WritePropertiesTask recordArtifactWritePropertiesTask =
 			recordArtifactTaskProvider.get();
 
 		recordArtifactWritePropertiesTask.property(
-			new Callable<String>() {
+			() -> {
+				String key = publishArtifact.getClassifier();
 
-				@Override
-				public String call() throws Exception {
-					String key = publishArtifact.getClassifier();
+				if (Validator.isNull(key)) {
+					key = publishArtifact.getType();
 
-					if (Validator.isNull(key)) {
-						key = publishArtifact.getType();
+					if ((JavaPlugin.JAR_TASK_NAME.equals(key) &&
+						 GradleUtil.hasPlugin(project, JavaPlugin.class)) ||
+						(WarPlugin.WAR_TASK_NAME.equals(key) &&
+						 (GradleUtil.hasPlugin(
+							 project, LiferayAntPlugin.class) ||
+						  GradleUtil.hasPlugin(
+							  project, LiferayThemePlugin.class)))) {
 
-						if ((JavaPlugin.JAR_TASK_NAME.equals(key) &&
-							 GradleUtil.hasPlugin(project, JavaPlugin.class)) ||
-							(WarPlugin.WAR_TASK_NAME.equals(key) &&
-							 (GradleUtil.hasPlugin(
-								 project, LiferayAntPlugin.class) ||
-							  GradleUtil.hasPlugin(
-								  project, LiferayThemePlugin.class)))) {
-
-							key = null;
-						}
+						key = null;
 					}
-
-					if (Validator.isNull(key)) {
-						return "artifact.url";
-					}
-
-					return "artifact." + key + ".url";
 				}
 
+				if (Validator.isNull(key)) {
+					return "artifact.url";
+				}
+
+				return "artifact." + key + ".url";
 			},
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return LiferayRelengUtil.getArtifactRemoteURL(
-						project, publishArtifact, true);
-				}
-
-			});
+			() -> LiferayRelengUtil.getArtifactRemoteURL(
+				project, publishArtifact, true));
 	}
 
 	private void _configureTaskUploadArchivesProvider(
@@ -830,18 +805,13 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 						mergeArtifactsPublishCommandsTaskProvider);
 
 					writeArtifactPublishCommandsTask.setArtifactPropertiesFile(
-						new Callable<File>() {
+						() -> {
+							WritePropertiesTask
+								recordArtifactWritePropertiesTask =
+									recordArtifactTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								WritePropertiesTask
-									recordArtifactWritePropertiesTask =
-										recordArtifactTaskProvider.get();
-
-								return recordArtifactWritePropertiesTask.
-									getOutputFile();
-							}
-
+							return recordArtifactWritePropertiesTask.
+								getOutputFile();
 						});
 
 					writeArtifactPublishCommandsTask.setDescription(

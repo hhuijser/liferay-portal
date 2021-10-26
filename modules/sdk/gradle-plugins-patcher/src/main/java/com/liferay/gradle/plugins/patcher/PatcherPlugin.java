@@ -21,13 +21,11 @@ import java.io.File;
 
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 import org.gradle.api.Task;
-import org.gradle.api.file.FileCollection;
 import org.gradle.api.file.FileCopyDetails;
 import org.gradle.api.file.SourceDirectorySet;
 import org.gradle.api.plugins.JavaPlugin;
@@ -99,29 +97,18 @@ public class PatcherPlugin implements Plugin<Project> {
 			});
 
 		copy.from(
-			new Callable<FileCollection>() {
+			() -> {
+				Project project = patchTask.getProject();
 
-				@Override
-				public FileCollection call() throws Exception {
-					Project project = patchTask.getProject();
-
-					return project.zipTree(patchTask.getOriginalLibFile());
-				}
-
+				return project.zipTree(patchTask.getOriginalLibFile());
 			});
 
 		copy.into(
-			new Callable<File>() {
+			() -> {
+				JavaCompile javaCompile = (JavaCompile)GradleUtil.getTask(
+					patchTask.getProject(), JavaPlugin.COMPILE_JAVA_TASK_NAME);
 
-				@Override
-				public File call() throws Exception {
-					JavaCompile javaCompile = (JavaCompile)GradleUtil.getTask(
-						patchTask.getProject(),
-						JavaPlugin.COMPILE_JAVA_TASK_NAME);
-
-					return javaCompile.getDestinationDir();
-				}
-
+				return javaCompile.getDestinationDir();
 			});
 
 		copy.onlyIf(
@@ -156,30 +143,15 @@ public class PatcherPlugin implements Plugin<Project> {
 	protected void configureTaskPatchPatchedSrcDirMappings(
 		PatchTask patchTask) {
 
-		final SourceSet sourceSet = GradleUtil.getSourceSet(
+		SourceSet sourceSet = GradleUtil.getSourceSet(
 			patchTask.getProject(), SourceSet.MAIN_SOURCE_SET_NAME);
 
 		patchTask.patchedSrcDirMapping(
-			"java",
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return getSrcDir(sourceSet.getJava());
-				}
-
-			});
+			"java", () -> getSrcDir(sourceSet.getJava()));
 
 		patchTask.patchedSrcDirMapping(
 			PatchTask.PATCHED_SRC_DIR_MAPPING_DEFAULT_EXTENSION,
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return getSrcDir(sourceSet.getResources());
-				}
-
-			});
+			() -> getSrcDir(sourceSet.getResources()));
 	}
 
 	protected File getSrcDir(SourceDirectorySet sourceDirectorySet) {

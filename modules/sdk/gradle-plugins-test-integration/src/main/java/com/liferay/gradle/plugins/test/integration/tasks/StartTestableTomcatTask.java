@@ -19,8 +19,6 @@ import com.liferay.gradle.plugins.test.integration.internal.util.GradleUtil;
 import java.io.File;
 import java.io.OutputStream;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.InvalidUserDataException;
 import org.gradle.api.Project;
 import org.gradle.api.tasks.CacheableTask;
@@ -71,17 +69,12 @@ public class StartTestableTomcatTask extends StartAppServerTask {
 		StartedProcess startedProcess, OutputStream outputStream) {
 
 		waitFor(
-			new Callable<Boolean>() {
-
-				@Override
-				public Boolean call() throws Exception {
-					if (isReachable()) {
-						return true;
-					}
-
-					return false;
+			() -> {
+				if (isReachable()) {
+					return true;
 				}
 
+				return false;
 			});
 
 		super.waitForStarted(startedProcess, outputStream);

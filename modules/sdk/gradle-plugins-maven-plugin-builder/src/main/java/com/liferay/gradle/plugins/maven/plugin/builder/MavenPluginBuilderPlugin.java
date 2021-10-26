@@ -124,10 +124,10 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 	}
 
 	private BuildPluginDescriptorTask _addTaskBuildPluginDescriptor(
-		final WriteMavenSettingsTask writeMavenSettingsTask,
+		WriteMavenSettingsTask writeMavenSettingsTask,
 		FileCollection mavenEmbedderClasspath) {
 
-		final Project project = writeMavenSettingsTask.getProject();
+		Project project = writeMavenSettingsTask.getProject();
 
 		BuildPluginDescriptorTask buildPluginDescriptorTask =
 			GradleUtil.addTask(
@@ -137,18 +137,11 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 		buildPluginDescriptorTask.dependsOn(
 			JavaPlugin.COMPILE_JAVA_TASK_NAME, writeMavenSettingsTask);
 
-		final SourceSet sourceSet = GradleUtil.getSourceSet(
+		SourceSet sourceSet = GradleUtil.getSourceSet(
 			project, SourceSet.MAIN_SOURCE_SET_NAME);
 
 		buildPluginDescriptorTask.setClassesDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return FileUtil.getJavaClassesDir(sourceSet);
-				}
-
-			});
+			() -> FileUtil.getJavaClassesDir(sourceSet));
 
 		buildPluginDescriptorTask.setDescription(
 			"Generates the Maven plugin descriptor for the project.");
@@ -157,72 +150,33 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 			mavenEmbedderClasspath);
 
 		buildPluginDescriptorTask.setMavenSettingsFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return writeMavenSettingsTask.getOutputFile();
-				}
-
-			});
+			writeMavenSettingsTask::getOutputFile);
 
 		buildPluginDescriptorTask.setOutputDir(
-			new Callable<File>() {
+			() -> {
+				File resourcesDir = _getSrcDir(sourceSet.getResources());
 
-				@Override
-				public File call() throws Exception {
-					File resourcesDir = _getSrcDir(sourceSet.getResources());
-
-					return new File(resourcesDir, "META-INF/maven");
-				}
-
+				return new File(resourcesDir, "META-INF/maven");
 			});
 
 		buildPluginDescriptorTask.setPomArtifactId(
-			new Callable<String>() {
+			() -> OSGiUtil.getBundleSymbolicName(project));
 
-				@Override
-				public String call() throws Exception {
-					return OSGiUtil.getBundleSymbolicName(project);
-				}
-
-			});
-
-		buildPluginDescriptorTask.setPomGroupId(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					return project.getGroup();
-				}
-
-			});
+		buildPluginDescriptorTask.setPomGroupId(project::getGroup);
 
 		buildPluginDescriptorTask.setPomVersion(
-			new Callable<String>() {
+			() -> {
+				String version = String.valueOf(project.getVersion());
 
-				@Override
-				public String call() throws Exception {
-					String version = String.valueOf(project.getVersion());
-
-					if (version.endsWith("-SNAPSHOT")) {
-						version = version.substring(0, version.length() - 9);
-					}
-
-					return version;
+				if (version.endsWith("-SNAPSHOT")) {
+					version = version.substring(0, version.length() - 9);
 				}
 
+				return version;
 			});
 
 		buildPluginDescriptorTask.setSourceDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return _getSrcDir(sourceSet.getJava());
-				}
-
-			});
+			() -> _getSrcDir(sourceSet.getJava()));
 
 		Task processResourcesTask = GradleUtil.getTask(
 			project, JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
@@ -232,9 +186,7 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 		return buildPluginDescriptorTask;
 	}
 
-	private WriteMavenSettingsTask _addTaskWriteMavenSettings(
-		final Project project) {
-
+	private WriteMavenSettingsTask _addTaskWriteMavenSettings(Project project) {
 		WriteMavenSettingsTask writeMavenSettingsTask = GradleUtil.addTask(
 			project, WRITE_MAVEN_SETTINGS_TASK, WriteMavenSettingsTask.class);
 
@@ -310,14 +262,7 @@ public class MavenPluginBuilderPlugin implements Plugin<Project> {
 			System.getProperty("repository.url"));
 
 		writeMavenSettingsTask.setOutputFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(project.getBuildDir(), "settings.xml");
-				}
-
-			});
+			() -> new File(project.getBuildDir(), "settings.xml"));
 
 		return writeMavenSettingsTask;
 	}

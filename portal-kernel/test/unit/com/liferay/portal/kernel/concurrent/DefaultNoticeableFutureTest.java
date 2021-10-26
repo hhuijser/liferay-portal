@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.concurrent;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -175,15 +174,10 @@ public class DefaultNoticeableFutureTest {
 
 		DefaultNoticeableFuture<?> defaultNoticeableFuture =
 			new DefaultNoticeableFuture<Object>(
-				new Callable<Object>() {
+				() -> {
+					flag.set(true);
 
-					@Override
-					public Object call() {
-						flag.set(true);
-
-						return flag;
-					}
-
+					return flag;
 				});
 
 		defaultNoticeableFuture.run();

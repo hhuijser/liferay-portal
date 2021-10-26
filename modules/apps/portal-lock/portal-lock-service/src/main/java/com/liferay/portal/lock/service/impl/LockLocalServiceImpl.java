@@ -378,31 +378,24 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 
 	@MasterDataSource
 	@Override
-	public void unlock(
-		final String className, final String key, final String owner) {
-
+	public void unlock(String className, String key, String owner) {
 		while (true) {
 			try {
 				TransactionInvokerUtil.invoke(
 					_transactionConfig,
-					new Callable<Void>() {
+					() -> {
+						Lock lock = lockPersistence.fetchByC_K(
+							className, key, false);
 
-						@Override
-						public Void call() {
-							Lock lock = lockPersistence.fetchByC_K(
-								className, key, false);
-
-							if (lock == null) {
-								return null;
-							}
-
-							if (Objects.equals(lock.getOwner(), owner)) {
-								lockPersistence.remove(lock);
-							}
-
+						if (lock == null) {
 							return null;
 						}
 
+						if (Objects.equals(lock.getOwner(), owner)) {
+							lockPersistence.remove(lock);
+						}
+
+						return null;
 					});
 
 				return;

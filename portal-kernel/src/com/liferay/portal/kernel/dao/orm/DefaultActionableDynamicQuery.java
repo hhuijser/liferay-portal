@@ -244,7 +244,7 @@ public class DefaultActionableDynamicQuery implements ActionableDynamicQuery {
 	protected long doPerformActions(long previousPrimaryKey)
 		throws PortalException {
 
-		final DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			_modelClass, _classLoader);
 
 		if (_addOrderCriteriaMethod == null) {
@@ -265,58 +265,47 @@ public class DefaultActionableDynamicQuery implements ActionableDynamicQuery {
 
 		addOrderCriteria(dynamicQuery);
 
-		Callable<Long> callable = new Callable<Long>() {
+		Callable<Long> callable = () -> {
+			List<Object> objects = (List<Object>)executeDynamicQuery(
+				_dynamicQueryMethod, dynamicQuery);
 
-			@Override
-			public Long call() throws Exception {
-				List<Object> objects = (List<Object>)executeDynamicQuery(
-					_dynamicQueryMethod, dynamicQuery);
+			_offset += objects.size();
 
-				_offset += objects.size();
-
-				if (objects.isEmpty()) {
-					return -1L;
-				}
-
-				if (_parallel) {
-					List<Future<Void>> futures = new ArrayList<>(
-						objects.size());
-
-					for (final Object object : objects) {
-						futures.add(
-							_executorService.submit(
-								new Callable<Void>() {
-
-									@Override
-									public Void call() throws PortalException {
-										performAction(object);
-
-										return null;
-									}
-
-								}));
-					}
-
-					for (Future<Void> future : futures) {
-						future.get();
-					}
-				}
-				else {
-					for (Object object : objects) {
-						performAction(object);
-					}
-				}
-
-				if (objects.size() < _interval) {
-					return -1L;
-				}
-
-				BaseModel<?> baseModel = (BaseModel<?>)objects.get(
-					objects.size() - 1);
-
-				return (Long)baseModel.getPrimaryKeyObj();
+			if (objects.isEmpty()) {
+				return -1L;
 			}
 
+			if (_parallel) {
+				List<Future<Void>> futures = new ArrayList<>(objects.size());
+
+				for (final Object object : objects) {
+					futures.add(
+						_executorService.submit(
+							() -> {
+								performAction(object);
+
+								return null;
+							}));
+				}
+
+				for (Future<Void> future : futures) {
+					future.get();
+				}
+			}
+			else {
+				for (Object object : objects) {
+					performAction(object);
+				}
+			}
+
+			if (objects.size() < _interval) {
+				return -1L;
+			}
+
+			BaseModel<?> baseModel = (BaseModel<?>)objects.get(
+				objects.size() - 1);
+
+			return (Long)baseModel.getPrimaryKeyObj();
 		};
 
 		TransactionConfig transactionConfig = getTransactionConfig();

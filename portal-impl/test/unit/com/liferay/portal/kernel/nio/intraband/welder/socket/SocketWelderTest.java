@@ -30,7 +30,6 @@ import java.net.ServerSocket;
 import java.nio.channels.ServerSocketChannel;
 
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 import org.junit.Assert;
@@ -123,38 +122,24 @@ public class SocketWelderTest {
 
 	@Test
 	public void testWeldSolingerOn() throws Exception {
-		final SocketWelder serverSocketWelder = new SocketWelder();
+		SocketWelder serverSocketWelder = new SocketWelder();
 
-		final SocketWelder clientSocketWelder = WelderTestUtil.transform(
+		SocketWelder clientSocketWelder = WelderTestUtil.transform(
 			serverSocketWelder);
 
 		FutureTask<MockRegistrationReference> serverWeldingTask =
-			new FutureTask<MockRegistrationReference>(
-				new Callable<MockRegistrationReference>() {
-
-					@Override
-					public MockRegistrationReference call() throws Exception {
-						return (MockRegistrationReference)
-							serverSocketWelder.weld(new MockIntraband());
-					}
-
-				});
+			new FutureTask<>(
+				() -> (MockRegistrationReference)serverSocketWelder.weld(
+					new MockIntraband()));
 
 		Thread serverWeldingThread = new Thread(serverWeldingTask);
 
 		serverWeldingThread.start();
 
 		FutureTask<MockRegistrationReference> clientWeldingTask =
-			new FutureTask<MockRegistrationReference>(
-				new Callable<MockRegistrationReference>() {
-
-					@Override
-					public MockRegistrationReference call() throws Exception {
-						return (MockRegistrationReference)
-							clientSocketWelder.weld(new MockIntraband());
-					}
-
-				});
+			new FutureTask<>(
+				() -> (MockRegistrationReference)clientSocketWelder.weld(
+					new MockIntraband()));
 
 		Thread clientWeldingThread = new Thread(clientWeldingTask);
 

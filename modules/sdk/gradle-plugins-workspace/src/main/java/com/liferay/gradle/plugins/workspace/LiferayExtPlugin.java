@@ -24,7 +24,6 @@ import groovy.lang.Closure;
 import java.io.File;
 
 import java.util.Collections;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -217,54 +216,34 @@ public class LiferayExtPlugin implements Plugin<Project> {
 		GradleUtil.applyPlugin(project, WarPlugin.class);
 	}
 
-	private void _configureExtensionLiferay(
-		final LiferayExtension liferayExtension) {
-
+	private void _configureExtensionLiferay(LiferayExtension liferayExtension) {
 		liferayExtension.setDeployDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						liferayExtension.getAppServerParentDir(), "deploy");
-				}
-
-			});
+			() -> new File(liferayExtension.getAppServerParentDir(), "deploy"));
 	}
 
 	private void _configureSourceSetExt(
-		final WarPluginConvention warPluginConvention, SourceSet extSourceSet) {
+		WarPluginConvention warPluginConvention, SourceSet extSourceSet) {
 
 		SourceDirectorySet javaSourceDirectorySet = extSourceSet.getJava();
 
 		javaSourceDirectorySet.srcDir(
-			new Callable<File>() {
+			() -> {
+				String s = GUtil.toWords(extSourceSet.getName(), '-');
 
-				@Override
-				public File call() throws Exception {
-					String s = GUtil.toWords(extSourceSet.getName(), '-');
-
-					return new File(
-						warPluginConvention.getWebAppDir(),
-						"WEB-INF/" + s + "/src");
-				}
-
+				return new File(
+					warPluginConvention.getWebAppDir(),
+					"WEB-INF/" + s + "/src");
 			});
 
 		SourceDirectorySet resourcesDirectorySet = extSourceSet.getResources();
 
 		resourcesDirectorySet.srcDir(
-			new Callable<File>() {
+			() -> {
+				String s = GUtil.toWords(extSourceSet.getName(), '-');
 
-				@Override
-				public File call() throws Exception {
-					String s = GUtil.toWords(extSourceSet.getName(), '-');
-
-					return new File(
-						warPluginConvention.getWebAppDir(),
-						"WEB-INF/" + s + "/src");
-				}
-
+				return new File(
+					warPluginConvention.getWebAppDir(),
+					"WEB-INF/" + s + "/src");
 			});
 	}
 
@@ -306,15 +285,8 @@ public class LiferayExtPlugin implements Plugin<Project> {
 						});
 
 					buildExtInfoBaseDirSync.into(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									project.getBuildDir(), "build-ext-info");
-							}
-
-						});
+						() -> new File(
+							project.getBuildDir(), "build-ext-info"));
 
 					buildExtInfoBaseDirSync.setDescription(
 						"Copies the exploded war archive into a temporary " +
@@ -336,60 +308,41 @@ public class LiferayExtPlugin implements Plugin<Project> {
 
 				@Override
 				public void execute(BuildExtInfoTask buildExtInfoTask) {
-					final Sync buildExtInfoBaseDirSync =
+					Sync buildExtInfoBaseDirSync =
 						buildExtInfoBaseDirTaskProvider.get();
 
 					buildExtInfoTask.dependsOn(buildExtInfoBaseDirSync);
 
 					buildExtInfoTask.setBaseDir(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									buildExtInfoBaseDirSync.getDestinationDir(),
-									"WEB-INF");
-							}
-
-						});
+						() -> new File(
+							buildExtInfoBaseDirSync.getDestinationDir(),
+							"WEB-INF"));
 
 					buildExtInfoTask.setClasspath(classpath);
 					buildExtInfoTask.setDescription(
 						"Generates the ext information xml file.");
 
 					buildExtInfoTask.setOutputDir(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return buildExtInfoTask.getTemporaryDir();
-							}
-
-						});
+						buildExtInfoTask::getTemporaryDir);
 
 					buildExtInfoTask.setServletContextName(
-						new Callable<String>() {
+						() -> {
+							War war = warTaskProvider.get();
 
-							@Override
-							public String call() throws Exception {
-								War war = warTaskProvider.get();
+							Property<String> archiveAppendixProperty =
+								war.getArchiveAppendix();
+							Property<String> archiveBaseNameProperty =
+								war.getArchiveBaseName();
 
-								Property<String> archiveAppendixProperty =
-									war.getArchiveAppendix();
-								Property<String> archiveBaseNameProperty =
-									war.getArchiveBaseName();
+							String servletContextName =
+								archiveBaseNameProperty.get();
 
-								String servletContextName =
-									archiveBaseNameProperty.get();
-
-								if (archiveAppendixProperty.isPresent()) {
-									servletContextName +=
-										'-' + archiveAppendixProperty.get();
-								}
-
-								return servletContextName;
+							if (archiveAppendixProperty.isPresent()) {
+								servletContextName +=
+									'-' + archiveAppendixProperty.get();
 							}
 
+							return servletContextName;
 						});
 				}
 
@@ -524,16 +477,11 @@ public class LiferayExtPlugin implements Plugin<Project> {
 					war.dependsOn(buildExtInfoTaskProvider);
 
 					copySpec.from(
-						new Callable<File>() {
+						() -> {
+							BuildExtInfoTask buildExtInfoTask =
+								buildExtInfoTaskProvider.get();
 
-							@Override
-							public File call() throws Exception {
-								BuildExtInfoTask buildExtInfoTask =
-									buildExtInfoTaskProvider.get();
-
-								return buildExtInfoTask.getOutputFile();
-							}
-
+							return buildExtInfoTask.getOutputFile();
 						});
 
 					for (TaskProvider<Jar> extJarTaskProvider :

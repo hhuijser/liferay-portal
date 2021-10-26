@@ -73,15 +73,7 @@ public class CISystemStatusReportUtil {
 			_recentTestrayBuilds.put(localDate, builds);
 
 			for (final TestrayBuild testrayBuild : builds) {
-				callables.add(
-					new Callable<String>() {
-
-						@Override
-						public String call() throws Exception {
-							return testrayBuild.getResult();
-						}
-
-					});
+				callables.add(testrayBuild::getResult);
 			}
 		}
 

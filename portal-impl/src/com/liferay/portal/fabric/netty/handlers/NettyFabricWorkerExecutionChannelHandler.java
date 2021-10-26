@@ -65,7 +65,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -550,27 +549,16 @@ public class NettyFabricWorkerExecutionChannelHandler
 
 		@Override
 		public void completeWithResult(
-			Future<LoadedPaths> loadPathsFuture,
-			final LoadedPaths loadedPaths) {
+			Future<LoadedPaths> loadPathsFuture, LoadedPaths loadedPaths) {
 
 			EventExecutor eventExecutor = _channelHandlerContext.executor();
 
 			io.netty.util.concurrent.Future<FabricWorker<Serializable>> future =
 				eventExecutor.submit(
-					new Callable<FabricWorker<Serializable>>() {
-
-						@Override
-						public FabricWorker<Serializable> call()
-							throws ProcessException {
-
-							return _fabricAgent.execute(
-								loadedPaths.toProcessConfig(
-									_nettyFabricWorkerConfig.
-										getProcessConfig()),
-								_nettyFabricWorkerConfig.getProcessCallable());
-						}
-
-					});
+					() -> _fabricAgent.execute(
+						loadedPaths.toProcessConfig(
+							_nettyFabricWorkerConfig.getProcessConfig()),
+						_nettyFabricWorkerConfig.getProcessCallable()));
 
 			future.addListener(
 				new PostFabricWorkerExecutionFutureListener(

@@ -61,7 +61,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutionException;
@@ -376,15 +375,10 @@ public class SourceFormatter {
 
 		for (final SourceProcessor sourceProcessor : _sourceProcessors) {
 			Future<Void> future = executorService.submit(
-				new Callable<Void>() {
+				() -> {
+					_runSourceProcessor(sourceProcessor);
 
-					@Override
-					public Void call() throws Exception {
-						_runSourceProcessor(sourceProcessor);
-
-						return null;
-					}
-
+					return null;
 				});
 
 			futures.add(future);

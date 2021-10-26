@@ -25,7 +25,6 @@ import java.security.SecureRandom;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
@@ -63,15 +62,7 @@ public class SecureRandomUtilTest {
 	public void testConcurrentReload() throws Exception {
 		SecureRandom secureRandom = installPredictableRandom();
 
-		FutureTask<Long> futureTask = new FutureTask<>(
-			new Callable<Long>() {
-
-				@Override
-				public Long call() {
-					return reload();
-				}
-
-			});
+		FutureTask<Long> futureTask = new FutureTask<>(() -> reload());
 
 		Thread reloadThread = new Thread(futureTask);
 

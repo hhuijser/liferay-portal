@@ -23,7 +23,6 @@ import java.io.File;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
 import org.gradle.api.Action;
@@ -181,7 +180,7 @@ public class BaselinePlugin implements Plugin<Project> {
 	}
 
 	private BaselineTask _addTaskBaseline(
-		final AbstractArchiveTask newJarTask, String taskName) {
+		AbstractArchiveTask newJarTask, String taskName) {
 
 		Project project = newJarTask.getProject();
 
@@ -194,28 +193,14 @@ public class BaselinePlugin implements Plugin<Project> {
 			baselineTask.setBndFile(bndFile);
 		}
 
-		baselineTask.setNewJarFile(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return newJarTask.getArchivePath();
-				}
-
-			});
+		baselineTask.setNewJarFile(newJarTask::getArchivePath);
 
 		baselineTask.setSourceDir(
-			new Callable<File>() {
+			() -> {
+				SourceSet sourceSet = GradleUtil.getSourceSet(
+					newJarTask.getProject(), SourceSet.MAIN_SOURCE_SET_NAME);
 
-				@Override
-				public File call() throws Exception {
-					SourceSet sourceSet = GradleUtil.getSourceSet(
-						newJarTask.getProject(),
-						SourceSet.MAIN_SOURCE_SET_NAME);
-
-					return GradleUtil.getSrcDir(sourceSet.getResources());
-				}
-
+				return GradleUtil.getSrcDir(sourceSet.getResources());
 			});
 
 		return baselineTask;

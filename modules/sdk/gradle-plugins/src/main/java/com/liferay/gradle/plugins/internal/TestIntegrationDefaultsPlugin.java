@@ -27,11 +27,7 @@ import com.liferay.gradle.plugins.test.integration.tasks.StopAppServerTask;
 import com.liferay.gradle.plugins.util.PortalTools;
 import com.liferay.gradle.util.Validator;
 
-import java.io.File;
-
 import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -144,79 +140,29 @@ public class TestIntegrationDefaultsPlugin
 	}
 
 	private void _configureExtensionTestIntegrationTomcat(
-		final LiferayExtension liferayExtension,
+		LiferayExtension liferayExtension,
 		TestIntegrationTomcatExtension testIntegrationTomcatExtension,
-		final TomcatAppServer tomcatAppServer) {
+		TomcatAppServer tomcatAppServer) {
 
 		testIntegrationTomcatExtension.setCheckPath(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return tomcatAppServer.getCheckPath();
-				}
-
-			});
+			tomcatAppServer::getCheckPath);
 
 		testIntegrationTomcatExtension.setPortNumber(
-			new Callable<Integer>() {
+			tomcatAppServer::getPortNumber);
 
-				@Override
-				public Integer call() throws Exception {
-					return tomcatAppServer.getPortNumber();
-				}
-
-			});
-
-		testIntegrationTomcatExtension.setDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return tomcatAppServer.getDir();
-				}
-
-			});
+		testIntegrationTomcatExtension.setDir(tomcatAppServer::getDir);
 
 		testIntegrationTomcatExtension.setJmxRemotePort(
-			new Callable<Integer>() {
-
-				@Override
-				public Integer call() throws Exception {
-					return liferayExtension.getJmxRemotePort();
-				}
-
-			});
+			liferayExtension::getJmxRemotePort);
 
 		testIntegrationTomcatExtension.setLiferayHome(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return liferayExtension.getLiferayHome();
-				}
-
-			});
+			liferayExtension::getLiferayHome);
 
 		testIntegrationTomcatExtension.setManagerPassword(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return tomcatAppServer.getManagerPassword();
-				}
-
-			});
+			tomcatAppServer::getManagerPassword);
 
 		testIntegrationTomcatExtension.setManagerUserName(
-			new Callable<String>() {
-
-				@Override
-				public String call() throws Exception {
-					return tomcatAppServer.getManagerUserName();
-				}
-
-			});
+			tomcatAppServer::getManagerUserName);
 	}
 
 	private void _configureTaskCopyTestModulesProvider(
@@ -262,14 +208,7 @@ public class TestIntegrationDefaultsPlugin
 							project, "aspectj.configuration", (String)null));
 
 					setUpTestableTomcatTask.setZipUrl(
-						new Callable<String>() {
-
-							@Override
-							public String call() throws Exception {
-								return tomcatAppServer.getZipUrl();
-							}
-
-						});
+						tomcatAppServer::getZipUrl);
 				}
 
 			});
@@ -296,30 +235,18 @@ public class TestIntegrationDefaultsPlugin
 					}
 
 					startTestableTomcatTask.setExecutable(
-						new Callable<String>() {
-
-							@Override
-							public String call() throws Exception {
-								return tomcatAppServer.getStartExecutable();
-							}
-
-						});
+						tomcatAppServer::getStartExecutable);
 
 					startTestableTomcatTask.setExecutableArgs(
-						new Callable<List<String>>() {
+						() -> {
+							String argLine = System.getProperty(
+								"app.server.start.executable.arg.line");
 
-							@Override
-							public List<String> call() throws Exception {
-								String argLine = System.getProperty(
-									"app.server.start.executable.arg.line");
-
-								if (Validator.isNotNull(argLine)) {
-									return Arrays.asList(argLine.split(" "));
-								}
-
-								return tomcatAppServer.getStartExecutableArgs();
+							if (Validator.isNotNull(argLine)) {
+								return Arrays.asList(argLine.split(" "));
 							}
 
+							return tomcatAppServer.getStartExecutableArgs();
 						});
 				}
 
@@ -336,24 +263,10 @@ public class TestIntegrationDefaultsPlugin
 				@Override
 				public void execute(StopAppServerTask stopAppServerTask) {
 					stopAppServerTask.setExecutable(
-						new Callable<String>() {
-
-							@Override
-							public String call() throws Exception {
-								return tomcatAppServer.getStopExecutable();
-							}
-
-						});
+						tomcatAppServer::getStopExecutable);
 
 					stopAppServerTask.setExecutableArgs(
-						new Callable<List<String>>() {
-
-							@Override
-							public List<String> call() throws Exception {
-								return tomcatAppServer.getStopExecutableArgs();
-							}
-
-						});
+						tomcatAppServer::getStopExecutableArgs);
 				}
 
 			});

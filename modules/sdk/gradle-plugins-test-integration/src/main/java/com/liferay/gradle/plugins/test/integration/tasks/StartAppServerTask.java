@@ -17,8 +17,6 @@ package com.liferay.gradle.plugins.test.integration.tasks;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
-import java.util.concurrent.Callable;
-
 import org.gradle.api.tasks.CacheableTask;
 import org.gradle.api.tasks.TaskAction;
 
@@ -49,15 +47,7 @@ public class StartAppServerTask extends BaseAppServerTask {
 	}
 
 	public void waitForReachable() {
-		waitFor(
-			new Callable<Boolean>() {
-
-				@Override
-				public Boolean call() throws Exception {
-					return isReachable();
-				}
-
-			});
+		waitFor(() -> isReachable());
 	}
 
 	protected void waitForStarted(

@@ -136,7 +136,7 @@ public class SocialActivityLocalServiceImpl
 			}
 		}
 
-		final SocialActivity activity = socialActivityPersistence.create(0);
+		SocialActivity activity = socialActivityPersistence.create(0);
 
 		activity.setGroupId(groupId);
 		activity.setCompanyId(user.getCompanyId());
@@ -189,18 +189,13 @@ public class SocialActivityLocalServiceImpl
 			mirrorActivity.setAssetEntry(assetEntry);
 		}
 
-		final SocialActivity finalMirrorActivity = mirrorActivity;
+		SocialActivity finalMirrorActivity = mirrorActivity;
 
-		Callable<Void> callable = new Callable<Void>() {
+		Callable<Void> callable = () -> {
+			socialActivityLocalService.addActivity(
+				activity, finalMirrorActivity);
 
-			@Override
-			public Void call() throws Exception {
-				socialActivityLocalService.addActivity(
-					activity, finalMirrorActivity);
-
-				return null;
-			}
-
+			return null;
 		};
 
 		TransactionCommitCallbackUtil.registerCallback(callable);

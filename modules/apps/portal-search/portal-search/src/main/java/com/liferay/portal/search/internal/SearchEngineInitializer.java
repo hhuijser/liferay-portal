@@ -33,7 +33,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 
@@ -133,21 +132,16 @@ public class SearchEngineInitializer implements Runnable {
 
 			for (Indexer<?> indexer : _indexers) {
 				FutureTask<Void> futureTask = new FutureTask<>(
-					new Callable<Void>() {
+					() -> {
+						try (SafeCloseable safeCloseable =
+								BackgroundTaskThreadLocal.
+									setBackgroundTaskIdWithSafeCloseable(
+										backgroundTaskId)) {
 
-						@Override
-						public Void call() throws Exception {
-							try (SafeCloseable safeCloseable =
-									BackgroundTaskThreadLocal.
-										setBackgroundTaskIdWithSafeCloseable(
-											backgroundTaskId)) {
+							reindex(indexer);
 
-								reindex(indexer);
-
-								return null;
-							}
+							return null;
 						}
-
 					});
 
 				executorService.submit(futureTask);

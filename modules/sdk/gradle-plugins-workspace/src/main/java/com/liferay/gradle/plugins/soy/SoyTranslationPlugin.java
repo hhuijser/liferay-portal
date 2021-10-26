@@ -18,8 +18,6 @@ import com.liferay.gradle.plugins.soy.internal.SoyPluginConstants;
 import com.liferay.gradle.plugins.soy.tasks.ReplaceSoyTranslationTask;
 import com.liferay.gradle.plugins.workspace.internal.util.GradleUtil;
 
-import java.io.File;
-
 import java.util.Collections;
 import java.util.concurrent.Callable;
 
@@ -109,25 +107,20 @@ public class SoyTranslationPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskReplaceSoyTranslationForJavaPlugin(
-		final ReplaceSoyTranslationTask replaceSoyTranslationTask) {
+		ReplaceSoyTranslationTask replaceSoyTranslationTask) {
 
 		replaceSoyTranslationTask.dependsOn(
 			JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
 
 		replaceSoyTranslationTask.setSource(
-			new Callable<File>() {
+			() -> {
+				SourceSet sourceSet = GradleUtil.getSourceSet(
+					replaceSoyTranslationTask.getProject(),
+					SourceSet.MAIN_SOURCE_SET_NAME);
 
-				@Override
-				public File call() throws Exception {
-					SourceSet sourceSet = GradleUtil.getSourceSet(
-						replaceSoyTranslationTask.getProject(),
-						SourceSet.MAIN_SOURCE_SET_NAME);
+				SourceSetOutput sourceSetOutput = sourceSet.getOutput();
 
-					SourceSetOutput sourceSetOutput = sourceSet.getOutput();
-
-					return sourceSetOutput.getResourcesDir();
-				}
-
+				return sourceSetOutput.getResourcesDir();
 			});
 
 		Task classesTask = GradleUtil.getTask(

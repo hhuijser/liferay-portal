@@ -36,7 +36,6 @@ import org.gradle.api.Project;
 import org.gradle.api.Task;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.ConfigurationContainer;
-import org.gradle.api.file.FileTree;
 import org.gradle.api.plugins.BasePlugin;
 import org.gradle.api.plugins.Convention;
 import org.gradle.api.plugins.JavaPlugin;
@@ -133,28 +132,15 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 					buildBundleDirSync.dependsOn(jarTaskProvider);
 
 					buildBundleDirSync.from(
-						new Callable<FileTree>() {
+						() -> {
+							Jar jar = jarTaskProvider.get();
 
-							@Override
-							public FileTree call() throws Exception {
-								Jar jar = jarTaskProvider.get();
-
-								return project.zipTree(jar.getArchivePath());
-							}
-
+							return project.zipTree(jar.getArchivePath());
 						});
 
 					buildBundleDirSync.into(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									project.getBuildDir(),
-									BUILD_BUNDLE_DIR_TASK_NAME);
-							}
-
-						});
+						() -> new File(
+							project.getBuildDir(), BUILD_BUNDLE_DIR_TASK_NAME));
 
 					buildBundleDirSync.setDescription(
 						"Unzips the project's JAR file into a temporary " +
@@ -179,17 +165,11 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 
 					jarCompileIncludeFragmentExecuteBndTask.property(
 						Constants.BUNDLE_NAME,
-						new Callable<String>() {
+						() -> {
+							String instruction = bundleExtension.getInstruction(
+								Constants.BUNDLE_NAME);
 
-							@Override
-							public String call() throws Exception {
-								String instruction =
-									bundleExtension.getInstruction(
-										Constants.BUNDLE_NAME);
-
-								return instruction + " Libs";
-							}
-
+							return instruction + " Libs";
 						});
 
 					jarCompileIncludeFragmentExecuteBndTask.property(
@@ -212,35 +192,14 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 
 					jarCompileIncludeFragmentExecuteBndTask.property(
 						Constants.FRAGMENT_HOST,
-						new Callable<String>() {
-
-							@Override
-							public String call() throws Exception {
-								return bundleExtension.getInstruction(
-									Constants.BUNDLE_SYMBOLICNAME);
-							}
-
-						});
+						() -> bundleExtension.getInstruction(
+							Constants.BUNDLE_SYMBOLICNAME));
 
 					jarCompileIncludeFragmentExecuteBndTask.property(
 						Constants.INCLUDERESOURCE,
 						new IncludeResourceCompileIncludeInstruction(
-							new Callable<Iterable<File>>() {
-
-								@Override
-								public Iterable<File> call() throws Exception {
-									return compileIncludeConfiguration;
-								}
-
-							},
-							new Callable<Boolean>() {
-
-								@Override
-								public Boolean call() throws Exception {
-									return Boolean.FALSE;
-								}
-
-							}));
+							() -> compileIncludeConfiguration,
+							() -> Boolean.FALSE));
 
 					jarCompileIncludeFragmentExecuteBndTask.onlyIf(
 						new Spec<Task>() {
@@ -264,17 +223,10 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 						BasePlugin.BUILD_GROUP);
 
 					jarCompileIncludeFragmentExecuteBndTask.setOutputFile(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return new File(
-									project.getBuildDir(),
-									project.getName() + "-libs." +
-										Jar.DEFAULT_EXTENSION);
-							}
-
-						});
+						() -> new File(
+							project.getBuildDir(),
+							project.getName() + "-libs." +
+								Jar.DEFAULT_EXTENSION));
 
 					jarCompileIncludeFragmentExecuteBndTask.setResourceDirs(
 						project.files());
@@ -301,42 +253,30 @@ public class WatchOSGiPlugin implements Plugin<Project> {
 					watchTask.dependsOn(buildBundleDirSync);
 
 					watchTask.setBundleDir(
-						new Callable<File>() {
-
-							@Override
-							public File call() throws Exception {
-								return buildBundleDirSync.getDestinationDir();
-							}
-
-						});
+						buildBundleDirSync::getDestinationDir);
 
 					watchTask.setBundleSymbolicName(
-						new Callable<String>() {
+						() -> {
+							File manifestFile = new File(
+								buildBundleDirSync.getDestinationDir(),
+								"META-INF/MANIFEST.MF");
 
-							@Override
-							public String call() throws Exception {
-								File manifestFile = new File(
-									buildBundleDirSync.getDestinationDir(),
-									"META-INF/MANIFEST.MF");
+							if (manifestFile.exists()) {
+								try (FileInputStream fileInputStream =
+										new FileInputStream(manifestFile)) {
 
-								if (manifestFile.exists()) {
-									try (FileInputStream fileInputStream =
-											new FileInputStream(manifestFile)) {
+									Manifest manifest = new Manifest(
+										fileInputStream);
 
-										Manifest manifest = new Manifest(
-											fileInputStream);
+									Attributes attributes =
+										manifest.getMainAttributes();
 
-										Attributes attributes =
-											manifest.getMainAttributes();
-
-										return attributes.getValue(
-											"Bundle-SymbolicName");
-									}
+									return attributes.getValue(
+										"Bundle-SymbolicName");
 								}
-
-								return null;
 							}
 
+							return null;
 						});
 
 					watchTask.setDescription(

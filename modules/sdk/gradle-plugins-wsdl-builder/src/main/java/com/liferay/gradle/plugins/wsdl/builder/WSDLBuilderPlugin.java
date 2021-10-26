@@ -24,7 +24,6 @@ import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Action;
 import org.gradle.api.Plugin;
@@ -153,17 +152,12 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 		buildWSDLTask.setDescription("Generates WSDL client stubs.");
 
 		buildWSDLTask.setDestinationDir(
-			new Callable<Object>() {
-
-				@Override
-				public Object call() throws Exception {
-					if (buildWSDLTask.isBuildLibs()) {
-						return "lib";
-					}
-
-					return _getJavaDir(buildWSDLTask.getProject());
+			() -> {
+				if (buildWSDLTask.isBuildLibs()) {
+					return "lib";
 				}
 
+				return _getJavaDir(buildWSDLTask.getProject());
 			});
 
 		buildWSDLTask.setGroup(BasePlugin.BUILD_GROUP);
@@ -291,17 +285,10 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 
 			FileCollection fileCollection = taskOutputs.getFiles();
 
-			final File dir = fileCollection.getSingleFile();
+			File dir = fileCollection.getSingleFile();
 
 			jar.from(
-				new Callable<File>() {
-
-					@Override
-					public File call() throws Exception {
-						return new File(dir, "schemaorg_apache_xmlbeans");
-					}
-
-				},
+				() -> new File(dir, "schemaorg_apache_xmlbeans"),
 				new Closure<Void>(project) {
 
 					@SuppressWarnings("unused")
@@ -414,35 +401,22 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBuildWSDLForWarPlugin(
-		final BuildWSDLTask buildWSDLTask) {
+		BuildWSDLTask buildWSDLTask) {
 
 		buildWSDLTask.setDestinationDir(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					if (buildWSDLTask.isBuildLibs()) {
-						return new File(
-							_getWebAppDir(buildWSDLTask.getProject()),
-							"WEB-INF/lib");
-					}
-
-					return _getJavaDir(buildWSDLTask.getProject());
+			() -> {
+				if (buildWSDLTask.isBuildLibs()) {
+					return new File(
+						_getWebAppDir(buildWSDLTask.getProject()),
+						"WEB-INF/lib");
 				}
 
+				return _getJavaDir(buildWSDLTask.getProject());
 			});
 
 		buildWSDLTask.setSource(
-			new Callable<File>() {
-
-				@Override
-				public File call() throws Exception {
-					return new File(
-						_getWebAppDir(buildWSDLTask.getProject()),
-						"WEB-INF/wsdl");
-				}
-
-			});
+			() -> new File(
+				_getWebAppDir(buildWSDLTask.getProject()), "WEB-INF/wsdl"));
 	}
 
 	private void _configureTasksBuildWSDL(

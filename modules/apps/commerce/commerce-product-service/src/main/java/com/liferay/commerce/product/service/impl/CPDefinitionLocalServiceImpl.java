@@ -117,7 +117,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -755,16 +754,11 @@ public class CPDefinitionLocalServiceImpl
 			long cProductId = newCPDefinition.getCProductId();
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
+				() -> {
+					cpDefinitionLocalService.maintainVersionThreshold(
+						cProductId);
 
-					@Override
-					public Void call() throws Exception {
-						cpDefinitionLocalService.maintainVersionThreshold(
-							cProductId);
-
-						return null;
-					}
-
+					return null;
 				});
 		}
 

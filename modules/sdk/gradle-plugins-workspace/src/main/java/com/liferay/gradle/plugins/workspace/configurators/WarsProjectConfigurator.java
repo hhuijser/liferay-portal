@@ -33,7 +33,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.gradle.api.Project;
 import org.gradle.api.file.CopySpec;
@@ -133,7 +132,7 @@ public class WarsProjectConfigurator extends BaseProjectConfigurator {
 	protected static final String NAME = "wars";
 
 	private void _configureBaseTaskDeploy(
-		War war, final WorkspaceExtension workspaceExtension) {
+		War war, WorkspaceExtension workspaceExtension) {
 
 		Project project = war.getProject();
 
@@ -147,16 +146,8 @@ public class WarsProjectConfigurator extends BaseProjectConfigurator {
 						copy.from(war);
 
 						copy.into(
-							new Callable<File>() {
-
-								@Override
-								public File call() throws Exception {
-									return new File(
-										workspaceExtension.getHomeDir(),
-										"deploy");
-								}
-
-							});
+							() -> new File(
+								workspaceExtension.getHomeDir(), "deploy"));
 
 						copy.setDescription(
 							"Assembles the project and deploys it to Liferay.");

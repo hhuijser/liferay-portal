@@ -63,15 +63,8 @@ public abstract class BaseWorkspace implements Workspace {
 				workspaceRepositoryDirNames.split(",")) {
 
 			Callable<WorkspaceGitRepository> callable =
-				new Callable<WorkspaceGitRepository>() {
-
-					@Override
-					public WorkspaceGitRepository call() {
-						return GitRepositoryFactory.getWorkspaceGitRepository(
-							workspaceRepositoryDirName);
-					}
-
-				};
+				() -> GitRepositoryFactory.getWorkspaceGitRepository(
+					workspaceRepositoryDirName);
 
 			callables.add(callable);
 		}
@@ -111,15 +104,10 @@ public abstract class BaseWorkspace implements Workspace {
 		for (final WorkspaceGitRepository workspaceGitRepository :
 				getWorkspaceGitRepositories()) {
 
-			Callable<Object> callable = new Callable<Object>() {
+			Callable<Object> callable = () -> {
+				workspaceGitRepository.setUp();
 
-				@Override
-				public Object call() {
-					workspaceGitRepository.setUp();
-
-					return null;
-				}
-
+				return null;
 			};
 
 			callables.add(callable);
@@ -142,15 +130,10 @@ public abstract class BaseWorkspace implements Workspace {
 		for (final WorkspaceGitRepository workspaceGitRepository :
 				getWorkspaceGitRepositories()) {
 
-			Callable<Object> callable = new Callable<Object>() {
+			Callable<Object> callable = () -> {
+				workspaceGitRepository.synchronizeToGitHubDev();
 
-				@Override
-				public Object call() {
-					workspaceGitRepository.synchronizeToGitHubDev();
-
-					return null;
-				}
-
+				return null;
 			};
 
 			callables.add(callable);
@@ -176,20 +159,15 @@ public abstract class BaseWorkspace implements Workspace {
 		for (final WorkspaceGitRepository workspaceGitRepository :
 				getWorkspaceGitRepositories()) {
 
-			Callable<Object> callable = new Callable<Object>() {
-
-				@Override
-				public Object call() {
-					try {
-						workspaceGitRepository.tearDown();
-					}
-					catch (Exception exception) {
-						exception.printStackTrace();
-					}
-
-					return null;
+			Callable<Object> callable = () -> {
+				try {
+					workspaceGitRepository.tearDown();
+				}
+				catch (Exception exception) {
+					exception.printStackTrace();
 				}
 
+				return null;
 			};
 
 			callables.add(callable);

@@ -794,6 +794,7 @@
 		<check name="LanguageKeysCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds missing language keys in `Language.properties`." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="LocaleUtilCheck">
 			<category name="Bug Prevention" />
@@ -1297,6 +1298,7 @@
 		<check name="PropertiesLanguageKeysCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that there is no HTML markup in language keys." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="PropertiesReleaseBuildCheck">
 			<category name="Bug Prevention" />

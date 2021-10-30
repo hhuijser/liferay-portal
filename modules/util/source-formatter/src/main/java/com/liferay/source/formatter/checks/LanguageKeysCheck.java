@@ -487,12 +487,11 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 		_portalLanguageProperties = new Properties();
 
-		String portalLanguageFileName =
-			"modules/apps/portal-language/portal-language-lang/src/main" +
-				"/resources/content/Language.properties";
+		String portalLanguagePropertiesFileName = getAttributeValue(
+			_PORTAL_LANGUAGE_PROPERTIES_FILE_NAME, absolutePath);
 
 		String propertiesContent = getPortalContent(
-			portalLanguageFileName, absolutePath);
+			portalLanguagePropertiesFileName, absolutePath);
 
 		Properties properties = new Properties();
 
@@ -502,6 +501,9 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 		return _portalLanguageProperties;
 	}
+
+	private static final String _PORTAL_LANGUAGE_PROPERTIES_FILE_NAME =
+		"portalLanguagePropertiesFileName";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		LanguageKeysCheck.class);

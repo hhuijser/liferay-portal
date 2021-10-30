@@ -105,7 +105,10 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 	private Properties _getPortalLanguageProperties(String absolutePath)
 		throws IOException {
 
-		if (absolutePath.endsWith(_PORTAL_LANGUAGE_PROPERTIES_FILE_NAME)) {
+		String portalLanguagePropertiesFileName = getAttributeValue(
+			_PORTAL_LANGUAGE_PROPERTIES_FILE_NAME, absolutePath);
+
+		if (absolutePath.endsWith(portalLanguagePropertiesFileName)) {
 			return null;
 		}
 
@@ -146,8 +149,7 @@ public class PropertiesLanguageKeysCheck extends BaseFileCheck {
 		"allowedLanguageKeys";
 
 	private static final String _PORTAL_LANGUAGE_PROPERTIES_FILE_NAME =
-		"modules/apps/portal-language/portal-language-lang/src/main/resources" +
-			"/content/Language.properties";
+		"portalLanguagePropertiesFileName";
 
 	private Properties _portalLanguageProperties;
 

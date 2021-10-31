@@ -811,6 +811,7 @@
 		<check name="SetUtilMethodsCheck">
 			<category name="Performance" />
 			<description name="Finds cases of inefficient SetUtil operations." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="StringMethodsCheck">
 			<category name="Performance" />
@@ -1093,6 +1094,7 @@
 		<check name="SetUtilMethodsCheck">
 			<category name="Performance" />
 			<description name="Finds cases of inefficient SetUtil operations." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="StringMethodsCheck">
 			<category name="Performance" />

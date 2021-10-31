@@ -808,6 +808,10 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that there are no calls to `java.util.ResourceBundle.getBundle`." />
 		</check>
+		<check name="SetUtilMethodsCheck">
+			<category name="Performance" />
+			<description name="Finds cases of inefficient SetUtil operations." />
+		</check>
 		<check name="StringMethodsCheck">
 			<category name="Performance" />
 			<description name="Checks if performance can be improved by using different String operation methods." />
@@ -1085,6 +1089,10 @@
 		<check name="ResourceBundleCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that there are no calls to `java.util.ResourceBundle.getBundle`." />
+		</check>
+		<check name="SetUtilMethodsCheck">
+			<category name="Performance" />
+			<description name="Finds cases of inefficient SetUtil operations." />
 		</check>
 		<check name="StringMethodsCheck">
 			<category name="Performance" />

@@ -58,17 +58,18 @@ public class SetUtilMethodsCheck extends BaseFileCheck {
 
 			String parameter = parameterList.get(0);
 
-			String parameters = parameter.replaceFirst(
+			String arraryParameters = parameter.replaceFirst(
 				".+\\{([\\s\\S]+)\\}", "$1");
 
-			return _fixFromArrayParamters(content, parameters, matcher.start());
+			return _fixFromArrayParamters(
+				content, arraryParameters, matcher.start());
 		}
 
 		return content;
 	}
 
 	private String _fixFromArrayParamters(
-		String content, String parameters, int pos) {
+		String content, String arraryParameters, int pos) {
 
 		int x = pos;
 
@@ -81,7 +82,7 @@ public class SetUtilMethodsCheck extends BaseFileCheck {
 				(ToolsUtil.getLevel(call, "{", "}") == 0)) {
 
 				String replacement = StringBundler.concat(
-					"SetUtil.fromArray(", parameters, ")");
+					"SetUtil.fromArray(", arraryParameters, ")");
 
 				return StringUtil.replaceFirst(content, call, replacement, pos);
 			}

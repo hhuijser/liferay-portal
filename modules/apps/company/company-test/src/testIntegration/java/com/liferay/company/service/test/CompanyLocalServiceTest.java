@@ -109,7 +109,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.junit.After;
@@ -325,16 +324,11 @@ public class CompanyLocalServiceTest {
 
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
-			new Callable<Void>() {
+			() -> {
+				SitesUtil.updateLayoutSetPrototypesLinks(
+					group, layoutSetPrototypeId, 0, true, false);
 
-				@Override
-				public Void call() throws Exception {
-					SitesUtil.updateLayoutSetPrototypesLinks(
-						group, layoutSetPrototypeId, 0, true, false);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		addUser(
@@ -373,18 +367,13 @@ public class CompanyLocalServiceTest {
 
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
-			new Callable<Void>() {
+			() -> {
+				SitesUtil.updateLayoutSetPrototypesLinks(
+					userGroup.getGroup(),
+					layoutSetPrototype.getLayoutSetPrototypeId(), 0, true,
+					false);
 
-				@Override
-				public Void call() throws Exception {
-					SitesUtil.updateLayoutSetPrototypesLinks(
-						userGroup.getGroup(),
-						layoutSetPrototype.getLayoutSetPrototypeId(), 0, true,
-						false);
-
-					return null;
-				}
-
+				return null;
 			});
 
 		CompanyLocalServiceUtil.deleteCompany(companyId);
@@ -606,16 +595,11 @@ public class CompanyLocalServiceTest {
 
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
-			new Callable<Void>() {
+			() -> {
+				PasswordPolicyLocalServiceUtil.getPasswordPolicy(
+					company.getCompanyId(), false);
 
-				@Override
-				public Void call() throws Exception {
-					PasswordPolicyLocalServiceUtil.getPasswordPolicy(
-						company.getCompanyId(), false);
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 
@@ -652,21 +636,15 @@ public class CompanyLocalServiceTest {
 
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
-			new Callable<Void>() {
+			() -> {
+				PortalPreferences portalPreferences =
+					PortalPreferencesLocalServiceUtil.fetchPortalPreferences(
+						company.getCompanyId(),
+						PortletKeys.PREFS_OWNER_TYPE_COMPANY);
 
-				@Override
-				public Void call() throws Exception {
-					PortalPreferences portalPreferences =
-						PortalPreferencesLocalServiceUtil.
-							fetchPortalPreferences(
-								company.getCompanyId(),
-								PortletKeys.PREFS_OWNER_TYPE_COMPANY);
+				Assert.assertNull(portalPreferences);
 
-					Assert.assertNull(portalPreferences);
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 
@@ -678,18 +656,13 @@ public class CompanyLocalServiceTest {
 
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
-			new Callable<Void>() {
+			() -> {
+				int count = PortletLocalServiceUtil.getPortletsCount(
+					company.getCompanyId());
 
-				@Override
-				public Void call() {
-					int count = PortletLocalServiceUtil.getPortletsCount(
-						company.getCompanyId());
+				Assert.assertEquals(0, count);
 
-					Assert.assertEquals(0, count);
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 

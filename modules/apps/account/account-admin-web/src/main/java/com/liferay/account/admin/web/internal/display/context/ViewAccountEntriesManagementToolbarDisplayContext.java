@@ -27,6 +27,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -220,42 +221,36 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 	public List<LabelItem> getFilterLabelItems() {
 		return LabelItemListBuilder.add(
 			() -> !Objects.equals(getNavigation(), "active"),
-			labelItem -> {
-				labelItem.putData(
-					"removeLabelURL",
-					PortletURLBuilder.create(
-						getPortletURL()
-					).setNavigation(
-						(String)null
-					).buildString());
-
-				labelItem.setCloseable(true);
-
-				String label = String.format(
+			LabelItemBuilder.putData(
+				"removeLabelURL",
+				PortletURLBuilder.create(
+					getPortletURL()
+				).setNavigation(
+					(String)null
+				).buildString()
+			).setDismissible(
+				true
+			).setLabel(
+				String.format(
 					"%s: %s", LanguageUtil.get(httpServletRequest, "status"),
-					LanguageUtil.get(httpServletRequest, getNavigation()));
-
-				labelItem.setLabel(label);
-			}
+					LanguageUtil.get(httpServletRequest, getNavigation()))
+			).build()
 		).add(
 			() -> !Objects.equals(getType(), "all"),
-			labelItem -> {
-				labelItem.putData(
-					"removeLabelURL",
-					PortletURLBuilder.create(
-						getPortletURL()
-					).setParameter(
-						"type", (String)null
-					).buildString());
-
-				labelItem.setCloseable(true);
-
-				String label = String.format(
+			LabelItemBuilder.putData(
+				"removeLabelURL",
+				PortletURLBuilder.create(
+					getPortletURL()
+				).setParameter(
+					"type", (String)null
+				).buildString()
+			).setDismissible(
+				true
+			).setLabel(
+				String.format(
 					"%s: %s", LanguageUtil.get(httpServletRequest, "type"),
-					LanguageUtil.get(httpServletRequest, getType()));
-
-				labelItem.setLabel(label);
-			}
+					LanguageUtil.get(httpServletRequest, getType()))
+			).build()
 		).build();
 	}
 

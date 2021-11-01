@@ -161,11 +161,9 @@ public class WorkflowHandlerRegistryUtil {
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
-					boolean hasWorkflowInstanceInProgress =
-						_hasWorkflowInstanceInProgress(
-							companyId, groupId, className, classPK);
+					if (!_hasWorkflowInstanceInProgress(
+							companyId, groupId, className, classPK)) {
 
-					if (!hasWorkflowInstanceInProgress) {
 						workflowHandler.startWorkflowInstance(
 							companyId, groupId, userId, classPK, model,
 							tempWorkflowContext);

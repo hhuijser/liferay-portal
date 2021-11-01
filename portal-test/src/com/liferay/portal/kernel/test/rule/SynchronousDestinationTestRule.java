@@ -477,7 +477,7 @@ public class SynchronousDestinationTestRule
 		extends TestSynchronousDestination {
 
 		@Override
-		public void send(final Message message) {
+		public void send(Message message) {
 			try {
 				TransactionInvokerUtil.invoke(
 					_transactionConfig,

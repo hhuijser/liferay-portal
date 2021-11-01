@@ -653,9 +653,7 @@ public class UserNotificationEventLocalServiceImpl
 		return userNotificationEvents;
 	}
 
-	protected void sendPushNotification(
-		final NotificationEvent notificationEvent) {
-
+	protected void sendPushNotification(NotificationEvent notificationEvent) {
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
 				Message message = new Message();

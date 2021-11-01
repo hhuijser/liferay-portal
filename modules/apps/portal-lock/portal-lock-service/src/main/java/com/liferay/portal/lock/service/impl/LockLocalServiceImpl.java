@@ -249,8 +249,8 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 	@MasterDataSource
 	@Override
 	public Lock lock(
-		final String className, final String key, final String expectedOwner,
-		final String updatedOwner) {
+		String className, String key, String expectedOwner,
+		String updatedOwner) {
 
 		while (true) {
 			try {
@@ -372,9 +372,7 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 
 	@MasterDataSource
 	@Override
-	public void unlock(
-		final String className, final String key, final String owner) {
-
+	public void unlock(String className, String key, String owner) {
 		while (true) {
 			try {
 				TransactionInvokerUtil.invoke(

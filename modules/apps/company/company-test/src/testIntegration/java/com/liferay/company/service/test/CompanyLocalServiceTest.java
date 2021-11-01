@@ -313,13 +313,13 @@ public class CompanyLocalServiceTest {
 
 		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		final Group group = GroupTestUtil.addGroup(
+		Group group = GroupTestUtil.addGroup(
 			companyId, userId, GroupConstants.DEFAULT_PARENT_GROUP_ID);
 
 		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
 			companyId, userId, RandomTestUtil.randomString());
 
-		final long layoutSetPrototypeId =
+		long layoutSetPrototypeId =
 			layoutSetPrototype.getLayoutSetPrototypeId();
 
 		TransactionInvokerUtil.invoke(
@@ -359,10 +359,10 @@ public class CompanyLocalServiceTest {
 		Group group = GroupTestUtil.addGroup(
 			companyId, userId, GroupConstants.DEFAULT_PARENT_GROUP_ID);
 
-		final UserGroup userGroup = UserGroupTestUtil.addUserGroup(
+		UserGroup userGroup = UserGroupTestUtil.addUserGroup(
 			group.getGroupId());
 
-		final LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
+		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
 			companyId, userId, RandomTestUtil.randomString());
 
 		TransactionInvokerUtil.invoke(
@@ -589,7 +589,7 @@ public class CompanyLocalServiceTest {
 	public void testDeleteCompanyDeletesNondefaultPasswordPolicies()
 		throws Throwable {
 
-		final Company company = addCompany();
+		Company company = addCompany();
 
 		CompanyLocalServiceUtil.deleteCompany(company);
 
@@ -630,7 +630,7 @@ public class CompanyLocalServiceTest {
 
 	@Test
 	public void testDeleteCompanyDeletesPortalPreferences() throws Throwable {
-		final Company company = addCompany();
+		Company company = addCompany();
 
 		CompanyLocalServiceUtil.deleteCompany(company);
 
@@ -650,7 +650,7 @@ public class CompanyLocalServiceTest {
 
 	@Test
 	public void testDeleteCompanyDeletesPortlets() throws Throwable {
-		final Company company = addCompany();
+		Company company = addCompany();
 
 		CompanyLocalServiceUtil.deleteCompany(company);
 

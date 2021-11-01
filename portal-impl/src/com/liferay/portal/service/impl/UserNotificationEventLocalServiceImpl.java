@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 /**
  * @author Edward Han
@@ -658,19 +657,14 @@ public class UserNotificationEventLocalServiceImpl
 		final NotificationEvent notificationEvent) {
 
 		TransactionCommitCallbackUtil.registerCallback(
-			new Callable<Void>() {
+			() -> {
+				Message message = new Message();
 
-				@Override
-				public Void call() throws Exception {
-					Message message = new Message();
+				message.setPayload(notificationEvent.getPayload());
 
-					message.setPayload(notificationEvent.getPayload());
+				MessageBusUtil.sendMessage(_PUSH_NOTIFICATION, message);
 
-					MessageBusUtil.sendMessage(_PUSH_NOTIFICATION, message);
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 

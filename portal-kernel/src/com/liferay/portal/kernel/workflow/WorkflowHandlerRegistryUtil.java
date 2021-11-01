@@ -37,7 +37,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 
 import org.osgi.framework.BundleContext;
@@ -164,23 +163,18 @@ public class WorkflowHandlerRegistryUtil {
 				workflowContext;
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
+				() -> {
+					boolean hasWorkflowInstanceInProgress =
+						_hasWorkflowInstanceInProgress(
+							companyId, groupId, className, classPK);
 
-					@Override
-					public Void call() throws Exception {
-						boolean hasWorkflowInstanceInProgress =
-							_hasWorkflowInstanceInProgress(
-								companyId, groupId, className, classPK);
-
-						if (!hasWorkflowInstanceInProgress) {
-							workflowHandler.startWorkflowInstance(
-								companyId, groupId, userId, classPK, model,
-								tempWorkflowContext);
-						}
-
-						return null;
+					if (!hasWorkflowInstanceInProgress) {
+						workflowHandler.startWorkflowInstance(
+							companyId, groupId, userId, classPK, model,
+							tempWorkflowContext);
 					}
 
+					return null;
 				});
 		}
 

@@ -85,7 +85,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.Callable;
 
 /**
  * Provides the remote service for accessing, adding, checking in/out, deleting,
@@ -3514,17 +3513,12 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 		}
 
 		TransactionCommitCallbackUtil.registerCallback(
-			new Callable<Void>() {
-
-				@Override
-				public Void call() throws Exception {
-					for (FileEntry fileEntry : fileEntries) {
-						DLProcessorRegistryUtil.trigger(fileEntry, null);
-					}
-
-					return null;
+			() -> {
+				for (FileEntry fileEntry : fileEntries) {
+					DLProcessorRegistryUtil.trigger(fileEntry, null);
 				}
 
+				return null;
 			});
 	}
 

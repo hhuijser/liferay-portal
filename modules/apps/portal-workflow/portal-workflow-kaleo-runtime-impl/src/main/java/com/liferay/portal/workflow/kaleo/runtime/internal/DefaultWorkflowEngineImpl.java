@@ -66,7 +66,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -214,17 +213,12 @@ public class DefaultWorkflowEngineImpl
 			}
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
+				() -> {
+					_kaleoSignaler.signalExecute(
+						kaleoInstanceToken.getCurrentKaleoNode(),
+						executionContext);
 
-					@Override
-					public Void call() throws Exception {
-						_kaleoSignaler.signalExecute(
-							kaleoInstanceToken.getCurrentKaleoNode(),
-							executionContext);
-
-						return null;
-					}
-
+					return null;
 				});
 
 			return executionContext;
@@ -569,23 +563,18 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstanceToken, workflowContext, serviceContext);
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
-
-					@Override
-					public Void call() throws Exception {
-						try {
-							_kaleoSignaler.signalExit(
-								transitionName, executionContext,
-								waitForCompletion);
-						}
-						catch (Exception exception) {
-							throw new WorkflowException(
-								"Unable to signal next transition", exception);
-						}
-
-						return null;
+				() -> {
+					try {
+						_kaleoSignaler.signalExit(
+							transitionName, executionContext,
+							waitForCompletion);
+					}
+					catch (Exception exception) {
+						throw new WorkflowException(
+							"Unable to signal next transition", exception);
 					}
 
+					return null;
 				});
 
 			return _kaleoWorkflowModelConverter.toWorkflowInstance(
@@ -682,23 +671,18 @@ public class DefaultWorkflowEngineImpl
 				rootKaleoInstanceToken, workflowContext, serviceContext);
 
 			TransactionCommitCallbackUtil.registerCallback(
-				new Callable<Void>() {
-
-					@Override
-					public Void call() throws Exception {
-						try {
-							_kaleoSignaler.signalEntry(
-								transitionName, executionContext,
-								waitForCompletion);
-						}
-						catch (Exception exception) {
-							throw new WorkflowException(
-								"Unable to start workflow", exception);
-						}
-
-						return null;
+				() -> {
+					try {
+						_kaleoSignaler.signalEntry(
+							transitionName, executionContext,
+							waitForCompletion);
+					}
+					catch (Exception exception) {
+						throw new WorkflowException(
+							"Unable to start workflow", exception);
 					}
 
+					return null;
 				});
 
 			return _kaleoWorkflowModelConverter.toWorkflowInstance(

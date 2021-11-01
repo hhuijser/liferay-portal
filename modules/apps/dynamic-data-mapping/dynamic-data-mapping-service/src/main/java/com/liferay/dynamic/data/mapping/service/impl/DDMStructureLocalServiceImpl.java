@@ -114,7 +114,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1960,25 +1959,20 @@ public class DDMStructureLocalServiceImpl
 
 	protected void syncStructureTemplatesFields(final DDMStructure structure) {
 		TransactionCommitCallbackUtil.registerCallback(
-			new Callable<Void>() {
+			() -> {
+				DDMFormTemplateSynchonizer ddmFormTemplateSynchonizer =
+					new DDMFormTemplateSynchonizer(
+						structure.getDDMForm(), _jsonDDMFormDeserializer,
+						_jsonDDMFormSerializer, _ddmTemplateLocalService);
 
-				@Override
-				public Void call() throws Exception {
-					DDMFormTemplateSynchonizer ddmFormTemplateSynchonizer =
-						new DDMFormTemplateSynchonizer(
-							structure.getDDMForm(), _jsonDDMFormDeserializer,
-							_jsonDDMFormSerializer, _ddmTemplateLocalService);
+				List<DDMTemplate> templates = getStructureTemplates(
+					structure, DDMTemplateConstants.TEMPLATE_TYPE_FORM);
 
-					List<DDMTemplate> templates = getStructureTemplates(
-						structure, DDMTemplateConstants.TEMPLATE_TYPE_FORM);
+				ddmFormTemplateSynchonizer.setDDMFormTemplates(templates);
 
-					ddmFormTemplateSynchonizer.setDDMFormTemplates(templates);
+				ddmFormTemplateSynchonizer.synchronize();
 
-					ddmFormTemplateSynchonizer.synchronize();
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 

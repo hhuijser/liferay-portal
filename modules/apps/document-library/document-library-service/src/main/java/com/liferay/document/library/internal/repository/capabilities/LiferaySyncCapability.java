@@ -40,8 +40,6 @@ import com.liferay.portal.repository.capabilities.util.GroupServiceAdapter;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFolder;
 
-import java.util.concurrent.Callable;
-
 /**
  * @author Adolfo Pérez
  */
@@ -164,30 +162,25 @@ public class LiferaySyncCapability
 		final long modifiedTime = dlSyncEvent.getModifiedTime();
 
 		TransactionCommitCallbackUtil.registerCallback(
-			new Callable<Void>() {
+			() -> {
+				Message message = new Message();
 
-				@Override
-				public Void call() throws Exception {
-					Message message = new Message();
+				message.setValues(
+					HashMapBuilder.<String, Object>put(
+						"event", event
+					).put(
+						"modifiedTime", modifiedTime
+					).put(
+						"type", type
+					).put(
+						"typePK", typePK
+					).build());
 
-					message.setValues(
-						HashMapBuilder.<String, Object>put(
-							"event", event
-						).put(
-							"modifiedTime", modifiedTime
-						).put(
-							"type", type
-						).put(
-							"typePK", typePK
-						).build());
+				_messageBus.sendMessage(
+					DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
+					message);
 
-					_messageBus.sendMessage(
-						DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
-						message);
-
-					return null;
-				}
-
+				return null;
 			});
 	}
 

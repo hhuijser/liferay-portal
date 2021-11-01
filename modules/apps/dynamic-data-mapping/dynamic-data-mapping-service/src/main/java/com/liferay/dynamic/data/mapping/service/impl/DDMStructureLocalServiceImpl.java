@@ -1957,7 +1957,7 @@ public class DDMStructureLocalServiceImpl
 		return ddmFormSerializerSerializeResponse.getContent();
 	}
 
-	protected void syncStructureTemplatesFields(final DDMStructure structure) {
+	protected void syncStructureTemplatesFields(DDMStructure structure) {
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
 				DDMFormTemplateSynchonizer ddmFormTemplateSynchonizer =

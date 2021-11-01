@@ -180,8 +180,7 @@ public class TransactionalTestRule implements TestRule {
 		extends FrameworkMethod {
 
 		@Override
-		public Object invokeExplosively(
-				final Object target, final Object... params)
+		public Object invokeExplosively(Object target, Object... params)
 			throws Throwable {
 
 			try (Closeable closeable = _installTransactionExecutor(

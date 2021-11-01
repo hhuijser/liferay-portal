@@ -80,9 +80,8 @@ public class WorkflowHandlerRegistryUtil {
 	}
 
 	public static <T> T startWorkflowInstance(
-			final long companyId, final long groupId, final long userId,
-			String className, final long classPK, final T model,
-			ServiceContext serviceContext,
+			long companyId, long groupId, long userId, String className,
+			long classPK, T model, ServiceContext serviceContext,
 			Map<String, Serializable> workflowContext)
 		throws PortalException {
 
@@ -92,8 +91,7 @@ public class WorkflowHandlerRegistryUtil {
 			return model;
 		}
 
-		final WorkflowHandler<T> workflowHandler = getWorkflowHandler(
-			className);
+		WorkflowHandler<T> workflowHandler = getWorkflowHandler(className);
 
 		if (workflowHandler == null) {
 			if (WorkflowThreadLocal.isEnabled()) {
@@ -159,8 +157,7 @@ public class WorkflowHandlerRegistryUtil {
 			model, status, workflowContext);
 
 		if (workflowDefinitionLink != null) {
-			final Map<String, Serializable> tempWorkflowContext =
-				workflowContext;
+			Map<String, Serializable> tempWorkflowContext = workflowContext;
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {

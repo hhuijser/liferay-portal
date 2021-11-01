@@ -89,7 +89,7 @@ public class BackgroundTaskLocalServiceImpl
 
 		backgroundTask = super.addBackgroundTask(backgroundTask);
 
-		final long backgroundTaskId = backgroundTask.getBackgroundTaskId();
+		long backgroundTaskId = backgroundTask.getBackgroundTaskId();
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
@@ -207,9 +207,8 @@ public class BackgroundTaskLocalServiceImpl
 
 	@Clusterable(onMaster = true)
 	@Override
-	public void cleanUpBackgroundTask(long backgroundTaskId, final int status) {
-		final BackgroundTask backgroundTask = fetchBackgroundTask(
-			backgroundTaskId);
+	public void cleanUpBackgroundTask(long backgroundTaskId, int status) {
+		BackgroundTask backgroundTask = fetchBackgroundTask(backgroundTaskId);
 
 		try {
 			_backgroundTaskLockHelper.unlockBackgroundTask(
@@ -694,7 +693,7 @@ public class BackgroundTaskLocalServiceImpl
 			user = _userLocalService.fetchUser(userId);
 		}
 
-		final long backgroundTaskId = counterLocalService.increment();
+		long backgroundTaskId = counterLocalService.increment();
 
 		BackgroundTask backgroundTask = backgroundTaskPersistence.create(
 			backgroundTaskId);

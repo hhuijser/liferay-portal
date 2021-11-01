@@ -2029,7 +2029,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 			_portletLocalService.checkPortlets(company.getCompanyId());
 
-			final Company finalCompany = company;
+			Company finalCompany = company;
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
@@ -2048,7 +2048,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 	}
 
 	private void _clearCompanyCache(long companyId) {
-		final Company company = companyPersistence.fetchByPrimaryKey(companyId);
+		Company company = companyPersistence.fetchByPrimaryKey(companyId);
 
 		if (company != null) {
 			TransactionCommitCallbackUtil.registerCallback(

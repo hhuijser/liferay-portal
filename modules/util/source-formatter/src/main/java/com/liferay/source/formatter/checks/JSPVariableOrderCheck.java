@@ -63,8 +63,6 @@ public class JSPVariableOrderCheck extends BaseFileCheck {
 
 				previousLine = line;
 				previousVariableName = variableName;
-
-				continue;
 			}
 		}
 

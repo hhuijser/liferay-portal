@@ -96,16 +96,19 @@ public class CheckstyleUtil {
 				continue;
 			}
 
+			String checkCategory = checkConfiguration.getAttribute("category");
+
 			String checkName = checkConfiguration.getName();
 
 			String checkSimpleName = SourceFormatterUtil.getSimpleName(
 				checkName);
 
-			if ((!filterCheckCategoryNames.isEmpty() ||
-				 !filterCheckNames.isEmpty()) &&
-				!filterCheckCategoryNames.contains(
-					checkConfiguration.getAttribute("category")) &&
-				!filterCheckNames.contains(checkSimpleName)) {
+			if ((checkCategory.startsWith("Upgrade") &&
+				 !filterCheckCategoryNames.contains(checkCategory)) ||
+				((!filterCheckCategoryNames.isEmpty() ||
+				  !filterCheckNames.isEmpty()) &&
+				 !filterCheckCategoryNames.contains(checkCategory) &&
+				 !filterCheckNames.contains(checkSimpleName))) {
 
 				treeWalkerConfiguration.removeChild(checkConfiguration);
 

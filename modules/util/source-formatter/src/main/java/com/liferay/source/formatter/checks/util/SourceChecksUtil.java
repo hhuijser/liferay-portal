@@ -245,14 +245,17 @@ public class SourceChecksUtil {
 		for (SourceCheckConfiguration sourceCheckConfiguration :
 				sourceCheckConfigurations) {
 
+			String sourceCheckCategory = SourceFormatterUtil.getSimpleName(
+				sourceCheckConfiguration.getCategory());
 			String sourceCheckName = SourceFormatterUtil.getSimpleName(
 				sourceCheckConfiguration.getName());
 
-			if ((!filterCheckCategoryNames.isEmpty() ||
-				 !filterCheckNames.isEmpty()) &&
-				!filterCheckCategoryNames.contains(
-					sourceCheckConfiguration.getCategory()) &&
-				!filterCheckNames.contains(sourceCheckName)) {
+			if ((sourceCheckCategory.startsWith("Upgrade") &&
+				 !filterCheckCategoryNames.contains(sourceCheckCategory)) ||
+				((!filterCheckCategoryNames.isEmpty() ||
+				  !filterCheckNames.isEmpty()) &&
+				 !filterCheckCategoryNames.contains(sourceCheckCategory) &&
+				 !filterCheckNames.contains(sourceCheckName))) {
 
 				continue;
 			}

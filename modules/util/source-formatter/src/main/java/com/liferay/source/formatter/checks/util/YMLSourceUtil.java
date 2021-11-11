@@ -72,6 +72,14 @@ public class YMLSourceUtil {
 				continue;
 			}
 
+			if (line.matches(" +")) {
+				sb.append(line);
+
+				sb.append("\n");
+
+				continue;
+			}
+
 			if (!line.startsWith(indent)) {
 				continue;
 			}

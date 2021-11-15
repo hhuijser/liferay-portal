@@ -65,3 +65,32 @@ jsonArray.put(user2);
 jsonArray.put(user3);
 jsonArray.put(user4);
 ```
+
+---
+
+Use `JSONUtil.toString`, when possible.
+
+### Examples
+
+```java
+String value = JSONUtil.put(
+	"city", "Los Angeles"
+).put(
+	"country", "United States"
+).put(
+	"place", "Los Angeles County Museum of Art"
+).toString();
+```
+
+Instead of
+
+```java
+String value = String.valueOf(
+	JSONUtil.put(
+		"city", "Los Angeles"
+	).put(
+		"country", "United States"
+	).put(
+		"place", "Los Angeles County Museum of Art"
+	));
+```

@@ -18,6 +18,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -34,6 +36,7 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 	protected void doVisitToken(DetailAST detailAST) {
 		if (detailAST.getType() == TokenTypes.METHOD_CALL) {
 			_checkChainedPutCalls(detailAST);
+			_checkStringValueOfCalls(detailAST);
 
 			return;
 		}
@@ -152,6 +155,110 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 		}
 	}
 
+	private void _checkStringValueOfCalls(DetailAST detailAST) {
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			return;
+		}
+
+		FullIdent fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+
+		if (!Objects.equals(fullIdent.getText(), "String.valueOf")) {
+			return;
+		}
+
+		DetailAST elistDetailAST = detailAST.findFirstToken(TokenTypes.ELIST);
+
+		if (elistDetailAST == null) {
+			return;
+		}
+
+		firstChildDetailAST = elistDetailAST.getFirstChild();
+
+		if ((firstChildDetailAST == null) ||
+			(firstChildDetailAST.getType() != TokenTypes.EXPR)) {
+
+			return;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if ((firstChildDetailAST == null) ||
+			(firstChildDetailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+			return;
+		}
+
+		List<DetailAST> methodCallDetailASTList = getAllChildTokens(
+			firstChildDetailAST, true, TokenTypes.METHOD_CALL);
+
+		if (methodCallDetailASTList.isEmpty()) {
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+				return;
+			}
+
+			fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+
+			if (Objects.equals(fullIdent.getText(), "JSONUtil.put") ||
+				Objects.equals(fullIdent.getText(), "JSONUtil.putAll")) {
+
+				log(detailAST, _MSG_USE_JSON_UTIL_TO_STRING);
+			}
+
+			return;
+		}
+
+		List<String> chainedMethodNames = new ArrayList<>();
+
+		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
+			DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+				TokenTypes.DOT);
+
+			if (dotDetailAST != null) {
+				List<DetailAST> childMethodCallDetailASTList =
+					getAllChildTokens(
+						dotDetailAST, false, TokenTypes.METHOD_CALL);
+
+				if (!childMethodCallDetailASTList.isEmpty()) {
+					continue;
+				}
+			}
+
+			BaseCheck.ChainInformation chainInformation = getChainInformation(
+				methodCallDetailAST);
+
+			chainedMethodNames = chainInformation.getMethodNames();
+		}
+
+		for (String chainedMethodName : chainedMethodNames) {
+			if (!chainedMethodName.equals("put") &&
+				!chainedMethodName.equals("putAll")) {
+
+				return;
+			}
+		}
+
+		DetailAST methodCallDetailAST = methodCallDetailASTList.get(
+			methodCallDetailASTList.size() - 1);
+
+		firstChildDetailAST = methodCallDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+			return;
+		}
+
+		fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+
+		String methodCall = fullIdent.getText();
+
+		if (methodCall.startsWith("JSONUtil.")) {
+			log(detailAST, _MSG_USE_JSON_UTIL_TO_STRING);
+		}
+	}
+
 	private DetailAST _getMethodCallDetailAST(
 		DetailAST assignDetailAST, DetailAST parentDetailAST) {
 
@@ -179,5 +286,8 @@ public class JSONUtilCheck extends BaseChainedMethodCheck {
 
 	private static final String _MSG_USE_JSON_UTIL_PUT_ALL =
 		"json.util.put.all.use";
+
+	private static final String _MSG_USE_JSON_UTIL_TO_STRING =
+		"json.util.to.string.use";
 
 }

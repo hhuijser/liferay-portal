@@ -447,6 +447,7 @@
 			<property name="description" value="Checks for utilization of class `JSONUtil`." />
 			<message key="json.util.put.all.use" value="Use ''JSONUtil.putAll'' instead of chaining on ''JSONUtil.put''" />
 			<message key="json.util.put.use" value="Combine calls ''{0}'' ({1}) and ''{2}'' ({3}) into single call ''{4}''" />
+			<message key="json.util.to.string.use" value="Use ''toString'' instead of ''String.valueOf''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.LambdaCheck">
 			<property name="category" value="Styling" />

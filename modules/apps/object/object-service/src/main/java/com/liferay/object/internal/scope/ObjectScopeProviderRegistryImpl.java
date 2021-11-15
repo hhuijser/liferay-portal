@@ -50,6 +50,7 @@ public class ObjectScopeProviderRegistryImpl
 		return objectScopeProvider;
 	}
 
+	@Override
 	public List<ObjectScopeProvider> getObjectScopeProviders() {
 		List<ObjectScopeProvider> objectScopeProviders =
 			ListUtil.fromCollection(_serviceTrackerMap.values());

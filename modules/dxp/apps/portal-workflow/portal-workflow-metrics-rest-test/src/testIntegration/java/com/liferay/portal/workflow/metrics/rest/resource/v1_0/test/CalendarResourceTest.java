@@ -54,6 +54,7 @@ import org.osgi.framework.ServiceRegistration;
 public class CalendarResourceTest extends BaseCalendarResourceTestCase {
 
 	@BeforeClass
+	@Override
 	public static void setUpClass() throws Exception {
 		BaseCalendarResourceTestCase.setUpClass();
 

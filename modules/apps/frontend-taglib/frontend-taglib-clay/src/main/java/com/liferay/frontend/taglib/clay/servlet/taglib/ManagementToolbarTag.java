@@ -173,6 +173,7 @@ public class ManagementToolbarTag extends BaseContainerTag {
 		return _managementToolbarDisplayContext;
 	}
 
+	@Override
 	public String getNamespace() {
 		if (_namespace != null) {
 			return _namespace;

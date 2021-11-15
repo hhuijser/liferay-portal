@@ -77,6 +77,7 @@ public class SearchSearchRequest
 		return Collections.unmodifiableList(_groupByRequests);
 	}
 
+	@Override
 	public Highlight getHighlight() {
 		return _highlight;
 	}

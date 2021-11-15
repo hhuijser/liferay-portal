@@ -157,6 +157,7 @@ public class ObjectDefinitionGraphQLDTOContributor
 		return _resourceName;
 	}
 
+	@Override
 	public String getTypeName() {
 		return _typeName;
 	}

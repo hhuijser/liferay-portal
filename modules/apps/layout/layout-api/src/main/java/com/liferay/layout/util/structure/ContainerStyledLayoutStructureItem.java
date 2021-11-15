@@ -70,6 +70,7 @@ public class ContainerStyledLayoutStructureItem
 		return _widthType;
 	}
 
+	@Override
 	public String getContentDisplay() {
 		return _contentDisplay;
 	}

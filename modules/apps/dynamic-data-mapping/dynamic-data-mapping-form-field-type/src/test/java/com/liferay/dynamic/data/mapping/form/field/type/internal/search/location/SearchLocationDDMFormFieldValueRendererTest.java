@@ -50,7 +50,9 @@ public class SearchLocationDDMFormFieldValueRendererTest extends PowerMockito {
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field",
 				DDMFormValuesTestUtil.createLocalizedValue(
-					String.valueOf(JSONUtil.put("city", "Recife")),
+					JSONUtil.put(
+						"city", "Recife"
+					).toString(),
 					LocaleUtil.US));
 
 		SearchLocationDDMFormFieldValueRenderer
@@ -69,7 +71,9 @@ public class SearchLocationDDMFormFieldValueRendererTest extends PowerMockito {
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field",
 				DDMFormValuesTestUtil.createLocalizedValue(
-					String.valueOf(JSONUtil.put("city", "Recife")),
+					JSONUtil.put(
+						"city", "Recife"
+					).toString(),
 					LocaleUtil.US));
 
 		SearchLocationDDMFormFieldValueRenderer
@@ -88,7 +92,9 @@ public class SearchLocationDDMFormFieldValueRendererTest extends PowerMockito {
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field",
 				DDMFormValuesTestUtil.createLocalizedValue(
-					String.valueOf(JSONUtil.put("city", StringPool.BLANK)),
+					JSONUtil.put(
+						"city", StringPool.BLANK
+					).toString(),
 					LocaleUtil.US));
 
 		SearchLocationDDMFormFieldValueRenderer

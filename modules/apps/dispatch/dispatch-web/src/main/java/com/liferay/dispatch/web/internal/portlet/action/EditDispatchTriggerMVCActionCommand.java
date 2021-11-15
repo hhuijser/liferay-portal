@@ -274,8 +274,9 @@ public class EditDispatchTriggerMVCActionCommand extends BaseMVCActionCommand {
 		Message message = new Message();
 
 		message.setPayload(
-			String.valueOf(
-				JSONUtil.put("dispatchTriggerId", dispatchTriggerId)));
+			JSONUtil.put(
+				"dispatchTriggerId", dispatchTriggerId
+			).toString());
 
 		_destination.send(message);
 	}

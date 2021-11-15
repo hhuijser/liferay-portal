@@ -88,29 +88,28 @@ public class DDMFormReportDisplayContextTest extends PowerMockito {
 				new MockLiferayPortletRenderResponse());
 
 		JSONAssert.assertEquals(
-			String.valueOf(
+			JSONUtil.put(
 				JSONUtil.put(
+					"columns", JSONFactoryUtil.createJSONObject()
+				).put(
+					"label",
 					JSONUtil.put(
-						"columns", JSONFactoryUtil.createJSONObject()
+						"city", "City"
 					).put(
-						"label",
-						String.valueOf(
-							JSONUtil.put(
-								"city", "City"
-							).put(
-								"country", "Country"
-							).put(
-								"place", "Search Location Label"
-							))
+						"country", "Country"
 					).put(
-						"name", "field1"
-					).put(
-						"options", JSONFactoryUtil.createJSONObject()
-					).put(
-						"rows", JSONFactoryUtil.createJSONObject()
-					).put(
-						"type", DDMFormFieldTypeConstants.SEARCH_LOCATION
-					))),
+						"place", "Search Location Label"
+					).toString()
+				).put(
+					"name", "field1"
+				).put(
+					"options", JSONFactoryUtil.createJSONObject()
+				).put(
+					"rows", JSONFactoryUtil.createJSONObject()
+				).put(
+					"type", DDMFormFieldTypeConstants.SEARCH_LOCATION
+				)
+			).toString(),
 			String.valueOf(ddmFormReportDisplayContext.getFieldsJSONArray()),
 			JSONCompareMode.STRICT_ORDER);
 	}
@@ -126,21 +125,21 @@ public class DDMFormReportDisplayContextTest extends PowerMockito {
 				new MockLiferayPortletRenderResponse());
 
 		JSONAssert.assertEquals(
-			String.valueOf(
+			JSONUtil.put(
 				JSONUtil.put(
-					JSONUtil.put(
-						"columns", JSONFactoryUtil.createJSONObject()
-					).put(
-						"label", "field1"
-					).put(
-						"name", "field1"
-					).put(
-						"options", JSONFactoryUtil.createJSONObject()
-					).put(
-						"rows", JSONFactoryUtil.createJSONObject()
-					).put(
-						"type", DDMFormFieldTypeConstants.TEXT
-					))),
+					"columns", JSONFactoryUtil.createJSONObject()
+				).put(
+					"label", "field1"
+				).put(
+					"name", "field1"
+				).put(
+					"options", JSONFactoryUtil.createJSONObject()
+				).put(
+					"rows", JSONFactoryUtil.createJSONObject()
+				).put(
+					"type", DDMFormFieldTypeConstants.TEXT
+				)
+			).toString(),
 			String.valueOf(ddmFormReportDisplayContext.getFieldsJSONArray()),
 			JSONCompareMode.STRICT_ORDER);
 	}

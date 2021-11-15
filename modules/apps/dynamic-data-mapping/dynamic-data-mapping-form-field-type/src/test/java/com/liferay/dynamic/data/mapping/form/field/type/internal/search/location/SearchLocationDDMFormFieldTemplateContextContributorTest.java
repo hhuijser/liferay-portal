@@ -112,12 +112,11 @@ public class SearchLocationDDMFormFieldTemplateContextContributorTest {
 		Assert.assertEquals(
 			"googlePlacesAPIKey", parameters.get("googlePlacesAPIKey"));
 		JSONAssert.assertEquals(
-			String.valueOf(
-				JSONUtil.put(
-					"city", "City"
-				).put(
-					"country", "Country"
-				)),
+			JSONUtil.put(
+				"city", "City"
+			).put(
+				"country", "Country"
+			).toString(),
 			String.valueOf(parameters.get("labels")),
 			JSONCompareMode.STRICT_ORDER);
 		Assert.assertEquals(

@@ -67,60 +67,59 @@ public class CountrySearchKeywordsTest {
 					"liferay development services", 1, 390, 310L)));
 
 		Assert.assertEquals(
-			String.valueOf(
-				JSONUtil.put(
-					"countryCode", "us"
-				).put(
-					"countryName", "United States"
-				).put(
-					"keywords",
-					JSONUtil.putAll(
-						JSONUtil.put(
-							"keyword", "liferay"
-						).put(
-							"position", 1
-						).put(
-							"searchVolume", 3600
-						).put(
-							"traffic", 2882
-						),
-						JSONUtil.put(
-							"keyword", "liferay inc"
-						).put(
-							"position", 1
-						).put(
-							"searchVolume", 755
-						).put(
-							"traffic", 855
-						),
-						JSONUtil.put(
-							"keyword", "liferay portal"
-						).put(
-							"position", 1
-						).put(
-							"searchVolume", 556
-						).put(
-							"traffic", 850
-						),
-						JSONUtil.put(
-							"keyword", "what is liferay"
-						).put(
-							"position", 1
-						).put(
-							"searchVolume", 390
-						).put(
-							"traffic", 312
-						),
-						JSONUtil.put(
-							"keyword", "liferay india"
-						).put(
-							"position", 1
-						).put(
-							"searchVolume", 390
-						).put(
-							"traffic", 312
-						))
-				)),
+			JSONUtil.put(
+				"countryCode", "us"
+			).put(
+				"countryName", "United States"
+			).put(
+				"keywords",
+				JSONUtil.putAll(
+					JSONUtil.put(
+						"keyword", "liferay"
+					).put(
+						"position", 1
+					).put(
+						"searchVolume", 3600
+					).put(
+						"traffic", 2882
+					),
+					JSONUtil.put(
+						"keyword", "liferay inc"
+					).put(
+						"position", 1
+					).put(
+						"searchVolume", 755
+					).put(
+						"traffic", 855
+					),
+					JSONUtil.put(
+						"keyword", "liferay portal"
+					).put(
+						"position", 1
+					).put(
+						"searchVolume", 556
+					).put(
+						"traffic", 850
+					),
+					JSONUtil.put(
+						"keyword", "what is liferay"
+					).put(
+						"position", 1
+					).put(
+						"searchVolume", 390
+					).put(
+						"traffic", 312
+					),
+					JSONUtil.put(
+						"keyword", "liferay india"
+					).put(
+						"position", 1
+					).put(
+						"searchVolume", 390
+					).put(
+						"traffic", 312
+					))
+			).toString(),
 			String.valueOf(countrySearchKeywords.toJSONObject(LocaleUtil.US)));
 	}
 

@@ -34,6 +34,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -99,6 +100,19 @@ public class PoshiDependenciesFileLocationCheck extends BaseFileCheck {
 				_dependenciesFileLocationsMap.entrySet()) {
 
 			Set<String> referencesFiles = entry.getValue();
+
+			Set<String> removedDuplicatedFilePaths = new HashSet<>();
+
+			for (String referencesFile : referencesFiles) {
+				String referencesFilePath = referencesFile.substring(
+					0, referencesFile.lastIndexOf("/"));
+
+				removedDuplicatedFilePaths.add(referencesFilePath);
+			}
+
+			if (removedDuplicatedFilePaths.size() <= 1) {
+				continue;
+			}
 
 			if (referencesFiles.size() > 1) {
 				for (String referencesFile : referencesFiles) {

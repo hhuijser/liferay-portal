@@ -540,12 +540,6 @@
 			<property name="description" value="Verifies that a method or global variable has a modifier specified." />
 			<message key="modifier.missing" value="Missing modifier for ''{0}''" />
 		</module>
-		<module name="com.liferay.source.formatter.checkstyle.checks.MissingOverrideCheck">
-			<property name="category" value="Bug Prevention" />
-			<property name="description" value="Verifies that a method that overrides a method in a superclass has the @Override annotation." />
-			<property name="enabled" value="false" />
-			<message key="override.missing" value="Missing @Override" />
-		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingParenthesesCheck">
 			<property name="category" value="Styling" />
 			<property name="description" value="Finds missing parentheses in conditional statement." />

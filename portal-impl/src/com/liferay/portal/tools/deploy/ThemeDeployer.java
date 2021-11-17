@@ -35,6 +35,7 @@ import java.util.Map;
  */
 public class ThemeDeployer extends BaseDeployer {
 
+	@Override
 	public static void main(String[] args) {
 		ToolDependencies.wireDeployers();
 

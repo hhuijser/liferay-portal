@@ -840,6 +840,7 @@ public abstract class BaseBuild implements Build {
 		return upstreamJobFailureMessageElement;
 	}
 
+	@Override
 	public Map<String, String> getInjectedEnvironmentVariablesMap()
 		throws IOException {
 

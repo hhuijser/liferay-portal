@@ -213,6 +213,7 @@ public class MultiMatchQueryImpl
 		_tieBreaker = tieBreaker;
 	}
 
+	@Override
 	public void setType(Type type) {
 		_type = type;
 	}

@@ -115,6 +115,7 @@ public class SXPElementLocalServiceImpl extends SXPElementLocalServiceBaseImpl {
 		return sxpElement;
 	}
 
+	@Override
 	public List<SXPElement> getSXPElements(long companyId) {
 		return sxpElementPersistence.findByCompanyId(companyId);
 	}

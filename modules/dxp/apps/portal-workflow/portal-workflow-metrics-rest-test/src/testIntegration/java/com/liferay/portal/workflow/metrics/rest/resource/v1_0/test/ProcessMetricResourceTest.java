@@ -60,6 +60,7 @@ public class ProcessMetricResourceTest
 	extends BaseProcessMetricResourceTestCase {
 
 	@BeforeClass
+	@Override
 	public static void setUpClass() throws Exception {
 		BaseProcessMetricResourceTestCase.setUpClass();
 

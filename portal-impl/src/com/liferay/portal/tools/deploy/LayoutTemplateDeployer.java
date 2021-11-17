@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class LayoutTemplateDeployer extends BaseDeployer {
 
+	@Override
 	public static void main(String[] args) {
 		ToolDependencies.wireDeployers();
 

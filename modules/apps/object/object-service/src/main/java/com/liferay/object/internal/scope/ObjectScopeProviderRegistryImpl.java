@@ -35,6 +35,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class ObjectScopeProviderRegistryImpl
 	implements ObjectScopeProviderRegistry {
 
+	@Override
 	public ObjectScopeProvider getObjectScopeProvider(
 		String objectScopeProviderKey) {
 
@@ -50,6 +51,7 @@ public class ObjectScopeProviderRegistryImpl
 		return objectScopeProvider;
 	}
 
+	@Override
 	public List<ObjectScopeProvider> getObjectScopeProviders() {
 		List<ObjectScopeProvider> objectScopeProviders =
 			ListUtil.fromCollection(_serviceTrackerMap.values());

@@ -269,6 +269,7 @@ public class DDMIndexerImpl implements DDMIndexer {
 			ddmStructure, fieldReference, locale, sortOrder);
 	}
 
+	@Override
 	public QueryFilter createFieldValueQueryFilter(
 			DDMStructure ddmStructure, String fieldReference, Locale locale,
 			Serializable value)

@@ -31,6 +31,7 @@ public class GradleUtil extends com.liferay.gradle.util.GradleUtil {
 		return basePluginConvention.getArchivesBaseName();
 	}
 
+	@Override
 	public static File toFile(Project project, Object object) {
 		object = toObject(object);
 

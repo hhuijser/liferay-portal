@@ -109,6 +109,7 @@ public abstract class BaseRankingsPortletActionTestCase
 		);
 	}
 
+	@Override
 	protected void setUpPortletRequestParamValue(
 		PortletRequest portletRequest, String returnValue, String paramName) {
 

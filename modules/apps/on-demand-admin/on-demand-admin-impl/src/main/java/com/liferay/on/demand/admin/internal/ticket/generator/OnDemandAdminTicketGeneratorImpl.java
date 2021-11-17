@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 public class OnDemandAdminTicketGeneratorImpl
 	implements OnDemandAdminTicketGenerator {
 
+	@Override
 	public Ticket generate(Company company, long requestorUserId)
 		throws PortalException {
 

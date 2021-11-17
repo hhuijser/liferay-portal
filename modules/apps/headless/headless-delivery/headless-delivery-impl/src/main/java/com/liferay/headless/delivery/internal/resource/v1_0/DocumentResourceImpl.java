@@ -396,6 +396,7 @@ public class DocumentResourceImpl
 			externalReferenceCode, siteId, siteId, null, multipartBody);
 	}
 
+	@Override
 	protected Long getPermissionCheckerGroupId(Object id) throws Exception {
 		FileEntry fileEntry = _dlAppService.getFileEntry((Long)id);
 

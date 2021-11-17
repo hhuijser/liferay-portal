@@ -355,6 +355,7 @@ public class RestrictedLiferayObjectWrapperTest
 
 	}
 
+	@Override
 	protected void testWrap(ObjectWrapper objectWrapper) throws Exception {
 		super.testWrap(objectWrapper);
 

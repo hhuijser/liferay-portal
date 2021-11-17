@@ -755,6 +755,7 @@ public class DDMImplTest extends BaseDDMTestCase {
 			ProxyFactory.newDummyInstance(ServiceTrackerMap.class));
 	}
 
+	@Override
 	protected void setUpDDMFormValuesJSONSerializer() throws Exception {
 		java.lang.reflect.Field field = ReflectionUtil.getDeclaredField(
 			DDMFormValuesJSONSerializer.class, "_jsonFactory");

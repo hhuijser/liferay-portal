@@ -31,6 +31,7 @@ import java.util.List;
  */
 public class HookDeployer extends BaseDeployer {
 
+	@Override
 	public static void main(String[] args) {
 		ToolDependencies.wireDeployers();
 

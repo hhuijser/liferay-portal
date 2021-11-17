@@ -49,6 +49,7 @@ public class PortletDeployer extends BaseDeployer {
 	public static final String JSF_STANDARD =
 		"javax.portlet.faces.GenericFacesPortlet";
 
+	@Override
 	public static void main(String[] args) {
 		ToolDependencies.wireDeployers();
 

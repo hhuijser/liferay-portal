@@ -41,6 +41,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = OnDemandAdminManager.class)
 public class OnDemandAdminManagerImpl implements OnDemandAdminManager {
 
+	@Override
 	public void cleanUpOnDemandAdminUsers(Date olderThanDate)
 		throws PortalException {
 
@@ -69,6 +70,7 @@ public class OnDemandAdminManagerImpl implements OnDemandAdminManager {
 		actionableDynamicQuery.performActions();
 	}
 
+	@Override
 	public String getLoginURL(Company company, long userId)
 		throws PortalException {
 
@@ -87,6 +89,7 @@ public class OnDemandAdminManagerImpl implements OnDemandAdminManager {
 		return sb.toString();
 	}
 
+	@Override
 	public boolean isOnDemandAdminUser(User user) {
 		if ((user != null) &&
 			StringUtil.startsWith(

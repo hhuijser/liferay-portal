@@ -124,6 +124,7 @@ public class MatchQueryImpl extends BaseQueryImpl implements MatchQuery {
 		_fuzziness = fuzziness;
 	}
 
+	@Override
 	public void setFuzzyRewriteMethod(RewriteMethod fuzzyRewriteMethod) {
 		_fuzzyRewriteMethod = fuzzyRewriteMethod;
 	}
@@ -163,10 +164,12 @@ public class MatchQueryImpl extends BaseQueryImpl implements MatchQuery {
 		_slop = slop;
 	}
 
+	@Override
 	public void setType(Type type) {
 		_type = type;
 	}
 
+	@Override
 	public void setZeroTermsQuery(ZeroTermsQuery zeroTermsQuery) {
 		_zeroTermsQuery = zeroTermsQuery;
 	}

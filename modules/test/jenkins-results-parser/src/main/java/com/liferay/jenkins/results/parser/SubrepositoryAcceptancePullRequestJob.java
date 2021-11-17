@@ -60,6 +60,7 @@ public class SubrepositoryAcceptancePullRequestJob
 		return getSetFromString(batchNames);
 	}
 
+	@Override
 	protected Set<String> getRawDependentBatchNames() {
 		String dependentBatchNames = JenkinsResultsParserUtil.getProperty(
 			getJobProperties(), "test.batch.names.smoke", getBranchName(),

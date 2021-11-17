@@ -32,6 +32,7 @@ import org.osgi.service.component.annotations.Component;
 public class SamlPeerBindingLocalServiceImpl
 	extends SamlPeerBindingLocalServiceBaseImpl {
 
+	@Override
 	public SamlPeerBinding addSamlPeerBinding(
 			long userId, String samlNameIdFormat,
 			String samlNameIdNameQualifier, String samlNameIdSpNameQualifier,
@@ -56,6 +57,7 @@ public class SamlPeerBindingLocalServiceImpl
 		return samlPeerBindingPersistence.update(samlPeerBinding);
 	}
 
+	@Override
 	public SamlPeerBinding fetchSamlPeerBinding(
 		long companyId, String samlNameIdFormat, String samlNameIdNameQualifier,
 		String samlNameIdValue, String samlSpEntityId) {

@@ -95,6 +95,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 			CPPortletKeys.CP_COMPARE_CONTENT_WEB);
 	}
 
+	@Override
 	public String getCompareProductsURL(ThemeDisplay themeDisplay)
 		throws PortalException {
 

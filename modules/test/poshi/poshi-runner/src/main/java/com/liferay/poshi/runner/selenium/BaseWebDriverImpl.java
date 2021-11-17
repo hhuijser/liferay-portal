@@ -2301,6 +2301,7 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		pause("3000");
 	}
 
+	@Override
 	public void rightClick(String locator) {
 		WebElement webElement = getWebElement(locator);
 

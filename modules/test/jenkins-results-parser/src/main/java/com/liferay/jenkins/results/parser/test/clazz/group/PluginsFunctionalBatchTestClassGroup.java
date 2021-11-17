@@ -89,6 +89,7 @@ public class PluginsFunctionalBatchTestClassGroup
 			getJobName());
 	}
 
+	@Override
 	protected List<List<String>> getPoshiTestClassGroups(File testBaseDir) {
 		String query = getTestBatchRunPropertyQuery(testBaseDir);
 

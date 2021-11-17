@@ -22,6 +22,7 @@ import com.liferay.batch.planner.service.BatchPlannerLogLocalServiceUtil;
  */
 public class BatchPlannerPlanImpl extends BatchPlannerPlanBaseImpl {
 
+	@Override
 	public BatchPlannerLog fetchBatchPlannerLog() {
 		return BatchPlannerLogLocalServiceUtil.
 			fetchBatchPlannerPlanBatchPlannerLog(getBatchPlannerPlanId());

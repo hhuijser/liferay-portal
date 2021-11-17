@@ -51,6 +51,8 @@ public interface SourceCheck {
 
 	public void setFileExtensions(List<String> fileExtenstions);
 
+	public void setFilterCheckNames(List<String> filterCheckNames);
+
 	public void setMaxDirLevel(int maxDirLevel);
 
 	public void setMaxLineLength(int maxLineLength);

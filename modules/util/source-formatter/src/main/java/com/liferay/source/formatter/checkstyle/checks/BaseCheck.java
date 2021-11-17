@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
@@ -84,7 +85,9 @@ public abstract class BaseCheck extends AbstractCheck {
 
 	@Override
 	public void visitToken(DetailAST detailAST) {
-		if (!isAttributeValue(SourceFormatterCheckUtil.ENABLED_KEY, true)) {
+		if (!_isFilteredCheck() &&
+			!isAttributeValue(SourceFormatterCheckUtil.ENABLED_KEY, true)) {
+
 			return;
 		}
 
@@ -1533,6 +1536,17 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 
 		return false;
+	}
+
+	private boolean _isFilteredCheck() {
+		List<String> filteredCheckNames = ListUtil.fromString(
+			getAttributeValue(
+				CheckstyleUtil.FILTER_CHECK_NAMES_KEY, StringPool.BLANK),
+			StringPool.COMMA);
+
+		Class<?> clazz = getClass();
+
+		return filteredCheckNames.contains(clazz.getSimpleName());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(BaseCheck.class);

@@ -679,6 +679,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		sourceCheck.setAllFileNames(_allFileNames);
 		sourceCheck.setBaseDirName(_sourceFormatterArgs.getBaseDirName());
 		sourceCheck.setFileExtensions(_sourceFormatterArgs.getFileExtensions());
+		sourceCheck.setFilterCheckNames(_sourceFormatterArgs.getCheckNames());
 		sourceCheck.setMaxDirLevel(_sourceFormatterArgs.getMaxDirLevel());
 		sourceCheck.setMaxLineLength(_sourceFormatterArgs.getMaxLineLength());
 		sourceCheck.setPluginsInsideModulesDirectoryNames(

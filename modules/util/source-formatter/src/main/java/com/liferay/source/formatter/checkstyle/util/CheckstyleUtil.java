@@ -52,6 +52,8 @@ public class CheckstyleUtil {
 
 	public static final int BATCH_SIZE = 1000;
 
+	public static final String FILTER_CHECK_NAMES_KEY = "filterCheckNames";
+
 	public static final String MAX_DIR_LEVEL_KEY = "maxDirLevel";
 
 	public static final String MAX_LINE_LENGTH_KEY = "maxLineLength";
@@ -212,6 +214,10 @@ public class CheckstyleUtil {
 			configurationAttributesJSONObject,
 			new String[][] {
 				{BASE_DIR_NAME_KEY, sourceFormatterArgs.getBaseDirName()},
+				{
+					FILTER_CHECK_NAMES_KEY,
+					StringUtil.merge(sourceFormatterArgs.getCheckNames())
+				},
 				{
 					MAX_DIR_LEVEL_KEY,
 					String.valueOf(sourceFormatterArgs.getMaxDirLevel())

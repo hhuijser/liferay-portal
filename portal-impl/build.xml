@@ -782,6 +782,12 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 		</antcall>
 	</target>
 
+	<target name="format-source-missing-override">
+		<antcall target="format-source-files">
+			<param name="source.check.names" value="JavaMissingOverrideCheck" />
+		</antcall>
+	</target>
+
 	<target name="format-tld">
 		<path id="tld.formatter.classpath">
 			<fileset

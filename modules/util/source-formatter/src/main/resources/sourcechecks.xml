@@ -680,6 +680,11 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that the correct log messages are printed." />
 		</check>
+		<check name="JavaMissingOverrideCheck">
+			<category name="Bug Prevention" />
+			<description name="Finds missing @Override annotations." />
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JavaMissingXMLPublicIdsCheck">
 			<category name="Bug Prevention" />
 			<description name="Finds missing public IDs for check XML files." />

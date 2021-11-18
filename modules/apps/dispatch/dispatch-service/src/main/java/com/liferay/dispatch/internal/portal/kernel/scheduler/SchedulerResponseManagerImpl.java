@@ -79,6 +79,7 @@ public class SchedulerResponseManagerImpl implements SchedulerResponseManager {
 			start, Math.min(end, schedulerResponses.size()));
 	}
 
+	@Override
 	public int getSchedulerResponsesCount() {
 		List<SchedulerResponse> schedulerResponses = null;
 

@@ -151,6 +151,7 @@ public class DateDDMFormFieldTypeSettingsTest
 					"repeatable", "validation")));
 	}
 
+	@Override
 	protected void setUpJSONFactoryUtil() {
 		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
 

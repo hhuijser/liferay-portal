@@ -650,6 +650,7 @@ public class UserAccountResourceTest extends BaseUserAccountResourceTestCase {
 		return _addUserAccount(testGroup.getGroupId(), randomUserAccount());
 	}
 
+	@Override
 	protected UserAccount
 			testDeleteUserAccountByExternalReferenceCode_addUserAccount()
 		throws Exception {

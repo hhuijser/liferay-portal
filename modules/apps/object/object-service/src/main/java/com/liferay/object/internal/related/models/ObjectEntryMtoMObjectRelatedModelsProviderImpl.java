@@ -103,10 +103,12 @@ public class ObjectEntryMtoMObjectRelatedModelsProviderImpl
 				objectRelationshipId, primaryKey1, primaryKey2);
 	}
 
+	@Override
 	public String getClassName() {
 		return _className;
 	}
 
+	@Override
 	public String getObjectRelationshipType() {
 		return ObjectRelationshipConstants.TYPE_MANY_TO_MANY;
 	}

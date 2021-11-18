@@ -44,6 +44,7 @@ public class CommerceOrderDateRangeClayTableDataSetFilter
 		return "order-date-range";
 	}
 
+	@Override
 	public DateClayDataSetFilterItem getMaxDateClayDataSetFilterItem() {
 		Calendar calendar = Calendar.getInstance();
 

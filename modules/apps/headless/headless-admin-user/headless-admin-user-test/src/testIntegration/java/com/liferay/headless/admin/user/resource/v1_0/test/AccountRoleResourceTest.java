@@ -636,6 +636,7 @@ public class AccountRoleResourceTest extends BaseAccountRoleResourceTestCase {
 		return _addAccountAccountRole(_account);
 	}
 
+	@Override
 	protected AccountRole
 			testPostAccountByExternalReferenceCodeAccountRoleUserAccountByExternalReferenceCode_addAccountRole()
 		throws Exception {

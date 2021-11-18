@@ -219,6 +219,8 @@ public class SourceUtil {
 			}
 		}
 
+		executorService.shutdown();
+
 		return portalJSONObject;
 	}
 

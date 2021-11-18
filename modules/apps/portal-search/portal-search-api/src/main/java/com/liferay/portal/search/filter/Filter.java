@@ -30,6 +30,7 @@ public interface Filter extends com.liferay.portal.kernel.search.filter.Filter {
 		return (T)accept((FilterVisitor)filterVisitor);
 	}
 
+	@Override
 	public <T> T accept(FilterVisitor<T> filterVisitor);
 
 }

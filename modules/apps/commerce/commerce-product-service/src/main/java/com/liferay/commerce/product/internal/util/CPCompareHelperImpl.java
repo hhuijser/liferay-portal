@@ -76,6 +76,7 @@ public class CPCompareHelperImpl implements CPCompareHelper {
 		return cpCatalogEntries;
 	}
 
+	@Override
 	public List<Long> getCPDefinitionIds(
 		long groupId, long commerceAccountId,
 		String cpDefinitionIdsCookieValue) {

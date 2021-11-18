@@ -120,6 +120,7 @@ public class DDMHelperImpl implements DDMHelper {
 		return ddmForm;
 	}
 
+	@Override
 	public String renderCPAttachmentFileEntryOptions(
 			long cpDefinitionId, String json, PageContext pageContext,
 			RenderRequest renderRequest, RenderResponse renderResponse,

@@ -42,74 +42,92 @@ public class LogContextLogWrapper extends LogWrapper {
 		setLogWrapperClassName(LogContextLogWrapper.class.getName());
 	}
 
+	@Override
 	public void debug(Object message) {
 		super.debug(_getLogContextMessage(message));
 	}
 
+	@Override
 	public void debug(Object message, Throwable throwable) {
 		super.debug(_getLogContextMessage(message), throwable);
 	}
 
+	@Override
 	public void debug(Throwable throwable) {
 		super.debug(_getLogContextMessage(null), throwable);
 	}
 
+	@Override
 	public void error(Object message) {
 		super.error(_getLogContextMessage(message));
 	}
 
+	@Override
 	public void error(Object message, Throwable throwable) {
 		super.error(_getLogContextMessage(message), throwable);
 	}
 
+	@Override
 	public void error(Throwable throwable) {
 		super.error(_getLogContextMessage(null), throwable);
 	}
 
+	@Override
 	public void fatal(Object message) {
 		super.fatal(_getLogContextMessage(message));
 	}
 
+	@Override
 	public void fatal(Object message, Throwable throwable) {
 		super.fatal(_getLogContextMessage(message), throwable);
 	}
 
+	@Override
 	public void fatal(Throwable throwable) {
 		super.fatal(_getLogContextMessage(null), throwable);
 	}
 
+	@Override
 	public void info(Object message) {
 		super.info(_getLogContextMessage(message));
 	}
 
+	@Override
 	public void info(Object message, Throwable throwable) {
 		super.info(_getLogContextMessage(message), throwable);
 	}
 
+	@Override
 	public void info(Throwable throwable) {
 		super.info(_getLogContextMessage(null), throwable);
 	}
 
+	@Override
 	public void trace(Object message) {
 		super.trace(_getLogContextMessage(message));
 	}
 
+	@Override
 	public void trace(Object message, Throwable throwable) {
 		super.trace(_getLogContextMessage(message), throwable);
 	}
 
+	@Override
 	public void trace(Throwable throwable) {
 		super.trace(_getLogContextMessage(null), throwable);
 	}
 
+	@Override
 	public void warn(Object message) {
 		super.warn(_getLogContextMessage(message));
 	}
 
+	@Override
 	public void warn(Object message, Throwable throwable) {
 		super.warn(_getLogContextMessage(message), throwable);
 	}
 
+	@Override
 	public void warn(Throwable throwable) {
 		super.warn(_getLogContextMessage(null), throwable);
 	}

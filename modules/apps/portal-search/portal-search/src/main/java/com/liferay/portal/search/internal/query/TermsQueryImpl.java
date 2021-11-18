@@ -41,6 +41,7 @@ public class TermsQueryImpl extends BaseQueryImpl implements TermsQuery {
 		_values.add(value);
 	}
 
+	@Override
 	public void addValues(Object... values) {
 		Collections.addAll(_values, values);
 	}

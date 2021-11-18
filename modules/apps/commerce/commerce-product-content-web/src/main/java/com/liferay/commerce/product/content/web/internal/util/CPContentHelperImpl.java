@@ -305,6 +305,7 @@ public class CPContentHelperImpl implements CPContentHelper {
 		return _cpContentRendererRegistry.getCPContentRenderers(cpType);
 	}
 
+	@Override
 	public FileVersion getCPDefinitionImageFileVersion(
 			long cpDefinitionId, HttpServletRequest httpServletRequest)
 		throws Exception {

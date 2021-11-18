@@ -36,6 +36,7 @@ import org.gradle.api.tasks.SourceSet;
  */
 public class FileUtil extends com.liferay.gradle.util.FileUtil {
 
+	@Override
 	public static File getJavaClassesDir(SourceSet sourceSet) {
 		SourceDirectorySet sourceDirectorySet = sourceSet.getJava();
 

@@ -49,6 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 public class FileEntryAnalyticsReportsInfoItem
 	implements AnalyticsReportsInfoItem<FileEntry> {
 
+	@Override
 	public List<Action> getActions() {
 		return Arrays.asList(
 			Action.HISTORICAL_READS, Action.HISTORICAL_VIEWS,

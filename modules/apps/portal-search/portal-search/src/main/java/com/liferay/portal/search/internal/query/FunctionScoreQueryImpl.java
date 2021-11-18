@@ -94,6 +94,7 @@ public class FunctionScoreQueryImpl
 		_minScore = minScore;
 	}
 
+	@Override
 	public void setScoreMode(ScoreMode scoreMode) {
 		_scoreMode = scoreMode;
 	}

@@ -47,6 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = LayoutCrawler.class)
 public class LayoutCrawlerImpl implements LayoutCrawler {
 
+	@Override
 	public String getLayoutContent(Layout layout, Locale locale)
 		throws Exception {
 

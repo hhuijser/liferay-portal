@@ -505,6 +505,7 @@ public class InstanceResourceTest extends BaseInstanceResourceTestCase {
 		return instance;
 	}
 
+	@Override
 	protected Instance testPostProcessInstance_addInstance(Instance instance)
 		throws Exception {
 

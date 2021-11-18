@@ -77,6 +77,7 @@ public class GoogleCloudTranslator implements Translator {
 		return false;
 	}
 
+	@Override
 	public boolean isEnabled(long companyId) throws ConfigurationException {
 		GoogleCloudTranslatorConfiguration
 			googleCloudTranslatorCompanyConfiguration =

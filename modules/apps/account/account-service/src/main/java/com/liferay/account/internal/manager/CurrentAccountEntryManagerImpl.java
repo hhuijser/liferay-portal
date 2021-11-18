@@ -53,6 +53,7 @@ import org.osgi.service.component.annotations.Reference;
 public class CurrentAccountEntryManagerImpl
 	implements CurrentAccountEntryManager {
 
+	@Override
 	public AccountEntry getCurrentAccountEntry(long groupId, long userId)
 		throws PortalException {
 
@@ -87,6 +88,7 @@ public class CurrentAccountEntryManagerImpl
 		return null;
 	}
 
+	@Override
 	public void setCurrentAccountEntry(
 		long accountEntryId, long groupId, long userId) {
 

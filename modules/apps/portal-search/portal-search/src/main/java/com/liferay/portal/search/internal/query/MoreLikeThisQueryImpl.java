@@ -52,6 +52,7 @@ public class MoreLikeThisQueryImpl
 		return queryVisitor.visit(this);
 	}
 
+	@Override
 	public void addDocumentIdentifier(DocumentIdentifier documentIdentifier) {
 		_documentIdentifiers.add(documentIdentifier);
 	}
@@ -63,6 +64,7 @@ public class MoreLikeThisQueryImpl
 		_documentIdentifiers.addAll(documentIdentifiers);
 	}
 
+	@Override
 	public void addDocumentIdentifiers(
 		DocumentIdentifier... documentIdentifiers) {
 
@@ -94,6 +96,7 @@ public class MoreLikeThisQueryImpl
 		_likeTexts.addAll(likeTexts);
 	}
 
+	@Override
 	public void addLikeTexts(String... likeTexts) {
 		Collections.addAll(_likeTexts, likeTexts);
 	}
@@ -108,6 +111,7 @@ public class MoreLikeThisQueryImpl
 		_stopWords.addAll(stopWords);
 	}
 
+	@Override
 	public void addStopWords(String... stopWords) {
 		Collections.addAll(_stopWords, stopWords);
 	}

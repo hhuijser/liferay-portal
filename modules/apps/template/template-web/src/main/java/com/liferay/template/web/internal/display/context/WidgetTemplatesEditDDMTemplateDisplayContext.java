@@ -57,6 +57,7 @@ public class WidgetTemplatesEditDDMTemplateDisplayContext
 		return templateHandler.getName(_themeDisplay.getLocale());
 	}
 
+	@Override
 	public String getUpdateDDMTemplateURL() {
 		return PortletURLBuilder.createActionURL(
 			liferayPortletResponse

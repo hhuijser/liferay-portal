@@ -34,7 +34,8 @@ public class
 	}
 
 	@Override/**/
-	public String getJspPath() {
+	@Override
+public String getJspPath() {
 		return "/authentication/general.jsp";
 	}
 

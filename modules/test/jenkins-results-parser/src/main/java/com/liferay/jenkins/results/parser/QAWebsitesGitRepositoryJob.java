@@ -28,6 +28,7 @@ import java.util.Set;
 public class QAWebsitesGitRepositoryJob
 	extends GitRepositoryJob implements PortalTestClassJob, TestSuiteJob {
 
+	@Override
 	public String getBranchName() {
 		return _upstreamBranchName;
 	}

@@ -40,6 +40,7 @@ public class BundleSupportMavenTest extends BundleSupportCommandsTest {
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
 	@BeforeClass
+	@Override
 	public static void setUpClass() throws Exception {
 		BundleSupportCommandsTest.setUpClass();
 

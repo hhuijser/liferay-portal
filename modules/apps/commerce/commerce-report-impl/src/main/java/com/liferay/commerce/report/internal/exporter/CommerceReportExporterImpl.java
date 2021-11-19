@@ -25,6 +25,7 @@ import java.util.Map;
  */
 public class CommerceReportExporterImpl implements CommerceReportExporter {
 
+	@Override
 	public byte[] export(
 		Collection<?> beanCollection, Map<String, Object> parameters) {
 

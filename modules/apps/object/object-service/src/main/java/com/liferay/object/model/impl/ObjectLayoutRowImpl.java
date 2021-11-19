@@ -23,10 +23,12 @@ import java.util.List;
  */
 public class ObjectLayoutRowImpl extends ObjectLayoutRowBaseImpl {
 
+	@Override
 	public List<ObjectLayoutColumn> getObjectLayoutColumns() {
 		return _objectLayoutColumns;
 	}
 
+	@Override
 	public void setObjectLayoutColumns(
 		List<ObjectLayoutColumn> objectLayoutColumns) {
 

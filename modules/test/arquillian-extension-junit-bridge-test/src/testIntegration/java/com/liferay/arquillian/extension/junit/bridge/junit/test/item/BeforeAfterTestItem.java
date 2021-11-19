@@ -38,11 +38,13 @@ public class BeforeAfterTestItem extends BaseBeforeAfterTestItem {
 	}
 
 	@Before
+	@Override
 	public static void setUpOverridden() throws IOException {
 		testItemHelper.write("setUpOverriddenChild");
 	}
 
 	@After
+	@Override
 	public static void tearDownOverridden() throws IOException {
 		testItemHelper.write("tearDownOverriddenChild");
 	}

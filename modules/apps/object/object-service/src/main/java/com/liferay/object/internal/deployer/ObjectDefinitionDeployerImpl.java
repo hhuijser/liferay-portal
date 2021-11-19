@@ -105,6 +105,7 @@ public class ObjectDefinitionDeployerImpl implements ObjectDefinitionDeployer {
 			workflowStatusModelPreFilterContributor;
 	}
 
+	@Override
 	public List<ServiceRegistration<?>> deploy(
 		ObjectDefinition objectDefinition) {
 

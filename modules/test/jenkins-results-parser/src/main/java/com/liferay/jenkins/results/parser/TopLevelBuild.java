@@ -205,6 +205,7 @@ public abstract class TopLevelBuild extends BaseBuild {
 		return getTempMap(tempMapName);
 	}
 
+	@Override
 	public JSONObject getBuildResultsJSONObject(
 		String[] buildResults, String[] testStatuses, String[] dataTypes) {
 

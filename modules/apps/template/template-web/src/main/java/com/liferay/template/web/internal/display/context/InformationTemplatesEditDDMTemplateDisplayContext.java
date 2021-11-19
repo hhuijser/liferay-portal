@@ -114,6 +114,7 @@ public class InformationTemplatesEditDDMTemplateDisplayContext
 		);
 	}
 
+	@Override
 	public String getUpdateDDMTemplateURL() {
 		return PortletURLBuilder.createActionURL(
 			liferayPortletResponse

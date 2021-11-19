@@ -96,6 +96,7 @@ public class InformationTemplatesManagementToolbarDisplayContext
 		).build();
 	}
 
+	@Override
 	public Map<String, Object> getAdditionalProps() {
 		return HashMapBuilder.<String, Object>put(
 			"addTemplateEntryURL",

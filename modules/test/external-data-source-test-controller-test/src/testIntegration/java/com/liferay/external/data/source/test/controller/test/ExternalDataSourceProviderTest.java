@@ -40,6 +40,7 @@ public class ExternalDataSourceProviderTest
 		new AggregateTestRule(
 			new AssumeTestRule("assume"), new LiferayIntegrationTestRule());
 
+	@Override
 	public static void assume() {
 		DB db = DBManagerUtil.getDB();
 

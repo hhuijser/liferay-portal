@@ -31,6 +31,7 @@ public class DLFileEntrySearchLegacyDDMIndexFieldsTest
 	extends DLFileEntrySearchTest {
 
 	@BeforeClass
+	@Override
 	public static void setUpClass() throws Exception {
 		ConfigurationTestUtil.saveConfiguration(
 			DDMIndexerConfiguration.class.getName(),
@@ -40,6 +41,7 @@ public class DLFileEntrySearchLegacyDDMIndexFieldsTest
 	}
 
 	@AfterClass
+	@Override
 	public static void tearDownClass() throws Exception {
 		ConfigurationTestUtil.deleteConfiguration(
 			DDMIndexerConfiguration.class.getName());

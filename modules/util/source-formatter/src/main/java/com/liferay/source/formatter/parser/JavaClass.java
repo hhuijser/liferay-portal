@@ -113,6 +113,10 @@ public class JavaClass extends BaseJavaTerm {
 		return _isInterface;
 	}
 
+	public void setImportNames(List<String> importNames) {
+		_importNames = importNames;
+	}
+
 	public void setPackageName(String packageName) {
 		_packageName = packageName;
 	}
@@ -146,7 +150,7 @@ public class JavaClass extends BaseJavaTerm {
 	private final List<JavaTerm> _childJavaTerms = new ArrayList<>();
 	private final List<String> _extendedClassNames = new ArrayList<>();
 	private final List<String> _implementedClassNames = new ArrayList<>();
-	private final List<String> _importNames = new ArrayList<>();
+	private List<String> _importNames = new ArrayList<>();
 	private final boolean _isInterface;
 	private String _packageName;
 

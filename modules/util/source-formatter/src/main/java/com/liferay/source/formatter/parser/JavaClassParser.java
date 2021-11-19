@@ -40,6 +40,13 @@ public class JavaClassParser {
 	public static List<JavaClass> parseAnonymousClasses(String content)
 		throws IOException, ParseException {
 
+		return parseAnonymousClasses(content, null, null);
+	}
+
+	public static List<JavaClass> parseAnonymousClasses(
+			String content, String packageName, List<String> importNames)
+		throws IOException, ParseException {
+
 		List<JavaClass> anonymousClasses = new ArrayList<>();
 
 		Matcher matcher = _anonymousClassPattern.matcher(content);
@@ -53,12 +60,21 @@ public class JavaClassParser {
 				continue;
 			}
 
-			anonymousClasses.add(
-				_parseJavaClass(
-					StringPool.BLANK, anonymousClassContent,
-					SourceUtil.getLineNumber(content, matcher.start()),
-					JavaTerm.ACCESS_MODIFIER_PRIVATE, false, false, false,
-					false, false, true));
+			JavaClass anonymousClass = _parseJavaClass(
+				StringPool.BLANK, anonymousClassContent,
+				SourceUtil.getLineNumber(content, matcher.start()),
+				JavaTerm.ACCESS_MODIFIER_PRIVATE, false, false, false, false,
+				false, true);
+
+			if (packageName != null) {
+				anonymousClass.setPackageName(packageName);
+			}
+
+			if (importNames != null) {
+				anonymousClass.setImportNames(importNames);
+			}
+
+			anonymousClasses.add(anonymousClass);
 		}
 
 		return anonymousClasses;

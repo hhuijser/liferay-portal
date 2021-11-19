@@ -86,6 +86,7 @@ public class AccountResourceImpl
 				externalReferenceCode));
 	}
 
+	@Override
 	public void deleteOrganizationAccounts(
 			Long organizationId, Long[] accountIds)
 		throws Exception {
@@ -96,6 +97,7 @@ public class AccountResourceImpl
 		}
 	}
 
+	@Override
 	public void deleteOrganizationAccountsByExternalReferenceCode(
 			Long organizationId, String[] externalReferenceCodes)
 		throws Exception {
@@ -203,6 +205,7 @@ public class AccountResourceImpl
 			search, filter, pagination, sorts);
 	}
 
+	@Override
 	public void patchOrganizationMoveAccounts(
 			Long sourceOrganizationId, Long targetOrganizationId,
 			Long[] accountIds)
@@ -212,6 +215,7 @@ public class AccountResourceImpl
 		postOrganizationAccounts(targetOrganizationId, accountIds);
 	}
 
+	@Override
 	public void patchOrganizationMoveAccountsByExternalReferenceCode(
 			Long sourceOrganizationId, Long targetOrganizationId,
 			String[] externalReferenceCodes)
@@ -237,6 +241,7 @@ public class AccountResourceImpl
 		return _toAccount(accountEntry);
 	}
 
+	@Override
 	public void postOrganizationAccounts(Long organizationId, Long[] accountIds)
 		throws Exception {
 
@@ -246,6 +251,7 @@ public class AccountResourceImpl
 		}
 	}
 
+	@Override
 	public void postOrganizationAccountsByExternalReferenceCode(
 			Long organizationId, String[] externalReferenceCodes)
 		throws Exception {

@@ -58,6 +58,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = BatchEngineBroker.class)
 public class BatchEngineBrokerImpl implements BatchEngineBroker {
 
+	@Override
 	public void submit(long batchPlannerPlanId) {
 		try {
 			BatchPlannerPlan batchPlannerPlan =

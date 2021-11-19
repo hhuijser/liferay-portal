@@ -147,6 +147,7 @@ public class SamlSpSessionLocalServiceImpl
 		return samlSpSessionPersistence.findByC_SI(companyId, sessionIndex);
 	}
 
+	@Override
 	public List<SamlSpSession> getSamlSpSessions(
 		long companyId, String nameIdFormat, String nameIdNameQualifier,
 		String nameIdSPNameQualifier, String nameIdValue,

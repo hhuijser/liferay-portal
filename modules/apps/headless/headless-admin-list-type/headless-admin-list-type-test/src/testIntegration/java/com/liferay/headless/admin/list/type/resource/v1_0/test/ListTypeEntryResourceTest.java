@@ -38,6 +38,7 @@ public class ListTypeEntryResourceTest
 	extends BaseListTypeEntryResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
@@ -69,6 +70,7 @@ public class ListTypeEntryResourceTest
 		return listTypeEntry;
 	}
 
+	@Override
 	protected ListTypeEntry testDeleteListTypeEntry_addListTypeEntry()
 		throws Exception {
 

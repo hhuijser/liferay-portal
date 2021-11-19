@@ -27,6 +27,7 @@ import java.util.Set;
 public abstract class PluginsGitRepositoryJob
 	extends GitRepositoryJob implements PortalTestClassJob {
 
+	@Override
 	public String getBranchName() {
 		return _branchName;
 	}

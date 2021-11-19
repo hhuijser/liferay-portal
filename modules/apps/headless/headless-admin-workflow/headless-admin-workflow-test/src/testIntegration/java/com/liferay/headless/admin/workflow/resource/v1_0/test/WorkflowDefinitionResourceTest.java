@@ -49,6 +49,7 @@ public class WorkflowDefinitionResourceTest
 	extends BaseWorkflowDefinitionResourceTestCase {
 
 	@BeforeClass
+	@Override
 	public static void setUpClass() throws Exception {
 		BaseWorkflowDefinitionResourceTestCase.setUpClass();
 

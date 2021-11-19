@@ -51,6 +51,7 @@ import org.junit.runner.RunWith;
 public class ShipmentResourceTest extends BaseShipmentResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 

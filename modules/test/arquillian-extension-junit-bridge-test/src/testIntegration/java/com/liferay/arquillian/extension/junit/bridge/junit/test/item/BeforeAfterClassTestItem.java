@@ -48,6 +48,7 @@ public class BeforeAfterClassTestItem extends BaseBeforeAfterClassTestItem {
 	}
 
 	@BeforeClass
+	@Override
 	public static void setUpClassOverridden() throws IOException {
 		testItemHelper.write("setUpClassOverriddenChild");
 	}
@@ -63,6 +64,7 @@ public class BeforeAfterClassTestItem extends BaseBeforeAfterClassTestItem {
 	}
 
 	@AfterClass
+	@Override
 	public static void tearDownClassOverridden() throws IOException {
 		testItemHelper.write("tearDownClassOverriddenChild");
 	}

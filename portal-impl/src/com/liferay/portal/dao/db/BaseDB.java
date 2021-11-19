@@ -301,6 +301,7 @@ public abstract class BaseDB implements DB {
 		return _SUPPORTS_UPDATE_WITH_INNER_JOIN;
 	}
 
+	@Override
 	public void process(UnsafeConsumer<Long, Exception> unsafeConsumer)
 		throws Exception {
 

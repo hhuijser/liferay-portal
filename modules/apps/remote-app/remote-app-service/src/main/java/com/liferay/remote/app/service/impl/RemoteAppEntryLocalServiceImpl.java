@@ -274,6 +274,7 @@ public class RemoteAppEntryLocalServiceImpl
 	}
 
 	@Indexable(type = IndexableType.REINDEX)
+	@Override
 	public RemoteAppEntry updateCustomElementRemoteAppEntry(
 			long remoteAppEntryId, String customElementCSSURLs,
 			String customElementHTMLElementName, String customElementURLs,

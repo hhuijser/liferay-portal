@@ -167,6 +167,7 @@ public class GradleUtil extends com.liferay.gradle.util.GradleUtil {
 		return false;
 	}
 
+	@Override
 	public static File toFile(Project project, Object object) {
 		object = toObject(object);
 

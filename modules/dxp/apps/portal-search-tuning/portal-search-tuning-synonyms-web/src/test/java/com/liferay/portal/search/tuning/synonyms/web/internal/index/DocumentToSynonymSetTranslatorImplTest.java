@@ -38,6 +38,7 @@ public class DocumentToSynonymSetTranslatorImplTest
 		LiferayUnitTestRule.INSTANCE;
 
 	@Before
+	@Override
 	public void setUp() {
 		_documentToSynonymSetTranslatorImpl =
 			new DocumentToSynonymSetTranslatorImpl();

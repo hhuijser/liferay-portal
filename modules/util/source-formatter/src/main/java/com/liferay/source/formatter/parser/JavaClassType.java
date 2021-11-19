@@ -185,9 +185,7 @@ public class JavaClassType {
 			return;
 		}
 
-		Pattern pattern = Pattern.compile("^([a-z]\\w*\\.){2,}([A-Z].*)");
-
-		Matcher matcher = pattern.matcher(type);
+		Matcher matcher = _fullQualifiedNamePattern.matcher(type);
 
 		if (matcher.find()) {
 			_packageName = type.substring(0, matcher.end(1) - 1);
@@ -262,6 +260,9 @@ public class JavaClassType {
 		"UnsupportedOperationException", "VerifyError", "VirtualMachineError",
 		"Void"
 	};
+
+	private static final Pattern _fullQualifiedNamePattern = Pattern.compile(
+		"^([a-z]\\w*\\.){2,}([A-Z].*)");
 
 	private int _arrayDimension;
 	private JavaClassType _extendedClassType;

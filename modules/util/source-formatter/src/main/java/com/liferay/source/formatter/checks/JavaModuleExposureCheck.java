@@ -69,7 +69,7 @@ public class JavaModuleExposureCheck extends BaseJavaTermCheck {
 		}
 
 		String exposedSPIType = _getExposedSPIType(
-			javaTerm, javaClass.getImports());
+			javaTerm, javaClass.getImportNames());
 
 		if (exposedSPIType != null) {
 			addMessage(

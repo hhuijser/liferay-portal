@@ -120,7 +120,7 @@ public class JavaAnnotationDefaultAttributeCheck extends JavaAnnotationsCheck {
 		String annotationName, String attributeName,
 		String defaultAttributeValue) {
 
-		List<String> imports = javaClass.getImports();
+		List<String> imports = javaClass.getImportNames();
 
 		String importName = null;
 

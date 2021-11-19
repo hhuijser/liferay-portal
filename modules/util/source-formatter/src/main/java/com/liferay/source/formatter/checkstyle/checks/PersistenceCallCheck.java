@@ -96,7 +96,7 @@ public class PersistenceCallCheck extends BaseCheck {
 
 		for (DetailAST methodCallDetailAST : methodCallDetailASTList) {
 			_checkMethodCall(
-				methodCallDetailAST, javaClass.getImports(), variablesMap,
+				methodCallDetailAST, javaClass.getImportNames(), variablesMap,
 				javaClass.getPackageName());
 		}
 	}
@@ -238,7 +238,7 @@ public class PersistenceCallCheck extends BaseCheck {
 	private String _getFullyQualifiedName(
 		String className, JavaClass javaClass) {
 
-		for (String importName : javaClass.getImports()) {
+		for (String importName : javaClass.getImportNames()) {
 			if (importName.endsWith(StringPool.PERIOD + className)) {
 				return importName;
 			}

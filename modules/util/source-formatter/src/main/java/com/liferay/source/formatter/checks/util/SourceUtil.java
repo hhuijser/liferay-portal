@@ -513,13 +513,15 @@ public class SourceUtil {
 				JSONArray parametersJSONArray = new JSONArrayImpl();
 
 				for (JavaParameter javaParameter : parameters) {
-					parametersJSONArray.put(javaParameter.getParameterType());
+					parametersJSONArray.put(
+						javaParameter.getParameterType(true));
 				}
 
 				methodJSONObject.put("parameters", parametersJSONArray);
 			}
 
-			methodJSONObject.put("returnType", javaSignature.getReturnType());
+			methodJSONObject.put(
+				"returnType", javaSignature.getReturnType(true));
 
 			methodsJSONArray.put(methodJSONObject);
 		}

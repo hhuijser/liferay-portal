@@ -45,13 +45,19 @@ public class JavaClass extends BaseJavaTerm {
 
 	public void addExtendedClassNames(String... extendedClassNames) {
 		for (String extendedClassName : extendedClassNames) {
-			_extendedClassNames.add(StringUtil.trim(extendedClassName));
+			_extendedClassTypes.add(
+				new JavaClassType(
+					StringUtil.trim(extendedClassName), _packageName,
+					_importNames));
 		}
 	}
 
 	public void addImplementedClassNames(String... implementedClassNames) {
 		for (String implementedClassName : implementedClassNames) {
-			_implementedClassNames.add(StringUtil.trim(implementedClassName));
+			_implementedClassTypes.add(
+				new JavaClassType(
+					StringUtil.trim(implementedClassName), _packageName,
+					_importNames));
 		}
 	}
 
@@ -67,26 +73,34 @@ public class JavaClass extends BaseJavaTerm {
 		return getExtendedClassNames(false);
 	}
 
-	public List<String> getExtendedClassNames(boolean fullyQualifiedClassName) {
-		if (!fullyQualifiedClassName || _extendedClassNames.isEmpty()) {
-			return _extendedClassNames;
+	public List<String> getExtendedClassNames(boolean fullyQualifiedName) {
+		List<String> extendedClassNames = new ArrayList<>();
+
+		for (JavaClassType extendedClassType : _extendedClassTypes) {
+			extendedClassNames.add(
+				extendedClassType.toString(fullyQualifiedName));
 		}
 
-		return _getFullyQualifiedClassNames(_extendedClassNames);
+		return extendedClassNames;
 	}
 
 	public List<String> getImplementedClassNames() {
 		return getImplementedClassNames(false);
 	}
 
-	public List<String> getImplementedClassNames(
-		boolean fullyQualifiedClassName) {
+	public List<String> getImplementedClassNames(boolean fullyQualifiedName) {
+		List<String> implementedClassNames = new ArrayList<>();
 
-		if (!fullyQualifiedClassName || _implementedClassNames.isEmpty()) {
-			return _implementedClassNames;
+		for (JavaClassType implementedClassType : _implementedClassTypes) {
+			implementedClassNames.add(
+				implementedClassType.toString(fullyQualifiedName));
 		}
 
-		return _getFullyQualifiedClassNames(_implementedClassNames);
+		return implementedClassNames;
+	}
+
+	public List<JavaClassType> getImplementedClassTypes() {
+		return _implementedClassTypes;
 	}
 
 	public List<String> getImportNames() {
@@ -121,35 +135,11 @@ public class JavaClass extends BaseJavaTerm {
 		_packageName = packageName;
 	}
 
-	private List<String> _getFullyQualifiedClassNames(List<String> classNames) {
-		List<String> fullyQualifiedClassNames = new ArrayList<>();
-
-		outerLoop:
-		for (String className : classNames) {
-			if (className.matches("([a-z]\\w*\\.){2,}[A-Z]\\w*")) {
-				fullyQualifiedClassNames.add(className);
-
-				continue;
-			}
-
-			for (String importName : _importNames) {
-				if (importName.endsWith("." + className)) {
-					fullyQualifiedClassNames.add(importName);
-
-					continue outerLoop;
-				}
-			}
-
-			fullyQualifiedClassNames.add(_packageName + "." + className);
-		}
-
-		return fullyQualifiedClassNames;
-	}
-
 	private final boolean _anonymous;
 	private final List<JavaTerm> _childJavaTerms = new ArrayList<>();
-	private final List<String> _extendedClassNames = new ArrayList<>();
-	private final List<String> _implementedClassNames = new ArrayList<>();
+	private final List<JavaClassType> _extendedClassTypes = new ArrayList<>();
+	private final List<JavaClassType> _implementedClassTypes =
+		new ArrayList<>();
 	private List<String> _importNames = new ArrayList<>();
 	private final boolean _isInterface;
 	private String _packageName;

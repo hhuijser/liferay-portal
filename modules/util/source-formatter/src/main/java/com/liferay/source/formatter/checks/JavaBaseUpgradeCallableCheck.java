@@ -63,7 +63,7 @@ public class JavaBaseUpgradeCallableCheck extends BaseJavaTermCheck {
 				getLineNumber(fileContent, runnablematcher.start()));
 		}
 
-		List<String> importNames = javaClass.getImports();
+		List<String> importNames = javaClass.getImportNames();
 
 		for (String importName : importNames) {
 			if (importName.equals(

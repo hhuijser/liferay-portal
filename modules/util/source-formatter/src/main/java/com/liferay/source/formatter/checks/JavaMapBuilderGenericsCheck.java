@@ -125,7 +125,7 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 			javaClass = javaClass.getParentJavaClass();
 		}
 
-		for (String importName : javaClass.getImports()) {
+		for (String importName : javaClass.getImportNames()) {
 			if (!importName.endsWith("." + typeName)) {
 				continue;
 			}

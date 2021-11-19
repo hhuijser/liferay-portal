@@ -140,7 +140,7 @@ public class JavaClassParser {
 
 		for (String importLine : importLines) {
 			if (Validator.isNotNull(importLine)) {
-				javaClass.addImport(
+				javaClass.addImportName(
 					importLine.substring(7, importLine.length() - 1));
 			}
 		}

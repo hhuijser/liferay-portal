@@ -61,7 +61,7 @@ public abstract class BaseJavaTermCheck
 			JavaClass parentJavaClass = javaClass.getParentJavaClass();
 
 			if (parentJavaClass == null) {
-				return javaClass.getImports();
+				return javaClass.getImportNames();
 			}
 
 			javaClass = parentJavaClass;

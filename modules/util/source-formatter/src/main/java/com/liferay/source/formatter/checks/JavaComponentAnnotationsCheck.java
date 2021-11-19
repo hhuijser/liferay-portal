@@ -67,7 +67,7 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 			return annotation;
 		}
 
-		List<String> importNames = javaClass.getImports();
+		List<String> importNames = javaClass.getImportNames();
 
 		if (!importNames.contains(
 				"org.osgi.service.component.annotations.Component")) {
@@ -241,7 +241,7 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 			return annotation;
 		}
 
-		List<String> imports = javaClass.getImports();
+		List<String> imports = javaClass.getImportNames();
 
 		if (imports.contains(
 				"org.osgi.service.component.annotations.Modified") ||

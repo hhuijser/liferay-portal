@@ -90,7 +90,7 @@ public class JavaStagedModelDataHandlerCheck extends BaseJavaTermCheck {
 		String stagedModelType = stagedModelJavaParameter.getParameterType();
 
 		String primaryKey = _getPrimaryKey(
-			fileName, stagedModelType, javaClass.getImports());
+			fileName, stagedModelType, javaClass.getImportNames());
 
 		if (primaryKey == null) {
 			return javaMethodContent;

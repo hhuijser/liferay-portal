@@ -132,11 +132,14 @@ public class SourceChecksUtil {
 			else {
 				if (javaClass == null) {
 					try {
-						anonymousClasses =
-							JavaClassParser.parseAnonymousClasses(
-								sourceChecksResult.getContent());
 						javaClass = JavaClassParser.parseJavaClass(
 							fileName, sourceChecksResult.getContent());
+
+						anonymousClasses =
+							JavaClassParser.parseAnonymousClasses(
+								sourceChecksResult.getContent(),
+								javaClass.getPackageName(),
+								javaClass.getImportNames());
 					}
 					catch (ParseException parseException) {
 						sourceChecksResult.addSourceFormatterMessage(

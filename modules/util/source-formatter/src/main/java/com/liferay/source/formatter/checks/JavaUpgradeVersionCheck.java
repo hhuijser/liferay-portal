@@ -75,8 +75,8 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			}
 
 			String latestUpgradeVersion = _checkLatestUpgradeVersion(
-				fileName, absolutePath, childJavaTerm, javaClass.getImports(),
-				javaClass.getPackageName());
+				fileName, absolutePath, childJavaTerm,
+				javaClass.getImportNames(), javaClass.getPackageName());
 
 			content = _fixDummyUpgradeStepVersion(
 				content, childJavaTerm, latestUpgradeVersion);

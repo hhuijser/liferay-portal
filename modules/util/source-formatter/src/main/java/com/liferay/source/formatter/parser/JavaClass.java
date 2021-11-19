@@ -55,8 +55,8 @@ public class JavaClass extends BaseJavaTerm {
 		}
 	}
 
-	public void addImport(String importName) {
-		_imports.add(importName);
+	public void addImportName(String importName) {
+		_importNames.add(importName);
 	}
 
 	public List<JavaTerm> getChildJavaTerms() {
@@ -89,8 +89,8 @@ public class JavaClass extends BaseJavaTerm {
 		return _getFullyQualifiedClassNames(_implementedClassNames);
 	}
 
-	public List<String> getImports() {
-		return _imports;
+	public List<String> getImportNames() {
+		return _importNames;
 	}
 
 	public String getName(boolean fullyQualifiedClassName) {
@@ -128,7 +128,7 @@ public class JavaClass extends BaseJavaTerm {
 				continue;
 			}
 
-			for (String importName : _imports) {
+			for (String importName : _importNames) {
 				if (importName.endsWith("." + className)) {
 					fullyQualifiedClassNames.add(importName);
 
@@ -146,7 +146,7 @@ public class JavaClass extends BaseJavaTerm {
 	private final List<JavaTerm> _childJavaTerms = new ArrayList<>();
 	private final List<String> _extendedClassNames = new ArrayList<>();
 	private final List<String> _implementedClassNames = new ArrayList<>();
-	private final List<String> _imports = new ArrayList<>();
+	private final List<String> _importNames = new ArrayList<>();
 	private final boolean _isInterface;
 	private String _packageName;
 

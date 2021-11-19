@@ -42,7 +42,7 @@ public class JavaStringBundlerConcatCheck extends BaseJavaTermCheck {
 
 		JavaClass javaClass = (JavaClass)javaTerm;
 
-		List<String> imports = javaClass.getImports();
+		List<String> imports = javaClass.getImportNames();
 
 		boolean hasPetraStringStringBundler = imports.contains(
 			"com.liferay.petra.string.StringBundler");

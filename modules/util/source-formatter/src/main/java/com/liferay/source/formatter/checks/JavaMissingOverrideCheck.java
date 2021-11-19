@@ -102,7 +102,7 @@ public class JavaMissingOverrideCheck extends BaseJavaTermCheck {
 		JavaSignature javaSignature = javaMethod.getSignature();
 
 		if (!Objects.equals(
-				javaSignature.getReturnType(),
+				javaSignature.getReturnType(true),
 				methodJSONObject.getString("returnType"))) {
 
 			return false;
@@ -128,7 +128,7 @@ public class JavaMissingOverrideCheck extends BaseJavaTermCheck {
 			JavaParameter javaParameter = javaParameters.get(i++);
 
 			if (!Objects.equals(
-					javaParameter.getParameterType(), iterator.next())) {
+					javaParameter.getParameterType(true), iterator.next())) {
 
 				return false;
 			}

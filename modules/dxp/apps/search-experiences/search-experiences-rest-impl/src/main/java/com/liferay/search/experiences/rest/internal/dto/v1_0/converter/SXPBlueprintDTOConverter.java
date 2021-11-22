@@ -42,27 +42,6 @@ public class SXPBlueprintDTOConverter
 	}
 
 	@Override
-	public SXPBlueprint toDTO(
-		com.liferay.search.experiences.model.SXPBlueprint sxpBlueprint) {
-
-		return new SXPBlueprint() {
-			{
-				configuration = ConfigurationUtil.toConfiguration(
-					sxpBlueprint.getConfigurationJSON());
-				description = sxpBlueprint.getDescription();
-				description_i18n = LocalizedMapUtil.getI18nMap(
-					true, sxpBlueprint.getDescriptionMap());
-				elementInstances = ElementInstanceUtil.toElementInstances(
-					sxpBlueprint.getElementInstancesJSON());
-				id = sxpBlueprint.getSXPBlueprintId();
-				title = sxpBlueprint.getTitle();
-				title_i18n = LocalizedMapUtil.getI18nMap(
-					true, sxpBlueprint.getTitleMap());
-			}
-		};
-	}
-
-	@Override
 	public SXPBlueprint toDTO(DTOConverterContext dtoConverterContext)
 		throws Exception {
 
@@ -95,6 +74,27 @@ public class SXPBlueprintDTOConverter
 				title_i18n = LocalizedMapUtil.getI18nMap(
 					dtoConverterContext.isAcceptAllLanguages(),
 					sxpBlueprint.getTitleMap());
+			}
+		};
+	}
+
+	@Override
+	public SXPBlueprint toDTO(
+		com.liferay.search.experiences.model.SXPBlueprint sxpBlueprint) {
+
+		return new SXPBlueprint() {
+			{
+				configuration = ConfigurationUtil.toConfiguration(
+					sxpBlueprint.getConfigurationJSON());
+				description = sxpBlueprint.getDescription();
+				description_i18n = LocalizedMapUtil.getI18nMap(
+					true, sxpBlueprint.getDescriptionMap());
+				elementInstances = ElementInstanceUtil.toElementInstances(
+					sxpBlueprint.getElementInstancesJSON());
+				id = sxpBlueprint.getSXPBlueprintId();
+				title = sxpBlueprint.getTitle();
+				title_i18n = LocalizedMapUtil.getI18nMap(
+					true, sxpBlueprint.getTitleMap());
 			}
 		};
 	}

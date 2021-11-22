@@ -34,6 +34,16 @@ public class RepositoryConfigurationBuilder {
 		this(LanguageUtil.getResourceBundleLoader());
 	}
 
+	public RepositoryConfigurationBuilder(
+		ResourceBundleLoader resourceBundleLoader, String... names) {
+
+		_resourceBundleLoader = resourceBundleLoader;
+
+		for (String name : names) {
+			addParameter(name);
+		}
+	}
+
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 *             #RepositoryConfigurationBuilder(ResourceBundleLoader,
@@ -55,16 +65,6 @@ public class RepositoryConfigurationBuilder {
 
 			},
 			names);
-	}
-
-	public RepositoryConfigurationBuilder(
-		ResourceBundleLoader resourceBundleLoader, String... names) {
-
-		_resourceBundleLoader = resourceBundleLoader;
-
-		for (String name : names) {
-			addParameter(name);
-		}
 	}
 
 	public RepositoryConfigurationBuilder addParameter(String name) {

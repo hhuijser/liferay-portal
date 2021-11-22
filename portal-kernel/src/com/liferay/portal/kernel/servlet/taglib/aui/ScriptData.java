@@ -41,6 +41,24 @@ import java.util.stream.Stream;
  */
 public class ScriptData implements Mergeable<ScriptData>, Serializable {
 
+	public void append(
+		String portletId, String content, String modules,
+		ModulesType modulesType) {
+
+		PortletData portletData = _getPortletData(portletId);
+
+		portletData.append(content, modules, modulesType);
+	}
+
+	public void append(
+		String portletId, StringBundler contentSB, String modules,
+		ModulesType modulesType) {
+
+		PortletData portletData = _getPortletData(portletId);
+
+		portletData.append(contentSB, modules, modulesType);
+	}
+
 	/**
 	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
 	 *             #append(String, StringBundler, String, ModulesType)}
@@ -60,24 +78,6 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 		}
 
 		portletData.append(sb, modules, modulesType);
-	}
-
-	public void append(
-		String portletId, String content, String modules,
-		ModulesType modulesType) {
-
-		PortletData portletData = _getPortletData(portletId);
-
-		portletData.append(content, modules, modulesType);
-	}
-
-	public void append(
-		String portletId, StringBundler contentSB, String modules,
-		ModulesType modulesType) {
-
-		PortletData portletData = _getPortletData(portletId);
-
-		portletData.append(contentSB, modules, modulesType);
 	}
 
 	public void mark() {

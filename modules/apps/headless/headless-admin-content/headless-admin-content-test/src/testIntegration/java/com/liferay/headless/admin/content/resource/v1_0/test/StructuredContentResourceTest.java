@@ -308,6 +308,21 @@ public class StructuredContentResourceTest
 		return StringUtil.read(inputStream);
 	}
 
+	private com.liferay.headless.delivery.client.dto.v1_0.StructuredContent
+		_toStructuredContent(StructuredContent structuredContent) {
+
+		return new com.liferay.headless.delivery.client.dto.v1_0.
+			StructuredContent() {
+
+			{
+				setContentStructureId(
+					structuredContent.getContentStructureId());
+				setSiteId(structuredContent.getSiteId());
+				setTitle(structuredContent.getTitle());
+			}
+		};
+	}
+
 	private StructuredContent _toStructuredContent(
 		com.liferay.headless.delivery.client.dto.v1_0.StructuredContent
 			structuredContent) {
@@ -319,21 +334,6 @@ public class StructuredContentResourceTest
 				setDateCreated(structuredContent.getDateCreated());
 				setDateModified(structuredContent.getDateModified());
 				setId(structuredContent.getId());
-				setSiteId(structuredContent.getSiteId());
-				setTitle(structuredContent.getTitle());
-			}
-		};
-	}
-
-	private com.liferay.headless.delivery.client.dto.v1_0.StructuredContent
-		_toStructuredContent(StructuredContent structuredContent) {
-
-		return new com.liferay.headless.delivery.client.dto.v1_0.
-			StructuredContent() {
-
-			{
-				setContentStructureId(
-					structuredContent.getContentStructureId());
 				setSiteId(structuredContent.getSiteId());
 				setTitle(structuredContent.getTitle());
 			}

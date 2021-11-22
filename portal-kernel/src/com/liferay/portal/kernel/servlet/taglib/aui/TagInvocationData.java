@@ -30,6 +30,18 @@ import java.util.regex.Pattern;
  */
 public class TagInvocationData implements Serializable {
 
+	public TagInvocationData(String content, String require) {
+		_contentSB.append(content);
+
+		_initModulesAndVariableAliases(require);
+	}
+
+	public TagInvocationData(StringBundler contentSB, String require) {
+		_contentSB.append(contentSB);
+
+		_initModulesAndVariableAliases(require);
+	}
+
 	/**
 	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
 	 *             #TagInvocationData(StringBundler, String)}
@@ -46,18 +58,6 @@ public class TagInvocationData implements Serializable {
 		}
 
 		_contentSB.append(sb);
-
-		_initModulesAndVariableAliases(require);
-	}
-
-	public TagInvocationData(String content, String require) {
-		_contentSB.append(content);
-
-		_initModulesAndVariableAliases(require);
-	}
-
-	public TagInvocationData(StringBundler contentSB, String require) {
-		_contentSB.append(contentSB);
 
 		_initModulesAndVariableAliases(require);
 	}

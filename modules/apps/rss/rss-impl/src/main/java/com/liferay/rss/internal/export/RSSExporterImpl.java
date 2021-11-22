@@ -77,6 +77,22 @@ public class RSSExporterImpl implements RSSExporter {
 		}
 	}
 
+	private static String _regexpStrip(String text) {
+		text = Normalizer.normalizeToAscii(text);
+
+		char[] array = text.toCharArray();
+
+		for (int i = 0; i < array.length; i++) {
+			String s = String.valueOf(array[i]);
+
+			if (!s.matches(_REGEXP_STRIP)) {
+				array[i] = CharPool.SPACE;
+			}
+		}
+
+		return new String(array);
+	}
+
 	private static void _regexpStrip(
 		com.rometools.rome.feed.synd.SyndFeed syndFeed) {
 
@@ -95,22 +111,6 @@ public class RSSExporterImpl implements RSSExporter {
 
 			syndContent.setValue(_regexpStrip(syndContent.getValue()));
 		}
-	}
-
-	private static String _regexpStrip(String text) {
-		text = Normalizer.normalizeToAscii(text);
-
-		char[] array = text.toCharArray();
-
-		for (int i = 0; i < array.length; i++) {
-			String s = String.valueOf(array[i]);
-
-			if (!s.matches(_REGEXP_STRIP)) {
-				array[i] = CharPool.SPACE;
-			}
-		}
-
-		return new String(array);
 	}
 
 	private com.rometools.rome.feed.synd.SyndContent _toRealSyncContent(

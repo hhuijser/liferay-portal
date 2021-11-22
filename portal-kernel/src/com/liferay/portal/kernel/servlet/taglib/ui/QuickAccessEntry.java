@@ -54,6 +54,10 @@ public class QuickAccessEntry {
 		return _url;
 	}
 
+	public void setBody(StringBundler bodySB) {
+		_bodySB = bodySB;
+	}
+
 	/**
 	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
 	 *             #setBody(StringBundler)}
@@ -63,10 +67,6 @@ public class QuickAccessEntry {
 		for (int i = 0; i < bodySB.index(); i++) {
 			_bodySB.append(bodySB.stringAt(0));
 		}
-	}
-
-	public void setBody(StringBundler bodySB) {
-		_bodySB = bodySB;
 	}
 
 	public void setData(String data) {

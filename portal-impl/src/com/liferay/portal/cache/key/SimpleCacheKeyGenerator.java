@@ -27,16 +27,6 @@ public class SimpleCacheKeyGenerator extends BaseCacheKeyGenerator {
 		return new SimpleCacheKeyGenerator();
 	}
 
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #getCacheKey(StringBundler)}
-	 */
-	@Deprecated
-	@Override
-	public String getCacheKey(com.liferay.portal.kernel.util.StringBundler sb) {
-		return sb.toString();
-	}
-
 	@Override
 	public String getCacheKey(String key) {
 		return key;
@@ -51,6 +41,16 @@ public class SimpleCacheKeyGenerator extends BaseCacheKeyGenerator {
 
 	@Override
 	public String getCacheKey(StringBundler sb) {
+		return sb.toString();
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #getCacheKey(StringBundler)}
+	 */
+	@Deprecated
+	@Override
+	public String getCacheKey(com.liferay.portal.kernel.util.StringBundler sb) {
 		return sb.toString();
 	}
 

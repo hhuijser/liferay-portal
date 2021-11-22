@@ -262,6 +262,15 @@ public class DisplayPageLayoutTypeController
 		}
 	}
 
+	@Override
+	protected ServletResponse createServletResponse(
+		HttpServletResponse httpServletResponse,
+		UnsyncStringWriter unsyncStringWriter) {
+
+		return new PipingServletResponse(
+			httpServletResponse, unsyncStringWriter);
+	}
+
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 *             #createServletResponse(HttpServletResponse,
@@ -273,15 +282,6 @@ public class DisplayPageLayoutTypeController
 		HttpServletResponse httpServletResponse,
 		com.liferay.portal.kernel.io.unsync.UnsyncStringWriter
 			unsyncStringWriter) {
-
-		return new PipingServletResponse(
-			httpServletResponse, unsyncStringWriter);
-	}
-
-	@Override
-	protected ServletResponse createServletResponse(
-		HttpServletResponse httpServletResponse,
-		UnsyncStringWriter unsyncStringWriter) {
 
 		return new PipingServletResponse(
 			httpServletResponse, unsyncStringWriter);

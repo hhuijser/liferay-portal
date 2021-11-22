@@ -127,29 +127,6 @@ public class PluginsEnvironmentBuilder {
 		}
 	}
 
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #addClasspathEntry(StringBundler, String)}
-	 */
-	@Deprecated
-	protected void addClasspathEntry(
-		com.liferay.portal.kernel.util.StringBundler sb, String jar) {
-
-		addClasspathEntry(new StringBundler(sb.getStrings()), jar);
-	}
-
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #addClasspathEntry(StringBundler, String, Map)}
-	 */
-	@Deprecated
-	protected void addClasspathEntry(
-		com.liferay.portal.kernel.util.StringBundler sb, String jar,
-		Map<String, String> attributes) {
-
-		addClasspathEntry(new StringBundler(sb.getStrings()), jar, attributes);
-	}
-
 	protected void addClasspathEntry(StringBundler sb, String jar) {
 		addClasspathEntry(sb, jar, null);
 	}
@@ -181,17 +158,25 @@ public class PluginsEnvironmentBuilder {
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #addIvyCacheJar(StringBundler, String, String, String)}
+	 *             #addClasspathEntry(StringBundler, String)}
 	 */
 	@Deprecated
-	protected void addIvyCacheJar(
-			com.liferay.portal.kernel.util.StringBundler sb, String ivyDirName,
-			String dependencyName, String version)
-		throws Exception {
+	protected void addClasspathEntry(
+		com.liferay.portal.kernel.util.StringBundler sb, String jar) {
 
-		addIvyCacheJar(
-			new StringBundler(sb.getStrings()), ivyDirName, dependencyName,
-			version);
+		addClasspathEntry(new StringBundler(sb.getStrings()), jar);
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #addClasspathEntry(StringBundler, String, Map)}
+	 */
+	@Deprecated
+	protected void addClasspathEntry(
+		com.liferay.portal.kernel.util.StringBundler sb, String jar,
+		Map<String, String> attributes) {
+
+		addClasspathEntry(new StringBundler(sb.getStrings()), jar, attributes);
 	}
 
 	protected void addIvyCacheJar(
@@ -326,16 +311,17 @@ public class PluginsEnvironmentBuilder {
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #addIvyCacheJars(StringBundler, String, String)}
+	 *             #addIvyCacheJar(StringBundler, String, String, String)}
 	 */
 	@Deprecated
-	protected void addIvyCacheJars(
-			com.liferay.portal.kernel.util.StringBundler sb, String content,
-			String ivyDirName)
+	protected void addIvyCacheJar(
+			com.liferay.portal.kernel.util.StringBundler sb, String ivyDirName,
+			String dependencyName, String version)
 		throws Exception {
 
-		addIvyCacheJars(
-			new StringBundler(sb.getStrings()), content, ivyDirName);
+		addIvyCacheJar(
+			new StringBundler(sb.getStrings()), ivyDirName, dependencyName,
+			version);
 	}
 
 	protected void addIvyCacheJars(
@@ -368,6 +354,20 @@ public class PluginsEnvironmentBuilder {
 
 			addIvyCacheJar(sb, ivyDirName, org + "/" + name, rev);
 		}
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #addIvyCacheJars(StringBundler, String, String)}
+	 */
+	@Deprecated
+	protected void addIvyCacheJars(
+			com.liferay.portal.kernel.util.StringBundler sb, String content,
+			String ivyDirName)
+		throws Exception {
+
+		addIvyCacheJars(
+			new StringBundler(sb.getStrings()), content, ivyDirName);
 	}
 
 	protected List<String> getCommonJars() {

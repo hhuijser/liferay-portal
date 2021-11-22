@@ -68,7 +68,7 @@ public class JavaMissingOverrideCheck extends BaseJavaTermCheck {
 			});
 
 		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
-			if (childJavaTerm.isJavaMethod() &&
+			if (childJavaTerm.isJavaMethod() && !childJavaTerm.isStatic() &&
 				!childJavaTerm.hasAnnotation("Deprecated", "Override") &&
 				!Objects.equals(childJavaTerm.getName(), "main") &&
 				_hasSuperMethod(

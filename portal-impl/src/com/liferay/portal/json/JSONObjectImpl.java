@@ -56,6 +56,10 @@ public class JSONObjectImpl implements JSONObject {
 		}
 	}
 
+	public JSONObjectImpl(org.json.JSONObject jsonObject) {
+		_jsonObject = jsonObject;
+	}
+
 	public JSONObjectImpl(Map<?, ?> map) {
 		_jsonObject = new org.json.JSONObject(map);
 	}
@@ -66,10 +70,6 @@ public class JSONObjectImpl implements JSONObject {
 
 	public JSONObjectImpl(Object object, String[] names) {
 		_jsonObject = new org.json.JSONObject(object, names);
-	}
-
-	public JSONObjectImpl(org.json.JSONObject jsonObject) {
-		_jsonObject = jsonObject;
 	}
 
 	public JSONObjectImpl(String json) throws JSONException {

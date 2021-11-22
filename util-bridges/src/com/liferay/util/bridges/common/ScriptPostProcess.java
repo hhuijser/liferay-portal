@@ -73,6 +73,10 @@ public class ScriptPostProcess {
 		}
 	}
 
+	public void setInitalPage(StringBundler sb) {
+		_sb = sb;
+	}
+
 	/**
 	 * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
 	 *             #setInitalPage(StringBundler)}
@@ -82,10 +86,6 @@ public class ScriptPostProcess {
 		for (int i = 0; i < sb.index(); i++) {
 			_sb.append(sb.stringAt(0));
 		}
-	}
-
-	public void setInitalPage(StringBundler sb) {
-		_sb = sb;
 	}
 
 	protected void doProcessPage(

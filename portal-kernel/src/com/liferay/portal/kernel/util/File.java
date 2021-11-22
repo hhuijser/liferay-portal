@@ -96,6 +96,8 @@ public interface File {
 
 	public byte[] getBytes(Class<?> clazz, String fileName) throws IOException;
 
+	public byte[] getBytes(java.io.File file) throws IOException;
+
 	public byte[] getBytes(InputStream inputStream) throws IOException;
 
 	public byte[] getBytes(InputStream inputStream, int bufferSize)
@@ -104,8 +106,6 @@ public interface File {
 	public byte[] getBytes(
 			InputStream inputStream, int bufferSize, boolean cleanUpStream)
 		throws IOException;
-
-	public byte[] getBytes(java.io.File file) throws IOException;
 
 	public String getExtension(String fileName);
 

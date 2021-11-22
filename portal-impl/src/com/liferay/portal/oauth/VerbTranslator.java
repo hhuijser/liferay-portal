@@ -21,24 +21,6 @@ import com.liferay.portal.kernel.oauth.Verb;
  */
 public class VerbTranslator {
 
-	public static Verb translate(org.scribe.model.Verb verb) {
-		if (verb == org.scribe.model.Verb.DELETE) {
-			return Verb.DELETE;
-		}
-		else if (verb == org.scribe.model.Verb.GET) {
-			return Verb.GET;
-		}
-		else if (verb == org.scribe.model.Verb.POST) {
-			return Verb.POST;
-		}
-		else if (verb == org.scribe.model.Verb.PUT) {
-			return Verb.PUT;
-		}
-		else {
-			throw new IllegalArgumentException("Unknown verb " + verb);
-		}
-	}
-
 	public static org.scribe.model.Verb translate(Verb verb) {
 		if (verb == Verb.DELETE) {
 			return org.scribe.model.Verb.DELETE;
@@ -51,6 +33,24 @@ public class VerbTranslator {
 		}
 		else if (verb == Verb.PUT) {
 			return org.scribe.model.Verb.PUT;
+		}
+		else {
+			throw new IllegalArgumentException("Unknown verb " + verb);
+		}
+	}
+
+	public static Verb translate(org.scribe.model.Verb verb) {
+		if (verb == org.scribe.model.Verb.DELETE) {
+			return Verb.DELETE;
+		}
+		else if (verb == org.scribe.model.Verb.GET) {
+			return Verb.GET;
+		}
+		else if (verb == org.scribe.model.Verb.POST) {
+			return Verb.POST;
+		}
+		else if (verb == org.scribe.model.Verb.PUT) {
+			return Verb.PUT;
 		}
 		else {
 			throw new IllegalArgumentException("Unknown verb " + verb);

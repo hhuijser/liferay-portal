@@ -145,26 +145,6 @@ public class SuggestSearchRequestExecutorImpl
 		_suggesterTranslator = suggesterTranslator;
 	}
 
-	protected SuggestSearchResult translate(
-		Suggest.Suggestion
-			<? extends Suggest.Suggestion.Entry
-				<? extends Suggest.Suggestion.Entry.Option>> suggestion) {
-
-		SuggestSearchResult suggestSearchResult = new SuggestSearchResult(
-			suggestion.getName());
-
-		for (Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
-				suggestionEntry : suggestion) {
-
-			SuggestSearchResult.Entry suggesterResultEntry = translate(
-				suggestionEntry);
-
-			suggestSearchResult.addEntry(suggesterResultEntry);
-		}
-
-		return suggestSearchResult;
-	}
-
 	protected SuggestSearchResult.Entry.Option translate(
 		Suggest.Suggestion.Entry.Option suggestionEntryOption) {
 
@@ -214,6 +194,26 @@ public class SuggestSearchRequestExecutorImpl
 		}
 
 		return suggesterResultEntry;
+	}
+
+	protected SuggestSearchResult translate(
+		Suggest.Suggestion
+			<? extends Suggest.Suggestion.Entry
+				<? extends Suggest.Suggestion.Entry.Option>> suggestion) {
+
+		SuggestSearchResult suggestSearchResult = new SuggestSearchResult(
+			suggestion.getName());
+
+		for (Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
+				suggestionEntry : suggestion) {
+
+			SuggestSearchResult.Entry suggesterResultEntry = translate(
+				suggestionEntry);
+
+			suggestSearchResult.addEntry(suggesterResultEntry);
+		}
+
+		return suggestSearchResult;
 	}
 
 	private ElasticsearchClientResolver _elasticsearchClientResolver;

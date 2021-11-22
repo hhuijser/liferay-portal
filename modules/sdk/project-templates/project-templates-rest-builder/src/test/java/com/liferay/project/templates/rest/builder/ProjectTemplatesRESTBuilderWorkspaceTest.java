@@ -56,27 +56,42 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
 			new Object[][] {
-				{"guestbook", "com.liferay.docs.guestbook", "7.1.3-1"},
-				{"guestbook", "com.liferay.docs.guestbook", "7.2.1-1"},
-				{"guestbook", "com.liferay.docs.guestbook", "7.3.7"},
-				{"guestbook", "com.liferay.docs.guestbook", "7.4.3.4"},
 				{
-					"backend-integration", "com.liferay.docs.guestbook",
-					"7.1.3-1"
+					"guestbook", "com.liferay.docs.guestbook", "7.1.3-1",
+					"portal-7.1-ga4"
+				},
+				{
+					"guestbook", "com.liferay.docs.guestbook", "7.2.1-1",
+					"portal-7.2-ga2"
+				},
+				{
+					"guestbook", "com.liferay.docs.guestbook", "7.3.7",
+					"portal-7.3-ga8"
+				},
+				{
+					"guestbook", "com.liferay.docs.guestbook", "7.4.3.4",
+					"portal-7.4-ga4"
 				},
 				{
 					"backend-integration", "com.liferay.docs.guestbook",
-					"7.2.1-1"
+					"7.1.3-1", "portal-7.1-ga4"
 				},
-				{"backend-integration", "com.liferay.docs.guestbook", "7.3.7"},
 				{
 					"backend-integration", "com.liferay.docs.guestbook",
-					"7.4.3.4"
+					"7.2.1-1", "portal-7.2-ga2"
 				},
-				{"sample", "com.test.sample", "7.1.3-1"},
-				{"sample", "com.test.sample", "7.2.1-1"},
-				{"sample", "com.test.sample", "7.3.7"},
-				{"sample", "com.test.sample", "7.4.3.4"}
+				{
+					"backend-integration", "com.liferay.docs.guestbook",
+					"7.3.7", "portal-7.3-ga8"
+				},
+				{
+					"backend-integration", "com.liferay.docs.guestbook",
+					"7.4.3.4", "portal-7.4-ga4"
+				},
+				{"sample", "com.test.sample", "7.1.3-1", "portal-7.1-ga4"},
+				{"sample", "com.test.sample", "7.2.1-1", "portal-7.2-ga2"},
+				{"sample", "com.test.sample", "7.3.7", "portal-7.3-ga8"},
+				{"sample", "com.test.sample", "7.4.3.4", "portal-7.4-ga4"}
 			});
 	}
 
@@ -97,11 +112,13 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 	}
 
 	public ProjectTemplatesRESTBuilderWorkspaceTest(
-		String name, String packageName, String liferayVersion) {
+		String name, String packageName, String liferayVersion,
+		String productKey) {
 
 		_name = name;
 		_packageName = packageName;
 		_liferayVersion = liferayVersion;
+		_productKey = productKey;
 	}
 
 	@Test
@@ -111,6 +128,9 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
+
+		writeGradlePropertiesInWorkspace(
+			gradleWorkspaceDir, "liferay.workspace.produc=" + _productKey);
 
 		File gradleWorkspaceModulesDir = new File(
 			gradleWorkspaceDir, "modules");
@@ -309,5 +329,6 @@ public class ProjectTemplatesRESTBuilderWorkspaceTest
 	private final String _liferayVersion;
 	private final String _name;
 	private final String _packageName;
+	private final String _productKey;
 
 }

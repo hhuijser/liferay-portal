@@ -12,18 +12,15 @@
  * details.
  */
 
-package com.liferay.portal.kernel.display.context.util;
+package com.liferay.portal.kernel.display.context.helper;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author     Iván Zaera
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.portal.kernel.display.context.helper.BaseStrutsRequestHelper}
+ * @author Iván Zaera
  */
-@Deprecated
 public abstract class BaseStrutsRequestHelper extends BaseRequestHelper {
 
 	public BaseStrutsRequestHelper(HttpServletRequest httpServletRequest) {

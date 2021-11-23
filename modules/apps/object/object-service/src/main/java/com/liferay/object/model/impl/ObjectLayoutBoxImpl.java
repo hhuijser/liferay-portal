@@ -24,10 +24,12 @@ import java.util.List;
  */
 public class ObjectLayoutBoxImpl extends ObjectLayoutBoxBaseImpl {
 
+	@Override
 	public List<ObjectLayoutRow> getObjectLayoutRows() {
 		return _objectLayoutRows;
 	}
 
+	@Override
 	public void setObjectLayoutRows(List<ObjectLayoutRow> objectLayoutRows) {
 		_objectLayoutRows = objectLayoutRows;
 	}

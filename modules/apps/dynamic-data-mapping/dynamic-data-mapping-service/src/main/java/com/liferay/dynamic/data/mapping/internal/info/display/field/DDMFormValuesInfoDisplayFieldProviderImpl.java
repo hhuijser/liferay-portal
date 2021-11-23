@@ -64,6 +64,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DDMFormValuesInfoDisplayFieldProviderImpl<T extends GroupedModel>
 	implements DDMFormValuesInfoDisplayFieldProvider<T> {
 
+	@Override
 	public Map<String, Object> getInfoDisplayFieldsValues(
 			T t, DDMFormValues ddmFormValues, Locale locale)
 		throws PortalException {

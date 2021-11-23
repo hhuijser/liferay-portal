@@ -43,6 +43,7 @@ public class ClaySampleManagementToolbarsDisplayContext
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse);
 	}
 
+	@Override
 	public List<DropdownItem> getActionDropdownItems() {
 		if (_actionDropdownItems != null) {
 			return _actionDropdownItems;
@@ -71,6 +72,7 @@ public class ClaySampleManagementToolbarsDisplayContext
 		return _actionDropdownItems;
 	}
 
+	@Override
 	public CreationMenu getCreationMenu() {
 		if (_creationMenu != null) {
 			return _creationMenu;
@@ -133,6 +135,7 @@ public class ClaySampleManagementToolbarsDisplayContext
 		return _creationMenu;
 	}
 
+	@Override
 	public List<DropdownItem> getFilterDropdownItems() {
 		if (_filterDropdownItems != null) {
 			return _filterDropdownItems;
@@ -177,14 +180,17 @@ public class ClaySampleManagementToolbarsDisplayContext
 		return _filterDropdownItems;
 	}
 
+	@Override
 	public String getSearchActionURL() {
 		return "#search-action-url";
 	}
 
+	@Override
 	public Boolean getSupportsBulkActions() {
 		return true;
 	}
 
+	@Override
 	public List<ViewTypeItem> getViewTypeItems() {
 		if (_viewTypeItems != null) {
 			return _viewTypeItems;
@@ -209,6 +215,7 @@ public class ClaySampleManagementToolbarsDisplayContext
 		return _viewTypeItems;
 	}
 
+	@Override
 	public Boolean isShowInfoButton() {
 		return true;
 	}

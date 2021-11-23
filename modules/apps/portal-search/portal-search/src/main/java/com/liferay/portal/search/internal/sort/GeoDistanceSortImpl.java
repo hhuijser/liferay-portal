@@ -42,6 +42,7 @@ public class GeoDistanceSortImpl
 		return sortVisitor.visit(this);
 	}
 
+	@Override
 	public void addGeoLocationPoints(GeoLocationPoint... geoLocationPoints) {
 		Collections.addAll(_geoLocationPoints, geoLocationPoints);
 	}

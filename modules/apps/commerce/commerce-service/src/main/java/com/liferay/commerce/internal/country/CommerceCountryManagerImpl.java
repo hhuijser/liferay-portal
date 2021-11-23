@@ -48,6 +48,7 @@ import org.osgi.service.component.annotations.Reference;
 @JSONWebService
 public class CommerceCountryManagerImpl implements CommerceCountryManager {
 
+	@Override
 	public List<Country> getBillingCountries(
 		long companyId, boolean active, boolean billingAllowed) {
 
@@ -71,6 +72,7 @@ public class CommerceCountryManagerImpl implements CommerceCountryManager {
 			));
 	}
 
+	@Override
 	public List<Country> getBillingCountriesByChannelId(
 		long channelId, int start, int end) {
 
@@ -86,6 +88,7 @@ public class CommerceCountryManagerImpl implements CommerceCountryManager {
 			));
 	}
 
+	@Override
 	public List<Country> getShippingCountries(
 		long companyId, boolean active, boolean shippingAllowed) {
 
@@ -109,6 +112,7 @@ public class CommerceCountryManagerImpl implements CommerceCountryManager {
 			));
 	}
 
+	@Override
 	public List<Country> getShippingCountriesByChannelId(
 		long channelId, int start, int end) {
 
@@ -124,6 +128,7 @@ public class CommerceCountryManagerImpl implements CommerceCountryManager {
 			));
 	}
 
+	@Override
 	public List<Country> getWarehouseCountries(long companyId, boolean all) {
 		return _countryLocalService.dslQuery(
 			DSLQueryFactoryUtil.selectDistinct(

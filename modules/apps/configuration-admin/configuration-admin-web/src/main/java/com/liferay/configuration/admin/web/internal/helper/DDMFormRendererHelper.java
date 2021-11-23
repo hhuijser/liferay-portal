@@ -12,9 +12,13 @@
  * details.
  */
 
-package com.liferay.configuration.admin.web.internal.util;
+package com.liferay.configuration.admin.web.internal.helper;
 
 import com.liferay.configuration.admin.web.internal.model.ConfigurationModel;
+import com.liferay.configuration.admin.web.internal.util.ConfigurationDDMFormDeclarationUtil;
+import com.liferay.configuration.admin.web.internal.util.ConfigurationModelToDDMFormConverter;
+import com.liferay.configuration.admin.web.internal.util.ConfigurationModelToDDMFormValuesConverter;
+import com.liferay.configuration.admin.web.internal.util.ResourceBundleLoaderProvider;
 import com.liferay.dynamic.data.mapping.form.renderer.DDMFormRenderer;
 import com.liferay.dynamic.data.mapping.form.renderer.DDMFormRenderingContext;
 import com.liferay.dynamic.data.mapping.form.renderer.DDMFormRenderingException;

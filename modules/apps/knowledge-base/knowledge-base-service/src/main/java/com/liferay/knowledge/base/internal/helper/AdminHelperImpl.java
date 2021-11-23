@@ -12,8 +12,10 @@
  * details.
  */
 
-package com.liferay.knowledge.base.internal.util;
+package com.liferay.knowledge.base.internal.helper;
 
+import com.liferay.knowledge.base.internal.util.KBArticleDiffUtil;
+import com.liferay.knowledge.base.internal.util.KBSectionEscapeUtil;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.service.KBArticleService;
 import com.liferay.knowledge.base.util.AdminHelper;

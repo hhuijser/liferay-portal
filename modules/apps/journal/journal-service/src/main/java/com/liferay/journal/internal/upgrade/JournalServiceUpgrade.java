@@ -28,7 +28,7 @@ import com.liferay.dynamic.data.mapping.service.DDMTemplateLinkLocalService;
 import com.liferay.dynamic.data.mapping.util.DefaultDDMStructureHelper;
 import com.liferay.dynamic.data.mapping.util.FieldsToDDMFormValuesConverter;
 import com.liferay.journal.content.compatibility.converter.JournalContentCompatibilityConverter;
-import com.liferay.journal.internal.upgrade.util.JournalArticleImageUpgradeHelper;
+import com.liferay.journal.internal.upgrade.helper.JournalArticleImageUpgradeHelper;
 import com.liferay.journal.internal.upgrade.v0_0_3.JournalArticleTypeUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v0_0_4.SchemaUpgradeProcess;
 import com.liferay.journal.internal.upgrade.v0_0_5.JournalUpgradeProcess;

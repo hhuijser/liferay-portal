@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.internal.item.selector;
+package com.liferay.journal.web.internal.item.selector.helper;
 
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;

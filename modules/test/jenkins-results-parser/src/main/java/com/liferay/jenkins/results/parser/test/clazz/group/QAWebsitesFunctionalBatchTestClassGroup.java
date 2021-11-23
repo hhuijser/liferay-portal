@@ -60,6 +60,7 @@ public class QAWebsitesFunctionalBatchTestClassGroup
 		super(batchName, qaWebsitesGitRepositoryJob);
 	}
 
+	@Override
 	protected String getDefaultTestBatchRunPropertyQuery(
 		File testBaseDir, String testSuiteName) {
 

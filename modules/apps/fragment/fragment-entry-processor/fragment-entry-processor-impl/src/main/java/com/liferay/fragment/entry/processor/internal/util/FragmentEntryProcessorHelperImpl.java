@@ -156,6 +156,7 @@ public class FragmentEntryProcessorHelperImpl
 		return _getEditableValueByLocale(jsonObject, locale);
 	}
 
+	@Override
 	public long getFileEntryId(
 			long classNameId, long classPK, String fieldId, Locale locale)
 		throws PortalException {
@@ -186,6 +187,7 @@ public class FragmentEntryProcessorHelperImpl
 			_portal.getClassName(classNameId), object, fieldId, locale);
 	}
 
+	@Override
 	public long getFileEntryId(
 		Object displayObject, String fieldId, Locale locale) {
 
@@ -201,6 +203,7 @@ public class FragmentEntryProcessorHelperImpl
 			classedModel.getModelClassName(), displayObject, fieldId, locale);
 	}
 
+	@Override
 	public long getFileEntryId(String className, long classPK) {
 		if (!Objects.equals(className, FileEntry.class.getName())) {
 			return 0;
@@ -209,6 +212,7 @@ public class FragmentEntryProcessorHelperImpl
 		return classPK;
 	}
 
+	@Override
 	public long getFileEntryId(WebImage webImage) {
 		InfoItemReference infoItemReference = webImage.getInfoItemReference();
 

@@ -45,6 +45,7 @@ import org.junit.runner.RunWith;
 public class ObjectLayoutResourceTest extends BaseObjectLayoutResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
@@ -65,6 +66,7 @@ public class ObjectLayoutResourceTest extends BaseObjectLayoutResourceTestCase {
 	}
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();
 

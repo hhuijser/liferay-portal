@@ -87,6 +87,7 @@ public class BatchPlannerLogServiceImpl extends BatchPlannerLogServiceBaseImpl {
 		return batchPlannerLog;
 	}
 
+	@Override
 	public int getBatchPlannerLogsCount(long batchPlannerPlanId)
 		throws PortalException {
 

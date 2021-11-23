@@ -1364,6 +1364,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 	 * @return the file entry with the external reference code
 	 * @throws PortalException if a portal exception occurred
 	 */
+	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public FileEntry getFileEntryByExternalReferenceCode(
 			long groupId, String externalReferenceCode)

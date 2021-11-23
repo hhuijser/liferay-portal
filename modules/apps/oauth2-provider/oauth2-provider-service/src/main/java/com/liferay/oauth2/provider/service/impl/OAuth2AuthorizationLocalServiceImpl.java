@@ -169,6 +169,7 @@ public class OAuth2AuthorizationLocalServiceImpl
 		return null;
 	}
 
+	@Override
 	public OAuth2Authorization fetchOAuth2AuthorizationByRememberDeviceContent(
 		long userId, long oAuth2ApplicationId, String rememberDeviceContent) {
 
@@ -247,6 +248,7 @@ public class OAuth2AuthorizationLocalServiceImpl
 		return oAuth2AuthorizationPersistence.countByUserId(userId);
 	}
 
+	@Override
 	public OAuth2Authorization updateRememberDeviceContent(
 		String refreshTokenContent, String rememberDeviceContent) {
 

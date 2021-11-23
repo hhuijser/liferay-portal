@@ -26,7 +26,7 @@ import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.commerce.service.CommerceShipmentItemLocalService;
 import com.liferay.commerce.service.CommerceShipmentLocalService;
-import com.liferay.commerce.shipment.content.web.internal.display.context.util.CommerceShipmentContentRequestHelper;
+import com.liferay.commerce.shipment.content.web.internal.display.context.helper.CommerceShipmentContentRequestHelper;
 import com.liferay.commerce.util.CommerceShippingEngineRegistry;
 import com.liferay.commerce.util.comparator.CommerceShipmentCreateDateComparator;
 import com.liferay.commerce.util.comparator.CommerceShipmentItemCreateDateComparator;

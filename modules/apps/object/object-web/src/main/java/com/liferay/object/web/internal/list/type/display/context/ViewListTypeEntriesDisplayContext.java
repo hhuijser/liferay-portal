@@ -18,7 +18,7 @@ import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSet
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.list.type.model.ListTypeDefinition;
 import com.liferay.object.web.internal.constants.ObjectWebKeys;
-import com.liferay.object.web.internal.display.context.util.ObjectRequestHelper;
+import com.liferay.object.web.internal.display.context.helper.ObjectRequestHelper;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;

@@ -20,7 +20,7 @@ import com.liferay.wiki.display.context.WikiPageInfoPanelDisplayContext;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.WikiPageLocalServiceUtil;
-import com.liferay.wiki.web.internal.display.context.util.WikiPageInfoPanelRequestHelper;
+import com.liferay.wiki.web.internal.display.context.helper.WikiPageInfoPanelRequestHelper;
 
 import java.util.List;
 import java.util.UUID;

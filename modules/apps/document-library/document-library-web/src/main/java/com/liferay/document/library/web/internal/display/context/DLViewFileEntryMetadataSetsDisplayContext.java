@@ -16,7 +16,7 @@ package com.liferay.document.library.web.internal.display.context;
 
 import com.liferay.document.library.constants.DLPortletKeys;
 import com.liferay.document.library.kernel.model.DLFileEntryMetadata;
-import com.liferay.document.library.web.internal.display.context.util.DLRequestHelper;
+import com.liferay.document.library.web.internal.display.context.helper.DLRequestHelper;
 import com.liferay.document.library.web.internal.search.StructureSearch;
 import com.liferay.document.library.web.internal.search.StructureSearchTerms;
 import com.liferay.document.library.web.internal.security.permission.resource.DDMStructurePermission;

@@ -16,7 +16,7 @@ package com.liferay.commerce.cart.content.web.internal.display.context;
 
 import com.liferay.commerce.account.constants.CommerceAccountConstants;
 import com.liferay.commerce.account.model.CommerceAccount;
-import com.liferay.commerce.cart.content.web.internal.display.context.util.CommerceCartContentRequestHelper;
+import com.liferay.commerce.cart.content.web.internal.display.context.helper.CommerceCartContentRequestHelper;
 import com.liferay.commerce.cart.content.web.internal.portlet.configuration.CommerceCartContentPortletInstanceConfiguration;
 import com.liferay.commerce.context.CommerceContext;
 import com.liferay.commerce.currency.model.CommerceMoney;

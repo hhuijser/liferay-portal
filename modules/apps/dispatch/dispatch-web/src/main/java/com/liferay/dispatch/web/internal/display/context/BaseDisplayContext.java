@@ -14,7 +14,7 @@
 
 package com.liferay.dispatch.web.internal.display.context;
 
-import com.liferay.dispatch.web.internal.display.context.util.DispatchRequestHelper;
+import com.liferay.dispatch.web.internal.display.context.helper.DispatchRequestHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;

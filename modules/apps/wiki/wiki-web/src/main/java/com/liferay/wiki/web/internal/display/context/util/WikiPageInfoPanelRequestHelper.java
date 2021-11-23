@@ -14,7 +14,7 @@
 
 package com.liferay.wiki.web.internal.display.context.util;
 
-import com.liferay.portal.kernel.display.context.util.BaseRequestHelper;
+import com.liferay.portal.kernel.display.context.helper.BaseRequestHelper;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.wiki.constants.WikiWebKeys;

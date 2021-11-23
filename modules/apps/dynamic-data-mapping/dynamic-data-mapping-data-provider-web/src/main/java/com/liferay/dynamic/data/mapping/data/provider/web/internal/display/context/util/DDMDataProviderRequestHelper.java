@@ -14,7 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.data.provider.web.internal.display.context.util;
 
-import com.liferay.portal.kernel.display.context.util.BaseRequestHelper;
+import com.liferay.portal.kernel.display.context.helper.BaseRequestHelper;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import javax.portlet.RenderRequest;

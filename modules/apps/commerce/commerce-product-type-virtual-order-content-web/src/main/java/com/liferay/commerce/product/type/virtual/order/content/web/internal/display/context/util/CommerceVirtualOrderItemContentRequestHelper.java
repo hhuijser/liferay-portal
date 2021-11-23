@@ -14,7 +14,7 @@
 
 package com.liferay.commerce.product.type.virtual.order.content.web.internal.display.context.util;
 
-import com.liferay.portal.kernel.display.context.util.BaseRequestHelper;
+import com.liferay.portal.kernel.display.context.helper.BaseRequestHelper;
 
 import javax.servlet.http.HttpServletRequest;
 

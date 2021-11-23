@@ -14,7 +14,7 @@
 
 package com.liferay.commerce.product.subscription.type.web.internal.display.context.util;
 
-import com.liferay.portal.kernel.display.context.util.BaseRequestHelper;
+import com.liferay.portal.kernel.display.context.helper.BaseRequestHelper;
 
 import javax.servlet.http.HttpServletRequest;
 

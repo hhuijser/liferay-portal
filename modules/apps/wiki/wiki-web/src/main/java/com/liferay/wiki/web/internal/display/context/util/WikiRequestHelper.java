@@ -14,7 +14,7 @@
 
 package com.liferay.wiki.web.internal.display.context.util;
 
-import com.liferay.portal.kernel.display.context.util.BaseStrutsRequestHelper;
+import com.liferay.portal.kernel.display.context.helper.BaseStrutsRequestHelper;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;

@@ -15,7 +15,7 @@
 package com.liferay.commerce.product.display.context.util;
 
 import com.liferay.commerce.product.service.CommerceChannelLocalServiceUtil;
-import com.liferay.portal.kernel.display.context.util.BaseRequestHelper;
+import com.liferay.portal.kernel.display.context.helper.BaseRequestHelper;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.JavaConstants;
 

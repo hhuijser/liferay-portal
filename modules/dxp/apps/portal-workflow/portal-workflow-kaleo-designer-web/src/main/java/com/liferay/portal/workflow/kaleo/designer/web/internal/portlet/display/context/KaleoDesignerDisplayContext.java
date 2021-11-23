@@ -56,7 +56,7 @@ import com.liferay.portal.workflow.kaleo.designer.web.constants.KaleoDesignerPor
 import com.liferay.portal.workflow.kaleo.designer.web.internal.constants.KaleoDesignerActionKeys;
 import com.liferay.portal.workflow.kaleo.designer.web.internal.permission.KaleoDefinitionVersionPermission;
 import com.liferay.portal.workflow.kaleo.designer.web.internal.permission.KaleoDesignerPermission;
-import com.liferay.portal.workflow.kaleo.designer.web.internal.portlet.display.context.util.KaleoDesignerRequestHelper;
+import com.liferay.portal.workflow.kaleo.designer.web.internal.portlet.display.context.helper.KaleoDesignerRequestHelper;
 import com.liferay.portal.workflow.kaleo.designer.web.internal.search.KaleoDefinitionVersionSearch;
 import com.liferay.portal.workflow.kaleo.designer.web.internal.util.KaleoDesignerUtil;
 import com.liferay.portal.workflow.kaleo.designer.web.internal.util.filter.KaleoDefinitionVersionActivePredicate;

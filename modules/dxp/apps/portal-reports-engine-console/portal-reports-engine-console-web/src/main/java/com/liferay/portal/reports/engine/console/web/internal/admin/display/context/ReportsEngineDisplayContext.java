@@ -44,7 +44,7 @@ import com.liferay.portal.reports.engine.console.service.DefinitionServiceUtil;
 import com.liferay.portal.reports.engine.console.service.EntryServiceUtil;
 import com.liferay.portal.reports.engine.console.service.SourceServiceUtil;
 import com.liferay.portal.reports.engine.console.web.internal.admin.configuration.ReportsEngineAdminWebConfiguration;
-import com.liferay.portal.reports.engine.console.web.internal.admin.display.context.util.ReportsEngineRequestHelper;
+import com.liferay.portal.reports.engine.console.web.internal.admin.display.context.helper.ReportsEngineRequestHelper;
 import com.liferay.portal.reports.engine.console.web.internal.admin.search.DefinitionDisplayTerms;
 import com.liferay.portal.reports.engine.console.web.internal.admin.search.DefinitionSearch;
 import com.liferay.portal.reports.engine.console.web.internal.admin.search.EntryDisplayTerms;

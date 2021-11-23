@@ -29,7 +29,7 @@ page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
 page import="com.liferay.social.activities.web.internal.constants.SocialActivitiesWebKeys" %><%@
 page import="com.liferay.social.activities.web.internal.portlet.display.context.DefaultSocialActivitiesDisplayContext" %><%@
 page import="com.liferay.social.activities.web.internal.portlet.display.context.SocialActivitiesDisplayContext" %><%@
-page import="com.liferay.social.activities.web.internal.portlet.display.context.util.SocialActivitiesRequestHelper" %><%@
+page import="com.liferay.social.activities.web.internal.portlet.display.context.helper.SocialActivitiesRequestHelper" %><%@
 page import="com.liferay.social.activities.web.internal.util.SocialActivitiesQueryHelper" %>
 
 <liferay-theme:defineObjects />

@@ -16,7 +16,7 @@ package com.liferay.announcements.web.internal.display.context;
 
 import com.liferay.announcements.constants.AnnouncementsPortletKeys;
 import com.liferay.announcements.kernel.util.AnnouncementsUtil;
-import com.liferay.announcements.web.internal.display.context.util.AnnouncementsRequestHelper;
+import com.liferay.announcements.web.internal.display.context.helper.AnnouncementsRequestHelper;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;

@@ -30,7 +30,7 @@ import com.liferay.dynamic.data.mapping.util.DDMDisplayRegistry;
 import com.liferay.dynamic.data.mapping.util.DDMDisplayTabItem;
 import com.liferay.dynamic.data.mapping.util.DDMTemplateHelper;
 import com.liferay.dynamic.data.mapping.util.DDMUtil;
-import com.liferay.dynamic.data.mapping.web.internal.context.util.DDMWebRequestHelper;
+import com.liferay.dynamic.data.mapping.web.internal.context.helper.DDMWebRequestHelper;
 import com.liferay.dynamic.data.mapping.web.internal.search.StructureSearch;
 import com.liferay.dynamic.data.mapping.web.internal.search.StructureSearchTerms;
 import com.liferay.dynamic.data.mapping.web.internal.search.TemplateSearch;

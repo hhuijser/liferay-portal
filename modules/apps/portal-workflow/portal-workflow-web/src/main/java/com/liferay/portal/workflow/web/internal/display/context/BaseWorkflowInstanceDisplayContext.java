@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
-import com.liferay.portal.workflow.web.internal.display.context.util.WorkflowInstanceRequestHelper;
+import com.liferay.portal.workflow.web.internal.display.context.helper.WorkflowInstanceRequestHelper;
 
 import java.text.Format;
 

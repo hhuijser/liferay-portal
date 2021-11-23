@@ -23,7 +23,7 @@ import com.liferay.dynamic.data.lists.model.DDLRecordVersion;
 import com.liferay.dynamic.data.lists.service.DDLRecordLocalServiceUtil;
 import com.liferay.dynamic.data.lists.util.comparator.DDLRecordCreateDateComparator;
 import com.liferay.dynamic.data.lists.util.comparator.DDLRecordModifiedDateComparator;
-import com.liferay.dynamic.data.lists.web.internal.display.context.util.DDLRequestHelper;
+import com.liferay.dynamic.data.lists.web.internal.display.context.helper.DDLRequestHelper;
 import com.liferay.dynamic.data.lists.web.internal.search.RecordSearch;
 import com.liferay.dynamic.data.lists.web.internal.security.permission.resource.DDLRecordSetPermission;
 import com.liferay.dynamic.data.mapping.exception.StorageException;

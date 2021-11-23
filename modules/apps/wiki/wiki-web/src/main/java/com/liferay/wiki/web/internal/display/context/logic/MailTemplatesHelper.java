@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.language.LanguageResources;
 import com.liferay.wiki.configuration.WikiGroupServiceOverriddenConfiguration;
-import com.liferay.wiki.web.internal.display.context.util.WikiRequestHelper;
+import com.liferay.wiki.web.internal.display.context.helper.WikiRequestHelper;
 
 import java.util.Map;
 import java.util.ResourceBundle;

@@ -55,7 +55,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.workflow.kaleo.forms.constants.KaleoFormsWebKeys;
 import com.liferay.portal.workflow.kaleo.forms.model.KaleoProcess;
 import com.liferay.portal.workflow.kaleo.forms.service.permission.KaleoProcessPermission;
-import com.liferay.portal.workflow.kaleo.forms.web.internal.display.context.util.KaleoFormsAdminRequestHelper;
+import com.liferay.portal.workflow.kaleo.forms.web.internal.display.context.helper.KaleoFormsAdminRequestHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -29,7 +29,7 @@ import com.liferay.rss.util.RSSUtil;
 import com.liferay.wiki.configuration.WikiGroupServiceOverriddenConfiguration;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.service.WikiPageService;
-import com.liferay.wiki.web.internal.display.context.util.WikiRequestHelper;
+import com.liferay.wiki.web.internal.display.context.helper.WikiRequestHelper;
 import com.liferay.wiki.web.internal.util.WikiUtil;
 
 import javax.servlet.http.HttpServletRequest;

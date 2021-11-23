@@ -14,7 +14,7 @@
 
 package com.liferay.commerce.product.subscription.type.web.internal.display.context;
 
-import com.liferay.commerce.product.subscription.type.web.internal.display.context.util.CPSubscriptionTypeRequestHelper;
+import com.liferay.commerce.product.subscription.type.web.internal.display.context.helper.CPSubscriptionTypeRequestHelper;
 import com.liferay.commerce.product.subscription.type.web.internal.display.context.util.comparator.WeeklyCPSubscriptionTypeCalendarWeekDaysComparator;
 import com.liferay.commerce.util.CommerceSubscriptionTypeUtil;
 import com.liferay.petra.string.StringPool;

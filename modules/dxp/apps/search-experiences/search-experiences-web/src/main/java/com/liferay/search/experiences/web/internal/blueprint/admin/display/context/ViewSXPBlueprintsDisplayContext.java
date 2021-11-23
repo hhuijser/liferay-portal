@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.search.experiences.constants.SXPActionKeys;
 import com.liferay.search.experiences.model.SXPBlueprint;
-import com.liferay.search.experiences.web.internal.display.context.util.SXPRequestHelper;
+import com.liferay.search.experiences.web.internal.display.context.helper.SXPRequestHelper;
 
 import java.util.Arrays;
 import java.util.List;

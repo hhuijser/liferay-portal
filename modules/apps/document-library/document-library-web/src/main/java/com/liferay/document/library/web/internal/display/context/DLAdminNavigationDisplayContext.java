@@ -15,7 +15,7 @@
 package com.liferay.document.library.web.internal.display.context;
 
 import com.liferay.document.library.constants.DLPortletKeys;
-import com.liferay.document.library.web.internal.display.context.util.DLRequestHelper;
+import com.liferay.document.library.web.internal.display.context.helper.DLRequestHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;

@@ -15,7 +15,7 @@
 package com.liferay.dynamic.data.mapping.form.web.internal.display.context;
 
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
-import com.liferay.dynamic.data.mapping.form.web.internal.display.context.util.DDMFormWebRequestHelper;
+import com.liferay.dynamic.data.mapping.form.web.internal.display.context.helper.DDMFormWebRequestHelper;
 import com.liferay.dynamic.data.mapping.form.web.internal.search.DDMFormInstanceSearch;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceService;

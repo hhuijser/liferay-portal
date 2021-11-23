@@ -15,7 +15,7 @@
 package com.liferay.frontend.data.set.sample.web.internal.display.context;
 
 import com.liferay.frontend.data.set.model.FrontendDataSetActionDropdownItem;
-import com.liferay.frontend.data.set.sample.web.internal.display.context.util.FrontendDataSetRequestHelper;
+import com.liferay.frontend.data.set.sample.web.internal.display.context.helper.FrontendDataSetRequestHelper;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 

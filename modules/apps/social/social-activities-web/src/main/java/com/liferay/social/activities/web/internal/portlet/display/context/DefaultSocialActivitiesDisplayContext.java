@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.resource.bundle.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.social.activities.web.internal.portlet.display.context.util.SocialActivitiesRequestHelper;
+import com.liferay.social.activities.web.internal.portlet.display.context.helper.SocialActivitiesRequestHelper;
 import com.liferay.social.activities.web.internal.util.SocialActivitiesQueryHelper;
 import com.liferay.social.kernel.model.SocialActivitySet;
 

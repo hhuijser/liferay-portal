@@ -20,7 +20,7 @@ import com.liferay.commerce.machine.learning.forecast.alert.constants.CommerceML
 import com.liferay.commerce.machine.learning.forecast.alert.constants.CommerceMLForecastAlertConstants;
 import com.liferay.commerce.machine.learning.forecast.alert.model.CommerceMLForecastAlertEntry;
 import com.liferay.commerce.machine.learning.forecast.alert.service.CommerceMLForecastAlertEntryService;
-import com.liferay.commerce.machine.learning.forecast.alert.web.internal.display.context.util.CommerceMLForecastAlertEntryRequestHelper;
+import com.liferay.commerce.machine.learning.forecast.alert.web.internal.display.context.helper.CommerceMLForecastAlertEntryRequestHelper;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;

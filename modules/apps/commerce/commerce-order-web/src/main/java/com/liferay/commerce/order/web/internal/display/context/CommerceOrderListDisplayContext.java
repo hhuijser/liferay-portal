@@ -15,7 +15,7 @@
 package com.liferay.commerce.order.web.internal.display.context;
 
 import com.liferay.commerce.model.CommerceOrder;
-import com.liferay.commerce.order.web.internal.display.context.util.CommerceOrderRequestHelper;
+import com.liferay.commerce.order.web.internal.display.context.helper.CommerceOrderRequestHelper;
 import com.liferay.commerce.order.web.internal.search.CommerceOrderDisplayTerms;
 import com.liferay.commerce.order.web.internal.security.permission.resource.CommerceOrderPermission;
 import com.liferay.commerce.service.CommerceOrderNoteService;

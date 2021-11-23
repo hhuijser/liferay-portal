@@ -28,11 +28,11 @@ import com.liferay.document.library.preview.exception.DLPreviewGenerationInProce
 import com.liferay.document.library.preview.exception.DLPreviewSizeException;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.document.library.web.internal.constants.DLWebKeys;
+import com.liferay.document.library.web.internal.display.context.helper.DLRequestHelper;
 import com.liferay.document.library.web.internal.display.context.logic.DLPortletInstanceSettingsHelper;
 import com.liferay.document.library.web.internal.display.context.logic.FileEntryDisplayContextHelper;
 import com.liferay.document.library.web.internal.display.context.logic.FileVersionDisplayContextHelper;
 import com.liferay.document.library.web.internal.display.context.logic.UIItemsBuilder;
-import com.liferay.document.library.web.internal.display.context.util.DLRequestHelper;
 import com.liferay.document.library.web.internal.display.context.util.JSPRenderer;
 import com.liferay.document.library.web.internal.helper.DLTrashHelper;
 import com.liferay.dynamic.data.mapping.exception.StorageException;

@@ -20,7 +20,7 @@ import com.liferay.wiki.configuration.WikiGroupServiceConfiguration;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
-import com.liferay.wiki.web.internal.display.context.util.WikiRequestHelper;
+import com.liferay.wiki.web.internal.display.context.helper.WikiRequestHelper;
 
 import java.util.Collection;
 

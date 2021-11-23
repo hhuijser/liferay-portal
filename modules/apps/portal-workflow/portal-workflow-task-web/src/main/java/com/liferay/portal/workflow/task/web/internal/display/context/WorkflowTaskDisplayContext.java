@@ -67,7 +67,7 @@ import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 import com.liferay.portal.kernel.workflow.search.WorkflowModelSearchResult;
-import com.liferay.portal.workflow.task.web.internal.display.context.util.WorkflowTaskRequestHelper;
+import com.liferay.portal.workflow.task.web.internal.display.context.helper.WorkflowTaskRequestHelper;
 import com.liferay.portal.workflow.task.web.internal.search.WorkflowTaskSearch;
 import com.liferay.portal.workflow.task.web.internal.util.WorkflowTaskPortletUtil;
 

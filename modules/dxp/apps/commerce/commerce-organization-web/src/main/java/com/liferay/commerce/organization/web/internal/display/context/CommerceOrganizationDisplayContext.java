@@ -15,7 +15,7 @@
 package com.liferay.commerce.organization.web.internal.display.context;
 
 import com.liferay.commerce.organization.web.internal.configuration.CommerceOrganizationPortletInstanceConfiguration;
-import com.liferay.commerce.organization.web.internal.display.context.util.CommerceOrganizationRequestHelper;
+import com.liferay.commerce.organization.web.internal.display.context.helper.CommerceOrganizationRequestHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Organization;

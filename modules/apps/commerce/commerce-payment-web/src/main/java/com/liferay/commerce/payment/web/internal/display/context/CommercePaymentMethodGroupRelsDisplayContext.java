@@ -18,7 +18,7 @@ import com.liferay.commerce.payment.method.CommercePaymentMethod;
 import com.liferay.commerce.payment.method.CommercePaymentMethodRegistry;
 import com.liferay.commerce.payment.model.CommercePaymentMethodGroupRel;
 import com.liferay.commerce.payment.service.CommercePaymentMethodGroupRelService;
-import com.liferay.commerce.payment.web.internal.display.context.util.CommercePaymentMethodRequestHelper;
+import com.liferay.commerce.payment.web.internal.display.context.helper.CommercePaymentMethodRequestHelper;
 import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.portal.kernel.exception.PortalException;

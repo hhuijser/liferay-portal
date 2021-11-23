@@ -18,7 +18,7 @@ import com.liferay.commerce.constants.CommerceOrderActionKeys;
 import com.liferay.commerce.constants.CommercePortletKeys;
 import com.liferay.commerce.frontend.model.HeaderActionModel;
 import com.liferay.commerce.model.CommerceOrderType;
-import com.liferay.commerce.order.web.internal.display.context.util.CommerceOrderRequestHelper;
+import com.liferay.commerce.order.web.internal.display.context.helper.CommerceOrderRequestHelper;
 import com.liferay.commerce.service.CommerceOrderTypeService;
 import com.liferay.frontend.taglib.clay.data.set.servlet.taglib.util.ClayDataSetActionDropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;

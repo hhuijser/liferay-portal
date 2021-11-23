@@ -16,7 +16,7 @@ package com.liferay.document.library.web.internal.display.context;
 
 import com.liferay.document.library.constants.DLPortletKeys;
 import com.liferay.document.library.util.DLURLHelperUtil;
-import com.liferay.document.library.web.internal.display.context.util.DLRequestHelper;
+import com.liferay.document.library.web.internal.display.context.helper.DLRequestHelper;
 import com.liferay.document.library.web.internal.portlet.action.ActionUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;

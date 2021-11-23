@@ -19,7 +19,7 @@ import com.liferay.commerce.model.CommerceOrder;
 import com.liferay.commerce.model.CommerceOrderItem;
 import com.liferay.commerce.product.type.virtual.constants.VirtualCPTypeConstants;
 import com.liferay.commerce.product.type.virtual.order.model.CommerceVirtualOrderItem;
-import com.liferay.commerce.product.type.virtual.web.internal.display.context.util.CPDefinitionVirtualSettingRequestHelper;
+import com.liferay.commerce.product.type.virtual.web.internal.display.context.helper.CPDefinitionVirtualSettingRequestHelper;
 import com.liferay.commerce.service.CommerceOrderItemService;
 import com.liferay.commerce.service.CommerceOrderService;
 import com.liferay.document.library.kernel.service.DLAppService;

@@ -33,7 +33,7 @@ import com.liferay.dynamic.data.mapping.form.values.factory.DDMFormValuesFactory
 import com.liferay.dynamic.data.mapping.form.web.internal.configuration.DDMFormWebConfiguration;
 import com.liferay.dynamic.data.mapping.form.web.internal.configuration.activator.FFSubmissionsSettingsConfigurationActivator;
 import com.liferay.dynamic.data.mapping.form.web.internal.constants.DDMFormWebKeys;
-import com.liferay.dynamic.data.mapping.form.web.internal.display.context.util.DDMFormAdminRequestHelper;
+import com.liferay.dynamic.data.mapping.form.web.internal.display.context.helper.DDMFormAdminRequestHelper;
 import com.liferay.dynamic.data.mapping.form.web.internal.display.context.util.FormInstancePermissionCheckerHelper;
 import com.liferay.dynamic.data.mapping.form.web.internal.instance.lifecycle.AddDefaultSharedFormLayoutPortalInstanceLifecycleListener;
 import com.liferay.dynamic.data.mapping.form.web.internal.search.DDMFormInstanceRowChecker;

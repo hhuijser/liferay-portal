@@ -20,7 +20,7 @@ import com.liferay.object.constants.ObjectActionKeys;
 import com.liferay.object.model.ObjectDefinition;
 import com.liferay.object.scope.ObjectScopeProvider;
 import com.liferay.object.web.internal.constants.ObjectWebKeys;
-import com.liferay.object.web.internal.display.context.util.ObjectRequestHelper;
+import com.liferay.object.web.internal.display.context.helper.ObjectRequestHelper;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;

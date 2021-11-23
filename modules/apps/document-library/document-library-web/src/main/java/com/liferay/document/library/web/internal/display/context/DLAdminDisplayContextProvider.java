@@ -15,7 +15,7 @@
 package com.liferay.document.library.web.internal.display.context;
 
 import com.liferay.document.library.kernel.versioning.VersioningStrategy;
-import com.liferay.document.library.web.internal.display.context.util.DLRequestHelper;
+import com.liferay.document.library.web.internal.display.context.helper.DLRequestHelper;
 import com.liferay.document.library.web.internal.helper.DLTrashHelper;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.trash.TrashHelper;

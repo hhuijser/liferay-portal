@@ -23,7 +23,7 @@ import com.liferay.commerce.product.model.CommerceChannel;
 import com.liferay.commerce.product.service.CPTaxCategoryService;
 import com.liferay.commerce.product.service.CommerceChannelLocalService;
 import com.liferay.commerce.product.util.comparator.CPTaxCategoryCreateDateComparator;
-import com.liferay.commerce.tax.engine.fixed.web.internal.display.context.util.CommerceTaxFixedRateRequestHelper;
+import com.liferay.commerce.tax.engine.fixed.web.internal.display.context.helper.CommerceTaxFixedRateRequestHelper;
 import com.liferay.commerce.tax.model.CommerceTaxMethod;
 import com.liferay.commerce.tax.service.CommerceTaxMethodService;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;

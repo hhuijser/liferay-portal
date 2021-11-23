@@ -49,7 +49,7 @@ import com.liferay.portal.workflow.constants.WorkflowDefinitionConstants;
 import com.liferay.portal.workflow.constants.WorkflowPortletKeys;
 import com.liferay.portal.workflow.constants.WorkflowWebKeys;
 import com.liferay.portal.workflow.exception.IncompleteWorkflowInstancesException;
-import com.liferay.portal.workflow.web.internal.display.context.util.WorkflowDefinitionRequestHelper;
+import com.liferay.portal.workflow.web.internal.display.context.helper.WorkflowDefinitionRequestHelper;
 import com.liferay.portal.workflow.web.internal.search.WorkflowDefinitionSearch;
 import com.liferay.portal.workflow.web.internal.search.WorkflowDefinitionSearchTerms;
 import com.liferay.portal.workflow.web.internal.util.WorkflowDefinitionPortletUtil;

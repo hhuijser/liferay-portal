@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.commerce.product.display.context.util;
+package com.liferay.commerce.product.display.context.helper;
 
 import com.liferay.commerce.product.service.CommerceChannelLocalServiceUtil;
 import com.liferay.portal.kernel.display.context.helper.BaseRequestHelper;
@@ -25,11 +25,8 @@ import javax.portlet.RenderResponse;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @author     Alessio Antonio Rendina
- * @deprecated As of Cavanaugh (7.4.x), replaced by {@link
- *             com.liferay.commerce.product.display.context.helper.CPRequestHelper}
+ * @author Alessio Antonio Rendina
  */
-@Deprecated
 public class CPRequestHelper extends BaseRequestHelper {
 
 	public CPRequestHelper(HttpServletRequest httpServletRequest) {

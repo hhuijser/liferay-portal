@@ -42,6 +42,7 @@ public class ObjectDefinitionResourceTest
 	extends BaseObjectDefinitionResourceTestCase {
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();
 

@@ -29,6 +29,7 @@ import java.util.Properties;
  */
 public class SamlSpIdpConnectionImpl extends SamlSpIdpConnectionBaseImpl {
 
+	@Override
 	public Properties getNormalizedUserAttributeMappings() throws IOException {
 		Properties userAttributeMappingsProperties = new OrderedProperties();
 

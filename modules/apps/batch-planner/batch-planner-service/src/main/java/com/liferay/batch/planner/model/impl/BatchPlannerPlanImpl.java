@@ -23,11 +23,13 @@ import com.liferay.portal.kernel.exception.PortalException;
  */
 public class BatchPlannerPlanImpl extends BatchPlannerPlanBaseImpl {
 
+	@Override
 	public BatchPlannerLog fetchBatchPlannerLog() {
 		return BatchPlannerLogLocalServiceUtil.
 			fetchBatchPlannerPlanBatchPlannerLog(getBatchPlannerPlanId());
 	}
 
+	@Override
 	public BatchPlannerLog getBatchPlannerLog() throws PortalException {
 		return BatchPlannerLogLocalServiceUtil.
 			getBatchPlannerPlanBatchPlannerLog(getBatchPlannerPlanId());

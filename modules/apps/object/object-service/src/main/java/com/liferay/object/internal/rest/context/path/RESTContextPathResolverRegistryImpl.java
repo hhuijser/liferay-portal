@@ -31,6 +31,7 @@ import org.osgi.service.component.annotations.Deactivate;
 public class RESTContextPathResolverRegistryImpl
 	implements RESTContextPathResolverRegistry {
 
+	@Override
 	public RESTContextPathResolver getRESTContextPathResolver(
 		String className) {
 

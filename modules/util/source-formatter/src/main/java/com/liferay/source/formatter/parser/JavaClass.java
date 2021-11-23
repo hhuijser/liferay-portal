@@ -103,6 +103,7 @@ public class JavaClass extends BaseJavaTerm {
 		return _implementedClassTypes;
 	}
 
+	@Override
 	public List<String> getImportNames() {
 		return _importNames;
 	}
@@ -115,6 +116,7 @@ public class JavaClass extends BaseJavaTerm {
 		return _packageName + "." + getName();
 	}
 
+	@Override
 	public String getPackageName() {
 		return _packageName;
 	}

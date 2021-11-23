@@ -39,6 +39,7 @@ import org.junit.runner.RunWith;
 public class ObjectFieldResourceTest extends BaseObjectFieldResourceTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
@@ -54,6 +55,7 @@ public class ObjectFieldResourceTest extends BaseObjectFieldResourceTestCase {
 	}
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();
 

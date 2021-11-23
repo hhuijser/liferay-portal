@@ -62,11 +62,13 @@ public class ElasticsearchSortFieldTranslatorTest
 		LiferayUnitTestRule.INSTANCE;
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 	}
 
 	@After
+	@Override
 	public void tearDown() throws Exception {
 		super.tearDown();
 	}

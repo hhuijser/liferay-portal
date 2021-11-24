@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.portal.search.web.internal.portlet.shared.task;
+package com.liferay.portal.search.web.internal.portlet.shared.task.helper;
 
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.search.web.internal.portlet.shared.task.SearchHttpUtil;
 import com.liferay.portal.search.web.internal.util.SearchArrayUtil;
 import com.liferay.portal.search.web.internal.util.SearchStringUtil;
 

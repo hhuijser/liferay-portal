@@ -12,10 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.search.web.internal.util;
+package com.liferay.portal.search.web.internal.helper;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.search.web.internal.util.SearchStringUtil;
 
 import java.util.Optional;
 

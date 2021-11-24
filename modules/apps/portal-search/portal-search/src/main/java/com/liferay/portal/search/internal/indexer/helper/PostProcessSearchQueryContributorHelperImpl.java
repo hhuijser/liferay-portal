@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.indexer;
+package com.liferay.portal.search.internal.indexer.helper;
 
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Indexer;
@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.search.constants.SearchContextAttributes;
+import com.liferay.portal.search.internal.indexer.IndexerProvidedClausesUtil;
 
 import java.util.Collection;
 

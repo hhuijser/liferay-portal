@@ -12,27 +12,17 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.indexer;
+package com.liferay.portal.search.internal.indexer.helper;
 
-import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.search.spi.model.registrar.ModelSearchSettings;
-
-import java.util.Map;
 
 /**
  * @author André de Oliveira
  */
-public interface PreFilterContributorHelper {
+public interface AddSearchKeywordsQueryContributorHelper {
 
 	public void contribute(
-		BooleanFilter booleanFilter,
-		Map<String, Indexer<?>> entryClassNameIndexerMap,
-		SearchContext searchContext);
-
-	public void contribute(
-		BooleanFilter booleanFilter, ModelSearchSettings modelSearchSettings,
-		SearchContext searchContext);
+		BooleanQuery booleanQuery, SearchContext searchContext);
 
 }

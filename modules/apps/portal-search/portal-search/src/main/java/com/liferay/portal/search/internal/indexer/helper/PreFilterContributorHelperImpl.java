@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.indexer;
+package com.liferay.portal.search.internal.indexer.helper;
 
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -23,6 +23,11 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchPermissionChecker;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.search.internal.indexer.IndexerProvidedClausesUtil;
+import com.liferay.portal.search.internal.indexer.ModelPreFilterContributorsHolder;
+import com.liferay.portal.search.internal.indexer.ModelSearchSettingsImpl;
+import com.liferay.portal.search.internal.indexer.QueryPreFilterContributorsHolder;
+import com.liferay.portal.search.internal.indexer.SearchPermissionFilterContributorsHolder;
 import com.liferay.portal.search.internal.util.SearchStringUtil;
 import com.liferay.portal.search.permission.SearchPermissionFilterContributor;
 import com.liferay.portal.search.spi.model.query.contributor.ModelPreFilterContributor;

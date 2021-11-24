@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.searcher;
+package com.liferay.portal.search.internal.searcher.helper;
 
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Query;

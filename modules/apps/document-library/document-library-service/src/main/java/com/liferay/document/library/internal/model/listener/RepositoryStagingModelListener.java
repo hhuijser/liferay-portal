@@ -15,7 +15,7 @@
 package com.liferay.document.library.internal.model.listener;
 
 import com.liferay.document.library.constants.DLPortletKeys;
-import com.liferay.document.library.internal.util.DLExportableRepositoryPublisherHelper;
+import com.liferay.document.library.internal.helper.DLExportableRepositoryPublisherHelper;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;

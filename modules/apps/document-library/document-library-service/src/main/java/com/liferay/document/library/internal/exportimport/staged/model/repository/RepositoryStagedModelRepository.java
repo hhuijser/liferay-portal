@@ -15,7 +15,7 @@
 package com.liferay.document.library.internal.exportimport.staged.model.repository;
 
 import com.liferay.document.library.constants.DLPortletKeys;
-import com.liferay.document.library.internal.util.DLExportableRepositoryPublisherHelper;
+import com.liferay.document.library.internal.helper.DLExportableRepositoryPublisherHelper;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataException;
 import com.liferay.exportimport.kernel.lar.StagedModelType;

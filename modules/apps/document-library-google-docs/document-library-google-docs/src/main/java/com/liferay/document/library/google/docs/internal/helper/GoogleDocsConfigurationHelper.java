@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.google.docs.internal.util;
+package com.liferay.document.library.google.docs.internal.helper;
 
 import com.liferay.document.library.google.drive.configuration.DLGoogleDriveCompanyConfiguration;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;

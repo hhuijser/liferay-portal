@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.internal.util;
+package com.liferay.document.library.internal.helper;
 
 import com.liferay.document.library.constants.DLFileVersionPreviewConstants;
 import com.liferay.document.library.kernel.model.DLFolderConstants;

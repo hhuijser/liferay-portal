@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.internal.util;
+package com.liferay.document.library.internal.helper;
 
 import com.liferay.document.library.exportimport.data.handler.DLExportableRepositoryPublisher;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;

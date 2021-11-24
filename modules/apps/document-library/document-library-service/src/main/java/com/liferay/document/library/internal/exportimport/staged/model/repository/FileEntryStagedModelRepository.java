@@ -14,7 +14,7 @@
 
 package com.liferay.document.library.internal.exportimport.staged.model.repository;
 
-import com.liferay.document.library.internal.util.DLExportableRepositoryPublisherHelper;
+import com.liferay.document.library.internal.helper.DLExportableRepositoryPublisherHelper;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.document.library.kernel.model.DLFileVersion;

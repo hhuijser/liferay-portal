@@ -14,7 +14,7 @@
 
 package com.liferay.document.library.internal.model.listener;
 
-import com.liferay.document.library.internal.util.DLExportableRepositoryPublisherHelper;
+import com.liferay.document.library.internal.helper.DLExportableRepositoryPublisherHelper;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.model.DLFileVersion;
 import com.liferay.portal.kernel.exception.ModelListenerException;

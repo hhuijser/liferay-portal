@@ -25,6 +25,7 @@ import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetService;
 import com.liferay.dynamic.data.lists.web.internal.configuration.DDLWebConfigurationKeys;
 import com.liferay.dynamic.data.lists.web.internal.configuration.DDLWebConfigurationUtil;
+import com.liferay.dynamic.data.lists.web.internal.template.helper.DDLDisplayTemplateHelper;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;

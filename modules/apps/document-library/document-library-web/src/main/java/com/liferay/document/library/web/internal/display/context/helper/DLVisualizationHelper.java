@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.display.context.logic;
+package com.liferay.document.library.web.internal.display.context.helper;
 
 import com.liferay.document.library.constants.DLPortletKeys;
-import com.liferay.document.library.web.internal.display.context.helper.DLRequestHelper;
 import com.liferay.document.library.web.internal.settings.DLPortletInstanceSettings;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;

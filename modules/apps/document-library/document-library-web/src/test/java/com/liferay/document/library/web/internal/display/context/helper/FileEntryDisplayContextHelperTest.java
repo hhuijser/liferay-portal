@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.display.context.logic;
+package com.liferay.document.library.web.internal.display.context.helper;
 
 import com.liferay.document.library.web.internal.security.permission.resource.DLFileEntryPermission;
 import com.liferay.portal.kernel.exception.PortalException;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.opener.google.drive.web.internal.util;
+package com.liferay.document.library.opener.google.drive.web.internal.helper;
 
 import com.liferay.document.library.opener.google.drive.web.internal.DLOpenerGoogleDriveManager;
 import com.liferay.document.library.opener.google.drive.web.internal.oauth.OAuth2StateUtil;

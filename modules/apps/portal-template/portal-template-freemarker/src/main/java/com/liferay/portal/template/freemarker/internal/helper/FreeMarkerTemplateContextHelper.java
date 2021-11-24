@@ -12,15 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.template.velocity.internal;
+package com.liferay.portal.template.freemarker.internal.helper;
 
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Theme;
-import com.liferay.portal.kernel.service.permission.RolePermissionUtil;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
-import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -28,22 +26,17 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.template.TemplateContextHelper;
 import com.liferay.portal.template.TemplatePortletPreferences;
-import com.liferay.portal.template.velocity.configuration.VelocityEngineConfiguration;
+import com.liferay.portal.template.freemarker.configuration.FreeMarkerEngineConfiguration;
+import com.liferay.portal.template.freemarker.internal.LiferayObjectConstructor;
 
-import java.util.ArrayList;
+import freemarker.ext.beans.BeansWrapper;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.velocity.tools.generic.DateTool;
-import org.apache.velocity.tools.generic.EscapeTool;
-import org.apache.velocity.tools.generic.IteratorTool;
-import org.apache.velocity.tools.generic.ListTool;
-import org.apache.velocity.tools.generic.MathTool;
-import org.apache.velocity.tools.generic.NumberTool;
-import org.apache.velocity.tools.generic.SortTool;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -55,21 +48,21 @@ import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Mika Koivisto
  * @author Raymond Augé
- * @author Peter Fellwock
  */
 @Component(
-	configurationPid = "com.liferay.portal.template.velocity.configuration.VelocityEngineConfiguration",
+	configurationPid = "com.liferay.portal.template.freemarker.configuration.FreeMarkerEngineConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
-	service = {TemplateContextHelper.class, VelocityTemplateContextHelper.class}
+	service = {
+		FreeMarkerTemplateContextHelper.class, TemplateContextHelper.class
+	}
 )
-public class VelocityTemplateContextHelper extends TemplateContextHelper {
+public class FreeMarkerTemplateContextHelper extends TemplateContextHelper {
 
 	@Override
 	public Set<String> getRestrictedVariables() {
-		return SetUtil.fromArray(
-			_velocityEngineConfiguration.restrictedVariables());
+		return _restrictedVariables;
 	}
 
 	@Override
@@ -95,30 +88,29 @@ public class VelocityTemplateContextHelper extends TemplateContextHelper {
 
 			contextObjects.put(
 				"fullCssPath",
-				servletContextName + theme.getVelocityResourceListener() +
-					theme.getCssPath());
+				StringBundler.concat(
+					StringPool.SLASH, servletContextName,
+					theme.getFreeMarkerTemplateLoader(), theme.getCssPath()));
 
-			String fullTemplatesPath =
-				servletContextName + theme.getVelocityResourceListener() +
-					theme.getTemplatesPath();
+			String fullTemplatesPath = StringBundler.concat(
+				StringPool.SLASH, servletContextName,
+				theme.getFreeMarkerTemplateLoader(), theme.getTemplatesPath());
 
 			contextObjects.put("fullTemplatesPath", fullTemplatesPath);
 
 			// Init
 
-			contextObjects.put("init", fullTemplatesPath + "/init.vm");
+			contextObjects.put("init", fullTemplatesPath + "/init.ftl");
 		}
 
-		// Insert custom vm variables
+		// Insert custom ftl variables
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		Map<String, Object> vmVariables =
+		Map<String, Object> ftlVariables =
 			(Map<String, Object>)httpServletRequest.getAttribute(
-				WebKeys.VM_VARIABLES + portletDisplay.getId());
+				WebKeys.FTL_VARIABLES);
 
-		if (vmVariables != null) {
-			for (Map.Entry<String, Object> entry : vmVariables.entrySet()) {
+		if (ftlVariables != null) {
+			for (Map.Entry<String, Object> entry : ftlVariables.entrySet()) {
 				String key = entry.getKey();
 
 				if (Validator.isNotNull(key)) {
@@ -137,59 +129,51 @@ public class VelocityTemplateContextHelper extends TemplateContextHelper {
 		}
 	}
 
+	public void setDefaultBeansWrapper(BeansWrapper defaultBeansWrapper) {
+		_defaultBeansWrapper = defaultBeansWrapper;
+	}
+
+	public void setRestrictedBeansWrapper(BeansWrapper restrictedBeansWrapper) {
+		_restrictedBeansWrapper = restrictedBeansWrapper;
+	}
+
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		_velocityEngineConfiguration = ConfigurableUtil.createConfigurable(
-			VelocityEngineConfiguration.class, properties);
+		_freeMarkerEngineConfiguration = ConfigurableUtil.createConfigurable(
+			FreeMarkerEngineConfiguration.class, properties);
+
+		_restrictedVariables = SetUtil.fromArray(
+			_freeMarkerEngineConfiguration.restrictedVariables());
 	}
 
 	@Override
 	protected void populateExtraHelperUtilities(
-		Map<String, Object> velocityContext, boolean restrict) {
+		Map<String, Object> helperUtilities, boolean restricted) {
 
-		// Date tool
+		BeansWrapper beansWrapper = _defaultBeansWrapper;
 
-		velocityContext.put("dateTool", new DateTool());
+		if (restricted) {
+			beansWrapper = _restrictedBeansWrapper;
+		}
 
-		// Escape tool
+		// Enum util
 
-		velocityContext.put("escapeTool", new EscapeTool());
+		helperUtilities.put("enumUtil", beansWrapper.getEnumModels());
 
-		// Iterator tool
+		// Object util
 
-		velocityContext.put("iteratorTool", new IteratorTool());
-
-		// List tool
-
-		velocityContext.put("listTool", new ListTool());
-
-		// Math tool
-
-		velocityContext.put("mathTool", new MathTool());
-
-		// Number tool
-
-		velocityContext.put("numberTool", new NumberTool());
+		helperUtilities.put(
+			"objectUtil", new LiferayObjectConstructor(beansWrapper));
 
 		// Portlet preferences
 
-		velocityContext.put(
-			"velocityPortletPreferences", new TemplatePortletPreferences());
+		helperUtilities.put(
+			"freeMarkerPortletPreferences", new TemplatePortletPreferences());
 
-		// Sort tool
+		// Static class util
 
-		velocityContext.put("sortTool", new SortTool());
-
-		// Permissions
-
-		try {
-			velocityContext.put(
-				"rolePermission", RolePermissionUtil.getRolePermission());
-		}
-		catch (SecurityException securityException) {
-			_log.error(securityException, securityException);
-		}
+		helperUtilities.put("staticUtil", beansWrapper.getStaticModels());
 	}
 
 	@Reference(
@@ -198,25 +182,24 @@ public class VelocityTemplateContextHelper extends TemplateContextHelper {
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(type=" + TemplateContextContributor.TYPE_GLOBAL + ")"
 	)
-	protected synchronized void registerTemplateContextContributor(
+	protected void registerTemplateContextContributor(
 		TemplateContextContributor templateContextContributor) {
 
 		_templateContextContributors.add(templateContextContributor);
 	}
 
-	protected synchronized void unregisterTemplateContextContributor(
+	protected void unregisterTemplateContextContributor(
 		TemplateContextContributor templateContextContributor) {
 
 		_templateContextContributors.remove(templateContextContributor);
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		VelocityTemplateContextHelper.class);
-
-	private static volatile VelocityEngineConfiguration
-		_velocityEngineConfiguration;
-
+	private BeansWrapper _defaultBeansWrapper;
+	private volatile FreeMarkerEngineConfiguration
+		_freeMarkerEngineConfiguration;
+	private BeansWrapper _restrictedBeansWrapper;
+	private volatile Set<String> _restrictedVariables;
 	private final List<TemplateContextContributor>
-		_templateContextContributors = new ArrayList<>();
+		_templateContextContributors = new CopyOnWriteArrayList<>();
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.template.soy.renderer.internal;
+package com.liferay.portal.template.soy.renderer.internal.helper;
 
 import com.liferay.frontend.js.module.launcher.JSModuleDependency;
 import com.liferay.frontend.js.module.launcher.JSModuleLauncher;
@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.template.soy.renderer.ComponentDescriptor;
 import com.liferay.portal.template.soy.renderer.SoyRenderer;
+import com.liferay.portal.template.soy.renderer.internal.SoyJavaScriptRendererUtil;
 
 import java.io.IOException;
 import java.io.Writer;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.web.internal.request.prepocessor;
+package com.liferay.portal.workflow.web.internal.request.prepocessor.helper;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;

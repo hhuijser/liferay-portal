@@ -42,6 +42,16 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = SearchBarPrecedenceHelper.class)
 public class SearchBarPrecedenceHelper {
 
+	public Optional<Portlet> findHeaderSearchBarPortletOptional(
+		ThemeDisplay themeDisplay) {
+
+		Stream<Portlet> stream = getPortletsStream(themeDisplay);
+
+		return stream.filter(
+			this::isHeaderSearchBar
+		).findAny();
+	}
+
 	public boolean isDisplayWarningIgnoredConfiguration(
 		ThemeDisplay themeDisplay, boolean usePortletResource) {
 
@@ -111,16 +121,6 @@ public class SearchBarPrecedenceHelper {
 		}
 
 		return true;
-	}
-
-	public Optional<Portlet> findHeaderSearchBarPortletOptional(
-		ThemeDisplay themeDisplay) {
-
-		Stream<Portlet> stream = getPortletsStream(themeDisplay);
-
-		return stream.filter(
-			this::isHeaderSearchBar
-		).findAny();
 	}
 
 	protected Stream<Portlet> getPortletsStream(ThemeDisplay themeDisplay) {

@@ -77,6 +77,25 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = SaveFormInstanceMVCCommandHelper.class)
 public class SaveFormInstanceMVCCommandHelper {
 
+	public Map<Locale, String> getNameMap(
+			DDMForm ddmForm, String name, String defaultName)
+		throws PortalException {
+
+		Locale defaultLocale = ddmForm.getDefaultLocale();
+
+		Map<Locale, String> nameMap = getLocalizedMap(
+			name, ddmForm.getAvailableLocales(), defaultLocale);
+
+		if (nameMap.isEmpty() || Validator.isNull(nameMap.get(defaultLocale))) {
+			nameMap.put(
+				defaultLocale,
+				LanguageUtil.get(
+					getResourceBundle(defaultLocale), defaultName));
+		}
+
+		return nameMap;
+	}
+
 	public DDMFormInstance saveFormInstance(
 			PortletRequest portletRequest, PortletResponse portletResponse)
 		throws Exception {
@@ -195,25 +214,6 @@ public class SaveFormInstanceMVCCommandHelper {
 		}
 
 		return localizedMap;
-	}
-
-	public Map<Locale, String> getNameMap(
-			DDMForm ddmForm, String name, String defaultName)
-		throws PortalException {
-
-		Locale defaultLocale = ddmForm.getDefaultLocale();
-
-		Map<Locale, String> nameMap = getLocalizedMap(
-			name, ddmForm.getAvailableLocales(), defaultLocale);
-
-		if (nameMap.isEmpty() || Validator.isNull(nameMap.get(defaultLocale))) {
-			nameMap.put(
-				defaultLocale,
-				LanguageUtil.get(
-					getResourceBundle(defaultLocale), defaultName));
-		}
-
-		return nameMap;
 	}
 
 	protected ResourceBundle getResourceBundle(Locale locale) {

@@ -197,7 +197,7 @@ public class SaveFormInstanceMVCCommandHelper {
 		return localizedMap;
 	}
 
-	protected Map<Locale, String> getNameMap(
+	public Map<Locale, String> getNameMap(
 			DDMForm ddmForm, String name, String defaultName)
 		throws PortalException {
 

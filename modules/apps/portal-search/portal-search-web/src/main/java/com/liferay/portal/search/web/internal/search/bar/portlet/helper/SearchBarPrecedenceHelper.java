@@ -113,7 +113,7 @@ public class SearchBarPrecedenceHelper {
 		return true;
 	}
 
-	protected Optional<Portlet> findHeaderSearchBarPortletOptional(
+	public Optional<Portlet> findHeaderSearchBarPortletOptional(
 		ThemeDisplay themeDisplay) {
 
 		Stream<Portlet> stream = getPortletsStream(themeDisplay);

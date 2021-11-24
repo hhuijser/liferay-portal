@@ -12,22 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.indexer;
+package com.liferay.portal.search.internal.expando.helper;
 
 import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.filter.BooleanFilter;
 
 import java.util.Collection;
 
 /**
  * @author André de Oliveira
  */
-public interface PostProcessSearchQueryContributorHelper {
+public interface ExpandoQueryContributorHelper {
 
 	public void contribute(
-		BooleanQuery booleanQuery, BooleanFilter booleanFilter,
-		Collection<Indexer<?>> indexers, SearchContext searchContext);
+		String keywords, BooleanQuery booleanQuery,
+		Collection<String> classNames, SearchContext searchContext);
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.indexer;
+package com.liferay.portal.search.internal.indexer.helper;
 
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Indexer;

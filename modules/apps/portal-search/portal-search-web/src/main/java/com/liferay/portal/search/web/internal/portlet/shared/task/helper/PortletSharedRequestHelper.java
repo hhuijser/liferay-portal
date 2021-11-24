@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.web.internal.portlet.shared.task;
+package com.liferay.portal.search.web.internal.portlet.shared.task.helper;
 
 import java.util.Optional;
 

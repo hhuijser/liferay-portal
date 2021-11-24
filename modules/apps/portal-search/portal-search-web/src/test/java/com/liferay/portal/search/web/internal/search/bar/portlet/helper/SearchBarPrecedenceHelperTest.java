@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.web.internal.search.bar.portlet;
+package com.liferay.portal.search.web.internal.search.bar.portlet.helper;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;

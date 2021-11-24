@@ -12,17 +12,31 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.indexer;
+package com.liferay.portal.search.internal.searcher.helper;
 
-import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchContext;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author André de Oliveira
  */
-public interface AddSearchKeywordsQueryContributorHelper {
+public interface IndexSearcherHelper {
 
-	public void contribute(
-		BooleanQuery booleanQuery, SearchContext searchContext);
+	public String getQueryString(SearchContext searchContext, Query query);
+
+	public Hits search(SearchContext searchContext, Query query);
+
+	public long searchCount(SearchContext searchContext, Query query);
+
+	public String spellCheckKeywords(SearchContext searchContext);
+
+	public Map<String, List<String>> spellCheckKeywords(
+		SearchContext searchContext, int max);
+
+	public String[] suggestKeywordQueries(SearchContext searchContext, int max);
 
 }

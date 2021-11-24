@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.expando;
+package com.liferay.portal.search.internal.expando.helper;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.model.ExpandoColumn;

@@ -18,7 +18,7 @@ import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.background.task.internal.BackgroundTaskImpl;
-import com.liferay.portal.background.task.internal.lock.BackgroundTaskLockHelper;
+import com.liferay.portal.background.task.internal.lock.helper.BackgroundTaskLockHelper;
 import com.liferay.portal.background.task.model.BackgroundTask;
 import com.liferay.portal.background.task.service.base.BackgroundTaskLocalServiceBaseImpl;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatus;

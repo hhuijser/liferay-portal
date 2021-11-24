@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.elasticsearch7.internal.util;
+package com.liferay.portal.search.elasticsearch7.internal.helper;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.search.elasticsearch7.configuration.RESTClientLoggerLevel;
@@ -21,19 +21,30 @@ import org.elasticsearch.action.ActionResponse;
 import org.elasticsearch.action.bulk.BulkResponse;
 
 /**
- * @author Adam Brandizzi
+ * @author Michael C. Han
  */
-public interface SearchLogHelper {
+public class SearchLogHelperUtil {
 
-	public void logActionResponse(Log log, ActionResponse actionResponse);
+	public static void logActionResponse(
+		Log log, ActionResponse actionResponse) {
 
-	public void logActionResponse(Log log, BulkResponse bulkResponse);
+		_searchLogHelper.logActionResponse(log, actionResponse);
+	}
 
-	/**
-	 * @deprecated As of Cavanaugh (7.4.x), with no direct replacement
-	 */
-	@Deprecated
-	public void setRESTClientLoggerLevel(
-		RESTClientLoggerLevel restClientLoggerLevel);
+	public static void logActionResponse(Log log, BulkResponse bulkResponse) {
+		_searchLogHelper.logActionResponse(log, bulkResponse);
+	}
+
+	public static void setRESTClientLoggerLevel(
+		RESTClientLoggerLevel restClientLoggerLevel) {
+
+		_searchLogHelper.setRESTClientLoggerLevel(restClientLoggerLevel);
+	}
+
+	public static void setSearchLogHelper(SearchLogHelper searchLogHelper) {
+		_searchLogHelper = searchLogHelper;
+	}
+
+	private static SearchLogHelper _searchLogHelper = new SearchLogHelperImpl();
 
 }

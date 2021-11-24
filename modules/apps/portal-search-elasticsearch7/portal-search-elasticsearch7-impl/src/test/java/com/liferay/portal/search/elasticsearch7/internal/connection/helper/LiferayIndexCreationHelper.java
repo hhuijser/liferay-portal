@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.elasticsearch7.internal.connection;
+package com.liferay.portal.search.elasticsearch7.internal.connection.helper;
 
 import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.search.elasticsearch7.internal.index.LiferayDocumentTypeFactory;

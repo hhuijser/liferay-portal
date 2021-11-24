@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.background.task.internal.lock;
+package com.liferay.portal.background.task.internal.lock.helper;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTask;

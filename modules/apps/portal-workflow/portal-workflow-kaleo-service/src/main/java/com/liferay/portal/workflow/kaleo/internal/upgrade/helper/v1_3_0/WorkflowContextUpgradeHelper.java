@@ -98,7 +98,7 @@ public class WorkflowContextUpgradeHelper {
 			ArrayUtil.toStringArray(newSubs));
 	}
 
-	protected boolean isEntryClassNameRenamed(
+	public boolean isEntryClassNameRenamed(
 		Map<String, Serializable> workflowContext) {
 
 		String oldEntryClassName = (String)workflowContext.get(

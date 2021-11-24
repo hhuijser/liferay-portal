@@ -16,9 +16,13 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,6 +66,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		content = content.replaceAll(
 			"((['\"])<%= ((?<!%>).)*?)\\\\(\".+?)\\\\(\".*?%>\\2)", "$1$4$5");
 
+		_combineJSPDeclarations(fileName, content);
+
 		Matcher matcher = _portletNamespacePattern.matcher(content);
 
 		while (matcher.find()) {
@@ -87,6 +93,36 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		}
 
 		return content;
+	}
+
+	private void _combineJSPDeclarations(String fileName, String content) {
+		int jspDeclarationsCount = 0;
+
+		List<Integer> jspDeclarationsLineNumbers = new ArrayList<>();
+
+		int x = -1;
+
+		while (true) {
+			x = content.indexOf("<%!", x + 1);
+
+			if (x == -1) {
+				break;
+			}
+
+			if (!ToolsUtil.isInsideQuotes(content, x)) {
+				jspDeclarationsCount++;
+				jspDeclarationsLineNumbers.add(getLineNumber(content, x));
+			}
+		}
+
+		if (jspDeclarationsCount > 1) {
+			String message = ListUtil.toString(
+				jspDeclarationsLineNumbers, StringPool.BLANK,
+				StringPool.COMMA_AND_SPACE);
+
+			addMessage(
+				fileName, "Combine the JSP declarations at lines " + message);
+		}
 	}
 
 	private String _fixEmptyJavaSourceTag(String content) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.social.activities.web.internal.util;
+package com.liferay.social.activities.web.internal.helper;
 
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;

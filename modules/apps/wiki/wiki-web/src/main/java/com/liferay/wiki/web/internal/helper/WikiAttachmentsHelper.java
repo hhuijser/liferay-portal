@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal;
+package com.liferay.wiki.web.internal.helper;
 
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.portal.kernel.log.Log;

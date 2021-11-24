@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.user.associated.data.web.internal.util;
+package com.liferay.user.associated.data.web.internal.helper;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;

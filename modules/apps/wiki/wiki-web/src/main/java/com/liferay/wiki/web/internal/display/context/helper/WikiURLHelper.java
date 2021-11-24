@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal.display.context.util;
+package com.liferay.wiki.web.internal.display.context.helper;
 
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
 import com.liferay.petra.string.StringPool;
@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.wiki.configuration.WikiGroupServiceConfiguration;
 import com.liferay.wiki.model.WikiNode;
-import com.liferay.wiki.web.internal.display.context.helper.WikiRequestHelper;
 
 import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;

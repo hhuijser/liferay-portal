@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal.display.context.logic;
+package com.liferay.wiki.web.internal.display.context.helper;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.Validator;
@@ -20,7 +20,6 @@ import com.liferay.wiki.configuration.WikiGroupServiceConfiguration;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
-import com.liferay.wiki.web.internal.display.context.helper.WikiRequestHelper;
 
 import java.util.Collection;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal.display.context.util;
+package com.liferay.wiki.web.internal.display.context.helper;
 
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
 import com.liferay.petra.portlet.url.builder.PortletURLBuilder;
@@ -36,7 +36,6 @@ import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.WikiPageLocalServiceUtil;
 import com.liferay.wiki.social.WikiActivityKeys;
-import com.liferay.wiki.web.internal.display.context.helper.WikiRequestHelper;
 
 import java.util.ResourceBundle;
 

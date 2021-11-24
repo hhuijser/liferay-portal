@@ -38,6 +38,19 @@ public class WorkflowContextUpgradeHelper {
 		return _classNamesMap.entrySet();
 	}
 
+	public boolean isEntryClassNameRenamed(
+		Map<String, Serializable> workflowContext) {
+
+		String oldEntryClassName = (String)workflowContext.get(
+			"entryClassName");
+
+		if (_classNamesMap.get(oldEntryClassName) != null) {
+			return true;
+		}
+
+		return false;
+	}
+
 	public Map<String, Serializable> renameEntryClassName(
 		Map<String, Serializable> workflowContext) {
 
@@ -96,19 +109,6 @@ public class WorkflowContextUpgradeHelper {
 		return StringUtil.replace(
 			workflowContextJSON, ArrayUtil.toStringArray(oldSubs),
 			ArrayUtil.toStringArray(newSubs));
-	}
-
-	public boolean isEntryClassNameRenamed(
-		Map<String, Serializable> workflowContext) {
-
-		String oldEntryClassName = (String)workflowContext.get(
-			"entryClassName");
-
-		if (_classNamesMap.get(oldEntryClassName) != null) {
-			return true;
-		}
-
-		return false;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

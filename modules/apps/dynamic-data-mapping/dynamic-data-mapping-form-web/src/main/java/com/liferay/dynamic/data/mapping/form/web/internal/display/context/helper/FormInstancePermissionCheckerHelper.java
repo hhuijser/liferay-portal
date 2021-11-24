@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.form.web.internal.display.context.util;
+package com.liferay.dynamic.data.mapping.form.web.internal.display.context.helper;
 
 import com.liferay.dynamic.data.mapping.constants.DDMActionKeys;
-import com.liferay.dynamic.data.mapping.form.web.internal.display.context.helper.DDMFormAdminRequestHelper;
 import com.liferay.dynamic.data.mapping.form.web.internal.security.permission.resource.DDMFormInstancePermission;
 import com.liferay.dynamic.data.mapping.form.web.internal.security.permission.resource.DDMFormPermission;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;

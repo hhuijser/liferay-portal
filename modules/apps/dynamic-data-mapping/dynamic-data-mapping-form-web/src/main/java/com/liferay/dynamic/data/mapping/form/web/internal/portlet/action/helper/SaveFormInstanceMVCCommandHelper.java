@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.form.web.internal.portlet.action;
+package com.liferay.dynamic.data.mapping.form.web.internal.portlet.action.helper;
 
 import com.liferay.configuration.admin.constants.ConfigurationAdminPortletKeys;
 import com.liferay.dynamic.data.mapping.exception.FormInstanceSettingsRedirectURLException;

@@ -12,12 +12,11 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.form.field.type.internal.checkbox.multiple;
+package com.liferay.dynamic.data.mapping.form.field.type.internal.grid.helper;
 
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
 import com.liferay.dynamic.data.mapping.render.DDMFormFieldRenderingContext;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormFieldOptionsTestUtil;
-import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
@@ -31,9 +30,9 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author Rafael Praxedes
+ * @author Pedro Queiroz
  */
-public class CheckboxMultipleDDMFormFieldContextHelperTest {
+public class GridDDMFormFieldContextHelperTest {
 
 	@ClassRule
 	@Rule
@@ -66,12 +65,10 @@ public class CheckboxMultipleDDMFormFieldContextHelperTest {
 	protected List<Object> getActualOptions(
 		DDMFormFieldOptions ddmFormFieldOptions, Locale locale) {
 
-		CheckboxMultipleDDMFormFieldContextHelper
-			checkboxMultipleDDMFormFieldContextHelper =
-				new CheckboxMultipleDDMFormFieldContextHelper(
-					new JSONFactoryImpl(), ddmFormFieldOptions, locale);
+		GridDDMFormFieldContextHelper gridDDMFormFieldContextHelper =
+			new GridDDMFormFieldContextHelper(ddmFormFieldOptions, locale);
 
-		return checkboxMultipleDDMFormFieldContextHelper.getOptions(
+		return gridDDMFormFieldContextHelper.getOptions(
 			new DDMFormFieldRenderingContext());
 	}
 

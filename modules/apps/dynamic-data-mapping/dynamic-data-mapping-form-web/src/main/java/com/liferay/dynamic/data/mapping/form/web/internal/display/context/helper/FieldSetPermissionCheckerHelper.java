@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.form.web.internal.display.context.util;
+package com.liferay.dynamic.data.mapping.form.web.internal.display.context.helper;
 
-import com.liferay.dynamic.data.mapping.form.web.internal.display.context.helper.DDMFormAdminRequestHelper;
 import com.liferay.dynamic.data.mapping.form.web.internal.security.permission.resource.DDMFormPermission;
 import com.liferay.dynamic.data.mapping.form.web.internal.security.permission.resource.DDMStructurePermission;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;

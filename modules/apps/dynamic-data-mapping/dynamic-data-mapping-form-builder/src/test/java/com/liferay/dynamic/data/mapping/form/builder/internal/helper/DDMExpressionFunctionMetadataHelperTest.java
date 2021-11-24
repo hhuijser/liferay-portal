@@ -12,10 +12,11 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.form.builder.internal.util;
+package com.liferay.dynamic.data.mapping.form.builder.internal.helper;
 
 import com.liferay.dynamic.data.mapping.expression.DDMExpressionFunction;
 import com.liferay.dynamic.data.mapping.expression.DDMExpressionFunctionTracker;
+import com.liferay.dynamic.data.mapping.form.builder.internal.util.DDMExpressionFunctionMetadata;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;

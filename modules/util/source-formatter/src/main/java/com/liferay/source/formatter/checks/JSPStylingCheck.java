@@ -106,13 +106,6 @@ public class JSPStylingCheck extends BaseStylingCheck {
 				getLineNumber(content, x));
 		}
 
-		Matcher matcher = _adjacentJavaBlocksPattern.matcher(content);
-
-		if (matcher.find()) {
-			return StringUtil.replaceFirst(
-				content, matcher.group(), "\n\n", matcher.start() - 1);
-		}
-
 		y = x;
 
 		while (true) {
@@ -130,8 +123,15 @@ public class JSPStylingCheck extends BaseStylingCheck {
 						getLineNumber(content, x), "' and ",
 						getLineNumber(content, y)));
 
-				break;
+				return content;
 			}
+		}
+
+		Matcher matcher = _adjacentJavaBlocksPattern.matcher(content);
+
+		if (matcher.find()) {
+			return StringUtil.replaceFirst(
+				content, matcher.group(), "\n\n", matcher.start() - 1);
 		}
 
 		return content;

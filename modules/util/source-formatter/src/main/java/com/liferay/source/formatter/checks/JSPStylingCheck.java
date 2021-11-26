@@ -93,7 +93,7 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		int y = x;
 
 		while (true) {
-			y = content.indexOf("<%", y + 1);
+			y = content.indexOf("<%\n", y + 1);
 
 			if ((y == -1) || !ToolsUtil.isInsideQuotes(content, y)) {
 				break;

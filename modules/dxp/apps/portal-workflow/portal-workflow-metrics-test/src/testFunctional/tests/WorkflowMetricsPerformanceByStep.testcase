@@ -67,7 +67,6 @@ definition {
 		AssertElementPresent(
 			key_dateRange = "3.0",
 			locator1 = "WorkflowMetricsPerformanceByStep#DATE_RANGE_DROPDOWN_OPTION");
-
 	}
 
 	@description = "LPS-101075 - Verify that the filter offers an option for each existing version"
@@ -177,7 +176,6 @@ definition {
 		AssertElementNotPresent(
 			key_versionOption = "1.0",
 			locator1 = "WorkflowMetricsPerformanceByStep#METRICS_PERFORMANCE_BY_STEP_PROCESS_VERSION_DROPDOWN_SELECTED");
-
 	}
 
 	@description = "LPS-101075 - Verify that the filter offers an option to see all version together"

@@ -304,15 +304,16 @@ definition {
 	@priority = "5"
 	test CreateEditAndDeleteLocalizedFieldset {
 		property portal.acceptance = "true";
+
 		var newStructureName = "WC Structure Name";
 
-		task("Open sidebar, go to Web Content > Structure"){
+		task ("Open sidebar, go to Web Content > Structure") {
 			WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
 			NavItem.gotoStructures();
 		}
 
-		task("Add a Fieldset with Text and Numeric fields"){
+		task ("Add a Fieldset with Text and Numeric fields") {
 			WebContentStructures.addCP(structureName = "${newStructureName}");
 
 			DataEngine.createNewFieldset(
@@ -322,10 +323,9 @@ definition {
 			DataEngine.addFieldsetToBuilder(fieldsetName = "New Fieldset");
 
 			WebContentStructures.saveCP();
-
 		}
 
-		task("Edit the created fieldset by adding a Data field"){
+		task ("Edit the created fieldset by adding a Data field") {
 			WebContentNavigator.gotoEditStructure(structureName = "${newStructureName}");
 
 			DataEngine.gotoEditFieldset(fieldsetName = "New Fieldset");
@@ -342,7 +342,7 @@ definition {
 			WebContentStructures.saveCP();
 		}
 
-		task("Edit the fieldset by adding a Translation to brazilian portuguese"){
+		task ("Edit the fieldset by adding a Translation to brazilian portuguese") {
 			WebContentNavigator.gotoEditStructure(structureName = "${newStructureName}");
 
 			DataEngine.addTranslationToFieldset(
@@ -359,7 +359,7 @@ definition {
 			WebContentStructures.saveCP();
 		}
 
-		task("Assert that the fields and translations were created correctly"){
+		task ("Assert that the fields and translations were created correctly") {
 			WebContentNavigator.gotoEditStructure(structureName = "${newStructureName}");
 
 			Refresh();
@@ -380,7 +380,7 @@ definition {
 			WebContentStructures.saveCP();
 		}
 
-		task("Add a web content using the created fieldset"){
+		task ("Add a web content using the created fieldset") {
 			NavItem.click(navItem = "Web Content");
 
 			WebContentNavigator.gotoAddWithStructureCP(structureName = "${newStructureName}");
@@ -405,7 +405,7 @@ definition {
 			PortletEntry.publish();
 		}
 
-		task("Assert that the web content was created correctly using the fieldset"){
+		task ("Assert that the web content was created correctly using the fieldset") {
 			WebContent.viewWithStructureCP(
 				webContentDate = "02/22/2021",
 				webContentNumeric = "1",
@@ -424,8 +424,7 @@ definition {
 				webContentTitle = "Web Content Title pt-BR");
 		}
 
-		task("Delete the fieldset and assert that it was deleted"){
-
+		task ("Delete the fieldset and assert that it was deleted") {
 			Navigator.gotoBack();
 
 			NavItem.gotoStructures();
@@ -453,7 +452,7 @@ definition {
 			WebContentStructures.saveCP();
 		}
 
-		task("Assert that the web content only has one field present(Text)"){
+		task ("Assert that the web content only has one field present(Text)") {
 			NavItem.click(navItem = "Web Content");
 
 			WebContentNavigator.gotoEditCP(webContentTitle = "Web Content Title");

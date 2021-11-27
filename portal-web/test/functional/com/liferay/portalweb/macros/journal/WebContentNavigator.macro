@@ -78,7 +78,7 @@ definition {
 		WaitForElementPresent(
 			key_ddlDataDefinitionName = "${structureName}",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK");
-		
+
 		AssertClick(
 			key_ddlDataDefinitionName = "${structureName}",
 			locator1 = "DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK",

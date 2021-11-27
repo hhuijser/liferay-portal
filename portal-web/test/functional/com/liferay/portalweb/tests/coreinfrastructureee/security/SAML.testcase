@@ -1515,7 +1515,6 @@ definition {
 		}
 
 		task ("Open able.com:9080 and add LDAP server") {
-
 			Navigator.openSpecificURL(url = "http://www.able.com:9080");
 
 			Navigator.gotoLoginPage();
@@ -1555,8 +1554,8 @@ definition {
 
 		task ("Login and reindex search indexes") {
 			User.firstLoginUI(
-            	password = "test",
-            	userEmailAddress = "test@liferay.com");
+				password = "test",
+				userEmailAddress = "test@liferay.com");
 
 			SearchAdministration.executeReindex();
 		}

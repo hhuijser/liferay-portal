@@ -122,8 +122,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 					fileName,
 					StringBundler.concat(
 						"Combine <%!...%> blocks at line '",
-						getLineNumber(content, x), "' and ",
-						getLineNumber(content, y)));
+						getLineNumber(content, x), "' and '",
+						getLineNumber(content, y), "'"));
 
 				return content;
 			}

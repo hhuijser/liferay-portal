@@ -590,7 +590,7 @@ definition {
 	@priority = "4"
 	test CanViewEntryViaRecentBloggers {
 		property custom.properties = "company.default.time.zone=America/Los_Angeles";
-		
+
 		JSONLayout.addPublicLayout(
 			groupName = "Guest",
 			layoutName = "Recent Bloggers Page");
@@ -618,7 +618,7 @@ definition {
 
 		Ratings.rateThumb(
 			blogRating = "true",
-			ratingResult = "Rate this as good");		
+			ratingResult = "Rate this as good");
 
 		Navigator.gotoPage(pageName = "Recent Bloggers Page");
 

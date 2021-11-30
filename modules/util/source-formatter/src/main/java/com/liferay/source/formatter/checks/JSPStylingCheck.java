@@ -104,6 +104,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 			addMessage(
 				fileName, "'<%!...%>' block should come after <%...%> blcok",
 				getLineNumber(content, x));
+
+			return content;
 		}
 
 		y = x;

@@ -22,6 +22,16 @@ import org.junit.Test;
 public class JSPSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
+	public void testCombineJavaSourceBlocks() throws Exception {
+		test(
+			"CombineJavaSourceBlocks1.testjsp",
+			"'<%!...%>' block should come after <%...%> blcok", 19);
+		test(
+			"CombineJavaSourceBlocks2.testjsp",
+			"Combine <%!...%> blocks at line '29' and '34'");
+	}
+
+	@Test
 	public void testFormatBooleanScriptlet() throws Exception {
 		test("FormatBooleanScriptlet.testjsp");
 	}

@@ -163,6 +163,7 @@ public class RadioDDMFormFieldTypeSettingsTest
 		languageUtil.setLanguage(PowerMockito.mock(Language.class));
 	}
 
+	@Override
 	protected void setUpPortalUtil() {
 		PortalUtil portalUtil = new PortalUtil();
 

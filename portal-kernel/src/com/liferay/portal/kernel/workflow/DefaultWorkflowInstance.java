@@ -103,6 +103,7 @@ public class DefaultWorkflowInstance implements Serializable, WorkflowInstance {
 		return _workflowInstanceId;
 	}
 
+	@Override
 	public boolean isActive() {
 		return _active;
 	}

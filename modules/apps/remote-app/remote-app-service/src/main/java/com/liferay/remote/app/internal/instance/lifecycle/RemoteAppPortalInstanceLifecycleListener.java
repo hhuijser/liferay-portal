@@ -35,6 +35,7 @@ import org.osgi.service.component.annotations.Reference;
 public class RemoteAppPortalInstanceLifecycleListener
 	extends BasePortalInstanceLifecycleListener {
 
+	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
 
 		// TODO Move to an upgrade process for existing companies. For new

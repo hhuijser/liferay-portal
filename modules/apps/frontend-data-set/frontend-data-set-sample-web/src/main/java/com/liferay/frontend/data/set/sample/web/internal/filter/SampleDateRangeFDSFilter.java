@@ -42,6 +42,7 @@ public class SampleDateRangeFDSFilter extends BaseDateRangeFDSFilter {
 		return "Date Range";
 	}
 
+	@Override
 	public DateFDSFilterItem getMaxDateFDSFilterItem() {
 		Calendar calendar = Calendar.getInstance();
 

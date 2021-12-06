@@ -123,6 +123,7 @@ public class LayoutSiteNavigationMenuItemType
 		return true;
 	}
 
+	@Override
 	public String getAddTitle(Locale locale) {
 		return LanguageUtil.format(locale, "select-x", "pages");
 	}

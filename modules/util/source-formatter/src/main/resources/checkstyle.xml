@@ -332,15 +332,6 @@
 			<message key="method.call.deprecated" value="Method ''{0}'' has been deprecated" />
 			<message key="type.call.deprecated" value="Type ''{0}'' has been deprecated" />
 		</module>
-		<module name="com.liferay.source.formatter.checkstyle.checks.DeprecatedUsageCheck">
-			<property name="category" value="Bug Prevention" />
-			<property name="description" value="Finds calls to deprecated classes or methods." />
-			<property name="enabled" value="false" />
-			<message key="constructor.call.deprecated" value="Constructor ''{0}'' has been deprecated" />
-			<message key="field.call.deprecated" value="Field ''{0}'' has been deprecated" />
-			<message key="method.call.deprecated" value="Method ''{0}'' has been deprecated" />
-			<message key="type.call.deprecated" value="Type ''{0}'' has been deprecated" />
-		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.DTOEnumCreationCheck">
 			<property name="category" value="Bug Prevention" />
 			<property name="description" value="Checks the creation of DTO enum." />

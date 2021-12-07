@@ -347,8 +347,6 @@ public class DeprecatedUsageCheck extends BaseCheck {
 				continue;
 			}
 
-			String methodName = getMethodName(methodCallDetailAST);
-
 			if (classInfo.isDeprecatedClass()) {
 				log(
 					methodCallDetailAST, _MSG_DEPRECATED_TYPE_CALL,
@@ -365,6 +363,8 @@ public class DeprecatedUsageCheck extends BaseCheck {
 
 				continue;
 			}
+
+			String methodName = getMethodName(methodCallDetailAST);
 
 			if (_containsMatch(
 					methodName, parameterTypeNames,

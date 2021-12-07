@@ -85,7 +85,7 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 		JSONObject upgradeToJavaClassesJSONObject, String upgradeToVersion) {
 
 		List<MethodCall> methodCalls = getMethodCalls(
-			detailAST, removedImportNames);
+			detailAST, removedImportNames, false);
 
 		for (MethodCall methodCall : methodCalls) {
 			List<JSONObject> upgradeFromMethodJSONObjects =
@@ -126,7 +126,7 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 		JSONObject upgradeToJavaClassesJSONObject, String upgradeToVersion) {
 
 		Map<String, Set<Integer>> typeNamesMap = getTypeNamesMap(
-			detailAST, removedImportNames);
+			detailAST, removedImportNames, false);
 
 		for (Map.Entry<String, Set<Integer>> entry : typeNamesMap.entrySet()) {
 			String typeName = entry.getKey();
@@ -156,7 +156,7 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 		JSONObject upgradeToJavaClassesJSONObject, String upgradeToVersion) {
 
 		List<VariableCall> variableCalls = getVariableCalls(
-			detailAST, removedImportNames);
+			detailAST, removedImportNames, false);
 
 		for (VariableCall variableCall : variableCalls) {
 			JSONObject upgradeFromVariableJSONObject = getVariableJSONObject(

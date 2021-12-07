@@ -36,6 +36,7 @@ import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
+import com.liferay.source.formatter.parser.JavaConstructor;
 import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
@@ -818,6 +819,12 @@ public class SourceFormatterUtil {
 
 		JSONObject classJSONObject = new JSONObjectImpl();
 
+		JSONArray constructorsJSONArray = _getConstructorsJSONArray(javaClass);
+
+		if (constructorsJSONArray.length() > 0) {
+			classJSONObject.put("constructors", constructorsJSONArray);
+		}
+
 		if (javaClass.hasAnnotation("Deprecated")) {
 			classJSONObject.put("deprecated", true);
 		}
@@ -852,6 +859,61 @@ public class SourceFormatterUtil {
 		}
 
 		return new Tuple(javaClass.getName(true), classJSONObject);
+	}
+
+	private static JSONArray _getConstructorsJSONArray(JavaClass javaClass) {
+		JSONArray constructorsJSONArray = new JSONArrayImpl();
+
+		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
+			if (!childJavaTerm.isJavaConstructor() ||
+				childJavaTerm.isPrivate()) {
+
+				continue;
+			}
+
+			JavaConstructor javaConstructor = (JavaConstructor)childJavaTerm;
+
+			JSONObject constructorJSONObject = new JSONObjectImpl();
+
+			constructorJSONObject.put(
+				"accessModifier", javaConstructor.getAccessModifier());
+
+			if (javaConstructor.hasAnnotation("Deprecated")) {
+				constructorJSONObject.put("deprecated", true);
+			}
+
+			constructorJSONObject.put("name", javaConstructor.getName());
+
+			if (javaConstructor.hasAnnotation("Override")) {
+				constructorJSONObject.put("override", true);
+			}
+
+			JavaSignature javaSignature = null;
+
+			try {
+				javaSignature = javaConstructor.getSignature();
+			}
+			catch (Exception exception) {
+				continue;
+			}
+
+			List<JavaParameter> parameters = javaSignature.getParameters();
+
+			if (!parameters.isEmpty()) {
+				JSONArray parametersJSONArray = new JSONArrayImpl();
+
+				for (JavaParameter javaParameter : parameters) {
+					parametersJSONArray.put(
+						javaParameter.getParameterType(true));
+				}
+
+				constructorJSONObject.put("parameters", parametersJSONArray);
+			}
+
+			constructorsJSONArray.put(constructorJSONObject);
+		}
+
+		return constructorsJSONArray;
 	}
 
 	private static String _getDocumentationURLString(String checkName) {

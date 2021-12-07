@@ -569,6 +569,12 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 		</antcall>
 	</target>
 
+	<target name="format-source-deprecated-api">
+		<antcall target="format-source-files">
+			<param name="source.check.names" value="DeprecatedAPICheck" />
+		</antcall>
+	</target>
+
 	<target name="format-source-files">
 		<exec executable="git" failonerror="true" outputproperty="current.branch.name">
 			<arg value="rev-parse" />

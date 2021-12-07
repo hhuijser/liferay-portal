@@ -41,6 +41,113 @@ import java.util.Set;
  */
 public abstract class BaseAPICheck extends BaseCheck {
 
+	protected List<ConstructorCall> getConstructorCalls(
+		DetailAST detailAST, List<String> excludeImportNames,
+		boolean skipDeprecated) {
+
+		List<ConstructorCall> constructorCalls = new ArrayList<>();
+
+		List<DetailAST> literalNewDetailASTList = getAllChildTokens(
+			detailAST, true, TokenTypes.LITERAL_NEW);
+
+		for (DetailAST literalNewDetailAST : literalNewDetailASTList) {
+			if (skipDeprecated &&
+				(_hasDeprecatedParent(literalNewDetailAST) ||
+				 _hasSuppressDeprecationWarningsAnnotation(
+					 literalNewDetailAST))) {
+
+				continue;
+			}
+
+			DetailAST lparenDetailAST = literalNewDetailAST.findFirstToken(
+				TokenTypes.LPAREN);
+
+			if (lparenDetailAST == null) {
+				continue;
+			}
+
+			String constructorTypeName = _getConstructorTypeName(
+				literalNewDetailAST);
+
+			if ((constructorTypeName != null) &&
+				constructorTypeName.startsWith("com.liferay.") &&
+				!excludeImportNames.contains(constructorTypeName)) {
+
+				constructorCalls.add(
+					new ConstructorCall(
+						constructorTypeName,
+						_getParameterTypeNames(literalNewDetailAST),
+						literalNewDetailAST.getLineNo()));
+			}
+		}
+
+		return constructorCalls;
+	}
+
+	protected List<JSONObject> getConstructorJSONObjects(
+		ConstructorCall constructorCall, JSONObject javaClassesJSONObject) {
+
+		List<JSONObject> constructorJSONObjects = new ArrayList<>();
+
+		JSONObject classJSONObject = javaClassesJSONObject.getJSONObject(
+			constructorCall.getTypeName());
+
+		if (classJSONObject == null) {
+			return constructorJSONObjects;
+		}
+
+		JSONArray constructorsJSONArray = classJSONObject.getJSONArray(
+			"constructors");
+
+		if (constructorsJSONArray == null) {
+			return constructorJSONObjects;
+		}
+
+		List<String> parameterTypeNames =
+			constructorCall.getParameterTypeNames();
+
+		Iterator<JSONObject> iterator = constructorsJSONArray.iterator();
+
+		outerLoop:
+		while (iterator.hasNext()) {
+			JSONObject constructorJSONObject = iterator.next();
+
+			JSONArray parametersJSONArray = constructorJSONObject.getJSONArray(
+				"parameters");
+
+			if (parametersJSONArray == null) {
+				if (parameterTypeNames.isEmpty()) {
+					constructorJSONObjects.add(constructorJSONObject);
+				}
+
+				continue;
+			}
+
+			if (parametersJSONArray.length() != parameterTypeNames.size()) {
+				continue;
+			}
+
+			for (int i = 0; i < parameterTypeNames.size(); i++) {
+				String actualTypeName = parameterTypeNames.get(i);
+				String methodTypeName = parametersJSONArray.getString(i);
+
+				if (Validator.isNotNull(actualTypeName) &&
+					!StringUtil.equalsIgnoreCase(
+						actualTypeName, methodTypeName) &&
+					!methodTypeName.equals("Object") &&
+					(!_isNumeric(actualTypeName) ||
+					 !_isNumeric(methodTypeName))) {
+
+					continue outerLoop;
+				}
+			}
+
+			constructorJSONObjects.add(constructorJSONObject);
+		}
+
+		return constructorJSONObjects;
+	}
+
 	protected List<MethodCall> getMethodCalls(
 		DetailAST detailAST, List<String> excludeImportNames,
 		boolean skipDeprecated) {
@@ -343,6 +450,34 @@ public abstract class BaseAPICheck extends BaseCheck {
 		return null;
 	}
 
+	protected class ConstructorCall {
+
+		public ConstructorCall(
+			String typeName, List<String> parameterTypeNames, int lineNumber) {
+
+			_typeName = typeName;
+			_parameterTypeNames = parameterTypeNames;
+			_lineNumber = lineNumber;
+		}
+
+		public int getLineNumber() {
+			return _lineNumber;
+		}
+
+		public List<String> getParameterTypeNames() {
+			return _parameterTypeNames;
+		}
+
+		public String getTypeName() {
+			return _typeName;
+		}
+
+		private int _lineNumber;
+		private final List<String> _parameterTypeNames;
+		private final String _typeName;
+
+	}
+
 	protected class MethodCall {
 
 		public MethodCall(
@@ -425,6 +560,38 @@ public abstract class BaseAPICheck extends BaseCheck {
 		typeNamesMap.put(typeName, lineNumbers);
 
 		return typeNamesMap;
+	}
+
+	private String _getConstructorTypeName(DetailAST literalNewDetailAST) {
+		DetailAST identDetailAST = literalNewDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		if (identDetailAST != null) {
+			return StringBundler.concat(
+				JavaSourceUtil.getPackageName(
+					identDetailAST.getText(), getPackageName(identDetailAST),
+					getImportNames(identDetailAST)),
+				".", identDetailAST.getText());
+		}
+
+		DetailAST dotDetailAST = literalNewDetailAST.findFirstToken(
+			TokenTypes.DOT);
+
+		if (dotDetailAST == null) {
+			return null;
+		}
+
+		identDetailAST = dotDetailAST.findFirstToken(TokenTypes.IDENT);
+
+		if (identDetailAST != null) {
+			return StringBundler.concat(
+				JavaSourceUtil.getPackageName(
+					identDetailAST.getText(), getPackageName(identDetailAST),
+					getImportNames(identDetailAST)),
+				".", identDetailAST.getText());
+		}
+
+		return null;
 	}
 
 	private String _getParameterTypeName(DetailAST detailAST) {

@@ -54,6 +54,8 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 			List<String> deprecatedImportNames = _getDeprecatedImportNames(
 				detailAST, javaClassesJSONObject);
 
+			_checkDeprecatedConstructors(
+				detailAST, deprecatedImportNames, javaClassesJSONObject);
 			_checkDeprecatedMethods(
 				detailAST, deprecatedImportNames, javaClassesJSONObject);
 			_checkDeprecatedTypes(
@@ -62,6 +64,35 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 				detailAST, deprecatedImportNames, javaClassesJSONObject);
 		}
 		catch (Exception exception) {
+		}
+	}
+
+	private void _checkDeprecatedConstructors(
+		DetailAST detailAST, List<String> deprecatedImportNames,
+		JSONObject javaClassesJSONObject) {
+
+		List<ConstructorCall> constructorCalls = getConstructorCalls(
+			detailAST, deprecatedImportNames, true);
+
+		outerLoop:
+		for (ConstructorCall constructorCall : constructorCalls) {
+			List<JSONObject> constructorJSONObjects = getConstructorJSONObjects(
+				constructorCall, javaClassesJSONObject);
+
+			if (constructorJSONObjects.isEmpty()) {
+				continue;
+			}
+
+			for (JSONObject constructorJSONObject : constructorJSONObjects) {
+				if (!constructorJSONObject.has("deprecated")) {
+					continue outerLoop;
+				}
+			}
+
+			log(
+				constructorCall.getLineNumber(),
+				_MSG_DEPRECATED_CONSTRUCTOR_CALL,
+				constructorCall.getTypeName());
 		}
 	}
 
@@ -176,6 +207,9 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 
 		return _javaClassesJSONObject;
 	}
+
+	private static final String _MSG_DEPRECATED_CONSTRUCTOR_CALL =
+		"constructor.call.deprecated";
 
 	private static final String _MSG_DEPRECATED_FIELD_CALL =
 		"field.call.deprecated";

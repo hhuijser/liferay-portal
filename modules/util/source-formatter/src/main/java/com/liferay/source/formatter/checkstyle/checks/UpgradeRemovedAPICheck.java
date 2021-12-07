@@ -65,6 +65,9 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 				detailAST, upgradeFromJavaClassesJSONObject,
 				upgradeToJavaClassesJSONObject, upgradeToVersion);
 
+			_checkRemovedConstructors(
+				detailAST, removedImportNames, upgradeFromJavaClassesJSONObject,
+				upgradeToJavaClassesJSONObject, upgradeToVersion);
 			_checkRemovedMethods(
 				detailAST, removedImportNames, upgradeFromJavaClassesJSONObject,
 				upgradeToJavaClassesJSONObject, upgradeToVersion);
@@ -76,6 +79,47 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 				upgradeToJavaClassesJSONObject, upgradeToVersion);
 		}
 		catch (Exception exception) {
+		}
+	}
+
+	private void _checkRemovedConstructors(
+		DetailAST detailAST, List<String> removedImportNames,
+		JSONObject upgradeFromJavaClassesJSONObject,
+		JSONObject upgradeToJavaClassesJSONObject, String upgradeToVersion) {
+
+		List<ConstructorCall> constructorCalls = getConstructorCalls(
+			detailAST, removedImportNames, false);
+
+		for (ConstructorCall constructorCall : constructorCalls) {
+			List<JSONObject> upgradeFromConstructorJSONObjects =
+				getConstructorJSONObjects(
+					constructorCall, upgradeFromJavaClassesJSONObject);
+
+			if (upgradeFromConstructorJSONObjects.isEmpty()) {
+				continue;
+			}
+
+			JSONObject classJSONObject =
+				upgradeToJavaClassesJSONObject.getJSONObject(
+					constructorCall.getTypeName());
+
+			if (classJSONObject == null) {
+				log(
+					constructorCall.getLineNumber(), _MSG_CLASS_NOT_FOUND,
+					constructorCall.getTypeName(), upgradeToVersion);
+			}
+			else {
+				List<JSONObject> upgradeToConstructorJSONObjects =
+					getConstructorJSONObjects(
+						constructorCall, upgradeToJavaClassesJSONObject);
+
+				if (upgradeToConstructorJSONObjects.isEmpty()) {
+					log(
+						constructorCall.getLineNumber(),
+						_MSG_CONSTRUCTOR_NOT_FOUND,
+						constructorCall.getTypeName(), upgradeToVersion);
+				}
+			}
 		}
 	}
 
@@ -108,7 +152,7 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 			else {
 				List<JSONObject> upgradeToMethodJSONObjects =
 					getMethodJSONObjects(
-						methodCall, upgradeFromJavaClassesJSONObject);
+						methodCall, upgradeToJavaClassesJSONObject);
 
 				if (upgradeToMethodJSONObjects.isEmpty()) {
 					log(
@@ -244,6 +288,9 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 	}
 
 	private static final String _MSG_CLASS_NOT_FOUND = "class.not.found";
+
+	private static final String _MSG_CONSTRUCTOR_NOT_FOUND =
+		"constructor.not.found";
 
 	private static final String _MSG_METHOD_NOT_FOUND = "method.not.found";
 

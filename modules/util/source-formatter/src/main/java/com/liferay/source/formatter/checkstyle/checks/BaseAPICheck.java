@@ -15,12 +15,14 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -153,6 +155,39 @@ public abstract class BaseAPICheck extends BaseCheck {
 		}
 
 		return constructorJSONObjects;
+	}
+
+	protected synchronized JSONObject getJavaClassesJSONObject(String version)
+		throws Exception {
+
+		JSONObject javaClassesJSONObject = _javaClassesJSONObjectMap.get(
+			version);
+
+		if (javaClassesJSONObject != null) {
+			return javaClassesJSONObject;
+		}
+
+		JSONObject portalJSONObject = null;
+
+		if (version.equals(getBaseDirName())) {
+			portalJSONObject = SourceFormatterUtil.getPortalJSONObject(version);
+		}
+		else {
+			portalJSONObject = SourceFormatterUtil.getPortalJSONObjectByVersion(
+				version);
+		}
+
+		if (portalJSONObject.has("javaClasses")) {
+			javaClassesJSONObject = portalJSONObject.getJSONObject(
+				"javaClasses");
+		}
+		else {
+			javaClassesJSONObject = new JSONObjectImpl();
+		}
+
+		_javaClassesJSONObjectMap.put(version, javaClassesJSONObject);
+
+		return javaClassesJSONObject;
 	}
 
 	protected List<MethodCall> getMethodCalls(
@@ -825,5 +860,8 @@ public abstract class BaseAPICheck extends BaseCheck {
 
 		return false;
 	}
+
+	private final Map<String, JSONObject> _javaClassesJSONObjectMap =
+		new HashMap<>();
 
 }

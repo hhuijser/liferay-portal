@@ -15,7 +15,6 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -50,7 +49,8 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 		}
 
 		try {
-			JSONObject javaClassesJSONObject = _getJavaClassesJSONObject();
+			JSONObject javaClassesJSONObject = getJavaClassesJSONObject(
+				getBaseDirName());
 
 			List<String> deprecatedImportNames = getDeprecatedImportNames(
 				detailAST, javaClassesJSONObject);
@@ -273,21 +273,6 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 		}
 	}
 
-	private synchronized JSONObject _getJavaClassesJSONObject()
-		throws Exception {
-
-		if (_javaClassesJSONObject != null) {
-			return _javaClassesJSONObject;
-		}
-
-		JSONObject portalJSONObject = SourceFormatterUtil.getPortalJSONObject(
-			getBaseDirName());
-
-		_javaClassesJSONObject = portalJSONObject.getJSONObject("javaClasses");
-
-		return _javaClassesJSONObject;
-	}
-
 	private static final String _MSG_DEPRECATED_CONSTRUCTOR_CALL =
 		"constructor.call.deprecated";
 
@@ -299,7 +284,5 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 
 	private static final String _MSG_DEPRECATED_TYPE_CALL =
 		"type.call.deprecated";
-
-	private JSONObject _javaClassesJSONObject;
 
 }

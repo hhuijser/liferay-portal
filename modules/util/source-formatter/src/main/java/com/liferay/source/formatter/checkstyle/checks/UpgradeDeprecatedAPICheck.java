@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -22,7 +21,6 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -56,9 +54,9 @@ public class UpgradeDeprecatedAPICheck extends DeprecatedAPICheck {
 
 		try {
 			JSONObject upgradeFromJavaClassesJSONObject =
-				_getJavaClassesJSONObject(upgradeFromVersion);
+				getJavaClassesJSONObject(upgradeFromVersion);
 			JSONObject upgradeToJavaClassesJSONObject =
-				_getJavaClassesJSONObject(upgradeToVersion);
+				getJavaClassesJSONObject(upgradeToVersion);
 
 			List<String> upgradeFromDeprecatedImportNames =
 				getDeprecatedImportNames(
@@ -229,32 +227,6 @@ public class UpgradeDeprecatedAPICheck extends DeprecatedAPICheck {
 		}
 	}
 
-	private synchronized JSONObject _getJavaClassesJSONObject(String version)
-		throws Exception {
-
-		JSONObject javaClassesJSONObject = _javaClassesJSONObjectMap.get(
-			version);
-
-		if (javaClassesJSONObject != null) {
-			return javaClassesJSONObject;
-		}
-
-		JSONObject portalJSONObject =
-			SourceFormatterUtil.getPortalJSONObjectByVersion(version);
-
-		if (portalJSONObject.has("javaClasses")) {
-			javaClassesJSONObject = portalJSONObject.getJSONObject(
-				"javaClasses");
-		}
-		else {
-			javaClassesJSONObject = new JSONObjectImpl();
-		}
-
-		_javaClassesJSONObjectMap.put(version, javaClassesJSONObject);
-
-		return javaClassesJSONObject;
-	}
-
 	private static final String _MSG_DEPRECATED_CONSTRUCTOR_CALL =
 		"constructor.call.deprecated";
 
@@ -266,8 +238,5 @@ public class UpgradeDeprecatedAPICheck extends DeprecatedAPICheck {
 
 	private static final String _MSG_DEPRECATED_TYPE_CALL =
 		"type.call.deprecated";
-
-	private final Map<String, JSONObject> _javaClassesJSONObjectMap =
-		new HashMap<>();
 
 }

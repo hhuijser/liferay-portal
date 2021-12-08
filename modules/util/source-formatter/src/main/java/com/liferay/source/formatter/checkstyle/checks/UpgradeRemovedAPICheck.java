@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
@@ -23,7 +22,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -57,9 +55,9 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 
 		try {
 			JSONObject upgradeFromJavaClassesJSONObject =
-				_getJavaClassesJSONObject(upgradeFromVersion);
+				getJavaClassesJSONObject(upgradeFromVersion);
 			JSONObject upgradeToJavaClassesJSONObject =
-				_getJavaClassesJSONObject(upgradeToVersion);
+				getJavaClassesJSONObject(upgradeToVersion);
 
 			List<String> removedImportNames = _getRemovedImportNames(
 				detailAST, upgradeFromJavaClassesJSONObject,
@@ -233,32 +231,6 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 		}
 	}
 
-	private synchronized JSONObject _getJavaClassesJSONObject(String version)
-		throws Exception {
-
-		JSONObject javaClassesJSONObject = _javaClassesJSONObjectMap.get(
-			version);
-
-		if (javaClassesJSONObject != null) {
-			return javaClassesJSONObject;
-		}
-
-		JSONObject portalJSONObject =
-			SourceFormatterUtil.getPortalJSONObjectByVersion(version);
-
-		if (portalJSONObject.has("javaClasses")) {
-			javaClassesJSONObject = portalJSONObject.getJSONObject(
-				"javaClasses");
-		}
-		else {
-			javaClassesJSONObject = new JSONObjectImpl();
-		}
-
-		_javaClassesJSONObjectMap.put(version, javaClassesJSONObject);
-
-		return javaClassesJSONObject;
-	}
-
 	private List<String> _getRemovedImportNames(
 		DetailAST detailAST, JSONObject upgradeFromJavaClassesJSONObject,
 		JSONObject upgradeToJavaClassesJSONObject, String upgradeToVersion) {
@@ -295,8 +267,5 @@ public class UpgradeRemovedAPICheck extends BaseAPICheck {
 	private static final String _MSG_METHOD_NOT_FOUND = "method.not.found";
 
 	private static final String _MSG_VARIABLE_NOT_FOUND = "variable.not.found";
-
-	private final Map<String, JSONObject> _javaClassesJSONObjectMap =
-		new HashMap<>();
 
 }

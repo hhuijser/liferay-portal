@@ -321,7 +321,7 @@ public class SourceFormatterUtil {
 			int maxLineLength)
 		throws Exception {
 
-		ExecutorService executorService = Executors.newFixedThreadPool(1);
+		ExecutorService executorService = Executors.newFixedThreadPool(10);
 
 		List<Future<Tuple>> futures = new ArrayList<>();
 

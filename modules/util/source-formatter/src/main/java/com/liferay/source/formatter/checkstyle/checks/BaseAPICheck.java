@@ -41,6 +41,13 @@ import java.util.Set;
  */
 public abstract class BaseAPICheck extends BaseCheck {
 
+	protected Map<String, Set<Integer>> addTypeName(
+		Map<String, Set<Integer>> typeNamesMap, String typeName,
+		int lineNumber) {
+
+		return _addTypeName(typeNamesMap, typeName, lineNumber, null);
+	}
+
 	protected List<ConstructorCall> getConstructorCalls(
 		DetailAST detailAST, List<String> excludeImportNames,
 		boolean skipDeprecated) {
@@ -543,8 +550,9 @@ public abstract class BaseAPICheck extends BaseCheck {
 		Map<String, Set<Integer>> typeNamesMap, String typeName, int lineNumber,
 		List<String> excludeImportNames) {
 
-		if (excludeImportNames.contains(typeName) ||
-			!typeName.startsWith("com.liferay.")) {
+		if ((excludeImportNames != null) &&
+			(excludeImportNames.contains(typeName) ||
+			 !typeName.startsWith("com.liferay."))) {
 
 			return typeNamesMap;
 		}

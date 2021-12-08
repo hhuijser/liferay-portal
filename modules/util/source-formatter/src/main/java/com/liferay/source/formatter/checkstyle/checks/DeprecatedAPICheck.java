@@ -22,6 +22,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -51,8 +52,12 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 		try {
 			JSONObject javaClassesJSONObject = _getJavaClassesJSONObject();
 
-			List<String> deprecatedImportNames = _getDeprecatedImportNames(
+			List<String> deprecatedImportNames = getDeprecatedImportNames(
 				detailAST, javaClassesJSONObject);
+
+			for (String deprecatedImportName : deprecatedImportNames) {
+				log(detailAST, _MSG_DEPRECATED_TYPE_CALL, deprecatedImportName);
+			}
 
 			_checkDeprecatedConstructors(
 				detailAST, deprecatedImportNames, javaClassesJSONObject);
@@ -67,9 +72,11 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 		}
 	}
 
-	private void _checkDeprecatedConstructors(
+	protected List<ConstructorCall> getDeprecatedConstructorCalls(
 		DetailAST detailAST, List<String> deprecatedImportNames,
 		JSONObject javaClassesJSONObject) {
+
+		List<ConstructorCall> deprecatedConstructorCalls = new ArrayList<>();
 
 		List<ConstructorCall> constructorCalls = getConstructorCalls(
 			detailAST, deprecatedImportNames, true);
@@ -89,16 +96,38 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 				}
 			}
 
-			log(
-				constructorCall.getLineNumber(),
-				_MSG_DEPRECATED_CONSTRUCTOR_CALL,
-				constructorCall.getTypeName());
+			deprecatedConstructorCalls.add(constructorCall);
 		}
+
+		return deprecatedConstructorCalls;
 	}
 
-	private void _checkDeprecatedMethods(
+	protected List<String> getDeprecatedImportNames(
+		DetailAST detailAST, JSONObject javaClassesJSONObject) {
+
+		List<String> deprecatedImportNames = new ArrayList<>();
+
+		List<String> importNames = getImportNames(detailAST);
+
+		for (String importName : importNames) {
+			JSONObject classJSONObject = javaClassesJSONObject.getJSONObject(
+				importName);
+
+			if ((classJSONObject != null) &&
+				classJSONObject.has("deprecated")) {
+
+				deprecatedImportNames.add(importName);
+			}
+		}
+
+		return deprecatedImportNames;
+	}
+
+	protected List<MethodCall> getDeprecatedMethodCalls(
 		DetailAST detailAST, List<String> deprecatedImportNames,
 		JSONObject javaClassesJSONObject) {
+
+		List<MethodCall> deprecatedMethodCalls = new ArrayList<>();
 
 		List<MethodCall> methodCalls = getMethodCalls(
 			detailAST, deprecatedImportNames, true);
@@ -118,15 +147,17 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 				}
 			}
 
-			log(
-				methodCall.getLineNumber(), _MSG_DEPRECATED_METHOD_CALL,
-				methodCall.getName());
+			deprecatedMethodCalls.add(methodCall);
 		}
+
+		return deprecatedMethodCalls;
 	}
 
-	private void _checkDeprecatedTypes(
+	protected Map<String, Set<Integer>> getDeprecatedTypeNamesMap(
 		DetailAST detailAST, List<String> deprecatedImportNames,
 		JSONObject javaClassesJSONObject) {
+
+		Map<String, Set<Integer>> deprecatedTypeNamesMap = new HashMap<>();
 
 		Map<String, Set<Integer>> typeNamesMap = getTypeNamesMap(
 			detailAST, deprecatedImportNames, true);
@@ -143,15 +174,20 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 				Set<Integer> lineNumbers = entry.getValue();
 
 				for (int lineNumber : lineNumbers) {
-					log(lineNumber, _MSG_DEPRECATED_TYPE_CALL, typeName);
+					deprecatedTypeNamesMap = addTypeName(
+						deprecatedTypeNamesMap, typeName, lineNumber);
 				}
 			}
 		}
+
+		return deprecatedTypeNamesMap;
 	}
 
-	private void _checkDeprecatedVariables(
+	protected List<VariableCall> getDeprecatedVariableCalls(
 		DetailAST detailAST, List<String> deprecatedImportNames,
 		JSONObject javaClassesJSONObject) {
+
+		List<VariableCall> deprecatedVariableCalls = new ArrayList<>();
 
 		List<VariableCall> variableCalls = getVariableCalls(
 			detailAST, deprecatedImportNames, true);
@@ -163,34 +199,78 @@ public class DeprecatedAPICheck extends BaseAPICheck {
 			if ((variableJSONObject != null) &&
 				variableJSONObject.has("deprecated")) {
 
-				log(
-					variableCall.getLineNumber(), _MSG_DEPRECATED_FIELD_CALL,
-					variableCall.getName());
+				deprecatedVariableCalls.add(variableCall);
+			}
+		}
+
+		return deprecatedVariableCalls;
+	}
+
+	private void _checkDeprecatedConstructors(
+		DetailAST detailAST, List<String> deprecatedImportNames,
+		JSONObject javaClassesJSONObject) {
+
+		List<ConstructorCall> deprecatedConstructorCalls =
+			getDeprecatedConstructorCalls(
+				detailAST, deprecatedImportNames, javaClassesJSONObject);
+
+		for (ConstructorCall deprecatedConstructorCall :
+				deprecatedConstructorCalls) {
+
+			log(
+				deprecatedConstructorCall.getLineNumber(),
+				_MSG_DEPRECATED_CONSTRUCTOR_CALL,
+				deprecatedConstructorCall.getTypeName());
+		}
+	}
+
+	private void _checkDeprecatedMethods(
+		DetailAST detailAST, List<String> deprecatedImportNames,
+		JSONObject javaClassesJSONObject) {
+
+		List<MethodCall> deprecatedMethodCalls = getDeprecatedMethodCalls(
+			detailAST, deprecatedImportNames, javaClassesJSONObject);
+
+		for (MethodCall deprecatedMethodCall : deprecatedMethodCalls) {
+			log(
+				deprecatedMethodCall.getLineNumber(),
+				_MSG_DEPRECATED_METHOD_CALL, deprecatedMethodCall.getName());
+		}
+	}
+
+	private void _checkDeprecatedTypes(
+		DetailAST detailAST, List<String> deprecatedImportNames,
+		JSONObject javaClassesJSONObject) {
+
+		Map<String, Set<Integer>> deprecatedTypeNamesMap =
+			getDeprecatedTypeNamesMap(
+				detailAST, deprecatedImportNames, javaClassesJSONObject);
+
+		for (Map.Entry<String, Set<Integer>> entry :
+				deprecatedTypeNamesMap.entrySet()) {
+
+			String typeName = entry.getKey();
+
+			Set<Integer> lineNumbers = entry.getValue();
+
+			for (int lineNumber : lineNumbers) {
+				log(lineNumber, _MSG_DEPRECATED_TYPE_CALL, typeName);
 			}
 		}
 	}
 
-	private List<String> _getDeprecatedImportNames(
-		DetailAST detailAST, JSONObject javaClassesJSONObject) {
+	private void _checkDeprecatedVariables(
+		DetailAST detailAST, List<String> deprecatedImportNames,
+		JSONObject javaClassesJSONObject) {
 
-		List<String> deprecatedImportNames = new ArrayList<>();
+		List<VariableCall> deprecatedVariableCalls = getDeprecatedVariableCalls(
+			detailAST, deprecatedImportNames, javaClassesJSONObject);
 
-		List<String> importNames = getImportNames(detailAST);
-
-		for (String importName : importNames) {
-			JSONObject classJSONObject = javaClassesJSONObject.getJSONObject(
-				importName);
-
-			if ((classJSONObject != null) &&
-				classJSONObject.has("deprecated")) {
-
-				log(detailAST, _MSG_DEPRECATED_TYPE_CALL, importName);
-
-				deprecatedImportNames.add(importName);
-			}
+		for (VariableCall deprecatedVariableCall : deprecatedVariableCalls) {
+			log(
+				deprecatedVariableCall.getLineNumber(),
+				_MSG_DEPRECATED_FIELD_CALL, deprecatedVariableCall.getName());
 		}
-
-		return deprecatedImportNames;
 	}
 
 	private synchronized JSONObject _getJavaClassesJSONObject()

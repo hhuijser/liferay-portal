@@ -216,9 +216,13 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		_ungeneratedFiles.add(file);
 
 		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
-			_processCheckstyle(_ungeneratedFiles.toArray(new File[0]));
+			SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
 
-			_ungeneratedFiles.clear();
+			if (!sourceFormatterArgs.isCheckstyleSingleBatch()) {
+				_processCheckstyle(_ungeneratedFiles.toArray(new File[0]));
+
+				_ungeneratedFiles.clear();
+			}
 		}
 	}
 

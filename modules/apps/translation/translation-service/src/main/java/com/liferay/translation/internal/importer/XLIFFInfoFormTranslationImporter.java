@@ -188,11 +188,11 @@ public class XLIFFInfoFormTranslationImporter
 
 		Stream<Event> stream = events.stream();
 
-		Optional<Event> optional = stream.filter(
+		Optional<Event> startSubDocumentEventOptional = stream.filter(
 			Event::isStartSubDocument
 		).findFirst();
 
-		return optional.flatMap(
+		return startSubDocumentEventOptional.flatMap(
 			event -> {
 				StartSubDocument startSubDocument = event.getStartSubDocument();
 

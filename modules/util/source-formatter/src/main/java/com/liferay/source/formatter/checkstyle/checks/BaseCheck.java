@@ -1162,6 +1162,48 @@ public abstract class BaseCheck extends AbstractCheck {
 		return false;
 	}
 
+	protected boolean isAssignNewStringBundler(DetailAST detailAST) {
+		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
+
+		if (assignDetailAST == null) {
+			return false;
+		}
+
+		DetailAST firstChildDetailAST = null;
+
+		if (detailAST.getType() == TokenTypes.EXPR) {
+			firstChildDetailAST = assignDetailAST.findFirstToken(
+				TokenTypes.LITERAL_NEW);
+
+			if (firstChildDetailAST == null) {
+				return false;
+			}
+		}
+		else {
+			firstChildDetailAST = assignDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+				return false;
+			}
+
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+		}
+
+		if (firstChildDetailAST.getType() != TokenTypes.LITERAL_NEW) {
+			return false;
+		}
+
+		DetailAST identDetailAST = firstChildDetailAST.getFirstChild();
+
+		if ((identDetailAST.getType() != TokenTypes.IDENT) ||
+			!Objects.equals(identDetailAST.getText(), "StringBundler")) {
+
+			return false;
+		}
+
+		return true;
+	}
+
 	protected boolean isAtLineEnd(DetailAST detailAST, String line) {
 		String text = detailAST.getText();
 

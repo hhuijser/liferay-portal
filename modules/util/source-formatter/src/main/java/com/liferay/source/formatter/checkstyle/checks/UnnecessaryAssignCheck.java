@@ -73,6 +73,10 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 				checkUnnecessaryListVariableBeforeReturn(
 					detailAST, semiDetailAST, variableName,
 					_MSG_UNNECESSARY_LIST_ASSIGN_BEFORE_RETURN);
+
+				checkUnnecessaryStringBundlerVariableBeforeReturn(
+					detailAST, semiDetailAST, variableName,
+					_MSG_UNNECESSARY_STRING_BUNDLER_ASSIGN_BEFORE_RETURN);
 			}
 
 			checkUnnecessaryStatementBeforeReturn(
@@ -226,6 +230,10 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 
 	private static final String _MSG_UNNECESSARY_LIST_ASSIGN_BEFORE_RETURN =
 		"list.assign.unnecessary.before.return";
+
+	private static final String
+		_MSG_UNNECESSARY_STRING_BUNDLER_ASSIGN_BEFORE_RETURN =
+			"string.bundler.assign.unnecessary.before.return";
 
 	private static final String _MSG_UNNECESSARY_TO_STRING =
 		"assign.unnecessary.to.string";

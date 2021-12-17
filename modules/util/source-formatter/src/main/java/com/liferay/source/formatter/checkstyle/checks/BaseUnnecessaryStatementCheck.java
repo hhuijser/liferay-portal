@@ -174,6 +174,107 @@ public abstract class BaseUnnecessaryStatementCheck extends BaseCheck {
 		}
 	}
 
+	protected void checkUnnecessaryStringBundlerVariableBeforeReturn(
+		DetailAST detailAST, DetailAST semiDetailAST, String variableName,
+		String messageKey) {
+
+		String variableTypeName = getVariableTypeName(
+			detailAST, variableName, false);
+
+		if (!variableTypeName.equals("StringBundler")) {
+			return;
+		}
+
+		if ((detailAST.getType() == TokenTypes.ASSIGN) &&
+			!isAssignNewStringBundler(detailAST.getParent())) {
+
+			return;
+		}
+		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
+				 !isAssignNewStringBundler(detailAST)) {
+
+			return;
+		}
+
+		DetailAST nextSiblingDetailAST = semiDetailAST.getNextSibling();
+
+		if (nextSiblingDetailAST == null) {
+			return;
+		}
+
+		while (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
+			DetailAST firstChildDetailAST =
+				nextSiblingDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
+				return;
+			}
+
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+				return;
+			}
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				firstChildDetailAST);
+
+			String fullyQualifiedName = fullIdent.getText();
+
+			if (!fullyQualifiedName.equals(variableName + ".append")) {
+				return;
+			}
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+			if ((nextSiblingDetailAST != null) &&
+				(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+
+				return;
+			}
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+			if (nextSiblingDetailAST == null) {
+				return;
+			}
+
+			if (nextSiblingDetailAST.getType() == TokenTypes.EXPR) {
+				continue;
+			}
+
+			if (nextSiblingDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
+				firstChildDetailAST = nextSiblingDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
+					return;
+				}
+
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
+					return;
+				}
+
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+					return;
+				}
+
+				fullIdent = FullIdent.createFullIdent(firstChildDetailAST);
+
+				fullyQualifiedName = fullIdent.getText();
+
+				if (fullyQualifiedName.equals(variableName + ".toString")) {
+					log(detailAST, messageKey, variableName);
+				}
+			}
+
+			return;
+		}
+	}
+
 	protected void checkUnnecessaryToString(
 		DetailAST assignDetailAST, String messageKey) {
 

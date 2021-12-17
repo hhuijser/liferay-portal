@@ -55,6 +55,10 @@ public class UnnecessaryVariableDeclarationCheck
 			checkUnnecessaryListVariableBeforeReturn(
 				detailAST, semiDetailAST, variableName,
 				_MSG_UNNECESSARY_LIST_DECLARATION_BEFORE_RETURN);
+
+			checkUnnecessaryStringBundlerVariableBeforeReturn(
+				detailAST, semiDetailAST, variableName,
+				_MSG_UNNECESSARY_STRING_BUNDLER_DECLARATION_BEFORE_RETURN);
 		}
 
 		checkUnnecessaryStatementBeforeReturn(
@@ -96,6 +100,10 @@ public class UnnecessaryVariableDeclarationCheck
 	private static final String
 		_MSG_UNNECESSARY_LIST_DECLARATION_BEFORE_RETURN =
 			"list.declaration.unnecessary.before.return";
+
+	private static final String
+		_MSG_UNNECESSARY_STRING_BUNDLER_DECLARATION_BEFORE_RETURN =
+			"string.bundler.declaration.unnecessary.before.return";
 
 	private static final String
 		_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN =

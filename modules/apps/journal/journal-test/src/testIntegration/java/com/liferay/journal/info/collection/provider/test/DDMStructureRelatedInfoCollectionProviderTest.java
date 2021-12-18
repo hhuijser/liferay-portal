@@ -89,15 +89,10 @@ public class DDMStructureRelatedInfoCollectionProviderTest {
 	}
 
 	private String _getKey(DDMStructure ddmStructure) {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(RelatedInfoItemCollectionProvider.class.getName());
-		sb.append(StringPool.DASH);
-		sb.append(JournalArticle.class.getName());
-		sb.append(StringPool.DASH);
-		sb.append(ddmStructure.getStructureId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			RelatedInfoItemCollectionProvider.class.getName(), StringPool.DASH,
+			JournalArticle.class.getName(), StringPool.DASH,
+			ddmStructure.getStructureId());
 	}
 
 	@Inject

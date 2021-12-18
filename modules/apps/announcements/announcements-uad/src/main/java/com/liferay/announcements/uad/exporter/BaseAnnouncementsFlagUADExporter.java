@@ -54,25 +54,14 @@ public abstract class BaseAnnouncementsFlagUADExporter
 
 	@Override
 	protected String toXmlString(AnnouncementsFlag announcementsFlag) {
-		StringBundler sb = new StringBundler(12);
-
-		sb.append("<model><model-name>");
-		sb.append("com.liferay.announcements.kernel.model.AnnouncementsFlag");
-		sb.append("</model-name>");
-
-		sb.append("<column><column-name>flagId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsFlag.getFlagId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>userId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsFlag.getUserId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("</model>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<model><model-name>com.liferay.announcements.kernel.model.",
+			"AnnouncementsFlag</model-name><column><column-name>flagId",
+			"</column-name><column-value><![CDATA[",
+			announcementsFlag.getFlagId(), "]]></column-value></column>",
+			"<column><column-name>userId</column-name><column-value><![CDATA[",
+			announcementsFlag.getUserId(), "]]></column-value></column>",
+			"</model>");
 	}
 
 	@Reference

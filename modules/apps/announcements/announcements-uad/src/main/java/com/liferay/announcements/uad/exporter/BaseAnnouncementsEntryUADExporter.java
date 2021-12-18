@@ -55,40 +55,21 @@ public abstract class BaseAnnouncementsEntryUADExporter
 
 	@Override
 	protected String toXmlString(AnnouncementsEntry announcementsEntry) {
-		StringBundler sb = new StringBundler(24);
-
-		sb.append("<model><model-name>");
-		sb.append("com.liferay.announcements.kernel.model.AnnouncementsEntry");
-		sb.append("</model-name>");
-
-		sb.append("<column><column-name>entryId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsEntry.getEntryId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>userId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsEntry.getUserId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>userName</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsEntry.getUserName());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>title</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsEntry.getTitle());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>content</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(announcementsEntry.getContent());
-		sb.append("]]></column-value></column>");
-
-		sb.append("</model>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<model><model-name>com.liferay.announcements.kernel.model.",
+			"AnnouncementsEntry</model-name><column><column-name>entryId",
+			"</column-name><column-value><![CDATA[",
+			announcementsEntry.getEntryId(), "]]></column-value></column>",
+			"<column><column-name>userId</column-name>",
+			"<column-value><![CDATA[", announcementsEntry.getUserId(),
+			"]]></column-value></column><column><column-name>userName",
+			"</column-name><column-value><![CDATA[",
+			announcementsEntry.getUserName(), "]]></column-value></column>",
+			"<column><column-name>title</column-name><column-value><![CDATA[",
+			announcementsEntry.getTitle(), "]]></column-value></column>",
+			"<column><column-name>content</column-name><column-value><![CDATA[",
+			announcementsEntry.getContent(), "]]></column-value></column>",
+			"</model>");
 	}
 
 	@Reference

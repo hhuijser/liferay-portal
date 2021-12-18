@@ -94,14 +94,8 @@ public class DLPreviewURLRefreshTimestampTransformerListener
 
 		long timeStamp = modifiedDate.getTime();
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(matcher.group(1));
-		sb.append("?t=");
-		sb.append(timeStamp);
-		sb.append(matcher.group(6));
-
-		return sb.toString();
+		return StringBundler.concat(
+			matcher.group(1), "?t=", timeStamp, matcher.group(6));
 	}
 
 	private String _replace(String s) {

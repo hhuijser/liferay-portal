@@ -129,15 +129,10 @@ public class DDMStructureRelatedInfoCollectionProvider
 
 	@Override
 	public String getKey() {
-		StringBundler sb = new StringBundler(5);
-
-		sb.append(RelatedInfoItemCollectionProvider.class.getName());
-		sb.append(StringPool.DASH);
-		sb.append(JournalArticle.class.getName());
-		sb.append(StringPool.DASH);
-		sb.append(_ddmStructure.getStructureId());
-
-		return sb.toString();
+		return StringBundler.concat(
+			RelatedInfoItemCollectionProvider.class.getName(), StringPool.DASH,
+			JournalArticle.class.getName(), StringPool.DASH,
+			_ddmStructure.getStructureId());
 	}
 
 	@Override

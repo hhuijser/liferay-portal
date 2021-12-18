@@ -777,33 +777,19 @@ public class DynamicDataMappingUpgradeProcessTest extends PowerMockito {
 	}
 
 	protected String createLocalizationXML(String[] enData) {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("<?xml version=\"1.0\"?>");
-		sb.append("<root available-locales='en_US' default-locale='en_US'>");
-		sb.append("<Data language-id='en_US'>");
-		sb.append(StringUtil.merge(enData));
-		sb.append("</Data>");
-		sb.append("</root>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\"?>",
+			"<root available-locales='en_US' default-locale='en_US'>",
+			"<Data language-id='en_US'>", StringUtil.merge(enData), "</Data>",
+			"</root>");
 	}
 
 	protected String createLocalizationXML(String[] enData, String[] ptData) {
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("<?xml version=\"1.0\"?>");
-		sb.append("<root available-locales='en_US,pt_BR,' ");
-		sb.append("default-locale='en_US'>");
-		sb.append("<Data language-id='en_US'>");
-		sb.append(StringUtil.merge(enData));
-		sb.append("</Data>");
-		sb.append("<Data language-id='pt_BR'>");
-		sb.append(StringUtil.merge(ptData));
-		sb.append("</Data>");
-		sb.append("</root>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\"?><root available-locales='en_US,pt_BR,' ",
+			"default-locale='en_US'><Data language-id='en_US'>",
+			StringUtil.merge(enData), "</Data><Data language-id='pt_BR'>",
+			StringUtil.merge(ptData), "</Data></root>");
 	}
 
 	protected Value createLocalizedValue(

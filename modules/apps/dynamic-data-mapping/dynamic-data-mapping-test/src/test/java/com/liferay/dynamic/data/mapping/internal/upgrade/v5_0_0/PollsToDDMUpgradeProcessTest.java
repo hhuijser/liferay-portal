@@ -185,18 +185,11 @@ public class PollsToDDMUpgradeProcessTest extends BaseDDMTestCase {
 	private String _getPollsChoiceDescription(
 		String enChoice, String ptChoice) {
 
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("<?xml version=\"1.0\"?>");
-		sb.append("<root available-locales='en_US,pt_BR' ");
-		sb.append("default-locale='en_US'>");
-		sb.append("<Description language-id='en_US'>");
-		sb.append(enChoice);
-		sb.append("</Description><Description language-id='pt_BR'>");
-		sb.append(ptChoice);
-		sb.append("</Description></root>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\"?><root available-locales='en_US,pt_BR' ",
+			"default-locale='en_US'><Description language-id='en_US'>",
+			enChoice, "</Description><Description language-id='pt_BR'>",
+			ptChoice, "</Description></root>");
 	}
 
 	private void _setUpLocalizationUtil() {

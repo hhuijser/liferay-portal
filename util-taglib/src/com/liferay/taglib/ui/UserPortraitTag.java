@@ -93,17 +93,11 @@ public class UserPortraitTag extends IncludeTag {
 	public static String getUserPortraitHTML(
 		String cssClass, Supplier<String> userPortraitURLSupplier) {
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("<span class=\"sticker sticker-circle sticker-light ");
-		sb.append(cssClass);
-		sb.append("\">");
-		sb.append("<span class=\"sticker-overlay\">");
-		sb.append("<img alt=\"\" class=\"sticker-img\" src=\"");
-		sb.append(HtmlUtil.escape(userPortraitURLSupplier.get()));
-		sb.append("\"></span></span>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<span class=\"sticker sticker-circle sticker-light ", cssClass,
+			"\"><span class=\"sticker-overlay\"><img alt=\"\" class=\"sticker-",
+			"img\" src=\"", HtmlUtil.escape(userPortraitURLSupplier.get()),
+			"\"></span></span>");
 	}
 
 	public static String getUserPortraitHTML(

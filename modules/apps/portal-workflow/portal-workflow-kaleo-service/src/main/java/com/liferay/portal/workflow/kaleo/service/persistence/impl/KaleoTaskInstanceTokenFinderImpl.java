@@ -443,22 +443,16 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler((assigneeClassPKs.length * 2) + 1);
-
-		sb.append("AND (KaleoTaskAssignmentInstance.assigneeClassPK IN (");
-
-		sb.append(
+		return StringBundler.concat(
+			"AND (KaleoTaskAssignmentInstance.assigneeClassPK IN (",
 			Stream.of(
 				assigneeClassPKs
 			).map(
 				String::valueOf
 			).collect(
 				Collectors.joining(StringPool.COMMA_AND_SPACE)
-			));
-
-		sb.append("))");
-
-		return sb.toString();
+			),
+			"))");
 	}
 
 	protected String getCompleted(
@@ -517,22 +511,16 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler((kaleoInstanceIds.length * 2) + 1);
-
-		sb.append("AND (KaleoTaskInstanceToken.kaleoInstanceId IN (");
-
-		sb.append(
+		return StringBundler.concat(
+			"AND (KaleoTaskInstanceToken.kaleoInstanceId IN (",
 			Stream.of(
 				kaleoInstanceIds
 			).map(
 				String::valueOf
 			).collect(
 				Collectors.joining(StringPool.COMMA_AND_SPACE)
-			));
-
-		sb.append("))");
-
-		return sb.toString();
+			),
+			"))");
 	}
 
 	protected String getRoleIds(

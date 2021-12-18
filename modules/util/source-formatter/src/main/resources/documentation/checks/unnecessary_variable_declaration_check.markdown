@@ -68,6 +68,32 @@ public List<String> method() {
 	return new ListUtil.fromArray("a", "b");
 }
 ```
+
+### Example
+
+Incorrect:
+
+```java
+public String method() {
+	StringBundler sb = new StringBundler(4);
+
+	sb.append("a");
+	sb.append("b");
+	sb.append("c");
+	sb.append("d");
+
+	return sb.toString();
+}
+```
+
+Correct:
+
+```java
+public String method() {
+	return StringBundler.concat("a", "b", "c", "d");
+}
+```
+
 ---
 
 Use `String.valueOf()` to combine lines.

@@ -744,6 +744,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary assign statements (when it is either reassigned or returned right after)." />
+			<property name="enabled" value="false" />
 			<message key="assign.unnecessary.before.reassign" value="No need to assign call to variable ''{0}'', because ''{0}'' is reassigned another value without being used" />
 			<message key="assign.unnecessary.before.return" value="No need to assign call to variable ''{0}'', because ''{0}'' is returned right after" />
 			<message key="assign.unnecessary.to.string" value="No need to assign call to variable ''{0}'', use String.valueOf() to combine line ''{1}'' and ''{2}''" />
@@ -764,6 +765,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
 			<property name="category" value="Performance" />
 			<property name="description" value="Finds unnecessary variable declarations (when it is either reassigned or returned right after)." />
+			<property name="enabled" value="false" />
 			<message key="list.declaration.unnecessary.before.return" value="No need to declare List variable ''{0}'' before return, use ''ListUtil.fromArray()'' instead" />
 			<message key="string.bundler.declaration.unnecessary.before.return" value="No need to declare StringBundler variable ''{0}'' before return, use ''StringBundler.concat()'' instead" />
 			<message key="variable.declaration.unnecessary.before.reassign" value="No need to declare variable ''{0}'' because ''{0}'' is reassigned another value without being used" />

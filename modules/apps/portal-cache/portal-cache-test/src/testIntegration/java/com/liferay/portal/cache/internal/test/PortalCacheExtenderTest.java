@@ -172,21 +172,13 @@ public class PortalCacheExtenderTest {
 	private String _generateXMLContent(
 		String cacheName, int maxElementsInMemory, int timeToIdleSeconds) {
 
-		StringBundler sb = new StringBundler(11);
-
-		sb.append("<ehcache dynamicConfig=\"true\" monitoring=\"off\" ");
-		sb.append("updateCheck=\"false\" xmlns:xsi=\"http://www.w3.org/2001");
-		sb.append("/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"");
-		sb.append("http://www.ehcache.org/ehcache.xsd\">");
-		sb.append("<cache maxElementsInMemory=\"");
-		sb.append(maxElementsInMemory);
-		sb.append("\" name=\"");
-		sb.append(cacheName);
-		sb.append("\" timeToIdleSeconds=\"");
-		sb.append(timeToIdleSeconds);
-		sb.append("\"> </cache> </ehcache>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<ehcache dynamicConfig=\"true\" monitoring=\"off\" updateCheck=",
+			"\"false\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance",
+			"\" xsi:noNamespaceSchemaLocation=\"http://www.ehcache.org",
+			"/ehcache.xsd\"><cache maxElementsInMemory=\"", maxElementsInMemory,
+			"\" name=\"", cacheName, "\" timeToIdleSeconds=\"",
+			timeToIdleSeconds, "\"> </cache> </ehcache>");
 	}
 
 	private Bundle _installBundle(

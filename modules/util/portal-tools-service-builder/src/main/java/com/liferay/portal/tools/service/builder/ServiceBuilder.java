@@ -1339,14 +1339,7 @@ public class ServiceBuilder {
 	public String getLiteralClass(
 		DefaultJavaParameterizedType defaultJavaParameterizedType) {
 
-		StringBundler sb = new StringBundler(
-			defaultJavaParameterizedType.getDimensions() + 2);
-
-		sb.append(defaultJavaParameterizedType.getFullyQualifiedName());
-
-		sb.append(".class");
-
-		return sb.toString();
+		return defaultJavaParameterizedType.getFullyQualifiedName() + ".class";
 	}
 
 	public Map<String, List<EntityColumn>> getMappingEntities(

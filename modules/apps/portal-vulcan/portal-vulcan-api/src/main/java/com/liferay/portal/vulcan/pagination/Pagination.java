@@ -52,14 +52,7 @@ public class Pagination {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler("{\"page\": ");
-
-		sb.append(_page);
-		sb.append(", \"pageSize\": ");
-		sb.append(_pageSize);
-		sb.append("}");
-
-		return sb.toString();
+		return StringBundler.concat(_page, ", \"pageSize\": ", _pageSize, "}");
 	}
 
 	private Pagination(int page, int pageSize) {

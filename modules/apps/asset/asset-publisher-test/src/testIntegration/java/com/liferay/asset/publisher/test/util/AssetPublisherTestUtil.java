@@ -26,16 +26,10 @@ import com.liferay.petra.string.StringBundler;
 public class AssetPublisherTestUtil {
 
 	public static String getAssetEntryXml(AssetEntry assetEntry) {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("<?xml version=\"1.0\"?><asset-entry>");
-		sb.append("<asset-entry-type>");
-		sb.append(assetEntry.getClassName());
-		sb.append("</asset-entry-type><asset-entry-uuid>");
-		sb.append(assetEntry.getClassUuid());
-		sb.append("</asset-entry-uuid></asset-entry>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\"?><asset-entry><asset-entry-type>",
+			assetEntry.getClassName(), "</asset-entry-type><asset-entry-uuid>",
+			assetEntry.getClassUuid(), "</asset-entry-uuid></asset-entry>");
 	}
 
 }

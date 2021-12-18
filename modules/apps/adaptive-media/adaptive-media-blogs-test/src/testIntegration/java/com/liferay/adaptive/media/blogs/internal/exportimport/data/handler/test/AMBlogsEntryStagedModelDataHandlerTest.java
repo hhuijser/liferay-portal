@@ -276,14 +276,9 @@ public class AMBlogsEntryStagedModelDataHandlerTest
 	}
 
 	private String _getPictureTag(FileEntry fileEntry) throws Exception {
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("<picture data-fileentryid=\"");
-		sb.append(fileEntry.getFileEntryId());
-		sb.append("\">");
-		sb.append("<source></source>");
-		sb.append(_getImgTag(fileEntry));
-		sb.append("</picture>");
+		StringBundler.concat(
+			"<picture data-fileentryid=\"", fileEntry.getFileEntryId(), "\">",
+			"<source></source>", _getImgTag(fileEntry), "</picture>");
 
 		return sb.toString();
 	}

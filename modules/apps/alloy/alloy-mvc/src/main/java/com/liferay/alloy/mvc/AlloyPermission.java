@@ -15,7 +15,6 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.petra.string.CharPool;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -174,12 +173,7 @@ public class AlloyPermission {
 	}
 
 	protected static String formatActionId(String controller, String action) {
-		StringBundler sb = new StringBundler(formatAction(action));
-
-		sb.append(StringPool.POUND);
-		sb.append(StringUtil.toUpperCase(controller));
-
-		return sb.toString();
+		return StringPool.POUND + StringUtil.toUpperCase(controller);
 	}
 
 	protected static long getOwnerId(String className, long classPK) {

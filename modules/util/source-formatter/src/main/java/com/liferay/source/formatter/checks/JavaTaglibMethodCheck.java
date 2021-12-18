@@ -190,19 +190,9 @@ public class JavaTaglibMethodCheck extends BaseJavaTermCheck {
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(9);
-
-		sb.append("public ");
-		sb.append(attributeType);
-		sb.append(StringPool.SPACE);
-		sb.append(getterMethodName);
-		sb.append("() {\n");
-		sb.append("return _");
-		sb.append(matcher.group(1));
-		sb.append(";\n");
-		sb.append("}\n");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"public ", attributeType, StringPool.SPACE, getterMethodName,
+			"() {\nreturn _", matcher.group(1), ";\n}\n");
 	}
 
 	private boolean _containsClass(

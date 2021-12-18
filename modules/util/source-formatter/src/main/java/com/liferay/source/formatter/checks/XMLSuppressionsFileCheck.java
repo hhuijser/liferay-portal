@@ -237,13 +237,9 @@ public class XMLSuppressionsFileCheck extends BaseFileCheck {
 
 		@Override
 		public String getElementName(Element suppressElement) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(suppressElement.attributeValue("checks"));
-			sb.append(StringPool.POUND);
-			sb.append(suppressElement.attributeValue("files"));
-
-			return sb.toString();
+			return StringBundler.concat(
+				suppressElement.attributeValue("checks"), StringPool.POUND,
+				suppressElement.attributeValue("files"));
 		}
 
 	}

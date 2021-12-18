@@ -103,24 +103,11 @@ public class GoogleGadgetServlet extends HttpServlet {
 			PropsValues.GOOGLE_GADGET_SERVLET_MAPPING,
 			PropsValues.WIDGET_SERVLET_MAPPING);
 
-		StringBundler sb = new StringBundler(14);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		sb.append("<Module>");
-		sb.append("<ModulePrefs title=\"");
-		sb.append(title);
-		sb.append("\"/>");
-		sb.append("<Content type=\"html\">");
-		sb.append("<![CDATA[");
-		sb.append("<iframe frameborder=\"0\" height=\"100%\" src=\"");
-		sb.append(widgetURL);
-		sb.append("\" width=\"100%\">");
-		sb.append("</iframe>");
-		sb.append("]]>");
-		sb.append("</Content>");
-		sb.append("</Module>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><Module><ModulePrefs ",
+			"title=\"", title, "\"/><Content type=\"html\"><![CDATA[<iframe ",
+			"frameborder=\"0\" height=\"100%\" src=\"", widgetURL,
+			"\" width=\"100%\"></iframe>]]></Content></Module>");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

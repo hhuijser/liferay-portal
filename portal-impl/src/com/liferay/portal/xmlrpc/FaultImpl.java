@@ -46,28 +46,12 @@ public class FaultImpl implements Fault {
 
 	@Override
 	public String toXml() throws XmlRpcException {
-		StringBundler sb = new StringBundler(17);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-
-		sb.append("<methodResponse>");
-		sb.append("<fault>");
-		sb.append("<value>");
-		sb.append("<struct>");
-		sb.append("<member>");
-		sb.append("<name>faultCode</name>");
-		sb.append(XmlRpcParser.wrapValue(_code));
-		sb.append("</member>");
-		sb.append("<member>");
-		sb.append("<name>faultString</name>");
-		sb.append(XmlRpcParser.wrapValue(_description));
-		sb.append("</member>");
-		sb.append("</struct>");
-		sb.append("</value>");
-		sb.append("</fault>");
-		sb.append("</methodResponse>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><methodResponse>",
+			"<fault><value><struct><member><name>faultCode</name>",
+			XmlRpcParser.wrapValue(_code), "</member><member><name>faultString",
+			"</name>", XmlRpcParser.wrapValue(_description), "</member>",
+			"</struct></value></fault></methodResponse>");
 	}
 
 	private final int _code;

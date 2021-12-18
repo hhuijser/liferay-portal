@@ -931,35 +931,15 @@ public class BaseAutoDeployer implements AutoDeployer {
 	}
 
 	private String _getInvokerFilterContent(String dispatcher) {
-		StringBundler sb = new StringBundler(24);
-
-		sb.append("<filter>");
-		sb.append("<filter-name>Invoker Filter - ");
-		sb.append(dispatcher);
-		sb.append("</filter-name>");
-		sb.append("<filter-class>");
-		sb.append(InvokerFilter.class.getName());
-		sb.append("</filter-class>");
-		sb.append("<async-supported>true</async-supported>");
-		sb.append("<init-param>");
-		sb.append("<param-name>dispatcher</param-name>");
-		sb.append("<param-value>");
-		sb.append(dispatcher);
-		sb.append("</param-value>");
-		sb.append("</init-param>");
-		sb.append("</filter>");
-
-		sb.append("<filter-mapping>");
-		sb.append("<filter-name>Invoker Filter - ");
-		sb.append(dispatcher);
-		sb.append("</filter-name>");
-		sb.append("<url-pattern>/*</url-pattern>");
-		sb.append("<dispatcher>");
-		sb.append(dispatcher);
-		sb.append("</dispatcher>");
-		sb.append("</filter-mapping>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<filter><filter-name>Invoker Filter - ", dispatcher,
+			"</filter-name><filter-class>", InvokerFilter.class.getName(),
+			"</filter-class><async-supported>true</async-supported>",
+			"<init-param><param-name>dispatcher</param-name><param-value>",
+			dispatcher, "</param-value></init-param></filter><filter-mapping>",
+			"<filter-name>Invoker Filter - ", dispatcher, "</filter-name>",
+			"<url-pattern>/*</url-pattern><dispatcher>", dispatcher,
+			"</dispatcher></filter-mapping>");
 	}
 
 	private String _getPluginPackageLicensesXml(List<License> licenses) {

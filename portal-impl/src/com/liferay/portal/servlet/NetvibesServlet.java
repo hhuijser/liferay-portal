@@ -110,36 +110,14 @@ public class NetvibesServlet extends HttpServlet {
 			PropsValues.WIDGET_SERVLET_MAPPING);
 		widgetURL = HtmlUtil.escapeJS(widgetURL);
 
-		StringBundler sb = new StringBundler(26);
-
-		sb.append("<!DOCTYPE html>");
-		sb.append("<html>");
-		sb.append("<head>");
-		sb.append("<link href=\"");
-		sb.append(_NETVIBES_CSS);
-		sb.append("\" rel=\"stylesheet\" type=\"text/css\" ");
-		sb.append("/>");
-		sb.append("<script src=\"");
-		sb.append(_NETVIBES_JS);
-		sb.append("\" ");
-		sb.append("type=\"text/javascript\"></script>");
-		sb.append("<title>");
-		sb.append(title);
-		sb.append("</title>");
-		sb.append("<link href=\"");
-		sb.append(iconURL);
-		sb.append("\" rel=\"icon\" type=\"image/png\" ");
-		sb.append("/>");
-		sb.append("</head>");
-		sb.append("<body>");
-		sb.append("<iframe frameborder=\"0\" height=\"100%\" src=\"");
-		sb.append(widgetURL);
-		sb.append("\" width=\"100%\">");
-		sb.append("</iframe>");
-		sb.append("</body>");
-		sb.append("</html>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<!DOCTYPE html><html><head><link href=\"", _NETVIBES_CSS,
+			"\" rel=\"stylesheet\" type=\"text/css\" /><script src=\"",
+			_NETVIBES_JS, "\" type=\"text/javascript\"></script><title>", title,
+			"</title><link href=\"", iconURL,
+			"\" rel=\"icon\" type=\"image/png",
+			"\" /></head><body><iframe frameborder=\"0\" height=\"100%\" src=",
+			"\"", widgetURL, "\" width=\"100%\"></iframe></body></html>");
 	}
 
 	private static final String _NETVIBES_CSS =

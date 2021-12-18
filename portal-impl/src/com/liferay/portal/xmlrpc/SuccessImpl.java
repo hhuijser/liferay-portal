@@ -40,19 +40,10 @@ public class SuccessImpl implements Success {
 
 	@Override
 	public String toXml() throws XmlRpcException {
-		StringBundler sb = new StringBundler(8);
-
-		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-
-		sb.append("<methodResponse>");
-		sb.append("<params>");
-		sb.append("<param>");
-		sb.append(XmlRpcParser.wrapValue(_description));
-		sb.append("</param>");
-		sb.append("</params>");
-		sb.append("</methodResponse>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><methodResponse>",
+			"<params><param>", XmlRpcParser.wrapValue(_description),
+			"</param></params></methodResponse>");
 	}
 
 	private final String _description;

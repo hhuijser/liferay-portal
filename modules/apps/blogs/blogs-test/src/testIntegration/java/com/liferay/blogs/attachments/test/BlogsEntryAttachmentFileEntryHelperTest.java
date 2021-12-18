@@ -196,20 +196,13 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 	}
 
 	protected String getContent(String tempFileEntryImgTag) {
-		StringBundler sb = new StringBundler(10);
-
-		sb.append("<p>");
-		sb.append(RandomTestUtil.randomStrings(50));
-		sb.append("</p>");
-		sb.append("<a href=\"www.liferay.com\"><span>");
-		sb.append(RandomTestUtil.randomStrings(50));
-		sb.append("<img src=\"www.liferay.com/logo.png\" /><span>");
-		sb.append(RandomTestUtil.randomStrings(50));
-		sb.append("</span>");
-		sb.append(tempFileEntryImgTag);
-		sb.append("<span></a>");
-
-		return sb.toString();
+		StringBundler.concat(
+			"<p>", RandomTestUtil.randomStrings(50), "</p>",
+			"<a href=\"www.liferay.com\"><span>",
+			RandomTestUtil.randomStrings(50),
+			"<img src=\"www.liferay.com/logo.png\" /><span>",
+			RandomTestUtil.randomStrings(50), "</span>", tempFileEntryImgTag,
+			"<span></a>");
 	}
 
 	protected InputStream getInputStream() {

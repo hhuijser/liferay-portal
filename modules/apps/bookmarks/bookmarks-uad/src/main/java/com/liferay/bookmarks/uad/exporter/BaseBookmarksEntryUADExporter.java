@@ -54,55 +54,30 @@ public abstract class BaseBookmarksEntryUADExporter
 
 	@Override
 	protected String toXmlString(BookmarksEntry bookmarksEntry) {
-		StringBundler sb = new StringBundler(36);
-
-		sb.append("<model><model-name>");
-		sb.append("com.liferay.bookmarks.model.BookmarksEntry");
-		sb.append("</model-name>");
-
-		sb.append("<column><column-name>entryId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getEntryId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>userId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getUserId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>userName</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getUserName());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>statusByUserId</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getStatusByUserId());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>statusByUserName</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getStatusByUserName());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>name</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getName());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>url</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getUrl());
-		sb.append("]]></column-value></column>");
-
-		sb.append("<column><column-name>description</column-name>");
-		sb.append("<column-value><![CDATA[");
-		sb.append(bookmarksEntry.getDescription());
-		sb.append("]]></column-value></column>");
-
-		sb.append("</model>");
-
-		return sb.toString();
+		return StringBundler.concat(
+			"<model><model-name>com.liferay.bookmarks.model.BookmarksEntry",
+			"</model-name><column><column-name>entryId</column-name>",
+			"<column-value><![CDATA[", bookmarksEntry.getEntryId(),
+			"]]></column-value></column><column><column-name>userId",
+			"</column-name><column-value><![CDATA[", bookmarksEntry.getUserId(),
+			"]]></column-value></column>",
+			"<column><column-name>userName</column-name>",
+			"<column-value><![CDATA[", bookmarksEntry.getUserName(),
+			"]]></column-value></column>",
+			"<column><column-name>statusByUserId</column-name>",
+			"<column-value><![CDATA[", bookmarksEntry.getStatusByUserId(),
+			"]]></column-value></column>",
+			"<column><column-name>statusByUserName</column-name>",
+			"<column-value><![CDATA[", bookmarksEntry.getStatusByUserName(),
+			"]]></column-value></column>",
+			"<column><column-name>name</column-name>",
+			"<column-value><![CDATA[", bookmarksEntry.getName(),
+			"]]></column-value></column>",
+			"<column><column-name>url</column-name><column-value><![CDATA[",
+			bookmarksEntry.getUrl(), "]]></column-value></column>",
+			"<column><column-name>description</column-name>",
+			"<column-value><![CDATA[", bookmarksEntry.getDescription(),
+			"]]></column-value></column></model>");
 	}
 
 	@Reference

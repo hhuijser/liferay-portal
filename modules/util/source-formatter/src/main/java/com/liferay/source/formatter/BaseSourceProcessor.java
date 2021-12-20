@@ -796,24 +796,78 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseSourceProcessor.class);
 
+	// List of all fileNames, if we need to cross reference, we can filter this
+	// list instead of scanning the directory again (which is very slow)
+
 	private List<String> _allFileNames;
+
+	// Only used when 'show.documention=true' (might be time to remove)
+
 	private boolean _browserStarted;
+
+	// List of files that SF autofixes, for logging purposes
+
 	private final List<String> _modifiedFileNames =
 		new CopyOnWriteArrayList<>();
+
+	// List of modules that contain 'build.xml'. Used by a few checks
+
 	private List<String> _pluginsInsideModulesDirectoryNames;
+
+	// boolean that is used for running Liferay specific checks
+
 	private boolean _portalSource;
+
+	// Only used when 'show.status.updates=true' (might be time to remove)
+
 	private BlockingQueue<ProgressStatusUpdate> _progressStatusQueue;
+
+	// Value of properties 'project.path.prefix' in 'gradle.properties', used by
+	// checks that are to be performed by modules only
+
 	private String _projectPathPrefix;
+
+	// Map that stores all properties in 'source-formatter.properties'. Key is
+	// file location of properties file
+
 	private Map<String, Properties> _propertiesMap;
+
+	// List of SourceChecks that apply to instance of SourceProcessor. Defined
+	// in 'sourcechecks.xml'.
+
 	private List<SourceCheck> _sourceChecks = new ArrayList<>();
+
+	// Objects that holds the values of arguments set via the build target
+
 	private SourceFormatterArgs _sourceFormatterArgs;
+
+	// Configuration object retrieved from 'sourcechecks.xml'
+
 	private SourceFormatterConfiguration _sourceFormatterConfiguration;
+
+	// Excludes object retrieved from values in
+	// 'source-formatter.properties#source.formatter.excludes' and
+	// SourceFormatter.DEFAULT_EXCLUDE_SYNTAX_PATTERNS
+
 	private SourceFormatterExcludes _sourceFormatterExcludes;
+
+	// Map of messages with SF violations. Key is fileName
+
 	private Map<String, Set<SourceFormatterMessage>>
 		_sourceFormatterMessagesMap = new ConcurrentHashMap<>();
+
+	// Suppressions object retrieved from collection of
+	// 'source-formatter-suppressions.xml' files
+
 	private SourceFormatterSuppressions _sourceFormatterSuppressions;
+
+	// List of diffs of autofixed files, for logging purposes
+
 	private final List<SourceMismatchException> _sourceMismatchExceptions =
 		new ArrayList<>();
+
+	// boolean that is used for running modules-only checks
+
 	private boolean _subrepository;
 
 }

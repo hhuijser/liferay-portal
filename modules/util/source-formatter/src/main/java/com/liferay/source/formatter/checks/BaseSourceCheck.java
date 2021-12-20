@@ -818,30 +818,97 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseSourceCheck.class);
 
+	// JSONObject that holds attributes values. Retrieved from sourcechecks.xml
+	// and source-formatter.properties
+
 	private JSONObject _attributesJSONObject = new JSONObjectImpl();
+
+	// Map to cache from _attributesJSONObject for better performance
+
 	private final Map<String, String> _attributeValueMap =
 		new ConcurrentHashMap<>();
+
+	// Map to cache from _attributesJSONObject for better performance
+
 	private final Map<String, List<String>> _attributeValuesMap =
 		new ConcurrentHashMap<>();
+
+	// Directory from where SF is executed
+
 	private String _baseDirName;
+
+	// Map to cache information from bnd.bnd
+
 	private final Map<String, BNDSettings> _bndSettingsMap =
 		new ConcurrentHashMap<>();
+
+	// JSONObject that holds excludes information retrieved from
+	// source-formatter.properties
+
 	private JSONObject _excludesJSONObject;
+
+	// Map to cache information from _excludesJSONObject
+
 	private final Map<String, List<String>> _excludesValuesMap =
 		new ConcurrentHashMap<>();
+
+	// List of file extensions specified in 'source.file.extensions'. Empty list
+	// when 'source.file.extensions' is not set
+
 	private List<String> _fileExtensions;
+
+	// List of check names specified in  'source.check.names'. Empty list when
+	// 'source.check.names' is not set
+
 	private List<String> _filterCheckNames;
+
+	// SF used this value to look for 'source-formatter.properties' files in
+	// parent directories
+
 	private int _maxDirLevel;
+
+	// 80 by default
+
 	private int _maxLineLength;
+
+	// List of modules that contain 'build.xml'. Used by a few checks
+
 	private List<String> _pluginsInsideModulesDirectoryNames;
+
+	// Caching document
+
 	private Document _portalCustomSQLDocument;
+
+	// boolean that is used for running Liferay specific checks
+
 	private boolean _portalSource;
+
+	// project name retrieved from _projectPathPrefix
+
 	private String _projectName;
+
+	// Value of property 'project.path.prefix' in gradle.properties, used by
+	// checks that are to be performed by modules only
+
 	private String _projectPathPrefix;
+
+	// Excludes object retrieved from values in
+	// 'source-formatter.properties#source.formatter.excludes' and
+	// SourceFormatter.DEFAULT_EXCLUDE_SYNTAX_PATTERNS
+
 	private SourceFormatterExcludes _sourceFormatterExcludes;
+
+	// Map of messages with SF violations. Key is fileName
+
 	private final Map<String, Set<SourceFormatterMessage>>
 		_sourceFormatterMessagesMap = new ConcurrentHashMap<>();
+
+	// SourceProcessor that this check is associated with
+
 	private SourceProcessor _sourceProcessor;
+
+	// boolean that is used for running modules-only checks
+
 	private boolean _subrepository;
 
 }

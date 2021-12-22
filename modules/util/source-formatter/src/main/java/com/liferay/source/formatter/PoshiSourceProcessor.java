@@ -49,7 +49,7 @@ public class PoshiSourceProcessor extends BaseSourceProcessor {
 			File file, String fileName, String absolutePath, String content)
 		throws Exception {
 
-		if (SourceUtil.isXML(content)) {
+		if (true || SourceUtil.isXML(content)) {
 			return file;
 		}
 

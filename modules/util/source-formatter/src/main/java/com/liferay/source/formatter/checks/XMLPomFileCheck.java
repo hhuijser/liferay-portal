@@ -47,8 +47,6 @@ public class XMLPomFileCheck extends BaseFileCheck {
 	private void _checkOrder(String fileName, String content)
 		throws DocumentException {
 
-		//System.out.println(content);
-
 		Document document = SourceUtil.readXML(content);
 
 		Element rootElement = document.getRootElement();

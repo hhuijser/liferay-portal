@@ -109,9 +109,6 @@ public abstract class BaseTagAttributesCheck extends BaseFileCheck {
 
 			String tag = matcher.group(1);
 
-			//System.out.println("---");
-			//System.out.println(tag);
-
 			String lastLine = StringUtil.trim(
 				getLine(content, getLineNumber(content, matcher.end(1))));
 

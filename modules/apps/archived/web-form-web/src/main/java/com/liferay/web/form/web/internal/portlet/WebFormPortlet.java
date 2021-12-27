@@ -27,7 +27,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.captcha.CaptchaException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Release;
@@ -474,7 +473,7 @@ public class WebFormPortlet extends MVCPortlet {
 
 	private WebFormServiceConfiguration _getWebFormServiceConfiguration(
 			long companyId)
-		throws PortalException {
+		throws Exception {
 
 		return _configurationProvider.getCompanyConfiguration(
 			WebFormServiceConfiguration.class, companyId);
@@ -510,7 +509,7 @@ public class WebFormPortlet extends MVCPortlet {
 
 	private boolean _saveFile(
 			Map<String, String> fieldsMap, String csvSeparator, String fileName)
-		throws PortalException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler();
 

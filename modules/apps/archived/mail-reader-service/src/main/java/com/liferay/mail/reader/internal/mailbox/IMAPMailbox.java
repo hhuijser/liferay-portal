@@ -113,7 +113,7 @@ public class IMAPMailbox extends BaseMailbox {
 				account.getTrashFolderId());
 
 			_imapAccessor.moveMessages(
-				folderId, trashFolder.getFolderId(), messageIds, true);
+				folderId, trashFolder._getFolderId(), messageIds, true);
 		}
 		else {
 			_imapAccessor.deleteMessages(folderId, messageIds);
@@ -127,7 +127,7 @@ public class IMAPMailbox extends BaseMailbox {
 		Attachment attachment = AttachmentLocalServiceUtil.getAttachment(
 			attachmentId);
 
-		if (account.getDraftFolderId() == attachment.getFolderId()) {
+		if (account.getDraftFolderId() == attachment._getFolderId()) {
 			return new DefaultAttachmentHandler(
 				AttachmentLocalServiceUtil.getInputStream(attachmentId), null);
 		}
@@ -136,7 +136,7 @@ public class IMAPMailbox extends BaseMailbox {
 			attachment.getMessageId());
 
 		return _imapAccessor.getAttachment(
-			attachment.getFolderId(), message.getRemoteMessageId(),
+			attachment._getFolderId(), message.getRemoteMessageId(),
 			attachment.getContentPath());
 	}
 
@@ -207,7 +207,7 @@ public class IMAPMailbox extends BaseMailbox {
 			Account account = AccountLocalServiceUtil.getAccount(
 				message.getAccountId());
 
-			long sourceFolderId = message.getFolderId();
+			long sourceFolderId = message._getFolderId();
 
 			if ((account.getDraftFolderId() == sourceFolderId) ||
 				(account.getSentFolderId() == sourceFolderId)) {
@@ -374,7 +374,7 @@ public class IMAPMailbox extends BaseMailbox {
 
 			try {
 				for (Folder folder : folders) {
-					_imapAccessor.storeEnvelopes(folder.getFolderId(), true);
+					_imapAccessor.storeEnvelopes(folder._getFolderId(), true);
 				}
 			}
 			finally {
@@ -414,7 +414,7 @@ public class IMAPMailbox extends BaseMailbox {
 
 		try {
 			_imapAccessor.storeContents(
-				message.getFolderId(),
+				message._getFolderId(),
 				new long[] {message.getRemoteMessageId()});
 		}
 		catch (IOException ioException) {
@@ -505,23 +505,23 @@ public class IMAPMailbox extends BaseMailbox {
 		long trashFolderId = account.getTrashFolderId();
 
 		if (draftFolderId <= 0) {
-			draftFolderId = getFolderId("draft");
+			draftFolderId = _getFolderId("draft");
 		}
 
 		if (inboxFolderId <= 0) {
-			inboxFolderId = getFolderId("inbox");
+			inboxFolderId = _getFolderId("inbox");
 		}
 
 		if (sentFolderId <= 0) {
-			sentFolderId = getFolderId("sent");
+			sentFolderId = _getFolderId("sent");
 		}
 
 		if (sentFolderId <= 0) {
-			sentFolderId = getFolderId("sent-mail");
+			sentFolderId = _getFolderId("sent-mail");
 		}
 
 		if (trashFolderId <= 0) {
-			trashFolderId = getFolderId("trash");
+			trashFolderId = _getFolderId("trash");
 		}
 
 		updateFolders(
@@ -542,7 +542,7 @@ public class IMAPMailbox extends BaseMailbox {
 		imapConnection.testConnection();
 	}
 
-	protected long getFolderId(String type) {
+	private long _getFolderId(String type) {
 		List<String> words = new ArrayList<>();
 
 		for (Locale locale : LanguageUtil.getAvailableLocales()) {
@@ -561,7 +561,7 @@ public class IMAPMailbox extends BaseMailbox {
 					folder.getDisplayName());
 
 				if (folderName.contains(word)) {
-					return folder.getFolderId();
+					return folder._getFolderId();
 				}
 			}
 		}

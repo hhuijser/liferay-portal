@@ -57,18 +57,18 @@ public class NetlogonIdentityInfo extends NdrObject {
 	}
 
 	public void encodeLogonDomainName(NdrBuffer ndrBuffer) {
-		encodeUnicodeString(ndrBuffer, _logonDomainName);
+		_encodeUnicodeString(ndrBuffer, _logonDomainName);
 	}
 
 	public void encodeUserName(NdrBuffer ndrBuffer) {
-		encodeUnicodeString(ndrBuffer, _userName);
+		_encodeUnicodeString(ndrBuffer, _userName);
 	}
 
 	public void encodeWorkStationName(NdrBuffer ndrBuffer) {
-		encodeUnicodeString(ndrBuffer, _workstation);
+		_encodeUnicodeString(ndrBuffer, _workstation);
 	}
 
-	protected void encodeUnicodeString(
+	private void _encodeUnicodeString(
 		NdrBuffer ndrBuffer, rpc.unicode_string string) {
 
 		ndrBuffer = ndrBuffer.deferred;

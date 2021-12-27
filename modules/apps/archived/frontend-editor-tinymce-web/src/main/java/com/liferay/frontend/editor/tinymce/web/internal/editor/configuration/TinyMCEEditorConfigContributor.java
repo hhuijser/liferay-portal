@@ -55,12 +55,12 @@ public class TinyMCEEditorConfigContributor
 		jsonObject.put(
 			"mode", "exact"
 		).put(
-			"plugins", getPluginsJSONArray(inputEditorTaglibAttributes)
+			"plugins", _getPluginsJSONArray(inputEditorTaglibAttributes)
 		).put(
-			"style_formats", getStyleFormatsJSONArray(themeDisplay.getLocale())
+			"style_formats", _getStyleFormatsJSONArray(themeDisplay.getLocale())
 		).put(
 			"toolbar",
-			getToolbarJSONArray(inputEditorTaglibAttributes, themeDisplay)
+			_getToolbarJSONArray(inputEditorTaglibAttributes, themeDisplay)
 		);
 	}
 
@@ -69,7 +69,7 @@ public class TinyMCEEditorConfigContributor
 		return _itemSelector;
 	}
 
-	protected JSONArray getPluginsJSONArray(
+	private JSONArray _getPluginsJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
 		return JSONUtil.putAll(
@@ -90,7 +90,7 @@ public class TinyMCEEditorConfigContributor
 		);
 	}
 
-	protected JSONObject getStyleFormatJSONObject(
+	private JSONObject _getStyleFormatJSONObject(
 		String styleFormatName, String type, String element,
 		String cssClasses) {
 
@@ -103,46 +103,46 @@ public class TinyMCEEditorConfigContributor
 		);
 	}
 
-	protected JSONArray getStyleFormatsJSONArray(Locale locale) {
+	private JSONArray _getStyleFormatsJSONArray(Locale locale) {
 		return JSONUtil.putAll(
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "normal"), "inline", "p", null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.format(locale, "heading-x", "1"), "block", "h1",
 				null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.format(locale, "heading-x", "2"), "block", "h2",
 				null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.format(locale, "heading-x", "3"), "block", "h3",
 				null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.format(locale, "heading-x", "4"), "block", "h4",
 				null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "preformatted-text"), "block", "pre",
 				null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "cited-work"), "inline", "cite", null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "computer-code"), "inline", "code",
 				null),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "info-message"), "block", "div",
 				"portlet-msg-info"),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "alert-message"), "block", "div",
 				"portlet-msg-alert"),
-			getStyleFormatJSONObject(
+			_getStyleFormatJSONObject(
 				LanguageUtil.get(locale, "error-message"), "block", "div",
 				"portlet-msg-error"));
 	}
 
-	protected JSONArray getToolbarJSONArray(
+	private JSONArray _getToolbarJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes,
 		ThemeDisplay themeDisplay) {
 
-		JSONObject toolbarsJSONObject = getToolbarsJSONObject(
+		JSONObject toolbarsJSONObject = _getToolbarsJSONObject(
 			inputEditorTaglibAttributes);
 
 		String toolbarSet = (String)inputEditorTaglibAttributes.get(
@@ -165,7 +165,7 @@ public class TinyMCEEditorConfigContributor
 		return toolbarJSONArray;
 	}
 
-	protected JSONArray getToolbarsEmailJSONArray(
+	private JSONArray _getToolbarsEmailJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
 		String buttons =
@@ -185,23 +185,23 @@ public class TinyMCEEditorConfigContributor
 			buttons);
 	}
 
-	protected JSONObject getToolbarsJSONObject(
+	private JSONObject _getToolbarsJSONObject(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
 		return JSONUtil.put(
-			"email", getToolbarsEmailJSONArray(inputEditorTaglibAttributes)
+			"email", _getToolbarsEmailJSONArray(inputEditorTaglibAttributes)
 		).put(
-			"liferay", getToolbarsLiferayJSONArray(inputEditorTaglibAttributes)
+			"liferay", _getToolbarsLiferayJSONArray(inputEditorTaglibAttributes)
 		).put(
-			"phone", getToolbarsPhoneJSONArray()
+			"phone", _getToolbarsPhoneJSONArray()
 		).put(
-			"simple", getToolbarsSimpleJSONArray(inputEditorTaglibAttributes)
+			"simple", _getToolbarsSimpleJSONArray(inputEditorTaglibAttributes)
 		).put(
-			"tablet", getToolbarsTabletJSONArray(inputEditorTaglibAttributes)
+			"tablet", _getToolbarsTabletJSONArray(inputEditorTaglibAttributes)
 		);
 	}
 
-	protected JSONArray getToolbarsLiferayJSONArray(
+	private JSONArray _getToolbarsLiferayJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
 		String buttons =
@@ -221,12 +221,12 @@ public class TinyMCEEditorConfigContributor
 				"emoticons | preview print fullscreen");
 	}
 
-	protected JSONArray getToolbarsPhoneJSONArray() {
+	private JSONArray _getToolbarsPhoneJSONArray() {
 		return JSONUtil.putAll(
 			"bold italic underline | bullist numlist", "link unlink image");
 	}
 
-	protected JSONArray getToolbarsSimpleJSONArray(
+	private JSONArray _getToolbarsSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
 		String buttons =
@@ -240,7 +240,7 @@ public class TinyMCEEditorConfigContributor
 		return JSONUtil.put(buttons);
 	}
 
-	protected JSONArray getToolbarsTabletJSONArray(
+	private JSONArray _getToolbarsTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
 		String buttons = "bullist numlist | link unlink image";

@@ -79,26 +79,14 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			ChatGroupServiceConfiguration.class, properties);
 	}
 
-	protected void addEntry(PollerRequest pollerRequest) throws Exception {
-		long toUserId = getLong(pollerRequest, "toUserId");
-
-		if (toUserId > 0) {
-			String content = getString(pollerRequest, "content");
-
-			EntryLocalServiceUtil.addEntry(
-				pollerRequest.getTimestamp(), pollerRequest.getUserId(),
-				toUserId, content);
-		}
-	}
-
 	@Override
 	protected PollerResponse doReceive(PollerRequest pollerRequest)
 		throws Exception {
 
 		PollerResponse pollerResponse = pollerRequest.createPollerResponse();
 
-		getBuddies(pollerRequest, pollerResponse);
-		getEntries(pollerRequest, pollerResponse);
+		_getBuddies(pollerRequest, pollerResponse);
+		_getEntries(pollerRequest, pollerResponse);
 
 		return pollerResponse;
 	}
@@ -109,15 +97,27 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			_processedEntryIds.clear();
 		}
 
-		addEntry(pollerRequest);
-		updateStatus(pollerRequest);
+		_addEntry(pollerRequest);
+		_updateStatus(pollerRequest);
 	}
 
-	protected void getBuddies(
+	private void _addEntry(PollerRequest pollerRequest) throws Exception {
+		long toUserId = getLong(pollerRequest, "toUserId");
+
+		if (toUserId > 0) {
+			String content = getString(pollerRequest, "content");
+
+			EntryLocalServiceUtil._addEntry(
+				pollerRequest.getTimestamp(), pollerRequest.getUserId(),
+				toUserId, content);
+		}
+	}
+
+	private void _getBuddies(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		List<Object[]> buddies = _buddyFinder.getBuddies(
+		List<Object[]> buddies = _buddyFinder._getBuddies(
 			pollerRequest.getCompanyId(), pollerRequest.getUserId());
 
 		JSONArray buddiesJSONArray = JSONFactoryUtil.createJSONArray();
@@ -196,7 +196,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		pollerResponse.setParameter("buddies", buddiesJSONArray);
 	}
 
-	protected void getEntries(
+	private void _getEntries(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
@@ -294,12 +294,12 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		}
 
 		if (updatePresence) {
-			StatusLocalServiceUtil.updateStatus(
+			StatusLocalServiceUtil._updateStatus(
 				pollerRequest.getUserId(), pollerRequest.getTimestamp());
 		}
 	}
 
-	protected void updateStatus(PollerRequest pollerRequest) throws Exception {
+	private void _updateStatus(PollerRequest pollerRequest) throws Exception {
 		int online = getInteger(pollerRequest, "online");
 		int awake = getInteger(pollerRequest, "awake");
 		String activePanelIds = getString(pollerRequest, "activePanelIds");
@@ -309,7 +309,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		if ((online != -1) || (awake != -1) || (activePanelIds != null) ||
 			(statusMessage != null) || (playSound != -1)) {
 
-			StatusLocalServiceUtil.updateStatus(
+			StatusLocalServiceUtil._updateStatus(
 				pollerRequest.getUserId(), -1, online, awake, activePanelIds,
 				statusMessage, playSound);
 		}

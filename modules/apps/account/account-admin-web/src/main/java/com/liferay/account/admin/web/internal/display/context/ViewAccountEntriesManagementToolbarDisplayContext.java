@@ -211,7 +211,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 	public List<DropdownItem> getFilterDropdownItems() {
 		List<DropdownItem> filterDropdownItems = super.getFilterDropdownItems();
 
-		addFilterTypeDropdownItems(filterDropdownItems);
+		_addFilterTypeDropdownItems(filterDropdownItems);
 
 		return filterDropdownItems;
 	}
@@ -238,7 +238,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 				labelItem.setLabel(label);
 			}
 		).add(
-			() -> !Objects.equals(getType(), "all"),
+			() -> !Objects.equals(_getType(), "all"),
 			labelItem -> {
 				labelItem.putData(
 					"removeLabelURL",
@@ -252,7 +252,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 
 				String label = String.format(
 					"%s: %s", LanguageUtil.get(httpServletRequest, "type"),
-					LanguageUtil.get(httpServletRequest, getType()));
+					LanguageUtil.get(httpServletRequest, _getType()));
 
 				labelItem.setLabel(label);
 			}
@@ -301,27 +301,6 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 			AccountActionKeys.ADD_ACCOUNT_ENTRY);
 	}
 
-	protected void addFilterTypeDropdownItems(
-		List<DropdownItem> filterDropdownItems) {
-
-		filterDropdownItems.add(
-			1,
-			DropdownGroupItemBuilder.setDropdownItems(
-				getDropdownItems(
-					getDefaultEntriesMap(getFilterByTypeKeys()),
-					getPortletURL(), "type", getType())
-			).setLabel(
-				LanguageUtil.get(httpServletRequest, "filter-by-type")
-			).build());
-	}
-
-	protected String[] getFilterByTypeKeys() {
-		return GetterUtil.getStringValues(
-			liferayPortletRequest.getAttribute(
-				AccountWebKeys.ACCOUNT_ENTRY_ALLOWED_TYPES),
-			AccountConstants.ACCOUNT_ENTRY_TYPES);
-	}
-
 	@Override
 	protected String getNavigation() {
 		return ParamUtil.getString(
@@ -338,7 +317,28 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		return new String[] {"name"};
 	}
 
-	protected String getType() {
+	private void _addFilterTypeDropdownItems(
+		List<DropdownItem> filterDropdownItems) {
+
+		filterDropdownItems.add(
+			1,
+			DropdownGroupItemBuilder.setDropdownItems(
+				getDropdownItems(
+					getDefaultEntriesMap(_getFilterByTypeKeys()),
+					getPortletURL(), "type", _getType())
+			).setLabel(
+				LanguageUtil.get(httpServletRequest, "filter-by-type")
+			).build());
+	}
+
+	private String[] _getFilterByTypeKeys() {
+		return GetterUtil.getStringValues(
+			liferayPortletRequest.getAttribute(
+				AccountWebKeys.ACCOUNT_ENTRY_ALLOWED_TYPES),
+			AccountConstants.ACCOUNT_ENTRY_TYPES);
+	}
+
+	private String _getType() {
 		return ParamUtil.getString(liferayPortletRequest, "type", "all");
 	}
 

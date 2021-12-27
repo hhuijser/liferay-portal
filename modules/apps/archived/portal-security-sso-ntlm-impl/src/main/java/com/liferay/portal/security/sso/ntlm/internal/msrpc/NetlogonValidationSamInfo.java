@@ -107,27 +107,27 @@ public class NetlogonValidationSamInfo extends NdrObject {
 		ndrBuffer.advance(40);
 
 		if (effectiveNamePtr > 0) {
-			decodeUnicodeString(ndrBuffer, _effectiveName);
+			_decodeUnicodeString(ndrBuffer, _effectiveName);
 		}
 
 		if (fullNamePtr > 0) {
-			decodeUnicodeString(ndrBuffer, _fullName);
+			_decodeUnicodeString(ndrBuffer, _fullName);
 		}
 
 		if (logonScriptPtr > 0) {
-			decodeUnicodeString(ndrBuffer, _logonScript);
+			_decodeUnicodeString(ndrBuffer, _logonScript);
 		}
 
 		if (profilePathPtr > 0) {
-			decodeUnicodeString(ndrBuffer, _profilePath);
+			_decodeUnicodeString(ndrBuffer, _profilePath);
 		}
 
 		if (homeDirectoryPtr > 0) {
-			decodeUnicodeString(ndrBuffer, _homeDirectory);
+			_decodeUnicodeString(ndrBuffer, _homeDirectory);
 		}
 
 		if (homeDirectoryDrivePtr > 0) {
-			decodeUnicodeString(ndrBuffer, _homeDirectoryDrive);
+			_decodeUnicodeString(ndrBuffer, _homeDirectoryDrive);
 		}
 
 		if (groupIdsPtr > 0) {
@@ -158,11 +158,11 @@ public class NetlogonValidationSamInfo extends NdrObject {
 		}
 
 		if (logonServerPtr > 0) {
-			decodeUnicodeString(ndrBuffer, _logonServer);
+			_decodeUnicodeString(ndrBuffer, _logonServer);
 		}
 
 		if (logonDomainNamePtr > 0) {
-			decodeUnicodeString(ndrBuffer, _logonDomainName);
+			_decodeUnicodeString(ndrBuffer, _logonDomainName);
 		}
 
 		if (logonDomainPtr > 0) {
@@ -180,7 +180,7 @@ public class NetlogonValidationSamInfo extends NdrObject {
 		return _effectiveName;
 	}
 
-	protected void decodeUnicodeString(
+	private void _decodeUnicodeString(
 		NdrBuffer ndrBuffer, rpc.unicode_string string) {
 
 		ndrBuffer = ndrBuffer.deferred;

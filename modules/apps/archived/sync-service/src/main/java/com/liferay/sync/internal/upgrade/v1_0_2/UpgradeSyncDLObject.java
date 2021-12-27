@@ -85,10 +85,10 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 					}
 
 					try {
-						verifyDLFileEntriesAndFolders(group.getGroupId());
+						_verifyDLFileEntriesAndFolders(group.getGroupId());
 
-						verifyLocks(group.getGroupId());
-						verifyMacPackages(group.getGroupId());
+						_verifyLocks(group.getGroupId());
+						_verifyMacPackages(group.getGroupId());
 					}
 					catch (Exception exception) {
 						throw new PortalException(exception);
@@ -101,9 +101,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		}
 	}
 
-	protected void verifyDLFileEntriesAndFolders(long groupId)
-		throws Exception {
-
+	private void _verifyDLFileEntriesAndFolders(long groupId) throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				StringBundler.concat(
 					"select DLFolder.companyId, DLFolder.userId, ",
@@ -217,7 +215,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		}
 	}
 
-	protected void verifyLocks(long groupId) throws Exception {
+	private void _verifyLocks(long groupId) throws Exception {
 		try (PreparedStatement preparedStatement1 = connection.prepareStatement(
 				SQLTransformer.transform(
 					StringBundler.concat(
@@ -251,7 +249,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		}
 	}
 
-	protected void verifyMacPackages(long groupId) throws Exception {
+	private void _verifyMacPackages(long groupId) throws Exception {
 		String[] fileNames =
 			SyncServiceConfigurationValues.SYNC_MAC_PACKAGE_METADATA_FILE_NAMES;
 

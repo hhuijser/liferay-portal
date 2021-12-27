@@ -77,7 +77,7 @@ public class JabberImpl implements Jabber {
 
 	@Override
 	public void disconnect(long userId) {
-		Connection connection = getConnection(userId);
+		Connection connection = _getConnection(userId);
 
 		if (connection == null) {
 			return;
@@ -113,7 +113,7 @@ public class JabberImpl implements Jabber {
 		long companyId, long userId, List<Object[]> buddies) {
 
 		try {
-			Connection connection = getConnection(userId);
+			Connection connection = _getConnection(userId);
 
 			if (connection == null) {
 				if (_log.isWarnEnabled()) {
@@ -135,7 +135,7 @@ public class JabberImpl implements Jabber {
 				for (Object[] buddy : buddies) {
 					String screenName = (String)buddy[7];
 
-					String jabberId = getFullJabberId(screenName);
+					String jabberId = _getFullJabberId(screenName);
 
 					if (roster.contains(jabberId)) {
 						continue;
@@ -199,7 +199,7 @@ public class JabberImpl implements Jabber {
 	@Override
 	public void login(long userId, String password) {
 		try {
-			connect(userId, password);
+			_connect(userId, password);
 		}
 		catch (XMPPException xmppException1) {
 			String message1 = xmppException1.getMessage();
@@ -223,9 +223,9 @@ public class JabberImpl implements Jabber {
 				}
 
 				try {
-					importUser(userId, password);
+					_importUser(userId, password);
 
-					connect(userId, password);
+					_connect(userId, password);
 				}
 				catch (XMPPException xmppException2) {
 					String message2 = xmppException2.getMessage();
@@ -255,7 +255,7 @@ public class JabberImpl implements Jabber {
 				return;
 			}
 
-			Connection connection = getConnection(fromUserId);
+			Connection connection = _getConnection(fromUserId);
 
 			if (connection == null) {
 				if (_log.isWarnEnabled()) {
@@ -273,7 +273,7 @@ public class JabberImpl implements Jabber {
 
 			Roster roster = connection.getRoster();
 
-			String jabberId = getJabberId(toUser.getScreenName());
+			String jabberId = _getJabberId(toUser.getScreenName());
 
 			if (!roster.contains(jabberId)) {
 				return;
@@ -325,7 +325,7 @@ public class JabberImpl implements Jabber {
 			return;
 		}
 
-		Connection connection = getConnection(userId);
+		Connection connection = _getConnection(userId);
 
 		if (connection == null) {
 			return;
@@ -354,132 +354,12 @@ public class JabberImpl implements Jabber {
 			ChatGroupServiceConfiguration.class, properties);
 	}
 
-	protected Connection connect() throws Exception {
-		long userId = -1;
-		String password = null;
-
-		return connect(userId, password);
-	}
-
-	protected Connection connect(long userId, String password)
-		throws Exception {
-
-		Connection connection = getConnection(userId);
-
-		if (connection != null) {
-			return connection;
-		}
-
-		connection = new XMPPConnection(getConnectionConfiguration());
-
-		connection.connect();
-
-		if (userId < 0) {
-			return connection;
-		}
-
-		User user = _userLocalService.getUserById(userId);
-
-		connection.login(
-			user.getScreenName(), password,
-			_chatGroupServiceConfiguration.jabberResource());
-
-		Status status = StatusLocalServiceUtil.getUserStatus(userId);
-
-		if (status.isOnline()) {
-			updateStatus(userId, 1, connection);
-		}
-
-		ChatManager chatManager = connection.getChatManager();
-
-		ChatManagerListener chatMessageListener = new JabberChatManagerListener(
-			user.getCompanyId(), userId);
-
-		chatManager.addChatListener(chatMessageListener);
-
-		_connections.put(userId, connection);
-
-		return connection;
-	}
-
-	protected Connection getConnection(long userId) {
-		return _connections.get(userId);
-	}
-
-	protected ConnectionConfiguration getConnectionConfiguration()
-		throws UnknownHostException {
-
-		if (_connectionConfiguration != null) {
-			return _connectionConfiguration;
-		}
-
-		String jabberHost = _chatGroupServiceConfiguration.jabberHost();
-
-		if (!Validator.isIPAddress(jabberHost)) {
-			InetAddress inetAddress = InetAddressUtil.getInetAddressByName(
-				jabberHost);
-
-			jabberHost = inetAddress.getHostAddress();
-		}
-
-		_connectionConfiguration = new ConnectionConfiguration(
-			jabberHost, _chatGroupServiceConfiguration.jabberPort(),
-			_chatGroupServiceConfiguration.jabberServiceName());
-
-		_connectionConfiguration.setSendPresence(false);
-
-		SmackConfiguration.setLocalSocks5ProxyEnabled(
-			_chatGroupServiceConfiguration.jabberSock5ProxyEnabled());
-		SmackConfiguration.setLocalSocks5ProxyPort(
-			_chatGroupServiceConfiguration.jabberSock5ProxyPort());
-
-		return _connectionConfiguration;
-	}
-
-	protected String getFullJabberId(String screenName) {
-		return StringBundler.concat(
-			getJabberId(screenName), StringPool.SLASH,
-			_chatGroupServiceConfiguration.jabberResource());
-	}
-
-	protected String getJabberId(String screenName) {
-		return StringBundler.concat(
-			screenName, StringPool.AT,
-			_chatGroupServiceConfiguration.jabberResource());
-	}
-
-	protected void importUser(long userId, String password) throws Exception {
-		Connection connection = connect();
-
-		AccountManager accountManager = connection.getAccountManager();
-
-		if (!accountManager.supportsAccountCreation()) {
-			_log.error("Jabber server does not support account creation");
-
-			return;
-		}
-
-		User user = _userLocalService.getUserById(userId);
-
-		accountManager.createAccount(
-			user.getScreenName(), password,
-			HashMapBuilder.put(
-				"email", user.getEmailAddress()
-			).put(
-				"first", user.getFirstName()
-			).put(
-				"last", user.getLastName()
-			).put(
-				"name", user.getFullName()
-			).build());
-	}
-
 	protected void updateStatus(
 		long userId, int online, Connection connection) {
 
 		try {
 			if (connection == null) {
-				connection = getConnection(userId);
+				connection = _getConnection(userId);
 
 				if (connection == null) {
 					if (_log.isWarnEnabled()) {
@@ -509,6 +389,124 @@ public class JabberImpl implements Jabber {
 		catch (Exception exception) {
 			_log.error(exception, exception);
 		}
+	}
+
+	private Connection _connect() throws Exception {
+		long userId = -1;
+		String password = null;
+
+		return _connect(userId, password);
+	}
+
+	private Connection _connect(long userId, String password) throws Exception {
+		Connection connection = _getConnection(userId);
+
+		if (connection != null) {
+			return connection;
+		}
+
+		connection = new XMPPConnection(_getConnectionConfiguration());
+
+		connection._connect();
+
+		if (userId < 0) {
+			return connection;
+		}
+
+		User user = _userLocalService.getUserById(userId);
+
+		connection.login(
+			user.getScreenName(), password,
+			_chatGroupServiceConfiguration.jabberResource());
+
+		Status status = StatusLocalServiceUtil.getUserStatus(userId);
+
+		if (status.isOnline()) {
+			updateStatus(userId, 1, connection);
+		}
+
+		ChatManager chatManager = connection.getChatManager();
+
+		ChatManagerListener chatMessageListener = new JabberChatManagerListener(
+			user.getCompanyId(), userId);
+
+		chatManager.addChatListener(chatMessageListener);
+
+		_connections.put(userId, connection);
+
+		return connection;
+	}
+
+	private Connection _getConnection(long userId) {
+		return _connections.get(userId);
+	}
+
+	private ConnectionConfiguration _getConnectionConfiguration()
+		throws UnknownHostException {
+
+		if (_connectionConfiguration != null) {
+			return _connectionConfiguration;
+		}
+
+		String jabberHost = _chatGroupServiceConfiguration.jabberHost();
+
+		if (!Validator.isIPAddress(jabberHost)) {
+			InetAddress inetAddress = InetAddressUtil.getInetAddressByName(
+				jabberHost);
+
+			jabberHost = inetAddress.getHostAddress();
+		}
+
+		_connectionConfiguration = new ConnectionConfiguration(
+			jabberHost, _chatGroupServiceConfiguration.jabberPort(),
+			_chatGroupServiceConfiguration.jabberServiceName());
+
+		_connectionConfiguration.setSendPresence(false);
+
+		SmackConfiguration.setLocalSocks5ProxyEnabled(
+			_chatGroupServiceConfiguration.jabberSock5ProxyEnabled());
+		SmackConfiguration.setLocalSocks5ProxyPort(
+			_chatGroupServiceConfiguration.jabberSock5ProxyPort());
+
+		return _connectionConfiguration;
+	}
+
+	private String _getFullJabberId(String screenName) {
+		return StringBundler.concat(
+			_getJabberId(screenName), StringPool.SLASH,
+			_chatGroupServiceConfiguration.jabberResource());
+	}
+
+	private String _getJabberId(String screenName) {
+		return StringBundler.concat(
+			screenName, StringPool.AT,
+			_chatGroupServiceConfiguration.jabberResource());
+	}
+
+	private void _importUser(long userId, String password) throws Exception {
+		Connection connection = _connect();
+
+		AccountManager accountManager = connection.getAccountManager();
+
+		if (!accountManager.supportsAccountCreation()) {
+			_log.error("Jabber server does not support account creation");
+
+			return;
+		}
+
+		User user = _userLocalService.getUserById(userId);
+
+		accountManager.createAccount(
+			user.getScreenName(), password,
+			HashMapBuilder.put(
+				"email", user.getEmailAddress()
+			).put(
+				"first", user.getFirstName()
+			).put(
+				"last", user.getLastName()
+			).put(
+				"name", user.getFullName()
+			).build());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(JabberImpl.class);

@@ -71,7 +71,7 @@ public class AssociateGoogleUserMVCRenderCommand implements MVCRenderCommand {
 		if (googleIncompleteUserId != 0) {
 			User user = _userLocalService.fetchUser(googleIncompleteUserId);
 
-			return renderUpdateAccount(renderRequest, user);
+			return _renderUpdateAccount(renderRequest, user);
 		}
 
 		// This return statement may be used if the user presses the browser's
@@ -80,7 +80,7 @@ public class AssociateGoogleUserMVCRenderCommand implements MVCRenderCommand {
 		return "/login.jsp";
 	}
 
-	protected String renderUpdateAccount(
+	private String _renderUpdateAccount(
 			PortletRequest portletRequest, User user)
 		throws PortletException {
 

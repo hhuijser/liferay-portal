@@ -59,8 +59,8 @@ public class OAuthAuthorizeStrutsAction implements StrutsAction {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		if (!isSignedIn()) {
-			return redirectToLogin(httpServletRequest, httpServletResponse);
+		if (!_isSignedIn()) {
+			return _redirectToLogin(httpServletRequest, httpServletResponse);
 		}
 
 		ThemeDisplay themeDisplay =
@@ -92,37 +92,35 @@ public class OAuthAuthorizeStrutsAction implements StrutsAction {
 			).setPortletMode(
 				PortletMode.VIEW
 			).setWindowState(
-				getWindowState(httpServletRequest)
+				_getWindowState(httpServletRequest)
 			).buildString());
 
 		return null;
 	}
 
-	protected WindowState getWindowState(
-		HttpServletRequest httpServletRequest) {
-
+	private WindowState _getWindowState(HttpServletRequest httpServletRequest) {
 		String windowStateString = ParamUtil.getString(
 			httpServletRequest, "windowState");
 
 		if (Validator.isNotNull(windowStateString)) {
-			return WindowStateFactory.getWindowState(windowStateString);
+			return WindowStateFactory._getWindowState(windowStateString);
 		}
 
 		return LiferayWindowState.POP_UP;
 	}
 
-	protected boolean isSignedIn() {
+	private boolean _isSignedIn() {
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		if ((permissionChecker == null) || !permissionChecker.isSignedIn()) {
+		if ((permissionChecker == null) || !permissionChecker._isSignedIn()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	protected String redirectToLogin(
+	private String _redirectToLogin(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
 		throws IOException {

@@ -98,10 +98,6 @@ public class JabberUtil {
 		_jabber.updateStatus(userId, online);
 	}
 
-	protected static Jabber getJabber() {
-		return _jabber;
-	}
-
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
@@ -115,6 +111,10 @@ public class JabberUtil {
 	@Reference(unbind = "-")
 	protected void setJabber(Jabber jabber) {
 		_jabber = jabber;
+	}
+
+	private Jabber _getJabber() {
+		return _jabber;
 	}
 
 	private static Jabber _jabber;

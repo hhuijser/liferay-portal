@@ -52,10 +52,10 @@ public class EditWeDeployAuthAppMVCActionCommand extends BaseMVCActionCommand {
 
 		try {
 			if (cmd.equals(Constants.ADD)) {
-				addWeDeployAuthApp(actionRequest);
+				_addWeDeployAuthApp(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteWeDeployAuthApp(actionRequest);
+				_deleteWeDeployAuthApp(actionRequest);
 			}
 		}
 		catch (Exception exception) {
@@ -63,7 +63,7 @@ public class EditWeDeployAuthAppMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void addWeDeployAuthApp(ActionRequest actionRequest)
+	private void _addWeDeployAuthApp(ActionRequest actionRequest)
 		throws Exception {
 
 		String name = ParamUtil.getString(actionRequest, "name");
@@ -72,17 +72,17 @@ public class EditWeDeployAuthAppMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			WeDeployAuthApp.class.getName(), actionRequest);
 
-		_weDeployAuthAppService.addWeDeployAuthApp(
+		_weDeployAuthAppService._addWeDeployAuthApp(
 			name, redirectURI, serviceContext);
 	}
 
-	protected void deleteWeDeployAuthApp(ActionRequest actionRequest)
+	private void _deleteWeDeployAuthApp(ActionRequest actionRequest)
 		throws Exception {
 
 		long weDeployAuthAppId = ParamUtil.getLong(
 			actionRequest, "weDeployAuthAppId");
 
-		_weDeployAuthAppService.deleteWeDeployAuthApp(weDeployAuthAppId);
+		_weDeployAuthAppService._deleteWeDeployAuthApp(weDeployAuthAppId);
 	}
 
 	@Reference

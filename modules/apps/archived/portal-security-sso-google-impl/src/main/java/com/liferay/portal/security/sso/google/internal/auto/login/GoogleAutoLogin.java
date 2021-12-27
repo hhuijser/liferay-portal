@@ -49,7 +49,7 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 			return null;
 		}
 
-		User user = getUser(httpServletRequest, companyId);
+		User user = _getUser(httpServletRequest, companyId);
 
 		if (user == null) {
 			return null;
@@ -64,8 +64,7 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 		return credentials;
 	}
 
-	protected User getUser(
-			HttpServletRequest httpServletRequest, long companyId)
+	private User _getUser(HttpServletRequest httpServletRequest, long companyId)
 		throws Exception {
 
 		HttpSession httpSession = httpServletRequest.getSession();
@@ -92,13 +91,13 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 		return null;
 	}
 
-	protected void setGoogleAuthorization(
+	private void _setGoogleAuthorization(
 		GoogleAuthorization googleAuthorization) {
 
 		_googleAuthorization = googleAuthorization;
 	}
 
-	protected void setUserLocalService(UserLocalService userLocalService) {
+	private void _setUserLocalService(UserLocalService userLocalService) {
 		_userLocalService = userLocalService;
 	}
 

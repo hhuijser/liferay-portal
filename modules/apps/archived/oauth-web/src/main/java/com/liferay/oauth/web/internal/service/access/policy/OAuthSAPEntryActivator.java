@@ -56,7 +56,14 @@ public class OAuthSAPEntryActivator {
 			new PolicyPortalInstanceLifecycleListener(), null);
 	}
 
-	protected void addSAPEntry(long companyId) throws PortalException {
+	@Deactivate
+	protected void deactivate() {
+		if (_serviceRegistration != null) {
+			_serviceRegistration.unregister();
+		}
+	}
+
+	private void _addSAPEntry(long companyId) throws PortalException {
 		for (Object[] sapEntryObjectArray : SAP_ENTRY_OBJECT_ARRAYS) {
 			String name = String.valueOf(sapEntryObjectArray[0]);
 
@@ -77,17 +84,10 @@ public class OAuthSAPEntryActivator {
 					ResourceBundleLoaderUtil.getPortalResourceBundleLoader(),
 					"service-access-policy-entry-default-title-" + name);
 
-			_sapEntryLocalService.addSAPEntry(
+			_sapEntryLocalService._addSAPEntry(
 				_userLocalService.getDefaultUserId(companyId),
 				allowedServiceSignatures, defaultSAPEntry, true, name, titleMap,
 				new ServiceContext());
-		}
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		if (_serviceRegistration != null) {
-			_serviceRegistration.unregister();
 		}
 	}
 
@@ -108,7 +108,7 @@ public class OAuthSAPEntryActivator {
 
 		public void portalInstanceRegistered(Company company) throws Exception {
 			try {
-				addSAPEntry(company.getCompanyId());
+				_addSAPEntry(company.getCompanyId());
 			}
 			catch (PortalException portalException) {
 				_log.error(

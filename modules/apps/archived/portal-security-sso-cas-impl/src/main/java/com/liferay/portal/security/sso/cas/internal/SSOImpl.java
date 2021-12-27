@@ -56,12 +56,12 @@ public class SSOImpl implements SSO {
 
 	@Override
 	public boolean isLoginRedirectRequired(long companyId) {
-		return isCASAuthEnabled(companyId);
+		return _isCASAuthEnabled(companyId);
 	}
 
 	@Override
 	public boolean isRedirectRequired(long companyId) {
-		return isCASAuthEnabled(companyId);
+		return _isCASAuthEnabled(companyId);
 	}
 
 	@Override
@@ -69,12 +69,6 @@ public class SSOImpl implements SSO {
 		CASConfiguration casConfiguration = _getCASConfiguration(companyId);
 
 		return casConfiguration.logoutOnSessionExpiration();
-	}
-
-	protected boolean isCASAuthEnabled(long companyId) {
-		CASConfiguration casConfiguration = _getCASConfiguration(companyId);
-
-		return casConfiguration.enabled();
 	}
 
 	@Reference(unbind = "-")
@@ -97,6 +91,12 @@ public class SSOImpl implements SSO {
 		}
 
 		return null;
+	}
+
+	private boolean _isCASAuthEnabled(long companyId) {
+		CASConfiguration casConfiguration = _getCASConfiguration(companyId);
+
+		return casConfiguration.enabled();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(SSOImpl.class);

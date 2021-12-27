@@ -56,7 +56,14 @@ public class SyncSAPEntryActivator {
 			new PolicyPortalInstanceLifecycleListener(), null);
 	}
 
-	protected void addSAPEntry(long companyId) throws PortalException {
+	@Deactivate
+	protected void deactivate() {
+		if (_serviceRegistration != null) {
+			_serviceRegistration.unregister();
+		}
+	}
+
+	private void _addSAPEntry(long companyId) throws PortalException {
 		for (Object[] sapEntryObjectArray : SAP_ENTRY_OBJECT_ARRAYS) {
 			String name = String.valueOf(sapEntryObjectArray[0]);
 
@@ -72,20 +79,13 @@ public class SyncSAPEntryActivator {
 			boolean defaultSAPEntry = GetterUtil.getBoolean(
 				sapEntryObjectArray[2]);
 
-			_sapEntryLocalService.addSAPEntry(
+			_sapEntryLocalService._addSAPEntry(
 				_userLocalService.getDefaultUserId(companyId),
 				allowedServiceSignatures, defaultSAPEntry, true, name,
 				HashMapBuilder.put(
 					LocaleUtil.getDefault(), name
 				).build(),
 				new ServiceContext());
-		}
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		if (_serviceRegistration != null) {
-			_serviceRegistration.unregister();
 		}
 	}
 
@@ -106,7 +106,7 @@ public class SyncSAPEntryActivator {
 
 		public void portalInstanceRegistered(Company company) throws Exception {
 			try {
-				addSAPEntry(company.getCompanyId());
+				_addSAPEntry(company.getCompanyId());
 			}
 			catch (PortalException portalException) {
 				_log.error(

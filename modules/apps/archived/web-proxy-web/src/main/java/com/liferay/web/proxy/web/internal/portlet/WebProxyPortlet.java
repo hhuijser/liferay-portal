@@ -103,7 +103,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 		throws IOException, PortletException {
 
 		if (!_enabled) {
-			printError(renderResponse);
+			_printError(renderResponse);
 
 			return;
 		}
@@ -145,7 +145,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 		try {
 			super.init();
 
-			doInit();
+			_doInit();
 
 			_enabled = true;
 		}
@@ -166,7 +166,14 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 		_componentContext = null;
 	}
 
-	protected void doInit() {
+	@Reference(
+		target = "(&(release.bundle.symbolic.name=com.liferay.web.proxy.web)(&(release.schema.version>=1.0.0)(!(release.schema.version>=2.0.0))))",
+		unbind = "-"
+	)
+	protected void setRelease(Release release) {
+	}
+
+	private void _doInit() {
 		BundleContext bundleContext = _componentContext.getBundleContext();
 
 		PortletConfig portletConfig = getPortletConfig();
@@ -212,9 +219,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 			).build());
 	}
 
-	protected void printError(RenderResponse renderResponse)
-		throws IOException {
-
+	private void _printError(RenderResponse renderResponse) throws IOException {
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
 		try (PrintWriter writer = renderResponse.getWriter()) {
@@ -223,13 +228,6 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 					"serializer.jar and xalan.jar files are copied to the " +
 						"JDK's endorsed directory");
 		}
-	}
-
-	@Reference(
-		target = "(&(release.bundle.symbolic.name=com.liferay.web.proxy.web)(&(release.schema.version>=1.0.0)(!(release.schema.version>=2.0.0))))",
-		unbind = "-"
-	)
-	protected void setRelease(Release release) {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

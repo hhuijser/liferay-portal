@@ -68,7 +68,7 @@ public abstract class BaseAnalyticsConfigurationScreen
 			RequestDispatcher requestDispatcher =
 				servletContext.getRequestDispatcher(getJspPath());
 
-			setHttpServletRequestAttributes(httpServletRequest);
+			_setHttpServletRequestAttributes(httpServletRequest);
 
 			requestDispatcher.include(httpServletRequest, httpServletResponse);
 		}
@@ -82,7 +82,20 @@ public abstract class BaseAnalyticsConfigurationScreen
 
 	protected abstract ServletContext getServletContext();
 
-	protected void setHttpServletRequestAttributes(
+	@Reference(
+		target = "(&(release.bundle.symbolic.name=com.liferay.analytics.settings.web)(release.schema.version>=1.0.1))",
+		unbind = "-"
+	)
+	protected void setRelease(Release release) {
+	}
+
+	@Reference
+	protected AnalyticsUsersManager analyticsUsersManager;
+
+	@Reference
+	protected ConfigurationProvider configurationProvider;
+
+	private void _setHttpServletRequestAttributes(
 			HttpServletRequest httpServletRequest)
 		throws Exception {
 
@@ -99,18 +112,5 @@ public abstract class BaseAnalyticsConfigurationScreen
 			AnalyticsSettingsWebKeys.ANALYTICS_USERS_MANAGER,
 			analyticsUsersManager);
 	}
-
-	@Reference(
-		target = "(&(release.bundle.symbolic.name=com.liferay.analytics.settings.web)(release.schema.version>=1.0.1))",
-		unbind = "-"
-	)
-	protected void setRelease(Release release) {
-	}
-
-	@Reference
-	protected AnalyticsUsersManager analyticsUsersManager;
-
-	@Reference
-	protected ConfigurationProvider configurationProvider;
 
 }

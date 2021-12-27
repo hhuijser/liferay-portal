@@ -45,19 +45,6 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 
-	protected AccountGroup addAccountGroup(ActionRequest actionRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String description = ParamUtil.getString(actionRequest, "description");
-		String name = ParamUtil.getString(actionRequest, "name");
-
-		return _accountGroupService.addAccountGroup(
-			themeDisplay.getUserId(), description, name);
-	}
-
 	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -68,14 +55,14 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
 		if (cmd.equals(Constants.ADD)) {
-			AccountGroup accountGroup = addAccountGroup(actionRequest);
+			AccountGroup accountGroup = _addAccountGroup(actionRequest);
 
 			redirect = _http.setParameter(
 				redirect, actionResponse.getNamespace() + "accountGroupId",
 				accountGroup.getAccountGroupId());
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
-			updateAccountGroup(actionRequest);
+			_updateAccountGroup(actionRequest);
 		}
 
 		if (Validator.isNotNull(redirect)) {
@@ -83,7 +70,20 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void updateAccountGroup(ActionRequest actionRequest)
+	private AccountGroup _addAccountGroup(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String description = ParamUtil.getString(actionRequest, "description");
+		String name = ParamUtil.getString(actionRequest, "name");
+
+		return _accountGroupService._addAccountGroup(
+			themeDisplay.getUserId(), description, name);
+	}
+
+	private void _updateAccountGroup(ActionRequest actionRequest)
 		throws Exception {
 
 		long accountGroupId = ParamUtil.getLong(
@@ -92,7 +92,7 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 		String description = ParamUtil.getString(actionRequest, "description");
 		String name = ParamUtil.getString(actionRequest, "name");
 
-		_accountGroupService.updateAccountGroup(
+		_accountGroupService._updateAccountGroup(
 			accountGroupId, description, name);
 	}
 

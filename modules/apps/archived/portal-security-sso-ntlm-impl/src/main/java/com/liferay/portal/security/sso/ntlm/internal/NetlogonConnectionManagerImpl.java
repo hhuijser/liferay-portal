@@ -89,7 +89,7 @@ public class NetlogonConnectionManagerImpl
 
 		md4.update(password.getBytes("UTF-16LE"));
 
-		byte[] sessionKey = computeSessionKey(
+		byte[] sessionKey = _computeSessionKey(
 			md4.digest(), clientChallenge,
 			netrServerReqChallenge.getServerChallenge());
 
@@ -101,7 +101,7 @@ public class NetlogonConnectionManagerImpl
 			new NetrServerAuthenticate3(
 				domainControllerName, ntlmServiceAccount.getAccountName(), 2,
 				ntlmServiceAccount.getComputerName(), clientCredential,
-				new byte[8], getNegotiateFlags());
+				new byte[8], _getNegotiateFlags());
 
 		dcerpcHandle.sendrecv(netrServerAuthenticate3);
 
@@ -124,7 +124,14 @@ public class NetlogonConnectionManagerImpl
 		return netlogonConnection;
 	}
 
-	protected byte[] computeSessionKey(
+	@Reference(unbind = "-")
+	protected void setConfigurationProvider(
+		ConfigurationProvider configurationProvider) {
+
+		_configurationProvider = configurationProvider;
+	}
+
+	private byte[] _computeSessionKey(
 			byte[] sharedSecret, byte[] clientChallenge, byte[] serverChallenge)
 		throws NoSuchAlgorithmException {
 
@@ -142,7 +149,7 @@ public class NetlogonConnectionManagerImpl
 		return hmact64.digest();
 	}
 
-	protected int getNegotiateFlags() {
+	private int _getNegotiateFlags() {
 		int negotiateFlags = 0x600FFFFF;
 
 		try {
@@ -166,13 +173,6 @@ public class NetlogonConnectionManagerImpl
 		}
 
 		return negotiateFlags;
-	}
-
-	@Reference(unbind = "-")
-	protected void setConfigurationProvider(
-		ConfigurationProvider configurationProvider) {
-
-		_configurationProvider = configurationProvider;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

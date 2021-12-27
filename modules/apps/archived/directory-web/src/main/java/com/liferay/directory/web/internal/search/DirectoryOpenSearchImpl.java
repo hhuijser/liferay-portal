@@ -76,7 +76,7 @@ public class DirectoryOpenSearchImpl extends HitsOpenSearchImpl {
 			httpServletRequest, PortletKeys.DIRECTORY, scopeGroupId);
 	}
 
-	protected LinkedHashMap<String, Object> getUserParams(
+	private LinkedHashMap<String, Object> _getUserParams(
 		long companyId, String keywords) {
 
 		LinkedHashMap<String, Object> userParams = new LinkedHashMap<>();

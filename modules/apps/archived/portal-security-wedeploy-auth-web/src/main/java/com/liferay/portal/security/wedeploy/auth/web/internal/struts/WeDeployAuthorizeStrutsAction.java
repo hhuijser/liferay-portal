@@ -52,7 +52,7 @@ public class WeDeployAuthorizeStrutsAction implements StrutsAction {
 				WebKeys.THEME_DISPLAY);
 
 		if (!themeDisplay.isSignedIn()) {
-			sendLoginRedirect(
+			_sendLoginRedirect(
 				httpServletRequest, httpServletResponse,
 				themeDisplay.getPlid());
 
@@ -78,7 +78,7 @@ public class WeDeployAuthorizeStrutsAction implements StrutsAction {
 		return null;
 	}
 
-	protected void sendLoginRedirect(
+	private void _sendLoginRedirect(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long plid)
 		throws Exception {

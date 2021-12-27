@@ -78,7 +78,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 		if (cmd.equals("login")) {
 			String loginRedirect = _googleAuthorization.getLoginRedirect(
 				themeDisplay.getCompanyId(),
-				getReturnRequestUri(httpServletRequest), _scopesLogin);
+				_getReturnRequestUri(httpServletRequest), _scopesLogin);
 
 			httpServletResponse.sendRedirect(loginRedirect);
 		}
@@ -88,7 +88,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 
 			if (Validator.isNotNull(authorizationCode)) {
 				HttpSession httpSession = httpServletRequest.getSession();
-				String returnRequestUri = getReturnRequestUri(
+				String returnRequestUri = _getReturnRequestUri(
 					httpServletRequest);
 
 				try {
@@ -100,7 +100,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 						(user.getStatus() ==
 							WorkflowConstants.STATUS_INCOMPLETE)) {
 
-						sendUpdateAccountRedirect(
+						_sendUpdateAccountRedirect(
 							httpServletRequest, httpServletResponse, user);
 
 						return null;
@@ -113,14 +113,14 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 
 					Class<?> clazz = portalException.getClass();
 
-					sendError(
+					_sendError(
 						clazz.getSimpleName(), httpServletRequest,
 						httpServletResponse);
 
 					return null;
 				}
 
-				sendLoginRedirect(httpServletRequest, httpServletResponse);
+				_sendLoginRedirect(httpServletRequest, httpServletResponse);
 
 				return null;
 			}
@@ -128,7 +128,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 			String error = ParamUtil.getString(httpServletRequest, "error");
 
 			if (error.equals("access_denied")) {
-				sendLoginRedirect(httpServletRequest, httpServletResponse);
+				_sendLoginRedirect(httpServletRequest, httpServletResponse);
 
 				return null;
 			}
@@ -137,14 +137,12 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 		return null;
 	}
 
-	protected String getReturnRequestUri(
-		HttpServletRequest httpServletRequest) {
-
+	private String _getReturnRequestUri(HttpServletRequest httpServletRequest) {
 		return _portal.getPortalURL(httpServletRequest) +
 			_portal.getPathMain() + _REDIRECT_URI;
 	}
 
-	protected void sendError(
+	private void _sendError(
 			String error, HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
 		throws Exception {
@@ -164,7 +162,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 			).buildString());
 	}
 
-	protected void sendLoginRedirect(
+	private void _sendLoginRedirect(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
 		throws Exception {
@@ -181,7 +179,7 @@ public class GoogleLoginStrutsAction implements StrutsAction {
 			).buildString());
 	}
 
-	protected void sendUpdateAccountRedirect(
+	private void _sendUpdateAccountRedirect(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, User user)
 		throws Exception {

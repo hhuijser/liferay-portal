@@ -128,7 +128,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			if (pathArray[0].equals("image")) {
 				long imageId = GetterUtil.getLong(pathArray[1]);
 
-				sendImage(httpServletRequest, httpServletResponse, imageId);
+				_sendImage(httpServletRequest, httpServletResponse, imageId);
 			}
 			else if (pathArray[0].equals("zip")) {
 				String zipFileIds = ParamUtil.get(
@@ -142,7 +142,7 @@ public class SyncDownloadServlet extends HttpServlet {
 				JSONArray zipFileIdsJSONArray = JSONFactoryUtil.createJSONArray(
 					zipFileIds);
 
-				sendZipFile(
+				_sendZipFile(
 					httpServletResponse, user.getUserId(), zipFileIdsJSONArray);
 			}
 			else if (pathArray[0].equals("zipfolder")) {
@@ -160,7 +160,7 @@ public class SyncDownloadServlet extends HttpServlet {
 						"Missing parameter folderId");
 				}
 
-				sendZipFolder(
+				_sendZipFolder(
 					httpServletResponse, user.getUserId(), repositoryId,
 					folderId);
 			}
@@ -182,12 +182,12 @@ public class SyncDownloadServlet extends HttpServlet {
 				String fileUuid = pathArray[1];
 
 				if (ParamUtil.getBoolean(httpServletRequest, "patch")) {
-					sendPatch(
+					_sendPatch(
 						httpServletRequest, httpServletResponse,
 						user.getUserId(), groupId, fileUuid);
 				}
 				else {
-					sendFile(
+					_sendFile(
 						httpServletRequest, httpServletResponse,
 						user.getUserId(), groupId, fileUuid);
 				}
@@ -209,7 +209,41 @@ public class SyncDownloadServlet extends HttpServlet {
 		}
 	}
 
-	protected void addZipFolderEntry(
+	@Reference(unbind = "-")
+	protected void setDLAppService(DLAppService dlAppService) {
+		_dlAppService = dlAppService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setDlFileEntryLocalService(
+		DLFileEntryLocalService dlFileEntryLocalService) {
+
+		_dlFileEntryLocalService = dlFileEntryLocalService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setDlFileVersionLocalService(
+		DLFileVersionLocalService dlFileVersionLocalService) {
+
+		_dlFileVersionLocalService = dlFileVersionLocalService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setGroupLocalService(GroupLocalService groupLocalService) {
+		_groupLocalService = groupLocalService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setImageLocalService(ImageLocalService imageLocalService) {
+		_imageLocalService = imageLocalService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setUserLocalService(UserLocalService userLocalService) {
+		_userLocalService = userLocalService;
+	}
+
+	private void _addZipFolderEntry(
 			long userId, long repositoryId, long folderId, String folderPath,
 			ZipWriter zipWriter)
 		throws Exception {
@@ -236,13 +270,13 @@ public class SyncDownloadServlet extends HttpServlet {
 			String childFolderPath =
 				folderPath + childFolder.getName() + StringPool.FORWARD_SLASH;
 
-			addZipFolderEntry(
+			_addZipFolderEntry(
 				userId, repositoryId, childFolder.getFolderId(),
 				childFolderPath, zipWriter);
 		}
 	}
 
-	protected File getDeltaFile(
+	private File _getDeltaFile(
 			long userId, long fileEntryId, long sourceVersionId,
 			long targetVersionId)
 		throws Exception {
@@ -271,7 +305,7 @@ public class SyncDownloadServlet extends HttpServlet {
 		}
 	}
 
-	protected DownloadServletInputStream getFileDownloadServletInputStream(
+	private DownloadServletInputStream _getFileDownloadServletInputStream(
 			long userId, long groupId, String uuid, String version,
 			long versionId)
 		throws Exception {
@@ -309,7 +343,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			fileVersion.getMimeType(), fileVersion.getSize());
 	}
 
-	protected DownloadServletInputStream getPatchDownloadServletInputStream(
+	private DownloadServletInputStream _getPatchDownloadServletInputStream(
 			long userId, long groupId, String uuid, long sourceVersionId,
 			long targetVersionId)
 		throws Exception {
@@ -325,7 +359,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			File deltaFile = null;
 
 			try {
-				deltaFile = getDeltaFile(
+				deltaFile = _getDeltaFile(
 					userId, fileEntry.getFileEntryId(), sourceVersionId,
 					targetVersionId);
 
@@ -356,7 +390,7 @@ public class SyncDownloadServlet extends HttpServlet {
 		File deltaFile = null;
 
 		try {
-			deltaFile = getDeltaFile(
+			deltaFile = _getDeltaFile(
 				userId, fileEntry.getFileEntryId(), sourceVersionId,
 				targetVersionId);
 
@@ -372,7 +406,28 @@ public class SyncDownloadServlet extends HttpServlet {
 		}
 	}
 
-	protected void processException(
+	private InputStream _getZipFileInputStream(
+			JSONObject zipObjectJSONObject, long userId, long groupId)
+		throws Exception {
+
+		String uuid = zipObjectJSONObject.getString("uuid");
+
+		if (zipObjectJSONObject.getBoolean("patch")) {
+			long sourceVersionId = zipObjectJSONObject.getLong(
+				"sourceVersionId", 0);
+			long targetVersionId = zipObjectJSONObject.getLong(
+				"targetVersionId", 0);
+
+			return _getPatchDownloadServletInputStream(
+				userId, groupId, uuid, sourceVersionId, targetVersionId);
+		}
+
+		return _getFileDownloadServletInputStream(
+			userId, groupId, uuid, zipObjectJSONObject.getString("version"),
+			zipObjectJSONObject.getLong("versionId"));
+	}
+
+	private void _processException(
 		String zipFileId, String exception, JSONObject errorsJSONObject) {
 
 		JSONObject exceptionJSONObject = JSONUtil.put("exception", exception);
@@ -380,7 +435,7 @@ public class SyncDownloadServlet extends HttpServlet {
 		errorsJSONObject.put(zipFileId, exceptionJSONObject);
 	}
 
-	protected void sendFile(
+	private void _sendFile(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long userId, long groupId,
 			String uuid)
@@ -390,7 +445,7 @@ public class SyncDownloadServlet extends HttpServlet {
 		long versionId = ParamUtil.getLong(httpServletRequest, "versionId");
 
 		DownloadServletInputStream downloadServletInputStream =
-			getFileDownloadServletInputStream(
+			_getFileDownloadServletInputStream(
 				userId, groupId, uuid, version, versionId);
 
 		if (httpServletRequest.getHeader(HttpHeaders.RANGE) != null) {
@@ -408,7 +463,7 @@ public class SyncDownloadServlet extends HttpServlet {
 		}
 	}
 
-	protected void sendImage(
+	private void _sendImage(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long imageId)
 		throws Exception {
@@ -439,7 +494,7 @@ public class SyncDownloadServlet extends HttpServlet {
 		ServletResponseUtil.write(httpServletResponse, image.getTextObj());
 	}
 
-	protected void sendPatch(
+	private void _sendPatch(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, long userId, long groupId,
 			String uuid)
@@ -451,7 +506,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			httpServletRequest, "targetVersionId");
 
 		DownloadServletInputStream downloadServletInputStream =
-			getPatchDownloadServletInputStream(
+			_getPatchDownloadServletInputStream(
 				userId, groupId, uuid, sourceVersionId, targetVersionId);
 
 		ServletResponseUtil.write(
@@ -459,7 +514,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			downloadServletInputStream.getSize());
 	}
 
-	protected void sendZipFile(
+	private void _sendZipFile(
 			HttpServletResponse httpServletResponse, long userId,
 			JSONArray zipFileIdsJSONArray)
 		throws Exception {
@@ -478,7 +533,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			Group group = _groupLocalService.fetchGroup(groupId);
 
 			if ((group == null) || !_syncHelper.isSyncEnabled(group)) {
-				processException(
+				_processException(
 					zipFileId, SyncSiteUnavailableException.class.getName(),
 					errorsJSONObject);
 
@@ -493,7 +548,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			catch (Exception exception) {
 				Class<?> clazz = exception.getClass();
 
-				processException(zipFileId, clazz.getName(), errorsJSONObject);
+				_processException(zipFileId, clazz.getName(), errorsJSONObject);
 			}
 		}
 
@@ -505,75 +560,20 @@ public class SyncDownloadServlet extends HttpServlet {
 			httpServletResponse, new FileInputStream(file), file.length());
 	}
 
-	protected void sendZipFolder(
+	private void _sendZipFolder(
 			HttpServletResponse httpServletResponse, long userId,
 			long repositoryId, long folderId)
 		throws Exception {
 
 		ZipWriter zipWriter = ZipWriterFactoryUtil.getZipWriter();
 
-		addZipFolderEntry(
+		_addZipFolderEntry(
 			userId, repositoryId, folderId, StringPool.BLANK, zipWriter);
 
 		File file = zipWriter.getFile();
 
 		ServletResponseUtil.write(
 			httpServletResponse, new FileInputStream(file), file.length());
-	}
-
-	@Reference(unbind = "-")
-	protected void setDLAppService(DLAppService dlAppService) {
-		_dlAppService = dlAppService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setDlFileEntryLocalService(
-		DLFileEntryLocalService dlFileEntryLocalService) {
-
-		_dlFileEntryLocalService = dlFileEntryLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setDlFileVersionLocalService(
-		DLFileVersionLocalService dlFileVersionLocalService) {
-
-		_dlFileVersionLocalService = dlFileVersionLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setGroupLocalService(GroupLocalService groupLocalService) {
-		_groupLocalService = groupLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setImageLocalService(ImageLocalService imageLocalService) {
-		_imageLocalService = imageLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setUserLocalService(UserLocalService userLocalService) {
-		_userLocalService = userLocalService;
-	}
-
-	private InputStream _getZipFileInputStream(
-			JSONObject zipObjectJSONObject, long userId, long groupId)
-		throws Exception {
-
-		String uuid = zipObjectJSONObject.getString("uuid");
-
-		if (zipObjectJSONObject.getBoolean("patch")) {
-			long sourceVersionId = zipObjectJSONObject.getLong(
-				"sourceVersionId", 0);
-			long targetVersionId = zipObjectJSONObject.getLong(
-				"targetVersionId", 0);
-
-			return getPatchDownloadServletInputStream(
-				userId, groupId, uuid, sourceVersionId, targetVersionId);
-		}
-
-		return getFileDownloadServletInputStream(
-			userId, groupId, uuid, zipObjectJSONObject.getString("version"),
-			zipObjectJSONObject.getLong("versionId"));
 	}
 
 	private static final String _ERROR_HEADER = "Sync-Error";

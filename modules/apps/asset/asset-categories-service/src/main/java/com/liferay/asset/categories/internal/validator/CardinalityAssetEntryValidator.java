@@ -49,7 +49,7 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 
 		long classNameId = _classNameLocalService.getClassNameId(className);
 
-		if (!isCategorizable(groupId, classNameId, classPK)) {
+		if (!_isCategorizable(groupId, classNameId, classPK)) {
 			return;
 		}
 
@@ -78,45 +78,6 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 		validate(groupId, className, 0L, classTypePK, categoryIds, entryNames);
 	}
 
-	protected boolean isCategorizable(
-		long groupId, long classNameId, long classPK) {
-
-		AssetRendererFactory<?> assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				_portal.getClassName(classNameId));
-
-		if ((assetRendererFactory == null) ||
-			!assetRendererFactory.isCategorizable()) {
-
-			return false;
-		}
-
-		if (classPK != 0L) {
-			try {
-				AssetRenderer<?> assetRenderer =
-					assetRendererFactory.getAssetRenderer(classPK);
-
-				if (!assetRenderer.isCategorizable(groupId)) {
-					return false;
-				}
-			}
-			catch (PortalException portalException) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						StringBundler.concat(
-							"Entity with ClassPK: ", classPK,
-							" and ClassNameId: ", classNameId,
-							" is not categorizable"),
-						portalException);
-				}
-
-				return false;
-			}
-		}
-
-		return true;
-	}
-
 	protected void validate(
 			long classNameId, long classTypePK, long[] categoryIds,
 			AssetVocabulary assetVocabulary)
@@ -141,6 +102,45 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 			throw new AssetCategoryException(
 				assetVocabulary, AssetCategoryException.TOO_MANY_CATEGORIES);
 		}
+	}
+
+	private boolean _isCategorizable(
+		long groupId, long classNameId, long classPK) {
+
+		AssetRendererFactory<?> assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				_portal.getClassName(classNameId));
+
+		if ((assetRendererFactory == null) ||
+			!assetRendererFactory._isCategorizable()) {
+
+			return false;
+		}
+
+		if (classPK != 0L) {
+			try {
+				AssetRenderer<?> assetRenderer =
+					assetRendererFactory.getAssetRenderer(classPK);
+
+				if (!assetRenderer._isCategorizable(groupId)) {
+					return false;
+				}
+			}
+			catch (PortalException portalException) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						StringBundler.concat(
+							"Entity with ClassPK: ", classPK,
+							" and ClassNameId: ", classNameId,
+							" is not categorizable"),
+						portalException);
+				}
+
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

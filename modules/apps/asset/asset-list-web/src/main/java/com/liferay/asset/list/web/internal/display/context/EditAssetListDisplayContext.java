@@ -599,7 +599,7 @@ public class EditAssetListDisplayContext {
 			return _ddmStructureDisplayFieldValue;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureDisplayFieldValue;
 	}
@@ -609,7 +609,7 @@ public class EditAssetListDisplayContext {
 			return _ddmStructureFieldLabel;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureFieldLabel;
 	}
@@ -619,7 +619,7 @@ public class EditAssetListDisplayContext {
 			return _ddmStructureFieldName;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureFieldName;
 	}
@@ -629,7 +629,7 @@ public class EditAssetListDisplayContext {
 			return _ddmStructureFieldValue;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureFieldValue;
 	}
@@ -1066,55 +1066,6 @@ public class EditAssetListDisplayContext {
 		return _subtypeFieldsFilterEnabled;
 	}
 
-	protected void setDDMStructure() throws Exception {
-		_ddmStructureDisplayFieldValue = StringPool.BLANK;
-		_ddmStructureFieldLabel = StringPool.BLANK;
-		_ddmStructureFieldName = StringPool.BLANK;
-		_ddmStructureFieldValue = null;
-
-		long[] classNameIds = getClassNameIds();
-		long[] classTypeIds = getClassTypeIds();
-
-		if (!isSubtypeFieldsFilterEnabled() || (classNameIds.length != 1) ||
-			(classTypeIds.length != 1)) {
-
-			return;
-		}
-
-		_ddmStructureDisplayFieldValue = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureDisplayFieldValue",
-			_unicodeProperties.getProperty(
-				"ddmStructureDisplayFieldValue", StringPool.BLANK));
-
-		_ddmStructureFieldName = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureFieldName",
-			_unicodeProperties.getProperty(
-				"ddmStructureFieldName", StringPool.BLANK));
-		_ddmStructureFieldValue = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureFieldValue",
-			_unicodeProperties.getProperty(
-				"ddmStructureFieldValue", StringPool.BLANK));
-
-		if (Validator.isNotNull(_ddmStructureFieldName) &&
-			Validator.isNotNull(_ddmStructureFieldValue)) {
-
-			AssetRendererFactory<?> assetRendererFactory =
-				AssetRendererFactoryRegistryUtil.
-					getAssetRendererFactoryByClassNameId(classNameIds[0]);
-
-			ClassTypeReader classTypeReader =
-				assetRendererFactory.getClassTypeReader();
-
-			ClassType classType = classTypeReader.getClassType(
-				classTypeIds[0], _themeDisplay.getLocale());
-
-			ClassTypeField classTypeField = classType.getClassTypeField(
-				_ddmStructureFieldName);
-
-			_ddmStructureFieldLabel = classTypeField.getLabel();
-		}
-	}
-
 	private List<AssetCategory> _filterAssetCategories(long[] categoryIds) {
 		List<AssetCategory> filteredCategories = new ArrayList<>();
 
@@ -1228,6 +1179,55 @@ public class EditAssetListDisplayContext {
 		).put(
 			"type", type
 		).build();
+	}
+
+	private void _setDDMStructure() throws Exception {
+		_ddmStructureDisplayFieldValue = StringPool.BLANK;
+		_ddmStructureFieldLabel = StringPool.BLANK;
+		_ddmStructureFieldName = StringPool.BLANK;
+		_ddmStructureFieldValue = null;
+
+		long[] classNameIds = getClassNameIds();
+		long[] classTypeIds = getClassTypeIds();
+
+		if (!isSubtypeFieldsFilterEnabled() || (classNameIds.length != 1) ||
+			(classTypeIds.length != 1)) {
+
+			return;
+		}
+
+		_ddmStructureDisplayFieldValue = ParamUtil.getString(
+			_httpServletRequest, "ddmStructureDisplayFieldValue",
+			_unicodeProperties.getProperty(
+				"ddmStructureDisplayFieldValue", StringPool.BLANK));
+
+		_ddmStructureFieldName = ParamUtil.getString(
+			_httpServletRequest, "ddmStructureFieldName",
+			_unicodeProperties.getProperty(
+				"ddmStructureFieldName", StringPool.BLANK));
+		_ddmStructureFieldValue = ParamUtil.getString(
+			_httpServletRequest, "ddmStructureFieldValue",
+			_unicodeProperties.getProperty(
+				"ddmStructureFieldValue", StringPool.BLANK));
+
+		if (Validator.isNotNull(_ddmStructureFieldName) &&
+			Validator.isNotNull(_ddmStructureFieldValue)) {
+
+			AssetRendererFactory<?> assetRendererFactory =
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassNameId(classNameIds[0]);
+
+			ClassTypeReader classTypeReader =
+				assetRendererFactory.getClassTypeReader();
+
+			ClassType classType = classTypeReader.getClassType(
+				classTypeIds[0], _themeDisplay.getLocale());
+
+			ClassTypeField classTypeField = classType.getClassTypeField(
+				_ddmStructureFieldName);
+
+			_ddmStructureFieldLabel = classTypeField.getLabel();
+		}
 	}
 
 	private static final long _DEFAULT_SUBTYPE_SELECTION_ID = 0;

@@ -51,7 +51,14 @@ public class AssetEntrySAPEntryActivator {
 			new AssetEntryPortalInstanceLifecycleListener(), null);
 	}
 
-	protected void addSAPEntry(long companyId) throws PortalException {
+	@Deactivate
+	protected void deactivate() {
+		if (_serviceRegistration != null) {
+			_serviceRegistration.unregister();
+		}
+	}
+
+	private void _addSAPEntry(long companyId) throws PortalException {
 		SAPEntry sapEntry = _sapEntryLocalService.fetchSAPEntry(
 			companyId, _SAP_ENTRY_NAME);
 
@@ -66,17 +73,10 @@ public class AssetEntrySAPEntryActivator {
 			LanguageResources.PORTAL_RESOURCE_BUNDLE_LOADER,
 			"service-access-policy-entry-default-asset-entry-title");
 
-		_sapEntryLocalService.addSAPEntry(
+		_sapEntryLocalService._addSAPEntry(
 			_userLocalService.getDefaultUserId(companyId),
 			allowedServiceSignatures, true, true, _SAP_ENTRY_NAME, titleMap,
 			new ServiceContext());
-	}
-
-	@Deactivate
-	protected void deactivate() {
-		if (_serviceRegistration != null) {
-			_serviceRegistration.unregister();
-		}
 	}
 
 	private static final String _SAP_ENTRY_NAME = "ASSET_ENTRY_DEFAULT";
@@ -98,7 +98,7 @@ public class AssetEntrySAPEntryActivator {
 
 		public void portalInstanceRegistered(Company company) throws Exception {
 			try {
-				addSAPEntry(company.getCompanyId());
+				_addSAPEntry(company.getCompanyId());
 			}
 			catch (PortalException portalException) {
 				_log.error(

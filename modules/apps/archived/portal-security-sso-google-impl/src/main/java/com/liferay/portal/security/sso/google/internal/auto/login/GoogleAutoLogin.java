@@ -91,16 +91,6 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 		return null;
 	}
 
-	private void _setGoogleAuthorization(
-		GoogleAuthorization googleAuthorization) {
-
-		_googleAuthorization = googleAuthorization;
-	}
-
-	private void _setUserLocalService(UserLocalService userLocalService) {
-		_userLocalService = userLocalService;
-	}
-
 	@Reference
 	private GoogleAuthorization _googleAuthorization;
 

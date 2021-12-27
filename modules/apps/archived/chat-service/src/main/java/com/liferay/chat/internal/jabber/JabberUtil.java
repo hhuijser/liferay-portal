@@ -113,10 +113,6 @@ public class JabberUtil {
 		_jabber = jabber;
 	}
 
-	private Jabber _getJabber() {
-		return _jabber;
-	}
-
 	private static Jabber _jabber;
 	private static volatile boolean _jabberEnabled;
 

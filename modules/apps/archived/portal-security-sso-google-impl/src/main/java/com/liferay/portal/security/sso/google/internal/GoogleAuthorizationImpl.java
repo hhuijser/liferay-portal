@@ -107,7 +107,7 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 		try {
 			return TransactionInvokerUtil.invoke(
 				_transactionConfig,
-				() -> _doAddOrUpdateUser(httpSession, companyId, userinfoplus));
+				() -> _addOrUpdateUser(httpSession, companyId, userinfoplus));
 		}
 		catch (Throwable throwable) {
 			if (throwable instanceof PortalException) {
@@ -147,6 +147,66 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 		}
 
 		return googleConfiguration.enabled();
+	}
+
+	private User _addOrUpdateUser(
+			HttpSession httpSession, long companyId, Userinfoplus userinfoplus)
+		throws Exception {
+
+		User user = null;
+
+		String googleUserId = userinfoplus.getId();
+
+		if (Validator.isNotNull(googleUserId)) {
+			user = _userLocalService.fetchUserByGoogleUserId(
+				companyId, googleUserId);
+
+			if ((user != null) &&
+				(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
+
+				httpSession.setAttribute(
+					GoogleWebKeys.GOOGLE_USER_ID, String.valueOf(googleUserId));
+			}
+		}
+
+		String emailAddress = userinfoplus.getEmail();
+
+		if ((user == null) && Validator.isNotNull(emailAddress)) {
+			user = _userLocalService.fetchUserByEmailAddress(
+				companyId, emailAddress);
+
+			if ((user != null) &&
+				(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
+
+				httpSession.setAttribute(
+					GoogleWebKeys.GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
+			}
+		}
+
+		if (user != null) {
+			if (user.getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
+				httpSession.setAttribute(
+					WebKeys.GOOGLE_INCOMPLETE_USER_ID, userinfoplus.getId());
+
+				user.setEmailAddress(userinfoplus.getEmail());
+				user.setFirstName(userinfoplus.getGivenName());
+				user.setLastName(userinfoplus.getFamilyName());
+
+				return user;
+			}
+
+			user = _updateUser(user, userinfoplus);
+		}
+		else {
+			_checkAllowUserCreation(companyId, userinfoplus);
+
+			user = _addUser(companyId, userinfoplus);
+
+			httpSession.setAttribute(
+				GoogleWebKeys.GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
+		}
+
+		return user;
 	}
 
 	private User _addUser(long companyId, Userinfoplus userinfoplus)
@@ -216,66 +276,6 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 			throw new UserEmailAddressException.MustNotUseCompanyMx(
 				emailAddress);
 		}
-	}
-
-	private User _doAddOrUpdateUser(
-			HttpSession httpSession, long companyId, Userinfoplus userinfoplus)
-		throws Exception {
-
-		User user = null;
-
-		String googleUserId = userinfoplus.getId();
-
-		if (Validator.isNotNull(googleUserId)) {
-			user = _userLocalService.fetchUserByGoogleUserId(
-				companyId, googleUserId);
-
-			if ((user != null) &&
-				(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
-
-				httpSession.setAttribute(
-					GoogleWebKeys.GOOGLE_USER_ID, String.valueOf(googleUserId));
-			}
-		}
-
-		String emailAddress = userinfoplus.getEmail();
-
-		if ((user == null) && Validator.isNotNull(emailAddress)) {
-			user = _userLocalService.fetchUserByEmailAddress(
-				companyId, emailAddress);
-
-			if ((user != null) &&
-				(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
-
-				httpSession.setAttribute(
-					GoogleWebKeys.GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
-			}
-		}
-
-		if (user != null) {
-			if (user.getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
-				httpSession.setAttribute(
-					WebKeys.GOOGLE_INCOMPLETE_USER_ID, userinfoplus.getId());
-
-				user.setEmailAddress(userinfoplus.getEmail());
-				user.setFirstName(userinfoplus.getGivenName());
-				user.setLastName(userinfoplus.getFamilyName());
-
-				return user;
-			}
-
-			user = _updateUser(user, userinfoplus);
-		}
-		else {
-			_checkAllowUserCreation(companyId, userinfoplus);
-
-			user = _addUser(companyId, userinfoplus);
-
-			httpSession.setAttribute(
-				GoogleWebKeys.GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
-		}
-
-		return user;
 	}
 
 	private GoogleAuthorizationCodeFlow _getGoogleAuthorizationCodeFlow(

@@ -72,7 +72,24 @@ import org.osgi.service.component.annotations.Reference;
 public class AssetPublisherPortletToolbarContributor
 	extends BasePortletToolbarContributor {
 
-	protected void addPortletTitleAddAssetEntryMenuItems(
+	@Override
+	protected List<MenuItem> getPortletTitleMenuItems(
+		PortletRequest portletRequest, PortletResponse portletResponse) {
+
+		List<MenuItem> menuItems = new ArrayList<>();
+
+		try {
+			_addPortletTitleAddAssetEntryMenuItems(
+				menuItems, portletRequest, portletResponse);
+		}
+		catch (Exception exception) {
+			_log.error("Unable to add folder menu item", exception);
+		}
+
+		return menuItems;
+	}
+
+	private void _addPortletTitleAddAssetEntryMenuItems(
 			List<MenuItem> menuItems, PortletRequest portletRequest,
 			PortletResponse portletResponse)
 		throws Exception {
@@ -160,23 +177,6 @@ public class AssetPublisherPortletToolbarContributor
 			).buildString());
 
 		menuItems.add(urlMenuItem);
-	}
-
-	@Override
-	protected List<MenuItem> getPortletTitleMenuItems(
-		PortletRequest portletRequest, PortletResponse portletResponse) {
-
-		List<MenuItem> menuItems = new ArrayList<>();
-
-		try {
-			addPortletTitleAddAssetEntryMenuItems(
-				menuItems, portletRequest, portletResponse);
-		}
-		catch (Exception exception) {
-			_log.error("Unable to add folder menu item", exception);
-		}
-
-		return menuItems;
 	}
 
 	private URLMenuItem _getPortletTitleAddAssetEntryMenuItem(

@@ -60,102 +60,9 @@ public class AssetTagDocumentContributor
 			return;
 		}
 
-		contributeAssetTagIds(document, assetTags);
-		contributeAssetTagNamesLocalized(document, assetTags, baseModel);
-		contributeAssetTagNamesRaw(document, assetTags);
-	}
-
-	protected void contributeAssetTagIds(
-		Document document, List<AssetTag> assetTags) {
-
-		document.addKeyword(Field.ASSET_TAG_IDS, getTagIds(assetTags));
-	}
-
-	protected void contributeAssetTagNamesLocalized(
-		Document document, List<AssetTag> assetTags,
-		BaseModel<AssetTag> baseModel) {
-
-		Long groupId = getGroupId(baseModel);
-
-		if (groupId == null) {
-			return;
-		}
-
-		Localization localization = getLocalization();
-
-		document.addText(
-			localization.getLocalizedName(
-				Field.ASSET_TAG_NAMES,
-				LocaleUtil.toLanguageId(getSiteDefaultLocale(groupId))),
-			getNames(assetTags));
-	}
-
-	protected void contributeAssetTagNamesRaw(
-		Document document, List<AssetTag> assetTags) {
-
-		document.addText(Field.ASSET_TAG_NAMES, getNames(assetTags));
-	}
-
-	protected Long getGroupId(BaseModel<?> baseModel) {
-		if (baseModel instanceof GroupedModel) {
-			GroupedModel groupedModel = (GroupedModel)baseModel;
-
-			return groupedModel.getGroupId();
-		}
-
-		if (baseModel instanceof Organization) {
-			Organization organization = (Organization)baseModel;
-
-			return organization.getGroupId();
-		}
-
-		if (baseModel instanceof User) {
-			User user = (User)baseModel;
-
-			return user.getGroupId();
-		}
-
-		return null;
-	}
-
-	protected Localization getLocalization() {
-
-		// See LPS-72507 and LPS-76500
-
-		if (localization != null) {
-			return localization;
-		}
-
-		return LocalizationUtil.getLocalization();
-	}
-
-	protected String[] getNames(List<AssetTag> assetTags) {
-		Stream<AssetTag> stream = assetTags.stream();
-
-		return stream.map(
-			AssetTag::getName
-		).toArray(
-			String[]::new
-		);
-	}
-
-	protected Locale getSiteDefaultLocale(long groupId) {
-		try {
-			return portal.getSiteDefaultLocale(groupId);
-		}
-		catch (PortalException portalException) {
-			throw new RuntimeException(portalException);
-		}
-	}
-
-	protected Long[] getTagIds(List<AssetTag> assetTags) {
-		Stream<AssetTag> stream = assetTags.stream();
-
-		return stream.map(
-			AssetTag::getTagId
-		).toArray(
-			Long[]::new
-		);
+		_contributeAssetTagIds(document, assetTags);
+		_contributeAssetTagNamesLocalized(document, assetTags, baseModel);
+		_contributeAssetTagNamesRaw(document, assetTags);
 	}
 
 	@Reference
@@ -165,5 +72,98 @@ public class AssetTagDocumentContributor
 
 	@Reference
 	protected Portal portal;
+
+	private void _contributeAssetTagIds(
+		Document document, List<AssetTag> assetTags) {
+
+		document.addKeyword(Field.ASSET_TAG_IDS, _getTagIds(assetTags));
+	}
+
+	private void _contributeAssetTagNamesLocalized(
+		Document document, List<AssetTag> assetTags,
+		BaseModel<AssetTag> baseModel) {
+
+		Long groupId = _getGroupId(baseModel);
+
+		if (groupId == null) {
+			return;
+		}
+
+		Localization localization = _getLocalization();
+
+		document.addText(
+			localization.getLocalizedName(
+				Field.ASSET_TAG_NAMES,
+				LocaleUtil.toLanguageId(_getSiteDefaultLocale(groupId))),
+			_getNames(assetTags));
+	}
+
+	private void _contributeAssetTagNamesRaw(
+		Document document, List<AssetTag> assetTags) {
+
+		document.addText(Field.ASSET_TAG_NAMES, _getNames(assetTags));
+	}
+
+	private Long _getGroupId(BaseModel<?> baseModel) {
+		if (baseModel instanceof GroupedModel) {
+			GroupedModel groupedModel = (GroupedModel)baseModel;
+
+			return groupedModel._getGroupId();
+		}
+
+		if (baseModel instanceof Organization) {
+			Organization organization = (Organization)baseModel;
+
+			return organization._getGroupId();
+		}
+
+		if (baseModel instanceof User) {
+			User user = (User)baseModel;
+
+			return user._getGroupId();
+		}
+
+		return null;
+	}
+
+	private Localization _getLocalization() {
+
+		// See LPS-72507 and LPS-76500
+
+		if (localization != null) {
+			return localization;
+		}
+
+		return LocalizationUtil._getLocalization();
+	}
+
+	private String[] _getNames(List<AssetTag> assetTags) {
+		Stream<AssetTag> stream = assetTags.stream();
+
+		return stream.map(
+			AssetTag::getName
+		).toArray(
+			String[]::new
+		);
+	}
+
+	private Locale _getSiteDefaultLocale(long groupId) {
+		try {
+			return portal._getSiteDefaultLocale(groupId);
+		}
+		catch (PortalException portalException) {
+			throw new RuntimeException(portalException);
+		}
+	}
+
+	private Long[] _getTagIds(List<AssetTag> assetTags) {
+		Stream<AssetTag> stream = assetTags.stream();
+
+		return stream.map(
+			AssetTag::getTagId
+		).toArray(
+			Long[]::new
+		);
+	}
 
 }

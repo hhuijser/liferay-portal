@@ -72,7 +72,7 @@ public class CustomUserAttributesFormNavigatorEntry
 
 	@Override
 	public boolean isVisible(User user, Object object) {
-		if (isDynamicAssetSelection()) {
+		if (_isDynamicAssetSelection()) {
 			return true;
 		}
 
@@ -93,7 +93,7 @@ public class CustomUserAttributesFormNavigatorEntry
 		return "/custom_user_attributes.jsp";
 	}
 
-	protected boolean isDynamicAssetSelection() {
+	private boolean _isDynamicAssetSelection() {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 

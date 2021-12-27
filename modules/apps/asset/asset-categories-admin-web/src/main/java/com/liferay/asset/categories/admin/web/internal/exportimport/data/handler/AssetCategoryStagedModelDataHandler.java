@@ -349,7 +349,7 @@ public class AssetCategoryStagedModelDataHandler
 
 	private Map<Locale, String> _getCategoryTitleMap(
 			long groupId, AssetCategory category, String name)
-		throws PortalException {
+		throws Exception {
 
 		Map<Locale, String> titleMap = category.getTitleMap();
 

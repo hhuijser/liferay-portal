@@ -135,7 +135,7 @@ public class EditCommerceAvailabilityEstimateMVCActionCommand
 		}
 		else {
 			_commerceAvailabilityEstimateService.
-				_updateCommerceAvailabilityEstimate(
+				updateCommerceAvailabilityEstimate(
 					commerceAvailabilityEstimateId, titleMap, priority,
 					serviceContext);
 		}

@@ -58,18 +58,6 @@ import org.osgi.service.component.annotations.Reference;
 public class EditCommercePaymentMethodGroupRelMVCActionCommand
 	extends BaseMVCActionCommand {
 
-	private void _deleteCommercePaymentMethodGroupRel(
-			ActionRequest actionRequest)
-		throws PortalException {
-
-		long commercePaymentMethodGroupRelId = ParamUtil.getLong(
-			actionRequest, "commercePaymentMethodGroupRelId");
-
-		_commercePaymentMethodGroupRelService.
-			_deleteCommercePaymentMethodGroupRel(
-				commercePaymentMethodGroupRelId);
-	}
-
 	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -112,6 +100,18 @@ public class EditCommercePaymentMethodGroupRelMVCActionCommand
 				throw exception;
 			}
 		}
+	}
+
+	private void _deleteCommercePaymentMethodGroupRel(
+			ActionRequest actionRequest)
+		throws PortalException {
+
+		long commercePaymentMethodGroupRelId = ParamUtil.getLong(
+			actionRequest, "commercePaymentMethodGroupRelId");
+
+		_commercePaymentMethodGroupRelService.
+			_deleteCommercePaymentMethodGroupRel(
+				commercePaymentMethodGroupRelId);
 	}
 
 	private CommercePaymentMethodGroupRel _updateCommercePaymentMethodGroupRel(

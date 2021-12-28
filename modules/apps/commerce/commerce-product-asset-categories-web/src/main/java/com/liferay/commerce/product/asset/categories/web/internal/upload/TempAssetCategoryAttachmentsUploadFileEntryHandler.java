@@ -14,8 +14,6 @@
 
 package com.liferay.commerce.product.asset.categories.web.internal.upload;
 
-import com.liferay.asset.kernel.model.AssetCategory;
-import com.liferay.asset.kernel.service.AssetCategoryService;
 import com.liferay.commerce.product.configuration.AttachmentsConfiguration;
 import com.liferay.commerce.product.exception.CPAttachmentFileEntryNameException;
 import com.liferay.commerce.product.exception.CPAttachmentFileEntrySizeException;
@@ -28,7 +26,6 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.TempFileEntryUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.upload.UniqueFileNameProvider;
@@ -63,11 +60,6 @@ public class TempAssetCategoryAttachmentsUploadFileEntryHandler
 			(ThemeDisplay)uploadPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		long categoryId = ParamUtil.getLong(uploadPortletRequest, "categoryId");
-
-		AssetCategory assetCategory = assetCategoryService.fetchCategory(
-			categoryId);
-
 		String fileName = uploadPortletRequest.getFileName(_PARAMETER_NAME);
 
 		_validateFile(fileName, uploadPortletRequest.getSize(_PARAMETER_NAME));
@@ -101,9 +93,6 @@ public class TempAssetCategoryAttachmentsUploadFileEntryHandler
 			themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
 			_TEMP_FOLDER_NAME, uniqueFileName, inputStream, contentType);
 	}
-
-	@Reference
-	protected AssetCategoryService assetCategoryService;
 
 	private boolean _exists(ThemeDisplay themeDisplay, String curFileName) {
 		try {

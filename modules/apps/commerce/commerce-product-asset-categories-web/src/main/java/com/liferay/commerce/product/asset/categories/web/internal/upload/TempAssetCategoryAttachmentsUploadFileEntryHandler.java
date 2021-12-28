@@ -78,7 +78,7 @@ public class TempAssetCategoryAttachmentsUploadFileEntryHandler
 		try (InputStream inputStream = uploadPortletRequest.getFileAsStream(
 				_PARAMETER_NAME)) {
 
-			return addFileEntry(
+			return _addFileEntry(
 				assetCategory.getCategoryId(), fileName, contentType,
 				inputStream, themeDisplay);
 		}
@@ -90,7 +90,7 @@ public class TempAssetCategoryAttachmentsUploadFileEntryHandler
 			AttachmentsConfiguration.class, properties);
 	}
 
-	protected FileEntry addFileEntry(
+	private FileEntry _addFileEntry(
 			long categoryId, String fileName, String contentType,
 			InputStream inputStream, ThemeDisplay themeDisplay)
 		throws PortalException {

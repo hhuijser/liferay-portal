@@ -14,10 +14,6 @@
 
 package com.liferay.commerce.price.list.internal.upgrade.base;
 
-import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
@@ -26,61 +22,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public abstract class BaseCommercePriceListUpgradeProcess
 	extends UpgradeProcess {
 
-	protected void addColumn(
-			Class<?> entityClass, String tableName, String columnName,
-			String columnType)
-		throws Exception {
-
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				String.format(
-					"Adding column %s to table %s", columnName, tableName));
-		}
-
-		if (!hasColumn(tableName, columnName)) {
-			alter(
-				entityClass,
-				new AlterTableAddColumn(
-					columnName + StringPool.SPACE + columnType));
-		}
-		else {
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					String.format(
-						"Column %s already exists on table %s", columnName,
-						tableName));
-			}
-		}
-	}
-
 	@Override
 	protected abstract void doUpgrade() throws Exception;
-
-	protected void dropColumn(String tableName, String columnName)
-		throws Exception {
-
-		if (_log.isInfoEnabled()) {
-			_log.info(
-				String.format(
-					"Dropping column %s from table %s", columnName, tableName));
-		}
-
-		if (hasColumn(tableName, columnName)) {
-			runSQL(
-				StringBundler.concat(
-					"alter table ", tableName, " drop column ", columnName));
-		}
-		else {
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					String.format(
-						"Column %s already does not exist on table %s",
-						columnName, tableName));
-			}
-		}
-	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BaseCommercePriceListUpgradeProcess.class);
 
 }

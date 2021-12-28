@@ -64,7 +64,7 @@ public class CartTotalCommerceDiscountRuleDisplayContext {
 	}
 
 	public String getDefaultCommerceCurrencyCode() {
-		CommerceCurrency commerceCurrency = getCommerceCurrency();
+		CommerceCurrency commerceCurrency = _getCommerceCurrency();
 
 		if (commerceCurrency == null) {
 			return StringPool.BLANK;
@@ -85,7 +85,7 @@ public class CartTotalCommerceDiscountRuleDisplayContext {
 
 		String typeSettings = commerceDiscountRule.getSettingsProperty(type);
 
-		CommerceCurrency commerceCurrency = getCommerceCurrency();
+		CommerceCurrency commerceCurrency = _getCommerceCurrency();
 
 		if (commerceCurrency == null) {
 			return typeSettings;
@@ -102,7 +102,7 @@ public class CartTotalCommerceDiscountRuleDisplayContext {
 		return value.toPlainString();
 	}
 
-	protected CommerceCurrency getCommerceCurrency() {
+	private CommerceCurrency _getCommerceCurrency() {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);

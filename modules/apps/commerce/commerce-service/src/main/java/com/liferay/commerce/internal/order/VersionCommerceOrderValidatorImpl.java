@@ -113,18 +113,6 @@ public class VersionCommerceOrderValidatorImpl
 		return LanguageUtil.get(resourceBundle, key);
 	}
 
-	private void _setCommerceOrderItemLocalService(
-		CommerceOrderItemLocalService commerceOrderItemLocalService) {
-
-		_commerceOrderItemLocalService = commerceOrderItemLocalService;
-	}
-
-	private void _setCPInstanceLocalService(
-		CPInstanceLocalService cpInstanceLocalService) {
-
-		_cpInstanceLocalService = cpInstanceLocalService;
-	}
-
 	private boolean _updateInstance(
 			CommerceOrderItem commerceOrderItem, CProduct cProduct)
 		throws PortalException {

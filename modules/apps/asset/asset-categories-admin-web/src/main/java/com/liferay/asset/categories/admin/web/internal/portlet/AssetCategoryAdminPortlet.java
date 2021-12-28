@@ -207,7 +207,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 				_assetCategoryPropertyLocalService.getCategoryProperties(
 					categoryId);
 
-			String[] categoryPropertiesArray = getCategoryProperties(
+			String[] categoryPropertiesArray = _getCategoryProperties(
 				categoryProperties);
 
 			category = _assetCategoryService.updateCategory(
@@ -242,7 +242,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		AssetCategory category = _assetCategoryService.fetchCategory(
 			categoryId);
 
-		String[] categoryProperties = getCategoryProperties(actionRequest);
+		String[] categoryProperties = _getCategoryProperties(actionRequest);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			AssetCategory.class.getName(), actionRequest);
@@ -279,7 +279,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 
 			vocabulary = _assetVocabularyService.addVocabulary(
 				serviceContext.getScopeGroupId(), StringPool.BLANK, titleMap,
-				descriptionMap, getSettings(actionRequest), visibilityType,
+				descriptionMap, _getSettings(actionRequest), visibilityType,
 				serviceContext);
 		}
 		else {
@@ -288,7 +288,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 
 			vocabulary = _assetVocabularyService.updateVocabulary(
 				vocabularyId, StringPool.BLANK, titleMap, descriptionMap,
-				getSettings(actionRequest), serviceContext);
+				_getSettings(actionRequest), serviceContext);
 		}
 
 		actionRequest.setAttribute(
@@ -384,7 +384,30 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		super.doDispatch(renderRequest, renderResponse);
 	}
 
-	protected String[] getCategoryProperties(ActionRequest actionRequest) {
+	@Override
+	protected boolean isSessionErrorException(Throwable throwable) {
+		if (throwable instanceof AssetCategoryLimitException ||
+			throwable instanceof AssetCategoryNameException ||
+			throwable instanceof CategoryPropertyKeyException ||
+			throwable instanceof CategoryPropertyValueException ||
+			throwable instanceof DuplicateCategoryException ||
+			throwable instanceof DuplicateCategoryPropertyException ||
+			throwable instanceof DuplicateVocabularyException ||
+			throwable instanceof InvalidAssetCategoryException ||
+			throwable instanceof NoSuchCategoryException ||
+			throwable instanceof NoSuchClassTypeException ||
+			throwable instanceof NoSuchEntryException ||
+			throwable instanceof NoSuchVocabularyException ||
+			throwable instanceof PrincipalException ||
+			throwable instanceof VocabularyNameException) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private String[] _getCategoryProperties(ActionRequest actionRequest) {
 		int[] categoryPropertiesIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "categoryPropertiesIndexes"), 0);
 
@@ -412,7 +435,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		return categoryProperties;
 	}
 
-	protected String[] getCategoryProperties(
+	private String[] _getCategoryProperties(
 		List<AssetCategoryProperty> categoryProperties) {
 
 		String[] categoryPropertiesArray =
@@ -430,7 +453,19 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		return categoryPropertiesArray;
 	}
 
-	protected String getSettings(ActionRequest actionRequest)
+	private String _getRedirectURL(
+		ActionResponse actionResponse, AssetVocabulary vocabulary) {
+
+		return PortletURLBuilder.createRenderURL(
+			_portal.getLiferayPortletResponse(actionResponse)
+		).setMVCPath(
+			"/view.jsp"
+		).setParameter(
+			"vocabularyId", vocabulary.getVocabularyId()
+		).buildString();
+	}
+
+	private String _getSettings(ActionRequest actionRequest)
 		throws PortalException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -488,41 +523,6 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 		vocabularySettingsHelper.setMultiValued(multiValued);
 
 		return vocabularySettingsHelper.toString();
-	}
-
-	@Override
-	protected boolean isSessionErrorException(Throwable throwable) {
-		if (throwable instanceof AssetCategoryLimitException ||
-			throwable instanceof AssetCategoryNameException ||
-			throwable instanceof CategoryPropertyKeyException ||
-			throwable instanceof CategoryPropertyValueException ||
-			throwable instanceof DuplicateCategoryException ||
-			throwable instanceof DuplicateCategoryPropertyException ||
-			throwable instanceof DuplicateVocabularyException ||
-			throwable instanceof InvalidAssetCategoryException ||
-			throwable instanceof NoSuchCategoryException ||
-			throwable instanceof NoSuchClassTypeException ||
-			throwable instanceof NoSuchEntryException ||
-			throwable instanceof NoSuchVocabularyException ||
-			throwable instanceof PrincipalException ||
-			throwable instanceof VocabularyNameException) {
-
-			return true;
-		}
-
-		return false;
-	}
-
-	private String _getRedirectURL(
-		ActionResponse actionResponse, AssetVocabulary vocabulary) {
-
-		return PortletURLBuilder.createRenderURL(
-			_portal.getLiferayPortletResponse(actionResponse)
-		).setMVCPath(
-			"/view.jsp"
-		).setParameter(
-			"vocabularyId", vocabulary.getVocabularyId()
-		).buildString();
 	}
 
 	private volatile AssetCategoriesAdminWebConfiguration

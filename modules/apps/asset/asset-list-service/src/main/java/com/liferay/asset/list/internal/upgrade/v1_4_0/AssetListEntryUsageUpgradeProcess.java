@@ -33,10 +33,10 @@ public class AssetListEntryUsageUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeSchema();
+		_upgradeSchema();
 	}
 
-	protected void upgradeSchema() throws Exception {
+	private void _upgradeSchema() throws Exception {
 		alter(
 			AssetListEntryUsageTable.class,
 			new AlterTableAddColumn("containerKey", "VARCHAR(255) null"),

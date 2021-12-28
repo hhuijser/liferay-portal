@@ -56,7 +56,7 @@ public class AssetCategoryModelDocumentContributor
 		document.addKeyword(
 			Field.ASSET_CATEGORY_ID, assetCategory.getCategoryId());
 
-		addSearchAssetCategoryTitles(
+		_addSearchAssetCategoryTitles(
 			document, Field.ASSET_CATEGORY_TITLE,
 			Collections.singletonList(assetCategory));
 
@@ -66,7 +66,7 @@ public class AssetCategoryModelDocumentContributor
 		document.addKeyword(
 			Field.ASSET_VOCABULARY_ID, assetCategory.getVocabularyId());
 
-		Locale siteDefaultLocale = getSiteDefaultLocale(assetCategory);
+		Locale siteDefaultLocale = _getSiteDefaultLocale(assetCategory);
 
 		_searchLocalizationHelper.addLocalizedField(
 			document, Field.DESCRIPTION, siteDefaultLocale,
@@ -88,7 +88,10 @@ public class AssetCategoryModelDocumentContributor
 			true, true);
 	}
 
-	protected void addSearchAssetCategoryTitles(
+	@Reference
+	protected Portal portal;
+
+	private void _addSearchAssetCategoryTitles(
 		Document document, String field, List<AssetCategory> assetCategories) {
 
 		Map<Locale, List<String>> assetCategoryTitles = new HashMap<>();
@@ -139,7 +142,7 @@ public class AssetCategoryModelDocumentContributor
 		}
 	}
 
-	protected Locale getSiteDefaultLocale(AssetCategory assetCategory) {
+	private Locale _getSiteDefaultLocale(AssetCategory assetCategory) {
 		try {
 			return portal.getSiteDefaultLocale(assetCategory.getGroupId());
 		}
@@ -147,9 +150,6 @@ public class AssetCategoryModelDocumentContributor
 			throw new SystemException(portalException);
 		}
 	}
-
-	@Reference
-	protected Portal portal;
 
 	@Reference
 	private SearchLocalizationHelper _searchLocalizationHelper;

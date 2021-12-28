@@ -46,12 +46,16 @@ public class AssetVocabularySettingsExportHelper
 
 	public String getSettingsMetadata() throws PortalException {
 		JSONObject settingsMetadataJSONObject =
-			createSettingsMetadataJSONObject();
+			_createSettingsMetadataJSONObject();
 
 		return settingsMetadataJSONObject.toJSONString();
 	}
 
-	protected JSONObject createSettingsMetadataJSONObject()
+	protected String getSettings() {
+		return super.toString();
+	}
+
+	private JSONObject _createSettingsMetadataJSONObject()
 		throws PortalException {
 
 		JSONObject settingsMetadataJSONObject = _jsonFactory.createJSONObject();
@@ -72,10 +76,10 @@ public class AssetVocabularySettingsExportHelper
 
 				long classTypePK = getClassTypePK(classNameIdAndClassTypePK);
 
-				JSONObject classTypeJSONObject = getClassTypeJSONObject(
+				JSONObject classTypeJSONObject = _getClassTypeJSONObject(
 					settingsMetadataJSONObject, classNameId);
 
-				putClassTypeJSONObject(
+				_putClassTypeJSONObject(
 					classTypeJSONObject, classNameId, classTypePK);
 			}
 		}
@@ -83,7 +87,7 @@ public class AssetVocabularySettingsExportHelper
 		return settingsMetadataJSONObject;
 	}
 
-	protected JSONObject getClassTypeJSONObject(
+	private JSONObject _getClassTypeJSONObject(
 		JSONObject settingsMetadataJSONObject, long classNameId) {
 
 		JSONObject classTypeJSONObject = null;
@@ -113,11 +117,7 @@ public class AssetVocabularySettingsExportHelper
 		return classTypeJSONObject;
 	}
 
-	protected String getSettings() {
-		return super.toString();
-	}
-
-	protected void putClassTypeJSONObject(
+	private void _putClassTypeJSONObject(
 			JSONObject classTypeJSONObject, long classNameId, long classTypePK)
 		throws PortalException {
 

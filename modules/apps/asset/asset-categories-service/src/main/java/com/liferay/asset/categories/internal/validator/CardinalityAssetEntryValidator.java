@@ -49,7 +49,7 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 
 		long classNameId = _classNameLocalService.getClassNameId(className);
 
-		if (!isCategorizable(groupId, classNameId, classPK)) {
+		if (!_isCategorizable(groupId, classNameId, classPK)) {
 			return;
 		}
 
@@ -78,7 +78,33 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 		validate(groupId, className, 0L, classTypePK, categoryIds, entryNames);
 	}
 
-	protected boolean isCategorizable(
+	protected void validate(
+			long classNameId, long classTypePK, long[] categoryIds,
+			AssetVocabulary assetVocabulary)
+		throws PortalException {
+
+		if (!assetVocabulary.isAssociatedToClassNameIdAndClassTypePK(
+				classNameId, classTypePK)) {
+
+			return;
+		}
+
+		if (assetVocabulary.isMissingRequiredCategory(
+				classNameId, classTypePK, categoryIds)) {
+
+			throw new AssetCategoryException(
+				assetVocabulary, AssetCategoryException.AT_LEAST_ONE_CATEGORY);
+		}
+
+		if (!assetVocabulary.isMultiValued() &&
+			assetVocabulary.hasMoreThanOneCategorySelected(categoryIds)) {
+
+			throw new AssetCategoryException(
+				assetVocabulary, AssetCategoryException.TOO_MANY_CATEGORIES);
+		}
+	}
+
+	private boolean _isCategorizable(
 		long groupId, long classNameId, long classPK) {
 
 		AssetRendererFactory<?> assetRendererFactory =
@@ -115,32 +141,6 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 		}
 
 		return true;
-	}
-
-	protected void validate(
-			long classNameId, long classTypePK, long[] categoryIds,
-			AssetVocabulary assetVocabulary)
-		throws PortalException {
-
-		if (!assetVocabulary.isAssociatedToClassNameIdAndClassTypePK(
-				classNameId, classTypePK)) {
-
-			return;
-		}
-
-		if (assetVocabulary.isMissingRequiredCategory(
-				classNameId, classTypePK, categoryIds)) {
-
-			throw new AssetCategoryException(
-				assetVocabulary, AssetCategoryException.AT_LEAST_ONE_CATEGORY);
-		}
-
-		if (!assetVocabulary.isMultiValued() &&
-			assetVocabulary.hasMoreThanOneCategorySelected(categoryIds)) {
-
-			throw new AssetCategoryException(
-				assetVocabulary, AssetCategoryException.TOO_MANY_CATEGORIES);
-		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

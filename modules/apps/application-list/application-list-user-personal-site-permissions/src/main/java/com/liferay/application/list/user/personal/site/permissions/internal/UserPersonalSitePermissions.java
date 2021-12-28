@@ -158,7 +158,7 @@ public class UserPersonalSitePermissions {
 
 	private Group _getUserPersonalSiteGroup(long companyId) {
 		try {
-			return _groupLocalService._getUserPersonalSiteGroup(companyId);
+			return _groupLocalService.getUserPersonalSiteGroup(companyId);
 		}
 		catch (PortalException portalException) {
 			_log.error(

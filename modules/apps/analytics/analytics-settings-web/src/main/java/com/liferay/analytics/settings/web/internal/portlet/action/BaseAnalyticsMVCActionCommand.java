@@ -302,7 +302,7 @@ public abstract class BaseAnalyticsMVCActionCommand
 		String token = (String)configurationProperties.get("token");
 
 		if ((token != null) && !token.isEmpty()) {
-			configurationProvider._saveCompanyConfiguration(
+			configurationProvider.saveCompanyConfiguration(
 				AnalyticsConfiguration.class, themeDisplay.getCompanyId(),
 				configurationProperties);
 		}

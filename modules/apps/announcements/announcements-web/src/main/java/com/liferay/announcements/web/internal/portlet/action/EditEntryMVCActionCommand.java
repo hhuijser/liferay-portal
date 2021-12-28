@@ -96,7 +96,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		for (long deleteEntryId : deleteEntryIds) {
-			_announcementsEntryService._deleteEntry(deleteEntryId);
+			_announcementsEntryService.deleteEntry(deleteEntryId);
 		}
 	}
 
@@ -186,7 +186,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 				expirationDate, priority, alert);
 		}
 		else {
-			_announcementsEntryService._updateEntry(
+			_announcementsEntryService.updateEntry(
 				entryId, title, content, url, type, displayDate, expirationDate,
 				priority);
 		}

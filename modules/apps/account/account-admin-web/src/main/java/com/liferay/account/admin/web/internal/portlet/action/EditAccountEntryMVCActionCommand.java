@@ -197,7 +197,7 @@ public class EditAccountEntryMVCActionCommand extends BaseMVCActionCommand {
 			domains = ParamUtil.getStringValues(actionRequest, "domains");
 		}
 
-		AccountEntry accountEntry = _accountEntryService._addAccountEntry(
+		AccountEntry accountEntry = _accountEntryService.addAccountEntry(
 			themeDisplay.getUserId(), AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,
 			name, description, domains, emailAddress,
 			_getLogoBytes(actionRequest), taxIdNumber, type,

@@ -79,7 +79,7 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 		String description = ParamUtil.getString(actionRequest, "description");
 		String name = ParamUtil.getString(actionRequest, "name");
 
-		return _accountGroupService._addAccountGroup(
+		return _accountGroupService.addAccountGroup(
 			themeDisplay.getUserId(), description, name);
 	}
 
@@ -92,7 +92,7 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 		String description = ParamUtil.getString(actionRequest, "description");
 		String name = ParamUtil.getString(actionRequest, "name");
 
-		_accountGroupService._updateAccountGroup(
+		_accountGroupService.updateAccountGroup(
 			accountGroupId, description, name);
 	}
 

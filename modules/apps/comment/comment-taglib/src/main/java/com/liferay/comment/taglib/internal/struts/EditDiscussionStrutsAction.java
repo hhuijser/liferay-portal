@@ -92,7 +92,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 				if (ajax) {
 					_writeJSON(
-						namespacedHttpServletRequest, httpServletResponse,
+						httpServletResponse,
 						JSONUtil.put(
 							"commentId", commentId
 						).put(
@@ -129,8 +129,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 			jsonObject.putException(exception);
 
-			_writeJSON(
-				namespacedHttpServletRequest, httpServletResponse, jsonObject);
+			_writeJSON(httpServletResponse, jsonObject);
 		}
 
 		return null;
@@ -287,7 +286,6 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 	}
 
 	private void _writeJSON(
-			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, Object object)
 		throws IOException {
 

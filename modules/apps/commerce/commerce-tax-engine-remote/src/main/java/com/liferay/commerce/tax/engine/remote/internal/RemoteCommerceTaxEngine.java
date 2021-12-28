@@ -150,40 +150,12 @@ public class RemoteCommerceTaxEngine implements CommerceTaxEngine {
 		}
 	}
 
-	protected CommerceAddress getCommerceAddress(long commerceAddressId)
-		throws PortalException {
-
-		return _commerceAddressService.getCommerceAddress(commerceAddressId);
-	}
-
-	protected CommerceTaxMethod getCommerceTaxMethod(long commerceTaxMethodId)
-		throws PortalException {
-
-		return _commerceTaxMethodService.getCommerceTaxMethod(
-			commerceTaxMethodId);
-	}
-
-	protected RemoteCommerceTaxConfiguration getRemoteCommerceTaxConfiguration(
-			long commerceChannelGroupId)
-		throws CommerceTaxEngineException {
-
-		try {
-			return _configurationProvider.getConfiguration(
-				RemoteCommerceTaxConfiguration.class,
-				new GroupServiceSettingsLocator(
-					commerceChannelGroupId,
-					RemoteCommerceTaxConfiguration.class.getName()));
-		}
-		catch (ConfigurationException configurationException) {
-			throw new CommerceTaxEngineException(configurationException);
-		}
-	}
-
 	private void _addCommerceAddressParameters(
 			long commerceAddressId, String prefix, URIBuilder uriBuilder)
 		throws PortalException {
 
-		CommerceAddress commerceAddress = getCommerceAddress(commerceAddressId);
+		CommerceAddress commerceAddress = _getCommerceAddress(
+			commerceAddressId);
 
 		_addParameter(
 			prefix + "AddressCity", commerceAddress.getCity(), uriBuilder);
@@ -239,6 +211,19 @@ public class RemoteCommerceTaxEngine implements CommerceTaxEngine {
 		}
 	}
 
+	private CommerceAddress _getCommerceAddress(long commerceAddressId)
+		throws PortalException {
+
+		return _commerceAddressService.getCommerceAddress(commerceAddressId);
+	}
+
+	private CommerceTaxMethod _getCommerceTaxMethod(long commerceTaxMethodId)
+		throws PortalException {
+
+		return _commerceTaxMethodService.getCommerceTaxMethod(
+			commerceTaxMethodId);
+	}
+
 	private CommerceTaxValue _getCommerceTaxValue(String result)
 		throws IOException {
 
@@ -258,7 +243,7 @@ public class RemoteCommerceTaxEngine implements CommerceTaxEngine {
 		throws PortalException, URISyntaxException {
 
 		RemoteCommerceTaxConfiguration remoteCommerceTaxConfiguration =
-			getRemoteCommerceTaxConfiguration(
+			_getRemoteCommerceTaxConfiguration(
 				commerceTaxCalculateRequest.getCommerceChannelGroupId());
 
 		URIBuilder uriBuilder = new URIBuilder(
@@ -285,7 +270,7 @@ public class RemoteCommerceTaxEngine implements CommerceTaxEngine {
 			String.valueOf(commerceTaxCalculateRequest.getTaxCategoryId()),
 			uriBuilder);
 
-		CommerceTaxMethod commerceTaxMethod = getCommerceTaxMethod(
+		CommerceTaxMethod commerceTaxMethod = _getCommerceTaxMethod(
 			commerceTaxCalculateRequest.getCommerceTaxMethodId());
 
 		_addParameter(
@@ -309,6 +294,22 @@ public class RemoteCommerceTaxEngine implements CommerceTaxEngine {
 		}
 
 		return httpGet;
+	}
+
+	private RemoteCommerceTaxConfiguration _getRemoteCommerceTaxConfiguration(
+			long commerceChannelGroupId)
+		throws CommerceTaxEngineException {
+
+		try {
+			return _configurationProvider.getConfiguration(
+				RemoteCommerceTaxConfiguration.class,
+				new GroupServiceSettingsLocator(
+					commerceChannelGroupId,
+					RemoteCommerceTaxConfiguration.class.getName()));
+		}
+		catch (ConfigurationException configurationException) {
+			throw new CommerceTaxEngineException(configurationException);
+		}
 	}
 
 	private ResourceBundle _getResourceBundle(Locale locale) {

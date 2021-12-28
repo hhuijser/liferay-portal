@@ -102,18 +102,6 @@ public class VersionCommerceOrderValidatorImpl
 		return new CommerceOrderValidatorResult(true);
 	}
 
-	protected void setCommerceOrderItemLocalService(
-		CommerceOrderItemLocalService commerceOrderItemLocalService) {
-
-		_commerceOrderItemLocalService = commerceOrderItemLocalService;
-	}
-
-	protected void setCPInstanceLocalService(
-		CPInstanceLocalService cpInstanceLocalService) {
-
-		_cpInstanceLocalService = cpInstanceLocalService;
-	}
-
 	private String _getLocalizedMessage(Locale locale, String key) {
 		if (locale == null) {
 			return key;
@@ -123,6 +111,18 @@ public class VersionCommerceOrderValidatorImpl
 			"content.Language", locale, getClass());
 
 		return LanguageUtil.get(resourceBundle, key);
+	}
+
+	private void _setCommerceOrderItemLocalService(
+		CommerceOrderItemLocalService commerceOrderItemLocalService) {
+
+		_commerceOrderItemLocalService = commerceOrderItemLocalService;
+	}
+
+	private void _setCPInstanceLocalService(
+		CPInstanceLocalService cpInstanceLocalService) {
+
+		_cpInstanceLocalService = cpInstanceLocalService;
 	}
 
 	private boolean _updateInstance(

@@ -114,7 +114,7 @@ public class ShippingMethodCommerceCheckoutStep
 		throws Exception {
 
 		try {
-			updateCommerceOrderShippingMethod(actionRequest);
+			_updateCommerceOrderShippingMethod(actionRequest);
 		}
 		catch (Exception exception) {
 			if (exception instanceof CommerceOrderShippingMethodException) {
@@ -178,7 +178,17 @@ public class ShippingMethodCommerceCheckoutStep
 		return super.showControls(httpServletRequest, httpServletResponse);
 	}
 
-	protected BigDecimal getShippingAmount(
+	@Reference(
+		target = "(model.class.name=com.liferay.commerce.model.CommerceOrder)",
+		unbind = "-"
+	)
+	protected void setModelResourcePermission(
+		ModelResourcePermission<CommerceOrder> modelResourcePermission) {
+
+		_commerceOrderModelResourcePermission = modelResourcePermission;
+	}
+
+	private BigDecimal _getShippingAmount(
 			CommerceContext commerceContext, CommerceOrder commerceOrder,
 			long commerceShippingMethodId, String shippingOptionName,
 			Locale locale)
@@ -217,18 +227,7 @@ public class ShippingMethodCommerceCheckoutStep
 				"\" for shipping method ", commerceShippingMethodId));
 	}
 
-	@Reference(
-		target = "(model.class.name=com.liferay.commerce.model.CommerceOrder)",
-		unbind = "-"
-	)
-	protected void setModelResourcePermission(
-		ModelResourcePermission<CommerceOrder> modelResourcePermission) {
-
-		_commerceOrderModelResourcePermission = modelResourcePermission;
-	}
-
-	protected void updateCommerceOrderShippingMethod(
-			ActionRequest actionRequest)
+	private void _updateCommerceOrderShippingMethod(ActionRequest actionRequest)
 		throws Exception {
 
 		String commerceShippingOptionKey = ParamUtil.getString(
@@ -269,7 +268,7 @@ public class ShippingMethodCommerceCheckoutStep
 		String commerceShippingOptionName = commerceShippingOptionKey.substring(
 			pos + 1);
 
-		BigDecimal shippingAmount = getShippingAmount(
+		BigDecimal shippingAmount = _getShippingAmount(
 			commerceContext, commerceOrder, commerceShippingMethodId,
 			commerceShippingOptionName, themeDisplay.getLocale());
 

@@ -35,7 +35,7 @@ import java.util.Objects;
 public abstract class BaseCommerceProductServiceUpgradeProcess
 	extends UpgradeProcess {
 
-	protected void addColumn(
+	private void _addColumn(
 			Class<?> entityClass, String tableName, String columnName,
 			String columnType)
 		throws Exception {
@@ -62,7 +62,7 @@ public abstract class BaseCommerceProductServiceUpgradeProcess
 		}
 	}
 
-	protected void addIndexes(String tableName) throws Exception {
+	private void _addIndexes(String tableName) throws Exception {
 		Class<?> clazz = getClass();
 
 		List<ObjectValuePair<String, IndexMetadata>> indexesSQL = getIndexesSQL(
@@ -78,7 +78,7 @@ public abstract class BaseCommerceProductServiceUpgradeProcess
 						indexMetadata.getIndexName(), tableName));
 			}
 
-			if (!tableHasIndex(tableName, indexMetadata.getIndexName())) {
+			if (!_tableHasIndex(tableName, indexMetadata.getIndexName())) {
 				runSQL(indexMetadata.getCreateSQL(null));
 			}
 			else if (_log.isInfoEnabled()) {
@@ -90,7 +90,7 @@ public abstract class BaseCommerceProductServiceUpgradeProcess
 		}
 	}
 
-	protected void dropColumn(String tableName, String columnName)
+	private void _dropColumn(String tableName, String columnName)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
@@ -114,7 +114,7 @@ public abstract class BaseCommerceProductServiceUpgradeProcess
 		}
 	}
 
-	protected void renameColumn(
+	private void _renameColumn(
 			Class<?> tableClass, String tableName, String oldColumnName,
 			String newColumnName)
 		throws Exception {
@@ -143,7 +143,7 @@ public abstract class BaseCommerceProductServiceUpgradeProcess
 		}
 	}
 
-	protected boolean tableHasIndex(String tableName, String indexName)
+	private boolean _tableHasIndex(String tableName, String indexName)
 		throws Exception {
 
 		DatabaseMetaData metadata = connection.getMetaData();

@@ -59,7 +59,7 @@ public class AddressCommerceCheckoutStepUtil {
 			commerceOrderModelResourcePermission;
 	}
 
-	protected CommerceAddress addCommerceAddress(
+	private CommerceAddress _addCommerceAddress(
 			CommerceOrder commerceOrder, ActionRequest actionRequest)
 		throws PortalException {
 
@@ -109,7 +109,7 @@ public class AddressCommerceCheckoutStepUtil {
 			countryId, phoneNumber, _commerceAddressType, serviceContext);
 	}
 
-	protected CommerceOrder updateCommerceOrderAddress(
+	private CommerceOrder _updateCommerceOrderAddress(
 			ActionRequest actionRequest, String paramName)
 		throws Exception {
 
@@ -132,7 +132,7 @@ public class AddressCommerceCheckoutStepUtil {
 		long commerceAddressId = ParamUtil.getLong(actionRequest, paramName);
 
 		if (newAddress) {
-			CommerceAddress commerceAddress = addCommerceAddress(
+			CommerceAddress commerceAddress = _addCommerceAddress(
 				commerceOrder, actionRequest);
 
 			commerceAddressId = commerceAddress.getCommerceAddressId();
@@ -171,7 +171,7 @@ public class AddressCommerceCheckoutStepUtil {
 			actionRequest.setAttribute(
 				CommerceCheckoutWebKeys.COMMERCE_ORDER, commerceOrder);
 
-			return updateCommerceOrderAddress(
+			return _updateCommerceOrderAddress(
 				commerceOrder, commerceAddressId, commerceAddressId,
 				commerceContext);
 		}
@@ -184,7 +184,7 @@ public class AddressCommerceCheckoutStepUtil {
 				commerceOrder.getBillingAddressId()) &&
 			!useAsBilling) {
 
-			return updateCommerceOrderAddress(
+			return _updateCommerceOrderAddress(
 				commerceOrder, 0, commerceAddressId, commerceContext);
 		}
 
@@ -196,7 +196,7 @@ public class AddressCommerceCheckoutStepUtil {
 				commerceOrder.getBillingAddressId()) &&
 			!useAsBilling) {
 
-			return updateCommerceOrderAddress(
+			return _updateCommerceOrderAddress(
 				commerceOrder, commerceOrder.getBillingAddressId(),
 				commerceAddressId, commerceContext);
 		}
@@ -205,7 +205,7 @@ public class AddressCommerceCheckoutStepUtil {
 				CommerceCheckoutWebKeys.BILLING_ADDRESS_PARAM_NAME,
 				paramName)) {
 
-			return updateCommerceOrderAddress(
+			return _updateCommerceOrderAddress(
 				commerceOrder, commerceAddressId,
 				commerceOrder.getShippingAddressId(), commerceContext);
 		}
@@ -213,7 +213,7 @@ public class AddressCommerceCheckoutStepUtil {
 		return commerceOrder;
 	}
 
-	protected CommerceOrder updateCommerceOrderAddress(
+	private CommerceOrder _updateCommerceOrderAddress(
 			CommerceOrder commerceOrder, long billingAddressId,
 			long shippingAddressId, CommerceContext commerceContext)
 		throws Exception {

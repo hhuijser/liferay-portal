@@ -26,7 +26,10 @@ import com.liferay.portal.kernel.util.StringUtil;
  */
 public abstract class BaseCommerceServiceUpgradeProcess extends UpgradeProcess {
 
-	protected void addColumn(
+	@Override
+	protected abstract void doUpgrade() throws Exception;
+
+	private void _addColumn(
 			Class<?> entityClass, String tableName, String columnName,
 			String columnType)
 		throws Exception {
@@ -53,7 +56,7 @@ public abstract class BaseCommerceServiceUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	protected void changeColumnType(
+	private void _changeColumnType(
 			Class<?> tableClass, String tableName, String columnName,
 			String newColumnType)
 		throws Exception {
@@ -78,10 +81,7 @@ public abstract class BaseCommerceServiceUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	@Override
-	protected abstract void doUpgrade() throws Exception;
-
-	protected void dropColumn(String tableName, String columnName)
+	private void _dropColumn(String tableName, String columnName)
 		throws Exception {
 
 		if (_log.isInfoEnabled()) {
@@ -105,7 +105,7 @@ public abstract class BaseCommerceServiceUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	protected void renameColumn(
+	private void _renameColumn(
 			Class<?> tableClass, String tableName, String oldColumnName,
 			String newColumnName)
 		throws Exception {

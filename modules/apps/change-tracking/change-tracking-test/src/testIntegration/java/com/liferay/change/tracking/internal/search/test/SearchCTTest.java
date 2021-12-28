@@ -97,15 +97,15 @@ public class SearchCTTest {
 				_group.getGroupId());
 		}
 
-		assertAllHits(
+		_assertAllHits(
 			_USER_GROUP_CLASS,
-			getUIDs(
+			_getUIDs(
 				CTConstants.CT_COLLECTION_ID_PRODUCTION, _productionUserGroup),
-			getUIDs(_ctCollection1.getCtCollectionId(), addedUserGroup));
+			_getUIDs(_ctCollection1.getCtCollectionId(), addedUserGroup));
 
-		assertProductionHits(_USER_GROUP_CLASS, _productionUserGroup);
+		_assertProductionHits(_USER_GROUP_CLASS, _productionUserGroup);
 
-		assertCollectionHits(
+		_assertCollectionHits(
 			_ctCollection1.getCtCollectionId(), _USER_GROUP_CLASS,
 			new UserGroup[] {addedUserGroup},
 			new UserGroup[] {_productionUserGroup});
@@ -151,13 +151,13 @@ public class SearchCTTest {
 				productionUserGroup);
 		}
 
-		assertProductionHits(_USER_GROUP_CLASS, _productionUserGroup);
+		_assertProductionHits(_USER_GROUP_CLASS, _productionUserGroup);
 
-		assertCollectionHits(
+		_assertCollectionHits(
 			_ctCollection1.getCtCollectionId(), _USER_GROUP_CLASS,
 			new UserGroup[] {modifiedUserGroup1}, new UserGroup[0]);
 
-		assertCollectionHits(
+		_assertCollectionHits(
 			_ctCollection2.getCtCollectionId(), _USER_GROUP_CLASS,
 			new UserGroup[] {modifiedUserGroup2}, new UserGroup[0]);
 	}
@@ -204,27 +204,27 @@ public class SearchCTTest {
 			modifiedLayout = _layoutLocalService.updateLayout(modifiedLayout);
 		}
 
-		assertProductionHits(
+		_assertProductionHits(
 			_JOURNAL_ARTICLE_CLASS, deletedJournalArticle,
 			modifiedJournalArticle1);
 
-		assertCollectionHits(
+		_assertCollectionHits(
 			_ctCollection1.getCtCollectionId(), _JOURNAL_ARTICLE_CLASS,
 			new JournalArticle[] {addedJournalArticle, modifiedJournalArticle2},
 			new JournalArticle[] {modifiedJournalArticle1});
 
-		assertProductionHits(_LAYOUT_CLASS, deletedLayout, modifiedLayout);
+		_assertProductionHits(_LAYOUT_CLASS, deletedLayout, modifiedLayout);
 
-		assertCollectionHits(
+		_assertCollectionHits(
 			_ctCollection1.getCtCollectionId(), _LAYOUT_CLASS,
 			new Layout[] {addedLayout, modifiedLayout}, new Layout[0]);
 
-		assertAllHits(
+		_assertAllHits(
 			_ALL_INDEXER_CLASSES,
-			getUIDs(
+			_getUIDs(
 				CTConstants.CT_COLLECTION_ID_PRODUCTION, deletedJournalArticle,
 				deletedLayout, modifiedJournalArticle1, modifiedLayout),
-			getUIDs(
+			_getUIDs(
 				_ctCollection1.getCtCollectionId(), addedJournalArticle,
 				addedLayout, modifiedJournalArticle2, modifiedLayout));
 	}
@@ -262,14 +262,14 @@ public class SearchCTTest {
 				modifiedJournalArticle1, "testModifyJournalArticle");
 		}
 
-		assertProductionHits(
+		_assertProductionHits(
 			_JOURNAL_ARTICLE_CLASS, deletedJournalArticle,
 			modifiedJournalArticle1, unmodifiedJournalArticle);
 
 		_ctProcessLocalService.addCTProcess(
 			_ctCollection1.getUserId(), _ctCollection1.getCtCollectionId());
 
-		assertProductionHits(
+		_assertProductionHits(
 			_JOURNAL_ARTICLE_CLASS, addedJournalArticle,
 			modifiedJournalArticle2, unmodifiedJournalArticle);
 
@@ -281,7 +281,7 @@ public class SearchCTTest {
 			_undoCTCollection.getUserId(),
 			_undoCTCollection.getCtCollectionId());
 
-		assertProductionHits(
+		_assertProductionHits(
 			_JOURNAL_ARTICLE_CLASS, deletedJournalArticle,
 			modifiedJournalArticle1, unmodifiedJournalArticle);
 	}
@@ -306,21 +306,21 @@ public class SearchCTTest {
 			modifiedLayout = _layoutLocalService.updateLayout(modifiedLayout);
 		}
 
-		assertProductionHits(
+		_assertProductionHits(
 			_LAYOUT_CLASS, deletedLayout, modifiedLayout, unmodifiedLayout);
 
 		_ctProcessLocalService.addCTProcess(
 			_ctCollection1.getUserId(), _ctCollection1.getCtCollectionId());
 
-		assertProductionHits(
+		_assertProductionHits(
 			_LAYOUT_CLASS, addedLayout, modifiedLayout, unmodifiedLayout);
 
-		assertAllHits(
+		_assertAllHits(
 			_LAYOUT_CLASS,
-			getUIDs(
+			_getUIDs(
 				CTConstants.CT_COLLECTION_ID_PRODUCTION, addedLayout,
 				modifiedLayout, unmodifiedLayout),
-			getUIDs(
+			_getUIDs(
 				_ctCollection1.getCtCollectionId(), addedLayout,
 				modifiedLayout));
 
@@ -332,18 +332,18 @@ public class SearchCTTest {
 			_undoCTCollection.getUserId(),
 			_undoCTCollection.getCtCollectionId());
 
-		assertProductionHits(
+		_assertProductionHits(
 			_LAYOUT_CLASS, deletedLayout, modifiedLayout, unmodifiedLayout);
 
-		assertAllHits(
+		_assertAllHits(
 			_LAYOUT_CLASS,
-			getUIDs(
+			_getUIDs(
 				CTConstants.CT_COLLECTION_ID_PRODUCTION, deletedLayout,
 				modifiedLayout, unmodifiedLayout),
-			getUIDs(
+			_getUIDs(
 				_ctCollection1.getCtCollectionId(), addedLayout,
 				modifiedLayout),
-			getUIDs(
+			_getUIDs(
 				_undoCTCollection.getCtCollectionId(), deletedLayout,
 				modifiedLayout));
 	}
@@ -351,27 +351,27 @@ public class SearchCTTest {
 	@Rule
 	public SearchTestRule searchTestRule = new SearchTestRule();
 
-	protected void assertAllHits(Class<?>[] classes, String[]... uids) {
-		assertHits(
+	private void _assertAllHits(Class<?>[] classes, String[]... uids) {
+		_assertHits(
 			CTConstants.CT_COLLECTION_ID_PRODUCTION, classes,
 			ArrayUtil.append(uids), true);
 	}
 
-	protected void assertCollectionHits(
+	private void _assertCollectionHits(
 		long ctCollectionId, Class<?>[] classes,
 		CTModel<?>[] collectionCtModels, CTModel<?>[] productionCtModels) {
 
-		assertHits(
+		_assertHits(
 			ctCollectionId, classes,
 			ArrayUtil.append(
-				getUIDs(ctCollectionId, collectionCtModels),
-				getUIDs(
+				_getUIDs(ctCollectionId, collectionCtModels),
+				_getUIDs(
 					CTConstants.CT_COLLECTION_ID_PRODUCTION,
 					productionCtModels)),
 			false);
 	}
 
-	protected void assertHits(
+	private void _assertHits(
 		long ctCollectionId, Class<?>[] classes, String[] uids, boolean all) {
 
 		String[] classNames = new String[classes.length];
@@ -431,15 +431,15 @@ public class SearchCTTest {
 		}
 	}
 
-	protected void assertProductionHits(
+	private void _assertProductionHits(
 		Class<?>[] classes, CTModel<?>... ctModels) {
 
-		assertHits(
+		_assertHits(
 			CTConstants.CT_COLLECTION_ID_PRODUCTION, classes,
-			getUIDs(CTConstants.CT_COLLECTION_ID_PRODUCTION, ctModels), false);
+			_getUIDs(CTConstants.CT_COLLECTION_ID_PRODUCTION, ctModels), false);
 	}
 
-	protected String[] getUIDs(long ctCollectionId, CTModel<?>... ctModels) {
+	private String[] _getUIDs(long ctCollectionId, CTModel<?>... ctModels) {
 		String[] uids = new String[ctModels.length];
 
 		for (int i = 0; i < ctModels.length; i++) {

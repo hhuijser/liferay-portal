@@ -60,7 +60,7 @@ public class DeleteFolderPortletConfigurationIcon
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
+		if (_isTrashEnabled(themeDisplay.getScopeGroupId())) {
 			key = "move-to-recycle-bin";
 		}
 
@@ -86,7 +86,7 @@ public class DeleteFolderPortletConfigurationIcon
 
 				String cmd = Constants.DELETE;
 
-				if (isTrashEnabled(themeDisplay.getScopeGroupId())) {
+				if (_isTrashEnabled(themeDisplay.getScopeGroupId())) {
 					cmd = Constants.MOVE_TO_TRASH;
 				}
 
@@ -168,7 +168,7 @@ public class DeleteFolderPortletConfigurationIcon
 		return false;
 	}
 
-	protected boolean isTrashEnabled(long groupId) {
+	private boolean _isTrashEnabled(long groupId) {
 		try {
 			if (_trashHelper.isTrashEnabled(groupId)) {
 				return true;

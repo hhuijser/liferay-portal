@@ -68,59 +68,6 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
-	protected void deleteEntry(ActionRequest actionRequest, boolean moveToTrash)
-		throws Exception {
-
-		long[] deleteEntryIds = null;
-
-		long entryId = ParamUtil.getLong(actionRequest, "entryId");
-
-		if (entryId > 0) {
-			deleteEntryIds = new long[] {entryId};
-		}
-		else {
-			deleteEntryIds = ParamUtil.getLongValues(
-				actionRequest, "rowIdsBookmarksEntry");
-		}
-
-		List<TrashedModel> trashedModels = new ArrayList<>();
-
-		for (long deleteEntryId : deleteEntryIds) {
-			if (moveToTrash) {
-				BookmarksEntry entry = _bookmarksEntryService.moveEntryToTrash(
-					deleteEntryId);
-
-				trashedModels.add(entry);
-			}
-			else {
-				_bookmarksEntryService.deleteEntry(deleteEntryId);
-			}
-		}
-
-		long[] deleteFolderIds = ParamUtil.getLongValues(
-			actionRequest, "rowIdsBookmarksFolder");
-
-		for (long deleteFolderId : deleteFolderIds) {
-			if (moveToTrash) {
-				BookmarksFolder folder =
-					_bookmarksFolderService.moveFolderToTrash(deleteFolderId);
-
-				trashedModels.add(folder);
-			}
-			else {
-				_bookmarksFolderService.deleteFolder(deleteFolderId);
-			}
-		}
-
-		if (moveToTrash && !trashedModels.isEmpty()) {
-			addDeleteSuccessData(
-				actionRequest,
-				HashMapBuilder.<String, Object>put(
-					"trashedModels", trashedModels
-				).build());
-		}
-	}
-
 	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -132,25 +79,25 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 			BookmarksEntry entry = null;
 
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
-				entry = updateEntry(actionRequest);
+				entry = _updateEntry(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteEntry(actionRequest, false);
+				_deleteEntry(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE)) {
-				moveEntries(actionRequest);
+				_moveEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteEntry(actionRequest, true);
+				_deleteEntry(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.RESTORE)) {
 				restoreTrashEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.SUBSCRIBE)) {
-				subscribeEntry(actionRequest);
+				_subscribeEntry(actionRequest);
 			}
 			else if (cmd.equals(Constants.UNSUBSCRIBE)) {
-				unsubscribeEntry(actionRequest);
+				_unsubscribeEntry(actionRequest);
 			}
 
 			String portletResource = ParamUtil.getString(
@@ -212,7 +159,71 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void moveEntries(ActionRequest actionRequest) throws Exception {
+	protected void restoreTrashEntries(ActionRequest actionRequest)
+		throws Exception {
+
+		long[] restoreTrashEntryIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "restoreTrashEntryIds"), 0L);
+
+		for (long restoreTrashEntryId : restoreTrashEntryIds) {
+			_trashEntryService.restoreEntry(restoreTrashEntryId);
+		}
+	}
+
+	private void _deleteEntry(ActionRequest actionRequest, boolean moveToTrash)
+		throws Exception {
+
+		long[] deleteEntryIds = null;
+
+		long entryId = ParamUtil.getLong(actionRequest, "entryId");
+
+		if (entryId > 0) {
+			deleteEntryIds = new long[] {entryId};
+		}
+		else {
+			deleteEntryIds = ParamUtil.getLongValues(
+				actionRequest, "rowIdsBookmarksEntry");
+		}
+
+		List<TrashedModel> trashedModels = new ArrayList<>();
+
+		for (long deleteEntryId : deleteEntryIds) {
+			if (moveToTrash) {
+				BookmarksEntry entry = _bookmarksEntryService.moveEntryToTrash(
+					deleteEntryId);
+
+				trashedModels.add(entry);
+			}
+			else {
+				_bookmarksEntryService.deleteEntry(deleteEntryId);
+			}
+		}
+
+		long[] deleteFolderIds = ParamUtil.getLongValues(
+			actionRequest, "rowIdsBookmarksFolder");
+
+		for (long deleteFolderId : deleteFolderIds) {
+			if (moveToTrash) {
+				BookmarksFolder folder =
+					_bookmarksFolderService.moveFolderToTrash(deleteFolderId);
+
+				trashedModels.add(folder);
+			}
+			else {
+				_bookmarksFolderService.deleteFolder(deleteFolderId);
+			}
+		}
+
+		if (moveToTrash && !trashedModels.isEmpty()) {
+			addDeleteSuccessData(
+				actionRequest,
+				HashMapBuilder.<String, Object>put(
+					"trashedModels", trashedModels
+				).build());
+		}
+	}
+
+	private void _moveEntries(ActionRequest actionRequest) throws Exception {
 		long newFolderId = ParamUtil.getLong(actionRequest, "newFolderId");
 
 		long[] folderIds = ParamUtil.getLongValues(
@@ -230,26 +241,13 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void restoreTrashEntries(ActionRequest actionRequest)
-		throws Exception {
-
-		long[] restoreTrashEntryIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "restoreTrashEntryIds"), 0L);
-
-		for (long restoreTrashEntryId : restoreTrashEntryIds) {
-			_trashEntryService.restoreEntry(restoreTrashEntryId);
-		}
-	}
-
-	protected void subscribeEntry(ActionRequest actionRequest)
-		throws Exception {
-
+	private void _subscribeEntry(ActionRequest actionRequest) throws Exception {
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
 		_bookmarksEntryService.subscribeEntry(entryId);
 	}
 
-	protected void unsubscribeEntry(ActionRequest actionRequest)
+	private void _unsubscribeEntry(ActionRequest actionRequest)
 		throws Exception {
 
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
@@ -257,7 +255,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		_bookmarksEntryService.unsubscribeEntry(entryId);
 	}
 
-	protected BookmarksEntry updateEntry(ActionRequest actionRequest)
+	private BookmarksEntry _updateEntry(ActionRequest actionRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(

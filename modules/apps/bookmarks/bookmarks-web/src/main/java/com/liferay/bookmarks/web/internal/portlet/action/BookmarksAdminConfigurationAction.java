@@ -60,7 +60,7 @@ public class BookmarksAdminConfigurationAction
 		validateEmail(actionRequest, "emailMessageAdded");
 		validateEmail(actionRequest, "emailMessageUpdated");
 		validateEmailFrom(actionRequest);
-		validateRootFolder(actionRequest);
+		_validateRootFolder(actionRequest);
 
 		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
@@ -74,7 +74,7 @@ public class BookmarksAdminConfigurationAction
 		super.setServletContext(servletContext);
 	}
 
-	protected void validateRootFolder(ActionRequest actionRequest)
+	private void _validateRootFolder(ActionRequest actionRequest)
 		throws Exception {
 
 		long rootFolderId = GetterUtil.getLong(

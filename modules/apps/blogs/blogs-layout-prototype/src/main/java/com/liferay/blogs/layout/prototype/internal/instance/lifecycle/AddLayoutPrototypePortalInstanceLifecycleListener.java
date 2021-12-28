@@ -59,10 +59,10 @@ public class AddLayoutPrototypePortalInstanceLifecycleListener
 				company.getCompanyId(), null, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
 
-		addBlogPage(company.getCompanyId(), defaultUserId, layoutPrototypes);
+		_addBlogPage(company.getCompanyId(), defaultUserId, layoutPrototypes);
 	}
 
-	protected void addBlogPage(
+	private void _addBlogPage(
 			long companyId, long defaultUserId,
 			List<LayoutPrototype> layoutPrototypes)
 		throws Exception {

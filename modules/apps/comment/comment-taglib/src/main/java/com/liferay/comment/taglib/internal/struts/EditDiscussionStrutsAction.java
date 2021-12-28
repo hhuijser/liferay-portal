@@ -85,13 +85,13 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 		try {
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
-				long commentId = updateComment(namespacedHttpServletRequest);
+				long commentId = _updateComment(namespacedHttpServletRequest);
 
 				boolean ajax = ParamUtil.getBoolean(
 					namespacedHttpServletRequest, "ajax", true);
 
 				if (ajax) {
-					writeJSON(
+					_writeJSON(
 						namespacedHttpServletRequest, httpServletResponse,
 						JSONUtil.put(
 							"commentId", commentId
@@ -105,13 +105,13 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 				}
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteComment(namespacedHttpServletRequest);
+				_deleteComment(namespacedHttpServletRequest);
 			}
 			else if (cmd.equals(Constants.SUBSCRIBE_TO_COMMENTS)) {
-				subscribeToComments(namespacedHttpServletRequest, true);
+				_subscribeToComments(namespacedHttpServletRequest, true);
 			}
 			else if (cmd.equals(Constants.UNSUBSCRIBE_FROM_COMMENTS)) {
-				subscribeToComments(namespacedHttpServletRequest, false);
+				_subscribeToComments(namespacedHttpServletRequest, false);
 			}
 
 			String redirect = _portal.escapeRedirect(
@@ -129,14 +129,14 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 			jsonObject.putException(exception);
 
-			writeJSON(
+			_writeJSON(
 				namespacedHttpServletRequest, httpServletResponse, jsonObject);
 		}
 
 		return null;
 	}
 
-	protected void deleteComment(HttpServletRequest httpServletRequest)
+	private void _deleteComment(HttpServletRequest httpServletRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay =
@@ -153,7 +153,22 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		_commentManager.deleteComment(commentId);
 	}
 
-	protected void subscribeToComments(
+	private DiscussionPermission _getDiscussionPermission(
+			ThemeDisplay themeDisplay)
+		throws Exception {
+
+		DiscussionPermission discussionPermission =
+			_commentManager.getDiscussionPermission(
+				themeDisplay.getPermissionChecker());
+
+		if (discussionPermission == null) {
+			throw new PrincipalException("Discussion permission is null");
+		}
+
+		return discussionPermission;
+	}
+
+	private void _subscribeToComments(
 			HttpServletRequest httpServletRequest, boolean subscribe)
 		throws Exception {
 
@@ -186,7 +201,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		}
 	}
 
-	protected long updateComment(HttpServletRequest httpServletRequest)
+	private long _updateComment(HttpServletRequest httpServletRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay =
@@ -271,7 +286,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		return commentId;
 	}
 
-	protected void writeJSON(
+	private void _writeJSON(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, Object object)
 		throws IOException {
@@ -281,21 +296,6 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		ServletResponseUtil.write(httpServletResponse, object.toString());
 
 		httpServletResponse.flushBuffer();
-	}
-
-	private DiscussionPermission _getDiscussionPermission(
-			ThemeDisplay themeDisplay)
-		throws Exception {
-
-		DiscussionPermission discussionPermission =
-			_commentManager.getDiscussionPermission(
-				themeDisplay.getPermissionChecker());
-
-		if (discussionPermission == null) {
-			throw new PrincipalException("Discussion permission is null");
-		}
-
-		return discussionPermission;
 	}
 
 	@Reference

@@ -33,17 +33,27 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 
 	@Override
 	public void doUpgrade() throws UpgradeException {
-		updateCalEventClassName();
+		_updateCalEventClassName();
 
-		deleteRelatedAssetEntries();
+		_deleteRelatedAssetEntries();
 
-		deleteCalEventClassName();
-		deleteDuplicateResourcePermissions();
+		_deleteCalEventClassName();
+		_deleteDuplicateResourcePermissions();
 
 		super.doUpgrade();
 	}
 
-	protected void deleteCalEventClassName() throws UpgradeException {
+	@Override
+	protected String[][] getClassNames() {
+		return new String[0][0];
+	}
+
+	@Override
+	protected String[][] getResourceNames() {
+		return _RESOURCE_NAMES;
+	}
+
+	private void _deleteCalEventClassName() throws UpgradeException {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			runSQL(
 				"delete from Counter where name like '" +
@@ -82,9 +92,7 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 		}
 	}
 
-	protected void deleteDuplicateResourcePermissions()
-		throws UpgradeException {
-
+	private void _deleteDuplicateResourcePermissions() throws UpgradeException {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			try (PreparedStatement preparedStatement =
 					connection.prepareStatement(
@@ -115,7 +123,7 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 		}
 	}
 
-	protected void deleteRelatedAssetEntries() throws UpgradeException {
+	private void _deleteRelatedAssetEntries() throws UpgradeException {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select entryId from AssetEntry where classNameId = ?");
@@ -155,17 +163,7 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 		}
 	}
 
-	@Override
-	protected String[][] getClassNames() {
-		return new String[0][0];
-	}
-
-	@Override
-	protected String[][] getResourceNames() {
-		return _RESOURCE_NAMES;
-	}
-
-	protected void updateCalEventClassName() throws UpgradeException {
+	private void _updateCalEventClassName() throws UpgradeException {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement preparedStatement1 = connection.prepareStatement(
 				"select classNameId from ClassName_ where value like ?");

@@ -53,7 +53,14 @@ public class CalendarSAPEntryActivator {
 			new CalendarPortalInstanceLifecycleListener(), null);
 	}
 
-	protected void addSAPEntry(long companyId) throws PortalException {
+	@Deactivate
+	protected void deactivate() {
+		if (_serviceRegistration != null) {
+			_serviceRegistration.unregister();
+		}
+	}
+
+	private void _addSAPEntry(long companyId) throws PortalException {
 		SAPEntry sapEntry = _sapEntryLocalService.fetchSAPEntry(
 			companyId, _SAP_ENTRY_NAME);
 
@@ -76,13 +83,6 @@ public class CalendarSAPEntryActivator {
 			new ServiceContext());
 	}
 
-	@Deactivate
-	protected void deactivate() {
-		if (_serviceRegistration != null) {
-			_serviceRegistration.unregister();
-		}
-	}
-
 	private static final String _SAP_ENTRY_NAME = "CALENDAR_DEFAULT";
 
 	private static final Log _log = LogFactoryUtil.getLog(
@@ -102,7 +102,7 @@ public class CalendarSAPEntryActivator {
 
 		public void portalInstanceRegistered(Company company) throws Exception {
 			try {
-				addSAPEntry(company.getCompanyId());
+				_addSAPEntry(company.getCompanyId());
 			}
 			catch (PortalException portalException) {
 				_log.error(

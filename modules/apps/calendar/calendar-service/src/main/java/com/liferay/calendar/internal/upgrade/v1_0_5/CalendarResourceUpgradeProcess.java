@@ -56,10 +56,10 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeCalendarResourceUserIds();
+		_upgradeCalendarResourceUserIds();
 	}
 
-	protected long getCompanyAdminUserId(Company company)
+	private long _getCompanyAdminUserId(Company company)
 		throws PortalException {
 
 		Role role = RoleLocalServiceUtil.getRole(
@@ -106,7 +106,7 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 				company.getCompanyId());
 	}
 
-	protected void updateCalendarUserId(long calendarId, long userId)
+	private void _updateCalendarUserId(long calendarId, long userId)
 		throws SQLException {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
@@ -119,7 +119,7 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	protected void updateCalendarUserIds(
+	private void _updateCalendarUserIds(
 			long groupClassNameId, long defaultUserId, long adminUserId)
 		throws SQLException {
 
@@ -138,13 +138,13 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 				while (resultSet.next()) {
 					long calendarId = resultSet.getLong(1);
 
-					updateCalendarUserId(calendarId, adminUserId);
+					_updateCalendarUserId(calendarId, adminUserId);
 				}
 			}
 		}
 	}
 
-	protected void upgradeCalendarResourceUserId(
+	private void _upgradeCalendarResourceUserId(
 			long groupClassNameId, long defaultUserId, long companyAdminUserId)
 		throws SQLException {
 
@@ -160,7 +160,7 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	protected void upgradeCalendarResourceUserIds() throws Exception {
+	private void _upgradeCalendarResourceUserIds() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			_companyLocalService.forEachCompany(
 				company -> {
@@ -168,12 +168,12 @@ public class CalendarResourceUpgradeProcess extends UpgradeProcess {
 						Group.class);
 					long defaultUserId = _userLocalService.getDefaultUserId(
 						company.getCompanyId());
-					long companyAdminUserId = getCompanyAdminUserId(company);
+					long companyAdminUserId = _getCompanyAdminUserId(company);
 
-					updateCalendarUserIds(
+					_updateCalendarUserIds(
 						classNameId, defaultUserId, companyAdminUserId);
 
-					upgradeCalendarResourceUserId(
+					_upgradeCalendarResourceUserId(
 						classNameId, defaultUserId, companyAdminUserId);
 				});
 		}

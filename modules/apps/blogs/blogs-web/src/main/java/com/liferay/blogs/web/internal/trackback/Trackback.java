@@ -51,18 +51,18 @@ public class Trackback {
 		String className = BlogsEntry.class.getName();
 		long classPK = entry.getEntryId();
 
-		String body = buildBody(themeDisplay, excerpt, url);
+		String body = _buildBody(themeDisplay, excerpt, url);
 
 		long commentId = _commentManager.addComment(
 			userId, groupId, className, classPK, blogName, title, body,
 			serviceContextFunction);
 
-		String entryURL = buildEntryURL(entry, themeDisplay);
+		String entryURL = _buildEntryURL(entry, themeDisplay);
 
 		_linkbackConsumer.addNewTrackback(commentId, url, entryURL);
 	}
 
-	protected String buildBBCodeBody(
+	private String _buildBBCodeBody(
 		ThemeDisplay themeDisplay, String excerpt, String url) {
 
 		url = StringUtil.replace(
@@ -74,17 +74,17 @@ public class Trackback {
 			themeDisplay.translate("read-more"), "[/url]");
 	}
 
-	protected String buildBody(
+	private String _buildBody(
 		ThemeDisplay themeDisplay, String excerpt, String url) {
 
 		if (PropsValues.DISCUSSION_COMMENTS_FORMAT.equals("bbcode")) {
-			return buildBBCodeBody(themeDisplay, excerpt, url);
+			return _buildBBCodeBody(themeDisplay, excerpt, url);
 		}
 
-		return buildHTMLBody(themeDisplay, excerpt, url);
+		return _buildHTMLBody(themeDisplay, excerpt, url);
 	}
 
-	protected String buildEntryURL(BlogsEntry entry, ThemeDisplay themeDisplay)
+	private String _buildEntryURL(BlogsEntry entry, ThemeDisplay themeDisplay)
 		throws PortalException {
 
 		return StringBundler.concat(
@@ -92,7 +92,7 @@ public class Trackback {
 			Portal.FRIENDLY_URL_SEPARATOR, "blogs/", entry.getUrlTitle());
 	}
 
-	protected String buildHTMLBody(
+	private String _buildHTMLBody(
 		ThemeDisplay themeDisplay, String excerpt, String url) {
 
 		return StringBundler.concat(

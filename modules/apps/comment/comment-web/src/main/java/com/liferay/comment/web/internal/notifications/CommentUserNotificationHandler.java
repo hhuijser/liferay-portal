@@ -52,27 +52,9 @@ public class CommentUserNotificationHandler
 		setPortletId(CommentPortletKeys.COMMENT);
 	}
 
-	protected MBDiscussion fetchDiscussion(JSONObject jsonObject) {
-		long classPK = jsonObject.getLong("classPK");
-
-		try {
-			return _mbDiscussionLocalService.fetchDiscussion(classPK);
-		}
-		catch (SystemException systemException) {
-
-			// LPS-52675
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(systemException, systemException);
-			}
-
-			return null;
-		}
-	}
-
 	@Override
 	protected AssetRenderer<?> getAssetRenderer(JSONObject jsonObject) {
-		MBDiscussion mbDiscussion = fetchDiscussion(jsonObject);
+		MBDiscussion mbDiscussion = _fetchDiscussion(jsonObject);
 
 		if (mbDiscussion == null) {
 			return null;
@@ -112,7 +94,7 @@ public class CommentUserNotificationHandler
 		JSONObject jsonObject, AssetRenderer<?> assetRenderer,
 		ServiceContext serviceContext) {
 
-		MBDiscussion mbDiscussion = fetchDiscussion(jsonObject);
+		MBDiscussion mbDiscussion = _fetchDiscussion(jsonObject);
 
 		if (mbDiscussion == null) {
 			return null;
@@ -167,6 +149,24 @@ public class CommentUserNotificationHandler
 		}
 
 		return message;
+	}
+
+	private MBDiscussion _fetchDiscussion(JSONObject jsonObject) {
+		long classPK = jsonObject.getLong("classPK");
+
+		try {
+			return _mbDiscussionLocalService.fetchDiscussion(classPK);
+		}
+		catch (SystemException systemException) {
+
+			// LPS-52675
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(systemException, systemException);
+			}
+
+			return null;
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

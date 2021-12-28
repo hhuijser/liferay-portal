@@ -69,9 +69,9 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 		throws Exception {
 
 		try {
-			BlogsEntry entry = getBlogsEntry(actionRequest);
+			BlogsEntry entry = _getBlogsEntry(actionRequest);
 
-			validate(entry);
+			_validate(entry);
 
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
@@ -90,21 +90,21 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 			String title = ParamUtil.getString(
 				originalHttpServletRequest, "title");
 
-			validate(actionRequest, httpServletRequest.getRemoteAddr(), url);
+			_validate(actionRequest, httpServletRequest.getRemoteAddr(), url);
 
 			_trackback.addTrackback(
 				entry, themeDisplay, excerpt, url, blogName, title,
 				new ServiceContextFunction(actionRequest));
 		}
 		catch (TrackbackValidationException trackbackValidationException) {
-			sendError(
+			_sendError(
 				actionRequest, actionResponse,
 				trackbackValidationException.getMessage());
 
 			return;
 		}
 
-		sendSuccess(actionRequest, actionResponse);
+		_sendSuccess(actionRequest, actionResponse);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected BlogsEntry getBlogsEntry(ActionRequest actionRequest)
+	private BlogsEntry _getBlogsEntry(ActionRequest actionRequest)
 		throws Exception {
 
 		try {
@@ -139,7 +139,7 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected boolean isCommentsEnabled(ActionRequest actionRequest)
+	private boolean _isCommentsEnabled(ActionRequest actionRequest)
 		throws Exception {
 
 		PortletPreferences portletPreferences =
@@ -154,15 +154,15 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 			portletPreferences.getValue("enableComments", null), true);
 	}
 
-	protected void sendError(
+	private void _sendError(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			String msg)
 		throws Exception {
 
-		sendResponse(actionRequest, actionResponse, msg, false);
+		_sendResponse(actionRequest, actionResponse, msg, false);
 	}
 
-	protected void sendResponse(
+	private void _sendResponse(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			String msg, boolean success)
 		throws Exception {
@@ -196,18 +196,18 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 			s.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
 	}
 
-	protected void sendSuccess(
+	private void _sendSuccess(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		sendResponse(actionRequest, actionResponse, null, true);
+		_sendResponse(actionRequest, actionResponse, null, true);
 	}
 
-	protected void validate(
+	private void _validate(
 			ActionRequest actionRequest, String remoteIP, String url)
 		throws Exception {
 
-		if (!isCommentsEnabled(actionRequest)) {
+		if (!_isCommentsEnabled(actionRequest)) {
 			throw new TrackbackValidationException("Comments are disabled");
 		}
 
@@ -224,7 +224,7 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	protected void validate(BlogsEntry entry)
+	private void _validate(BlogsEntry entry)
 		throws TrackbackValidationException {
 
 		if (!entry.isAllowTrackbacks()) {

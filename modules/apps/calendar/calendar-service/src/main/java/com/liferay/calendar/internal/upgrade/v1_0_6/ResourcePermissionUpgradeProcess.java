@@ -52,16 +52,16 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeGuestResourceBlockPermissions();
+		_upgradeGuestResourceBlockPermissions();
 	}
 
-	protected List<String> getCalendarResourceUnsupportedActionIds()
+	private List<String> _getCalendarResourceUnsupportedActionIds()
 		throws PortalException {
 
 		List<String> actionIds = new ArrayList<>();
 
 		List<String> guestUnsupportedActions =
-			getModelResourceGuestUnsupportedActions();
+			_getModelResourceGuestUnsupportedActions();
 
 		for (String resourceActionId : _NEW_UNSUPPORTED_ACTION_IDS) {
 			if (guestUnsupportedActions.contains(resourceActionId)) {
@@ -76,7 +76,7 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 		return actionIds;
 	}
 
-	protected List<String> getModelResourceGuestUnsupportedActions()
+	private List<String> _getModelResourceGuestUnsupportedActions()
 		throws UpgradeException {
 
 		try {
@@ -98,9 +98,9 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 		}
 	}
 
-	protected void upgradeGuestResourceBlockPermissions() throws Exception {
+	private void _upgradeGuestResourceBlockPermissions() throws Exception {
 		List<String> unsupportedActionIds =
-			getCalendarResourceUnsupportedActionIds();
+			_getCalendarResourceUnsupportedActionIds();
 
 		if (unsupportedActionIds.isEmpty()) {
 			return;

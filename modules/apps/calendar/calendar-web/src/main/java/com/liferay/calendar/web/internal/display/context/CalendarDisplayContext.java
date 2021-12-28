@@ -114,7 +114,7 @@ public class CalendarDisplayContext {
 	}
 
 	public CreationMenu getCreationMenu() {
-		if (!isShowAddResourceButton()) {
+		if (!_isShowAddResourceButton()) {
 			return null;
 		}
 
@@ -216,13 +216,13 @@ public class CalendarDisplayContext {
 		return DropdownItemListBuilder.addGroup(
 			dropdownGroupItem -> {
 				dropdownGroupItem.setDropdownItems(
-					getFilterActiveDropdownItems());
+					_getFilterActiveDropdownItems());
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "active"));
 			}
 		).addGroup(
 			dropdownGroupItem -> {
-				dropdownGroupItem.setDropdownItems(getScopeDropdownItems());
+				dropdownGroupItem.setDropdownItems(_getScopeDropdownItems());
 				dropdownGroupItem.setLabel(
 					LanguageUtil.get(httpServletRequest, "scope"));
 			}
@@ -379,8 +379,8 @@ public class CalendarDisplayContext {
 				_renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM,
 				getPortletURL());
 
-		setCalendarResourceSearchResults(calendarResourceSearch);
-		setCalendarResourceSearchTotal(calendarResourceSearch);
+		_setCalendarResourceSearchResults(calendarResourceSearch);
+		_setCalendarResourceSearchTotal(calendarResourceSearch);
 
 		return calendarResourceSearch;
 	}
@@ -400,14 +400,14 @@ public class CalendarDisplayContext {
 	}
 
 	public boolean isDisabledManagementBar() {
-		if (hasResults() || isSearch()) {
+		if (_hasResults() || _isSearch()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	protected List<DropdownItem> getFilterActiveDropdownItems() {
+	private List<DropdownItem> _getFilterActiveDropdownItems() {
 		CalendarResourceDisplayTerms displayTerms =
 			new CalendarResourceDisplayTerms(_renderRequest);
 
@@ -428,7 +428,7 @@ public class CalendarDisplayContext {
 		).build();
 	}
 
-	protected List<DropdownItem> getScopeDropdownItems() {
+	private List<DropdownItem> _getScopeDropdownItems() {
 		CalendarResourceDisplayTerms displayTerms =
 			new CalendarResourceDisplayTerms(_renderRequest);
 
@@ -455,7 +455,7 @@ public class CalendarDisplayContext {
 		).build();
 	}
 
-	protected boolean hasResults() {
+	private boolean _hasResults() {
 		if (getTotalItems() > 0) {
 			return true;
 		}
@@ -463,7 +463,7 @@ public class CalendarDisplayContext {
 		return false;
 	}
 
-	protected boolean isSearch() {
+	private boolean _isSearch() {
 		if (Validator.isNotNull(getKeywords())) {
 			return true;
 		}
@@ -471,13 +471,13 @@ public class CalendarDisplayContext {
 		return false;
 	}
 
-	protected boolean isShowAddResourceButton() {
+	private boolean _isShowAddResourceButton() {
 		return CalendarPortletPermission.contains(
 			_themeDisplay.getPermissionChecker(),
 			_themeDisplay.getScopeGroupId(), CalendarActionKeys.ADD_RESOURCE);
 	}
 
-	protected void setCalendarResourceSearchResults(
+	private void _setCalendarResourceSearchResults(
 		CalendarResourceSearch calendarResourceSearch) {
 
 		CalendarResourceDisplayTerms displayTerms =
@@ -498,7 +498,7 @@ public class CalendarDisplayContext {
 		calendarResourceSearch.setResults(calendarResources);
 	}
 
-	protected void setCalendarResourceSearchTotal(
+	private void _setCalendarResourceSearchTotal(
 		CalendarResourceSearch calendarResourceSearch) {
 
 		CalendarResourceDisplayTerms displayTerms =

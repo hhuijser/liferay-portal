@@ -48,7 +48,7 @@ public class BlogsImagesFileEntryPermission {
 		_fileEntryModelResourcePermission = modelResourcePermission;
 	}
 
-	protected void unsetDLFileEntryModelResourcePermission(
+	private void _unsetDLFileEntryModelResourcePermission(
 		ModelResourcePermission<DLFileEntry> modelResourcePermission) {
 	}
 

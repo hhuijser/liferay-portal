@@ -258,7 +258,7 @@ public class AssetCategoriesNavigationDisplayContext {
 				WebKeys.THEME_DISPLAY);
 
 		String title = HtmlUtil.escape(
-			assetVocabulary._getTitle(themeDisplay.getLanguageId()));
+			assetVocabulary.getTitle(themeDisplay.getLanguageId()));
 
 		if (assetVocabulary.getGroupId() == themeDisplay.getCompanyGroupId()) {
 			title +=

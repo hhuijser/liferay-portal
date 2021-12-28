@@ -255,7 +255,7 @@ public class AssetVocabularyStagedModelDataHandler
 	private void _exportSettingsMetadata(
 			PortletDataContext portletDataContext, AssetVocabulary vocabulary,
 			Element vocabularyElement, Locale locale)
-		throws PortalException {
+		throws Exception {
 
 		String settingsMetadataPath = ExportImportPathUtil.getModelPath(
 			vocabulary, _SETTINGS_METADATA + ".json");
@@ -275,7 +275,7 @@ public class AssetVocabularyStagedModelDataHandler
 
 	private String _getImportSettings(
 			PortletDataContext portletDataContext, AssetVocabulary vocabulary)
-		throws PortalException {
+		throws Exception {
 
 		Element vocabularyElement = portletDataContext.getImportDataElement(
 			vocabulary);
@@ -305,7 +305,7 @@ public class AssetVocabularyStagedModelDataHandler
 
 	private JSONObject _getImportSettingsMetadataJSONObject(
 			PortletDataContext portletDataContext, Element vocabularyElement)
-		throws PortalException {
+		throws Exception {
 
 		String settingsMetadataPath = vocabularyElement.attributeValue(
 			_SETTINGS_METADATA);
@@ -336,7 +336,7 @@ public class AssetVocabularyStagedModelDataHandler
 
 	private Map<Locale, String> _getVocabularyTitleMap(
 			long groupId, AssetVocabulary vocabulary, String name)
-		throws PortalException {
+		throws Exception {
 
 		Map<Locale, String> titleMap = vocabulary.getTitleMap();
 

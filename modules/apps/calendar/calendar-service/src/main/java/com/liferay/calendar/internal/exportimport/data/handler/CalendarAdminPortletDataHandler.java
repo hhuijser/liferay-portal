@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -337,7 +336,7 @@ public class CalendarAdminPortletDataHandler extends BasePortletDataHandler {
 	private void _addSkipGuestCalendarResourceCriterion(
 			ActionableDynamicQuery actionableDynamicQuery,
 			PortletDataContext portletDataContext)
-		throws PortalException {
+		throws Exception {
 
 		CalendarResource guestCalendarResource =
 			CalendarResourceUtil.fetchGuestCalendarResource(

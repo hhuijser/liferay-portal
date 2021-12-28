@@ -14,7 +14,6 @@
 
 package com.liferay.calendar.internal.upgrade.v1_0_6;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ResourceAction;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.Role;
@@ -56,7 +55,7 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 	}
 
 	private List<String> _getCalendarResourceUnsupportedActionIds()
-		throws PortalException {
+		throws Exception {
 
 		List<String> actionIds = new ArrayList<>();
 
@@ -77,7 +76,7 @@ public class ResourcePermissionUpgradeProcess extends UpgradeProcess {
 	}
 
 	private List<String> _getModelResourceGuestUnsupportedActions()
-		throws UpgradeException {
+		throws Exception {
 
 		try {
 			ResourceActionsImpl resourceActionsImpl = new ResourceActionsImpl();

@@ -153,7 +153,6 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
-import javax.portlet.WindowStateException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -740,7 +739,7 @@ public class CalendarPortlet extends MVCPortlet {
 	private void _addCalendar(
 			PortletRequest portletRequest, Set<Calendar> calendarsSet,
 			long classNameId, long classPK)
-		throws PortalException {
+		throws Exception {
 
 		CalendarResource calendarResource =
 			CalendarResourceUtil.getCalendarResource(
@@ -1224,7 +1223,7 @@ public class CalendarPortlet extends MVCPortlet {
 
 	private String _getViewCalendarBookingURL(
 			ActionRequest actionRequest, CalendarBooking calendarBooking)
-		throws WindowStateException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

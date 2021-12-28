@@ -113,7 +113,7 @@ public class UpgradeEventsDisplayPortletId extends BasePortletIdUpgradeProcess {
 
 	private void _deleteResourcePermissions(
 			String oldRootPortletId, String newRootPortletId)
-		throws PortalException {
+		throws Exception {
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			_resourcePermissionLocalService.getActionableDynamicQuery();

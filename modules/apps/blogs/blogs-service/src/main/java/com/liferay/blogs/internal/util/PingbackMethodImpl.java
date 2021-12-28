@@ -46,8 +46,6 @@ import com.liferay.portal.kernel.xmlrpc.XmlRpcConstants;
 import com.liferay.portal.kernel.xmlrpc.XmlRpcUtil;
 import com.liferay.portal.util.PropsValues;
 
-import java.io.IOException;
-
 import java.net.InetAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
@@ -314,7 +312,7 @@ public class PingbackMethodImpl implements Method {
 		return entry;
 	}
 
-	private String _getExcerpt() throws IOException {
+	private String _getExcerpt() throws Exception {
 		String html = _http.URLtoString(_sourceURI);
 
 		Source source = new Source(html);

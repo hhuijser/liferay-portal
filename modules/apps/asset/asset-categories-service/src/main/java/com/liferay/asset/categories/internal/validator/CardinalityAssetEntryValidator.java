@@ -112,7 +112,7 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 				_portal.getClassName(classNameId));
 
 		if ((assetRendererFactory == null) ||
-			!assetRendererFactory._isCategorizable()) {
+			!assetRendererFactory.isCategorizable()) {
 
 			return false;
 		}
@@ -122,7 +122,7 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 				AssetRenderer<?> assetRenderer =
 					assetRendererFactory.getAssetRenderer(classPK);
 
-				if (!assetRenderer._isCategorizable(groupId)) {
+				if (!assetRenderer.isCategorizable(groupId)) {
 					return false;
 				}
 			}

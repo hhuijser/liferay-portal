@@ -483,7 +483,7 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _updateShippingInfo(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CPDefinition.class.getName(), actionRequest);
@@ -509,7 +509,7 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _updateTaxCategoryInfo(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long cpDefinitionId = ParamUtil.getLong(
 			actionRequest, "cpDefinitionId");
@@ -525,7 +525,7 @@ public class EditCPDefinitionMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _updateVisibility(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long cpDefinitionId = ParamUtil.getLong(
 			actionRequest, "cpDefinitionId");

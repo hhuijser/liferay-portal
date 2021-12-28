@@ -47,8 +47,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.io.IOException;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -178,7 +176,7 @@ public class CheckCPInstanceMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _writeJSON(ActionResponse actionResponse, Object object)
-		throws IOException {
+		throws Exception {
 
 		HttpServletResponse httpServletResponse =
 			_portal.getHttpServletResponse(actionResponse);

@@ -35,7 +35,6 @@ import com.liferay.commerce.util.CommerceShippingHelper;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
@@ -192,7 +191,7 @@ public class ShippingMethodCommerceCheckoutStep
 			CommerceContext commerceContext, CommerceOrder commerceOrder,
 			long commerceShippingMethodId, String shippingOptionName,
 			Locale locale)
-		throws PortalException {
+		throws Exception {
 
 		CommerceShippingMethod commerceShippingMethod =
 			_commerceShippingMethodLocalService.getCommerceShippingMethod(

@@ -140,7 +140,7 @@ public class UpgradePortletPreferences
 		DDMStructure ddmStructure = _ddmStructureLocalService.getStructure(
 			structureId);
 
-		ddmForm = ddmStructure._getDDMForm();
+		ddmForm = ddmStructure.getDDMForm();
 
 		_ddmSructureDDMForms.put(structureId, ddmForm);
 

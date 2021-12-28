@@ -199,7 +199,7 @@ public class DefaultAssetPublisherCustomizer
 			return StringPool.BLANK;
 		}
 
-		return portletConfig._getPortletName();
+		return portletConfig.getPortletName();
 	}
 
 }

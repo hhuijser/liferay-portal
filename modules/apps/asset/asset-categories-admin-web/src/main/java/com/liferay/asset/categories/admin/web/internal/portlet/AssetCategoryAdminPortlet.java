@@ -203,7 +203,7 @@ public class AssetCategoryAdminPortlet extends MVCPortlet {
 			// Update category
 
 			List<AssetCategoryProperty> categoryProperties =
-				_assetCategoryPropertyLocalService._getCategoryProperties(
+				_assetCategoryPropertyLocalService.getCategoryProperties(
 					categoryId);
 
 			String[] categoryPropertiesArray = _getCategoryProperties(

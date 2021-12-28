@@ -561,7 +561,7 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 		throws Exception {
 
 		AssetEntryQuery assetEntryQuery =
-			assetPublisherHelper._getAssetEntryQuery(
+			assetPublisherHelper.getAssetEntryQuery(
 				portletPreferences, groupId, layout, null, null);
 
 		long[] classNameIds = assetPublisherHelper.getClassNameIds(

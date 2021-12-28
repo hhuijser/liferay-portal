@@ -73,7 +73,7 @@ public class AssetEntrySAPEntryActivator {
 			LanguageResources.PORTAL_RESOURCE_BUNDLE_LOADER,
 			"service-access-policy-entry-default-asset-entry-title");
 
-		_sapEntryLocalService._addSAPEntry(
+		_sapEntryLocalService.addSAPEntry(
 			_userLocalService.getDefaultUserId(companyId),
 			allowedServiceSignatures, true, true, _SAP_ENTRY_NAME, titleMap,
 			new ServiceContext());

@@ -220,7 +220,7 @@ public class AssetRSSHelper {
 				assetPublisherDisplayContext.getClassNameIds(), attributes);
 
 		for (AssetEntryResult assetEntryResult : assetEntryResults) {
-			assetEntries.addAll(assetEntryResult._getAssetEntries());
+			assetEntries.addAll(assetEntryResult.getAssetEntries());
 		}
 
 		return assetEntries;

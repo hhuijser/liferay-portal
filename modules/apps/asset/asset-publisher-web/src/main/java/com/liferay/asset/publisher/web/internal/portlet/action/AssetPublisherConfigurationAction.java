@@ -431,7 +431,7 @@ public class AssetPublisherConfigurationAction
 			actionRequest, "assetEntryType");
 
 		for (long assetEntryId : assetEntryIds) {
-			assetPublisherWebHelper._addSelection(
+			assetPublisherWebHelper.addSelection(
 				preferences, assetEntryId, assetEntryOrder, assetEntryType);
 		}
 	}

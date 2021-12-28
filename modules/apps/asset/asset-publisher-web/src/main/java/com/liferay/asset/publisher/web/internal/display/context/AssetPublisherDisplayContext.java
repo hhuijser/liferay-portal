@@ -403,7 +403,7 @@ public class AssetPublisherDisplayContext {
 
 		_assetEntryQuery.setEnablePermissions(isEnablePermissions());
 
-		configureSubtypeFieldFilter(
+		_configureSubtypeFieldFilter(
 			_assetEntryQuery, _themeDisplay.getSiteDefaultLocale());
 
 		_assetEntryQuery.setPaginationType(getPaginationType());
@@ -789,7 +789,7 @@ public class AssetPublisherDisplayContext {
 			return _ddmStructureDisplayFieldValue;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureDisplayFieldValue;
 	}
@@ -799,7 +799,7 @@ public class AssetPublisherDisplayContext {
 			return _ddmStructureFieldLabel;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureFieldLabel;
 	}
@@ -809,7 +809,7 @@ public class AssetPublisherDisplayContext {
 			return _ddmStructureFieldName;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureFieldName;
 	}
@@ -819,7 +819,7 @@ public class AssetPublisherDisplayContext {
 			return _ddmStructureFieldValue;
 		}
 
-		setDDMStructure();
+		_setDDMStructure();
 
 		return _ddmStructureFieldValue;
 	}
@@ -1950,7 +1950,7 @@ public class AssetPublisherDisplayContext {
 		_selectionStyle = selectionStyle;
 	}
 
-	protected void configureSubtypeFieldFilter(
+	private void _configureSubtypeFieldFilter(
 			AssetEntryQuery assetEntryQuery, Locale locale)
 		throws Exception {
 
@@ -1986,55 +1986,6 @@ public class AssetPublisherDisplayContext {
 
 		assetEntryQuery.setAttribute(
 			"ddmStructureFieldValue", getDDMStructureFieldValue());
-	}
-
-	protected void setDDMStructure() throws Exception {
-		_ddmStructureDisplayFieldValue = StringPool.BLANK;
-		_ddmStructureFieldLabel = StringPool.BLANK;
-		_ddmStructureFieldName = StringPool.BLANK;
-		_ddmStructureFieldValue = null;
-
-		long[] classNameIds = getClassNameIds();
-		long[] classTypeIds = getClassTypeIds();
-
-		if (!isSubtypeFieldsFilterEnabled() || (classNameIds.length != 1) ||
-			(classTypeIds.length != 1)) {
-
-			return;
-		}
-
-		_ddmStructureDisplayFieldValue = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureDisplayFieldValue",
-			_portletPreferences.getValue(
-				"ddmStructureDisplayFieldValue", StringPool.BLANK));
-
-		_ddmStructureFieldName = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureFieldName",
-			_portletPreferences.getValue(
-				"ddmStructureFieldName", StringPool.BLANK));
-		_ddmStructureFieldValue = ParamUtil.getString(
-			_httpServletRequest, "ddmStructureFieldValue",
-			_portletPreferences.getValue(
-				"ddmStructureFieldValue", StringPool.BLANK));
-
-		if (Validator.isNotNull(_ddmStructureFieldName) &&
-			Validator.isNotNull(_ddmStructureFieldValue)) {
-
-			AssetRendererFactory<?> assetRendererFactory =
-				AssetRendererFactoryRegistryUtil.
-					getAssetRendererFactoryByClassNameId(classNameIds[0]);
-
-			ClassTypeReader classTypeReader =
-				assetRendererFactory.getClassTypeReader();
-
-			ClassType classType = classTypeReader.getClassType(
-				classTypeIds[0], _themeDisplay.getLocale());
-
-			ClassTypeField classTypeField = classType.getClassTypeField(
-				_ddmStructureFieldName);
-
-			_ddmStructureFieldLabel = classTypeField.getLabel();
-		}
 	}
 
 	private List<AssetCategory> _filterAssetCategories(long[] categoryIds) {
@@ -2129,6 +2080,55 @@ public class AssetPublisherDisplayContext {
 		}
 
 		return assetTagNames;
+	}
+
+	private void _setDDMStructure() throws Exception {
+		_ddmStructureDisplayFieldValue = StringPool.BLANK;
+		_ddmStructureFieldLabel = StringPool.BLANK;
+		_ddmStructureFieldName = StringPool.BLANK;
+		_ddmStructureFieldValue = null;
+
+		long[] classNameIds = getClassNameIds();
+		long[] classTypeIds = getClassTypeIds();
+
+		if (!isSubtypeFieldsFilterEnabled() || (classNameIds.length != 1) ||
+			(classTypeIds.length != 1)) {
+
+			return;
+		}
+
+		_ddmStructureDisplayFieldValue = ParamUtil.getString(
+			_httpServletRequest, "ddmStructureDisplayFieldValue",
+			_portletPreferences.getValue(
+				"ddmStructureDisplayFieldValue", StringPool.BLANK));
+
+		_ddmStructureFieldName = ParamUtil.getString(
+			_httpServletRequest, "ddmStructureFieldName",
+			_portletPreferences.getValue(
+				"ddmStructureFieldName", StringPool.BLANK));
+		_ddmStructureFieldValue = ParamUtil.getString(
+			_httpServletRequest, "ddmStructureFieldValue",
+			_portletPreferences.getValue(
+				"ddmStructureFieldValue", StringPool.BLANK));
+
+		if (Validator.isNotNull(_ddmStructureFieldName) &&
+			Validator.isNotNull(_ddmStructureFieldValue)) {
+
+			AssetRendererFactory<?> assetRendererFactory =
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassNameId(classNameIds[0]);
+
+			ClassTypeReader classTypeReader =
+				assetRendererFactory.getClassTypeReader();
+
+			ClassType classType = classTypeReader.getClassType(
+				classTypeIds[0], _themeDisplay.getLocale());
+
+			ClassTypeField classTypeField = classType.getClassTypeField(
+				_ddmStructureFieldName);
+
+			_ddmStructureFieldLabel = classTypeField.getLabel();
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

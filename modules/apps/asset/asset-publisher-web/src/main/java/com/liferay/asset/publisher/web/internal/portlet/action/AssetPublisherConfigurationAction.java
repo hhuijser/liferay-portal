@@ -234,9 +234,9 @@ public class AssetPublisherConfigurationAction
 					validateEmailFrom(actionRequest);
 				}
 
-				updateSelectionStyle(actionRequest);
+				_updateSelectionStyle(actionRequest);
 
-				updateDisplaySettings(actionRequest);
+				_updateDisplaySettings(actionRequest);
 
 				String selectionStyle = getParameter(
 					actionRequest, "selectionStyle");
@@ -249,10 +249,10 @@ public class AssetPublisherConfigurationAction
 				if (selectionStyle.equals(
 						AssetPublisherSelectionStyleConstants.TYPE_DYNAMIC)) {
 
-					updateQueryLogic(actionRequest, preferences);
+					_updateQueryLogic(actionRequest, preferences);
 				}
 
-				updateDefaultAssetPublisher(actionRequest);
+				_updateDefaultAssetPublisher(actionRequest);
 
 				super.processAction(
 					portletConfig, actionRequest, actionResponse);
@@ -271,28 +271,28 @@ public class AssetPublisherConfigurationAction
 		}
 		else {
 			if (cmd.equals("add-scope")) {
-				addScope(actionRequest, preferences);
+				_addScope(actionRequest, preferences);
 			}
 			else if (cmd.equals("add-selection")) {
-				addSelection(actionRequest, preferences);
+				_addSelection(actionRequest, preferences);
 			}
 			else if (cmd.equals("move-selection-down")) {
-				moveSelectionDown(actionRequest, preferences);
+				_moveSelectionDown(actionRequest, preferences);
 			}
 			else if (cmd.equals("move-selection-up")) {
-				moveSelectionUp(actionRequest, preferences);
+				_moveSelectionUp(actionRequest, preferences);
 			}
 			else if (cmd.equals("remove-selection")) {
-				removeSelection(actionRequest, preferences);
+				_removeSelection(actionRequest, preferences);
 			}
 			else if (cmd.equals("remove-scope")) {
-				removeScope(actionRequest, preferences);
+				_removeScope(actionRequest, preferences);
 			}
 			else if (cmd.equals("select-scope")) {
-				setScopes(actionRequest, preferences);
+				_setScopes(actionRequest, preferences);
 			}
 			else if (cmd.equals("selection-style")) {
-				setSelectionStyle(actionRequest, preferences);
+				_setSelectionStyle(actionRequest, preferences);
 			}
 
 			if (SessionErrors.isEmpty(actionRequest)) {
@@ -338,7 +338,58 @@ public class AssetPublisherConfigurationAction
 			AssetPublisherWebConfiguration.class, properties);
 	}
 
-	protected void addScope(
+	@Reference
+	protected AssetEntryActionRegistry assetEntryActionRegistry;
+
+	@Reference
+	protected AssetHelper assetHelper;
+
+	@Reference
+	protected AssetListAssetEntryProvider assetListAssetEntryProvider;
+
+	@Reference
+	protected AssetPublisherCustomizerRegistry assetPublisherCustomizerRegistry;
+
+	@Reference
+	protected AssetPublisherHelper assetPublisherHelper;
+
+	protected volatile AssetPublisherWebConfiguration
+		assetPublisherWebConfiguration;
+
+	@Reference
+	protected AssetPublisherWebHelper assetPublisherWebHelper;
+
+	@Reference
+	protected AssetTagLocalService assetTagLocalService;
+
+	@Reference
+	protected GroupLocalService groupLocalService;
+
+	@Reference
+	protected InfoItemServiceTracker infoItemServiceTracker;
+
+	@Reference
+	protected ItemSelector itemSelector;
+
+	@Reference
+	protected LayoutLocalService layoutLocalService;
+
+	@Reference
+	protected LayoutRevisionLocalService layoutRevisionLocalService;
+
+	@Reference
+	protected Portal portal;
+
+	@Reference
+	protected RequestContextMapper requestContextMapper;
+
+	@Reference
+	protected SegmentsEntryRetriever segmentsEntryRetriever;
+
+	@Reference
+	protected Staging staging;
+
+	private void _addScope(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -359,7 +410,7 @@ public class AssetPublisherConfigurationAction
 		String scopeId = assetPublisherHelper.getScopeId(
 			selectedGroup, themeDisplay.getScopeGroupId());
 
-		checkPermission(actionRequest, scopeId);
+		_checkPermission(actionRequest, scopeId);
 
 		if (!ArrayUtil.contains(scopeIds, scopeId)) {
 			scopeIds = ArrayUtil.append(scopeIds, scopeId);
@@ -368,7 +419,7 @@ public class AssetPublisherConfigurationAction
 		preferences.setValues("scopeIds", scopeIds);
 	}
 
-	protected void addSelection(
+	private void _addSelection(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -385,7 +436,7 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void checkPermission(ActionRequest actionRequest, String scopeId)
+	private void _checkPermission(ActionRequest actionRequest, String scopeId)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -400,7 +451,7 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected String getAssetClassName(
+	private String _getAssetClassName(
 		ActionRequest actionRequest, String[] classNameIds) {
 
 		String anyAssetTypeString = getParameter(actionRequest, "anyAssetType");
@@ -428,10 +479,25 @@ public class AssetPublisherConfigurationAction
 		return assetPublisherWebHelper.getClassName(assetRendererFactory);
 	}
 
-	protected String[] getClassTypeIds(
+	private AssetPublisherPortletInstanceConfiguration
+			_getAssetPublisherPortletInstanceConfiguration(
+				HttpServletRequest httpServletRequest)
+		throws ConfigurationException {
+
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		return portletDisplay.getPortletInstanceConfiguration(
+			AssetPublisherPortletInstanceConfiguration.class);
+	}
+
+	private String[] _getClassTypeIds(
 		ActionRequest actionRequest, String[] classNameIds) {
 
-		String assetClassName = getAssetClassName(actionRequest, classNameIds);
+		String assetClassName = _getAssetClassName(actionRequest, classNameIds);
 
 		if (assetClassName == null) {
 			return null;
@@ -458,7 +524,7 @@ public class AssetPublisherConfigurationAction
 			getParameter(actionRequest, "classTypeIds" + assetClassName));
 	}
 
-	protected AssetQueryRule getQueryRule(
+	private AssetQueryRule _getQueryRule(
 		ActionRequest actionRequest, int index) {
 
 		boolean contains = ParamUtil.getBoolean(
@@ -492,10 +558,10 @@ public class AssetPublisherConfigurationAction
 		return new AssetQueryRule(contains, andOperator, name, values);
 	}
 
-	protected boolean getSubtypeFieldsFilterEnabled(
+	private boolean _getSubtypeFieldsFilterEnabled(
 		ActionRequest actionRequest, String[] classNameIds) {
 
-		String assetClassName = getAssetClassName(actionRequest, classNameIds);
+		String assetClassName = _getAssetClassName(actionRequest, classNameIds);
 
 		if (assetClassName == null) {
 			return false;
@@ -506,7 +572,7 @@ public class AssetPublisherConfigurationAction
 				actionRequest, "subtypeFieldsFilterEnabled" + assetClassName));
 	}
 
-	protected void moveSelectionDown(
+	private void _moveSelectionDown(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -530,7 +596,7 @@ public class AssetPublisherConfigurationAction
 		preferences.setValues("assetEntryXml", manualEntries);
 	}
 
-	protected void moveSelectionUp(
+	private void _moveSelectionUp(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -554,7 +620,7 @@ public class AssetPublisherConfigurationAction
 		preferences.setValues("assetEntryXml", manualEntries);
 	}
 
-	protected void removeScope(
+	private void _removeScope(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -580,7 +646,7 @@ public class AssetPublisherConfigurationAction
 		preferences.setValues("scopeIds", scopeIds);
 	}
 
-	protected void removeSelection(
+	private void _removeSelection(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -608,7 +674,7 @@ public class AssetPublisherConfigurationAction
 		preferences.setValues("assetEntryXml", newEntries);
 	}
 
-	protected void setScopes(
+	private void _setScopes(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -618,7 +684,7 @@ public class AssetPublisherConfigurationAction
 		preferences.setValues("scopeIds", scopeIds);
 	}
 
-	protected void setSelectionStyle(
+	private void _setSelectionStyle(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -647,7 +713,7 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void updateDefaultAssetPublisher(ActionRequest actionRequest)
+	private void _updateDefaultAssetPublisher(ActionRequest actionRequest)
 		throws Exception {
 
 		boolean defaultAssetPublisher = ParamUtil.getBoolean(
@@ -716,11 +782,11 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void updateDisplaySettings(ActionRequest actionRequest) {
+	private void _updateDisplaySettings(ActionRequest actionRequest) {
 		String[] classNameIds = StringUtil.split(
 			getParameter(actionRequest, "classNameIds"));
 
-		String[] classTypeIds = getClassTypeIds(actionRequest, classNameIds);
+		String[] classTypeIds = _getClassTypeIds(actionRequest, classNameIds);
 
 		String[] extensions = actionRequest.getParameterValues("extensions");
 
@@ -730,7 +796,7 @@ public class AssetPublisherConfigurationAction
 			extensions = new String[0];
 		}
 
-		boolean subtypeFieldsFilterEnabled = getSubtypeFieldsFilterEnabled(
+		boolean subtypeFieldsFilterEnabled = _getSubtypeFieldsFilterEnabled(
 			actionRequest, classNameIds);
 
 		setPreference(actionRequest, "classNameIds", classNameIds);
@@ -741,7 +807,7 @@ public class AssetPublisherConfigurationAction
 			String.valueOf(subtypeFieldsFilterEnabled));
 	}
 
-	protected void updateQueryLogic(
+	private void _updateQueryLogic(
 			ActionRequest actionRequest, PortletPreferences preferences)
 		throws Exception {
 
@@ -759,10 +825,10 @@ public class AssetPublisherConfigurationAction
 		List<AssetQueryRule> queryRules = new ArrayList<>();
 
 		for (int queryRulesIndex : queryRulesIndexes) {
-			AssetQueryRule queryRule = getQueryRule(
+			AssetQueryRule queryRule = _getQueryRule(
 				actionRequest, queryRulesIndex);
 
-			validateQueryRule(userId, groupId, queryRules, queryRule);
+			_validateQueryRule(userId, groupId, queryRules, queryRule);
 
 			queryRules.add(queryRule);
 
@@ -797,7 +863,7 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void updateSelectionStyle(ActionRequest actionRequest) {
+	private void _updateSelectionStyle(ActionRequest actionRequest) {
 		String selectionStyle = getParameter(actionRequest, "selectionStyle");
 
 		if (Validator.isNull(selectionStyle)) {
@@ -807,7 +873,7 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void validateQueryRule(
+	private void _validateQueryRule(
 			long userId, long groupId, List<AssetQueryRule> queryRules,
 			AssetQueryRule queryRule)
 		throws Exception {
@@ -824,72 +890,6 @@ public class AssetPublisherConfigurationAction
 				queryRule.isContains(), queryRule.isAndOperator(),
 				queryRule.getName());
 		}
-	}
-
-	@Reference
-	protected AssetEntryActionRegistry assetEntryActionRegistry;
-
-	@Reference
-	protected AssetHelper assetHelper;
-
-	@Reference
-	protected AssetListAssetEntryProvider assetListAssetEntryProvider;
-
-	@Reference
-	protected AssetPublisherCustomizerRegistry assetPublisherCustomizerRegistry;
-
-	@Reference
-	protected AssetPublisherHelper assetPublisherHelper;
-
-	protected volatile AssetPublisherWebConfiguration
-		assetPublisherWebConfiguration;
-
-	@Reference
-	protected AssetPublisherWebHelper assetPublisherWebHelper;
-
-	@Reference
-	protected AssetTagLocalService assetTagLocalService;
-
-	@Reference
-	protected GroupLocalService groupLocalService;
-
-	@Reference
-	protected InfoItemServiceTracker infoItemServiceTracker;
-
-	@Reference
-	protected ItemSelector itemSelector;
-
-	@Reference
-	protected LayoutLocalService layoutLocalService;
-
-	@Reference
-	protected LayoutRevisionLocalService layoutRevisionLocalService;
-
-	@Reference
-	protected Portal portal;
-
-	@Reference
-	protected RequestContextMapper requestContextMapper;
-
-	@Reference
-	protected SegmentsEntryRetriever segmentsEntryRetriever;
-
-	@Reference
-	protected Staging staging;
-
-	private AssetPublisherPortletInstanceConfiguration
-			_getAssetPublisherPortletInstanceConfiguration(
-				HttpServletRequest httpServletRequest)
-		throws ConfigurationException {
-
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		return portletDisplay.getPortletInstanceConfiguration(
-			AssetPublisherPortletInstanceConfiguration.class);
 	}
 
 }

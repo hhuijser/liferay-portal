@@ -93,7 +93,7 @@ public class StagedAssetLinkStagedModelRepository
 		throws PortalException {
 
 		StagedAssetLink stagedAssetLink = fetchExistingAssetLink(
-			groupId, parseAssetEntry1Uuid(uuid), parseAssetEntry2Uuid(uuid));
+			groupId, _parseAssetEntry1Uuid(uuid), _parseAssetEntry2Uuid(uuid));
 
 		if (stagedAssetLink != null) {
 			deleteStagedModel(stagedAssetLink);
@@ -121,7 +121,7 @@ public class StagedAssetLinkStagedModelRepository
 			return null;
 		}
 
-		DynamicQuery dynamicQuery = getAssetLinkDynamicQuery(
+		DynamicQuery dynamicQuery = _getAssetLinkDynamicQuery(
 			assetEntry1.getEntryId(), assetEntry2.getEntryId());
 
 		List<AssetLink> assetLinks = _assetLinkLocalService.dynamicQuery(
@@ -146,9 +146,9 @@ public class StagedAssetLinkStagedModelRepository
 	public List<StagedAssetLink> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		DynamicQuery dynamicQuery = getAssetLinkDynamicQuery(
-			companyId, 0, parseAssetEntry1Uuid(uuid),
-			parseAssetEntry2Uuid(uuid));
+		DynamicQuery dynamicQuery = _getAssetLinkDynamicQuery(
+			companyId, 0, _parseAssetEntry1Uuid(uuid),
+			_parseAssetEntry2Uuid(uuid));
 
 		dynamicQuery.addOrder(OrderFactoryUtil.desc("linkId"));
 
@@ -208,7 +208,7 @@ public class StagedAssetLinkStagedModelRepository
 			assetLink, AssetLink.class, StagedAssetLink.class);
 	}
 
-	protected DynamicQuery getAssetLinkDynamicQuery(
+	private DynamicQuery _getAssetLinkDynamicQuery(
 		long entryId1, long entryId2) {
 
 		DynamicQuery dynamicQuery = _assetLinkLocalService.dynamicQuery();
@@ -224,7 +224,7 @@ public class StagedAssetLinkStagedModelRepository
 		return dynamicQuery;
 	}
 
-	protected DynamicQuery getAssetLinkDynamicQuery(
+	private DynamicQuery _getAssetLinkDynamicQuery(
 		long companyId, long groupId, String assetEntry1Uuid,
 		String assetEntry2Uuid) {
 
@@ -290,11 +290,11 @@ public class StagedAssetLinkStagedModelRepository
 		return dynamicQuery;
 	}
 
-	protected String parseAssetEntry1Uuid(String uuid) {
+	private String _parseAssetEntry1Uuid(String uuid) {
 		return uuid.substring(0, uuid.indexOf(StringPool.POUND));
 	}
 
-	protected String parseAssetEntry2Uuid(String uuid) {
+	private String _parseAssetEntry2Uuid(String uuid) {
 		return uuid.substring(uuid.indexOf(StringPool.POUND) + 1);
 	}
 

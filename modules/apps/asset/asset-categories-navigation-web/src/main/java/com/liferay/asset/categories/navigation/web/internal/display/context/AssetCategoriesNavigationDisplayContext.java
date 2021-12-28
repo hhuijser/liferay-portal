@@ -252,7 +252,7 @@ public class AssetCategoriesNavigationDisplayContext {
 		return _displayStyleGroupId;
 	}
 
-	protected String getTitle(AssetVocabulary assetVocabulary) {
+	private String _getTitle(AssetVocabulary assetVocabulary) {
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -271,7 +271,7 @@ public class AssetCategoriesNavigationDisplayContext {
 	private KeyValuePair _toKeyValuePair(AssetVocabulary assetVocabulary) {
 		return new KeyValuePair(
 			String.valueOf(assetVocabulary.getVocabularyId()),
-			getTitle(assetVocabulary));
+			_getTitle(assetVocabulary));
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

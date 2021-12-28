@@ -54,22 +54,22 @@ public class AssetVocabularySettingsImportHelper
 	}
 
 	public void updateSettings() {
-		fillClassNameIdsAndClassTypePKs(
+		_fillClassNameIdsAndClassTypePKs(
 			getClassNameIdsAndClassTypePKs(), false);
 
-		fillClassNameIdsAndClassTypePKs(
+		_fillClassNameIdsAndClassTypePKs(
 			getRequiredClassNameIdsAndClassTypePKs(), true);
 
 		setClassNameIdsAndClassTypePKs(
 			_classNameIds, _classTypePKs, _requireds);
 	}
 
-	protected boolean existClassName(long classNameId) {
+	private boolean _existClassName(long classNameId) {
 		if (classNameId == AssetCategoryConstants.ALL_CLASS_NAME_ID) {
 			return false;
 		}
 
-		JSONObject metadataJSONObject = getMetadataJSONObject(classNameId);
+		JSONObject metadataJSONObject = _getMetadataJSONObject(classNameId);
 
 		String className = metadataJSONObject.getString("className");
 
@@ -84,23 +84,23 @@ public class AssetVocabularySettingsImportHelper
 		return false;
 	}
 
-	protected void fillClassNameIdsAndClassTypePKs(
+	private void _fillClassNameIdsAndClassTypePKs(
 		String[] classNameIdsAndClassTypePKs, boolean required) {
 
 		for (String classNameIdAndClassTypePK : classNameIdsAndClassTypePKs) {
 			long oldClassNameId = getClassNameId(classNameIdAndClassTypePK);
 
-			if (!existClassName(oldClassNameId)) {
+			if (!_existClassName(oldClassNameId)) {
 				continue;
 			}
 
-			long newClassNameId = getNewClassNameId(oldClassNameId);
+			long newClassNameId = _getNewClassNameId(oldClassNameId);
 
 			_classNameIds = ArrayUtil.append(_classNameIds, newClassNameId);
 
 			long oldClassTypePK = getClassTypePK(classNameIdAndClassTypePK);
 
-			long newClassTypePK = getNewClassTypePK(
+			long newClassTypePK = _getNewClassTypePK(
 				oldClassNameId, newClassNameId, oldClassTypePK);
 
 			_classTypePKs = ArrayUtil.append(_classTypePKs, newClassTypePK);
@@ -109,24 +109,24 @@ public class AssetVocabularySettingsImportHelper
 		}
 	}
 
-	protected JSONObject getMetadataJSONObject(long classNameId) {
+	private JSONObject _getMetadataJSONObject(long classNameId) {
 		return _settingsMetadataJSONObject.getJSONObject(
 			String.valueOf(classNameId));
 	}
 
-	protected long getNewClassNameId(long classNameId) {
+	private long _getNewClassNameId(long classNameId) {
 		if (classNameId == AssetCategoryConstants.ALL_CLASS_NAME_ID) {
 			return AssetCategoryConstants.ALL_CLASS_NAME_ID;
 		}
 
-		JSONObject metadataJSONObject = getMetadataJSONObject(classNameId);
+		JSONObject metadataJSONObject = _getMetadataJSONObject(classNameId);
 
 		String className = metadataJSONObject.getString("className");
 
 		return _classNameLocalService.getClassNameId(className);
 	}
 
-	protected long getNewClassTypePK(
+	private long _getNewClassTypePK(
 		long oldClassNameId, long newClassNameId, long oldClassTypePK) {
 
 		if (oldClassTypePK == AssetCategoryConstants.ALL_CLASS_TYPE_PK) {
@@ -143,7 +143,7 @@ public class AssetVocabularySettingsImportHelper
 		List<ClassType> availableClassTypes =
 			classTypeReader.getAvailableClassTypes(_groupIds, _locale);
 
-		JSONObject metadataJSONObject = getMetadataJSONObject(oldClassNameId);
+		JSONObject metadataJSONObject = _getMetadataJSONObject(oldClassNameId);
 
 		JSONObject classTypesJSONObject = metadataJSONObject.getJSONObject(
 			"classTypes");

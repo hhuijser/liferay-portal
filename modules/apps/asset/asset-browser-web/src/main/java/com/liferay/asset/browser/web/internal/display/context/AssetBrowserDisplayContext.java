@@ -462,7 +462,7 @@ public class AssetBrowserDisplayContext {
 			return _orderByCol;
 		}
 
-		if (isSearch()) {
+		if (_isSearch()) {
 			_orderByCol = ParamUtil.getString(
 				_httpServletRequest, "orderByCol", "relevance");
 
@@ -489,16 +489,6 @@ public class AssetBrowserDisplayContext {
 			_httpServletRequest, AssetBrowserPortletKeys.ASSET_BROWSER, "asc");
 
 		return _orderByType;
-	}
-
-	protected boolean isSearch() {
-		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE ||
-			Validator.isNull(_getKeywords())) {
-
-			return false;
-		}
-
-		return true;
 	}
 
 	private long[] _getClassNameIds() {
@@ -611,6 +601,16 @@ public class AssetBrowserDisplayContext {
 		}
 
 		return statuses;
+	}
+
+	private boolean _isSearch() {
+		if (AssetBrowserWebConfigurationValues.SEARCH_WITH_DATABASE ||
+			Validator.isNull(_getKeywords())) {
+
+			return false;
+		}
+
+		return true;
 	}
 
 	private boolean _isShowNonindexable() {

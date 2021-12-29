@@ -137,10 +137,6 @@ public class FormatSourceTask extends JavaExec {
 		return _sourceFormatterArgs.isShowDocumentation();
 	}
 
-	public boolean isShowStatusUpdates() {
-		return _sourceFormatterArgs.isShowStatusUpdates();
-	}
-
 	public boolean isValidateCommitMessages() {
 		return _sourceFormatterArgs.isValidateCommitMessages();
 	}
@@ -238,10 +234,6 @@ public class FormatSourceTask extends JavaExec {
 		_sourceFormatterArgs.setShowDocumentation(showDocumentation);
 	}
 
-	public void setShowStatusUpdates(boolean showStatusUpdates) {
-		_sourceFormatterArgs.setShowStatusUpdates(showStatusUpdates);
-	}
-
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
 	}
@@ -258,7 +250,6 @@ public class FormatSourceTask extends JavaExec {
 		args.add("processor.thread.count=" + getProcessorThreadCount());
 		args.add("show.debug.information=" + isShowDebugInformation());
 		args.add("show.documentation=" + isShowDocumentation());
-		args.add("show.status.updates=" + isShowStatusUpdates());
 		args.add("source.auto.fix=" + isAutoFix());
 		args.add(
 			"source.check.category.names=" +

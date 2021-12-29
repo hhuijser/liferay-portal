@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.BlockingQueue;
 
 /**
  * @author Hugo Huijser
@@ -50,9 +49,6 @@ public interface SourceProcessor {
 		List<String> pluginsInsideModulesDirectoryNames);
 
 	public void setPortalSource(boolean portalSource);
-
-	public void setProgressStatusQueue(
-		BlockingQueue<ProgressStatusUpdate> progressStatusQueue);
 
 	public void setProjectPathPrefix(String projectPathPrefix);
 

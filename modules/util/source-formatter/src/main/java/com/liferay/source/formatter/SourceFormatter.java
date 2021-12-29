@@ -245,10 +245,6 @@ public class SourceFormatter {
 				ArgumentsUtil.getBoolean(
 					arguments, "show.debug.information",
 					SourceFormatterArgs.SHOW_DEBUG_INFORMATION));
-			sourceFormatterArgs.setShowDocumentation(
-				ArgumentsUtil.getBoolean(
-					arguments, "show.documentation",
-					SourceFormatterArgs.SHOW_DOCUMENTATION));
 
 			String[] skipCheckNames = StringUtil.split(
 				ArgumentsUtil.getString(
@@ -303,12 +299,7 @@ public class SourceFormatter {
 	public SourceFormatter(SourceFormatterArgs sourceFormatterArgs) {
 		_sourceFormatterArgs = sourceFormatterArgs;
 
-		if (sourceFormatterArgs.isShowDocumentation()) {
-			System.setProperty("java.awt.headless", "false");
-		}
-		else {
-			System.setProperty("java.awt.headless", "true");
-		}
+		System.setProperty("java.awt.headless", "true");
 	}
 
 	public void format() throws Exception {

@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.SourceCheck;
 import com.liferay.source.formatter.checks.configuration.SourceChecksResult;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterConfiguration;
@@ -39,12 +38,9 @@ import com.liferay.source.formatter.util.SourceFormatterUtil;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
-import java.awt.Desktop;
-
 import java.io.File;
 import java.io.IOException;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.nio.ByteBuffer;
@@ -514,24 +510,6 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 					SourceFormatterUtil.printError(
 						fileName, sourceFormatterMessage.toString());
-
-					if (_browserStarted ||
-						!_sourceFormatterArgs.isShowDocumentation() ||
-						!Desktop.isDesktopSupported()) {
-
-						continue;
-					}
-
-					String documentationURLString =
-						sourceFormatterMessage.getDocumentationURLString();
-
-					if (Validator.isNotNull(documentationURLString)) {
-						Desktop desktop = Desktop.getDesktop();
-
-						desktop.browse(new URI(documentationURLString));
-
-						_browserStarted = true;
-					}
 				}
 			}
 		}
@@ -765,7 +743,6 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		BaseSourceProcessor.class);
 
 	private List<String> _allFileNames;
-	private boolean _browserStarted;
 	private final List<String> _modifiedFileNames =
 		new CopyOnWriteArrayList<>();
 	private List<String> _pluginsInsideModulesDirectoryNames;

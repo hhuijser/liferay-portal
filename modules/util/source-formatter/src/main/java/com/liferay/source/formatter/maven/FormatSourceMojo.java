@@ -181,13 +181,6 @@ public class FormatSourceMojo extends AbstractMojo {
 	/**
 	 * @parameter
 	 */
-	public void setShowDocumentation(boolean showDocumentation) {
-		_sourceFormatterArgs.setShowDocumentation(showDocumentation);
-	}
-
-	/**
-	 * @parameter
-	 */
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
 	}

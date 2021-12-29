@@ -141,10 +141,6 @@ public class FormatSourceTask extends Task {
 		_sourceFormatterArgs.setShowDebugInformation(showDebugInformation);
 	}
 
-	public void setShowDocumentation(boolean showDocumentation) {
-		_sourceFormatterArgs.setShowDocumentation(showDocumentation);
-	}
-
 	public void setValidateCommitMessages(boolean validateCommitMessages) {
 		_sourceFormatterArgs.setValidateCommitMessages(validateCommitMessages);
 	}

@@ -101,7 +101,7 @@ public abstract class BaseTinyMCEEditorConfigContributor
 			TinyMCEEditorConstants.ATTRIBUTE_NAMESPACE + ":contentsLanguageId");
 
 		jsonObject.put(
-			"language", getTinyMCELanguage(contentsLanguageId)
+			"language", _getTinyMCELanguage(contentsLanguageId)
 		).put(
 			"menubar", Boolean.FALSE
 		).put(
@@ -133,7 +133,15 @@ public abstract class BaseTinyMCEEditorConfigContributor
 
 	protected abstract ItemSelector getItemSelector();
 
-	protected String getTinyMCELanguage(String contentsLanguageId) {
+	protected boolean isShowSource(
+		Map<String, Object> inputEditorTaglibAttributes) {
+
+		return GetterUtil.getBoolean(
+			inputEditorTaglibAttributes.get(
+				TinyMCEEditorConstants.ATTRIBUTE_NAMESPACE + ":showSource"));
+	}
+
+	private String _getTinyMCELanguage(String contentsLanguageId) {
 		Locale contentsLocale = LocaleUtil.fromLanguageId(contentsLanguageId);
 
 		contentsLanguageId = LocaleUtil.toLanguageId(contentsLocale);
@@ -145,14 +153,6 @@ public abstract class BaseTinyMCEEditorConfigContributor
 		}
 
 		return tinyMCELanguage;
-	}
-
-	protected boolean isShowSource(
-		Map<String, Object> inputEditorTaglibAttributes) {
-
-		return GetterUtil.getBoolean(
-			inputEditorTaglibAttributes.get(
-				TinyMCEEditorConstants.ATTRIBUTE_NAMESPACE + ":showSource"));
 	}
 
 	private static final String _EXTENDED_VALID_ELEMENTS = StringBundler.concat(

@@ -505,23 +505,23 @@ public class IMAPMailbox extends BaseMailbox {
 		long trashFolderId = account.getTrashFolderId();
 
 		if (draftFolderId <= 0) {
-			draftFolderId = getFolderId("draft");
+			draftFolderId = _getFolderId("draft");
 		}
 
 		if (inboxFolderId <= 0) {
-			inboxFolderId = getFolderId("inbox");
+			inboxFolderId = _getFolderId("inbox");
 		}
 
 		if (sentFolderId <= 0) {
-			sentFolderId = getFolderId("sent");
+			sentFolderId = _getFolderId("sent");
 		}
 
 		if (sentFolderId <= 0) {
-			sentFolderId = getFolderId("sent-mail");
+			sentFolderId = _getFolderId("sent-mail");
 		}
 
 		if (trashFolderId <= 0) {
-			trashFolderId = getFolderId("trash");
+			trashFolderId = _getFolderId("trash");
 		}
 
 		updateFolders(
@@ -542,7 +542,7 @@ public class IMAPMailbox extends BaseMailbox {
 		imapConnection.testConnection();
 	}
 
-	protected long getFolderId(String type) {
+	private long _getFolderId(String type) {
 		List<String> words = new ArrayList<>();
 
 		for (Locale locale : LanguageUtil.getAvailableLocales()) {

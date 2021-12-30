@@ -25,7 +25,14 @@ import com.liferay.portal.kernel.util.StringUtil;
  */
 public class AssetEntryAssetCategoryRelUpgradeProcess extends UpgradeProcess {
 
-	protected void addAssetEntryAssetCategoryRels() throws Exception {
+	@Override
+	protected void doUpgrade() throws Exception {
+		_upgradeSchema();
+
+		_addAssetEntryAssetCategoryRels();
+	}
+
+	private void _addAssetEntryAssetCategoryRels() throws Exception {
 		processConcurrently(
 			"select entryId, categoryId from AssetEntries_AssetCategories",
 			resultSet -> new Object[] {
@@ -58,14 +65,7 @@ public class AssetEntryAssetCategoryRelUpgradeProcess extends UpgradeProcess {
 				"categories");
 	}
 
-	@Override
-	protected void doUpgrade() throws Exception {
-		upgradeSchema();
-
-		addAssetEntryAssetCategoryRels();
-	}
-
-	protected void upgradeSchema() throws Exception {
+	private void _upgradeSchema() throws Exception {
 		String template = StringUtil.read(
 			AssetEntryAssetCategoryRelUpgradeProcess.class.getResourceAsStream(
 				"dependencies/update.sql"));

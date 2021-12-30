@@ -64,11 +64,11 @@ public class NetlogonNetworkInfo extends NdrObject {
 			ndrBuffer.enc_ndr_small(_lmChallenge[i]);
 		}
 
-		encodeChallengeResponse(ndrBuffer, _ntChallengeResponse);
-		encodeChallengeResponse(ndrBuffer, _lmChallengeResponse);
+		_encodeChallengeResponse(ndrBuffer, _ntChallengeResponse);
+		_encodeChallengeResponse(ndrBuffer, _lmChallengeResponse);
 	}
 
-	protected void encodeChallengeResponse(
+	private void _encodeChallengeResponse(
 		NdrBuffer ndrBuffer, byte[] challenge) {
 
 		ndrBuffer = ndrBuffer.deferred;

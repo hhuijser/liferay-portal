@@ -45,7 +45,32 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 
-	protected AccountGroup addAccountGroup(ActionRequest actionRequest)
+	@Override
+	protected void doProcessAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+		if (cmd.equals(Constants.ADD)) {
+			AccountGroup accountGroup = _addAccountGroup(actionRequest);
+
+			redirect = _http.setParameter(
+				redirect, actionResponse.getNamespace() + "accountGroupId",
+				accountGroup.getAccountGroupId());
+		}
+		else if (cmd.equals(Constants.UPDATE)) {
+			_updateAccountGroup(actionRequest);
+		}
+
+		if (Validator.isNotNull(redirect)) {
+			sendRedirect(actionRequest, actionResponse, redirect);
+		}
+	}
+
+	private AccountGroup _addAccountGroup(ActionRequest actionRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
@@ -58,32 +83,7 @@ public class EditAccountGroupMVCActionCommand extends BaseMVCActionCommand {
 			themeDisplay.getUserId(), description, name);
 	}
 
-	@Override
-	protected void doProcessAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		if (cmd.equals(Constants.ADD)) {
-			AccountGroup accountGroup = addAccountGroup(actionRequest);
-
-			redirect = _http.setParameter(
-				redirect, actionResponse.getNamespace() + "accountGroupId",
-				accountGroup.getAccountGroupId());
-		}
-		else if (cmd.equals(Constants.UPDATE)) {
-			updateAccountGroup(actionRequest);
-		}
-
-		if (Validator.isNotNull(redirect)) {
-			sendRedirect(actionRequest, actionResponse, redirect);
-		}
-	}
-
-	protected void updateAccountGroup(ActionRequest actionRequest)
+	private void _updateAccountGroup(ActionRequest actionRequest)
 		throws Exception {
 
 		long accountGroupId = ParamUtil.getLong(

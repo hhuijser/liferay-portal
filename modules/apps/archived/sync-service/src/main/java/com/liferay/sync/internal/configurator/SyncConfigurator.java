@@ -66,10 +66,10 @@ public class SyncConfigurator extends BasePortalInstanceLifecycleListener {
 	protected void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
 
-		_dlSyncEventProcessorServiceRegistration = registerMessageListener(
+		_dlSyncEventProcessorServiceRegistration = _registerMessageListener(
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR);
 
-		_syncMaintenanceProcessorServiceRegistration = registerMessageListener(
+		_syncMaintenanceProcessorServiceRegistration = _registerMessageListener(
 			SyncMaintenanceMessageListener.DESTINATION_NAME);
 	}
 
@@ -96,7 +96,7 @@ public class SyncConfigurator extends BasePortalInstanceLifecycleListener {
 		_bundleContext = null;
 	}
 
-	protected ServiceRegistration<Destination> registerMessageListener(
+	private ServiceRegistration<Destination> _registerMessageListener(
 		String destinationName) {
 
 		DestinationConfiguration destinationConfiguration =

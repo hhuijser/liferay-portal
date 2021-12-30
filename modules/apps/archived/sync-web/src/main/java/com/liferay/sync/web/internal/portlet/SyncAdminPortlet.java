@@ -75,7 +75,7 @@ public class SyncAdminPortlet extends BaseSyncPortlet {
 		throws IOException, PortletException {
 
 		try {
-			doUpdatePreferences(actionRequest, actionResponse);
+			_doUpdatePreferences(actionRequest, actionResponse);
 		}
 		catch (Exception exception) {
 			throw new PortletException(exception);
@@ -112,7 +112,26 @@ public class SyncAdminPortlet extends BaseSyncPortlet {
 		}
 	}
 
-	protected void doUpdatePreferences(
+	@Reference(unbind = "-")
+	protected void setGroupLocalService(GroupLocalService groupLocalService) {
+		_groupLocalService = groupLocalService;
+	}
+
+	@Reference(
+		target = "(&(release.bundle.symbolic.name=com.liferay.sync.web)(&(release.schema.version>=1.0.0)(!(release.schema.version>=2.0.0))))",
+		unbind = "-"
+	)
+	protected void setRelease(Release release) {
+	}
+
+	@Reference(unbind = "-")
+	protected void setSyncOAuthHelperUtil(
+		SyncOAuthHelperUtil syncOAuthHelperUtil) {
+
+		_syncOAuthHelperUtil = syncOAuthHelperUtil;
+	}
+
+	private void _doUpdatePreferences(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -202,25 +221,6 @@ public class SyncAdminPortlet extends BaseSyncPortlet {
 			_syncOAuthHelperUtil.enableOAuth(
 				CompanyThreadLocal.getCompanyId(), serviceContext);
 		}
-	}
-
-	@Reference(unbind = "-")
-	protected void setGroupLocalService(GroupLocalService groupLocalService) {
-		_groupLocalService = groupLocalService;
-	}
-
-	@Reference(
-		target = "(&(release.bundle.symbolic.name=com.liferay.sync.web)(&(release.schema.version>=1.0.0)(!(release.schema.version>=2.0.0))))",
-		unbind = "-"
-	)
-	protected void setRelease(Release release) {
-	}
-
-	@Reference(unbind = "-")
-	protected void setSyncOAuthHelperUtil(
-		SyncOAuthHelperUtil syncOAuthHelperUtil) {
-
-		_syncOAuthHelperUtil = syncOAuthHelperUtil;
 	}
 
 	private GroupLocalService _groupLocalService;

@@ -76,13 +76,13 @@ public class DefaultAnnouncementsDisplayContext
 
 		if (isCustomizeAnnouncementsDisplayed()) {
 			long[] selectedScopeGroupIdsArray = GetterUtil.getLongValues(
-				StringUtil.split(getSelectedScopeGroupIds()));
+				StringUtil.split(_getSelectedScopeGroupIds()));
 			long[] selectedScopeOrganizationIdsArray = GetterUtil.getLongValues(
-				StringUtil.split(getSelectedScopeOrganizationIds()));
+				StringUtil.split(_getSelectedScopeOrganizationIds()));
 			long[] selectedScopeRoleIdsArray = GetterUtil.getLongValues(
-				StringUtil.split(getSelectedScopeRoleIds()));
+				StringUtil.split(_getSelectedScopeRoleIds()));
 			long[] selectedScopeUserGroupIdsArray = GetterUtil.getLongValues(
-				StringUtil.split(getSelectedScopeUserGroupIds()));
+				StringUtil.split(_getSelectedScopeUserGroupIds()));
 
 			if (selectedScopeGroupIdsArray.length != 0) {
 				scopes.put(
@@ -142,7 +142,7 @@ public class DefaultAnnouncementsDisplayContext
 		List<Group> selectedGroups = new ArrayList<>();
 
 		String[] selectedScopeGroupIds = StringUtil.split(
-			getSelectedScopeGroupIds());
+			_getSelectedScopeGroupIds());
 
 		for (String selectedScopeGroupId : selectedScopeGroupIds) {
 			long groupId = Long.valueOf(selectedScopeGroupId);
@@ -172,7 +172,7 @@ public class DefaultAnnouncementsDisplayContext
 		List<Organization> selectedOrganizations = new ArrayList<>();
 
 		String[] selectedScopeOrganizationIds = StringUtil.split(
-			getSelectedScopeOrganizationIds());
+			_getSelectedScopeOrganizationIds());
 
 		for (String selectedScopeOrganizationId :
 				selectedScopeOrganizationIds) {
@@ -216,7 +216,7 @@ public class DefaultAnnouncementsDisplayContext
 		List<Role> selectedRoles = new ArrayList<>();
 
 		String[] selectedScopeRoleIds = StringUtil.split(
-			getSelectedScopeRoleIds());
+			_getSelectedScopeRoleIds());
 
 		for (String selectedScopeRoleId : selectedScopeRoleIds) {
 			Role role = RoleLocalServiceUtil.getRole(
@@ -262,7 +262,7 @@ public class DefaultAnnouncementsDisplayContext
 		List<UserGroup> selectedUserGroups = new ArrayList<>();
 
 		String[] selectedScopeUserGroupIds = StringUtil.split(
-			getSelectedScopeUserGroupIds());
+			_getSelectedScopeUserGroupIds());
 
 		for (String selectedScopeUserGroupId : selectedScopeUserGroupIds) {
 			long userGroupId = Long.valueOf(selectedScopeUserGroupId);
@@ -302,7 +302,7 @@ public class DefaultAnnouncementsDisplayContext
 
 	@Override
 	public boolean isScopeGroupSelected(Group scopeGroup) {
-		String selectedScopeGroupIds = getSelectedScopeGroupIds();
+		String selectedScopeGroupIds = _getSelectedScopeGroupIds();
 
 		return selectedScopeGroupIds.contains(
 			String.valueOf(scopeGroup.getGroupId()));
@@ -310,7 +310,8 @@ public class DefaultAnnouncementsDisplayContext
 
 	@Override
 	public boolean isScopeOrganizationSelected(Organization organization) {
-		String selectedScopeOrganizationIds = getSelectedScopeOrganizationIds();
+		String selectedScopeOrganizationIds =
+			_getSelectedScopeOrganizationIds();
 
 		return selectedScopeOrganizationIds.contains(
 			String.valueOf(organization.getOrganizationId()));
@@ -318,14 +319,14 @@ public class DefaultAnnouncementsDisplayContext
 
 	@Override
 	public boolean isScopeRoleSelected(Role role) {
-		String selectedScopeRoleIds = getSelectedScopeRoleIds();
+		String selectedScopeRoleIds = _getSelectedScopeRoleIds();
 
 		return selectedScopeRoleIds.contains(String.valueOf(role.getRoleId()));
 	}
 
 	@Override
 	public boolean isScopeUserGroupSelected(UserGroup userGroup) {
-		String selectedScopeUserGroupIds = getSelectedScopeUserGroupIds();
+		String selectedScopeUserGroupIds = _getSelectedScopeUserGroupIds();
 
 		return selectedScopeUserGroupIds.contains(
 			String.valueOf(userGroup.getUserGroupId()));
@@ -371,7 +372,7 @@ public class DefaultAnnouncementsDisplayContext
 		return false;
 	}
 
-	protected String getSelectedScopeGroupIds() {
+	private String _getSelectedScopeGroupIds() {
 		Layout layout = _announcementsRequestHelper.getLayout();
 
 		return PrefsParamUtil.getString(
@@ -380,21 +381,21 @@ public class DefaultAnnouncementsDisplayContext
 			String.valueOf(layout.getGroupId()));
 	}
 
-	protected String getSelectedScopeOrganizationIds() {
+	private String _getSelectedScopeOrganizationIds() {
 		return PrefsParamUtil.getString(
 			_announcementsRequestHelper.getPortletPreferences(),
 			_announcementsRequestHelper.getRequest(),
 			"selectedScopeOrganizationIds", StringPool.BLANK);
 	}
 
-	protected String getSelectedScopeRoleIds() {
+	private String _getSelectedScopeRoleIds() {
 		return PrefsParamUtil.getString(
 			_announcementsRequestHelper.getPortletPreferences(),
 			_announcementsRequestHelper.getRequest(), "selectedScopeRoleIds",
 			StringPool.BLANK);
 	}
 
-	protected String getSelectedScopeUserGroupIds() {
+	private String _getSelectedScopeUserGroupIds() {
 		return PrefsParamUtil.getString(
 			_announcementsRequestHelper.getPortletPreferences(),
 			_announcementsRequestHelper.getRequest(),

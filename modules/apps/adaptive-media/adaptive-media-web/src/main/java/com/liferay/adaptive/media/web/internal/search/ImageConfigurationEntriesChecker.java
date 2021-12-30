@@ -53,7 +53,7 @@ public class ImageConfigurationEntriesChecker extends EmptyOnClickRowChecker {
 
 		String name = AMImageConfigurationEntry.class.getSimpleName();
 
-		String checkBoxRowIds = getEntryRowIds();
+		String checkBoxRowIds = _getEntryRowIds();
 
 		return getRowCheckBox(
 			httpServletRequest, checked, disabled,
@@ -62,7 +62,7 @@ public class ImageConfigurationEntriesChecker extends EmptyOnClickRowChecker {
 			StringPool.BLANK);
 	}
 
-	protected String getEntryRowIds() {
+	private String _getEntryRowIds() {
 		return StringBundler.concat(
 			"['", _liferayPortletResponse.getNamespace(), RowChecker.ROW_IDS,
 			AMImageConfigurationEntry.class.getSimpleName(), "']");

@@ -170,18 +170,6 @@ public class DefaultAssetPublisherCustomizer
 			AssetPublisherWebConfiguration.class, properties);
 	}
 
-	protected String getPortletName(HttpServletRequest httpServletRequest) {
-		PortletConfig portletConfig =
-			(PortletConfig)httpServletRequest.getAttribute(
-				JavaConstants.JAVAX_PORTLET_CONFIG);
-
-		if (portletConfig == null) {
-			return StringPool.BLANK;
-		}
-
-		return portletConfig.getPortletName();
-	}
-
 	protected PortletPreferences getPortletPreferences(
 		HttpServletRequest httpServletRequest) {
 
@@ -201,5 +189,17 @@ public class DefaultAssetPublisherCustomizer
 
 	protected volatile AssetPublisherWebConfiguration
 		assetPublisherWebConfiguration;
+
+	private String _getPortletName(HttpServletRequest httpServletRequest) {
+		PortletConfig portletConfig =
+			(PortletConfig)httpServletRequest.getAttribute(
+				JavaConstants.JAVAX_PORTLET_CONFIG);
+
+		if (portletConfig == null) {
+			return StringPool.BLANK;
+		}
+
+		return portletConfig.getPortletName();
+	}
 
 }

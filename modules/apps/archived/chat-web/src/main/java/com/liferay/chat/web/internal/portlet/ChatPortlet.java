@@ -58,12 +58,19 @@ public class ChatPortlet extends MVCPortlet {
 
 	@Activate
 	protected void activate() {
-		if (!hasPortletId()) {
-			addPortletIdLayoutStaticPortletsAll();
+		if (!_hasPortletId()) {
+			_addPortletIdLayoutStaticPortletsAll();
 		}
 	}
 
-	protected void addPortletIdLayoutStaticPortletsAll() {
+	@Deactivate
+	protected void deactivate() {
+		if (_hasPortletId()) {
+			_removePortletIdLayoutStaticPortletsAll();
+		}
+	}
+
+	private void _addPortletIdLayoutStaticPortletsAll() {
 		String[] layoutStaticPortletsAll =
 			PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 
@@ -77,20 +84,13 @@ public class ChatPortlet extends MVCPortlet {
 		PropsValues.LAYOUT_STATIC_PORTLETS_ALL = layoutStaticPortletsAll;
 	}
 
-	@Deactivate
-	protected void deactivate() {
-		if (hasPortletId()) {
-			removePortletIdLayoutStaticPortletsAll();
-		}
-	}
-
-	protected boolean hasPortletId() {
+	private boolean _hasPortletId() {
 		return ArrayUtil.contains(
 			PropsValues.LAYOUT_STATIC_PORTLETS_ALL, ChatPortletKeys.CHAT,
 			false);
 	}
 
-	protected void removePortletIdLayoutStaticPortletsAll() {
+	private void _removePortletIdLayoutStaticPortletsAll() {
 		String[] layoutStaticPortletsAll =
 			PropsValues.LAYOUT_STATIC_PORTLETS_ALL;
 

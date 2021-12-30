@@ -79,7 +79,7 @@ public class OAuthVerifier implements AuthVerifier {
 		HttpServletRequest httpServletRequest =
 			accessControlContext.getRequest();
 
-		if (!isUsingOAuth(httpServletRequest)) {
+		if (!_isUsingOAuth(httpServletRequest)) {
 			return authVerifierResult;
 		}
 
@@ -89,9 +89,9 @@ public class OAuthVerifier implements AuthVerifier {
 				WebServerUtil.getWebServerURL(
 					httpServletRequest.getRequestURL()));
 
-			OAuthUser oAuthUser = getOAuthUser(oAuthMessage);
+			OAuthUser oAuthUser = _getOAuthUser(oAuthMessage);
 
-			OAuthAccessor oAuthAccessor = getOAuthAccessor(
+			OAuthAccessor oAuthAccessor = _getOAuthAccessor(
 				oAuthMessage, oAuthUser);
 
 			_oAuth.validateOAuthMessage(oAuthMessage, oAuthAccessor);
@@ -99,7 +99,7 @@ public class OAuthVerifier implements AuthVerifier {
 			authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
 			authVerifierResult.setUserId(oAuthUser.getUserId());
 
-			int accessLevel = getAccessLevel(oAuthUser);
+			int accessLevel = _getAccessLevel(oAuthUser);
 
 			if (accessLevel == OAuthApplicationConstants.ACCESS_READ) {
 				ServiceAccessPolicyThreadLocal.addActiveServiceAccessPolicyName(
@@ -132,7 +132,7 @@ public class OAuthVerifier implements AuthVerifier {
 		return authVerifierResult;
 	}
 
-	protected int getAccessLevel(OAuthUser oAuthUser) throws PortalException {
+	private int _getAccessLevel(OAuthUser oAuthUser) throws PortalException {
 		OAuthApplication oAuthApplication =
 			_oAuthApplicationLocalService.getOAuthApplication(
 				oAuthUser.getOAuthApplicationId());
@@ -140,7 +140,7 @@ public class OAuthVerifier implements AuthVerifier {
 		return oAuthApplication.getAccessLevel();
 	}
 
-	protected OAuthAccessor getOAuthAccessor(
+	private OAuthAccessor _getOAuthAccessor(
 			OAuthMessage oAuthMessage, OAuthUser oAuthUser)
 		throws PortalException {
 
@@ -154,7 +154,7 @@ public class OAuthVerifier implements AuthVerifier {
 		return oAuthAccessor;
 	}
 
-	protected OAuthUser getOAuthUser(OAuthMessage oAuthMessage)
+	private OAuthUser _getOAuthUser(OAuthMessage oAuthMessage)
 		throws IOException, OAuthException {
 
 		if ((oAuthMessage == null) ||
@@ -179,7 +179,7 @@ public class OAuthVerifier implements AuthVerifier {
 		return oAuthUser;
 	}
 
-	protected boolean isUsingOAuth(HttpServletRequest httpServletRequest) {
+	private boolean _isUsingOAuth(HttpServletRequest httpServletRequest) {
 		String oAuthToken = ParamUtil.getString(
 			httpServletRequest, net.oauth.OAuth.OAUTH_TOKEN);
 

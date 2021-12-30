@@ -42,12 +42,12 @@ public abstract class BaseAMImageConfigurationTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		deleteAllConfigurationEntries();
+		_deleteAllConfigurationEntries();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		deleteAllConfigurationEntries();
+		_deleteAllConfigurationEntries();
 	}
 
 	protected void assertDisabled(
@@ -96,7 +96,17 @@ public abstract class BaseAMImageConfigurationTestCase {
 		return messages;
 	}
 
-	protected void deleteAllConfigurationEntries()
+	protected abstract AMImageConfigurationHelper
+		getAMImageConfigurationHelper();
+
+	@FunctionalInterface
+	protected interface CheckedRunnable {
+
+		public void run() throws Exception;
+
+	}
+
+	private void _deleteAllConfigurationEntries()
 		throws IOException, PortalException {
 
 		AMImageConfigurationHelper amImageConfigurationHelper =
@@ -114,16 +124,6 @@ public abstract class BaseAMImageConfigurationTestCase {
 				TestPropsValues.getCompanyId(),
 				amImageConfigurationEntry.getUUID());
 		}
-	}
-
-	protected abstract AMImageConfigurationHelper
-		getAMImageConfigurationHelper();
-
-	@FunctionalInterface
-	protected interface CheckedRunnable {
-
-		public void run() throws Exception;
-
 	}
 
 	@Inject

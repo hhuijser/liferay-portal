@@ -110,7 +110,7 @@ public class NtlmManager {
 
 			type2Message.setFlag(NtlmFlags.NTLMSSP_NEGOTIATE_LM_KEY, false);
 			type2Message.setFlag(NtlmFlags.NTLMSSP_NEGOTIATE_TARGET_INFO, true);
-			type2Message.setTargetInformation(getTargetInformation());
+			type2Message.setTargetInformation(_getTargetInformation());
 		}
 
 		return type2Message.toByteArray();
@@ -132,7 +132,7 @@ public class NtlmManager {
 			_ntlmServiceAccount);
 	}
 
-	protected byte[] getAVPairBytes(int avId, String value)
+	private byte[] _getAVPairBytes(int avId, String value)
 		throws UnsupportedEncodingException {
 
 		byte[] valueBytes = value.getBytes("UTF-16LE");
@@ -147,16 +147,14 @@ public class NtlmManager {
 		return avPairBytes;
 	}
 
-	protected byte[] getTargetInformation()
-		throws UnsupportedEncodingException {
-
-		byte[] computerName = getAVPairBytes(
+	private byte[] _getTargetInformation() throws UnsupportedEncodingException {
+		byte[] computerName = _getAVPairBytes(
 			1, _ntlmServiceAccount.getComputerName());
-		byte[] domainName = getAVPairBytes(2, _domain);
+		byte[] domainName = _getAVPairBytes(2, _domain);
 
 		byte[] targetInformation = ArrayUtil.append(computerName, domainName);
 
-		byte[] eol = getAVPairBytes(0, StringPool.BLANK);
+		byte[] eol = _getAVPairBytes(0, StringPool.BLANK);
 
 		return ArrayUtil.append(targetInformation, eol);
 	}

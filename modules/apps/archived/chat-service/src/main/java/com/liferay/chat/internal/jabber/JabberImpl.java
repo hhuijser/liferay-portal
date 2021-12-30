@@ -77,7 +77,7 @@ public class JabberImpl implements Jabber {
 
 	@Override
 	public void disconnect(long userId) {
-		Connection connection = getConnection(userId);
+		Connection connection = _getConnection(userId);
 
 		if (connection == null) {
 			return;
@@ -113,7 +113,7 @@ public class JabberImpl implements Jabber {
 		long companyId, long userId, List<Object[]> buddies) {
 
 		try {
-			Connection connection = getConnection(userId);
+			Connection connection = _getConnection(userId);
 
 			if (connection == null) {
 				if (_log.isWarnEnabled()) {
@@ -135,7 +135,7 @@ public class JabberImpl implements Jabber {
 				for (Object[] buddy : buddies) {
 					String screenName = (String)buddy[7];
 
-					String jabberId = getFullJabberId(screenName);
+					String jabberId = _getFullJabberId(screenName);
 
 					if (roster.contains(jabberId)) {
 						continue;
@@ -199,7 +199,7 @@ public class JabberImpl implements Jabber {
 	@Override
 	public void login(long userId, String password) {
 		try {
-			connect(userId, password);
+			_connect(userId, password);
 		}
 		catch (XMPPException xmppException1) {
 			String message1 = xmppException1.getMessage();
@@ -223,9 +223,9 @@ public class JabberImpl implements Jabber {
 				}
 
 				try {
-					importUser(userId, password);
+					_importUser(userId, password);
 
-					connect(userId, password);
+					_connect(userId, password);
 				}
 				catch (XMPPException xmppException2) {
 					String message2 = xmppException2.getMessage();
@@ -255,7 +255,7 @@ public class JabberImpl implements Jabber {
 				return;
 			}
 
-			Connection connection = getConnection(fromUserId);
+			Connection connection = _getConnection(fromUserId);
 
 			if (connection == null) {
 				if (_log.isWarnEnabled()) {
@@ -273,7 +273,7 @@ public class JabberImpl implements Jabber {
 
 			Roster roster = connection.getRoster();
 
-			String jabberId = getJabberId(toUser.getScreenName());
+			String jabberId = _getJabberId(toUser.getScreenName());
 
 			if (!roster.contains(jabberId)) {
 				return;
@@ -325,7 +325,7 @@ public class JabberImpl implements Jabber {
 			return;
 		}
 
-		Connection connection = getConnection(userId);
+		Connection connection = _getConnection(userId);
 
 		if (connection == null) {
 			return;
@@ -354,23 +354,58 @@ public class JabberImpl implements Jabber {
 			ChatGroupServiceConfiguration.class, properties);
 	}
 
-	protected Connection connect() throws Exception {
+	protected void updateStatus(
+		long userId, int online, Connection connection) {
+
+		try {
+			if (connection == null) {
+				connection = _getConnection(userId);
+
+				if (connection == null) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"User " + userId + " is not connected to Jabber");
+					}
+
+					return;
+				}
+			}
+
+			if ((online == 1) && !_onlineUserIds.contains(userId)) {
+				Presence presence = new Presence(Presence.Type.available);
+
+				connection.sendPacket(presence);
+
+				_onlineUserIds.add(userId);
+			}
+			else if ((online == 0) && _onlineUserIds.contains(userId)) {
+				Presence presence = new Presence(Presence.Type.unavailable);
+
+				connection.sendPacket(presence);
+
+				_onlineUserIds.remove(userId);
+			}
+		}
+		catch (Exception exception) {
+			_log.error(exception, exception);
+		}
+	}
+
+	private Connection _connect() throws Exception {
 		long userId = -1;
 		String password = null;
 
-		return connect(userId, password);
+		return _connect(userId, password);
 	}
 
-	protected Connection connect(long userId, String password)
-		throws Exception {
-
-		Connection connection = getConnection(userId);
+	private Connection _connect(long userId, String password) throws Exception {
+		Connection connection = _getConnection(userId);
 
 		if (connection != null) {
 			return connection;
 		}
 
-		connection = new XMPPConnection(getConnectionConfiguration());
+		connection = new XMPPConnection(_getConnectionConfiguration());
 
 		connection.connect();
 
@@ -402,11 +437,11 @@ public class JabberImpl implements Jabber {
 		return connection;
 	}
 
-	protected Connection getConnection(long userId) {
+	private Connection _getConnection(long userId) {
 		return _connections.get(userId);
 	}
 
-	protected ConnectionConfiguration getConnectionConfiguration()
+	private ConnectionConfiguration _getConnectionConfiguration()
 		throws UnknownHostException {
 
 		if (_connectionConfiguration != null) {
@@ -436,20 +471,20 @@ public class JabberImpl implements Jabber {
 		return _connectionConfiguration;
 	}
 
-	protected String getFullJabberId(String screenName) {
+	private String _getFullJabberId(String screenName) {
 		return StringBundler.concat(
-			getJabberId(screenName), StringPool.SLASH,
+			_getJabberId(screenName), StringPool.SLASH,
 			_chatGroupServiceConfiguration.jabberResource());
 	}
 
-	protected String getJabberId(String screenName) {
+	private String _getJabberId(String screenName) {
 		return StringBundler.concat(
 			screenName, StringPool.AT,
 			_chatGroupServiceConfiguration.jabberResource());
 	}
 
-	protected void importUser(long userId, String password) throws Exception {
-		Connection connection = connect();
+	private void _importUser(long userId, String password) throws Exception {
+		Connection connection = _connect();
 
 		AccountManager accountManager = connection.getAccountManager();
 
@@ -472,43 +507,6 @@ public class JabberImpl implements Jabber {
 			).put(
 				"name", user.getFullName()
 			).build());
-	}
-
-	protected void updateStatus(
-		long userId, int online, Connection connection) {
-
-		try {
-			if (connection == null) {
-				connection = getConnection(userId);
-
-				if (connection == null) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"User " + userId + " is not connected to Jabber");
-					}
-
-					return;
-				}
-			}
-
-			if ((online == 1) && !_onlineUserIds.contains(userId)) {
-				Presence presence = new Presence(Presence.Type.available);
-
-				connection.sendPacket(presence);
-
-				_onlineUserIds.add(userId);
-			}
-			else if ((online == 0) && _onlineUserIds.contains(userId)) {
-				Presence presence = new Presence(Presence.Type.unavailable);
-
-				connection.sendPacket(presence);
-
-				_onlineUserIds.remove(userId);
-			}
-		}
-		catch (Exception exception) {
-			_log.error(exception, exception);
-		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(JabberImpl.class);

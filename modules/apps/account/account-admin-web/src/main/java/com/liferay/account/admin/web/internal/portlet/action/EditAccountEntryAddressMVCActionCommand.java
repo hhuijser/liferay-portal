@@ -55,38 +55,6 @@ import org.osgi.service.component.annotations.Reference;
 public class EditAccountEntryAddressMVCActionCommand
 	extends BaseMVCActionCommand {
 
-	protected Address addAccountEntryAddress(ActionRequest actionRequest)
-		throws Exception {
-
-		long accountEntryId = ParamUtil.getLong(
-			actionRequest, "accountEntryId");
-		String name = ParamUtil.getString(actionRequest, "name");
-		String description = ParamUtil.getString(actionRequest, "description");
-		String street1 = ParamUtil.getString(actionRequest, "street1");
-		String street2 = ParamUtil.getString(actionRequest, "street2");
-		String street3 = ParamUtil.getString(actionRequest, "street3");
-		String city = ParamUtil.getString(actionRequest, "city");
-		String zip = ParamUtil.getString(actionRequest, "zip");
-		long addressRegionId = ParamUtil.getLong(
-			actionRequest, "addressRegionId");
-		long addressCountryId = ParamUtil.getLong(
-			actionRequest, "addressCountryId");
-		long addressTypeId = ParamUtil.getLong(actionRequest, "addressTypeId");
-		String phoneNumber = ParamUtil.getString(actionRequest, "phoneNumber");
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			User.class.getName(), actionRequest);
-
-		return _addressLocalService.addAddress(
-			null, themeDisplay.getUserId(), AccountEntry.class.getName(),
-			accountEntryId, name, description, street1, street2, street3, city,
-			zip, addressRegionId, addressCountryId, addressTypeId, false, false,
-			phoneNumber, serviceContext);
-	}
-
 	@Override
 	protected void doProcessAction(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -99,10 +67,10 @@ public class EditAccountEntryAddressMVCActionCommand
 		Address accountEntryAddress = null;
 
 		if (cmd.equals(Constants.ADD)) {
-			accountEntryAddress = addAccountEntryAddress(actionRequest);
+			accountEntryAddress = _addAccountEntryAddress(actionRequest);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
-			updateAccountEntryAddress(actionRequest);
+			_updateAccountEntryAddress(actionRequest);
 		}
 
 		String defaultType = ParamUtil.getString(actionRequest, "defaultType");
@@ -139,7 +107,51 @@ public class EditAccountEntryAddressMVCActionCommand
 		}
 	}
 
-	protected void updateAccountEntryAddress(ActionRequest actionRequest)
+	private Address _addAccountEntryAddress(ActionRequest actionRequest)
+		throws Exception {
+
+		long accountEntryId = ParamUtil.getLong(
+			actionRequest, "accountEntryId");
+		String name = ParamUtil.getString(actionRequest, "name");
+		String description = ParamUtil.getString(actionRequest, "description");
+		String street1 = ParamUtil.getString(actionRequest, "street1");
+		String street2 = ParamUtil.getString(actionRequest, "street2");
+		String street3 = ParamUtil.getString(actionRequest, "street3");
+		String city = ParamUtil.getString(actionRequest, "city");
+		String zip = ParamUtil.getString(actionRequest, "zip");
+		long addressRegionId = ParamUtil.getLong(
+			actionRequest, "addressRegionId");
+		long addressCountryId = ParamUtil.getLong(
+			actionRequest, "addressCountryId");
+		long addressTypeId = ParamUtil.getLong(actionRequest, "addressTypeId");
+		String phoneNumber = ParamUtil.getString(actionRequest, "phoneNumber");
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			User.class.getName(), actionRequest);
+
+		return _addressLocalService.addAddress(
+			null, themeDisplay.getUserId(), AccountEntry.class.getName(),
+			accountEntryId, name, description, street1, street2, street3, city,
+			zip, addressRegionId, addressCountryId, addressTypeId, false, false,
+			phoneNumber, serviceContext);
+	}
+
+	private void _checkPermission(ActionRequest actionRequest)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		_accountEntryModelResourcePermission.check(
+			themeDisplay.getPermissionChecker(),
+			ParamUtil.getLong(actionRequest, "accountEntryId"),
+			ActionKeys.UPDATE);
+	}
+
+	private void _updateAccountEntryAddress(ActionRequest actionRequest)
 		throws Exception {
 
 		long accountEntryAddressId = ParamUtil.getLong(
@@ -163,18 +175,6 @@ public class EditAccountEntryAddressMVCActionCommand
 			accountEntryAddressId, name, description, street1, street2, street3,
 			city, zip, addressRegionId, addressCountryId, addressTypeId, false,
 			false, phoneNumber);
-	}
-
-	private void _checkPermission(ActionRequest actionRequest)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		_accountEntryModelResourcePermission.check(
-			themeDisplay.getPermissionChecker(),
-			ParamUtil.getLong(actionRequest, "accountEntryId"),
-			ActionKeys.UPDATE);
 	}
 
 	@Reference(

@@ -52,13 +52,13 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class UserPersonalSitePermissions {
 
 	public void initPermissions(long companyId, List<Portlet> portlets) {
-		Role powerUserRole = getPowerUserRole(companyId);
+		Role powerUserRole = _getPowerUserRole(companyId);
 
 		if (powerUserRole == null) {
 			return;
 		}
 
-		Group userPersonalSiteGroup = getUserPersonalSiteGroup(companyId);
+		Group userPersonalSiteGroup = _getUserPersonalSiteGroup(companyId);
 
 		if (userPersonalSiteGroup == null) {
 			return;
@@ -98,38 +98,6 @@ public class UserPersonalSitePermissions {
 
 		_serviceTracker = ServiceTrackerFactory.open(
 			bundleContext, filter, new PanelAppServiceTrackerCustomizer());
-	}
-
-	protected void deactivated() {
-		_serviceTracker.close();
-	}
-
-	protected Role getPowerUserRole(long companyId) {
-		try {
-			return _roleLocalService.getRole(
-				companyId, RoleConstants.POWER_USER);
-		}
-		catch (PortalException portalException) {
-			_log.error(
-				"Unable to get power user role in company " + companyId,
-				portalException);
-		}
-
-		return null;
-	}
-
-	protected Group getUserPersonalSiteGroup(long companyId) {
-		try {
-			return _groupLocalService.getUserPersonalSiteGroup(companyId);
-		}
-		catch (PortalException portalException) {
-			_log.error(
-				"Unable to get user personal site group in company " +
-					companyId,
-				portalException);
-		}
-
-		return null;
 	}
 
 	protected void initPermissions(
@@ -174,16 +142,48 @@ public class UserPersonalSitePermissions {
 		}
 	}
 
+	private void _deactivated() {
+		_serviceTracker.close();
+	}
+
+	private Role _getPowerUserRole(long companyId) {
+		try {
+			return _roleLocalService.getRole(
+				companyId, RoleConstants.POWER_USER);
+		}
+		catch (PortalException portalException) {
+			_log.error(
+				"Unable to get power user role in company " + companyId,
+				portalException);
+		}
+
+		return null;
+	}
+
+	private Group _getUserPersonalSiteGroup(long companyId) {
+		try {
+			return _groupLocalService.getUserPersonalSiteGroup(companyId);
+		}
+		catch (PortalException portalException) {
+			_log.error(
+				"Unable to get user personal site group in company " +
+					companyId,
+				portalException);
+		}
+
+		return null;
+	}
+
 	private void _initPermissions(Company company, Portlet portlet) {
 		long companyId = company.getCompanyId();
 
-		Role powerUserRole = getPowerUserRole(companyId);
+		Role powerUserRole = _getPowerUserRole(companyId);
 
 		if (powerUserRole == null) {
 			return;
 		}
 
-		Group userPersonalSiteGroup = getUserPersonalSiteGroup(companyId);
+		Group userPersonalSiteGroup = _getUserPersonalSiteGroup(companyId);
 
 		if (userPersonalSiteGroup == null) {
 			return;

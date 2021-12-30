@@ -76,7 +76,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 
 	public String getUserId(String tokenString) {
 		try {
-			JsonTokenParser jsonTokenParser = getJsonTokenParser();
+			JsonTokenParser jsonTokenParser = _getJsonTokenParser();
 
 			JsonToken jsonToken = jsonTokenParser.verifyAndDeserialize(
 				tokenString);
@@ -173,7 +173,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 				httpServletRequest);
 
 			if (userId > 0) {
-				token = createToken(userId);
+				token = _createToken(userId);
 
 				if (token != null) {
 					HttpServletResponse httpServletResponse =
@@ -197,11 +197,16 @@ public class SyncAuthVerifier implements AuthVerifier {
 		}
 	}
 
-	protected String createToken(long userId) {
+	@Reference(unbind = "-")
+	protected void setUserLocalService(UserLocalService userLocalService) {
+		_userLocalService = userLocalService;
+	}
+
+	private String _createToken(long userId) {
 		Signer signer = null;
 
 		try {
-			signer = getSigner();
+			signer = _getSigner();
 		}
 		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
@@ -234,7 +239,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 		}
 	}
 
-	protected JsonTokenParser getJsonTokenParser() throws Exception {
+	private JsonTokenParser _getJsonTokenParser() throws Exception {
 		if (_jsonTokenParser != null) {
 			return _jsonTokenParser;
 		}
@@ -268,7 +273,7 @@ public class SyncAuthVerifier implements AuthVerifier {
 		return _jsonTokenParser;
 	}
 
-	protected Signer getSigner() {
+	private Signer _getSigner() {
 		if (_signer != null) {
 			return _signer;
 		}
@@ -285,11 +290,6 @@ public class SyncAuthVerifier implements AuthVerifier {
 
 			return null;
 		}
-	}
-
-	@Reference(unbind = "-")
-	protected void setUserLocalService(UserLocalService userLocalService) {
-		_userLocalService = userLocalService;
 	}
 
 	private static final long _EXPIRATION = 3600000;

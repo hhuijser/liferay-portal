@@ -175,59 +175,6 @@ public class NtlmFilter extends BaseFilter {
 		return _log;
 	}
 
-	protected NtlmManager getNtlmManager(long companyId) throws Exception {
-		NtlmConfiguration ntlmConfiguration =
-			_configurationProvider.getConfiguration(
-				NtlmConfiguration.class,
-				new CompanyServiceSettingsLocator(
-					companyId, NtlmConstants.SERVICE_NAME));
-
-		String domain = ntlmConfiguration.domain();
-		String domainController = ntlmConfiguration.domainController();
-		String domainControllerName = ntlmConfiguration.domainControllerName();
-		String serviceAccount = ntlmConfiguration.serviceAccount();
-		String servicePassword = ntlmConfiguration.servicePassword();
-
-		NtlmManager ntlmManager = _ntlmManagers.get(companyId);
-
-		if (ntlmManager == null) {
-			ntlmManager = new NtlmManager(
-				_netlogonConnectionManager, domain, domainController,
-				domainControllerName, serviceAccount, servicePassword);
-
-			_ntlmManagers.put(companyId, ntlmManager);
-		}
-		else {
-			if (!Objects.equals(ntlmManager.getDomain(), domain) ||
-				!Objects.equals(
-					ntlmManager.getDomainController(), domainController) ||
-				!Objects.equals(
-					ntlmManager.getDomainControllerName(),
-					domainControllerName) ||
-				!Objects.equals(
-					ntlmManager.getServiceAccount(), serviceAccount) ||
-				!Objects.equals(
-					ntlmManager.getServicePassword(), servicePassword)) {
-
-				ntlmManager.setConfiguration(
-					domain, domainController, domainControllerName,
-					serviceAccount, servicePassword);
-			}
-		}
-
-		return ntlmManager;
-	}
-
-	protected String getPortalCacheKey(HttpServletRequest httpServletRequest) {
-		HttpSession httpSession = httpServletRequest.getSession(false);
-
-		if (httpSession == null) {
-			return httpServletRequest.getRemoteAddr();
-		}
-
-		return httpSession.getId();
-	}
-
 	@Override
 	protected void processFilter(
 			HttpServletRequest httpServletRequest,
@@ -244,10 +191,10 @@ public class NtlmFilter extends BaseFilter {
 			httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION));
 
 		if (authorization.startsWith("NTLM")) {
-			NtlmManager ntlmManager = getNtlmManager(
+			NtlmManager ntlmManager = _getNtlmManager(
 				_portalInstancesLocalService.getCompanyId(httpServletRequest));
 
-			String portalCacheKey = getPortalCacheKey(httpServletRequest);
+			String portalCacheKey = _getPortalCacheKey(httpServletRequest);
 
 			byte[] src = Base64.decode(authorization.substring(5));
 
@@ -366,6 +313,59 @@ public class NtlmFilter extends BaseFilter {
 		ConfigurationProvider configurationProvider) {
 
 		_configurationProvider = configurationProvider;
+	}
+
+	private NtlmManager _getNtlmManager(long companyId) throws Exception {
+		NtlmConfiguration ntlmConfiguration =
+			_configurationProvider.getConfiguration(
+				NtlmConfiguration.class,
+				new CompanyServiceSettingsLocator(
+					companyId, NtlmConstants.SERVICE_NAME));
+
+		String domain = ntlmConfiguration.domain();
+		String domainController = ntlmConfiguration.domainController();
+		String domainControllerName = ntlmConfiguration.domainControllerName();
+		String serviceAccount = ntlmConfiguration.serviceAccount();
+		String servicePassword = ntlmConfiguration.servicePassword();
+
+		NtlmManager ntlmManager = _ntlmManagers.get(companyId);
+
+		if (ntlmManager == null) {
+			ntlmManager = new NtlmManager(
+				_netlogonConnectionManager, domain, domainController,
+				domainControllerName, serviceAccount, servicePassword);
+
+			_ntlmManagers.put(companyId, ntlmManager);
+		}
+		else {
+			if (!Objects.equals(ntlmManager.getDomain(), domain) ||
+				!Objects.equals(
+					ntlmManager.getDomainController(), domainController) ||
+				!Objects.equals(
+					ntlmManager.getDomainControllerName(),
+					domainControllerName) ||
+				!Objects.equals(
+					ntlmManager.getServiceAccount(), serviceAccount) ||
+				!Objects.equals(
+					ntlmManager.getServicePassword(), servicePassword)) {
+
+				ntlmManager.setConfiguration(
+					domain, domainController, domainControllerName,
+					serviceAccount, servicePassword);
+			}
+		}
+
+		return ntlmManager;
+	}
+
+	private String _getPortalCacheKey(HttpServletRequest httpServletRequest) {
+		HttpSession httpSession = httpServletRequest.getSession(false);
+
+		if (httpSession == null) {
+			return httpServletRequest.getRemoteAddr();
+		}
+
+		return httpSession.getId();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(NtlmFilter.class);

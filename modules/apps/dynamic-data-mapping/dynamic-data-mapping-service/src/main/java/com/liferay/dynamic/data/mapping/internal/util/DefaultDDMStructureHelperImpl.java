@@ -75,7 +75,7 @@ public class DefaultDDMStructureHelperImpl
 
 		Locale locale = _portal.getSiteDefaultLocale(groupId);
 
-		List<Element> structureElements = getDDMStructures(
+		List<Element> structureElements = _getDDMStructures(
 			classLoader, fileName, locale);
 
 		for (Element structureElement : structureElements) {
@@ -118,7 +118,7 @@ public class DefaultDDMStructureHelperImpl
 
 			DDMForm ddmForm = getDDMForm(groupId, locale, structureElement);
 
-			DDMFormLayout ddmFormLayout = getDDMFormLayout(
+			DDMFormLayout ddmFormLayout = _getDDMFormLayout(
 				structureElement, ddmForm);
 
 			serviceContext.setAttribute(
@@ -163,7 +163,7 @@ public class DefaultDDMStructureHelperImpl
 			String dynamicDDMStructureName, Locale locale)
 		throws Exception {
 
-		List<Element> structureElements = getDDMStructures(
+		List<Element> structureElements = _getDDMStructures(
 			classLoader, fileName, locale);
 
 		for (Element structureElement : structureElements) {
@@ -226,43 +226,6 @@ public class DefaultDDMStructureHelperImpl
 			ddmForm, locale, _language.getAvailableLocales(groupId));
 	}
 
-	protected DDMFormLayout getDDMFormLayout(
-		Element structureElement, DDMForm ddmForm) {
-
-		Element structureElementLayoutElement = structureElement.element(
-			"layout");
-
-		if (structureElementLayoutElement != null) {
-			DDMFormLayoutDeserializerDeserializeRequest.Builder builder =
-				DDMFormLayoutDeserializerDeserializeRequest.Builder.newBuilder(
-					structureElementLayoutElement.getTextTrim());
-
-			DDMFormLayoutDeserializerDeserializeResponse
-				ddmFormLayoutDeserializerDeserializeResponse =
-					_jsonDDMFormLayoutDeserializer.deserialize(builder.build());
-
-			return ddmFormLayoutDeserializerDeserializeResponse.
-				getDDMFormLayout();
-		}
-
-		return _ddm.getDefaultDDMFormLayout(ddmForm);
-	}
-
-	protected List<Element> getDDMStructures(
-			ClassLoader classLoader, String fileName, Locale locale)
-		throws Exception {
-
-		String xml = StringUtil.read(classLoader, fileName);
-
-		xml = StringUtil.replace(xml, "[$LOCALE_DEFAULT$]", locale.toString());
-
-		Document document = UnsecureSAXReaderUtil.read(xml);
-
-		Element rootElement = document.getRootElement();
-
-		return rootElement.elements("structure");
-	}
-
 	@Reference(unbind = "-")
 	protected void setDDM(DDM ddm) {
 		_ddm = ddm;
@@ -280,6 +243,43 @@ public class DefaultDDMStructureHelperImpl
 		DDMTemplateLocalService ddmTemplateLocalService) {
 
 		_ddmTemplateLocalService = ddmTemplateLocalService;
+	}
+
+	private DDMFormLayout _getDDMFormLayout(
+		Element structureElement, DDMForm ddmForm) {
+
+		Element structureElementLayoutElement = structureElement.element(
+			"layout");
+
+		if (structureElementLayoutElement != null) {
+			DDMFormLayoutDeserializerDeserializeRequest.Builder builder =
+				DDMFormLayoutDeserializerDeserializeRequest.Builder.newBuilder(
+					structureElementLayoutElement.getTextTrim());
+
+			DDMFormLayoutDeserializerDeserializeResponse
+				ddmFormLayoutDeserializerDeserializeResponse =
+					_jsonDDMFormLayoutDeserializer.deserialize(builder.build());
+
+			return ddmFormLayoutDeserializerDeserializeResponse.
+				_getDDMFormLayout();
+		}
+
+		return _ddm.getDefaultDDMFormLayout(ddmForm);
+	}
+
+	private List<Element> _getDDMStructures(
+			ClassLoader classLoader, String fileName, Locale locale)
+		throws Exception {
+
+		String xml = StringUtil.read(classLoader, fileName);
+
+		xml = StringUtil.replace(xml, "[$LOCALE_DEFAULT$]", locale.toString());
+
+		Document document = UnsecureSAXReaderUtil.read(xml);
+
+		Element rootElement = document.getRootElement();
+
+		return rootElement.elements("structure");
 	}
 
 	private DDMForm _getPopulateDDMForm(

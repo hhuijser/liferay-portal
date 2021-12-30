@@ -160,7 +160,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		}
 
 		return CreationMenuBuilder.addPrimaryDropdownItem(
-			getAddElementSetDropdownItem()
+			_getAddElementSetDropdownItem()
 		).build();
 	}
 
@@ -213,7 +213,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		}
 
 		return DropdownItemListBuilder.add(
-			getAddElementSetDropdownItem()
+			_getAddElementSetDropdownItem()
 		).build();
 	}
 
@@ -362,7 +362,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		String orderByType = getOrderByType();
 
 		OrderByComparator<DDMStructure> orderByComparator =
-			getDDMStructureOrderByComparator(orderByCol, orderByType);
+			_getDDMStructureOrderByComparator(orderByCol, orderByType);
 
 		fieldSetSearch.setOrderByCol(orderByCol);
 		fieldSetSearch.setOrderByComparator(orderByComparator);
@@ -377,8 +377,8 @@ public class DDMFormAdminFieldSetDisplayContext
 
 		fieldSetSearch.setRowChecker(new FieldSetRowChecker(renderResponse));
 
-		setFieldSetsSearchResults(fieldSetSearch);
-		setFieldSetsSearchTotal(fieldSetSearch);
+		_setFieldSetsSearchResults(fieldSetSearch);
+		_setFieldSetsSearchTotal(fieldSetSearch);
 
 		return fieldSetSearch;
 	}
@@ -401,8 +401,8 @@ public class DDMFormAdminFieldSetDisplayContext
 		return "structure";
 	}
 
-	protected UnsafeConsumer<DropdownItem, Exception>
-		getAddElementSetDropdownItem() {
+	private UnsafeConsumer<DropdownItem, Exception>
+		_getAddElementSetDropdownItem() {
 
 		return dropdownItem -> {
 			HttpServletRequest httpServletRequest =
@@ -423,7 +423,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		};
 	}
 
-	protected OrderByComparator<DDMStructure> getDDMStructureOrderByComparator(
+	private OrderByComparator<DDMStructure> _getDDMStructureOrderByComparator(
 		String orderByCol, String orderByType) {
 
 		boolean orderByAsc = false;
@@ -447,7 +447,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		return orderByComparator;
 	}
 
-	protected void setFieldSetsSearchResults(FieldSetSearch fieldSetSearch) {
+	private void _setFieldSetsSearchResults(FieldSetSearch fieldSetSearch) {
 		FieldSetSearchTerms fieldSetSearchTerms =
 			(FieldSetSearchTerms)fieldSetSearch.getSearchTerms();
 
@@ -464,7 +464,7 @@ public class DDMFormAdminFieldSetDisplayContext
 		fieldSetSearch.setResults(results);
 	}
 
-	protected void setFieldSetsSearchTotal(FieldSetSearch fieldSetSearch) {
+	private void _setFieldSetsSearchTotal(FieldSetSearch fieldSetSearch) {
 		FieldSetSearchTerms fieldSetSearchTerms =
 			(FieldSetSearchTerms)fieldSetSearch.getSearchTerms();
 

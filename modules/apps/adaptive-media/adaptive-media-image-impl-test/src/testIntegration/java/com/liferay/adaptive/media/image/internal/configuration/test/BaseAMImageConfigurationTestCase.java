@@ -17,14 +17,11 @@ package com.liferay.adaptive.media.image.internal.configuration.test;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
 import com.liferay.adaptive.media.image.constants.AMImageDestinationNames;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.test.rule.Inject;
-
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -106,9 +103,7 @@ public abstract class BaseAMImageConfigurationTestCase {
 
 	}
 
-	private void _deleteAllConfigurationEntries()
-		throws IOException, PortalException {
-
+	private void _deleteAllConfigurationEntries() throws Exception {
 		AMImageConfigurationHelper amImageConfigurationHelper =
 			getAMImageConfigurationHelper();
 

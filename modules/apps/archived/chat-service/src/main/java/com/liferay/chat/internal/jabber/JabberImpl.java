@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -442,7 +441,7 @@ public class JabberImpl implements Jabber {
 	}
 
 	private ConnectionConfiguration _getConnectionConfiguration()
-		throws UnknownHostException {
+		throws Exception {
 
 		if (_connectionConfiguration != null) {
 			return _connectionConfiguration;

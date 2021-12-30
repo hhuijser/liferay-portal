@@ -44,7 +44,6 @@ import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONFactoryImpl;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -225,7 +224,7 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 
 	private DDMFormInstance _mockDDMFormInstance(
 			long formInstanceId, boolean requireAuthentication)
-		throws PortalException {
+		throws Exception {
 
 		DDMFormInstance formInstance = mock(DDMFormInstance.class);
 
@@ -250,7 +249,7 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 	private DDMFormInstance _mockDDMFormInstance(
 			long formInstanceId, boolean published,
 			boolean requireAuthentication)
-		throws PortalException {
+		throws Exception {
 
 		DDMFormInstance ddmFormInstance = _mockDDMFormInstance(
 			formInstanceId, requireAuthentication);
@@ -268,7 +267,7 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 	}
 
 	private DDMFormInstanceService _mockDDMFormInstanceService()
-		throws PortalException {
+		throws Exception {
 
 		DDMFormInstanceService ddmFormInstanceService = mock(
 			DDMFormInstanceService.class);

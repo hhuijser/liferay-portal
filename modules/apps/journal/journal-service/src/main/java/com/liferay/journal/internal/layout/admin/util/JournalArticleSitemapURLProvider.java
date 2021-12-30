@@ -77,12 +77,12 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 		}
 
 		if (layout.isTypeAssetDisplay()) {
-			visitArticles(
+			_visitArticles(
 				element, layoutSet, themeDisplay,
-				getDisplayPageTemplateArticles(layout), false);
+				_getDisplayPageTemplateArticles(layout), false);
 		}
 		else {
-			visitArticles(
+			_visitArticles(
 				element, layoutSet, themeDisplay,
 				_getDisplayPageArticles(layoutSet.getGroupId(), layoutUuid),
 				true);
@@ -109,10 +109,28 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 			_journalArticleService.getLayoutArticles(
 				layoutSet.getGroupId(), start, end);
 
-		visitArticles(element, layoutSet, themeDisplay, journalArticles, true);
+		_visitArticles(element, layoutSet, themeDisplay, journalArticles, true);
 	}
 
-	protected List<JournalArticle> getDisplayPageTemplateArticles(
+	private List<JournalArticle> _getDisplayPageArticles(
+		long groupId, String layoutUuid) {
+
+		int start = QueryUtil.ALL_POS;
+		int end = QueryUtil.ALL_POS;
+
+		int count = _journalArticleService.getArticlesByLayoutUuidCount(
+			groupId, layoutUuid);
+
+		if (count > Sitemap.MAXIMUM_ENTRIES) {
+			start = count - Sitemap.MAXIMUM_ENTRIES;
+			end = count;
+		}
+
+		return _journalArticleService.getArticlesByLayoutUuid(
+			groupId, layoutUuid, start, end);
+	}
+
+	private List<JournalArticle> _getDisplayPageTemplateArticles(
 		Layout layout) {
 
 		List<JournalArticle> journalArticles = new ArrayList<>();
@@ -170,7 +188,7 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 		return journalArticles;
 	}
 
-	protected Layout getDisplayPageTemplateLayout(
+	private Layout _getDisplayPageTemplateLayout(
 		long groupId, long journalArticleResourcePrimKey) {
 
 		long classNameId = _portal.getClassNameId(
@@ -189,7 +207,7 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 		return _layoutLocalService.fetchLayout(assetDisplayPageEntryPlid);
 	}
 
-	protected void visitArticles(
+	private void _visitArticles(
 			Element element, LayoutSet layoutSet, ThemeDisplay themeDisplay,
 			List<JournalArticle> journalArticles, boolean headCheck)
 		throws PortalException {
@@ -221,7 +239,7 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 					layoutSet.isPrivateLayout());
 			}
 			else {
-				layout = getDisplayPageTemplateLayout(
+				layout = _getDisplayPageTemplateLayout(
 					layoutSet.getGroupId(),
 					journalArticle.getResourcePrimKey());
 			}
@@ -260,24 +278,6 @@ public class JournalArticleSitemapURLProvider implements SitemapURLProvider {
 
 			processedArticleIds.add(journalArticle.getArticleId());
 		}
-	}
-
-	private List<JournalArticle> _getDisplayPageArticles(
-		long groupId, String layoutUuid) {
-
-		int start = QueryUtil.ALL_POS;
-		int end = QueryUtil.ALL_POS;
-
-		int count = _journalArticleService.getArticlesByLayoutUuidCount(
-			groupId, layoutUuid);
-
-		if (count > Sitemap.MAXIMUM_ENTRIES) {
-			start = count - Sitemap.MAXIMUM_ENTRIES;
-			end = count;
-		}
-
-		return _journalArticleService.getArticlesByLayoutUuid(
-			groupId, layoutUuid, start, end);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

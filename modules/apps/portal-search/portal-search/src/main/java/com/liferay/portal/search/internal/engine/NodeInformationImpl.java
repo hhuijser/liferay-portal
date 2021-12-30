@@ -62,14 +62,6 @@ public class NodeInformationImpl implements NodeInformation {
 	private NodeInformationImpl() {
 	}
 
-	private void _setName(String name) {
-		_name = name;
-	}
-
-	private void _setVersion(String version) {
-		_version = version;
-	}
-
 	private String _name;
 	private String _version;
 

@@ -117,32 +117,6 @@ public class ConnectionInformationImpl implements ConnectionInformation {
 	private ConnectionInformationImpl() {
 	}
 
-	private void _setClusterName(String clusterName) {
-		_clusterName = clusterName;
-	}
-
-	private void _setConnectionId(String connectionId) {
-		_connectionId = connectionId;
-	}
-
-	private void _setError(String error) {
-		_error = error;
-	}
-
-	private void _setHealth(String health) {
-		_health = health;
-	}
-
-	private void _setLabels(Set<String> labels) {
-		_labels = labels;
-	}
-
-	private void _setNodeInformationList(
-		List<NodeInformation> nodeInformationList) {
-
-		_nodeInformationList = nodeInformationList;
-	}
-
 	private String _clusterName;
 	private String _connectionId;
 	private String _error;

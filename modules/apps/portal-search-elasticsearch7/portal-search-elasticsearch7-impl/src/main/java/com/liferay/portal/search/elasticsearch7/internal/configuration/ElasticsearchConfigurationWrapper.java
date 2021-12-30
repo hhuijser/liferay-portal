@@ -314,12 +314,6 @@ public class ElasticsearchConfigurationWrapper
 		return propsMap;
 	}
 
-	private void _setElasticsearchConfiguration(
-		ElasticsearchConfiguration elasticsearchConfiguration) {
-
-		_elasticsearchConfiguration = elasticsearchConfiguration;
-	}
-
 	private static final String[] _PROPS_KEYS = {"sidecarJVMOptions"};
 
 	private volatile ElasticsearchConfiguration _elasticsearchConfiguration;

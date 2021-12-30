@@ -56,7 +56,7 @@ public class AmazonRankingsWebCacheItem implements WebCacheItem {
 		AmazonRankings amazonRankings = null;
 
 		try {
-			amazonRankings = _doConvert(key);
+			amazonRankings = _doConvert();
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
@@ -70,7 +70,7 @@ public class AmazonRankingsWebCacheItem implements WebCacheItem {
 		return _REFRESH_TIME;
 	}
 
-	private AmazonRankings _doConvert(String key) throws Exception {
+	private AmazonRankings _doConvert() throws Exception {
 		String urlWithSignature =
 			AmazonSignedRequestsUtil.generateUrlWithSignature(
 				_amazonRankingsConfiguration,

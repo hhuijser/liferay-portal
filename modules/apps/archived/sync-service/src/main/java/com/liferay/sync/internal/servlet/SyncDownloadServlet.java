@@ -142,8 +142,7 @@ public class SyncDownloadServlet extends HttpServlet {
 				JSONArray zipFileIdsJSONArray = JSONFactoryUtil.createJSONArray(
 					zipFileIds);
 
-				_sendZipFile(
-					httpServletResponse, user.getUserId(), zipFileIdsJSONArray);
+				_sendZipFile(httpServletResponse, zipFileIdsJSONArray);
 			}
 			else if (pathArray[0].equals("zipfolder")) {
 				long repositoryId = ParamUtil.getLong(
@@ -183,13 +182,13 @@ public class SyncDownloadServlet extends HttpServlet {
 
 				if (ParamUtil.getBoolean(httpServletRequest, "patch")) {
 					_sendPatch(
-						httpServletRequest, httpServletResponse,
-						user.getUserId(), groupId, fileUuid);
+						httpServletRequest, httpServletResponse, groupId,
+						fileUuid);
 				}
 				else {
 					_sendFile(
-						httpServletRequest, httpServletResponse,
-						user.getUserId(), groupId, fileUuid);
+						httpServletRequest, httpServletResponse, groupId,
+						fileUuid);
 				}
 			}
 		}
@@ -277,8 +276,7 @@ public class SyncDownloadServlet extends HttpServlet {
 	}
 
 	private File _getDeltaFile(
-			long userId, long fileEntryId, long sourceVersionId,
-			long targetVersionId)
+			long fileEntryId, long sourceVersionId, long targetVersionId)
 		throws Exception {
 
 		DLFileVersion sourceDLFileVersion =
@@ -306,8 +304,7 @@ public class SyncDownloadServlet extends HttpServlet {
 	}
 
 	private DownloadServletInputStream _getFileDownloadServletInputStream(
-			long userId, long groupId, String uuid, String version,
-			long versionId)
+			long groupId, String uuid, String version, long versionId)
 		throws Exception {
 
 		FileEntry fileEntry = _dlAppService.getFileEntryByUuidAndGroupId(
@@ -344,7 +341,7 @@ public class SyncDownloadServlet extends HttpServlet {
 	}
 
 	private DownloadServletInputStream _getPatchDownloadServletInputStream(
-			long userId, long groupId, String uuid, long sourceVersionId,
+			long groupId, String uuid, long sourceVersionId,
 			long targetVersionId)
 		throws Exception {
 
@@ -360,7 +357,7 @@ public class SyncDownloadServlet extends HttpServlet {
 
 			try {
 				deltaFile = _getDeltaFile(
-					userId, fileEntry.getFileEntryId(), sourceVersionId,
+					fileEntry.getFileEntryId(), sourceVersionId,
 					targetVersionId);
 
 				return new DownloadServletInputStream(
@@ -391,8 +388,7 @@ public class SyncDownloadServlet extends HttpServlet {
 
 		try {
 			deltaFile = _getDeltaFile(
-				userId, fileEntry.getFileEntryId(), sourceVersionId,
-				targetVersionId);
+				fileEntry.getFileEntryId(), sourceVersionId, targetVersionId);
 
 			SyncDLFileVersionDiffLocalServiceUtil.addSyncDLFileVersionDiff(
 				fileEntry.getFileEntryId(), sourceVersionId, targetVersionId,
@@ -407,7 +403,7 @@ public class SyncDownloadServlet extends HttpServlet {
 	}
 
 	private InputStream _getZipFileInputStream(
-			JSONObject zipObjectJSONObject, long userId, long groupId)
+			JSONObject zipObjectJSONObject, long groupId)
 		throws Exception {
 
 		String uuid = zipObjectJSONObject.getString("uuid");
@@ -419,11 +415,11 @@ public class SyncDownloadServlet extends HttpServlet {
 				"targetVersionId", 0);
 
 			return _getPatchDownloadServletInputStream(
-				userId, groupId, uuid, sourceVersionId, targetVersionId);
+				groupId, uuid, sourceVersionId, targetVersionId);
 		}
 
 		return _getFileDownloadServletInputStream(
-			userId, groupId, uuid, zipObjectJSONObject.getString("version"),
+			groupId, uuid, zipObjectJSONObject.getString("version"),
 			zipObjectJSONObject.getLong("versionId"));
 	}
 
@@ -437,8 +433,7 @@ public class SyncDownloadServlet extends HttpServlet {
 
 	private void _sendFile(
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse, long userId, long groupId,
-			String uuid)
+			HttpServletResponse httpServletResponse, long groupId, String uuid)
 		throws Exception {
 
 		String version = ParamUtil.getString(httpServletRequest, "version");
@@ -446,7 +441,7 @@ public class SyncDownloadServlet extends HttpServlet {
 
 		DownloadServletInputStream downloadServletInputStream =
 			_getFileDownloadServletInputStream(
-				userId, groupId, uuid, version, versionId);
+				groupId, uuid, version, versionId);
 
 		if (httpServletRequest.getHeader(HttpHeaders.RANGE) != null) {
 			ServletResponseUtil.sendFileWithRangeHeader(
@@ -496,8 +491,7 @@ public class SyncDownloadServlet extends HttpServlet {
 
 	private void _sendPatch(
 			HttpServletRequest httpServletRequest,
-			HttpServletResponse httpServletResponse, long userId, long groupId,
-			String uuid)
+			HttpServletResponse httpServletResponse, long groupId, String uuid)
 		throws Exception {
 
 		long sourceVersionId = ParamUtil.getLong(
@@ -507,7 +501,7 @@ public class SyncDownloadServlet extends HttpServlet {
 
 		DownloadServletInputStream downloadServletInputStream =
 			_getPatchDownloadServletInputStream(
-				userId, groupId, uuid, sourceVersionId, targetVersionId);
+				groupId, uuid, sourceVersionId, targetVersionId);
 
 		ServletResponseUtil.write(
 			httpServletResponse, downloadServletInputStream,
@@ -515,7 +509,7 @@ public class SyncDownloadServlet extends HttpServlet {
 	}
 
 	private void _sendZipFile(
-			HttpServletResponse httpServletResponse, long userId,
+			HttpServletResponse httpServletResponse,
 			JSONArray zipFileIdsJSONArray)
 		throws Exception {
 
@@ -541,7 +535,7 @@ public class SyncDownloadServlet extends HttpServlet {
 			}
 
 			try (InputStream inputStream = _getZipFileInputStream(
-					zipObjectJSONObject, userId, groupId)) {
+					zipObjectJSONObject, groupId)) {
 
 				zipWriter.addEntry(zipFileId, inputStream);
 			}

@@ -75,7 +75,7 @@ public class SyncAdminPortlet extends BaseSyncPortlet {
 		throws IOException, PortletException {
 
 		try {
-			_doUpdatePreferences(actionRequest, actionResponse);
+			_doUpdatePreferences(actionRequest);
 		}
 		catch (Exception exception) {
 			throw new PortletException(exception);
@@ -131,8 +131,7 @@ public class SyncAdminPortlet extends BaseSyncPortlet {
 		_syncOAuthHelperUtil = syncOAuthHelperUtil;
 	}
 
-	private void _doUpdatePreferences(
-			ActionRequest actionRequest, ActionResponse actionResponse)
+	private void _doUpdatePreferences(ActionRequest actionRequest)
 		throws Exception {
 
 		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(

@@ -58,7 +58,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		throws PortletException {
 
 		try {
-			return _doRender(renderRequest);
+			return _render(renderRequest);
 		}
 		catch (PortalException portalException) {
 			throw new PortletException(portalException);
@@ -82,9 +82,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		_userLocalService = userLocalService;
 	}
 
-	private String _doRender(RenderRequest renderRequest)
-		throws PortalException {
-
+	private String _render(RenderRequest renderRequest) throws PortalException {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

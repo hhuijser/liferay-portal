@@ -145,7 +145,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 		try {
 			super.init();
 
-			_doInit();
+			_init();
 
 			_enabled = true;
 		}
@@ -173,7 +173,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 	protected void setRelease(Release release) {
 	}
 
-	private void _doInit() {
+	private void _init() {
 		BundleContext bundleContext = _componentContext.getBundleContext();
 
 		PortletConfig portletConfig = getPortletConfig();

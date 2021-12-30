@@ -49,7 +49,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		Weather weather = null;
 
 		try {
-			weather = _doConvert();
+			weather = _convert();
 		}
 		catch (Exception exception) {
 			throw new WebCacheException(_zip, exception);
@@ -63,7 +63,7 @@ public class WeatherWebCacheItem implements WebCacheItem {
 		return _REFRESH_TIME;
 	}
 
-	private Weather _doConvert() throws Exception {
+	private Weather _convert() throws Exception {
 		String xml = HttpUtil.URLtoString(
 			StringBundler.concat(
 				"http://api.openweathermap.org/data/2.5/weather?q=",

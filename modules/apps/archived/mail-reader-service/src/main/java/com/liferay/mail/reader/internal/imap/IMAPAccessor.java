@@ -65,7 +65,6 @@ import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.UIDFolder;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -1034,53 +1033,6 @@ public class IMAPAccessor {
 				contentPath + ".-1", fileName, part.getSize());
 
 			mailFiles.add(mailFile);
-		}
-	}
-
-	private InternetAddress[] _getRecipients(long messageId)
-		throws PortalException {
-
-		try {
-			com.liferay.mail.reader.model.Message message =
-				MessageLocalServiceUtil.getMessage(messageId);
-
-			return InternetAddress.parse(
-				StringBundler.concat(
-					message.getTo(), StringPool.COMMA, message.getCc(),
-					StringPool.COMMA, message.getBcc(), StringPool.COMMA),
-				true);
-		}
-		catch (AddressException addressException) {
-			throw new MailException(
-				MailException.MESSAGE_INVALID_ADDRESS, addressException);
-		}
-	}
-
-	private InternetAddress[] _getRecipients(
-			long messageId, Message.RecipientType recipientType)
-		throws PortalException {
-
-		try {
-			com.liferay.mail.reader.model.Message message =
-				MessageLocalServiceUtil.getMessage(messageId);
-
-			if (recipientType.equals(Message.RecipientType.TO)) {
-				return InternetAddress.parse(message.getTo());
-			}
-			else if (recipientType.equals(Message.RecipientType.CC)) {
-				return InternetAddress.parse(message.getCc());
-			}
-			else if (recipientType.equals(Message.RecipientType.BCC)) {
-				return InternetAddress.parse(message.getBcc());
-			}
-			else {
-				throw new IllegalArgumentException(
-					"Invalid recipient type " + recipientType);
-			}
-		}
-		catch (AddressException addressException) {
-			throw new MailException(
-				MailException.MESSAGE_INVALID_ADDRESS, addressException);
 		}
 	}
 

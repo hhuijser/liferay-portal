@@ -142,10 +142,6 @@ public class UserPersonalSitePermissions {
 		}
 	}
 
-	private void _deactivated() {
-		_serviceTracker.close();
-	}
-
 	private Role _getPowerUserRole(long companyId) {
 		try {
 			return _roleLocalService.getRole(

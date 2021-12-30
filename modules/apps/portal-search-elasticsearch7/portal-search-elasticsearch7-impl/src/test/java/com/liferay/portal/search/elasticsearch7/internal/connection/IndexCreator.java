@@ -134,24 +134,6 @@ public class IndexCreator {
 		return restHighLevelClient.indices();
 	}
 
-	private void _setElasticsearchClientResolver(
-		ElasticsearchClientResolver elasticsearchClientResolver) {
-
-		_elasticsearchClientResolver = elasticsearchClientResolver;
-	}
-
-	private void _setIndexCreationHelper(
-		IndexCreationHelper indexCreationHelper) {
-
-		_indexCreationHelper = indexCreationHelper;
-	}
-
-	private void _setLiferayMappingsAddedToIndex(
-		boolean liferayMappingsAddedToIndex) {
-
-		_liferayMappingsAddedToIndex = liferayMappingsAddedToIndex;
-	}
-
 	private ElasticsearchClientResolver _elasticsearchClientResolver;
 	private IndexCreationHelper _indexCreationHelper;
 	private boolean _liferayMappingsAddedToIndex;

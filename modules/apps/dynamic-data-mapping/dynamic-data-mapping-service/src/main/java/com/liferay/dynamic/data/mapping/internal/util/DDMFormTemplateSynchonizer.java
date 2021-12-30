@@ -57,7 +57,7 @@ public class DDMFormTemplateSynchonizer {
 	}
 
 	public void synchronize() throws PortalException {
-		for (DDMTemplate ddmTemplate : _getDDMFormTemplates()) {
+		for (DDMTemplate ddmTemplate : _ddmFormTemplates) {
 			DDMForm templateDDMForm = deserialize(ddmTemplate.getScript());
 
 			_synchronizeDDMFormFields(
@@ -134,10 +134,6 @@ public class DDMFormTemplateSynchonizer {
 					templateDDMFormField.getNestedDDMFormFields());
 			}
 		}
-	}
-
-	private List<DDMTemplate> _getDDMFormTemplates() {
-		return _ddmFormTemplates;
 	}
 
 	private void _synchronizeDDMFormFieldOptions(

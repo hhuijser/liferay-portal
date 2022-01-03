@@ -281,12 +281,6 @@ public class ElasticsearchConfigurationWrapper
 				onElasticsearchConfigurationUpdate);
 	}
 
-	protected void setElasticsearchConfiguration(
-		ElasticsearchConfiguration elasticsearchConfiguration) {
-
-		_elasticsearchConfiguration = elasticsearchConfiguration;
-	}
-
 	@Reference(unbind = "-")
 	protected void setProps(Props props) {
 		_props = props;
@@ -318,6 +312,12 @@ public class ElasticsearchConfigurationWrapper
 		}
 
 		return propsMap;
+	}
+
+	private void _setElasticsearchConfiguration(
+		ElasticsearchConfiguration elasticsearchConfiguration) {
+
+		_elasticsearchConfiguration = elasticsearchConfiguration;
 	}
 
 	private static final String[] _PROPS_KEYS = {"sidecarJVMOptions"};

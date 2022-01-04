@@ -68,28 +68,6 @@ public class VersionsXmlReportRenderer implements ReportRenderer {
 		}
 	}
 
-	protected String getLicenseName(
-		String moduleFileName, ModuleData moduleData) {
-
-		List<String> moduleLicenseInfo =
-			LicenseDataCollector.singleModuleLicenseInfo(moduleData);
-
-		return moduleLicenseInfo.get(1);
-	}
-
-	protected String getLicenseUrl(
-		String moduleFileName, ModuleData moduleData) {
-
-		List<String> moduleLicenseInfo =
-			LicenseDataCollector.singleModuleLicenseInfo(moduleData);
-
-		return moduleLicenseInfo.get(2);
-	}
-
-	protected boolean isExcluded(String moduleFileName, ModuleData moduleData) {
-		return false;
-	}
-
 	private void _appendLibraryElement(
 		Document document, Element librariesElement, String moduleFileName,
 		ModuleData moduleData) {
@@ -99,8 +77,8 @@ public class VersionsXmlReportRenderer implements ReportRenderer {
 
 		String projectUrl = moduleLicenseInfo.get(0);
 
-		String licenseName = getLicenseName(moduleFileName, moduleData);
-		String licenseUrl = getLicenseUrl(moduleFileName, moduleData);
+		String licenseName = _getLicenseName(moduleFileName, moduleData);
+		String licenseUrl = _getLicenseUrl(moduleFileName, moduleData);
 
 		Element libraryElement = XMLUtil.appendElement(
 			document, librariesElement, "library");
@@ -125,6 +103,24 @@ public class VersionsXmlReportRenderer implements ReportRenderer {
 			document, licenseElement, "license-name", licenseName);
 		XMLUtil.appendElement(
 			document, licenseElement, "license-url", licenseUrl);
+	}
+
+	private String _getLicenseName(
+		String moduleFileName, ModuleData moduleData) {
+
+		List<String> moduleLicenseInfo =
+			LicenseDataCollector.singleModuleLicenseInfo(moduleData);
+
+		return moduleLicenseInfo.get(1);
+	}
+
+	private String _getLicenseUrl(
+		String moduleFileName, ModuleData moduleData) {
+
+		List<String> moduleLicenseInfo =
+			LicenseDataCollector.singleModuleLicenseInfo(moduleData);
+
+		return moduleLicenseInfo.get(2);
 	}
 
 	private String _getProjectName(ModuleData moduleData) {
@@ -163,6 +159,10 @@ public class VersionsXmlReportRenderer implements ReportRenderer {
 		return previousName;
 	}
 
+	private boolean _isExcluded(String moduleFileName, ModuleData moduleData) {
+		return false;
+	}
+
 	private void _render(ProjectData projectData) throws Exception {
 		Map<String, ModuleData> fileNameModuleDataMap = new TreeMap<>();
 
@@ -172,7 +172,7 @@ public class VersionsXmlReportRenderer implements ReportRenderer {
 			String moduleFileName =
 				moduleFileNamePrefix + "!" + moduleData.getName() + ".jar";
 
-			if (isExcluded(moduleFileName, moduleData)) {
+			if (_isExcluded(moduleFileName, moduleData)) {
 				continue;
 			}
 

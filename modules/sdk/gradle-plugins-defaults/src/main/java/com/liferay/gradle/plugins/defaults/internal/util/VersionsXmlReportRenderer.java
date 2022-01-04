@@ -165,12 +165,12 @@ public class VersionsXmlReportRenderer implements ReportRenderer {
 		String moduleFileNamePrefix = _moduleFileNamePrefixCallable.call();
 
 		for (ModuleData moduleData : projectData.getAllDependencies()) {
-			String moduleFileName =
-				moduleFileNamePrefix + "!" + moduleData.getName() + ".jar";
-
 			if (_isExcluded()) {
 				continue;
 			}
+
+			String moduleFileName =
+				moduleFileNamePrefix + "!" + moduleData.getName() + ".jar";
 
 			fileNameModuleDataMap.put(moduleFileName, moduleData);
 		}

@@ -86,7 +86,6 @@ public class DefaultSearchResponseTranslator
 		_updateGroupedHits(
 			searchSearchResponse, searchResponse, searchSearchRequest, hits,
 			searchSearchRequest.getAlternateUidFieldName(),
-			searchSearchRequest.getHighlightFieldNames(),
 			searchSearchRequest.getLocale());
 
 		_updateStatsResults(

@@ -181,7 +181,7 @@ public class SearchBarPortletSharedSearchContributor
 				searchBarPortletPreferences.getScopeParameterName());
 
 		return optional.map(
-			SearchScope::_getSearchScope
+			SearchScope::getSearchScope
 		).orElseGet(
 			this::_getDefaultSearchScope
 		);

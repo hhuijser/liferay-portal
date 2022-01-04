@@ -25,7 +25,6 @@ import com.liferay.portal.test.rule.LiferayUnitTestRule;
 
 import java.util.List;
 
-import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -37,7 +36,6 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
@@ -109,18 +107,6 @@ public class RankingPortletDisplayBuilderTest extends BaseRankingsWebTestCase {
 			rankingPortletDisplayContext.getFilterItemsDropdownItems();
 
 		Assert.assertEquals(dropdownItems.toString(), 2, dropdownItems.size());
-	}
-
-	private HttpServletRequest _setUpPortalGetHttpServletRequest() {
-		Mockito.doReturn(
-			_httpServletRequest
-		).when(
-			portal
-		).getHttpServletRequest(
-			Matchers.any(PortletRequest.class)
-		);
-
-		return _httpServletRequest;
 	}
 
 	@Mock

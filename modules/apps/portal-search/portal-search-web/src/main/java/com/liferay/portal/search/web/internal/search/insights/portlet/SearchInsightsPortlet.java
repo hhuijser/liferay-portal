@@ -89,7 +89,7 @@ public class SearchInsightsPortlet extends MVCPortlet {
 
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT,
-			buildDisplayContext(
+			_buildDisplayContext(
 				portletSharedSearchResponse, searchInsightsPortletPreferences,
 				renderRequest));
 
@@ -103,7 +103,19 @@ public class SearchInsightsPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	protected SearchInsightsDisplayContext buildDisplayContext(
+	@Reference
+	protected Language language;
+
+	@Reference
+	protected Portal portal;
+
+	@Reference
+	protected PortletPermission portletPermission;
+
+	@Reference
+	protected PortletSharedSearchRequest portletSharedSearchRequest;
+
+	private SearchInsightsDisplayContext _buildDisplayContext(
 		PortletSharedSearchResponse portletSharedSearchResponse,
 		SearchInsightsPortletPreferences searchInsightsPortletPreferences,
 		RenderRequest renderRequest) {
@@ -116,76 +128,64 @@ public class SearchInsightsPortlet extends MVCPortlet {
 				searchInsightsPortletPreferences.
 					getFederatedSearchKeyOptional());
 
-		if (isCompanyAdmin() &&
-			(isRequestStringPresent(searchResponse) ||
-			 isResponseStringPresent(searchResponse))) {
+		if (_isCompanyAdmin() &&
+			(_isRequestStringPresent(searchResponse) ||
+			 _isResponseStringPresent(searchResponse))) {
 
 			searchInsightsDisplayContext.setRequestString(
-				buildRequestString(searchResponse));
+				_buildRequestString(searchResponse));
 
 			searchInsightsDisplayContext.setResponseString(
-				buildResponseString(searchResponse));
+				_buildResponseString(searchResponse));
 		}
 		else {
 			searchInsightsDisplayContext.setHelpMessage(
-				getHelpMessage(renderRequest));
+				_getHelpMessage(renderRequest));
 		}
 
 		return searchInsightsDisplayContext;
 	}
 
-	protected String buildRequestString(SearchResponse searchResponse) {
+	private String _buildRequestString(SearchResponse searchResponse) {
 		Optional<String> optional = SearchStringUtil.maybe(
 			searchResponse.getRequestString());
 
 		return optional.orElse(StringPool.BLANK);
 	}
 
-	protected String buildResponseString(SearchResponse searchResponse) {
+	private String _buildResponseString(SearchResponse searchResponse) {
 		Optional<String> responseStringOptional = SearchStringUtil.maybe(
 			searchResponse.getResponseString());
 
 		return responseStringOptional.orElse(StringPool.BLANK);
 	}
 
-	protected String getHelpMessage(RenderRequest renderRequest) {
+	private String _getHelpMessage(RenderRequest renderRequest) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", renderRequest.getLocale(), getClass());
 
 		return language.get(resourceBundle, "search-insights-help");
 	}
 
-	protected boolean isCompanyAdmin() {
+	private boolean _isCompanyAdmin() {
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
 		return permissionChecker.isCompanyAdmin();
 	}
 
-	protected boolean isRequestStringPresent(SearchResponse searchResponse) {
+	private boolean _isRequestStringPresent(SearchResponse searchResponse) {
 		Optional<String> requestStringOptional = SearchStringUtil.maybe(
 			searchResponse.getRequestString());
 
 		return requestStringOptional.isPresent();
 	}
 
-	protected boolean isResponseStringPresent(SearchResponse searchResponse) {
+	private boolean _isResponseStringPresent(SearchResponse searchResponse) {
 		Optional<String> responseStringOptional = SearchStringUtil.maybe(
 			searchResponse.getResponseString());
 
 		return responseStringOptional.isPresent();
 	}
-
-	@Reference
-	protected Language language;
-
-	@Reference
-	protected Portal portal;
-
-	@Reference
-	protected PortletPermission portletPermission;
-
-	@Reference
-	protected PortletSharedSearchRequest portletSharedSearchRequest;
 
 }

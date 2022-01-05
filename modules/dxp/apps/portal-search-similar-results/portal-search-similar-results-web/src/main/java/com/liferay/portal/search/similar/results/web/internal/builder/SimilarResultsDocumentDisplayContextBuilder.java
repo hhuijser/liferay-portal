@@ -522,7 +522,7 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 		String className) {
 
 		return AssetRendererFactoryRegistryUtil.
-			_getAssetRendererFactoryByClassName(className);
+			getAssetRendererFactoryByClassName(className);
 	}
 
 	private long _getEntryClassPK() {

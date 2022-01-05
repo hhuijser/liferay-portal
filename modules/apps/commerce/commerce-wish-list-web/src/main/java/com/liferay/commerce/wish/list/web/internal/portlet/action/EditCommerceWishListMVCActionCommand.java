@@ -30,10 +30,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-
-import java.util.ResourceBundle;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -124,10 +121,8 @@ public class EditCommerceWishListMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException {
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", _portal.getLocale(actionRequest), getClass());
-
-		String name = LanguageUtil.get(resourceBundle, "new-wish-list");
+		String name = LanguageUtil.get(
+			_portal.getLocale(actionRequest), "new-wish-list");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CommerceWishList.class.getName(), actionRequest);

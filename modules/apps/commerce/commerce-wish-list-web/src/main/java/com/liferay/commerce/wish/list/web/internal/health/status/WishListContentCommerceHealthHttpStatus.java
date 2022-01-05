@@ -26,11 +26,9 @@ import com.liferay.portal.kernel.service.LayoutService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -94,11 +92,8 @@ public class WishListContentCommerceHealthHttpStatus
 
 	@Override
 	public String getDescription(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		return LanguageUtil.get(
-			resourceBundle, "wish-list-content-health-status-description");
+			locale, "wish-list-content-health-status-description");
 	}
 
 	@Override
@@ -108,11 +103,7 @@ public class WishListContentCommerceHealthHttpStatus
 
 	@Override
 	public String getName(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(
-			resourceBundle, "wish-list-content-health-status-name");
+		return LanguageUtil.get(locale, "wish-list-content-health-status-name");
 	}
 
 	@Override

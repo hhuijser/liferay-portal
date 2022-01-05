@@ -31,14 +31,12 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -107,8 +105,6 @@ public class EditImageConfigurationEntryMVCActionCommand
 		}
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(), getClass());
 
 		try {
 			String message = "";
@@ -135,7 +131,7 @@ public class EditImageConfigurationEntryMVCActionCommand
 
 				if (autoModifiedUuid) {
 					message = LanguageUtil.format(
-						resourceBundle,
+						themeDisplay.getLocale(),
 						"x-was-saved-successfully.-the-id-was-duplicated-and-" +
 							"renamed-to-x",
 						new String[] {
@@ -146,7 +142,7 @@ public class EditImageConfigurationEntryMVCActionCommand
 				}
 				else {
 					message = LanguageUtil.format(
-						resourceBundle, "x-was-saved-successfully",
+						themeDisplay.getLocale(), "x-was-saved-successfully",
 						amImageConfigurationEntry.getName());
 				}
 			}
@@ -167,7 +163,8 @@ public class EditImageConfigurationEntryMVCActionCommand
 								amImageConfigurationEntry);
 
 					message = LanguageUtil.format(
-						resourceBundle, "x-and-x-were-saved-successfully",
+						themeDisplay.getLocale(),
+						"x-and-x-were-saved-successfully",
 						new String[] {
 							HtmlUtil.escape(
 								amImageConfigurationEntry.getName()),
@@ -179,7 +176,7 @@ public class EditImageConfigurationEntryMVCActionCommand
 				else {
 					if (autoModifiedUuid) {
 						message = LanguageUtil.format(
-							resourceBundle,
+							themeDisplay.getLocale(),
 							"x-was-saved-successfully.-the-id-was-duplicated-" +
 								"and-renamed-to-x",
 							new String[] {
@@ -190,7 +187,8 @@ public class EditImageConfigurationEntryMVCActionCommand
 					}
 					else {
 						message = LanguageUtil.format(
-							resourceBundle, "x-was-saved-successfully",
+							themeDisplay.getLocale(),
+							"x-was-saved-successfully",
 							amImageConfigurationEntry.getName());
 					}
 				}
@@ -206,7 +204,7 @@ public class EditImageConfigurationEntryMVCActionCommand
 			jsonObject.put(
 				"message",
 				LanguageUtil.get(
-					resourceBundle,
+					themeDisplay.getLocale(),
 					_errorMessagesMap.get(
 						amImageConfigurationException.getClass()))
 			).put(

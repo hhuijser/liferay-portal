@@ -21,12 +21,10 @@ import com.liferay.dynamic.data.mapping.form.web.internal.tab.item.DDMFormAdminF
 import com.liferay.dynamic.data.mapping.form.web.internal.tab.item.DDMFormAdminTabItem;
 import com.liferay.dynamic.data.mapping.util.DDMDisplayTabItem;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -59,10 +57,7 @@ public class DDMFormDDMDataProviderDisplay implements DDMDataProviderDisplay {
 
 	@Override
 	public String getTitle(Locale locale) {
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
-		return LanguageUtil.get(resourceBundle, "forms");
+		return LanguageUtil.get(locale, "forms");
 	}
 
 	@Reference

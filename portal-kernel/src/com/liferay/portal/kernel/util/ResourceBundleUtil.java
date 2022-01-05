@@ -151,8 +151,7 @@ public class ResourceBundleUtil {
 	public static ResourceBundle getModuleAndPortalResourceBundle(
 		Locale locale, Class<?> clazz) {
 
-		return new AggregateResourceBundle(
-			getBundle(locale, clazz), PortalUtil.getResourceBundle(locale));
+		return getBundle(locale, clazz);
 	}
 
 	/**

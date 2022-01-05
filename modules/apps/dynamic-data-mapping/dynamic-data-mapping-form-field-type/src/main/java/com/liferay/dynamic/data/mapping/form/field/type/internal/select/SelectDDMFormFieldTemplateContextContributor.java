@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.CollatorUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
@@ -180,13 +179,8 @@ public class SelectDDMFormFieldTemplateContextContributor
 	protected ResourceBundle getResourceBundle(Locale locale) {
 		Class<?> clazz = getClass();
 
-		ResourceBundle portalResourceBundle = portal.getResourceBundle(locale);
-
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+		return ResourceBundleUtil.getBundle(
 			"content.Language", locale, clazz.getClassLoader());
-
-		return new AggregateResourceBundle(
-			resourceBundle, portalResourceBundle);
 	}
 
 	protected Map<String, String> getStrings(

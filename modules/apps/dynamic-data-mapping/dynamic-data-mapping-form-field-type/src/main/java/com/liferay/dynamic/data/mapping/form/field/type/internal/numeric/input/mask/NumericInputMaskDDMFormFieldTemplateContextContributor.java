@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
@@ -96,10 +95,8 @@ public class NumericInputMaskDDMFormFieldTemplateContextContributor
 	private ResourceBundle _getResourceBundle(Locale locale) {
 		Class<?> clazz = getClass();
 
-		return new AggregateResourceBundle(
-			ResourceBundleUtil.getBundle(
-				"content.Language", locale, clazz.getClassLoader()),
-			_portal.getResourceBundle(locale));
+		return ResourceBundleUtil.getBundle(
+			"content.Language", locale, clazz.getClassLoader());
 	}
 
 	private Map<String, String> _getThousandsSeparatorLabels() {

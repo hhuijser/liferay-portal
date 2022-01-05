@@ -30,14 +30,12 @@ import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 import javax.portlet.PortletURL;
 
@@ -191,9 +189,6 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 			return null;
 		}
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", _themeDisplay.getLocale(), getClass());
-
 		return new DropdownItemList() {
 			{
 				for (Map.Entry<String, String> entry : entriesMap.entrySet()) {
@@ -208,7 +203,7 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 								entryURL, parameterName, entry.getValue());
 							dropdownItem.setLabel(
 								LanguageUtil.get(
-									resourceBundle, entry.getKey()));
+									_themeDisplay.getLocale(), entry.getKey()));
 						});
 				}
 			}

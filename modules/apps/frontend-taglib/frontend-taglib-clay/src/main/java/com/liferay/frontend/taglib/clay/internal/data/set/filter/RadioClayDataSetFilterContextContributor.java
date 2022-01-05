@@ -23,13 +23,11 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -61,9 +59,6 @@ public class RadioClayDataSetFilterContextContributor
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, getClass());
-
 		List<RadioClayDataSetFilterItem> radioClayDataSetFilterItems =
 			baseRadioClayDataSetFilter.getRadioClayDataSetFilterItems(locale);
 
@@ -74,7 +69,7 @@ public class RadioClayDataSetFilterContextContributor
 				JSONUtil.put(
 					"label",
 					LanguageUtil.get(
-						resourceBundle, radioClayDataSetFilterItem.getLabel())
+						locale, radioClayDataSetFilterItem.getLabel())
 				).put(
 					"value", radioClayDataSetFilterItem.getValue()
 				));

@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.workflow.WorkflowLogManager;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -157,9 +156,7 @@ public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 					_portal,
 					_userLocalService.fetchUser(workflowLog.getAuditUserId()));
 				commentLog = _language.get(
-					ResourceBundleUtil.getBundle(
-						"content.Language",
-						contextAcceptLanguage.getPreferredLocale(), getClass()),
+					contextAcceptLanguage.getPreferredLocale(),
 					workflowLog.getComment());
 				dateCreated = workflowLog.getCreateDate();
 				description = WorkflowLogUtil.getDescription(

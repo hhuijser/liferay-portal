@@ -1408,6 +1408,12 @@
 			<description name="Applies rules to enforce consisteny in code style." />
 		</check>
 	</source-processor>
+	<source-processor name="UpgradeSourceProcessor">
+		<check name="UpgradeMissingWorkspaceCheck">
+			<category name="Upgrade" />
+			<description name="Finds and creates missing workspace path." />
+		</check>
+	</source-processor>
 	<source-processor name="XMLSourceProcessor">
 		<check name="XMLBuildFileCheck">
 			<category name="Bug Prevention" />

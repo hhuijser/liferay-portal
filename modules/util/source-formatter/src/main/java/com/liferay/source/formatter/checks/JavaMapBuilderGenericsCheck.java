@@ -133,9 +133,9 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 			try {
 				return Class.forName(importName);
 			}
-			catch (ClassNotFoundException classNotFoundException) {
+			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(classNotFoundException, classNotFoundException);
+					_log.debug(exception, exception);
 				}
 			}
 		}
@@ -143,9 +143,9 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 		try {
 			return Class.forName(typeName);
 		}
-		catch (ClassNotFoundException classNotFoundException) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(classNotFoundException, classNotFoundException);
+				_log.debug(exception, exception);
 			}
 		}
 

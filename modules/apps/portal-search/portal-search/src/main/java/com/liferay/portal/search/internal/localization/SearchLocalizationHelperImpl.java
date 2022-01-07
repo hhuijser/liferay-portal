@@ -82,10 +82,10 @@ public class SearchLocalizationHelperImpl implements SearchLocalizationHelper {
 	public String[] getLocalizedFieldNames(
 		String[] prefixes, SearchContext searchContext) {
 
-		return getLocalizedFieldNames(prefixes, getLocales(searchContext));
+		return _getLocalizedFieldNames(prefixes, getLocales(searchContext));
 	}
 
-	protected String[] getLocalizedFieldNames(
+	private String[] _getLocalizedFieldNames(
 		String[] prefixes, Locale[] locales) {
 
 		Set<String> fieldNames = new HashSet<>();

@@ -676,7 +676,7 @@ public class ContentPageEditorDisplayContext {
 	}
 
 	public List<Map<String, Object>> getSidebarPanels() {
-		return getSidebarPanels(_getLayoutType());
+		return _getSidebarPanels(_getLayoutType());
 	}
 
 	public boolean isConversionDraft() {
@@ -809,54 +809,6 @@ public class ContentPageEditorDisplayContext {
 		}
 
 		return _segmentsExperienceId;
-	}
-
-	protected List<Map<String, Object>> getSidebarPanels(int layoutType) {
-		if (_sidebarPanels != null) {
-			return _sidebarPanels;
-		}
-
-		List<Map<String, Object>> sidebarPanels = new ArrayList<>();
-
-		for (ContentPageEditorSidebarPanel contentPageEditorSidebarPanel :
-				_contentPageEditorSidebarPanels) {
-
-			if (!contentPageEditorSidebarPanel.isVisible(
-					themeDisplay.getPermissionChecker(), themeDisplay.getPlid(),
-					layoutType)) {
-
-				continue;
-			}
-
-			if (contentPageEditorSidebarPanel.includeSeparator() &&
-				!sidebarPanels.isEmpty()) {
-
-				sidebarPanels.add(
-					HashMapBuilder.<String, Object>put(
-						"sidebarPanelId", "separator"
-					).build());
-			}
-
-			sidebarPanels.add(
-				HashMapBuilder.<String, Object>put(
-					"icon", contentPageEditorSidebarPanel.getIcon()
-				).put(
-					"isLink", contentPageEditorSidebarPanel.isLink()
-				).put(
-					"label",
-					contentPageEditorSidebarPanel.getLabel(
-						themeDisplay.getLocale())
-				).put(
-					"sidebarPanelId", contentPageEditorSidebarPanel.getId()
-				).put(
-					"url",
-					contentPageEditorSidebarPanel.getURL(httpServletRequest)
-				).build());
-		}
-
-		_sidebarPanels = sidebarPanels;
-
-		return _sidebarPanels;
 	}
 
 	protected final HttpServletRequest httpServletRequest;
@@ -2056,6 +2008,54 @@ public class ContentPageEditorDisplayContext {
 		resourceURL.setResourceID(resourceID);
 
 		return resourceURL.toString();
+	}
+
+	private List<Map<String, Object>> _getSidebarPanels(int layoutType) {
+		if (_sidebarPanels != null) {
+			return _sidebarPanels;
+		}
+
+		List<Map<String, Object>> sidebarPanels = new ArrayList<>();
+
+		for (ContentPageEditorSidebarPanel contentPageEditorSidebarPanel :
+				_contentPageEditorSidebarPanels) {
+
+			if (!contentPageEditorSidebarPanel.isVisible(
+					themeDisplay.getPermissionChecker(), themeDisplay.getPlid(),
+					layoutType)) {
+
+				continue;
+			}
+
+			if (contentPageEditorSidebarPanel.includeSeparator() &&
+				!sidebarPanels.isEmpty()) {
+
+				sidebarPanels.add(
+					HashMapBuilder.<String, Object>put(
+						"sidebarPanelId", "separator"
+					).build());
+			}
+
+			sidebarPanels.add(
+				HashMapBuilder.<String, Object>put(
+					"icon", contentPageEditorSidebarPanel.getIcon()
+				).put(
+					"isLink", contentPageEditorSidebarPanel.isLink()
+				).put(
+					"label",
+					contentPageEditorSidebarPanel.getLabel(
+						themeDisplay.getLocale())
+				).put(
+					"sidebarPanelId", contentPageEditorSidebarPanel.getId()
+				).put(
+					"url",
+					contentPageEditorSidebarPanel.getURL(httpServletRequest)
+				).build());
+		}
+
+		_sidebarPanels = sidebarPanels;
+
+		return _sidebarPanels;
 	}
 
 	private String _getSiteNavigationMenuItemSelectorURL() {

@@ -278,7 +278,7 @@ public class MicroblogsUtil {
 		}
 
 		if (!checkParent) {
-			return isTaggedUser(microblogsEntry, userId);
+			return _isTaggedUser(microblogsEntry, userId);
 		}
 
 		long rootMicroblogsEntryId = getRootMicroblogsEntryId(microblogsEntry);
@@ -296,7 +296,7 @@ public class MicroblogsUtil {
 				rootMicroblogsEntryId));
 
 		for (MicroblogsEntry curMicroblogsEntry : microblogsEntries) {
-			if (isTaggedUser(curMicroblogsEntry, userId)) {
+			if (_isTaggedUser(curMicroblogsEntry, userId)) {
 				return true;
 			}
 		}
@@ -304,7 +304,7 @@ public class MicroblogsUtil {
 		return false;
 	}
 
-	protected static boolean isTaggedUser(
+	private static boolean _isTaggedUser(
 			MicroblogsEntry microblogsEntry, long userId)
 		throws PortalException {
 

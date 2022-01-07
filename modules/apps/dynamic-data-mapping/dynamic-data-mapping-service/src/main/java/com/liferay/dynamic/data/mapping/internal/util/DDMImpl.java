@@ -177,7 +177,7 @@ public class DDMImpl implements DDM {
 			ddmForm = ddmStructure.getFullHierarchyDDMForm();
 		}
 
-		return getDDMFormFieldsJSONArray(ddmForm, script);
+		return _getDDMFormFieldsJSONArray(ddmForm, script);
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class DDMImpl implements DDM {
 			ddmForm = ddmStructureVersion.getDDMForm();
 		}
 
-		return getDDMFormFieldsJSONArray(ddmForm, script);
+		return _getDDMFormFieldsJSONArray(ddmForm, script);
 	}
 
 	@Override
@@ -623,112 +623,6 @@ public class DDMImpl implements DDM {
 		return field;
 	}
 
-	protected JSONArray getDDMFormFieldsJSONArray(
-		DDMForm ddmForm, String script) {
-
-		JSONArray ddmFormFieldsJSONArray = null;
-
-		if (ddmForm != null) {
-			ddmFormFieldsJSONArray = getDDMFormFieldsJSONArray(
-				ddmForm.getDDMFormFields(), ddmForm.getAvailableLocales(),
-				ddmForm.getDefaultLocale());
-		}
-		else if (Validator.isNotNull(script)) {
-			try {
-				DDMForm scriptDDMForm = getDDMForm(script);
-
-				ddmFormFieldsJSONArray = getDDMFormFieldsJSONArray(
-					scriptDDMForm.getDDMFormFields(),
-					scriptDDMForm.getAvailableLocales(),
-					scriptDDMForm.getDefaultLocale());
-			}
-			catch (PortalException portalException) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(portalException, portalException);
-				}
-			}
-		}
-
-		return ddmFormFieldsJSONArray;
-	}
-
-	protected JSONArray getDDMFormFieldsJSONArray(
-		List<DDMFormField> ddmFormFields, Set<Locale> availableLocales,
-		Locale defaultLocale) {
-
-		JSONArray ddmFormFieldsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		for (DDMFormField ddmFormField : ddmFormFields) {
-			JSONObject jsonObject = JSONUtil.put(
-				"dataType", ddmFormField.getDataType()
-			).put(
-				"id", ddmFormField.getName()
-			).put(
-				"indexType", ddmFormField.getIndexType()
-			).put(
-				"localizable", ddmFormField.isLocalizable()
-			).put(
-				"multiple", ddmFormField.isMultiple()
-			).put(
-				"name", ddmFormField.getName()
-			).put(
-				"readOnly", ddmFormField.isReadOnly()
-			).put(
-				"repeatable", ddmFormField.isRepeatable()
-			).put(
-				"required", ddmFormField.isRequired()
-			).put(
-				"showLabel", ddmFormField.isShowLabel()
-			).put(
-				"type", ddmFormField.getType()
-			);
-
-			_addDDMFormFieldLocalizedProperties(
-				jsonObject, ddmFormField, defaultLocale, defaultLocale);
-
-			_addDDMFormFieldOptions(
-				jsonObject, ddmFormField, availableLocales, defaultLocale);
-
-			JSONObject localizationMapJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			for (Locale availableLocale : availableLocales) {
-				JSONObject localeMapJSONObject =
-					JSONFactoryUtil.createJSONObject();
-
-				_addDDMFormFieldLocalizedProperties(
-					localeMapJSONObject, ddmFormField, availableLocale,
-					defaultLocale);
-
-				localizationMapJSONObject.put(
-					LocaleUtil.toLanguageId(availableLocale),
-					localeMapJSONObject);
-			}
-
-			jsonObject.put(
-				"fields",
-				getDDMFormFieldsJSONArray(
-					ddmFormField.getNestedDDMFormFields(), availableLocales,
-					defaultLocale)
-			).put(
-				"localizationMap", localizationMapJSONObject
-			);
-
-			if (Objects.equals(
-					ddmFormField.getType(),
-					DDMFormFieldTypeConstants.DDM_IMAGE)) {
-
-				jsonObject.put(
-					"requiredDescription",
-					ddmFormField.getProperty("requiredDescription"));
-			}
-
-			ddmFormFieldsJSONArray.put(jsonObject);
-		}
-
-		return ddmFormFieldsJSONArray;
-	}
-
 	protected Fields getFields(
 			long ddmStructureId, String serializedDDMFormValues)
 		throws PortalException {
@@ -903,6 +797,112 @@ public class DDMImpl implements DDM {
 		}
 
 		return count;
+	}
+
+	private JSONArray _getDDMFormFieldsJSONArray(
+		DDMForm ddmForm, String script) {
+
+		JSONArray ddmFormFieldsJSONArray = null;
+
+		if (ddmForm != null) {
+			ddmFormFieldsJSONArray = _getDDMFormFieldsJSONArray(
+				ddmForm.getDDMFormFields(), ddmForm.getAvailableLocales(),
+				ddmForm.getDefaultLocale());
+		}
+		else if (Validator.isNotNull(script)) {
+			try {
+				DDMForm scriptDDMForm = getDDMForm(script);
+
+				ddmFormFieldsJSONArray = _getDDMFormFieldsJSONArray(
+					scriptDDMForm.getDDMFormFields(),
+					scriptDDMForm.getAvailableLocales(),
+					scriptDDMForm.getDefaultLocale());
+			}
+			catch (PortalException portalException) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(portalException, portalException);
+				}
+			}
+		}
+
+		return ddmFormFieldsJSONArray;
+	}
+
+	private JSONArray _getDDMFormFieldsJSONArray(
+		List<DDMFormField> ddmFormFields, Set<Locale> availableLocales,
+		Locale defaultLocale) {
+
+		JSONArray ddmFormFieldsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		for (DDMFormField ddmFormField : ddmFormFields) {
+			JSONObject jsonObject = JSONUtil.put(
+				"dataType", ddmFormField.getDataType()
+			).put(
+				"id", ddmFormField.getName()
+			).put(
+				"indexType", ddmFormField.getIndexType()
+			).put(
+				"localizable", ddmFormField.isLocalizable()
+			).put(
+				"multiple", ddmFormField.isMultiple()
+			).put(
+				"name", ddmFormField.getName()
+			).put(
+				"readOnly", ddmFormField.isReadOnly()
+			).put(
+				"repeatable", ddmFormField.isRepeatable()
+			).put(
+				"required", ddmFormField.isRequired()
+			).put(
+				"showLabel", ddmFormField.isShowLabel()
+			).put(
+				"type", ddmFormField.getType()
+			);
+
+			_addDDMFormFieldLocalizedProperties(
+				jsonObject, ddmFormField, defaultLocale, defaultLocale);
+
+			_addDDMFormFieldOptions(
+				jsonObject, ddmFormField, availableLocales, defaultLocale);
+
+			JSONObject localizationMapJSONObject =
+				JSONFactoryUtil.createJSONObject();
+
+			for (Locale availableLocale : availableLocales) {
+				JSONObject localeMapJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				_addDDMFormFieldLocalizedProperties(
+					localeMapJSONObject, ddmFormField, availableLocale,
+					defaultLocale);
+
+				localizationMapJSONObject.put(
+					LocaleUtil.toLanguageId(availableLocale),
+					localeMapJSONObject);
+			}
+
+			jsonObject.put(
+				"fields",
+				_getDDMFormFieldsJSONArray(
+					ddmFormField.getNestedDDMFormFields(), availableLocales,
+					defaultLocale)
+			).put(
+				"localizationMap", localizationMapJSONObject
+			);
+
+			if (Objects.equals(
+					ddmFormField.getType(),
+					DDMFormFieldTypeConstants.DDM_IMAGE)) {
+
+				jsonObject.put(
+					"requiredDescription",
+					ddmFormField.getProperty("requiredDescription"));
+			}
+
+			ddmFormFieldsJSONArray.put(jsonObject);
+		}
+
+		return ddmFormFieldsJSONArray;
 	}
 
 	private DDMStructure _getDDMStructure(

@@ -95,7 +95,7 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 			discussionComment.getGroupId(), discussionComment.getClassName(),
 			discussionComment.getClassPK());
 
-		return getComments(discussionComment, start, end);
+		return _getComments(discussionComment, start, end);
 	}
 
 	public List<CommentJSONWS> getComments(
@@ -112,7 +112,7 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 			getUserId(), groupId, className, classPK,
 			_createServiceContextFunction());
 
-		return getComments(discussion.getRootDiscussionComment(), start, end);
+		return _getComments(discussion.getRootDiscussionComment(), start, end);
 	}
 
 	public int getCommentsCount(long groupId, String className, long classPK)
@@ -179,42 +179,6 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 			_createServiceContextFunction(WorkflowConstants.ACTION_PUBLISH));
 	}
 
-	protected List<CommentJSONWS> getComments(
-		DiscussionComment discussionComment, int start, int end) {
-
-		if (start == QueryUtil.ALL_POS) {
-			start = 0;
-		}
-
-		DiscussionCommentIterator threadDiscussionCommentIterator =
-			discussionComment.getThreadDiscussionCommentIterator(start);
-
-		if (end == QueryUtil.ALL_POS) {
-			return _getAllComments(threadDiscussionCommentIterator);
-		}
-
-		int commentsCount = end - start;
-
-		if (commentsCount <= 0) {
-			return Collections.emptyList();
-		}
-
-		List<CommentJSONWS> commentJSONWSs = new ArrayList<>(commentsCount);
-
-		while (threadDiscussionCommentIterator.hasNext() &&
-			   (commentsCount > 0)) {
-
-			CommentJSONWS commentJSONWS = new CommentJSONWS(
-				threadDiscussionCommentIterator.next());
-
-			commentJSONWSs.add(commentJSONWS);
-
-			commentsCount--;
-		}
-
-		return commentJSONWSs;
-	}
-
 	protected String getUserName() throws PortalException {
 		User user = getUser();
 
@@ -276,6 +240,42 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 				threadDiscussionCommentIterator.next());
 
 			commentJSONWSs.add(commentJSONWS);
+		}
+
+		return commentJSONWSs;
+	}
+
+	private List<CommentJSONWS> _getComments(
+		DiscussionComment discussionComment, int start, int end) {
+
+		if (start == QueryUtil.ALL_POS) {
+			start = 0;
+		}
+
+		DiscussionCommentIterator threadDiscussionCommentIterator =
+			discussionComment.getThreadDiscussionCommentIterator(start);
+
+		if (end == QueryUtil.ALL_POS) {
+			return _getAllComments(threadDiscussionCommentIterator);
+		}
+
+		int commentsCount = end - start;
+
+		if (commentsCount <= 0) {
+			return Collections.emptyList();
+		}
+
+		List<CommentJSONWS> commentJSONWSs = new ArrayList<>(commentsCount);
+
+		while (threadDiscussionCommentIterator.hasNext() &&
+			   (commentsCount > 0)) {
+
+			CommentJSONWS commentJSONWS = new CommentJSONWS(
+				threadDiscussionCommentIterator.next());
+
+			commentJSONWSs.add(commentJSONWS);
+
+			commentsCount--;
 		}
 
 		return commentJSONWSs;

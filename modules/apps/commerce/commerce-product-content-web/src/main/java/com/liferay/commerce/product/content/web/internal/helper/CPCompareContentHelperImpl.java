@@ -84,7 +84,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 				cpDataSourceResult.getCPCatalogEntries()) {
 
 			cpSpecificationOptions.addAll(
-				getCPSpecificationOptions(cpCatalogEntry, true));
+				_getCPSpecificationOptions(cpCatalogEntry, true));
 		}
 
 		return cpSpecificationOptions;
@@ -170,7 +170,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 					cpDefinitionOptionRel.getName(locale))) {
 
 				return StringUtil.merge(
-					getCPDefinitionOptionValueRels(
+					_getCPDefinitionOptionValueRels(
 						cpDefinitionOptionRel.getCPDefinitionOptionValueRels(),
 						locale),
 					StringPool.COMMA_AND_SPACE);
@@ -225,7 +225,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 				cpDataSourceResult.getCPCatalogEntries()) {
 
 			cpSpecificationOptions.addAll(
-				getCPSpecificationOptions(cpCatalogEntry, false));
+				_getCPSpecificationOptions(cpCatalogEntry, false));
 		}
 
 		return cpSpecificationOptions;
@@ -321,7 +321,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 		return false;
 	}
 
-	protected List<String> getCPDefinitionOptionValueRels(
+	private List<String> _getCPDefinitionOptionValueRels(
 		List<CPDefinitionOptionValueRel> cpDefinitionOptionValueRels,
 		Locale locale) {
 
@@ -337,7 +337,7 @@ public class CPCompareContentHelperImpl implements CPCompareContentHelper {
 		return cpDefinitionOptionValueRelValues;
 	}
 
-	protected List<CPSpecificationOption> getCPSpecificationOptions(
+	private List<CPSpecificationOption> _getCPSpecificationOptions(
 			CPCatalogEntry cpCatalogEntry, boolean categorized)
 		throws PortalException {
 

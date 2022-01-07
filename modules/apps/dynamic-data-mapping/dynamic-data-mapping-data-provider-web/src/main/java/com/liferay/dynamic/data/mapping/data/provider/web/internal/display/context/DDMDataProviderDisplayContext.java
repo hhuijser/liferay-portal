@@ -233,7 +233,7 @@ public class DDMDataProviderDisplayContext {
 
 	public String getDisplayStyle() {
 		if (_displayStyle == null) {
-			_displayStyle = getDisplayStyle(_renderRequest, _DISPLAY_VIEWS);
+			_displayStyle = _getDisplayStyle(_renderRequest, _DISPLAY_VIEWS);
 		}
 
 		return _displayStyle;
@@ -579,33 +579,6 @@ public class DDMDataProviderDisplayContext {
 			dataProviderInstance, ActionKeys.PERMISSIONS);
 	}
 
-	protected String getDisplayStyle(
-		PortletRequest portletRequest, String[] displayViews) {
-
-		PortalPreferences portalPreferences =
-			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
-
-		String displayStyle = ParamUtil.getString(
-			portletRequest, "displayStyle");
-
-		if (Validator.isNull(displayStyle)) {
-			displayStyle = portalPreferences.getValue(
-				DDMPortletKeys.DYNAMIC_DATA_MAPPING_DATA_PROVIDER,
-				"display-style", "descriptive");
-		}
-		else if (ArrayUtil.contains(displayViews, displayStyle)) {
-			portalPreferences.setValue(
-				DDMPortletKeys.DYNAMIC_DATA_MAPPING_DATA_PROVIDER,
-				"display-style", displayStyle);
-		}
-
-		if (!ArrayUtil.contains(displayViews, displayStyle)) {
-			displayStyle = displayViews[0];
-		}
-
-		return displayStyle;
-	}
-
 	private DDMFormRenderingContext _createDDMFormRenderingContext() {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
@@ -665,6 +638,33 @@ public class DDMDataProviderDisplayContext {
 
 	private Set<String> _getDDMDataProviderTypes() {
 		return _ddmDataProviderTracker.getDDMDataProviderTypes();
+	}
+
+	private String _getDisplayStyle(
+		PortletRequest portletRequest, String[] displayViews) {
+
+		PortalPreferences portalPreferences =
+			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);
+
+		String displayStyle = ParamUtil.getString(
+			portletRequest, "displayStyle");
+
+		if (Validator.isNull(displayStyle)) {
+			displayStyle = portalPreferences.getValue(
+				DDMPortletKeys.DYNAMIC_DATA_MAPPING_DATA_PROVIDER,
+				"display-style", "descriptive");
+		}
+		else if (ArrayUtil.contains(displayViews, displayStyle)) {
+			portalPreferences.setValue(
+				DDMPortletKeys.DYNAMIC_DATA_MAPPING_DATA_PROVIDER,
+				"display-style", displayStyle);
+		}
+
+		if (!ArrayUtil.contains(displayViews, displayStyle)) {
+			displayStyle = displayViews[0];
+		}
+
+		return displayStyle;
 	}
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {

@@ -89,45 +89,9 @@ public class UpgradePortletPreferences
 			PortletPreferencesFactoryUtil.fromXML(
 				companyId, ownerId, ownerType, plid, portletId, xml);
 
-		portletPreferences = upgradePreferences(portletPreferences);
+		portletPreferences = _upgradePreferences(portletPreferences);
 
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
-	}
-
-	protected PortletPreferences upgradePreferences(
-			PortletPreferences portletPreferences)
-		throws Exception {
-
-		String[] assetEntryXmls = portletPreferences.getValues(
-			"asset-entry-xml", new String[0]);
-
-		if (ArrayUtil.isNotEmpty(assetEntryXmls)) {
-			_upgradeUuids(assetEntryXmls);
-
-			portletPreferences.setValues("assetEntryXml", assetEntryXmls);
-		}
-
-		boolean subtypeFieldsFilterEnabled = GetterUtil.getBoolean(
-			portletPreferences.getValue(
-				"subtypeFieldsFilterEnabled", Boolean.FALSE.toString()));
-
-		if (subtypeFieldsFilterEnabled) {
-			boolean dlFilterByFieldEnable = _isFilterByFieldEnable(
-				portletPreferences, _DL_FILTER_BY_FIELD_ENABLED_KEY);
-			boolean journalFilterByFieldEnable = _isFilterByFieldEnable(
-				portletPreferences, _JOURNAL_FILTER_BY_FIELD_ENABLED_KEY);
-
-			if (dlFilterByFieldEnable) {
-				_upgradeDLDateFieldsValues(portletPreferences);
-			}
-			else if (journalFilterByFieldEnable) {
-				_upgradeJournalDateFieldValue(portletPreferences);
-			}
-		}
-
-		_upgradeOrderByColumns(portletPreferences);
-
-		return portletPreferences;
 	}
 
 	private DDMForm _getDDMForm(long structureId) throws Exception {
@@ -335,6 +299,42 @@ public class UpgradePortletPreferences
 
 		_upgradeOrderByColumn(portletPreferences, _ORDER_BY_COLUMN_1);
 		_upgradeOrderByColumn(portletPreferences, _ORDER_BY_COLUMN_2);
+	}
+
+	private PortletPreferences _upgradePreferences(
+			PortletPreferences portletPreferences)
+		throws Exception {
+
+		String[] assetEntryXmls = portletPreferences.getValues(
+			"asset-entry-xml", new String[0]);
+
+		if (ArrayUtil.isNotEmpty(assetEntryXmls)) {
+			_upgradeUuids(assetEntryXmls);
+
+			portletPreferences.setValues("assetEntryXml", assetEntryXmls);
+		}
+
+		boolean subtypeFieldsFilterEnabled = GetterUtil.getBoolean(
+			portletPreferences.getValue(
+				"subtypeFieldsFilterEnabled", Boolean.FALSE.toString()));
+
+		if (subtypeFieldsFilterEnabled) {
+			boolean dlFilterByFieldEnable = _isFilterByFieldEnable(
+				portletPreferences, _DL_FILTER_BY_FIELD_ENABLED_KEY);
+			boolean journalFilterByFieldEnable = _isFilterByFieldEnable(
+				portletPreferences, _JOURNAL_FILTER_BY_FIELD_ENABLED_KEY);
+
+			if (dlFilterByFieldEnable) {
+				_upgradeDLDateFieldsValues(portletPreferences);
+			}
+			else if (journalFilterByFieldEnable) {
+				_upgradeJournalDateFieldValue(portletPreferences);
+			}
+		}
+
+		_upgradeOrderByColumns(portletPreferences);
+
+		return portletPreferences;
 	}
 
 	private void _upgradeUuids(String[] assetEntryXmls) throws Exception {

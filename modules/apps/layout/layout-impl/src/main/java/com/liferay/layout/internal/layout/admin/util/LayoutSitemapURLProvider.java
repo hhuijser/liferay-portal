@@ -58,7 +58,7 @@ public class LayoutSitemapURLProvider implements SitemapURLProvider {
 		Layout layout = _layoutLocalService.getLayoutByUuidAndGroupId(
 			layoutUuid, layoutSet.getGroupId(), layoutSet.isPrivateLayout());
 
-		visitLayout(element, layout, themeDisplay);
+		_visitLayout(element, layout, themeDisplay);
 	}
 
 	@Override
@@ -99,12 +99,12 @@ public class LayoutSitemapURLProvider implements SitemapURLProvider {
 				entry.getKey(), start, end);
 
 			for (Layout layout : layouts) {
-				visitLayout(element, layout, themeDisplay);
+				_visitLayout(element, layout, themeDisplay);
 			}
 		}
 	}
 
-	protected void visitLayout(
+	private void _visitLayout(
 			Element element, Layout layout, ThemeDisplay themeDisplay)
 		throws PortalException {
 

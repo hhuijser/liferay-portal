@@ -86,7 +86,7 @@ public class SearchHitsTranslator {
 				elasticsearchSearchHitArray) {
 
 			searchHits.add(
-				translate(
+				_translate(
 					searchSearchRequest, elasticsearchSearchHit,
 					alternateUidFieldName));
 		}
@@ -100,7 +100,19 @@ public class SearchHitsTranslator {
 		).build();
 	}
 
-	protected SearchHit translate(
+	private String _getExplanationString(
+		org.elasticsearch.search.SearchHit elasticsearchSearchHit) {
+
+		Explanation explanation = elasticsearchSearchHit.getExplanation();
+
+		if (explanation != null) {
+			return explanation.toString();
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private SearchHit _translate(
 		SearchSearchRequest searchSearchRequest,
 		org.elasticsearch.search.SearchHit elasticsearchSearchHit,
 		String alternateUidFieldName) {
@@ -127,18 +139,6 @@ public class SearchHitsTranslator {
 		).version(
 			elasticsearchSearchHit.getVersion()
 		).build();
-	}
-
-	private String _getExplanationString(
-		org.elasticsearch.search.SearchHit elasticsearchSearchHit) {
-
-		Explanation explanation = elasticsearchSearchHit.getExplanation();
-
-		if (explanation != null) {
-			return explanation.toString();
-		}
-
-		return StringPool.BLANK;
 	}
 
 	private Document _translateDocument(

@@ -137,7 +137,7 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			int status = HttpServletResponse.SC_CREATED;
 
 			if (overwrite &&
-				deleteResource(
+				_deleteResource(
 					groupId, parentFolderId, name,
 					webDAVRequest.getLockUuid())) {
 
@@ -214,7 +214,7 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			int status = HttpServletResponse.SC_CREATED;
 
 			if (overwrite &&
-				deleteResource(
+				_deleteResource(
 					groupId, parentFolderId, fileName,
 					webDAVRequest.getLockUuid())) {
 
@@ -600,7 +600,7 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			int status = HttpServletResponse.SC_CREATED;
 
 			if (overwrite &&
-				deleteResource(
+				_deleteResource(
 					groupId, parentFolderId, name,
 					webDAVRequest.getLockUuid())) {
 
@@ -674,7 +674,7 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			int status = HttpServletResponse.SC_CREATED;
 
 			if (overwrite &&
-				deleteResource(
+				_deleteResource(
 					groupId, newParentFolderId, fileName,
 					webDAVRequest.getLockUuid())) {
 
@@ -941,7 +941,7 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 		return false;
 	}
 
-	protected boolean deleteResource(
+	private boolean _deleteResource(
 			long groupId, long parentFolderId, String name, String lockUuid)
 		throws Exception {
 

@@ -218,7 +218,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			if (_isResourceMain(classedModel)) {
 				_addAssetLinks(classNameId, GetterUtil.getLong(classPK));
 
-				addExpando(element, path, classedModel, clazz);
+				_addExpando(element, path, classedModel, clazz);
 
 				if (getBooleanParameter(
 						clazz.getName(), PortletDataHandlerKeys.LOCKS, false)) {
@@ -281,7 +281,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public void addExpando(
 		Element element, String path, ClassedModel classedModel) {
 
-		addExpando(element, path, classedModel, classedModel.getModelClass());
+		_addExpando(element, path, classedModel, classedModel.getModelClass());
 	}
 
 	@Override
@@ -587,7 +587,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public ServiceContext createServiceContext(
 		Element element, ClassedModel classedModel) {
 
-		return createServiceContext(
+		return _createServiceContext(
 			element, null, classedModel, classedModel.getModelClass());
 	}
 
@@ -600,7 +600,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public ServiceContext createServiceContext(
 		StagedModel stagedModel, Class<?> clazz) {
 
-		return createServiceContext(
+		return _createServiceContext(
 			getImportDataStagedModelElement(stagedModel),
 			ExportImportPathUtil.getModelPath(stagedModel), stagedModel, clazz);
 	}
@@ -609,7 +609,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public ServiceContext createServiceContext(
 		String path, ClassedModel classedModel) {
 
-		return createServiceContext(
+		return _createServiceContext(
 			null, path, classedModel, classedModel.getModelClass());
 	}
 
@@ -650,12 +650,12 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public String[] getAssetTagNames(Class<?> clazz, Serializable classPK) {
-		return getAssetTagNames(_getPrimaryKeyString(clazz, classPK));
+		return _getAssetTagNames(_getPrimaryKeyString(clazz, classPK));
 	}
 
 	@Override
 	public String[] getAssetTagNames(String className, Serializable classPK) {
-		return getAssetTagNames(_getPrimaryKeyString(className, classPK));
+		return _getAssetTagNames(_getPrimaryKeyString(className, classPK));
 	}
 
 	@Override
@@ -762,7 +762,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getExportDataElement(
 		ClassedModel classedModel, String modelClassSimpleName) {
 
-		Element groupElement = getExportDataGroupElement(modelClassSimpleName);
+		Element groupElement = _getExportDataGroupElement(modelClassSimpleName);
 
 		Element element = null;
 
@@ -806,7 +806,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getExportDataGroupElement(
 		Class<? extends StagedModel> clazz) {
 
-		return getExportDataGroupElement(clazz.getSimpleName());
+		return _getExportDataGroupElement(clazz.getSimpleName());
 	}
 
 	@Override
@@ -851,7 +851,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			}
 		}
 
-		Element groupElement = getImportDataGroupElement(name);
+		Element groupElement = _getImportDataGroupElement(name);
 
 		importDataElement = _getDataElement(groupElement, attribute, value);
 
@@ -866,7 +866,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getImportDataGroupElement(
 		Class<? extends StagedModel> clazz) {
 
-		return getImportDataGroupElement(clazz.getSimpleName());
+		return _getImportDataGroupElement(clazz.getSimpleName());
 	}
 
 	@Override
@@ -985,11 +985,11 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getReferenceDataElement(
 		Element parentElement, Class<?> clazz, long classPK) {
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentElement, clazz.getName(), 0, null, (Serializable)classPK,
 			null);
 
-		List<Element> referenceDataElements = getReferenceDataElements(
+		List<Element> referenceDataElements = _getReferenceDataElements(
 			referenceElements, clazz);
 
 		if (referenceDataElements.isEmpty()) {
@@ -1003,10 +1003,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getReferenceDataElement(
 		Element parentElement, Class<?> clazz, long groupId, String uuid) {
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentElement, clazz.getName(), groupId, uuid, null, null);
 
-		List<Element> referenceDataElements = getReferenceDataElements(
+		List<Element> referenceDataElements = _getReferenceDataElements(
 			referenceElements, clazz);
 
 		if (referenceDataElements.isEmpty()) {
@@ -1041,10 +1041,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public List<Element> getReferenceDataElements(
 		Element parentElement, Class<?> clazz, String referenceType) {
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentElement, clazz.getName(), 0, null, null, referenceType);
 
-		return getReferenceDataElements(referenceElements, clazz);
+		return _getReferenceDataElements(referenceElements, clazz);
 	}
 
 	@Override
@@ -1058,10 +1058,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public List<Element> getReferenceDataElements(
 		StagedModel parentStagedModel, Class<?> clazz, String referenceType) {
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentStagedModel, clazz.getName(), null, referenceType);
 
-		return getReferenceDataElements(referenceElements, clazz);
+		return _getReferenceDataElements(referenceElements, clazz);
 	}
 
 	@Override
@@ -1074,7 +1074,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		Element parentElement, Class<?> clazz, long groupId, String uuid,
 		String referenceType) {
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentElement, clazz.getName(), groupId, uuid, null, referenceType);
 
 		if (!referenceElements.isEmpty()) {
@@ -1095,7 +1095,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getReferenceElement(
 		StagedModel parentStagedModel, String className, Serializable classPK) {
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentStagedModel, className, classPK, null);
 
 		if (!referenceElements.isEmpty()) {
@@ -1109,7 +1109,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Element getReferenceElement(String className, Serializable classPK) {
 		Element parentElement = getImportDataRootElement();
 
-		List<Element> referenceElements = getReferenceElements(
+		List<Element> referenceElements = _getReferenceElements(
 			parentElement, className, 0, null, classPK, null);
 
 		if (ListUtil.isNotEmpty(referenceElements)) {
@@ -1123,7 +1123,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public List<Element> getReferenceElements(
 		StagedModel parentStagedModel, Class<?> clazz) {
 
-		return getReferenceElements(
+		return _getReferenceElements(
 			parentStagedModel, clazz.getName(), null, null);
 	}
 
@@ -1840,7 +1840,27 @@ public class PortletDataContextImpl implements PortletDataContext {
 		return _xStream.toXML(object);
 	}
 
-	protected void addExpando(
+	protected long getUserId(AuditedModel auditedModel) {
+		try {
+			return getUserId(auditedModel.getUserUuid());
+		}
+		catch (SystemException systemException) {
+			_log.error(systemException, systemException);
+		}
+
+		return 0;
+	}
+
+	private void _addAssetLinks(long classNameId, long classPK) {
+		List<AssetLink> assetLinks = AssetLinkLocalServiceUtil.getLinks(
+			classNameId, classPK);
+
+		for (AssetLink assetLink : assetLinks) {
+			_assetLinkIds.add(assetLink.getLinkId());
+		}
+	}
+
+	private void _addExpando(
 		Element element, String path, ClassedModel classedModel,
 		Class<?> clazz) {
 
@@ -1886,324 +1906,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 			element.addAttribute("expando-path", expandoPath);
 
 			addZipEntry(expandoPath, expandoBridgeAttributes);
-		}
-	}
-
-	protected ServiceContext createServiceContext(
-		Element element, String path, ClassedModel classedModel,
-		Class<?> clazz) {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		// Theme display
-
-		serviceContext.setCompanyId(getCompanyId());
-		serviceContext.setScopeGroupId(getScopeGroupId());
-
-		// Dates
-
-		if (classedModel instanceof AuditedModel) {
-			AuditedModel auditedModel = (AuditedModel)classedModel;
-
-			serviceContext.setCreateDate(auditedModel.getCreateDate());
-			serviceContext.setModifiedDate(auditedModel.getModifiedDate());
-			serviceContext.setUserId(getUserId(auditedModel));
-		}
-
-		// Permissions
-
-		String xml = getZipEntryAsString(
-			ExportImportPathUtil.getSourceRootPath(this) +
-				"/portlet-data-permissions.xml");
-
-		if (!MapUtil.getBoolean(
-				_parameterMap, PortletDataHandlerKeys.PERMISSIONS) ||
-			Validator.isNull(xml)) {
-
-			serviceContext.setAddGroupPermissions(true);
-			serviceContext.setAddGuestPermissions(true);
-		}
-
-		// Asset
-
-		if (_isResourceMain(classedModel)) {
-			Serializable classPKObj =
-				ExportImportClassedModelUtil.getPrimaryKeyObj(classedModel);
-
-			serviceContext.setAssetCategoryIds(
-				getAssetCategoryIds(clazz, classPKObj));
-
-			serviceContext.setAssetTagNames(
-				getAssetTagNames(clazz, classPKObj));
-		}
-
-		if (element != null) {
-			Attribute assetPriorityAttribute = element.attribute(
-				"asset-entry-priority");
-
-			if (assetPriorityAttribute != null) {
-				double assetPriority = GetterUtil.getDouble(
-					assetPriorityAttribute.getValue());
-
-				serviceContext.setAssetPriority(assetPriority);
-			}
-		}
-
-		// Expando
-
-		String expandoPath = null;
-
-		if (element != null) {
-			expandoPath = element.attributeValue("expando-path");
-		}
-		else {
-			expandoPath = ExportImportPathUtil.getExpandoPath(path);
-		}
-
-		if (Validator.isNotNull(expandoPath)) {
-			try {
-				Map<String, Serializable> expandoBridgeAttributes =
-					(Map<String, Serializable>)getZipEntryAsObject(expandoPath);
-
-				if (expandoBridgeAttributes != null) {
-					serviceContext.setExpandoBridgeAttributes(
-						expandoBridgeAttributes);
-				}
-			}
-			catch (Exception exception) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(exception, exception);
-				}
-			}
-		}
-
-		// Workflow
-
-		if (classedModel instanceof WorkflowedModel) {
-			WorkflowedModel workflowedModel = (WorkflowedModel)classedModel;
-
-			if (workflowedModel.getStatus() ==
-					WorkflowConstants.STATUS_APPROVED) {
-
-				serviceContext.setWorkflowAction(
-					WorkflowConstants.ACTION_PUBLISH);
-			}
-			else if (workflowedModel.getStatus() ==
-						WorkflowConstants.STATUS_DRAFT) {
-
-				serviceContext.setWorkflowAction(
-					WorkflowConstants.ACTION_SAVE_DRAFT);
-			}
-		}
-
-		return serviceContext;
-	}
-
-	protected String[] getAssetTagNames(String key) {
-		String[] assetTagNames = _assetTagNamesMap.get(key);
-
-		if (assetTagNames == null) {
-			return new String[0];
-		}
-
-		return assetTagNames;
-	}
-
-	protected Element getExportDataGroupElement(String name) {
-		if (_exportDataRootElement == null) {
-			PortletDataException portletDataException =
-				new PortletDataException(
-					PortletDataException.EXPORT_DATA_GROUP_ELEMENT);
-
-			portletDataException.setStagedModelClassName(name);
-
-			throw new SystemException(portletDataException);
-		}
-
-		Element groupElement = _exportDataRootElement.element(name);
-
-		if (groupElement == null) {
-			groupElement = _exportDataRootElement.addElement(name);
-		}
-
-		return groupElement;
-	}
-
-	protected Element getImportDataGroupElement(String name) {
-		if (_importDataRootElement == null) {
-			PortletDataException portletDataException =
-				new PortletDataException(
-					PortletDataException.IMPORT_DATA_GROUP_ELEMENT);
-
-			portletDataException.setStagedModelClassName(name);
-
-			throw new SystemException(portletDataException);
-		}
-
-		if (Validator.isNull(name)) {
-			return SAXReaderUtil.createElement("EMPTY-ELEMENT");
-		}
-
-		Element groupElement = null;
-		String key = StringPool.BLANK;
-
-		if (_importDataElements != null) {
-			key = StringBundler.concat(
-				_importDataRootElement.attributeValue("self-path"),
-				CharPool.POUND, name);
-
-			groupElement = _importDataElements.get(key);
-
-			if (groupElement != null) {
-				return groupElement;
-			}
-		}
-
-		groupElement = _deepSearchForFirstChildElement(
-			_importDataRootElement, name);
-
-		if (groupElement == null) {
-			groupElement = SAXReaderUtil.createElement("EMPTY-ELEMENT");
-		}
-
-		if (_importDataElements != null) {
-			_importDataElements.put(key, groupElement);
-		}
-
-		return groupElement;
-	}
-
-	protected List<Element> getReferenceDataElements(
-		List<Element> referenceElements, Class<?> clazz) {
-
-		List<Element> referenceDataElements = new ArrayList<>();
-
-		for (Element referenceElement : referenceElements) {
-			Element referenceDataElement = null;
-
-			String path = referenceElement.attributeValue("path");
-
-			if (Validator.isNotNull(path)) {
-				referenceDataElement = getImportDataElement(
-					clazz.getSimpleName(), "path", path);
-			}
-			else {
-				String groupId = referenceElement.attributeValue("group-id");
-				String uuid = referenceElement.attributeValue("uuid");
-
-				Element groupElement = getImportDataGroupElement(
-					clazz.getSimpleName());
-
-				Predicate<Element> childElementPredicate =
-					childElement -> Objects.equals(
-						childElement.attributeValue("uuid"), uuid);
-
-				if (groupId != null) {
-					childElementPredicate = childElementPredicate.and(
-						childElement -> Objects.equals(
-							childElement.attributeValue("group-id"), groupId));
-				}
-
-				referenceDataElement = _searchFirstChildElementWithPredicate(
-					groupElement, "staged-model", childElementPredicate);
-			}
-
-			if (referenceDataElement == null) {
-				continue;
-			}
-
-			referenceDataElements.add(referenceDataElement);
-		}
-
-		return referenceDataElements;
-	}
-
-	protected List<Element> getReferenceElements(
-		Element parentElement, String className, long groupId, String uuid,
-		Serializable classPK, String referenceType) {
-
-		if (parentElement == null) {
-			return Collections.emptyList();
-		}
-
-		Element referencesElement = parentElement.element("references");
-
-		if (referencesElement == null) {
-			return Collections.emptyList();
-		}
-
-		List<Element> referenceElements = new ArrayList<>();
-
-		for (Element referenceElement :
-				referencesElement.elements("reference")) {
-
-			if (!Objects.equals(
-					referenceElement.attributeValue("class-name"), className) ||
-				((groupId > 0) &&
-				 !Objects.equals(
-					 referenceElement.attributeValue("group-id"),
-					 String.valueOf(groupId)))) {
-
-				continue;
-			}
-
-			if (Validator.isNotNull(uuid) &&
-				!Objects.equals(
-					referenceElement.attributeValue("uuid"), uuid)) {
-
-				continue;
-			}
-
-			if (Validator.isNotNull(classPK) &&
-				!Objects.equals(
-					referenceElement.attributeValue("class-pk"),
-					String.valueOf(classPK))) {
-
-				continue;
-			}
-
-			if ((referenceType != null) &&
-				!Objects.equals(
-					referenceElement.attributeValue("type"),
-					String.valueOf(referenceType))) {
-
-				continue;
-			}
-
-			referenceElements.add(referenceElement);
-		}
-
-		return referenceElements;
-	}
-
-	protected List<Element> getReferenceElements(
-		StagedModel parentStagedModel, String className, Serializable classPK,
-		String referenceType) {
-
-		Element stagedModelElement = getImportDataStagedModelElement(
-			parentStagedModel);
-
-		return getReferenceElements(
-			stagedModelElement, className, 0, null, classPK, referenceType);
-	}
-
-	protected long getUserId(AuditedModel auditedModel) {
-		try {
-			return getUserId(auditedModel.getUserUuid());
-		}
-		catch (SystemException systemException) {
-			_log.error(systemException, systemException);
-		}
-
-		return 0;
-	}
-
-	private void _addAssetLinks(long classNameId, long classPK) {
-		List<AssetLink> assetLinks = AssetLinkLocalServiceUtil.getLinks(
-			classNameId, classPK);
-
-		for (AssetLink assetLink : assetLinks) {
-			_assetLinkIds.add(assetLink.getLinkId());
 		}
 	}
 
@@ -2402,6 +2104,116 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 	}
 
+	private ServiceContext _createServiceContext(
+		Element element, String path, ClassedModel classedModel,
+		Class<?> clazz) {
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		// Theme display
+
+		serviceContext.setCompanyId(getCompanyId());
+		serviceContext.setScopeGroupId(getScopeGroupId());
+
+		// Dates
+
+		if (classedModel instanceof AuditedModel) {
+			AuditedModel auditedModel = (AuditedModel)classedModel;
+
+			serviceContext.setCreateDate(auditedModel.getCreateDate());
+			serviceContext.setModifiedDate(auditedModel.getModifiedDate());
+			serviceContext.setUserId(getUserId(auditedModel));
+		}
+
+		// Permissions
+
+		String xml = getZipEntryAsString(
+			ExportImportPathUtil.getSourceRootPath(this) +
+				"/portlet-data-permissions.xml");
+
+		if (!MapUtil.getBoolean(
+				_parameterMap, PortletDataHandlerKeys.PERMISSIONS) ||
+			Validator.isNull(xml)) {
+
+			serviceContext.setAddGroupPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
+		}
+
+		// Asset
+
+		if (_isResourceMain(classedModel)) {
+			Serializable classPKObj =
+				ExportImportClassedModelUtil.getPrimaryKeyObj(classedModel);
+
+			serviceContext.setAssetCategoryIds(
+				getAssetCategoryIds(clazz, classPKObj));
+
+			serviceContext.setAssetTagNames(
+				getAssetTagNames(clazz, classPKObj));
+		}
+
+		if (element != null) {
+			Attribute assetPriorityAttribute = element.attribute(
+				"asset-entry-priority");
+
+			if (assetPriorityAttribute != null) {
+				double assetPriority = GetterUtil.getDouble(
+					assetPriorityAttribute.getValue());
+
+				serviceContext.setAssetPriority(assetPriority);
+			}
+		}
+
+		// Expando
+
+		String expandoPath = null;
+
+		if (element != null) {
+			expandoPath = element.attributeValue("expando-path");
+		}
+		else {
+			expandoPath = ExportImportPathUtil.getExpandoPath(path);
+		}
+
+		if (Validator.isNotNull(expandoPath)) {
+			try {
+				Map<String, Serializable> expandoBridgeAttributes =
+					(Map<String, Serializable>)getZipEntryAsObject(expandoPath);
+
+				if (expandoBridgeAttributes != null) {
+					serviceContext.setExpandoBridgeAttributes(
+						expandoBridgeAttributes);
+				}
+			}
+			catch (Exception exception) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(exception, exception);
+				}
+			}
+		}
+
+		// Workflow
+
+		if (classedModel instanceof WorkflowedModel) {
+			WorkflowedModel workflowedModel = (WorkflowedModel)classedModel;
+
+			if (workflowedModel.getStatus() ==
+					WorkflowConstants.STATUS_APPROVED) {
+
+				serviceContext.setWorkflowAction(
+					WorkflowConstants.ACTION_PUBLISH);
+			}
+			else if (workflowedModel.getStatus() ==
+						WorkflowConstants.STATUS_DRAFT) {
+
+				serviceContext.setWorkflowAction(
+					WorkflowConstants.ACTION_SAVE_DRAFT);
+			}
+		}
+
+		return serviceContext;
+	}
+
 	private Element _deepSearchForFirstChildElement(
 		Element parentElement, String childElementName) {
 
@@ -2424,6 +2236,16 @@ public class PortletDataContextImpl implements PortletDataContext {
 		return null;
 	}
 
+	private String[] _getAssetTagNames(String key) {
+		String[] assetTagNames = _assetTagNamesMap.get(key);
+
+		if (assetTagNames == null) {
+			return new String[0];
+		}
+
+		return assetTagNames;
+	}
+
 	private Element _getDataElement(
 		Element parentElement, String attribute, String value) {
 
@@ -2437,6 +2259,26 @@ public class PortletDataContextImpl implements PortletDataContext {
 				childElement.attributeValue(attribute), value));
 	}
 
+	private Element _getExportDataGroupElement(String name) {
+		if (_exportDataRootElement == null) {
+			PortletDataException portletDataException =
+				new PortletDataException(
+					PortletDataException.EXPORT_DATA_GROUP_ELEMENT);
+
+			portletDataException.setStagedModelClassName(name);
+
+			throw new SystemException(portletDataException);
+		}
+
+		Element groupElement = _exportDataRootElement.element(name);
+
+		if (groupElement == null) {
+			groupElement = _exportDataRootElement.addElement(name);
+		}
+
+		return groupElement;
+	}
+
 	private long _getGroupId(ClassedModel classedModel) {
 		if (classedModel instanceof GroupedModel) {
 			GroupedModel groupedModel = (GroupedModel)classedModel;
@@ -2445,6 +2287,50 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		return 0;
+	}
+
+	private Element _getImportDataGroupElement(String name) {
+		if (_importDataRootElement == null) {
+			PortletDataException portletDataException =
+				new PortletDataException(
+					PortletDataException.IMPORT_DATA_GROUP_ELEMENT);
+
+			portletDataException.setStagedModelClassName(name);
+
+			throw new SystemException(portletDataException);
+		}
+
+		if (Validator.isNull(name)) {
+			return SAXReaderUtil.createElement("EMPTY-ELEMENT");
+		}
+
+		Element groupElement = null;
+		String key = StringPool.BLANK;
+
+		if (_importDataElements != null) {
+			key = StringBundler.concat(
+				_importDataRootElement.attributeValue("self-path"),
+				CharPool.POUND, name);
+
+			groupElement = _importDataElements.get(key);
+
+			if (groupElement != null) {
+				return groupElement;
+			}
+		}
+
+		groupElement = _deepSearchForFirstChildElement(
+			_importDataRootElement, name);
+
+		if (groupElement == null) {
+			groupElement = SAXReaderUtil.createElement("EMPTY-ELEMENT");
+		}
+
+		if (_importDataElements != null) {
+			_importDataElements.put(key, groupElement);
+		}
+
+		return groupElement;
 	}
 
 	private long _getOldPrimaryKey(Map<Long, Long> map, long value) {
@@ -2489,6 +2375,120 @@ public class PortletDataContextImpl implements PortletDataContext {
 		String className, Serializable primaryKey) {
 
 		return StringBundler.concat(className, StringPool.POUND, primaryKey);
+	}
+
+	private List<Element> _getReferenceDataElements(
+		List<Element> referenceElements, Class<?> clazz) {
+
+		List<Element> referenceDataElements = new ArrayList<>();
+
+		for (Element referenceElement : referenceElements) {
+			Element referenceDataElement = null;
+
+			String path = referenceElement.attributeValue("path");
+
+			if (Validator.isNotNull(path)) {
+				referenceDataElement = getImportDataElement(
+					clazz.getSimpleName(), "path", path);
+			}
+			else {
+				String groupId = referenceElement.attributeValue("group-id");
+				String uuid = referenceElement.attributeValue("uuid");
+
+				Element groupElement = _getImportDataGroupElement(
+					clazz.getSimpleName());
+
+				Predicate<Element> childElementPredicate =
+					childElement -> Objects.equals(
+						childElement.attributeValue("uuid"), uuid);
+
+				if (groupId != null) {
+					childElementPredicate = childElementPredicate.and(
+						childElement -> Objects.equals(
+							childElement.attributeValue("group-id"), groupId));
+				}
+
+				referenceDataElement = _searchFirstChildElementWithPredicate(
+					groupElement, "staged-model", childElementPredicate);
+			}
+
+			if (referenceDataElement == null) {
+				continue;
+			}
+
+			referenceDataElements.add(referenceDataElement);
+		}
+
+		return referenceDataElements;
+	}
+
+	private List<Element> _getReferenceElements(
+		Element parentElement, String className, long groupId, String uuid,
+		Serializable classPK, String referenceType) {
+
+		if (parentElement == null) {
+			return Collections.emptyList();
+		}
+
+		Element referencesElement = parentElement.element("references");
+
+		if (referencesElement == null) {
+			return Collections.emptyList();
+		}
+
+		List<Element> referenceElements = new ArrayList<>();
+
+		for (Element referenceElement :
+				referencesElement.elements("reference")) {
+
+			if (!Objects.equals(
+					referenceElement.attributeValue("class-name"), className) ||
+				((groupId > 0) &&
+				 !Objects.equals(
+					 referenceElement.attributeValue("group-id"),
+					 String.valueOf(groupId)))) {
+
+				continue;
+			}
+
+			if (Validator.isNotNull(uuid) &&
+				!Objects.equals(
+					referenceElement.attributeValue("uuid"), uuid)) {
+
+				continue;
+			}
+
+			if (Validator.isNotNull(classPK) &&
+				!Objects.equals(
+					referenceElement.attributeValue("class-pk"),
+					String.valueOf(classPK))) {
+
+				continue;
+			}
+
+			if ((referenceType != null) &&
+				!Objects.equals(
+					referenceElement.attributeValue("type"),
+					String.valueOf(referenceType))) {
+
+				continue;
+			}
+
+			referenceElements.add(referenceElement);
+		}
+
+		return referenceElements;
+	}
+
+	private List<Element> _getReferenceElements(
+		StagedModel parentStagedModel, String className, Serializable classPK,
+		String referenceType) {
+
+		Element stagedModelElement = getImportDataStagedModelElement(
+			parentStagedModel);
+
+		return _getReferenceElements(
+			stagedModelElement, className, 0, null, classPK, referenceType);
 	}
 
 	private String _getReferenceKey(ClassedModel classedModel) {

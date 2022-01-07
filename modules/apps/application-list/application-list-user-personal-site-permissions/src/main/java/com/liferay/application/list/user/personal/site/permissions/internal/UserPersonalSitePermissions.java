@@ -66,7 +66,7 @@ public class UserPersonalSitePermissions {
 
 		for (Portlet portlet : portlets) {
 			try {
-				initPermissions(
+				_initPermissions(
 					companyId, powerUserRole.getRoleId(),
 					portlet.getRootPortletId(),
 					userPersonalSiteGroup.getGroupId());
@@ -98,48 +98,6 @@ public class UserPersonalSitePermissions {
 
 		_serviceTracker = ServiceTrackerFactory.open(
 			bundleContext, filter, new PanelAppServiceTrackerCustomizer());
-	}
-
-	protected void initPermissions(
-			long companyId, long powerUserRoleId, String rootPortletId,
-			long userPersonalSiteGroupId)
-		throws PortalException {
-
-		String primaryKey = String.valueOf(userPersonalSiteGroupId);
-
-		int count = _resourcePermissionLocalService.getResourcePermissionsCount(
-			companyId, rootPortletId, ResourceConstants.SCOPE_GROUP,
-			primaryKey);
-
-		if (count == 0) {
-			List<String> portletActionIds =
-				ResourceActionsUtil.getPortletResourceActions(rootPortletId);
-
-			_resourcePermissionLocalService.setResourcePermissions(
-				companyId, rootPortletId, ResourceConstants.SCOPE_GROUP,
-				String.valueOf(userPersonalSiteGroupId), powerUserRoleId,
-				portletActionIds.toArray(new String[0]));
-		}
-
-		String modelName = ResourceActionsUtil.getPortletRootModelResource(
-			rootPortletId);
-
-		if (Validator.isBlank(modelName)) {
-			return;
-		}
-
-		count = _resourcePermissionLocalService.getResourcePermissionsCount(
-			companyId, modelName, ResourceConstants.SCOPE_GROUP, primaryKey);
-
-		if (count == 0) {
-			List<String> modelActionIds =
-				ResourceActionsUtil.getModelResourceActions(modelName);
-
-			_resourcePermissionLocalService.setResourcePermissions(
-				companyId, modelName, ResourceConstants.SCOPE_GROUP,
-				String.valueOf(userPersonalSiteGroupId), powerUserRoleId,
-				modelActionIds.toArray(new String[0]));
-		}
 	}
 
 	private Role _getPowerUserRole(long companyId) {
@@ -186,7 +144,7 @@ public class UserPersonalSitePermissions {
 		}
 
 		try {
-			initPermissions(
+			_initPermissions(
 				companyId, powerUserRole.getRoleId(),
 				portlet.getRootPortletId(), userPersonalSiteGroup.getGroupId());
 		}
@@ -197,6 +155,48 @@ public class UserPersonalSitePermissions {
 					"portlet ", portlet.getPortletId(), " in company ",
 					company.getCompanyId()),
 				portalException);
+		}
+	}
+
+	private void _initPermissions(
+			long companyId, long powerUserRoleId, String rootPortletId,
+			long userPersonalSiteGroupId)
+		throws PortalException {
+
+		String primaryKey = String.valueOf(userPersonalSiteGroupId);
+
+		int count = _resourcePermissionLocalService.getResourcePermissionsCount(
+			companyId, rootPortletId, ResourceConstants.SCOPE_GROUP,
+			primaryKey);
+
+		if (count == 0) {
+			List<String> portletActionIds =
+				ResourceActionsUtil.getPortletResourceActions(rootPortletId);
+
+			_resourcePermissionLocalService.setResourcePermissions(
+				companyId, rootPortletId, ResourceConstants.SCOPE_GROUP,
+				String.valueOf(userPersonalSiteGroupId), powerUserRoleId,
+				portletActionIds.toArray(new String[0]));
+		}
+
+		String modelName = ResourceActionsUtil.getPortletRootModelResource(
+			rootPortletId);
+
+		if (Validator.isBlank(modelName)) {
+			return;
+		}
+
+		count = _resourcePermissionLocalService.getResourcePermissionsCount(
+			companyId, modelName, ResourceConstants.SCOPE_GROUP, primaryKey);
+
+		if (count == 0) {
+			List<String> modelActionIds =
+				ResourceActionsUtil.getModelResourceActions(modelName);
+
+			_resourcePermissionLocalService.setResourcePermissions(
+				companyId, modelName, ResourceConstants.SCOPE_GROUP,
+				String.valueOf(userPersonalSiteGroupId), powerUserRoleId,
+				modelActionIds.toArray(new String[0]));
 		}
 	}
 

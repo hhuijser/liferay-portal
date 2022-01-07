@@ -235,7 +235,7 @@ public class AssignScopesDisplayContext
 
 		if (localAssignableScopes != null) {
 			localRelations.putAll(
-				getAssignableScopesRelations(localAssignableScopes));
+				_getAssignableScopesRelations(localAssignableScopes));
 		}
 
 		Set<AssignableScopes> globalAssignableScopes =
@@ -412,20 +412,6 @@ public class AssignScopesDisplayContext
 
 	}
 
-	protected Map<AssignableScopes, Relations> getAssignableScopesRelations(
-		Set<AssignableScopes> assignableScopes) {
-
-		Stream<AssignableScopes> assignableScopesStream =
-			assignableScopes.stream();
-
-		return assignableScopesStream.filter(
-			_assignableScopesRelations::containsKey
-		).collect(
-			Collectors.toMap(
-				Function.identity(), _assignableScopesRelations::get)
-		);
-	}
-
 	private Map<String, AssignableScopes> _getAssignableScopesByScopeAlias(
 		long oAuth2ApplicationScopeAliasesId,
 		ApplicationDescriptorLocator applicationDescriptorLocator,
@@ -459,6 +445,20 @@ public class AssignScopesDisplayContext
 		}
 
 		return scopeAliasesAssignableScopes;
+	}
+
+	private Map<AssignableScopes, Relations> _getAssignableScopesRelations(
+		Set<AssignableScopes> assignableScopes) {
+
+		Stream<AssignableScopes> assignableScopesStream =
+			assignableScopes.stream();
+
+		return assignableScopesStream.filter(
+			_assignableScopesRelations::containsKey
+		).collect(
+			Collectors.toMap(
+				Function.identity(), _assignableScopesRelations::get)
+		);
 	}
 
 	private Relations _getRelations(

@@ -215,7 +215,7 @@ public class IMAPAccessor {
 
 			Folder jxFolder = store.getDefaultFolder();
 
-			getFolders(jxFolders, jxFolder.list());
+			_getFolders(jxFolders, jxFolder.list());
 
 			return jxFolders;
 		}
@@ -754,27 +754,6 @@ public class IMAPAccessor {
 		return store.getFolder(fullName);
 	}
 
-	protected void getFolders(List<Folder> allJxFolders, Folder[] jxFolders) {
-		for (Folder jxFolder : jxFolders) {
-			try {
-				int folderType = jxFolder.getType();
-
-				if ((folderType & Folder.HOLDS_MESSAGES) != 0) {
-					allJxFolders.add(jxFolder);
-				}
-
-				if ((folderType & Folder.HOLDS_FOLDERS) != 0) {
-					getFolders(allJxFolders, jxFolder.list());
-				}
-			}
-			catch (MessagingException messagingException) {
-				_log.error(
-					"Unable to get folder " + jxFolder.getFullName(),
-					messagingException);
-			}
-		}
-	}
-
 	protected Message getMessage(Folder jxFolder, long remoteMessageId)
 		throws MessagingException {
 
@@ -910,6 +889,27 @@ public class IMAPAccessor {
 		}
 
 		return sb.toString();
+	}
+
+	private void _getFolders(List<Folder> allJxFolders, Folder[] jxFolders) {
+		for (Folder jxFolder : jxFolders) {
+			try {
+				int folderType = jxFolder.getType();
+
+				if ((folderType & Folder.HOLDS_MESSAGES) != 0) {
+					allJxFolders.add(jxFolder);
+				}
+
+				if ((folderType & Folder.HOLDS_FOLDERS) != 0) {
+					_getFolders(allJxFolders, jxFolder.list());
+				}
+			}
+			catch (MessagingException messagingException) {
+				_log.error(
+					"Unable to get folder " + jxFolder.getFullName(),
+					messagingException);
+			}
+		}
 	}
 
 	private int[] _getMessageIndexes(

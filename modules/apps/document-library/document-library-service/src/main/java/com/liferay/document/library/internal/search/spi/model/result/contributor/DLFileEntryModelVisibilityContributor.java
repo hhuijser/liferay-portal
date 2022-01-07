@@ -44,18 +44,7 @@ public class DLFileEntryModelVisibilityContributor
 			return false;
 		}
 
-		return isVisible(fileVersion.getStatus(), status);
-	}
-
-	protected boolean isVisible(int entryStatus, int queryStatus) {
-		if (((queryStatus != WorkflowConstants.STATUS_ANY) &&
-			 (entryStatus == queryStatus)) ||
-			(entryStatus != WorkflowConstants.STATUS_IN_TRASH)) {
-
-			return true;
-		}
-
-		return false;
+		return _isVisible(fileVersion.getStatus(), status);
 	}
 
 	@Reference
@@ -74,6 +63,17 @@ public class DLFileEntryModelVisibilityContributor
 
 			return null;
 		}
+	}
+
+	private boolean _isVisible(int entryStatus, int queryStatus) {
+		if (((queryStatus != WorkflowConstants.STATUS_ANY) &&
+			 (entryStatus == queryStatus)) ||
+			(entryStatus != WorkflowConstants.STATUS_IN_TRASH)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

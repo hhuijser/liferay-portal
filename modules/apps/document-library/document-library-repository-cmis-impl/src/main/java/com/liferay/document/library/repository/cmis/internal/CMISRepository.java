@@ -1235,12 +1235,12 @@ public class CMISRepository extends BaseCmisRepository {
 	}
 
 	public FileEntry toFileEntry(Document document) throws PortalException {
-		return toFileEntry(document, false);
+		return _toFileEntry(document, false);
 	}
 
 	@Override
 	public FileEntry toFileEntry(String objectId) throws PortalException {
-		return toFileEntry(objectId, false);
+		return _toFileEntry(objectId, false);
 	}
 
 	public FileVersion toFileVersion(FileEntry fileEntry, Document version)
@@ -1633,48 +1633,6 @@ public class CMISRepository extends BaseCmisRepository {
 
 				getSubfolderIds(subfolderIds, subSubFolders, recurse);
 			}
-		}
-	}
-
-	protected FileEntry toFileEntry(Document document, boolean strict)
-		throws PortalException {
-
-		RepositoryEntry repositoryEntry = null;
-
-		if (isDocumentRetrievableByVersionSeriesId()) {
-			repositoryEntry = getRepositoryEntry(document.getVersionSeriesId());
-		}
-		else {
-			repositoryEntry = getRepositoryEntry(document.getId());
-		}
-
-		return new CMISFileEntry(
-			this, repositoryEntry.getUuid(),
-			repositoryEntry.getRepositoryEntryId(), document, _lockManager);
-	}
-
-	protected FileEntry toFileEntry(String objectId, boolean strict)
-		throws PortalException {
-
-		try {
-			Session session = getSession();
-
-			Document document = (Document)session.getObject(objectId);
-
-			return toFileEntry(document, strict);
-		}
-		catch (CmisObjectNotFoundException cmisObjectNotFoundException) {
-			throw new NoSuchFileEntryException(
-				"No CMIS file entry with {objectId=" + objectId + "}",
-				cmisObjectNotFoundException);
-		}
-		catch (SystemException systemException) {
-			throw systemException;
-		}
-		catch (Exception exception) {
-			_processException(exception);
-
-			throw new RepositoryException(exception);
 		}
 	}
 
@@ -2181,7 +2139,7 @@ public class CMISRepository extends BaseCmisRepository {
 			FileEntry fileEntry = null;
 
 			try {
-				fileEntry = toFileEntry(objectId, true);
+				fileEntry = _toFileEntry(objectId, true);
 			}
 			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
@@ -2273,6 +2231,48 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 
 		return ListUtil.subList(list, start, end);
+	}
+
+	private FileEntry _toFileEntry(Document document, boolean strict)
+		throws PortalException {
+
+		RepositoryEntry repositoryEntry = null;
+
+		if (isDocumentRetrievableByVersionSeriesId()) {
+			repositoryEntry = getRepositoryEntry(document.getVersionSeriesId());
+		}
+		else {
+			repositoryEntry = getRepositoryEntry(document.getId());
+		}
+
+		return new CMISFileEntry(
+			this, repositoryEntry.getUuid(),
+			repositoryEntry.getRepositoryEntryId(), document, _lockManager);
+	}
+
+	private FileEntry _toFileEntry(String objectId, boolean strict)
+		throws PortalException {
+
+		try {
+			Session session = getSession();
+
+			Document document = (Document)session.getObject(objectId);
+
+			return _toFileEntry(document, strict);
+		}
+		catch (CmisObjectNotFoundException cmisObjectNotFoundException) {
+			throw new NoSuchFileEntryException(
+				"No CMIS file entry with {objectId=" + objectId + "}",
+				cmisObjectNotFoundException);
+		}
+		catch (SystemException systemException) {
+			throw systemException;
+		}
+		catch (Exception exception) {
+			_processException(exception);
+
+			throw new RepositoryException(exception);
+		}
 	}
 
 	private String _toFileVersionId(long fileVersionId) throws PortalException {

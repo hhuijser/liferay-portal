@@ -39,7 +39,7 @@ public class IndexCreator {
 
 		String name = indexName.getName();
 
-		deleteIndex(indicesClient, name);
+		_deleteIndex(indicesClient, name);
 
 		CreateIndexRequest createIndexRequest = new CreateIndexRequest(name);
 
@@ -69,20 +69,7 @@ public class IndexCreator {
 	}
 
 	public void deleteIndex(IndexName indexName) {
-		deleteIndex(_getIndicesClient(), indexName.getName());
-	}
-
-	protected void deleteIndex(IndicesClient indicesClient, String name) {
-		DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(name);
-
-		deleteIndexRequest.indicesOptions(IndicesOptions.lenientExpandOpen());
-
-		try {
-			indicesClient.delete(deleteIndexRequest, RequestOptions.DEFAULT);
-		}
-		catch (IOException ioException) {
-			throw new RuntimeException(ioException);
-		}
+		_deleteIndex(_getIndicesClient(), indexName.getName());
 	}
 
 	protected void setElasticsearchClientResolver(
@@ -101,6 +88,19 @@ public class IndexCreator {
 		boolean liferayMappingsAddedToIndex) {
 
 		_liferayMappingsAddedToIndex = liferayMappingsAddedToIndex;
+	}
+
+	private void _deleteIndex(IndicesClient indicesClient, String name) {
+		DeleteIndexRequest deleteIndexRequest = new DeleteIndexRequest(name);
+
+		deleteIndexRequest.indicesOptions(IndicesOptions.lenientExpandOpen());
+
+		try {
+			indicesClient.delete(deleteIndexRequest, RequestOptions.DEFAULT);
+		}
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
+		}
 	}
 
 	private IndexCreationHelper _getIndexCreationHelper() {

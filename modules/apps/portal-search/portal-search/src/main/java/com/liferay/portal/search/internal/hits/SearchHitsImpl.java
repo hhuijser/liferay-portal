@@ -66,15 +66,11 @@ public class SearchHitsImpl implements SearchHits, Serializable {
 		_searchHits.addAll(searchHitsImpl._searchHits);
 	}
 
-	protected void addSearchHit(SearchHit searchHit) {
-		_searchHits.add(searchHit);
-	}
-
 	protected static class Builder implements SearchHitsBuilder {
 
 		@Override
 		public SearchHitsBuilder addSearchHit(SearchHit searchHit) {
-			_searchHitsImpl.addSearchHit(searchHit);
+			_searchHitsImpl._addSearchHit(searchHit);
 
 			return this;
 		}
@@ -131,6 +127,10 @@ public class SearchHitsImpl implements SearchHits, Serializable {
 
 		private final SearchHitsImpl _searchHitsImpl = new SearchHitsImpl();
 
+	}
+
+	private void _addSearchHit(SearchHit searchHit) {
+		_searchHits.add(searchHit);
 	}
 
 	private void _setMaxScore(float maxScore) {

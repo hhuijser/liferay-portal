@@ -85,7 +85,7 @@ public class LayoutReferencesExportImportContentProcessor
 			boolean escapeContent)
 		throws Exception {
 
-		return replaceExportLayoutReferences(
+		return _replaceExportLayoutReferences(
 			portletDataContext, stagedModel, content);
 	}
 
@@ -95,7 +95,7 @@ public class LayoutReferencesExportImportContentProcessor
 			String content)
 		throws Exception {
 
-		return replaceImportLayoutReferences(portletDataContext, content);
+		return _replaceImportLayoutReferences(portletDataContext, content);
 	}
 
 	@Override
@@ -112,7 +112,365 @@ public class LayoutReferencesExportImportContentProcessor
 			ExportImportServiceConfiguration.class, properties);
 	}
 
-	protected String replaceExportHostname(
+	@Reference(unbind = "-")
+	protected void setConfigurationProvider(
+		ConfigurationProvider configurationProvider) {
+
+		_configurationProvider = configurationProvider;
+	}
+
+	protected void validateLayoutReferences(long groupId, String content)
+		throws PortalException {
+
+		long companyId = CompanyThreadLocal.getCompanyId();
+
+		try {
+			_exportImportServiceConfiguration =
+				_configurationProvider.getCompanyConfiguration(
+					ExportImportServiceConfiguration.class, companyId);
+		}
+		catch (ConfigurationException configurationException) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(configurationException.getMessage());
+			}
+		}
+
+		if (!_exportImportServiceConfiguration.validateLayoutReferences()) {
+			return;
+		}
+
+		Group group = _groupLocalService.getGroup(groupId);
+
+		String[] friendlyURLSeparators = {"/-/", "/b/", "/d/", "/w/"};
+		String[] patterns = {"href=", "[[", "{{"};
+
+		int beginPos = -1;
+		int endPos = content.length();
+		int offset = 0;
+
+		while (true) {
+			if (beginPos > -1) {
+				endPos = beginPos - 1;
+			}
+
+			beginPos = StringUtil.lastIndexOfAny(content, patterns, endPos);
+
+			if (beginPos == -1) {
+				break;
+			}
+
+			if (content.startsWith("href=", beginPos)) {
+				offset = 5;
+
+				char c = content.charAt(beginPos + offset);
+
+				if (c == CharPool.BACK_SLASH) {
+					offset = 7;
+				}
+				else if ((c == CharPool.APOSTROPHE) || (c == CharPool.QUOTE)) {
+					offset++;
+				}
+			}
+			else if ((content.charAt(beginPos) == CharPool.OPEN_BRACKET) ||
+					 (content.charAt(beginPos) == CharPool.OPEN_CURLY_BRACE)) {
+
+				offset = 2;
+			}
+
+			if (content.startsWith("href=", beginPos)) {
+				endPos = StringUtil.indexOfAny(
+					content, _URL_REFERENCE_STOP_CHARS, beginPos + offset,
+					endPos);
+			}
+			else {
+				endPos = StringUtil.indexOfAny(
+					content, _LAYOUT_REFERENCE_STOP_CHARS, beginPos + offset,
+					endPos);
+			}
+
+			if (endPos == -1) {
+				continue;
+			}
+
+			String url = content.substring(beginPos + offset, endPos + 1);
+
+			if (url.contains("/c/document_library/get_file?") ||
+				url.contains("/documents/") ||
+				url.contains("/image/image_gallery?")) {
+
+				continue;
+			}
+
+			url = content.substring(beginPos + offset, endPos);
+
+			endPos = StringUtil.indexOfAny(url, friendlyURLSeparators);
+
+			if (endPos != -1) {
+				url = url.substring(0, endPos);
+			}
+
+			if (url.endsWith(StringPool.SLASH)) {
+				url = url.substring(0, url.length() - 1);
+			}
+
+			StringBundler urlSB = new StringBundler(1);
+
+			url = _replaceExportHostname(group, url, urlSB);
+
+			if (!url.startsWith(StringPool.SLASH)) {
+				continue;
+			}
+
+			String pathContext = _portal.getPathContext();
+
+			if (pathContext.length() > 1) {
+				if (!url.startsWith(pathContext)) {
+					continue;
+				}
+
+				url = url.substring(pathContext.length());
+			}
+
+			int pos = url.indexOf(StringPool.SLASH, 1);
+
+			if (pos == -1) {
+				pos = url.length();
+			}
+
+			Locale locale = null;
+
+			String localePath = url.substring(0, pos);
+
+			if (localePath.length() > 1) {
+				locale = LocaleUtil.fromLanguageId(
+					localePath.substring(1), true, false);
+			}
+
+			if (locale != null) {
+				String urlWithoutLocale = url.substring(localePath.length());
+
+				if (urlWithoutLocale.startsWith(
+						_PRIVATE_GROUP_SERVLET_MAPPING) ||
+					urlWithoutLocale.startsWith(
+						_PRIVATE_USER_SERVLET_MAPPING) ||
+					urlWithoutLocale.startsWith(
+						_PUBLIC_GROUP_SERVLET_MAPPING) ||
+					_isVirtualHostDefined(urlSB)) {
+
+					url = urlWithoutLocale;
+				}
+				else if (urlWithoutLocale.indexOf(StringPool.SLASH, 1) == -1) {
+					if (!localePath.equals(_PRIVATE_GROUP_SERVLET_MAPPING) &&
+						!localePath.equals(_PRIVATE_USER_SERVLET_MAPPING) &&
+						!localePath.equals(_PUBLIC_GROUP_SERVLET_MAPPING)) {
+
+						urlSB.append(localePath);
+
+						url = urlWithoutLocale;
+					}
+					else {
+						Layout layout =
+							_layoutLocalService.fetchLayoutByFriendlyURL(
+								group.getGroupId(), false, urlWithoutLocale);
+
+						if (layout != null) {
+							urlSB.append(localePath);
+
+							url = urlWithoutLocale;
+						}
+					}
+				}
+			}
+
+			if (!url.startsWith(StringPool.SLASH)) {
+				continue;
+			}
+
+			boolean privateLayout = false;
+
+			if (url.startsWith(_PRIVATE_GROUP_SERVLET_MAPPING)) {
+				url = url.substring(
+					_PRIVATE_GROUP_SERVLET_MAPPING.length() - 1);
+
+				privateLayout = true;
+			}
+			else if (url.startsWith(_PRIVATE_USER_SERVLET_MAPPING)) {
+				url = url.substring(_PRIVATE_USER_SERVLET_MAPPING.length() - 1);
+
+				privateLayout = true;
+			}
+			else if (url.startsWith(_PUBLIC_GROUP_SERVLET_MAPPING)) {
+				url = url.substring(_PUBLIC_GROUP_SERVLET_MAPPING.length() - 1);
+			}
+			else {
+				String urlSBString = urlSB.toString();
+
+				LayoutSet layoutSet = null;
+
+				if (urlSBString.contains(
+						_DATA_HANDLER_PUBLIC_LAYOUT_SET_SECURE_URL) ||
+					urlSBString.contains(_DATA_HANDLER_PUBLIC_LAYOUT_SET_URL)) {
+
+					layoutSet = group.getPublicLayoutSet();
+				}
+				else if (urlSBString.contains(
+							_DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
+						 urlSBString.contains(
+							 _DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
+
+					layoutSet = group.getPrivateLayoutSet();
+				}
+				else if (urlSBString.contains(
+							_DATA_HANDLER_COMPANY_SECURE_DEFAULT_GROUP_URL) ||
+						 urlSBString.contains(
+							 _DATA_HANDLER_COMPANY_DEFAULT_GROUP_URL)) {
+
+					layoutSet = group.getPublicLayoutSet();
+				}
+				else {
+					LayoutSet publicLayoutSet = group.getPublicLayoutSet();
+
+					TreeMap<String, String> publicVirtualHostnames =
+						publicLayoutSet.getVirtualHostnames();
+
+					if (!publicVirtualHostnames.isEmpty() ||
+						_isDefaultGroup(group)) {
+
+						layoutSet = group.getPublicLayoutSet();
+					}
+				}
+
+				if (layoutSet == null) {
+					continue;
+				}
+
+				privateLayout = layoutSet.isPrivateLayout();
+			}
+
+			Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(
+				groupId, privateLayout, url);
+
+			if (layout != null) {
+				continue;
+			}
+
+			String siteAdminURL =
+				GroupConstants.CONTROL_PANEL_FRIENDLY_URL +
+					PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL;
+
+			if (url.endsWith(
+					VirtualLayoutConstants.CANONICAL_URL_SEPARATOR +
+						siteAdminURL)) {
+
+				url = url.substring(url.indexOf(siteAdminURL));
+			}
+
+			pos = url.indexOf(StringPool.SLASH, 1);
+
+			String groupFriendlyURL = url;
+
+			if (pos != -1) {
+				groupFriendlyURL = url.substring(0, pos);
+			}
+
+			Group urlGroup = _groupLocalService.fetchFriendlyURLGroup(
+				group.getCompanyId(), groupFriendlyURL);
+
+			if (urlGroup == null) {
+				ExportImportContentValidationException
+					exportImportContentValidationException =
+						new ExportImportContentValidationException(
+							LayoutReferencesExportImportContentProcessor.class.
+								getName());
+
+				exportImportContentValidationException.setGroupFriendlyURL(
+					groupFriendlyURL);
+				exportImportContentValidationException.setLayoutURL(url);
+				exportImportContentValidationException.setType(
+					ExportImportContentValidationException.
+						LAYOUT_GROUP_NOT_FOUND);
+
+				throw exportImportContentValidationException;
+			}
+
+			if (pos == -1) {
+				continue;
+			}
+
+			url = url.substring(pos);
+
+			try {
+				_layoutLocalService.getFriendlyURLLayout(
+					urlGroup.getGroupId(), privateLayout, url);
+			}
+			catch (NoSuchLayoutException noSuchLayoutException) {
+				ExportImportContentValidationException
+					exportImportContentValidationException =
+						new ExportImportContentValidationException(
+							LayoutReferencesExportImportContentProcessor.class.
+								getName(),
+							noSuchLayoutException);
+
+				exportImportContentValidationException.setLayoutURL(url);
+				exportImportContentValidationException.setType(
+					ExportImportContentValidationException.
+						LAYOUT_WITH_URL_NOT_FOUND);
+
+				throw exportImportContentValidationException;
+			}
+		}
+	}
+
+	private String _getPortalURL(String url, String portalURL)
+		throws PortalException {
+
+		try {
+			URI uri = _http.getURI(url);
+
+			if ((uri != null) &&
+				InetAddressUtil.isLocalInetAddress(
+					InetAddress.getByName(uri.getHost()))) {
+
+				return StringBundler.concat(
+					uri.getScheme(), "://", uri.getHost(), StringPool.COLON,
+					uri.getPort());
+			}
+		}
+		catch (UnknownHostException unknownHostException) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(unknownHostException, unknownHostException);
+			}
+			else if (_log.isWarnEnabled()) {
+				_log.warn(unknownHostException.getMessage());
+			}
+		}
+		catch (Exception exception) {
+			throw new PortalException(exception);
+		}
+
+		return portalURL;
+	}
+
+	private boolean _isDefaultGroup(Group group) {
+		return StringUtil.equals(
+			group.getGroupKey(), PropsValues.VIRTUAL_HOSTS_DEFAULT_SITE_NAME);
+	}
+
+	private boolean _isVirtualHostDefined(StringBundler urlSB) {
+		String urlSBString = urlSB.toString();
+
+		if (urlSBString.contains(_DATA_HANDLER_PUBLIC_LAYOUT_SET_SECURE_URL) ||
+			urlSBString.contains(_DATA_HANDLER_PUBLIC_LAYOUT_SET_URL) ||
+			urlSBString.contains(_DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
+			urlSBString.contains(_DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private String _replaceExportHostname(
 			Group group, String url, StringBundler urlSB)
 		throws PortalException {
 
@@ -213,7 +571,7 @@ public class LayoutReferencesExportImportContentProcessor
 		return url;
 	}
 
-	protected String replaceExportLayoutReferences(
+	private String _replaceExportLayoutReferences(
 			PortletDataContext portletDataContext, StagedModel stagedModel,
 			String content)
 		throws Exception {
@@ -223,7 +581,7 @@ public class LayoutReferencesExportImportContentProcessor
 
 		StringBundler hostnameSB = new StringBundler(2);
 
-		content = replaceExportHostname(group, content, hostnameSB);
+		content = _replaceExportHostname(group, content, hostnameSB);
 
 		if (hostnameSB.index() > 0) {
 			hostnameSB.append(content);
@@ -302,7 +660,7 @@ public class LayoutReferencesExportImportContentProcessor
 			StringBundler urlSB = new StringBundler(6);
 
 			try {
-				url = replaceExportHostname(group, url, urlSB);
+				url = _replaceExportHostname(group, url, urlSB);
 
 				if (!url.startsWith(StringPool.SLASH)) {
 					continue;
@@ -607,7 +965,7 @@ public class LayoutReferencesExportImportContentProcessor
 		return sb.toString();
 	}
 
-	protected String replaceImportLayoutReferences(
+	private String _replaceImportLayoutReferences(
 			PortletDataContext portletDataContext, String content)
 		throws Exception {
 
@@ -852,364 +1210,6 @@ public class LayoutReferencesExportImportContentProcessor
 			virtualHostPublicLayoutFriendlyURLReplacement);
 
 		return content;
-	}
-
-	@Reference(unbind = "-")
-	protected void setConfigurationProvider(
-		ConfigurationProvider configurationProvider) {
-
-		_configurationProvider = configurationProvider;
-	}
-
-	protected void validateLayoutReferences(long groupId, String content)
-		throws PortalException {
-
-		long companyId = CompanyThreadLocal.getCompanyId();
-
-		try {
-			_exportImportServiceConfiguration =
-				_configurationProvider.getCompanyConfiguration(
-					ExportImportServiceConfiguration.class, companyId);
-		}
-		catch (ConfigurationException configurationException) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(configurationException.getMessage());
-			}
-		}
-
-		if (!_exportImportServiceConfiguration.validateLayoutReferences()) {
-			return;
-		}
-
-		Group group = _groupLocalService.getGroup(groupId);
-
-		String[] friendlyURLSeparators = {"/-/", "/b/", "/d/", "/w/"};
-		String[] patterns = {"href=", "[[", "{{"};
-
-		int beginPos = -1;
-		int endPos = content.length();
-		int offset = 0;
-
-		while (true) {
-			if (beginPos > -1) {
-				endPos = beginPos - 1;
-			}
-
-			beginPos = StringUtil.lastIndexOfAny(content, patterns, endPos);
-
-			if (beginPos == -1) {
-				break;
-			}
-
-			if (content.startsWith("href=", beginPos)) {
-				offset = 5;
-
-				char c = content.charAt(beginPos + offset);
-
-				if (c == CharPool.BACK_SLASH) {
-					offset = 7;
-				}
-				else if ((c == CharPool.APOSTROPHE) || (c == CharPool.QUOTE)) {
-					offset++;
-				}
-			}
-			else if ((content.charAt(beginPos) == CharPool.OPEN_BRACKET) ||
-					 (content.charAt(beginPos) == CharPool.OPEN_CURLY_BRACE)) {
-
-				offset = 2;
-			}
-
-			if (content.startsWith("href=", beginPos)) {
-				endPos = StringUtil.indexOfAny(
-					content, _URL_REFERENCE_STOP_CHARS, beginPos + offset,
-					endPos);
-			}
-			else {
-				endPos = StringUtil.indexOfAny(
-					content, _LAYOUT_REFERENCE_STOP_CHARS, beginPos + offset,
-					endPos);
-			}
-
-			if (endPos == -1) {
-				continue;
-			}
-
-			String url = content.substring(beginPos + offset, endPos + 1);
-
-			if (url.contains("/c/document_library/get_file?") ||
-				url.contains("/documents/") ||
-				url.contains("/image/image_gallery?")) {
-
-				continue;
-			}
-
-			url = content.substring(beginPos + offset, endPos);
-
-			endPos = StringUtil.indexOfAny(url, friendlyURLSeparators);
-
-			if (endPos != -1) {
-				url = url.substring(0, endPos);
-			}
-
-			if (url.endsWith(StringPool.SLASH)) {
-				url = url.substring(0, url.length() - 1);
-			}
-
-			StringBundler urlSB = new StringBundler(1);
-
-			url = replaceExportHostname(group, url, urlSB);
-
-			if (!url.startsWith(StringPool.SLASH)) {
-				continue;
-			}
-
-			String pathContext = _portal.getPathContext();
-
-			if (pathContext.length() > 1) {
-				if (!url.startsWith(pathContext)) {
-					continue;
-				}
-
-				url = url.substring(pathContext.length());
-			}
-
-			int pos = url.indexOf(StringPool.SLASH, 1);
-
-			if (pos == -1) {
-				pos = url.length();
-			}
-
-			Locale locale = null;
-
-			String localePath = url.substring(0, pos);
-
-			if (localePath.length() > 1) {
-				locale = LocaleUtil.fromLanguageId(
-					localePath.substring(1), true, false);
-			}
-
-			if (locale != null) {
-				String urlWithoutLocale = url.substring(localePath.length());
-
-				if (urlWithoutLocale.startsWith(
-						_PRIVATE_GROUP_SERVLET_MAPPING) ||
-					urlWithoutLocale.startsWith(
-						_PRIVATE_USER_SERVLET_MAPPING) ||
-					urlWithoutLocale.startsWith(
-						_PUBLIC_GROUP_SERVLET_MAPPING) ||
-					_isVirtualHostDefined(urlSB)) {
-
-					url = urlWithoutLocale;
-				}
-				else if (urlWithoutLocale.indexOf(StringPool.SLASH, 1) == -1) {
-					if (!localePath.equals(_PRIVATE_GROUP_SERVLET_MAPPING) &&
-						!localePath.equals(_PRIVATE_USER_SERVLET_MAPPING) &&
-						!localePath.equals(_PUBLIC_GROUP_SERVLET_MAPPING)) {
-
-						urlSB.append(localePath);
-
-						url = urlWithoutLocale;
-					}
-					else {
-						Layout layout =
-							_layoutLocalService.fetchLayoutByFriendlyURL(
-								group.getGroupId(), false, urlWithoutLocale);
-
-						if (layout != null) {
-							urlSB.append(localePath);
-
-							url = urlWithoutLocale;
-						}
-					}
-				}
-			}
-
-			if (!url.startsWith(StringPool.SLASH)) {
-				continue;
-			}
-
-			boolean privateLayout = false;
-
-			if (url.startsWith(_PRIVATE_GROUP_SERVLET_MAPPING)) {
-				url = url.substring(
-					_PRIVATE_GROUP_SERVLET_MAPPING.length() - 1);
-
-				privateLayout = true;
-			}
-			else if (url.startsWith(_PRIVATE_USER_SERVLET_MAPPING)) {
-				url = url.substring(_PRIVATE_USER_SERVLET_MAPPING.length() - 1);
-
-				privateLayout = true;
-			}
-			else if (url.startsWith(_PUBLIC_GROUP_SERVLET_MAPPING)) {
-				url = url.substring(_PUBLIC_GROUP_SERVLET_MAPPING.length() - 1);
-			}
-			else {
-				String urlSBString = urlSB.toString();
-
-				LayoutSet layoutSet = null;
-
-				if (urlSBString.contains(
-						_DATA_HANDLER_PUBLIC_LAYOUT_SET_SECURE_URL) ||
-					urlSBString.contains(_DATA_HANDLER_PUBLIC_LAYOUT_SET_URL)) {
-
-					layoutSet = group.getPublicLayoutSet();
-				}
-				else if (urlSBString.contains(
-							_DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
-						 urlSBString.contains(
-							 _DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
-
-					layoutSet = group.getPrivateLayoutSet();
-				}
-				else if (urlSBString.contains(
-							_DATA_HANDLER_COMPANY_SECURE_DEFAULT_GROUP_URL) ||
-						 urlSBString.contains(
-							 _DATA_HANDLER_COMPANY_DEFAULT_GROUP_URL)) {
-
-					layoutSet = group.getPublicLayoutSet();
-				}
-				else {
-					LayoutSet publicLayoutSet = group.getPublicLayoutSet();
-
-					TreeMap<String, String> publicVirtualHostnames =
-						publicLayoutSet.getVirtualHostnames();
-
-					if (!publicVirtualHostnames.isEmpty() ||
-						_isDefaultGroup(group)) {
-
-						layoutSet = group.getPublicLayoutSet();
-					}
-				}
-
-				if (layoutSet == null) {
-					continue;
-				}
-
-				privateLayout = layoutSet.isPrivateLayout();
-			}
-
-			Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(
-				groupId, privateLayout, url);
-
-			if (layout != null) {
-				continue;
-			}
-
-			String siteAdminURL =
-				GroupConstants.CONTROL_PANEL_FRIENDLY_URL +
-					PropsValues.CONTROL_PANEL_LAYOUT_FRIENDLY_URL;
-
-			if (url.endsWith(
-					VirtualLayoutConstants.CANONICAL_URL_SEPARATOR +
-						siteAdminURL)) {
-
-				url = url.substring(url.indexOf(siteAdminURL));
-			}
-
-			pos = url.indexOf(StringPool.SLASH, 1);
-
-			String groupFriendlyURL = url;
-
-			if (pos != -1) {
-				groupFriendlyURL = url.substring(0, pos);
-			}
-
-			Group urlGroup = _groupLocalService.fetchFriendlyURLGroup(
-				group.getCompanyId(), groupFriendlyURL);
-
-			if (urlGroup == null) {
-				ExportImportContentValidationException
-					exportImportContentValidationException =
-						new ExportImportContentValidationException(
-							LayoutReferencesExportImportContentProcessor.class.
-								getName());
-
-				exportImportContentValidationException.setGroupFriendlyURL(
-					groupFriendlyURL);
-				exportImportContentValidationException.setLayoutURL(url);
-				exportImportContentValidationException.setType(
-					ExportImportContentValidationException.
-						LAYOUT_GROUP_NOT_FOUND);
-
-				throw exportImportContentValidationException;
-			}
-
-			if (pos == -1) {
-				continue;
-			}
-
-			url = url.substring(pos);
-
-			try {
-				_layoutLocalService.getFriendlyURLLayout(
-					urlGroup.getGroupId(), privateLayout, url);
-			}
-			catch (NoSuchLayoutException noSuchLayoutException) {
-				ExportImportContentValidationException
-					exportImportContentValidationException =
-						new ExportImportContentValidationException(
-							LayoutReferencesExportImportContentProcessor.class.
-								getName(),
-							noSuchLayoutException);
-
-				exportImportContentValidationException.setLayoutURL(url);
-				exportImportContentValidationException.setType(
-					ExportImportContentValidationException.
-						LAYOUT_WITH_URL_NOT_FOUND);
-
-				throw exportImportContentValidationException;
-			}
-		}
-	}
-
-	private String _getPortalURL(String url, String portalURL)
-		throws PortalException {
-
-		try {
-			URI uri = _http.getURI(url);
-
-			if ((uri != null) &&
-				InetAddressUtil.isLocalInetAddress(
-					InetAddress.getByName(uri.getHost()))) {
-
-				return StringBundler.concat(
-					uri.getScheme(), "://", uri.getHost(), StringPool.COLON,
-					uri.getPort());
-			}
-		}
-		catch (UnknownHostException unknownHostException) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(unknownHostException, unknownHostException);
-			}
-			else if (_log.isWarnEnabled()) {
-				_log.warn(unknownHostException.getMessage());
-			}
-		}
-		catch (Exception exception) {
-			throw new PortalException(exception);
-		}
-
-		return portalURL;
-	}
-
-	private boolean _isDefaultGroup(Group group) {
-		return StringUtil.equals(
-			group.getGroupKey(), PropsValues.VIRTUAL_HOSTS_DEFAULT_SITE_NAME);
-	}
-
-	private boolean _isVirtualHostDefined(StringBundler urlSB) {
-		String urlSBString = urlSB.toString();
-
-		if (urlSBString.contains(_DATA_HANDLER_PUBLIC_LAYOUT_SET_SECURE_URL) ||
-			urlSBString.contains(_DATA_HANDLER_PUBLIC_LAYOUT_SET_URL) ||
-			urlSBString.contains(_DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
-			urlSBString.contains(_DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	private String _replaceTemplateLinkToLayout(

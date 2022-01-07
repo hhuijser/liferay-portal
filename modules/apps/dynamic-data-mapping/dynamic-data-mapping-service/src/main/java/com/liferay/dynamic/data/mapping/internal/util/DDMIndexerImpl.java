@@ -128,7 +128,7 @@ public class DDMIndexerImpl implements DDMIndexer {
 							field.getName(), "localizable"))) {
 
 					for (Locale locale : locales) {
-						name = encodeName(
+						name = _encodeName(
 							ddmStructure.getStructureId(),
 							ddmFormField.getFieldReference(), locale,
 							indexType);
@@ -147,7 +147,7 @@ public class DDMIndexerImpl implements DDMIndexer {
 					}
 				}
 				else {
-					name = encodeName(
+					name = _encodeName(
 						ddmStructure.getStructureId(),
 						ddmFormField.getFieldReference(), null, indexType);
 					value = field.getValue(ddmFormValues.getDefaultLocale());
@@ -278,7 +278,7 @@ public class DDMIndexerImpl implements DDMIndexer {
 		String indexType = ddmStructure.getFieldPropertyByFieldReference(
 			fieldReference, "indexType");
 
-		return createFieldValueQueryFilter(
+		return _createFieldValueQueryFilter(
 			ddmStructure,
 			encodeName(ddmStructure.getStructureId(), fieldReference, locale),
 			value, fieldReference, indexType, locale);
@@ -301,7 +301,7 @@ public class DDMIndexerImpl implements DDMIndexer {
 			StringPool.UNDERLINE.concat(LocaleUtil.toLanguageId(locale)),
 			StringPool.BLANK);
 
-		return createFieldValueQueryFilter(
+		return _createFieldValueQueryFilter(
 			ddmStructure, ddmStructureFieldName, ddmStructureFieldValue,
 			fieldReference, ddmStructureFieldNameParts[1], locale);
 	}
@@ -342,11 +342,11 @@ public class DDMIndexerImpl implements DDMIndexer {
 		}
 
 		if (localizable) {
-			return encodeName(
+			return _encodeName(
 				ddmStructureId, fieldReference, locale, indexType);
 		}
 
-		return encodeName(ddmStructureId, fieldReference, null, indexType);
+		return _encodeName(ddmStructureId, fieldReference, null, indexType);
 	}
 
 	@Override
@@ -511,79 +511,6 @@ public class DDMIndexerImpl implements DDMIndexer {
 		sortedFields.forEach(ddmField::addField);
 
 		return ddmField;
-	}
-
-	protected QueryFilter createFieldValueQueryFilter(
-			DDMStructure ddmStructure, String ddmStructureFieldName,
-			Serializable ddmStructureFieldValue, String fieldReference,
-			String indexType, Locale locale)
-		throws Exception {
-
-		BooleanQuery booleanQuery = new BooleanQueryImpl();
-
-		boolean localizable = false;
-
-		if (ddmStructure.hasFieldByFieldReference(fieldReference)) {
-			ddmStructureFieldValue = _ddm.getIndexedFieldValue(
-				ddmStructureFieldValue,
-				ddmStructure.getFieldPropertyByFieldReference(
-					fieldReference, "type"));
-
-			localizable = GetterUtil.getBoolean(
-				ddmStructure.getFieldPropertyByFieldReference(
-					fieldReference, "localizable"));
-		}
-
-		if (ddmStructureFieldValue instanceof String[]) {
-			String[] ddmStructureFieldValueArray =
-				(String[])ddmStructureFieldValue;
-
-			for (String ddmStructureFieldValueString :
-					ddmStructureFieldValueArray) {
-
-				_addFieldValueRequiredTerm(
-					booleanQuery, ddmStructureFieldName,
-					ddmStructureFieldValueString, indexType, locale,
-					localizable);
-			}
-		}
-		else {
-			_addFieldValueRequiredTerm(
-				booleanQuery, ddmStructureFieldName,
-				String.valueOf(ddmStructureFieldValue), indexType, locale,
-				localizable);
-		}
-
-		if (isLegacyDDMIndexFieldsEnabled()) {
-			return new QueryFilter(booleanQuery);
-		}
-
-		return new QueryFilter(new NestedQuery(DDM_FIELD_ARRAY, booleanQuery));
-	}
-
-	protected String encodeName(
-		long ddmStructureId, String fieldReference, Locale locale,
-		String indexType) {
-
-		StringBundler sb = new StringBundler(8);
-
-		sb.append(DDM_FIELD_PREFIX);
-
-		if (Validator.isNotNull(indexType)) {
-			sb.append(indexType);
-			sb.append(DDM_FIELD_SEPARATOR);
-		}
-
-		sb.append(ddmStructureId);
-		sb.append(DDM_FIELD_SEPARATOR);
-		sb.append(fieldReference);
-
-		if (locale != null) {
-			sb.append(StringPool.UNDERLINE);
-			sb.append(LocaleUtil.toLanguageId(locale));
-		}
-
-		return sb.toString();
 	}
 
 	@Reference(unbind = "-")
@@ -767,6 +694,54 @@ public class DDMIndexerImpl implements DDMIndexer {
 		}
 	}
 
+	private QueryFilter _createFieldValueQueryFilter(
+			DDMStructure ddmStructure, String ddmStructureFieldName,
+			Serializable ddmStructureFieldValue, String fieldReference,
+			String indexType, Locale locale)
+		throws Exception {
+
+		BooleanQuery booleanQuery = new BooleanQueryImpl();
+
+		boolean localizable = false;
+
+		if (ddmStructure.hasFieldByFieldReference(fieldReference)) {
+			ddmStructureFieldValue = _ddm.getIndexedFieldValue(
+				ddmStructureFieldValue,
+				ddmStructure.getFieldPropertyByFieldReference(
+					fieldReference, "type"));
+
+			localizable = GetterUtil.getBoolean(
+				ddmStructure.getFieldPropertyByFieldReference(
+					fieldReference, "localizable"));
+		}
+
+		if (ddmStructureFieldValue instanceof String[]) {
+			String[] ddmStructureFieldValueArray =
+				(String[])ddmStructureFieldValue;
+
+			for (String ddmStructureFieldValueString :
+					ddmStructureFieldValueArray) {
+
+				_addFieldValueRequiredTerm(
+					booleanQuery, ddmStructureFieldName,
+					ddmStructureFieldValueString, indexType, locale,
+					localizable);
+			}
+		}
+		else {
+			_addFieldValueRequiredTerm(
+				booleanQuery, ddmStructureFieldName,
+				String.valueOf(ddmStructureFieldValue), indexType, locale,
+				localizable);
+		}
+
+		if (isLegacyDDMIndexFieldsEnabled()) {
+			return new QueryFilter(booleanQuery);
+		}
+
+		return new QueryFilter(new NestedQuery(DDM_FIELD_ARRAY, booleanQuery));
+	}
+
 	private void _createSortableTextField(
 		Document document, String name, String sortableValueString) {
 
@@ -782,6 +757,31 @@ public class DDMIndexerImpl implements DDMIndexer {
 		}
 
 		document.addKeyword(_getSortableFieldName(name), sortableValueString);
+	}
+
+	private String _encodeName(
+		long ddmStructureId, String fieldReference, Locale locale,
+		String indexType) {
+
+		StringBundler sb = new StringBundler(8);
+
+		sb.append(DDM_FIELD_PREFIX);
+
+		if (Validator.isNotNull(indexType)) {
+			sb.append(indexType);
+			sb.append(DDM_FIELD_SEPARATOR);
+		}
+
+		sb.append(ddmStructureId);
+		sb.append(DDM_FIELD_SEPARATOR);
+		sb.append(fieldReference);
+
+		if (locale != null) {
+			sb.append(StringPool.UNDERLINE);
+			sb.append(LocaleUtil.toLanguageId(locale));
+		}
+
+		return sb.toString();
 	}
 
 	private String _getSortableFieldName(String name) {

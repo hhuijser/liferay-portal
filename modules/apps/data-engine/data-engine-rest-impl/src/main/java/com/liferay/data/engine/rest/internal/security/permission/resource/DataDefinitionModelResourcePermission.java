@@ -69,7 +69,7 @@ public class DataDefinitionModelResourcePermission
 			String actionId)
 		throws PortalException {
 
-		checkPortletPermission(
+		_checkPortletPermission(
 			permissionChecker,
 			_dataDefinitionContentTypeTracker.getDataDefinitionContentType(
 				ddmStructure.getClassNameId()),
@@ -81,7 +81,7 @@ public class DataDefinitionModelResourcePermission
 			long groupId, String actionId)
 		throws PortalException {
 
-		checkPortletPermission(
+		_checkPortletPermission(
 			permissionChecker,
 			_dataDefinitionContentTypeTracker.getDataDefinitionContentType(
 				contentType),
@@ -129,7 +129,7 @@ public class DataDefinitionModelResourcePermission
 		return null;
 	}
 
-	protected void checkPortletPermission(
+	private void _checkPortletPermission(
 			PermissionChecker permissionChecker,
 			DataDefinitionContentType dataDefinitionContentType, long groupId,
 			String actionId)

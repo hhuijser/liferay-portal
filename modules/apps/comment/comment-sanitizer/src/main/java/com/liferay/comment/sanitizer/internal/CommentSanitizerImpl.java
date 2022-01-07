@@ -54,10 +54,10 @@ public class CommentSanitizerImpl implements Sanitizer {
 			return content;
 		}
 
-		return sanitize(content);
+		return _sanitize(content);
 	}
 
-	protected String sanitize(String html) {
+	private String _sanitize(String html) {
 		HtmlPolicyBuilder htmlPolicyBuilder = new HtmlPolicyBuilder();
 
 		htmlPolicyBuilder.allowStandardUrlProtocols();

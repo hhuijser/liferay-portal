@@ -76,7 +76,7 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 			BooleanQuery booleanQuery = _getBooleanQuery(
 				filterString, entityModel, filterParser, locale);
 
-			return search(
+			return _search(
 				_indexerRegistry.getIndexer(className), searchContext,
 				booleanQuery, start, end);
 		}
@@ -110,70 +110,6 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 			throw new PortalException(
 				"Unable to search with filter " + filterString, exception);
 		}
-	}
-
-	protected Hits search(
-			Indexer<?> indexer, SearchContext searchContext,
-			BooleanQuery booleanQuery, int start, int end)
-		throws PortalException {
-
-		List<Document> documentsList = new ArrayList<>();
-
-		if (end == QueryUtil.ALL_POS) {
-			end = Integer.MAX_VALUE;
-		}
-
-		int indexSearchLimit = GetterUtil.getInteger(
-			_props.get(PropsKeys.INDEX_SEARCH_LIMIT));
-		Document lastDocument = null;
-
-		Sort sort = new Sort(Field.ENTRY_CLASS_PK, Sort.LONG_TYPE, false);
-
-		searchContext.setSorts(sort);
-
-		if (start == QueryUtil.ALL_POS) {
-			start = 0;
-		}
-
-		while (start != end) {
-			searchContext.setBooleanClauses(
-				new BooleanClause[] {
-					_getBooleanClause(
-						_getLastDocumentBooleanQuery(
-							booleanQuery, lastDocument, sort.getFieldName()))
-				});
-			searchContext.setEnd(Math.min(end, indexSearchLimit));
-			searchContext.setStart(Math.min(start, indexSearchLimit - 1));
-
-			Hits hits = indexer.search(searchContext);
-
-			Document[] documents = hits.getDocs();
-
-			if (documents.length == 0) {
-				break;
-			}
-
-			if (start < indexSearchLimit) {
-				Collections.addAll(documentsList, documents);
-
-				if (end < indexSearchLimit) {
-					break;
-				}
-			}
-
-			lastDocument = documents[documents.length - 1];
-
-			start = Math.max(0, start - indexSearchLimit);
-			end = Math.max(0, end - indexSearchLimit);
-		}
-
-		Hits hits = new HitsImpl();
-
-		hits.setDocs(documentsList.toArray(new Document[0]));
-		hits.setLength(documentsList.size());
-		hits.setStart(0);
-
-		return hits;
 	}
 
 	private SearchContext _createSearchContext(long companyId) {
@@ -271,6 +207,70 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 			throw new InvalidFilterException(
 				"Invalid filter: " + exception.getMessage(), exception);
 		}
+	}
+
+	private Hits _search(
+			Indexer<?> indexer, SearchContext searchContext,
+			BooleanQuery booleanQuery, int start, int end)
+		throws PortalException {
+
+		List<Document> documentsList = new ArrayList<>();
+
+		if (end == QueryUtil.ALL_POS) {
+			end = Integer.MAX_VALUE;
+		}
+
+		int indexSearchLimit = GetterUtil.getInteger(
+			_props.get(PropsKeys.INDEX_SEARCH_LIMIT));
+		Document lastDocument = null;
+
+		Sort sort = new Sort(Field.ENTRY_CLASS_PK, Sort.LONG_TYPE, false);
+
+		searchContext.setSorts(sort);
+
+		if (start == QueryUtil.ALL_POS) {
+			start = 0;
+		}
+
+		while (start != end) {
+			searchContext.setBooleanClauses(
+				new BooleanClause[] {
+					_getBooleanClause(
+						_getLastDocumentBooleanQuery(
+							booleanQuery, lastDocument, sort.getFieldName()))
+				});
+			searchContext.setEnd(Math.min(end, indexSearchLimit));
+			searchContext.setStart(Math.min(start, indexSearchLimit - 1));
+
+			Hits hits = indexer.search(searchContext);
+
+			Document[] documents = hits.getDocs();
+
+			if (documents.length == 0) {
+				break;
+			}
+
+			if (start < indexSearchLimit) {
+				Collections.addAll(documentsList, documents);
+
+				if (end < indexSearchLimit) {
+					break;
+				}
+			}
+
+			lastDocument = documents[documents.length - 1];
+
+			start = Math.max(0, start - indexSearchLimit);
+			end = Math.max(0, end - indexSearchLimit);
+		}
+
+		Hits hits = new HitsImpl();
+
+		hits.setDocs(documentsList.toArray(new Document[0]));
+		hits.setLength(documentsList.size());
+		hits.setStart(0);
+
+		return hits;
 	}
 
 	@Reference(

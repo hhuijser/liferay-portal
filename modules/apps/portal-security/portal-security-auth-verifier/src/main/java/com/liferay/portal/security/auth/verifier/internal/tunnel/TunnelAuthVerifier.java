@@ -57,7 +57,7 @@ public class TunnelAuthVerifier implements AuthVerifier {
 		AuthVerifierResult authVerifierResult = new AuthVerifierResult();
 
 		try {
-			String[] credentials = verify(accessControlContext.getRequest());
+			String[] credentials = _verify(accessControlContext.getRequest());
 
 			if (credentials != null) {
 				authVerifierResult.setPassword(credentials[1]);
@@ -103,7 +103,7 @@ public class TunnelAuthVerifier implements AuthVerifier {
 		return authVerifierResult;
 	}
 
-	protected String[] verify(HttpServletRequest httpServletRequest)
+	private String[] _verify(HttpServletRequest httpServletRequest)
 		throws AuthException {
 
 		String authorization = httpServletRequest.getHeader(

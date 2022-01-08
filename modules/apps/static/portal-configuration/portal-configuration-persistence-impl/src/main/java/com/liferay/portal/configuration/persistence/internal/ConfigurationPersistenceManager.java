@@ -290,16 +290,6 @@ public class ConfigurationPersistenceManager
 				configurationModelListener.onAfterSave(pid, dictionary));
 	}
 
-	protected void store(ResultSet resultSet, Dictionary<?, ?> dictionary)
-		throws IOException, SQLException {
-
-		OutputStream outputStream = new UnsyncByteArrayOutputStream();
-
-		ConfigurationHandler.write(outputStream, dictionary);
-
-		resultSet.updateString(2, outputStream.toString());
-	}
-
 	@SuppressWarnings("unchecked")
 	protected Dictionary<Object, Object> toDictionary(String dictionaryString)
 		throws IOException {
@@ -458,6 +448,16 @@ public class ConfigurationPersistenceManager
 		overridePropertiesMap.forEach(
 			(key, value) -> _dictionaries.put(
 				key, new HashMapDictionary<>((Map)value)));
+	}
+
+	private void _store(ResultSet resultSet, Dictionary<?, ?> dictionary)
+		throws IOException, SQLException {
+
+		OutputStream outputStream = new UnsyncByteArrayOutputStream();
+
+		ConfigurationHandler.write(outputStream, dictionary);
+
+		resultSet.updateString(2, outputStream.toString());
 	}
 
 	private void _storeInDatabase(String pid, Dictionary<?, ?> dictionary)

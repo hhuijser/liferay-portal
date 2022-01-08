@@ -117,7 +117,7 @@ public class RulesEngineImpl implements RulesEngine {
 		KnowledgeBase knowledgeBase = _createKnowledgeBase(
 			rulesResourceRetriever);
 
-		execute(facts, knowledgeBase);
+		_execute(facts, knowledgeBase);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class RulesEngineImpl implements RulesEngine {
 		KnowledgeBase knowledgeBase = _createKnowledgeBase(
 			rulesResourceRetriever);
 
-		return execute(facts, knowledgeBase, query);
+		return _execute(facts, knowledgeBase, query);
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class RulesEngineImpl implements RulesEngine {
 				"No rules found for domain " + domainName);
 		}
 
-		execute(facts, knowledgeBase);
+		_execute(facts, knowledgeBase);
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class RulesEngineImpl implements RulesEngine {
 				"No rules found for domain " + domainName);
 		}
 
-		return execute(facts, knowledgeBase, query);
+		return _execute(facts, knowledgeBase, query);
 	}
 
 	@Override
@@ -233,58 +233,6 @@ public class RulesEngineImpl implements RulesEngine {
 		MVELRuntime.resetDebugger();
 	}
 
-	protected void execute(List<Fact<?>> facts, KnowledgeBase knowledgeBase) {
-		execute(facts, knowledgeBase, null);
-	}
-
-	protected Map<String, ?> execute(
-		List<Fact<?>> facts, KnowledgeBase knowledgeBase, Query query) {
-
-		QueryType queryType = null;
-
-		if (query != null) {
-			queryType = query.getQueryType();
-		}
-
-		if ((query != null) && queryType.equals(QueryType.CUSTOM) &&
-			Validator.isNull(query.getQueryName())) {
-
-			throw new IllegalArgumentException(
-				"Cannot execute a custom query without a query string");
-		}
-
-		StatelessKnowledgeSession statelessKnowledgeSession =
-			knowledgeBase.newStatelessKnowledgeSession();
-
-		List<Command<?>> commands = new ArrayList<>();
-
-		List<String> identifiers = new ArrayList<>(facts.size());
-
-		for (Fact<?> fact : facts) {
-			String identifier = fact.getIdentifier();
-
-			Command<?> command = CommandFactory.newInsert(
-				fact.getFactObject(), identifier);
-
-			commands.add(command);
-
-			identifiers.add(identifier);
-		}
-
-		if ((query != null) && queryType.equals(QueryType.CUSTOM)) {
-			Command<?> command = CommandFactory.newQuery(
-				query.getIdentifier(), query.getQueryName(),
-				query.getArguments());
-
-			commands.add(command);
-		}
-
-		ExecutionResults executionResults = statelessKnowledgeSession.execute(
-			CommandFactory.newBatchExecution(commands));
-
-		return _processQueryResults(query, identifiers, executionResults);
-	}
-
 	private ResourceType _convertRulesLanguage(String rulesLanguage) {
 		if (Validator.isNull(rulesLanguage)) {
 			return _defaultResourceType;
@@ -348,6 +296,58 @@ public class RulesEngineImpl implements RulesEngine {
 			throw new RulesEngineException(
 				"Unable to create knowledge base", exception);
 		}
+	}
+
+	private void _execute(List<Fact<?>> facts, KnowledgeBase knowledgeBase) {
+		_execute(facts, knowledgeBase, null);
+	}
+
+	private Map<String, ?> _execute(
+		List<Fact<?>> facts, KnowledgeBase knowledgeBase, Query query) {
+
+		QueryType queryType = null;
+
+		if (query != null) {
+			queryType = query.getQueryType();
+		}
+
+		if ((query != null) && queryType.equals(QueryType.CUSTOM) &&
+			Validator.isNull(query.getQueryName())) {
+
+			throw new IllegalArgumentException(
+				"Cannot execute a custom query without a query string");
+		}
+
+		StatelessKnowledgeSession statelessKnowledgeSession =
+			knowledgeBase.newStatelessKnowledgeSession();
+
+		List<Command<?>> commands = new ArrayList<>();
+
+		List<String> identifiers = new ArrayList<>(facts.size());
+
+		for (Fact<?> fact : facts) {
+			String identifier = fact.getIdentifier();
+
+			Command<?> command = CommandFactory.newInsert(
+				fact.getFactObject(), identifier);
+
+			commands.add(command);
+
+			identifiers.add(identifier);
+		}
+
+		if ((query != null) && queryType.equals(QueryType.CUSTOM)) {
+			Command<?> command = CommandFactory.newQuery(
+				query.getIdentifier(), query.getQueryName(),
+				query.getArguments());
+
+			commands.add(command);
+		}
+
+		ExecutionResults executionResults = statelessKnowledgeSession.execute(
+			CommandFactory.newBatchExecution(commands));
+
+		return _processQueryResults(query, identifiers, executionResults);
 	}
 
 	private Map<String, String> _getRulesLanguageMap(

@@ -184,7 +184,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			_ldapSettings.getUserExpandoMappings(ldapServerId, companyId),
 			_ldapSettings.getUserMappings(ldapServerId, companyId));
 
-		User user = importUser(
+		User user = _importUser(
 			ldapImportContext, StringPool.BLANK, attributes, password);
 
 		_importGroups(ldapImportContext, attributes, user);
@@ -712,190 +712,6 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			companyId, ldapUser.getEmailAddress());
 	}
 
-	protected User importUser(
-			LDAPImportContext ldapImportContext, String fullUserDN,
-			Attributes userLdapAttributes, String password)
-		throws Exception {
-
-		UserImportTransactionThreadLocal.setOriginatesFromImport(true);
-
-		try {
-			userLdapAttributes = _attributesTransformer.transformUser(
-				userLdapAttributes);
-
-			LDAPUser ldapUser = _ldapToPortalConverter.importLDAPUser(
-				ldapImportContext.getCompanyId(), userLdapAttributes,
-				ldapImportContext.getUserMappings(),
-				ldapImportContext.getUserExpandoMappings(),
-				ldapImportContext.getContactMappings(),
-				ldapImportContext.getContactExpandoMappings(), password);
-
-			User user = getUser(ldapImportContext.getCompanyId(), ldapUser);
-
-			if ((user != null) && user.isDefaultUser()) {
-				return user;
-			}
-
-			ServiceContext serviceContext = ldapUser.getServiceContext();
-
-			serviceContext.setAttribute(
-				"ldapServerId", ldapImportContext.getLdapServerId());
-
-			boolean isNew = false;
-
-			if (user == null) {
-				user = addUser(
-					ldapImportContext.getCompanyId(), ldapUser, password);
-
-				isNew = true;
-			}
-
-			String modifyTimestamp = LDAPUtil.getAttributeString(
-				userLdapAttributes, "modifyTimestamp");
-
-			try {
-				user = _updateUser(
-					ldapImportContext, ldapUser, user, password,
-					modifyTimestamp, isNew);
-
-				ldapImportContext.addImportedUserId(
-					fullUserDN, user.getUserId());
-			}
-			catch (GroupFriendlyURLException groupFriendlyURLException) {
-				int type = groupFriendlyURLException.getType();
-
-				if (type == GroupFriendlyURLException.DUPLICATE) {
-					_log.error(
-						"Unable to import user " + user.getUserId() +
-							" because of a duplicate group friendly URL",
-						groupFriendlyURLException);
-				}
-				else {
-					_log.error(
-						"Unable to import user " + user.getUserId(),
-						groupFriendlyURLException);
-				}
-			}
-			catch (Exception exception) {
-				_log.error(
-					"Unable to import user " + user.getUserId(), exception);
-			}
-
-			return user;
-		}
-		finally {
-			UserImportTransactionThreadLocal.setOriginatesFromImport(false);
-		}
-	}
-
-	protected void importUsers(
-			LDAPImportContext ldapImportContext, long userGroupId,
-			Attribute usersLdapAttribute)
-		throws Exception {
-
-		if (_log.isDebugEnabled()) {
-			int size = usersLdapAttribute.size();
-
-			_log.debug(
-				StringBundler.concat(
-					"Importing ", size, " users from LDAP server ",
-					ldapImportContext.getLdapServerId(), " to company ",
-					ldapImportContext.getCompanyId()));
-		}
-
-		Set<Long> newUserIds = new LinkedHashSet<>();
-
-		for (int i = 0; i < usersLdapAttribute.size(); i++) {
-			String fullUserDN = (String)usersLdapAttribute.get(i);
-
-			Long userId = ldapImportContext.getImportedUserId(fullUserDN);
-
-			if (userId != null) {
-				newUserIds.add(userId);
-			}
-			else {
-				Attributes userAttributes = null;
-
-				try {
-					userAttributes = _safePortalLDAP.getUserAttributes(
-						ldapImportContext.getLdapServerId(),
-						ldapImportContext.getCompanyId(),
-						ldapImportContext.getSafeLdapContext(),
-						SafeLdapNameFactory.from(usersLdapAttribute, i));
-				}
-				catch (NameNotFoundException nameNotFoundException) {
-					_log.error(
-						"LDAP user not found with fullUserDN " + fullUserDN,
-						nameNotFoundException);
-
-					continue;
-				}
-
-				try {
-					User user = importUser(
-						ldapImportContext, fullUserDN, userAttributes, null);
-
-					if (user != null) {
-						if (_log.isDebugEnabled()) {
-							_log.debug(
-								StringBundler.concat(
-									"Adding user ", user, " to user group ",
-									userGroupId));
-						}
-
-						newUserIds.add(user.getUserId());
-					}
-				}
-				catch (GroupFriendlyURLException groupFriendlyURLException) {
-					int type = groupFriendlyURLException.getType();
-
-					if (type == GroupFriendlyURLException.DUPLICATE) {
-						_log.error(
-							"Unable to import user " + userAttributes +
-								" because of a duplicate group friendly URL",
-							groupFriendlyURLException);
-					}
-					else {
-						_log.error(
-							"Unable to import user " + userAttributes,
-							groupFriendlyURLException);
-					}
-				}
-				catch (Exception exception) {
-					_log.error(
-						"Unable to load user " + userAttributes, exception);
-				}
-			}
-		}
-
-		Set<Long> deletedUserIds = new LinkedHashSet<>();
-
-		List<User> userGroupUsers = _userLocalService.getUserGroupUsers(
-			userGroupId);
-
-		for (User user : userGroupUsers) {
-			if ((ldapImportContext.getLdapServerId() ==
-					user.getLdapServerId()) &&
-				!newUserIds.contains(user.getUserId())) {
-
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						StringBundler.concat(
-							"Removing user ", user, " from user group ",
-							userGroupId));
-				}
-
-				deletedUserIds.add(user.getUserId());
-			}
-		}
-
-		_userLocalService.addUserGroupUsers(
-			userGroupId, ArrayUtil.toLongArray(newUserIds));
-
-		_userLocalService.deleteUserGroupUsers(
-			userGroupId, ArrayUtil.toLongArray(deletedUserIds));
-	}
-
 	@Reference(unbind = "-")
 	protected void setCompanyLocalService(
 		CompanyLocalService companyLocalService) {
@@ -1142,7 +958,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 						continue;
 					}
 
-					importUsers(
+					_importUsers(
 						ldapImportContext, userGroup.getUserGroupId(),
 						usersAttribute);
 				}
@@ -1195,7 +1011,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 								ldapImportContext.getSafeLdapContext(),
 								SafeLdapNameFactory.from(searchResult));
 
-						User user = importUser(
+						User user = _importUser(
 							ldapImportContext, fullUserDN, userAttributes,
 							null);
 
@@ -1484,6 +1300,82 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		}
 	}
 
+	private User _importUser(
+			LDAPImportContext ldapImportContext, String fullUserDN,
+			Attributes userLdapAttributes, String password)
+		throws Exception {
+
+		UserImportTransactionThreadLocal.setOriginatesFromImport(true);
+
+		try {
+			userLdapAttributes = _attributesTransformer.transformUser(
+				userLdapAttributes);
+
+			LDAPUser ldapUser = _ldapToPortalConverter.importLDAPUser(
+				ldapImportContext.getCompanyId(), userLdapAttributes,
+				ldapImportContext.getUserMappings(),
+				ldapImportContext.getUserExpandoMappings(),
+				ldapImportContext.getContactMappings(),
+				ldapImportContext.getContactExpandoMappings(), password);
+
+			User user = getUser(ldapImportContext.getCompanyId(), ldapUser);
+
+			if ((user != null) && user.isDefaultUser()) {
+				return user;
+			}
+
+			ServiceContext serviceContext = ldapUser.getServiceContext();
+
+			serviceContext.setAttribute(
+				"ldapServerId", ldapImportContext.getLdapServerId());
+
+			boolean isNew = false;
+
+			if (user == null) {
+				user = addUser(
+					ldapImportContext.getCompanyId(), ldapUser, password);
+
+				isNew = true;
+			}
+
+			String modifyTimestamp = LDAPUtil.getAttributeString(
+				userLdapAttributes, "modifyTimestamp");
+
+			try {
+				user = _updateUser(
+					ldapImportContext, ldapUser, user, password,
+					modifyTimestamp, isNew);
+
+				ldapImportContext.addImportedUserId(
+					fullUserDN, user.getUserId());
+			}
+			catch (GroupFriendlyURLException groupFriendlyURLException) {
+				int type = groupFriendlyURLException.getType();
+
+				if (type == GroupFriendlyURLException.DUPLICATE) {
+					_log.error(
+						"Unable to import user " + user.getUserId() +
+							" because of a duplicate group friendly URL",
+						groupFriendlyURLException);
+				}
+				else {
+					_log.error(
+						"Unable to import user " + user.getUserId(),
+						groupFriendlyURLException);
+				}
+			}
+			catch (Exception exception) {
+				_log.error(
+					"Unable to import user " + user.getUserId(), exception);
+			}
+
+			return user;
+		}
+		finally {
+			UserImportTransactionThreadLocal.setOriginatesFromImport(false);
+		}
+	}
+
 	private User _importUserByLdapAttribute(
 			long ldapServerId, long companyId, String attributeName,
 			String attributeValue)
@@ -1671,6 +1563,114 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		_addRole(companyId, ldapGroup, userGroup);
 
 		return userGroup;
+	}
+
+	private void _importUsers(
+			LDAPImportContext ldapImportContext, long userGroupId,
+			Attribute usersLdapAttribute)
+		throws Exception {
+
+		if (_log.isDebugEnabled()) {
+			int size = usersLdapAttribute.size();
+
+			_log.debug(
+				StringBundler.concat(
+					"Importing ", size, " users from LDAP server ",
+					ldapImportContext.getLdapServerId(), " to company ",
+					ldapImportContext.getCompanyId()));
+		}
+
+		Set<Long> newUserIds = new LinkedHashSet<>();
+
+		for (int i = 0; i < usersLdapAttribute.size(); i++) {
+			String fullUserDN = (String)usersLdapAttribute.get(i);
+
+			Long userId = ldapImportContext.getImportedUserId(fullUserDN);
+
+			if (userId != null) {
+				newUserIds.add(userId);
+			}
+			else {
+				Attributes userAttributes = null;
+
+				try {
+					userAttributes = _safePortalLDAP.getUserAttributes(
+						ldapImportContext.getLdapServerId(),
+						ldapImportContext.getCompanyId(),
+						ldapImportContext.getSafeLdapContext(),
+						SafeLdapNameFactory.from(usersLdapAttribute, i));
+				}
+				catch (NameNotFoundException nameNotFoundException) {
+					_log.error(
+						"LDAP user not found with fullUserDN " + fullUserDN,
+						nameNotFoundException);
+
+					continue;
+				}
+
+				try {
+					User user = _importUser(
+						ldapImportContext, fullUserDN, userAttributes, null);
+
+					if (user != null) {
+						if (_log.isDebugEnabled()) {
+							_log.debug(
+								StringBundler.concat(
+									"Adding user ", user, " to user group ",
+									userGroupId));
+						}
+
+						newUserIds.add(user.getUserId());
+					}
+				}
+				catch (GroupFriendlyURLException groupFriendlyURLException) {
+					int type = groupFriendlyURLException.getType();
+
+					if (type == GroupFriendlyURLException.DUPLICATE) {
+						_log.error(
+							"Unable to import user " + userAttributes +
+								" because of a duplicate group friendly URL",
+							groupFriendlyURLException);
+					}
+					else {
+						_log.error(
+							"Unable to import user " + userAttributes,
+							groupFriendlyURLException);
+					}
+				}
+				catch (Exception exception) {
+					_log.error(
+						"Unable to load user " + userAttributes, exception);
+				}
+			}
+		}
+
+		Set<Long> deletedUserIds = new LinkedHashSet<>();
+
+		List<User> userGroupUsers = _userLocalService.getUserGroupUsers(
+			userGroupId);
+
+		for (User user : userGroupUsers) {
+			if ((ldapImportContext.getLdapServerId() ==
+					user.getLdapServerId()) &&
+				!newUserIds.contains(user.getUserId())) {
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						StringBundler.concat(
+							"Removing user ", user, " from user group ",
+							userGroupId));
+				}
+
+				deletedUserIds.add(user.getUserId());
+			}
+		}
+
+		_userLocalService.addUserGroupUsers(
+			userGroupId, ArrayUtil.toLongArray(newUserIds));
+
+		_userLocalService.deleteUserGroupUsers(
+			userGroupId, ArrayUtil.toLongArray(deletedUserIds));
 	}
 
 	private void _populateExpandoAttributes(

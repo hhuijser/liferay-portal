@@ -680,31 +680,6 @@ public class AntivirusAsyncDLStore implements DLStore {
 		_dlValidator.validateVersionLabel(versionLabel);
 	}
 
-	private void _validate(
-			String fileName, String fileExtension, String sourceFileName,
-			boolean validateFileExtension, File file, String versionLabel)
-		throws PortalException {
-
-		validate(
-			fileName, fileExtension, sourceFileName, validateFileExtension,
-			file);
-
-		_dlValidator.validateVersionLabel(versionLabel);
-	}
-
-	private void _validate(
-			String fileName, String fileExtension, String sourceFileName,
-			boolean validateFileExtension, InputStream inputStream,
-			String versionLabel)
-		throws PortalException {
-
-		validate(
-			fileName, fileExtension, sourceFileName, validateFileExtension,
-			inputStream);
-
-		_dlValidator.validateVersionLabel(versionLabel);
-	}
-
 	@Reference
 	private AntivirusAsyncEventListenerManager
 		_antivirusAsyncEventListenerManager;

@@ -34,7 +34,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import java.net.URI;
 
@@ -448,16 +447,6 @@ public class ConfigurationPersistenceManager
 		overridePropertiesMap.forEach(
 			(key, value) -> _dictionaries.put(
 				key, new HashMapDictionary<>((Map)value)));
-	}
-
-	private void _store(ResultSet resultSet, Dictionary<?, ?> dictionary)
-		throws IOException, SQLException {
-
-		OutputStream outputStream = new UnsyncByteArrayOutputStream();
-
-		ConfigurationHandler.write(outputStream, dictionary);
-
-		resultSet.updateString(2, outputStream.toString());
 	}
 
 	private void _storeInDatabase(String pid, Dictionary<?, ?> dictionary)

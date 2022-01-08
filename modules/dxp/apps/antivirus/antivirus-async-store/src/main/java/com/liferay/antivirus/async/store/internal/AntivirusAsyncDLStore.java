@@ -280,7 +280,7 @@ public class AntivirusAsyncDLStore implements DLStore {
 			String versionLabel)
 		throws PortalException {
 
-		validate(fileName, false, versionLabel);
+		_validate(fileName, false, versionLabel);
 
 		Store store = _storeFactory.getStore();
 
@@ -317,7 +317,7 @@ public class AntivirusAsyncDLStore implements DLStore {
 			String versionLabel)
 		throws PortalException {
 
-		validate(fileName, false, versionLabel);
+		_validate(fileName, false, versionLabel);
 
 		Store store = _storeFactory.getStore();
 
@@ -350,7 +350,7 @@ public class AntivirusAsyncDLStore implements DLStore {
 			String versionLabel)
 		throws PortalException {
 
-		validate(fileName, false, versionLabel);
+		_validate(fileName, false, versionLabel);
 
 		Store store = _storeFactory.getStore();
 
@@ -402,7 +402,7 @@ public class AntivirusAsyncDLStore implements DLStore {
 			String versionLabel)
 		throws PortalException {
 
-		validate(fileName, false, versionLabel);
+		_validate(fileName, false, versionLabel);
 
 		Store store = _storeFactory.getStore();
 
@@ -627,40 +627,6 @@ public class AntivirusAsyncDLStore implements DLStore {
 		_dlValidator.validateFileSize(fileName, inputStream);
 	}
 
-	protected void validate(
-			String fileName, boolean validateFileExtension, String versionLabel)
-		throws PortalException {
-
-		validate(fileName, validateFileExtension);
-
-		_dlValidator.validateVersionLabel(versionLabel);
-	}
-
-	protected void validate(
-			String fileName, String fileExtension, String sourceFileName,
-			boolean validateFileExtension, File file, String versionLabel)
-		throws PortalException {
-
-		validate(
-			fileName, fileExtension, sourceFileName, validateFileExtension,
-			file);
-
-		_dlValidator.validateVersionLabel(versionLabel);
-	}
-
-	protected void validate(
-			String fileName, String fileExtension, String sourceFileName,
-			boolean validateFileExtension, InputStream inputStream,
-			String versionLabel)
-		throws PortalException {
-
-		validate(
-			fileName, fileExtension, sourceFileName, validateFileExtension,
-			inputStream);
-
-		_dlValidator.validateVersionLabel(versionLabel);
-	}
-
 	private void _registerCallback(DLStoreRequest dlStoreRequest)
 		throws PortalException {
 
@@ -703,6 +669,40 @@ public class AntivirusAsyncDLStore implements DLStore {
 
 				return null;
 			});
+	}
+
+	private void _validate(
+			String fileName, boolean validateFileExtension, String versionLabel)
+		throws PortalException {
+
+		validate(fileName, validateFileExtension);
+
+		_dlValidator.validateVersionLabel(versionLabel);
+	}
+
+	private void _validate(
+			String fileName, String fileExtension, String sourceFileName,
+			boolean validateFileExtension, File file, String versionLabel)
+		throws PortalException {
+
+		validate(
+			fileName, fileExtension, sourceFileName, validateFileExtension,
+			file);
+
+		_dlValidator.validateVersionLabel(versionLabel);
+	}
+
+	private void _validate(
+			String fileName, String fileExtension, String sourceFileName,
+			boolean validateFileExtension, InputStream inputStream,
+			String versionLabel)
+		throws PortalException {
+
+		validate(
+			fileName, fileExtension, sourceFileName, validateFileExtension,
+			inputStream);
+
+		_dlValidator.validateVersionLabel(versionLabel);
 	}
 
 	@Reference

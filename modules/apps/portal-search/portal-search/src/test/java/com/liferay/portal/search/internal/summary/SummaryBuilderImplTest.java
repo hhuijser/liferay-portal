@@ -94,14 +94,14 @@ public class SummaryBuilderImplTest {
 	public void testMaxContentLength() {
 		String content = "12345678";
 
-		testMaxContentLength(content, -99, content);
-		testMaxContentLength(content, 0, content);
-		testMaxContentLength(content, 2, "12");
-		testMaxContentLength(content, 3, "...");
-		testMaxContentLength(content, 4, "1...");
-		testMaxContentLength(content, 7, "1234...");
-		testMaxContentLength(content, 8, content);
-		testMaxContentLength(content, 99, content);
+		_testMaxContentLength(content, -99, content);
+		_testMaxContentLength(content, 0, content);
+		_testMaxContentLength(content, 2, "12");
+		_testMaxContentLength(content, 3, "...");
+		_testMaxContentLength(content, 4, "1...");
+		_testMaxContentLength(content, 7, "1234...");
+		_testMaxContentLength(content, 8, content);
+		_testMaxContentLength(content, 99, content);
 	}
 
 	@Test
@@ -186,7 +186,7 @@ public class SummaryBuilderImplTest {
 			summary.getTitle());
 	}
 
-	protected void testMaxContentLength(
+	private void _testMaxContentLength(
 		String content, int maxContentLength, String expected) {
 
 		SummaryBuilder summaryBuilder = new SummaryBuilderImpl();

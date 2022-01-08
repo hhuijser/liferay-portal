@@ -529,24 +529,6 @@ public class WorkflowDefinitionLinkDisplayContext {
 				workflowDefinitionLinkSearchEntry));
 	}
 
-	protected String getWorkflowDefinitionLabel(
-			WorkflowHandler<?> workflowHandler)
-		throws PortalException {
-
-		List<WorkflowDefinition> workflowDefinitions = getWorkflowDefinitions();
-
-		for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
-			if (isWorkflowDefinitionSelected(
-					workflowDefinition, workflowHandler.getClassName())) {
-
-				return getWorkflowDefinitionLabel(workflowDefinition);
-			}
-		}
-
-		return getDefaultWorkflowDefinitionLabel(
-			workflowHandler.getClassName());
-	}
-
 	protected List<WorkflowHandler<?>> getWorkflowHandlers(Group group) {
 		List<WorkflowHandler<?>> workflowHandlers = null;
 
@@ -571,7 +553,7 @@ public class WorkflowDefinitionLinkDisplayContext {
 
 		return new WorkflowDefinitionLinkSearchEntry(
 			workflowHandler.getClassName(), workflowHandler.getType(locale),
-			getWorkflowDefinitionLabel(workflowHandler));
+			_getWorkflowDefinitionLabel(workflowHandler));
 	}
 
 	private List<WorkflowDefinitionLinkSearchEntry>
@@ -625,6 +607,24 @@ public class WorkflowDefinitionLinkDisplayContext {
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		return portletDisplay.getPortletName();
+	}
+
+	private String _getWorkflowDefinitionLabel(
+			WorkflowHandler<?> workflowHandler)
+		throws PortalException {
+
+		List<WorkflowDefinition> workflowDefinitions = getWorkflowDefinitions();
+
+		for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
+			if (isWorkflowDefinitionSelected(
+					workflowDefinition, workflowHandler.getClassName())) {
+
+				return getWorkflowDefinitionLabel(workflowDefinition);
+			}
+		}
+
+		return getDefaultWorkflowDefinitionLabel(
+			workflowHandler.getClassName());
 	}
 
 	private WorkflowDefinitionLink _getWorkflowDefinitionLink(String className)

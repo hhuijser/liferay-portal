@@ -57,43 +57,22 @@ public class DDMFormTemplateSynchonizer {
 	}
 
 	public void synchronize() throws PortalException {
-		for (DDMTemplate ddmTemplate : getDDMFormTemplates()) {
+		for (DDMTemplate ddmTemplate : _getDDMFormTemplates()) {
 			DDMForm templateDDMForm = deserialize(ddmTemplate.getScript());
 
-			synchronizeDDMFormFields(
+			_synchronizeDDMFormFields(
 				_structureDDMForm.getDDMFormFieldsMap(true),
 				templateDDMForm.getDDMFormFields(), ddmTemplate.getMode());
 
 			String mode = ddmTemplate.getMode();
 
 			if (mode.equals(DDMTemplateConstants.TEMPLATE_MODE_CREATE)) {
-				addRequiredDDMFormFields(
+				_addRequiredDDMFormFields(
 					_structureDDMForm.getDDMFormFields(),
 					templateDDMForm.getDDMFormFields());
 			}
 
-			updateDDMTemplate(ddmTemplate, templateDDMForm);
-		}
-	}
-
-	protected void addRequiredDDMFormFields(
-		List<DDMFormField> structureDDMFormFields,
-		List<DDMFormField> templateDDMFormFields) {
-
-		for (DDMFormField structureDDMFormField : structureDDMFormFields) {
-			DDMFormField templateDDMFormField = getDDMFormField(
-				templateDDMFormFields, structureDDMFormField.getName());
-
-			if (templateDDMFormField == null) {
-				if (structureDDMFormField.isRequired()) {
-					templateDDMFormFields.add(structureDDMFormField);
-				}
-			}
-			else {
-				addRequiredDDMFormFields(
-					structureDDMFormField.getNestedDDMFormFields(),
-					templateDDMFormField.getNestedDDMFormFields());
-			}
+			_updateDDMTemplate(ddmTemplate, templateDDMForm);
 		}
 	}
 
@@ -126,10 +105,6 @@ public class DDMFormTemplateSynchonizer {
 		return null;
 	}
 
-	protected List<DDMTemplate> getDDMFormTemplates() {
-		return _ddmFormTemplates;
-	}
-
 	protected String serialize(DDMForm ddmForm) {
 		DDMFormSerializerSerializeRequest.Builder builder =
 			DDMFormSerializerSerializeRequest.Builder.newBuilder(ddmForm);
@@ -140,7 +115,32 @@ public class DDMFormTemplateSynchonizer {
 		return ddmFormSerializerSerializeResponse.getContent();
 	}
 
-	protected void synchronizeDDMFormFieldOptions(
+	private void _addRequiredDDMFormFields(
+		List<DDMFormField> structureDDMFormFields,
+		List<DDMFormField> templateDDMFormFields) {
+
+		for (DDMFormField structureDDMFormField : structureDDMFormFields) {
+			DDMFormField templateDDMFormField = getDDMFormField(
+				templateDDMFormFields, structureDDMFormField.getName());
+
+			if (templateDDMFormField == null) {
+				if (structureDDMFormField.isRequired()) {
+					templateDDMFormFields.add(structureDDMFormField);
+				}
+			}
+			else {
+				_addRequiredDDMFormFields(
+					structureDDMFormField.getNestedDDMFormFields(),
+					templateDDMFormField.getNestedDDMFormFields());
+			}
+		}
+	}
+
+	private List<DDMTemplate> _getDDMFormTemplates() {
+		return _ddmFormTemplates;
+	}
+
+	private void _synchronizeDDMFormFieldOptions(
 		DDMFormField structureDDMFormField, DDMFormField templateDDMFormField) {
 
 		if (structureDDMFormField == null) {
@@ -157,7 +157,7 @@ public class DDMFormTemplateSynchonizer {
 		}
 	}
 
-	protected void synchronizeDDMFormFieldRequiredProperty(
+	private void _synchronizeDDMFormFieldRequiredProperty(
 		DDMFormField structureDDMFormField, DDMFormField templateDDMFormField,
 		String templateMode) {
 
@@ -170,7 +170,7 @@ public class DDMFormTemplateSynchonizer {
 		templateDDMFormField.setRequired(structureDDMFormField.isRequired());
 	}
 
-	protected void synchronizeDDMFormFields(
+	private void _synchronizeDDMFormFields(
 		Map<String, DDMFormField> structureDDMFormFieldsMap,
 		List<DDMFormField> templateDDMFormFields, String templateMode) {
 
@@ -189,20 +189,20 @@ public class DDMFormTemplateSynchonizer {
 				continue;
 			}
 
-			synchronizeDDMFormFieldOptions(
+			_synchronizeDDMFormFieldOptions(
 				structureDDMFormFieldsMap.get(name), templateDDMFormField);
 
-			synchronizeDDMFormFieldRequiredProperty(
+			_synchronizeDDMFormFieldRequiredProperty(
 				structureDDMFormFieldsMap.get(name), templateDDMFormField,
 				templateMode);
 
-			synchronizeDDMFormFields(
+			_synchronizeDDMFormFields(
 				structureDDMFormFieldsMap,
 				templateDDMFormField.getNestedDDMFormFields(), templateMode);
 		}
 	}
 
-	protected void updateDDMTemplate(
+	private void _updateDDMTemplate(
 		DDMTemplate ddmTemplate, DDMForm templateDDMForm) {
 
 		ddmTemplate.setScript(serialize(templateDDMForm));

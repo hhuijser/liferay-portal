@@ -39,7 +39,6 @@ import com.liferay.segments.model.SegmentsExperimentRel;
 import com.liferay.segments.model.SegmentsExperimentRelTable;
 import com.liferay.segments.service.SegmentsEntryLocalServiceUtil;
 import com.liferay.segments.service.SegmentsExperienceLocalServiceUtil;
-import com.liferay.segments.service.SegmentsExperimentLocalService;
 import com.liferay.segments.service.SegmentsExperimentLocalServiceUtil;
 import com.liferay.segments.service.SegmentsExperimentRelLocalServiceUtil;
 
@@ -143,9 +142,8 @@ public class SegmentsExperienceSelectorDisplayContext {
 				).from(
 					SegmentsExperimentRelTable.INSTANCE
 				).where(
-					SegmentsExperimentRelTable.INSTANCE.
-						segmentsExperienceId.eq(
-							segmentsExperience.getSegmentsExperienceId())
+					SegmentsExperimentRelTable.INSTANCE.segmentsExperienceId.eq(
+						segmentsExperience.getSegmentsExperienceId())
 				));
 
 		if (segmentsExperimentRels.isEmpty()) {

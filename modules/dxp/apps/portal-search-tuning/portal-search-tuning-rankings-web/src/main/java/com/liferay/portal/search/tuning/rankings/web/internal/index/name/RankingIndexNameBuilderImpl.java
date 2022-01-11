@@ -31,16 +31,13 @@ public class RankingIndexNameBuilderImpl implements RankingIndexNameBuilder {
 	public RankingIndexName getRankingIndexName(long companyId) {
 		return new RankingIndexNameImpl(
 			_indexNameBuilder.getIndexName(companyId) + StringPool.DASH +
-				RANKINGS_INDEX_NAME_SUFFIX);
+				_RANKINGS_INDEX_NAME_SUFFIX);
 	}
 
 	@Reference(unbind = "-")
 	protected void setIndexNameBuilder(IndexNameBuilder indexNameBuilder) {
 		_indexNameBuilder = indexNameBuilder;
 	}
-
-	protected static final String RANKINGS_INDEX_NAME_SUFFIX =
-		"search-tuning-rankings";
 
 	protected class RankingIndexNameImpl implements RankingIndexName {
 
@@ -56,6 +53,9 @@ public class RankingIndexNameBuilderImpl implements RankingIndexNameBuilder {
 		private final String _indexName;
 
 	}
+
+	private static final String _RANKINGS_INDEX_NAME_SUFFIX =
+		"search-tuning-rankings";
 
 	private IndexNameBuilder _indexNameBuilder;
 

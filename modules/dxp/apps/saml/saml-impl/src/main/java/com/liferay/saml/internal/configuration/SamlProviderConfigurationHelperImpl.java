@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = Constants.SERVICE_PID + "=" + SamlProviderConfigurationHelperImpl.FACTORY_PID,
+	property = Constants.SERVICE_PID + "=" + SamlProviderConfigurationHelperImpl._FACTORY_PID,
 	service = {
 		ManagedServiceFactory.class, SamlProviderConfigurationHelper.class
 	}
@@ -177,7 +177,7 @@ public class SamlProviderConfigurationHelperImpl
 
 		if (configurationHolder == null) {
 			configuration = _configurationAdmin.createFactoryConfiguration(
-				FACTORY_PID, StringPool.QUESTION);
+				_FACTORY_PID, StringPool.QUESTION);
 
 			configurationProperties = new HashMapDictionary<>();
 
@@ -213,9 +213,6 @@ public class SamlProviderConfigurationHelperImpl
 		updated(configuration.getPid(), configuration.getProperties());
 	}
 
-	protected static final String FACTORY_PID =
-		"com.liferay.saml.runtime.configuration.SamlProviderConfiguration";
-
 	private Dictionary<String, ?> _getSystemProperties() throws Exception {
 		ConfigurationHolder configurationHolder =
 			_configurationHolderByCompanyId.get(CompanyConstants.SYSTEM);
@@ -229,6 +226,9 @@ public class SamlProviderConfigurationHelperImpl
 
 		return configuration.getProperties();
 	}
+
+	private static final String _FACTORY_PID =
+		"com.liferay.saml.runtime.configuration.SamlProviderConfiguration";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		SamlProviderConfigurationHelperImpl.class);

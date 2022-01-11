@@ -236,21 +236,21 @@ public class DDMPortlet extends MVCPortlet {
 	protected void setDDMStructureLinkLocalService(
 		DDMStructureLinkLocalService ddmStructureLinkLocalService) {
 
-		this.ddmStructureLinkLocalService = ddmStructureLinkLocalService;
+		_ddmStructureLinkLocalService = ddmStructureLinkLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setDDMStructureLocalService(
 		DDMStructureLocalService ddmStructureLocalService) {
 
-		this.ddmStructureLocalService = ddmStructureLocalService;
+		_ddmStructureLocalService = ddmStructureLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setDDMStructureService(
 		DDMStructureService ddmStructureService) {
 
-		this.ddmStructureService = ddmStructureService;
+		_ddmStructureService = ddmStructureService;
 	}
 
 	@Reference(unbind = "-")
@@ -262,14 +262,14 @@ public class DDMPortlet extends MVCPortlet {
 	protected void setDDMTemplateLocalService(
 		DDMTemplateLocalService ddmTemplateLocalService) {
 
-		this.ddmTemplateLocalService = ddmTemplateLocalService;
+		_ddmTemplateLocalService = ddmTemplateLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setDDMTemplateService(
 		DDMTemplateService ddmTemplateService) {
 
-		this.ddmTemplateService = ddmTemplateService;
+		_ddmTemplateService = ddmTemplateService;
 	}
 
 	@Reference(
@@ -286,12 +286,6 @@ public class DDMPortlet extends MVCPortlet {
 		_storageAdapterRegistry = storageAdapterRegistry;
 	}
 
-	protected volatile DDMStructureLinkLocalService
-		ddmStructureLinkLocalService;
-	protected volatile DDMStructureLocalService ddmStructureLocalService;
-	protected volatile DDMStructureService ddmStructureService;
-	protected volatile DDMTemplateLocalService ddmTemplateLocalService;
-	protected volatile DDMTemplateService ddmTemplateService;
 	protected volatile DDMWebConfiguration ddmWebConfiguration;
 
 	@Reference
@@ -303,7 +297,7 @@ public class DDMPortlet extends MVCPortlet {
 
 		DDMDisplayContext ddmDisplayContext = new DDMDisplayContext(
 			renderRequest, renderResponse, _ddmDisplayRegistry,
-			ddmStructureLinkLocalService, ddmStructureService,
+			_ddmStructureLinkLocalService, _ddmStructureService,
 			_ddmTemplateHelper, ddmTemplateService, ddmWebConfiguration,
 			_storageAdapterRegistry);
 
@@ -324,7 +318,7 @@ public class DDMPortlet extends MVCPortlet {
 				DDMStructure.class);
 
 			if ((structureClassNameId == classNameId) && (classPK > 0)) {
-				structure = ddmStructureLocalService.getStructure(classPK);
+				structure = _ddmStructureLocalService.getStructure(classPK);
 			}
 
 			renderRequest.setAttribute(
@@ -338,7 +332,7 @@ public class DDMPortlet extends MVCPortlet {
 		long templateId = ParamUtil.getLong(renderRequest, "templateId");
 
 		if (templateId > 0) {
-			DDMTemplate template = ddmTemplateLocalService.getDDMTemplate(
+			DDMTemplate template = _ddmTemplateLocalService.getDDMTemplate(
 				templateId);
 
 			renderRequest.setAttribute(
@@ -349,7 +343,12 @@ public class DDMPortlet extends MVCPortlet {
 	private static final Log _log = LogFactoryUtil.getLog(DDMPortlet.class);
 
 	private DDMDisplayRegistry _ddmDisplayRegistry;
+	private volatile DDMStructureLinkLocalService _ddmStructureLinkLocalService;
+	private volatile DDMStructureLocalService _ddmStructureLocalService;
+	private volatile DDMStructureService _ddmStructureService;
 	private DDMTemplateHelper _ddmTemplateHelper;
+	private volatile DDMTemplateLocalService _ddmTemplateLocalService;
+	private volatile DDMTemplateService _ddmTemplateService;
 	private StorageAdapterRegistry _storageAdapterRegistry;
 
 }

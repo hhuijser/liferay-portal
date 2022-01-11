@@ -229,8 +229,6 @@ public abstract class BaseBatchEngineExportTaskItemWriterImplTestCase {
 		return value.toString();
 	}
 
-	private static final List<String> _columnFieldNames = Arrays.asList(
-		"createDate", "description", "id", "name_en", "name_hr");
 	private static Date _createDate;
 
 }

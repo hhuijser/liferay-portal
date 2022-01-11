@@ -60,9 +60,10 @@ public class ModifiedFacetBuilderTest {
 	public void setUp() {
 		calendarFactory = _createCalendarFactory();
 		dateFormatFactory = new DateFormatFactoryImpl();
-		filterBuilders = new FilterBuildersImpl();
 		jsonFactory = new JSONFactoryImpl();
 		searchContext = new SearchContext();
+
+		_filterBuilders = new FilterBuildersImpl();
 	}
 
 	@Test
@@ -142,7 +143,6 @@ public class ModifiedFacetBuilderTest {
 
 	protected CalendarFactory calendarFactory;
 	protected DateFormatFactory dateFormatFactory;
-	protected FilterBuilders filterBuilders;
 	protected JSONFactory jsonFactory;
 	protected SearchContext searchContext;
 
@@ -232,11 +232,11 @@ public class ModifiedFacetBuilderTest {
 	}
 
 	private ModifiedFacetFactory _createModifiedFacetFactory() {
-		FilterBuilders filterBuilders1 = filterBuilders;
+		FilterBuilders filterBuilders1 = _filterBuilders;
 
 		return new ModifiedFacetFactoryImpl() {
 			{
-				filterBuilders = filterBuilders1;
+				_filterBuilders = filterBuilders1;
 			}
 		};
 	}
@@ -259,5 +259,7 @@ public class ModifiedFacetBuilderTest {
 
 		return Arrays.asList(dateStrings);
 	}
+
+	private FilterBuilders _filterBuilders;
 
 }

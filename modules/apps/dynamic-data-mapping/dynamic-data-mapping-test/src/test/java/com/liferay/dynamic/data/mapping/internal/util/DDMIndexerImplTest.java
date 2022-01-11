@@ -356,8 +356,6 @@ public class DDMIndexerImplTest {
 	}
 
 	private final DDMFixture _ddmFixture = new DDMFixture();
-	private final DDMFormJSONSerializer _ddmFormJSONSerializer =
-		_createDDMFormJSONSerializer();
 	private DDMIndexer _ddmIndexer;
 	private final DocumentFixture _documentFixture = new DocumentFixture();
 

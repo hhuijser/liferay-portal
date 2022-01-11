@@ -102,7 +102,6 @@ public class DDMFormInstanceIndexer extends BaseIndexer<DDMFormInstance> {
 	}
 
 	protected DDMFormInstanceLocalService ddmFormInstanceLocalService;
-	protected IndexerRegistry indexerRegistry;
 	protected IndexWriterHelper indexWriterHelper;
 
 	private void _reindexFormInstances(long companyId) throws Exception {
@@ -137,12 +136,14 @@ public class DDMFormInstanceIndexer extends BaseIndexer<DDMFormInstance> {
 		throws Exception {
 
 		Indexer<DDMFormInstanceRecord> indexer =
-			indexerRegistry.nullSafeGetIndexer(DDMFormInstanceRecord.class);
+			_indexerRegistry.nullSafeGetIndexer(DDMFormInstanceRecord.class);
 
 		indexer.reindex(ddmFormInstance.getFormInstanceRecords());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDMFormInstanceIndexer.class);
+
+	private IndexerRegistry _indexerRegistry;
 
 }

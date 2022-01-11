@@ -62,7 +62,7 @@ public class PortletExportImportBackgroundTaskDisplay
 						exportImportConfiguration.getType());
 			}
 
-			portlet = PortletLocalServiceUtil.getPortletById(
+			_portlet = PortletLocalServiceUtil.getPortletById(
 				backgroundTask.getName());
 		}
 		catch (Exception exception) {
@@ -76,9 +76,9 @@ public class PortletExportImportBackgroundTaskDisplay
 			return LanguageUtil.get(httpServletRequest, "untitled");
 		}
 
-		return portlet.getDisplayName();
+		return _portlet.getDisplayName();
 	}
 
-	protected Portlet portlet;
+	private final Portlet _portlet;
 
 }

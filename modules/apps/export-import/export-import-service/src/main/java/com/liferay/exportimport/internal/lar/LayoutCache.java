@@ -34,13 +34,13 @@ public class LayoutCache {
 	public Role getNameRole(long companyId, String roleName)
 		throws PortalException {
 
-		Role role = nameRolesMap.get(roleName);
+		Role role = _nameRolesMap.get(roleName);
 
 		if (role == null) {
 			try {
 				role = RoleLocalServiceUtil.getRole(companyId, roleName);
 
-				nameRolesMap.put(roleName, role);
+				_nameRolesMap.put(roleName, role);
 			}
 			catch (NoSuchRoleException noSuchRoleException) {
 
@@ -58,14 +58,14 @@ public class LayoutCache {
 	public Role getUuidRole(long companyId, String uuid)
 		throws PortalException {
 
-		Role role = uuidRolesMap.get(uuid);
+		Role role = _uuidRolesMap.get(uuid);
 
 		if (role == null) {
 			try {
 				role = RoleLocalServiceUtil.getRoleByUuidAndCompanyId(
 					uuid, companyId);
 
-				uuidRolesMap.put(uuid, role);
+				_uuidRolesMap.put(uuid, role);
 			}
 			catch (NoSuchRoleException noSuchRoleException) {
 
@@ -80,12 +80,12 @@ public class LayoutCache {
 		return role;
 	}
 
-	protected Map<Long, List<Role>> groupRolesMap = new HashMap<>();
-	protected Map<Long, List<User>> groupUsersMap = new HashMap<>();
-	protected Map<String, Role> nameRolesMap = new HashMap<>();
-	protected Map<Long, List<Role>> userRolesMap = new HashMap<>();
-	protected Map<String, Role> uuidRolesMap = new HashMap<>();
-
 	private static final Log _log = LogFactoryUtil.getLog(LayoutCache.class);
+
+	private final Map<Long, List<Role>> _groupRolesMap = new HashMap<>();
+	private final Map<Long, List<User>> _groupUsersMap = new HashMap<>();
+	private final Map<String, Role> _nameRolesMap = new HashMap<>();
+	private final Map<Long, List<Role>> _userRolesMap = new HashMap<>();
+	private final Map<String, Role> _uuidRolesMap = new HashMap<>();
 
 }

@@ -102,12 +102,11 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 	protected void setDDMTemplateService(
 		DDMTemplateService ddmTemplateService) {
 
-		this.ddmTemplateService = ddmTemplateService;
+		_ddmTemplateService = ddmTemplateService;
 	}
 
 	protected DDLRecordService ddlRecordService;
 	protected DDLRecordSetService ddlRecordSetService;
-	protected DDMTemplateService ddmTemplateService;
 
 	@Reference(target = "(ddm.form.deserializer.type=json)")
 	protected DDMFormDeserializer jsonDDMFormDeserializer;
@@ -149,7 +148,7 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 	private DDMForm _getDDMFormTemplate(long formDDMTemplateId)
 		throws PortalException {
 
-		DDMTemplate ddmTemplate = ddmTemplateService.getTemplate(
+		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(
 			formDDMTemplateId);
 
 		DDMFormDeserializerDeserializeRequest.Builder builder =
@@ -162,5 +161,7 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 
 		return ddmFormDeserializerDeserializeResponse.getDDMForm();
 	}
+
+	private DDMTemplateService _ddmTemplateService;
 
 }

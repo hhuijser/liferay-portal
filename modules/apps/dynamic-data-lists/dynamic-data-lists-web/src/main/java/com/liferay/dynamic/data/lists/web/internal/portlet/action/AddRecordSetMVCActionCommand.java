@@ -80,7 +80,7 @@ public class AddRecordSetMVCActionCommand extends BaseMVCActionCommand {
 	protected void setWorkflowDefinitionLinkLocalService(
 		WorkflowDefinitionLinkLocalService workflowDefinitionLinkLocalService) {
 
-		this.workflowDefinitionLinkLocalService =
+		_workflowDefinitionLinkLocalService =
 			workflowDefinitionLinkLocalService;
 	}
 
@@ -117,15 +117,13 @@ public class AddRecordSetMVCActionCommand extends BaseMVCActionCommand {
 		String workflowDefinition = ParamUtil.getString(
 			actionRequest, "workflowDefinition");
 
-		workflowDefinitionLinkLocalService.updateWorkflowDefinitionLink(
+		_workflowDefinitionLinkLocalService.updateWorkflowDefinitionLink(
 			themeDisplay.getUserId(), themeDisplay.getCompanyId(), groupId,
 			DDLRecordSet.class.getName(), recordSet.getRecordSetId(), 0,
 			workflowDefinition);
 	}
 
 	protected DDLRecordSetService ddlRecordSetService;
-	protected WorkflowDefinitionLinkLocalService
-		workflowDefinitionLinkLocalService;
 
 	private DDLRecordSet _addRecordSet(ActionRequest actionRequest)
 		throws Exception {
@@ -179,5 +177,8 @@ public class AddRecordSetMVCActionCommand extends BaseMVCActionCommand {
 
 		return portletPreferences;
 	}
+
+	private WorkflowDefinitionLinkLocalService
+		_workflowDefinitionLinkLocalService;
 
 }

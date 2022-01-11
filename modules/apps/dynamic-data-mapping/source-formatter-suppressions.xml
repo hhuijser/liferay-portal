@@ -16,6 +16,7 @@
 		<suppress checks="MapBuilderCheck" files="dynamic-data-mapping-test/src/testIntegration/java/com/liferay/dynamic/data/mapping/service/test/BaseDDMServiceTestCase\.java" />
 	</checkstyle>
 	<source-check>
+		<suppress checks="JavaAccessModifierCheck" files="dynamic-data-mapping-service/src/main/java/com/liferay/dynamic/data/mapping/internal/util/DDMFormTemplateSynchonizer\.java" />
 		<suppress checks="JavaForLoopCheck" files="dynamic-data-mapping-form-values-query/src/main/java/com/liferay/dynamic/data/mapping/form/values/query/internal/model/DDMFormValuesFilterImpl\.java" />
 		<suppress checks="JavaUpgradeIndexCheck" files="dynamic-data-mapping-service/src/main/java/com/liferay/dynamic/data/mapping/internal/upgrade/v4_3_0/DLFileEntryTypeDataDefinitionIdUpgradeProcess\.java" />
 	</source-check>

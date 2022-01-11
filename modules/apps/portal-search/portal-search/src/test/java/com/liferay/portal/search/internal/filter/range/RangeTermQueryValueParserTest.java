@@ -34,13 +34,13 @@ public class RangeTermQueryValueParserTest {
 
 	@Before
 	public void setUp() {
-		rangeTermQueryValueParser = new RangeTermQueryValueParser();
+		_rangeTermQueryValueParser = new RangeTermQueryValueParser();
 	}
 
 	@Test
 	public void testParseDateRangeIncludesLower() {
 		RangeTermQueryValue rangeTermQueryValue =
-			rangeTermQueryValueParser.parse("[now/d now+1d/d[");
+			_rangeTermQueryValueParser.parse("[now/d now+1d/d[");
 
 		Assert.assertNotNull(rangeTermQueryValue);
 
@@ -52,7 +52,7 @@ public class RangeTermQueryValueParserTest {
 	@Test
 	public void testParseDateRangeIncludesLowerIncludesUpper() {
 		RangeTermQueryValue rangeTermQueryValue =
-			rangeTermQueryValueParser.parse("[now/d now+1d/d]");
+			_rangeTermQueryValueParser.parse("[now/d now+1d/d]");
 
 		Assert.assertNotNull(rangeTermQueryValue);
 
@@ -64,7 +64,7 @@ public class RangeTermQueryValueParserTest {
 	@Test
 	public void testParseDateRangeIncludesUpper() {
 		RangeTermQueryValue rangeTermQueryValue =
-			rangeTermQueryValueParser.parse("]now/d now+1d/d]");
+			_rangeTermQueryValueParser.parse("]now/d now+1d/d]");
 
 		Assert.assertNotNull(rangeTermQueryValue);
 
@@ -76,7 +76,7 @@ public class RangeTermQueryValueParserTest {
 	@Test
 	public void testParseDateRangeInvalidEnd() {
 		RangeTermQueryValue rangeTermQueryValue =
-			rangeTermQueryValueParser.parse("[now/d now+1d/d");
+			_rangeTermQueryValueParser.parse("[now/d now+1d/d");
 
 		Assert.assertNull(rangeTermQueryValue);
 	}
@@ -84,7 +84,7 @@ public class RangeTermQueryValueParserTest {
 	@Test
 	public void testParseDateRangeInvalidStart() {
 		RangeTermQueryValue rangeTermQueryValue =
-			rangeTermQueryValueParser.parse("now/d now+1d/d[");
+			_rangeTermQueryValueParser.parse("now/d now+1d/d[");
 
 		Assert.assertNull(rangeTermQueryValue);
 	}
@@ -92,7 +92,7 @@ public class RangeTermQueryValueParserTest {
 	@Test
 	public void testParseDateRangeNoInclude() {
 		RangeTermQueryValue rangeTermQueryValue =
-			rangeTermQueryValueParser.parse("]now/d now+1d/d[");
+			_rangeTermQueryValueParser.parse("]now/d now+1d/d[");
 
 		Assert.assertNotNull(rangeTermQueryValue);
 
@@ -100,8 +100,6 @@ public class RangeTermQueryValueParserTest {
 		_assertDoesNotIncludeUpper(rangeTermQueryValue);
 		_assertBounds(rangeTermQueryValue, "now/d", "now+1d/d");
 	}
-
-	protected RangeTermQueryValueParser rangeTermQueryValueParser;
 
 	private void _assertBounds(
 		RangeTermQueryValue rangeTermQueryValue, String lowerBound,
@@ -130,5 +128,7 @@ public class RangeTermQueryValueParserTest {
 	private void _assertIncludesUpper(RangeTermQueryValue rangeTermQueryValue) {
 		Assert.assertTrue(rangeTermQueryValue.isIncludesUpper());
 	}
+
+	private RangeTermQueryValueParser _rangeTermQueryValueParser;
 
 }

@@ -38,7 +38,7 @@ public class RelatedEntryIndexerRegistryImpl
 	@Override
 	public List<RelatedEntryIndexer> getRelatedEntryIndexers() {
 		Collection<List<RelatedEntryIndexer>> relatedEntryIndexersLists =
-			serviceTrackerMap.values();
+			_serviceTrackerMap.values();
 
 		List<RelatedEntryIndexer> relatedEntryIndexers = new ArrayList<>();
 
@@ -53,27 +53,27 @@ public class RelatedEntryIndexerRegistryImpl
 
 	@Override
 	public List<RelatedEntryIndexer> getRelatedEntryIndexers(Class<?> clazz) {
-		return serviceTrackerMap.getService(clazz.getName());
+		return _serviceTrackerMap.getService(clazz.getName());
 	}
 
 	@Override
 	public List<RelatedEntryIndexer> getRelatedEntryIndexers(String className) {
-		return serviceTrackerMap.getService(className);
+		return _serviceTrackerMap.getService(className);
 	}
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
+		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
 			bundleContext, RelatedEntryIndexer.class,
 			"related.entry.indexer.class.name");
 	}
 
 	@Deactivate
 	protected void deactivate(BundleContext bundleContext) {
-		serviceTrackerMap.close();
+		_serviceTrackerMap.close();
 	}
 
-	protected ServiceTrackerMap<String, List<RelatedEntryIndexer>>
-		serviceTrackerMap;
+	private ServiceTrackerMap<String, List<RelatedEntryIndexer>>
+		_serviceTrackerMap;
 
 }

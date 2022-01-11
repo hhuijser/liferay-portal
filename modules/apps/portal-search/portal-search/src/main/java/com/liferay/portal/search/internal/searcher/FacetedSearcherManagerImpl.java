@@ -57,8 +57,6 @@ public class FacetedSearcherManagerImpl implements FacetedSearcherManager {
 	@Reference
 	protected IndexSearcherHelper indexSearcherHelper;
 
-	protected Localization localization;
-
 	@Reference
 	protected PostProcessSearchQueryContributorHelper
 		postProcessSearchQueryContributorHelper;
@@ -72,5 +70,7 @@ public class FacetedSearcherManagerImpl implements FacetedSearcherManager {
 
 	@Reference
 	protected SearchRequestBuilderFactory searchRequestBuilderFactory;
+
+	private Localization _localization;
 
 }

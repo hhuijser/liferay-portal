@@ -84,19 +84,19 @@ public class DDMIndexerImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		ddmFixture.setUp();
-		documentFixture.setUp();
+		_ddmFixture.setUp();
+		_documentFixture.setUp();
 		_setUpPortalUtil();
 		_setUpPropsUtil();
 
-		ddmIndexer = _createDDMIndexer();
+		_ddmIndexer = _createDDMIndexer();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		ddmFixture.tearDown();
+		_ddmFixture.tearDown();
 
-		documentFixture.tearDown();
+		_documentFixture.tearDown();
 	}
 
 	@Test
@@ -126,7 +126,7 @@ public class DDMIndexerImplTest {
 		DDMFormValues ddmFormValues = createDDMFormValues(
 			ddmForm, ddmFormFieldValue);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		Map<String, String> map = _withSortableValues(
 			Collections.singletonMap(
@@ -164,7 +164,7 @@ public class DDMIndexerImplTest {
 		DDMFormValues ddmFormValues = createDDMFormValues(
 			ddmForm, ddmFormFieldValue);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		Map<String, String> map = _withSortableValues(
 			Collections.singletonMap(
@@ -208,7 +208,7 @@ public class DDMIndexerImplTest {
 		DDMFormValues ddmFormValues = createDDMFormValues(
 			ddmForm, ddmFormFieldValueJP, ddmFormFieldValueUS);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		Map<String, String> map = _withSortableValues(
 			HashMapBuilder.put(
@@ -260,12 +260,6 @@ public class DDMIndexerImplTest {
 
 		return ddmFormSerializerSerializeResponse.getContent();
 	}
-
-	protected final DDMFixture ddmFixture = new DDMFixture();
-	protected final DDMFormJSONSerializer ddmFormJSONSerializer =
-		_createDDMFormJSONSerializer();
-	protected DDMIndexer ddmIndexer;
-	protected final DocumentFixture documentFixture = new DocumentFixture();
 
 	private DDMFormField _createDDMFormField(
 		String fieldName, String indexType) {
@@ -320,7 +314,7 @@ public class DDMIndexerImplTest {
 		ddmStructure.setStructureId(RandomTestUtil.randomLong());
 		ddmStructure.setName(RandomTestUtil.randomString());
 
-		ddmFixture.whenDDMStructureLocalServiceFetchStructure(ddmStructure);
+		_ddmFixture.whenDDMStructureLocalServiceFetchStructure(ddmStructure);
 
 		return ddmStructure;
 	}
@@ -360,5 +354,11 @@ public class DDMIndexerImplTest {
 
 		return map2;
 	}
+
+	private final DDMFixture _ddmFixture = new DDMFixture();
+	private final DDMFormJSONSerializer _ddmFormJSONSerializer =
+		_createDDMFormJSONSerializer();
+	private DDMIndexer _ddmIndexer;
+	private final DocumentFixture _documentFixture = new DocumentFixture();
 
 }

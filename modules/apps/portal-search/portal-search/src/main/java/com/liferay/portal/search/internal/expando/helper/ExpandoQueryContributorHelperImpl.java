@@ -137,8 +137,6 @@ public class ExpandoQueryContributorHelperImpl
 		}
 	}
 
-	protected Localization localization;
-
 	private Query _addTerm(
 		BooleanQuery booleanQuery, String fieldName, String keywords,
 		boolean like) {
@@ -185,8 +183,8 @@ public class ExpandoQueryContributorHelperImpl
 
 		// See LPS-72507
 
-		if (localization != null) {
-			return localization;
+		if (_localization != null) {
+			return _localization;
 		}
 
 		return LocalizationUtil.getLocalization();
@@ -206,5 +204,6 @@ public class ExpandoQueryContributorHelperImpl
 	private ExpandoBridgeFactory _expandoBridgeFactory;
 	private ExpandoBridgeIndexer _expandoBridgeIndexer;
 	private ExpandoColumnLocalService _expandoColumnLocalService;
+	private Localization _localization;
 
 }

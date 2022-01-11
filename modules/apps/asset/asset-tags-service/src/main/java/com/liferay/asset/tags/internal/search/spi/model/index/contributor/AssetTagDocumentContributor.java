@@ -68,8 +68,6 @@ public class AssetTagDocumentContributor
 	@Reference
 	protected AssetTagLocalService assetTagLocalService;
 
-	protected Localization localization;
-
 	@Reference
 	protected Portal portal;
 
@@ -130,8 +128,8 @@ public class AssetTagDocumentContributor
 
 		// See LPS-72507 and LPS-76500
 
-		if (localization != null) {
-			return localization;
+		if (_localization != null) {
+			return _localization;
 		}
 
 		return LocalizationUtil.getLocalization();
@@ -165,5 +163,7 @@ public class AssetTagDocumentContributor
 			Long[]::new
 		);
 	}
+
+	private Localization _localization;
 
 }

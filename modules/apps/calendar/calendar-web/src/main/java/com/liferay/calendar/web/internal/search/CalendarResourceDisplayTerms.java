@@ -38,37 +38,37 @@ public class CalendarResourceDisplayTerms extends DisplayTerms {
 	public CalendarResourceDisplayTerms(PortletRequest portletRequest) {
 		super(portletRequest);
 
-		active = ParamUtil.getBoolean(portletRequest, ACTIVE, true);
-		code = ParamUtil.getString(portletRequest, CODE);
-		description = ParamUtil.getString(portletRequest, DESCRIPTION);
-		name = ParamUtil.getString(portletRequest, NAME);
-		scope = ParamUtil.getLong(portletRequest, SCOPE);
+		_active = ParamUtil.getBoolean(portletRequest, ACTIVE, true);
+		_code = ParamUtil.getString(portletRequest, CODE);
+		_description = ParamUtil.getString(portletRequest, DESCRIPTION);
+		_name = ParamUtil.getString(portletRequest, NAME);
+		_scope = ParamUtil.getLong(portletRequest, SCOPE);
 	}
 
 	public String getCode() {
-		return code;
+		return _code;
 	}
 
 	public String getDescription() {
-		return description;
+		return _description;
 	}
 
 	public String getName() {
-		return name;
+		return _name;
 	}
 
 	public long getScope() {
-		return scope;
+		return _scope;
 	}
 
 	public boolean isActive() {
-		return active;
+		return _active;
 	}
 
-	protected boolean active;
-	protected String code;
-	protected String description;
-	protected String name;
-	protected long scope;
+	private final boolean _active;
+	private final String _code;
+	private final String _description;
+	private final String _name;
+	private final long _scope;
 
 }

@@ -134,7 +134,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	public void tearDown() {
 		identifiers.clear();
 
-		for (Class<?> serviceUtilClass : serviceUtilClasses) {
+		for (Class<?> serviceUtilClass : _serviceUtilClasses) {
 			ReflectionTestUtil.setFieldValue(
 				serviceUtilClass, "_service", null);
 		}
@@ -308,11 +308,6 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	protected static final String LOGOUT_URL =
 		"http://localhost:8080/c/portal/logout";
 
-	protected static final String METADATA_URL =
-		"http://localhost:8080/c/portal/saml/metadata";
-
-	protected static final String PORTAL_URL = "http://localhost:8080";
-
 	protected static final String RELAY_STATE =
 		"http://localhost:8080/relaystate";
 
@@ -329,13 +324,10 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	protected static final String UNKNOWN_ENTITY_ID = "testunknown";
 
 	protected KeyStoreCredentialResolver credentialResolver;
-	protected FileSystemKeyStoreManagerImpl fileSystemKeyStoreManagerImpl;
 	protected GroupLocalService groupLocalService;
-	protected HttpClient httpClient;
 	protected IdentifierGenerationStrategyFactory
 		identifierGenerationStrategyFactory;
 	protected List<String> identifiers = new ArrayList<>();
-	protected LocalEntityManager localEntityManager;
 	protected MetadataManagerImpl metadataManagerImpl;
 	protected ParserPool parserPool;
 	protected Portal portal;
@@ -344,7 +336,6 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	protected SamlPeerBindingLocalService samlPeerBindingLocalService;
 	protected SamlProviderConfiguration samlProviderConfiguration;
 	protected SamlProviderConfigurationHelper samlProviderConfigurationHelper;
-	protected List<Class<?>> serviceUtilClasses = new ArrayList<>();
 	protected UserLocalService userLocalService;
 
 	protected class MockMetadataResolver extends AbstractMetadataResolver {
@@ -389,7 +380,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 			if (entityId.equals(IDP_ENTITY_ID)) {
 				EntityDescriptor entityDescriptor =
 					MetadataGeneratorUtil.buildIdpEntityDescriptor(
-						PORTAL_URL, entityId, _idpNeedsSignature, true,
+						_PORTAL_URL, entityId, _idpNeedsSignature, true,
 						credential, null);
 
 				IDPSSODescriptor idpSSODescriptor =
@@ -430,7 +421,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 			}
 			else if (entityId.equals(SP_ENTITY_ID)) {
 				return MetadataGeneratorUtil.buildSpEntityDescriptor(
-					PORTAL_URL, entityId, true, true, false, credential, null);
+					_PORTAL_URL, entityId, true, true, false, credential, null);
 			}
 
 			return null;
@@ -447,7 +438,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 			new KeyStoreCredentialResolver();
 
 		keyStoreCredentialResolver.setKeyStoreManager(
-			fileSystemKeyStoreManagerImpl);
+			_fileSystemKeyStoreManagerImpl);
 
 		SamlProviderConfigurationHelper peerSamlProviderConfigurationHelper =
 			Mockito.mock(SamlProviderConfigurationHelper.class);
@@ -485,7 +476,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	private <T> T _getMockService(
 		Class<?> serviceUtilClass, Class<T> serviceClass) {
 
-		serviceUtilClasses.add(serviceUtilClass);
+		_serviceUtilClasses.add(serviceUtilClass);
 
 		T serviceMock = mock(serviceClass);
 
@@ -634,10 +625,10 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	private void _setupMetadata() throws Exception {
 		metadataManagerImpl = new MetadataManagerImpl();
 
-		fileSystemKeyStoreManagerImpl = new FileSystemKeyStoreManagerImpl();
+		_fileSystemKeyStoreManagerImpl = new FileSystemKeyStoreManagerImpl();
 
 		ReflectionTestUtil.invoke(
-			fileSystemKeyStoreManagerImpl, "activate",
+			_fileSystemKeyStoreManagerImpl, "activate",
 			new Class<?>[] {Map.class},
 			HashMapBuilder.<String, Object>put(
 				"saml.keystore.path",
@@ -647,7 +638,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 
 		credentialResolver = new KeyStoreCredentialResolver();
 
-		credentialResolver.setKeyStoreManager(fileSystemKeyStoreManagerImpl);
+		credentialResolver.setKeyStoreManager(_fileSystemKeyStoreManagerImpl);
 
 		credentialResolver.setSamlProviderConfigurationHelper(
 			samlProviderConfigurationHelper);
@@ -679,7 +670,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 	}
 
 	private void _setupPortal() throws Exception {
-		httpClient = mock(HttpClient.class);
+		_httpClient = mock(HttpClient.class);
 
 		PortalUtil portalUtil = new PortalUtil();
 
@@ -708,14 +699,14 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 		when(
 			portal.getPortalURL(Mockito.any(MockHttpServletRequest.class))
 		).thenReturn(
-			PORTAL_URL
+			_PORTAL_URL
 		);
 
 		when(
 			portal.getPortalURL(
 				Mockito.any(MockHttpServletRequest.class), Mockito.eq(false))
 		).thenReturn(
-			PORTAL_URL
+			_PORTAL_URL
 		);
 
 		when(
@@ -723,7 +714,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 				Mockito.any(MockHttpServletRequest.class), Mockito.eq(true))
 		).thenReturn(
 			StringUtil.replace(
-				PORTAL_URL, new String[] {"http://", "https://"},
+				_PORTAL_URL, new String[] {"http://", "https://"},
 				new String[] {"8080", "8443"})
 		);
 
@@ -775,7 +766,7 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 
 		samlBindings.add(new HttpPostBinding(parserPool, velocityEngine));
 		samlBindings.add(new HttpRedirectBinding(parserPool));
-		samlBindings.add(new HttpSoap11Binding(parserPool, httpClient));
+		samlBindings.add(new HttpSoap11Binding(parserPool, _httpClient));
 	}
 
 	private void _setupSamlPeerBindingsLocalService() throws Exception {
@@ -790,7 +781,16 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 		);
 	}
 
+	private static final String _METADATA_URL =
+		"http://localhost:8080/c/portal/saml/metadata";
+
+	private static final String _PORTAL_URL = "http://localhost:8080";
+
+	private FileSystemKeyStoreManagerImpl _fileSystemKeyStoreManagerImpl;
+	private HttpClient _httpClient;
+	private LocalEntityManager _localEntityManager;
 	private final Map<Long, SamlPeerBinding> _samlPeerBindings =
 		new HashMap<>();
+	private final List<Class<?>> _serviceUtilClasses = new ArrayList<>();
 
 }

@@ -81,7 +81,7 @@ public class ExportImportConfigurationTrashHandler extends BaseTrashHandler {
 						getExportImportConfiguration(classPK));
 
 		exportImportConfigurationTrashRenderer.setServletContext(
-			servletContext);
+			_servletContext);
 
 		return exportImportConfigurationTrashRenderer;
 	}
@@ -99,7 +99,7 @@ public class ExportImportConfigurationTrashHandler extends BaseTrashHandler {
 		unbind = "-"
 	)
 	public void setServletContext(ServletContext servletContext) {
-		this.servletContext = servletContext;
+		_servletContext = servletContext;
 	}
 
 	@Override
@@ -131,10 +131,9 @@ public class ExportImportConfigurationTrashHandler extends BaseTrashHandler {
 		_groupLocalService = groupLocalService;
 	}
 
-	protected ServletContext servletContext;
-
 	private ExportImportConfigurationLocalService
 		_exportImportConfigurationLocalService;
 	private GroupLocalService _groupLocalService;
+	private ServletContext _servletContext;
 
 }

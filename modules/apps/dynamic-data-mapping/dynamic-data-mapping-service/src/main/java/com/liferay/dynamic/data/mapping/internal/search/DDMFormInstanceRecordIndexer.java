@@ -94,7 +94,7 @@ public class DDMFormInstanceRecordIndexer
 
 		if (searchContext.getUserId() > 0) {
 			facetBooleanFilter =
-				searchPermissionChecker.getPermissionBooleanFilter(
+				_searchPermissionChecker.getPermissionBooleanFilter(
 					searchContext.getCompanyId(), searchContext.getGroupIds(),
 					searchContext.getUserId(), DDMFormInstance.class.getName(),
 					facetBooleanFilter, searchContext);
@@ -134,7 +134,7 @@ public class DDMFormInstanceRecordIndexer
 		if (Validator.isNotNull(ddmStructureFieldName) &&
 			Validator.isNotNull(ddmStructureFieldValue)) {
 
-			QueryFilter queryFilter = ddmIndexer.createFieldValueQueryFilter(
+			QueryFilter queryFilter = _ddmIndexer.createFieldValueQueryFilter(
 				ddmStructureFieldName, ddmStructureFieldValue,
 				searchContext.getLocale());
 
@@ -178,7 +178,7 @@ public class DDMFormInstanceRecordIndexer
 
 		document.addKeyword(
 			Field.CLASS_NAME_ID,
-			classNameLocalService.getClassNameId(DDMFormInstance.class));
+			_classNameLocalService.getClassNameId(DDMFormInstance.class));
 		document.addKeyword(
 			Field.CLASS_PK, ddmFormInstance.getFormInstanceId());
 		document.addKeyword(
@@ -201,7 +201,7 @@ public class DDMFormInstanceRecordIndexer
 
 		_addContent(ddmFormInstanceRecordVersion, ddmFormValues, document);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		return document;
 	}
@@ -237,7 +237,7 @@ public class DDMFormInstanceRecordIndexer
 	@Override
 	protected void doReindex(String className, long classPK) throws Exception {
 		DDMFormInstanceRecord ddmFormInstanceRecord =
-			ddmFormInstanceRecordLocalService.getFormInstanceRecord(classPK);
+			_ddmFormInstanceRecordLocalService.getFormInstanceRecord(classPK);
 
 		doReindex(ddmFormInstanceRecord);
 	}
@@ -249,15 +249,8 @@ public class DDMFormInstanceRecordIndexer
 		_reindexFormInstanceRecords(companyId);
 	}
 
-	protected ClassNameLocalService classNameLocalService;
 	protected DDMFormInstanceLocalService ddmFormInstanceLocalService;
-	protected DDMFormInstanceRecordLocalService
-		ddmFormInstanceRecordLocalService;
-	protected DDMFormInstanceRecordVersionLocalService
-		ddmFormInstanceRecordVersionLocalService;
-	protected DDMIndexer ddmIndexer;
 	protected IndexWriterHelper indexWriterHelper;
-	protected SearchPermissionChecker searchPermissionChecker;
 
 	private void _addContent(
 			DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion,
@@ -299,7 +292,7 @@ public class DDMFormInstanceRecordIndexer
 		DDMFormInstance ddmFormInstance =
 			ddmFormInstanceRecordVersion.getFormInstance();
 
-		return ddmIndexer.extractIndexableAttributes(
+		return _ddmIndexer.extractIndexableAttributes(
 			ddmFormInstance.getStructure(), ddmFormValues, locale);
 	}
 
@@ -327,7 +320,7 @@ public class DDMFormInstanceRecordIndexer
 
 	private void _reindexFormInstanceRecords(long companyId) throws Exception {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
-			ddmFormInstanceRecordLocalService.
+			_ddmFormInstanceRecordLocalService.
 				getIndexableActionableDynamicQuery();
 
 		indexableActionableDynamicQuery.setAddCriteriaMethod(
@@ -336,7 +329,7 @@ public class DDMFormInstanceRecordIndexer
 					PropertyFactoryUtil.forName("formInstanceRecordId");
 
 				DynamicQuery ddmFormInstanceRecordVersionDynamicQuery =
-					ddmFormInstanceRecordVersionLocalService.dynamicQuery();
+					_ddmFormInstanceRecordVersionLocalService.dynamicQuery();
 
 				ddmFormInstanceRecordVersionDynamicQuery.setProjection(
 					ProjectionFactoryUtil.property("formInstanceRecordId"));
@@ -383,5 +376,13 @@ public class DDMFormInstanceRecordIndexer
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDMFormInstanceRecordIndexer.class);
+
+	private ClassNameLocalService _classNameLocalService;
+	private DDMFormInstanceRecordLocalService
+		_ddmFormInstanceRecordLocalService;
+	private DDMFormInstanceRecordVersionLocalService
+		_ddmFormInstanceRecordVersionLocalService;
+	private DDMIndexer _ddmIndexer;
+	private SearchPermissionChecker _searchPermissionChecker;
 
 }

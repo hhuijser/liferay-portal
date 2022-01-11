@@ -48,13 +48,13 @@ public abstract class BaseMBMessageDemoDataCreator
 		long threadId = 0;
 
 		if (parentMessageId != MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID) {
-			MBMessage parentMessage = mbMessageLocalService.getMessage(
+			MBMessage parentMessage = _mbMessageLocalService.getMessage(
 				parentMessageId);
 
 			threadId = parentMessage.getThreadId();
 		}
 
-		User user = userLocalService.getUser(userId);
+		User user = _userLocalService.getUser(userId);
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -62,21 +62,21 @@ public abstract class BaseMBMessageDemoDataCreator
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupId);
 
-		MBMessage mbMessage = mbMessageLocalService.addMessage(
+		MBMessage mbMessage = _mbMessageLocalService.addMessage(
 			user.getUserId(), user.getFullName(), groupId, categoryId, threadId,
 			parentMessageId, title, content, MBMessageConstants.DEFAULT_FORMAT,
 			Collections.emptyList(), false, 0.0, false, serviceContext);
 
-		messageIds.add(mbMessage.getMessageId());
+		_messageIds.add(mbMessage.getMessageId());
 
 		return mbMessage;
 	}
 
 	@Override
 	public void delete() throws PortalException {
-		for (long messageId : messageIds) {
+		for (long messageId : _messageIds) {
 			try {
-				mbMessageLocalService.deleteMessage(messageId);
+				_mbMessageLocalService.deleteMessage(messageId);
 			}
 			catch (NoSuchMessageException noSuchMessageException) {
 				if (_log.isWarnEnabled()) {
@@ -84,7 +84,7 @@ public abstract class BaseMBMessageDemoDataCreator
 				}
 			}
 
-			messageIds.remove(messageId);
+			_messageIds.remove(messageId);
 		}
 	}
 
@@ -92,19 +92,19 @@ public abstract class BaseMBMessageDemoDataCreator
 	protected void setMBMessageLocalService(
 		MBMessageLocalService mbMessageLocalService) {
 
-		this.mbMessageLocalService = mbMessageLocalService;
+		_mbMessageLocalService = mbMessageLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setUserLocalService(UserLocalService userLocalService) {
-		this.userLocalService = userLocalService;
+		_userLocalService = userLocalService;
 	}
-
-	protected MBMessageLocalService mbMessageLocalService;
-	protected final List<Long> messageIds = new CopyOnWriteArrayList<>();
-	protected UserLocalService userLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseMBMessageDemoDataCreator.class);
+
+	private MBMessageLocalService _mbMessageLocalService;
+	private final List<Long> _messageIds = new CopyOnWriteArrayList<>();
+	private UserLocalService _userLocalService;
 
 }

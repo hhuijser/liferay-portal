@@ -395,7 +395,7 @@ public class JournalContentImpl
 	protected void activate() {
 		_portalCache =
 			(PortalCache<JournalContentKey, JournalArticleDisplay>)
-				_multiVMPool.getPortalCache(CACHE_NAME);
+				_multiVMPool.getPortalCache(_CACHE_NAME);
 
 		_journalArticlePortalCacheIndexer = new PortalCacheIndexer<>(
 			new JournalContentArticleKeyIndexEncoder(), _portalCache);
@@ -405,7 +405,7 @@ public class JournalContentImpl
 
 	@Deactivate
 	protected void deactivate() {
-		_multiVMPool.removePortalCache(CACHE_NAME);
+		_multiVMPool.removePortalCache(_CACHE_NAME);
 	}
 
 	protected JournalArticleDisplay getArticleDisplay(
@@ -476,8 +476,6 @@ public class JournalContentImpl
 		}
 	}
 
-	protected static final String CACHE_NAME = JournalContent.class.getName();
-
 	private ThemeDisplay _getDefaultThemeDisplay() {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
@@ -488,6 +486,8 @@ public class JournalContentImpl
 
 		return serviceContext.getThemeDisplay();
 	}
+
+	private static final String _CACHE_NAME = JournalContent.class.getName();
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalContentImpl.class);

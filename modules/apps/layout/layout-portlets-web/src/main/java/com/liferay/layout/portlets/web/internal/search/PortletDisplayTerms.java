@@ -31,19 +31,19 @@ public class PortletDisplayTerms extends DisplayTerms {
 	public PortletDisplayTerms(PortletRequest portletRequest) {
 		super(portletRequest);
 
-		categories = ParamUtil.getString(portletRequest, CATEGORIES);
-		name = ParamUtil.getString(portletRequest, NAME);
+		_categories = ParamUtil.getString(portletRequest, CATEGORIES);
+		_name = ParamUtil.getString(portletRequest, NAME);
 	}
 
 	public String getCategories() {
-		return categories;
+		return _categories;
 	}
 
 	public String getName() {
-		return name;
+		return _name;
 	}
 
-	protected String categories;
-	protected String name;
+	private final String _categories;
+	private final String _name;
 
 }

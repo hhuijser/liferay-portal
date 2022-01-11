@@ -51,7 +51,7 @@ public abstract class BaseWorkflowInstanceDisplayContext {
 		httpServletRequest = PortalUtil.getHttpServletRequest(
 			liferayPortletRequest);
 
-		portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
+		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			httpServletRequest);
 
 		ThemeDisplay themeDisplay =
@@ -84,7 +84,8 @@ public abstract class BaseWorkflowInstanceDisplayContext {
 	protected final HttpServletRequest httpServletRequest;
 	protected final LiferayPortletRequest liferayPortletRequest;
 	protected final LiferayPortletResponse liferayPortletResponse;
-	protected final PortalPreferences portalPreferences;
 	protected final WorkflowInstanceRequestHelper workflowInstanceRequestHelper;
+
+	private final PortalPreferences _portalPreferences;
 
 }

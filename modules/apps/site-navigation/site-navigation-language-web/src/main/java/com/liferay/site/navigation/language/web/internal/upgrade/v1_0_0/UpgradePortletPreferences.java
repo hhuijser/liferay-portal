@@ -52,25 +52,25 @@ public class UpgradePortletPreferences
 
 		int displayStyle = GetterUtil.getInteger(displayStyleString);
 
-		if (displayStyle == LIST_ICON) {
+		if (displayStyle == _LIST_ICON) {
 			portletPreferences.setValue(
 				"displayStyle",
 				PortletDisplayTemplateConstants.DISPLAY_STYLE_PREFIX +
 					"language-icon-ftl");
 		}
-		else if (displayStyle == LIST_LONG_TEXT) {
+		else if (displayStyle == _LIST_LONG_TEXT) {
 			portletPreferences.setValue(
 				"displayStyle",
 				PortletDisplayTemplateConstants.DISPLAY_STYLE_PREFIX +
 					"language-long-text-ftl");
 		}
-		else if (displayStyle == LIST_SHORT_TEXT) {
+		else if (displayStyle == _LIST_SHORT_TEXT) {
 			portletPreferences.setValue(
 				"displayStyle",
 				PortletDisplayTemplateConstants.DISPLAY_STYLE_PREFIX +
 					"language-short-text-ftl");
 		}
-		else if (displayStyle == SELECT_BOX) {
+		else if (displayStyle == _SELECT_BOX) {
 			portletPreferences.setValue(
 				"displayStyle",
 				PortletDisplayTemplateConstants.DISPLAY_STYLE_PREFIX +
@@ -102,13 +102,13 @@ public class UpgradePortletPreferences
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
 	}
 
-	protected final int LIST_ICON = 0;
+	private static final int _LIST_ICON = 0;
 
-	protected final int LIST_LONG_TEXT = 1;
+	private static final int _LIST_LONG_TEXT = 1;
 
-	protected final int LIST_SHORT_TEXT = 2;
+	private static final int _LIST_SHORT_TEXT = 2;
 
-	protected final int SELECT_BOX = 3;
+	private static final int _SELECT_BOX = 3;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		UpgradePortletPreferences.class);

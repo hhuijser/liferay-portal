@@ -204,8 +204,6 @@ public abstract class BaseBatchEngineExportTaskItemWriterImplTestCase {
 		return items;
 	}
 
-	protected static final List<String> columnFieldNames = Arrays.asList(
-		"createDate", "description", "id", "name_en", "name_hr");
 	protected static final DateFormat dateFormat = new SimpleDateFormat(
 		"yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 	protected static Map<String, Field> fieldMap = ItemClassIndexUtil.index(
@@ -231,6 +229,8 @@ public abstract class BaseBatchEngineExportTaskItemWriterImplTestCase {
 		return value.toString();
 	}
 
+	private static final List<String> _columnFieldNames = Arrays.asList(
+		"createDate", "description", "id", "name_en", "name_hr");
 	private static Date _createDate;
 
 }

@@ -161,17 +161,17 @@ public class BaseCPPublisherDisplayContext {
 	}
 
 	public String getDataSource() {
-		if (dataSource != null) {
-			return dataSource;
+		if (_dataSource != null) {
+			return _dataSource;
 		}
 
 		PortletPreferences portletPreferences =
 			cpContentRequestHelper.getPortletPreferences();
 
-		dataSource = GetterUtil.getString(
+		_dataSource = GetterUtil.getString(
 			portletPreferences.getValue("dataSource", null));
 
-		return dataSource;
+		return _dataSource;
 	}
 
 	public String getDisplayStyle() {
@@ -187,17 +187,17 @@ public class BaseCPPublisherDisplayContext {
 	}
 
 	public String getRenderSelection() {
-		if (renderSelection != null) {
-			return renderSelection;
+		if (_renderSelection != null) {
+			return _renderSelection;
 		}
 
 		PortletPreferences portletPreferences =
 			cpContentRequestHelper.getPortletPreferences();
 
-		renderSelection = GetterUtil.getString(
+		_renderSelection = GetterUtil.getString(
 			portletPreferences.getValue("renderSelection", null), "custom");
 
-		return renderSelection;
+		return _renderSelection;
 	}
 
 	public String getSelectionStyle() {
@@ -256,8 +256,9 @@ public class BaseCPPublisherDisplayContext {
 		cpPublisherPortletInstanceConfiguration;
 	protected final CPPublisherWebHelper cpPublisherWebHelper;
 	protected final CPTypeServicesTracker cpTypeServicesTracker;
-	protected String dataSource;
-	protected String renderSelection;
 	protected String selectionStyle;
+
+	private String _dataSource;
+	private String _renderSelection;
 
 }

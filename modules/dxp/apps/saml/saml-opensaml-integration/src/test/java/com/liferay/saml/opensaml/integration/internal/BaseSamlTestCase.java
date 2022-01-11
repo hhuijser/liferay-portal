@@ -57,7 +57,6 @@ import com.liferay.saml.persistence.service.SamlPeerBindingLocalService;
 import com.liferay.saml.persistence.service.SamlPeerBindingLocalServiceUtil;
 import com.liferay.saml.runtime.configuration.SamlProviderConfiguration;
 import com.liferay.saml.runtime.configuration.SamlProviderConfigurationHelper;
-import com.liferay.saml.runtime.metadata.LocalEntityManager;
 import com.liferay.saml.util.PortletPropsKeys;
 
 import java.io.UnsupportedEncodingException;
@@ -781,14 +780,10 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 		);
 	}
 
-	private static final String _METADATA_URL =
-		"http://localhost:8080/c/portal/saml/metadata";
-
 	private static final String _PORTAL_URL = "http://localhost:8080";
 
 	private FileSystemKeyStoreManagerImpl _fileSystemKeyStoreManagerImpl;
 	private HttpClient _httpClient;
-	private LocalEntityManager _localEntityManager;
 	private final Map<Long, SamlPeerBinding> _samlPeerBindings =
 		new HashMap<>();
 	private final List<Class<?>> _serviceUtilClasses = new ArrayList<>();

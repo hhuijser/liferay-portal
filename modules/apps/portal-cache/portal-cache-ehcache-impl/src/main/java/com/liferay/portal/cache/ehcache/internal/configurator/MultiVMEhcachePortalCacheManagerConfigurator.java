@@ -50,7 +50,7 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 
 	@Activate
 	protected void activate() {
-		clusterEnabled = GetterUtil.getBoolean(
+		_clusterEnabled = GetterUtil.getBoolean(
 			props.get(PropsKeys.CLUSTER_LINK_ENABLED));
 		_defaultReplicatorPropertiesString = _getPortalPropertiesString(
 			PropsKeys.EHCACHE_REPLICATOR_PROPERTIES_DEFAULT);
@@ -62,7 +62,7 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 	protected boolean isRequireSerialization(
 		CacheConfiguration cacheConfiguration) {
 
-		if (clusterEnabled) {
+		if (_clusterEnabled) {
 			return true;
 		}
 
@@ -74,7 +74,7 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 		Configuration configuration,
 		PortalCacheManagerConfiguration portalCacheManagerConfiguration) {
 
-		if (!clusterEnabled) {
+		if (!_clusterEnabled) {
 			return;
 		}
 
@@ -138,7 +138,7 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 			super.parseCacheListenerConfigurations(
 				cacheConfiguration, classLoader, usingDefault);
 
-		if (!clusterEnabled) {
+		if (!_clusterEnabled) {
 			return portalCacheConfiguration;
 		}
 
@@ -168,8 +168,6 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 	protected void setProps(Props props) {
 		this.props = props;
 	}
-
-	protected boolean clusterEnabled;
 
 	private Map<String, ObjectValuePair<Properties, Properties>>
 		_getMergedPropertiesMap() {
@@ -225,6 +223,7 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 		return sb.toString();
 	}
 
+	private boolean _clusterEnabled;
 	private String _defaultReplicatorPropertiesString;
 	private Properties _replicatorProperties;
 

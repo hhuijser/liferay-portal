@@ -835,6 +835,7 @@
 		<check name="JavaAccessModifierCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks for cases where visibility of methods can be decreased." />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaModuleComponentCheck">
 			<category name="Bug Prevention" />

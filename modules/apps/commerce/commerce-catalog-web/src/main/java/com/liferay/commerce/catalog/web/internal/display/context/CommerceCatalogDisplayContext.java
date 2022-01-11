@@ -98,12 +98,12 @@ public class CommerceCatalogDisplayContext {
 		_itemSelector = itemSelector;
 		_portal = portal;
 
-		cpRequestHelper = new CPRequestHelper(httpServletRequest);
+		_cpRequestHelper = new CPRequestHelper(httpServletRequest);
 	}
 
 	public String getAddCommerceCatalogRenderURL() throws Exception {
 		return PortletURLBuilder.createRenderURL(
-			cpRequestHelper.getLiferayPortletResponse()
+			_cpRequestHelper.getLiferayPortletResponse()
 		).setMVCRenderCommandName(
 			"/commerce_catalogs/add_commerce_catalog"
 		).setWindowState(
@@ -134,7 +134,7 @@ public class CommerceCatalogDisplayContext {
 
 	public CommerceCatalog getCommerceCatalog() throws PortalException {
 		long commerceCatalogId = ParamUtil.getLong(
-			cpRequestHelper.getRequest(), "commerceCatalogId");
+			_cpRequestHelper.getRequest(), "commerceCatalogId");
 
 		if (commerceCatalogId == 0) {
 			return null;
@@ -157,7 +157,7 @@ public class CommerceCatalogDisplayContext {
 		throws PortalException {
 
 		return _commerceCurrencyLocalService.getCommerceCurrencies(
-			cpRequestHelper.getCompanyId(), true, QueryUtil.ALL_POS,
+			_cpRequestHelper.getCompanyId(), true, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
@@ -170,7 +170,7 @@ public class CommerceCatalogDisplayContext {
 					dropdownItem.setHref(getAddCommerceCatalogRenderURL());
 					dropdownItem.setLabel(
 						LanguageUtil.get(
-							cpRequestHelper.getRequest(), "add-catalog"));
+							_cpRequestHelper.getRequest(), "add-catalog"));
 					dropdownItem.setTarget("modal-lg");
 				});
 		}
@@ -204,7 +204,7 @@ public class CommerceCatalogDisplayContext {
 
 		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
-				cpRequestHelper.getRequest(), CPPortletKeys.COMMERCE_CATALOGS,
+				_cpRequestHelper.getRequest(), CPPortletKeys.COMMERCE_CATALOGS,
 				PortletRequest.ACTION_PHASE)
 		).setActionName(
 			"/commerce_catalogs/edit_commerce_catalog"
@@ -220,7 +220,7 @@ public class CommerceCatalogDisplayContext {
 	public PortletURL getEditCommerceCatalogRenderURL() {
 		return PortletURLBuilder.create(
 			_portal.getControlPanelPortletURL(
-				cpRequestHelper.getRequest(), CPPortletKeys.COMMERCE_CATALOGS,
+				_cpRequestHelper.getRequest(), CPPortletKeys.COMMERCE_CATALOGS,
 				PortletRequest.RENDER_PHASE)
 		).setMVCRenderCommandName(
 			"/commerce_catalogs/edit_commerce_catalog"
@@ -230,7 +230,7 @@ public class CommerceCatalogDisplayContext {
 	public List<HeaderActionModel> getHeaderActionModels() throws Exception {
 		List<HeaderActionModel> headerActionModels = new ArrayList<>();
 
-		RenderResponse renderResponse = cpRequestHelper.getRenderResponse();
+		RenderResponse renderResponse = _cpRequestHelper.getRenderResponse();
 
 		RenderURL cancelURL = renderResponse.createRenderURL();
 
@@ -256,7 +256,7 @@ public class CommerceCatalogDisplayContext {
 	public String getImageItemSelectorUrl() {
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory =
 			RequestBackedPortletURLFactoryUtil.create(
-				cpRequestHelper.getRenderRequest());
+				_cpRequestHelper.getRenderRequest());
 
 		ImageItemSelectorCriterion imageItemSelectorCriterion =
 			new ImageItemSelectorCriterion();
@@ -278,19 +278,19 @@ public class CommerceCatalogDisplayContext {
 
 	public PortletURL getPortletURL() {
 		LiferayPortletResponse liferayPortletResponse =
-			cpRequestHelper.getLiferayPortletResponse();
+			_cpRequestHelper.getLiferayPortletResponse();
 
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		String redirect = ParamUtil.getString(
-			cpRequestHelper.getRequest(), "redirect");
+			_cpRequestHelper.getRequest(), "redirect");
 
 		if (Validator.isNotNull(redirect)) {
 			portletURL.setParameter("redirect", redirect);
 		}
 
 		String filterFields = ParamUtil.getString(
-			cpRequestHelper.getRequest(), "filterFields");
+			_cpRequestHelper.getRequest(), "filterFields");
 
 		if (Validator.isNotNull(filterFields)) {
 			portletURL.setParameter("filterFields", filterFields);
@@ -304,7 +304,7 @@ public class CommerceCatalogDisplayContext {
 		}
 
 		String filtersValues = ParamUtil.getString(
-			cpRequestHelper.getRequest(), "filtersValues");
+			_cpRequestHelper.getRequest(), "filtersValues");
 
 		if (Validator.isNotNull(filtersValues)) {
 			portletURL.setParameter("filtersValues", filtersValues);
@@ -321,7 +321,7 @@ public class CommerceCatalogDisplayContext {
 			true);
 
 		return StringBundler.concat(
-			_portal.getPortalURL(cpRequestHelper.getRequest()),
+			_portal.getPortalURL(_cpRequestHelper.getRequest()),
 			"/o/headless-commerce-admin-pricing/v2.0/price-lists?filter=",
 			encodedFilter);
 	}
@@ -332,7 +332,7 @@ public class CommerceCatalogDisplayContext {
 				getPortletResourcePermission();
 
 		return portletResourcePermission.contains(
-			cpRequestHelper.getPermissionChecker(), null,
+			_cpRequestHelper.getPermissionChecker(), null,
 			CPActionKeys.ADD_COMMERCE_CATALOG);
 	}
 
@@ -340,7 +340,7 @@ public class CommerceCatalogDisplayContext {
 		throws PortalException {
 
 		return _commerceCatalogModelResourcePermission.contains(
-			cpRequestHelper.getPermissionChecker(), commerceCatalogId,
+			_cpRequestHelper.getPermissionChecker(), commerceCatalogId,
 			actionId);
 	}
 
@@ -356,8 +356,6 @@ public class CommerceCatalogDisplayContext {
 			CommercePricingConstants.VERSION_2_0);
 	}
 
-	protected final CPRequestHelper cpRequestHelper;
-
 	private final AttachmentsConfiguration _attachmentsConfiguration;
 	private final CommerceCatalogDefaultImage _commerceCatalogDefaultImage;
 	private final ModelResourcePermission<CommerceCatalog>
@@ -366,6 +364,7 @@ public class CommerceCatalogDisplayContext {
 	private final CommerceCurrencyLocalService _commerceCurrencyLocalService;
 	private final CommercePriceListService _commercePriceListService;
 	private final ConfigurationProvider _configurationProvider;
+	private final CPRequestHelper _cpRequestHelper;
 	private final DLAppService _dlAppService;
 	private final ItemSelector _itemSelector;
 	private final Portal _portal;

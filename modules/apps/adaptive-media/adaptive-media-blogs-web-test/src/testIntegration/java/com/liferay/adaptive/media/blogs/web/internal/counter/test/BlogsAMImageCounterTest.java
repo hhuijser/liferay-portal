@@ -102,7 +102,7 @@ public class BlogsAMImageCounterTest {
 
 		ImageSelector imageSelector = new ImageSelector(
 			_getImageBytes(), RandomTestUtil.randomString() + ".jpg",
-			ContentTypes.IMAGE_JPEG, IMAGE_CROP_REGION);
+			ContentTypes.IMAGE_JPEG, _IMAGE_CROP_REGION);
 
 		_blogsEntryLocalService.addCoverImage(
 			blogsEntry.getEntryId(), imageSelector);
@@ -142,7 +142,7 @@ public class BlogsAMImageCounterTest {
 
 		ImageSelector imageSelector = new ImageSelector(
 			_getImageBytes(), RandomTestUtil.randomString() + ".jpg",
-			ContentTypes.IMAGE_JPEG, IMAGE_CROP_REGION);
+			ContentTypes.IMAGE_JPEG, _IMAGE_CROP_REGION);
 
 		_blogsEntryLocalService.addCoverImage(
 			blogsEntry.getEntryId(), imageSelector);
@@ -157,12 +157,12 @@ public class BlogsAMImageCounterTest {
 				_company2.getCompanyId()));
 	}
 
-	protected static final String IMAGE_CROP_REGION =
-		"{\"height\": 0, \"width\": 00, \"x\": 0, \"y\": 0}";
-
 	private byte[] _getImageBytes() throws Exception {
 		return FileUtil.getBytes(BlogsAMImageCounterTest.class, "image.jpg");
 	}
+
+	private static final String _IMAGE_CROP_REGION =
+		"{\"height\": 0, \"width\": 00, \"x\": 0, \"y\": 0}";
 
 	@Inject(filter = "adaptive.media.key=blogs", type = AMImageCounter.class)
 	private AMImageCounter _amImageCounter;

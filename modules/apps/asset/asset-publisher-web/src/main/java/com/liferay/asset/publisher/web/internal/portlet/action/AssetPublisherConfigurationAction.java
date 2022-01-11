@@ -150,7 +150,7 @@ public class AssetPublisherConfigurationAction
 			new AssetPublisherDisplayContext(
 				assetEntryActionRegistry, assetHelper,
 				assetListAssetEntryProvider, assetPublisherCustomizer,
-				assetPublisherHelper, assetPublisherWebConfiguration,
+				assetPublisherHelper, _assetPublisherWebConfiguration,
 				assetPublisherWebHelper, infoItemServiceTracker, itemSelector,
 				renderRequest, renderResponse, renderRequest.getPreferences(),
 				requestContextMapper, segmentsEntryRetriever);
@@ -334,7 +334,7 @@ public class AssetPublisherConfigurationAction
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		assetPublisherWebConfiguration = ConfigurableUtil.createConfigurable(
+		_assetPublisherWebConfiguration = ConfigurableUtil.createConfigurable(
 			AssetPublisherWebConfiguration.class, properties);
 	}
 
@@ -352,9 +352,6 @@ public class AssetPublisherConfigurationAction
 
 	@Reference
 	protected AssetPublisherHelper assetPublisherHelper;
-
-	protected volatile AssetPublisherWebConfiguration
-		assetPublisherWebConfiguration;
 
 	@Reference
 	protected AssetPublisherWebHelper assetPublisherWebHelper;
@@ -891,5 +888,8 @@ public class AssetPublisherConfigurationAction
 				queryRule.getName());
 		}
 	}
+
+	private volatile AssetPublisherWebConfiguration
+		_assetPublisherWebConfiguration;
 
 }

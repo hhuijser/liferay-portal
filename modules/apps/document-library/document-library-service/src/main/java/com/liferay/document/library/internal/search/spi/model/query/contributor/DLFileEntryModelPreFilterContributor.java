@@ -89,9 +89,6 @@ public class DLFileEntryModelPreFilterContributor
 	@Reference
 	protected DDMStructureManager ddmStructureManager;
 
-	protected RelatedEntryIndexer relatedEntryIndexer =
-		new BaseRelatedEntryIndexer();
-
 	@Reference(target = "(model.pre.filter.contributor.id=WorkflowStatus)")
 	protected ModelPreFilterContributor workflowStatusModelPreFilterContributor;
 
@@ -103,7 +100,7 @@ public class DLFileEntryModelPreFilterContributor
 		}
 
 		try {
-			relatedEntryIndexer.addRelatedClassNames(
+			_relatedEntryIndexer.addRelatedClassNames(
 				booleanFilter, searchContext);
 		}
 		catch (Exception exception) {
@@ -170,5 +167,8 @@ public class DLFileEntryModelPreFilterContributor
 			booleanFilter.add(mimeTypesBooleanFilter, BooleanClauseOccur.MUST);
 		}
 	}
+
+	private final RelatedEntryIndexer _relatedEntryIndexer =
+		new BaseRelatedEntryIndexer();
 
 }

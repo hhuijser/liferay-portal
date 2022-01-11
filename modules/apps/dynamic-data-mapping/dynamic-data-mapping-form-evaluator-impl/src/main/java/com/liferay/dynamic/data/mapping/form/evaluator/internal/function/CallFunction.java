@@ -61,7 +61,7 @@ public class CallFunction
 		DDMDataProviderInvoker ddmDataProviderInvoker,
 		JSONFactory jsonFactory) {
 
-		this.ddmDataProviderInvoker = ddmDataProviderInvoker;
+		_ddmDataProviderInvoker = ddmDataProviderInvoker;
 		this.jsonFactory = jsonFactory;
 	}
 
@@ -99,7 +99,7 @@ public class CallFunction
 			DDMDataProviderRequest ddmDataProviderRequest = builder.build();
 
 			DDMDataProviderResponse ddmDataProviderResponse =
-				ddmDataProviderInvoker.invoke(ddmDataProviderRequest);
+				_ddmDataProviderInvoker.invoke(ddmDataProviderRequest);
 
 			Map<String, String> resultMap = _extractResults(
 				resultMapExpression);
@@ -221,7 +221,6 @@ public class CallFunction
 		}
 	}
 
-	protected DDMDataProviderInvoker ddmDataProviderInvoker;
 	protected JSONFactory jsonFactory;
 
 	private void _extractDDMFormFieldValue(
@@ -295,6 +294,7 @@ public class CallFunction
 
 	private static final Log _log = LogFactoryUtil.getLog(CallFunction.class);
 
+	private final DDMDataProviderInvoker _ddmDataProviderInvoker;
 	private DDMExpressionFieldAccessor _ddmExpressionFieldAccessor;
 	private DDMExpressionObserver _ddmExpressionObserver;
 

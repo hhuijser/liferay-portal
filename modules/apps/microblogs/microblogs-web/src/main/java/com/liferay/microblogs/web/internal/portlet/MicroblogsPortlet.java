@@ -71,7 +71,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 		long microblogsEntryId = ParamUtil.getLong(
 			actionRequest, "microblogsEntryId");
 
-		microblogsEntryService.deleteMicroblogsEntry(microblogsEntryId);
+		_microblogsEntryService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
 	public void updateMicroblogsEntry(
@@ -91,7 +91,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 		serviceContext.setAssetTagNames(_getAssetTagNames(content));
 
 		if (microblogsEntryId > 0) {
-			microblogsEntryService.updateMicroblogsEntry(
+			_microblogsEntryService.updateMicroblogsEntry(
 				microblogsEntryId, content, socialRelationType, serviceContext);
 		}
 		else {
@@ -102,7 +102,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 			long parentMicroblogsEntryId = ParamUtil.getLong(
 				actionRequest, "parentMicroblogsEntryId");
 
-			microblogsEntryService.addMicroblogsEntry(
+			_microblogsEntryService.addMicroblogsEntry(
 				themeDisplay.getUserId(), content, type,
 				parentMicroblogsEntryId, socialRelationType, serviceContext);
 		}
@@ -116,13 +116,14 @@ public class MicroblogsPortlet extends MVCPortlet {
 			actionRequest, "microblogsEntryId");
 
 		MicroblogsEntry microblogsEntry =
-			microblogsEntryLocalService.fetchMicroblogsEntry(microblogsEntryId);
+			_microblogsEntryLocalService.fetchMicroblogsEntry(
+				microblogsEntryId);
 
 		if (microblogsEntry == null) {
 			return;
 		}
 
-		assetEntryLocalService.incrementViewCounter(
+		_assetEntryLocalService.incrementViewCounter(
 			microblogsEntry.getCompanyId(), 0, MicroblogsEntry.class.getName(),
 			microblogsEntryId, 1);
 	}
@@ -131,21 +132,21 @@ public class MicroblogsPortlet extends MVCPortlet {
 	protected void setAssetEntryLocalService(
 		AssetEntryLocalService assetEntryLocalService) {
 
-		this.assetEntryLocalService = assetEntryLocalService;
+		_assetEntryLocalService = assetEntryLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMicroblogsEntryLocalService(
 		MicroblogsEntryLocalService microblogsEntryLocalService) {
 
-		this.microblogsEntryLocalService = microblogsEntryLocalService;
+		_microblogsEntryLocalService = microblogsEntryLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMicroblogsEntryService(
 		MicroblogsEntryService microblogsEntryService) {
 
-		this.microblogsEntryService = microblogsEntryService;
+		_microblogsEntryService = microblogsEntryService;
 	}
 
 	@Reference(
@@ -154,10 +155,6 @@ public class MicroblogsPortlet extends MVCPortlet {
 	)
 	protected void setRelease(Release release) {
 	}
-
-	protected AssetEntryLocalService assetEntryLocalService;
-	protected MicroblogsEntryLocalService microblogsEntryLocalService;
-	protected MicroblogsEntryService microblogsEntryService;
 
 	private String[] _getAssetTagNames(String content) {
 		List<String> assetTagNames = new ArrayList<>();
@@ -168,5 +165,9 @@ public class MicroblogsPortlet extends MVCPortlet {
 
 		return assetTagNames.toArray(new String[0]);
 	}
+
+	private AssetEntryLocalService _assetEntryLocalService;
+	private MicroblogsEntryLocalService _microblogsEntryLocalService;
+	private MicroblogsEntryService _microblogsEntryService;
 
 }

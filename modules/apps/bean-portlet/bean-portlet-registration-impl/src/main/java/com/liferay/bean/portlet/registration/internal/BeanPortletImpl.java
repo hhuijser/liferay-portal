@@ -432,7 +432,7 @@ public class BeanPortletImpl implements BeanPortlet {
 
 		// javax.portlet.portlet-mode
 
-		Set<String> allPortletModes = new HashSet<>(liferayPortletModes);
+		Set<String> allPortletModes = new HashSet<>(_liferayPortletModes);
 
 		allPortletModes.addAll(beanApp.getCustomPortletModes());
 
@@ -654,28 +654,6 @@ public class BeanPortletImpl implements BeanPortlet {
 		return dictionary;
 	}
 
-	protected static final Set<String> liferayPortletModes =
-		new HashSet<String>() {
-			{
-				try {
-					for (Field field : LiferayPortletMode.class.getFields()) {
-						if (Modifier.isStatic(field.getModifiers()) &&
-							(field.getType() == PortletMode.class)) {
-
-							PortletMode portletMode = (PortletMode)field.get(
-								null);
-
-							add(portletMode.toString());
-						}
-					}
-				}
-				catch (IllegalAccessException illegalAccessException) {
-					throw new ExceptionInInitializerError(
-						illegalAccessException);
-				}
-			}
-		};
-
 	private static void _putEnglishText(
 		Map<String, String> descriptions, Dictionary<String, Object> dictionary,
 		String key) {
@@ -763,6 +741,28 @@ public class BeanPortletImpl implements BeanPortlet {
 	}
 
 	private static final String _ENGLISH_EN = LocaleUtil.ENGLISH.getLanguage();
+
+	private static final Set<String> _liferayPortletModes =
+		new HashSet<String>() {
+			{
+				try {
+					for (Field field : LiferayPortletMode.class.getFields()) {
+						if (Modifier.isStatic(field.getModifiers()) &&
+							(field.getType() == PortletMode.class)) {
+
+							PortletMode portletMode = (PortletMode)field.get(
+								null);
+
+							add(portletMode.toString());
+						}
+					}
+				}
+				catch (IllegalAccessException illegalAccessException) {
+					throw new ExceptionInInitializerError(
+						illegalAccessException);
+				}
+			}
+		};
 
 	private final boolean _asyncSupported;
 	private final Map<BeanPortletMethodType, List<BeanPortletMethod>>

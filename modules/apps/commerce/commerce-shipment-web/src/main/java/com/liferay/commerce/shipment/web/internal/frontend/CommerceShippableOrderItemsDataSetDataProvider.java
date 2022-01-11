@@ -69,7 +69,7 @@ public class CommerceShippableOrderItemsDataSetDataProvider
 		List<CommerceOrderItem> commerceOrderItems =
 			_commerceOrderItemService.getCommerceOrderItems(
 				commerceShipment.getGroupId(),
-				commerceShipment.getCommerceAccountId(), orderStatuses,
+				commerceShipment.getCommerceAccountId(), _ORDER_STATUSES,
 				pagination.getStartPosition(), pagination.getEndPosition());
 
 		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
@@ -122,13 +122,8 @@ public class CommerceShippableOrderItemsDataSetDataProvider
 
 		return _commerceOrderItemService.getCommerceOrderItemsCount(
 			commerceShipment.getGroupId(),
-			commerceShipment.getCommerceAccountId(), orderStatuses);
+			commerceShipment.getCommerceAccountId(), _ORDER_STATUSES);
 	}
-
-	protected int[] orderStatuses = {
-		CommerceOrderConstants.ORDER_STATUS_PROCESSING,
-		CommerceOrderConstants.ORDER_STATUS_PARTIALLY_SHIPPED
-	};
 
 	private String _getAddressMatchIcon(
 		CommerceShipment commerceShipment, CommerceOrder commerceOrder) {
@@ -141,6 +136,11 @@ public class CommerceShippableOrderItemsDataSetDataProvider
 
 		return null;
 	}
+
+	private static final int[] _ORDER_STATUSES = {
+		CommerceOrderConstants.ORDER_STATUS_PROCESSING,
+		CommerceOrderConstants.ORDER_STATUS_PARTIALLY_SHIPPED
+	};
 
 	@Reference
 	private CommerceInventoryEngine _commerceInventoryEngine;

@@ -30,13 +30,13 @@ public abstract class BasePricingDisplayContext {
 	public BasePricingDisplayContext(HttpServletRequest httpServletRequest) {
 		this.httpServletRequest = httpServletRequest;
 
-		portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
+		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			this.httpServletRequest);
 
 		commercePricingRequestHelper = new CommercePricingRequestHelper(
 			httpServletRequest);
 
-		liferayPortletRequest =
+		_liferayPortletRequest =
 			commercePricingRequestHelper.getLiferayPortletRequest();
 		liferayPortletResponse =
 			commercePricingRequestHelper.getLiferayPortletResponse();
@@ -44,8 +44,9 @@ public abstract class BasePricingDisplayContext {
 
 	protected final CommercePricingRequestHelper commercePricingRequestHelper;
 	protected final HttpServletRequest httpServletRequest;
-	protected final LiferayPortletRequest liferayPortletRequest;
 	protected final LiferayPortletResponse liferayPortletResponse;
-	protected final PortalPreferences portalPreferences;
+
+	private final LiferayPortletRequest _liferayPortletRequest;
+	private final PortalPreferences _portalPreferences;
 
 }

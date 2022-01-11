@@ -832,6 +832,10 @@
 
 		<!-- Module Source Checks -->
 
+		<check name="JavaAccessModifierCheck">
+			<category name="Bug Prevention" />
+			<description name="Checks for cases where visibility of methods can be decreased." />
+		</check>
 		<check name="JavaModuleComponentCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks for use of `@Component` in `-api` or `-spi` modules." />

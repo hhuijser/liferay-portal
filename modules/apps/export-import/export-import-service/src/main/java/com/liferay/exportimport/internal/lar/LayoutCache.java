@@ -19,11 +19,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Role;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,10 +80,7 @@ public class LayoutCache {
 
 	private static final Log _log = LogFactoryUtil.getLog(LayoutCache.class);
 
-	private final Map<Long, List<Role>> _groupRolesMap = new HashMap<>();
-	private final Map<Long, List<User>> _groupUsersMap = new HashMap<>();
 	private final Map<String, Role> _nameRolesMap = new HashMap<>();
-	private final Map<Long, List<Role>> _userRolesMap = new HashMap<>();
 	private final Map<String, Role> _uuidRolesMap = new HashMap<>();
 
 }

@@ -129,12 +129,8 @@ public class MessageBoardsSimilarResultsContributor
 		);
 	}
 
-	protected static final String CATEGORY = "category";
-
-	protected static final String MESSAGE = "message";
-
 	private List<?> _getMBCategoryData(String type, long id) {
-		if (!CATEGORY.equals(type)) {
+		if (!_CATEGORY.equals(type)) {
 			return null;
 		}
 
@@ -149,7 +145,7 @@ public class MessageBoardsSimilarResultsContributor
 	}
 
 	private List<?> _getMBMessageData(String type, long id, long groupId) {
-		if (!MESSAGE.equals(type)) {
+		if (!_MESSAGE.equals(type)) {
 			return null;
 		}
 
@@ -173,6 +169,10 @@ public class MessageBoardsSimilarResultsContributor
 
 		routeBuilder.addAttribute(name, value);
 	}
+
+	private static final String _CATEGORY = "category";
+
+	private static final String _MESSAGE = "message";
 
 	private AssetEntryLocalService _assetEntryLocalService;
 	private HttpHelper _httpHelper;

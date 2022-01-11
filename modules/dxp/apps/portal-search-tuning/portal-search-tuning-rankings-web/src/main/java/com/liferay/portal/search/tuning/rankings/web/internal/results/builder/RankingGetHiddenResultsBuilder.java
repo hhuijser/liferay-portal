@@ -115,7 +115,7 @@ public class RankingGetHiddenResultsBuilder {
 
 		Stream<JSONObject> jsonObjectStream = stringStream.map(
 			id -> _getDocument(
-				ranking.getIndexName(), id, LIFERAY_DOCUMENT_TYPE)
+				ranking.getIndexName(), id, _LIFERAY_DOCUMENT_TYPE)
 		).filter(
 			document -> document != null
 		).map(
@@ -153,8 +153,6 @@ public class RankingGetHiddenResultsBuilder {
 		).build();
 	}
 
-	protected static final String LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
-
 	private Document _getDocument(String indexName, String id, String type) {
 		GetDocumentRequest getDocumentRequest = new GetDocumentRequest(
 			indexName, id);
@@ -187,6 +185,8 @@ public class RankingGetHiddenResultsBuilder {
 
 		return ListUtil.subList(ids, _from, end);
 	}
+
+	private static final String _LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
 
 	private final DLAppLocalService _dlAppLocalService;
 	private final FastDateFormatFactory _fastDateFormatFactory;

@@ -143,9 +143,6 @@ public class AnalyticsDispatchTaskExecutorHelper {
 		}
 	}
 
-	protected static final DateFormat dateFormat = new SimpleDateFormat(
-		"yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
 	@Reference
 	protected BatchEngineExportTaskExecutor batchEngineExportTaskExecutor;
 
@@ -304,7 +301,7 @@ public class AnalyticsDispatchTaskExecutorHelper {
 			sb.append(dispatchTaskExecutorOutput.getOutput());
 		}
 
-		sb.append(dateFormat.format(new Date()));
+		sb.append(_dateFormat.format(new Date()));
 		sb.append(StringPool.SPACE);
 		sb.append(message);
 		sb.append(StringPool.NEW_LINE);
@@ -321,6 +318,9 @@ public class AnalyticsDispatchTaskExecutorHelper {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AnalyticsDispatchTaskExecutorHelper.class);
+
+	private static final DateFormat _dateFormat = new SimpleDateFormat(
+		"yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
 	@Reference
 	private AnalyticsBatchClient _analyticsBatchClient;

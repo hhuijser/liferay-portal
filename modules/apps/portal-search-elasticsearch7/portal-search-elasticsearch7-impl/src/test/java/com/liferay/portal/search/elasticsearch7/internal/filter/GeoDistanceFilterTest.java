@@ -82,7 +82,7 @@ public class GeoDistanceFilterTest extends BaseIndexingTestCase {
 	protected void index(double latitude, double longitude) throws Exception {
 		addDocument(
 			DocumentCreationHelpers.singleGeoLocation(
-				FIELD, latitude, longitude));
+				_FIELD, latitude, longitude));
 	}
 
 	@Override
@@ -93,8 +93,6 @@ public class GeoDistanceFilterTest extends BaseIndexingTestCase {
 
 		query.setPreBooleanFilter(booleanFilter);
 	}
-
-	protected static final String FIELD = Field.GEO_LOCATION;
 
 	private void _assertCount(int expected, Filter filter) throws Exception {
 		assertSearch(
@@ -117,7 +115,7 @@ public class GeoDistanceFilterTest extends BaseIndexingTestCase {
 		_assertCount(
 			expected,
 			new GeoDistanceFilter(
-				FIELD, geoLocationPoint, new GeoDistance(distance)));
+				_FIELD, geoLocationPoint, new GeoDistance(distance)));
 	}
 
 	private void _assertCountWithinDistanceRange(
@@ -128,8 +126,10 @@ public class GeoDistanceFilterTest extends BaseIndexingTestCase {
 		_assertCount(
 			expected,
 			new GeoDistanceRangeFilter(
-				FIELD, true, true, new GeoDistance(fromDistance),
+				_FIELD, true, true, new GeoDistance(fromDistance),
 				geoLocationPoint, new GeoDistance(toDistance)));
 	}
+
+	private static final String _FIELD = Field.GEO_LOCATION;
 
 }

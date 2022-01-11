@@ -50,7 +50,7 @@ public class TypeFacetPortletPreferencesImplTest {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 
-		typeFacetPortletPreferencesImpl = new TypeFacetPortletPreferencesImpl(
+		_typeFacetPortletPreferencesImpl = new TypeFacetPortletPreferencesImpl(
 			_objectDefinitionLocalService, Optional.empty(),
 			new SearchableAssetClassNamesProviderImpl() {
 				{
@@ -61,10 +61,10 @@ public class TypeFacetPortletPreferencesImplTest {
 			});
 
 		_mockAssetRendererFactoryGetClassName(
-			assetRendererFactory1, CLASS_NAME_1);
+			assetRendererFactory1, _CLASS_NAME_1);
 
 		_mockAssetRendererFactoryGetClassName(
-			assetRendererFactory2, CLASS_NAME_2);
+			assetRendererFactory2, _CLASS_NAME_2);
 
 		_mockAssetRendererFactoryIsSearchable(assetRendererFactory1, true);
 
@@ -76,13 +76,13 @@ public class TypeFacetPortletPreferencesImplTest {
 		_mockAssetRendererFactoryRegistry(
 			assetRendererFactory1, assetRendererFactory2);
 
-		String[] entryClassNames = {CLASS_NAME_1, CLASS_NAME_2};
+		String[] entryClassNames = {_CLASS_NAME_1, _CLASS_NAME_2};
 
 		_mockSearchEngineHelperEntryClassNames(entryClassNames);
 
 		Assert.assertArrayEquals(
 			entryClassNames,
-			typeFacetPortletPreferencesImpl.getAllAssetTypes(
+			_typeFacetPortletPreferencesImpl.getAllAssetTypes(
 				RandomTestUtil.randomLong()));
 	}
 
@@ -90,13 +90,13 @@ public class TypeFacetPortletPreferencesImplTest {
 	public void testGetAssetTypesNotInRegistry() {
 		_mockAssetRendererFactoryRegistry(assetRendererFactory2);
 
-		String[] entryClassNames = {CLASS_NAME_1, CLASS_NAME_2};
+		String[] entryClassNames = {_CLASS_NAME_1, _CLASS_NAME_2};
 
 		_mockSearchEngineHelperEntryClassNames(entryClassNames);
 
 		Assert.assertArrayEquals(
-			new String[] {CLASS_NAME_2},
-			typeFacetPortletPreferencesImpl.getAllAssetTypes(
+			new String[] {_CLASS_NAME_2},
+			_typeFacetPortletPreferencesImpl.getAllAssetTypes(
 				RandomTestUtil.randomLong()));
 	}
 
@@ -105,13 +105,13 @@ public class TypeFacetPortletPreferencesImplTest {
 		_mockAssetRendererFactoryRegistry(
 			assetRendererFactory1, assetRendererFactory2);
 
-		String[] entryClassNames = {CLASS_NAME_1};
+		String[] entryClassNames = {_CLASS_NAME_1};
 
 		_mockSearchEngineHelperEntryClassNames(entryClassNames);
 
 		Assert.assertArrayEquals(
 			entryClassNames,
-			typeFacetPortletPreferencesImpl.getAllAssetTypes(
+			_typeFacetPortletPreferencesImpl.getAllAssetTypes(
 				RandomTestUtil.randomLong()));
 	}
 
@@ -122,27 +122,21 @@ public class TypeFacetPortletPreferencesImplTest {
 		_mockAssetRendererFactoryRegistry(
 			assetRendererFactory1, assetRendererFactory2);
 
-		String[] entryClassNames = {CLASS_NAME_1, CLASS_NAME_2};
+		String[] entryClassNames = {_CLASS_NAME_1, _CLASS_NAME_2};
 
 		_mockSearchEngineHelperEntryClassNames(entryClassNames);
 
 		Assert.assertArrayEquals(
-			new String[] {CLASS_NAME_2},
-			typeFacetPortletPreferencesImpl.getAllAssetTypes(
+			new String[] {_CLASS_NAME_2},
+			_typeFacetPortletPreferencesImpl.getAllAssetTypes(
 				RandomTestUtil.randomLong()));
 	}
-
-	protected static final String CLASS_NAME_1 = "com.liferay.model.Model1";
-
-	protected static final String CLASS_NAME_2 = "com.liferay.model.Model2";
 
 	@Mock
 	protected AssetRendererFactory<?> assetRendererFactory1;
 
 	@Mock
 	protected AssetRendererFactory<?> assetRendererFactory2;
-
-	protected TypeFacetPortletPreferencesImpl typeFacetPortletPreferencesImpl;
 
 	private void _mockAssetRendererFactoryGetClassName(
 		AssetRendererFactory<?> assetRendererFactory, String className) {
@@ -185,6 +179,10 @@ public class TypeFacetPortletPreferencesImplTest {
 		);
 	}
 
+	private static final String _CLASS_NAME_1 = "com.liferay.model.Model1";
+
+	private static final String _CLASS_NAME_2 = "com.liferay.model.Model2";
+
 	@Mock
 	private AssetRendererFactoryRegistry _assetRendererFactoryRegistry;
 
@@ -193,5 +191,7 @@ public class TypeFacetPortletPreferencesImplTest {
 
 	@Mock
 	private SearchEngineHelper _searchEngineHelper;
+
+	private TypeFacetPortletPreferencesImpl _typeFacetPortletPreferencesImpl;
 
 }

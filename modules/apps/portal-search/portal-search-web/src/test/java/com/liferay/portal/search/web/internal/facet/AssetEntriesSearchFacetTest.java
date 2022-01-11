@@ -43,7 +43,7 @@ public class AssetEntriesSearchFacetTest {
 
 	@Before
 	public void setUp() {
-		assetEntriesSearchFacet = new AssetEntriesSearchFacet() {
+		_assetEntriesSearchFacet = new AssetEntriesSearchFacet() {
 			{
 				searchableAssetClassNamesProvider =
 					new SearchableAssetClassNamesProviderImpl() {
@@ -57,11 +57,11 @@ public class AssetEntriesSearchFacetTest {
 		};
 
 		_mockAssetRendererFactoryGetClassName(
-			assetRendererFactory1, CLASS_NAME_1);
+			assetRendererFactory1, _CLASS_NAME_1);
 		_mockAssetRendererFactoryIsSearchable(assetRendererFactory1, true);
 
 		_mockAssetRendererFactoryGetClassName(
-			assetRendererFactory2, CLASS_NAME_2);
+			assetRendererFactory2, _CLASS_NAME_2);
 		_mockAssetRendererFactoryIsSearchable(assetRendererFactory2, true);
 	}
 
@@ -70,26 +70,28 @@ public class AssetEntriesSearchFacetTest {
 		_mockAssetRendererFactoryRegistry(
 			assetRendererFactory1, assetRendererFactory2);
 
-		String[] assetEntryClassNames = {CLASS_NAME_1, CLASS_NAME_2};
+		String[] assetEntryClassNames = {_CLASS_NAME_1, _CLASS_NAME_2};
 
 		_mockSearchEngineHelperassetEntryClassNames(assetEntryClassNames);
 
 		Assert.assertArrayEquals(
 			assetEntryClassNames,
-			assetEntriesSearchFacet.getAssetTypes(RandomTestUtil.randomLong()));
+			_assetEntriesSearchFacet.getAssetTypes(
+				RandomTestUtil.randomLong()));
 	}
 
 	@Test
 	public void testGetAssetTypesNotInRegistry() {
 		_mockAssetRendererFactoryRegistry(assetRendererFactory2);
 
-		String[] assetEntryClassNames = {CLASS_NAME_1, CLASS_NAME_2};
+		String[] assetEntryClassNames = {_CLASS_NAME_1, _CLASS_NAME_2};
 
 		_mockSearchEngineHelperassetEntryClassNames(assetEntryClassNames);
 
 		Assert.assertArrayEquals(
-			new String[] {CLASS_NAME_2},
-			assetEntriesSearchFacet.getAssetTypes(RandomTestUtil.randomLong()));
+			new String[] {_CLASS_NAME_2},
+			_assetEntriesSearchFacet.getAssetTypes(
+				RandomTestUtil.randomLong()));
 	}
 
 	@Test
@@ -97,13 +99,14 @@ public class AssetEntriesSearchFacetTest {
 		_mockAssetRendererFactoryRegistry(
 			assetRendererFactory1, assetRendererFactory2);
 
-		String[] assetEntryClassNames = {CLASS_NAME_1};
+		String[] assetEntryClassNames = {_CLASS_NAME_1};
 
 		_mockSearchEngineHelperassetEntryClassNames(assetEntryClassNames);
 
 		Assert.assertArrayEquals(
 			assetEntryClassNames,
-			assetEntriesSearchFacet.getAssetTypes(RandomTestUtil.randomLong()));
+			_assetEntriesSearchFacet.getAssetTypes(
+				RandomTestUtil.randomLong()));
 	}
 
 	@Test
@@ -113,20 +116,15 @@ public class AssetEntriesSearchFacetTest {
 		_mockAssetRendererFactoryRegistry(
 			assetRendererFactory1, assetRendererFactory2);
 
-		String[] assetEntryClassNames = {CLASS_NAME_1, CLASS_NAME_2};
+		String[] assetEntryClassNames = {_CLASS_NAME_1, _CLASS_NAME_2};
 
 		_mockSearchEngineHelperassetEntryClassNames(assetEntryClassNames);
 
 		Assert.assertArrayEquals(
-			new String[] {CLASS_NAME_2},
-			assetEntriesSearchFacet.getAssetTypes(RandomTestUtil.randomLong()));
+			new String[] {_CLASS_NAME_2},
+			_assetEntriesSearchFacet.getAssetTypes(
+				RandomTestUtil.randomLong()));
 	}
-
-	protected static final String CLASS_NAME_1 = "com.liferay.model.Model1";
-
-	protected static final String CLASS_NAME_2 = "com.liferay.model.Model2";
-
-	protected AssetEntriesSearchFacet assetEntriesSearchFacet;
 
 	@Mock
 	protected AssetRendererFactory<?> assetRendererFactory1;
@@ -174,6 +172,12 @@ public class AssetEntriesSearchFacetTest {
 			assetEntryClassNames
 		);
 	}
+
+	private static final String _CLASS_NAME_1 = "com.liferay.model.Model1";
+
+	private static final String _CLASS_NAME_2 = "com.liferay.model.Model2";
+
+	private AssetEntriesSearchFacet _assetEntriesSearchFacet;
 
 	@Mock
 	private AssetRendererFactoryRegistry _assetRendererFactoryRegistry;

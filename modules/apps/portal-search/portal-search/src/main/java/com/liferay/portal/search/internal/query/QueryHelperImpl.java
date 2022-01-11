@@ -105,14 +105,12 @@ public class QueryHelperImpl implements QueryHelper {
 		return query;
 	}
 
-	protected Localization localization;
-
 	private Localization _getLocalization() {
 
 		// See LPS-72507
 
-		if (localization != null) {
-			return localization;
+		if (_localization != null) {
+			return _localization;
 		}
 
 		return LocalizationUtil.getLocalization();
@@ -124,5 +122,7 @@ public class QueryHelperImpl implements QueryHelper {
 		return localization.getLocalizedName(
 			name, LocaleUtil.toLanguageId(locale));
 	}
+
+	private Localization _localization;
 
 }

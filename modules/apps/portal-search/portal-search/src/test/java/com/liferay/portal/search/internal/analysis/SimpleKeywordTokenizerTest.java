@@ -68,7 +68,7 @@ public class SimpleKeywordTokenizerTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testTokenizeNull() {
-		simpleKeywordTokenizer.tokenize(null);
+		_simpleKeywordTokenizer.tokenize(null);
 	}
 
 	@Test
@@ -114,16 +114,16 @@ public class SimpleKeywordTokenizerTest {
 	}
 
 	protected boolean requiresTokenization(String string) {
-		return simpleKeywordTokenizer.requiresTokenization(string);
+		return _simpleKeywordTokenizer.requiresTokenization(string);
 	}
 
-	protected final SimpleKeywordTokenizer simpleKeywordTokenizer =
-		new SimpleKeywordTokenizer();
-
 	private void _assertTokenize(String string, String expected) {
-		List<String> tokens = simpleKeywordTokenizer.tokenize(string);
+		List<String> tokens = _simpleKeywordTokenizer.tokenize(string);
 
 		Assert.assertEquals(expected, tokens.toString());
 	}
+
+	private final SimpleKeywordTokenizer _simpleKeywordTokenizer =
+		new SimpleKeywordTokenizer();
 
 }

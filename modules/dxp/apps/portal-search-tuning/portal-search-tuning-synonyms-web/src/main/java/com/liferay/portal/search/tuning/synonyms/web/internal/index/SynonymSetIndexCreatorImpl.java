@@ -47,12 +47,12 @@ public class SynonymSetIndexCreatorImpl implements SynonymSetIndexCreator {
 		_searchEngineAdapter.execute(deleteIndexRequest);
 	}
 
-	protected static final String INDEX_SETTINGS_RESOURCE_NAME =
-		"/META-INF/search/liferay-search-tuning-synonyms-index.json";
-
 	private String _readIndexSettings() {
-		return StringUtil.read(getClass(), INDEX_SETTINGS_RESOURCE_NAME);
+		return StringUtil.read(getClass(), _INDEX_SETTINGS_RESOURCE_NAME);
 	}
+
+	private static final String _INDEX_SETTINGS_RESOURCE_NAME =
+		"/META-INF/search/liferay-search-tuning-synonyms-index.json";
 
 	@Reference
 	private SearchEngineAdapter _searchEngineAdapter;

@@ -220,7 +220,7 @@ public abstract class BaseCommerceMLForecastServiceImpl
 
 	protected Sort[] getDefaultSort(boolean reverse) {
 		Sort sort = SortFactoryUtil.create(
-			CommerceMLForecastField.TIMESTAMP.concat(SORTABLE_FIELD_SUFFIX),
+			CommerceMLForecastField.TIMESTAMP.concat(_SORTABLE_FIELD_SUFFIX),
 			reverse);
 
 		return new Sort[] {sort};
@@ -358,8 +358,6 @@ public abstract class BaseCommerceMLForecastServiceImpl
 	protected static final ZoneId DEFAULT_ZONE_OFFSET =
 		ZoneOffset.systemDefault();
 
-	protected static final String SORTABLE_FIELD_SUFFIX = "_sortable";
-
 	@Reference(
 		target = "(component.name=com.liferay.commerce.machine.learning.internal.forecast.search.index.CommerceMLForecastIndexer)"
 	)
@@ -412,6 +410,8 @@ public abstract class BaseCommerceMLForecastServiceImpl
 	}
 
 	private static final String _INDEX_DATE_FORMAT_PATTERN = "yyyyMMddHHmmss";
+
+	private static final String _SORTABLE_FIELD_SUFFIX = "_sortable";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseCommerceMLForecastServiceImpl.class);

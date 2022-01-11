@@ -34,7 +34,8 @@ public class SynonymSetIndexCreationIndexContributor
 	public void onAfterCreate(String companyIndexName) {
 		SynonymSetIndexName synonymSetIndexName =
 			() ->
-				companyIndexName + StringPool.DASH + SYNONYMS_INDEX_NAME_SUFFIX;
+				companyIndexName + StringPool.DASH +
+					_SYNONYMS_INDEX_NAME_SUFFIX;
 
 		if (!_synonymSetIndexReader.isExists(synonymSetIndexName)) {
 			return;
@@ -44,7 +45,7 @@ public class SynonymSetIndexCreationIndexContributor
 			synonymSetIndexName, companyIndexName, false);
 	}
 
-	protected static final String SYNONYMS_INDEX_NAME_SUFFIX =
+	private static final String _SYNONYMS_INDEX_NAME_SUFFIX =
 		"search-tuning-synonyms";
 
 	@Reference

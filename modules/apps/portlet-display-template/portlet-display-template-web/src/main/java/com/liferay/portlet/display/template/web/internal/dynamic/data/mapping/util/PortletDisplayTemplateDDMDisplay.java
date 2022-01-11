@@ -95,7 +95,7 @@ public class PortletDisplayTemplateDDMDisplay extends BaseDDMDisplay {
 		}
 
 		return new long[] {
-			portletDisplayTemplate.getDDMTemplateGroupId(
+			_portletDisplayTemplate.getDDMTemplateGroupId(
 				themeDisplay.getScopeGroupId())
 		};
 	}
@@ -205,15 +205,15 @@ public class PortletDisplayTemplateDDMDisplay extends BaseDDMDisplay {
 	protected void setPortletDisplayTemplate(
 		PortletDisplayTemplate portletDisplayTemplate) {
 
-		this.portletDisplayTemplate = portletDisplayTemplate;
+		_portletDisplayTemplate = portletDisplayTemplate;
 	}
-
-	protected PortletDisplayTemplate portletDisplayTemplate;
 
 	private static final Set<String> _viewTemplateExcludedColumnNames =
 		SetUtil.fromArray("language", "mode", "structure");
 
 	@Reference
 	private Portal _portal;
+
+	private PortletDisplayTemplate _portletDisplayTemplate;
 
 }

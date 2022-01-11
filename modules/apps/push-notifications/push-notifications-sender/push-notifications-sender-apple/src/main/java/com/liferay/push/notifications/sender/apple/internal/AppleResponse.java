@@ -30,7 +30,7 @@ public class AppleResponse extends BaseResponse {
 
 		this(apnsPushNotification);
 
-		this.resent = resent;
+		_resent = resent;
 
 		succeeded = true;
 	}
@@ -44,11 +44,11 @@ public class AppleResponse extends BaseResponse {
 	}
 
 	public int getExpiry() {
-		return expiry;
+		return _expiry;
 	}
 
 	public boolean isResent() {
-		return resent;
+		return _resent;
 	}
 
 	protected AppleResponse(ApnsPushNotification apnsPushNotification) {
@@ -57,7 +57,7 @@ public class AppleResponse extends BaseResponse {
 		if (apnsPushNotification != null) {
 			Instant instant = apnsPushNotification.getExpiration();
 
-			expiry = instant.getNano();
+			_expiry = instant.getNano();
 
 			id = apnsPushNotification.getCollapseId();
 			payload = apnsPushNotification.getPayload();
@@ -65,7 +65,7 @@ public class AppleResponse extends BaseResponse {
 		}
 	}
 
-	protected int expiry;
-	protected boolean resent;
+	private int _expiry;
+	private boolean _resent;
 
 }

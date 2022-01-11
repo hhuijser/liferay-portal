@@ -92,7 +92,7 @@ public class UserGroupIndexerIndexedFieldsTest {
 
 		Document document = userGroupIndexerFixture.searchOnlyOne(searchTerm);
 
-		indexedFieldsFixture.postProcessDocument(document);
+		_indexedFieldsFixture.postProcessDocument(document);
 
 		FieldValuesAssert.assertFieldValues(
 			_expectedFieldValues(userGroup), document, searchTerm);
@@ -104,7 +104,7 @@ public class UserGroupIndexerIndexedFieldsTest {
 
 		String expandoColumnObs = "expandoColumnObs";
 
-		expandoTableSearchFixture.addExpandoColumn(
+		_expandoTableSearchFixture.addExpandoColumn(
 			UserGroup.class, ExpandoColumnConstants.INDEX_TYPE_KEYWORD,
 			expandoColumnObs, expandoColumnName);
 
@@ -119,7 +119,7 @@ public class UserGroupIndexerIndexedFieldsTest {
 
 		Document document = userGroupIndexerFixture.searchOnlyOne(searchTerm);
 
-		indexedFieldsFixture.postProcessDocument(document);
+		_indexedFieldsFixture.postProcessDocument(document);
 
 		FieldValuesAssert.assertFieldValues(
 			_expectedFieldValuesWithExpando(userGroup), document, searchTerm);
@@ -162,9 +162,6 @@ public class UserGroupIndexerIndexedFieldsTest {
 	@Inject
 	protected ExpandoTableLocalService expandoTableLocalService;
 
-	protected ExpandoTableSearchFixture expandoTableSearchFixture;
-	protected IndexedFieldsFixture indexedFieldsFixture;
-
 	@Inject
 	protected ResourcePermissionLocalService resourcePermissionLocalService;
 
@@ -202,7 +199,7 @@ public class UserGroupIndexerIndexedFieldsTest {
 			"name_sortable", StringUtil.lowerCase(userGroup.getName())
 		).build();
 
-		indexedFieldsFixture.populateUID(userGroup, map);
+		_indexedFieldsFixture.populateUID(userGroup, map);
 
 		_populateDates(userGroup, map);
 		_populateRoles(userGroup, map);
@@ -228,32 +225,32 @@ public class UserGroupIndexerIndexedFieldsTest {
 	}
 
 	private void _populateDates(UserGroup userGroup, Map<String, String> map) {
-		indexedFieldsFixture.populateDate(
+		_indexedFieldsFixture.populateDate(
 			Field.CREATE_DATE, userGroup.getCreateDate(), map);
-		indexedFieldsFixture.populateDate(
+		_indexedFieldsFixture.populateDate(
 			Field.MODIFIED_DATE, userGroup.getModifiedDate(), map);
 	}
 
 	private void _populateRoles(UserGroup userGroup, Map<String, String> map)
 		throws Exception {
 
-		indexedFieldsFixture.populateRoleIdFields(
+		_indexedFieldsFixture.populateRoleIdFields(
 			userGroup.getCompanyId(), UserGroup.class.getName(),
 			userGroup.getUserGroupId(), userGroup.getGroupId(), null, map);
 	}
 
 	private void _setUpExpandoTableSearchFixture() {
-		expandoTableSearchFixture = new ExpandoTableSearchFixture(
+		_expandoTableSearchFixture = new ExpandoTableSearchFixture(
 			classNameLocalService, expandoColumnLocalService,
 			expandoTableLocalService);
 
-		_expandoColumns = expandoTableSearchFixture.getExpandoColumns();
+		_expandoColumns = _expandoTableSearchFixture.getExpandoColumns();
 
-		_expandoTables = expandoTableSearchFixture.getExpandoTables();
+		_expandoTables = _expandoTableSearchFixture.getExpandoTables();
 	}
 
 	private void _setUpIndexedFieldsFixture() {
-		indexedFieldsFixture = new IndexedFieldsFixture(
+		_indexedFieldsFixture = new IndexedFieldsFixture(
 			resourcePermissionLocalService, uidFactory, documentBuilderFactory);
 	}
 
@@ -263,10 +260,13 @@ public class UserGroupIndexerIndexedFieldsTest {
 	@DeleteAfterTestRun
 	private List<ExpandoTable> _expandoTables;
 
+	private ExpandoTableSearchFixture _expandoTableSearchFixture;
 	private Group _group;
 
 	@DeleteAfterTestRun
 	private List<Group> _groups;
+
+	private IndexedFieldsFixture _indexedFieldsFixture;
 
 	@DeleteAfterTestRun
 	private List<UserGroup> _userGroups;

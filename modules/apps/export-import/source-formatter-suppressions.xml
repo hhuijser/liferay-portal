@@ -4,4 +4,7 @@
 	<checkstyle>
 		<suppress checks="StaticVariableNameCheck" files="export-import-web/src/main/java/com/liferay/exportimport/web/internal/configuration/ExportImportWebConfigurationValues\.java" />
 	</checkstyle>
+	<source-check>
+		<suppress checks="JavaVariableTypeCheck" files="export-import-service/src/main/java/com/liferay/exportimport/internal/background/task/display/LayoutStagingBackgroundTaskDisplay\.java" />
+	</source-check>
 </suppressions>

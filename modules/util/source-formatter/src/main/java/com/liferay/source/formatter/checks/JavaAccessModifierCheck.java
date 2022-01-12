@@ -59,14 +59,12 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 
 		String packageName = javaClass.getPackageName();
 
-		if (packageName == null) {
-			return javaTerm.getContent();
-		}
-
-		if (packageName.contains(".internal.") ||
-			packageName.endsWith(".internal")) {
+		if ((packageName != null) &&
+			(packageName.contains(".internal.") ||
+			 packageName.endsWith(".internal"))) {
 
 			_checkProtectedMethods(fileName, javaClass);
+			_checkProtectedVariables(fileName, javaClass);
 		}
 
 		return javaTerm.getContent();
@@ -80,8 +78,6 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 	private void _checkProtectedMethods(String fileName, JavaClass javaClass)
 		throws Exception {
 
-		Set<JavaClass> relatedJavaClasses = null;
-
 		outerLoop:
 		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
 			if (!childJavaTerm.isJavaMethod() || !childJavaTerm.isProtected() ||
@@ -92,17 +88,12 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 
 			String methodName = childJavaTerm.getName();
 
-			if (methodName.startsWith("_")) {
-				methodName = methodName.substring(1);
-			}
-
 			if (_hasBindMethod(javaClass, methodName)) {
 				continue;
 			}
 
-			if (relatedJavaClasses == null) {
-				relatedJavaClasses = _getRelatedJavaClasses(javaClass);
-			}
+			Set<JavaClass> relatedJavaClasses = _getRelatedJavaClasses(
+				javaClass);
 
 			Pattern pattern = Pattern.compile(
 				StringBundler.concat("([^\\w_])(", methodName, "[^\\w_])"));
@@ -120,6 +111,55 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 				fileName,
 				StringBundler.concat(
 					"Access modifier of method '", methodName,
+					"' should be 'private'"),
+				childJavaTerm.getLineNumber());
+		}
+	}
+
+	private void _checkProtectedVariables(String fileName, JavaClass javaClass)
+		throws Exception {
+
+		outerLoop:
+		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
+			if (!childJavaTerm.isJavaVariable() ||
+				!childJavaTerm.isProtected() || childJavaTerm.hasAnnotation()) {
+
+				continue;
+			}
+
+			String variableName = childJavaTerm.getName();
+
+			Pattern pattern = Pattern.compile(
+				StringBundler.concat("([^\\w_])(", variableName, "[^\\w_])"));
+
+			Matcher globalAnnotationsMatcher =
+				_globalAnnotationsPattern.matcher(javaClass.getContent());
+
+			if (globalAnnotationsMatcher.find()) {
+				Matcher matcher = pattern.matcher(
+					globalAnnotationsMatcher.group());
+
+				if (matcher.find()) {
+					continue;
+				}
+			}
+
+			Set<JavaClass> relatedJavaClasses = _getRelatedJavaClasses(
+				javaClass);
+
+			for (JavaClass relatedJavaClass : relatedJavaClasses) {
+				Matcher matcher = pattern.matcher(
+					relatedJavaClass.getContent());
+
+				if (matcher.find()) {
+					continue outerLoop;
+				}
+			}
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Access modifier of variable '", variableName,
 					"' should be 'private'"),
 				childJavaTerm.getLineNumber());
 		}
@@ -176,7 +216,14 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 			JavaClass javaClass)
 		throws Exception {
 
-		Set<JavaClass> relatedJavaClasses = new HashSet<>();
+		Set<JavaClass> relatedJavaClasses = _relatedJavaClassesMap.get(
+			javaClass.getName(true));
+
+		if (relatedJavaClasses != null) {
+			return relatedJavaClasses;
+		}
+
+		relatedJavaClasses = new HashSet<>();
 
 		String packageName = javaClass.getPackageName();
 
@@ -254,6 +301,8 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 			_getExtendsJavaClasses(
 				javaClass.getName(true), internalPackageJavaClasses));
 
+		_relatedJavaClassesMap.put(javaClass.getName(true), relatedJavaClasses);
+
 		return relatedJavaClasses;
 	}
 
@@ -291,9 +340,14 @@ public class JavaAccessModifierCheck extends BaseJavaTermCheck {
 		return false;
 	}
 
+	private static final Pattern _globalAnnotationsPattern = Pattern.compile(
+		"\n@.*?\npublic ", Pattern.DOTALL);
+
 	private List<String> _allFileNames;
 	private List<String> _allJavaFileNames;
 	private final Map<String, List<JavaClass>> _javaClassesMap =
+		new HashMap<>();
+	private final Map<String, Set<JavaClass>> _relatedJavaClassesMap =
 		new HashMap<>();
 
 }

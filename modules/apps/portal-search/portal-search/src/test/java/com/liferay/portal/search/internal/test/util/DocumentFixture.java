@@ -41,8 +41,6 @@ public class DocumentFixture {
 		_tearDownPropsUtil();
 	}
 
-	protected Props props;
-
 	private void _setUpFastDateFormatFactoryUtil() {
 		_fastDateFormatFactory =
 			FastDateFormatFactoryUtil.getFastDateFormatFactory();
@@ -65,38 +63,6 @@ public class DocumentFixture {
 
 	private void _setUpPropsUtil() {
 		_props = PropsUtil.getProps();
-
-		props = PropsTestUtil.setProps(
-			HashMapBuilder.<String, Object>put(
-				PropsKeys.INDEX_DATE_FORMAT_PATTERN, "yyyyMMddHHmmss"
-			).put(
-				PropsKeys.INDEX_SEARCH_COLLATED_SPELL_CHECK_RESULT_ENABLED,
-				"true"
-			).put(
-				PropsKeys.
-					INDEX_SEARCH_COLLATED_SPELL_CHECK_RESULT_SCORES_THRESHOLD,
-				"50"
-			).put(
-				PropsKeys.INDEX_SEARCH_HIGHLIGHT_FRAGMENT_SIZE, "80"
-			).put(
-				PropsKeys.INDEX_SEARCH_HIGHLIGHT_REQUIRE_FIELD_MATCH, "true"
-			).put(
-				PropsKeys.INDEX_SEARCH_HIGHLIGHT_SNIPPET_SIZE, "3"
-			).put(
-				PropsKeys.INDEX_SEARCH_QUERY_INDEXING_ENABLED, "true"
-			).put(
-				PropsKeys.INDEX_SEARCH_QUERY_INDEXING_THRESHOLD, "50"
-			).put(
-				PropsKeys.INDEX_SEARCH_QUERY_SUGGESTION_ENABLED, "true"
-			).put(
-				PropsKeys.INDEX_SEARCH_QUERY_SUGGESTION_MAX, "yyyyMMddHHmmss"
-			).put(
-				PropsKeys.INDEX_SEARCH_QUERY_SUGGESTION_SCORES_THRESHOLD, "0"
-			).put(
-				PropsKeys.INDEX_SEARCH_SCORING_ENABLED, "true"
-			).put(
-				PropsKeys.INDEX_SORTABLE_TEXT_FIELDS_TRUNCATED_LENGTH, "255"
-			).build());
 	}
 
 	private void _tearDownFastDateFormatFactoryUtil() {
@@ -113,8 +79,6 @@ public class DocumentFixture {
 		PropsUtil.setProps(_props);
 
 		_props = null;
-
-		props = null;
 	}
 
 	private FastDateFormatFactory _fastDateFormatFactory;

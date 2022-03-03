@@ -245,7 +245,7 @@ public class DefaultWorkflowEngineImpl
 
 			List<String> transitionNames = new ArrayList<>();
 
-			getNextTransitionNames(rootKaleoInstanceToken, transitionNames);
+			_getNextTransitionNames(rootKaleoInstanceToken, transitionNames);
 
 			return transitionNames;
 		}
@@ -761,33 +761,6 @@ public class DefaultWorkflowEngineImpl
 		}
 	}
 
-	protected void getNextTransitionNames(
-			KaleoInstanceToken kaleoInstanceToken, List<String> transitionNames)
-		throws Exception {
-
-		if (kaleoInstanceToken.hasIncompleteChildrenKaleoInstanceToken()) {
-			List<KaleoInstanceToken> incompleteChildrenKaleoInstanceTokens =
-				kaleoInstanceToken.getIncompleteChildrenKaleoInstanceTokens();
-
-			for (KaleoInstanceToken incompleteChildrenKaleoInstanceToken :
-					incompleteChildrenKaleoInstanceTokens) {
-
-				getNextTransitionNames(
-					incompleteChildrenKaleoInstanceToken, transitionNames);
-			}
-		}
-		else {
-			KaleoNode kaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
-
-			List<KaleoTransition> kaleoTransitions =
-				kaleoNode.getKaleoTransitions();
-
-			for (KaleoTransition kaleoTransition : kaleoTransitions) {
-				transitionNames.add(kaleoTransition.getName());
-			}
-		}
-	}
-
 	@Reference
 	protected PortalUUID portalUUID;
 
@@ -856,6 +829,33 @@ public class DefaultWorkflowEngineImpl
 		}
 
 		return portalUUID.generate();
+	}
+
+	private void _getNextTransitionNames(
+			KaleoInstanceToken kaleoInstanceToken, List<String> transitionNames)
+		throws Exception {
+
+		if (kaleoInstanceToken.hasIncompleteChildrenKaleoInstanceToken()) {
+			List<KaleoInstanceToken> incompleteChildrenKaleoInstanceTokens =
+				kaleoInstanceToken.getIncompleteChildrenKaleoInstanceTokens();
+
+			for (KaleoInstanceToken incompleteChildrenKaleoInstanceToken :
+					incompleteChildrenKaleoInstanceTokens) {
+
+				_getNextTransitionNames(
+					incompleteChildrenKaleoInstanceToken, transitionNames);
+			}
+		}
+		else {
+			KaleoNode kaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
+
+			List<KaleoTransition> kaleoTransitions =
+				kaleoNode.getKaleoTransitions();
+
+			for (KaleoTransition kaleoTransition : kaleoTransitions) {
+				transitionNames.add(kaleoTransition.getName());
+			}
+		}
 	}
 
 	private String _getVersion(int version) {

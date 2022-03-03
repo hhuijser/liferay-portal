@@ -57,17 +57,15 @@ public class UnicastSettingsContributor extends BaseSettingsContributor {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		elasticsearchConfiguration = ConfigurableUtil.createConfigurable(
+		_elasticsearchConfiguration = ConfigurableUtil.createConfigurable(
 			ElasticsearchConfiguration.class, properties);
 	}
-
-	protected volatile ElasticsearchConfiguration elasticsearchConfiguration;
 
 	private String[] _getHosts() {
 		String[] hosts = _clusterSettingsContext.getHosts();
 
 		String port =
-			elasticsearchConfiguration.discoveryZenPingUnicastHostsPort();
+			_elasticsearchConfiguration.discoveryZenPingUnicastHostsPort();
 
 		port = CharPool.COLON + port;
 
@@ -80,5 +78,7 @@ public class UnicastSettingsContributor extends BaseSettingsContributor {
 
 	@Reference
 	private ClusterSettingsContext _clusterSettingsContext;
+
+	private volatile ElasticsearchConfiguration _elasticsearchConfiguration;
 
 }

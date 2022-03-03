@@ -80,7 +80,7 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 
 	@After
 	public void tearDown() {
-		for (Class<?> serviceUtilClass : serviceUtilClasses) {
+		for (Class<?> serviceUtilClass : _serviceUtilClasses) {
 			ReflectionTestUtil.setFieldValue(
 				serviceUtilClass, "_service", null);
 		}
@@ -89,7 +89,7 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 	protected <T> T getMockPortalService(
 		Class<?> serviceUtilClass, Class<T> serviceClass) {
 
-		serviceUtilClasses.add(serviceUtilClass);
+		_serviceUtilClasses.add(serviceUtilClass);
 
 		T serviceMock = mock(serviceClass);
 
@@ -103,37 +103,37 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 		when(
 			passwordPolicy.getGraceLimit()
 		).thenReturn(
-			GRACE_LIMIT
+			_GRACE_LIMIT
 		);
 
 		when(
 			passwordPolicy.getHistoryCount()
 		).thenReturn(
-			HISTORY_COUNT
+			_HISTORY_COUNT
 		);
 
 		when(
 			passwordPolicy.getLockoutDuration()
 		).thenReturn(
-			LOCKOUT_DURATION
+			_LOCKOUT_DURATION
 		);
 
 		when(
 			passwordPolicy.getMaxAge()
 		).thenReturn(
-			MAX_AGE
+			_MAX_AGE
 		);
 
 		when(
 			passwordPolicy.getMinAge()
 		).thenReturn(
-			MIN_AGE
+			_MIN_AGE
 		);
 
 		when(
 			passwordPolicy.getResetFailureCount()
 		).thenReturn(
-			RESET_FAILURE_COUNT
+			_RESET_FAILURE_COUNT
 		);
 
 		when(
@@ -181,21 +181,8 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 		);
 	}
 
-	protected static final int GRACE_LIMIT = 7200000;
-
-	protected static final int HISTORY_COUNT = 3600000;
-
-	protected static final long LOCKOUT_DURATION = 7200000;
-
-	protected static final long MAX_AGE = 14400000;
-
-	protected static final long MIN_AGE = 3600000;
-
 	protected static final long PRIMARY_KEY = 42;
 
-	protected static final long RESET_FAILURE_COUNT = 3600000;
-
-	protected final List<Company> companies = new ArrayList<>();
 	protected Company company;
 	protected GroupLocalService groupLocalService;
 	protected ImageService imageService;
@@ -203,7 +190,6 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 	protected Props props;
 	protected RoleLocalService roleLocalService;
 	protected SearchBase searchBase;
-	protected final List<Class<?>> serviceUtilClasses = new ArrayList<>();
 	protected UserGroupLocalService userGroupLocalService;
 	protected UserLocalService userLocalService;
 
@@ -222,7 +208,7 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 			"liferay.com"
 		);
 
-		companies.add(company);
+		_companies.add(company);
 
 		CompanyLocalService companyLocalService = getMockPortalService(
 			CompanyLocalServiceUtil.class, CompanyLocalService.class);
@@ -230,13 +216,13 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 		when(
 			companyLocalService.getCompanies()
 		).thenReturn(
-			companies
+			_companies
 		);
 
 		when(
 			companyLocalService.getCompanies(Mockito.anyBoolean())
 		).thenReturn(
-			companies
+			_companies
 		);
 
 		when(
@@ -352,7 +338,7 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 		when(
 			searchBase.getCompanies()
 		).thenReturn(
-			companies
+			_companies
 		);
 
 		when(
@@ -367,5 +353,20 @@ public abstract class BaseVLDAPTestCase extends PowerMockito {
 			"Liferay"
 		);
 	}
+
+	private static final int _GRACE_LIMIT = 7200000;
+
+	private static final int _HISTORY_COUNT = 3600000;
+
+	private static final long _LOCKOUT_DURATION = 7200000;
+
+	private static final long _MAX_AGE = 14400000;
+
+	private static final long _MIN_AGE = 3600000;
+
+	private static final long _RESET_FAILURE_COUNT = 3600000;
+
+	private final List<Company> _companies = new ArrayList<>();
+	private final List<Class<?>> _serviceUtilClasses = new ArrayList<>();
 
 }

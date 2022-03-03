@@ -114,7 +114,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 		}
 
 		for (long curLayoutSetPrototypeId : layoutSetPrototypeIds) {
-			layoutSetPrototypeService.deleteLayoutSetPrototype(
+			_layoutSetPrototypeService.deleteLayoutSetPrototype(
 				curLayoutSetPrototypeId);
 		}
 	}
@@ -127,7 +127,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 			actionRequest, "layoutSetPrototypeId");
 
 		SitesUtil.setMergeFailCount(
-			layoutSetPrototypeService.getLayoutSetPrototype(
+			_layoutSetPrototypeService.getLayoutSetPrototype(
 				layoutSetPrototypeId),
 			0);
 	}
@@ -159,7 +159,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 			// Add layout prototoype
 
 			layoutSetPrototype =
-				layoutSetPrototypeService.addLayoutSetPrototype(
+				_layoutSetPrototypeService.addLayoutSetPrototype(
 					nameMap, descriptionMap, active, layoutsUpdateable,
 					readyForPropagation, serviceContext);
 		}
@@ -168,7 +168,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 			// Update layout prototoype
 
 			layoutSetPrototype =
-				layoutSetPrototypeService.getLayoutSetPrototype(
+				_layoutSetPrototypeService.getLayoutSetPrototype(
 					layoutSetPrototypeId);
 
 			UnicodeProperties oldSettingsUnicodeProperties =
@@ -182,7 +182,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 				actionRequest, oldReadyForPropagation, readyForPropagation);
 
 			layoutSetPrototype =
-				layoutSetPrototypeService.updateLayoutSetPrototype(
+				_layoutSetPrototypeService.updateLayoutSetPrototype(
 					layoutSetPrototypeId, nameMap, descriptionMap, active,
 					layoutsUpdateable, readyForPropagation, serviceContext);
 		}
@@ -198,7 +198,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 		settingsUnicodeProperties.setProperty(
 			"customJspServletContextName", customJspServletContextName);
 
-		layoutSetPrototypeService.updateLayoutSetPrototype(
+		_layoutSetPrototypeService.updateLayoutSetPrototype(
 			layoutSetPrototype.getLayoutSetPrototypeId(),
 			settingsUnicodeProperties.toString());
 	}
@@ -211,7 +211,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 			actionRequest, "layoutSetPrototypeId");
 
 		LayoutSetPrototype layoutSetPrototype =
-			layoutSetPrototypeService.fetchLayoutSetPrototype(
+			_layoutSetPrototypeService.fetchLayoutSetPrototype(
 				layoutSetPrototypeId);
 
 		if (layoutSetPrototype == null) {
@@ -239,7 +239,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
 
-		layoutSetPrototypeService.updateLayoutSetPrototype(
+		_layoutSetPrototypeService.updateLayoutSetPrototype(
 			layoutSetPrototypeId, layoutSetPrototype.getNameMap(),
 			layoutSetPrototype.getDescriptionMap(), active, layoutsUpdateable,
 			readyForPropagation, serviceContext);
@@ -251,7 +251,7 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		PanelCategoryHelper panelCategoryHelper = new PanelCategoryHelper(
-			panelAppRegistry, panelCategoryRegistry);
+			_panelAppRegistry, _panelCategoryRegistry);
 
 		renderRequest.setAttribute(
 			ApplicationListWebKeys.PANEL_CATEGORY_HELPER, panelCategoryHelper);
@@ -282,24 +282,20 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 	protected void setLayoutSetPrototypeService(
 		LayoutSetPrototypeService layoutSetPrototypeService) {
 
-		this.layoutSetPrototypeService = layoutSetPrototypeService;
+		_layoutSetPrototypeService = layoutSetPrototypeService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setPanelAppRegistry(PanelAppRegistry panelAppRegistry) {
-		this.panelAppRegistry = panelAppRegistry;
+		_panelAppRegistry = panelAppRegistry;
 	}
 
 	@Reference(unbind = "-")
 	protected void setPanelCategoryRegistry(
 		PanelCategoryRegistry panelCategoryRegistry) {
 
-		this.panelCategoryRegistry = panelCategoryRegistry;
+		_panelCategoryRegistry = panelCategoryRegistry;
 	}
-
-	protected LayoutSetPrototypeService layoutSetPrototypeService;
-	protected PanelAppRegistry panelAppRegistry;
-	protected PanelCategoryRegistry panelCategoryRegistry;
 
 	private void _addSessionMessages(
 		ActionRequest actionRequest, boolean oldReadyForPropagation,
@@ -313,5 +309,9 @@ public class LayoutSetPrototypePortlet extends MVCPortlet {
 			SessionMessages.add(actionRequest, "enablePropagation");
 		}
 	}
+
+	private LayoutSetPrototypeService _layoutSetPrototypeService;
+	private PanelAppRegistry _panelAppRegistry;
+	private PanelCategoryRegistry _panelCategoryRegistry;
 
 }

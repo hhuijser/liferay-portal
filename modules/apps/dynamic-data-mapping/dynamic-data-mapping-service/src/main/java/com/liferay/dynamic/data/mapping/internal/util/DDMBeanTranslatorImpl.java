@@ -103,7 +103,7 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 			ddmFormField.getFieldNamespace());
 		translatedDDMFormField.setIndexType(ddmFormField.getIndexType());
 		translatedDDMFormField.setDDMFormFieldOptions(
-			translate(ddmFormField.getDDMFormFieldOptions()));
+			_translate(ddmFormField.getDDMFormFieldOptions()));
 		translatedDDMFormField.setLabel(
 			_translateLocalizedValue(ddmFormField.getLabel()));
 		translatedDDMFormField.setLocalizable(ddmFormField.isLocalizable());
@@ -149,7 +149,7 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 			ddmFormField.getFieldNamespace());
 		translatedDDMFormField.setIndexType(ddmFormField.getIndexType());
 		translatedDDMFormField.setDDMFormFieldOptions(
-			translate(ddmFormField.getDDMFormFieldOptions()));
+			_translate(ddmFormField.getDDMFormFieldOptions()));
 		translatedDDMFormField.setLabel(
 			_translateLocalizedValue(ddmFormField.getLabel()));
 		translatedDDMFormField.setLocalizable(ddmFormField.isLocalizable());
@@ -197,7 +197,7 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 				ddmFormFieldValue : ddmFormValues.getDDMFormFieldValues()) {
 
 			translatedDDMFormValues.addDDMFormFieldValue(
-				translate(ddmFormFieldValue));
+				_translate(ddmFormFieldValue));
 		}
 
 		return translatedDDMFormValues;
@@ -228,13 +228,38 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 				ddmFormValues.getDDMFormFieldValues()) {
 
 			translatedDDMFormValues.addDDMFormFieldValue(
-				translate(ddmFormFieldValue));
+				_translate(ddmFormFieldValue));
 		}
 
 		return translatedDDMFormValues;
 	}
 
-	protected DDMFormFieldOptions translate(
+	private void _setProperties(
+		com.liferay.dynamic.data.mapping.kernel.DDMFormField ddmFormField,
+		Map<String, Object> properties) {
+
+		for (Map.Entry<String, Object> entry : properties.entrySet()) {
+			Object property = ddmFormField.getProperty(entry.getKey());
+
+			if (property == null) {
+				ddmFormField.setProperty(entry.getKey(), entry.getValue());
+			}
+		}
+	}
+
+	private void _setProperties(
+		DDMFormField ddmFormField, Map<String, Object> properties) {
+
+		for (Map.Entry<String, Object> entry : properties.entrySet()) {
+			Object property = ddmFormField.getProperty(entry.getKey());
+
+			if (property == null) {
+				ddmFormField.setProperty(entry.getKey(), entry.getValue());
+			}
+		}
+	}
+
+	private DDMFormFieldOptions _translate(
 		com.liferay.dynamic.data.mapping.kernel.DDMFormFieldOptions
 			ddmFormFieldOptions) {
 
@@ -267,8 +292,8 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 		return translatedDDMFormFieldOptions;
 	}
 
-	protected com.liferay.dynamic.data.mapping.kernel.DDMFormFieldOptions
-		translate(DDMFormFieldOptions ddmFormFieldOptions) {
+	private com.liferay.dynamic.data.mapping.kernel.DDMFormFieldOptions
+		_translate(DDMFormFieldOptions ddmFormFieldOptions) {
 
 		if (ddmFormFieldOptions == null) {
 			return null;
@@ -296,7 +321,7 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 		return translatedDDMFormFieldOptions;
 	}
 
-	protected DDMFormFieldValue translate(
+	private DDMFormFieldValue _translate(
 		com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue
 			ddmFormFieldValue) {
 
@@ -310,21 +335,21 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 			ddmFormFieldValue.getInstanceId());
 		translatedDDMFormFieldValue.setName(ddmFormFieldValue.getName());
 		translatedDDMFormFieldValue.setValue(
-			translate(ddmFormFieldValue.getValue()));
+			_translate(ddmFormFieldValue.getValue()));
 
 		for (com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue
 				nestedFormFieldValue :
 					ddmFormFieldValue.getNestedDDMFormFieldValues()) {
 
 			translatedDDMFormFieldValue.addNestedDDMFormFieldValue(
-				translate(nestedFormFieldValue));
+				_translate(nestedFormFieldValue));
 		}
 
 		return translatedDDMFormFieldValue;
 	}
 
-	protected com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue
-		translate(DDMFormFieldValue ddmFormFieldValue) {
+	private com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue
+		_translate(DDMFormFieldValue ddmFormFieldValue) {
 
 		if (ddmFormFieldValue == null) {
 			return null;
@@ -338,19 +363,19 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 			ddmFormFieldValue.getInstanceId());
 		translatedDDMFormFieldValue.setName(ddmFormFieldValue.getName());
 		translatedDDMFormFieldValue.setValue(
-			translate(ddmFormFieldValue.getValue()));
+			_translate(ddmFormFieldValue.getValue()));
 
 		for (DDMFormFieldValue nestedFormFieldValue :
 				ddmFormFieldValue.getNestedDDMFormFieldValues()) {
 
 			translatedDDMFormFieldValue.addNestedDDMFormFieldValue(
-				translate(nestedFormFieldValue));
+				_translate(nestedFormFieldValue));
 		}
 
 		return translatedDDMFormFieldValue;
 	}
 
-	protected Value translate(
+	private Value _translate(
 		com.liferay.dynamic.data.mapping.kernel.Value value) {
 
 		if (value == null) {
@@ -364,7 +389,7 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 		return _translateUnlocalizedValue(value);
 	}
 
-	protected com.liferay.dynamic.data.mapping.kernel.Value translate(
+	private com.liferay.dynamic.data.mapping.kernel.Value _translate(
 		Value value) {
 
 		if (value == null) {
@@ -376,31 +401,6 @@ public class DDMBeanTranslatorImpl implements DDMBeanTranslator {
 		}
 
 		return _translateUnlocalizedValue(value);
-	}
-
-	private void _setProperties(
-		com.liferay.dynamic.data.mapping.kernel.DDMFormField ddmFormField,
-		Map<String, Object> properties) {
-
-		for (Map.Entry<String, Object> entry : properties.entrySet()) {
-			Object property = ddmFormField.getProperty(entry.getKey());
-
-			if (property == null) {
-				ddmFormField.setProperty(entry.getKey(), entry.getValue());
-			}
-		}
-	}
-
-	private void _setProperties(
-		DDMFormField ddmFormField, Map<String, Object> properties) {
-
-		for (Map.Entry<String, Object> entry : properties.entrySet()) {
-			Object property = ddmFormField.getProperty(entry.getKey());
-
-			if (property == null) {
-				ddmFormField.setProperty(entry.getKey(), entry.getValue());
-			}
-		}
 	}
 
 	private LocalizedValue _translateLocalizedValue(

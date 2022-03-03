@@ -35,7 +35,7 @@ import java.util.stream.Stream;
 public class SearchHitImpl implements SearchHit, Serializable {
 
 	public void addHighlightFields(Collection<HighlightField> highlightFields) {
-		highlightFields.forEach(this::addHighlightField);
+		highlightFields.forEach(this::_addHighlightField);
 	}
 
 	public void addSources(Map<String, Object> sourcesMap) {
@@ -96,21 +96,13 @@ public class SearchHitImpl implements SearchHit, Serializable {
 		_sourcesMap.putAll(searchHitImpl._sourcesMap);
 	}
 
-	protected void addHighlightField(HighlightField highlightField) {
-		_highlightFieldsMap.put(highlightField.getName(), highlightField);
-	}
-
-	protected void addSource(String name, Object value) {
-		_sourcesMap.put(name, value);
-	}
-
 	protected static class Builder implements SearchHitBuilder {
 
 		@Override
 		public SearchHitBuilder addHighlightField(
 			HighlightField highlightField) {
 
-			_searchHitImpl.addHighlightField(highlightField);
+			_searchHitImpl._addHighlightField(highlightField);
 
 			return this;
 		}
@@ -141,7 +133,7 @@ public class SearchHitImpl implements SearchHit, Serializable {
 
 		@Override
 		public SearchHitBuilder addSource(String name, Object value) {
-			_searchHitImpl.addSource(name, value);
+			_searchHitImpl._addSource(name, value);
 
 			return this;
 		}
@@ -205,6 +197,14 @@ public class SearchHitImpl implements SearchHit, Serializable {
 	}
 
 	private SearchHitImpl() {
+	}
+
+	private void _addHighlightField(HighlightField highlightField) {
+		_highlightFieldsMap.put(highlightField.getName(), highlightField);
+	}
+
+	private void _addSource(String name, Object value) {
+		_sourcesMap.put(name, value);
 	}
 
 	private void _setDocument(Document document) {

@@ -35,29 +35,29 @@ public class CrossClusterReplicationConfigurationWrapperImpl
 
 	@Override
 	public String[] getCCRLocalClusterConnectionConfigurations() {
-		return crossClusterReplicationConfiguration.
+		return _crossClusterReplicationConfiguration.
 			ccrLocalClusterConnectionConfigurations();
 	}
 
 	@Override
 	public String getRemoteClusterAlias() {
-		return crossClusterReplicationConfiguration.remoteClusterAlias();
+		return _crossClusterReplicationConfiguration.remoteClusterAlias();
 	}
 
 	@Override
 	public boolean isCCREnabled() {
-		return crossClusterReplicationConfiguration.ccrEnabled();
+		return _crossClusterReplicationConfiguration.ccrEnabled();
 	}
 
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		crossClusterReplicationConfiguration =
+		_crossClusterReplicationConfiguration =
 			ConfigurableUtil.createConfigurable(
 				CrossClusterReplicationConfiguration.class, properties);
 	}
 
-	protected volatile CrossClusterReplicationConfiguration
-		crossClusterReplicationConfiguration;
+	private volatile CrossClusterReplicationConfiguration
+		_crossClusterReplicationConfiguration;
 
 }

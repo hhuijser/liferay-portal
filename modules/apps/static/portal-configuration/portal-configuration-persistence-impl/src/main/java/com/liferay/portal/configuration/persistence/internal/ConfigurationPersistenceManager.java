@@ -34,7 +34,6 @@ import com.liferay.portal.util.PropsValues;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import java.net.URI;
 
@@ -288,16 +287,6 @@ public class ConfigurationPersistenceManager
 			pidKey,
 			configurationModelListener ->
 				configurationModelListener.onAfterSave(pid, dictionary));
-	}
-
-	protected void store(ResultSet resultSet, Dictionary<?, ?> dictionary)
-		throws IOException, SQLException {
-
-		OutputStream outputStream = new UnsyncByteArrayOutputStream();
-
-		ConfigurationHandler.write(outputStream, dictionary);
-
-		resultSet.updateString(2, outputStream.toString());
 	}
 
 	@SuppressWarnings("unchecked")

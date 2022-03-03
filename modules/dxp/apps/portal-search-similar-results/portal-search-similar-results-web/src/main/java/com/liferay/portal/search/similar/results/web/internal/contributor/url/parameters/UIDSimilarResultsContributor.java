@@ -40,17 +40,17 @@ public class UIDSimilarResultsContributor implements SimilarResultsContributor {
 		RouteBuilder routeBuilder, RouteHelper routeHelper) {
 
 		routeBuilder.addAttribute(
-			UID,
+			_UID,
 			Objects.requireNonNull(
 				_httpHelper.getPortletIdParameter(
-					routeHelper.getURLString(), UID)));
+					routeHelper.getURLString(), _UID)));
 	}
 
 	@Override
 	public void resolveCriteria(
 		CriteriaBuilder criteriaBuilder, CriteriaHelper criteriaHelper) {
 
-		criteriaBuilder.uid((String)criteriaHelper.getRouteParameter(UID));
+		criteriaBuilder.uid((String)criteriaHelper.getRouteParameter(_UID));
 	}
 
 	@Reference(unbind = "-")
@@ -63,10 +63,10 @@ public class UIDSimilarResultsContributor implements SimilarResultsContributor {
 		DestinationBuilder destinationBuilder,
 		DestinationHelper destinationHelper) {
 
-		destinationBuilder.replaceParameter(UID, destinationHelper.getUID());
+		destinationBuilder.replaceParameter(_UID, destinationHelper.getUID());
 	}
 
-	protected static final String UID = "uid";
+	private static final String _UID = "uid";
 
 	private HttpHelper _httpHelper;
 

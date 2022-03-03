@@ -266,7 +266,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 					assetListAssetEntryProvider,
 					assetPublisherCustomizerRegistry.
 						getAssetPublisherCustomizer(rootPortletId),
-					assetPublisherHelper, assetPublisherWebConfiguration,
+					assetPublisherHelper, _assetPublisherWebConfiguration,
 					assetPublisherWebHelper, infoItemServiceTracker,
 					itemSelector, resourceRequest, resourceResponse,
 					resourceRequest.getPreferences(), requestContextMapper,
@@ -344,7 +344,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		assetPublisherWebConfiguration = ConfigurableUtil.createConfigurable(
+		_assetPublisherWebConfiguration = ConfigurableUtil.createConfigurable(
 			AssetPublisherWebConfiguration.class, properties);
 	}
 
@@ -365,7 +365,7 @@ public class AssetPublisherPortlet extends MVCPortlet {
 					assetListAssetEntryProvider,
 					assetPublisherCustomizerRegistry.
 						getAssetPublisherCustomizer(rootPortletId),
-					assetPublisherHelper, assetPublisherWebConfiguration,
+					assetPublisherHelper, _assetPublisherWebConfiguration,
 					assetPublisherWebHelper, infoItemServiceTracker,
 					itemSelector, renderRequest, renderResponse,
 					renderRequest.getPreferences(), requestContextMapper,
@@ -424,9 +424,6 @@ public class AssetPublisherPortlet extends MVCPortlet {
 	@Reference
 	protected AssetPublisherHelper assetPublisherHelper;
 
-	protected volatile AssetPublisherWebConfiguration
-		assetPublisherWebConfiguration;
-
 	@Reference
 	protected AssetPublisherWebHelper assetPublisherWebHelper;
 
@@ -484,5 +481,8 @@ public class AssetPublisherPortlet extends MVCPortlet {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AssetPublisherPortlet.class);
+
+	private volatile AssetPublisherWebConfiguration
+		_assetPublisherWebConfiguration;
 
 }

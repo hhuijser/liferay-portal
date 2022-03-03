@@ -45,12 +45,12 @@ public class DDMFormEvaluatorExpressionObserver
 		UpdateFieldPropertyRequest updateFieldPropertyRequest) {
 
 		if (Validator.isNull(updateFieldPropertyRequest.getInstanceId())) {
-			updateFieldProperty(
+			_updateFieldProperty(
 				updateFieldPropertyRequest.getField(),
 				updateFieldPropertyRequest.getProperties());
 		}
 		else {
-			updateFieldProperty(
+			_updateFieldProperty(
 				new DDMFormEvaluatorFieldContextKey(
 					updateFieldPropertyRequest.getField(),
 					updateFieldPropertyRequest.getInstanceId()),
@@ -63,7 +63,7 @@ public class DDMFormEvaluatorExpressionObserver
 		return builder.build();
 	}
 
-	protected void updateFieldProperty(
+	private void _updateFieldProperty(
 		DDMFormEvaluatorFieldContextKey ddmFormFieldContextKey,
 		Map<String, Object> properties) {
 
@@ -80,7 +80,7 @@ public class DDMFormEvaluatorExpressionObserver
 		ddmFormFieldProperties.putAll(properties);
 	}
 
-	protected void updateFieldProperty(
+	private void _updateFieldProperty(
 		String fieldName, Map<String, Object> properties) {
 
 		Set<DDMFormEvaluatorFieldContextKey> ddmFormFieldContextKeys =
@@ -90,7 +90,7 @@ public class DDMFormEvaluatorExpressionObserver
 		for (DDMFormEvaluatorFieldContextKey ddmFormFieldContextKey :
 				ddmFormFieldContextKeys) {
 
-			updateFieldProperty(ddmFormFieldContextKey, properties);
+			_updateFieldProperty(ddmFormFieldContextKey, properties);
 		}
 	}
 

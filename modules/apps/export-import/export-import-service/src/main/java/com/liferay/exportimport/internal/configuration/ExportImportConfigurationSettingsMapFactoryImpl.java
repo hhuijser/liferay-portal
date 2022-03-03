@@ -87,7 +87,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 		Map<String, String[]> parameterMap, Locale locale, TimeZone timeZone,
 		String fileName) {
 
-		return buildSettingsMap(
+		return _buildSettingsMap(
 			userId, sourceGroupId, sourcePlid, 0, 0, portletId, null, null,
 			null, parameterMap, StringPool.BLANK, 0, StringPool.BLANK, null,
 			null, locale, timeZone, fileName);
@@ -109,7 +109,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 		long[] layoutIds, Map<String, String[]> parameterMap, Locale locale,
 		TimeZone timeZone) {
 
-		return buildSettingsMap(
+		return _buildSettingsMap(
 			userId, 0, 0, targetGroupId, 0, StringPool.BLANK, privateLayout,
 			null, layoutIds, parameterMap, StringPool.BLANK, 0,
 			StringPool.BLANK, null, null, locale, timeZone, StringPool.BLANK);
@@ -130,7 +130,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 		long userId, long targetPlid, long targetGroupId, String portletId,
 		Map<String, String[]> parameterMap, Locale locale, TimeZone timeZone) {
 
-		return buildSettingsMap(
+		return _buildSettingsMap(
 			userId, 0, 0, targetGroupId, targetPlid, portletId, null, null,
 			null, parameterMap, StringPool.BLANK, 0, StringPool.BLANK, null,
 			null, locale, timeZone, StringPool.BLANK);
@@ -152,7 +152,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 		boolean privateLayout, long[] layoutIds,
 		Map<String, String[]> parameterMap, Locale locale, TimeZone timeZone) {
 
-		return buildSettingsMap(
+		return _buildSettingsMap(
 			userId, sourceGroupId, 0, targetGroupId, 0, StringPool.BLANK,
 			privateLayout, null, layoutIds, parameterMap, StringPool.BLANK, 0,
 			StringPool.BLANK, null, null, locale, timeZone, StringPool.BLANK);
@@ -177,7 +177,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 		boolean secureConnection, long remoteGroupId,
 		boolean remotePrivateLayout, Locale locale, TimeZone timeZone) {
 
-		return buildSettingsMap(
+		return _buildSettingsMap(
 			userId, sourceGroupId, 0, remoteGroupId, 0, StringPool.BLANK,
 			privateLayout, layoutIdMap, null, parameterMap, remoteAddress,
 			remotePort, remotePathContext, secureConnection,
@@ -205,7 +205,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 		long targetPlid, String portletId, Map<String, String[]> parameterMap,
 		Locale locale, TimeZone timeZone) {
 
-		return buildSettingsMap(
+		return _buildSettingsMap(
 			userId, sourceGroupId, sourcePlid, targetGroupId, targetPlid,
 			portletId, null, null, null, parameterMap, StringPool.BLANK, 0,
 			StringPool.BLANK, null, null, locale, timeZone, null);
@@ -316,7 +316,7 @@ public class ExportImportConfigurationSettingsMapFactoryImpl
 			themeDisplay.getLocale(), themeDisplay.getTimeZone());
 	}
 
-	protected Map<String, Serializable> buildSettingsMap(
+	private Map<String, Serializable> _buildSettingsMap(
 		long userId, long sourceGroupId, long sourcePlid, long targetGroupId,
 		long targetPlid, String portletId, Boolean privateLayout,
 		Map<Long, Boolean> layoutIdMap, long[] layoutIds,

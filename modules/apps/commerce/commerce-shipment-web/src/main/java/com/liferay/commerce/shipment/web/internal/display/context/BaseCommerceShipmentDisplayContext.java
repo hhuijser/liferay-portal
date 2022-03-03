@@ -45,8 +45,8 @@ public class BaseCommerceShipmentDisplayContext<T> {
 
 		cpRequestHelper = new CPRequestHelper(httpServletRequest);
 
-		liferayPortletRequest = cpRequestHelper.getLiferayPortletRequest();
-		liferayPortletResponse = cpRequestHelper.getLiferayPortletResponse();
+		_liferayPortletRequest = cpRequestHelper.getLiferayPortletRequest();
+		_liferayPortletResponse = cpRequestHelper.getLiferayPortletResponse();
 	}
 
 	public CommerceShipment getCommerceShipment() throws PortalException {
@@ -75,7 +75,7 @@ public class BaseCommerceShipmentDisplayContext<T> {
 	}
 
 	public PortletURL getPortletURL() throws PortalException {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
+		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
 
 		String redirect = ParamUtil.getString(httpServletRequest, "redirect");
 
@@ -121,10 +121,10 @@ public class BaseCommerceShipmentDisplayContext<T> {
 	protected final ActionHelper actionHelper;
 	protected final CPRequestHelper cpRequestHelper;
 	protected final HttpServletRequest httpServletRequest;
-	protected final LiferayPortletRequest liferayPortletRequest;
-	protected final LiferayPortletResponse liferayPortletResponse;
 
 	private CommerceShipment _commerceShipment;
+	private final LiferayPortletRequest _liferayPortletRequest;
+	private final LiferayPortletResponse _liferayPortletResponse;
 	private final PortletResourcePermission _portletResourcePermission;
 
 }

@@ -61,7 +61,7 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 				_assetVocabularyLocalService.getGroupsVocabularies(
 					_portal.getCurrentAndAncestorSiteGroupIds(groupId))) {
 
-			validate(classNameId, classTypePK, categoryIds, assetVocabulary);
+			_validate(classNameId, classTypePK, categoryIds, assetVocabulary);
 		}
 	}
 
@@ -76,32 +76,6 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 		throws PortalException {
 
 		validate(groupId, className, 0L, classTypePK, categoryIds, entryNames);
-	}
-
-	protected void validate(
-			long classNameId, long classTypePK, long[] categoryIds,
-			AssetVocabulary assetVocabulary)
-		throws PortalException {
-
-		if (!assetVocabulary.isAssociatedToClassNameIdAndClassTypePK(
-				classNameId, classTypePK)) {
-
-			return;
-		}
-
-		if (assetVocabulary.isMissingRequiredCategory(
-				classNameId, classTypePK, categoryIds)) {
-
-			throw new AssetCategoryException(
-				assetVocabulary, AssetCategoryException.AT_LEAST_ONE_CATEGORY);
-		}
-
-		if (!assetVocabulary.isMultiValued() &&
-			assetVocabulary.hasMoreThanOneCategorySelected(categoryIds)) {
-
-			throw new AssetCategoryException(
-				assetVocabulary, AssetCategoryException.TOO_MANY_CATEGORIES);
-		}
 	}
 
 	private boolean _isCategorizable(
@@ -141,6 +115,32 @@ public class CardinalityAssetEntryValidator implements AssetEntryValidator {
 		}
 
 		return true;
+	}
+
+	private void _validate(
+			long classNameId, long classTypePK, long[] categoryIds,
+			AssetVocabulary assetVocabulary)
+		throws PortalException {
+
+		if (!assetVocabulary.isAssociatedToClassNameIdAndClassTypePK(
+				classNameId, classTypePK)) {
+
+			return;
+		}
+
+		if (assetVocabulary.isMissingRequiredCategory(
+				classNameId, classTypePK, categoryIds)) {
+
+			throw new AssetCategoryException(
+				assetVocabulary, AssetCategoryException.AT_LEAST_ONE_CATEGORY);
+		}
+
+		if (!assetVocabulary.isMultiValued() &&
+			assetVocabulary.hasMoreThanOneCategorySelected(categoryIds)) {
+
+			throw new AssetCategoryException(
+				assetVocabulary, AssetCategoryException.TOO_MANY_CATEGORIES);
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

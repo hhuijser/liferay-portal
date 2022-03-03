@@ -63,7 +63,7 @@ public abstract class BaseImporter implements Importer {
 				companyId, targetValue);
 
 			if (layoutSetPrototype != null) {
-				existing = true;
+				_existing = true;
 			}
 			else {
 				ServiceContext serviceContext = new ServiceContext();
@@ -79,7 +79,7 @@ public abstract class BaseImporter implements Importer {
 
 			group = layoutSetPrototype.getGroup();
 
-			targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
+			_targetClassPK = layoutSetPrototype.getLayoutSetPrototypeId();
 		}
 		else if (targetClassName.equals(Group.class.getName())) {
 			if (targetValue.equals(GroupConstants.GLOBAL)) {
@@ -102,14 +102,14 @@ public abstract class BaseImporter implements Importer {
 					List<String> portletIds = layoutTypePortlet.getPortletIds();
 
 					if (portletIds.size() != 2) {
-						existing = true;
+						_existing = true;
 					}
 
 					for (String portletId : portletIds) {
 						if (!portletId.equals("47") &&
 							!portletId.equals("58")) {
 
-							existing = true;
+							_existing = true;
 						}
 					}
 				}
@@ -127,7 +127,7 @@ public abstract class BaseImporter implements Importer {
 					if ((privateLayoutsPageCount != 0) ||
 						(publicLayoutsPageCount != 0)) {
 
-						existing = true;
+						_existing = true;
 					}
 				}
 				else {
@@ -143,7 +143,7 @@ public abstract class BaseImporter implements Importer {
 				}
 			}
 
-			targetClassPK = group.getGroupId();
+			_targetClassPK = group.getGroupId();
 		}
 
 		if (group != null) {
@@ -163,7 +163,7 @@ public abstract class BaseImporter implements Importer {
 
 	@Override
 	public long getTargetClassPK() {
-		return targetClassPK;
+		return _targetClassPK;
 	}
 
 	public Map<Locale, String> getTargetValueMap() {
@@ -190,7 +190,7 @@ public abstract class BaseImporter implements Importer {
 
 	@Override
 	public boolean isExisting() {
-		return existing;
+		return _existing;
 	}
 
 	@Override
@@ -306,17 +306,18 @@ public abstract class BaseImporter implements Importer {
 	protected boolean appendVersion;
 	protected long companyId;
 	protected boolean developerModeEnabled;
-	protected boolean existing;
 	protected long groupId;
 	protected boolean indexAfterImport;
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
 	protected String targetClassName;
-	protected long targetClassPK;
 	protected String targetValue;
 	protected boolean updateModeEnabled;
 	protected long userId;
 	protected String version;
+
+	private boolean _existing;
+	private long _targetClassPK;
 
 }

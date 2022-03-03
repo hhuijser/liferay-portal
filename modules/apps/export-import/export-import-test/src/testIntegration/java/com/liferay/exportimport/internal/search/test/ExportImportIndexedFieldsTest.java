@@ -82,7 +82,7 @@ public class ExportImportIndexedFieldsTest {
 		Document document = exportImportIndexerFixture.searchOnlyOne(
 			searchTerm, _addGroupAttribute());
 
-		indexedFieldsFixture.postProcessDocument(document);
+		_indexedFieldsFixture.postProcessDocument(document);
 
 		FieldValuesAssert.assertFieldValues(
 			_expectedFieldValues(exportImportConfiguration), document,
@@ -119,7 +119,6 @@ public class ExportImportIndexedFieldsTest {
 	protected ExportImportFixture exportImportFixture;
 	protected IndexerFixture<ExportImportConfiguration>
 		exportImportIndexerFixture;
-	protected IndexedFieldsFixture indexedFieldsFixture;
 
 	@Inject
 	protected ResourcePermissionLocalService resourcePermissionLocalService;
@@ -195,7 +194,7 @@ public class ExportImportIndexedFieldsTest {
 
 		_populateDates(exportImportConfiguration, map);
 
-		indexedFieldsFixture.populateUID(
+		_indexedFieldsFixture.populateUID(
 			ExportImportConfiguration.class.getName(),
 			exportImportConfiguration.getExportImportConfigurationId(), map);
 
@@ -206,16 +205,16 @@ public class ExportImportIndexedFieldsTest {
 		ExportImportConfiguration exportImportConfiguration,
 		Map<String, String> map) {
 
-		indexedFieldsFixture.populateDate(
+		_indexedFieldsFixture.populateDate(
 			Field.CREATE_DATE, exportImportConfiguration.getCreateDate(), map);
 
-		indexedFieldsFixture.populateDate(
+		_indexedFieldsFixture.populateDate(
 			Field.MODIFIED_DATE, exportImportConfiguration.getModifiedDate(),
 			map);
 	}
 
 	private void _setUpIndexedFieldsFixture() {
-		indexedFieldsFixture = new IndexedFieldsFixture(
+		_indexedFieldsFixture = new IndexedFieldsFixture(
 			resourcePermissionLocalService);
 	}
 
@@ -226,6 +225,8 @@ public class ExportImportIndexedFieldsTest {
 
 	@DeleteAfterTestRun
 	private List<Group> _groups;
+
+	private IndexedFieldsFixture _indexedFieldsFixture;
 
 	@DeleteAfterTestRun
 	private List<User> _users;

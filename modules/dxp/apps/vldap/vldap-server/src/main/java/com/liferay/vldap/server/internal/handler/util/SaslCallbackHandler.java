@@ -46,7 +46,7 @@ public class SaslCallbackHandler implements CallbackHandler {
 
 		for (Callback callback : callbacks) {
 			try {
-				handle(callback);
+				_handle(callback);
 			}
 			catch (IOException ioException) {
 				throw ioException;
@@ -60,7 +60,7 @@ public class SaslCallbackHandler implements CallbackHandler {
 		}
 	}
 
-	protected void handle(Callback callback) throws Exception {
+	private void _handle(Callback callback) throws Exception {
 		if (callback instanceof AuthorizeCallback) {
 			AuthorizeCallback authorizeCallback = (AuthorizeCallback)callback;
 

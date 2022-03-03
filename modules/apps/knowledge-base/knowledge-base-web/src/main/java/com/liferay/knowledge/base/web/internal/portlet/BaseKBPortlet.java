@@ -128,7 +128,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 				exception instanceof FileSizeException ||
 				exception instanceof UploadRequestSizeException) {
 
-				JSONObject jsonObject = uploadResponseHandler.onFailure(
+				JSONObject jsonObject = _uploadResponseHandler.onFailure(
 					actionRequest, (PortalException)exception);
 
 				writeJSON(actionRequest, actionResponse, jsonObject);
@@ -162,7 +162,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 		long kbCommentId = ParamUtil.getLong(actionRequest, "kbCommentId");
 
-		kbCommentService.deleteKBComment(kbCommentId);
+		_kbCommentService.deleteKBComment(kbCommentId);
 
 		SessionMessages.add(actionRequest, "suggestionDeleted");
 	}
@@ -182,7 +182,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			actionRequest, "rowIdsKBComment");
 
 		for (long deleteKBCommentId : deleteKBCommentIds) {
-			kbCommentService.deleteKBComment(deleteKBCommentId);
+			_kbCommentService.deleteKBComment(deleteKBCommentId);
 		}
 
 		SessionMessages.add(actionRequest, "suggestionsDeleted");
@@ -199,7 +199,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			actionRequest, "resourcePrimKey");
 		String fileName = ParamUtil.getString(actionRequest, "fileName");
 
-		JSONObject jsonObject = jsonFactory.createJSONObject();
+		JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 		try {
 			kbArticleService.deleteTempAttachment(
@@ -328,7 +328,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 				String diffHtmlResults = null;
 
 				try {
-					diffHtmlResults = adminHelper.getKBArticleDiff(
+					diffHtmlResults = _adminHelper.getKBArticleDiff(
 						resourcePrimKey, GetterUtil.getInteger(sourceVersion),
 						GetterUtil.getInteger(targetVersion), "content");
 				}
@@ -504,7 +504,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 			KBComment.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
-			kbCommentLocalService.addKBComment(
+			_kbCommentLocalService.addKBComment(
 				themeDisplay.getUserId(), classNameId, classPK, content,
 				serviceContext);
 		}
@@ -515,13 +515,13 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 				actionRequest, "status", KBCommentConstants.STATUS_ANY);
 
 			if (status == KBCommentConstants.STATUS_ANY) {
-				KBComment kbComment = kbCommentService.getKBComment(
+				KBComment kbComment = _kbCommentService.getKBComment(
 					kbCommentId);
 
 				status = kbComment.getStatus();
 			}
 
-			kbCommentLocalService.updateKBComment(
+			_kbCommentLocalService.updateKBComment(
 				kbCommentId, classNameId, classPK, content, status,
 				serviceContext);
 		}
@@ -540,7 +540,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			KBComment.class.getName(), actionRequest);
 
-		kbCommentService.updateStatus(kbCommentId, status, serviceContext);
+		_kbCommentService.updateStatus(kbCommentId, status, serviceContext);
 
 		SessionMessages.add(actionRequest, "suggestionStatusUpdated");
 	}
@@ -637,12 +637,12 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 
 	@Reference(unbind = "-")
 	protected void setAdminUtilHelper(AdminHelper adminHelper) {
-		this.adminHelper = adminHelper;
+		_adminHelper = adminHelper;
 	}
 
 	@Reference(unbind = "-")
 	protected void setJSONFactory(JSONFactory jsonFactory) {
-		this.jsonFactory = jsonFactory;
+		_jsonFactory = jsonFactory;
 	}
 
 	@Reference(unbind = "-")
@@ -654,12 +654,12 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	protected void setKBCommentLocalService(
 		KBCommentLocalService kbCommentLocalService) {
 
-		this.kbCommentLocalService = kbCommentLocalService;
+		_kbCommentLocalService = kbCommentLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setKBCommentService(KBCommentService kbCommentService) {
-		this.kbCommentService = kbCommentService;
+		_kbCommentService = kbCommentService;
 	}
 
 	@Reference(unbind = "-")
@@ -681,18 +681,13 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	protected void setUploadResponseHandler(
 		UploadResponseHandler uploadResponseHandler) {
 
-		this.uploadResponseHandler = uploadResponseHandler;
+		_uploadResponseHandler = uploadResponseHandler;
 	}
 
-	protected AdminHelper adminHelper;
-	protected JSONFactory jsonFactory;
 	protected KBArticleService kbArticleService;
-	protected KBCommentLocalService kbCommentLocalService;
-	protected KBCommentService kbCommentService;
 	protected KBFolderService kbFolderService;
 	protected KBTemplateService kbTemplateService;
 	protected Portal portal;
-	protected UploadResponseHandler uploadResponseHandler;
 
 	private void _compareVersions(RenderRequest renderRequest)
 		throws PortletException {
@@ -707,7 +702,7 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 		String diffHtmlResults = null;
 
 		try {
-			diffHtmlResults = adminHelper.getKBArticleDiff(
+			diffHtmlResults = _adminHelper.getKBArticleDiff(
 				resourcePrimKey, GetterUtil.getInteger(sourceVersion),
 				GetterUtil.getInteger(targetVersion), "content");
 		}
@@ -737,5 +732,11 @@ public abstract class BaseKBPortlet extends MVCPortlet {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(BaseKBPortlet.class);
+
+	private AdminHelper _adminHelper;
+	private JSONFactory _jsonFactory;
+	private KBCommentLocalService _kbCommentLocalService;
+	private KBCommentService _kbCommentService;
+	private UploadResponseHandler _uploadResponseHandler;
 
 }

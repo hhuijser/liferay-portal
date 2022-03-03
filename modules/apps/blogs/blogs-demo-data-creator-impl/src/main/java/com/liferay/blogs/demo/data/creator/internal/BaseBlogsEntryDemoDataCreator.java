@@ -69,14 +69,14 @@ public abstract class BaseBlogsEntryDemoDataCreator
 			userId, title, subtitle, null, content, _getRandomDate(), false,
 			false, null, null, imageSelector, null, serviceContext);
 
-		entryIds.add(blogsEntry.getEntryId());
+		_entryIds.add(blogsEntry.getEntryId());
 
 		return blogsEntry;
 	}
 
 	@Override
 	public void delete() throws PortalException {
-		for (long entryId : entryIds) {
+		for (long entryId : _entryIds) {
 			try {
 				blogsEntryLocalService.deleteEntry(entryId);
 			}
@@ -86,7 +86,7 @@ public abstract class BaseBlogsEntryDemoDataCreator
 				}
 			}
 
-			entryIds.remove(entryId);
+			_entryIds.remove(entryId);
 		}
 
 		fileEntryDemoDataCreator.delete();
@@ -95,8 +95,6 @@ public abstract class BaseBlogsEntryDemoDataCreator
 
 	@Reference
 	protected BlogsEntryLocalService blogsEntryLocalService;
-
-	protected final List<Long> entryIds = new CopyOnWriteArrayList<>();
 
 	@Reference
 	protected FileEntryDemoDataCreator fileEntryDemoDataCreator;
@@ -140,5 +138,6 @@ public abstract class BaseBlogsEntryDemoDataCreator
 		BaseBlogsEntryDemoDataCreator.class);
 
 	private Folder _blogsEntryImagesFolder;
+	private final List<Long> _entryIds = new CopyOnWriteArrayList<>();
 
 }

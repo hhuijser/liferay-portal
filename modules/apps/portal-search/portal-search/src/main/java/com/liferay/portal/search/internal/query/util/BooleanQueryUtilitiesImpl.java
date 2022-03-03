@@ -37,42 +37,42 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 	public BooleanQuery addExactTerm(
 		BooleanQuery booleanQuery, String field, Boolean value) {
 
-		return addExactTerm(booleanQuery, field, (Object)value);
+		return _addExactTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addExactTerm(
 		BooleanQuery booleanQuery, String field, Double value) {
 
-		return addExactTerm(booleanQuery, field, (Object)value);
+		return _addExactTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addExactTerm(
 		BooleanQuery booleanQuery, String field, Integer value) {
 
-		return addExactTerm(booleanQuery, field, (Object)value);
+		return _addExactTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addExactTerm(
 		BooleanQuery booleanQuery, String field, Long value) {
 
-		return addExactTerm(booleanQuery, field, (Object)value);
+		return _addExactTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addExactTerm(
 		BooleanQuery booleanQuery, String field, Short value) {
 
-		return addExactTerm(booleanQuery, field, (Object)value);
+		return _addExactTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addExactTerm(
 		BooleanQuery booleanQuery, String field, String value) {
 
-		return addExactTerm(booleanQuery, field, (Object)value);
+		return _addExactTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		BooleanQuery booleanQuery, String field, Integer startValue,
 		Integer endValue) {
 
-		return addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
+		return _addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		BooleanQuery booleanQuery, String field, Long startValue,
 		Long endValue) {
 
-		return addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
+		return _addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		BooleanQuery booleanQuery, String field, Short startValue,
 		Short endValue) {
 
-		return addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
+		return _addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
 	}
 
 	@Override
@@ -104,49 +104,49 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		BooleanQuery booleanQuery, String field, String startValue,
 		String endValue) {
 
-		return addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
+		return _addRangeTerm(booleanQuery, field, (Object)startValue, endValue);
 	}
 
 	@Override
 	public BooleanQuery addRequiredTerm(
 		BooleanQuery booleanQuery, String field, Boolean value) {
 
-		return addRequiredTerm(booleanQuery, field, (Object)value);
+		return _addRequiredTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addRequiredTerm(
 		BooleanQuery booleanQuery, String field, Double value) {
 
-		return addRequiredTerm(booleanQuery, field, (Object)value);
+		return _addRequiredTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addRequiredTerm(
 		BooleanQuery booleanQuery, String field, Integer value) {
 
-		return addRequiredTerm(booleanQuery, field, (Object)value);
+		return _addRequiredTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addRequiredTerm(
 		BooleanQuery booleanQuery, String field, Long value) {
 
-		return addRequiredTerm(booleanQuery, field, (Object)value);
+		return _addRequiredTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addRequiredTerm(
 		BooleanQuery booleanQuery, String field, Short value) {
 
-		return addRequiredTerm(booleanQuery, field, (Object)value);
+		return _addRequiredTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
 	public BooleanQuery addRequiredTerm(
 		BooleanQuery booleanQuery, String field, String value) {
 
-		return addRequiredTerm(booleanQuery, field, (Object)value);
+		return _addRequiredTerm(booleanQuery, field, (Object)value);
 	}
 
 	@Override
@@ -227,7 +227,7 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		return booleanQuery;
 	}
 
-	protected BooleanQuery addExactTerm(
+	private BooleanQuery _addExactTerm(
 		BooleanQuery booleanQuery, String field, Object value) {
 
 		TermQuery termQuery = _queries.term(field, value);
@@ -235,7 +235,7 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		return booleanQuery.addShouldQueryClauses(termQuery);
 	}
 
-	protected BooleanQuery addRangeTerm(
+	private BooleanQuery _addRangeTerm(
 		BooleanQuery booleanQuery, String field, Object startValue,
 		Object endValue) {
 
@@ -245,7 +245,7 @@ public class BooleanQueryUtilitiesImpl implements BooleanQueryUtilities {
 		return booleanQuery.addShouldQueryClauses(rangeTermQuery);
 	}
 
-	protected BooleanQuery addRequiredTerm(
+	private BooleanQuery _addRequiredTerm(
 		BooleanQuery booleanQuery, String field, Object value) {
 
 		TermQuery termQuery = _queries.term(field, value);

@@ -27,11 +27,11 @@ public class SMSResponse extends BaseResponse {
 	public SMSResponse(Message message, JSONObject payloadJSONObject) {
 		super(SMSPushNotificationsSender.PLATFORM);
 
-		accountSid = message.getAccountSid();
 		id = message.getSid();
 		payload = payloadJSONObject.toString();
 
-		price = message.getPrice();
+		_accountSid = message.getAccountSid();
+		_price = message.getPrice();
 
 		Message.Status messageStatus = message.getStatus();
 
@@ -45,14 +45,14 @@ public class SMSResponse extends BaseResponse {
 	}
 
 	public String getAccountSid() {
-		return accountSid;
+		return _accountSid;
 	}
 
 	public String getPrice() {
-		return price;
+		return _price;
 	}
 
-	protected String accountSid;
-	protected String price;
+	private final String _accountSid;
+	private final String _price;
 
 }

@@ -108,7 +108,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 
 		UserNotificationFeedEntry userNotificationFeedEntry =
 			_workflowTaskUserNotificationHandler.interpret(
-				mockUserNotificationEvent(null, "Sample Object", 0),
+				_mockUserNotificationEvent(null, "Sample Object", 0),
 				_serviceContext);
 
 		Assert.assertEquals(
@@ -126,7 +126,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 		Assert.assertEquals(
 			StringPool.BLANK,
 			_workflowTaskUserNotificationHandler.getBody(
-				mockUserNotificationEvent(
+				_mockUserNotificationEvent(
 					null, null, _INVALID_WORKFLOW_TASK_ID),
 				_serviceContext));
 	}
@@ -138,7 +138,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 		Assert.assertEquals(
 			StringPool.BLANK,
 			_workflowTaskUserNotificationHandler.getLink(
-				mockUserNotificationEvent(
+				_mockUserNotificationEvent(
 					_VALID_ENTRY_CLASS_NAME, null, _INVALID_WORKFLOW_TASK_ID),
 				_serviceContext));
 	}
@@ -148,7 +148,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 		Assert.assertEquals(
 			StringPool.BLANK,
 			_workflowTaskUserNotificationHandler.getLink(
-				mockUserNotificationEvent(_VALID_ENTRY_CLASS_NAME, null, 0),
+				_mockUserNotificationEvent(_VALID_ENTRY_CLASS_NAME, null, 0),
 				_serviceContext));
 	}
 
@@ -157,7 +157,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 		Assert.assertEquals(
 			_NOTIFICATION_MESSAGE,
 			_workflowTaskUserNotificationHandler.getBody(
-				mockUserNotificationEvent(null, null, 0), _serviceContext));
+				_mockUserNotificationEvent(null, null, 0), _serviceContext));
 	}
 
 	@Test
@@ -165,7 +165,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 		Assert.assertEquals(
 			_NOTIFICATION_MESSAGE,
 			_workflowTaskUserNotificationHandler.getBody(
-				mockUserNotificationEvent(null, null, _VALID_WORKFLOW_TASK_ID),
+				_mockUserNotificationEvent(null, null, _VALID_WORKFLOW_TASK_ID),
 				_serviceContext));
 	}
 
@@ -174,37 +174,9 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 		Assert.assertEquals(
 			_VALID_LINK,
 			_workflowTaskUserNotificationHandler.getLink(
-				mockUserNotificationEvent(
+				_mockUserNotificationEvent(
 					_VALID_ENTRY_CLASS_NAME, null, _VALID_WORKFLOW_TASK_ID),
 				_serviceContext));
-	}
-
-	protected UserNotificationEvent mockUserNotificationEvent(
-		String entryClassName, String entryType, long workflowTaskId) {
-
-		JSONObject jsonObject = JSONUtil.put(
-			"entryClassName", entryClassName
-		).put(
-			"entryType", entryType
-		).put(
-			"notificationMessage", _NOTIFICATION_MESSAGE
-		).put(
-			"workflowTaskId", workflowTaskId
-		);
-
-		return new UserNotificationEventWrapper(null) {
-
-			@Override
-			public String getPayload() {
-				return jsonObject.toJSONString();
-			}
-
-			@Override
-			public long getUserNotificationEventId() {
-				return 0;
-			}
-
-		};
 	}
 
 	private static void _setUpHtmlUtil() {
@@ -281,6 +253,34 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 				}
 
 			});
+	}
+
+	private UserNotificationEvent _mockUserNotificationEvent(
+		String entryClassName, String entryType, long workflowTaskId) {
+
+		JSONObject jsonObject = JSONUtil.put(
+			"entryClassName", entryClassName
+		).put(
+			"entryType", entryType
+		).put(
+			"notificationMessage", _NOTIFICATION_MESSAGE
+		).put(
+			"workflowTaskId", workflowTaskId
+		);
+
+		return new UserNotificationEventWrapper(null) {
+
+			@Override
+			public String getPayload() {
+				return jsonObject.toJSONString();
+			}
+
+			@Override
+			public long getUserNotificationEventId() {
+				return 0;
+			}
+
+		};
 	}
 
 	private void _setUpWorkflowHandlerRegistryUtil() {

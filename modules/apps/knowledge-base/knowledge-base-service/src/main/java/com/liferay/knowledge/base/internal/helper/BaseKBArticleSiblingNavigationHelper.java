@@ -30,7 +30,7 @@ public abstract class BaseKBArticleSiblingNavigationHelper {
 
 		KBArticle kbArticle = findKBArticle(kbArticleId);
 
-		KBArticle[] previousAndNextKBArticles = getPreviousAndNextKBArticles(
+		KBArticle[] previousAndNextKBArticles = _getPreviousAndNextKBArticles(
 			kbArticle);
 
 		KBArticle previousKBArticle = _getPreviousKBArticle(
@@ -51,24 +51,6 @@ public abstract class BaseKBArticleSiblingNavigationHelper {
 	protected abstract KBArticle findKBArticle(long kbArticleId)
 		throws NoSuchArticleException;
 
-	protected KBArticle[] getPreviousAndNextKBArticles(KBArticle kbArticle) {
-		List<KBArticle> kbArticles = findChildKBArticles(kbArticle);
-
-		int index = kbArticles.indexOf(kbArticle);
-
-		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
-
-		if (index > 0) {
-			previousAndNextKBArticles[0] = kbArticles.get(index - 1);
-		}
-
-		if (index < (kbArticles.size() - 1)) {
-			previousAndNextKBArticles[2] = kbArticles.get(index + 1);
-		}
-
-		return previousAndNextKBArticles;
-	}
-
 	private KBArticle _getNextAncestorKBArticle(
 			long kbArticleId, KBArticle nextKBArticle)
 		throws PortalException {
@@ -85,7 +67,7 @@ public abstract class BaseKBArticleSiblingNavigationHelper {
 			return null;
 		}
 
-		KBArticle[] previousAndNextKBArticles = getPreviousAndNextKBArticles(
+		KBArticle[] previousAndNextKBArticles = _getPreviousAndNextKBArticles(
 			parentKBArticle);
 
 		return _getNextAncestorKBArticle(
@@ -104,6 +86,24 @@ public abstract class BaseKBArticleSiblingNavigationHelper {
 
 		return _getNextAncestorKBArticle(
 			kbArticle.getKbArticleId(), nextKBArticle);
+	}
+
+	private KBArticle[] _getPreviousAndNextKBArticles(KBArticle kbArticle) {
+		List<KBArticle> kbArticles = findChildKBArticles(kbArticle);
+
+		int index = kbArticles.indexOf(kbArticle);
+
+		KBArticle[] previousAndNextKBArticles = {null, kbArticle, null};
+
+		if (index > 0) {
+			previousAndNextKBArticles[0] = kbArticles.get(index - 1);
+		}
+
+		if (index < (kbArticles.size() - 1)) {
+			previousAndNextKBArticles[2] = kbArticles.get(index + 1);
+		}
+
+		return previousAndNextKBArticles;
 	}
 
 	private KBArticle _getPreviousKBArticle(

@@ -15,8 +15,6 @@
 package com.liferay.dynamic.data.mapping.internal.util;
 
 import com.liferay.dynamic.data.mapping.configuration.DDMIndexerConfiguration;
-import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
-import com.liferay.dynamic.data.mapping.internal.io.DDMFormJSONSerializer;
 import com.liferay.dynamic.data.mapping.internal.test.util.DDMFixture;
 import com.liferay.dynamic.data.mapping.io.DDMFormSerializerSerializeRequest;
 import com.liferay.dynamic.data.mapping.io.DDMFormSerializerSerializeResponse;
@@ -31,7 +29,6 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormValuesTestUtil;
 import com.liferay.dynamic.data.mapping.util.DDMIndexer;
-import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
@@ -62,7 +59,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.mockito.Matchers;
-import org.mockito.Mockito;
 
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareOnlyThisForTest;
@@ -84,19 +80,19 @@ public class DDMIndexerImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		ddmFixture.setUp();
-		documentFixture.setUp();
+		_ddmFixture.setUp();
+		_documentFixture.setUp();
 		_setUpPortalUtil();
 		_setUpPropsUtil();
 
-		ddmIndexer = _createDDMIndexer();
+		_ddmIndexer = _createDDMIndexer();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		ddmFixture.tearDown();
+		_ddmFixture.tearDown();
 
-		documentFixture.tearDown();
+		_documentFixture.tearDown();
 	}
 
 	@Test
@@ -126,7 +122,7 @@ public class DDMIndexerImplTest {
 		DDMFormValues ddmFormValues = createDDMFormValues(
 			ddmForm, ddmFormFieldValue);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		Map<String, String> map = _withSortableValues(
 			Collections.singletonMap(
@@ -164,7 +160,7 @@ public class DDMIndexerImplTest {
 		DDMFormValues ddmFormValues = createDDMFormValues(
 			ddmForm, ddmFormFieldValue);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		Map<String, String> map = _withSortableValues(
 			Collections.singletonMap(
@@ -208,7 +204,7 @@ public class DDMIndexerImplTest {
 		DDMFormValues ddmFormValues = createDDMFormValues(
 			ddmForm, ddmFormFieldValueJP, ddmFormFieldValueUS);
 
-		ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+		_ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
 
 		Map<String, String> map = _withSortableValues(
 			HashMapBuilder.put(
@@ -261,12 +257,6 @@ public class DDMIndexerImplTest {
 		return ddmFormSerializerSerializeResponse.getContent();
 	}
 
-	protected final DDMFixture ddmFixture = new DDMFixture();
-	protected final DDMFormJSONSerializer ddmFormJSONSerializer =
-		_createDDMFormJSONSerializer();
-	protected DDMIndexer ddmIndexer;
-	protected final DocumentFixture documentFixture = new DocumentFixture();
-
 	private DDMFormField _createDDMFormField(
 		String fieldName, String indexType) {
 
@@ -276,17 +266,6 @@ public class DDMIndexerImplTest {
 		ddmFormField.setIndexType(indexType);
 
 		return ddmFormField;
-	}
-
-	private DDMFormJSONSerializer _createDDMFormJSONSerializer() {
-		return new DDMFormJSONSerializer() {
-			{
-				setDDMFormFieldTypeServicesTracker(
-					Mockito.mock(DDMFormFieldTypeServicesTracker.class));
-
-				setJSONFactory(new JSONFactoryImpl());
-			}
-		};
 	}
 
 	private DDMIndexer _createDDMIndexer() {
@@ -320,7 +299,7 @@ public class DDMIndexerImplTest {
 		ddmStructure.setStructureId(RandomTestUtil.randomLong());
 		ddmStructure.setName(RandomTestUtil.randomString());
 
-		ddmFixture.whenDDMStructureLocalServiceFetchStructure(ddmStructure);
+		_ddmFixture.whenDDMStructureLocalServiceFetchStructure(ddmStructure);
 
 		return ddmStructure;
 	}
@@ -360,5 +339,9 @@ public class DDMIndexerImplTest {
 
 		return map2;
 	}
+
+	private final DDMFixture _ddmFixture = new DDMFixture();
+	private DDMIndexer _ddmIndexer;
+	private final DocumentFixture _documentFixture = new DocumentFixture();
 
 }

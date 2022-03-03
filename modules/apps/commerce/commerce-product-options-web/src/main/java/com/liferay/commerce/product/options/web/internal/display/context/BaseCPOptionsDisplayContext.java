@@ -51,13 +51,13 @@ public abstract class BaseCPOptionsDisplayContext<T> {
 		_portalPreferenceNamespace = portalPreferenceNamespace;
 		_portletResourcePermission = portletResourcePermission;
 
-		portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
+		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			this.httpServletRequest);
 
 		cpRequestHelper = new CPRequestHelper(httpServletRequest);
 
 		liferayPortletRequest = cpRequestHelper.getLiferayPortletRequest();
-		liferayPortletResponse = cpRequestHelper.getLiferayPortletResponse();
+		_liferayPortletResponse = cpRequestHelper.getLiferayPortletResponse();
 
 		_defaultOrderByCol = "title";
 		_defaultOrderByType = "asc";
@@ -98,7 +98,7 @@ public abstract class BaseCPOptionsDisplayContext<T> {
 	}
 
 	public PortletURL getPortletURL() throws PortalException {
-		PortletURL portletURL = liferayPortletResponse.createRenderURL();
+		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
 
 		String redirect = ParamUtil.getString(httpServletRequest, "redirect");
 
@@ -175,7 +175,7 @@ public abstract class BaseCPOptionsDisplayContext<T> {
 
 	protected RowChecker getRowChecker() {
 		if (_rowChecker == null) {
-			_rowChecker = new EmptyOnClickRowChecker(liferayPortletResponse);
+			_rowChecker = new EmptyOnClickRowChecker(_liferayPortletResponse);
 		}
 
 		return _rowChecker;
@@ -189,17 +189,17 @@ public abstract class BaseCPOptionsDisplayContext<T> {
 	protected final CPRequestHelper cpRequestHelper;
 	protected final HttpServletRequest httpServletRequest;
 	protected final LiferayPortletRequest liferayPortletRequest;
-	protected final LiferayPortletResponse liferayPortletResponse;
-	protected final PortalPreferences portalPreferences;
 	protected SearchContainer<T> searchContainer;
 
 	private String _defaultOrderByCol;
 	private final String _defaultOrderByType;
 	private String _displayStyle;
 	private String _keywords;
+	private final LiferayPortletResponse _liferayPortletResponse;
 	private String _orderByCol;
 	private String _orderByType;
 	private final String _portalPreferenceNamespace;
+	private final PortalPreferences _portalPreferences;
 	private final PortletResourcePermission _portletResourcePermission;
 	private RowChecker _rowChecker;
 

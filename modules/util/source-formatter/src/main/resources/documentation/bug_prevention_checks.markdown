@@ -60,6 +60,7 @@ JSPSessionKeysCheck | .jsp, .jspf, .jspx, .tag, .tpl or .vm | Checks that messag
 JSPTagAttributesCheck | .jsp, .jspf, .jspx, .tag, .tpl or .vm | Performs several checks on tag attributes. |
 [JavaAPISignatureCheck](checks/java_api_signature_check.markdown#javaapisignaturecheck) | .java | Checks that types `HttpServletRequest`, `HttpServletResponse`, `ThemeDisplay`, and `ServiceContext` are not used in API method signatures. |
 JavaAbstractMethodCheck | .java | Finds incorrect `abstract` methods in `interface`. |
+JavaAccessModifierCheck | .java | Checks for cases where visibility of methods can be decreased. |
 JavaAnnotationsCheck | .java | Performs several checks on annotations. |
 [JavaAnonymousInnerClassCheck](checks/java_anonymous_inner_class_check.markdown#javaanonymousinnerclasscheck) | .java | Performs several checks on anonymous classes. |
 [JavaBaseUpgradeCallableCheck](checks/java_base_upgrade_callable_check.markdown#javabaseupgradecallablecheck) | .java | Checks that BaseUpgradeCallable is used instead of Callable or Runnable in Upgrade and Verify classes. |

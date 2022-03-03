@@ -141,7 +141,7 @@ public class UpgradePortletPreferencesTest {
 		Assert.assertEquals(dateString, ddmStructureFieldValue);
 
 		portletPreferences = ReflectionTestUtil.invoke(
-			_upgradePortletPreferences, "upgradePreferences",
+			_upgradePortletPreferences, "_upgradePreferences",
 			new Class<?>[] {PortletPreferences.class}, portletPreferences);
 
 		ddmStructureFieldValue = portletPreferences.getValue(
@@ -183,7 +183,7 @@ public class UpgradePortletPreferencesTest {
 			).build());
 
 		portletPreferences = ReflectionTestUtil.invoke(
-			_upgradePortletPreferences, "upgradePreferences",
+			_upgradePortletPreferences, "_upgradePreferences",
 			new Class<?>[] {PortletPreferences.class}, portletPreferences);
 
 		String ddmStructureFieldValue = portletPreferences.getValue(
@@ -225,7 +225,7 @@ public class UpgradePortletPreferencesTest {
 		Assert.assertEquals(dateString, fieldValue);
 
 		portletPreferences = ReflectionTestUtil.invoke(
-			_upgradePortletPreferences, "upgradePreferences",
+			_upgradePortletPreferences, "_upgradePreferences",
 			new Class<?>[] {PortletPreferences.class}, portletPreferences);
 
 		fieldValue = portletPreferences.getValue(
@@ -262,7 +262,7 @@ public class UpgradePortletPreferencesTest {
 			).build());
 
 		portletPreferences = ReflectionTestUtil.invoke(
-			_upgradePortletPreferences, "upgradePreferences",
+			_upgradePortletPreferences, "_upgradePreferences",
 			new Class<?>[] {PortletPreferences.class}, portletPreferences);
 
 		String fieldValue = portletPreferences.getValue(
@@ -296,7 +296,7 @@ public class UpgradePortletPreferencesTest {
 			).build());
 
 		portletPreferences = ReflectionTestUtil.invoke(
-			_upgradePortletPreferences, "upgradePreferences",
+			_upgradePortletPreferences, "_upgradePreferences",
 			new Class<?>[] {PortletPreferences.class}, portletPreferences);
 
 		String orderByColumn1 = portletPreferences.getValue(
@@ -337,7 +337,7 @@ public class UpgradePortletPreferencesTest {
 			).build());
 
 		portletPreferences = ReflectionTestUtil.invoke(
-			_upgradePortletPreferences, "upgradePreferences",
+			_upgradePortletPreferences, "_upgradePreferences",
 			new Class<?>[] {PortletPreferences.class}, portletPreferences);
 
 		String orderByColumn1 = portletPreferences.getValue(

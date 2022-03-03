@@ -95,7 +95,7 @@ public class PasswordPolicyPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		portletDataContext.addPortletPermissions(RESOURCE_NAME);
+		portletDataContext.addPortletPermissions(_RESOURCE_NAME);
 
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
@@ -116,7 +116,7 @@ public class PasswordPolicyPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
-		portletDataContext.importPortletPermissions(RESOURCE_NAME);
+		portletDataContext.importPortletPermissions(_RESOURCE_NAME);
 
 		Element passwordPoliciesElement =
 			portletDataContext.getImportDataGroupElement(PasswordPolicy.class);
@@ -156,9 +156,6 @@ public class PasswordPolicyPortletDataHandler extends BasePortletDataHandler {
 		_passwordPolicyLocalService = passwordPolicyLocalService;
 	}
 
-	protected static final String RESOURCE_NAME =
-		"com.liferay.portlet.passwordpoliciesadmin";
-
 	private ActionableDynamicQuery _getPasswordPolicyActionableDynamicQuery(
 		PortletDataContext portletDataContext, boolean export) {
 
@@ -178,6 +175,9 @@ public class PasswordPolicyPortletDataHandler extends BasePortletDataHandler {
 
 		return actionableDynamicQuery;
 	}
+
+	private static final String _RESOURCE_NAME =
+		"com.liferay.portlet.passwordpoliciesadmin";
 
 	private PasswordPolicyLocalService _passwordPolicyLocalService;
 

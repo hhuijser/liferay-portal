@@ -72,7 +72,7 @@ public class KBArticleMarkdownConverter {
 				"Unable to extract title heading from file: " + fileEntryName);
 		}
 
-		_urlTitle = getUrlTitle(heading);
+		_urlTitle = _getUrlTitle(heading);
 
 		if (Validator.isNull(_urlTitle)) {
 			throw new KBArticleImportException(
@@ -212,7 +212,48 @@ public class KBArticleMarkdownConverter {
 		return sb.toString();
 	}
 
-	protected String getUrlTitle(String heading) {
+	private String _buildSourceURL(String baseSourceURL, String fileEntryName) {
+		if (!Validator.isUrl(baseSourceURL)) {
+			return null;
+		}
+
+		int pos = baseSourceURL.length() - 1;
+
+		while (pos >= 0) {
+			char c = baseSourceURL.charAt(pos);
+
+			if (c != CharPool.SLASH) {
+				break;
+			}
+
+			pos--;
+		}
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(baseSourceURL.substring(0, pos + 1));
+
+		if (!fileEntryName.startsWith(StringPool.SLASH)) {
+			sb.append(StringPool.SLASH);
+		}
+
+		sb.append(FileUtil.replaceSeparator(fileEntryName));
+
+		return sb.toString();
+	}
+
+	private String _getHeading(String html) {
+		int x = html.indexOf("<h1>");
+		int y = html.indexOf("</h1>");
+
+		if ((x == -1) || (y == -1) || (x > y)) {
+			return null;
+		}
+
+		return html.substring(x + 4, y);
+	}
+
+	private String _getUrlTitle(String heading) {
 		int x = heading.indexOf("[](id=");
 
 		if (x == -1) {
@@ -257,47 +298,6 @@ public class KBArticleMarkdownConverter {
 		}
 
 		return urlTitle;
-	}
-
-	private String _buildSourceURL(String baseSourceURL, String fileEntryName) {
-		if (!Validator.isUrl(baseSourceURL)) {
-			return null;
-		}
-
-		int pos = baseSourceURL.length() - 1;
-
-		while (pos >= 0) {
-			char c = baseSourceURL.charAt(pos);
-
-			if (c != CharPool.SLASH) {
-				break;
-			}
-
-			pos--;
-		}
-
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(baseSourceURL.substring(0, pos + 1));
-
-		if (!fileEntryName.startsWith(StringPool.SLASH)) {
-			sb.append(StringPool.SLASH);
-		}
-
-		sb.append(FileUtil.replaceSeparator(fileEntryName));
-
-		return sb.toString();
-	}
-
-	private String _getHeading(String html) {
-		int x = html.indexOf("<h1>");
-		int y = html.indexOf("</h1>");
-
-		if ((x == -1) || (y == -1) || (x > y)) {
-			return null;
-		}
-
-		return html.substring(x + 4, y);
 	}
 
 	private String _stripHeading(String html) {

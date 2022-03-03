@@ -152,7 +152,7 @@ public class CPFileImporterImpl implements CPFileImporter {
 			String dependenciesFilePath, ServiceContext serviceContext)
 		throws Exception {
 
-		createLayouts(
+		_createLayouts(
 			jsonArray, null, classLoader, dependenciesFilePath, serviceContext);
 	}
 
@@ -247,18 +247,6 @@ public class CPFileImporterImpl implements CPFileImporter {
 		_layoutSetLocalService.updateLookAndFeel(
 			serviceContext.getScopeGroupId(), privateLayout, themeId,
 			StringPool.BLANK, StringPool.BLANK);
-	}
-
-	protected void createLayouts(
-			JSONArray jsonArray, Layout parentLayout, ClassLoader classLoader,
-			String dependenciesFilePath, ServiceContext serviceContext)
-		throws Exception {
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			_createLayout(
-				jsonArray.getJSONObject(i), parentLayout, classLoader,
-				dependenciesFilePath, serviceContext);
-		}
 	}
 
 	private void _addLayoutPortlets(
@@ -480,9 +468,21 @@ public class CPFileImporterImpl implements CPFileImporter {
 		if ((sublayoutsJSONArray != null) &&
 			(sublayoutsJSONArray.length() > 0)) {
 
-			createLayouts(
+			_createLayouts(
 				sublayoutsJSONArray, layout, classLoader, dependenciesFilePath,
 				serviceContext);
+		}
+	}
+
+	private void _createLayouts(
+			JSONArray jsonArray, Layout parentLayout, ClassLoader classLoader,
+			String dependenciesFilePath, ServiceContext serviceContext)
+		throws Exception {
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			_createLayout(
+				jsonArray.getJSONObject(i), parentLayout, classLoader,
+				dependenciesFilePath, serviceContext);
 		}
 	}
 

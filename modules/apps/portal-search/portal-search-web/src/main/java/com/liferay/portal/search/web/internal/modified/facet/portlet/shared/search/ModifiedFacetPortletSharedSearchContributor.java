@@ -61,11 +61,6 @@ public class ModifiedFacetPortletSharedSearchContributor
 				modifiedFacetPortletPreferences, portletSharedSearchSettings));
 	}
 
-	protected CalendarFactory calendarFactory;
-	protected DateFormatFactory dateFormatFactory;
-	protected DateRangeFactory dateRangeFactory;
-	protected JSONFactory jsonFactory;
-
 	@Reference
 	protected ModifiedFacetFactory modifiedFacetFactory;
 
@@ -107,8 +102,8 @@ public class ModifiedFacetPortletSharedSearchContributor
 
 		// See LPS-72507 and LPS-76500
 
-		if (calendarFactory != null) {
-			return calendarFactory;
+		if (_calendarFactory != null) {
+			return _calendarFactory;
 		}
 
 		return CalendarFactoryUtil.getCalendarFactory();
@@ -118,27 +113,27 @@ public class ModifiedFacetPortletSharedSearchContributor
 
 		// See LPS-72507 and LPS-76500
 
-		if (dateFormatFactory != null) {
-			return dateFormatFactory;
+		if (_dateFormatFactory != null) {
+			return _dateFormatFactory;
 		}
 
 		return DateFormatFactoryUtil.getDateFormatFactory();
 	}
 
 	private DateRangeFactory _getDateRangeFactory() {
-		if (dateRangeFactory == null) {
-			dateRangeFactory = new DateRangeFactory(_getDateFormatFactory());
+		if (_dateRangeFactory == null) {
+			_dateRangeFactory = new DateRangeFactory(_getDateFormatFactory());
 		}
 
-		return dateRangeFactory;
+		return _dateRangeFactory;
 	}
 
 	private JSONFactory _getJSONFactory() {
 
 		// See LPS-72507 and LPS-76500
 
-		if (jsonFactory != null) {
-			return jsonFactory;
+		if (_jsonFactory != null) {
+			return _jsonFactory;
 		}
 
 		return JSONFactoryUtil.getJSONFactory();
@@ -152,5 +147,10 @@ public class ModifiedFacetPortletSharedSearchContributor
 		return dateRangeFactory.replaceAliases(
 			rangesJSONArray, calendarFactory.getCalendar(), _getJSONFactory());
 	}
+
+	private CalendarFactory _calendarFactory;
+	private DateFormatFactory _dateFormatFactory;
+	private DateRangeFactory _dateRangeFactory;
+	private JSONFactory _jsonFactory;
 
 }

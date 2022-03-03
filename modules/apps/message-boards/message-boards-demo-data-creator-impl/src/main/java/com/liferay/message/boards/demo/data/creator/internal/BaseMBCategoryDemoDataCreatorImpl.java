@@ -50,14 +50,14 @@ public abstract class BaseMBCategoryDemoDataCreatorImpl
 		MBCategory category = mbCategoryLocalService.addCategory(
 			userId, categoryId, name, description, serviceContext);
 
-		categoryIds.add(category.getCategoryId());
+		_categoryIds.add(category.getCategoryId());
 
 		return category;
 	}
 
 	@Override
 	public void delete() throws PortalException {
-		for (long categoryId : categoryIds) {
+		for (long categoryId : _categoryIds) {
 			try {
 				mbCategoryLocalService.deleteCategory(categoryId);
 			}
@@ -67,7 +67,7 @@ public abstract class BaseMBCategoryDemoDataCreatorImpl
 				}
 			}
 
-			categoryIds.remove(categoryId);
+			_categoryIds.remove(categoryId);
 		}
 	}
 
@@ -78,10 +78,11 @@ public abstract class BaseMBCategoryDemoDataCreatorImpl
 		this.mbCategoryLocalService = mbCategoryLocalService;
 	}
 
-	protected final List<Long> categoryIds = new CopyOnWriteArrayList<>();
 	protected MBCategoryLocalService mbCategoryLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseMBCategoryDemoDataCreatorImpl.class);
+
+	private final List<Long> _categoryIds = new CopyOnWriteArrayList<>();
 
 }

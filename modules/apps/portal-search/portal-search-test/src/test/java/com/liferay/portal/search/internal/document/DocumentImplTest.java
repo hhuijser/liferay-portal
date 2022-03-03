@@ -40,14 +40,14 @@ public class DocumentImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		documentFixture.setUp();
+		_documentFixture.setUp();
 
 		documentImpl = new DocumentImpl();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		documentFixture.tearDown();
+		_documentFixture.tearDown();
 	}
 
 	@Test
@@ -64,12 +64,13 @@ public class DocumentImplTest {
 		documentImpl.addDateSortable(RandomTestUtil.randomString(), new Date());
 	}
 
-	protected DocumentFixture documentFixture = new DocumentFixture();
 	protected DocumentImpl documentImpl;
 
 	private void _clearDateFormat() {
 		ReflectionTestUtil.setFieldValue(
 			DocumentImpl.class, "_dateFormat", null);
 	}
+
+	private final DocumentFixture _documentFixture = new DocumentFixture();
 
 }

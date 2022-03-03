@@ -101,9 +101,6 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	protected CalendarFactory calendarFactory;
-	protected DateFormatFactory dateFormatFactory;
-
 	@Reference
 	protected Http http;
 
@@ -188,8 +185,8 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 
 		// See LPS-72507 and LPS-76500
 
-		if (calendarFactory != null) {
-			return calendarFactory;
+		if (_calendarFactory != null) {
+			return _calendarFactory;
 		}
 
 		return CalendarFactoryUtil.getCalendarFactory();
@@ -199,8 +196,8 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 
 		// See LPS-72507 and LPS-76500
 
-		if (dateFormatFactory != null) {
-			return dateFormatFactory;
+		if (_dateFormatFactory != null) {
+			return _dateFormatFactory;
 		}
 
 		return DateFormatFactoryUtil.getDateFormatFactory();
@@ -229,5 +226,8 @@ public class ModifiedFacetPortlet extends MVCPortlet {
 
 		return themeDisplaySupplier.getThemeDisplay();
 	}
+
+	private CalendarFactory _calendarFactory;
+	private DateFormatFactory _dateFormatFactory;
 
 }

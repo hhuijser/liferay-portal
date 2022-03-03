@@ -352,7 +352,7 @@ public class StagingImpl implements Staging {
 			_exportImportConfigurationParameterMapFactory.buildParameterMap(
 				portletRequest);
 
-		return publishPortlet(
+		return _publishPortlet(
 			themeDisplay.getUserId(), scopeGroupId, plid,
 			portlet.getPortletId(), parameterMap, true);
 	}
@@ -1769,7 +1769,7 @@ public class StagingImpl implements Staging {
 			long plid)
 		throws PortalException {
 
-		return getRecentLayoutRevisionId(
+		return _getRecentLayoutRevisionId(
 			_portal.getUserId(httpServletRequest), layoutSetBranchId, plid);
 	}
 
@@ -1778,7 +1778,7 @@ public class StagingImpl implements Staging {
 			User user, long layoutSetBranchId, long plid)
 		throws PortalException {
 
-		return getRecentLayoutRevisionId(
+		return _getRecentLayoutRevisionId(
 			user.getUserId(), layoutSetBranchId, plid);
 	}
 
@@ -2667,7 +2667,7 @@ public class StagingImpl implements Staging {
 			_exportImportConfigurationParameterMapFactory.buildParameterMap(
 				portletRequest);
 
-		return publishPortlet(
+		return _publishPortlet(
 			themeDisplay.getUserId(), scopeGroupId, plid,
 			portlet.getPortletId(), parameterMap, false);
 	}
@@ -3055,7 +3055,7 @@ public class StagingImpl implements Staging {
 			long plid, long layoutBranchId)
 		throws PortalException {
 
-		setRecentLayoutBranchId(
+		_setRecentLayoutBranchId(
 			_portal.getUserId(httpServletRequest), layoutSetBranchId, plid,
 			layoutBranchId);
 	}
@@ -3065,7 +3065,7 @@ public class StagingImpl implements Staging {
 			User user, long layoutSetBranchId, long plid, long layoutBranchId)
 		throws PortalException {
 
-		setRecentLayoutBranchId(
+		_setRecentLayoutBranchId(
 			user.getUserId(), layoutSetBranchId, plid, layoutBranchId);
 	}
 
@@ -3075,7 +3075,7 @@ public class StagingImpl implements Staging {
 			long plid, long layoutRevisionId)
 		throws PortalException {
 
-		setRecentLayoutRevisionId(
+		_setRecentLayoutRevisionId(
 			_portal.getUserId(httpServletRequest), layoutSetBranchId, plid,
 			layoutRevisionId);
 	}
@@ -3085,7 +3085,7 @@ public class StagingImpl implements Staging {
 			User user, long layoutSetBranchId, long plid, long layoutRevisionId)
 		throws PortalException {
 
-		setRecentLayoutRevisionId(
+		_setRecentLayoutRevisionId(
 			user.getUserId(), layoutSetBranchId, plid, layoutRevisionId);
 	}
 
@@ -3095,7 +3095,7 @@ public class StagingImpl implements Staging {
 			long layoutSetBranchId)
 		throws PortalException {
 
-		setRecentLayoutSetBranchId(
+		_setRecentLayoutSetBranchId(
 			_portal.getUserId(httpServletRequest), layoutSetId,
 			layoutSetBranchId);
 	}
@@ -3105,7 +3105,7 @@ public class StagingImpl implements Staging {
 			User user, long layoutSetId, long layoutSetBranchId)
 		throws PortalException {
 
-		setRecentLayoutSetBranchId(
+		_setRecentLayoutSetBranchId(
 			user.getUserId(), layoutSetId, layoutSetBranchId);
 	}
 
@@ -3474,91 +3474,6 @@ public class StagingImpl implements Staging {
 			GetterUtil.getLong(group.getTypeSettingsProperty(param)));
 	}
 
-	protected long getRecentLayoutRevisionId(
-			long userId, long layoutSetBranchId, long plid)
-		throws PortalException {
-
-		if (ExportImportThreadLocal.isLayoutStagingInProcess()) {
-			List<LayoutRevision> layoutRevisions =
-				_layoutRevisionLocalService.getLayoutRevisions(
-					layoutSetBranchId, plid, true);
-
-			if (ListUtil.isNotEmpty(layoutRevisions)) {
-				LayoutRevision layoutRevision = layoutRevisions.get(0);
-
-				return layoutRevision.getLayoutRevisionId();
-			}
-
-			return 0;
-		}
-
-		long layoutBranchId = _getRecentLayoutBranchId(
-			userId, layoutSetBranchId, plid);
-
-		RecentLayoutRevision recentLayoutRevision =
-			_recentLayoutRevisionLocalService.fetchRecentLayoutRevision(
-				userId, layoutSetBranchId, plid);
-
-		if (recentLayoutRevision != null) {
-			LayoutRevision layoutRevision =
-				_layoutRevisionLocalService.fetchLayoutRevision(
-					recentLayoutRevision.getLayoutRevisionId());
-
-			if ((layoutRevision != null) &&
-				(layoutRevision.getLayoutBranchId() == layoutBranchId)) {
-
-				return layoutRevision.getLayoutRevisionId();
-			}
-		}
-
-		LayoutBranch layoutBranch = _layoutBranchLocalService.fetchLayoutBranch(
-			layoutBranchId);
-
-		if (layoutBranch == null) {
-			try {
-				layoutBranch = _layoutBranchLocalService.getMasterLayoutBranch(
-					layoutSetBranchId, plid);
-
-				layoutBranchId = layoutBranch.getLayoutBranchId();
-			}
-			catch (NoSuchLayoutBranchException noSuchLayoutBranchException) {
-
-				// LPS-52675
-
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						noSuchLayoutBranchException,
-						noSuchLayoutBranchException);
-				}
-			}
-		}
-
-		if (layoutBranchId > 0) {
-			try {
-				LayoutRevision layoutRevision =
-					_layoutRevisionLocalService.getLayoutRevision(
-						layoutSetBranchId, layoutBranchId, plid);
-
-				if (layoutRevision != null) {
-					return layoutRevision.getLayoutRevisionId();
-				}
-			}
-			catch (NoSuchLayoutRevisionException
-						noSuchLayoutRevisionException) {
-
-				// LPS-52675
-
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						noSuchLayoutRevisionException,
-						noSuchLayoutRevisionException);
-				}
-			}
-		}
-
-		return 0;
-	}
-
 	protected String getString(
 		PortletRequest portletRequest, Group group, String param) {
 
@@ -3567,234 +3482,11 @@ public class StagingImpl implements Staging {
 			GetterUtil.getString(group.getTypeSettingsProperty(param)));
 	}
 
-	protected long publishPortlet(
-			long userId, long scopeGroupId, long plid, String portletId,
-			Map<String, String[]> parameterMap, boolean copyFromLive)
-		throws PortalException {
-
-		Layout sourceLayout = _layoutLocalService.getLayout(plid);
-
-		Group scopeGroup = sourceLayout.getScopeGroup();
-
-		Group liveGroup = null;
-		Group stagingGroup = null;
-
-		long targetGroupId = 0L;
-		long targetLayoutPlid = 0L;
-
-		if (sourceLayout.isTypeControlPanel()) {
-			stagingGroup = _groupLocalService.fetchGroup(scopeGroupId);
-
-			if (stagingGroup.isStagedRemotely()) {
-				targetGroupId = stagingGroup.getRemoteLiveGroupId();
-
-				User user = _userLocalService.getUser(userId);
-
-				HttpPrincipal httpPrincipal = new HttpPrincipal(
-					_stagingURLHelper.buildRemoteURL(
-						stagingGroup.getTypeSettingsProperties()),
-					user.getLogin(), user.getPassword(),
-					user.isPasswordEncrypted());
-
-				targetLayoutPlid = LayoutServiceHttp.getControlPanelLayoutPlid(
-					httpPrincipal);
-			}
-			else {
-				liveGroup = stagingGroup.getLiveGroup();
-
-				targetGroupId = liveGroup.getGroupId();
-
-				targetLayoutPlid = sourceLayout.getPlid();
-			}
-		}
-		else if (sourceLayout.hasScopeGroup() &&
-				 (scopeGroup.getGroupId() == scopeGroupId)) {
-
-			stagingGroup = scopeGroup;
-
-			liveGroup = stagingGroup.getLiveGroup();
-
-			targetGroupId = liveGroup.getGroupId();
-
-			Layout layout = _layoutLocalService.getLayout(
-				liveGroup.getClassPK());
-
-			targetLayoutPlid = layout.getPlid();
-		}
-		else {
-			stagingGroup = sourceLayout.getGroup();
-
-			if (stagingGroup.isStagedRemotely()) {
-				targetGroupId = stagingGroup.getRemoteLiveGroupId();
-
-				targetLayoutPlid = getRemoteLayoutPlid(
-					userId, stagingGroup.getGroupId(), sourceLayout.getPlid());
-			}
-			else {
-				liveGroup = stagingGroup.getLiveGroup();
-
-				targetGroupId = liveGroup.getGroupId();
-
-				Layout layout = _layoutLocalService.fetchLayoutByUuidAndGroupId(
-					sourceLayout.getUuid(), liveGroup.getGroupId(),
-					sourceLayout.isPrivateLayout());
-
-				targetLayoutPlid = layout.getPlid();
-			}
-		}
-
-		if (copyFromLive) {
-			return publishPortlet(
-				userId, liveGroup.getGroupId(), stagingGroup.getGroupId(),
-				targetLayoutPlid, sourceLayout.getPlid(), portletId,
-				parameterMap);
-		}
-
-		return publishPortlet(
-			userId, stagingGroup.getGroupId(), targetGroupId,
-			sourceLayout.getPlid(), targetLayoutPlid, portletId, parameterMap);
-	}
-
 	@Reference(unbind = "-")
 	protected void setConfigurationProvider(
 		ConfigurationProvider configurationProvider) {
 
 		_configurationProvider = configurationProvider;
-	}
-
-	protected void setRecentLayoutBranchId(
-			long userId, long layoutSetBranchId, long plid, long layoutBranchId)
-		throws PortalException {
-
-		LayoutBranch layoutBranch = _layoutBranchLocalService.fetchLayoutBranch(
-			layoutBranchId);
-
-		if (layoutBranch == null) {
-			return;
-		}
-
-		RecentLayoutBranch recentLayoutBranch =
-			_recentLayoutBranchLocalService.fetchRecentLayoutBranch(
-				userId, layoutSetBranchId, plid);
-
-		if (layoutBranch.isMaster()) {
-			if (recentLayoutBranch != null) {
-				_recentLayoutBranchLocalService.deleteRecentLayoutBranch(
-					recentLayoutBranch);
-			}
-		}
-		else {
-			if (recentLayoutBranch == null) {
-				recentLayoutBranch =
-					_recentLayoutBranchLocalService.addRecentLayoutBranch(
-						userId, layoutBranchId, layoutSetBranchId, plid);
-			}
-
-			recentLayoutBranch.setLayoutBranchId(layoutBranchId);
-
-			_recentLayoutBranchLocalService.updateRecentLayoutBranch(
-				recentLayoutBranch);
-		}
-
-		ProxiedLayoutsThreadLocal.clearProxiedLayouts();
-	}
-
-	protected void setRecentLayoutRevisionId(
-			long userId, long layoutSetBranchId, long plid,
-			long layoutRevisionId)
-		throws PortalException {
-
-		if ((layoutRevisionId <= 0) ||
-			ExportImportThreadLocal.isLayoutStagingInProcess()) {
-
-			return;
-		}
-
-		long layoutBranchId = 0;
-
-		try {
-			LayoutRevision layoutRevision =
-				_layoutRevisionLocalService.getLayoutRevision(layoutRevisionId);
-
-			layoutBranchId = layoutRevision.getLayoutBranchId();
-
-			LayoutRevision lastLayoutRevision =
-				_layoutRevisionLocalService.getLayoutRevision(
-					layoutSetBranchId, layoutBranchId, plid);
-
-			if (lastLayoutRevision.getLayoutRevisionId() == layoutRevisionId) {
-				deleteRecentLayoutRevisionId(userId, layoutSetBranchId, plid);
-			}
-			else {
-				RecentLayoutRevision recentLayoutRevision =
-					_recentLayoutRevisionLocalService.fetchRecentLayoutRevision(
-						userId, layoutSetBranchId, plid);
-
-				if (recentLayoutRevision == null) {
-					recentLayoutRevision =
-						_recentLayoutRevisionLocalService.
-							addRecentLayoutRevision(
-								userId, layoutRevisionId, layoutSetBranchId,
-								plid);
-				}
-
-				recentLayoutRevision.setLayoutRevisionId(layoutRevisionId);
-
-				_recentLayoutRevisionLocalService.updateRecentLayoutRevision(
-					recentLayoutRevision);
-			}
-		}
-		catch (PortalException portalException) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					StringBundler.concat(
-						"Unable to set recent layout revision ID with layout ",
-						"set branch ", layoutSetBranchId, " and PLID ", plid,
-						" and layout branch ", layoutBranchId),
-					portalException);
-			}
-		}
-
-		setRecentLayoutBranchId(
-			userId, layoutSetBranchId, plid, layoutBranchId);
-	}
-
-	protected void setRecentLayoutSetBranchId(
-			long userId, long layoutSetId, long layoutSetBranchId)
-		throws PortalException {
-
-		LayoutSetBranch layoutSetBranch =
-			_layoutSetBranchLocalService.fetchLayoutSetBranch(
-				layoutSetBranchId);
-
-		if (layoutSetBranch == null) {
-			return;
-		}
-
-		RecentLayoutSetBranch recentLayoutSetBranch =
-			_recentLayoutSetBranchLocalService.fetchRecentLayoutSetBranch(
-				userId, layoutSetId);
-
-		if (layoutSetBranch.isMaster()) {
-			if (recentLayoutSetBranch != null) {
-				_recentLayoutSetBranchLocalService.deleteRecentLayoutSetBranch(
-					recentLayoutSetBranch);
-			}
-		}
-		else {
-			if (recentLayoutSetBranch == null) {
-				recentLayoutSetBranch =
-					_recentLayoutSetBranchLocalService.addRecentLayoutSetBranch(
-						userId, layoutSetBranchId, layoutSetId);
-			}
-
-			recentLayoutSetBranch.setLayoutSetBranchId(layoutSetBranchId);
-
-			_recentLayoutSetBranchLocalService.updateRecentLayoutSetBranch(
-				recentLayoutSetBranch);
-		}
-
-		ProxiedLayoutsThreadLocal.clearProxiedLayouts();
 	}
 
 	private void _checkPermission(
@@ -3879,6 +3571,91 @@ public class StagingImpl implements Staging {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					noSuchLayoutBranchException, noSuchLayoutBranchException);
+			}
+		}
+
+		return 0;
+	}
+
+	private long _getRecentLayoutRevisionId(
+			long userId, long layoutSetBranchId, long plid)
+		throws PortalException {
+
+		if (ExportImportThreadLocal.isLayoutStagingInProcess()) {
+			List<LayoutRevision> layoutRevisions =
+				_layoutRevisionLocalService.getLayoutRevisions(
+					layoutSetBranchId, plid, true);
+
+			if (ListUtil.isNotEmpty(layoutRevisions)) {
+				LayoutRevision layoutRevision = layoutRevisions.get(0);
+
+				return layoutRevision.getLayoutRevisionId();
+			}
+
+			return 0;
+		}
+
+		long layoutBranchId = _getRecentLayoutBranchId(
+			userId, layoutSetBranchId, plid);
+
+		RecentLayoutRevision recentLayoutRevision =
+			_recentLayoutRevisionLocalService.fetchRecentLayoutRevision(
+				userId, layoutSetBranchId, plid);
+
+		if (recentLayoutRevision != null) {
+			LayoutRevision layoutRevision =
+				_layoutRevisionLocalService.fetchLayoutRevision(
+					recentLayoutRevision.getLayoutRevisionId());
+
+			if ((layoutRevision != null) &&
+				(layoutRevision.getLayoutBranchId() == layoutBranchId)) {
+
+				return layoutRevision.getLayoutRevisionId();
+			}
+		}
+
+		LayoutBranch layoutBranch = _layoutBranchLocalService.fetchLayoutBranch(
+			layoutBranchId);
+
+		if (layoutBranch == null) {
+			try {
+				layoutBranch = _layoutBranchLocalService.getMasterLayoutBranch(
+					layoutSetBranchId, plid);
+
+				layoutBranchId = layoutBranch.getLayoutBranchId();
+			}
+			catch (NoSuchLayoutBranchException noSuchLayoutBranchException) {
+
+				// LPS-52675
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchLayoutBranchException,
+						noSuchLayoutBranchException);
+				}
+			}
+		}
+
+		if (layoutBranchId > 0) {
+			try {
+				LayoutRevision layoutRevision =
+					_layoutRevisionLocalService.getLayoutRevision(
+						layoutSetBranchId, layoutBranchId, plid);
+
+				if (layoutRevision != null) {
+					return layoutRevision.getLayoutRevisionId();
+				}
+			}
+			catch (NoSuchLayoutRevisionException
+						noSuchLayoutRevisionException) {
+
+				// LPS-52675
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						noSuchLayoutRevisionException,
+						noSuchLayoutRevisionException);
+				}
 			}
 		}
 
@@ -4004,6 +3781,94 @@ public class StagingImpl implements Staging {
 		return false;
 	}
 
+	private long _publishPortlet(
+			long userId, long scopeGroupId, long plid, String portletId,
+			Map<String, String[]> parameterMap, boolean copyFromLive)
+		throws PortalException {
+
+		Layout sourceLayout = _layoutLocalService.getLayout(plid);
+
+		Group scopeGroup = sourceLayout.getScopeGroup();
+
+		Group liveGroup = null;
+		Group stagingGroup = null;
+
+		long targetGroupId = 0L;
+		long targetLayoutPlid = 0L;
+
+		if (sourceLayout.isTypeControlPanel()) {
+			stagingGroup = _groupLocalService.fetchGroup(scopeGroupId);
+
+			if (stagingGroup.isStagedRemotely()) {
+				targetGroupId = stagingGroup.getRemoteLiveGroupId();
+
+				User user = _userLocalService.getUser(userId);
+
+				HttpPrincipal httpPrincipal = new HttpPrincipal(
+					_stagingURLHelper.buildRemoteURL(
+						stagingGroup.getTypeSettingsProperties()),
+					user.getLogin(), user.getPassword(),
+					user.isPasswordEncrypted());
+
+				targetLayoutPlid = LayoutServiceHttp.getControlPanelLayoutPlid(
+					httpPrincipal);
+			}
+			else {
+				liveGroup = stagingGroup.getLiveGroup();
+
+				targetGroupId = liveGroup.getGroupId();
+
+				targetLayoutPlid = sourceLayout.getPlid();
+			}
+		}
+		else if (sourceLayout.hasScopeGroup() &&
+				 (scopeGroup.getGroupId() == scopeGroupId)) {
+
+			stagingGroup = scopeGroup;
+
+			liveGroup = stagingGroup.getLiveGroup();
+
+			targetGroupId = liveGroup.getGroupId();
+
+			Layout layout = _layoutLocalService.getLayout(
+				liveGroup.getClassPK());
+
+			targetLayoutPlid = layout.getPlid();
+		}
+		else {
+			stagingGroup = sourceLayout.getGroup();
+
+			if (stagingGroup.isStagedRemotely()) {
+				targetGroupId = stagingGroup.getRemoteLiveGroupId();
+
+				targetLayoutPlid = getRemoteLayoutPlid(
+					userId, stagingGroup.getGroupId(), sourceLayout.getPlid());
+			}
+			else {
+				liveGroup = stagingGroup.getLiveGroup();
+
+				targetGroupId = liveGroup.getGroupId();
+
+				Layout layout = _layoutLocalService.fetchLayoutByUuidAndGroupId(
+					sourceLayout.getUuid(), liveGroup.getGroupId(),
+					sourceLayout.isPrivateLayout());
+
+				targetLayoutPlid = layout.getPlid();
+			}
+		}
+
+		if (copyFromLive) {
+			return publishPortlet(
+				userId, liveGroup.getGroupId(), stagingGroup.getGroupId(),
+				targetLayoutPlid, sourceLayout.getPlid(), portletId,
+				parameterMap);
+		}
+
+		return publishPortlet(
+			userId, stagingGroup.getGroupId(), targetGroupId,
+			sourceLayout.getPlid(), targetLayoutPlid, portletId, parameterMap);
+	}
+
 	private void _setGroupTypeSetting(long groupId, String key, String value) {
 		Group group = _groupLocalService.fetchGroup(groupId);
 
@@ -4025,6 +3890,141 @@ public class StagingImpl implements Staging {
 		group.setTypeSettings(typeSettingsUnicodeProperties.toString());
 
 		_groupLocalService.updateGroup(group);
+	}
+
+	private void _setRecentLayoutBranchId(
+			long userId, long layoutSetBranchId, long plid, long layoutBranchId)
+		throws PortalException {
+
+		LayoutBranch layoutBranch = _layoutBranchLocalService.fetchLayoutBranch(
+			layoutBranchId);
+
+		if (layoutBranch == null) {
+			return;
+		}
+
+		RecentLayoutBranch recentLayoutBranch =
+			_recentLayoutBranchLocalService.fetchRecentLayoutBranch(
+				userId, layoutSetBranchId, plid);
+
+		if (layoutBranch.isMaster()) {
+			if (recentLayoutBranch != null) {
+				_recentLayoutBranchLocalService.deleteRecentLayoutBranch(
+					recentLayoutBranch);
+			}
+		}
+		else {
+			if (recentLayoutBranch == null) {
+				recentLayoutBranch =
+					_recentLayoutBranchLocalService.addRecentLayoutBranch(
+						userId, layoutBranchId, layoutSetBranchId, plid);
+			}
+
+			recentLayoutBranch.setLayoutBranchId(layoutBranchId);
+
+			_recentLayoutBranchLocalService.updateRecentLayoutBranch(
+				recentLayoutBranch);
+		}
+
+		ProxiedLayoutsThreadLocal.clearProxiedLayouts();
+	}
+
+	private void _setRecentLayoutRevisionId(
+			long userId, long layoutSetBranchId, long plid,
+			long layoutRevisionId)
+		throws PortalException {
+
+		if ((layoutRevisionId <= 0) ||
+			ExportImportThreadLocal.isLayoutStagingInProcess()) {
+
+			return;
+		}
+
+		long layoutBranchId = 0;
+
+		try {
+			LayoutRevision layoutRevision =
+				_layoutRevisionLocalService.getLayoutRevision(layoutRevisionId);
+
+			layoutBranchId = layoutRevision.getLayoutBranchId();
+
+			LayoutRevision lastLayoutRevision =
+				_layoutRevisionLocalService.getLayoutRevision(
+					layoutSetBranchId, layoutBranchId, plid);
+
+			if (lastLayoutRevision.getLayoutRevisionId() == layoutRevisionId) {
+				deleteRecentLayoutRevisionId(userId, layoutSetBranchId, plid);
+			}
+			else {
+				RecentLayoutRevision recentLayoutRevision =
+					_recentLayoutRevisionLocalService.fetchRecentLayoutRevision(
+						userId, layoutSetBranchId, plid);
+
+				if (recentLayoutRevision == null) {
+					recentLayoutRevision =
+						_recentLayoutRevisionLocalService.
+							addRecentLayoutRevision(
+								userId, layoutRevisionId, layoutSetBranchId,
+								plid);
+				}
+
+				recentLayoutRevision.setLayoutRevisionId(layoutRevisionId);
+
+				_recentLayoutRevisionLocalService.updateRecentLayoutRevision(
+					recentLayoutRevision);
+			}
+		}
+		catch (PortalException portalException) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					StringBundler.concat(
+						"Unable to set recent layout revision ID with layout ",
+						"set branch ", layoutSetBranchId, " and PLID ", plid,
+						" and layout branch ", layoutBranchId),
+					portalException);
+			}
+		}
+
+		_setRecentLayoutBranchId(
+			userId, layoutSetBranchId, plid, layoutBranchId);
+	}
+
+	private void _setRecentLayoutSetBranchId(
+			long userId, long layoutSetId, long layoutSetBranchId)
+		throws PortalException {
+
+		LayoutSetBranch layoutSetBranch =
+			_layoutSetBranchLocalService.fetchLayoutSetBranch(
+				layoutSetBranchId);
+
+		if (layoutSetBranch == null) {
+			return;
+		}
+
+		RecentLayoutSetBranch recentLayoutSetBranch =
+			_recentLayoutSetBranchLocalService.fetchRecentLayoutSetBranch(
+				userId, layoutSetId);
+
+		if (layoutSetBranch.isMaster()) {
+			if (recentLayoutSetBranch != null) {
+				_recentLayoutSetBranchLocalService.deleteRecentLayoutSetBranch(
+					recentLayoutSetBranch);
+			}
+		}
+		else {
+			if (recentLayoutSetBranch == null) {
+				recentLayoutSetBranch =
+					_recentLayoutSetBranchLocalService.addRecentLayoutSetBranch(
+						userId, layoutSetBranchId, layoutSetId);
+			}
+
+			recentLayoutSetBranch.setLayoutSetBranchId(layoutSetBranchId);
+
+			_recentLayoutSetBranchLocalService.updateRecentLayoutSetBranch(
+				recentLayoutSetBranch);
+		}
+
+		ProxiedLayoutsThreadLocal.clearProxiedLayouts();
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(StagingImpl.class);

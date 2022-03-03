@@ -92,7 +92,7 @@ public class DefaultPortalKaleoManager
 
 					serviceContext.setCompanyId(companyId);
 
-					deployDefaultDefinitionLink(
+					_deployDefaultDefinitionLink(
 						defaultUser, companyId, companyGroup, assetClassName,
 						definitionName);
 				}
@@ -129,7 +129,7 @@ public class DefaultPortalKaleoManager
 			String assetClassName = entry.getKey();
 			String definitionName = entry.getValue();
 
-			deployDefaultDefinitionLink(
+			_deployDefaultDefinitionLink(
 				defaultUser, companyId, companyGroup, assetClassName,
 				definitionName);
 		}
@@ -254,7 +254,22 @@ public class DefaultPortalKaleoManager
 		_definitionFiles.putAll(definitionFiles);
 	}
 
-	protected void deployDefaultDefinitionLink(
+	@Reference
+	protected CompanyLocalService companyLocalService;
+
+	@Reference
+	protected GroupLocalService groupLocalService;
+
+	@Reference
+	protected RoleLocalService roleLocalService;
+
+	@Reference
+	protected UserLocalService userLocalService;
+
+	@Reference(target = "(proxy.bean=false)")
+	protected WorkflowComparatorFactory workflowComparatorFactory;
+
+	private void _deployDefaultDefinitionLink(
 			User defaultUser, long companyId, Group companyGroup,
 			String assetClassName, String workflowDefinitionName)
 		throws PortalException {
@@ -290,21 +305,6 @@ public class DefaultPortalKaleoManager
 			assetClassName, 0, 0, workflowDefinition.getName(),
 			workflowDefinition.getVersion());
 	}
-
-	@Reference
-	protected CompanyLocalService companyLocalService;
-
-	@Reference
-	protected GroupLocalService groupLocalService;
-
-	@Reference
-	protected RoleLocalService roleLocalService;
-
-	@Reference
-	protected UserLocalService userLocalService;
-
-	@Reference(target = "(proxy.bean=false)")
-	protected WorkflowComparatorFactory workflowComparatorFactory;
 
 	private String _getLocalizedTitle(long companyId, String definitionName)
 		throws Exception {

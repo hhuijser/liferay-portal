@@ -106,7 +106,7 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 		try {
 			file = FileUtil.createTempFile();
 
-			downloadApp(
+			_downloadApp(
 				actionRequest, actionResponse, appPackageId, unlicensed, file);
 
 			App app = _appService.updateApp(file);
@@ -278,7 +278,7 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 		try {
 			file = FileUtil.createTempFile();
 
-			downloadApp(
+			_downloadApp(
 				actionRequest, actionResponse, appPackageId, unlicensed, file);
 
 			App app = _appService.updateApp(file);
@@ -364,7 +364,7 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 					try {
 						file = FileUtil.createTempFile();
 
-						downloadApp(
+						_downloadApp(
 							actionRequest, actionResponse, appPackageId, false,
 							file);
 
@@ -429,40 +429,6 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 		super.doDispatch(renderRequest, renderResponse);
 	}
 
-	protected void downloadApp(
-			PortletRequest portletRequest, PortletResponse portletResponse,
-			long appPackageId, boolean unlicensed, File file)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		OAuthRequest oAuthRequest = new OAuthRequest(
-			Verb.GET, getServerPortletURL());
-
-		setBaseRequestParameters(portletRequest, portletResponse, oAuthRequest);
-
-		String serverNamespace = getServerNamespace();
-
-		addOAuthParameter(
-			oAuthRequest, serverNamespace.concat("appPackageId"),
-			String.valueOf(appPackageId));
-
-		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "2");
-
-		if (unlicensed) {
-			addOAuthParameter(
-				oAuthRequest, "p_p_resource_id", "serveUnlicensedApp");
-		}
-		else {
-			addOAuthParameter(oAuthRequest, "p_p_resource_id", "serveApp");
-		}
-
-		Response response = getResponse(themeDisplay.getUser(), oAuthRequest);
-
-		FileUtil.write(file, response.getStream());
-	}
-
 	@Override
 	protected String getClientPortletId() {
 		return MarketplaceStorePortletKeys.MARKETPLACE_STORE;
@@ -513,6 +479,40 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 	@Reference(unbind = "-")
 	protected void setOAuthManager(OAuthManager oAuthManager) {
 		super.setOAuthManager(oAuthManager);
+	}
+
+	private void _downloadApp(
+			PortletRequest portletRequest, PortletResponse portletResponse,
+			long appPackageId, boolean unlicensed, File file)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		OAuthRequest oAuthRequest = new OAuthRequest(
+			Verb.GET, getServerPortletURL());
+
+		setBaseRequestParameters(portletRequest, portletResponse, oAuthRequest);
+
+		String serverNamespace = getServerNamespace();
+
+		addOAuthParameter(
+			oAuthRequest, serverNamespace.concat("appPackageId"),
+			String.valueOf(appPackageId));
+
+		addOAuthParameter(oAuthRequest, "p_p_lifecycle", "2");
+
+		if (unlicensed) {
+			addOAuthParameter(
+				oAuthRequest, "p_p_resource_id", "serveUnlicensedApp");
+		}
+		else {
+			addOAuthParameter(oAuthRequest, "p_p_resource_id", "serveApp");
+		}
+
+		Response response = getResponse(themeDisplay.getUser(), oAuthRequest);
+
+		FileUtil.write(file, response.getStream());
 	}
 
 	private JSONObject _getAppJSONObject(App app) throws Exception {

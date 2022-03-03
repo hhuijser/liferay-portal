@@ -81,7 +81,7 @@ public class WorkflowInstancePortletTab extends BaseWorkflowPortletTab {
 
 		renderRequest.setAttribute(
 			WorkflowInstanceWebConfiguration.class.getName(),
-			workflowInstanceWebConfiguration);
+			_workflowInstanceWebConfiguration);
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class WorkflowInstancePortletTab extends BaseWorkflowPortletTab {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		workflowInstanceWebConfiguration = ConfigurableUtil.createConfigurable(
+		_workflowInstanceWebConfiguration = ConfigurableUtil.createConfigurable(
 			WorkflowInstanceWebConfiguration.class, properties);
 	}
 
@@ -147,9 +147,6 @@ public class WorkflowInstancePortletTab extends BaseWorkflowPortletTab {
 
 	@Reference
 	protected Portal portal;
-
-	protected volatile WorkflowInstanceWebConfiguration
-		workflowInstanceWebConfiguration;
 
 	@Reference
 	protected WorkflowPreprocessorHelper workflowPreprocessorHelper;
@@ -204,5 +201,8 @@ public class WorkflowInstancePortletTab extends BaseWorkflowPortletTab {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		WorkflowInstancePortletTab.class);
+
+	private volatile WorkflowInstanceWebConfiguration
+		_workflowInstanceWebConfiguration;
 
 }

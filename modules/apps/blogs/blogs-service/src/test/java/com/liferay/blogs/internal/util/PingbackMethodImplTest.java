@@ -172,7 +172,7 @@ public class PingbackMethodImplTest {
 	public void testAddPingbackWithFriendlyURLParameterEntryId()
 		throws Exception {
 
-		testAddPingbackWithFriendlyURLParameterEntryId(null);
+		_testAddPingbackWithFriendlyURLParameterEntryId(null);
 	}
 
 	@Test
@@ -187,7 +187,7 @@ public class PingbackMethodImplTest {
 			namespace
 		);
 
-		testAddPingbackWithFriendlyURLParameterEntryId(namespace);
+		_testAddPingbackWithFriendlyURLParameterEntryId(namespace);
 	}
 
 	@Test
@@ -372,40 +372,6 @@ public class PingbackMethodImplTest {
 		pingbackMethodImpl.setArguments(new Object[] {_SOURCE_URI, targetURI});
 
 		pingbackMethodImpl.execute(_COMPANY_ID);
-	}
-
-	protected void testAddPingbackWithFriendlyURLParameterEntryId(
-			String namespace)
-		throws Exception {
-
-		Mockito.when(
-			_blogsEntryLocalService.getEntry(Matchers.anyLong())
-		).thenReturn(
-			_blogsEntry
-		);
-
-		String name = null;
-
-		if (namespace == null) {
-			name = "entryId";
-		}
-		else {
-			name = namespace + "entryId";
-		}
-
-		long entryId = RandomTestUtil.randomLong();
-
-		_whenFriendlyURLMapperPopulateParams("", name, String.valueOf(entryId));
-
-		execute();
-
-		_verifySuccess();
-
-		Mockito.verify(
-			_blogsEntryLocalService
-		).getEntry(
-			entryId
-		);
 	}
 
 	private PingbackMethodImpl _getPingbackMethodImpl() {
@@ -628,6 +594,40 @@ public class PingbackMethodImplTest {
 		XmlRpcUtil xmlRpcUtil = new XmlRpcUtil();
 
 		xmlRpcUtil.setXmlRpc(_xmlRpc);
+	}
+
+	private void _testAddPingbackWithFriendlyURLParameterEntryId(
+			String namespace)
+		throws Exception {
+
+		Mockito.when(
+			_blogsEntryLocalService.getEntry(Matchers.anyLong())
+		).thenReturn(
+			_blogsEntry
+		);
+
+		String name = null;
+
+		if (namespace == null) {
+			name = "entryId";
+		}
+		else {
+			name = namespace + "entryId";
+		}
+
+		long entryId = RandomTestUtil.randomLong();
+
+		_whenFriendlyURLMapperPopulateParams("", name, String.valueOf(entryId));
+
+		execute();
+
+		_verifySuccess();
+
+		Mockito.verify(
+			_blogsEntryLocalService
+		).getEntry(
+			entryId
+		);
 	}
 
 	private void _verifyExcerpt(String excerpt) throws Exception {

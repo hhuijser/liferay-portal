@@ -95,7 +95,8 @@ public class CommerceCartContentDisplayContext {
 		commerceCartContentRequestHelper = new CommerceCartContentRequestHelper(
 			httpServletRequest);
 
-		commerceContext = commerceCartContentRequestHelper.getCommerceContext();
+		_commerceContext =
+			commerceCartContentRequestHelper.getCommerceContext();
 
 		PortletDisplay portletDisplay =
 			commerceCartContentRequestHelper.getPortletDisplay();
@@ -113,7 +114,7 @@ public class CommerceCartContentDisplayContext {
 			return _commerceOrder;
 		}
 
-		_commerceOrder = commerceContext.getCommerceOrder();
+		_commerceOrder = _commerceContext.getCommerceOrder();
 
 		return _commerceOrder;
 	}
@@ -130,7 +131,7 @@ public class CommerceCartContentDisplayContext {
 
 	public CommerceOrderPrice getCommerceOrderPrice() throws PortalException {
 		return _commerceOrderPriceCalculation.getCommerceOrderPrice(
-			getCommerceOrder(), commerceContext);
+			getCommerceOrder(), _commerceContext);
 	}
 
 	public Map<Long, List<CommerceOrderValidatorResult>>
@@ -144,7 +145,7 @@ public class CommerceCartContentDisplayContext {
 	public String getCommercePriceDisplayType() throws PortalException {
 		CommerceChannel commerceChannel =
 			_commerceChannelLocalService.fetchCommerceChannel(
-				commerceContext.getCommerceChannelId());
+				_commerceContext.getCommerceChannelId());
 
 		if (commerceChannel == null) {
 			return CommercePricingConstants.TAX_EXCLUDED_FROM_PRICE;
@@ -165,7 +166,7 @@ public class CommerceCartContentDisplayContext {
 		throws Exception {
 
 		return cpInstanceHelper.getCPInstanceImageFileVersion(
-			CommerceUtil.getCommerceAccountId(commerceContext),
+			CommerceUtil.getCommerceAccountId(_commerceContext),
 			_portal.getCompanyId(_httpServletRequest),
 			commerceOrderItem.getCPInstanceId());
 	}
@@ -336,7 +337,7 @@ public class CommerceCartContentDisplayContext {
 	}
 
 	public boolean hasViewPricePermission() throws PortalException {
-		CommerceAccount commerceAccount = commerceContext.getCommerceAccount();
+		CommerceAccount commerceAccount = _commerceContext.getCommerceAccount();
 
 		if ((commerceAccount != null) &&
 			(commerceAccount.getType() ==
@@ -395,7 +396,6 @@ public class CommerceCartContentDisplayContext {
 
 	protected final CommerceCartContentRequestHelper
 		commerceCartContentRequestHelper;
-	protected final CommerceContext commerceContext;
 	protected final ModelResourcePermission<CommerceOrder>
 		commerceOrderModelResourcePermission;
 	protected final CPDefinitionHelper cpDefinitionHelper;
@@ -404,6 +404,7 @@ public class CommerceCartContentDisplayContext {
 	private final CommerceCartContentPortletInstanceConfiguration
 		_commerceCartContentPortletInstanceConfiguration;
 	private final CommerceChannelLocalService _commerceChannelLocalService;
+	private final CommerceContext _commerceContext;
 	private CommerceOrder _commerceOrder;
 	private final CommerceOrderItemService _commerceOrderItemService;
 	private final CommerceOrderPriceCalculation _commerceOrderPriceCalculation;

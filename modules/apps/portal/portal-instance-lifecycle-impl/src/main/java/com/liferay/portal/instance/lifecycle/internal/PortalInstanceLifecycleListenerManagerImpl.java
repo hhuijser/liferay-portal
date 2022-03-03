@@ -49,7 +49,7 @@ public class PortalInstanceLifecycleListenerManagerImpl
 		for (PortalInstanceLifecycleListener portalInstanceLifecycleListener :
 				_portalInstanceLifecycleListeners) {
 
-			preunregisterCompany(portalInstanceLifecycleListener, company);
+			_preunregisterCompany(portalInstanceLifecycleListener, company);
 		}
 	}
 
@@ -60,7 +60,7 @@ public class PortalInstanceLifecycleListenerManagerImpl
 		for (PortalInstanceLifecycleListener portalInstanceLifecycleListener :
 				_portalInstanceLifecycleListeners) {
 
-			registerCompany(portalInstanceLifecycleListener, company);
+			_registerCompany(portalInstanceLifecycleListener, company);
 		}
 	}
 
@@ -71,7 +71,7 @@ public class PortalInstanceLifecycleListenerManagerImpl
 		for (PortalInstanceLifecycleListener portalInstanceLifecycleListener :
 				_portalInstanceLifecycleListeners) {
 
-			unregisterCompany(portalInstanceLifecycleListener, company);
+			_unregisterCompany(portalInstanceLifecycleListener, company);
 		}
 	}
 
@@ -102,12 +102,32 @@ public class PortalInstanceLifecycleListenerManagerImpl
 		}
 
 		_companyLocalService.forEachCompany(
-			company -> registerCompany(
+			company -> _registerCompany(
 				portalInstanceLifecycleListener, company),
 			new ArrayList<Company>(_companies));
 	}
 
-	protected void preunregisterCompany(
+	protected void removePortalInstanceLifecycleListener(
+		PortalInstanceLifecycleListener portalInstanceLifecycleListener) {
+
+		if (!(portalInstanceLifecycleListener instanceof Clusterable) &&
+			!clusterMasterExecutor.isMaster()) {
+
+			if (_log.isDebugEnabled()) {
+				_log.debug("Skipping " + portalInstanceLifecycleListener);
+			}
+
+			return;
+		}
+
+		_portalInstanceLifecycleListeners.remove(
+			portalInstanceLifecycleListener);
+	}
+
+	@Reference
+	protected ClusterMasterExecutor clusterMasterExecutor;
+
+	private void _preunregisterCompany(
 		PortalInstanceLifecycleListener portalInstanceLifecycleListener,
 		Company company) {
 
@@ -134,7 +154,7 @@ public class PortalInstanceLifecycleListenerManagerImpl
 		}
 	}
 
-	protected void registerCompany(
+	private void _registerCompany(
 		PortalInstanceLifecycleListener portalInstanceLifecycleListener,
 		Company company) {
 
@@ -169,24 +189,7 @@ public class PortalInstanceLifecycleListenerManagerImpl
 		}
 	}
 
-	protected void removePortalInstanceLifecycleListener(
-		PortalInstanceLifecycleListener portalInstanceLifecycleListener) {
-
-		if (!(portalInstanceLifecycleListener instanceof Clusterable) &&
-			!clusterMasterExecutor.isMaster()) {
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Skipping " + portalInstanceLifecycleListener);
-			}
-
-			return;
-		}
-
-		_portalInstanceLifecycleListeners.remove(
-			portalInstanceLifecycleListener);
-	}
-
-	protected void unregisterCompany(
+	private void _unregisterCompany(
 		PortalInstanceLifecycleListener portalInstanceLifecycleListener,
 		Company company) {
 
@@ -211,9 +214,6 @@ public class PortalInstanceLifecycleListenerManagerImpl
 			}
 		}
 	}
-
-	@Reference
-	protected ClusterMasterExecutor clusterMasterExecutor;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortalInstanceLifecycleListenerManagerImpl.class);

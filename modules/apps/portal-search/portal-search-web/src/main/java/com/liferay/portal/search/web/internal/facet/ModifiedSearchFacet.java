@@ -169,10 +169,6 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 		return modifiedFacetFactory;
 	}
 
-	protected CalendarFactory calendarFactory;
-	protected DateFormatFactory dateFormatFactory;
-	protected JSONFactory jsonFactory;
-
 	@Reference
 	protected ModifiedFacetFactory modifiedFacetFactory;
 
@@ -180,8 +176,8 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 
 		// See LPS-72507 and LPS-76500
 
-		if (calendarFactory != null) {
-			return calendarFactory;
+		if (_calendarFactory != null) {
+			return _calendarFactory;
 		}
 
 		return CalendarFactoryUtil.getCalendarFactory();
@@ -191,8 +187,8 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 
 		// See LPS-72507 and LPS-76500
 
-		if (dateFormatFactory != null) {
-			return dateFormatFactory;
+		if (_dateFormatFactory != null) {
+			return _dateFormatFactory;
 		}
 
 		return DateFormatFactoryUtil.getDateFormatFactory();
@@ -202,8 +198,8 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 
 		// See LPS-72507 and LPS-76500
 
-		if (jsonFactory != null) {
-			return jsonFactory;
+		if (_jsonFactory != null) {
+			return _jsonFactory;
 		}
 
 		return JSONFactoryUtil.getJSONFactory();
@@ -227,5 +223,9 @@ public class ModifiedSearchFacet extends BaseJSPSearchFacet {
 		"[past-hour TO *]", "[past-24-hours TO *]", "[past-week TO *]",
 		"[past-month TO *]", "[past-year TO *]"
 	};
+
+	private CalendarFactory _calendarFactory;
+	private DateFormatFactory _dateFormatFactory;
+	private JSONFactory _jsonFactory;
 
 }

@@ -37,12 +37,12 @@ public abstract class BaseCommerceChannelDisplayContext {
 
 		this.httpServletRequest = httpServletRequest;
 
-		portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
+		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			this.httpServletRequest);
 
 		cpRequestHelper = new CPRequestHelper(httpServletRequest);
 
-		liferayPortletRequest = cpRequestHelper.getLiferayPortletRequest();
+		_liferayPortletRequest = cpRequestHelper.getLiferayPortletRequest();
 		liferayPortletResponse = cpRequestHelper.getLiferayPortletResponse();
 	}
 
@@ -60,8 +60,9 @@ public abstract class BaseCommerceChannelDisplayContext {
 
 	protected final CPRequestHelper cpRequestHelper;
 	protected final HttpServletRequest httpServletRequest;
-	protected final LiferayPortletRequest liferayPortletRequest;
 	protected final LiferayPortletResponse liferayPortletResponse;
-	protected final PortalPreferences portalPreferences;
+
+	private final LiferayPortletRequest _liferayPortletRequest;
+	private final PortalPreferences _portalPreferences;
 
 }

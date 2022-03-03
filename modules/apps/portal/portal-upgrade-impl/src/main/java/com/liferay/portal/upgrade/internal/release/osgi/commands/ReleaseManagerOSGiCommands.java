@@ -119,7 +119,7 @@ public class ReleaseManagerOSGiCommands {
 	public String executeAll() {
 		Set<String> upgradeThrewExceptionBundleSymbolicNames = new HashSet<>();
 
-		executeAll(upgradeThrewExceptionBundleSymbolicNames);
+		_executeAll(upgradeThrewExceptionBundleSymbolicNames);
 
 		if (upgradeThrewExceptionBundleSymbolicNames.isEmpty()) {
 			return "All modules were successfully upgraded";
@@ -184,47 +184,6 @@ public class ReleaseManagerOSGiCommands {
 		sb.setIndex(sb.index() - 1);
 
 		return sb.toString();
-	}
-
-	protected void executeAll(
-		Set<String> upgradeThrewExceptionBundleSymbolicNames) {
-
-		Set<String> upgradableBundleSymbolicNames =
-			_releaseManagerImpl.getUpgradableBundleSymbolicNames();
-
-		upgradableBundleSymbolicNames.removeAll(
-			upgradeThrewExceptionBundleSymbolicNames);
-
-		if (upgradableBundleSymbolicNames.isEmpty()) {
-			return;
-		}
-
-		for (String upgradableBundleSymbolicName :
-				upgradableBundleSymbolicNames) {
-
-			try {
-				List<UpgradeInfo> upgradeInfos =
-					_releaseManagerImpl.getUpgradeInfos(
-						upgradableBundleSymbolicName);
-
-				_upgradeExecutor.execute(
-					upgradableBundleSymbolicName, upgradeInfos, null);
-			}
-			catch (Throwable throwable) {
-				_swappedLogExecutor.execute(
-					upgradableBundleSymbolicName,
-					() -> _log.error(
-						"Failed upgrade process for module ".concat(
-							upgradableBundleSymbolicName),
-						throwable),
-					null);
-
-				upgradeThrewExceptionBundleSymbolicNames.add(
-					upgradableBundleSymbolicName);
-			}
-		}
-
-		executeAll(upgradeThrewExceptionBundleSymbolicNames);
 	}
 
 	private String _check(boolean showUpgradeSteps) {
@@ -361,6 +320,47 @@ public class ReleaseManagerOSGiCommands {
 		}
 
 		return StringPool.BLANK;
+	}
+
+	private void _executeAll(
+		Set<String> upgradeThrewExceptionBundleSymbolicNames) {
+
+		Set<String> upgradableBundleSymbolicNames =
+			_releaseManagerImpl.getUpgradableBundleSymbolicNames();
+
+		upgradableBundleSymbolicNames.removeAll(
+			upgradeThrewExceptionBundleSymbolicNames);
+
+		if (upgradableBundleSymbolicNames.isEmpty()) {
+			return;
+		}
+
+		for (String upgradableBundleSymbolicName :
+				upgradableBundleSymbolicNames) {
+
+			try {
+				List<UpgradeInfo> upgradeInfos =
+					_releaseManagerImpl.getUpgradeInfos(
+						upgradableBundleSymbolicName);
+
+				_upgradeExecutor.execute(
+					upgradableBundleSymbolicName, upgradeInfos, null);
+			}
+			catch (Throwable throwable) {
+				_swappedLogExecutor.execute(
+					upgradableBundleSymbolicName,
+					() -> _log.error(
+						"Failed upgrade process for module ".concat(
+							upgradableBundleSymbolicName),
+						throwable),
+					null);
+
+				upgradeThrewExceptionBundleSymbolicNames.add(
+					upgradableBundleSymbolicName);
+			}
+		}
+
+		_executeAll(upgradeThrewExceptionBundleSymbolicNames);
 	}
 
 	private String _getModulePendingUpgradeMessage(

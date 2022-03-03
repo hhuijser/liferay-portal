@@ -17,7 +17,6 @@ package com.liferay.portal.search.internal.searcher;
 import com.liferay.portal.kernel.search.IndexerRegistry;
 import com.liferay.portal.kernel.search.facet.faceted.searcher.FacetedSearcher;
 import com.liferay.portal.kernel.search.facet.faceted.searcher.FacetedSearcherManager;
-import com.liferay.portal.kernel.util.Localization;
 import com.liferay.portal.search.asset.SearchableAssetClassNamesProvider;
 import com.liferay.portal.search.internal.expando.helper.ExpandoQueryContributorHelper;
 import com.liferay.portal.search.internal.indexer.helper.AddSearchKeywordsQueryContributorHelper;
@@ -56,8 +55,6 @@ public class FacetedSearcherManagerImpl implements FacetedSearcherManager {
 
 	@Reference
 	protected IndexSearcherHelper indexSearcherHelper;
-
-	protected Localization localization;
 
 	@Reference
 	protected PostProcessSearchQueryContributorHelper

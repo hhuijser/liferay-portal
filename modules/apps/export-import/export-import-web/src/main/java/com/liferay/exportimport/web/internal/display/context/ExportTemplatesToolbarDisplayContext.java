@@ -55,7 +55,7 @@ public class ExportTemplatesToolbarDisplayContext
 		super(
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse);
 
-		searchContainer = _createSearchContainer(
+		_searchContainer = _createSearchContainer(
 			liveGroupId, company, iteratorURL);
 	}
 
@@ -91,7 +91,7 @@ public class ExportTemplatesToolbarDisplayContext
 
 	@Override
 	public int getItemsTotal() {
-		return searchContainer.getTotal();
+		return _searchContainer.getTotal();
 	}
 
 	@Override
@@ -104,14 +104,12 @@ public class ExportTemplatesToolbarDisplayContext
 	}
 
 	public SearchContainer<ExportImportConfiguration> getSearchContainer() {
-		return searchContainer;
+		return _searchContainer;
 	}
 
 	protected PortletURL getRenderURL() {
 		return liferayPortletResponse.createRenderURL();
 	}
-
-	protected SearchContainer<ExportImportConfiguration> searchContainer;
 
 	private SearchContainer<ExportImportConfiguration> _createSearchContainer(
 		long liveGroupId, Company company, PortletURL iteratorURL) {
@@ -159,5 +157,7 @@ public class ExportTemplatesToolbarDisplayContext
 
 		return searchContainer;
 	}
+
+	private final SearchContainer<ExportImportConfiguration> _searchContainer;
 
 }

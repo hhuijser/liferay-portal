@@ -63,13 +63,13 @@ public class LayoutStagingBackgroundTaskDisplay
 
 		long sourceGroupId = MapUtil.getLong(contextMap, "sourceGroupId");
 
-		sourceGroup = GroupLocalServiceUtil.fetchGroup(sourceGroupId);
+		_sourceGroup = GroupLocalServiceUtil.fetchGroup(sourceGroupId);
 	}
 
 	@Override
 	public String getDisplayName(HttpServletRequest httpServletRequest) {
-		if ((sourceGroup != null) && !sourceGroup.isStagingGroup() &&
-			(backgroundTask.getGroupId() == sourceGroup.getGroupId())) {
+		if ((_sourceGroup != null) && !_sourceGroup.isStagingGroup() &&
+			(backgroundTask.getGroupId() == _sourceGroup.getGroupId())) {
 
 			return LanguageUtil.get(
 				httpServletRequest, "initial-publish-process");
@@ -82,6 +82,6 @@ public class LayoutStagingBackgroundTaskDisplay
 		return backgroundTask.getName();
 	}
 
-	protected Group sourceGroup;
+	private Group _sourceGroup;
 
 }

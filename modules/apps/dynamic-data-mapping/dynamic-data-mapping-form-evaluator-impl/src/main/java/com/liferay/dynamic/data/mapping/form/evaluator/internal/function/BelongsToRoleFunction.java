@@ -40,9 +40,9 @@ public class BelongsToRoleFunction
 		UserGroupRoleLocalService userGroupRoleLocalService,
 		UserLocalService userLocalService) {
 
-		this.roleLocalService = roleLocalService;
-		this.userGroupRoleLocalService = userGroupRoleLocalService;
-		this.userLocalService = userLocalService;
+		_roleLocalService = roleLocalService;
+		_userGroupRoleLocalService = userGroupRoleLocalService;
+		_userLocalService = userLocalService;
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class BelongsToRoleFunction
 			long userId = _ddmExpressionParameterAccessor.getUserId();
 
 			for (String roleName : roles) {
-				Role role = roleLocalService.fetchRole(companyId, roleName);
+				Role role = _roleLocalService.fetchRole(companyId, roleName);
 
 				if (role == null) {
 					continue;
@@ -74,11 +74,11 @@ public class BelongsToRoleFunction
 				}
 
 				if (role.getType() == RoleConstants.TYPE_REGULAR) {
-					belongsTo = userLocalService.hasRoleUser(
+					belongsTo = _userLocalService.hasRoleUser(
 						companyId, roleName, userId, true);
 				}
 				else {
-					belongsTo = userGroupRoleLocalService.hasUserGroupRole(
+					belongsTo = _userGroupRoleLocalService.hasUserGroupRole(
 						userId, groupId, roleName, true);
 				}
 
@@ -108,13 +108,12 @@ public class BelongsToRoleFunction
 		_ddmExpressionParameterAccessor = ddmExpressionParameterAccessor;
 	}
 
-	protected RoleLocalService roleLocalService;
-	protected UserGroupRoleLocalService userGroupRoleLocalService;
-	protected UserLocalService userLocalService;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		BelongsToRoleFunction.class);
 
 	private DDMExpressionParameterAccessor _ddmExpressionParameterAccessor;
+	private final RoleLocalService _roleLocalService;
+	private final UserGroupRoleLocalService _userGroupRoleLocalService;
+	private final UserLocalService _userLocalService;
 
 }

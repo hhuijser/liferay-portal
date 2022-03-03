@@ -33,7 +33,7 @@ public class SynonymSetIndexNameBuilderImpl
 	public SynonymSetIndexName getSynonymSetIndexName(long companyId) {
 		return new SynonymSetIndexNameImpl(
 			_indexNameBuilder.getIndexName(companyId) + StringPool.DASH +
-				SYNONYMS_INDEX_NAME_SUFFIX);
+				_SYNONYMS_INDEX_NAME_SUFFIX);
 	}
 
 	@Reference(unbind = "-")
@@ -41,7 +41,7 @@ public class SynonymSetIndexNameBuilderImpl
 		_indexNameBuilder = indexNameBuilder;
 	}
 
-	protected static final String SYNONYMS_INDEX_NAME_SUFFIX =
+	private static final String _SYNONYMS_INDEX_NAME_SUFFIX =
 		"search-tuning-synonyms";
 
 	private IndexNameBuilder _indexNameBuilder;

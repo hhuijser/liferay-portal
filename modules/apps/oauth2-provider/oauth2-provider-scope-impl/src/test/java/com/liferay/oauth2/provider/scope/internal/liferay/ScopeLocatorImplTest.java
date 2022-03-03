@@ -72,7 +72,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		PrefixHandler defaultPrefixHandler = target -> "default/" + target;
 
-		ScopeFinder scopeFinder = () -> scopesSet1;
+		ScopeFinder scopeFinder = () -> _scopesSet1;
 
 		Builder builder = new Builder();
 
@@ -95,7 +95,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		Collection<String> application2ScopeAliases =
 			scopeLocatorImpl.getScopeAliases(_COMPANY_ID, applicationName2);
 
-		for (String scope : scopesSet1) {
+		for (String scope : _scopesSet1) {
 			Assert.assertThat(
 				application1ScopeAliases,
 				CoreMatchers.hasItem(defaultPrefixHandler.addPrefix(scope)));
@@ -135,7 +135,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		application2ScopeAliases = scopeLocatorImpl.getScopeAliases(
 			_COMPANY_ID, applicationName2);
 
-		for (String scope : scopesSet1) {
+		for (String scope : _scopesSet1) {
 			Assert.assertThat(
 				application1ScopeAliases,
 				CoreMatchers.hasItem(appPrefixHandler.addPrefix(scope)));
@@ -149,8 +149,8 @@ public class ScopeLocatorImplTest extends PowerMockito {
 	@Test
 	public void testScopeFinderByName() throws Exception {
 		String applicationName2 = "com.liferay.test2";
-		ScopeFinder application1ScopeFinder = () -> scopesSet1;
-		ScopeFinder application2ScopeFinder = () -> scopedSet2;
+		ScopeFinder application1ScopeFinder = () -> _scopesSet1;
+		ScopeFinder application2ScopeFinder = () -> _scopedSet2;
 
 		Builder builder = new Builder();
 
@@ -169,12 +169,12 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		Collection<String> application2ScopesAliasesDefault =
 			scopeLocatorImpl.getScopeAliases(_COMPANY_ID, applicationName2);
 
-		for (String scope : scopesSet1) {
+		for (String scope : _scopesSet1) {
 			Assert.assertThat(
 				application1ScopeAliases, CoreMatchers.hasItem(scope));
 		}
 
-		for (String scope : scopedSet2) {
+		for (String scope : _scopedSet2) {
 			Assert.assertThat(
 				application2ScopesAliasesDefault, CoreMatchers.hasItem(scope));
 		}
@@ -189,7 +189,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		ScopeMapper defaultScopeMapper = ScopeMapper.PASS_THROUGH_SCOPE_MAPPER;
 
-		ScopeFinder scopeFinder = () -> scopesSet1;
+		ScopeFinder scopeFinder = () -> _scopesSet1;
 
 		Builder builder = new Builder();
 
@@ -212,7 +212,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		Collection<String> application2ScopeAliases =
 			scopeLocatorImpl.getScopeAliases(_COMPANY_ID, applicationName2);
 
-		for (String scope : scopesSet1) {
+		for (String scope : _scopesSet1) {
 			Assert.assertThat(
 				application1ScopeAliases, CoreMatchers.hasItem(scope));
 
@@ -248,7 +248,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 		Collection<String> application2ScopesAliases =
 			scopeLocatorImpl.getScopeAliases(_COMPANY_ID, applicationName2);
 
-		for (String scope : scopesSet1) {
+		for (String scope : _scopesSet1) {
 			Assert.assertThat(
 				application1ScopesAliases,
 				CoreMatchers.hasItems(
@@ -273,7 +273,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 	public void testScopeMatcherByCompany() throws Exception {
 		String applicationName2 = "com.liferay.test2";
 
-		ScopeFinder service = () -> scopesSet1;
+		ScopeFinder service = () -> _scopesSet1;
 
 		Set<String> matchScopes = Collections.singleton("everything.readonly");
 
@@ -331,7 +331,7 @@ public class ScopeLocatorImplTest extends PowerMockito {
 				String.valueOf(_COMPANY_ID), scopeMatcherFactory)
 		).withScopeFinders(
 			registrator -> registrator.register(
-				_COMPANY_ID, _APPLICATION_NAME, () -> scopesSet1)
+				_COMPANY_ID, _APPLICATION_NAME, () -> _scopesSet1)
 		).build();
 
 		Collection<LiferayOAuth2Scope> matchedLiferayOAuth2Scopes =
@@ -348,11 +348,6 @@ public class ScopeLocatorImplTest extends PowerMockito {
 
 		Assert.assertTrue(matchedScopes.contains("everything"));
 	}
-
-	protected final Set<String> scopedSet2 = new HashSet<>(
-		Arrays.asList("GET", "POST"));
-	protected final Set<String> scopesSet1 = new HashSet<>(
-		Arrays.asList("everything", "everything.readonly"));
 
 	private Set<String> _getScopes(
 		Collection<LiferayOAuth2Scope> liferayOAuth2Scopes) {
@@ -389,6 +384,11 @@ public class ScopeLocatorImplTest extends PowerMockito {
 	private static final String _APPLICATION_NAME = "com.liferay.test1";
 
 	private static final long _COMPANY_ID = 1;
+
+	private final Set<String> _scopedSet2 = new HashSet<>(
+		Arrays.asList("GET", "POST"));
+	private final Set<String> _scopesSet1 = new HashSet<>(
+		Arrays.asList("everything", "everything.readonly"));
 
 	private class Builder {
 

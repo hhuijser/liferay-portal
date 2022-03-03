@@ -105,35 +105,6 @@ public class CommonSearchResponseAssemblerImpl
 		}
 	}
 
-	protected static final String ADJUST_PURE_NEGATIVE_STRING =
-		",\"adjust_pure_negative\":true";
-
-	protected static final String AUTO_GENERATE_SYNONYMS_PHRASE_QUERY_STRING =
-		",\"auto_generate_synonyms_phrase_query\":true";
-
-	protected static final String BOOST_STRING = ",\"boost\":1.0";
-
-	protected static final String FUZZY_TRANSPOSITIONS_STRING =
-		",\"fuzzy_transpositions\":" + FuzzyQuery.defaultTranspositions;
-
-	protected static final String LENIENT_STRING =
-		",\"lenient\":" + MatchQueryParser.DEFAULT_LENIENCY;
-
-	protected static final String MAX_EXPANSIONS_STRING =
-		",\"max_expansions\":" + FuzzyQuery.defaultMaxExpansions;
-
-	protected static final String OPERATOR_STRING = ",\"operator\":\"OR\"";
-
-	protected static final String PREFIX_LENGTH_STRING =
-		",\"prefix_length\":" + FuzzyQuery.defaultPrefixLength;
-
-	protected static final String SLOP_STRING =
-		",\"slop\":" + MatchQueryParser.DEFAULT_PHRASE_SLOP;
-
-	protected static final String ZERO_TERMS_QUERY_STRING =
-		",\"zero_terms_query\":\"" + MatchQueryParser.DEFAULT_ZERO_TERMS_QUERY +
-			"\"";
-
 	private String _getProfileShardResultString(
 			ProfileShardResult profileShardResult)
 		throws IOException {
@@ -207,11 +178,11 @@ public class CommonSearchResponseAssemblerImpl
 
 		baseSearchResponse.setSearchRequestString(
 			StringUtil.removeSubstrings(
-				toString(searchSourceBuilder), ADJUST_PURE_NEGATIVE_STRING,
-				AUTO_GENERATE_SYNONYMS_PHRASE_QUERY_STRING, BOOST_STRING,
-				FUZZY_TRANSPOSITIONS_STRING, LENIENT_STRING,
-				MAX_EXPANSIONS_STRING, OPERATOR_STRING, PREFIX_LENGTH_STRING,
-				SLOP_STRING, ZERO_TERMS_QUERY_STRING));
+				toString(searchSourceBuilder), _ADJUST_PURE_NEGATIVE_STRING,
+				_AUTO_GENERATE_SYNONYMS_PHRASE_QUERY_STRING, _BOOST_STRING,
+				_FUZZY_TRANSPOSITIONS_STRING, _LENIENT_STRING,
+				_MAX_EXPANSIONS_STRING, _OPERATOR_STRING, _PREFIX_LENGTH_STRING,
+				_SLOP_STRING, _ZERO_TERMS_QUERY_STRING));
 	}
 
 	private void _setTerminatedEarly(
@@ -257,6 +228,35 @@ public class CommonSearchResponseAssemblerImpl
 				baseSearchResponse, aggregationsMap, statsRequest);
 		}
 	}
+
+	private static final String _ADJUST_PURE_NEGATIVE_STRING =
+		",\"adjust_pure_negative\":true";
+
+	private static final String _AUTO_GENERATE_SYNONYMS_PHRASE_QUERY_STRING =
+		",\"auto_generate_synonyms_phrase_query\":true";
+
+	private static final String _BOOST_STRING = ",\"boost\":1.0";
+
+	private static final String _FUZZY_TRANSPOSITIONS_STRING =
+		",\"fuzzy_transpositions\":" + FuzzyQuery.defaultTranspositions;
+
+	private static final String _LENIENT_STRING =
+		",\"lenient\":" + MatchQueryParser.DEFAULT_LENIENCY;
+
+	private static final String _MAX_EXPANSIONS_STRING =
+		",\"max_expansions\":" + FuzzyQuery.defaultMaxExpansions;
+
+	private static final String _OPERATOR_STRING = ",\"operator\":\"OR\"";
+
+	private static final String _PREFIX_LENGTH_STRING =
+		",\"prefix_length\":" + FuzzyQuery.defaultPrefixLength;
+
+	private static final String _SLOP_STRING =
+		",\"slop\":" + MatchQueryParser.DEFAULT_PHRASE_SLOP;
+
+	private static final String _ZERO_TERMS_QUERY_STRING =
+		",\"zero_terms_query\":\"" + MatchQueryParser.DEFAULT_ZERO_TERMS_QUERY +
+			"\"";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CommonSearchResponseAssemblerImpl.class);

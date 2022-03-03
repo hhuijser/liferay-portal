@@ -68,12 +68,25 @@ public class SimilarResultsPortletSharedSearchContributor
 			similarResultsRoute -> _getSimilarResultsInputOptional(
 				getGroupId(portletSharedSearchSettings), similarResultsRoute)
 		).ifPresent(
-			similarResultsInput -> contribute(
+			similarResultsInput -> _contribute(
 				similarResultsInput, portletSharedSearchSettings)
 		);
 	}
 
-	protected void contribute(
+	protected long getGroupId(
+		PortletSharedSearchSettings portletSharedSearchSettings) {
+
+		ThemeDisplay themeDisplay =
+			portletSharedSearchSettings.getThemeDisplay();
+
+		return themeDisplay.getScopeGroupId();
+	}
+
+	@Reference
+	protected SimilarResultsContributorsRegistry
+		similarResultsContributorsRegistry;
+
+	private void _contribute(
 		Criteria criteria,
 		PortletSharedSearchSettings portletSharedSearchSettings) {
 
@@ -102,19 +115,6 @@ public class SimilarResultsPortletSharedSearchContributor
 
 		_setUIDRenderRequestAttribute(criteria, portletSharedSearchSettings);
 	}
-
-	protected long getGroupId(
-		PortletSharedSearchSettings portletSharedSearchSettings) {
-
-		ThemeDisplay themeDisplay =
-			portletSharedSearchSettings.getThemeDisplay();
-
-		return themeDisplay.getScopeGroupId();
-	}
-
-	@Reference
-	protected SimilarResultsContributorsRegistry
-		similarResultsContributorsRegistry;
 
 	private void _filterByEntryClassName(
 		Criteria criteria,
